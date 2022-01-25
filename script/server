@@ -1,0 +1,12 @@
+#!/bin/sh
+# vim: set ts=4:
+#
+# Runs server
+#
+# This script follows convention https://github.com/github/scripts-to-rule-them-all.
+set -u
+
+. "$(dirname "$0")/bootstrap"
+
+info 'Running server...'
+python3 manage.py runserver
