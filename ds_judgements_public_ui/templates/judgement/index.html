@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  Total judgements: {{ judgement_list.count }}
+  <ul>
+    {% for judgement in judgement_list %}
+      <li>{{ judgement.title }}</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}
+
