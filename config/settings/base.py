@@ -74,7 +74,6 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "ds_judgements_public_ui.users",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -93,7 +92,7 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = "users.User"
+# AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
@@ -178,7 +177,6 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "ds_judgements_public_ui.users.context_processors.allauth_settings",
             ],
         },
     }
@@ -261,13 +259,13 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "ds_judgements_public_ui.users.adapters.AccountAdapter"
+# ACCOUNT_ADAPTER = "ds_judgements_public_ui.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-ACCOUNT_FORMS = {"signup": "ds_judgements_public_ui.users.forms.UserSignupForm"}
+# ACCOUNT_FORMS = {"signup": "ds_judgements_public_ui.users.forms.UserSignupForm"}
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "ds_judgements_public_ui.users.adapters.SocialAccountAdapter"
+# SOCIALACCOUNT_ADAPTER = "ds_judgements_public_ui.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-SOCIALACCOUNT_FORMS = {"signup": "ds_judgements_public_ui.users.forms.UserSocialSignupForm"}
+# SOCIALACCOUNT_FORMS = {"signup": "ds_judgements_public_ui.users.forms.UserSocialSignupForm"}
 
 
 # Your stuff...
