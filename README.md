@@ -76,3 +76,5 @@ Run `script/test` to run pytest and the linters
 ### Server
 
 Run `script/server` to run the server
+
+Marklogic will be run in its own Docker container, and its logs will be piped to `marklogic.log`

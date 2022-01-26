@@ -8,5 +8,10 @@ set -u
 
 . "$(dirname "$0")/bootstrap"
 
+info 'Bring up Marklogic in the background...'
+docker-compose -f docker-marklogic.yml up -d
+info 'Piping Marklogic logs to marklogic.log...'
+docker logs marklogic > marklogic.log
+
 info 'Running server...'
-python3 manage.py runserver
+python3 manage.py runserver 3000
