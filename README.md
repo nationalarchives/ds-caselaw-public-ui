@@ -56,3 +56,23 @@ See detailed [cookiecutter-django Heroku documentation](http://cookiecutter-djan
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+## Environment
+
+Copy `.env.example` to `env` to set your local environment variables
+
+## Scripts
+
+This application uses the "Scripts to rule them all" pattern.
+
+### Bootstrap
+
+Run `script/bootstrap` to set required environment variables for the application
+
+### Test
+
+Run `script/test` to run pytest and the linters
+
+### Server
+
+Run `script/server` to run the server
