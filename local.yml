@@ -19,7 +19,7 @@ services:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
     ports:
-      - "8000:8000"
+      - "3000:3000"
     command: /start
 
   postgres:
@@ -33,6 +33,18 @@ services:
       - ds_judgements_public_ui_local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
+
+  marklogic:
+    container_name: marklogic
+    image: store/marklogicdb/marklogic-server:10.0-8.1-centos-1.0.0-ea2
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+    environment:
+      MARKLOGIC_ADMIN_USERNAME: admin
+      MARKLOGIC_ADMIN_PASSWORD: admin
+      MARKLOGIC_INIT: "true"
 
   docs:
     image: ds_judgements_public_ui_local_docs
