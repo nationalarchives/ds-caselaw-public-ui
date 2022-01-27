@@ -69,6 +69,10 @@ This application uses the "Scripts to rule them all" pattern.
 
 Run `script/bootstrap` to set required environment variables for the application
 
+### Test data
+
+Run `script/data-import` to import some test XML data into a volume in Marklogic called `JudgementsDB`
+
 ### Test
 
 Run `script/test` to run pytest and the linters

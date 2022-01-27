@@ -1,0 +1,61 @@
+#!/bin/sh
+# vim: set ts=4:
+#
+# Creates Marklogic application server (if it does not exist)
+# and loads data into that database
+#
+# This script follows convention https://github.com/github/scripts-to-rule-them-all.
+set -eu
+
+cd "$(dirname "$0")/.."
+. script/utils.sh
+. script/data-import.conf
+
+info 'Bring up Marklogic...'
+docker-compose -f docker-marklogic.yml up -d > marklogic.log
+
+info 'Check to see if Marklogic is up...'
+while ! curl -X GET http://localhost:8002/v1/rest-apis
+do
+  sleep 1
+  echo 'Waiting for Marklogic to come up'
+done
+
+info 'Create Application server on Marklogic...'
+  curl -v -X POST  --anyauth -u admin:admin \
+  --header "Content-Type:application/json" \
+  -d '{"rest-api": { "name": "JudgementsServer", "port": "8011", "database": "JudgementsDB", "modules-database": "Judgements-Modules" } }' \
+  'http://localhost:8002/v1/rest-apis'
+
+info 'Adjust Application server authentication to be basicauth...'
+  curl -v -X PUT  --anyauth -u admin:admin \
+  --header "Content-Type:application/json" \
+  -d '{"authentication": "basic" }' \
+  'http://localhost:8002/manage/v2/servers/JudgementsServer/properties?group-id=Default'
+
+info 'Create REST admin user...'
+curl -v -X POST --anyauth -u admin:admin \
+  --header "Content-Type:application/json" \
+  -d '{"user-name":"rest-admin", "password": "x", "role": ["rest-admin"]}' \
+  'http://localhost:8002/manage/LATEST/users'
+
+info 'Create REST reader and writer...'
+curl -v -X POST  --anyauth -u admin:admin \
+  --header "Content-Type:application/json" \
+  -d '{"user-name":"rest-writer", "password": "x", "role": ["rest-writer"]}' \
+  'http://localhost:8002/manage/v2/users'
+
+curl -v -X POST  --anyauth -u admin:admin \
+  --header "Content-Type:application/json" \
+  -d '{"user-name":"rest-reader", "password": "x", "role": ["rest-reader"]}' \
+  'http://localhost:8002/manage/v2/users'
+
+info 'Load XML documents into Application server...'
+#Load XML, using content header to specify XML
+COUNTER=0
+for XML in $(ls ./script/data/xml/*);
+  do
+    curl -s -H "Content-type: application/xml" --digest --user $WRITERAUTH -T $XML "$CONN/v1/documents?uri=/"${XML##*/}"&collection=shakespeare" \
+    && ((COUNTER++))
+done;
+echo "Number of XML files loaded is $COUNTER."
