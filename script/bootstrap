@@ -51,3 +51,7 @@ createdb ds_judgements_public_ui -U postgres --no-password $DATABASE_PASSWORD 2>
   | sed -e '/database "ds_judgements_public_ui" already exists$/d'
 info 'Migrate database...'
 python3 manage.py migrate
+
+info 'Create data volume for Marklogic'
+mkdir docker/db/data 2>&1 \
+  | sed -e '/File exists$/d'

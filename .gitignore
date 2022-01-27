@@ -276,3 +276,5 @@ ds_judgements_public_ui/media/
 .env
 .envs/.local
 .envs/.production
+
+docker/*

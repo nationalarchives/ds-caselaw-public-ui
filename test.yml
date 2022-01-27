@@ -45,6 +45,8 @@ services:
       MARKLOGIC_ADMIN_USERNAME: admin
       MARKLOGIC_ADMIN_PASSWORD: admin
       MARKLOGIC_INIT: "true"
+    volumes:
+      - ./docker/db/data/:/var/opt/MarkLogic/
 
 
   docs:
