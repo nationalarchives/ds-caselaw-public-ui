@@ -1,6 +1,5 @@
 import requests
-import xmltodict
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.template import loader
 from requests.auth import HTTPBasicAuth
 
@@ -15,11 +14,16 @@ def index(request):
 
 
 def detail(request, judgement_uri):
+    if (judgement_uri.endswith('/')):
+        judgement_uri = judgement_uri[:-1]
+
     response = requests.get(
         "http://localhost:8011/LATEST/documents/?uri=/" + judgement_uri + ".xml",
-        auth=HTTPBasicAuth("rest-reader", "x"),
+        auth=HTTPBasicAuth("admin", "admin"),
     )
-    data = xmltodict.parse(response.text)
-    context = {"xml": data}
-    template = loader.get_template("judgement/detail.html")
-    return HttpResponse(template.render(context, request))
+    if (response.status_code != 200):
+        return HttpResponseNotFound("That judgment was not found")
+    else:
+        context = {"xml": response.text}
+        template = loader.get_template("judgement/detail.html")
+        return HttpResponse(template.render(context, request))

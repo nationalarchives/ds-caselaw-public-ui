@@ -1,4 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  {{ xml.PLAY.TITLE }}
+  {% autoescape off %}
+    {{ xml }}
+  {% endautoescape %}
 {% endblock content %}
