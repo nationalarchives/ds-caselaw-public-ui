@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class JudgementsConfig(AppConfig):
+class JudgmentsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "judgements"
+    name = "judgments"
