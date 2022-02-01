@@ -3,14 +3,6 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.template import loader
 from requests.auth import HTTPBasicAuth
 
-from .models import Judgement
-
-
-def index(request):
-    judgements = Judgement.objects.all
-    context = {"judgement_list": judgements}
-    template = loader.get_template("judgment/index.html")
-    return HttpResponse(template.render(context, request))
 
 def detail(request, judgment_uri):
     if judgment_uri.endswith("/"):
@@ -20,7 +12,7 @@ def detail(request, judgment_uri):
         "http://localhost:8011/LATEST/documents/?uri=/" + judgment_uri + ".xml",
         auth=HTTPBasicAuth("admin", "admin"),
     )
-    if (response.status_code != 200):
+    if response.status_code != 200:
         return HttpResponseNotFound("That judgment was not found")
     else:
         context = {"xml": response.text}
