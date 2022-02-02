@@ -3,13 +3,19 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.template import loader
 from requests.auth import HTTPBasicAuth
 
+from config.settings.base import env
+
 
 def detail(request, judgment_uri):
     if judgment_uri.endswith("/"):
         judgment_uri = judgment_uri[:-1]
 
     response = requests.get(
-        "http://localhost:8011/LATEST/documents/?uri=/" + judgment_uri + ".xml",
+        "http://"
+        + env("MARKLOGIC_HOST")
+        + ":8011/LATEST/documents/?uri=/"
+        + judgment_uri
+        + ".xml",
         auth=HTTPBasicAuth("admin", "admin"),
     )
     if response.status_code != 200:

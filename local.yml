@@ -18,6 +18,8 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+    environment:
+      MARKLOGIC_HOST: marklogic
     ports:
       - "3000:3000"
     command: /start
@@ -41,6 +43,7 @@ services:
       - "8000:8000"
       - "8001:8001"
       - "8002:8002"
+      - "8011:8011"
     environment:
       MARKLOGIC_ADMIN_USERNAME: admin
       MARKLOGIC_ADMIN_PASSWORD: admin
