@@ -17,6 +17,8 @@ services:
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
+    environment:
+      MARKLOGIC_HOST: marklogic
     command: /start
 
   postgres:
@@ -30,6 +32,22 @@ services:
     env_file:
       - ./.envs/.production/.postgres
 
+  marklogic:
+    container_name: marklogic
+    image: store/marklogicdb/marklogic-server:10.0-8.1-centos-1.0.0-ea2
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+      - "8011:8011"
+    environment:
+      MARKLOGIC_ADMIN_USERNAME: admin
+      MARKLOGIC_ADMIN_PASSWORD: admin
+      MARKLOGIC_INIT: "true"
+    volumes:
+      - ./docker/db/data/:/var/opt/MarkLogic/
+      - ./docker/db/backup:/var/opt/backup
+
   traefik:
     build:
       context: .
@@ -42,6 +60,3 @@ services:
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
-
-  redis:
-    image: redis:6
