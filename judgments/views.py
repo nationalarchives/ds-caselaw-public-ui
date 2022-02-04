@@ -18,6 +18,7 @@ def detail(request, judgment_uri):
         + ".xml",
         auth=HTTPBasicAuth("admin", "admin"),
     )
+
     if response.status_code != 200:
         return HttpResponseNotFound("That judgment was not found")
     else:
