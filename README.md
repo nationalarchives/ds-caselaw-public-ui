@@ -13,10 +13,10 @@ the Marklogic console. Run `docker-compose -f docker-marklogic.yml` to bring up 
 
 Once this is up you can create and restore the database from an s3 bucket containing test Judgments data:
 
-1. First, add AWS credentials to MarkLogic (under Security > Credentials), so it can pull the backup from a shared S3 bucket.
+1. First, navigate to http://localhost:8001/ and add AWS credentials to MarkLogic (under Security > Credentials), so it can pull the backup from a shared S3 bucket.
    The credentials (AWS access ID & secret key) should be for your `dxwbilling` account. You will need to create them in AWS
    if you haven't already.
-2. Then navigate to http://localhost:8001/ and create a database named `Judgments`.
+2. Then create a database named `Judgments`in the Marklogic interface.
 3. In the Backup/Restore tab in Marklogic for your new Judgments database, initiate a restore, using the following as the
    "directory": s3://tna-judgments-marklogic-backup/
 
