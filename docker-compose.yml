@@ -1,40 +1,45 @@
-version: '3'
-
-volumes:
-  ds_judgements_public_ui_local_postgres_data: {}
-  ds_judgements_public_ui_local_postgres_data_backups: {}
+version: '3.1'
 
 services:
   django:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: ds_judgements_public_ui_local_django
-    container_name: ds_judgements_public_ui_local_django
     depends_on:
       - postgres
+      - marklogic
     volumes:
       - .:/app:z
-    env_file:
-      - ./.envs/.local/.django
-      - ./.envs/.local/.postgres
+    init: true
     environment:
-      MARKLOGIC_HOST: marklogic
+      DATABASE_URL: "postgres://postgres:admin@postgres:5432/ds_judgements_public_ui"
+      DJANGO_SETTINGS_MODULE: "config.settings.local"
+      SECRET_KEY: local_dev_secret_key
+      SECURE_SSL_REDIRECT: "false"
+    env_file:
+      - ./.env
     ports:
       - "3000:3000"
-    command: /start
+    # do nothing forever - exec commands elsewhere
+    command: tail -f /dev/null
 
   postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    image: ds_judgements_public_ui_production_postgres
-    container_name: ds_judgements_public_ui_local_postgres
+    image: postgres:12.3
+    ports:
+     - "5432:5432"
+    environment:
+      POSTGRES_DB: ds_judgements_public_ui
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      PGDATABASE: ds_judgements_public_ui
+      PGUSER: postgres
+      PGPASSWORD: admin
+      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
-      - ds_judgements_public_ui_local_postgres_data:/var/lib/postgresql/data:Z
-      - ds_judgements_public_ui_local_postgres_data_backups:/backups:z
-    env_file:
-      - ./.envs/.local/.postgres
+      - ./database_backups:/backups:z
 
   marklogic:
     container_name: marklogic
@@ -59,7 +64,7 @@ services:
       context: .
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
-      - ./.envs/.local/.django
+      - ./.env
     volumes:
       - ./docs:/docs:z
       - ./config:/app/config:z
