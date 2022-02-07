@@ -13,17 +13,26 @@ the Marklogic console. Run `docker-compose -f docker-marklogic.yml up` to bring 
 
 Once this is up you can create and restore the database from an s3 bucket containing test Judgments data:
 
-1. First, navigate to http://localhost:8001/, which will ask for basic auth. Username and password are both `admin`. 
+1. First, navigate to http://localhost:8001/, which will ask for basic auth. Username and password are both `admin`.
 2. Then add AWS credentials to MarkLogic (under Security > Credentials), so it can pull the backup from a shared S3 bucket.
    The credentials (AWS access ID & secret key) should be for your `dxwbilling` account. You will need to create them in AWS
    if you haven't already.
-2. Then create a database named `Judgments`in the Marklogic interface.
-3. In the Backup/Restore tab in Marklogic for your new Judgments database, initiate a restore, using the following as the
+3. Then create a database named `Judgments`in the Marklogic interface.
+4. After creating the database, attach a `Forest` named `Judgments1`. The interface should tell you that the database does not have any Forests attached. To create this Forest click on the link provided within the interface, or click in the Forest folder and follow the instructions.
+5. In the Backup/Restore tab in Marklogic for your new Judgments database, initiate a restore, using the following as the
    `"directory": s3://tna-judgments-marklogic-backup/`
 
 Assuming you have entered the S3 credentials correctly, this will kick off a restore from s3. Once you have the data locally,
 you can then back it up locally using the path `/var/opt/backup` in the management console. It will be backed up to your local
 machine in `docker/db/backup`
+
+### Marklogic URL Guide
+
+- http://localhost:8000/ this is the query interface where you can browse documents in the `Judgments` database.
+- http://localhost:8001/ this is the management console where you can administer your database.
+- http://localhost:8002/ this is the monitoring dashboard.
+- http://localhost:8011/ this is the application server for the Marklogic REST interface
+All four URLs use basic auth, username and passward are both `admin`.
 
 ## Scripts
 
