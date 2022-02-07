@@ -13,4 +13,6 @@ class ApiClient:
             + judgment_uri
             + ".xml"
         )
-        return requests.get(url, auth=HTTPBasicAuth("admin", "admin"))
+        return requests.get(
+            url, auth=HTTPBasicAuth(env("MARKLOGIC_USER"), env("MARKLOGIC_PASSWORD"))
+        )
