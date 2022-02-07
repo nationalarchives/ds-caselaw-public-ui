@@ -8,7 +8,7 @@ Copy `.env.example` to `env` to set your local environment variables
 
 ## Judgments data
 
-Before running `script/bootstrap` you will need to create a database named `Judgments` in Marklogic. You can do this via
+After running `script/bootstrap` you will need to create a database named `Judgments` in Marklogic. You can do this via
 the Marklogic console. Run `docker-compose -f docker-marklogic.yml` to bring up Marklogic in its own container.
 
 Once this is up you can create and restore the database from an s3 bucket containing test Judgments data:
