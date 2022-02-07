@@ -42,10 +42,10 @@ python3 -m pip install --disable-pip-version-check -r requirements/local.txt 2>&
 	| sed	-e '/^Requirement already satisfied/d' \
 			-e '/don.t match your environment$/d'
 
-info 'Setting up DATABASE_URL...'
-export DATABASE_URL=$DATABASE_URL
 info 'Read .env file...'
 export DJANGO_READ_DOT_ENV_FILE=True
+info 'Setting up DATABASE_URL...'
+export DATABASE_URL=$DATABASE_URL
 info 'Create database...'
 createdb ds_judgements_public_ui -U postgres --no-password $DATABASE_PASSWORD 2>&1 \
   | sed -e '/database "ds_judgements_public_ui" already exists$/d'
@@ -53,7 +53,7 @@ info 'Migrate database...'
 python3 manage.py migrate
 
 info 'Create data volume for Marklogic'
-mkdir docker/db/data 2>&1 \
+mkdir -p docker/db/data 2>&1 \
   | sed -e '/File exists$/d'
 
 info 'Bring up Marklogic...'
