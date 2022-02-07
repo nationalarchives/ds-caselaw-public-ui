@@ -208,6 +208,8 @@ CSRF_COOKIE_HTTPONLY = True
 SECURE_BROWSER_XSS_FILTER = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
 X_FRAME_OPTIONS = "DENY"
+# https://docs.djangoproject.com/en/4.0/ref/settings/#secure-ssl-redirect
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", True)
 
 # EMAIL
 # ------------------------------------------------------------------------------
