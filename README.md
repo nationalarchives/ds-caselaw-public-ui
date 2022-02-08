@@ -34,7 +34,7 @@ A database server built from the official [marklogic](https://hub.docker.com/_/m
 
 ### 1. Gain access to the marklogic image
 
-Access to the marklogic Docker image is restricted to those who have 'purchased' it on Docker Hub. It's actually FREE to purchase, but you need to [a short form](https://hub.docker.com/_/marklogic/purchase).
+Access to the marklogic Docker image is restricted to those who have 'purchased' it on Docker Hub. It's actually FREE to purchase, but you need to fill out [a short form](https://hub.docker.com/_/marklogic/purchase).
 
 ### 2. Create `.env`
 
