@@ -8,7 +8,6 @@ services:
       dockerfile: ./compose/local/django/Dockerfile
     depends_on:
       - postgres
-      - marklogic
     volumes:
       - .:/app:z
     init: true
