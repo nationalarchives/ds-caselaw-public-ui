@@ -1,5 +1,0 @@
-# General
-# ------------------------------------------------------------------------------
-USE_DOCKER=yes
-IPYTHONDIR=/app/.ipython
-MARKLOGIC_HOST=localhost

@@ -1,12 +1,111 @@
 # ds-judgements-public-ui
 
-See [cookiecutter-README](doc/cookiecutter-README.md) for information related to the Cookiecutter install of Django.
+## Local development
 
-## Environment
+This project uses Docker to create a consistent environment for local development.
 
-Copy `.env.example` to `env` to set your local environment variables
+On macOS and Windows, Docker requires [Docker
+Desktop](https://www.docker.com/products/docker-desktop) to be installed. Linux
+users should install the Docker engine using their distribution's package
+manager or [download a `.deb` or
+`.rpm`](https://docs.docker.com/engine/install/)
 
-## Judgments data
+Once installed, we need to build our containers. We use
+[`docker-compose`](https://docs.docker.com/compose/) to orchestrate the
+building of the project's containers, one for each each service:
+
+### `django`
+
+Our custom container responsible for running the application. Built from the
+official [python 3.9](https://hub.docker.com/_/python/) base image
+
+### `postgres`
+
+The database service built from the official [postgres](https://hub.docker.com/_/postgres/) image
+
+### `marklogic`
+
+A database server built from the official [marklogic](https://hub.docker.com/_/marklogic) image.
+
+
+## Getting started
+
+**NOTE**: For any of the following commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html). Once installed, you can type `fab -l` to see a list of available commands.
+
+### 1. Gain access to the marklogic image
+
+Access to the marklogic Docker image is restricted to those who have 'purchased' it on Docker Hub. It's actually FREE to purchase, but you need to [a short form](https://hub.docker.com/_/marklogic/purchase).
+
+### 2. Create `.env`
+
+```console
+$ cp .env.example .env
+```
+
+### 3. Build Docker containers
+
+```console
+$ fab build
+```
+
+### 4. Start Docker containers
+
+```console
+$ fab start
+```
+
+### 5. Start a shell session with the 'django' container
+
+```console
+$ fab sh
+```
+
+### 6. Apply database migrations
+
+```console
+$ python manage.py migrate
+```
+
+### 7. Run a 'development' web server
+
+```console
+$ python manage.py runserver_plus 0.0.0.0:3000
+```
+
+### 8. Access the site
+
+<http://127.0.0.1:3000>
+
+**NOTE**: Compiled CSS is not included and therefore needs to be built initially, and after each git pull.
+
+## Additional development tips
+
+### Quick start with `fab run`
+
+While it's handy to be able to access the django container via a shell and interact with it directly, sometimes all you want is to view the site in a web browser. In these cases, you can use:
+
+```console
+$ fab run
+```
+
+This command takes care of the following:
+
+1. Starting all of the necessary Docker containers
+2. Installing any new python dependencies
+3. Applying any new database migrations
+4. Starting the Django development server
+
+You can then access the site in your browser as usual:
+
+<http://127.0.0.1:3000>
+
+### Running tests
+
+```console
+$ fab test
+```
+
+### Importing Judgments data
 
 After running `script/bootstrap` you will need to create a database named `Judgments` in Marklogic. You can do this via
 the Marklogic console. Run `docker-compose -f docker-marklogic.yml up` to bring up Marklogic in its own container.
@@ -34,27 +133,6 @@ machine in `docker/db/backup`
 - http://localhost:8011/ this is the application server for the Marklogic REST interface
 All four URLs use basic auth, username and passward are both `admin`.
 
-## Scripts
+### Using the pre-push hook (optional)
 
-This application uses the "Scripts to rule them all" pattern.
-
-### Bootstrap
-
-Run `script/bootstrap` to set required environment variables for the application
-
-### Test
-
-Run `script/test` to run pytest and the linters
-
-### Server
-
-Run `script/server` to run the server
-
-Marklogic will be run in its own Docker container, and its logs will be piped to `marklogic.log`
-
-## Local development
-
-### Pre-push hook
-
-Copy `pre-push.sample` to `.git/hooks/pre-push` to set up the pre-push hook. This will run Python linting and
-style checks when you push to the repo and alert you to any linting issues that will cause CI to fail.
+Copy `pre-push.sample` to `.git/hooks/pre-push` to set up the pre-push hook. This will run Python linting and style checks when you push to the repo and alert you to any linting issues that will cause CI to fail.

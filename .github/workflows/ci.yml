@@ -7,19 +7,17 @@ env:
 
 on:
   pull_request:
-    branches: [ "master", "main" ]
-    paths-ignore: [ "docs/**" ]
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
 
   push:
-    branches: [ "master", "main" ]
-    paths-ignore: [ "docs/**" ]
-
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
 
 jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout Code Repository
         uses: actions/checkout@v2
 
@@ -43,14 +41,20 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v2
 
+      - name: Copy .env.example file
+        uses: canastro/copy-file-action@master
+        with:
+          source: ".env.example"
+          target: ".env"
+
       - name: Build the Stack
-        run:  docker-compose -f test.yml build
+        run: docker-compose build
 
       - name: Run DB Migrations
-        run:  docker-compose -f test.yml run --rm django python manage.py migrate
+        run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Tests
-        run:  docker-compose -f test.yml run django pytest
+        run: docker-compose run django pytest
 
       - name: Tear down the Stack
-        run:  docker-compose -f test.yml down
+        run: docker-compose down
