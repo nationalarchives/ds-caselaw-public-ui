@@ -1,19 +1,15 @@
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.template import loader
 
-from judgments.api_client import ApiClient
+from judgments.api_client import MarklogicResourceNotFoundError, api_client
 
 
 def detail(request, judgment_uri):
     if judgment_uri.endswith("/"):
         judgment_uri = judgment_uri[:-1]
-
-    response = ApiClient.get(judgment_uri)
-
-    if response.status_code != 200:
-        context = {"content": "That judgment was not found"}
-    else:
-        context = {"xml": response.text}
-
+    try:
+        judgement_xml = api_client.get_judgement_xml(judgment_uri)
+    except MarklogicResourceNotFoundError:
+        raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({"xml": judgement_xml}, request))
