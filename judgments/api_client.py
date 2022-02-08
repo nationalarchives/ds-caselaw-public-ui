@@ -99,7 +99,7 @@ class MockAPIClient:
     fixtures_dir: str = settings.MARKLOGIC_FIXTURES_DIR
 
     def get_judgement_xml(self, uri: str) -> str:
-        filename = uri.lstrip("/").replace("/", "--") + '.xml'
+        filename = uri.lstrip("/").replace("/", "--") + ".xml"
         try:
             # Return file contents as text
             return Path(os.path.join(self.fixtures_dir, filename)).read_text()
