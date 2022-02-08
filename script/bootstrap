@@ -52,32 +52,36 @@ createdb ds_judgements_public_ui -U postgres --no-password $DATABASE_PASSWORD 2>
 info 'Migrate database...'
 python3 manage.py migrate
 
-info 'Create data volume for Marklogic'
-mkdir docker/db/data 2>&1 \
+if $USE_MARKLOGIC
+then
+  info 'Create data volume for Marklogic'
+  mkdir docker/db/data 2>&1 \
   | sed -e '/File exists$/d'
 
-info 'Bring up Marklogic...'
-docker-compose -f docker-marklogic.yml up -d > marklogic.log
 
-info 'Check to see if Marklogic is up...'
-while ! curl -X GET http://localhost:8002/v1/rest-apis 2>&1 | sed -e '/401 Unauthorized/d'
-do
-  sleep 1
-  echo 'Waiting for Marklogic to come up'
-done
+  info 'Bring up Marklogic...'
+  docker-compose -f docker-marklogic.yml up -d > marklogic.log
 
-info 'Create Application server on Marklogic...'
-  curl -v -X POST  --anyauth -u admin:admin \
-  --header "Content-Type:application/json" \
-  -d '{"rest-api": { "name": "JudgmentsServer", "port": "8011", "database": "Judgments", "modules-database": "Modules" } }' \
-  'http://localhost:8002/v1/rest-apis' 2>&1 \
-  | sed -e '/Port 8011 is in use./d' # This message means the application server already exists
+  info 'Check to see if Marklogic is up...'
+  while ! curl -X GET http://localhost:8002/v1/rest-apis 2>&1 | sed -e '/401 Unauthorized/d'
+  do
+    sleep 1
+    echo 'Waiting for Marklogic to come up'
+  done
 
-info 'Adjust Application server authentication to be basicauth...'
-  curl -v -X PUT  --anyauth -u admin:admin \
-  --header "Content-Type:application/json" \
-  -d '{"authentication": "basic" }' \
-  'http://localhost:8002/manage/v2/servers/JudgmentsServer/properties?group-id=Default' 2>&1 \
-  | sed -e '/204 No Content/d'
+  info 'Create Application server on Marklogic...'
+    curl -v -X POST  --anyauth -u admin:admin \
+    --header "Content-Type:application/json" \
+    -d '{"rest-api": { "name": "JudgmentsServer", "port": "8011", "database": "Judgments", "modules-database": "Modules" } }' \
+    'http://localhost:8002/v1/rest-apis' 2>&1 \
+    | sed -e '/Port 8011 is in use./d' # This message means the application server already exists
 
-info "Don't forget to import data into Marklogic! See README for details"
+  info 'Adjust Application server authentication to be basicauth...'
+    curl -v -X PUT  --anyauth -u admin:admin \
+    --header "Content-Type:application/json" \
+    -d '{"authentication": "basic" }' \
+    'http://localhost:8002/manage/v2/servers/JudgmentsServer/properties?group-id=Default' 2>&1 \
+    | sed -e '/204 No Content/d'
+
+  info "Don't forget to import data into Marklogic! See README for details"
+fi
