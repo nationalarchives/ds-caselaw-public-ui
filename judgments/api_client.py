@@ -1,8 +1,10 @@
 import os
 import json
+from pathlib import Path
 from typing import Any, Dict, Optional
 
 import requests
+from django.conf import settings
 from requests.auth import HTTPBasicAuth
 
 from config.settings.base import env
@@ -90,3 +92,28 @@ class MarklogicApiClient:
 
     def get_judgement_xml(self, uri: str) -> str:
         return self.make_request(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml").text
+
+
+class MockAPIClient:
+
+    fixtures_dir: str = settings.MARKLOGIC_FIXTURES_DIR
+
+    def get_judgement_xml(self, uri: str) -> str:
+        filename = uri.lstrip("/").replace("/", "--") + '.xml'
+        try:
+            # Return file contents as text
+            return Path(os.path.join(self.fixtures_dir, filename)).read_text()
+        except FileNotFoundError:
+            # Raise similar error if file not found
+            raise MarklogicResourceNotFoundError
+
+
+if env.bool("MARKLOGIC_MOCK_REQUESTS", default=False):
+    api_client = MockAPIClient()
+else:
+    api_client = MarklogicApiClient(
+        host=env("MARKLOGIC_HOST"),
+        username=env("MARKLOGIC_USERNAME"),
+        password=env("MARKLOGIC_PASSWORD"),
+        use_https=env("MARKLOGIC_USE_HTTPS", default=True),
+    )
