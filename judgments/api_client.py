@@ -55,7 +55,7 @@ class MarklogicApiClient:
         return f"{self.base_url}/{path.lstrip('/')}"
 
     def _get_request_kwargs(
-        self, method: str, path: str, data: Optional[Dict[str, Any]]
+        self, method: str, path: str, data: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         kwargs = dict(url=self._path_to_request_url(path), auth=self._auth)
         if data is not None:
@@ -83,15 +83,26 @@ class MarklogicApiClient:
             new_exception.response = response
             raise new_exception
 
-    def make_request(self, method: str, path: str, **data: Any) -> requests.Response:
+    def make_request(
+        self, method: str, path: str, data: Dict[str, Any] = None
+    ) -> requests.Response:
         kwargs = self._get_request_kwargs(method, path, data)
         response = requests.request(method, **kwargs)
         # Raise relevant exception for an erroneous response
         self._raise_for_status(response)
         return response
 
+    def GET(self, path: str, **data: Any) -> requests.Response:
+        return self.make_request("GET", path, data)
+
+    def POST(self, path: str, **data: Any) -> requests.Response:
+        return self.make_request("POST", path, data)
+
+    def PUT(self, path: str, **data: Any) -> requests.Response:
+        return self.make_request("PUT", path, data)
+
     def get_judgement_xml(self, uri: str) -> str:
-        return self.make_request(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml").text
+        return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml").text
 
 
 class MockAPIClient:
@@ -99,12 +110,10 @@ class MockAPIClient:
     fixtures_dir: str = settings.MARKLOGIC_FIXTURES_DIR
 
     def get_judgement_xml(self, uri: str) -> str:
-        filename = uri.lstrip("/").replace("/", "--") + ".xml"
+        filepath = os.path.join(self.fixtures_dir, uri.lstrip("/") + ".xml")
         try:
-            # Return file contents as text
-            return Path(os.path.join(self.fixtures_dir, filename)).read_text()
+            return Path(filepath).read_text()
         except FileNotFoundError:
-            # Raise similar error if file not found
             raise MarklogicResourceNotFoundError
 
 
