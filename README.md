@@ -80,7 +80,7 @@ $ python manage.py runserver_plus 0.0.0.0:3000
 
 ## Additional development tips
 
-### Using `fab run`
+### Quick start with `fab run`
 
 While it's handy to be able to access the django container via a shell and interact with it directly, sometimes all you want is to view the site in a web browser. In these cases, you can use:
 
@@ -125,7 +125,6 @@ Assuming you have entered the S3 credentials correctly, this will kick off a res
 you can then back it up locally using the path `/var/opt/backup` in the management console. It will be backed up to your local
 machine in `docker/db/backup`
 
-<<<<<<< HEAD
 ### Marklogic URL Guide
 
 - http://localhost:8000/ this is the query interface where you can browse documents in the `Judgments` database.
