@@ -125,7 +125,7 @@ if env.bool("MARKLOGIC_MOCK_REQUESTS", default=False):
 else:
     api_client = MarklogicApiClient(
         host=env("MARKLOGIC_HOST"),
-        username=env("MARKLOGIC_USERNAME"),
+        username=env("MARKLOGIC_USER"),
         password=env("MARKLOGIC_PASSWORD"),
         use_https=env("MARKLOGIC_USE_HTTPS", default=True),
     )
