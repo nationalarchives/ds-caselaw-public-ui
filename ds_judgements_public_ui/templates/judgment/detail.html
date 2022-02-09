@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-  {% autoescape off %}
-    {{ xml }}
-  {% endautoescape %}
+  {% if xml %}
+    {% autoescape off %}
+      {{ xml }}
+    {% endautoescape %}
+  {% else %}
+    {{ content }}
+  {% endif %}
 {% endblock content %}

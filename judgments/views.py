@@ -1,27 +1,15 @@
-import requests
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import Http404, HttpResponse
 from django.template import loader
-from requests.auth import HTTPBasicAuth
 
-from config.settings.base import env
+from judgments.api_client import MarklogicResourceNotFoundError, api_client
 
 
 def detail(request, judgment_uri):
     if judgment_uri.endswith("/"):
         judgment_uri = judgment_uri[:-1]
-
-    response = requests.get(
-        "http://"
-        + env("MARKLOGIC_HOST")
-        + ":8011/LATEST/documents/?uri=/"
-        + judgment_uri
-        + ".xml",
-        auth=HTTPBasicAuth("admin", "admin"),
-    )
-
-    if response.status_code != 200:
-        return HttpResponseNotFound("That judgment was not found")
-    else:
-        context = {"xml": response.text}
-        template = loader.get_template("judgment/detail.html")
-        return HttpResponse(template.render(context, request))
+    try:
+        judgement_xml = api_client.get_judgement_xml(judgment_uri)
+    except MarklogicResourceNotFoundError:
+        raise Http404("Judgment was not found")
+    template = loader.get_template("judgment/detail.html")
+    return HttpResponse(template.render({"xml": judgement_xml}, request))

@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment" contains="originalVersion">
+    <meta>
+      <identification source="#tna">
+        <FRBRWork>
+          <FRBRthis value="ewca/civ/2006/392"/>
+          <FRBRuri value="ewca/civ/2006/392"/>
+          <FRBRdate date="2006-04-12" name="judgment"/>
+          <FRBRauthor href="#ewca-civil"/>
+          <FRBRcountry value="GB-UKM"/>
+          <FRBRnumber value="392"/>
+          <FRBRname value="ANN MARIE ROGERS (R on the application of) v SWINDON NHS PRIMARY CARE TRUST"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="ewca/civ/2006/392/eng"/>
+          <FRBRuri value="ewca/civ/2006/392/eng"/>
+          <FRBRdate date="2006-04-12" name="judgment"/>
+          <FRBRauthor href="#ewca-civil"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="ewca/civ/2006/392/eng/akn"/>
+          <FRBRuri value="ewca/civ/2006/392/eng/akn"/>
+          <FRBRdate date="2021-12-02T12:05:09" name="transform"/>
+          <FRBRauthor href="#tna"/>
+          <FRBRformat value="application/xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#tna">
+        <TLCOrganization eId="ewca-civil" href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division" showAs="The Court of Appeal of England and Wales (Civil Division)" shortForm="Court of Appeal Criminal Division"/>
+        <TLCOrganization eId="tna" href="https://www.nationalarchives.gov.uk/" showAs="The National Archives"/>
+        <TLCPerson eId="the-queen-on-the-application-of" href="" showAs="THE QUEEN on the application of"/>
+        <TLCPerson eId="ann-marie-rogers" href="" showAs="ANN MARIE ROGERS"/>
+        <TLCPerson eId="swindon-nhs-primary-care-trust" href="" showAs="SWINDON NHS PRIMARY CARE TRUST"/>
+        <TLCPerson eId="the-secretary-of-state-for-health" href="" showAs="THE SECRETARY OF STATE FOR HEALTH"/>
+        <TLCRole eId="appellant" href="" showAs="Appellant"/>
+        <TLCRole eId="respondent" href="" showAs="Respondent"/>
+        <TLCRole eId="interested-party" href="" showAs="Interested Party"/>
+        <TLCPerson eId="judge-sir-anthony-clarke-mr" href="/judge-sir-anthony-clarke-mr" showAs="SIR ANTHONY CLARKE MR"/>
+        <TLCPerson eId="judge-lord-justice-brooke" href="/judge-lord-justice-brooke" showAs="LORD JUSTICE BROOKE"/>
+      </references>
+      <proprietary source="ewca/civ/2006/392/eng/docx" xmlns:uk="https:/judgments.gov.uk/">
+        <uk:court>EWCA-Civil</uk:court>
+        <uk:year>2006</uk:year>
+        <uk:number>392</uk:number>
+        <uk:cite>[2006] EWCA Civ 392</uk:cite>
+        <uk:hash>374941399f24c1f20d299c436702beaecde758f356c1a3e9b32dffa38218c411</uk:hash>
+      </proprietary>
+      <presentation source="ewca/civ/2006/392/eng/docx">
+        <style xmlns="http://www.w3.org/1999/xhtml">
+#judgment { font-family: 'Times New Roman'; font-size: 12pt; }
+#judgment .Normal { font-size: 12pt; }
+#judgment .Heading1 { font-weight: bold; font-family: Arial; font-size: 16pt; }
+#judgment .Heading2 { font-style: italic; font-weight: bold; font-family: Arial; font-size: 14pt; }
+#judgment .CoverText { text-align: right; text-decoration: underline; font-size: 12pt; }
+#judgment .CoverMain { font-weight: bold; text-decoration: underline; font-size: 12pt; }
+#judgment .Header { font-family: Univers; font-size: 12pt; }
+#judgment .Footer { font-family: Univers; font-size: 12pt; }
+#judgment .CoverDesc { text-align: center; font-weight: bold; font-size: 18pt; }
+#judgment .ParaHeading { font-size: 12pt; }
+#judgment .ParaLevel1 { text-align: justify; margin-left: 0.50in; font-size: 12pt; }
+#judgment .ParaLevel2 { text-align: justify; margin-left: 0.98in; font-size: 12pt; }
+#judgment .ParaLevel3 { text-align: justify; margin-left: 1.48in; font-size: 12pt; }
+#judgment .ParaLevel4 { text-align: justify; margin-left: 1.97in; font-size: 12pt; }
+#judgment .ParaLevel5 { text-align: justify; margin-left: 2.46in; font-size: 12pt; }
+#judgment .ParaLevel6 { text-align: justify; margin-left: 2.95in; font-size: 12pt; }
+#judgment .ParaLevel7 { text-align: justify; margin-left: 3.45in; font-size: 12pt; }
+#judgment .ParaLevel8 { text-align: justify; margin-left: 3.94in; font-size: 12pt; }
+#judgment .ParaLevel9 { text-align: justify; margin-left: 4.43in; font-size: 12pt; }
+#judgment .ParaNoNumber { text-align: justify; font-size: 12pt; }
+#judgment .Quote { text-align: justify; margin-left: 1.00in; margin-right: 1.00in; font-size: 12pt; }
+#judgment .Title { text-align: center; font-weight: bold; font-size: 10pt; }
+#judgment .eMailBlock { text-align: center; font-weight: bold; font-size: 13pt; }
+#judgment .01-NormInd1-BB { text-align: justify; margin-left: 0.50in; font-family: Arial; font-size: 11pt; }
+#judgment .01-Bullet1-BB { text-align: justify; margin-left: 0.75in; font-family: Arial; font-size: 11pt; }
+#judgment .01-NormInd2-BB { text-align: justify; margin-left: 1.00in; font-family: Arial; font-size: 11pt; }
+#judgment .01-Bullet2-BB { text-align: justify; margin-left: 0.00in; font-family: Arial; font-size: 11pt; }
+#judgment .01-NormInd3-BB { text-align: justify; margin-left: 2.00in; font-family: Arial; font-size: 11pt; }
+#judgment .01-Level1-BB { text-align: justify; margin-left: 0.43in; font-weight: bold; font-family: Arial; font-size: 11pt; }
+#judgment .BalloonText { font-family: Tahoma; font-size: 8pt; }
+#judgment .Fixed { margin-right: 0.01in; font-family: 'Courier New'; font-size: 10pt; }
+#judgment .Heading1Char { font-weight: bold; font-size: 16pt; }
+#judgment .Heading2Char { font-style: italic; font-weight: bold; font-size: 14pt; }
+#judgment .HeaderChar { font-size: 12pt; }
+#judgment .FooterChar { font-size: 12pt; }
+#judgment .PageNumber { font-size: 10pt; }
+#judgment .QuoteChar { font-style: italic; font-size: 12pt; color: #404040; }
+#judgment .TitleChar { font-weight: bold; font-size: 16pt; }
+#judgment .Emphasis { font-style: italic; }
+#judgment .BalloonTextChar { font-family: 'Segoe UI'; font-size: 9pt; }
+</style>
+      </presentation>
+    </meta>
+    <header>
+      <p class="CoverText">Case No: <docketNumber>C1/2006/0312</docketNumber></p>
+      <p class="CoverMain">Neutral Citation Number: <neutralCitation>[2006] EWCA Civ 392</neutralCitation></p>
+      <p class="CoverMain"><courtType>IN THE SUPREME COURT OF JUDICATURE</courtType></p>
+      <p class="CoverMain"><courtType>COURT OF APPEAL (CIVIL DIVISION)</courtType></p>
+      <p class="CoverMain">ON APPEAL FROM </p>
+      <p class="CoverMain">THE HIGH COURT OF JUSTICE</p>
+      <p><span style="font-weight:bold;text-decoration:underline">QUEEN'S BENCH DIVISION</span></p>
+      <p class="CoverMain">ADMINISTRATIVE COURT </p>
+      <p class="CoverMain">The Hon Mr Justice Bean</p>
+      <p class="CoverMain">Neutral Citation Number: <neutralCitation>[2006] EWHC 171 (Admin)</neutralCitation></p>
+      <p class="CoverText">Royal Courts of Justice</p>
+      <p class="CoverText">Strand, London, WC2A 2LL</p>
+      <p class="CoverText">Date: <docDate date="2006-04-12">Wednesday, 12<span style="vertical-align:super;font-size:smaller">th</span> April 2006</docDate></p>
+      <p style="text-align:center"><span style="font-weight:bold">Before</span> :</p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-sir-anthony-clarke-mr">SIR ANTHONY CLARKE MR</judge></p>
+      <p class="CoverMain" style="text-align:center"><judge refersTo="#judge-lord-justice-brooke">LORD JUSTICE BROOKE</judge></p>
+      <p class="CoverMain" style="text-align:center">Vice-President, Court of Appeal (Civil Division)</p>
+      <p class="CoverMain" style="text-align:center"><span style="text-decoration:none">and</span></p>
+      <p class="CoverMain" style="text-align:center">LORD JUSTICE BUXTON</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">Between :</span></p>
+      <table>
+        <tr>
+          <td rowspan="1" colspan="1">
+            <p/>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p style="text-align:center"><party refersTo="#the-queen-on-the-application-of" as="#appellant" style="font-weight:bold">THE QUEEN on the application of</party></p>
+            <p style="text-align:center"><party refersTo="#ann-marie-rogers" as="#appellant" style="font-weight:bold">ANN MARIE ROGERS</party></p>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p class="CoverMain" style="text-align:right"><role refersTo="#appellant" style="font-size:11pt">Appellant/</role></p>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#appellant" style="font-size:11pt">Claimant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="1" colspan="1">
+            <p/>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p class="CoverMain" style="text-align:right"/>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="1" colspan="1">
+            <p/>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p style="text-align:center"><span style="font-weight:bold;font-family:'Arial Unicode MS'"> </span><party refersTo="#swindon-nhs-primary-care-trust" as="#respondent" style="font-weight:bold">SWINDON NHS PRIMARY CARE TRUST</party><span style="font-weight:bold;font-family:'Arial Unicode MS'">    </span></p>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent" style="font-size:11pt">Respondent/</role></p>
+            <p class="CoverMain" style="text-align:right"><role refersTo="#respondent" style="font-size:11pt">Defendant</role></p>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="1" colspan="1">
+            <p/>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p style="text-align:center"><span style="font-weight:bold">- and -</span></p>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p class="CoverMain" style="text-align:right"/>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="1" colspan="1">
+            <p/>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p style="text-align:center"><party refersTo="#the-secretary-of-state-for-health" as="#interested-party" style="font-weight:bold">THE SECRETARY OF STATE FOR HEALTH                   </party></p>
+          </td>
+          <td rowspan="1" colspan="1">
+            <p class="CoverMain" style="text-align:right"><role refersTo="#interested-party" style="font-size:11pt">Interested Party</role></p>
+          </td>
+        </tr>
+      </table>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center">(Transcript of the Handed Down Judgment of</p>
+      <p style="text-align:center">Smith Bernal WordWave Limited</p>
+      <p style="text-align:center">190 Fleet Street, London EC4A 2AG</p>
+      <p style="text-align:center">Tel No: 020 7421 4040  Fax No:  020 7831 8838</p>
+      <p style="text-align:center">Official Shorthand Writers to the Court)</p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+      <p style="text-align:center"><span style="font-weight:bold">David Pannick QC and Ian Wise </span>(instructed by<span style="font-weight:bold"> Irwin Mitchell</span>) for the <span style="font-weight:bold">Claimant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Philip Havers QC and Matthew Barnes</span> (instructed by <span style="font-weight:bold">Bevan Brittan LLP, Bristol</span>) for the <span style="font-weight:bold">Defendant</span></p>
+      <p style="text-align:center"><span style="font-weight:bold">Alison Foster QC and Eleanor Grey </span>(instructed by the <span style="font-weight:bold">Office of the Solicitor for the Dept. of Health) </span>for the <span style="font-weight:bold">Interested Party</span></p>
+      <p style="text-align:center">- - - - - - - - - - - - - - - - - - - - -</p>
+    </header>
+    <judgmentBody>
+      <decision>
+        <level>
+          <content>
+            <p class="CoverDesc">Judgment</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold;text-decoration:underline">Summary</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center">(This Summary forms no part of the Judgment)</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify">This is an appeal by Ms Rogers from an order made by the Administrative Court (Bean J) dismissing her application for judicial review of Swindon Primary Care Trust’s decision, refusing her application for funding in respect of treatment with a drug called Herceptin. Ms Rogers has primary breast cancer, for the treatment of which she was prescribed Herceptin. The Primary Care Trust decided, in accordance with its policy with respect to Herceptin, that she was not entitled to funding. The Administrative Court decided that this decision was not irrational and did not breach her human rights.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify">By the present judgment, which is the judgment of the court, the Court of Appeal has unanimously held that the Primary Care Trust’s policy with respect to Herceptin was irrational and so unlawful. The Court of Appeal will order that the Primary Care Trust’s decision be quashed.  See further under CONCLUSION below.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify">The judgment is in nine parts.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">I. Introduction</span> (para 1)</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">II. The facts</span> (paras 2-7) sets out the factual background to this appeal</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">III. Breast cancer and Herceptin</span> (paras 8-15) describes the operation of Herceptin, recent research as to its effectiveness and subsequent commentary on that research and identifies the ‘eligible group’, being those patients who have been prescribed Herceptin because, in the opinion of their doctors, they satisfy certain clinical criteria so as to be suitable for that treatment.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">IV. The statutory framework</span> (paras 16-17) sets out relevant parts of the National Health Act 1977 and its subsidiary legislation and explains the distinction between ‘directions’ and ‘guidance’ issued by the Secretary of State.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">V. The PCT’s general policy</span> (paras 18-25) describes the Primary Care Trust’s usual policy with respect to the funding of drugs which are prescribed ‘off-licence’ and are unapproved by the National Institute for Health and Clinical Excellence (“NICE”).  It will not fund such drugs except where a patient has a special healthcare problem that presents an exceptional case for treatment, when it will consider each case on its merits having regard to the funds available.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">VI. The position of the Secretary of State</span> (paras 26-30) sets out statements that have been made by the Secretary of State with respect to the off-licence use of Herceptin and identifies the Secretary of State’s guidance<span style="font-weight:bold">.  </span>If a clinician decides to prescribe Herceptin for a woman who has tested HER2 positive, a PCT should not refuse to fund it solely on the grounds of its cost.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">VII. The PCT’s consideration of Herceptin</span> (paras 31-39) sets out the policy adopted by the Primary Care Trust with respect to funding of Herceptin, notwithstanding that it is neither licensed nor approved by NICE.  The policy was to fund Herceptin, without regard to financial considerations, in those cases where Herceptin was prescribed by a clinician and where it was decided that there were exceptional clinical or personal circumstances.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">VIII. The decision</span> (paras 40-54) describes the procedure adopted by the Primary Care Trust in considering Ms Rogers’ application for funding and the Trust’s reasons for its decision to refuse funding.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">IX. The relevant principles of common law</span> (paras 55-66) considers the leading cases dealing with challenges to healthcare providers’ funding decisions on the grounds of irrationality.  It also identifies the key issue in this case as being whether the underlying policy, rather than the particular decision in Ms Rogers’ case, is unlawful.  The court concludes in para 66 that, if the policy is lawful, so too is the decision but, if the policy is unlawful, so too is the decision.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">X. Rationality</span> (paras 67-82) addresses the rationality of the policy adopted by the Primary Care Trust, as set out in VI above.  It notes that the Trust had recognised that Herceptin could be provided in "exceptional" cases even though NICE had not approved it, and had also decided to disregard financial considerations.   But in considering what might be such an exceptional case, 'personal circumstances' are irrelevant as soon as financial considerations are disregarded, and the Trust was unable to identify any 'clinical circumstances' that might provide a rational justification for distinguishing between different members of the eligible group.  The stated policy was thus not capable of being rationally explained, and therefore was unlawful, as was the decision in Ms Rogers' case that applied that policy.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><span style="text-decoration:underline">XI. CONCLUSION</span> (paras 83-84) sets out the court’s conclusion that the policy and therefore the decision applying the policy was unlawful and should be quashed.  Subject to further submissions, the court expresses its present view that it cannot and should not order the PCT to fund Ms Rogers’ treatment.  Rather it is for the PCT to formulate a lawful policy upon which to base decisions in particular cases, including that of Ms Rogers, in the future.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:center"><span style="font-weight:bold">INDEX</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <table>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold;text-decoration:underline">Part</span><span style="font-weight:bold"> </span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold;text-decoration:underline">Para</span></p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">I. Introduction</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">1</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">II. The facts</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">2</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">III. Breast cancer and Herceptin</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">8</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">IV. The statutory framework</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">16</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">V. The PCT’s general policy</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">18</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">VI. The position of the Secretary of State </span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">26</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">VII. The PCT’s consideration of Herceptin</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">31</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">VIII. The decision</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">40</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">IX. The relevant principles at common law</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">55</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">X. Rationality</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">67</p>
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:justify"><span style="font-weight:bold">XI. CONCLUSION</span></p>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <p style="text-align:center">83</p>
+                </td>
+              </tr>
+            </table>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p style="text-align:justify"><br/><span style="font-weight:bold">Sir Anthony Clarke MR:</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p>This is the judgment of the court to which all members of the court have contributed.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Heading2"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">I.</span><marker name="tab"/><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">Introduction</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">1.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">This is an appeal from an order of Bean J dated 15 February 2006 dismissing an application by Ms Ann Rogers for judicial review of a decision of the Swindon NHS Primary Care Trust (“the PCT”) refusing to provide her with Herceptin to treat her breast cancer.  In this appeal, which is brought with the permission of the judge, she says that the PCT’s refusal was unlawful on the ground that it was arbitrary or irrational and in the relevant sense unreasonable and/or that it involved a failure to give proper consideration to the relevant facts and/or that it infringed her rights under article 2 and/or 14 of the European Convention on Human Rights (“the Convention”).  In granting permission to appeal the judge said that the case raises issues of public interest and importance which should be considered by the Court of Appeal.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Heading2"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">II.</span><marker name="tab"/><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">The facts</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">2.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">This is a somewhat shortened version of the facts taken from the judgment of the judge.  They are not in dispute.  The appellant is 54 and lives in Swindon.  She has three adult children and two young grandchildren.  Prior to her diagnosis of breast cancer she had run the restaurant side of her sister’s public house but since her treatment has been unable to carry on working.  She first noticed a lump in her breast in October 2004.  She went to her general practitioner the following day and was given an appointment for a mammogram at her local hospital in Swindon which was conducted on 24 November 2004.  The mammogram result was initially thought to be normal but subsequent biopsies revealed invasive carcinoma.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">3.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">In January 2005 the appellant underwent a mastectomy, breast reconstruction and auxiliary surgery.  Following a period of recovery from this surgery she commenced chemotherapy in March 2005.  This course of chemotherapy lasted until 4 July 2005.  She found the treatment very difficult due to its gruelling side-effects.  Following the course of chemotherapy she embarked on a course of radiotherapy at the Churchill Hospital in Oxford in August and September 2005.  At this time she also had adjuvant hormone therapy. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">4.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">In the meantime the appellant’s son had discovered on the internet that there was a type of breast cancer known as HER2 positive which could be treated by a drug called Herceptin.  Towards the end of her chemotherapy she accordingly asked her consultant, Dr Cole, if she could be tested for HER2 and on 30 June 2005 was tested positive.  In August 2005 Dr Cole wrote to the medical director of the Swindon and Marlborough NHS Trust informing him of the “exciting” results of the Herceptin trials that had been presented to the American Society of Oncology in May 2005 and asked whether Ms Rogers could pay for Herceptin whilst remaining an NHS patient.  The answer was that she could not.  In due course Dr Cole agreed to treat the appellant with Herceptin on a private basis and on 27 October 2005 began treatment at the Ridgeway Hospital, Swindon.  Although she had to pay for the drug she did not have to pay for the medical input because Dr Cole waived his fees. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">5.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Herceptin is given by a loading dose followed by a further 17 doses given at three week intervals.  The estimated cost (including VAT) of the course of treatment was £26,328.22, which the appellant was unable to pay.  She borrowed £5,000 from which she paid for her first two treatments each of which cost £1,950.  She could not afford to pay for a third treatment.  She had originally hoped to re-mortgage her house to pay for the course of treatment but, given her diagnosis, she was unable to do so.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">6.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">It was against this background that the appellant sought legal advice. Her solicitors sent a letter before claim on 22 November 2005.  The response, the same day, was that, although Herceptin is not prescribed by the NHS in the Swindon area, the PCT would review each individual case<span style="font-style:italic">.  </span>Dr Cole duly applied to the Defendant PCT for funding for the appellant’s Herceptin treatment but her application was rejected.  It is that rejection which led to the application for judicial review.  We will return to the reasons for the rejection below.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">7.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The application for judicial review was issued on 12 December 2005.  Permission was granted on 21 December by Charles J, who also ordered the PCT to fund and provide Herceptin for the appellant from the date of her next proposed treatment on 5 January 2006 until the determination of the application or further order.  In his order of 15 February Bean J ordered that the interim order for treatment and funding continue until the end of March 2006.  The judge quoted this sentence from the appellant’s witness statement:  </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“It is only now with the Herceptin that I feel that I have been given a small part of my life back and I have been able to start thinking about the future.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">At the conclusion of the oral argument we directed that the interim order continue until judgment is given in this appeal.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Heading2"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">III.</span><marker name="tab"/><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">Breast cancer and Herceptin</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">8.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Again, we take this account from the judgment.  Breast cancer is the most common form of cancer in women and is the greatest cause of death in the UK for women aged under 65.  Traditional forms of treatment for breast cancer have been mastectomy, chemotherapy and radiotherapy.  There has been considerable research into treatments for this cancer, the causes of which remain unclear. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">9.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Breast cancer can occur in a number of forms, including ‘HER2-positive’ breast cancer.  HER2 is a protein found on the surface of certain cancer cells. It is made by a specific gene called the <span class="Emphasis" style="font-style:normal">HER2/neu gene</span>.  HER2 is a receptor for a particular growth factor called human epidermal growth factor, which occurs naturally in the body. When <span class="Emphasis" style="font-style:normal">human epidermal growth factor</span> attaches itself to HER2 receptors on breast cancer cells, it can stimulate the cells to divide and grow.  Some breast cancer cells have far more HER2 receptors than others. In this case, the tumour is described as being <span class="Emphasis" style="font-style:normal">HER2-positive</span>. It is thought that about one in five women with breast cancer will have HER2-positive tumours.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">10.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Tumours that are HER2-positive tend to grow more quickly than other types of breast cancer.  A drug called trastuzumab has been developed to be effective against HER2-positive breast cancer. It is a type of <span class="Emphasis" style="font-style:normal">monoclonal antibody</span>.  Monoclonal antibodies are treatments that can target particular proteins within the body.  An HER2 test can assess whether a particular cancer has a specific receptor on the surface of the cancer cells.  Trastuzumab attaches itself to the HER2 protein and stops human epidermal growth factor from reaching the breast cancer cells and stimulating their growth.  Trastuzumab only works in people who have high levels of the HER2 protein. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">11.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Herceptin is the trade name given by Roche to the drug trastuzumab.  Herceptin was licensed to treat secondary or late stage breast cancer in March 2002 but is not at present licensed for the treatment of early stage breast cancer.  The manufacturer has first to obtain a licence from the European Medicines Agency (“EMEA”).  We understand that an application was made to the EMEA on 17 February 2006.  In the meantime the Secretary of State for Health, the Rt Hon Patricia Hewitt MP, (“the Secretary of State”) had asked the National Institute of Health and Clinical Excellence (“NICE”) to expedite its appraisal of the drug so that it can give appropriate guidance to PCTs without delay if and when it is licensed.  NICE is responsible for providing national guidance on treatments and care in the UK.  On 1 March the Secretary of State announced to the House of Commons that a decision by the EMEA is expected in the summer and that NICE would complete its work shortly after any licence is granted.  NICE technology appraisals are covered by a three-month funding direction, which means that trusts must provide funding for uses recommended by NICE within three months to allow clinicians to follow its guidance. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">12.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Adjuvant Herceptin (that is treatment of breast cancer with Herceptin along with other treatments such as chemotherapy) has been the subject of trials in the USA and elsewhere.  Results were first presented to the annual meeting of the American Society of Oncology in May 2005 and were published in two papers in the New England Journal of Medicine (“NEJM”) on 20 October 2005.  According to Dr Murray Brunt, a consultant clinical oncologist whose report was part of the evidence before the judge, the trials showed significant benefits to those patients who had been given Herceptin.  Dr Brunt however recognises the potential cardiac side effects of Herceptin and notes that in one set of the trials, of the 1694 patients who received the drug for a one-year course of treatment, nine developed severe congestive heart failure although there were no deaths.   </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">13.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The National Cancer Research Institute (“NCRI”) is a coalition of cancer charities and research bodies in the UK.  On 14 December 2005 it published <span style="font-style:italic">UK Clinical Guidelines for the Use of Adjuvant Trastuzumab (Herceptin) Following Chemotherapy in HER2-positive Early Breast Cancer. </span>This document considered the trial reported in the NEJM and two other trials of Herceptin and concluded, in a passage quoted by the judge: </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“these trials have all reported considerable therapeutic benefit with around a 50% reduction in the risk of recurrence when trastuzumab was given in combination with or following chemotherapy.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">The NCRI recommended that</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“women should be considered eligible for adjuvant trastuzumab if they fit the following criteria:</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-size:12pt;margin-left:1.48in;text-indent:-0.49in">a)</num>
+          <content>
+            <p class="ParaLevel3" style="margin-left:1.48in;text-indent:0.5in">have primary invasive breast cancer that is confirmed as HER2 positive …;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-size:12pt;margin-left:1.48in;text-indent:-0.49in">b)</num>
+          <content>
+            <p class="ParaLevel3" style="margin-left:1.48in;text-indent:0.5in">are eligible for and receive adjuvant chemotherapy;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-size:12pt;margin-left:1.48in;text-indent:-0.49in">c)</num>
+          <content>
+            <p class="ParaLevel3" style="margin-left:1.48in;text-indent:0.5in">have normal left ventricular ejection fraction (LVEF) (though particular care was recommended in the case of patients aged over 50 with an LVEF of 55% or less)…;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-size:12pt;margin-left:1.48in;text-indent:-0.49in">d)</num>
+          <content>
+            <p class="ParaLevel3" style="margin-left:1.48in;text-indent:0.5in">have none of the [listed] …. cardiac contraindications …;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-size:12pt;margin-left:1.48in;text-indent:-0.49in">e)</num>
+          <content>
+            <p class="ParaLevel3" style="margin-left:1.48in;text-indent:0.5in">have an adequate baseline hepatic, renal and haematological function;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-size:12pt;margin-left:1.48in;text-indent:-0.49in">f)</num>
+          <content>
+            <p class="ParaLevel3" style="margin-left:1.48in;text-indent:0.5in">have no evidence of metastatic spread.”</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">Like the judge, we will refer to patients who satisfy all these criteria as “the eligible group”.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">14.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">It is perhaps important to note that Herceptin cannot be given to all patients with a tumour which is HER2-positive.  The amount of HER2 protein in the cancer cells is measured using a scale from 0 (negative) to 3+ (strongly positive).  Women whose cancer scores 0 or 1+ are not likely to benefit from Herceptin treatment, so no further tests are required in order to see whether treatment is appropriate.  Patients with an HER2 score of 2 to 3 require an additional test (FISH/IHC) to establish whether or not they might benefit from treatment.  Patients with an HER2 score of 3+ will potentially benefit from Herceptin and no further test is required.  Thus in order to be part of the eligible group a patient must have an HER2 score of 2 to 3 and satisfy the FISH/IHC test or have an HER2 score of 3 and in addition satisfy the NCRI criteria.  It is not in dispute that the appellant had an HER2 score of 3+ or that she satisfies the NCRI criteria and that she is within the eligible group.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">15.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The judge referred to an editorial in the <span style="font-style:italic">Lancet</span>, to which we were also referred.  The unsigned editorial, which appeared on 12 November 2005, included the following:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“…it is clear that Herceptin can precipitate severe heart failure in some patients.  The best that can be said about Herceptin’s efficacy and safety for the treatment of early breast cancer is that the available evidence is insufficient to make reliable judgements.  It is profoundly misleading to suggest, even rhetorically, that the published data may be indicative of a cure for breast cancer”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">The editorial concluded by warning of the need for caution in the debate about the availability of Herceptin to women with early stage breast cancer.  A letter from 19 signatories subsequently appeared in the 14 January 2006 edition of the <span style="font-style:italic">Lancet</span>, which, while accepting the need for caution, criticised the overall tone of the editorial as “inappropriately negative”, and urged that women in the eligible group, once fully informed, should have the right of access to treatment if they so choose.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-weight:bold">IV.</span><marker name="tab"/><span style="font-weight:bold">The statutory framework</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">16.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The Secretary of State’s duties and powers are set out in sections 1 to 3 of the National Health Act 1977 (“the 1977 Act”).  The PCT was established as a Primary Care Trust by order made pursuant to section 16A of the 1977 Act.  The primary duties of such a trust are set out in section 15 and are </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“to administer the arrangements made in pursuance of this Act for the provision of primary medical services … ”.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">Under regulation 3(2) of the National Health Service (Functions of Strategic Health Authorities and Primary Care Trust …) Regulations 2002, the functions of the Secretary of State under, inter alia, section 2 of the 1977 Act are exercisable by</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“(a) Primary Care Trusts; and</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">(b) Strategic Health Authorities but only to the extent necessary   to support and manage the performance of Primary Care Trusts in the exercise of those functions.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">17.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">By sections 17A and 17B of the 1977 Act the Secretary of State may give directions to Primary Care Trusts which they must follow.  It is common ground that by reason of section 2 of the 1977 Act the Secretary of State also has power to issue guidance and that trusts must have regard to such guidance: see <span style="font-style:italic">R v North Derbyshire Health Authority, ex p Fisher </span>(1998) 38 BMLR 76 per Dyson J at 80-1 and 89-90.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Heading2"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">V.</span><marker name="tab"/><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">The PCT’s general policy</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">18.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We consider first the PCT’s general policy without reference to the consideration it gave to Herceptin.  The judge correctly described the position in paragraphs 19 to 23 of his judgment.  When reaching decisions in relation to the commissioning of pharmaceuticals, the PCT has two main sources of guidance. The first is NICE and the second is the Swindon Clinical Advisory Forum (“CAF”), a committee which includes both representatives of the NHS agencies providing services to Swindon residents and Patient Forum representation.  The role of CAF is to review evidence in order to formulate clear health and healthcare priorities and to develop a coherent system for their implementation.  In doing so, CAF looks at the absolute merits of a prospective treatment and also its relative merits judged against other priorities.  The CAF makes recommendations to the Trust’s Professional Executive Committee, which is a sub-committee of the Board.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">19.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Further advice is received from local Cancer Networks.  The PCT receives guidance on policy making with regard to issues relating to cancer both from the Avon Somerset and Wiltshire Cancer Service (“ASWCS”) and from the Thames Valley Cancer Network (“TVCN”).  The PCT adheres to guidance from ASWCS and takes into account guidance from the TVCN. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">20.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The PCT’s Service Level Agreements with hospitals and other health care providers do not provide funding for the off-licence treatment of early stage breast cancer with Herceptin, although it is right to say that some drugs are funded for off-licence purposes.  For example, there are drugs used in paediatric medicine, many of which are widely used, which have a long safety record and are licensed for adult use but have not been licensed for child use, possibly, as the judge put it, because of the ethical and practical difficulties in carrying out trials of medicines on children.  Those are exceptions to the general rule.  “Off-licence” funding or treatment is the convenient term used to identify such cases and such drugs are often referred to as “off-licence” drugs.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">21.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">In a case in which funding is sought for an off-licence drug, in which we include a drug which, like Herceptin, was licensed for a particular purpose, as for example late stage breast cancer treatment, but which it is now sought to use for a different purpose, the PCT’s policy is set out in a document dated June 2005 and entitled “Clinical Priorities Policy for Commissioning Selected Services”.  That document includes a section under the heading “Ethical Framework” which in turn includes the following:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“In reaching its decisions, Swindon PCT aims to</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in">take into account and weigh all the relevant evidence;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">take into account the opinion of relevant clinicians;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">give proper consideration to the views of the patient or group of patients involved, and accord proper weight to their needs against other groups competing for scarce resources;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">taking into account only material factors;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">act in the utmost good faith;</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">make a decision that is in every sense reasonable.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">This ethical framework has been developed to enable Swindon PCT to make fair and consistent decisions that treat patients equally.  It should be noted that sometimes the discretion of the Clinical Advisory Forum and Swindon PCT may be restricted or overridden by National Service Frameworks; guidance from the National Institute for Health and Clinical Excellence (NICE); and NHS directions.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">People have equal rights of access to health care, but there may be times when some categories of care are given priority in order to address health inequalities in the community.  The Clinical Advisory Forum will not discriminate on grounds of personal characteristics such as age, sex, race, religion, lifestyle, social position, family or financial status, intelligence or cognitive functioning.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">A patient’s health needs will be assessed in relation to their capacity to benefit from a healthcare intervention.  In the absence of evidence of health need, treatment will not generally be recommended solely because a patient requests it.  Similarly, a treatment of potentially very little benefit will not be provided because it is the only treatment available.  This is necessary to ensure that resources are used to provide the greatest health benefit.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">The Ethical Framework is especially concerned with the following:</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">evidence of clinical and cost effectiveness</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">the needs of the patient(s)</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-family:Symbol;font-size:12pt;margin-left:1.50in;text-indent:-0.25in">•</num>
+          <content>
+            <p class="Quote" style="margin-left:1.50in;text-indent:0.5in">needs of the community”</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">22.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The document sets out policy under each of those headings and under the heading “The clinical needs of the patient(s)” includes this paragraph quoted (in part) by the judge in paragraph 22 of his judgment:   </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Where Swindon PCT does not have a policy in place for a healthcare intervention, and in circumstances where an individual patient has a special healthcare problem that presents an exceptional need for treatment, Swindon PCT will consider such cases on their own merits.  These ‘exceptional cases’ are considered by Swindon PCT’s Clinical Priorities Committee.  The protocol and procedure for applying for ‘exceptional funding’ is included at Appendix 3 of this policy …”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">The protocol in appendix 3 states:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Swindon Primary Care Trust must ensure that it provides the community … with the best health care from the funds available.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">23.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">As we understand it, that statement of policy is an exception to the general principle, which is stated under the heading “Current commissioning protocols” as follows:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“<span style="font-weight:bold">The commissioning of new drugs not covered by NICE guidance</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">Where NICE Guidance does not apply (<span style="font-style:italic">see below</span>), Swindon PCT will produce policy statements through the Clinical Advisory Forum that will allocate a commissioning priority to selected new drug therapies.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">Swindon PCT will not commission drugs that are unlicensed for use in the UK.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">24.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The general policy of the PCT is thus not to fund off-licence or unlicensed drugs subject to the exception that, “where a patient has a special healthcare problem that presents an exceptional need for treatment” it will consider that case on its merits but, in doing so, it will have regard to the funds available.  We can see nothing arbitrary or irrational in such a general policy.  It is, however, important to note that, as appears below, that is not the policy adopted in this case, in part at least because of the Secretary of State’s guidance. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">25.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The PCT’s Clinical Priorities Committee (“CPC”) is made up of a range of health professionals and Primary Care Trust managers.  It includes a Patient and Public Involvement Forum member and is chaired by a non-executive director of the PCT.  It acts as a formal sub-committee of the PCT’s Board and is responsible for considering requests for exceptions to the PCT’s commissioning policies.  In cases of urgency it acts through an Urgency Panel.  There is a right of appeal from the decision of the CPC to an Appeal Panel who may make a recommendation to the Board as to the decision which should be taken.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Heading2"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">VI.</span><marker name="tab"/><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">The position of the Secretary of State</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">26.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The judge correctly set out the views of the Secretary of State in paragraphs 24 to 29 of his judgment.  On 5 October 2005 she made an announcement which was then republished in the form of a press release headed “Hewitt fast-tracks cancer drug to save 1000 lives” in which she is recorded as saying: </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Herceptin has the potential to save many women’s lives and I want to see it in widespread use on the NHS. Today I am asking Professor Mike Richards [the National Cancer Director] to ensure that the facilities are put in place to enable women who require it to be tested. I want the licence for Herceptin to be granted as quickly as possible, without compromising people’s safety, and to be available within weeks of the licence being given. I share the huge frustration of many women about the delays in getting Herceptin licensed. I am determined to take action, and this represents a major step forward in our fight against cancer.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.39in">As the judge observed, this press release, especially the headline, must have been very encouraging for early stage breast cancer sufferers, such as the appellant, who sought treatment with Herceptin. </p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">27.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">On 25 October 2005 the Secretary of State made a speech on breast cancer which was entitled “Breast Cancer Awareness Speech” and was both more detailed and (as the judge put it) more nuanced than the press release.  It included the following:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“11.<marker name="tab"/>Any patient diagnosed with cancer wants to know that they will have access to the best possible treatment and care and we are committed to making sure that they get it.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">12.<marker name="tab"/>Since I became the Health Secretary I have shared the huge frustration of many women about the delays in accessing new cancer drugs, in particular, Herceptin.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">13.<marker name="tab"/>We know that Herceptin has the potential to work for around 1 in 4 women who are diagnosed with early stage breast cancer; those who test HER2 positive.  It is important that we and the media do not give the wrong impression that it is suitable for everyone.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">14.<marker name="tab"/>Nevertheless, even among those 1 in 4, it has the potential to save as many as a thousand lives a year.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">15.<marker name="tab"/>The manufacturers have not yet applied for a licence for prescribing Herceptin for early stage breast cancer and I urge them again to get their application in as quickly as possible.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">16.  <marker name="tab"/>This leaves us with a difficult dilemma.  The drug is already licensed and approved for late stage breast cancer but not for early breast cancer.  There are some concerns amongst clinicians that it can cause serious cardiac problems for a small number of women who take it.  And yet the early evidence suggests that it can be extremely effective for some early stage cancers which is why it has been fast tracked to NICE.  I know that patients and clinicians alike will have seen the evidence presented recently in the New England Journal and will be very keen as patients to discuss the potential benefits of the drug.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">17.<marker name="tab"/>As with other unlicensed drugs, it is down to individual clinicians to decide whether or not to prescribe Herceptin for a woman who has tested positive for HER2.  The clinician has to make this decision after discussions with the woman about the potential risks and taking into account her medical history.  It is the patients and clinicians who are the best people to make that decision.  But because it has not yet been licensed or evaluated for early stage breast cancer, PCTs must also be involved and will have to decide whether to support the clinicians’ decisions and pay for Herceptin.  I want to make it clear that PCTs should not refuse to fund Herceptin solely on the grounds of its cost.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">18.<marker name="tab"/>I know that some PCTs are already under financial pressure and may have to make difficult trade-offs in priorities to fund this new treatment for women who want it and whose clinicians want it for them.  Although that will not be easy, I believe it is the right thing to do, particularly as they will be managing it over two financial years.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">19.<marker name="tab"/>As you know, some weeks ago I have asked Mike Richards, the National Cancer Director, to ensure that testing arrangements are put in place as soon as possible so that patients who may benefit from Herceptin are identified in good time.  That is happening.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">20.<marker name="tab"/>And I have asked the National Institute for Health and Clinical Excellence to start on a fast track appraisal of the use of Herceptin in parallel with the licensing process so that they can issue their guidelines to the NHS Herceptin within weeks of the licence being given.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">21.<marker name="tab"/>I should stress that the steps I am taking today do not, in any way, replace either the licensing by the European Medicines Agency or the approval process by the National Institute for Health and Clinical Excellence.  They are vital and will continue to play the crucial role in ensuring the safety and cost effectiveness of any drug used by the NHS.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">28.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The Department of Health e-mails a weekly Bulletin to NHS and local authority chief executives and directors of social services.  The Chief Executive Bulletin Issue 294 for the week 4-10  November 2005 contained the following item:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">                “<span style="font-style:italic;font-weight:bold">Herceptin for early stage breast cancer</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">On 25 October 2005 the Secretary of State announced:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">‘It is down to individual clinicians to decide whether…….to prescribe Herceptin for a woman who has tested HER2 positive………after discussions with the woman about potential risks and taking into account her medical history. </p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">I want to make it clear that PCTs should not refuse to fund Herceptin solely on the grounds of its cost.’</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">This applies to women prescribed Herceptin for early stage breast cancer ahead of a decision on licensing or NICE appraisal. PCTs should not rule out treatments on principle but consider individual circumstances. Further information: Lindsay Wilkinson, 020 7972 4819.” </p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">29.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">As can be seen from paragraph 17 of the speech (quoted above), the first two paragraphs of that bulletin are a quotation from the Secretary of State’s speech.  The third paragraph is a statement by the Chief Executive.  No distinction has however been drawn between the three paragraphs.  It is common ground that they were all intended to be part of an official communication by the Secretary of State to the PCT and other trusts. There was an issue before the judge to as to whether it amounted to a direction which the trusts must follow or simply guidance to which they must have regard.  The judge held that it was guidance and it is common ground before us that he was correct so to hold.  It follows that it is common ground that it was the duty of the PCT to have regard to the guidance contained in the bulletin.  There was some discussion in argument as to the meaning of the guidance issued by the Secretary of State, to which we return below. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">30.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">It is also common ground that neither the press release of 5 October nor the speech of 25 October amounted to guidance, still less to a direction.  The full text of the speech was not distributed to the PCT and other trusts.  Like the judge, we were referred to evidence which the Secretary of State gave to the House of Commons Select Committee on Health on 6 December 2005, which was very much on the lines of her 25 October 2005 speech.  Again, it is common ground that what she said then cannot constitute guidance, let alone a direction.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Heading2"><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">VII.</span><marker name="tab"/><span style="font-style:normal;font-family:'Times New Roman';font-size:12pt">The PCT’s consideration of Herceptin</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">31.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We consider under this head the consideration given by the PCT to Herceptin before it considered the appellant’s case.  On 7 November 2005, the ASWCS Commissioning Group met.  Jane Leaman, the Defendant’s Director of Public Health, represented the PCT at this meeting.  Among other things, they discussed the off-licence provision of Herceptin for early stage breast cancer.  Item 7 of the minutes noted that:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“It was agreed by the SHAs [Strategic Health Authorities] and the PCTs that the Network as a whole will manage the requests for Herceptin from now until NICE approval next July by the use of exceptional funding panels through each PCT when the clinicians put patients forward.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">The Avon Gloucestershire and Wiltshire SHA is the strategic health authority within whose area the PCT comes and it, too, was represented at this meeting.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">32.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The Swindon CAF met on 18 November 2005.  Eleven members were present.  Jane Leaman tabled a four page paper on Herceptin.  It set out among other things the background, the current licensing position, a summary of the research, part of an article in the New England Journal of Medicine, an extract from the <span style="font-style:italic">Lancet</span> editorial (a copy of which was tabled) and the Secretary of State’s guidance.  The paper thus included a review of the evidence and comments on both sides of the question.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">33.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The paper also attached a draft ASWCS policy statement on the use of Herceptin for early breast cancer, which read:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“From 5<span style="vertical-align:super;font-size:smaller">th</span> October 2005, all newly diagnosed women with early breast cancer will be offered HER2 tests.  Following this, the routine use of Herceptin will be introduced if and when NICE guidance is published in 2006.  Clinicians will then prescribe the drug in accordance with this guidance.  PCTs have a legal obligation to fund NICE-approved drugs.  NICE guidance will only be published after the regulatory authority licenses Herceptin for use in early breast cancer.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">Until this time, the local NHS will not support the routine use of Herceptin in HER2+ve women with early breast cancer.  However, a clinician may ask a PCT to approve the use of herceptin in exceptional personal circumstances.  All PCTs have well established mechanisms to review such requests on a named patient basis.  This is not the same as routine approval but does allow some discretion in individual cases.  It is not appropriate to define these circumstances as each patient and their family’s needs will differ.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">34.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The paper concluded as follows:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“<span style="font-weight:bold">Swindon PCT’s current approach</span></p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">Swindon PCT’s Commissioning Policy states that the PCT will not commission unlicensed drugs.  However, following the direction of the Department of Health, Swindon PCT will review each patient’s case, where the managing clinician believes trastuzumab should be considered as part of the patient’s treatment.  The purpose of this approach is to establish whether there are any extenuating circumstances surrounding an individual’s case that would warrant an exception to the current policy of not commissioning unlicensed drugs.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">In the course of argument it was accepted on all sides that the reference to extenuating circumstances was intended to be a reference to exceptional circumstances.  It was also accepted that, although the heading to that paragraph was stated to be the current approach, it was the approach recommended for the future. </p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">35.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The paper contained an appendix entitled “cost impact”, which included the cost of testing to determine HER2 status, the cost of the drug itself and operational costs.  The cost of the drug, which had been set by the NHS, was £24,890 including VAT for a course of three-weekly infusions for twelve months.  The body of the paper did not itself refer to cost.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">36.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">As we read the note of the meeting, it was agreed that, pending approval by NICE, the PCT should adopt the process of managing Herceptin requests proposed by ASWCS and quoted above.  The note added:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“[Jane Leaman] informed the meeting that, in accordance with the ASWCS’s policy, the PCT’s standard process for assessing requests for treatments not normally funded would be invoked for any applications received for trastuzumab for early breast cancer.  This would mean each individual application would be reviewed by the Clinical Priorities Committee to ascertain if the patient’s case demonstrated any exceptionality.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">The meeting also agreed that work was required further to clarify the PCT’s position on the commissioning of off-licence drugs.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">37.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">It is clear from the documents to which we have just referred that the PCT’s policy was intended to follow the guidance given by the Secretary of State, which Ms Deborah Lee, the Director of Commissioning and Primary Care at the PCT, said in her statement she viewed in this way.  She did not regard it as in effect requiring the PCT to fund treatment, merely that it should review individual cases and not have a blanket policy or use cost alone as a determinant.  Both Ms Lee and Ms Leaman say that in effect the decision made was that the PCT would not treat Herceptin as an exception to its general policy that it does not fund unlicensed drugs.  Ms Lee says that the key factor was that Herceptin was not licensed or approved by NICE and that it would be wrong to introduce what she describes as a dangerous precedent of disregarding the contribution made by the licensing and appraisal process.  She adds:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Given the widely reported safety profile of this drug concerning cardio-toxicity, and the concerns raised in the medical press regarding the methodology through which trial results were generated (that the two reports in the New England Journal of Medicine have different variables therefore comparison is difficult and further, one paper combines data from two different trials sponsored by Genetech – the biotechnology company that developed Herceptin), I believe it would be irresponsible to introduce this drug in advance of licensing and NICE appraisal.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">38.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">It is common ground between the appellants and the PCT that neither the policy decided upon at the meeting of 18 November and a subsequent meeting of the executive board of the PCT, nor the decision taken in the appellant’s case, was affected by the cost of Herceptin itself or of treatment involving Herceptin.  Thus it is not said that the PCT decided, either wholly or partly for budgetary or financial reasons, not to fund Herceptin treatment save in exceptional cases.  Pending licensing and approval, its policy was (and remains) to disregard considerations of cost and not to fund such treatment requested by a clinician on behalf of a patient save in exceptional circumstances.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">39.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">As Ms Lee says in her statement, the PCT has not adopted a policy which involves a blanket ban on funding Herceptin.  It follows that it involves funding Herceptin treatment in some cases but not in others.  The cases in which funding will be provided must be exceptional cases.  The critical question in this appeal, as it was before the judge, is whether such a policy (and the decision which depended upon it) is arbitrary and/or irrational and unlawful, as Mr Pannick submits on behalf of the appellant, or whether it is rational and lawful, as Mr Havers submits on behalf of the PCT.  Before addressing that question, we should refer to the decision made in the case of the appellant.  We can do so comparatively shortly (based on paragraphs 33 to 46 of the judgment) because it is not in dispute that the decision followed from the policy.  As appears below it seems to us to follow that if the policy was unlawful, so was the decision and, if the policy was lawful, so too was the decision. </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-weight:bold">VIII.</span><marker name="tab"/><span style="font-weight:bold">The decision</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">40.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">There is a curiosity about the evidence on this question because, on the material available to us, Irwin Mitchell wrote a letter before claim to the PCT on behalf of the appellant before an application was made to the PCT for funding of Herceptin treatment.  They wrote on 22 November 2005 stating that, if the PCT did not fund appropriate health care treatment, and in particular, a course of Herceptin, they would apply for judicial review.  Ms Leaman responded by letter on the same date setting out the PCT’s position in relation to Herceptin as summarised above.  She added that, although there had been no application on the appellant’s behalf for exceptional funding, she would contact Dr Cole, who was the oncologist treating the appellant.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">41.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">In fact, the PCT sensibly treated the letter as a request for exceptional funding and on 23 November 2005 sought the information required to consider such an application from Dr Janson, the appellant’s GP, and Dr Cole.  It also wrote to the appellant to inform her of the action proposed.  Dr Janson responded to the PCT’s request for information by a letter dated 29 November 2005 setting out in brief the background to the Claimant’s condition.  The letter stated that she had borrowed money from her sister for earlier treatments and would have to mortgage her house to continue with the course. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">42.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Dr Cole responded to the PCT’s request for information by a letter dated 30 November 2005.  He enclosed a completed application form for exceptional funding.  In it he explained the appellant’s position in some detail and identified the potential benefits of the treatment derived from the trials.  Section 10 is headed “Proof of Exceptionality.  Rationale for bringing this case to the Clinical Priorities Committee”.  Dr Cole answered section 10 as follows:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Mrs Rogers is not an exceptional case.  She is one of about 20 patients per year in North Wiltshire who would stand to benefit from this treatment.  She is certainly determined to receive this treatment and prepared to go to considerable lengths to do so.  Her determination is partly due to her cousin’s experience.  She sadly died under my care with breast cancer in her 40’s, a few years ago.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">She does have a relatively unfavourable prognosis breast cancer.  According to the … nomogram she has a 25% chance of remaining free of breast cancer and 43% chance of being alive at 10 years of follow up.  It is likely that she has a greater absolute benefit from Herceptin than somebody with a more favourable prognosis.  In this sense, her case for receiving Herceptin is stronger because of her particularly poor prognosis.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">As the judge observed, Dr Cole says in his statement that he cannot distinguish between the appellant and the 20 or so other residents of the Swindon area in the same position.  His view was that all of them who wished to have Herceptin treatment should be funded by the PCT.  We were told that he was the only consultant oncologist who would have the care of patients of this kind within the PCT’s area.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">43.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">On 6 December an Urgent Review Panel of the CPC met to consider both the appellant’s case and the case of another patient in the same position.  In the meantime, on 2 December a representative of the Avon, Gloucestershire and Wiltshire SHA sent an email to a number of trusts including the PCT referring to the Secretary of State’s speech.  He reiterated that it was the view locally that Herceptin should not be routinely funded until it was licensed and approved but that any applications for exceptional funding in the meantime would have to show that “the individual’s personal and clinical circumstances are ‘exceptional’”.  He added that it was not possible to define in advance what grounds might be considered exceptional and emphasised that PCTs should not refuse such requests simply on the grounds of the cost implications. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">44.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">On 5 December, Ms Leaman spoke directly to Dr Janson about the appellant in order to obtain as much information as possible.  The file note of the conversation reads as follows:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Contacted Dr Janson to follow up referral form and discuss if there are any extenuating circumstances that wish to be considered for this case.  Dr Janson confirmed that he has spoken to patient about this and discussed possible circumstances such as being a carer but there are none.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">45.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">A note was prepared for the CPC panel setting out the background, the research and the advice given to the PCT in relation to Herceptin, as well as the relevant policies, including those set out above.  As the note of the meeting of 6 December records, the panel was first reminded that cost should not be a consideration when reviewing applications for Herceptin.  We note in passing that that is consistent with the policy adopted on 18 November and goes further than the Secretary of State’s guidance, which simply stated that funding should not be refused <span style="font-style:italic">solely</span> on the ground of cost (our emphasis).</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">46.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The panel was directed that its role was to consider whether there were any exceptional circumstances surrounding the cases which would warrant the PCT stepping outside the guidance.  In the case of the appellant, Ms Leaman described the history of the patient and the views of Dr Cole and Dr Janson, highlighted the fact that the appellant was suitable for the treatment but added (as the note puts it) that no grounds for exceptionality were presented by either clinician.  The panel then expressly considered whether the prognosis of a particular patient should be a consideration in determining exceptionality.  It concluded that, given the current state of the research, it could not and it has not been suggested in the course of the appeal that it could.   </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">47.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Having considered the applications in some detail, the panel concluded that there were no exceptional clinical or personal circumstances in either case.  As a result, on 7 December Ms Leaman wrote to Dr Janson on behalf of the PCT in these terms:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“Unfortunately the PCT is unable to fund Herceptin in this instance as following the review of the evidence the panel concluded that there was insufficient evidence to substantiate long term benefit from the drug and there were no extenuating circumstances presented to the panel which meant we could consider this case as an exceptionality.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">Ms Leaman added that the appellant had a right of appeal.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">48.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">On 8 December Ms Leaman wrote to the appellant’s MP confirming the PCT’s policy, namely that until the NICE review, it would review each individual case in which the managing clinician believed that Herceptin should be part of a patient’s treatment, “using the standard referral form for exceptional circumstances”.  She added:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“The purpose of this approach is to consider whether there are any extenuating circumstances surrounding an individual’s case that would warrant  an exception to the current policy of non-prescribing.  This would not be determined on cost grounds.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">49.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The appellant exercised her right of appeal and the appeal was considered on 20 December by an appeal panel.  As the judge summarised the position, according to its chairman, Mr Fishlock, the panel focused on four points in particular:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“i)<marker name="tab"/><marker name="tab"/>The statement by Dr Cole that “Mrs Rogers is not an exceptional case”, together with the fact that she was one of about 20 patients who would stand to benefit from Herceptin per year in North Wiltshire.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">ii)<marker name="tab"/><marker name="tab"/>The fact that a member of Ms Rogers’ family had died from a similar disease.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">iii)<marker name="tab"/>Dr Cole’s view that the Claimant had a 43% chance of being alive after 10 years.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">iv)<marker name="tab"/>Dr Cole’s statement that “it is likely that she has a greater absolute benefit from Herceptin than somebody with a more favourable prognosis.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">50.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The panel concluded that these four points put the appellant into what it described as “a grey area between unexceptional and exceptional”.  It decided, as it had power to do, to refer the case to the PCT’s Board so that the Board could consider whether the case was exceptional on the basis of the four points which the appeal panel had identified.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">51.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The Board meeting took place on 21 December 2005.  The Chief Executive, Janet Stubbings, summarised the PCT’s policy for off-licence drugs and described how the appellant’s case had progressed.  Mr Fishlock then summarised the appeal panel’s discussion of the case.  Ms Stubbings expressed her opinion that, when considering exceptionality, the case should be considered against those who could be considered eligible for the treatment.  She also advised that the Board should not consider the issue of money.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">52.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">In relation to the four points raised by the appeal panel, the Board concluded as follows:  (i) exceptionality should be considered in the context of women who met the eligibility criteria, rather than the population as a whole; (ii) the risk of the patient dying, as in the case of the appellant’s cousin, had been taken into account in the assessment of prognosis; (iii) a number of women would have a poor prognosis, so that the prognosis could not therefore be described as individual exceptionality, but might inform eligibility in any further policy; and (iv), there was insufficient evidence to support the conclusion of Dr Cole that patients with a poorer prognosis are likely to benefit more from this treatment.  There was unanimous support for upholding the decision of the CPC.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">53.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The judge noted in paragraph 46 of his judgment that many authorities and trusts have taken a different view from that of the PCT and have funded Herceptin treatment for all applicants in the eligible group. These include Cheshire and Merseyside; Greater Manchester; Hampshire and Isle of Wight; Leicestershire, Northamptonshire and Rutland; North and East Yorkshire and North Lincolnshire; Northumberland and Tyne and Wear; South West Peninsular; and South Yorkshire Health Authorities, together with Lancashire and South Cumbria Cancer Network; all Primary Care Trusts in Norfolk and in Northern Ireland; and many PCTs in London, Staffordshire, Cambridgeshire, Somerset and elsewhere.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">54.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Other trusts have declined routinely to fund Herceptin treatment.  It is not however clear on the evidence what, if any, role the cost of the drug and the treatment, has played in the policies of such trusts.  It may be that some trusts have a policy similar to that of the PCT, whereas others take account of funding difficulties and apply a test of exceptional circumstances in deciding for which patients to provide funding for Herceptin treatment and for which patients not to do so.      </p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-weight:bold">IX.</span><marker name="tab"/><span style="font-weight:bold">The relevant principles at common law</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">55.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Mr Pannick submits that the refusal on the part of the PCT to fund the Herceptin treatment was unlawful because it was arbitrary or irrational and in the relevant sense unreasonable and/or that it involved a failure to give proper consideration to relevant facts.  However it is precisely formulated, the thrust of the appellant’s case is that, in the particular circumstances of this case, the policy adopted by the PCT was irrational because there was no rational basis upon which it could properly provide funding for some women and not others on the basis of exceptional circumstances.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">56.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">There is little, if any, dispute between the parties as to the correct approach at common law in a case of this kind.  In <span style="font-style:italic">R v Ministry of Defence ex p Smith</span> [1996] QB 517 at 554E Sir Thomas Bingham MR accepted a submission (as it happens by Mr Pannick) as to the correct approach to irrationality:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“The court may not interfere with the exercise of an administrative discretion on substantive grounds save where the court is satisfied that the decision is unreasonable in the sense that it is beyond the range of responses open to a reasonable decision-maker.  But in judging whether the decision-maker has exceeded this margin of appreciation the human rights context is important.  The more substantial is the interference with human rights, the more the court will require by way of justification before it is satisfied that the decision is reasonable in the sense outlined above.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">In this case there is an issue between the parties as to whether article 2 of the Convention is engaged but, whether article 2 is engaged or not, the case is concerned with a decision which may be a life or death decision for the appellant.  In these circumstances, as we think Mr Havers accepted, it is appropriate for the court to subject the decision to refuse funding for the treatment (and thus in practice the treatment) to rigorous scrutiny. </p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">57.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">In giving it that scrutiny, it is important for the court to have in mind that a critical feature of the circumstances of this case is that, as the judge put it in paragraph 58 of his judgment, this is not a case about the allocation of scarce resources.  The judge quoted in this regard the following well-known observations of Sir Thomas Bingham MR in <span style="font-style:italic">R v Cambridge Health Authority ex p B</span> [1995] 1 WLR 898 at 906D:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“I have no doubt that in a perfect world any treatment which a patient, or a patient’s family, sought would be provided of doctors were willing to give it, no matter how much the cost, particularly when a life is potentially at stake.  It would however, in my view, be shutting one’s eyes to the real world if the court were to proceed on the basis that we do live in such a world.  It is common knowledge that health authorities of all kinds are constantly pressed to make ends meet. ….  Difficult and agonising judgments have to be made as to how a limited budget is best allocated to the maximum advantage of the maximum number of patients.  That is not a judgment which the court can make.  In my judgment, it is not something that a health authority such as this authority can be fairly criticised for not advancing before the court.”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">58.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Mr Pannick accepts, in our view correctly, that this case would be very different if the PCT had decided that as a matter of policy it would adopt the Secretary of State’s guidance that applications should not be refused solely on the grounds of cost but that, as a hard-pressed authority with many competing demands on its budget, it could not disregard its financial restraints and that it would have regard both to those restraints and to the particular circumstances of the individual patient in deciding whether or not to fund Herceptin treatment in a particular case.  In such a case it would be very difficult, if not impossible, to say that such a policy was arbitrary or irrational.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">59.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Mr Pannick further accepts, as we understand it, that it may be lawful for an authority to refuse funding save in undefined exceptional circumstances.  It was indeed so held in <span style="font-style:italic">R v North West Lancashire Health Authority, ex p A, D &amp; G</span> [2000] 1 WLR 977.  In that case the respondents were transsexuals who wanted to undergo gender reassignment treatment.  The appellant authority refused to fund such treatment save in the event of overriding clinical need or of exceptional circumstances, on the basis that it was low in the list of priorities for public funding.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">60.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The judge quoted this passage (at p 991) from the leading judgment of Auld LJ, in which he held that a policy of refusal of funding save in undefined exceptional circumstances was lawful:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“<span style="color:#000000">As illustrated in the </span><span style="font-style:italic;color:#000000">Cambridge Health Authority</span><span style="color:#000000"> case [1999] 1 WLR 898 and </span><span style="font-style:italic;color:#000000">Coughlan's</span><span style="color:#000000"> case [2000] 2 WLR 622, it is an unhappy but unavoidable feature of state funded health care that regional health authorities have to establish certain priorities in funding different treatments from their finite resources. It is natural that each authority, in establishing its own priorities, will give greater priority to life-threatening and other grave illnesses than to others obviously less demanding of medical intervention. The precise allocation and weighting of priorities is clearly a matter of judgment for each authority, keeping well in mind its statutory obligations to meet the reasonable requirements of all those within its area for which it is responsible. It makes sense to have a policy for the purpose - indeed, it might well be irrational not to have one - and it makes sense too that, in settling on such a policy, an authority would normally place treatment of transsexualism lower in its scale of priorities than, say, cancer or heart disease or kidney failure. Authorities might reasonably differ as to precisely where in the scale transsexualism should be placed and as to the criteria for determining the appropriateness and need for treatment of it in individual cases. It is proper for an authority to adopt a general policy for the exercise of such an administrative discretion, to allow for exceptions from it in "exceptional circumstances" and to leave those circumstances undefined: see </span><span style="font-style:italic;color:#000000">In re Findlay</span><span style="color:#000000"> [1985] A.C. 318, 335-336, </span><span style="font-style:italic;color:#000000">per</span><span style="color:#000000"> Lord Scarman. In my view, a policy to place transsexualism low in an order of priorities of illnesses for treatment and to deny it treatment save in exceptional circumstances such as overriding clinical need is not in principle irrational, provided that the policy genuinely recognises the possibility of there being an overriding clinical need and requires each request for treatment to be considered on its individual merits.</span>”</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">61.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The judge observed in paragraph 63 of his judgment that the Court of Appeal was there considering North West Lancashire’s policy on the prioritisation of treatment because of scarcity of resources.  He said that in that context it was to be noted that, as most people would expect, it gave the treatment of cancer as an obvious example of a top priority.  However, he accepted a submission made by Mr Havers that the same principle applies to a policy based on the absence of regulatory approval.  He concluded that to decide that unlicensed use would not be funded save in undefined exceptional circumstances was not of itself unlawful.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">62.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We would accept that conclusion subject to this important qualification, which can in our view be seen from the passage just quoted.  In it Auld LJ stresses that a policy which allows for exceptions in undefined exceptional circumstances is not unlawful “provided that <span style="color:#000000">the policy genuinely recognises the possibility of there being an overriding clinical need and requires each request for treatment to be considered on its individual merits.</span>”  As we see it, that means that a policy of withholding assistance save in unstated exceptional circumstances (in the case addressed by Auld LJ, and no doubt in this case also, overriding clinical need) will be rational in the legal sense provided that it is possible to envisage, and the decision-maker does envisage, what such exceptional circumstances might be.  If it is not possible to envisage any such circumstances, then the policy will be in practice a complete refusal of assistance: and irrational as such because it is sought to be justified not as a complete refusal but as a policy of exceptionality. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">63.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Thus we would not hold that the policy was arbitrary because it refers to unidentified exceptional circumstances.  The essential question is whether the policy was rational; and, in deciding whether it is rational or not, the court must consider whether there are any relevant exceptional circumstances which could justify the PCT refusing treatment to one woman within the eligible group but granting it to another. And to anticipate, the difficulty that the PCT encounters in the present case is that while the policy is stated to be one of exceptionality, no persuasive grounds can be identified, at least in clinical terms, for treating one patient who fulfils the clinical requirements for Herceptin treatment differently from others in that cohort.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">64.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">This approach is in our view consistent with the conclusion stated by Auld LJ in the same case at p 993, which also contains an important statement of principle by Sir Thomas Bingham MR in the <span style="font-style:italic">Cambridge Health Authority </span>case.  Auld LJ said:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">“I accept, of course, that it is a matter for the medical judgment of the authority, not the court, what, if any, effective medical treatment there might be for transsexualism and any sequelae.  As Sir Thomas Bingham MR said in the <span style="font-style:italic">Cambridge Health Authority </span>case [1995] 1 WLR 898, 905:</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.18in">‘the courts are not, contrary to what is sometimes believed, arbiters as to the merits of cases of this kind.  Were we to express opinions as to the likelihood of the effectiveness of medical treatment, or as to the merits of medical judgment, then we should be straying far from the sphere which under our constitution is accorded to us.  We have one function only, which is to rule upon the lawfulness of decisions.  That is a function to which we should strictly confine ourselves.’</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">However, if a regional health authority devises a policy not to provide treatment save in cases of overriding clinical need, it makes a nonsense of the policy if, as a matter of its medical judgment, there is no effective treatment for it for which there could be an overriding clinical need.  The same applies to any other condition caused by transsexualism such as a mental illness of the seriousness described by Dr Sudell.  If the authority considers the cause of such a condition to be untreatable by hormonal treatment and surgery, it is hard to see how it could regard the condition itself as an overriding need for such treatment.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.00in">In my view, the stance of the authority, coupled with the near uniformity of its reasons for rejecting each of the applicants’ requests for funding was not a genuine application of a policy subject to individually determined exceptions of the sort considered acceptable by Lord Scarman in <span style="font-style:italic">In re Findlay </span>[1985] AC 318.  It is similar to the over-rigid application of the near “blanket policy” questioned by Judge J in <span style="font-style:italic">Reg. v Warwickshire County Council, Ex parte Collymore </span>[1995] ELR 217, 224-226, ‘which while in theory admitting of exceptions, may not, in reality, result in the proper consideration of each individual case on its merits.’  (See p 227).”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">Auld LJ added that in the <span style="font-style:italic">Collymore </span>case Judge J was referring to the decision not the policy but in our view the reasoning in that passage points the way in the present case. </p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">65.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We should also emphasise that, as already indicated, the issue in this case is indeed whether the <span style="font-style:italic">policy</span> that the PCT adopted in relation to Herceptin was irrational.  If it was rational, we cannot see that the refusal to fund the appellant’s treatment was irrational.  The policy involves asking whether there are exceptional circumstances in the case of any particular patient.  If that policy is lawful, we can see no basis for criticising the decision to refuse treatment to the appellant.  She is one of the eligible group and there is no basis for saying that her circumstances are exceptional by comparison with others in the group.  Both Dr Cole and Dr Janson said precisely that.  Dr Cole does not therefore complain about the particular decision but about the policy.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">66.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We therefore turn to consider in more detail the issue of irrationality in this case.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaLevel1"><span style="font-weight:bold">X.</span><marker name="tab"/><span style="font-weight:bold">Rationality</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">67.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We have already referred to the general policy adopted by the PCT as identified in the June 2005 paper from which we have quoted above.  This appeal is not concerned with that policy because, again as set out above, the PCT did not follow its ordinary policy but a somewhat different policy which had regard to the Secretary of State’s guidance without wholly following it.  In these circumstances the rationality of the general policy is not in issue in this appeal.  We simply note in passing that, as we indicated earlier, in our opinion that policy is not irrational.  It involves taking account of a number of relevant circumstances, including the fact that the particular drug is off-licence and not approved by NICE, the special healthcare problems of the particular patient and financial considerations.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">68.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Although the issue for us is the rationality of the policy that the PCT actually adopted in this case, as described in paragraphs 33 to 39 above, much of the argument before the court focused on the general position without regard to the particular policy which was adopted.  Thus Mr Havers submitted as follows.  The starting point is the fact that Herceptin is neither licensed by EMEA nor approved by NICE.  The system of licensing and approval is central to the way in which the prescription of drugs is administered in the NHS.  As Ms Lee puts it in her statement referred to in paragraph 35 above, it is wrong to introduce what she describes as a dangerous precedent of disregarding the contribution made by the licensing and appraisal process.  Moreover, as Ms Lee says, there are concerns about the research upon which those who prescribe Herceptin rely.  Thus a policy not to fund Herceptin save in exceptional circumstances, where a patient can show that there are exceptional personal or clinical circumstances in her case, is a cautious approach which is entirely rational.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">69.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">The judge accepted those submissions in paragraphs 69 and 70 of his judgment as follows:</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.57in;text-indent:-0.57in">“69.<marker name="tab"/>Ms Rogers’ case is that her cancer is life-threatening; if she waits for EMEA licensing and NICE appraisal of Herceptin, it may be too late; she is aware of the risk of side effects, but as an intelligent adult she is willing to take the chance. The Defendant’s case, on the other hand, while taking the Claimant’s arguments into account, is that the system of licensing and appraisal of drug treatments is essential and should not be bypassed; that medical opinion may be moving in the Claimant’s favour, but it is not yet unanimous; and that in the absence of unequivocal guidance from the Secretary of State that PCTs should (or a direction that they must) fund Herceptin treatment for all the eligible group, they are entitled to be cautious and wait for EMEA’s licensing decision and NICE’s appraisal.</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="Quote" style="margin-left:1.57in;text-indent:-0.57in">70.<marker name="tab"/>Many people will think that the more generous policy of authorities such as those listed in paragraph 46 above is a better one than Swindon’s. Which is the better policy is a matter for political debate, but it is not an issue for a judge. The question for me is whether Swindon’s policy is irrational and thus unlawful. I cannot say that it is.”</p>
+          </content>
+        </level>
+        <level>
+          <content>
+            <p class="ParaNoNumber" style="margin-left:0.50in">Mr Pannick accepts that the policies of other PCTs are largely if not wholly irrelevant but submits that the conclusions in paragraph 69 are flawed.</p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">70.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">He properly accepts that the fact that Herceptin is unlicensed and not yet approved by NICE is a relevant consideration and, indeed, is likely to be decisive in many cases but he submits that it cannot be decisive in the present case.  He advanced the following detailed arguments, which he says are undisputed or undisputable: </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">i)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">Absent Herceptin treatment, the appellant has a 25% chance of remaining free of breast cancer after ten years and a 57% chance of dying from breast cancer within that period.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">ii)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">According to paragraph 1.3 of the NCRI guidelines the Herceptin trials reported considerable therapeutic benefit with about a 50% reduction in the risk of recurrence when Herceptin is given in combination with or following chemotherapy.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iii)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">The NCRI guidelines identify the eligible group and show that there are many women with breast cancer who are not eligible for Herceptin treatment. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">iv)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">Dr Cole has prescribed Herceptin for the appellant.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">v)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">There is no suggestion (and nor is it the case) that any other drug offers the appellant as good a prospect of survival as Herceptin.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">vi)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">There is no evidence from any other specialist that Herceptin is not the best available treatment for a woman in the position of the appellant.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">vii)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">The Secretary of State has encouraged trusts to consider providing Herceptin for women who have been prescribed it by their clinicians, even though it is not licensed by the EMEA or approved by NICE.                      </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;font-size:12pt;margin-left:0.98in;text-indent:-0.49in">viii)</num>
+          <content>
+            <p class="ParaLevel2" style="margin-left:0.98in;text-indent:0.5in">The PCT does not refuse funding on cost grounds. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">71.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Mr Havers accepts most of those points, although he emphasises the caution expressed in the <span style="font-style:italic">Lancet</span> editorial, correctly notes that the NCRI guidelines are based on the trials and do not amount to a recommendation that Herceptin should be routinely prescribed and submits that the Secretary of State did not give the encouragement suggested by Mr Pannick.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">72.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We accept Mr Havers’ submission that the contents of the <span style="font-style:italic">Lancet</span> editorial and indeed of the article in the Journal of the American Medical Association referred to in it show that there is a significant body of medical opinion which urges caution.  It does so on a number of bases, including possible cardiac side effects and insufficient analyses of the trial results.  Moreover, we accept his submission that these considerations were present to the minds of CAF and the ASWCS when they considered the problem as described above.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">73.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">However, while these were all factors which contributed to the formulation of the policy, they were only some of the factors which contributed to the policy adopted with regard to Herceptin.  If that policy had involved a balance of financial considerations against a general policy not to fund off-licence drugs not approved by NICE and the healthcare needs of the particular patient in an exceptional case, we do not think that such a policy would have been irrational.  However, it was not that policy that the PCT followed.  The PCT did not adopt a policy of refusing to fund Herceptin treatment on the ground that it was not licensed by the EMEA or approved by NICE, and thus did not adopt the reasoning in the passage from the statement of Ms Lee quoted above.  Contrary to that statement, the PCT did not conclude that it would be irresponsible to introduce this drug in advance of licensing and NICE appraisal.  If it had, it would not have admitted the possibility of funding Herceptin treatment for a woman in exceptional personal or clinical circumstances.  It would simply have refused to do so on the ground that, if it did, it would be acting irresponsibly.  It was influenced in not doing that by the Secretary of State’s guidance, to which we now turn.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">74.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We have already set out the elements of the guidance.  A fair reading of the guidance does provide some encouragement to trusts to fund Herceptin.  It emphasises the role of the individual clinician by saying that it is down to him or her to decide whether to prescribe Herceptin after discussions with the patient about potential risks and taking into account her medical history.  In addition to saying that trusts should not refuse funding solely on the ground of cost, it expressly provides that trusts should not rule out treatment in principle but should consider individual circumstances.  Thus a trust which complies with the guidance (as the PCT sought to do) cannot refuse to fund treatment simply on the basis that Herceptin is unlicensed and unapproved by NICE.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">75.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Mr Havers submits that the Secretary of State did not say that Herceptin should be routinely prescribed and that she could easily have done so if that was what she had intended.  There is some forensic force in this point but it seems to us to overlook the relevance or potential relevance of funding considerations.  As already stated, the Secretary of State indicated that an application for funding should not be refused solely on the ground of cost but she did not say (or in our view mean to say) that considerations of cost were irrelevant.  In these circumstances the Secretary of State was not saying that Herceptin prescribed by a clinician should be routinely funded.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">76.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">As we see it, she was stressing the potential value of Herceptin while recognising its possible risks and emphasising that it was down to the clinician to decide whether to prescribe Herceptin in consultation with the patient.  It was then for the trust to decide whether to fund the treatment, its decision to be taken, not solely on the basis of cost or by ruling it out in principle, but having regard to individual circumstances.  This left the trust to take account of the fact that the clinician had prescribed Herceptin notwithstanding that it was off-licence and not approved by NICE, and to balance cost considerations against the individual circumstances of the patient.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">77.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">We see nothing arbitrary or irrational about that approach.  It could properly involve a decision by a trust which was subject to financial constraints and which decided that it could not fund all the patients who applied for funding for Herceptin treatment, to make the difficult choice to fund treatment for a woman with, say, a disabled child and not for a woman in different personal circumstances.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">78.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">That is not however this case because the PCT developed a policy which treated financial considerations as irrelevant.  It thus had funds available for all women within the eligible group whose clinician prescribed Herceptin.  Yet its policy is to refuse funding save where exceptional personal or clinical circumstances can be shown.  </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">79.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">Mr Havers was naturally asked to give examples of personal circumstances which might justify funding one woman rather than another within the eligible group.  He submitted that it was not necessary for the PCT to identify possible examples and relied upon the <span style="font-style:italic">North West Lancashire Health Authority</span> case.  The only positive example he gave was that of a woman with a child with a life-limiting condition.  For our part, we cannot see how that fact can possibly justify providing funding for that woman but not another when each falls within the eligible group and there are available funds for both.  After all, once financial considerations are ruled out, and it has been decided not to rely on NICE without exception, then the only concern which the PCT can have must relate to the legitimate clinical needs of the patient.  The non-medical personal situation of a particular patient cannot in these circumstances be relevant to the question whether Herceptin prescribed by the patient’s clinician should be funded for the benefit of the patient.  Where the clinical needs are equal, and resources are not an issue, discrimination between patients in the same eligible group cannot be justified on the basis of personal characteristics not based on healthcare.              </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">80.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">As to clinical characteristics, it was suggested in argument that one woman in the eligible group might have a greater clinical need for Herceptin than another.  We can see that that might be theoretically possible but there is no indication that any such possibility in fact exists.  The PCT rejected the suggestion that a distinction might be made between one person within the group and another on the ground that the prognosis of each was different.  As we understand it, that was on the basis that the research does not support such an approach.  It was also suggested that one patient within the group might be unable for medical reasons to take another drug such as tamoxifen, whereas the rest of the group might be able to take it, and that such a case would be an example of an exceptional circumstance upon which a decision to fund Herceptin treatment for the former patient and not for the rest could be justified.  There is, however, no evidence which supports such a possibility.  In any event we accept Mr Pannick’s submission that it could not be reasonable or rational to deny a patient Herceptin treatment because she can tolerate tamoxifen, where there is no evidence that tamoxifen, or any other drug, is an alternative to Herceptin. </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">81.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">All the clinical evidence is to the same effect.  The PCT has not put any clinical or medical evidence before the court to suggest any such clinical distinction could be made.  In these circumstances there is no rational basis for distinguishing between patients within the eligible group on the basis of exceptional clinical circumstances any more than on the basis of personal, let alone social, circumstances.  In short, we accept Mr Pannick’s submission that once the PCT decided (as it did) that it would fund Herceptin for some patients and that cost was irrelevant, the only reasonable approach was to focus on the patient’s clinical needs and fund patients within the eligible group who were properly prescribed Herceptin by their physician.  This would not open the floodgates to those suffering from breast cancer because only comparatively few satisfy the criteria so as to qualify for the eligible group.          </p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">82.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">For these reasons we have reached the conclusion that the policy of the PCT is irrational, unless it can properly be said that it is not necessary to identify individual characteristics which might justify distinguishing between one patient within the eligible group and another.  In our judgement, that cannot properly be said and the <span style="font-style:italic">North West Lancashire Hospital Authority </span>case is not authority to the contrary.  In that case the court emphasised the importance of the policy genuinely recognising the possibility of there being an overriding clinical need.  Here the evidence does not establish the possibility of there being relevant clinical circumstances relating to one patient and not another and, in the case of personal characteristics, there is no rational basis for preferring one patient to another.</p>
+          </content>
+        </paragraph>
+        <level>
+          <content>
+            <p class="ParaHeading"><span style="font-weight:bold">XI.</span><marker name="tab"/><span style="font-weight:bold">CONCLUSION</span></p>
+          </content>
+        </level>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">83.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">For these reasons we have reached a different conclusion from the judge, namely that the policy adopted by the PCT in this particular case was irrational and therefore unlawful.  In these circumstances it is not necessary for us to consider the other bases on which the appellant seeks to challenge the PCT’s refusal to fund the treatment.  In particular it is not necessary for us to consider the possible impact of article 2 and/or 14 of the Convention.  We will not further lengthen this judgment by doing so.</p>
+          </content>
+        </paragraph>
+        <paragraph>
+          <num style="font-style:normal;font-weight:normal;text-decoration:none;font-size:12pt;margin-left:0.50in;text-indent:-0.50in">84.</num>
+          <content>
+            <p class="ParaLevel1" style="margin-left:0.50in;text-indent:0.5in">It follows that the decision of the PCT to refuse to fund the treatment of the appellant with Herceptin in accordance with Dr Cole’s recommendation must be quashed.  Although we will hear further submissions on the point, it is our present view that we cannot and should not order the PCT to fund the treatment.  As we see it, it is now a matter for the PCT to reconsider its policy and to formulate a lawful policy upon which to base decisions in particular cases, including that of the appellant, in the future. </p>
+          </content>
+        </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>
