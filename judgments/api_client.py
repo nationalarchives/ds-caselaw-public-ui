@@ -45,25 +45,16 @@ class MarklogicApiClient:
     default_http_error_class = MarklogicCommunicationError
 
     def __init__(self, host: str, username: str, password: str, use_https: bool):
-        self.host = host or env("MARKLOGIC_HOST")
-        self.username = username or env("MARKLOGIC_USERNAME")
-        self.password = password or env("MARKLOGIC_PASSWORD")
+        self.host = host
+        self.username = username
+        self.password = password
         self.base_url = f"{'https' if use_https else 'http'}://{self.host}:8011"
-        self._auth = HTTPBasicAuth(self.username, self.password)
+        # Apply auth / common headers to the session
+        self.session = requests.Session()
+        self.session.auth = HTTPBasicAuth(username, password)
 
     def _path_to_request_url(self, path: str) -> str:
         return f"{self.base_url}/{path.lstrip('/')}"
-
-    def _get_request_kwargs(
-        self, method: str, path: str, data: Optional[Dict[str, Any]] = None
-    ) -> Dict[str, Any]:
-        kwargs = dict(url=self._path_to_request_url(path), auth=self._auth)
-        if data is not None:
-            if method == "GET":
-                kwargs["params"] = data
-            else:
-                kwargs["data"] = json.dumps(data)
-        return kwargs
 
     def _raise_for_status(cls, response: requests.Response) -> None:
         try:
@@ -83,11 +74,23 @@ class MarklogicApiClient:
             new_exception.response = response
             raise new_exception
 
+    def prepare_request_kwargs(
+        self, method: str, path: str, data: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
+        kwargs = dict(url=self._path_to_request_url(path))
+        if data is not None:
+            data = {k: v for k, v in data.items() if v is not None}
+            if method == "GET":
+                kwargs["params"] = data
+            else:
+                kwargs["data"] = json.dumps(data)
+        return kwargs
+
     def make_request(
         self, method: str, path: str, data: Dict[str, Any] = None
     ) -> requests.Response:
-        kwargs = self._get_request_kwargs(method, path, data)
-        response = requests.request(method, **kwargs)
+        kwargs = self.prepare_request_kwargs(method, path, data)
+        response = self.session.request(method, **kwargs)
         # Raise relevant exception for an erroneous response
         self._raise_for_status(response)
         return response
