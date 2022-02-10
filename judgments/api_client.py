@@ -9,6 +9,8 @@ from requests.auth import HTTPBasicAuth
 
 from config.settings.base import env
 
+RESULTS_PER_PAGE = 10
+
 
 class MarklogicAPIError(requests.HTTPError):
     pass
@@ -87,16 +89,18 @@ class MarklogicApiClient:
         return kwargs
 
     def make_request(
-        self, method: str, path: str, data: Dict[str, Any] = None
+        self, method: str, path: str, get_multipart: False, data: Dict[str, Any] = None
     ) -> requests.Response:
         kwargs = self.prepare_request_kwargs(method, path, data)
+        if get_multipart:
+            self.session.headers = {"Accept": "multipart/mixed"}
         response = self.session.request(method, **kwargs)
         # Raise relevant exception for an erroneous response
         self._raise_for_status(response)
         return response
 
-    def GET(self, path: str, **data: Any) -> requests.Response:
-        return self.make_request("GET", path, data)
+    def GET(self, path: str, get_multipart: bool, **data: Any) -> requests.Response:
+        return self.make_request("GET", path, get_multipart, data)
 
     def POST(self, path: str, **data: Any) -> requests.Response:
         return self.make_request("POST", path, data)
@@ -105,7 +109,11 @@ class MarklogicApiClient:
         return self.make_request("PUT", path, data)
 
     def get_judgement_xml(self, uri: str) -> str:
-        return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml").text
+        return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml", False).text
+
+    def get_judgment_search_results(self, page: str) -> requests.Response:
+        start = (int(page) - 1) * RESULTS_PER_PAGE + 1
+        return self.GET("LATEST/search/?view=results&start=" + str(start), True)
 
 
 class MockAPIClient:
@@ -114,6 +122,16 @@ class MockAPIClient:
 
     def get_judgement_xml(self, uri: str) -> str:
         filepath = os.path.join(self.fixtures_dir, uri.lstrip("/") + ".xml")
+
+        try:
+            return Path(filepath).read_text()
+        except FileNotFoundError:
+            raise MarklogicResourceNotFoundError
+
+    def get_judgment_search_results(self, page: int) -> str:
+        filepath = os.path.join(
+            self.fixtures_dir, "search", "results" + str(page) + ".xml"
+        )
         try:
             return Path(filepath).read_text()
         except FileNotFoundError:
@@ -127,5 +145,5 @@ else:
         host=env("MARKLOGIC_HOST"),
         username=env("MARKLOGIC_USER"),
         password=env("MARKLOGIC_PASSWORD"),
-        use_https=env("MARKLOGIC_USE_HTTPS", default=True),
+        use_https=env("MARKLOGIC_USE_HTTPS", default=False),
     )
