@@ -154,4 +154,3 @@ Included in this repository is:
 ### Working with JavaScript
 
 * In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
-
