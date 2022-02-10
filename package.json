@@ -1,0 +1,23 @@
+{
+  "name": "ds-judgments-public-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nationalarchives/ds-judgments-public-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nationalarchives/ds-judgments-public-ui/issues"
+  },
+  "homepage": "https://github.com/nationalarchives/ds-judgments-public-ui#readme"
+}
