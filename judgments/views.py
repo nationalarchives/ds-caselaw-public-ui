@@ -11,11 +11,11 @@ from judgments.api_client import MarklogicResourceNotFoundError, api_client
 
 def detail(request, judgment_uri):
     try:
-        judgement_xml = api_client.get_judgement_xml(judgment_uri)
+        judgment_xml = api_client.get_judgment_xml(judgment_uri)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgement_xml}, request))
+    return HttpResponse(template.render({"xml": judgment_xml}, request))
 
 
 def index(request, page=1):

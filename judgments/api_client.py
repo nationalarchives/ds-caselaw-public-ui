@@ -108,7 +108,7 @@ class MarklogicApiClient:
     def PUT(self, path: str, **data: Any) -> requests.Response:
         return self.make_request("PUT", path, data)
 
-    def get_judgement_xml(self, uri: str) -> str:
+    def get_judgment_xml(self, uri: str) -> str:
         return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml", False).text
 
     def get_judgment_search_results(self, page: str) -> requests.Response:
@@ -120,7 +120,7 @@ class MockAPIClient:
 
     fixtures_dir: str = settings.MARKLOGIC_FIXTURES_DIR
 
-    def get_judgement_xml(self, uri: str) -> str:
+    def get_judgment_xml(self, uri: str) -> str:
         filepath = os.path.join(self.fixtures_dir, uri.lstrip("/") + ".xml")
 
         try:
