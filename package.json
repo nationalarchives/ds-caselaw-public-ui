@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-sass": "sass --watch ds_judgements_public_ui/sass/main.scss:ds_judgements_public_ui/static/css/main.css",
+    "start-scripts": "npx webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/nationalarchives/ds-judgments-public-ui/issues"
   },
-  "homepage": "https://github.com/nationalarchives/ds-judgments-public-ui#readme"
+  "homepage": "https://github.com/nationalarchives/ds-judgments-public-ui#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  }
 }

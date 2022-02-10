@@ -139,9 +139,19 @@ Copy `pre-push.sample` to `.git/hooks/pre-push` to set up the pre-push hook. Thi
 
 ## Front end development
 
+Included in this repository is:
+
+* Webpack and Babel for transpiling JavaScript
+* Sass for compiling CSS
+
 ### Working with SASS/CSS
 
 * Ensure you have NodeJS & NPM installed.
 * Install SASS globally by running `npm install -g sass`.
-* To watch and build the public facing site SASS, run `sass --watch ds_judgements_public_ui/sass/main.scss:ds_judgements_public_ui/static/css/main.css`
+* To watch and build the site SASS, run `npm run start-sass`
 * To modify styles, navigate to the `sass` folder in your editor.
+
+### Working with JavaScript
+
+* In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
+
