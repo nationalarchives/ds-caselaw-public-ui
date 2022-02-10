@@ -281,3 +281,6 @@ ds_judgements_public_ui/media/
 .envs/.production
 
 docker/*
+
+/ds_judgements_public_ui/static/css/main.css
+/ds_judgements_public_ui/static/css/main.css.map

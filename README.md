@@ -136,3 +136,12 @@ All four URLs use basic auth, username and passward are both `admin`.
 ### Using the pre-push hook (optional)
 
 Copy `pre-push.sample` to `.git/hooks/pre-push` to set up the pre-push hook. This will run Python linting and style checks when you push to the repo and alert you to any linting issues that will cause CI to fail.
+
+## Front end development
+
+### Working with SASS/CSS
+
+* Ensure you have NodeJS & NPM installed.
+* Install SASS globally by running `npm install -g sass`.
+* To watch and build the public facing site SASS, run `sass --watch ds_judgements_public_ui/sass/main.scss:ds_judgements_public_ui/static/css/main.css`
+* To modify styles, navigate to the `sass` folder in your editor.
