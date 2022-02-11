@@ -1,0 +1,18 @@
+<div class="service-introduction-banner">
+    <div class="service-introduction-banner__container">
+        <p>The {{ service.name }} service is provided by <a href="https://www.nationalarchives.gov.uk">The National
+            Archives</a>. You can: </p>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}#recently-published-judgments">View recently published judgments</a>
+                </li>
+                <li><a href="{% url 'structured_search' %}">Search for a judgment</a></li>
+                <li><a href="{% url 'home' %}#browse-by-court">Find judgments made by a specific court</a></li>
+            </ul>
+        </nav>
+        <p>All content is available under the
+            <a href="{% url 'open_justice_licence' %}">Open Justice Licence</a>,
+            except where otherwise stated, and subject to <a href="{% url 'terms_of_use' %}">terms of use</a>.
+        </p>
+    </div>
+</div>

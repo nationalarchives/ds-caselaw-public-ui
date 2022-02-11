@@ -1,0 +1,27 @@
+{% load static i18n %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{% static 'images/favicons/favicon.png' %}">
+    {% block css %}
+      <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    {% endblock %}
+    <title>United Trade Action Group Ltd (R on the application of) v Transport for London</title>
+    {% include 'includes/gtm/gtm_head.html' %}
+</head>
+<body>
+{% include 'includes/gtm/gtm_body.html' %}
+<a id="skip-to-main-content" href="#main-content">Skip to Main Content</a>
+{% if not request.args.return_link %}
+    {% include 'includes/judgment_text_service_introduction_banner.html' %}
+{% endif %}
+{% include 'includes/judgment_text_toolbar.html' %}
+{% include 'includes/judgment_text_source.html' %}
+<main id="main-content">
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>
