@@ -161,3 +161,21 @@ All four URLs use basic auth, username and passward are both `admin`.
 ## Using the pre-push hook (optional)
 
 Copy `pre-push.sample` to `.git/hooks/pre-push` to set up the pre-push hook. This will run Python linting and style checks when you push to the repo and alert you to any linting issues that will cause CI to fail.
+
+## Front end development
+
+Included in this repository is:
+
+* Webpack and Babel for transpiling JavaScript
+* Sass for compiling CSS
+
+### Working with SASS/CSS
+
+* Ensure you have NodeJS & NPM installed.
+* Install SASS globally by running `npm install -g sass`.
+* To watch and build the site SASS, run `npm run start-sass`
+* To modify styles, navigate to the `sass` folder in your editor.
+
+### Working with JavaScript
+
+* In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task

@@ -149,6 +149,9 @@ typings/
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
+### PyCharm template
+.idea/
+
 
 ### VisualStudioCode template
 .vscode/*
@@ -278,3 +281,7 @@ ds_judgements_public_ui/media/
 .envs/.production
 
 docker/*
+
+/ds_judgements_public_ui/static/css/main.css
+/ds_judgements_public_ui/static/css/main.css.map
+/ds_judgements_public_ui/static/js/dist/app.js

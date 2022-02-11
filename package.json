@@ -1,0 +1,31 @@
+{
+  "name": "ds-judgments-public-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start-sass": "sass --watch ds_judgements_public_ui/sass/main.scss:ds_judgements_public_ui/static/css/main.css",
+    "start-scripts": "npx webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nationalarchives/ds-judgments-public-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nationalarchives/ds-judgments-public-ui/issues"
+  },
+  "homepage": "https://github.com/nationalarchives/ds-judgments-public-ui#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
