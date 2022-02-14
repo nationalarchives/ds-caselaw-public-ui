@@ -1,0 +1,23 @@
+{% block content %}
+  <div class="judgment-browse-by-court">
+    <div class="judgment-browse-by-court__container">
+      <h2 id="browse-by-court" class="judgment-browse-by-court__header">Find judgments by court</h2>
+
+      <ul class="judgment-browse-by-court__list">
+        {% for court in courts %}
+        {# {% for court in courts | sort(attribute='name') %} #}
+          <li class="judgment-browse-by-court__court">
+            <span class="judgment-browse-by-court__court-name">
+                <a class="judgment-browse-by-court__court-link" href="/results?courts={{ court.code }}">
+                  {{ court.name }}
+                </a>
+            </span>
+            <span class="judgment-browse-by-court__years">
+              ({{ court.years_range_start }} - {{ court.years_range_end }})
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
