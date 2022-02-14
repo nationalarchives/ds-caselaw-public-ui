@@ -13,3 +13,11 @@ def detail(request, judgment_uri):
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
     return HttpResponse(template.render({"xml": judgement_xml}, request))
+
+
+def source():
+    return
+
+
+def structured_search():
+    return

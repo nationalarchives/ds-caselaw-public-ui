@@ -1,0 +1,14 @@
+<div class="judgment-toolbar">
+    <div class="judgment-toolbar__container">
+        <div class="judgment-toolbar__return-link">
+            {% if request.args.origin == 'results' %}
+                <a href="{{ request.args.return_link }}">Back to search results</a>
+            {% endif %}
+        </div>
+        <div class="judgment-toolbar__download">
+            <span class="judgment-toolbar__download-intro">Download this judgment as </span>
+            <a class="judgment-download__option--pdf" href="">PDF</a> or
+            <a class="judgment-download__option--xml" href="">XML</a>
+        </div>
+    </div>
+</div>
