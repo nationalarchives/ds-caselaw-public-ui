@@ -10,18 +10,24 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.png' %}">
 
     {% block css %}
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+      <link href="{% static 'css/main.css' %}" rel="stylesheet">
     {% endblock %}
 
     {% block javascript %}
       <script defer src="{% static 'js/dist/app.js' %}"></script>
     {% endblock javascript %}
 
+    {% include 'includes/gtm/gtm_head.html' %}
   </head>
 
   <body>
+    <a id="skip-to-main-content" href="#main-content">Skip to Main Content</a>
+    {% include 'includes/gtm/gtm_body.html' %}
+    {% include 'includes/phase_banner.html' %}
+    <main id="main-content">
       {% block content %}
-
       {% endblock content %}
+    </main>
+    {% include 'includes/footer.html' %}
   </body>
 </html>

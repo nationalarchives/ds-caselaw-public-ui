@@ -1,0 +1,30 @@
+<div class="recent-judgments">
+  <div class="recent-judgments__container">
+    <h2 id="recently-published-judgments" class="recent-judgments__header">Recently published judgments</h2>
+    <ul class="recent-judgments__list">
+      {% for item in recent_judgments %}
+        <li class="recent-judgments__judgment">
+          <span>
+            <span class="recent-judgments__title">
+              <a href="/judgment">
+                {{ item.title }}
+              </a>
+            </span>
+            <span class="recent-judgments__neutralcitation">
+              {{ item.neutral_citation }}
+            </span>
+          </span>
+          <span>
+            <span class="recent-judgments__date">
+              Date: {{ item.date }}
+            </span>
+            <span class="recent-judgments__court">
+              Court: {{ item.court }}
+            </span>
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="recent-judgments__more-info"><a href="{# {% url 'results' order_by='date_dec' %} #}">See all recent judgments</a></p>
+  </div>
+</div>
