@@ -28,7 +28,7 @@ def index(request, page=1):
 
             search_results = [
                 {
-                    "uri": result["@uri"],
+                    "uri": trim_leading_slash(result["@uri"]),
                     "neutral_citation": result["@uri"].split(".xml")[0],
                     "name": "Fake Judgment name",
                 }
@@ -68,7 +68,7 @@ def index(request, page=1):
 
                 search_results.append(
                     {
-                        "uri": filename,
+                        "uri": trim_leading_slash(filename),
                         "neutral_citation": neutral_citation,
                         "name": name,
                     }
@@ -94,3 +94,7 @@ def source():
 
 def structured_search():
     return
+
+
+def trim_leading_slash(uri):
+    return re.sub("^/|/$", "", uri)
