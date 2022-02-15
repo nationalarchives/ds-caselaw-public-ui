@@ -1,0 +1,48 @@
+<div class="js-results-facets-wrapper {% if dont_toggle_facets %}no-toggle{% endif %}">
+  <div class="results-search-component__control-container js-results-control-container"></div>
+  <div class="results-search-component__facet-outer-container js-results-facets">
+    <h2 class="results-search-component__sub-header--sr-only">Results filters</h2>
+    <div class="results-search-component__facet-inner-container">
+      <fieldset class="results-search-component__fieldset">
+        <legend class="results-search-component__legend">Search specific fields</legend>
+        <div class="results-search-component__multi-fields-panel">
+          <div class="results-search-component__name-container">
+            <label for="party_name" class="results-search-component__name-label"> {{ form.party_name.label }}</label>
+            {{ form.party_name }}
+          </div>
+          <div class="results-search-component__name-container">
+            <label for="judge_name" class="results-search-component__name-label">{{ form.judge_name.label }}</label>
+            {{ form.judge_name }}
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="results-search-component__fieldset">
+        <legend class="results-search-component__legend">Only include results</legend>
+        <div class="results-search-component__multi-fields-panel">
+          <div class="results-search-component__limit-to-container">
+            <label for="court" class="results-search-component__limit-to-label">{{ form.courts.label }}</label>
+            {{ form.courts }}
+          </div>
+          <div class="results-search-component__limit-to-container">
+            <label for="collection" class="results-search-component__limit-to-label">{{ form.collections.label }}</label>
+            {{ form.collections }}
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="results-search-component__fieldset">
+        <legend class="results-search-component__legend">During the period</legend>
+        <div class="results-search-component__multi-fields-panel">
+          <div class="results-search-component__limit-to-container">
+            <label for="from_date" class="results-search-component__limit-to-label">{{ form.from_date.label }}</label>
+            {{ form.from_date }}
+          </div>
+          <div class="results-search-component__limit-to-container">
+            <label for="to_date" class="results-search-component__limit-to-label">{{ form.to_date.label }}</label>
+            {{ form.to_date }}
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <input type="submit" value="Update filters" class="results-search-component__filter-submit-button">
+  </div>
+</div>

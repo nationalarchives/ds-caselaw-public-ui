@@ -98,3 +98,8 @@ def structured_search():
 
 def trim_leading_slash(uri):
     return re.sub("^/|/$", "", uri)
+
+
+def results(request):
+    template = loader.get_template("judgment/results.html")
+    return HttpResponse(template.render({}, request))
