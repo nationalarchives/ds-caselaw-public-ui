@@ -22,6 +22,11 @@ urlpatterns = [
         TemplateView.as_view(template_name="pages/sources.html"),
         name="sources",
     ),
+    path(
+        "structured_search",
+        TemplateView.as_view(template_name="pages/structured_search.html"),
+        name="structured_search",
+    ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
