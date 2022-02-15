@@ -93,7 +93,10 @@ class MarklogicApiClient:
     ) -> requests.Response:
         kwargs = self.prepare_request_kwargs(method, path, data)
         if get_multipart:
-            self.session.headers = {"Accept": "multipart/mixed"}
+            headers = {"Accept": "multipart/mixed"}
+        else:
+            headers = {"Accept": "text/xml"}
+        self.session.headers = headers
         response = self.session.request(method, **kwargs)
         # Raise relevant exception for an erroneous response
         self._raise_for_status(response)
