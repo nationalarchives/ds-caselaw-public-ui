@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-  Total judgements: {{ judgement_list.count }}
-  <ul>
-    {% for judgement in judgement_list %}
-      <li>{{ judgement.title }}</li>
-    {% endfor %}
-  </ul>
+Total number of documents: {{ context.total }}
+<ul>
+  {% for result in context.search_results %}
+    <li>
+      <a href="{% url 'detail' result.uri %}">{{ result.name }} - {{ result.neutral_citation }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if context.page == 1 %}
+  Previous page | <a href="{% url 'index' page=2 %}">Next page</a>
+{% else %}
+
+  <a href="{% url 'index' page=context.prev_page %}">Previous page</a> | <a href="{% url 'index' page=context.next_page %}">Next page</a>
+{% endif %}
 {% endblock content %}
