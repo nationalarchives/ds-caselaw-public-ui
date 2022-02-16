@@ -5,6 +5,8 @@ from typing import Any, Dict, Optional
 
 import requests
 from django.conf import settings
+from lxml import etree
+from lxml.etree import Element
 from requests.auth import HTTPBasicAuth
 
 from config.settings.base import env
@@ -77,7 +79,7 @@ class MarklogicApiClient:
             raise new_exception
 
     def prepare_request_kwargs(
-        self, method: str, path: str, data: Optional[Dict[str, Any]] = None
+        self, method: str, path: str, body=None, data: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         kwargs = dict(url=self._path_to_request_url(path))
         if data is not None:
@@ -86,16 +88,25 @@ class MarklogicApiClient:
                 kwargs["params"] = data
             else:
                 kwargs["data"] = json.dumps(data)
+        if body is not None:
+            kwargs["data"] = body
         return kwargs
 
     def make_request(
-        self, method: str, path: str, get_multipart: False, data: Dict[str, Any] = None
+        self,
+        method: str,
+        path: str,
+        get_multipart: False,
+        data: Dict[str, Any] = None,
+        body=None,
     ) -> requests.Response:
-        kwargs = self.prepare_request_kwargs(method, path, data)
+        kwargs = self.prepare_request_kwargs(method, path, body, data)
         if get_multipart:
             headers = {"Accept": "multipart/mixed"}
         else:
             headers = {"Accept": "text/xml"}
+        if method == "PUT":
+            headers["Content-Type"] = "application/xml"
         self.session.headers = headers
         response = self.session.request(method, **kwargs)
         # Raise relevant exception for an erroneous response
@@ -109,7 +120,7 @@ class MarklogicApiClient:
         return self.make_request("POST", path, data)
 
     def PUT(self, path: str, **data: Any) -> requests.Response:
-        return self.make_request("PUT", path, data)
+        return self.make_request("PUT", path, False, data)
 
     def get_judgment_xml(self, uri: str) -> str:
         return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml", False).text
@@ -117,6 +128,12 @@ class MarklogicApiClient:
     def get_judgment_search_results(self, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         return self.GET("LATEST/search/?view=results&start=" + str(start), True)
+
+    def save_judgment_xml(self, uri: str, judgment_xml: Element) -> requests.Response:
+        xml = etree.tostring(judgment_xml)
+        return self.make_request(
+            "PUT", f"LATEST/documents?uri=/{uri.lstrip('/')}.xml", False, None, xml
+        )
 
 
 class MockAPIClient:

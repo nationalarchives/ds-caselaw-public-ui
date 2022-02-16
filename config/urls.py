@@ -26,6 +26,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
     path("judgments/", include("judgments.urls")),
+    path("judgments_admin/", include("judgments_admin.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

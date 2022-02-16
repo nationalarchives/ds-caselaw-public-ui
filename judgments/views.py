@@ -59,12 +59,17 @@ def index(request, page=1):
                     namespaces={
                         "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
                     },
-                )[0]
+                )
 
                 if not neutral_citation:
                     neutral_citation = filename
                 else:
                     neutral_citation = neutral_citation[0].text
+
+                if not name:
+                    name = "Untitled Judgment"
+                else:
+                    name = name[0]
 
                 search_results.append(
                     {
