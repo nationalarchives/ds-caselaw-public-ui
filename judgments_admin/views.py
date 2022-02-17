@@ -2,7 +2,7 @@ from django.http import Http404, HttpResponse
 from django.template import loader
 from lxml import etree
 
-from judgments.api_client import (
+from marklogic.api_client import (
     MarklogicAPIError,
     MarklogicResourceNotFoundError,
     api_client,

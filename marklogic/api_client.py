@@ -97,8 +97,8 @@ class MarklogicApiClient:
         method: str,
         path: str,
         headers: Dict[str, Any],
+        body: str = None,
         data: Dict[str, Any] = None,
-        body=None,
     ) -> requests.Response:
         kwargs = self.prepare_request_kwargs(method, path, body, data)
         self.session.headers = headers
@@ -128,7 +128,10 @@ class MarklogicApiClient:
         xml = etree.tostring(judgment_xml)
         headers = {"Accept": "text/xml", "Content-type": "application/xml"}
         return self.make_request(
-            "PUT", f"LATEST/documents?uri=/{uri.lstrip('/')}.xml", headers, None, xml
+            "PUT",
+            f"LATEST/documents?uri=/{uri.lstrip('/')}.xml",
+            headers=headers,
+            body=xml,
         )
 
 

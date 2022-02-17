@@ -6,7 +6,7 @@ from django.template import loader
 from lxml import etree
 from requests_toolbelt.multipart import decoder
 
-from judgments.api_client import MarklogicResourceNotFoundError, api_client
+from marklogic.api_client import MarklogicResourceNotFoundError, api_client
 
 akn_namespace = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
 
