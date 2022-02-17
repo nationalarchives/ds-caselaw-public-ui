@@ -8,6 +8,8 @@ from requests_toolbelt.multipart import decoder
 
 from judgments.api_client import MarklogicResourceNotFoundError, api_client
 
+akn_namespace = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
+
 
 def detail(request, judgment_uri):
     try:
@@ -50,26 +52,17 @@ def index(request, page=1):
                 xml = etree.XML(bytes(part.text, encoding="utf8"))
                 neutral_citation = xml.xpath(
                     "//akn:neutralCitation",
-                    namespaces={
-                        "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
-                    },
+                    namespaces=akn_namespace,
                 )
                 name = xml.xpath(
                     "//akn:FRBRname/@value",
-                    namespaces={
-                        "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
-                    },
+                    namespaces=akn_namespace,
                 )
 
-                if not neutral_citation:
-                    neutral_citation = filename
-                else:
-                    neutral_citation = neutral_citation[0].text
-
-                if not name:
-                    name = "Untitled Judgment"
-                else:
-                    name = name[0]
+                neutral_citation = (
+                    neutral_citation[0].text if neutral_citation else filename
+                )
+                name = name[0] if name else "Untitled Judgment"
 
                 search_results.append(
                     {
