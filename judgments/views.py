@@ -6,9 +6,9 @@ from django.template import loader
 from lxml import etree
 from requests_toolbelt.multipart import decoder
 
+from marklogic import xml_tools
 from marklogic.api_client import MarklogicResourceNotFoundError, api_client
-
-akn_namespace = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
+from marklogic.xml_tools import JudgmentMissingMetadataError
 
 
 def detail(request, judgment_uri):
@@ -21,6 +21,7 @@ def detail(request, judgment_uri):
 
 
 def index(request, page=1):
+    context = {"page": page, "prev_page": int(page) - 1, "next_page": int(page) + 1}
     try:
         results = api_client.get_judgment_search_results(page)
         if type(results) == str:
@@ -50,19 +51,16 @@ def index(request, page=1):
                 filename = re.search('filename="([^"]*)"', content_disposition).group(1)
                 filename = filename.split(".xml")[0]
                 xml = etree.XML(bytes(part.text, encoding="utf8"))
-                neutral_citation = xml.xpath(
-                    "//akn:neutralCitation",
-                    namespaces=akn_namespace,
-                )
-                name = xml.xpath(
-                    "//akn:FRBRname/@value",
-                    namespaces=akn_namespace,
-                )
 
-                neutral_citation = (
-                    neutral_citation[0].text if neutral_citation else filename
-                )
-                name = name[0] if name else "Untitled Judgment"
+                try:
+                    neutral_citation = xml_tools.get_neutral_citation(xml)
+                except JudgmentMissingMetadataError:
+                    neutral_citation = filename
+
+                try:
+                    name = xml_tools.get_metadata_name_value(xml)
+                except JudgmentMissingMetadataError:
+                    name = "Untitled Judgment"
 
                 search_results.append(
                     {
@@ -71,14 +69,8 @@ def index(request, page=1):
                         "name": name,
                     }
                 )
-
-        context = {
-            "total": total,
-            "search_results": search_results,
-            "page": page,
-            "prev_page": int(page) - 1,
-            "next_page": int(page) + 1,
-        }
+        context["total"] = total
+        context["search_results"] = search_results
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search results not found")
