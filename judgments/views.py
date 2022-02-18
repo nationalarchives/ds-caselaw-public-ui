@@ -23,7 +23,7 @@ def detail(request, judgment_uri):
 def index(request, page=1):
     context = {"page": page, "prev_page": int(page) - 1, "next_page": int(page) + 1}
     try:
-        results = api_client.get_judgment_search_results(page)
+        results = api_client.get_judgments_index(page)
         if type(results) == str:
             xml_results = xmltodict.parse(results)
             total = xml_results["search:response"]["@total"]

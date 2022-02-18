@@ -112,10 +112,10 @@ class TestApiClient(TestCase):
             "LATEST/documents/?uri=/ewca/civ/2004/632.xml", {"Accept": "text/xml"}
         )
 
-    def test_get_judgment_search_results(self):
+    def test_get_judgments_index(self):
         mock_api_client = MarklogicApiClient("a", "b", "c", True)
         mock_api_client.GET = MagicMock()
-        mock_api_client.get_judgment_search_results("1")
+        mock_api_client.get_judgments_index("1")
         mock_api_client.GET.assert_called_with(
             "LATEST/search/?view=results&start=1", {"Accept": "multipart/mixed"}
         )
