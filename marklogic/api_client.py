@@ -5,6 +5,8 @@ from typing import Any, Dict, Optional
 
 import requests
 from django.conf import settings
+from lxml import etree
+from lxml.etree import Element
 from requests.auth import HTTPBasicAuth
 
 from config.settings.base import env
@@ -77,7 +79,7 @@ class MarklogicApiClient:
             raise new_exception
 
     def prepare_request_kwargs(
-        self, method: str, path: str, data: Optional[Dict[str, Any]] = None
+        self, method: str, path: str, body=None, data: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
         kwargs = dict(url=self._path_to_request_url(path))
         if data is not None:
@@ -86,37 +88,51 @@ class MarklogicApiClient:
                 kwargs["params"] = data
             else:
                 kwargs["data"] = json.dumps(data)
+        if body is not None:
+            kwargs["data"] = body
         return kwargs
 
     def make_request(
-        self, method: str, path: str, get_multipart: False, data: Dict[str, Any] = None
+        self,
+        method: str,
+        path: str,
+        headers: Dict[str, Any],
+        body: str = None,
+        data: Dict[str, Any] = None,
     ) -> requests.Response:
-        kwargs = self.prepare_request_kwargs(method, path, data)
-        if get_multipart:
-            headers = {"Accept": "multipart/mixed"}
-        else:
-            headers = {"Accept": "text/xml"}
+        kwargs = self.prepare_request_kwargs(method, path, body, data)
         self.session.headers = headers
         response = self.session.request(method, **kwargs)
         # Raise relevant exception for an erroneous response
         self._raise_for_status(response)
         return response
 
-    def GET(self, path: str, get_multipart: bool, **data: Any) -> requests.Response:
-        return self.make_request("GET", path, get_multipart, data)
+    def GET(self, path: str, headers: Dict[str, Any], **data: Any) -> requests.Response:
+        return self.make_request("GET", path, headers, data)
 
-    def POST(self, path: str, **data: Any) -> requests.Response:
-        return self.make_request("POST", path, data)
-
-    def PUT(self, path: str, **data: Any) -> requests.Response:
-        return self.make_request("PUT", path, data)
+    def POST(
+        self, path: str, headers: Dict[str, Any], **data: Any
+    ) -> requests.Response:
+        return self.make_request("POST", path, headers, data)
 
     def get_judgment_xml(self, uri: str) -> str:
-        return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml", False).text
+        headers = {"Accept": "text/xml"}
+        return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml", headers).text
 
     def get_judgment_search_results(self, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
-        return self.GET("LATEST/search/?view=results&start=" + str(start), True)
+        headers = {"Accept": "multipart/mixed"}
+        return self.GET("LATEST/search/?view=results&start=" + str(start), headers)
+
+    def save_judgment_xml(self, uri: str, judgment_xml: Element) -> requests.Response:
+        xml = etree.tostring(judgment_xml)
+        headers = {"Accept": "text/xml", "Content-type": "application/xml"}
+        return self.make_request(
+            "PUT",
+            f"LATEST/documents?uri=/{uri.lstrip('/')}.xml",
+            headers=headers,
+            body=xml,
+        )
 
 
 class MockAPIClient:
