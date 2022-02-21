@@ -1,0 +1,18 @@
+<h2>Search results</h2>
+<p class="results__results-intro">We found 760 judgments</p>
+<ul class="results__results-list">
+  {% for result in search_results %}
+    <li>
+      <dl class="results__result-terms">
+        <dt class="results__result-term-sr">Title</dt>
+        <dd>
+          <a class="results__result-title" href="{# {{ url_for('judgment', origin='results', return_link=request.url) }} #}">{{ result.title | safe }}</a>
+        </dd>
+        <dt class="results__result-term-sr">Neutral citation</dt>
+        <dd class="results__result-neutral-citation">{{ result.neutral_citation }}</dd>
+        <dt class="results__result-term-matching">Matching text sample</dt>
+        <dd>{{ result.snippet | safe }}</dd>
+      </dl>
+    </li>
+  {% endfor %}
+</ul>

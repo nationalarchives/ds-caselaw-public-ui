@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <header class="page-header">
+    <div class="page-header__breadcrumb">
+      <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="https://www.nationalarchives.gov.uk">Home</a></li>
+          <li><a href="/">{{ service.name }}</a></li>
+          <li><a href="{{ request.url }}" aria-current="page">Search results</a></li>
+        </ol>
+      </nav>
+    </div>
+
+    {% include 'includes/logo.html' %}
+
+  </header>
+
+  {% include 'includes/results_search_component.html' %}
+
+  <div class="results">
+    <div class="results__container">
+      <div class="results__list-layout-container">
+        <div class="results__result-controls-container">
+          {% include 'includes/result_controls.html' %}
+        </div>
+        <div class="results__result-list-container">
+          {% include 'includes/results_list.html' %}
+          {% include 'includes/pagination.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

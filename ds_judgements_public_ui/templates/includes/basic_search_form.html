@@ -1,7 +1,7 @@
 <div class="search-component">
   <div class="search-component__container">
     <h2 class="search-component__header--sr-only">Search by keyword or neutral citation</h2>
-    <form action="{# {% url 'results' %} #}" role="search" aria-label="Search by keyword or neutral citation" id="analytics-basic-search">
+    <form action="{% url 'results' %}" role="search" aria-label="Search by keyword or neutral citation" id="analytics-basic-search">
 
       <label for="search_term" class="search-component__search-term-label">{# {{ form.search_term.label }} #}</label>
       {# {{ form.search_term(placeholder="Enter a keyword or neutral citation") }} #}

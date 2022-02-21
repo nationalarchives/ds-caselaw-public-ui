@@ -25,6 +25,6 @@
         </li>
       {% endfor %}
     </ul>
-    <p class="recent-judgments__more-info"><a href="{# {% url 'results' order_by='date_dec' %} #}">See all recent judgments</a></p>
+    <p class="recent-judgments__more-info"><a href="{% url 'results' %}?order_by=date_dec">See all recent judgments</a></p>
   </div>
 </div>
