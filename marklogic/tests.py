@@ -101,6 +101,58 @@ class TestXmlTools(TestCase):
             JudgmentMissingMetadataError, xml_tools.get_neutral_citation, xml
         )
 
+    def test_search_total(self):
+        xml_string = """
+            <search:response xmlns:search="http://marklogic.com/appservices/search" total="40784">
+            </search:response>
+        """
+        xml = etree.fromstring(xml_string)
+        result = xml_tools.get_search_total(xml)
+        self.assertEqual(result, "40784")
+
+    def test_search_results(self):
+        xml_string = """
+            <search:response xmlns:search="http://marklogic.com/appservices/search" total="40784">
+                <search:result index="11"
+                               uri="/ewhc/admin/2013/2575.xml"
+                               path="fn:doc('/ewhc/admin/2013/2575.xml')"
+                               href="/v1/documents?uri=%2Fewhc%2Fadmin%2F2013%2F2575.xml"
+                               mimetype="application/xml"
+                               format="xml">
+                    <search:snippet>
+                        <search:match
+                            path="fn:doc('/ewhc/admin/2013/2575.xml')/*:akomaNtoso/*:judgment/*:header/*:p[9]/*:span">
+                            HH <search:highlight>Judge</search:highlight> Anthony Thornton QC
+                        </search:match>
+                    </search:snippet>
+                </search:result>
+            </search:response>
+        """
+        xml = etree.fromstring(xml_string)
+        result = xml_tools.get_search_results(xml)
+        self.assertEqual(len(result), 1)
+        self.assertEqual(type(result[0]).__name__, "_Element")
+
+    def test_search_matches(self):
+        xml_string = """
+            <search:result index="11" xmlns:search="http://marklogic.com/appservices/search"
+                uri="/ewhc/admin/2013/2575.xml"
+                path="fn:doc('/ewhc/admin/2013/2575.xml')"
+                href="/v1/documents?uri=%2Fewhc%2Fadmin%2F2013%2F2575.xml"
+                mimetype="application/xml"
+                format="xml">
+                <search:snippet>
+                    <search:match
+                        path="fn:doc('/ewhc/admin/2013/2575.xml')/*:akomaNtoso/*:judgment/*:header/*:p[9]/*:span">
+                        HH <search:highlight>Judge</search:highlight> Anthony Thornton QC
+                    </search:match>
+                </search:snippet>
+            </search:result>
+        """
+        xml = etree.fromstring(xml_string)
+        result = xml_tools.get_search_matches(xml)
+        self.assertEqual(result, ["HH Judge Anthony Thornton QC"])
+
 
 class TestApiClient(TestCase):
     def test_get_judgment_xml(self):
