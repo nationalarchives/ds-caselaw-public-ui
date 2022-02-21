@@ -119,7 +119,7 @@ class MarklogicApiClient:
         headers = {"Accept": "text/xml"}
         return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml", headers).text
 
-    def get_judgment_search_results(self, page: str) -> requests.Response:
+    def get_judgments_index(self, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         headers = {"Accept": "multipart/mixed"}
         return self.GET("LATEST/search/?view=results&start=" + str(start), headers)
@@ -134,6 +134,11 @@ class MarklogicApiClient:
             body=xml,
         )
 
+    def search_judgments(self, query: str, page: str) -> requests.Response:
+        start = (int(page) - 1) * RESULTS_PER_PAGE + 1
+        headers = {"Accept": "text/xml"}
+        return self.GET("LATEST/search/?start=" + str(start) + "&q=" + query, headers)
+
 
 class MockAPIClient:
 
@@ -147,7 +152,7 @@ class MockAPIClient:
         except FileNotFoundError:
             raise MarklogicResourceNotFoundError
 
-    def get_judgment_search_results(self, page: int) -> str:
+    def get_judgments_index(self, page: int) -> str:
         filepath = os.path.join(
             self.fixtures_dir, "search", "results" + str(page) + ".xml"
         )

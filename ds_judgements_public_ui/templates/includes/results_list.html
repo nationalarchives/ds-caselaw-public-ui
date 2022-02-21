@@ -1,17 +1,23 @@
 <h2>Search results</h2>
-<p class="results__results-intro">We found 760 judgments</p>
+<p class="results__results-intro">We found {{ context.total }} judgments</p>
 <ul class="results__results-list">
-  {% for result in search_results %}
+  {% for result in context.search_results %}
     <li>
       <dl class="results__result-terms">
         <dt class="results__result-term-sr">Title</dt>
         <dd>
-          <a class="results__result-title" href="{# {{ url_for('judgment', origin='results', return_link=request.url) }} #}">{{ result.title | safe }}</a>
+          <a class="results__result-title" href="{% url 'detail' result.uri %}">
+            {{ result.uri | safe }}
+          </a>
         </dd>
         <dt class="results__result-term-sr">Neutral citation</dt>
-        <dd class="results__result-neutral-citation">{{ result.neutral_citation }}</dd>
+        <dd class="results__result-neutral-citation">[Not yet implemented]</dd>
         <dt class="results__result-term-matching">Matching text sample</dt>
-        <dd>{{ result.snippet | safe }}</dd>
+        <dd>
+          {% for snippet in result.matches %}
+            <p>{{ snippet | safe }}</p>
+          {% endfor %}
+        </dd>
       </dl>
     </li>
   {% endfor %}

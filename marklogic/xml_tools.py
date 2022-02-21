@@ -1,6 +1,9 @@
 from xml.etree.ElementTree import Element
 
+from lxml import etree
+
 akn_namespace = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
+search_namespace = {"search": "http://marklogic.com/appservices/search"}
 
 
 class JudgmentMissingMetadataError(IndexError):
@@ -38,3 +41,20 @@ def get_neutral_citation(xml) -> str:
     except IndexError:
         raise JudgmentMissingMetadataError
     return neutral_citation
+
+
+def get_search_total(xml) -> str:
+    return xml.xpath("//search:response/@total", namespaces=search_namespace)[0]
+
+
+def get_search_results(xml) -> [Element]:
+    return xml.xpath("//search:response/search:result", namespaces=search_namespace)
+
+
+def get_search_matches(element) -> [str]:
+    nodes = element.xpath("//search:match", namespaces=search_namespace)
+    results = []
+    for node in nodes:
+        text = etree.tostring(node, method="text", encoding="UTF-8")
+        results.append(text.decode("UTF-8").strip())
+    return results
