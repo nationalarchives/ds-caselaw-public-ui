@@ -7,11 +7,11 @@
         <dt class="results__result-term-sr">Title</dt>
         <dd>
           <a class="results__result-title" href="{% url 'detail' result.uri %}">
-            {{ result.uri | safe }}
+            {{ result.name | safe }}
           </a>
         </dd>
         <dt class="results__result-term-sr">Neutral citation</dt>
-        <dd class="results__result-neutral-citation">[Not yet implemented]</dd>
+        <dd class="results__result-neutral-citation">{{ result.neutral_citation }}</dd>
         <dt class="results__result-term-matching">Matching text sample</dt>
         <dd>
           {% for snippet in result.matches %}

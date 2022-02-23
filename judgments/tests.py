@@ -20,6 +20,7 @@ class TestJudgment(TestCase):
         self.assertIn("Judgment was not found", decoded_response)
         self.assertEqual(response.status_code, 404)
 
+
 class TestJudgmentModel(TestCase):
     def test_can_parse_judgment(self):
         xml = """

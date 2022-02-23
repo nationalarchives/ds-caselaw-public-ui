@@ -1,20 +1,17 @@
 import re
-from statistics import mode
-from judgments.models import Judgment, SearchResult, SearchResults
 
 import xmltodict
 from django.http import Http404, HttpResponse
 from django.template import loader
-from lxml import etree
 from requests_toolbelt.multipart import decoder
 
+from judgments.models import Judgment, SearchResult, SearchResults
 from marklogic import xml_tools
 from marklogic.api_client import (
     MarklogicAPIError,
     MarklogicResourceNotFoundError,
     api_client,
 )
-from marklogic.xml_tools import JudgmentMissingMetadataError
 
 
 def detail(request, judgment_uri):
@@ -37,9 +34,9 @@ def index(request, page=1):
 
             search_results = [
                 SearchResult(
-                    uri = trim_leading_slash(result["@uri"]),
-                    neutral_citation = result["@uri"].split(".xml")[0],
-                    name = "Fake Judgment name",
+                    uri=trim_leading_slash(result["@uri"]),
+                    neutral_citation=result["@uri"].split(".xml")[0],
+                    name="Fake Judgment name",
                 )
                 for result in search_results
             ]
@@ -69,12 +66,8 @@ def search(request):
 
         model = SearchResults.create_from_string(results.text)
 
-        context["search_results"] =  [
-            SearchResult(
-                uri =  trim_leading_slash(result.xpath("@uri")[0]).split(".xml")[0],
-                matches =  xml_tools.get_search_matches(result),
-            )
-            for result in model.results
+        context["search_results"] = [
+            SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
 
@@ -96,13 +89,13 @@ def format_index_results(multipart_data):
         model = Judgment.create_from_string(part.text)
 
         neutral_citation = model.neutral_citation
-        name = model.metadata_name.get('value', default = "Untitled Judgment")
+        name = model.metadata_name
 
         search_results.append(
             SearchResult(
-                uri = trim_leading_slash(filename),
-                neutral_citation = neutral_citation,
-                name = name
+                uri=trim_leading_slash(filename),
+                neutral_citation=neutral_citation,
+                name=name,
             )
         )
     return search_results
