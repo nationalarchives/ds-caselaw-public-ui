@@ -14,9 +14,9 @@
         <dd class="results__result-neutral-citation">{{ result.neutral_citation }}</dd>
         <dt class="results__result-term-matching">Matching text sample</dt>
         <dd>
-          {% for snippet in result.matches %}
-            <p>{{ snippet | safe }}</p>
-          {% endfor %}
+          {% autoescape off %}
+            {{ result.matches }}
+          {% endautoescape %}
         </dd>
       </dl>
     </li>

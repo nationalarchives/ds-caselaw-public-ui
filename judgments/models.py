@@ -1,7 +1,10 @@
 # from django.db import models
-from djxml import xmlmodels
+from os.path import dirname, join
 
-from marklogic import api_client, xml_tools
+from djxml import xmlmodels
+from lxml import etree
+
+from marklogic import api_client
 
 
 class Judgment(xmlmodels.XmlModel):
@@ -29,14 +32,16 @@ class SearchResult:
     @staticmethod
     def create_from_node(node):
         uri = node.xpath("@uri")[0].lstrip("/").split(".xml")[0]
-        matches = xml_tools.get_search_matches(node)
+        matches = SearchMatch.create_from_string(
+            etree.tostring(node, encoding="UTF-8").decode("UTF-8")
+        )
         judgment_xml = api_client.api_client.get_judgment_xml(uri)
         judgment = Judgment.create_from_string(judgment_xml)
         return SearchResult(
             uri=uri,
             neutral_citation=judgment.neutral_citation,
             name=judgment.metadata_name,
-            matches=matches,
+            matches=matches.transformToHtml(),
         )
 
 
@@ -46,3 +51,10 @@ class SearchResults(xmlmodels.XmlModel):
 
     total = xmlmodels.XPathTextField("//search:response/@total")
     results = xmlmodels.XPathListField("//search:response/search:result")
+
+
+class SearchMatch(xmlmodels.XmlModel):
+    class Meta:
+        namespaces = {"search": "http://marklogic.com/appservices/search"}
+
+    transformToHtml = xmlmodels.XsltField(join(dirname(__file__), "search_match.xsl"))

@@ -41,5 +41,5 @@ class TestJudgmentModel(TestCase):
         """
 
         model = Judgment.create_from_string(xml)
-        self.assertEqual("My Judgment Name", model.metadata_name.get("value"))
+        self.assertEqual("My Judgment Name", model.metadata_name)
         self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)
