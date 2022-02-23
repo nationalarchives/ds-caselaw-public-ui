@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 from django.test import TestCase
 from lxml import etree
 
+import marklogic.api_client
 from marklogic import xml_tools
 from marklogic.api_client import MarklogicApiClient
 from marklogic.xml_tools import JudgmentMissingMetadataError
@@ -165,11 +166,13 @@ class TestApiClient(TestCase):
         )
 
     def test_get_judgments_index(self):
+        page_length = marklogic.api_client.RESULTS_PER_PAGE
         mock_api_client = MarklogicApiClient("a", "b", "c", True)
         mock_api_client.GET = MagicMock()
         mock_api_client.get_judgments_index("1")
         mock_api_client.GET.assert_called_with(
-            "LATEST/search/?view=results&start=1", {"Accept": "multipart/mixed"}
+            "LATEST/search/?view=results&start=1&pageLength=" + str(page_length),
+            {"Accept": "multipart/mixed"},
         )
 
     def test_save_judgment_xml(self):

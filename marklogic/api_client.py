@@ -122,7 +122,10 @@ class MarklogicApiClient:
     def get_judgments_index(self, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         headers = {"Accept": "multipart/mixed"}
-        return self.GET("LATEST/search/?view=results&start=" + str(start), headers)
+        return self.GET(
+            f"LATEST/search/?view=results&start={start}&pageLength={RESULTS_PER_PAGE}",
+            headers,
+        )
 
     def save_judgment_xml(self, uri: str, judgment_xml: Element) -> requests.Response:
         xml = etree.tostring(judgment_xml)
@@ -137,7 +140,10 @@ class MarklogicApiClient:
     def search_judgments(self, query: str, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         headers = {"Accept": "text/xml"}
-        return self.GET("LATEST/search/?start=" + str(start) + "&q=" + query, headers)
+        return self.GET(
+            f"LATEST/search/?start={start}&q={query}&pageLength={RESULTS_PER_PAGE}",
+            headers,
+        )
 
 
 class MockAPIClient:
