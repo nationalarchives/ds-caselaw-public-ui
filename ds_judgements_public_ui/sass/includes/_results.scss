@@ -1,6 +1,10 @@
 .results {
   min-height: 60rem;
 
+  h1 {
+    @include sr-only;
+  }
+
   &__container {
     @include container;
   }
