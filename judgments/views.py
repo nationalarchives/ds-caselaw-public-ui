@@ -1,6 +1,6 @@
 import re
 from statistics import mode
-from judgments.models import Judgment, SearchResult
+from judgments.models import Judgment, SearchResult, SearchResults
 
 import xmltodict
 from django.http import Http404, HttpResponse
@@ -66,18 +66,18 @@ def search(request):
         query = params["query"]
         page = params.get("page") if params.get("page") else "1"
         results = api_client.search_judgments(query, page)
-        xml = etree.XML(bytes(results.text, encoding="utf8"))
-        context["total"] = xml_tools.get_search_total(xml)
 
-        chunked_results = xml_tools.get_search_results(xml)
-        search_results = [
+        model = SearchResults.create_from_string(results.text)
+
+        context["search_results"] =  [
             SearchResult(
                 uri =  trim_leading_slash(result.xpath("@uri")[0]).split(".xml")[0],
                 matches =  xml_tools.get_search_matches(result),
             )
-            for result in chunked_results
+            for result in model.results
         ]
-        context["search_results"] = search_results
+        context["total"] = model.total
+
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
