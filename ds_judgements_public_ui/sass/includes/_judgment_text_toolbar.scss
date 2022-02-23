@@ -1,0 +1,55 @@
+.judgment-toolbar {
+
+  background-color: $color__light-grey;
+  color: $color__black;
+  padding: $spacer__unit;
+  border-bottom: 0.125rem solid $color__grey;
+
+  a {
+    background-color: $color__aqua-blue;
+    color: $color__white;
+    padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  &__return-link {
+    display: inline-block;
+
+    a {
+      background: $color__aqua-blue url($fa_chevron_left_white) 0.8rem 0.6rem no-repeat;
+      background-size: 0.75rem;
+      padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5) calc($spacer__unit / 2) calc($spacer__unit * 2.5);
+      display: inline-block;
+      text-decoration: none;
+    }
+  }
+
+  &__download {
+    display: inline-block;
+  }
+
+  &__container {
+    margin: auto;
+
+    > div {
+      @media (max-width: $grid__breakpoint-small) {
+        text-align: center;
+        padding: $spacer__unit;
+      }
+    }
+
+    @media (min-width: $grid__breakpoint-small) {
+
+      text-align: center;
+    }
+
+    @media (min-width: $grid__breakpoint-medium) {
+      max-width: 40rem;
+    }
+
+    @media (min-width: $grid__breakpoint-medium) {
+      max-width: 46rem;
+    }
+  }
+}

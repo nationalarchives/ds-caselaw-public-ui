@@ -1,0 +1,62 @@
+.judgment-browse-by-court {
+
+  &__container {
+    @include container;
+    padding: 0 0 calc($spacer__unit * 4);
+  }
+
+  &__header {
+    font-family: $font__roboto;
+    font-weight: normal;
+    font-size: 1.8rem;
+    margin: 0 0 calc($spacer__unit * 3);
+  }
+
+  &__list {
+    padding: 0;
+    list-style-type: none;
+    margin: 0 0 calc($spacer__unit * 3);
+
+    @media (min-width: $grid__breakpoint-medium) {
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: $grid__breakpoint-large) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: $grid__breakpoint-extra-large) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__court {
+    padding: calc($spacer__unit * 2) $spacer__unit;
+    text-align: center;
+    background-color: $color__yellow;
+    font-family: $font__roboto;
+
+    @media (max-width: $grid__breakpoint-medium) {
+      margin-bottom: $spacer__unit;
+    }
+  }
+
+  &__court-name {
+    display: block;
+    font-size: 1.25rem;
+    margin-bottom: calc($spacer__unit / 3);
+  }
+
+  &__court-link {
+    color: $color__black;
+    text-decoration: none;
+
+    &:hover {
+      color: $color__black;
+      text-decoration: underline;
+    }
+  }
+}

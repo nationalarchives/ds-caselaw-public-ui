@@ -1,0 +1,34 @@
+.phase-banner {
+  background-color: $color__black;
+  color: $color__white;
+  padding: calc($spacer__unit / 2) calc($spacer__unit * 2);
+  border-bottom: 0.125rem dotted $color__dark-grey;
+
+  &__notice {
+    padding: 0.3em 0;
+
+    a {
+      color: $color__white;
+      font-weight: bold;
+
+      &:focus {
+        outline: 0.125rem solid $color__black;
+        background-color: $color__white;
+      }
+    }
+  }
+
+  &__phase {
+    background-color: $color__white;
+    color: $color__black;
+    text-transform: uppercase;
+    padding: 0 calc($spacer__unit / 4);
+    margin-right: $spacer__unit;
+    font-weight: 700;
+  }
+
+  &__message {
+    margin: 0;
+    display: inline;
+  }
+}

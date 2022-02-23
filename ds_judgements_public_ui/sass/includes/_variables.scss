@@ -1,0 +1,41 @@
+$spacer__unit: 1rem;
+
+$color__almost-black: #121212;
+$color__light-pink: #fbe2bc;
+$color__white: #fff;
+$color__light-grey: #efefef;
+$color__dark-blue: #134571;
+$color__grey: #ddd;
+$color__dark-grey: #555;
+$color__black: #000;
+$color__highlight-blue: #0066cc;
+$color__yellow: #ffb952;
+$color__aqua-blue: #037091;
+
+$color__link-blue: #1d70b8;
+$color__link-blue-hover: #003078;
+$color__link-blue-visited: #4c2c92;
+$color__link-blue-active: #1e1e2a;
+
+$color__focus-blue-outline: #1d70b8;
+
+$grid__breakpoint-small: 576px;
+$grid__breakpoint-medium: 768px;
+$grid__breakpoint-large: 992px;
+$grid__breakpoint-extra-large: 1200px;
+
+$font__roboto: 'Roboto', sans-serif;
+$font__open-sans: 'Open Sans', sans-serif;
+$font__serif: serif;
+
+// Paths
+$fa_path: '/static/fontawesome-svgs/';
+
+// Images
+$fa_chevron_right: '#{$fa_path}chevron-right.svg';
+$fa_chevron_right_white: '#{$fa_path}chevron-right-white.svg';
+$fa_chevron_right_disabled: '#{$fa_path}chevron-right-disabled.svg';
+$fa_chevron_left: '#{$fa_path}chevron-left.svg';
+$fa_chevron_left_white: '#{$fa_path}chevron-left-white.svg';
+$fa_chevron_left_disabled: '#{$fa_path}chevron-left-disabled.svg';
+$fa_download: '#{$fa_path}download.svg';

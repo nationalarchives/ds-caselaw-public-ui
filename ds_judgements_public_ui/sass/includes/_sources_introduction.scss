@@ -1,0 +1,20 @@
+.sources-introduction {
+  padding: 0 0 calc($spacer__unit * 4);
+  margin-bottom: calc($spacer__unit * 2);
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    font-family: $font__roboto;
+    font-weight: normal;
+    font-size: 1.8rem;
+    margin: 0 0 calc($spacer__unit * 3);
+  }
+
+  &__link {
+    margin: calc($spacer__unit * 3) 0;
+    display: block;
+  }
+}
