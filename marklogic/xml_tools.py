@@ -32,25 +32,6 @@ def get_metadata_name_element(xml) -> Element:
     return name
 
 
-def get_neutral_citation(xml) -> str:
-    try:
-        neutral_citation = xml.xpath(
-            "//akn:neutralCitation",
-            namespaces=akn_namespace,
-        )[0].text
-    except IndexError:
-        raise JudgmentMissingMetadataError
-    return neutral_citation
-
-
-def get_search_total(xml) -> str:
-    return xml.xpath("//search:response/@total", namespaces=search_namespace)[0]
-
-
-def get_search_results(xml) -> [Element]:
-    return xml.xpath("//search:response/search:result", namespaces=search_namespace)
-
-
 def get_search_matches(element) -> [str]:
     nodes = element.xpath("//search:match", namespaces=search_namespace)
     results = []

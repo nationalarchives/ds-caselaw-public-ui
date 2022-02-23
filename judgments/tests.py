@@ -2,6 +2,8 @@ from unittest import skip
 
 from django.test import TestCase
 
+from judgments.models import Judgment
+
 
 class TestJudgment(TestCase):
     @skip
@@ -17,3 +19,27 @@ class TestJudgment(TestCase):
         decoded_response = response.content.decode("utf-8")
         self.assertIn("Judgment was not found", decoded_response)
         self.assertEqual(response.status_code, 404)
+
+
+class TestJudgmentModel(TestCase):
+    def test_can_parse_judgment(self):
+        xml = """
+            <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                <judgment name="judgment" contains="originalVersion">
+                    <meta>
+                        <identification source="#tna">
+                            <FRBRname value="My Judgment Name"/>
+                        </identification>
+                    </meta>
+                    <header>
+                        <p>
+                            <neutralCitation>[2017] EWHC 3289 (QB)</neutralCitation>
+                        </p>
+                    </header>
+                </judgment>
+            </akomaNtoso>
+        """
+
+        model = Judgment.create_from_string(xml)
+        self.assertEqual("My Judgment Name", model.metadata_name)
+        self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)

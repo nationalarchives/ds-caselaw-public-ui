@@ -3,16 +3,15 @@ import re
 import xmltodict
 from django.http import Http404, HttpResponse
 from django.template import loader
-from lxml import etree
 from requests_toolbelt.multipart import decoder
 
+from judgments.models import Judgment, SearchResult, SearchResults
 from marklogic import xml_tools
 from marklogic.api_client import (
     MarklogicAPIError,
     MarklogicResourceNotFoundError,
     api_client,
 )
-from marklogic.xml_tools import JudgmentMissingMetadataError
 
 
 def detail(request, judgment_uri):
@@ -34,11 +33,11 @@ def index(request, page=1):
             search_results = xml_results["search:response"]["search:result"]
 
             search_results = [
-                {
-                    "uri": trim_leading_slash(result["@uri"]),
-                    "neutral_citation": result["@uri"].split(".xml")[0],
-                    "name": "Fake Judgment name",
-                }
+                SearchResult(
+                    uri=trim_leading_slash(result["@uri"]),
+                    neutral_citation=result["@uri"].split(".xml")[0],
+                    name="Fake Judgment name",
+                )
                 for result in search_results
             ]
         else:
@@ -64,18 +63,14 @@ def search(request):
         query = params["query"]
         page = params.get("page") if params.get("page") else "1"
         results = api_client.search_judgments(query, page)
-        xml = etree.XML(bytes(results.text, encoding="utf8"))
-        context["total"] = xml_tools.get_search_total(xml)
 
-        chunked_results = xml_tools.get_search_results(xml)
-        search_results = [
-            {
-                "uri": trim_leading_slash(result.xpath("@uri")[0]).split(".xml")[0],
-                "matches": xml_tools.get_search_matches(result),
-            }
-            for result in chunked_results
+        model = SearchResults.create_from_string(results.text)
+
+        context["search_results"] = [
+            SearchResult.create_from_node(result) for result in model.results
         ]
-        context["search_results"] = search_results
+        context["total"] = model.total
+
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -90,24 +85,18 @@ def format_index_results(multipart_data):
         content_disposition = metadata[b"Content-Disposition"].decode("utf-8")
         filename = re.search('filename="([^"]*)"', content_disposition).group(1)
         filename = filename.split(".xml")[0]
-        xml = etree.XML(bytes(part.text, encoding="utf8"))
 
-        try:
-            neutral_citation = xml_tools.get_neutral_citation(xml)
-        except JudgmentMissingMetadataError:
-            neutral_citation = filename
+        model = Judgment.create_from_string(part.text)
 
-        try:
-            name = xml_tools.get_metadata_name_value(xml)
-        except JudgmentMissingMetadataError:
-            name = "Untitled Judgment"
+        neutral_citation = model.neutral_citation
+        name = model.metadata_name
 
         search_results.append(
-            {
-                "uri": trim_leading_slash(filename),
-                "neutral_citation": neutral_citation,
-                "name": name,
-            }
+            SearchResult(
+                uri=trim_leading_slash(filename),
+                neutral_citation=neutral_citation,
+                name=name,
+            )
         )
     return search_results
 
