@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="breadcrumb">
-    <nav class="breadcrumb__container" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="https://www.nationalarchives.gov.uk">Home</a></li>
-        <li><a href="{% url 'home' %}" aria-current="page">{{ service.name }}</a></li>
-        <li><a href="{% url 'terms_of_use' %}" aria-current="page">Terms of use</a></li>
-      </ol>
-    </nav>
-  </div>
-  <div class="terms-of-use">
+
+    <header class="page-header">
+    <div class="page-header__breadcrumb">
+      <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="https://www.nationalarchives.gov.uk">Home</a></li>
+          <li><a href="/">Find case law</a></li>
+          <li><a href="{{ request.url }}" aria-current="page">Terms of use</a></li>
+        </ol>
+      </nav>
+    </div>
+
+    {% include 'includes/logo.html' %}
+
+  </header>
+
+  <div class="standard-text-template">
     <h1>Terms of use</h1>
     <div>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, beatae consequuntur, delectus deleniti
