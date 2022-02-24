@@ -18,11 +18,6 @@ class Judgment(xmlmodels.XmlModel):
 
 
 class SearchResult:
-    uri = ""
-    neutral_citation = ""
-    name = ""
-    matches = []
-
     def __init__(self, uri="", neutral_citation="", name="", matches=[]) -> None:
         self.uri = uri
         self.neutral_citation = neutral_citation
@@ -41,7 +36,7 @@ class SearchResult:
             uri=uri,
             neutral_citation=judgment.neutral_citation,
             name=judgment.metadata_name,
-            matches=matches.transformToHtml(),
+            matches=matches.transform_to_html(),
         )
 
 
@@ -57,4 +52,4 @@ class SearchMatch(xmlmodels.XmlModel):
     class Meta:
         namespaces = {"search": "http://marklogic.com/appservices/search"}
 
-    transformToHtml = xmlmodels.XsltField(join(dirname(__file__), "search_match.xsl"))
+    transform_to_html = xmlmodels.XsltField(join(dirname(__file__), "search_match.xsl"))

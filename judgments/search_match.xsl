@@ -18,9 +18,9 @@
     </xsl:template>
 
     <xsl:template match="search:match">
-        <span data-path="{@path}">
+        <p data-path="{@path}">
             <xsl:apply-templates/>
-        </span>
+        </p>
     </xsl:template>
 
     <xsl:template match="search:highlight">
