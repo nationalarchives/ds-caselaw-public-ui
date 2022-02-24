@@ -23,8 +23,10 @@ def detail(request, judgment_uri):
     return HttpResponse(template.render({"xml": judgment_xml}, request))
 
 
-def index(request, page=1):
-    context = {"page": page, "prev_page": int(page) - 1, "next_page": int(page) + 1}
+def index(request):
+    context = {}
+    params = request.GET
+    page = params.get("page") if params.get("page") else "1"
     try:
         results = api_client.get_judgments_index(page)
         if type(results) == str:
