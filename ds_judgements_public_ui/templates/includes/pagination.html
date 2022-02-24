@@ -2,73 +2,49 @@
   <h3>Results pagination</h3>
   <ul class="pagination__list">
     <li class="pagination__list-item">
-      <span class="pagination__page-chevron-previous--disabled">
-        <span>
-          Previous page
-        </span>
+      {% if context.paginator.has_prev_page %}
+        <a class="pagination__page-chevron-previous"
+           href="{{request.path}}?{% if context.query %}query={{context.query}}&{% endif %}page={{context.paginator.prev_page}}">
+        <span>Previous page</span>
+      </a>
+      {% else %}
+        <span class="pagination__page-chevron-previous--disabled">
+          <span>Previous page</span>
       </span>
+      {% endif %}
     </li>
     <li class="pagination__list-pages">
       <ol>
         <li class="pagination__list-item">
-          <a class="pagination__page-link-current" href="#" aria-label="Current page, Page 1"
-            aria-current="true"><span>Current page </span>1
+          <a class="pagination__page-link-current"
+             href="{{request.path}}?{% if context.query %}query={{context.query}}&{% endif %}page={{context.paginator.current_page}}"
+             aria-label="Current page, Page {{ context.paginator.current_page }}"
+             aria-current="true">
+              <span>Current page </span>{{ context.paginator.current_page }}
           </a>
         </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 2">
-            <span>Page </span>2
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 3">
-            <span>Page </span>3
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 4">
-            <span>Page </span>4
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 5">
-            <span>Page </span>5
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 6">
-            <span>Page </span>6
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 7">
-            <span>Page </span>7
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 8">
-            <span>Page </span>8
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 9">
-            <span>Page </span>9
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 10">
-            <span>Page </span>10
-          </a>
-        </li>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link" href="#" aria-label="Go to page 11">
-            <span>Page </span>11
-          </a>
-        </li>
+        {% for page in context.paginator.next_pages %}
+          <li class="pagination__list-item">
+            <a class="pagination__page-link"
+               href="{{request.path}}?{% if context.query %}query={{context.query}}&{% endif %}&page={{page}}"
+               aria-label="Go to page {{page}}">
+              <span>Page </span>{{page}}
+            </a>
+          </li>
+        {% endfor %}
       </ol>
     </li>
     <li class="pagination__list-item">
-      <a class="pagination__page-chevron-next" href="#"><span>Next page</span></a>
+      {% if context.paginator.has_next_page %}
+        <a class="pagination__page-chevron-next"
+           href="{{request.path}}?{% if context.query %}query={{context.query}}&{% endif %}&page={{context.paginator.next_page}}">
+          <span>Next page</span>
+      </a>
+      {% else %}
+        <span class="pagination__page-chevron-next--disabled">
+          <span>Next page</span>
+      </span>
+      {% endif %}
     </li>
   </ul>
 </nav>

@@ -2,6 +2,7 @@ from unittest import skip
 
 from django.test import TestCase
 
+from judgments import views
 from judgments.models import Judgment
 
 
@@ -43,3 +44,17 @@ class TestJudgmentModel(TestCase):
         model = Judgment.create_from_string(xml)
         self.assertEqual("My Judgment Name", model.metadata_name)
         self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)
+
+
+class TestPaginator(TestCase):
+    def test_paginator(self):
+        expected_result = {
+            "current_page": 10,
+            "has_next_page": True,
+            "has_prev_page": True,
+            "next_page": 11,
+            "prev_page": 9,
+            "next_pages": [11, 12, 13, 14, 15, 16, 17, 18, 19],
+            "number_of_pages": 200,
+        }
+        self.assertEqual(views.paginator(10, 2000), expected_result)
