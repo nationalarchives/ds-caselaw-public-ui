@@ -1,3 +1,4 @@
+import math
 import re
 
 import xmltodict
@@ -5,8 +6,8 @@ from django.http import Http404, HttpResponse
 from django.template import loader
 from requests_toolbelt.multipart import decoder
 
+import marklogic.api_client
 from judgments.models import Judgment, SearchResult, SearchResults
-from marklogic import xml_tools
 from marklogic.api_client import (
     MarklogicAPIError,
     MarklogicResourceNotFoundError,
@@ -103,8 +104,20 @@ def format_index_results(multipart_data):
     return search_results
 
 
-def format_search_results(xml):
-    return xml_tools.get_search_matches(xml)
+def paginator(current_page, total):
+    size_per_page = marklogic.api_client.RESULTS_PER_PAGE
+    number_of_pages = math.ceil(int(total) / size_per_page)
+    next_pages = list(range(current_page + 1, min(current_page + 10, number_of_pages)))
+
+    return {
+        "current_page": current_page,
+        "has_next_page": current_page < number_of_pages,
+        "next_page": current_page + 1,
+        "has_prev_page": current_page > 1,
+        "prev_page": current_page - 1,
+        "next_pages": next_pages,
+        "number_of_pages": number_of_pages,
+    }
 
 
 def trim_leading_slash(uri):
