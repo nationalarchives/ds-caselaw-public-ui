@@ -52,6 +52,7 @@ def index(request):
 
         context["total"] = total
         context["search_results"] = search_results
+        context["paginator"] = paginator(int(page), total)
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search results not found")
@@ -73,6 +74,8 @@ def search(request):
             SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
+        context["paginator"] = paginator(int(page), model.total)
+        context["query"] = query
 
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
