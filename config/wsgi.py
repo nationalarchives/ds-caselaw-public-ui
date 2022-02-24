@@ -18,6 +18,7 @@ import sys
 from pathlib import Path
 
 from django.core.wsgi import get_wsgi_application
+from wsgi_basic_auth import BasicAuth
 
 # This allows easy placement of apps within the interior
 # ds_judgements_public_ui directory.
@@ -32,7 +33,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
+
 application = get_wsgi_application()
-# Apply WSGI middleware here.
-# from helloworld.wsgi import HelloWorldApplication
-# application = HelloWorldApplication(application)
+application = BasicAuth(application)
