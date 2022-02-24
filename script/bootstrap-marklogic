@@ -19,7 +19,7 @@ mkdir -p docker/db/data 2>&1 \
   | sed -e '/File exists$/d'
 
 info 'Bring up Marklogic...'
-docker-compose -f docker-marklogic.yml up -d > marklogic.log
+docker-compose up -d marklogic > marklogic.log
 
 info 'Check to see if Marklogic is up...'
 while ! curl -X GET http://localhost:8002/v1/rest-apis 2>&1 | sed -e '/401 Unauthorized/d'
