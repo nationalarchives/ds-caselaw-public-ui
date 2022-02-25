@@ -60,23 +60,34 @@ def index(request):
     return HttpResponse(template.render({"context": context}, request))
 
 
-def search(request):
+def results(request):
     context = {}
     try:
         params = request.GET
-        query = params["query"]
+        query = params.get("query")
         page = params.get("page") if params.get("page") else "1"
-        results = api_client.search_judgments(query, page)
+        if query:
+            results = api_client.search_judgments(query, page)
 
-        model = SearchResults.create_from_string(results.text)
+            model = SearchResults.create_from_string(results.text)
 
-        context["search_results"] = [
-            SearchResult.create_from_node(result) for result in model.results
-        ]
-        context["total"] = model.total
-        context["paginator"] = paginator(int(page), model.total)
-        context["query"] = query
+            context["search_results"] = [
+                SearchResult.create_from_node(result) for result in model.results
+            ]
+            context["total"] = model.total
+            context["paginator"] = paginator(int(page), model.total)
+            context["query"] = query
+        else:
+            results = api_client.get_judgments_index(page)
+            multipart_data = decoder.MultipartDecoder.from_response(results)
 
+            search_metadata = xmltodict.parse(multipart_data.parts[0].text)
+            total = search_metadata["search:response"]["@total"]
+            search_results = format_index_results(multipart_data)
+
+            context["total"] = total
+            context["search_results"] = search_results
+            context["paginator"] = paginator(int(page), total)
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -125,8 +136,3 @@ def paginator(current_page, total):
 
 def trim_leading_slash(uri):
     return re.sub("^/|/$", "", uri)
-
-
-def results(request):
-    template = loader.get_template("judgment/results.html")
-    return HttpResponse(template.render({}, request))

@@ -12,12 +12,14 @@
         </dd>
         <dt class="results__result-term-sr">Neutral citation</dt>
         <dd class="results__result-neutral-citation">{{ result.neutral_citation }}</dd>
-        <dt class="results__result-term-matching">Matching text sample</dt>
-        <dd>
-          {% autoescape off %}
-            {{ result.matches }}
-          {% endautoescape %}
-        </dd>
+        {% if result.matches %}
+          <dt class="results__result-term-matching">Matching text sample</dt>
+          <dd>
+            {% autoescape off %}
+              {{ result.matches }}
+            {% endautoescape %}
+          </dd>
+        {% endif %}
       </dl>
     </li>
   {% endfor %}
