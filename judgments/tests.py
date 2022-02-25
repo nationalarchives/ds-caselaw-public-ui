@@ -29,8 +29,12 @@ class TestJudgmentModel(TestCase):
                 <judgment name="judgment" contains="originalVersion">
                     <meta>
                         <identification source="#tna">
+                            <FRBRdate date="2004-06-10" name="judgment"/>
                             <FRBRname value="My Judgment Name"/>
                         </identification>
+                        <proprietary source="ewca/civ/2004/811/eng/docx" xmlns:uk="https:/judgments.gov.uk/">
+                            <uk:court>EWCA-Civil</uk:court>
+                        </proprietary>
                     </meta>
                     <header>
                         <p>
@@ -44,6 +48,8 @@ class TestJudgmentModel(TestCase):
         model = Judgment.create_from_string(xml)
         self.assertEqual("My Judgment Name", model.metadata_name)
         self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)
+        self.assertEqual("2004-06-10", model.date)
+        self.assertEqual("EWCA-Civil", model.court)
 
 
 class TestPaginator(TestCase):
