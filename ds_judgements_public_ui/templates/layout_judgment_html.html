@@ -8,7 +8,7 @@
     {% block css %}
       <link href="{% static 'css/main.css' %}" rel="stylesheet">
     {% endblock %}
-    <title>United Trade Action Group Ltd (R on the application of) v Transport for London</title>
+    <title>{% block title %}{% endblock title %}</title>
     {% include 'includes/gtm/gtm_head.html' %}
 </head>
 <body>
