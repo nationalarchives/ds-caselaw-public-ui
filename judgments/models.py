@@ -9,19 +9,30 @@ from marklogic import api_client
 
 class Judgment(xmlmodels.XmlModel):
     class Meta:
-        namespaces = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
+        namespaces = {
+            "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0",
+            "uk": "https:/judgments.gov.uk/",
+        }
 
     metadata_name = xmlmodels.XPathTextField("//akn:FRBRname/@value")
     neutral_citation = xmlmodels.XPathTextField(
         "//akn:neutralCitation", ignore_extra_nodes=True
     )
+    date = xmlmodels.XPathTextField(
+        "//akn:FRBRdate[@name='judgment']/@date", ignore_extra_nodes=True
+    )
+    court = xmlmodels.XPathTextField("//akn:proprietary/uk:court")
 
 
 class SearchResult:
-    def __init__(self, uri="", neutral_citation="", name="", matches=[]) -> None:
+    def __init__(
+        self, uri="", neutral_citation="", name="", court="", date="", matches=[]
+    ) -> None:
         self.uri = uri
         self.neutral_citation = neutral_citation
         self.name = name
+        self.date = date
+        self.court = court
         self.matches = matches
 
     @staticmethod
@@ -37,6 +48,8 @@ class SearchResult:
             neutral_citation=judgment.neutral_citation,
             name=judgment.metadata_name,
             matches=matches.transform_to_html(),
+            court=judgment.court,
+            date=judgment.date,
         )
 
 
