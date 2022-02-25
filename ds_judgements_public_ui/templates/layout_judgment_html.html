@@ -14,9 +14,6 @@
 <body>
 {% include 'includes/gtm/gtm_body.html' %}
 <a id="skip-to-main-content" href="#main-content">Skip to Main Content</a>
-{% if not request.args.return_link %}
-    {% include 'includes/judgment_text_service_introduction_banner.html' %}
-{% endif %}
 {% include 'includes/judgment_text_toolbar.html' %}
 {% include 'includes/judgment_text_source.html' %}
 <main id="main-content">
