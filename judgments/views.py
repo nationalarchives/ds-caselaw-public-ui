@@ -26,13 +26,10 @@ def detail(request, judgment_uri):
 
 def index(request):
     context = {}
-    params = request.GET
-    page = params.get("page") if params.get("page") else "1"
     try:
-        results = api_client.get_judgments_index(page)
+        results = api_client.get_judgments_index(1)
         if type(results) == str:
             xml_results = xmltodict.parse(results)
-            total = xml_results["search:response"]["@total"]
             search_results = xml_results["search:response"]["search:result"]
 
             search_results = [
@@ -40,23 +37,23 @@ def index(request):
                     uri=trim_leading_slash(result["@uri"]),
                     neutral_citation=result["@uri"].split(".xml")[0],
                     name="Fake Judgment name",
+                    court="Fake court",
+                    date="2021-01-01",
                 )
                 for result in search_results
             ]
         else:
             multipart_data = decoder.MultipartDecoder.from_response(results)
 
-            search_metadata = xmltodict.parse(multipart_data.parts[0].text)
-            total = search_metadata["search:response"]["@total"]
             search_results = format_index_results(multipart_data)
 
-        context["total"] = total
-        context["search_results"] = search_results
-        context["paginator"] = paginator(int(page), total)
+        context["recent_judgments"] = search_results
 
     except MarklogicResourceNotFoundError:
-        raise Http404("Search results not found")
-    template = loader.get_template("judgment/index.html")
+        raise Http404(
+            "Search results not found"
+        )  # TODO: This should be something else!
+    template = loader.get_template("pages/home.html")
     return HttpResponse(template.render({"context": context}, request))
 
 
@@ -107,12 +104,16 @@ def format_index_results(multipart_data):
 
         neutral_citation = model.neutral_citation
         name = model.metadata_name
+        date = model.date
+        court = model.court
 
         search_results.append(
             SearchResult(
                 uri=trim_leading_slash(filename),
                 neutral_citation=neutral_citation,
                 name=name,
+                court=court,
+                date=date,
             )
         )
     return search_results
