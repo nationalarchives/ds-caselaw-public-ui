@@ -1,0 +1,14 @@
+.result-controls {
+
+  &__order-by-label {
+    font-family: $font__roboto;
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: $spacer__unit;
+  }
+
+  &__order-by {
+    @include select;
+    min-width: auto;
+  }
+}

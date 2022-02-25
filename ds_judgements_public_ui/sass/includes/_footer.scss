@@ -1,0 +1,25 @@
+.judgments-footer {
+
+  background-color: $color__almost-black;
+  color: $color__white;
+  padding: $spacer__unit;
+
+  &__heading {
+    @include sr-only;
+  }
+
+  &__links {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__link {
+    @include link-on-dark-bg;
+  }
+
+  &__container {
+    @include container;
+  }
+}

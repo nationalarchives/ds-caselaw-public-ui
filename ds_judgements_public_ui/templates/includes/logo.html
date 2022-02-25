@@ -1,6 +1,6 @@
-
+{% load static %}
 <div class="page-header__container">
   <a class="page-header__logo-link" href="{% url 'home' %}">
-    <img class="page-header__logo" src="{# {% url 'static' filename='tna_logo.svg' %} #}" alt="The National Archives home" width="320" height="44">
+    <img class="page-header__logo" src="{% static 'images/tna_logo.svg' %}" alt="The National Archives home" width="320" height="44">
   </a>
 </div>

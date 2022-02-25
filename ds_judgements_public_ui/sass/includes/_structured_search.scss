@@ -1,0 +1,142 @@
+.structured-search {
+
+  &__main-search {
+    background-color: $color__light-grey;
+    padding: calc($spacer__unit * 1.5) 0 calc($spacer__unit * 2);
+    margin: 0 0 calc($spacer__unit * 3);
+    text-align: center;
+  }
+
+  &__main-search-header {
+    font-size: 2.4rem;
+    line-height: 2rem;
+    display: inline-block;
+    font-family: $font__roboto;
+    font-weight: normal;
+    color: $color__almost-black;
+    margin: calc($spacer__unit * 3) 0 0 0;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__full-text-panel {
+    margin-top: $spacer__unit;
+    margin-bottom: $spacer__unit;
+    @media (min-width: $grid__breakpoint-medium) {
+      padding: calc($spacer__unit * 1.5) calc($spacer__unit * 2);
+    }
+  }
+
+  &__full-text-label {
+    @include sr-only;
+  }
+
+  &__full-text-input {
+    @include text_field;
+    width: 70%;
+
+    @media (min-width: $grid__breakpoint-medium) {
+      width: 70%;
+    }
+
+    @media (min-width: $grid__breakpoint-extra-large) {
+      width: 70%;
+    }
+  }
+
+  &__filter-options {
+
+    legend {
+      font-family: $font__roboto;
+      font-size: 1.5rem;
+      font-weight: normal;
+    }
+
+  }
+
+  &__name-label {
+    font-size: 1.1rem;
+  }
+
+  &__name-input {
+    @include text_field;
+    width: 70%;
+  }
+
+  &__limit-to-label {
+    display: block;
+    margin-bottom: calc($spacer__unit / 2);
+    font-size: 1.1rem;
+  }
+
+  &__limit-to-input {
+    @include text_field;
+  }
+
+  &__multi-fields-panel {
+    padding-top: $spacer__unit;
+    margin-top: $spacer__unit;
+    margin-bottom: $spacer__unit;
+
+    @media (min-width: $grid__breakpoint-medium) {
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: $spacer__unit
+    }
+  }
+
+  &__name-container {
+    background-color: $color__yellow;
+    padding: calc($spacer__unit * 2) calc($spacer__unit * 3);
+    margin-bottom: $spacer__unit;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &__limit-to-container {
+    background-color: $color__yellow;
+    padding: calc($spacer__unit * 2) calc($spacer__unit * 3);
+    margin-bottom: $spacer__unit;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  &__submit-container {
+    margin-bottom: calc($spacer__unit * 3);
+  }
+
+  &__help-text {
+    margin-bottom: calc($spacer__unit / 2);
+  }
+
+  &__select {
+    @include select;
+  }
+
+  &__date-input {
+    @include text_field;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin-top: $spacer__unit;
+  }
+
+  input[type=submit] {
+    @include call-to-action-button;
+    padding-right: calc($spacer__unit * 3);
+    padding-left: calc($spacer__unit * 3);
+  }
+
+  input[type=checkbox] {
+    @include checkbox
+  }
+}

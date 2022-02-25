@@ -1,0 +1,33 @@
+a {
+  color: $color__link-blue;
+  text-decoration: underline;
+
+  &:hover {
+    color: $color__link-blue-hover;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: $color__link-blue-active;
+  }
+
+  &:focus {
+    @include focus-default;
+  }
+}
+
+#skip-to-main-content {
+  position: absolute;
+  top: -3rem;
+
+  &:focus {
+    background-color: $color__white;
+    padding: calc($spacer__unit / 3);
+    color: $color__black;
+    top: 0.313rem;
+    left: 0.313rem;
+    outline: 0.313rem solid $color__white;
+    border: 0.19rem solid $color__black;
+    z-index: 999;
+  }
+}

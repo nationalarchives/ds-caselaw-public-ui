@@ -4,12 +4,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %} - {% endblock title %}</title>
+    <title>{% block title %}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="{% static 'images/favicons/favicon.png' %}">
 
     {% block css %}
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Roboto:wght@400;600;700&amp;display=swap" rel="stylesheet">
       <link href="{% static 'css/main.css' %}" rel="stylesheet">
     {% endblock %}
 

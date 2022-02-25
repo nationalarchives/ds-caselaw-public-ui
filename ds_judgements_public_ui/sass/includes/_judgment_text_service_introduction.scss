@@ -1,0 +1,28 @@
+.service-introduction-banner {
+
+  background-color: $color__black;
+  color: $color__white;
+  padding: calc($spacer__unit * 2);
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: $color__white;
+  }
+
+  li {
+    margin-bottom: calc($spacer__unit / 2);
+  }
+
+  &__container {
+    @media (min-width: $grid__breakpoint-medium) {
+      max-width: 40rem;
+    }
+
+    @media (min-width: $grid__breakpoint-medium) {
+      max-width: 46rem;
+    }
+  }
+}
