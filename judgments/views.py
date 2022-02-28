@@ -15,6 +15,14 @@ from marklogic.api_client import (
 )
 
 
+def detail_new(request, court, year, judgment_date, subdivision=None):
+    return HttpResponse(court + subdivision + str(year) + judgment_date)
+
+
+def browse(request, court=None, subdivision=None, year=None):
+    pass
+
+
 def detail(request, judgment_uri):
     try:
         judgment_xml = api_client.get_judgment_xml(judgment_uri)

@@ -1,8 +1,9 @@
+import re
 from unittest import skip
 
 from django.test import TestCase
 
-from judgments import views
+from judgments import converters, views
 from judgments.models import Judgment
 
 
@@ -64,3 +65,47 @@ class TestPaginator(TestCase):
             "number_of_pages": 200,
         }
         self.assertEqual(views.paginator(10, 2000), expected_result)
+
+
+class TestConverters(TestCase):
+    def test_year_converter_parses_year(self):
+        converter = converters.YearConverter()
+        match = re.match(converter.regex, "1994")
+
+        self.assertEqual(match.group(0), "1994")
+
+    def test_year_converter_converts_to_python(self):
+        converter = converters.YearConverter()
+        self.assertEqual(converter.to_python("1994"), 1994)
+
+    def test_year_converter_converts_to_url(self):
+        converter = converters.YearConverter()
+        self.assertEqual(converter.to_url(1994), "1994")
+
+    def test_date_converter_parses_date(self):
+        converter = converters.DateConverter()
+        match = re.match(converter.regex, "2022-02-28")
+        self.assertEqual(match.group(0), "2022-02-28")
+
+    def test_date_converter_fails_to_parse_string(self):
+        converter = converters.DateConverter()
+        match = re.match(converter.regex, "202L-ab-er")
+        self.assertIsNone(match)
+
+    def test_court_converter_parses_court(self):
+        converter = converters.CourtConverter()
+        match = re.match(converter.regex, "ewhc")
+        self.assertEqual(match.group(0), "ewhc")
+
+    def test_court_converter_fails_to_parse(self):
+        converter = converters.CourtConverter()
+        self.assertIsNone(re.match(converter.regex, "notacourt"))
+
+    def test_subdivision_converter_parses_court(self):
+        converter = converters.SubdivisionConverter()
+        match = re.match(converter.regex, "comm")
+        self.assertEqual(match.group(0), "comm")
+
+    def test_subdivision_converter_fails_to_parse(self):
+        converter = converters.SubdivisionConverter()
+        self.assertIsNone(re.match(converter.regex, "notasubdivision"))
