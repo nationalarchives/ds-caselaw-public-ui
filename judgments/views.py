@@ -24,6 +24,16 @@ def detail(request, judgment_uri):
     return HttpResponse(template.render({"xml": judgment_xml}, request))
 
 
+def detail_xml(_request, judgment_uri):
+    try:
+        judgment_xml = api_client.get_judgment_xml(judgment_uri)
+    except MarklogicResourceNotFoundError:
+        raise Http404("Judgment was not found")
+    response = HttpResponse(judgment_xml, content_type="application/xml")
+    response["Content-Disposition"] = f"attachment; filename={judgment_uri}.xml"
+    return response
+
+
 def index(request):
     context = {}
     params = request.GET
