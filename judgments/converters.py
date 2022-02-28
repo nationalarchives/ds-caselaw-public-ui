@@ -9,6 +9,7 @@ class YearConverter:
     def to_url(self, value):
         return '%04d' % value
 
+
 class DateConverter:
     regex = "([0-9]{4})-([0-9]{2})-([0-9]{2})"
 
@@ -21,6 +22,7 @@ class DateConverter:
 
         return value.strftime("%Y-%m-%d")
 
+
 class CourtConverter:
     regex = "ewhc|uksc|ukpc|ewca|ewcop|ewfc"
 
@@ -29,6 +31,7 @@ class CourtConverter:
 
     def to_url(self, value):
         return value
+
 
 class SubdivisionConverter:
     regex = "civ|crim|admin|admlty|ch|comm|costs|fam|ipec|mercantile|pat|qb|tcc"
