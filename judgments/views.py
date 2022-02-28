@@ -22,6 +22,7 @@ def detail_new(request, court, year, judgment_date, subdivision = None):
 def browse(request, court = None, subdivision = None, year = None):
     pass
 
+
 def detail(request, judgment_uri):
     try:
         judgment_xml = api_client.get_judgment_xml(judgment_uri)
