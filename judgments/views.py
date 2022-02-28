@@ -15,11 +15,11 @@ from marklogic.api_client import (
 )
 
 
-def detail_new(request, court, year, judgment_date, subdivision = None):
+def detail_new(request, court, year, judgment_date, subdivision=None):
     return HttpResponse(court + subdivision + str(year) + judgment_date)
 
 
-def browse(request, court = None, subdivision = None, year = None):
+def browse(request, court=None, subdivision=None, year=None):
     pass
 
 

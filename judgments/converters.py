@@ -8,7 +8,7 @@ class YearConverter:
         return int(value)
 
     def to_url(self, value):
-        return '%04d' % value
+        return "%04d" % value
 
 
 class DateConverter:
@@ -42,4 +42,3 @@ class SubdivisionConverter:
 
     def to_url(self, value):
         return value
-

@@ -1,5 +1,5 @@
-from unittest import skip
 import re
+from unittest import skip
 
 from django.test import TestCase
 
