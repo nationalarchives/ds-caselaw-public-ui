@@ -26,7 +26,7 @@
         {% for page in context.paginator.next_pages %}
           <li class="pagination__list-item">
             <a class="pagination__page-link"
-               href="{{request.path}}?{% if context.query %}query={{context.query}}&{% endif %}&page={{page}}"
+               href="{{request.path}}?{% if context.query %}query={{context.query}}&{% endif %}page={{page}}"
                aria-label="Go to page {{page}}">
               <span>Page </span>{{page}}
             </a>

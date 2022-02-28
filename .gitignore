@@ -121,6 +121,8 @@ typings/
 # Optional npm cache directory
 .npm
 
+.sass-cache/
+
 # Optional eslint cache
 .eslintcache
 
