@@ -167,6 +167,15 @@ class MockAPIClient:
         except FileNotFoundError:
             raise MarklogicResourceNotFoundError
 
+    def search_judgments(self, query: str, page: str):
+        filepath = os.path.join(
+            self.fixtures_dir, "search", "results" + str(page) + ".xml"
+        )
+        try:
+            return Path(filepath).read_text()
+        except FileNotFoundError:
+            raise MarklogicResourceNotFoundError
+
 
 if env.bool("MARKLOGIC_MOCK_REQUESTS", default=False):
     api_client = MockAPIClient()
