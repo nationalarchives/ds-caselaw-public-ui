@@ -137,7 +137,7 @@ class MarklogicApiClient:
             body=xml,
         )
 
-    def search_judgments(self, query: str, page: str) -> requests.Response:
+    def basic_search(self, query: str, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         headers = {"Accept": "text/xml"}
         return self.GET(

@@ -135,7 +135,7 @@ def results(request):
         query = params.get("query")
         page = params.get("page") if params.get("page") else "1"
         if query:
-            results = api_client.search_judgments(query, page)
+            results = api_client.basic_search(query, page)
             if type(results) == str:  # Mocked WebLogic response
                 xml_results = xmltodict.parse(results)
                 total = xml_results["search:response"]["@total"]
