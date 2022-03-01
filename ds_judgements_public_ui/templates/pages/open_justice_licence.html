@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block title %}
-  Open Justice Licence - Find case law
+  Open Justice Licence - {% translate "common.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
@@ -10,8 +10,8 @@
     <div class="page-header__breadcrumb">
       <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
         <ol>
-          <li><a href="https://www.nationalarchives.gov.uk">Home</a></li>
-          <li><a href="/">Find case law</a></li>
+          <li><a href="https://www.nationalarchives.gov.uk">{% translate "common.home" %}</a></li>
+          <li><a href="{% url 'home' %}" aria-current="page">{% translate "common.findcaselaw" %}</a></li>
           <li><a href="{{ request.url }}" aria-current="page">Open Justice Licence</a></li>
         </ol>
       </nav>

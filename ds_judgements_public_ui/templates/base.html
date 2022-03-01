@@ -1,6 +1,5 @@
 {% load static i18n %}<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
-{%  translate "Find case law" as case_law %}
 
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
@@ -24,7 +23,7 @@
   </head>
 
   <body>
-    <a id="skip-to-main-content" href="#main-content">Skip to Main Content</a>
+    <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
     {% include 'includes/gtm/gtm_body.html' %}
     {% include 'includes/phase_banner.html' %}
     <main id="main-content">
