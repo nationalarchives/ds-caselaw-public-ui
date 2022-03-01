@@ -48,7 +48,6 @@ def browse(request, court=None, subdivision=None, year=None):
             context["search_results"] = [
                 SearchResult.create_from_node(result) for result in model.results
             ]
-            print(model.results)
             context["total"] = model.total
             context["paginator"] = paginator(int(page), model.total)
             context["query"] = query
