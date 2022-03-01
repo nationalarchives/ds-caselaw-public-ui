@@ -149,7 +149,7 @@ class MarklogicApiClient:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         headers = {"Accept": "text/xml"}
 
-        query = f'court:{court}' if court else ""
+        query = f"court:{court}" if court else ""
         return self.GET(
             f"LATEST/search/?start={start}&q={query}&pageLength={RESULTS_PER_PAGE}",
             headers,
