@@ -179,3 +179,42 @@ Included in this repository is:
 ### Working with JavaScript
 
 * In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
+
+### Internationalisation
+
+We're using [the built-in django translation module](https://docs.djangoproject.com/en/4.0/topics/i18n/translation) to handle our translations.
+
+#### Adding translations
+
+1) Ensure that the `i18n` module is loaded at the top of the file:
+
+```django
+{% extends 'base.html' %}
+{% load i18n %}
+...
+```
+
+2) Add the translation string to the page:
+```
+<h1>{% translate "namespace.mytranslation" %}</h1>
+```
+
+3) Update the locale file by running the following command:
+```
+django-admin makemessages -l {langage_code}
+```
+
+where `language_code` is the ISO 3166-1 country code (e.g. en_gb)
+
+4) In the generated `.po` file, find the generated msgid string and add the translation below it
+
+```
+msgid "naamespace.mytranslation"
+msgstr "This is my translation"
+```
+
+5) Compile the translations to a binary file:
+```
+django-admin compilemessages
+```
+
