@@ -217,4 +217,3 @@ msgstr "This is my translation"
 ```
 django-admin compilemessages
 ```
-
