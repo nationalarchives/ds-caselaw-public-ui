@@ -20,7 +20,42 @@ def detail_new(request, court, year, judgment_date, subdivision=None):
 
 
 def browse(request, court=None, subdivision=None, year=None):
-    pass
+    context = {}
+    queries = []
+
+    if court:
+        queries.append(court)
+    if subdivision:
+        queries.append(subdivision)
+    if year:
+        queries.append(str(year))
+
+    query = " AND ".join(queries)
+
+    page = request.GET.get("page") if request.GET.get("page") else "1"
+    try:
+        results = api_client.search_judgments(query, page)
+        if type(results) == str:  # Mocked WebLogic response
+            xml_results = xmltodict.parse(results)
+            total = xml_results["search:response"]["@total"]
+            search_results = render_mocked_results(results, with_matches=True)
+            context["search_results"] = search_results
+            context["total"] = total
+            context["paginator"] = paginator(int(page), total)
+        else:
+            model = SearchResults.create_from_string(results.text)
+
+            context["search_results"] = [
+                SearchResult.create_from_node(result) for result in model.results
+            ]
+            context["total"] = model.total
+            context["paginator"] = paginator(int(page), model.total)
+            context["query"] = query
+    except MarklogicAPIError:
+        raise Http404("Search error")
+
+    template = loader.get_template("judgment/results.html")
+    return HttpResponse(template.render({"context": context}, request))
 
 
 def detail(request, judgment_uri):
