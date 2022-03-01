@@ -87,10 +87,9 @@ def eval(request):
         ]
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
-        context["query"] = query
-        context["court"] = court
-        context["judge"] = judge
-        context["party"] = party
+        context[
+            "query_string"
+        ] = f'query={str(query or "")}&court={str(court or "")}&party={str(party or "")}&judge={str(judge or "")}'
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -151,7 +150,7 @@ def results(request):
                 ]
                 context["total"] = model.total
                 context["paginator"] = paginator(int(page), model.total)
-                context["query"] = query
+                context["query_string"] = f"query={query}"
         else:
             results = api_client.get_judgments_index(page)
             if type(results) == str:  # Mocked WebLogic response
