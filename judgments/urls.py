@@ -21,5 +21,6 @@ urlpatterns = [
     re_path("(?P<judgment_uri>.*/.*/.*)/data.html", views.detail, name="detail"),
     re_path("(?P<judgment_uri>.*/.*/.*)", views.detail, name="detail"),
     path("judgments/results", views.results, name="results"),
+    path("judgments/eval", views.eval, name="eval"),
     path("", views.index, name="home"),
 ]

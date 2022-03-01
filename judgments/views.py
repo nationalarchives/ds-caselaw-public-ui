@@ -67,6 +67,36 @@ def detail(request, judgment_uri):
     return HttpResponse(template.render({"xml": judgment_xml}, request))
 
 
+def eval(request):
+    params = request.GET
+    query = params.get("query")
+    court = params.get("court")
+    judge = params.get("judge")
+    party = params.get("party")
+    page = params.get("page", 1)
+    context = {}
+    try:
+        results = api_client.search_with_eval(
+            q=query, court=court, judge=judge, party=party, page=page
+        )
+        multipart_data = decoder.MultipartDecoder.from_response(results)
+        model = SearchResults.create_from_string(multipart_data.parts[0].text)
+
+        context["search_results"] = [
+            SearchResult.create_from_node(result) for result in model.results
+        ]
+        context["total"] = model.total
+        context["paginator"] = paginator(int(page), model.total)
+        context["query"] = query
+        context["court"] = court
+        context["judge"] = judge
+        context["party"] = party
+    except MarklogicResourceNotFoundError:
+        raise Http404("Search failed")  # TODO: This should be something else!
+    template = loader.get_template("judgment/results.html")
+    return HttpResponse(template.render({"context": context}, request))
+
+
 def detail_xml(_request, judgment_uri):
     try:
         judgment_xml = api_client.get_judgment_xml(judgment_uri)

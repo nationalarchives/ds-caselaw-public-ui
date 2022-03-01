@@ -145,6 +145,28 @@ class MarklogicApiClient:
             headers,
         )
 
+    def search_with_eval(
+        self, q=None, court=None, judge=None, party=None, page=1
+    ) -> requests.Response:
+        headers = {
+            "Content-type": "application/x-www-form-urlencoded",
+            "Accept": "multipart/mixed",
+        }
+        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xquery.xqy")
+        vars = f'{{"court":"{str(court or "")}","judge":"{str(judge or "")}",\
+        "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}"}}'
+        data = {
+            "xquery": Path(xquery_path).read_text(),
+            "vars": vars,
+        }
+        path = "LATEST/eval?database=Judgments"
+        response = self.session.request(
+            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+        )
+        # Raise relevant exception for an erroneous response
+        self._raise_for_status(response)
+        return response
+
 
 class MockAPIClient:
 
