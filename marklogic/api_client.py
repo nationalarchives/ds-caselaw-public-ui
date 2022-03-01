@@ -145,16 +145,6 @@ class MarklogicApiClient:
             headers,
         )
 
-    def list_judgments(self, court: str = None, page: str = "1") -> requests.Response:
-        start = (int(page) - 1) * RESULTS_PER_PAGE + 1
-        headers = {"Accept": "text/xml"}
-
-        query = f"court:{court}" if court else ""
-        return self.GET(
-            f"LATEST/search/?start={start}&q={query}&pageLength={RESULTS_PER_PAGE}",
-            headers,
-        )
-
 
 class MockAPIClient:
 
