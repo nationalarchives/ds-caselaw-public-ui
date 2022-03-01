@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}
-  Terms of use - Find case law
+  Terms of use - {% translate "common.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
@@ -10,9 +11,9 @@
     <div class="page-header__breadcrumb">
       <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
         <ol>
-          <li><a href="https://www.nationalarchives.gov.uk">Home</a></li>
-          <li><a href="/">Find case law</a></li>
-          <li><a href="{{ request.url }}" aria-current="page">Terms of use</a></li>
+          <li><a href="https://www.nationalarchives.gov.uk">{% translate "common.home" %}</a></li>
+          <li><a href="/">{% translate "common.findcaselaw" %}</a></li>
+          <li><a href="{{ request.url }}" aria-current="page">{% translate "terms.termsofuse" %}</a></li>
         </ol>
       </nav>
     </div>
@@ -22,7 +23,7 @@
   </header>
 
   <div class="standard-text-template">
-    <h1>Terms of use</h1>
+    <h1>{% translate "terms.termsofuse" %}</h1>
     <div>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, beatae consequuntur, delectus deleniti
       dolorem eius hic id iure laudantium maiores, modi ratione recusandae similique. Autem itaque quidem veniam

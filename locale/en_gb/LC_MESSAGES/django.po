@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-01 15:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ds_judgements_public_ui/templates/base.html:26
+msgid "skiplink"
+msgstr "Skip to Main Content"
+
+#: ds_judgements_public_ui/templates/judgment/results.html:5
+#: ds_judgements_public_ui/templates/judgment/results.html:14
+#: ds_judgements_public_ui/templates/pages/home.html:5
+#: ds_judgements_public_ui/templates/pages/home.html:14
+#: ds_judgements_public_ui/templates/pages/home.html:26
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:4
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:14
+#: ds_judgements_public_ui/templates/pages/sources.html:5
+#: ds_judgements_public_ui/templates/pages/sources.html:15
+#: ds_judgements_public_ui/templates/pages/structured_search.html:13
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:5
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:15
+msgid "common.findcaselaw"
+msgstr "Find case law"
+
+#: ds_judgements_public_ui/templates/judgment/results.html:13
+#: ds_judgements_public_ui/templates/pages/home.html:13
+#: ds_judgements_public_ui/templates/pages/no_results.html:7
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:13
+#: ds_judgements_public_ui/templates/pages/sources.html:14
+#: ds_judgements_public_ui/templates/pages/structured_search.html:12
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:14
+msgid "common.home"
+msgstr "Home"
+
+#: ds_judgements_public_ui/templates/pages/home.html:28
+msgid "home.useservice"
+msgstr ""
+"Use this service to find, view and download judgments and tribunal decisions"
+
+#: ds_judgements_public_ui/templates/pages/no_results.html:10
+#, python-format
+msgid "No results for '%(data)s'"
+msgstr ""
+
+#: ds_judgements_public_ui/templates/pages/no_results.html:17
+msgid "search.noresults"
+msgstr "There are no results for your search"
+
+#: ds_judgements_public_ui/templates/pages/no_results.html:18
+msgid "search.improvesearch"
+msgstr ""
+"Improve your search results by removing filters, double-checking your "
+"spelling, using fewer keywords or searching for something less specific."
+
+#: ds_judgements_public_ui/templates/pages/structured_search.html:4
+#, fuzzy
+#| msgid "common.findcaselaw"
+msgid "commom.findcaselaw"
+msgstr "Find case law"
+
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:16
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:26
+msgid "terms.termsofuse"
+msgstr "Terms of use"
+
+#, fuzzy
+#~| msgid "common.findcaselaw"
+#~ msgid "findcaselaw"
+#~ msgstr "Find case law"

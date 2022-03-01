@@ -70,6 +70,7 @@ def start(c, container_name=None):
 def run(c):
     start(c, "django")
     django_exec("pip install -r requirements/local.txt -U")
+    django_exec("django-admin compilemessages")
     django_exec("python manage.py migrate")
     # Piping Marklogic logs to marklogic.log
     local("docker logs marklogic > marklogic.log")
