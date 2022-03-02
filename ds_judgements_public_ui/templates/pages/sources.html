@@ -1,30 +1,22 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% translate "judgmentsources.title" as page_title %}
+
 {% block title %}
-  Judgment sources - {% translate "common.findcaselaw" %}
+{{ page_title }} - {% translate "common.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
 
   <header class="page-header">
-    <div class="page-header__breadcrumb">
-      <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="https://www.nationalarchives.gov.uk">{% translate "common.home" %}</a></li>
-          <li><a href="{% url 'home' %}" aria-current="page">{% translate "common.findcaselaw" %}</a></li>
-          <li><a href="{{ request.url }}" aria-current="page">Judgment sources</a></li>
-        </ol>
-      </nav>
-    </div>
-
+    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.url %}
     {% include 'includes/logo.html' %}
-
   </header>
 
   <div class="sources">
     <div class="sources__container">
-      <h1>Judgment sources</h1>
+      <h1>{{ page_title }}</h1>
       <p>Sources for judgments provided via this system are listed below.</p>
       <ul class="sources__list" >
         {% for source in sources %}

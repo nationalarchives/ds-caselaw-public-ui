@@ -1,29 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% translate "terms.title" as page_title %}
 
 {% block title %}
-  Terms of use - {% translate "common.findcaselaw" %}
+{{ page_title }} - {% translate "common.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
 
-    <header class="page-header">
-    <div class="page-header__breadcrumb">
-      <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="https://www.nationalarchives.gov.uk">{% translate "common.home" %}</a></li>
-          <li><a href="/">{% translate "common.findcaselaw" %}</a></li>
-          <li><a href="{{ request.url }}" aria-current="page">{% translate "terms.termsofuse" %}</a></li>
-        </ol>
-      </nav>
-    </div>
-
+  <header class="page-header">
+    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.url %}
     {% include 'includes/logo.html' %}
-
   </header>
 
   <div class="standard-text-template">
-    <h1>{% translate "terms.termsofuse" %}</h1>
+    <h1>{{ page_title }}</h1>
     <div>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, beatae consequuntur, delectus deleniti
       dolorem eius hic id iure laudantium maiores, modi ratione recusandae similique. Autem itaque quidem veniam
