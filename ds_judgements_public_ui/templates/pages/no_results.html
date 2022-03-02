@@ -1,17 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block content %}
-  <div class="breadcrumb">
-    <nav class="breadcrumb__container" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="https://www.nationalarchives.gov.uk">{% translate "common.home" %}</a></li>
-        <li><a href="/">{{ service.name }}</a></li>
-        <li><a href="{{ request.url }}" aria-current="page">
-          {% blocktranslate data=form.search_term.data %}No results for '{{ data }}'{% endblocktranslate %}
-        </a></li>
-      </ol>
-    </nav>
-  </div>
+  {% blocktranslate data=form.search_term.data asvar no_results %}No results for '{{ data }}'{% endblocktranslate %}
+
+  {% include 'includes/breadcrumbs.html' with title=no_results link=request.path current=no_results %}
+
   <div class="results">
     <div class="results__container">
       <h1>{% translate "search.noresults" %}</h1>
