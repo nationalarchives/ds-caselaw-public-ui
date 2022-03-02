@@ -8,7 +8,7 @@ from django.utils.translation import gettext
 from requests_toolbelt.multipart import decoder
 
 import marklogic.api_client
-from judgments.models import Judgment, SearchResult, SearchResults
+from judgments.models import Judgment, JudgmentViewModel, SearchResult, SearchResults
 from marklogic.api_client import (
     MarklogicAPIError,
     MarklogicResourceNotFoundError,
@@ -62,10 +62,12 @@ def browse(request, court=None, subdivision=None, year=None):
 def detail(request, judgment_uri):
     try:
         judgment_xml = api_client.get_judgment_xml(judgment_uri)
+        judgment = JudgmentViewModel.create_from_string(judgment_xml)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgment_xml}, request))
+    html = judgment.transform_to_html()
+    return HttpResponse(template.render({"xml": html}, request))
 
 
 def detail_xml(_request, judgment_uri):

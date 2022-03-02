@@ -22,6 +22,16 @@ class Judgment(xmlmodels.XmlModel):
         "//akn:FRBRdate[@name='judgment']/@date", ignore_extra_nodes=True
     )
     court = xmlmodels.XPathTextField("//akn:proprietary/uk:court")
+    transform_to_html = xmlmodels.XsltField(join(dirname(__file__), "transformations", "judgment3.xsl"))
+
+
+class JudgmentViewModel(xmlmodels.XmlModel):
+    class Meta:
+        namespaces = {
+            "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0",
+            "uk": "https:/judgments.gov.uk/",
+        }
+    transform_to_html = xmlmodels.XsltField(join(dirname(__file__), "transformations", "judgment3.xsl"))
 
 
 class SearchResult:

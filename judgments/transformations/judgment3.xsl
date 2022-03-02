@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-	xpath-default-namespace="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+	xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:math="http://www.w3.org/1998/Math/MathML"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	exclude-result-prefixes="html math xs">
 
-<xsl:import href="page.xsl" />
-<xsl:import href="judgment2.xsl" />
+<!--<xsl:import href="page.xsl" />-->
+<!--xsl:import href="judgment2.xsl" /-->
 
 <xsl:param name="collection" as="xs:string" />
 <xsl:param name="year" as="xs:string" />
@@ -71,10 +71,11 @@
 			</xsl:for-each>
 		</div>
 	</xsl:if>
-	<xsl:apply-templates select="/akomaNtoso/judgment" />
+	<xsl:apply-templates select="/akn:akomaNtoso/akn:judgment" />
 </xsl:template>
 
 <xsl:template name="akomaNtoso">
+    <p>Hello World</p>
 	<xsl:apply-templates />
 </xsl:template>
 
