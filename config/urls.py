@@ -5,30 +5,31 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
+from . import views
 urlpatterns = [
     path(
         "open-justice-licence",
-        TemplateView.as_view(template_name="pages/open_justice_licence.html"),
+        views.OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",
     ),
     path(
         "terms-of-use",
-        TemplateView.as_view(template_name="pages/terms_of_use.html"),
+        views.TermsOfUseView.as_view(),
         name="terms_of_use",
     ),
     path(
         "sources",
-        TemplateView.as_view(template_name="pages/sources.html"),
+        views.SourcesView.as_view(),
         name="sources",
     ),
     path(
         "structured_search",
-        TemplateView.as_view(template_name="pages/structured_search.html"),
+        views.StructuredSearchView.as_view(),
         name="structured_search",
     ),
     path(
         "no_results",
-        TemplateView.as_view(template_name="pages/no_results.html"),
+        views.NoResultsView.as_view(),
         name="no_results",
     ),
     # Django Admin, use {% url 'admin:index' %}

@@ -4,6 +4,7 @@ import re
 import xmltodict
 from django.http import Http404, HttpResponse
 from django.template import loader
+from django.utils.translation import gettext
 from requests_toolbelt.multipart import decoder
 
 import marklogic.api_client
@@ -20,7 +21,9 @@ def detail_new(request, court, year, judgment_date, subdivision=None):
 
 
 def browse(request, court=None, subdivision=None, year=None):
-    context = {}
+    context = {
+        "page_title": gettext("results.search.title")
+    }
     queries = []
 
     if court:
@@ -99,11 +102,15 @@ def index(request):
 
 
 def results(request):
-    context = {}
+    context = {
+        "page_title": gettext("results.search.title")
+    }
+
     try:
         params = request.GET
         query = params.get("query")
         page = params.get("page") if params.get("page") else "1"
+
         if query:
             results = api_client.search_judgments(query, page)
             if type(results) == str:  # Mocked WebLogic response
