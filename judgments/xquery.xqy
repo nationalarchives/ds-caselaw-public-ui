@@ -1,6 +1,13 @@
 xquery version "1.0-ml";
 
 import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
+declare namespace akn = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0";
+declare namespace uk = "https://caselaw.nationalarchives.gov.uk";
+
+declare function uk:get-request-date($name as xs:string) as xs:date? {
+    let $raw := $name
+    return if ($raw castable as xs:date) then xs:date($raw) else ()
+};
 
 declare variable $q as xs:string? external;
 declare variable $party as xs:string? external;
@@ -9,6 +16,11 @@ declare variable $judge as xs:string? external;
 declare variable $order as xs:string? external;
 declare variable $page as xs:integer external;
 declare variable $page-size as xs:integer external;
+declare variable $from as xs:string? external;
+declare variable $to as xs:string? external;
+declare variable $from_date as xs:date? := uk:get-request-date($from);
+declare variable $to_date as xs:date? := uk:get-request-date($to);
+
 let $start as xs:integer := ($page - 1) * $page-size + 1
 
 let $params := map:map()
@@ -19,6 +31,8 @@ let $params := map:map()
     => map:with('page', $page)
     => map:with('page-size', $page-size)
     => map:with('order', $order)
+    => map:with('from',$from)
+    => map:with('to', $to)
 
 let $query1 := if ($q) then cts:word-query($q) else ()
 let $query2 := if ($party) then
@@ -32,7 +46,9 @@ let $query4 := if ($court) then cts:or-query((
     cts:element-value-query(fn:QName('https://caselaw.nationalarchives.gov.uk/akn', 'court'), $court, ('case-insensitive'))
 )) else ()
 let $query5 := if ($judge) then cts:element-word-query(fn:QName('http://docs.oasis-open.org/legaldocml/ns/akn/3.0', 'judge'), $judge) else ()
-let $queries := ( $query1, $query2, $query4, $query5 )
+let $query6 := if (empty($from_date)) then () else cts:path-range-query('akn:FRBRWork/akn:FRBRdate/@date', '>=', $from_date)
+let $query7 := if (empty($to_date)) then () else cts:path-range-query('akn:FRBRWork/akn:FRBRdate/@date', '<=', $to_date)
+let $queries := ( $query1, $query2, $query4, $query5, $query6, $query7 )
 let $query := cts:and-query($queries)
 
 let $show-snippets as xs:boolean := exists(( $query1, $query2, $query5 ))

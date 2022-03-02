@@ -74,11 +74,20 @@ def advanced_search(request):
     judge = params.get("judge")
     party = params.get("party")
     order = params.get("order")
+    date_from = params.get("from")
+    date_to = params.get("to")
     page = params.get("page", 1)
     context = {}
     try:
         results = api_client.advanced_search(
-            q=query, court=court, judge=judge, party=party, page=page, order=order
+            q=query,
+            court=court,
+            judge=judge,
+            party=party,
+            page=page,
+            order=order,
+            date_from=date_from,
+            date_to=date_to,
         )
         multipart_data = decoder.MultipartDecoder.from_response(results)
         model = SearchResults.create_from_string(multipart_data.parts[0].text)
