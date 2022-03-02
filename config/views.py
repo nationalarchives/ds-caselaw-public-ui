@@ -1,5 +1,5 @@
-from django.views.generic import TemplateView
 from django.utils.translation import gettext
+from django.views.generic import TemplateView
 
 
 class TemplateViewWithContext(TemplateView):
@@ -35,4 +35,3 @@ class StructuredSearchView(TemplateViewWithContext):
 
 class NoResultsView(TemplateViewWithContext):
     template_name = "pages/no_results.html"
-

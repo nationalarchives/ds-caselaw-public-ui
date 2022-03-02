@@ -6,6 +6,7 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
 from . import views
+
 urlpatterns = [
     path(
         "open-justice-licence",

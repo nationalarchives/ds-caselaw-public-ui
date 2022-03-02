@@ -21,9 +21,7 @@ def detail_new(request, court, year, judgment_date, subdivision=None):
 
 
 def browse(request, court=None, subdivision=None, year=None):
-    context = {
-        "page_title": gettext("results.search.title")
-    }
+    context = {"page_title": gettext("results.search.title")}
     queries = []
 
     if court:
@@ -102,9 +100,7 @@ def index(request):
 
 
 def results(request):
-    context = {
-        "page_title": gettext("results.search.title")
-    }
+    context = {"page_title": gettext("results.search.title")}
 
     try:
         params = request.GET
