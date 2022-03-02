@@ -145,7 +145,7 @@ class MarklogicApiClient:
             headers,
         )
 
-    def search_with_eval(
+    def advanced_search(
         self, q=None, court=None, judge=None, party=None, page=1
     ) -> requests.Response:
         headers = {

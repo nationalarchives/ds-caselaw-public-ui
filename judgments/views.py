@@ -67,7 +67,7 @@ def detail(request, judgment_uri):
     return HttpResponse(template.render({"xml": judgment_xml}, request))
 
 
-def eval(request):
+def advanced_search(request):
     params = request.GET
     query = params.get("query")
     court = params.get("court")
@@ -76,7 +76,7 @@ def eval(request):
     page = params.get("page", 1)
     context = {}
     try:
-        results = api_client.search_with_eval(
+        results = api_client.advanced_search(
             q=query, court=court, judge=judge, party=party, page=page
         )
         multipart_data = decoder.MultipartDecoder.from_response(results)
