@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% translate "openjusticelicence.title" as page_title %}
-
 {% block title %}
-{{ page_title }} - {% translate "common.findcaselaw" %}
+{% translate "openjusticelicence.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
+  {% translate "openjusticelicence.title" as page_title %}
 
   <header class="page-header">
     {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.url %}

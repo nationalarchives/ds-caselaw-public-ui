@@ -6,7 +6,7 @@
       <li><a href="https://www.nationalarchives.gov.uk">{% translate "common.home" %}</a></li>
       <li><a href="{% url 'home' %}" {% if current == "home"  %}aria-current="page"{% endif %}>{% translate "common.findcaselaw" %}</a></li>
       {% if title and link %}
-        <li><a href="{% url link %}" {% if current == title  %}aria-current="page"{% endif %}>{% translate title %}</a></li>
+        <li><a href="{{ link }}" {% if current == title  %}aria-current="page"{% endif %}>{{ title }}</a></li>
       {% endif %}
     </ol>
   </nav>

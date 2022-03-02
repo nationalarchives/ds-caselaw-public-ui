@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% blocktranslate data=form.search_term.data asvar no_results %}No results for '{{ data }}'{% endblocktranslate %}
 {% block content %}
-  {% include 'includes/breadcrumbs.html' with title=no_results link=request.url current=no_results %}
-  
+  {% blocktranslate data=form.search_term.data asvar no_results %}No results for '{{ data }}'{% endblocktranslate %}
+
+  {% include 'includes/breadcrumbs.html' with title=no_results link=request.path current=no_results %}
+
   <div class="results">
     <div class="results__container">
       <h1>{% translate "search.noresults" %}</h1>

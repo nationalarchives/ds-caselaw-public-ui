@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% translate "search.title" as page_title %}
 {% block title %}
-{{ page_title }} - {% translate "commom.findcaselaw" %}
+{% translate "search.title" %} - {% translate "commom.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
+  {% translate "search.title" as page_title %}
+
   <header class="page-header">
-    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.url %}
+    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
     {% include 'includes/logo.html' %}
   </header>
 

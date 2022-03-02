@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-02 09:21+0000\n"
+"POT-Creation-Date: 2022-03-02 09:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "common.findcaselaw"
 msgstr "Find case law"
 
 #: ds_judgements_public_ui/templates/judgment/results.html:3
-msgid "searchresults.title"
+msgid "results.search.title"
 msgstr "Search results"
 
 #: ds_judgements_public_ui/templates/pages/home.html:20
@@ -67,10 +67,6 @@ msgstr "Open Justice Licence"
 #: ds_judgements_public_ui/templates/pages/sources.html:4
 msgid "judgmentsources.title"
 msgstr "Judgment Sources"
-
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:4
-msgid "terms.title"
-msgstr "Terms of use"
 
 #: ds_judgements_public_ui/templates/pages/structured_search.html:4
 msgid "search.title"
