@@ -146,7 +146,7 @@ class MarklogicApiClient:
         )
 
     def advanced_search(
-        self, q=None, court=None, judge=None, party=None, page=1
+        self, q=None, court=None, judge=None, party=None, order=None, page=1
     ) -> requests.Response:
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
@@ -154,7 +154,8 @@ class MarklogicApiClient:
         }
         xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xquery.xqy")
         vars = f'{{"court":"{str(court or "")}","judge":"{str(judge or "")}",\
-        "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}"}}'
+        "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}",\
+        "order":"{str(order or "")}"}}'
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": vars,

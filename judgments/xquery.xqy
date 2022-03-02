@@ -6,6 +6,7 @@ declare variable $q as xs:string? external;
 declare variable $party as xs:string? external;
 declare variable $court as xs:string? external;
 declare variable $judge as xs:string? external;
+declare variable $order as xs:string? external;
 declare variable $page as xs:integer external;
 declare variable $page-size as xs:integer external;
 let $start as xs:integer := ($page - 1) * $page-size + 1
@@ -17,6 +18,7 @@ let $params := map:map()
     => map:with('judge', $judge)
     => map:with('page', $page)
     => map:with('page-size', $page-size)
+    => map:with('order', $order)
 
 let $query1 := if ($q) then cts:word-query($q) else ()
 let $query2 := if ($party) then
@@ -35,6 +37,17 @@ let $query := cts:and-query($queries)
 
 let $show-snippets as xs:boolean := exists(( $query1, $query2, $query5 ))
 
+let $sort-order := if ($order = 'date') then
+    <sort-order xmlns="http://marklogic.com/appservices/search" direction="ascending">
+        <path-index xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">akn:FRBRWork/akn:FRBRdate/@date</path-index>
+    </sort-order>
+else if ($order = '-date') then
+    <sort-order xmlns="http://marklogic.com/appservices/search" direction="descending">
+        <path-index xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">akn:FRBRWork/akn:FRBRdate/@date</path-index>
+    </sort-order>
+else
+    ()
+
 let $transform-results := if ($show-snippets) then
     <transform-results apply="snippet">
         <preferred-matches>
@@ -45,6 +58,7 @@ else
     <transform-results apply="empty-snippet" />
 
 let $search-options := <options xmlns="http://marklogic.com/appservices/search">
+    { $sort-order }
     <extract-document-data xmlns:akn="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
         <extract-path>//akn:FRBRWork/akn:FRBRname</extract-path>
         <extract-path>//akn:neutralCitation</extract-path>
