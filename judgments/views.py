@@ -1,6 +1,5 @@
 import math
 import re
-from datetime import datetime
 
 import xmltodict
 from django.http import Http404, HttpResponse
@@ -17,6 +16,7 @@ from marklogic.api_client import (
 )
 
 from . import utils
+
 
 def detail_new(request, court, year, judgment_date, subdivision=None):
     return HttpResponse(court + subdivision + str(year) + judgment_date)
@@ -79,7 +79,7 @@ def advanced_search(request):
         "party": params.get("party"),
         "order": params.get("order"),
         "from": utils.format_date(params.get("from")),
-        "to": utils.format_date(params.get("to"))
+        "to": utils.format_date(params.get("to")),
     }
     page = params.get("page", 1)
     context = {}
@@ -103,7 +103,9 @@ def advanced_search(request):
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
 
-        context["query_string"] = "&".join([f'{key}={query_params[key] or ""}' for key in query_params])
+        context["query_string"] = "&".join(
+            [f'{key}={query_params[key] or ""}' for key in query_params]
+        )
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
