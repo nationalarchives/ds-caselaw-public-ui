@@ -1,5 +1,6 @@
 import math
 import re
+from datetime import datetime
 
 import xmltodict
 from django.http import Http404, HttpResponse
@@ -75,8 +76,8 @@ def advanced_search(request):
     judge = params.get("judge")
     party = params.get("party")
     order = params.get("order")
-    date_from = params.get("from")
-    date_to = params.get("to")
+    date_from = datetime.strptime(params.get("from"), '%Y-%m-%d').strftime('%d-%m-%Y') if params.get("from") else None
+    date_to = datetime.strptime(params.get("to"), '%Y-%m-%d').strftime('%d-%m-%Y') if params.get("to") else None
     page = params.get("page", 1)
     context = {}
     try:
