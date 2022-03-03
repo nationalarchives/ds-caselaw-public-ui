@@ -16,6 +16,7 @@ from marklogic.api_client import (
     api_client,
 )
 
+from . import utils
 
 def detail_new(request, court, year, judgment_date, subdivision=None):
     return HttpResponse(court + subdivision + str(year) + judgment_date)
@@ -71,25 +72,27 @@ def detail(request, judgment_uri):
 
 def advanced_search(request):
     params = request.GET
-    query = params.get("query")
-    court = params.get("court")
-    judge = params.get("judge")
-    party = params.get("party")
-    order = params.get("order")
-    date_from = datetime.strptime(params.get("from"), '%Y-%m-%d').strftime('%d-%m-%Y') if params.get("from") else None
-    date_to = datetime.strptime(params.get("to"), '%Y-%m-%d').strftime('%d-%m-%Y') if params.get("to") else None
+    query_params = {
+        "query": params.get("query"),
+        "court": params.get("court"),
+        "judge": params.get("judge"),
+        "party": params.get("party"),
+        "order": params.get("order"),
+        "from": utils.format_date(params.get("from")),
+        "to": utils.format_date(params.get("to"))
+    }
     page = params.get("page", 1)
     context = {}
     try:
         results = api_client.advanced_search(
-            q=query,
-            court=court,
-            judge=judge,
-            party=party,
+            q=query_params["query"],
+            court=query_params["court"],
+            judge=query_params["judge"],
+            party=query_params["party"],
             page=page,
-            order=order,
-            date_from=date_from,
-            date_to=date_to,
+            order=query_params["order"],
+            date_from=query_params["from"],
+            date_to=query_params["to"],
         )
         multipart_data = decoder.MultipartDecoder.from_response(results)
         model = SearchResults.create_from_string(multipart_data.parts[0].text)
@@ -99,9 +102,9 @@ def advanced_search(request):
         ]
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
-        context[
-            "query_string"
-        ] = f'query={str(query or "")}&court={str(court or "")}&party={str(party or "")}&judge={str(judge or "")}'
+
+        context["query_string"] = "&".join([f'{key}={query_params[key] or ""}' for key in query_params])
+
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
