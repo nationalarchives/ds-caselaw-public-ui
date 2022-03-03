@@ -61,11 +61,14 @@ def browse(request, court=None, subdivision=None, year=None):
 
 def detail(request, judgment_uri):
     try:
-        judgment_xml = api_client.get_judgment_xml(judgment_uri)
+        judgment_uri = f"/{judgment_uri}.xml"
+        results = api_client.eval_xslt(judgment_uri)
+        multipart_data = decoder.MultipartDecoder.from_response(results)
+        judgment = multipart_data.parts[0].text
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgment_xml}, request))
+    return HttpResponse(template.render({"xml": judgment}, request))
 
 
 def xslt(request):
