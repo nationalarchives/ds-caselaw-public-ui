@@ -68,6 +68,17 @@ def detail(request, judgment_uri):
     return HttpResponse(template.render({"xml": judgment_xml}, request))
 
 
+def xslt(request):
+    params = request.GET
+    judgment_uri = params.get("judgment_uri")
+    try:
+        judgment_xml = api_client.eval_xslt(judgment_uri)
+    except MarklogicResourceNotFoundError:
+        raise Http404("Judgment was not found")
+    template = loader.get_template("judgment/detail.html")
+    return HttpResponse(template.render({"xml": judgment_xml.text}, request))
+
+
 def advanced_search(request):
     params = request.GET
     query = params.get("query")

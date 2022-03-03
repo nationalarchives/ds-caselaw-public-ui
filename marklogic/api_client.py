@@ -176,6 +176,24 @@ class MarklogicApiClient:
         self._raise_for_status(response)
         return response
 
+    def eval_xslt(self, judgment_uri) -> requests.Response:
+        headers = {
+            "Content-type": "application/x-www-form-urlencoded",
+            "Accept": "application/xml",
+        }
+        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xslt.xqy")
+        data = {
+            "xquery": Path(xquery_path).read_text(),
+            "vars": f'{{"uri":"{judgment_uri}"}}',
+        }
+        path = "LATEST/eval?database=Judgments"
+        response = self.session.request(
+            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+        )
+        # Raise relevant exception for an erroneous response
+        self._raise_for_status(response)
+        return response
+
 
 class MockAPIClient:
 
