@@ -24,6 +24,7 @@
     {% include 'includes/gtm/gtm_head.html' %}
 </head>
 <body>
+{% include 'includes/cookie_consent/cookie_banner.html' %}
 <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
 {% include 'includes/gtm/gtm_body.html' %}
 {% include 'includes/phase_banner.html' %}
@@ -31,6 +32,7 @@
   {% include 'includes/breadcrumbs.html' with current=context.page_title title=context.page_title link=request.path %}
   {% include 'includes/logo.html' %}
 </header>
+<a id="skip-to-main-content" href="#main-content">Skip to Main Content</a>
 {% include 'includes/judgment_text_toolbar.html' %}
 <main id="main-content">
     {% block content %}
