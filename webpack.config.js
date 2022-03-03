@@ -1,11 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   devtool: false,
-  entry: './ds_judgements_public_ui/static/js/src/app.js',
+  entry: {
+    app: './ds_judgements_public_ui/static/js/src/app.js',
+    cookie_consent: './ds_judgements_public_ui/static/js/cookie_consent/src/ds-cookie-consent.js'
+  },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'ds_judgements_public_ui/static/js/dist'),
   },
   module: {
