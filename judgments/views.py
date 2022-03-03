@@ -68,6 +68,45 @@ def detail(request, judgment_uri):
     return HttpResponse(template.render({"xml": judgment_xml}, request))
 
 
+def advanced_search(request):
+    params = request.GET
+    query = params.get("query")
+    court = params.get("court")
+    judge = params.get("judge")
+    party = params.get("party")
+    order = params.get("order")
+    date_from = params.get("from")
+    date_to = params.get("to")
+    page = params.get("page", 1)
+    context = {}
+    try:
+        results = api_client.advanced_search(
+            q=query,
+            court=court,
+            judge=judge,
+            party=party,
+            page=page,
+            order=order,
+            date_from=date_from,
+            date_to=date_to,
+        )
+        multipart_data = decoder.MultipartDecoder.from_response(results)
+        model = SearchResults.create_from_string(multipart_data.parts[0].text)
+
+        context["search_results"] = [
+            SearchResult.create_from_node(result) for result in model.results
+        ]
+        context["total"] = model.total
+        context["paginator"] = paginator(int(page), model.total)
+        context[
+            "query_string"
+        ] = f'query={str(query or "")}&court={str(court or "")}&party={str(party or "")}&judge={str(judge or "")}'
+    except MarklogicResourceNotFoundError:
+        raise Http404("Search failed")  # TODO: This should be something else!
+    template = loader.get_template("judgment/results.html")
+    return HttpResponse(template.render({"context": context}, request))
+
+
 def detail_xml(_request, judgment_uri):
     try:
         judgment_xml = api_client.get_judgment_xml(judgment_uri)
@@ -108,7 +147,7 @@ def results(request):
         page = params.get("page") if params.get("page") else "1"
 
         if query:
-            results = api_client.search_judgments(query, page)
+            results = api_client.basic_search(query, page)
             if type(results) == str:  # Mocked WebLogic response
                 xml_results = xmltodict.parse(results)
                 total = xml_results["search:response"]["@total"]
@@ -124,7 +163,7 @@ def results(request):
                 ]
                 context["total"] = model.total
                 context["paginator"] = paginator(int(page), model.total)
-                context["query"] = query
+                context["query_string"] = f"query={query}"
         else:
             results = api_client.get_judgments_index(page)
             if type(results) == str:  # Mocked WebLogic response

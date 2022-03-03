@@ -137,13 +137,44 @@ class MarklogicApiClient:
             body=xml,
         )
 
-    def search_judgments(self, query: str, page: str) -> requests.Response:
+    def basic_search(self, query: str, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         headers = {"Accept": "text/xml"}
         return self.GET(
             f"LATEST/search/?start={start}&q={query}&pageLength={RESULTS_PER_PAGE}",
             headers,
         )
+
+    def advanced_search(
+        self,
+        q=None,
+        court=None,
+        judge=None,
+        party=None,
+        order=None,
+        date_from=None,
+        date_to=None,
+        page=1,
+    ) -> requests.Response:
+        headers = {
+            "Content-type": "application/x-www-form-urlencoded",
+            "Accept": "multipart/mixed",
+        }
+        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xquery.xqy")
+        vars = f'{{"court":"{str(court or "")}","judge":"{str(judge or "")}",\
+        "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}",\
+        "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}"}}'
+        data = {
+            "xquery": Path(xquery_path).read_text(),
+            "vars": vars,
+        }
+        path = "LATEST/eval?database=Judgments"
+        response = self.session.request(
+            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+        )
+        # Raise relevant exception for an erroneous response
+        self._raise_for_status(response)
+        return response
 
 
 class MockAPIClient:

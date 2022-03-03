@@ -150,6 +150,17 @@ machine in `docker/db/backup`
 Once Marklogic is set up, change `MARKLOGIC_MOCK_REQUESTS` to False and the application will read data from Marklogic
 instead of the file system.
 
+### Adding indexes
+
+In theory the restore from backup should create indexes in the database. If it does not, you will need to create them
+manually.
+
+In the Marklogic admin interface, first create a namespace for the index. Go to `Databases -> Judgments -> Path namespaces`
+and create a new namespace with the prefix `akn` and url `http://docs.oasis-open.org/legaldocml/ns/akn/3.0`
+
+Then, go to `Databases -> Judgments -> Path Range indexes` and create a new index with the scalar type of `date` and
+the path expression of `akn:FRBRWork/akn:FRBRdate/@date`. You can leave the other options as the defaults.
+
 ### Marklogic URL Guide
 
 - http://localhost:8000/ this is the query interface where you can browse documents in the `Judgments` database.
