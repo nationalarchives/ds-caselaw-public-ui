@@ -79,7 +79,7 @@ def advanced_search(request):
             page=page,
             order=query_params["order"],
             date_from=query_params["from"],
-            date_to=query_params["to"]
+            date_to=query_params["to"],
         )
 
         context["search_results"] = [
