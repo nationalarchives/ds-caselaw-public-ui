@@ -16,10 +16,6 @@ from marklogic.api_client import (
 )
 
 
-def detail_new(request, court, year, judgment_date, subdivision=None):
-    return HttpResponse(court + subdivision + str(year) + judgment_date)
-
-
 def browse(request, court=None, subdivision=None, year=None):
     context = {"page_title": gettext("results.search.title")}
     queries = []
@@ -60,26 +56,20 @@ def browse(request, court=None, subdivision=None, year=None):
 
 
 def detail(request, judgment_uri):
+    context = {}
     try:
-        judgment_uri = f"/{judgment_uri}.xml"
         results = api_client.eval_xslt(judgment_uri)
+        xml_results = api_client.get_judgment_xml(judgment_uri)
         multipart_data = decoder.MultipartDecoder.from_response(results)
         judgment = multipart_data.parts[0].text
+        model = Judgment.create_from_string(xml_results)
+        context["judgment"] = judgment
+        context["page_title"] = model.metadata_name
+        context["judgment_uri"] = judgment_uri
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgment}, request))
-
-
-def xslt(request):
-    params = request.GET
-    judgment_uri = params.get("judgment_uri")
-    try:
-        judgment_xml = api_client.eval_xslt(judgment_uri)
-    except MarklogicResourceNotFoundError:
-        raise Http404("Judgment was not found")
-    template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgment_xml.text}, request))
+    return HttpResponse(template.render({"context": context}, request))
 
 
 def advanced_search(request):
@@ -123,7 +113,8 @@ def advanced_search(request):
 
 def detail_xml(_request, judgment_uri):
     try:
-        judgment_xml = api_client.get_judgment_xml(judgment_uri)
+        uri = f"/{judgment_uri}.xml"
+        judgment_xml = api_client.get_judgment_xml(uri)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     response = HttpResponse(judgment_xml, content_type="application/xml")

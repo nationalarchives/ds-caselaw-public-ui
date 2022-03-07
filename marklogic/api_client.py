@@ -177,6 +177,7 @@ class MarklogicApiClient:
         return response
 
     def eval_xslt(self, judgment_uri) -> requests.Response:
+        uri = f"/{judgment_uri.lstrip('/')}.xml"
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "application/xml",
@@ -184,7 +185,7 @@ class MarklogicApiClient:
         xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xslt.xqy")
         data = {
             "xquery": Path(xquery_path).read_text(),
-            "vars": f'{{"uri":"{judgment_uri}"}}',
+            "vars": f'{{"uri":"{uri}"}}',
         }
         path = "LATEST/eval?database=Judgments"
         response = self.session.request(

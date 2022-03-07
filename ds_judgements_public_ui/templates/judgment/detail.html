@@ -1,8 +1,8 @@
 {% extends "layout_judgment_html.html" %}
 {% block content %}
-  {% if xml %}
+  {% if context.judgment %}
     {% autoescape off %}
-      {{ xml }}
+      {{ context.judgment }}
     {% endautoescape %}
   {% else %}
     {{ content }}
