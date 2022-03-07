@@ -19,40 +19,22 @@ from . import utils
 
 
 def browse(request, court=None, subdivision=None, year=None):
-    context = {"page_title": gettext("results.search.title")}
-    queries = []
+    court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
+    page = request.GET.get("page", 1)
+    context = {}
 
-    if court:
-        queries.append(court)
-    if subdivision:
-        queries.append(subdivision)
-    if year:
-        queries.append(str(year))
-
-    query = " AND ".join(queries)
-
-    page = request.GET.get("page") if request.GET.get("page") else "1"
     try:
-        results = api_client.search_judgments(query, page)
-        if type(results) == str:  # Mocked WebLogic response
-            xml_results = xmltodict.parse(results)
-            total = xml_results["search:response"]["@total"]
-            search_results = render_mocked_results(results, with_matches=True)
-            context["search_results"] = search_results
-            context["total"] = total
-            context["paginator"] = paginator(int(page), total)
-        else:
-            model = SearchResults.create_from_string(results.text)
-
-            context["search_results"] = [
-                SearchResult.create_from_node(result) for result in model.results
-            ]
-            context["total"] = model.total
-            context["paginator"] = paginator(int(page), model.total)
-            context["query"] = query
-    except MarklogicAPIError:
-        raise Http404("Search error")
-
+        model = perform_advanced_search(
+            court=court_query if court_query else None,
+        )
+        context["search_results"] = [
+            SearchResult.create_from_node(result) for result in model.results
+        ]
+        context["total"] = model.total
+        context["paginator"] = paginator(int(page), model.total)
+        context["query_string"] = f'court={str(court or "")}'
+    except MarklogicResourceNotFoundError:
+        raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
     return HttpResponse(template.render({"context": context}, request))
 
@@ -87,9 +69,10 @@ def advanced_search(request):
     }
     page = params.get("page", 1)
     context = {}
+
     try:
-        results = api_client.advanced_search(
-            q=query_params["query"],
+        model = perform_advanced_search(
+            query=query_params["query"],
             court=query_params["court"],
             judge=query_params["judge"],
             party=query_params["party"],
@@ -98,8 +81,6 @@ def advanced_search(request):
             date_from=query_params["from"],
             date_to=query_params["to"],
         )
-        multipart_data = decoder.MultipartDecoder.from_response(results)
-        model = SearchResults.create_from_string(multipart_data.parts[0].text)
 
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
@@ -267,3 +248,27 @@ def paginator(current_page, total):
 
 def trim_leading_slash(uri):
     return re.sub("^/|/$", "", uri)
+
+
+def perform_advanced_search(
+    query=None,
+    court=None,
+    judge=None,
+    party=None,
+    order=None,
+    date_from=None,
+    date_to=None,
+    page=1,
+):
+    response = api_client.advanced_search(
+        q=query,
+        court=court,
+        judge=judge,
+        party=party,
+        page=page,
+        order=order,
+        date_from=date_from,
+        date_to=date_to,
+    )
+    multipart_data = decoder.MultipartDecoder.from_response(response)
+    return SearchResults.create_from_string(multipart_data.parts[0].text)
