@@ -19,22 +19,22 @@ from . import utils
 
 
 def browse(request, court=None, subdivision=None, year=None):
-    court_query = "/".join(filter(lambda x : x is not None, [court, subdivision]))
+    court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
     page = request.GET.get('page', 1)
     context = {}
 
     try:
-       model = perform_advanced_search(
-           court=court_query if court_query else None,
-       )
-       context["search_results"] = [
-           SearchResult.create_from_node(result) for result in model.results
-       ]
-       context["total"] = model.total
-       context["paginator"] = paginator(int(page), model.total)
-       context[
-           "query_string"
-       ] = f'court={str(court or "")}'
+        model = perform_advanced_search(
+            court=court_query if court_query else None,
+        )
+        context["search_results"] = [
+            SearchResult.create_from_node(result) for result in model.results
+        ]
+        context["total"] = model.total
+        context["paginator"] = paginator(int(page), model.total)
+        context[
+            "query_string"
+        ] = f'court={str(court or "")}'
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
