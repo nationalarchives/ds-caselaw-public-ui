@@ -58,8 +58,7 @@ def browse(request, court=None, subdivision=None, year=None):
 def detail(request, judgment_uri):
     context = {}
     try:
-        full_uri = f"/{judgment_uri}.xml"
-        results = api_client.eval_xslt(full_uri)
+        results = api_client.eval_xslt(judgment_uri)
         xml_results = api_client.get_judgment_xml(judgment_uri)
         multipart_data = decoder.MultipartDecoder.from_response(results)
         judgment = multipart_data.parts[0].text
