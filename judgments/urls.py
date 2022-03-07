@@ -8,7 +8,6 @@ register_converter(converters.CourtConverter, "court")
 register_converter(converters.SubdivisionConverter, "subdivision")
 
 urlpatterns = [
-    path("judgments/xslt", views.xslt, name="xslt"),
     path("<court:court>", views.browse, name="browse"),
     path("<yyyy:year>", views.browse, name="browse"),
     path("<court:court>/<yyyy:year>", views.browse, name="browse"),

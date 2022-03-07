@@ -16,10 +16,6 @@ from marklogic.api_client import (
 )
 
 
-def detail_new(request, court, year, judgment_date, subdivision=None):
-    return HttpResponse(court + subdivision + str(year) + judgment_date)
-
-
 def browse(request, court=None, subdivision=None, year=None):
     context = {"page_title": gettext("results.search.title")}
     queries = []
@@ -75,17 +71,6 @@ def detail(request, judgment_uri):
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
     return HttpResponse(template.render({"context": context}, request))
-
-
-def xslt(request):
-    params = request.GET
-    judgment_uri = params.get("judgment_uri")
-    try:
-        judgment_xml = api_client.eval_xslt(judgment_uri)
-    except MarklogicResourceNotFoundError:
-        raise Http404("Judgment was not found")
-    template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgment_xml.text}, request))
 
 
 def advanced_search(request):
