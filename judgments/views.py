@@ -25,8 +25,12 @@ def browse(request, court=None, subdivision=None, year=None):
     try:
         model = perform_advanced_search(
             court=court_query if court_query else None,
-            date_from=datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d") if year else None,
-            date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d") if year else None
+            date_from=datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
+            if year
+            else None,
+            date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
+            if year
+            else None,
         )
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
