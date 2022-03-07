@@ -60,15 +60,21 @@ def browse(request, court=None, subdivision=None, year=None):
 
 
 def detail(request, judgment_uri):
+    context = {}
     try:
-        judgment_uri = f"/{judgment_uri}.xml"
-        results = api_client.eval_xslt(judgment_uri)
+        full_uri = f"/{judgment_uri}.xml"
+        results = api_client.eval_xslt(full_uri)
+        xml_results = api_client.get_judgment_xml(judgment_uri)
         multipart_data = decoder.MultipartDecoder.from_response(results)
         judgment = multipart_data.parts[0].text
+        model = Judgment.create_from_string(xml_results)
+        context["judgment"] = judgment
+        context["page_title"] = model.metadata_name
+        context["judgment_uri"] = judgment_uri
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgment}, request))
+    return HttpResponse(template.render({"context": context}, request))
 
 
 def xslt(request):
@@ -123,7 +129,8 @@ def advanced_search(request):
 
 def detail_xml(_request, judgment_uri):
     try:
-        judgment_xml = api_client.get_judgment_xml(judgment_uri)
+        uri = f"/{judgment_uri}.xml"
+        judgment_xml = api_client.get_judgment_xml(uri)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     response = HttpResponse(judgment_xml, content_type="application/xml")

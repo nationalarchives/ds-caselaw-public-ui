@@ -84,3 +84,19 @@ msgstr "Terms of use"
 #~| msgid "common.findcaselaw"
 #~ msgid "findcaselaw"
 #~ msgstr "Find case law"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:9
+msgid "judgment.downloadasxml"
+msgstr "Download as XML"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:5
+msgid "judgment.back"
+msgstr "Back to search results"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_source.html:3
+msgid "judgment.source_by"
+msgstr "This judgment has been provided to The National Archives by "
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_source.html:4
+msgid "judgment.bailii"
+msgstr "The British and Irish Legal Information Institute"
