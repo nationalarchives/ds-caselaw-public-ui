@@ -161,6 +161,17 @@ and create a new namespace with the prefix `akn` and url `http://docs.oasis-open
 Then, go to `Databases -> Judgments -> Path Range indexes` and create a new index with the scalar type of `date` and
 the path expression of `akn:FRBRWork/akn:FRBRdate/@date`. You can leave the other options as the defaults.
 
+### Adding the XSLT transformation template
+
+The XSLT which transforms the LegalDocML documents into HTML needs to be stored on Marklogic itself. To do this:
+
+1. Open the Marklogic Query console at http://localhost:8000/
+2. Copy the text in `judgments/boostrap/set_up_xslts.xqy` and paste it into the XQuery console
+3. Run it against the database `Modules` using the `XQuery` query type (see the dropdown options in the UI to configure
+   these)
+4. Once the script has run, click `Explore` to ensure the XSLT is in place, it should be called
+   `/judgments/xslts/judgment2.xsl`
+
 ### Marklogic URL Guide
 
 - http://localhost:8000/ this is the query interface where you can browse documents in the `Judgments` database.
