@@ -1,3 +1,4 @@
+import datetime
 import math
 import re
 
@@ -15,8 +16,6 @@ from marklogic.api_client import (
     api_client,
 )
 
-from . import utils
-
 
 def browse(request, court=None, subdivision=None, year=None):
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
@@ -26,13 +25,14 @@ def browse(request, court=None, subdivision=None, year=None):
     try:
         model = perform_advanced_search(
             court=court_query if court_query else None,
+            date_from=datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d") if year else None,
+            date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d") if year else None
         )
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
-        context["query_string"] = f'court={str(court or "")}'
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -64,8 +64,8 @@ def advanced_search(request):
         "judge": params.get("judge"),
         "party": params.get("party"),
         "order": params.get("order"),
-        "from": utils.format_date(params.get("from")),
-        "to": utils.format_date(params.get("to")),
+        "from": params.get("from"),
+        "to": params.get("to"),
     }
     page = params.get("page", 1)
     context = {}
