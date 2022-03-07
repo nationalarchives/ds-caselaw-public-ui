@@ -20,7 +20,7 @@ from . import utils
 
 def browse(request, court=None, subdivision=None, year=None):
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
-    page = request.GET.get('page', 1)
+    page = request.GET.get("page", 1)
     context = {}
 
     try:
@@ -32,9 +32,7 @@ def browse(request, court=None, subdivision=None, year=None):
         ]
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
-        context[
-            "query_string"
-        ] = f'court={str(court or "")}'
+        context["query_string"] = f'court={str(court or "")}'
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -81,7 +79,7 @@ def advanced_search(request):
             page=page,
             order=query_params["order"],
             date_from=query_params["from"],
-            date_to=query_params["to"],
+            date_to=query_params["to"]
         )
 
         context["search_results"] = [
@@ -252,8 +250,16 @@ def trim_leading_slash(uri):
     return re.sub("^/|/$", "", uri)
 
 
-def perform_advanced_search(query=None, court=None, judge=None, party=None, order=None, date_from=None, date_to=None,
-                            page=1):
+def perform_advanced_search(
+    query=None,
+    court=None,
+    judge=None,
+    party=None,
+    order=None,
+    date_from=None,
+    date_to=None,
+    page=1,
+):
     response = api_client.advanced_search(
         q=query,
         court=court,
