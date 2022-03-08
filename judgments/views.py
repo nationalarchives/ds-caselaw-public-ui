@@ -115,14 +115,10 @@ def detail_xml(_request, judgment_uri):
 def index(request):
     context = {}
     try:
-        results = api_client.get_judgments_index(1)
-        if type(results) == str:  # Mocked WebLogic response
-            search_results = render_mocked_results(results)
-        else:
-            multipart_data = decoder.MultipartDecoder.from_response(results)
-
-            search_results = format_index_results(multipart_data)
-
+        model = perform_advanced_search(order="-date")
+        search_results = [
+            SearchResult.create_from_node(result) for result in model.results
+        ]
         context["recent_judgments"] = search_results
 
     except MarklogicResourceNotFoundError:
