@@ -100,3 +100,15 @@ msgstr "This judgment has been provided to The National Archives by "
 #: ds_judgements_public_ui/templates/includes/judgment_text_source.html:4
 msgid "judgment.bailii"
 msgstr "The British and Irish Legal Information Institute"
+
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html:28
+msgid "judgments.allrecent"
+msgstr "See all recent judgments"
+
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html:20
+msgid "judgments.date"
+msgstr "Date:"
+
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html:23
+msgid "judgments.court"
+msgstr "Court:"
