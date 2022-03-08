@@ -1,3 +1,4 @@
+{% load static i18n %}
 <div class="recent-judgments">
   <div class="recent-judgments__container">
     <h2 id="recently-published-judgments" class="recent-judgments__header">Recently published judgments</h2>
@@ -16,15 +17,15 @@
           </span>
           <span>
             <span class="recent-judgments__date">
-              Date: {{ item.date }}
+              {% translate "judgments.date" %} {{ item.date }}
             </span>
             <span class="recent-judgments__court">
-              Court: {{ item.court }}
+              {% translate "judgments.court" %} {{ item.court }}
             </span>
           </span>
         </li>
       {% endfor %}
     </ul>
-    <p class="recent-judgments__more-info"><a href="{% url 'results' %}?order_by=date_dec">See all recent judgments</a></p>
+    <p class="recent-judgments__more-info"><a href="{% url 'results' %}">{% translate "judgments.allrecent" %}</a></p>
   </div>
 </div>
