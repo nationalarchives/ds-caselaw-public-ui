@@ -104,8 +104,7 @@ def advanced_search(request):
 
 def detail_xml(_request, judgment_uri):
     try:
-        uri = f"/{judgment_uri}.xml"
-        judgment_xml = api_client.get_judgment_xml(uri)
+        judgment_xml = api_client.get_judgment_xml(judgment_uri)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     response = HttpResponse(judgment_xml, content_type="application/xml")
