@@ -165,15 +165,15 @@ def results(request):
                 context["total"] = total
                 context["paginator"] = paginator(int(page), total)
             else:
-                multipart_data = decoder.MultipartDecoder.from_response(results)
+                model = perform_advanced_search(order="-date", page=page)
+                search_results = [
+                    SearchResult.create_from_node(result) for result in model.results
+                ]
+                context["recent_judgments"] = search_results
 
-                search_metadata = xmltodict.parse(multipart_data.parts[0].text)
-                total = search_metadata["search:response"]["@total"]
-                search_results = format_index_results(multipart_data)
-
-                context["total"] = total
+                context["total"] = model.total
                 context["search_results"] = search_results
-                context["paginator"] = paginator(int(page), total)
+                context["paginator"] = paginator(int(page), model.total)
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -198,34 +198,6 @@ def render_mocked_results(results, with_matches=False):
         )
         for result in search_results
     ]
-    return search_results
-
-
-def format_index_results(multipart_data):
-    search_results = []
-
-    for part in multipart_data.parts[1::]:
-        metadata = part.headers
-        content_disposition = metadata[b"Content-Disposition"].decode("utf-8")
-        filename = re.search('filename="([^"]*)"', content_disposition).group(1)
-        filename = filename.split(".xml")[0]
-
-        model = Judgment.create_from_string(part.text)
-
-        neutral_citation = model.neutral_citation
-        name = model.metadata_name
-        date = model.date
-        court = model.court
-
-        search_results.append(
-            SearchResult(
-                uri=trim_leading_slash(filename),
-                neutral_citation=neutral_citation,
-                name=name,
-                court=court,
-                date=date,
-            )
-        )
     return search_results
 
 
