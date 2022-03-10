@@ -51,15 +51,12 @@
 
   &__container {
     @include container;
-    @media (min-width: $grid__breakpoint-medium) {
-      text-align: center;
-    }
+    text-align: center;
   }
 
   &__logo {
     height: 5.5rem;
-    margin: calc($spacer__unit / 2) auto 0;
-    max-width: 80%;
+    margin: calc($spacer__unit / 2) auto;
   }
 
   &__logo-link {
