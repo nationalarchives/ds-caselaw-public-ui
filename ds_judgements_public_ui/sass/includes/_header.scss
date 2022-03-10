@@ -16,7 +16,7 @@
       font-size: 0.9rem;
 
       a {
-        color: $color__white;
+        @include link-on-dark-bg;
       }
     }
 
