@@ -42,7 +42,7 @@ let $query2 := if ($party) then
     ))
 else ()
 let $query4 := if ($court) then cts:or-query((
-    cts:element-value-query(fn:QName('https:/judgments.gov.uk/', 'court'), $court, ('case-insensitive')),
+    cts:element-value-query(fn:QName('https://judgments.gov.uk/', 'court'), $court, ('case-insensitive')),
     cts:element-value-query(fn:QName('https://caselaw.nationalarchives.gov.uk/akn', 'court'), $court, ('case-insensitive')),
     cts:element-attribute-word-query(
     fn:QName('http://docs.oasis-open.org/legaldocml/ns/akn/3.0', 'FRBRuri'), xs:QName('value'), $court, ('case-insensitive')
