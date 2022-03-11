@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   devtool: false,
   entry: './ds_judgements_public_ui/static/js/src/app.js',
   output: {
