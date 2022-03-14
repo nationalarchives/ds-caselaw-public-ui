@@ -160,7 +160,9 @@ class MarklogicApiClient:
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "multipart/mixed",
         }
-        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xquery.xqy")
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "advanced_search.xqy"
+        )
         vars = f'{{"court":"{str(court or "")}","judge":"{str(judge or "")}",\
         "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}",\
         "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}"}}'
@@ -182,7 +184,9 @@ class MarklogicApiClient:
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "application/xml",
         }
-        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xslt.xqy")
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "xslt_transform.xqy"
+        )
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": f'{{"uri":"{uri}"}}',
