@@ -255,11 +255,6 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-# marklogic
-# ------------------------------------------------------------------------------
-# where to look for fixtures when env("MARKLOGIC_MOCK_REQUESTS") = 'true'
-MARKLOGIC_FIXTURES_DIR = str(ROOT_DIR / "judgments" / "fixtures")
-
 # django-allauth
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
