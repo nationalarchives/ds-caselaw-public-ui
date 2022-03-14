@@ -45,6 +45,9 @@ def browse(request, court=None, subdivision=None, year=None):
 
 def detail(request, judgment_uri):
     context = {}
+    is_published = published(judgment_uri)
+    if is_published is False:
+        raise Http404("Judgment was not found")
     try:
         results = api_client.eval_xslt(judgment_uri)
         xml_results = api_client.get_judgment_xml(judgment_uri)
@@ -103,6 +106,9 @@ def advanced_search(request):
 
 
 def detail_xml(_request, judgment_uri):
+    is_published = published(judgment_uri)
+    if is_published is False:
+        raise Http404("Judgment was not found")
     try:
         judgment_xml = api_client.get_judgment_xml(judgment_uri)
     except MarklogicResourceNotFoundError:
@@ -243,3 +249,13 @@ def perform_advanced_search(
     )
     multipart_data = decoder.MultipartDecoder.from_response(response)
     return SearchResults.create_from_string(multipart_data.parts[0].text)
+
+
+def published(judgment_uri) -> bool:
+    result = api_client.get_published_status(judgment_uri)
+    if result.text == "":
+        # Assume a Judgment with no published status is unpublished by default
+        return False
+    else:
+        multipart_data = decoder.MultipartDecoder.from_response(result)
+        return multipart_data.parts[0].text
