@@ -199,6 +199,27 @@ class MarklogicApiClient:
         self._raise_for_status(response)
         return response
 
+    def get_published_status(self, judgment_uri) -> requests.Response:
+        uri = f"/{judgment_uri.lstrip('/')}.xml"
+        headers = {
+            "Content-type": "application/x-www-form-urlencoded",
+            "Accept": "application/xml",
+        }
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "get_published_status.xqy"
+        )
+        data = {
+            "xquery": Path(xquery_path).read_text(),
+            "vars": f'{{"uri":"{uri}"}}',
+        }
+        path = "LATEST/eval?database=Judgments"
+        response = self.session.request(
+            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+        )
+        # Raise relevant exception for an erroneous response
+        self._raise_for_status(response)
+        return response
+
 
 class MockAPIClient:
 
