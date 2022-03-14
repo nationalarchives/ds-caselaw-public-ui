@@ -182,7 +182,9 @@ class MarklogicApiClient:
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "application/xml",
         }
-        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xquery", "xslt.xqy")
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "xslt_transform.xqy"
+        )
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": f'{{"uri":"{uri}"}}',
