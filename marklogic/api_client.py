@@ -138,6 +138,28 @@ class MarklogicApiClient:
         multipart_data = decoder.MultipartDecoder.from_response(response)
         return multipart_data.parts[0].text
 
+    def get_judgment_name(self, judgment_uri) -> str:
+        uri = f"/{judgment_uri.lstrip('/')}.xml"
+        headers = {
+            "Content-type": "application/x-www-form-urlencoded",
+            "Accept": "application/xml",
+        }
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "get_metadata_name.xqy"
+        )
+        data = {
+            "xquery": Path(xquery_path).read_text(),
+            "vars": f'{{"uri":"{uri}"}}',
+        }
+        path = "LATEST/eval?database=Judgments"
+        response = self.session.request(
+            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+        )
+        # Raise relevant exception for an erroneous response
+        self._raise_for_status(response)
+        multipart_data = decoder.MultipartDecoder.from_response(response)
+        return multipart_data.parts[0].text
+
     def get_judgments_index(self, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
         headers = {"Accept": "multipart/mixed"}

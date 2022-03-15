@@ -8,7 +8,7 @@ from django.utils.translation import gettext
 from requests_toolbelt.multipart import decoder
 
 import marklogic.api_client
-from judgments.models import Judgment, SearchResult, SearchResults
+from judgments.models import SearchResult, SearchResults
 from marklogic.api_client import (
     MarklogicAPIError,
     MarklogicResourceNotFoundError,
@@ -47,12 +47,11 @@ def detail(request, judgment_uri):
     try:
         results = api_client.eval_xslt(judgment_uri)
         if results.text:
-            xml_results = api_client.get_judgment_xml(judgment_uri)
             multipart_data = decoder.MultipartDecoder.from_response(results)
             judgment = multipart_data.parts[0].text
-            model = Judgment.create_from_string(xml_results)
+            metadata_name = api_client.get_judgment_name(judgment_uri)
             context["judgment"] = judgment
-            context["page_title"] = model.metadata_name
+            context["page_title"] = metadata_name
             context["judgment_uri"] = judgment_uri
         else:
             raise Http404("Judgment was not found")
