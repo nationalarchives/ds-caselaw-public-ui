@@ -137,8 +137,7 @@ def results(request):
         page = params.get("page") if params.get("page") else "1"
 
         if query:
-            results = api_client.basic_search(query, page)
-            model = SearchResults.create_from_string(results.text)
+            model = perform_advanced_search(query=query, page=page)
 
             context["search_results"] = [
                 SearchResult.create_from_node(result) for result in model.results

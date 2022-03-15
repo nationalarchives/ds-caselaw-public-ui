@@ -137,14 +137,6 @@ class MarklogicApiClient:
             body=xml,
         )
 
-    def basic_search(self, query: str, page: str) -> requests.Response:
-        start = (int(page) - 1) * RESULTS_PER_PAGE + 1
-        headers = {"Accept": "text/xml"}
-        return self.GET(
-            f"LATEST/search/?start={start}&q={query}&pageLength={RESULTS_PER_PAGE}",
-            headers,
-        )
-
     def advanced_search(
         self,
         q=None,
@@ -155,6 +147,7 @@ class MarklogicApiClient:
         date_from=None,
         date_to=None,
         page=1,
+        show_unpublished=False,
     ) -> requests.Response:
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
@@ -165,7 +158,8 @@ class MarklogicApiClient:
         )
         vars = f'{{"court":"{str(court or "")}","judge":"{str(judge or "")}",\
         "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}",\
-        "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}"}}'
+        "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}",\
+        "show_unpublished":{str(show_unpublished).lower()}}}'
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": vars,
