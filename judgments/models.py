@@ -1,10 +1,9 @@
 # from django.db import models
 from os.path import dirname, join
 
+from caselawclient.Client import api_client
 from djxml import xmlmodels
 from lxml import etree
-
-from caselawclient.Client import api_client
 
 
 class Judgment(xmlmodels.XmlModel):
