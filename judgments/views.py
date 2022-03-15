@@ -2,7 +2,6 @@ import datetime
 import math
 import re
 
-import xmltodict
 from caselawclient.Client import (
     RESULTS_PER_PAGE,
     MarklogicAPIError,
