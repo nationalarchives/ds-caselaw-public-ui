@@ -46,13 +46,16 @@ def detail(request, judgment_uri):
     context = {}
     try:
         results = api_client.eval_xslt(judgment_uri)
-        xml_results = api_client.get_judgment_xml(judgment_uri)
-        multipart_data = decoder.MultipartDecoder.from_response(results)
-        judgment = multipart_data.parts[0].text
-        model = Judgment.create_from_string(xml_results)
-        context["judgment"] = judgment
-        context["page_title"] = model.metadata_name
-        context["judgment_uri"] = judgment_uri
+        if results.text:
+            xml_results = api_client.get_judgment_xml(judgment_uri)
+            multipart_data = decoder.MultipartDecoder.from_response(results)
+            judgment = multipart_data.parts[0].text
+            model = Judgment.create_from_string(xml_results)
+            context["judgment"] = judgment
+            context["page_title"] = model.metadata_name
+            context["judgment_uri"] = judgment_uri
+        else:
+            raise Http404("Judgment was not found")
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
