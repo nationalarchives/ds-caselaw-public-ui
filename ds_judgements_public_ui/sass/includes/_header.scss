@@ -51,7 +51,8 @@
 
   &__container {
     @include container;
-    text-align: center;
+    display: flex;
+    justify-content: center;
   }
 
   &__logo {
