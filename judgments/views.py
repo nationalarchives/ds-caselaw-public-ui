@@ -2,7 +2,6 @@ import datetime
 import math
 import re
 
-import xmltodict
 from django.http import Http404, HttpResponse
 from django.template import loader
 from django.utils.translation import gettext
@@ -139,66 +138,28 @@ def results(request):
 
         if query:
             results = api_client.basic_search(query, page)
-            if type(results) == str:  # Mocked WebLogic response
-                xml_results = xmltodict.parse(results)
-                total = xml_results["search:response"]["@total"]
-                search_results = render_mocked_results(results, with_matches=True)
-                context["search_results"] = search_results
-                context["total"] = total
-                context["paginator"] = paginator(int(page), total)
-            else:
-                model = SearchResults.create_from_string(results.text)
+            model = SearchResults.create_from_string(results.text)
 
-                context["search_results"] = [
-                    SearchResult.create_from_node(result) for result in model.results
-                ]
-                context["total"] = model.total
-                context["paginator"] = paginator(int(page), model.total)
-                context["query_string"] = f"query={query}"
+            context["search_results"] = [
+                SearchResult.create_from_node(result) for result in model.results
+            ]
+            context["total"] = model.total
+            context["paginator"] = paginator(int(page), model.total)
+            context["query_string"] = f"query={query}"
         else:
-            results = api_client.get_judgments_index(page)
-            if type(results) == str:  # Mocked WebLogic response
-                xml_results = xmltodict.parse(results)
-                total = xml_results["search:response"]["@total"]
-                search_results = render_mocked_results(results)
-                context["search_results"] = search_results
-                context["total"] = total
-                context["paginator"] = paginator(int(page), total)
-            else:
-                model = perform_advanced_search(order="-date", page=page)
-                search_results = [
-                    SearchResult.create_from_node(result) for result in model.results
-                ]
-                context["recent_judgments"] = search_results
+            model = perform_advanced_search(order="-date", page=page)
+            search_results = [
+                SearchResult.create_from_node(result) for result in model.results
+            ]
+            context["recent_judgments"] = search_results
 
-                context["total"] = model.total
-                context["search_results"] = search_results
-                context["paginator"] = paginator(int(page), model.total)
+            context["total"] = model.total
+            context["search_results"] = search_results
+            context["paginator"] = paginator(int(page), model.total)
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
     return HttpResponse(template.render({"context": context}, request))
-
-
-def render_mocked_results(results, with_matches=False):
-    xml_results = xmltodict.parse(results)
-    search_results = xml_results["search:response"]["search:result"]
-    matches = ""
-    if with_matches:
-        matches = "<p>A test <mark>matching</mark> search result</p>"
-
-    search_results = [
-        SearchResult(
-            uri=trim_leading_slash(result["@uri"]),
-            neutral_citation="Fake neutral citation",
-            name="Fake Judgment name",
-            court="Fake court",
-            date="2021-01-01",
-            matches=matches,
-        )
-        for result in search_results
-    ]
-    return search_results
 
 
 def paginator(current_page, total):

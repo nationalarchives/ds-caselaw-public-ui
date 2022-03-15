@@ -44,9 +44,6 @@ purchase, but you need to fill out [a short form](https://hub.docker.com/_/markl
 $ cp .env.example .env
 ```
 
-If you wish to use Marklogic in dev, set `MARKLOGIC_MOCK_REQUESTS` to False. See [Using Marklogic](#using-marklogic)
-for instructions on how to populate your Marklogic database with data.
-
 ### 3. Build Docker containers
 
 ```console
@@ -147,9 +144,6 @@ bucket is currently only available to dxw developers.
 Assuming you have entered the S3 credentials correctly, this will kick off a restore from s3. Once you have the data locally,
 you can then back it up locally using the path `/var/opt/backup` in the management console. It will be backed up to your local
 machine in `docker/db/backup`
-
-Once Marklogic is set up, change `MARKLOGIC_MOCK_REQUESTS` to False and the application will read data from Marklogic
-instead of the file system.
 
 ### Adding indexes
 

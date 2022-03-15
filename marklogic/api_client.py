@@ -200,43 +200,9 @@ class MarklogicApiClient:
         return response
 
 
-class MockAPIClient:
-
-    fixtures_dir: str = settings.MARKLOGIC_FIXTURES_DIR
-
-    def get_judgment_xml(self, uri: str) -> str:
-        filepath = os.path.join(self.fixtures_dir, uri.lstrip("/") + ".xml")
-
-        try:
-            return Path(filepath).read_text()
-        except FileNotFoundError:
-            raise MarklogicResourceNotFoundError
-
-    def get_judgments_index(self, page: int) -> str:
-        filepath = os.path.join(
-            self.fixtures_dir, "search", "results" + str(page) + ".xml"
-        )
-        try:
-            return Path(filepath).read_text()
-        except FileNotFoundError:
-            raise MarklogicResourceNotFoundError
-
-    def search_judgments(self, query: str, page: str):
-        filepath = os.path.join(
-            self.fixtures_dir, "search", "results" + str(page) + ".xml"
-        )
-        try:
-            return Path(filepath).read_text()
-        except FileNotFoundError:
-            raise MarklogicResourceNotFoundError
-
-
-if env.bool("MARKLOGIC_MOCK_REQUESTS", default=False):
-    api_client = MockAPIClient()
-else:
-    api_client = MarklogicApiClient(
-        host=env("MARKLOGIC_HOST"),
-        username=env("MARKLOGIC_USER"),
-        password=env("MARKLOGIC_PASSWORD"),
-        use_https=env("MARKLOGIC_USE_HTTPS", default=False),
-    )
+api_client = MarklogicApiClient(
+    host=env("MARKLOGIC_HOST"),
+    username=env("MARKLOGIC_USER"),
+    password=env("MARKLOGIC_PASSWORD"),
+    use_https=env("MARKLOGIC_USE_HTTPS", default=False),
+)
