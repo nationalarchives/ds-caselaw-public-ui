@@ -118,45 +118,27 @@ class MarklogicApiClient:
 
     def get_judgment_xml(self, judgment_uri, show_unpublished=False) -> str:
         uri = f"/{judgment_uri.lstrip('/')}.xml"
-        headers = {
-            "Content-type": "application/x-www-form-urlencoded",
-            "Accept": "application/xml",
-        }
         xquery_path = os.path.join(
             settings.ROOT_DIR, "judgments", "xquery", "get_judgment.xqy"
         )
-        data = {
-            "xquery": Path(xquery_path).read_text(),
-            "vars": f'{{"uri":"{uri}", "show_unpublished":{str(show_unpublished).lower()}}}',
-        }
-        path = "LATEST/eval?database=Judgments"
-        response = self.session.request(
-            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+
+        response = self.eval(
+            xquery_path,
+            vars=f'{{"uri":"{uri}", "show_unpublished":{str(show_unpublished).lower()}}}',
+            accept_header="application/xml",
         )
-        # Raise relevant exception for an erroneous response
-        self._raise_for_status(response)
         multipart_data = decoder.MultipartDecoder.from_response(response)
         return multipart_data.parts[0].text
 
     def get_judgment_name(self, judgment_uri) -> str:
         uri = f"/{judgment_uri.lstrip('/')}.xml"
-        headers = {
-            "Content-type": "application/x-www-form-urlencoded",
-            "Accept": "application/xml",
-        }
         xquery_path = os.path.join(
             settings.ROOT_DIR, "judgments", "xquery", "get_metadata_name.xqy"
         )
-        data = {
-            "xquery": Path(xquery_path).read_text(),
-            "vars": f'{{"uri":"{uri}"}}',
-        }
-        path = "LATEST/eval?database=Judgments"
-        response = self.session.request(
-            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+
+        response = self.eval(
+            xquery_path, vars=f'{{"uri":"{uri}"}}', accept_header="application/xml"
         )
-        # Raise relevant exception for an erroneous response
-        self._raise_for_status(response)
         multipart_data = decoder.MultipartDecoder.from_response(response)
         return multipart_data.parts[0].text
 
@@ -190,10 +172,6 @@ class MarklogicApiClient:
         page=1,
         show_unpublished=False,
     ) -> requests.Response:
-        headers = {
-            "Content-type": "application/x-www-form-urlencoded",
-            "Accept": "multipart/mixed",
-        }
         xquery_path = os.path.join(
             settings.ROOT_DIR, "judgments", "xquery", "advanced_search.xqy"
         )
@@ -201,32 +179,31 @@ class MarklogicApiClient:
         "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}",\
         "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}",\
         "show_unpublished":{str(show_unpublished).lower()}}}'
+
+        return self.eval(xquery_path, vars)
+
+    def eval_xslt(self, judgment_uri) -> requests.Response:
+        uri = f"/{judgment_uri.lstrip('/')}.xml"
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "xslt_transform.xqy"
+        )
+
+        return self.eval(
+            xquery_path, vars=f'{{"uri":"{uri}"}}', accept_header="application/xml"
+        )
+
+    def eval(
+        self, xquery_path, vars, database="Judgments", accept_header="multipart/mixed"
+    ):
+        headers = {
+            "Content-type": "application/x-www-form-urlencoded",
+            "Accept": accept_header,
+        }
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": vars,
         }
-        path = "LATEST/eval?database=Judgments"
-        response = self.session.request(
-            "POST", url=self._path_to_request_url(path), headers=headers, data=data
-        )
-        # Raise relevant exception for an erroneous response
-        self._raise_for_status(response)
-        return response
-
-    def eval_xslt(self, judgment_uri) -> requests.Response:
-        uri = f"/{judgment_uri.lstrip('/')}.xml"
-        headers = {
-            "Content-type": "application/x-www-form-urlencoded",
-            "Accept": "application/xml",
-        }
-        xquery_path = os.path.join(
-            settings.ROOT_DIR, "judgments", "xquery", "xslt_transform.xqy"
-        )
-        data = {
-            "xquery": Path(xquery_path).read_text(),
-            "vars": f'{{"uri":"{uri}"}}',
-        }
-        path = "LATEST/eval?database=Judgments"
+        path = f"LATEST/eval?database={database}"
         response = self.session.request(
             "POST", url=self._path_to_request_url(path), headers=headers, data=data
         )
