@@ -8,6 +8,7 @@ from django.conf import settings
 from lxml import etree
 from lxml.etree import Element
 from requests.auth import HTTPBasicAuth
+from requests_toolbelt.multipart import decoder
 
 from config.settings.base import env
 
@@ -115,9 +116,27 @@ class MarklogicApiClient:
     ) -> requests.Response:
         return self.make_request("POST", path, headers, data)
 
-    def get_judgment_xml(self, uri: str) -> str:
-        headers = {"Accept": "text/xml"}
-        return self.GET(f"LATEST/documents/?uri=/{uri.lstrip('/')}.xml", headers).text
+    def get_judgment_xml(self, judgment_uri, show_unpublished=False) -> str:
+        uri = f"/{judgment_uri.lstrip('/')}.xml"
+        headers = {
+            "Content-type": "application/x-www-form-urlencoded",
+            "Accept": "application/xml",
+        }
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "get_judgment.xqy"
+        )
+        data = {
+            "xquery": Path(xquery_path).read_text(),
+            "vars": f'{{"uri":"{uri}", "show_unpublished":{str(show_unpublished).lower()}}}',
+        }
+        path = "LATEST/eval?database=Judgments"
+        response = self.session.request(
+            "POST", url=self._path_to_request_url(path), headers=headers, data=data
+        )
+        # Raise relevant exception for an erroneous response
+        self._raise_for_status(response)
+        multipart_data = decoder.MultipartDecoder.from_response(response)
+        return multipart_data.parts[0].text
 
     def get_judgments_index(self, page: str) -> requests.Response:
         start = (int(page) - 1) * RESULTS_PER_PAGE + 1
