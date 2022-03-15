@@ -4,10 +4,10 @@ import re
 
 import xmltodict
 from caselawclient.Client import (
+    RESULTS_PER_PAGE,
     MarklogicAPIError,
     MarklogicResourceNotFoundError,
     api_client,
-    RESULTS_PER_PAGE,
 )
 from django.http import Http404, HttpResponse
 from django.template import loader
