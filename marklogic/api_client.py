@@ -137,14 +137,6 @@ class MarklogicApiClient:
             body=xml,
         )
 
-    def basic_search(self, query: str, page: str) -> requests.Response:
-        start = (int(page) - 1) * RESULTS_PER_PAGE + 1
-        headers = {"Accept": "text/xml"}
-        return self.GET(
-            f"LATEST/search/?start={start}&q={query}&pageLength={RESULTS_PER_PAGE}",
-            headers,
-        )
-
     def advanced_search(
         self,
         q=None,
@@ -155,15 +147,19 @@ class MarklogicApiClient:
         date_from=None,
         date_to=None,
         page=1,
+        show_unpublished=False,
     ) -> requests.Response:
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "multipart/mixed",
         }
-        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xquery.xqy")
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "advanced_search.xqy"
+        )
         vars = f'{{"court":"{str(court or "")}","judge":"{str(judge or "")}",\
         "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}",\
-        "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}"}}'
+        "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}",\
+        "show_unpublished":{str(show_unpublished).lower()}}}'
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": vars,
@@ -182,7 +178,9 @@ class MarklogicApiClient:
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "application/xml",
         }
-        xquery_path = os.path.join(settings.ROOT_DIR, "judgments", "xslt.xqy")
+        xquery_path = os.path.join(
+            settings.ROOT_DIR, "judgments", "xquery", "xslt_transform.xqy"
+        )
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": f'{{"uri":"{uri}"}}',
@@ -196,43 +194,9 @@ class MarklogicApiClient:
         return response
 
 
-class MockAPIClient:
-
-    fixtures_dir: str = settings.MARKLOGIC_FIXTURES_DIR
-
-    def get_judgment_xml(self, uri: str) -> str:
-        filepath = os.path.join(self.fixtures_dir, uri.lstrip("/") + ".xml")
-
-        try:
-            return Path(filepath).read_text()
-        except FileNotFoundError:
-            raise MarklogicResourceNotFoundError
-
-    def get_judgments_index(self, page: int) -> str:
-        filepath = os.path.join(
-            self.fixtures_dir, "search", "results" + str(page) + ".xml"
-        )
-        try:
-            return Path(filepath).read_text()
-        except FileNotFoundError:
-            raise MarklogicResourceNotFoundError
-
-    def search_judgments(self, query: str, page: str):
-        filepath = os.path.join(
-            self.fixtures_dir, "search", "results" + str(page) + ".xml"
-        )
-        try:
-            return Path(filepath).read_text()
-        except FileNotFoundError:
-            raise MarklogicResourceNotFoundError
-
-
-if env.bool("MARKLOGIC_MOCK_REQUESTS", default=False):
-    api_client = MockAPIClient()
-else:
-    api_client = MarklogicApiClient(
-        host=env("MARKLOGIC_HOST"),
-        username=env("MARKLOGIC_USER"),
-        password=env("MARKLOGIC_PASSWORD"),
-        use_https=env("MARKLOGIC_USE_HTTPS", default=False),
-    )
+api_client = MarklogicApiClient(
+    host=env("MARKLOGIC_HOST"),
+    username=env("MARKLOGIC_USER"),
+    password=env("MARKLOGIC_PASSWORD"),
+    use_https=env("MARKLOGIC_USE_HTTPS", default=False),
+)

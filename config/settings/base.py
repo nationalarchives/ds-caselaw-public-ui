@@ -79,7 +79,6 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     # Your stuff: custom apps go here
     "judgments.apps.JudgmentsConfig",
-    "judgments_admin.apps.JudgmentsAdminConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -254,11 +253,6 @@ LOGGING = {
     },
     "root": {"level": "INFO", "handlers": ["console"]},
 }
-
-# marklogic
-# ------------------------------------------------------------------------------
-# where to look for fixtures when env("MARKLOGIC_MOCK_REQUESTS") = 'true'
-MARKLOGIC_FIXTURES_DIR = str(ROOT_DIR / "judgments" / "fixtures")
 
 # django-allauth
 # ------------------------------------------------------------------------------

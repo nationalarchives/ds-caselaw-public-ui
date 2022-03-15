@@ -20,6 +20,7 @@ declare variable $from as xs:string? external;
 declare variable $to as xs:string? external;
 declare variable $from_date as xs:date? := uk:get-request-date($from);
 declare variable $to_date as xs:date? := uk:get-request-date($to);
+declare variable $show_unpublished as xs:boolean? external;
 
 let $start as xs:integer := ($page - 1) * $page-size + 1
 
@@ -33,6 +34,7 @@ let $params := map:map()
     => map:with('order', $order)
     => map:with('from',$from)
     => map:with('to', $to)
+    => map:with('show_unpublished', $show_unpublished)
 
 let $query1 := if ($q) then cts:word-query($q) else ()
 let $query2 := if ($party) then
@@ -51,7 +53,9 @@ let $query4 := if ($court) then cts:or-query((
 let $query5 := if ($judge) then cts:element-word-query(fn:QName('http://docs.oasis-open.org/legaldocml/ns/akn/3.0', 'judge'), $judge) else ()
 let $query6 := if (empty($from_date)) then () else cts:path-range-query('akn:FRBRWork/akn:FRBRdate/@date', '>=', $from_date)
 let $query7 := if (empty($to_date)) then () else cts:path-range-query('akn:FRBRWork/akn:FRBRdate/@date', '<=', $to_date)
-let $queries := ( $query1, $query2, $query4, $query5, $query6, $query7 )
+let $query8 := if ($show_unpublished) then () else cts:properties-fragment-query(cts:element-value-query(fn:QName("", "published"), "true"))
+
+let $queries := ( $query1, $query2, $query4, $query5, $query6, $query7, $query8 )
 let $query := cts:and-query($queries)
 
 let $show-snippets as xs:boolean := exists(( $query1, $query2, $query5 ))
