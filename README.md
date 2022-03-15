@@ -150,8 +150,9 @@ machine in `docker/db/backup`
 In theory the restore from backup should create indexes in the database. If it does not, you will need to create them
 manually.
 
-In the Marklogic admin interface, first create a namespace for the index. Go to `Databases -> Judgments -> Path namespaces`
-and create a new namespace with the prefix `akn` and url `http://docs.oasis-open.org/legaldocml/ns/akn/3.0`
+In the Marklogic [management interface](http://localhost:8001/), first create a namespace for the index.
+Go to `Databases -> Judgments -> Path namespaces` and create a new namespace with the prefix `akn` and url
+`http://docs.oasis-open.org/legaldocml/ns/akn/3.0`
 
 Then, go to `Databases -> Judgments -> Path Range indexes` and create a new index with the scalar type of `date` and
 the path expression of `akn:FRBRWork/akn:FRBRdate/@date`. You can leave the other options as the defaults.
@@ -173,7 +174,8 @@ The XSLT which transforms the LegalDocML documents into HTML needs to be stored 
 - http://localhost:8001/ this is the management console where you can administer your database.
 - http://localhost:8002/ this is the monitoring dashboard.
 - http://localhost:8011/ this is the application server for the Marklogic REST interface
-All four URLs use basic auth, username and passward are both `admin`.
+
+All four URLs use basic auth, username and password are both `admin`.
 
 ## Using the pre-push hook (optional)
 
