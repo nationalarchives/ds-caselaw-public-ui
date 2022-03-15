@@ -2,18 +2,18 @@ import datetime
 import math
 import re
 
+from caselawclient.Client import (
+    RESULTS_PER_PAGE,
+    MarklogicAPIError,
+    MarklogicResourceNotFoundError,
+    api_client,
+)
 from django.http import Http404, HttpResponse
 from django.template import loader
 from django.utils.translation import gettext
 from requests_toolbelt.multipart import decoder
 
-import marklogic.api_client
 from judgments.models import Judgment, SearchResult, SearchResults
-from marklogic.api_client import (
-    MarklogicAPIError,
-    MarklogicResourceNotFoundError,
-    api_client,
-)
 
 
 def browse(request, court=None, subdivision=None, year=None):
@@ -162,7 +162,7 @@ def results(request):
 
 
 def paginator(current_page, total):
-    size_per_page = marklogic.api_client.RESULTS_PER_PAGE
+    size_per_page = RESULTS_PER_PAGE
     number_of_pages = math.ceil(int(total) / size_per_page)
     next_pages = list(range(current_page + 1, min(current_page + 10, number_of_pages)))
 
