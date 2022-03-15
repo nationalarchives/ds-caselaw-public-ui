@@ -137,14 +137,6 @@ class MarklogicApiClient:
             body=xml,
         )
 
-    def basic_search(self, query: str, page: str) -> requests.Response:
-        start = (int(page) - 1) * RESULTS_PER_PAGE + 1
-        headers = {"Accept": "text/xml"}
-        return self.GET(
-            f"LATEST/search/?start={start}&q={query}&pageLength={RESULTS_PER_PAGE}",
-            headers,
-        )
-
     def advanced_search(
         self,
         q=None,
