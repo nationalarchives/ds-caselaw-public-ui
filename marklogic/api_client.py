@@ -5,8 +5,6 @@ from typing import Any, Dict, Optional
 
 import requests
 from django.conf import settings
-from lxml import etree
-from lxml.etree import Element
 from requests.auth import HTTPBasicAuth
 from requests_toolbelt.multipart import decoder
 
@@ -141,24 +139,6 @@ class MarklogicApiClient:
         )
         multipart_data = decoder.MultipartDecoder.from_response(response)
         return multipart_data.parts[0].text
-
-    def get_judgments_index(self, page: str) -> requests.Response:
-        start = (int(page) - 1) * RESULTS_PER_PAGE + 1
-        headers = {"Accept": "multipart/mixed"}
-        return self.GET(
-            f"LATEST/search/?view=results&start={start}&pageLength={RESULTS_PER_PAGE}",
-            headers,
-        )
-
-    def save_judgment_xml(self, uri: str, judgment_xml: Element) -> requests.Response:
-        xml = etree.tostring(judgment_xml)
-        headers = {"Accept": "text/xml", "Content-type": "application/xml"}
-        return self.make_request(
-            "PUT",
-            f"LATEST/documents?uri=/{uri.lstrip('/')}.xml",
-            headers=headers,
-            body=xml,
-        )
 
     def advanced_search(
         self,

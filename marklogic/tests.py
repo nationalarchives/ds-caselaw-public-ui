@@ -1,11 +1,7 @@
-from unittest.mock import MagicMock
-
 from django.test import TestCase
 from lxml import etree
 
-import marklogic.api_client
 from marklogic import xml_tools
-from marklogic.api_client import MarklogicApiClient
 from marklogic.xml_tools import JudgmentMissingMetadataError
 
 
@@ -94,37 +90,3 @@ class TestXmlTools(TestCase):
         xml = etree.fromstring(xml_string)
         result = xml_tools.get_search_matches(xml)
         self.assertEqual(result, ["HH Judge Anthony Thornton QC"])
-
-
-class TestApiClient(TestCase):
-    def test_get_judgment_xml(self):
-        mock_api_client = MarklogicApiClient("a", "b", "c", True)
-        mock_api_client.GET = MagicMock()
-        uri = "/ewca/civ/2004/632"
-        mock_api_client.get_judgment_xml(uri)
-        mock_api_client.GET.assert_called_with(
-            "LATEST/documents/?uri=/ewca/civ/2004/632.xml", {"Accept": "text/xml"}
-        )
-
-    def test_get_judgments_index(self):
-        page_length = marklogic.api_client.RESULTS_PER_PAGE
-        mock_api_client = MarklogicApiClient("a", "b", "c", True)
-        mock_api_client.GET = MagicMock()
-        mock_api_client.get_judgments_index("1")
-        mock_api_client.GET.assert_called_with(
-            "LATEST/search/?view=results&start=1&pageLength=" + str(page_length),
-            {"Accept": "multipart/mixed"},
-        )
-
-    def test_save_judgment_xml(self):
-        mock_api_client = MarklogicApiClient("a", "b", "c", True)
-        mock_api_client.make_request = MagicMock()
-        uri = "/ewca/civ/2004/632"
-        xml = etree.fromstring("<root></root>")
-        mock_api_client.save_judgment_xml(uri, xml)
-        mock_api_client.make_request.assert_called_with(
-            "PUT",
-            "LATEST/documents?uri=/ewca/civ/2004/632.xml",
-            headers={"Accept": "text/xml", "Content-type": "application/xml"},
-            body=b"<root/>",
-        )
