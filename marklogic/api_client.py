@@ -155,6 +155,7 @@ class MarklogicApiClient:
         date_from=None,
         date_to=None,
         page=1,
+        show_unpublished=False,
     ) -> requests.Response:
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
@@ -165,7 +166,8 @@ class MarklogicApiClient:
         )
         vars = f'{{"court":"{str(court or "")}","judge":"{str(judge or "")}",\
         "page":{page},"page-size":{RESULTS_PER_PAGE},"q":"{str(q or "")}","party":"{str(party or "")}",\
-        "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}"}}'
+        "order":"{str(order or "")}","from":"{str(date_from or "")}","to":"{str(date_to or "")}",\
+        "show_unpublished":{str(show_unpublished).lower()}}}'
         data = {
             "xquery": Path(xquery_path).read_text(),
             "vars": vars,
