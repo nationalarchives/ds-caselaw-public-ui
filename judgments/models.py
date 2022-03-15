@@ -4,7 +4,7 @@ from os.path import dirname, join
 from djxml import xmlmodels
 from lxml import etree
 
-from marklogic import api_client
+from caselawclient.Client import api_client
 
 
 class Judgment(xmlmodels.XmlModel):
@@ -41,7 +41,7 @@ class SearchResult:
         matches = SearchMatch.create_from_string(
             etree.tostring(node, encoding="UTF-8").decode("UTF-8")
         )
-        judgment_xml = api_client.api_client.get_judgment_xml(uri)
+        judgment_xml = api_client.get_judgment_xml(uri)
         judgment = Judgment.create_from_string(judgment_xml)
         return SearchResult(
             uri=uri,
