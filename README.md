@@ -168,6 +168,16 @@ The XSLT which transforms the LegalDocML documents into HTML needs to be stored 
 4. Once the script has run, click `Explore` to ensure the XSLT is in place, it should be called
    `/judgments/xslts/judgment2.xsl`
 
+### Publish all Judgments
+
+By default, Judgments are not marked as published and therefore not visible in the app. To publish all Judgments locally:
+
+1. Open the Marklogic Query console at http://localhost:8000/
+2. Copy the text in `judgments/xquery/publish_all_judgments.xqy` and paste it into the XQuery console
+3. Run it against the database `Judgments` using the `XQuery` query type (see the dropdown options in the UI to configure
+   these), the XQuery will take a few minutes to run
+4. Once the script has run, all Judgments should be visible in the front-end UI
+
 ### Marklogic URL Guide
 
 - http://localhost:8000/ this is the query interface where you can browse documents in the `Judgments` database.
