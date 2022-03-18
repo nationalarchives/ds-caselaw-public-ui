@@ -1,5 +1,7 @@
+import rollbar
+
 from .base import *  # noqa
-from .base import env
+from .base import ROOT_DIR, env
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -139,6 +141,14 @@ LOGGING = {
         },
     },
 }
+
+ROLLBAR = {
+    "access_token": env("ROLLBAR_ACCESS_TOKEN"),
+    "environment": env("ROLLBAR_ENV"),
+    "root": ROOT_DIR,
+}
+
+rollbar.init(**ROLLBAR)
 
 # Your stuff...
 # ------------------------------------------------------------------------------
