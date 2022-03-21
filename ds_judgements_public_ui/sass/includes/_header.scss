@@ -16,7 +16,7 @@
       font-size: 0.9rem;
 
       a {
-        color: $color__white;
+        @include link-on-dark-bg;
       }
     }
 
@@ -51,15 +51,13 @@
 
   &__container {
     @include container;
-    @media (min-width: $grid__breakpoint-medium) {
-      text-align: center;
-    }
+    display: flex;
+    justify-content: center;
   }
 
   &__logo {
     height: 5.5rem;
-    margin: calc($spacer__unit / 2) auto 0;
-    max-width: 80%;
+    margin: calc($spacer__unit / 2) auto;
   }
 
   &__logo-link {

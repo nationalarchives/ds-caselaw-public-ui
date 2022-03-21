@@ -38,7 +38,7 @@
   &__search-term-input {
     @include text_field;
     width: 80%;
-    min-height: calc($spacer__unit * 3);
+    min-height: calc($spacer__unit * 2);
     font-size: 1.2rem;
 
     @media (min-width: $grid__breakpoint-small) {

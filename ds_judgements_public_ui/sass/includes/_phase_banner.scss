@@ -14,6 +14,7 @@
       &:focus {
         outline: 0.125rem solid $color__black;
         background-color: $color__white;
+        color: $color__black;
       }
     }
   }

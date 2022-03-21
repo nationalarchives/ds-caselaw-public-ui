@@ -6,7 +6,7 @@
         <span class="results-search-component__removable-options-key">Search term:</span>
         <span class="results-search-component__removable-options-value">
           <span class="results-search-component__removable-options-value-text">{# {{ form.search_term.data }} #}</span>
-          <a class="results-search-component__removable-options-link" href="{# {{ url_for('results', search_term='', collections=form.collections.data, courts=form.courts.data) }} #}">
+          <a role="button" class="results-search-component__removable-options-link" href="/">
             <span class="results-search-component__removable-options-sr-only">Remove</span>
           </a>
         </span>
@@ -17,7 +17,7 @@
         <span class="results-search-component__removable-options-key">Collection:</span>
         <span class="results-search-component__removable-options-value">
           <span class="results-search-component__removable-options-value-text">{# {{ form.collections.data }} #}</span>
-          <a class="results-search-component__removable-options-link" href="{# {{ url_for('results', search_term=form.search_term.data, collections='all', courts=form.courts.data) }} #}">
+          <a role="button" class="results-search-component__removable-options-link" href="/">
             <span class="results-search-component__removable-options-sr-only">Remove</span>
           </a>
         </span>
@@ -28,7 +28,7 @@
         <span class="results-search-component__removable-options-key">Courts:</span>
         <span class="results-search-component__removable-options-value">
           <span class="results-search-component__removable-options-value-text">{# {{ form.courts.data }} #}</span>
-          <a class="results-search-component__removable-options-link" href="{# {{ url_for('results', search_term=form.search_term.data, collections=form.collections.data, courts='all') }} #}">
+          <a role="button" class="results-search-component__removable-options-link" href="/">
             <span class="results-search-component__removable-options-sr-only">Remove</span>
           </a>
         </span>
