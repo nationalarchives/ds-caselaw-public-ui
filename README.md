@@ -178,6 +178,15 @@ By default, Judgments are not marked as published and therefore not visible in t
    these), the XQuery will take a few minutes to run
 4. Once the script has run, all Judgments should be visible in the front-end UI
 
+### Set the versioned documents retention policy
+
+We need to set Marklogic up so that when Judgments are edited, all earlier versions of the Judgment are preserved.
+
+1. Open the Marklogic Query console at http://localhost:8000/
+2. Copy the text in `judgments/xquery/set_retention_policy.xqy` and paste it into the XQuery console
+3. Run it against the database `Judgments` using the `XQuery` query type (see the dropdown options in the UI to configure
+   these)
+
 ### Marklogic URL Guide
 
 - http://localhost:8000/ this is the query interface where you can browse documents in the `Judgments` database.
