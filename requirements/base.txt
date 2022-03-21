@@ -24,3 +24,4 @@ django-xml~=3.0.0
 wsgi-basic-auth~=1.1.0
 ds-caselaw-marklogic-api-client
 rollbar
+xhtml2pdf==0.2.6
