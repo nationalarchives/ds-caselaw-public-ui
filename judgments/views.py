@@ -13,9 +13,9 @@ from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.template import loader
 from django.utils.translation import gettext
-from requests_toolbelt.multipart import decoder
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
+from requests_toolbelt.multipart import decoder
 
 from judgments.models import Judgment, SearchResult, SearchResults
 
@@ -116,10 +116,8 @@ def detail_xml(_request, judgment_uri):
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
-    template_name = 'pdf/judgment.html'
-    pdf_stylesheets = [
-        os.path.join(settings.STATIC_ROOT, 'css', 'main.css')
-    ]
+    template_name = "pdf/judgment.html"
+    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "main.css")]
     pdf_attachment = True
 
     def dispatch(self, request, *args, **kwargs):
@@ -132,9 +130,9 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
 
         results = api_client.eval_xslt(judgment_uri)
         multipart_data = decoder.MultipartDecoder.from_response(results)
-        context['judgment'] = multipart_data.parts[0].text
+        context["judgment"] = multipart_data.parts[0].text
 
-        print(context['judgment'])
+        print(context["judgment"])
         return context
 
 
