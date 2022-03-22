@@ -45,7 +45,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # Translations dependencies
   gettext \
   weasyprint \
-  python3-cffi python3-brotli libpango-1.0-0 libpangoft2-1.0-0 \
+  python3-cffi python3-brotli libpango-1.0-0 libpangoft2-1.0-0 fonts-liberation \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*

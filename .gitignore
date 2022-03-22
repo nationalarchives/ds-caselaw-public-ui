@@ -286,4 +286,6 @@ docker/*
 
 /ds_judgements_public_ui/static/css/main.css
 /ds_judgements_public_ui/static/css/main.css.map
+/ds_judgements_public_ui/static/css/judgmentpdf.css
+/ds_judgements_public_ui/static/css/judgmentpdf.css.map
 /ds_judgements_public_ui/static/js/dist/app.js

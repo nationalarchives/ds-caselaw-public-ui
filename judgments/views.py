@@ -117,7 +117,7 @@ def detail_xml(_request, judgment_uri):
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     template_name = "pdf/judgment.html"
-    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "main.css")]
+    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
     pdf_attachment = True
 
     def dispatch(self, request, *args, **kwargs):
@@ -132,7 +132,6 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
         multipart_data = decoder.MultipartDecoder.from_response(results)
         context["judgment"] = multipart_data.parts[0].text
 
-        print(context["judgment"])
         return context
 
 
