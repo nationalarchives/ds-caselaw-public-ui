@@ -4,4 +4,4 @@ import module namespace dls="http://marklogic.com/xdmp/dls"
 
 let $props := ( <published>true</published> )
 for $uri in cts:uris("", (), dls:documents-query())
-  return dls:document-set-properties($uri, $props)
+  return dls:document-set-property($uri, $props)
