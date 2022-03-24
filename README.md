@@ -168,6 +168,22 @@ The XSLT which transforms the LegalDocML documents into HTML needs to be stored 
 4. Once the script has run, click `Explore` to ensure the XSLT is in place, it should be called
    `/judgments/xslts/judgment2.xsl`
 
+### Create some managed Judgments
+
+Marklogic has the concept of "managed documents" which we use in order to store versioned Judgments and other Marklogic
+features. Marking all 48000+ Judgments in the database takes too long, so we mark a subset of them as managed and use
+these in development. To mark 100 Judgments as managed:
+
+1. Open the Marklogic Query console at http://localhost:8000/
+2. Copy the text in `judgments/xquery/manage_judgments.xqy` and paste it into the XQuery console
+3. Run it against the database `Judgments` using the `XQuery` query type (see the dropdown options in the UI to configure
+   these)
+4. Once the script has run, 100 Judgments should be visible in the front-end UI
+
+If you wish to set more than 100 to be managed, alter the `"limit=100"` parameter in the XQuery
+(`cts:uris("", xs:string("limit=100"))`) to be a different number. Note that larger numbers will take a few minutes to
+run.
+
 ### Publish all Judgments
 
 By default, Judgments are not marked as published and therefore not visible in the app. To publish all Judgments locally:
