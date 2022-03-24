@@ -4,6 +4,7 @@ import re
 import xmltodict
 from django.http import Http404, HttpResponse
 from django.template import loader
+from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from requests_toolbelt.multipart import decoder
 
@@ -56,7 +57,7 @@ def browse(request, court=None, subdivision=None, year=None):
         raise Http404("Search error")
 
     template = loader.get_template("judgment/results.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def detail(request, judgment_uri):
@@ -65,7 +66,7 @@ def detail(request, judgment_uri):
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"xml": judgment_xml}, request))
+    return TemplateResponse(request, template, context={"xml": judgment_xml})
 
 
 def detail_xml(_request, judgment_uri):
@@ -96,7 +97,7 @@ def index(request):
             "Search results not found"
         )  # TODO: This should be something else!
     template = loader.get_template("pages/home.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def results(request):
@@ -147,7 +148,7 @@ def results(request):
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def render_mocked_results(results, with_matches=False):
