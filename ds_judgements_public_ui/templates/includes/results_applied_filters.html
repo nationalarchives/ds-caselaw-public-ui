@@ -1,38 +1,17 @@
-{# {% if form.search_term.data or (form.collections.data != 'all') or (form.courts.data != 'all') %} #}
-  <h2 class="results-search-component__sub-header">Filters include</h2>
-  <ul class="results-search-component__removable-options">
-    {# {% if form.search_term.data %} #}
+{% load query_filters %}
+<h2 class="results-search-component__sub-header">Filters include</h2>
+<ul class="results-search-component__removable-options">
+  {% for key, value in context.query_params.items %}
+    {% if value %}
       <li>
-        <span class="results-search-component__removable-options-key">Search term:</span>
+        <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
         <span class="results-search-component__removable-options-value">
-          <span class="results-search-component__removable-options-value-text">{# {{ form.search_term.data }} #}</span>
-          <a role="button" class="results-search-component__removable-options-link" href="/">
+          <span class="results-search-component__removable-options-value-text">{{ value }}</span>
+          <a role="button" class="results-search-component__removable-options-link" href="{% url 'advanced_search'%}?{{ context.query_params|remove_query:key }}">
             <span class="results-search-component__removable-options-sr-only">Remove</span>
           </a>
         </span>
       </li>
-    {# {% endif %} #}
-    {# {% if form.collections.data != 'all' %} #}
-      <li>
-        <span class="results-search-component__removable-options-key">Collection:</span>
-        <span class="results-search-component__removable-options-value">
-          <span class="results-search-component__removable-options-value-text">{# {{ form.collections.data }} #}</span>
-          <a role="button" class="results-search-component__removable-options-link" href="/">
-            <span class="results-search-component__removable-options-sr-only">Remove</span>
-          </a>
-        </span>
-      </li>
-    {# {% endif %} #}
-    {# {% if form.courts.data != 'all' %} #}
-      <li>
-        <span class="results-search-component__removable-options-key">Courts:</span>
-        <span class="results-search-component__removable-options-value">
-          <span class="results-search-component__removable-options-value-text">{# {{ form.courts.data }} #}</span>
-          <a role="button" class="results-search-component__removable-options-link" href="/">
-            <span class="results-search-component__removable-options-sr-only">Remove</span>
-          </a>
-        </span>
-      </li>
-    {# {% endif %} #}
-  </ul>
-{# {% endif %} #}
+    {% endif %}
+  {% endfor %}
+</ul>

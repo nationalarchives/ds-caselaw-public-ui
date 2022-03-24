@@ -98,6 +98,7 @@ def advanced_search(request):
         context["query_string"] = "&".join(
             [f'{key}={query_params[key] or ""}' for key in query_params]
         )
+        context["query_params"] = query_params
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
