@@ -1,0 +1,19 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ judgment_uri }}</title>
+    {% block css %}
+      <link href="{% static 'css/judgmentpdf.css' %}" rel="stylesheet">
+    {% endblock %}
+  </head>
+  <body>
+    <main id="main-content">
+      {% autoescape off %}
+        {{ judgment }}
+      {% endautoescape %}
+    </main>
+  </body>
+</html>

@@ -196,6 +196,20 @@ We need to set Marklogic up so that when Judgments are edited, all earlier versi
 
 All four URLs use basic auth, username and password are both `admin`.
 
+### WeasyPrint PDF Library
+
+We are using the [WeasyPrint](https://doc.courtbouillon.org/weasyprint/stable/) library to handle PDF generation on the backend. If you are using the provided Docker images, the dependencies are bundled in the Dockerfile.
+
+If you see an error containing this message:
+
+If you are running the application locally, without using Docker (for example in a local virtualenv), then you need to follow the steps outlined [here](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation) to install the WeasyPrint dependencies on your local machine. You may need to recreate your virtualenv after following these steps.
+
+```python
+cannot load library 'gobject-2.0-0'
+```
+
+Then it means the dependencies for WeasyPrint have not been installed correctly. Try rebuilding the docker image using the command `docker-compose build django` and then running `fab run`.
+
 ## Using the pre-push hook (optional)
 
 Copy `pre-push.sample` to `.git/hooks/pre-push` to set up the pre-push hook. This will run Python linting and style checks when you push to the repo and alert you to any linting issues that will cause CI to fail.

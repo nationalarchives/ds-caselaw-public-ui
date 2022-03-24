@@ -1,5 +1,6 @@
 import datetime
 import math
+import os
 import re
 
 from caselawclient.Client import (
@@ -8,9 +9,12 @@ from caselawclient.Client import (
     MarklogicResourceNotFoundError,
     api_client,
 )
+from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.template import loader
 from django.utils.translation import gettext
+from django.views.generic import TemplateView
+from django_weasyprint import WeasyTemplateResponseMixin
 from requests_toolbelt.multipart import decoder
 
 from judgments.models import Judgment, SearchResult, SearchResults
@@ -109,6 +113,26 @@ def detail_xml(_request, judgment_uri):
     response = HttpResponse(judgment_xml, content_type="application/xml")
     response["Content-Disposition"] = f"attachment; filename={judgment_uri}.xml"
     return response
+
+
+class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
+    template_name = "pdf/judgment.html"
+    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
+    pdf_attachment = True
+
+    def dispatch(self, request, *args, **kwargs):
+        self.pdf_filename = f'{kwargs["judgment_uri"]}.pdf'
+
+        return super(PdfDetailView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, judgment_uri, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        results = api_client.eval_xslt(judgment_uri)
+        multipart_data = decoder.MultipartDecoder.from_response(results)
+        context["judgment"] = multipart_data.parts[0].text
+
+        return context
 
 
 def index(request):

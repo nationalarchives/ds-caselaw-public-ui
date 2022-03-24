@@ -1,0 +1,15 @@
+@import "includes/variables";
+@import "includes/mixins";
+@import "includes/judgment_text";
+
+html {
+  font-size: 16px;
+}
+
+.judgment {
+  max-width: 100%;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-family: "Times", "Times New Roman", "Noto Serif", serif;
+  text-underline-offset: 0.5em;
+}
