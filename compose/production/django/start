@@ -5,6 +5,7 @@ set -o pipefail
 set -o nounset
 
 
+npm run build
 python /app/manage.py collectstatic --noinput
 cd /app
 DJANGO_SETTINGS_MODULE= django-admin compilemessages
