@@ -13,7 +13,9 @@ class Judgment(xmlmodels.XmlModel):
             "uk": "https://caselaw.nationalarchives.gov.uk/akn",
         }
 
-    metadata_name = xmlmodels.XPathTextField("//akn:FRBRname/@value")
+    metadata_name = xmlmodels.XPathTextField(
+        "//akn:FRBRname/@value", ignore_extra_nodes=True
+    )
     neutral_citation = xmlmodels.XPathTextField(
         "//akn:neutralCitation", ignore_extra_nodes=True
     )
