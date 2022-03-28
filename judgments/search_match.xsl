@@ -14,7 +14,9 @@
     </xsl:template>
 
     <xsl:template match="search:snippet">
-        <xsl:apply-templates select="search:match"/>
+        <xsl:if test="search:match/*">
+            <xsl:apply-templates select="search:match"/>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="search:match">
