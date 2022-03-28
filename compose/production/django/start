@@ -8,4 +8,4 @@ set -o nounset
 python /app/manage.py collectstatic --noinput
 cd /app
 DJANGO_SETTINGS_MODULE= django-admin compilemessages
-/usr/local/bin/gunicorn config.wsgi --bind 0.0.0.0:5000 --chdir=/app
+/usr/local/bin/gunicorn config.wsgi --bind 0.0.0.0:5000 --chdir=/app --access-logfile -
