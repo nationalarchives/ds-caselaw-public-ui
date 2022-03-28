@@ -33,7 +33,8 @@ class TestJudgmentModel(TestCase):
                             <FRBRdate date="2004-06-10" name="judgment"/>
                             <FRBRname value="My Judgment Name"/>
                         </identification>
-                        <proprietary source="ewca/civ/2004/811/eng/docx" xmlns:uk="https:/judgments.gov.uk/">
+                        <proprietary source="ewca/civ/2004/811/eng/docx"
+                            xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
                             <uk:court>EWCA-Civil</uk:court>
                         </proprietary>
                     </meta>

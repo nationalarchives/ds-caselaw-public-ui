@@ -10,7 +10,7 @@ class Judgment(xmlmodels.XmlModel):
     class Meta:
         namespaces = {
             "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0",
-            "uk": "https:/judgments.gov.uk/",
+            "uk": "https://caselaw.nationalarchives.gov.uk/akn",
         }
 
     metadata_name = xmlmodels.XPathTextField("//akn:FRBRname/@value")
