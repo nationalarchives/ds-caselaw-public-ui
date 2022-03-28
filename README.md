@@ -161,12 +161,18 @@ the path expression of `akn:FRBRWork/akn:FRBRdate/@date`. You can leave the othe
 
 The XSLT which transforms the LegalDocML documents into HTML needs to be stored on Marklogic itself. To do this:
 
-1. Open the Marklogic Query console at http://localhost:8000/
-2. Copy the text in `judgments/boostrap/set_up_xslts.xqy` and paste it into the XQuery console
-3. Run it against the database `Modules` using the `XQuery` query type (see the dropdown options in the UI to configure
-   these)
-4. Once the script has run, click `Explore` to ensure the XSLT is in place, it should be called
-   `/judgments/xslts/judgment2.xsl`
+1. Open your terminal in the root of this project
+2. Run this `curl` command:
+
+```bash
+curl --anyauth --user admin:admin -X PUT --data-binary @"./judgments/bootstrap/judgment2.xsl" \
+ -H "Content-type: application/xslt+xml" \
+  "http://localhost:8000/LATEST/documents?database=Modules&uri=/judgments/xslts/judgment2.xsl"
+```
+
+3. Open the Marklogic Query console at http://localhost:8000/ and choose tyhe `Modules` database from the Database
+   dropdown
+4. Click `Explore` to ensure the XSLT is in place, it should be called `/judgments/xslts/judgment2.xsl`
 
 ### Create some managed Judgments
 
