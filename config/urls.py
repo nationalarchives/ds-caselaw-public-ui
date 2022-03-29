@@ -32,6 +32,11 @@ urlpatterns = [
         views.NoResultsView.as_view(),
         name="no_results",
     ),
+    path(
+        "check",
+        views.CheckView.as_view(),
+        name="check",
+    ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
