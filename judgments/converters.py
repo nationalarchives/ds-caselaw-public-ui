@@ -25,7 +25,7 @@ class DateConverter:
 
 
 class CourtConverter:
-    regex = "ewhc|uksc|ukpc|ewca|ewcop|ewfc"
+    regex = "ewhc|uksc|ukpc|ewca|ewcop|ewfc|ukut"
 
     def to_python(self, value):
         return value
@@ -35,7 +35,9 @@ class CourtConverter:
 
 
 class SubdivisionConverter:
-    regex = "civ|crim|admin|admlty|ch|comm|costs|fam|ipec|mercantile|pat|qb|tcc"
+    regex = (
+        "civ|crim|admin|admlty|ch|comm|costs|fam|ipec|mercantile|pat|qb|tcc|iac|lc|tcc"
+    )
 
     def to_python(self, value):
         return value

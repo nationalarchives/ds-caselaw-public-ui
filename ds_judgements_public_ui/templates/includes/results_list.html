@@ -12,7 +12,7 @@
         </dd>
         <dt class="results__result-term-sr">Neutral citation</dt>
         <dd class="results__result-neutral-citation">{{ result.neutral_citation }}</dd>
-        {% if result.matches %}
+        {% if result.matches|length > 0 %}
           <dt class="results__result-term-matching">Matching text sample</dt>
           <dd>
             {% autoescape off %}
