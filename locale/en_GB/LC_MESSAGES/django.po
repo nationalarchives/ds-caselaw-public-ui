@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-21 15:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ds_judgements_public_ui/templates/base.html:8
+#: ds_judgements_public_ui/templates/includes/breadcrumbs.html:7
+#: ds_judgements_public_ui/templates/judgment/results.html:5
+#: ds_judgements_public_ui/templates/layout_judgment_html.html:10
+#: ds_judgements_public_ui/templates/pages/home.html:14
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:5
+msgid "common.findcaselaw"
+msgstr "Find case law"
+
+#: ds_judgements_public_ui/templates/base.html:26
+#: ds_judgements_public_ui/templates/layout_judgment_html.html:26
+msgid "skiplink"
+msgstr "Skip to Main Content"
+
+#: ds_judgements_public_ui/templates/includes/breadcrumbs.html:6
+msgid "common.home"
+msgstr "Home"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_source.html:4
+msgid "judgment.source_by"
+msgstr "This judgment has been provided to The National Archives by "
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_source.html:5
+msgid "judgment.bailii"
+msgstr "The British and Irish Legal Information Institute"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:6
+msgid "judgment.back"
+msgstr "Back to search results"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:10
+msgid "judgment.downloadasxml"
+msgstr "Download as XML"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:11
+msgid "judgment.downloadaspdf"
+msgstr "Download as PDF"
+
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html:20
+msgid "judgments.date"
+msgstr "Date:"
+
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html:23
+msgid "judgments.court"
+msgstr "Court:"
+
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html:29
+msgid "judgments.allrecent"
+msgstr "See all recent judgments"
+
+#: ds_judgements_public_ui/templates/judgment/results.html:5
+#: ds_judgements_public_ui/templates/judgment/results.html:9
+#: judgments/views.py:208
+msgid "results.search.title"
+msgstr "Search results"
+
+#: ds_judgements_public_ui/templates/pages/home.html:16
+msgid "home.useservice"
+msgstr ""
+"Use this service to find, view and download judgments and tribunal decisions"
+
+#: ds_judgements_public_ui/templates/pages/no_results.html:5
+#, python-format
+msgid "No results for '%(data)s'"
+msgstr ""
+
+#: ds_judgements_public_ui/templates/pages/no_results.html:11
+msgid "search.noresults"
+msgstr "There are no results for your search"
+
+#: ds_judgements_public_ui/templates/pages/no_results.html:12
+msgid "search.improvesearch"
+msgstr ""
+"Improve your search results by removing filters, double-checking your "
+"spelling, using fewer keywords or searching for something less specific."
+
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:5
+msgid "openjusticelicence.title"
+msgstr "Open Justice Licence"
+
+#: ds_judgements_public_ui/templates/pages/sources.html:5
+msgid "judgmentsources.title"
+msgstr "Judgment Sources"
+
+#: ds_judgements_public_ui/templates/pages/structured_search.html:5
+#: ds_judgements_public_ui/templates/pages/structured_search.html:9
+msgid "search.title"
+msgstr "Search"
+
+#: ds_judgements_public_ui/templates/pages/structured_search.html:5
+msgid "commom.findcaselaw"
+msgstr "Find case law"
+
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:9
+msgid "terms.title"
+msgstr "Terms of use"
+
+#, fuzzy
+#~| msgid "common.findcaselaw"
+#~ msgid "findcaselaw"
+#~ msgstr "Find case law"
