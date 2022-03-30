@@ -257,10 +257,12 @@
 </xsl:template>
 
 <xsl:template match="img">
-	<img>
-		<xsl:apply-templates select="@*" />
-		<xsl:apply-templates />
-	</img>
+	<xsl:if test="matches(@src, '\.gif|\.png|\.jpg|\.jpeg|\.webp|\.svg')">
+		<img>
+			<xsl:apply-templates select="@*" />
+			<xsl:apply-templates />
+		</img>
+	</xsl:if>
 </xsl:template>
 <xsl:template match="img/@src">
 	<xsl:attribute name="src">
