@@ -35,3 +35,7 @@ class StructuredSearchView(TemplateViewWithContext):
 
 class NoResultsView(TemplateViewWithContext):
     template_name = "pages/no_results.html"
+
+
+class CheckView(TemplateViewWithContext):
+    template_name = "pages/check.html"
