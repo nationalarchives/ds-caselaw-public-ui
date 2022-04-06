@@ -10,7 +10,7 @@ urlpatterns = [
     path(
         "accessibility-statement",
         views.AccessibilityStatement.as_view(),
-        name="accessibility_statement"
+        name="accessibility_statement",
     ),
     path(
         "open-justice-licence",
