@@ -17,7 +17,9 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 from requests_toolbelt.multipart import decoder
 
-from judgments.models import Judgment, SearchResult, SearchResults
+from judgments.models import Judgment, SearchResult
+
+from .utils import perform_advanced_search
 
 
 def browse(request, court=None, subdivision=None, year=None):
@@ -204,27 +206,3 @@ def paginator(current_page, total):
 
 def trim_leading_slash(uri):
     return re.sub("^/|/$", "", uri)
-
-
-def perform_advanced_search(
-    query=None,
-    court=None,
-    judge=None,
-    party=None,
-    order=None,
-    date_from=None,
-    date_to=None,
-    page=1,
-):
-    response = api_client.advanced_search(
-        q=query,
-        court=court,
-        judge=judge,
-        party=party,
-        page=page,
-        order=order,
-        date_from=date_from,
-        date_to=date_to,
-    )
-    multipart_data = decoder.MultipartDecoder.from_response(response)
-    return SearchResults.create_from_string(multipart_data.parts[0].text)

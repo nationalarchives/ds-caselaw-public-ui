@@ -1,0 +1,11 @@
+.back-to-top-link {
+    display: inline-block;
+    padding: $spacer__unit;
+    background-color: $color__white;
+
+  &.show {
+    margin: auto;
+    position: fixed;
+    top: 0;
+  }
+}

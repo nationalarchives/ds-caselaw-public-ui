@@ -1,6 +1,6 @@
 from django.urls import path, re_path, register_converter
 
-from . import converters, views
+from . import converters, feeds, views
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -16,6 +16,21 @@ urlpatterns = [
         "<court:court>/<subdivision:subdivision>/<yyyy:year>",
         views.browse,
         name="browse",
+    ),
+    path("<court:court>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
+    path("<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
+    path(
+        "<court:court>/<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"
+    ),
+    path(
+        "<court:court>/<subdivision:subdivision>/atom.xml",
+        feeds.LatestJudgmentsFeed(),
+        name="feed",
+    ),
+    path(
+        "<court:court>/<subdivision:subdivision>/<yyyy:year>/atom.xml",
+        feeds.LatestJudgmentsFeed(),
+        name="feed",
     ),
     re_path(
         "(?P<judgment_uri>.*/.*/.*)/data.pdf",
