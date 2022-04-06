@@ -23,11 +23,6 @@ urlpatterns = [
         name="terms_of_use",
     ),
     path(
-        "sources",
-        views.SourcesView.as_view(),
-        name="sources",
-    ),
-    path(
         "structured_search",
         views.StructuredSearchView.as_view(),
         name="structured_search",
