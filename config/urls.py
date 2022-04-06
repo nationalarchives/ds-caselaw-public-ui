@@ -8,6 +8,11 @@ from . import views
 
 urlpatterns = [
     path(
+        "accessibility-statement",
+        views.AccessibilityStatement.as_view(),
+        name="accessibility_statement",
+    ),
+    path(
         "open-justice-licence",
         views.OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",

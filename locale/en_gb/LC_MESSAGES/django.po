@@ -94,6 +94,10 @@ msgstr ""
 "Improve your search results by removing filters, double-checking your "
 "spelling, using fewer keywords or searching for something less specific."
 
+#: ds_judgments_public_ui/templates/pages/accessibility_statement.html:5
+msgid "accessibilitystatement.title"
+msgstr "Accessibility statement"
+
 #: ds_judgements_public_ui/templates/pages/open_justice_licence.html:5
 msgid "openjusticelicence.title"
 msgstr "Open Justice Licence"

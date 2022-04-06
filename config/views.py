@@ -13,6 +13,11 @@ class TemplateViewWithContext(TemplateView):
         }
 
 
+class AccessibilityStatement(TemplateViewWithContext):
+    template_name = "pages/accessibility_statement.html"
+    page_title = "accessibilitystatement.title"
+
+
 class OpenJusticeLicenceView(TemplateViewWithContext):
     template_name = "pages/open_justice_licence.html"
     page_title = "openjusticelicence.title"
