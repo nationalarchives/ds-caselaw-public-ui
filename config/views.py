@@ -28,11 +28,6 @@ class TermsOfUseView(TemplateViewWithContext):
     page_title = "terms.title"
 
 
-class SourcesView(TemplateViewWithContext):
-    template_name = "pages/sources.html"
-    page_title = "judgmentsources.title"
-
-
 class StructuredSearchView(TemplateViewWithContext):
     template_name = "pages/structured_search.html"
     page_title = "search.title"

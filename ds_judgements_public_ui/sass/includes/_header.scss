@@ -47,6 +47,12 @@
         }
       }
     }
+
+    &-you-are-in {
+      color: $color__white;
+      font-size: 0.9rem;
+      margin-right: calc($spacer__unit / 2);
+    }
   }
 
   &__container {
