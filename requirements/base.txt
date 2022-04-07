@@ -2,7 +2,7 @@ pytz==2021.3  # https://github.com/stub42/pytz
 python-slugify==5.0.2  # https://github.com/un33k/python-slugify
 Pillow==9.0.1  # https://github.com/python-pillow/Pillow
 argon2-cffi==21.3.0  # https://github.com/hynek/argon2_cffi
-whitenoise==5.3.0  # https://github.com/evansd/whitenoise
+whitenoise==6.0.0  # https://github.com/evansd/whitenoise
 redis==4.1.2  # https://github.com/redis/redis-py
 hiredis==2.0.0  # https://github.com/redis/hiredis-py
 
@@ -22,6 +22,6 @@ requests-toolbelt~=0.9.1
 lxml~=4.7.1
 django-xml~=3.0.0
 wsgi-basic-auth~=1.1.0
-ds-caselaw-marklogic-api-client~=2.1.1
+ds-caselaw-marklogic-api-client~=3.0.2
 rollbar
 django-weasyprint==2.1.0
