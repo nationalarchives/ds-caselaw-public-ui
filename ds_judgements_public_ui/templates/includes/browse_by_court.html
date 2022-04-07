@@ -5,10 +5,9 @@
 
       <ul class="judgment-browse-by-court__list">
         {% for court in courts %}
-        {# {% for court in courts | sort(attribute='name') %} #}
           <li class="judgment-browse-by-court__court">
             <span class="judgment-browse-by-court__court-name">
-                <a class="judgment-browse-by-court__court-link" href="/results?courts={{ court.code }}">
+                <a class="judgment-browse-by-court__court-link" href="/judgments/advanced_search?court={{ court.code }}">
                   {{ court.name }}
                 </a>
             </span>
