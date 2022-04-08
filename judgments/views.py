@@ -19,7 +19,7 @@ from requests_toolbelt.multipart import decoder
 
 from judgments.models import Judgment, SearchResult
 
-from .courts import courts
+from judgments.fixtures.courts import courts
 from .utils import perform_advanced_search
 
 
