@@ -17,9 +17,9 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 from requests_toolbelt.multipart import decoder
 
+from judgments.fixtures.courts import courts
 from judgments.models import Judgment, SearchResult
 
-from judgments.fixtures.courts import courts
 from .utils import perform_advanced_search
 
 
