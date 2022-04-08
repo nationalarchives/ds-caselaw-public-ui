@@ -2,12 +2,12 @@
   <div class="judgment-browse-by-court">
     <div class="judgment-browse-by-court__container">
       <h2 id="browse-by-court" class="judgment-browse-by-court__header">Find judgments by court</h2>
-
+x§
       <ul class="judgment-browse-by-court__list">
         {% for court in courts %}
           <li class="judgment-browse-by-court__court">
             <span class="judgment-browse-by-court__court-name">
-                <a class="judgment-browse-by-court__court-link" href="/judgments/advanced_search?court={{ court.code }}">
+                <a class="judgment-browse-by-court__court-link" href="{% url 'advanced_search' %}?court={{ court.code }}">
                   {{ court.name }}
                 </a>
             </span>
