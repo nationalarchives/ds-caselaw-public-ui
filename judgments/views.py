@@ -17,6 +17,7 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 from requests_toolbelt.multipart import decoder
 
+from judgments.fixtures.courts import courts
 from judgments.models import Judgment, SearchResult
 
 from .utils import perform_advanced_search
@@ -152,7 +153,9 @@ def index(request):
             "Search results not found"
         )  # TODO: This should be something else!
     template = loader.get_template("pages/home.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return HttpResponse(
+        template.render({"context": context, "courts": courts}, request)
+    )
 
 
 def results(request):
