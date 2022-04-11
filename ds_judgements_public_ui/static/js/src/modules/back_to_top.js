@@ -18,4 +18,8 @@ const manage_class = (intersecting) => {
     }
 };
 
-createObserver(document.querySelector('.judgment-body'));
+let judgment_body = document.querySelector('.judgment-body');
+
+if (judgment_body) {
+    createObserver(judgment_body);
+}
