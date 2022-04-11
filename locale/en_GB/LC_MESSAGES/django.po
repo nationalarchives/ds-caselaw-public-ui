@@ -166,6 +166,12 @@ msgstr "Privacy"
 msgid "footer.privacy.link"
 msgstr "https://www.nationalarchives.gov.uk/legal/privacy-policy/"
 
+msgid "footer.judiciary"
+msgstr "Judiciary"
+
+msgid "footer.judiciary.link"
+msgstr "https://www.judiciary.uk"
+
 #, fuzzy
 #~| msgid "common.findcaselaw"
 #~ msgid "findcaselaw"
