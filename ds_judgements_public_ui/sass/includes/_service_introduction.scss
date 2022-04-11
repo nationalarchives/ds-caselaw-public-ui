@@ -33,7 +33,7 @@
   &__what-to-expect {
     @include link-on-dark-bg;
     display: inline-block;
-    padding: 0 0 calc($spacer__unit / 4);
+    padding: 0 0 calc($spacer__unit / 2);
     color: $color__white;
     margin: calc($spacer__unit * 1.6) 0 0;
     font-weight: bold;

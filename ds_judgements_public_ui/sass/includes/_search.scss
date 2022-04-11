@@ -17,7 +17,7 @@
     margin: 0 calc($spacer__unit * 1.5);
 
     &--sr-only {
-       @include sr-only;
+      @include sr-only;
     }
   }
 
@@ -25,7 +25,22 @@
     margin-top: calc($spacer__unit * 2);
 
     a {
-      color: darken($color__link-blue, 10);
+      color: $color__black;
+      text-decoration: none;
+      border: 0;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0 0 calc($spacer__unit / 2);
+      border-bottom: 0.188rem solid $color__yellow;
+      display: inline-block;
+      background: transparent;
+      font-family: $font__roboto;
+      font-weight: bold;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color__black;
+      }
     }
   }
 
