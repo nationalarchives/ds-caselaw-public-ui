@@ -21,60 +21,11 @@
           <div class="structured-search__full-text-panel">
             <input class="search-component__search-term-input" id="search_term" name="query" type="text" value="">
             <label for="search_term" class="structured-search__full-text-label">{# {{ form.search_term.label }} #}Search</label>
-            {# {{ form.search_term }} #}
             <input type="submit" value="Search">
-            <div>
-              {# {{ form.neutral_citation }} #}
-              {# {{ form.neutral_citation.label }} #}
-            </div>
           </div>
         </div>
       </div>
-      <div class="structured-search__filter-options">
-        <div class="structured-search__container">
-          <fieldset>
-            <legend>Search specific fields</legend>
-            <div class="structured-search__multi-fields-panel">
-              <div class="structured-search__name-container">
-                <label for="party_name" class="structured-search__name-label"><label for="party_name">Party name</label></label>
-                <p class="structured-search__help-text">For example a claimant, defendant or prosecutor</p>
-                <input class="structured-search__name-input" id="party_name" name="party" type="text" value="">
-              </div>
-              <div class="structured-search__name-container">
-               <label for="judge_name" class="structured-search__name-label"><label for="judge_name">Judge name</label></label>
-                <p class="structured-search__help-text">For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'</p>
-                <input class="structured-search__name-input" id="judge_name" name="judge" type="text" value="">
-                {# {{ form.judge_name }} #}
-              </div>
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Only include results</legend>
-            <div class="structured-search__multi-fields-panel">
-              <div class="structured-search__limit-to-container">
-                <label for="court" class="structured-search__limit-to-label"><label for="court">From a specific court or tribunal</label></label>
-                <select class="structured-search__select" id="court" name="court"><option value="">All courts</option><option value="uksc">United Kingdom Supreme Court</option><option value="ukpc">Privy Council</option><option value="ewca/civ">Court of Appeal Civil Division</option><option value="ewca/crim">Court of Appeal Criminal Division</option><option value="ewhc/admin">Administrative Court</option><option value="ewhc/admlty">Admiralty Court</option><option value="ewhc/ch">Chancery Division of the High Court</option><option value="ewhc/comm">Commercial Court</option><option value="ewhc/costs">Senior Court Costs Office</option><option value="ewhc/fam">Family Division of the High Court</option><option value="ewhc/ipec">Intellectual Property Enterprise Court</option><option value="ewhc/mercantile">Mercantile Court</option><option value="ewhc/pat">Patents Court</option><option value="ewhc/qb">Queen's Bench Division of the High Court</option><option value="ewhc/tcc">Technology and Construction Court</option><option value="ewcop">Court of Protection</option><option value="ewfc">Family Court</option><option value="ukut">Upper Tribunal</option><option value="eat">United Kingdom Employment Appeal Tribunal</option></select>
-              </div>
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>During the period</legend>
-            <div class="structured-search__multi-fields-panel">
-              <div class="structured-search__limit-to-container">
-                 <label for="from_date" class="structured-search__limit-to-label"><label for="from_date">From date</label></label>
-                 <input class="structured-search__date-input" id="from_date" max="3-3-2022" min="02-01-2003" name="from" placeholder="DD-MM-YYYY" type="date" value="" />
-              </div>
-              <div class="structured-search__limit-to-container">
-                 <label for="to_date" class="structured-search__limit-to-label"><label for="to_date">To date</label></label>
-                 <input class="structured-search__date-input" id="to_date" max="3-3-2022" min="02-01-2003" name="to" placeholder="DD-MM-YYYY" type="date" value="">
-              </div>
-            </div>
-          </fieldset>
-          <div class="structured-search__submit-container">
-            <input type="submit" value="Update filters">
-          </div>
-        </div>
-      </div>
+    {% include 'includes/structured_search_inputs.html' %}
     </div>
   </form>
 {% endblock %}
