@@ -132,6 +132,40 @@ msgstr "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
 msgid "survey.link.text"
 msgstr "Fill out our short survey"
 
+#: ds_judgments_public_ui/templates/includes/footer
+msgid "footer.websites"
+msgstr "Websites"
+
+msgid "footer.sitehelp"
+msgstr "Site help"
+
+msgid "footer.legal"
+msgstr "Legal"
+
+msgid "footer.legislation"
+msgstr "Legislation"
+
+msgid "footer.legislation.link"
+msgstr "https://www.legislation.gov.uk/"
+
+msgid "footer.gazette"
+msgstr "The Gazette"
+
+msgid "footer.gazette.link"
+msgstr "https://www.thegazette.co.uk/"
+
+msgid "footer.cookies"
+msgstr "Cookies"
+
+msgid "footer.cookies.link"
+msgstr "https://www.nationalarchives.gov.uk/legal/cookies/"
+
+msgid "footer.privacy"
+msgstr "Privacy"
+
+msgid "footer.privacy.link"
+msgstr "https://www.nationalarchives.gov.uk/legal/privacy-policy/"
+
 #, fuzzy
 #~| msgid "common.findcaselaw"
 #~ msgid "findcaselaw"
