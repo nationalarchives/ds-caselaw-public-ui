@@ -2,7 +2,7 @@
   min-height: 60rem;
 
   h1 {
-    @include sr-only
+    @include sr-only;
   }
 
   &__container {

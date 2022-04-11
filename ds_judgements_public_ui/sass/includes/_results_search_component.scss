@@ -58,7 +58,7 @@
   }
 
   &__search-submit-button {
-    @include call-to-action-button;
+    @include call-to-action-button($color__dark-blue, $color__white);
     padding-left: calc($spacer__unit * 3);
     padding-right: calc($spacer__unit * 3);
   }
@@ -161,7 +161,7 @@
   }
 
   &__filter-submit-button {
-    @include call-to-action-button;
+    @include call-to-action-button($color__dark-blue, $color__white);
     margin: 0 auto;
   }
 

@@ -94,6 +94,10 @@ msgstr ""
 "Improve your search results by removing filters, double-checking your "
 "spelling, using fewer keywords or searching for something less specific."
 
+#: ds_judgments_public_ui/templates/pages/accessibility_statement.html:5
+msgid "accessibilitystatement.title"
+msgstr "Accessibility statement"
+
 #: ds_judgements_public_ui/templates/pages/open_justice_licence.html:5
 msgid "openjusticelicence.title"
 msgstr "Open Justice Licence"
@@ -114,6 +118,19 @@ msgstr "Find case law"
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html:9
 msgid "terms.title"
 msgstr "Terms of use"
+
+#: ds_judgments_public_ui/templates/includes/how_can_this_service_be_improved:4
+msgid "service.improved"
+msgstr "How can this service be improved?"
+
+#: ds_judgments_public_ui/templates/includes/how_can_this_service_be_improved:5
+#: ds_judgments_public_ui/templates/includes/phase_banner:8
+msgid "survey.link"
+msgstr "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
+
+#: ds_judgments_public_ui/templates/includes/how_can_this_service_be_improved:5
+msgid "survey.link.text"
+msgstr "Fill out our short survey"
 
 #, fuzzy
 #~| msgid "common.findcaselaw"

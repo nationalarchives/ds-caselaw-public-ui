@@ -45,7 +45,7 @@
   }
 
   input[type=submit] {
-    @include call-to-action-button;
+    @include call-to-action-button($color__black, $color__white);
     padding-left: calc($spacer__unit * 3);
     padding-right: calc($spacer__unit * 3);
   }

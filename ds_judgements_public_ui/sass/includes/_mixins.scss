@@ -53,17 +53,23 @@
   }
 }
 
-@mixin call-to-action-button {
-  background-color: $color__aqua-blue;
+@mixin call-to-action-button($background_color, $foreground_color) {
+  background-color: $background_color;
+  text-decoration: none;
   font-weight: 700;
   border: 0;
-  color: $color__white;
+  color: $foreground_color;
   padding: 1rem 1.3rem;
+  display: inline-block;
   margin-top: 1em;
   font-size: 1rem;
 
-  &:focus {
+  &:focus, &:hover {
     @include focus-default;
+    color: $foreground_color;
+    background-color: $background_color;
+    outline-color: $background_color;
+    text-decoration: underline;
     outline-offset: 0.2rem;
   }
 }
