@@ -119,3 +119,7 @@ msgstr "Terms of use"
 #~| msgid "common.findcaselaw"
 #~ msgid "findcaselaw"
 #~ msgstr "Find case law"
+
+#: ds_judgments_public_ui/templates/pages/accessibility_statement.html:5
+msgid "accessibilitystatement.title"
+msgstr "Accessibility statement"
