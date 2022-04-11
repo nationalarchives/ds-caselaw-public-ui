@@ -14,21 +14,16 @@
       <div>
         <h3>{% translate "footer.sitehelp" %}</h3>
         <ul>
-          <li>
-            <a href="{% url "accessibility_statement" %}">{% translate "accessibilitystatement.title" %}</a>
-          </li>
+          <li><a href="{% url "accessibility_statement" %}">{% translate "accessibilitystatement.title" %}</a></li>
+          <li><a href="{% translate "footer.contact.link" %}">{% translate "footer.contact" %}</a></li>
         </ul>
       </div>
       <div>
         <h3>{% translate "footer.legal" %}</h3>
         <ul>
-          <li>
-            <a href="{% url "terms_of_use" %}">{% translate "terms.title" %}</a>
-          </li>
-          <li>
+          <li><a href="{% url "terms_of_use" %}">{% translate "terms.title" %}</a></li>
           <li><a href="{% translate "footer.cookies.link" %}">{% translate "footer.cookies" %}</a></li>
           <li><a href="{% translate "footer.privacy.link" %}">{% translate "footer.privacy" %}</a></li>
-          </li>
         </ul>
       </div>
     </div>

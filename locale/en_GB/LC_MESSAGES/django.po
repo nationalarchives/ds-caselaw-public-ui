@@ -172,6 +172,12 @@ msgstr "Judiciary"
 msgid "footer.judiciary.link"
 msgstr "https://www.judiciary.uk"
 
+msgid "footer.contact"
+msgstr "Contact us"
+
+msgid "footer.contact.link"
+msgstr "https://www.nationalarchives.gov.uk/contact-us/"
+
 #, fuzzy
 #~| msgid "common.findcaselaw"
 #~ msgid "findcaselaw"
