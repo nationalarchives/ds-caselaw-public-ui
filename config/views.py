@@ -39,3 +39,6 @@ class NoResultsView(TemplateViewWithContext):
 
 class CheckView(TemplateViewWithContext):
     template_name = "pages/check.html"
+
+class WhatToExpectView(TemplateViewWithContext):
+    template_name = "pages/what_to_expect.html"

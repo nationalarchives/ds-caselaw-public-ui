@@ -29,4 +29,29 @@
     display: inline-block;
     margin-top: $spacer__unit;
   }
+
+  &__what-to-expect {
+    @include link-on-dark-bg;
+    display: inline-block;
+    padding: 0 0 calc($spacer__unit / 4);
+    color: $color__white;
+    margin: calc($spacer__unit * 1.6) 0 0;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-bottom: 3px solid $color__yellow;
+
+    &:hover {
+      border-bottom-color: transparent;
+    }
+
+    &:active {
+      border-bottom-color: transparent;
+    }
+
+    &:focus {
+      border-bottom-color: transparent;
+    }
+
+  }
 }
