@@ -152,7 +152,7 @@
   }
 
   input[type=submit] {
-    @include call-to-action-button;
+    @include call-to-action-button($color__dark-blue, $color__white);
     padding-right: calc($spacer__unit * 3);
     padding-left: calc($spacer__unit * 3);
   }

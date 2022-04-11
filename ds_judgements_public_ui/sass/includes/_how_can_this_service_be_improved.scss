@@ -1,0 +1,19 @@
+.improved {
+  background-color: $color__light-grey;
+
+  &__container {
+    @include container;
+    text-align: center;
+    padding: calc($spacer__unit * 2);
+
+    h2 {
+      margin-top: 0;
+      font-weight: normal;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__cta-button {
+    @include call-to-action-button($color__black, $color__white);
+  }
+}

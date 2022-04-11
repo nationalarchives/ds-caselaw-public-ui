@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {{ page_title }} - {% translate "common.findcaselaw" %}
+{% endblock title %}
+
+{% block content %}
+  <header class="page-header">
+    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
+    {% include 'includes/logo.html' %}
+  </header>
+
+  <div class="standard-text-template">
+  <h1>What to expect from this new service</h1>
+  <div class="entry-content">
+    <p>...</p>
+  </div>
+{% endblock %}

@@ -1,26 +1,40 @@
+{% load static i18n %}
 <h2>Results listing</h2>
-<p class="results__results-intro">We found {{ context.total }} judgments</p>
-<ul class="results__results-list">
-  {% for result in context.search_results %}
+<div class="results__result-header">
+  <p class="results__results-intro">We found {{ context.total }} judgments</p>
+</div>
+<ul class="judgment-listing__list">
+  {% for item in context.search_results %}
     <li>
-      <dl class="results__result-terms">
-        <dt class="results__result-term-sr">Title</dt>
-        <dd>
-          <a class="results__result-title" href="{% url 'detail' result.uri %}">
-            {{ result.name | safe }}
-          </a>
-        </dd>
-        <dt class="results__result-term-sr">Neutral citation</dt>
-        <dd class="results__result-neutral-citation">{{ result.neutral_citation }}</dd>
-        {% if result.matches|length > 0 %}
-          <dt class="results__result-term-matching">Matching text sample</dt>
-          <dd>
-            {% autoescape off %}
-              {{ result.matches }}
-            {% endautoescape %}
-          </dd>
-        {% endif %}
-      </dl>
+      <span class="judgment-listing__judgment">
+      <span>
+            <span class="judgment-listing__title">
+              <a href="{% url 'detail' item.uri %}">
+                {{ item.name }}
+              </a>
+            </span>
+            <span class="judgment-listing__neutralcitation">
+              Neutral citation:
+              {{ item.neutral_citation }}
+            </span>
+          </span>
+      <span>
+      <span class="judgment-listing__date">
+              {% translate "judgments.date" %} {{ item.date }}
+            </span>
+      <span class="judgment-listing__court">
+              {% translate "judgments.court" %} {{ item.court }}
+            </span>
+      </span>
+      </span>
+      <span class="judgment-listing__result-term-matching">
+        Matching text sample:
+      </span>
+      <span class="judgment-listing__matches">
+      {% autoescape off %}
+        {{ item.matches }}
+      {% endautoescape %}
+      </span>
     </li>
   {% endfor %}
 </ul>

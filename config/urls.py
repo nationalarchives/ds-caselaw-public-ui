@@ -9,6 +9,11 @@ from . import views
 
 urlpatterns = [
     path(
+        "what-to-expect",
+        views.WhatToExpectView.as_view(),
+        name="what_to_expect",
+    ),
+    path(
         "accessibility-statement",
         views.AccessibilityStatement.as_view(),
         name="accessibility_statement",

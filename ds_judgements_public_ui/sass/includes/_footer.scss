@@ -4,29 +4,31 @@
   color: $color__white;
   padding: $spacer__unit;
 
+  &__container {
+    @include container;
+  }
+
+  &__links-container {
+    @media (min-width: $grid__breakpoint-medium) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
   &__heading {
     @include sr-only;
   }
 
-  &__links {
+  ul {
     padding: 0;
-    list-style-type: none;
-    @media (min-width: $grid__breakpoint-large) {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    li {
-      padding-right: 1rem;
-      padding-bottom: 1rem;
-    }
   }
 
-  &__link {
+  li {
+    list-style: none;
+    margin-bottom: calc($spacer__unit / 2);
+  }
+
+  a {
     @include link-on-dark-bg;
-  }
-
-  &__container {
-    @include container;
   }
 }

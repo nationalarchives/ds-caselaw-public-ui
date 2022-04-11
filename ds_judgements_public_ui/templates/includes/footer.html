@@ -1,17 +1,35 @@
+{% load i18n %}
 <footer class="judgments-footer">
   <div class="judgments-footer__container">
     <h2 class="judgments-footer__heading">Footer</h2>
-    <ul class="judgments-footer__links">
-      <li>All content is available under the
-        <a class="judgments-footer__link" href="{% url 'open_justice_licence' %}">Open Justice Licence</a>,
-        except where otherwise stated.
-      </li>
-      <li>
-        <a class="judgments-footer__link" href="{% url 'terms_of_use' %}">Terms of use (Placeholder) </a>
-      </li>
-      <li>
-        <a class="judgments-footer__link" href="{% url 'accessibility_statement' %}">Accessibility statement (Draft)</a>
-      </li>
-    </ul>
+    <div class="judgments-footer__links-container">
+      <div>
+        <h3>{% translate "footer.websites" %}</h3>
+        <ul>
+          <li><a href="{% translate "footer.legislation.link" %}">{% translate "footer.legislation" %}</a></li>
+          <li><a href="{% translate "footer.gazette.link" %}">{% translate "footer.gazette" %}</a></li>
+          <li><a href="{% translate "footer.judiciary.link" %}">{% translate "footer.judiciary" %}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>{% translate "footer.sitehelp" %}</h3>
+        <ul>
+          <li><a href="{% url "accessibility_statement" %}">{% translate "accessibilitystatement.title" %}</a></li>
+          <li><a href="{% translate "footer.contact.link" %}">{% translate "footer.contact" %}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>{% translate "footer.legal" %}</h3>
+        <ul>
+          <li><a href="{% url "terms_of_use" %}">{% translate "terms.title" %}</a></li>
+          <li><a href="{% translate "footer.cookies.link" %}">{% translate "footer.cookies" %}</a></li>
+          <li><a href="{% translate "footer.privacy.link" %}">{% translate "footer.privacy" %}</a></li>
+        </ul>
+      </div>
+    </div>
+    <p>All content is available under the
+      <a class="judgments-footer__link" href="/open-justice-licence">Open Justice Licence</a>,
+      except where otherwise stated.
+    </p>
   </div>
 </footer>

@@ -58,7 +58,7 @@
   }
 
   &__search-submit-button {
-    @include call-to-action-button;
+    @include call-to-action-button($color__dark-blue, $color__white);
     padding-left: calc($spacer__unit * 3);
     padding-right: calc($spacer__unit * 3);
   }
@@ -161,7 +161,7 @@
   }
 
   &__filter-submit-button {
-    @include call-to-action-button;
+    @include call-to-action-button($color__dark-blue, $color__white);
     margin: 0 auto;
   }
 
@@ -238,7 +238,7 @@
       font-size: 1rem;
       position: relative;
       padding: calc($spacer__unit / 2) 0;
-      border-bottom: 0.125rem solid $color__yellow;
+      border-bottom: 0.188rem solid $color__yellow;
       display: block;
       margin: calc($spacer__unit * 1.5) auto 0;
       font-weight: bold;
