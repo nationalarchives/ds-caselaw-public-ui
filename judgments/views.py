@@ -165,9 +165,10 @@ def results(request):
         params = request.GET
         query = params.get("query")
         page = params.get("page") if params.get("page") else "1"
+        order = params.get("order", default=None)
 
         if query:
-            model = perform_advanced_search(query=query, page=page)
+            model = perform_advanced_search(query=query, page=page, order=order)
 
             context["search_results"] = [
                 SearchResult.create_from_node(result) for result in model.results
@@ -176,7 +177,9 @@ def results(request):
             context["paginator"] = paginator(int(page), model.total)
             context["query_string"] = f"query={query}"
         else:
-            model = perform_advanced_search(order="-date", page=page)
+            model = perform_advanced_search(
+                order=order if order else "-date", page=page
+            )
             search_results = [
                 SearchResult.create_from_node(result) for result in model.results
             ]
