@@ -28,9 +28,12 @@
     }
   }
 
+  p {
+    margin: 0 0 calc($spacer__unit / 2) 0;
+  }
   &__neutral-citation {
-    padding-top: $spacer__unit;
     text-decoration: underline;
+    text-align: right;
 
     span {
       font-weight: bolder;
@@ -50,7 +53,6 @@
   }
 
   &__court {
-    padding-top: $spacer__unit;
     font-weight: bold;
     text-decoration: underline;
   }
@@ -109,6 +111,9 @@
 
   &__line-separator {
     text-align: center;
+     ~ p {
+       text-align: center;
+     }
   }
 
   &__queens-counsel {
