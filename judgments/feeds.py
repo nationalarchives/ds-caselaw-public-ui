@@ -15,6 +15,9 @@ class LatestJudgmentsFeed(Feed):
         return {"court": court, "subdivision": subdivision, "year": year}
 
     def title(self, obj):
+        if not obj["court"] and not obj["subdivision"] and not obj["year"]:
+            return "Latest judgments"
+
         return (
             f'Latest judgments for /{obj["court"]}/{obj["subdivision"]}/{obj["year"]}'
         )
