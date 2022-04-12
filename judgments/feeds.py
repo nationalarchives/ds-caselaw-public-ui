@@ -18,17 +18,16 @@ class LatestJudgmentsFeed(Feed):
         if not obj["court"] and not obj["subdivision"] and not obj["year"]:
             return "Latest judgments"
 
-        return (
-            f'Latest judgments for /{obj["court"]}/{obj["subdivision"]}/{obj["year"]}'
+        slugs = filter(
+            lambda x: x is not None, [obj["court"], obj["subdivision"], obj["year"]]
         )
+        return f'Latest judgments for /{"/".join([str(s) for s in slugs])}'
 
     def link(self, obj):
-        return "/" + "/".join(
-            filter(
-                lambda x: x is not None,
-                [obj["court"], obj["subdivision"], str(obj["year"])],
-            )
+        slugs = filter(
+            lambda x: x is not None, [obj["court"], obj["subdivision"], obj["year"]]
         )
+        return "/" + "/".join([str(s) for s in slugs])
 
     def items(self, obj):
         court = obj["court"]
@@ -56,3 +55,6 @@ class LatestJudgmentsFeed(Feed):
 
     def item_link(self, item: SearchResult) -> str:
         return reverse("detail", kwargs={"judgment_uri": item.uri})
+
+    def item_guid(self, item: SearchResult) -> str:
+        return item.uri
