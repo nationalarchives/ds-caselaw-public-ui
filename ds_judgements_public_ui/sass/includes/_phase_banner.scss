@@ -1,14 +1,13 @@
 .phase-banner {
-  background-color: $color__black;
-  color: $color__white;
+  background-color: $color__yellow;
+  color: $color__black;
   padding: calc($spacer__unit / 2) calc($spacer__unit * 2);
-  border-bottom: 0.125rem dotted $color__dark-grey;
 
   &__notice {
     padding: 0.3em 0;
 
     a {
-      color: $color__white;
+      color: $color__black;
       font-weight: bold;
 
       &:focus {
