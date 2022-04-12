@@ -11,6 +11,10 @@
     padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);
     display: inline-block;
     text-decoration: none;
+    outline-offset: 3px;
+    &:first-child {
+      margin-right: $spacer__unit;
+    }
   }
 
   &__return-link {
