@@ -12,6 +12,7 @@ from caselawclient.Client import (
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.template import loader
+from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
@@ -46,7 +47,7 @@ def browse(request, court=None, subdivision=None, year=None):
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def detail(request, judgment_uri):
@@ -63,7 +64,7 @@ def detail(request, judgment_uri):
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def advanced_search(request):
@@ -106,7 +107,7 @@ def advanced_search(request):
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def detail_xml(_request, judgment_uri):
@@ -153,8 +154,8 @@ def index(request):
             "Search results not found"
         )  # TODO: This should be something else!
     template = loader.get_template("pages/home.html")
-    return HttpResponse(
-        template.render({"context": context, "courts": courts}, request)
+    return TemplateResponse(
+        request, template, context={"context": context, "courts": courts}
     )
 
 
@@ -188,7 +189,7 @@ def results(request):
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
-    return HttpResponse(template.render({"context": context}, request))
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def paginator(current_page, total):
