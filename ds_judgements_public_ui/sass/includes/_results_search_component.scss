@@ -178,17 +178,13 @@
   }
 
   &__removable-options {
-    font-size: 0.9rem;
     padding: 0;
     list-style-type: none;
     display: inline-block;
 
     li {
-      margin: 0.25rem 0.5rem;
-      padding: 0rem 0.75rem 0rem 1rem;
+      margin: 0.25rem;
       display: inline-block;
-      background: $color__yellow;
-      font-size: 0.85rem;
     }
   }
 
@@ -202,29 +198,23 @@
   }
 
   &__removable-options-value-text {
-    padding: 0 0.75rem 0 0.5rem;
   }
 
   &__removable-options-link {
     display: inline-block;
+    background: $color__yellow;
     color: $color__black;
     text-decoration: none;
-    padding: 0.5rem;
-    font-size: 0.85em;
-
-    &::after {
-      content: 'x';
-      font-size: 1rem;
-    }
+    padding: calc($spacer__unit / 2) $spacer__unit;
 
     &:hover {
       color: $color__white;
       background: $color__black;
     }
-  }
 
-  &__removable-options-sr-only {
-    @include sr-only;
+    &:focus {
+      outline-offset: calc($spacer__unit / 4);
+    }
   }
 }
 
