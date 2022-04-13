@@ -5,21 +5,30 @@
       <fieldset>
         <legend>Search specific fields</legend>
         <div class="structured-search__multi-fields-panel">
-          <div class="structured-search__name-container">
-            <label for="party_name" class="structured-search__name-label">Party name</label>
+          <div class="structured-search__specific-field-container">
+            <label for="party_name" class="structured-search__limit-to-label">Party name</label>
             <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or prosecutor</p>
-            <input class="structured-search__name-input" id="party_name" name="party" type="text" value="" aria-describedby="party_name-help-text">
+            <input class="structured-search__limit-to-input" id="party_name" name="party" type="text" value="" aria-describedby="party_name-help-text">
           </div>
-          <div class="structured-search__name-container">
-            <label for="judge_name" class="structured-search__name-label">Judge name</label>
+          <div class="structured-search__specific-field-container">
+            <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
             <p class="structured-search__help-text" id="judge_name-help-text">For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'</p>
-            <input class="structured-search__name-input" id="judge_name" name="judge" type="text" value="" aria-describedby="judge_name-help-text">
+            <input class="structured-search__limit-to-input" id="judge_name" name="judge" type="text" value="" aria-describedby="judge_name-help-text">
+          </div>
+          <div class="structured-search__specific-field-container">
+            <label for="neutral_citation" class="structured-search__limit-to-label">Neutral citation</label>
+            <p class="structured-search__help-text" id="neutral_citation-help-text">For example [2021] EWCA Crim 1785</p>
+            <input class="structured-search__limit-to-input" id="neutral_citation" name="judge" type="text" value="" aria-describedby="neutral_citation-help-text">
           </div>
         </div>
       </fieldset>
       <fieldset>
         <legend>Only include results</legend>
         <div class="structured-search__multi-fields-panel">
+          <div class="structured-search__limit-to-container">
+            <label for="specific_keywords" class="structured-search__limit-to-label">Containing specific keywords</label>
+            <input class="structured-search__limit-to-input" id="specific_keywords" name="judge" type="text" value="">
+          </div>
           <div class="structured-search__limit-to-container">
             <label for="court" class="structured-search__limit-to-label">From a specific court or tribunal</label>
             <select class="structured-search__select" id="court" name="court">
