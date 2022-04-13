@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block title %}
-{{ page_title }} - {% translate "common.findcaselaw" %}
+  {{ page_title }} - {% translate "common.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
@@ -15,60 +15,85 @@
   <div class="standard-text-template">
     <h1>{{ page_title }}</h1>
 
-    <h2>What is in these terms</h2>
-    <p>These terms tell you the rules for using the Find Case Law service at
-      <a href="https://caselaw.nationalarchives.gov.uk">https://caselaw.nationalarchives.gov.uk</a></p>
-    <h2>Who we are and how to contact us</h2>
-    <p>The Find Case Law service is provided by The National Archives.</p>
-    <p>You can contact us by email at <a href="mailto:webmaster@nationalarchives.gov.uk">webmaster@nationalarchives.gov.uk</a></p>
-    <p>If your online access is limited and you need to speak to someone you can call us during office hours on <a
-            href="tel:+44208876 3444">020 8876 3444</a>. Please leave your number and message and we will call you back.</p>
-    <h2>By using Find Case Law service you accept these terms</h2>
-    <p>By using the Find Case Law service, you confirm that you accept these terms of use and that you agree to comply
-      with them.</p>
-    <h2>Fair and reasonable use</h2>
-    <p>You must use the service responsibly by not making too many requests. In order to maintain the integrity of the
-      service for everyone, we may block or disable use of the service from certain IP addresses, for making too many
-      requests.</p>
-    <h2>Crawling and indexing</h2>
-    <p>You may access the Find Case Law service through the website, or access the data through the API.</p>
-    <p>We do not permit external indexing of documents by search engine robots or spiders. You must adhere to the
-      instructions in the robots.txt file at: <a href="https://caselaw.nationalarchives.gov.uk/robots.txt">https://caselaw.nationalarchives.gov.uk/robots.txt</a></p>
-    <p>We may block or disable use of the service from certain IP addresses, if they appear to be compiling a search
-      engine index.</p>
-    <h2>Coverage</h2>
-    <p>You should be aware that the Find Case Law service is incomplete. It is not a complete record of Court Judgments
-      and Tribunal Decisions for the courts or tribunals.</p>
-    <p>You should be aware that some judgments may subsequently have been appealed and the judgments on appeal may not
-      be included in the Find Case Law service. You should satisfy yourself that a judgment has not been the subject of
-      an appeal before relying on it as an authority.</p>
-    <p>You should be aware that judgments given from 19 April 2022 onwards have been transferred to The National
-      Archives directly by the courts and tribunals. We have a complete chain of custody for these records through the
-      transfer process.</p>
-    <p>You should be aware that judgments given prior to 19 April 2022 have been sourced by The National Archives from
-      a variety of different sources, including BAILII (<a href="http://www.bailii.org">www.bailii.org</a>).</p>
-    <h2>Formats</h2>
-    <p>The Find Case Law service has been designed to provide users with access to Court Judgments and Tribunal
-      Decisions in a variety of different formats. The available formats include web pages (HTML) with hyperlinks, PDFs
-      to download, and XML data for re-use by third parties. There is an API which provides access to the data,
-      including details of newly published judgments and decisions.</p>
-    <p>You should be aware that, as part of our publishing process, we have transformed the original version of the
-      judgment from (typically) Word into XML (the Legal Document Mark-up language). We have used the XML to create HTML
-      and PDF versions of the judgments. We have also added hyperlinks. There may be issues with the published version
-      of the judgments as a result of the conversion and enrichment process.</p>
-    <h2>Licensing</h2>
-    <p>You may use and re-use the contents of the Find Case Law service under the terms of the Open Justice
-      Licence.</p>
-    <p>You must read the licence and understand its terms if you are re-using the information from the Find Case Law
-      service, as there are important conditions and exclusions that apply.</p>
-    <p>You must apply for a separate, free, licence if you wish to conduct computational analysis of the information
-      provided by the Find Case Law service. The application process is free of charge.</p>
-    <p>You should contact us if you require bulk access to the data provided by the Find Case Law service, rather than
-      attempt to crawl or scrape the website.</p>
-    <h2>No warranty</h2>
-    <p>The information on the Find Case Law service is presented as is.</p>
-    <p>We are not liable for any errors or omissions in the information provided through the Find Case Law service and
-      shall not be liable for any loss, injury or damage of any kind caused by its use.</p>
+    <h2>{% translate "terms.heading.two.first" %}</h2>
+
+    {% translate "service.url" as service_url %}
+    {% translate "terms.paragraph.one" as terms_paragraph_one %}
+    <p>
+      {% blocktranslate %}
+        {{ terms_paragraph_one }}
+        <a href="{{ service_url }}">{{ service_url }}</a>
+      {% endblocktranslate %}
+    </p>
+    <h2>{% translate "terms.heading.two.second" %}</h2>
+    <p>{% translate "terms.paragraph.two" %}</p>
+
+    {% translate "terms.paragraph.three" as terms_paragraph_three %}
+    {% translate "terms.contact.email" as terms_contact_email %}
+    <p>
+      {% blocktranslate %}
+        {{ terms_paragraph_three }} <a href="mailto:{{ terms_contact_email }}">{{ terms_contact_email }}</a>
+      {% endblocktranslate %}
+    </p>
+
+    {% translate "terms.telephone.local" as terms_telephone_local %}
+    {% translate "terms.telephone.intl" as terms_telephone_intl %}
+    {% translate "terms.paragraph.four.first" as terms_paragraph_four_first %}
+    {% translate "terms.paragraph.four.second" as terms_paragraph_four_second %}
+    <p>
+      {% blocktranslate %}
+        {{ terms_paragraph_four_first }} <a href="tel:{{ terms_telephone_intl }}">{{ terms_telephone_local }}</a>.
+        {{ terms_paragraph_four_second }}
+      {% endblocktranslate %}
+    </p>
+
+    <h2>{% translate "terms.heading.two.third" %}</h2>
+    <p>{% translate "terms.paragraph.five" %}</p>
+
+    <h2>{% translate "terms.heading.two.fourth" %}</h2>
+    <p>{% translate "terms.paragraph.six" %}</p>
+
+    <h2>{% translate "terms.heading.two.fifth" %}</h2>
+    <p>{% translate "terms.paragraph.seven" %}</p>
+
+    {% translate "terms.paragraph.eight" as terms_paragraph_eight %}
+    {% translate "terms.robots.link" as terms_robots_link %}
+    <p>
+      {% blocktranslate %}
+        {{ terms_paragraph_eight }} <a
+              href="{{ terms_robots_link }}">{{ terms_robots_link }}</a>
+      {% endblocktranslate %}
+    </p>
+
+    <p>{% translate "terms.paragraph.nine" %}</p>
+
+    <h2>{% translate "terms.heading.two.sixth" %}</h2>
+    <p>{% translate "terms.paragraph.ten" %}</p>
+    <p>{% translate "terms.paragraph.eleven" %}</p>
+    <p>{% translate "terms.paragraph.twelve" %}</p>
+
+    {% translate "terms.paragraph.thirteen.first" as terms_paragraph_thirteen_first %}
+    {% translate "terms.paragraph.thirteen.second" as terms_paragraph_thirteen_second %}
+    {% translate "terms.bailii.link" as terms_bailii_link %}
+    <p>
+      {% blocktranslate %}
+        {{ terms_paragraph_thirteen_first }}<a href="https://{{ terms_bailii_link }}">{{ terms_bailii_link }}</a>
+        {{ terms_paragraph_thirteen_second }}.
+      {% endblocktranslate %}
+    </p>
+
+    <h2>{% translate "terms.heading.two.seventh" %}</h2>
+    <p>{% translate "terms.paragraph.fourteen" %}</p>
+    <p>{% translate "terms.paragraph.fifteen" %}</p>
+
+    <h2>{% translate "terms.heading.two.eighth" %}</h2>
+    <p>{% translate "terms.paragraph.sixteen" %}</p>
+    <p>{% translate "terms.paragraph.seventeen" %}</p>
+    <p>{% translate "terms.paragraph.eighteen" %}</p>
+    <p>{% translate "terms.paragraph.nineteen" %}</p>
+
+    <h2>{% translate "terms.heading.two.ninth" %}</h2>
+    <p>{% translate "terms.paragraph.twenty" %}</p>
 
   </div>
 {% endblock %}
