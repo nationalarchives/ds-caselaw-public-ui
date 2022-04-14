@@ -14,86 +14,103 @@
 
   <div class="standard-text-template">
     <h1>{{ page_title }}</h1>
+    <section>
+      <h2>{% translate "terms.heading.two.first" %}</h2>
 
-    <h2>{% translate "terms.heading.two.first" %}</h2>
+      {% translate "service.url" as service_url %}
+      {% translate "terms.paragraph.one" as terms_paragraph_one %}
+      <p>
+        {% blocktranslate %}
+          {{ terms_paragraph_one }}
+          <a href="{{ service_url }}">{{ service_url }}</a>
+        {% endblocktranslate %}
+      </p>
+    </section>
 
-    {% translate "service.url" as service_url %}
-    {% translate "terms.paragraph.one" as terms_paragraph_one %}
-    <p>
-      {% blocktranslate %}
-        {{ terms_paragraph_one }}
-        <a href="{{ service_url }}">{{ service_url }}</a>
-      {% endblocktranslate %}
-    </p>
-    <h2>{% translate "terms.heading.two.second" %}</h2>
-    <p>{% translate "terms.paragraph.two" %}</p>
+    <section>
+      <h2>{% translate "terms.heading.two.second" %}</h2>
+      <p>{% translate "terms.paragraph.two" %}</p>
 
-    {% translate "terms.paragraph.three" as terms_paragraph_three %}
-    {% translate "terms.contact.email" as terms_contact_email %}
-    <p>
-      {% blocktranslate %}
-        {{ terms_paragraph_three }} <a href="mailto:{{ terms_contact_email }}">{{ terms_contact_email }}</a>
-      {% endblocktranslate %}
-    </p>
+      {% translate "terms.paragraph.three" as terms_paragraph_three %}
+      {% translate "terms.contact.email" as terms_contact_email %}
+      <p>
+        {% blocktranslate %}
+          {{ terms_paragraph_three }} <a href="mailto:{{ terms_contact_email }}">{{ terms_contact_email }}</a>
+        {% endblocktranslate %}
+      </p>
 
-    {% translate "terms.telephone.local" as terms_telephone_local %}
-    {% translate "terms.telephone.intl" as terms_telephone_intl %}
-    {% translate "terms.paragraph.four.first" as terms_paragraph_four_first %}
-    {% translate "terms.paragraph.four.second" as terms_paragraph_four_second %}
-    <p>
-      {% blocktranslate %}
-        {{ terms_paragraph_four_first }} <a href="tel:{{ terms_telephone_intl }}">{{ terms_telephone_local }}</a>.
-        {{ terms_paragraph_four_second }}
-      {% endblocktranslate %}
-    </p>
+      {% translate "terms.telephone.local" as terms_telephone_local %}
+      {% translate "terms.telephone.intl" as terms_telephone_intl %}
+      {% translate "terms.paragraph.four.first" as terms_paragraph_four_first %}
+      {% translate "terms.paragraph.four.second" as terms_paragraph_four_second %}
+      <p>
+        {% blocktranslate %}
+          {{ terms_paragraph_four_first }} <a href="tel:{{ terms_telephone_intl }}">{{ terms_telephone_local }}</a>.
+          {{ terms_paragraph_four_second }}
+        {% endblocktranslate %}
+      </p>
+    </section>
 
-    <h2>{% translate "terms.heading.two.third" %}</h2>
-    <p>{% translate "terms.paragraph.five" %}</p>
+    <section>
+      <h2>{% translate "terms.heading.two.third" %}</h2>
+      <p>{% translate "terms.paragraph.five" %}</p>
+    </section>
 
-    <h2>{% translate "terms.heading.two.fourth" %}</h2>
-    <p>{% translate "terms.paragraph.six" %}</p>
+    <section>
+      <h2>{% translate "terms.heading.two.fourth" %}</h2>
+      <p>{% translate "terms.paragraph.six" %}</p>
+    </section>
 
-    <h2>{% translate "terms.heading.two.fifth" %}</h2>
-    <p>{% translate "terms.paragraph.seven" %}</p>
+    <section>
+      <h2>{% translate "terms.heading.two.fifth" %}</h2>
+      <p>{% translate "terms.paragraph.seven" %}</p>
 
-    {% translate "terms.paragraph.eight" as terms_paragraph_eight %}
-    {% translate "terms.robots.link" as terms_robots_link %}
-    <p>
-      {% blocktranslate %}
-        {{ terms_paragraph_eight }} <a
-              href="{{ terms_robots_link }}">{{ terms_robots_link }}</a>
-      {% endblocktranslate %}
-    </p>
+      {% translate "terms.paragraph.eight" as terms_paragraph_eight %}
+      {% translate "terms.robots.link" as terms_robots_link %}
+      <p>
+        {% blocktranslate %}
+          {{ terms_paragraph_eight }} <a
+                href="{{ terms_robots_link }}">{{ terms_robots_link }}</a>
+        {% endblocktranslate %}
+      </p>
+      <p>{% translate "terms.paragraph.nine" %}</p>
+    </section>
 
-    <p>{% translate "terms.paragraph.nine" %}</p>
+    <section>
+      <h2>{% translate "terms.heading.two.sixth" %}</h2>
+      <p>{% translate "terms.paragraph.ten" %}</p>
+      <p>{% translate "terms.paragraph.eleven" %}</p>
+      <p>{% translate "terms.paragraph.twelve" %}</p>
 
-    <h2>{% translate "terms.heading.two.sixth" %}</h2>
-    <p>{% translate "terms.paragraph.ten" %}</p>
-    <p>{% translate "terms.paragraph.eleven" %}</p>
-    <p>{% translate "terms.paragraph.twelve" %}</p>
+      {% translate "terms.paragraph.thirteen.first" as terms_paragraph_thirteen_first %}
+      {% translate "terms.paragraph.thirteen.second" as terms_paragraph_thirteen_second %}
+      {% translate "terms.bailii.link" as terms_bailii_link %}
+      <p>
+        {% blocktranslate %}
+          {{ terms_paragraph_thirteen_first }}<a href="https://{{ terms_bailii_link }}">{{ terms_bailii_link }}</a>
+          {{ terms_paragraph_thirteen_second }}.
+        {% endblocktranslate %}
+      </p>
+    </section>
 
-    {% translate "terms.paragraph.thirteen.first" as terms_paragraph_thirteen_first %}
-    {% translate "terms.paragraph.thirteen.second" as terms_paragraph_thirteen_second %}
-    {% translate "terms.bailii.link" as terms_bailii_link %}
-    <p>
-      {% blocktranslate %}
-        {{ terms_paragraph_thirteen_first }}<a href="https://{{ terms_bailii_link }}">{{ terms_bailii_link }}</a>
-        {{ terms_paragraph_thirteen_second }}.
-      {% endblocktranslate %}
-    </p>
+    <section>
+      <h2>{% translate "terms.heading.two.seventh" %}</h2>
+      <p>{% translate "terms.paragraph.fourteen" %}</p>
+      <p>{% translate "terms.paragraph.fifteen" %}</p>
+    </section>
 
-    <h2>{% translate "terms.heading.two.seventh" %}</h2>
-    <p>{% translate "terms.paragraph.fourteen" %}</p>
-    <p>{% translate "terms.paragraph.fifteen" %}</p>
+    <section>
+      <h2>{% translate "terms.heading.two.eighth" %}</h2>
+      <p>{% translate "terms.paragraph.sixteen" %}</p>
+      <p>{% translate "terms.paragraph.seventeen" %}</p>
+      <p>{% translate "terms.paragraph.eighteen" %}</p>
+      <p>{% translate "terms.paragraph.nineteen" %}</p>
+    </section>
 
-    <h2>{% translate "terms.heading.two.eighth" %}</h2>
-    <p>{% translate "terms.paragraph.sixteen" %}</p>
-    <p>{% translate "terms.paragraph.seventeen" %}</p>
-    <p>{% translate "terms.paragraph.eighteen" %}</p>
-    <p>{% translate "terms.paragraph.nineteen" %}</p>
-
-    <h2>{% translate "terms.heading.two.ninth" %}</h2>
-    <p>{% translate "terms.paragraph.twenty" %}</p>
+    <section>
+      <h2>{% translate "terms.heading.two.ninth" %}</h2>
+      <p>{% translate "terms.paragraph.twenty" %}</p>
+    </section>
 
   </div>
 {% endblock %}
