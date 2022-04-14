@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:43+0100\n"
+"POT-Creation-Date: 2022-04-14 13:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,21 +191,6 @@ msgstr "Search"
 msgid "commom.findcaselaw"
 msgstr "Find case law"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:5
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:15
-msgid "whattoexpect.title"
-msgstr "What to expect from this new service"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:352
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:382
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:388
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:558
-msgid "contact.email"
-msgstr "caselaw@nationalarchives.gov.uk"
-
-#~ msgid "common.home"
-#~ msgstr "Home"
-
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html:18
 msgid "terms.heading.two.first"
 msgstr "What is in these terms"
@@ -222,79 +207,79 @@ msgstr "These terms tell you the rules for using the Find Case Law service at"
 #, python-format
 msgid ""
 "\n"
-"        %(terms_paragraph_one)s\n"
-"        <a href=\"%(service_url)s\">%(service_url)s</a>\n"
-"      "
+"          %(terms_paragraph_one)s\n"
+"          <a href=\"%(service_url)s\">%(service_url)s</a>\n"
+"        "
 msgstr ""
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:28
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:31
 msgid "terms.heading.two.second"
 msgstr "Who we are and how to contact us"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:29
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:32
 msgid "terms.paragraph.two"
 msgstr "The Find Case Law service is provided by The National Archives."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:31
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:34
 msgid "terms.paragraph.three"
 msgstr "You can contact us by email at"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:32
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:35
 msgid "terms.contact.email"
 msgstr "webmaster@nationalarchives.gov.uk"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:34
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:37
 #, python-format
 msgid ""
 "\n"
-"        %(terms_paragraph_three)s <a href=\"mailto:%(terms_contact_email)s\">"
-"%(terms_contact_email)s</a>\n"
-"      "
+"          %(terms_paragraph_three)s <a href=\"mailto:%(terms_contact_email)s"
+"\">%(terms_contact_email)s</a>\n"
+"        "
 msgstr ""
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:39
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:42
 msgid "terms.telephone.local"
 msgstr "020 8876 3444"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:40
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:43
 msgid "terms.telephone.intl"
 msgstr "+4420 8876 3444"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:41
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:44
 msgid "terms.paragraph.four.first"
 msgstr ""
 "If your online access is limited and you need to speak to someone you can "
 "call us during office hours on"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:42
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:45
 msgid "terms.paragraph.four.second"
 msgstr "Please leave your number and message and we will call you back"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:44
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:47
 #, python-format
 msgid ""
 "\n"
-"        %(terms_paragraph_four_first)s <a href=\"tel:%(terms_telephone_intl)s"
-"\">%(terms_telephone_local)s</a>.\n"
-"        %(terms_paragraph_four_second)s\n"
-"      "
+"          %(terms_paragraph_four_first)s <a href=\"tel:"
+"%(terms_telephone_intl)s\">%(terms_telephone_local)s</a>.\n"
+"          %(terms_paragraph_four_second)s\n"
+"        "
 msgstr ""
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:50
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:55
 msgid "terms.heading.two.third"
 msgstr "By using Find Case Law service you accept these terms"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:51
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:56
 msgid "terms.paragraph.five"
 msgstr ""
 "By using the Find Case Law service, you confirm that you accept these terms "
 "of use and that you agree to comply with them."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:53
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:60
 msgid "terms.heading.two.fourth"
 msgstr "Fair and reasonable use"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:54
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:61
 msgid "terms.paragraph.six"
 msgstr ""
 "You must use the service responsibly by not making too many requests. In "
@@ -302,54 +287,53 @@ msgstr ""
 "disable use of the service from certain IP addresses, for making too many "
 "requests."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:56
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:65
 msgid "terms.heading.two.fifth"
 msgstr "Crawling and indexing"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:57
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:66
 msgid "terms.paragraph.seven"
 msgstr ""
 "You may access the Find Case Law service through the website, or access the "
 "data through the API."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:59
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:68
 msgid "terms.paragraph.eight"
 msgstr ""
 "We do not permit external indexing of documents by search engine robots or "
 "spiders. You must adhere to the instructions in the robots.txt file at:"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:60
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:69
 msgid "terms.robots.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/robots.txt"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:62
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:71
 #, python-format
 msgid ""
 "\n"
-"        %(terms_paragraph_eight)s <a\n"
-"              href=\"%(\"terms_robots_link\")s\">%(\"terms_robots_link\")s</"
-"a>\n"
-"      "
+"          %(terms_paragraph_eight)s <a\n"
+"                href=\"%(terms_robots_link)s\">%(terms_robots_link)s</a>\n"
+"        "
 msgstr ""
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:68
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:76
 msgid "terms.paragraph.nine"
 msgstr ""
 "We may block or disable use of the service from certain IP addresses, if "
 "they appear to be compiling a search engine index."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:70
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:80
 msgid "terms.heading.two.sixth"
 msgstr "Coverage"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:71
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:81
 msgid "terms.paragraph.ten"
 msgstr ""
 "You should be aware that the Find Case Law service is incomplete. It is not "
 "a complete record of Court Judgments and Tribunal Decisions for the courts "
 "or tribunals. "
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:72
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:82
 msgid "terms.paragraph.eleven"
 msgstr ""
 "You should be aware that some judgments may subsequently have been appealed "
@@ -357,7 +341,7 @@ msgstr ""
 "service. You should satisfy yourself that a judgment has not been the "
 "subject of an appeal before relying on it as an authority."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:73
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:83
 msgid "terms.paragraph.twelve"
 msgstr ""
 "You should be aware that judgments given from 19 April 2022 onwards have "
@@ -365,36 +349,36 @@ msgstr ""
 "tribunals.  We have a complete chain of custody for these records through "
 "the transfer process."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:75
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:85
 msgid "terms.paragraph.thirteen.first"
 msgstr ""
 "You should be aware that judgments given prior to 19 April 2022 have been "
 "sourced by The National Archives from a variety of different sources, "
 "including BAILII ("
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:76
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:86
 msgid "terms.paragraph.thirteen.second"
 msgstr ")"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:77
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:87
 msgid "terms.bailii.link"
 msgstr "www.bailii.org"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:79
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:89
 #, python-format
 msgid ""
 "\n"
-"        %(terms_paragraph_thirteen_first)s<a href=\"https://"
+"          %(terms_paragraph_thirteen_first)s<a href=\"https://"
 "%(terms_bailii_link)s\">%(terms_bailii_link)s</a>\n"
-"        %(terms_paragraph_thirteen_second)s.\n"
-"      "
+"          %(terms_paragraph_thirteen_second)s.\n"
+"        "
 msgstr ""
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:85
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:97
 msgid "terms.heading.two.seventh"
 msgstr "Formats"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:86
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:98
 msgid "terms.paragraph.fourteen"
 msgstr ""
 "The Find Case Law service has been designed to provide users with access to "
@@ -404,7 +388,7 @@ msgstr ""
 "provides access to the data, including details of newly published judgments "
 "and decisions."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:87
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:99
 msgid "terms.paragraph.fifteen"
 msgstr ""
 "You should be aware that, as part of our publishing process, we have "
@@ -414,46 +398,58 @@ msgstr ""
 "may be issues with the published version of the judgments as a result of the "
 "conversion and enrichment process."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:89
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:103
 msgid "terms.heading.two.eighth"
 msgstr "Licensing"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:90
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:104
 msgid "terms.paragraph.sixteen"
 msgstr ""
 "You may use and re-use the contents of the Find Case Law service under the "
 "terms of the Open Justice Licence. "
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:91
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:105
 msgid "terms.paragraph.seventeen"
 msgstr ""
 "You must read the licence and understand its terms if you are re-using the "
 "information from the Find Case Law service, as there are important "
 "conditions and exclusions that ap"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:92
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:106
 msgid "terms.paragraph.eighteen"
 msgstr ""
 "You must apply for a separate, free, licence if you wish to conduct "
 "computational analysis of the information provided by the Find Case Law "
 "service. The application process is free of charge."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:93
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:107
 msgid "terms.paragraph.nineteen"
 msgstr ""
 "You should contact us if you require bulk access to the data provided by the "
 "Find Case Law service, rather than attempt to crawl or scrape the website."
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:95
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:111
 msgid "terms.heading.two.ninth"
 msgstr "Crawling and indexing"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:96
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html:112
 msgid "terms.paragraph.twenty"
 msgstr ""
 "You should be aware that the Find Case Law service is incomplete. It is not "
 "a complete record of Court Judgments and Tribunal Decisions for the courts "
 "or tribunals. "
+
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:5
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:15
+msgid "whattoexpect.title"
+msgstr "What to expect from this new service"
+
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:352
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:382
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:389
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:587
+msgid "contact.email"
+msgstr "caselaw@nationalarchives.gov.uk"
 
 #~ msgid "common.home"
 #~ msgstr "Home"

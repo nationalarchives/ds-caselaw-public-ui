@@ -91,8 +91,8 @@
       <p>You do not need to do a boolean search. Spaces in between words will act as an 'and'. Results where the words
         are closest together will be most relevant at the top of the search results.</p>
       <h3>Search specific fields</h3>
-      <p>Alternatively you can search using one or more specific search terms on the<a
-              href="{% url "structured_search" %}"> 'more search options' page</a>. The
+      <p>Alternatively you can search using one or more specific search terms on the <a
+              href="{% url "structured_search" %}">'more search options' page</a>. The
         search
         boxes search particular fields. You can use multiple search boxes at the same time to help narrow down your
         search
@@ -207,15 +207,15 @@
       <ul>
         <li>
           All judgments and tribunal decisions from the Upper Tribunals, High Court, Court of Appeal and Supreme
-            Court
-            from 19th April 2022
+          Court
+          from 19th April 2022
         </li>
         <li>
           Judgments and decisions provided by <abbr
-                  title="British and Irish Legal Information Institute">BAILII</abbr>, that have been published under
-            its contract with Her Majesty's Courts and Tribunals Service (<abbr
-                    title="Her Majesty's Courts and Tribunals Service">HMCTS</abbr>) / Ministry of Justice (<abbr
-                    title="Ministry of Justice">MoJ</abbr>),
+                title="British and Irish Legal Information Institute">BAILII</abbr>, that have been published under
+          its contract with Her Majesty's Courts and Tribunals Service (<abbr
+                title="Her Majesty's Courts and Tribunals Service">HMCTS</abbr>) / Ministry of Justice (<abbr
+                title="Ministry of Justice">MoJ</abbr>),
         </li>
         <li>
           Judgments provided directly by the Supreme Court and the Upper Tribunals.
@@ -385,7 +385,8 @@
         the judge / court.</p>
       <p>We have developed this publishing policy in consultation with the Judicial Data Working group that is advising
         us.</p>
-      <p>For more information on our publishing policy please email: <a href="mailto:{% translate "contact.email" %}">{% translate "contact.email" %}</a>
+      <p>For more information on our publishing policy please email: <a
+              href="mailto:{% translate "contact.email" %}">{% translate "contact.email" %}</a>
       </p>
     </section>
     <section>
@@ -425,7 +426,8 @@
         The National Archives
         (assigned in order the judgments were received)</p>
       <p>For example:</p>
-      <p>https://caselaw.nationalarchives.gov.uk/id/{court}[/{sub-division}/]{year}/{judgment-date}/num/{tna-ordinal-number}</p>
+      <p>
+        https://caselaw.nationalarchives.gov.uk/id/{court}[/{sub-division}/]{year}/{judgment-date}/num/{tna-ordinal-number}</p>
       <p>In the case where a judgment or decision has had a neutral citation issued by <abbr
               title="British and Irish Legal Information Institute">BAILII</abbr>, we will make the The National
         Archives'
@@ -449,8 +451,35 @@
       <h3><abbr title="Application Programming Interface">API</abbr></h3>
       <p>The <abbr title="Legal Document Mark-up Language">LegalDocML</abbr> data for the judgments is available through
         the <abbr title="Application Programming Interface">API</abbr>.</p>
-      <p>You can read our documentation for the <abbr title="Application Programming Interface">API</abbr></p>
-      <p>In order to re-use the data you must be compliant with the terms set out in our data licences.</p>
+      <h4>Accessing feeds</h4>
+      <p>You can monitor a list of recently published or recently updated judgments using the Atom feeds available in
+        our public API. An OpenAPI specification is available at
+        <a href="https://github.com/nationalarchives/ds-caselaw-public-access-service/blob/main/doc/openapi/public_api.yml">https://github.com/nationalarchives/ds-caselaw-public-access-service/blob/main/doc/openapi/public_api.yml</a>.
+      </p>
+      <p>Example root feed URL
+        <a href="https://caselaw.nationalarchives.gov.uk/atom.xml">https://caselaw.nationalarchives.gov.uk/atom.xml
+      </p></a>
+      <h4>Detecting changes</h4>
+      <p>At present, any update to a judgment will result in it being shown in the recently updated list; this could be
+        a
+        minor metadata change, an enrichment with extra links, or a new version from the original submitter, with a
+        material
+        change to the judgment.</p>
+      <p>The judgment XML contains a content hash which will only change with material changes; you can use this to
+        detect
+        whether or not you need to re-import the DOCX for an updated judgment. In the near future, we hope to provide a
+        feed
+        that only shows material changes, so you will not need to keep a list of hashes.</p>
+      <p>Example update detection workflow</p>
+      <ul>
+        <li>Poll the recently-updated feed</li>
+        <li>Detect a new feed item using the timestamps in the feed</li>
+        <li>Fetch the XML representation of the updated document</li>
+        <li>Check the content hash against a stored value</li>
+        <li>If changed, construct the URLand fetch the docx from the asset bucket</li>
+      </ul>
+
+      <p>In order to re-use the data you must be compliant with the terms set out in our licences.</p>
     </section>
     <section>
       <h2>Data Licensing arrangements</h2>
@@ -467,12 +496,12 @@
       <ul>
         <li>
           <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">The Open Justice Licence,</a> that
-            permits re-use but excludes computational analysis. You do not need to apply for this licence.
+          permits re-use but excludes computational analysis. You do not need to apply for this licence.
         </li>
         <li>
           A transactional licence that permits re-use including computational analysis. You will need to apply for
-            this
-            licence.
+          this
+          licence.
         </li>
       </ul>
       <p>The personal information within judgments varies but it can be very extensive and contain distressing
