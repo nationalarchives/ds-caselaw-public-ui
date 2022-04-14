@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}
   {% translate "whattoexpect.title" %} - {% translate "common.findcaselaw" %}
@@ -533,14 +533,15 @@
       <p>You do not need to apply for this licence however you should be aware of the responsibilities you have. <a
               href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">You can read the terms of the Open
         Justice Licence here</a></p>
-      <p>If you are unsure you are within the terms of the Open Justice Licence please apply for the transactional
-        licence.</p>
+      <p>If you are unsure you are within the terms of the Open Justice Licence please <a href="{% url "transactional_licence_form" %}">apply for the
+        transactional
+        licence</a>.</p>
       <h3>Transactional licence</h3>
       <p>You need to apply for this licence if you intend to use court judgments and tribunal decisions in a way that is
         outside the terms of the Open Justice licence. For example, to run computational analysis across judgments and
         decisions including basic search indexing.</p>
-      <p>You can apply for the licence at no cost by completing and submitting an application form. You can download the
-        application form.</p>
+      <p>You can <a href="{% url "transactional_licence_form" %}">apply for the licence</a> at no cost by completing and submitting an application form.
+        <a href="{% static 'documents/application_form_for_a_licence_to_re-use_Judgments.docx' %}">You can download the application form</a>.</p>
       <p>The application form is designed to allow you to explain your purpose including: how you intend to re-use the
         data in a way that is consistent with the administration of justice</p>
       <p>We are assessing applications using<a href="https://en.wikipedia.org/wiki/Five_safes"> the "five safes"
