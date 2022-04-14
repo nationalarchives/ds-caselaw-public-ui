@@ -444,6 +444,10 @@ msgstr ""
 msgid "transactionallicenceform.title"
 msgstr "Application to re-use Court Judgments and Tribunal Decisions"
 
+#: ds_judgements_public_ui/templates/pages/transactional_licence.html:26
+msgid "associates.email"
+msgstr "associates@nationalarchives.gov.uk"
+
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html:5
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html:15
 msgid "whattoexpect.title"
