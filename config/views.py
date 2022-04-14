@@ -13,6 +13,11 @@ class TemplateViewWithContext(TemplateView):
         }
 
 
+class TransactionalLicenceFormView(TemplateViewWithContext):
+    template_name = "pages/transactional_licence.html"
+    page_title = "transactionallicenceform.title"
+
+
 class AccessibilityStatement(TemplateViewWithContext):
     template_name = "pages/accessibility_statement.html"
     page_title = "accessibilitystatement.title"

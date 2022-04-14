@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {{ page_title }} - {% translate "common.findcaselaw" %}
+{% endblock title %}
+
+{% block content %}
+  {% translate "transactionallicenceform.title" as page_title %}
+  <header class="page-header">
+    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
+    {% include 'includes/logo.html' %}
+  </header>
+
+  <div class="standard-text-template">
+    <h1>{{ page_title }}</h1>
+  </div>
+{% endblock %}

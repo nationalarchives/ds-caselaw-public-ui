@@ -9,6 +9,11 @@ from . import views
 
 urlpatterns = [
     path(
+        "transactional-licence-form",
+        views.TransactionalLicenceFormView.as_view(),
+        name="transactional_licence_form"
+    ),
+    path(
         "what-to-expect",
         views.WhatToExpectView.as_view(),
         name="what_to_expect",
