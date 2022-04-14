@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block title %}
-  {{ page_title }} - {% translate "common.findcaselaw" %}
+  {% translate "whattoexpect.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
@@ -12,7 +12,7 @@
   </header>
 
   <div class="standard-text-template">
-    <h1>What to expect from this new service</h1>
+    <h1>{% translate "whattoexpect.title" %}</h1>
     <p><small>Last updated on 13th April 2022</small></p>
     <p>The Find Case Law service provides public access to Court Judgments and Tribunal decisions.</p>
     <p>From April 2022, court judgments from the England and Wales High Court, the Court of Appeal, the Supreme Court
@@ -27,7 +27,7 @@
         this
         is the first version of the Find Case Law service.</p>
       <p>This service will develop and improve over the next few months and years. <a
-              href="https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW">You can help contribute to
+              href="{% translate "survey.link" %}">You can help contribute to
         the
         development of the service by giving us feedback.</a></p>
       <h3>What is Case law?</h3>
@@ -78,13 +78,13 @@
       <p>You can search across the full text of every judgment and decision. You can also search and browse judgments,
         by
         neutral citation, court, party, judge and within a date range. These options can be combined on <a
-                href="https://caselaw.nationalarchives.gov.uk/structured_search">the 'More Options Search' page</a>.</p>
+                href="{% url "structured_search" %}">the 'More Options Search' page</a>.</p>
       <p>You can find the latest published judgments and decisions as a list on <a
-              href="https://caselaw.nationalarchives.gov.uk/">the Find Case Law page.</a> Alternatively you can browse
+              href="{% url "home" %}">the Find Case Law page.</a> Alternatively you can browse
         by
         court and filter results.</p>
       <h3>Search across the text of every judgment and decision</h3>
-      <p>The search box on <a href="https://caselaw.nationalarchives.gov.uk/">the Find Case Law page </a>allows you to
+      <p>The search box on <a href="{% url "home" %}">the Find Case Law page </a>allows you to
         search using any search terms including a neutral citation, name(s) and keyword(s). This will search the full
         text
         of every judgment or decision we have.</p>
@@ -92,7 +92,7 @@
         are closest together will be most relevant at the top of the search results.</p>
       <h3>Search specific fields</h3>
       <p>Alternatively you can search using one or more specific search terms on the<a
-              href="https://caselaw.nationalarchives.gov.uk/structured_search"> 'more search options' page</a>. The
+              href="{% url "structured_search" %}"> 'more search options' page</a>. The
         search
         boxes search particular fields. You can use multiple search boxes at the same time to help narrow down your
         search
@@ -349,7 +349,7 @@
       <p>The Judges and clerks send us judgments and decisions as word documents using a service called Transfer Digital
         Records (<abbr title="Transfer Digital Records">TDR</abbr>). Only registered users can use this service.</p>
       <p>If you are a judge or clerk looking to for information about transfer digital records please email:
-        <a href="mailto:caselaw@nationalarchives.gov.uk">caselaw@nationalarchives.gov.uk</a></p>
+        <a href="mailto:{% translate "contact.email" %}">{% translate "contact.email" %}</a></p>
     </section>
     <section>
       <h2>How we publish Judgments and Decisions</h2>
@@ -379,13 +379,13 @@
         the
         court's behalf.</p>
       <p>If you spot an error within a judgment or decision you can email: <a
-              href="mailto:caselaw@nationalarchives.gov.uk">caselaw@nationalarchives.gov.uk</a></p>
+              href="mailto:{% translate "contact.email" %}">{% translate "contact.email" %}</a></p>
       <h3>Take down Requests</h3>
       <p>Once a judgment has been published, we will only withdraw it from publication if we are instructed to do so by
         the judge / court.</p>
       <p>We have developed this publishing policy in consultation with the Judicial Data Working group that is advising
         us.</p>
-      <p>For more information on our publishing policy please email: <a href="mailto:caselaw@nationalarchives.gov.uk">caselaw@nationalarchives.gov.uk</a>
+      <p>For more information on our publishing policy please email: <a href="mailto:{% translate "contact.email" %}">{% translate "contact.email" %}</a>
       </p>
     </section>
     <section>
@@ -555,7 +555,7 @@
     </section>
     <section>
       <h2>Contact us</h2>
-      <p><a href="mailto:caselaw@nationalarchives.gov.uk">caselaw@nationalarchives.gov.uk</a></p>
+      <p><a href="mailto:{% translate "contact.email" %}">{% translate "contact.email" %}</a></p>
     </section>
   </div>
 {% endblock %}
