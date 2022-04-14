@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 18:42+0100\n"
+"POT-Creation-Date: 2022-04-14 09:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,6 +110,7 @@ msgstr "How can this service be improved?"
 
 #: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html:5
 #: ds_judgements_public_ui/templates/includes/phase_banner.html:8
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:30
 msgid "survey.link"
 msgstr "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
 
@@ -189,6 +190,21 @@ msgstr "Search"
 #: ds_judgements_public_ui/templates/pages/structured_search.html:5
 msgid "commom.findcaselaw"
 msgstr "Find case law"
+
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:5
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:15
+msgid "whattoexpect.title"
+msgstr "What to expect from this new service"
+
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:352
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:382
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:388
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:558
+msgid "contact.email"
+msgstr "caselaw@nationalarchives.gov.uk"
+
+#~ msgid "common.home"
+#~ msgstr "Home"
 
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html:18
 msgid "terms.heading.two.first"
