@@ -414,7 +414,7 @@ msgid "terms.paragraph.seventeen"
 msgstr ""
 "You must read the licence and understand its terms if you are re-using the "
 "information from the Find Case Law service, as there are important "
-"conditions and exclusions that ap"
+"conditions and exclusions that apply"
 
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html:106
 msgid "terms.paragraph.eighteen"
