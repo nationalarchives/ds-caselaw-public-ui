@@ -56,11 +56,11 @@
 
   }
 
-  &__name-label {
+  &__limit-to-label {
     font-size: 1.1rem;
   }
 
-  &__name-input {
+  &__limit-to-input {
     @include text_field;
     width: 70%;
   }
@@ -109,7 +109,7 @@
     }
   }
 
-  &__name-container {
+  &__specific-field-container {
     background-color: $color__yellow;
     padding: calc($spacer__unit * 2) calc($spacer__unit * 3);
     margin-bottom: $spacer__unit;
