@@ -79,6 +79,7 @@ def advanced_search(request):
         "to": params.get("to"),
     }
     page = params.get("page", 1)
+    page = page if page else 1
     context = {}
 
     try:
