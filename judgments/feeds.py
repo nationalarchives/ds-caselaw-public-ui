@@ -44,6 +44,7 @@ class LatestJudgmentsFeed(Feed):
             date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
             if year
             else None,
+            order="-date",
         )
 
         return [SearchResult.create_from_node(result) for result in model.results]
