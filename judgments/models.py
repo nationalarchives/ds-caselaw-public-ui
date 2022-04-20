@@ -27,7 +27,15 @@ class Judgment(xmlmodels.XmlModel):
 
 class SearchResult:
     def __init__(
-        self, uri="", neutral_citation="", name="", court="", date="", matches=[]
+        self,
+        uri="",
+        neutral_citation="",
+        name="",
+        court="",
+        date="",
+        matches=[],
+        author="",
+        last_modified="",
     ) -> None:
         self.uri = uri
         self.neutral_citation = neutral_citation
@@ -35,6 +43,8 @@ class SearchResult:
         self.date = date
         self.court = court
         self.matches = matches
+        self.author = author
+        self.last_modified = last_modified
 
     @staticmethod
     def create_from_node(node):
@@ -44,6 +54,10 @@ class SearchResult:
         )
         judgment_xml = api_client.get_judgment_xml(uri)
         judgment = Judgment.create_from_string(judgment_xml)
+
+        author = api_client.get_property(uri, "source-organisation")
+        last_modified = api_client.get_last_modified(uri)
+
         return SearchResult(
             uri=uri,
             neutral_citation=judgment.neutral_citation,
@@ -51,6 +65,8 @@ class SearchResult:
             matches=matches.transform_to_html(),
             court=judgment.court,
             date=judgment.date,
+            author=author,
+            last_modified=last_modified,
         )
 
 
