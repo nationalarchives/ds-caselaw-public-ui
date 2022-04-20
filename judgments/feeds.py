@@ -10,6 +10,7 @@ from .utils import perform_advanced_search
 
 class LatestJudgmentsFeed(Feed):
     feed_type = Atom1Feed
+    author_name = "The National Archives"
 
     def get_object(self, request, court=None, subdivision=None, year=None):
         return {"court": court, "subdivision": subdivision, "year": year}
@@ -56,5 +57,12 @@ class LatestJudgmentsFeed(Feed):
     def item_link(self, item: SearchResult) -> str:
         return reverse("detail", kwargs={"judgment_uri": item.uri})
 
-    def item_guid(self, item: SearchResult) -> str:
-        return item.uri
+    def item_author_name(self, item: SearchResult) -> str:
+        return item.author
+
+    def item_updateddate(self, item: SearchResult) -> datetime.datetime:
+        return (
+            datetime.datetime.strptime(item.last_modified, "%Y-%m-%dT%H:%M:%S.%f")
+            if item.last_modified
+            else datetime.datetime.now()
+        )
