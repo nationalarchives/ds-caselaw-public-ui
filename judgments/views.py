@@ -38,6 +38,7 @@ def browse(request, court=None, subdivision=None, year=None):
             date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
             if year
             else None,
+            order="-date",
         )
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
