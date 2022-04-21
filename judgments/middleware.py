@@ -16,11 +16,16 @@ class CookieConsentMiddleware:
         self, request: HttpRequest, response: TemplateResponse
     ) -> TemplateResponse:
         response.context_data["showGTM"] = False
-        cookie = request.COOKIES.get("cookies_policy", None)
+        cookie_policy = request.COOKIES.get("cookies_policy", None)
+        dont_show_cookie_notice = request.COOKIES.get("dontShowCookieNotice", None)
 
-        if cookie:
+        if cookie_policy:
             decoder = json.JSONDecoder()
-            decoded = decoder.decode(unquote(cookie))
+            decoded = decoder.decode(unquote(cookie_policy))
             response.context_data["showGTM"] = decoded["usage"] or False
+
+        if dont_show_cookie_notice:
+            if dont_show_cookie_notice == "true":
+                response.context_data["dontShowCookieNotice"] = True
 
         return response
