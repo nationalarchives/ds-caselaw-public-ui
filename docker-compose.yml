@@ -55,3 +55,8 @@ services:
     ports:
       - "7000:7000"
     command: /start-docs
+
+networks:
+  default:
+    external:
+      name: caselaw
