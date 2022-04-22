@@ -47,6 +47,9 @@ jobs:
           source: ".env.example"
           target: ".env"
 
+      - name: Create docker network as used in dev
+        run: docker network create caselaw
+
       - name: Build the Stack
         run: docker-compose build postgres django
 
