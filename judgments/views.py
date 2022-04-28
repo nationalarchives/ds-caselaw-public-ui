@@ -109,6 +109,7 @@ def advanced_search(request):
             [f'{key}={query_params[key] or ""}' for key in query_params]
         )
         context["query_params"] = query_params
+        context["query"] = query_params["query"]
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
@@ -182,6 +183,7 @@ def results(request):
             ]
             context["total"] = model.total
             context["paginator"] = paginator(int(page), model.total)
+            context["query"] = query
             context["query_string"] = f"query={query}"
         else:
             model = perform_advanced_search(
