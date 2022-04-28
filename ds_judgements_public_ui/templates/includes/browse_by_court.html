@@ -6,7 +6,11 @@
         {% for court in courts %}
           <li class="judgment-browse-by-court__court">
             <span class="judgment-browse-by-court__court-name">
-                <a class="judgment-browse-by-court__court-link" href="{% url 'advanced_search' %}?court={{ court.code }}">
+              {% if court.subdivision %}
+                <a class="judgment-browse-by-court__court-link" href="{% url 'browse' court=court.court subdivision=court.subdivision %}">
+              {% else %}
+                <a class="judgment-browse-by-court__court-link" href="{% url 'browse' court=court.court %}">
+              {% endif %}
                   {{ court.name }}
                 </a>
             </span>
