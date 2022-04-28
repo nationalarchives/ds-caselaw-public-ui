@@ -4,7 +4,7 @@
 
 pip~=22.0.4
 wheel~=0.37.1
-cryptography~=36.0.2
+cryptography~=37.0.1
 packaging~=21.3
 setuptools~=62.1.0
 requests~=2.27.1
