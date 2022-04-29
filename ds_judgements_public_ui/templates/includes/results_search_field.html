@@ -1,6 +1,5 @@
 <div class="results-search-component__full-text-panel">
   <label for="search_term" class="results-search-component__full-text-label">Search</label>
-  <input class="search-component__search-term-input" id="search_term" name="query" type="text" value="" placeholder="Enter a party name or neutral citation">
-  {{ form.search_term }}
+  <input class="search-component__search-term-input" id="search_term" name="query" type="text" value="{{context.query}}" placeholder="Enter a party name or neutral citation">
   <input type="submit" value="Search" class="results-search-component__search-submit-button">
 </div>

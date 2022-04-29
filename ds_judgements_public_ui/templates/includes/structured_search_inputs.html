@@ -8,17 +8,17 @@
           <div class="structured-search__specific-field-container">
             <label for="party_name" class="structured-search__limit-to-label">Party name</label>
             <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or prosecutor</p>
-            <input class="structured-search__limit-to-input" id="party_name" name="party" type="text" value="" aria-describedby="party_name-help-text">
+            <input class="structured-search__limit-to-input" id="party_name" name="party" type="text" value="{{context.party}}" aria-describedby="party_name-help-text">
           </div>
           <div class="structured-search__specific-field-container">
             <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
             <p class="structured-search__help-text" id="judge_name-help-text">For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'</p>
-            <input class="structured-search__limit-to-input" id="judge_name" name="judge" type="text" value="" aria-describedby="judge_name-help-text">
+            <input class="structured-search__limit-to-input" id="judge_name" name="judge" type="text" value="{{context.judge}}" aria-describedby="judge_name-help-text">
           </div>
           <div class="structured-search__specific-field-container">
             <label for="neutral_citation" class="structured-search__limit-to-label">Neutral citation</label>
             <p class="structured-search__help-text" id="neutral_citation-help-text">For example [2021] EWCA Crim 1785</p>
-            <input class="structured-search__limit-to-input" id="neutral_citation" name="neutral_citation" type="text" value="" aria-describedby="neutral_citation-help-text">
+            <input class="structured-search__limit-to-input" id="neutral_citation" name="neutral_citation" type="text" value="{{context.neutral_citation}}" aria-describedby="neutral_citation-help-text">
           </div>
         </div>
       </fieldset>
@@ -27,31 +27,88 @@
         <div class="structured-search__multi-fields-panel">
           <div class="structured-search__limit-to-container">
             <label for="specific_keywords" class="structured-search__limit-to-label">Containing specific keywords</label>
-            <input class="structured-search__limit-to-input" id="specific_keywords" name="specific_keyword" type="text" value="">
+            <input class="structured-search__limit-to-input" id="specific_keywords" name="specific_keyword" type="text" value="{{context.specific_keyword}}">
           </div>
           <div class="structured-search__limit-to-container">
             <label for="court" class="structured-search__limit-to-label">From a specific court or tribunal</label>
             <select class="structured-search__select" id="court" name="court">
               <option value="">All courts</option>
-              <option value="uksc">United Kingdom Supreme Court</option>
-              <option value="ukpc">Privy Council</option>
-              <option value="ewca/civ">Court of Appeal Civil Division</option>
-              <option value="ewca/crim">Court of Appeal Criminal Division</option>
-              <option value="ewhc/admin">Administrative Court</option>
-              <option value="ewhc/admlty">Admiralty Court</option>
-              <option value="ewhc/ch">Chancery Division of the High Court</option>
-              <option value="ewhc/comm">Commercial Court</option>
-              <option value="ewhc/costs">Senior Court Costs Office</option>
-              <option value="ewhc/fam">Family Division of the High Court</option>
-              <option value="ewhc/ipec">Intellectual Property Enterprise Court</option>
-              <option value="ewhc/mercantile">Mercantile Court</option>
-              <option value="ewhc/pat">Patents Court</option>
-              <option value="ewhc/qb">Queen's Bench Division of the High Court</option>
-              <option value="ewhc/tcc">Technology and Construction Court</option>
-              <option value="ewcop">Court of Protection</option>
-              <option value="ewfc">Family Court</option>
-              <option value="ukut">Upper Tribunal</option>
-              <option value="eat">United Kingdom Employment Appeal Tribunal</option>
+              <option value="uksc"
+              {% if context.court == 'uksc' %}selected="selected"{% endif %}>
+                United Kingdom Supreme Court
+              </option>
+              <option value="ukpc"
+              {% if context.court == 'ukpc' %}selected="selected"{% endif %}>
+                Privy Council
+              </option>
+              <option value="ewca/civ"
+              {% if context.court == 'ewca/civ' %}selected="selected"{% endif %}>
+                Court of Appeal Civil Division
+              </option>
+              <option value="ewca/crim"
+              {% if context.court == 'ewca/crim' %}selected="selected"{% endif %}>
+                Court of Appeal Criminal Division
+              </option>
+              <option value="ewhc/admin"
+              {% if context.court == 'ewhc/admin' %}selected="selected"{% endif %}>
+                Administrative Court
+              </option>
+              <option value="ewhc/admlty"
+              {% if context.court == 'ewhc/admlty' %}selected="selected"{% endif %}>
+                Admiralty Court
+              </option>
+              <option value="ewhc/ch"
+              {% if context.court == 'ewhc/ch' %}selected="selected"{% endif %}>
+                Chancery Division of the High Court
+              </option>
+              <option value="ewhc/comm"
+              {% if context.court == 'ewhc/comm' %}selected="selected"{% endif %}>
+                Commercial Court
+              </option>
+              <option value="ewhc/costs"
+              {% if context.court == 'ewhc/costs' %}selected="selected"{% endif %}>
+                Senior Court Costs Office
+              </option>
+              <option value="ewhc/fam"
+              {% if context.court == 'ewhc/fam' %}selected="selected"{% endif %}>
+                Family Division of the High Court
+              </option>
+              <option value="ewhc/ipec"
+              {% if context.court == 'ewhc/ipec' %}selected="selected"{% endif %}>
+                Intellectual Property Enterprise Court
+              </option>
+              <option value="ewhc/mercantile"
+              {% if context.court == 'ewhc/mercantile' %}selected="selected"{% endif %}>
+                Mercantile Court
+              </option>
+              <option value="ewhc/pat"
+              {% if context.court == 'ewhc/pat' %}selected="selected"{% endif %}>
+                Patents Court
+              </option>
+              <option value="ewhc/qb"
+              {% if context.court == 'ewhc/qb' %}selected="selected"{% endif %}>
+                Queen's Bench Division of the High Court
+              </option>
+              <option value="ewhc/tcc"
+              {% if context.court == 'ewhc/tcc' %}selected="selected"{% endif %}>
+                Technology and Construction Court
+              </option>
+              <option value="ewcop"
+              {% if context.court == 'ewcop' %}selected="selected"{% endif %}>
+                Court of Protection
+              </option>
+              <option value="ewfc"
+              {% if context.court == 'ewfc' %}selected="selected"{% endif %}>
+                Family Court
+              </option>
+              <option value="ukut"
+              {% if context.court == 'ukut' %}selected="selected"{% endif %}>
+                Upper Tribunal
+              </option>
+              <option value="eat"
+              {% if context.court == 'eat' %}selected="selected"{% endif %}>
+                United Kingdom Employment Appeal Tribunal
+              </option>
             </select>
           </div>
         </div>
@@ -62,12 +119,12 @@
           <div class="structured-search__limit-to-container">
             <label for="from_date" class="structured-search__limit-to-label">From date</label>
             <input class="structured-search__date-input" id="from_date" max="3-3-2022" min="02-01-2003" name="from"
-                   placeholder="DD-MM-YYYY" type="date" value=""/>
+                   placeholder="DD-MM-YYYY" type="date" value="{{context.from}}"/>
           </div>
           <div class="structured-search__limit-to-container">
             <label for="to_date" class="structured-search__limit-to-label">To date</label>
             <input class="structured-search__date-input" id="to_date" max="3-3-2022" min="02-01-2003" name="to"
-                   placeholder="DD-MM-YYYY" type="date" value="">
+                   placeholder="DD-MM-YYYY" type="date" value="{{context.to}}">
           </div>
         </div>
       </fieldset>
