@@ -30,6 +30,13 @@
 
 .judgment-header {
 
+  table {
+
+    td {
+      border-color: transparent;
+    }
+  }
+
   &__logo {
     padding-top: $spacer__unit * 3;
 
