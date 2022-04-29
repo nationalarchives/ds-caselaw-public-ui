@@ -15,6 +15,17 @@
     font-size: 1rem;
     max-width: 46rem;
   }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    td {
+      border: 1px solid black;
+      padding: 0em 1em;
+    }
+  }
+
 }
 
 .judgment-header {
