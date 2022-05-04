@@ -1,6 +1,8 @@
 from django.utils.translation import gettext
 from django.views.generic import TemplateView
 
+from judgments.fixtures.courts import courts
+
 
 class TemplateViewWithContext(TemplateView):
     page_title = None
@@ -36,6 +38,11 @@ class TermsOfUseView(TemplateViewWithContext):
 class StructuredSearchView(TemplateViewWithContext):
     template_name = "pages/structured_search.html"
     page_title = "search.title"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({"courts": courts})
+        return context
 
 
 class NoResultsView(TemplateViewWithContext):

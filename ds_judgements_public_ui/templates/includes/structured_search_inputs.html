@@ -8,17 +8,17 @@
           <div class="structured-search__specific-field-container">
             <label for="party_name" class="structured-search__limit-to-label">Party name</label>
             <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or prosecutor</p>
-            <input class="structured-search__limit-to-input" id="party_name" name="party" type="text" value="" aria-describedby="party_name-help-text">
+            <input class="structured-search__limit-to-input" id="party_name" name="party" type="text" value="{{ context.query_params.party }}" aria-describedby="party_name-help-text">
           </div>
           <div class="structured-search__specific-field-container">
             <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
             <p class="structured-search__help-text" id="judge_name-help-text">For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'</p>
-            <input class="structured-search__limit-to-input" id="judge_name" name="judge" type="text" value="" aria-describedby="judge_name-help-text">
+            <input class="structured-search__limit-to-input" id="judge_name" name="judge" type="text" value="{{ context.query_params.judge }}" aria-describedby="judge_name-help-text">
           </div>
           <div class="structured-search__specific-field-container">
             <label for="neutral_citation" class="structured-search__limit-to-label">Neutral citation</label>
             <p class="structured-search__help-text" id="neutral_citation-help-text">For example [2021] EWCA Crim 1785</p>
-            <input class="structured-search__limit-to-input" id="neutral_citation" name="neutral_citation" type="text" value="" aria-describedby="neutral_citation-help-text">
+            <input class="structured-search__limit-to-input" id="neutral_citation" name="neutral_citation" type="text" value="{{ context.query_params.neutral_citation }}" aria-describedby="neutral_citation-help-text">
           </div>
         </div>
       </fieldset>
@@ -27,32 +27,28 @@
         <div class="structured-search__multi-fields-panel">
           <div class="structured-search__limit-to-container">
             <label for="specific_keywords" class="structured-search__limit-to-label">Containing specific keywords</label>
-            <input class="structured-search__limit-to-input" id="specific_keywords" name="specific_keyword" type="text" value="">
+            <input class="structured-search__limit-to-input" id="specific_keywords" name="specific_keyword" type="text" value="{{ context.query_params.specific_keyword }}">
           </div>
           <div class="structured-search__limit-to-container">
             <label for="court" class="structured-search__limit-to-label">From a specific court or tribunal</label>
+            {% with context.query_params.court as selected_court %}
             <select class="structured-search__select" id="court" name="court">
-              <option value="">All courts</option>
-              <option value="uksc">United Kingdom Supreme Court</option>
-              <option value="ukpc">Privy Council</option>
-              <option value="ewca/civ">Court of Appeal Civil Division</option>
-              <option value="ewca/crim">Court of Appeal Criminal Division</option>
-              <option value="ewhc/admin">Administrative Court</option>
-              <option value="ewhc/admlty">Admiralty Court</option>
-              <option value="ewhc/ch">Chancery Division of the High Court</option>
-              <option value="ewhc/comm">Commercial Court</option>
-              <option value="ewhc/costs">Senior Court Costs Office</option>
-              <option value="ewhc/fam">Family Division of the High Court</option>
-              <option value="ewhc/ipec">Intellectual Property Enterprise Court</option>
-              <option value="ewhc/mercantile">Mercantile Court</option>
-              <option value="ewhc/pat">Patents Court</option>
-              <option value="ewhc/qb">Queen's Bench Division of the High Court</option>
-              <option value="ewhc/tcc">Technology and Construction Court</option>
-              <option value="ewcop">Court of Protection</option>
-              <option value="ewfc">Family Court</option>
+              <option value="" {% if not selected_court %}selected{% endif %}>All courts</option>
+
+              {% for court in courts %}
+                {% if court.subdivision %}
+                  {% with court.court|add:"/"|add:court.subdivision as court_code %}
+                    <option value="{{ court_code }}" {% if selected_court == court_code %}selected{% endif %}>{{ court.name }}</option>
+                  {% endwith %}
+                {% else %}
+                  <option value="{{ court.court }}" {% if selected_court == court.court %}selected{% endif %}>{{ court.name }}</option>
+                {% endif %}
+              {% endfor %}
+
               <option value="ukut">Upper Tribunal</option>
               <option value="eat">United Kingdom Employment Appeal Tribunal</option>
             </select>
+            {% endwith %}
           </div>
         </div>
       </fieldset>
@@ -62,12 +58,12 @@
           <div class="structured-search__limit-to-container">
             <label for="from_date" class="structured-search__limit-to-label">From date</label>
             <input class="structured-search__date-input" id="from_date" max="3-3-2022" min="02-01-2003" name="from"
-                   placeholder="DD-MM-YYYY" type="date" value=""/>
+                   placeholder="DD-MM-YYYY" type="date" value="{{ context.query_params.from }}"/>
           </div>
           <div class="structured-search__limit-to-container">
             <label for="to_date" class="structured-search__limit-to-label">To date</label>
             <input class="structured-search__date-input" id="to_date" max="3-3-2022" min="02-01-2003" name="to"
-                   placeholder="DD-MM-YYYY" type="date" value="">
+                   placeholder="DD-MM-YYYY" type="date" value="{{ context.query_params.to }}">
           </div>
         </div>
       </fieldset>

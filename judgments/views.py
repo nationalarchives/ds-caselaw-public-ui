@@ -113,7 +113,9 @@ def advanced_search(request):
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
-    return TemplateResponse(request, template, context={"context": context})
+    return TemplateResponse(
+        request, template, context={"context": context, "courts": courts}
+    )
 
 
 def detail_xml(_request, judgment_uri):
@@ -183,6 +185,7 @@ def results(request):
             context["total"] = model.total
             context["paginator"] = paginator(int(page), model.total)
             context["query_string"] = f"query={query}"
+
         else:
             model = perform_advanced_search(
                 order=order if order else "-date", page=page
@@ -195,6 +198,8 @@ def results(request):
             context["total"] = model.total
             context["search_results"] = search_results
             context["paginator"] = paginator(int(page), model.total)
+
+        context["query_params"] = params
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
