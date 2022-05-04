@@ -39,6 +39,7 @@ def browse(request, court=None, subdivision=None, year=None):
             if year
             else None,
             order="-date",
+            page=int(page or 1),
         )
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
