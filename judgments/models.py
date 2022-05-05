@@ -17,7 +17,7 @@ class Judgment(xmlmodels.XmlModel):
         "//akn:FRBRname/@value", ignore_extra_nodes=True
     )
     neutral_citation = xmlmodels.XPathTextField(
-        "//akn:neutralCitation", ignore_extra_nodes=True
+        "//akn:proprietary/uk:cite", ignore_extra_nodes=True
     )
     date = xmlmodels.XPathTextField(
         "//akn:FRBRdate[@name='judgment']/@date", ignore_extra_nodes=True
