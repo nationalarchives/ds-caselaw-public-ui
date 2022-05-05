@@ -36,13 +36,9 @@ class TestJudgmentModel(TestCase):
                         <proprietary source="ewca/civ/2004/811/eng/docx"
                             xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
                             <uk:court>EWCA-Civil</uk:court>
+                            <uk:cite>[2017] EWHC 3289 (QB)</uk:cite>
                         </proprietary>
                     </meta>
-                    <header>
-                        <p>
-                            <neutralCitation>[2017] EWHC 3289 (QB)</neutralCitation>
-                        </p>
-                    </header>
                 </judgment>
             </akomaNtoso>
         """
