@@ -8,8 +8,19 @@ from .models import SearchResult
 from .utils import perform_advanced_search
 
 
+class JudgmentAtomFeed(Atom1Feed):
+    def root_attributes(self):
+        attrs = super().root_attributes()
+        attrs["xmlns:tna"] = "https://caselaw.nationalarchives.gov.uk"
+        return attrs
+
+    def add_item_elements(self, handler, item) -> None:
+        super().add_item_elements(handler, item)
+        handler.addQuickElement("tna:uri", item.get("uri", ""))
+
+
 class LatestJudgmentsFeed(Feed):
-    feed_type = Atom1Feed
+    feed_type = JudgmentAtomFeed
     author_name = "The National Archives"
 
     def get_object(self, request, court=None, subdivision=None, year=None):
@@ -60,6 +71,11 @@ class LatestJudgmentsFeed(Feed):
 
     def item_author_name(self, item: SearchResult) -> str:
         return item.author
+
+    def item_extra_kwargs(self, item: SearchResult):
+        extra_kwargs = super().item_extra_kwargs(item)
+        extra_kwargs["uri"] = item.uri
+        return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:
         return (
