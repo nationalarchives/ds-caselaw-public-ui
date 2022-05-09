@@ -2,6 +2,7 @@ import datetime
 import math
 import os
 import re
+import urllib
 
 from caselawclient.Client import (
     RESULTS_PER_PAGE,
@@ -106,18 +107,12 @@ def advanced_search(request):
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
 
-        context["query_string"] = "&".join(
-            [f'{key}={query_params[key] or ""}' for key in query_params]
-        )
+        order = query_params.pop("order")
+        context["query_string"] = urllib.parse.urlencode(query_params)
         context["query_params"] = query_params
-        context["query"] = query_params["query"]
-        context["neutral_citation"] = query_params["neutral_citation"]
-        context["judge"] = query_params["judge"]
-        context["party"] = query_params["party"]
-        context["specific_keyword"] = query_params["specific_keyword"]
-        context["from"] = query_params["from"]
-        context["to"] = query_params["to"]
-        context["court"] = query_params["court"]
+        for key in query_params:
+            context[key] = query_params[key] or ""
+        context["order"] = order
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
@@ -181,7 +176,7 @@ def results(request):
         params = request.GET
         query = params.get("query")
         page = params.get("page") if params.get("page") else "1"
-        order = params.get("order", default=None)
+        order = params.get("order", default="-date")
 
         if query:
             model = perform_advanced_search(query=query, page=page, order=order)
@@ -193,6 +188,7 @@ def results(request):
             context["paginator"] = paginator(int(page), model.total)
             context["query"] = query
             context["query_string"] = f"query={query}"
+            context["order"] = order
         else:
             model = perform_advanced_search(
                 order=order if order else "-date", page=page

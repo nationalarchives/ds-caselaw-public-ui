@@ -1,8 +1,12 @@
+{% load i18n %}
 <div class="result-controls">
-  <form action="#" id="analytics-result-controls">
-    <div>
-      <label class="result-controls__order-by-label" for="order_by">{{ form.order_by.label }}</label>
-      {{ form.order_by }}
+  {% if context.query %}
+    <div class="result-controls__order-by-label">
+      {% if context.order == "-date" %}
+        <a class="" href="{{request.path}}?{{context.query_string}}&order=">{% translate "results.order-by.relevance" %}</a>
+      {% else %}
+        <a class="" href="{{request.path}}?{{context.query_string}}&order=-date">{% translate "results.order-by.date" %}</a>
+      {% endif %}
     </div>
-  </form>
+  {% endif %}
 </div>

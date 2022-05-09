@@ -460,6 +460,11 @@ msgstr "What to expect from this new service"
 msgid "contact.email"
 msgstr "caselaw@nationalarchives.gov.uk"
 
+msgid "results.order-by.date"
+msgstr "Order by date"
+msgid "results.order-by.relevance"
+msgstr "Order by relevance"
+
 #~ msgid "common.home"
 #~ msgstr "Home"
 
