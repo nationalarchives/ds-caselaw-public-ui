@@ -17,15 +17,22 @@
   }
 
   table {
-    border-collapse: collapse;
     width: 100%;
-
-    td {
-      border: 1px solid black;
-      padding: 0em 1em;
-    }
+    border-collapse: collapse
   }
 
+  td {
+    padding-left: 1em;
+    padding-right: 1em
+  }
+
+  td > p:first-child {
+    margin-top: 0
+  }
+
+  td > p:last-child {
+    margin-bottom: 0
+  }
 }
 
 .judgment-header {
@@ -49,6 +56,7 @@
   p {
     margin: 0 0 calc($spacer__unit / 2) 0;
   }
+
   &__neutral-citation {
     text-decoration: underline;
     text-align: right;
@@ -129,9 +137,10 @@
 
   &__line-separator {
     text-align: center;
-     ~ p {
-       text-align: center;
-     }
+
+    ~ p {
+      text-align: center;
+    }
   }
 
   &__queens-counsel {
@@ -267,7 +276,7 @@
     background-repeat: no-repeat;
     background-size: 1rem;
     background-position: calc($spacer__unit / 4) calc($spacer__unit / 4);
-    padding: calc($spacer__unit * .3) ;
+    padding: calc($spacer__unit * .3);
     padding-left: calc($spacer__unit * 2);
   }
 }
