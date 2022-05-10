@@ -67,6 +67,7 @@ class LatestJudgmentsFeed(Feed):
         slugs = filter(lambda x: x is not None, [court, subdivision, year])
         slug = "/".join([str(s) for s in slugs])
         page = int(request.GET.get("page", 1)) or 1
+        order = request.GET.get("order", "-updated")
         model = perform_advanced_search(
             court=court_query if court_query else None,
             date_from=datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
@@ -75,7 +76,7 @@ class LatestJudgmentsFeed(Feed):
             date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
             if year
             else None,
-            order="-date",
+            order=order,
             page=page,
         )
         return {"slug": slug, "model": model, "page": page}
