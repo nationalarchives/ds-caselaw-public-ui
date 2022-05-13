@@ -58,11 +58,16 @@ class SearchResult:
         author = api_client.get_property(uri, "source-organisation")
         last_modified = api_client.get_last_modified(uri)
 
+        if len(str(matches.transform_to_html())) == 0:
+            matches = None
+        else:
+            matches = matches.transform_to_html()
+
         return SearchResult(
             uri=uri,
             neutral_citation=judgment.neutral_citation,
             name=judgment.metadata_name,
-            matches=matches.transform_to_html(),
+            matches=matches,
             court=judgment.court,
             date=judgment.date,
             author=author,
