@@ -27,14 +27,16 @@
             </span>
       </span>
       </span>
-      <span class="judgment-listing__result-term-matching">
-        Matching text sample:
-      </span>
-      <span class="judgment-listing__matches">
-      {% autoescape off %}
-        {{ item.matches }}
-      {% endautoescape %}
-      </span>
+      {% if item.matches %}
+        <span class="judgment-listing__result-term-matching">
+          Matching text sample:
+        </span>
+        <span class="judgment-listing__matches">
+        {% autoescape off %}
+          {{ item.matches }}
+        {% endautoescape %}
+        </span>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>
