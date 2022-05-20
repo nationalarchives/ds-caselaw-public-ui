@@ -1,11 +1,11 @@
-{% load i18n %}
+{% load i18n query_filters %}
 <div class="result-controls">
   {% if context.query %}
     <div class="result-controls__order-by-label">
       {% if context.order == "-date" %}
-        <a class="" href="{{request.path}}?{{context.query_string}}&order=">{% translate "results.order-by.relevance" %}</a>
+        <a class="" href="{{request.path}}?{{context.query_params|remove_query_key:'order'}}&order=relevance">{% translate "results.order-by.relevance" %}</a>
       {% else %}
-        <a class="" href="{{request.path}}?{{context.query_string}}&order=-date">{% translate "results.order-by.date" %}</a>
+        <a class="" href="{{request.path}}?{{context.query_params|remove_query_key:'order'}}&order=-date">{% translate "results.order-by.date" %}</a>
       {% endif %}
     </div>
   {% endif %}
