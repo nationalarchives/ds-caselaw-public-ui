@@ -5,6 +5,7 @@ http://cookiecutter-django.readthedocs.io/en/latest/faq.html#why-is-there-a-djan
 """
 from django.conf import settings
 from django.db import migrations
+from django.db.utils import OperationalError
 
 
 def _update_or_create_site_with_sequence(site_model, connection, domain, name):
@@ -25,7 +26,16 @@ def _update_or_create_site_with_sequence(site_model, connection, domain, name):
         # greater than the maximum value.
         max_id = site_model.objects.order_by('-id').first().id
         with connection.cursor() as cursor:
-            cursor.execute("SELECT last_value from django_site_id_seq")
+            try:
+                cursor.execute("SELECT last_value from django_site_id_seq")
+            except OperationalError as e:
+                # dxw-dragon: Presumably if there's no table to get
+                #             the sequence number from, there's no
+                #             need to update it!
+                if 'no such table: django_site_id_seq' in e.args:
+                    return
+                else:
+                    raise
             (current_id,) = cursor.fetchone()
             if current_id <= max_id:
                 cursor.execute(
