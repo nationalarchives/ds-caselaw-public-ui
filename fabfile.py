@@ -26,6 +26,7 @@ def container_exec(cmd, container_name="django", check_returncode=False):
         result.check_returncode()
     return result
 
+
 def django_exec(cmd, check_returncode=False):
     "Execute something in the 'django' Docker container."
     return container_exec(cmd, "django", check_returncode)

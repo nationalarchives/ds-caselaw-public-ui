@@ -51,7 +51,7 @@ jobs:
         run: docker network create caselaw
 
       - name: Build the Stack
-        run: docker-compose build postgres django
+        run: docker-compose build django
 
       - name: Run DB Migrations
         run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
