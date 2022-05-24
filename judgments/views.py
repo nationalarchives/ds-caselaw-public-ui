@@ -107,12 +107,11 @@ def advanced_search(request):
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
 
-        order = query_params.pop("order")
         context["query_string"] = urllib.parse.urlencode(query_params)
         context["query_params"] = query_params
         for key in query_params:
             context[key] = query_params[key] or ""
-        context["order"] = order
+        context["order"] = query_params["order"]
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
@@ -187,12 +186,13 @@ def results(request):
             context["total"] = model.total
             context["paginator"] = paginator(int(page), model.total)
             context["query"] = query
-            context["query_string"] = f"query={query}"
             context["order"] = order
-        else:
-            model = perform_advanced_search(
-                order=order if order else "-date", page=page
+            context["query_string"] = urllib.parse.urlencode(
+                {"query": query, "order": order}
             )
+            context["query_params"] = {"query": query, "order": order}
+        else:
+            model = perform_advanced_search(order=order, page=page)
             search_results = [
                 SearchResult.create_from_node(result) for result in model.results
             ]
@@ -200,6 +200,9 @@ def results(request):
 
             context["total"] = model.total
             context["search_results"] = search_results
+            context["order"] = order
+            context["query_params"] = {"order": order}
+            context["query_string"] = urllib.parse.urlencode({"order": order})
             context["paginator"] = paginator(int(page), model.total)
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
