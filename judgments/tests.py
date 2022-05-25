@@ -7,6 +7,20 @@ from judgments import converters, views
 from judgments.models import Judgment
 
 
+class TestAtomFeed(TestCase):
+    def test_feed_exists(self):
+        response = self.client.get("/atom.xml")
+        decoded_response = response.content.decode("utf-8")
+        # that there is a valid page
+        self.assertEqual(response.status_code, 200)
+        # that it has the correct site name
+        self.assertIn("<name>The National Archives</name>", decoded_response)
+        # that it is like an Atom XML document
+        self.assertIn("http://www.w3.org/2005/Atom", decoded_response)
+        # that it has at least one entry
+        self.assertIn("<entry>", decoded_response)
+
+
 class TestJudgment(TestCase):
     @skip
     def test_valid_content(self):
