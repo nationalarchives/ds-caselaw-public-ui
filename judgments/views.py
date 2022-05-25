@@ -79,12 +79,19 @@ def advanced_search(request):
         "party": params.get("party"),
         "neutral_citation": params.get("neutral_citation"),
         "specific_keyword": params.get("specific_keyword"),
-        "order": params.get("order"),
+        "order": params.get("order", ""),
         "from": params.get("from"),
         "to": params.get("to"),
     }
     page = params.get("page", 1)
     page = page if page else 1
+    order = query_params["order"]
+    # If there is no query, order by -date, else order by relevance
+    if not order and not query_params["query"]:
+        order = "-date"
+    elif not order:
+        order = "relevance"
+
     context = {}
 
     try:
@@ -96,7 +103,7 @@ def advanced_search(request):
             neutral_citation=query_params["neutral_citation"],
             specific_keyword=query_params["specific_keyword"],
             page=page,
-            order=query_params["order"],
+            order=order,
             date_from=query_params["from"],
             date_to=query_params["to"],
         )
@@ -111,7 +118,7 @@ def advanced_search(request):
         context["query_params"] = query_params
         for key in query_params:
             context[key] = query_params[key] or ""
-        context["order"] = query_params["order"]
+        context["order"] = order
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
