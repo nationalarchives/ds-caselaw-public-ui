@@ -14,5 +14,5 @@ jobs:
       - name: Run latest-tag
         uses: dxw/latest-tag@force-branch
         with:
-          tagName: production
-          forceBranch: true
+          tag-name: production
+          force-branch: true
