@@ -13,7 +13,6 @@ services:
     image: ds_judgements_public_ui_production_django
     depends_on:
       - postgres
-      - redis
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres

@@ -3,8 +3,6 @@ python-slugify==6.1.1  # https://github.com/un33k/python-slugify
 Pillow==9.1.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==21.3.0  # https://github.com/hynek/argon2_cffi
 whitenoise==6.1.0  # https://github.com/evansd/whitenoise
-redis==4.2.2  # https://github.com/redis/redis-py
-hiredis==2.0.0  # https://github.com/redis/hiredis-py
 
 # Django
 # ------------------------------------------------------------------------------
@@ -14,7 +12,6 @@ django-model-utils==4.2.0  # https://github.com/jazzband/django-model-utils
 django-allauth==0.50.0  # https://github.com/pennersr/django-allauth
 django-crispy-forms==1.14.0  # https://github.com/django-crispy-forms/django-crispy-forms
 crispy-bootstrap5==0.6  # https://github.com/django-crispy-forms/crispy-bootstrap5
-django-redis==5.2.0  # https://github.com/jazzband/django-redis
 
 requests~=2.27.1
 xmltodict~=0.12.0
