@@ -233,12 +233,12 @@ let doNotRememberSettingsRadioInput = document.querySelector(
             );
           }
 
-          // Get the Hide This Message DOM element
+          // Get the Close This Message DOM element
           const hideThisMessage = document.querySelector(
             `#${Data.hideThisMessage.id}`
           );
 
-          // If Hide This Message DOM exists, hide banner
+          // If Close This Message DOM exists, hide banner
           if (hideThisMessage) {
             hideThisMessage.addEventListener("click", (e) => {
               e.preventDefault();
@@ -314,12 +314,12 @@ let doNotRememberSettingsRadioInput = document.querySelector(
             );
           }
 
-          // Get the Hide This Message DOM element
+          // Get the Close This Message DOM element
           const hideThisMessage = document.querySelector(
             `#${Data.hideThisMessage.id}`
           );
 
-          // If Hide This Message DOM exists, hide banner
+          // If Close This Message DOM exists, hide banner
           if (hideThisMessage) {
             hideThisMessage.addEventListener("click", (e) => {
               e.preventDefault();
