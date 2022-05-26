@@ -4,6 +4,8 @@ import os
 import re
 import urllib
 
+import environ
+import requests
 from caselawclient.Client import (
     RESULTS_PER_PAGE,
     MarklogicAPIError,
@@ -23,6 +25,8 @@ from judgments.fixtures.courts import courts
 from judgments.models import Judgment, SearchResult
 
 from .utils import perform_advanced_search
+
+env = environ.Env()
 
 
 def browse(request, court=None, subdivision=None, year=None):
@@ -134,6 +138,22 @@ def detail_xml(_request, judgment_uri):
     response = HttpResponse(judgment_xml, content_type="application/xml")
     response["Content-Disposition"] = f"attachment; filename={judgment_uri}.xml"
     return response
+
+
+def pdf2(request, judgment_uri):
+    try:
+        pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
+        pdf_uri = f'http://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
+        response = requests.get(pdf_uri)
+        response.raise_for_status()
+        #response["Content-Disposition"] = f"attachment; filename={judgment_uri.replace('/', '_')}.pdf"
+        return response
+    except requests.exceptions.HTTPError:
+        print("Trying fallback view")
+        return PdfDetailView.as_view(judgment="kitten")
+
+def pdf(*args, **kwargs):
+    return PdfDetailView.as_view(**kwargs)
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
