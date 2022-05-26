@@ -74,7 +74,11 @@ def run(c):
     django_exec("python manage.py migrate")
     django_exec("rm -rf /app/staticfiles")
     django_exec("python manage.py collectstatic")
-    return django_exec("python manage.py runserver 0.0.0.0:3000")
+    try:
+        django_exec("python manage.py runserver 0.0.0.0:3000")
+    except KeyboardInterrupt:
+        pass
+    stop(c, "django")
 
 
 @task
