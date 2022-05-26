@@ -13,16 +13,13 @@ manager or [download a `.deb` or
 
 Once installed, we need to build our containers. We use
 [`docker-compose`](https://docs.docker.com/compose/) to orchestrate the
-building of the project's containers, one for each each service:
+building of the project's containers, one for each service:
 
 ### `django`
 
 Our custom container responsible for running the application. Built from the
 official [python 3.9](https://hub.docker.com/_/python/) base image
 
-### `postgres`
-
-The database service built from the official [postgres](https://hub.docker.com/_/postgres/) image
 
 ## Getting started
 

@@ -6,13 +6,10 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    depends_on:
-      - postgres
     volumes:
       - .:/app:z
     init: true
     environment:
-      DATABASE_URL: "postgres://postgres:admin@postgres:5432/ds_judgements_public_ui"
       DJANGO_SETTINGS_MODULE: "config.settings.local"
       SECRET_KEY: local_dev_secret_key
       SECURE_SSL_REDIRECT: "false"
@@ -22,23 +19,6 @@ services:
       - "3000:3000"
     # do nothing forever - exec commands elsewhere
     command: tail -f /dev/null
-
-  postgres:
-    image: postgres:12.3
-    ports:
-     - "5432:5432"
-    environment:
-      POSTGRES_DB: ds_judgements_public_ui
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      PGDATABASE: ds_judgements_public_ui
-      PGUSER: postgres
-      PGPASSWORD: admin
-      POSTGRES_HOST_AUTH_METHOD: trust
-    volumes:
-      - ./database_backups:/backups:z
 
   docs:
     image: ds_judgements_public_ui_local_docs

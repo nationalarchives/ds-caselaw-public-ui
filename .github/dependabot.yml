@@ -55,14 +55,6 @@ updates:
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
-    # Look for a `Dockerfile` in the `compose/production/postgres` directory
-    directory: "compose/production/postgres/"
-    # Check for updates to GitHub Actions every weekday
-    schedule:
-      interval: "daily"
-
-  # Enable version updates for Docker
-  - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `compose/production/traefik` directory
     directory: "compose/production/traefik/"
     # Check for updates to GitHub Actions every weekday
