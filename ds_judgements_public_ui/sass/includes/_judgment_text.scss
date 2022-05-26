@@ -147,11 +147,6 @@
 
     @media (min-width: $grid__breakpoint-medium) {
 
-
-      h2 {
-        @include sr-only;
-      }
-
       ul {
         padding: 0;
       }
@@ -170,10 +165,6 @@
 
   &__hearing-dates {
     text-align: center;
-
-    h2 {
-      @include sr-only;
-    }
   }
 
   &__approved-judgment {
@@ -182,9 +173,6 @@
 }
 
 .judgment-body {
-  h2 {
-    @include sr-only;
-  }
 
   h3 {
     font-size: 1rem;
