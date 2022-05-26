@@ -168,14 +168,13 @@ def get_best_pdf(request, judgment_uri):
     Otherwise fall back and redirect to the weasyprint version."""
     pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
     pdf_uri = f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
-    response = requests.get(pdf_uri)
+    response = requests.head(pdf_uri)
     if response.status_code == 200:
-        response = HttpResponse(response.content, content_type="application/pdf")
-        return response
+        return redirect(pdf_uri)
 
     if response.status_code != 404:
         logging.warn(
-            f"{response.status_code} error on {judgment_uri} whilst trying to get_best_pdf"
+            f"Unexpected {response.status_code} error on {judgment_uri} whilst trying to get_best_pdf"
         )
     # fall back to weasy_pdf
     return redirect(reverse("weasy_pdf", kwargs={"judgment_uri": judgment_uri}))
