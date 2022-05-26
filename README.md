@@ -56,34 +56,40 @@ $ fab build
 Switch to the location of ds-caselaw-public-access-service/marklogic and run:
 
 ```console
-docker-compose up
+$ docker-compose up
 ```
 
-### 6. Start Docker containers
+### 6. Create Docker network
+
+``` console
+$ docker network create caselaw
+```
+
+### 7. Start Docker containers
 
 ```console
 $ fab start
 ```
 
-### 7. Start a shell session with the 'django' container
+### 8. Start a shell session with the 'django' container
 
 ```console
 $ fab sh
 ```
 
-### 8. Apply database migrations
+### 9. Apply database migrations
 
 ```console
 $ python manage.py migrate
 ```
 
-### 9. Run a 'development' web server
+### 10. Run a 'development' web server
 
 ```console
 $ python manage.py runserver_plus 0.0.0.0:3000
 ```
 
-### 10. Access the site
+### 11. Access the site
 
 <http://127.0.0.1:3000>
 
