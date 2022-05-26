@@ -1,0 +1,16 @@
+<search:response snippet-format="empty-snippet" total="50465" start="1" page-length="10" selected="include" xmlns:search="http://marklogic.com/appservices/search">
+  <search:result index="1" uri="/ewhc/ch/2022/1.xml" path="fn:doc(&quot;/ewhc/ch/2022/1.xml&quot;)" score="28672" confidence="0.24983" fitness="0.6904904">
+    <search:snippet/>
+    <search:extracted kind="element"><FRBRdate date="2022-05-17" name="judgment" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"/><FRBRname value="A name!" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"/><uk:cite xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">[2022] EWHC 1 (Ch)</uk:cite><neutralCitation style="font-weight:bold" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">[2022] EWHC 1 (Ch)</neutralCitation><FRBRdate date="2022-05-17" name="judgment" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"/></search:extracted>
+  </search:result>
+  <search:result index="2" uri="/ewca/civ/2018/2.xml" path="fn:doc(&quot;/ewca/civ/2018/2.xml&quot;)" score="28672" confidence="0.24983" fitness="0.6904904">
+    <search:snippet/>
+    <search:extracted kind="element"><FRBRdate date="2022-05-10" name="judgment" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"/><FRBRname value="A second name!" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"/><uk:cite xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">[2018] EWCA Civ 2</uk:cite><neutralCitation style="font-weight:normal;font-size:12pt" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">[2018] EWCA Civ 2</neutralCitation></search:extracted>
+  </search:result>
+  <search:metrics>
+    <search:query-resolution-time>PT0.084455S</search:query-resolution-time>
+    <search:snippet-resolution-time>PT0.000289S</search:snippet-resolution-time>
+    <search:extract-resolution-time>PT0.038079S</search:extract-resolution-time>
+    <search:total-time>PT0.141601S</search:total-time>
+  </search:metrics>
+</search:response>
