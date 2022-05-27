@@ -8,4 +8,4 @@ cryptography~=37.0.2
 packaging~=21.3
 setuptools~=62.1.0
 requests~=2.27.1
-xmltodict~=0.12.0
+xmltodict~=0.13.0
