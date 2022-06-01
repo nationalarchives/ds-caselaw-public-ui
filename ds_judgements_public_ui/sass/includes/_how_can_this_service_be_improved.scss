@@ -1,5 +1,6 @@
 .improved {
   background-color: $color__light-grey;
+  margin: calc($spacer__unit * 2.5) 0 0;
 
   &__container {
     @include container;

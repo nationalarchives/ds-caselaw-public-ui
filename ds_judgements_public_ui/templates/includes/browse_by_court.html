@@ -1,25 +1,26 @@
 {% block content %}
-  <div class="judgment-browse-by-court">
-    <div class="judgment-browse-by-court__container">
-      <h2 id="browse-by-court" class="judgment-browse-by-court__header">Find judgments by court</h2>
-      <ul class="judgment-browse-by-court__list">
-        {% for court in courts %}
-          <li class="judgment-browse-by-court__court">
-            <span class="judgment-browse-by-court__court-name">
-              {% if court.subdivision %}
-                <a class="judgment-browse-by-court__court-link" href="{% url 'browse' court=court.court subdivision=court.subdivision %}">
-              {% else %}
-                <a class="judgment-browse-by-court__court-link" href="{% url 'browse' court=court.court %}">
-              {% endif %}
-                  {{ court.name }}
-                </a>
-            </span>
-            <span class="judgment-browse-by-court__years">
-              ({{ court.years_range_start }}-{{ court.years_range_end }})
-            </span>
-          </li>
-        {% endfor %}
-      </ul>
+    <div class="judgment-browse">
+        <h2 class="judgment-browse__header">Find judgments</h2>
+        <div class="judgment-browse__by-type">
+            <h3 id="browse-by-court" class="judgment-browse__sub-header">By court</h3>
+            <ul class="judgment-browse__list">
+                {% for court in courts %}
+                    <li class="judgment-browse__list-item">
+                        <a class="judgment-browse__link" href="{{ court.href }}">{{ court.name }}</a> <span class="judgment-browse__year-range">{{ court.years | safe }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="judgment-browse__by-type">
+            <h3 id="browse-by-tribunal" class="judgment-browse__sub-header">By tribunal</h3>
+            <p class="judgment-browse__information-box">We have a limited number of tribunal decisions available as part of our alpha service.</p>
+            <ul class="judgment-browse__list">
+                {% for tribunal in tribunals %}
+                    <li class="judgment-browse__list-item">
+                        <a class="judgment-browse__link" href="{{ tribunal.href }}">{{ tribunal.name | safe }}</a> <span class="judgment-browse__year-range">{{ tribunal.years | safe }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-  </div>
 {% endblock %}
