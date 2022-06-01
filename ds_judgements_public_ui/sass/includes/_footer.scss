@@ -31,4 +31,15 @@
   a {
     @include link-on-dark-bg;
   }
+
+  &__base-paragraph {
+    text-align: left;
+    margin: calc($spacer__unit * 2) 0 calc($spacer__unit * 3);
+    font-size: 0.9rem;
+    line-height: 1.75rem;
+
+    @media (min-width: $grid__breakpoint-extra-large) {
+      text-align: center;
+    }
+  }
 }
