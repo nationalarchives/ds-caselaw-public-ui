@@ -101,13 +101,25 @@
               {% if context.court == 'ewfc' %}selected="selected"{% endif %}>
                 Family Court
               </option>
-              <option value="ukut"
-              {% if context.court == 'ukut' %}selected="selected"{% endif %}>
-                Upper Tribunal
+              <option value="ukut-aac"
+              {% if context.court == 'ukut-aac' %}selected="selected"{% endif %}>
+                Upper Tribunal Administrative Appeals Chamber
+              </option>
+              <option value="ukut-iac"
+              {% if context.court == 'ukut-iac' %}selected="selected"{% endif %}>
+                Upper Tribunal Immigration and Asylum Chamber
+              </option>
+              <option value="ukut-lc"
+              {% if context.court == 'ukut-lc' %}selected="selected"{% endif %}>
+                Upper Tribunal Lands Chamber
+              </option>
+              <option value="ukut-tcc"
+              {% if context.court == 'ukut-tcc' %}selected="selected"{% endif %}>
+                Upper Tribunal Tax and Chancery Chamber
               </option>
               <option value="eat"
               {% if context.court == 'eat' %}selected="selected"{% endif %}>
-                United Kingdom Employment Appeal Tribunal
+                Employment Appeal Tribunal
               </option>
             </select>
           </div>

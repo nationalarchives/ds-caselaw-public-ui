@@ -6,7 +6,7 @@
 
     li {
       padding: $spacer__unit calc($spacer__unit / 4) $spacer__unit calc($spacer__unit / 4);
-      border-bottom: 2px solid $color__grey;
+      border-bottom: 1px dotted $color__yellow;
     }
   }
 
@@ -36,7 +36,7 @@
   &__title {
     display: block;
     font-weight: normal;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-family: $font__roboto;
   }
 

@@ -1,6 +1,6 @@
 {% load query_filters %}
 {% if context.query_params.items %}
-  <h2 class="results-search-component__sub-header">Filters include (click any to remove)</h2>
+  <h2 class="results-search-component__sub-header">Filters include (select any to remove)</h2>
   <ul class="results-search-component__removable-options">
     {% for key, value in context.query_params.items %}
       {% if value and key != 'order' %}

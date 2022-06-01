@@ -162,3 +162,8 @@
     @include focus-default
   }
 }
+
+@mixin heading_text {
+  font-family: $font__roboto;
+  font-weight: normal;
+}

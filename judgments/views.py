@@ -20,6 +20,7 @@ from django_weasyprint import WeasyTemplateResponseMixin
 from requests_toolbelt.multipart import decoder
 
 from judgments.fixtures.courts import courts
+from judgments.fixtures.tribunals import tribunals
 from judgments.models import Judgment, SearchResult
 
 from .utils import perform_advanced_search
@@ -171,7 +172,9 @@ def index(request):
         )  # TODO: This should be something else!
     template = loader.get_template("pages/home.html")
     return TemplateResponse(
-        request, template, context={"context": context, "courts": courts}
+        request,
+        template,
+        context={"context": context, "courts": courts, "tribunals": tribunals},
     )
 
 
