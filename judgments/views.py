@@ -114,8 +114,10 @@ def advanced_search(request):
         ]
         context["total"] = model.total
         context["paginator"] = paginator(int(page), model.total)
-
-        context["query_string"] = urllib.parse.urlencode(query_params)
+        changed_queries = {
+            key: value for key, value in query_params.items() if value is not None
+        }
+        context["query_string"] = urllib.parse.urlencode(changed_queries)
         context["query_params"] = query_params
         for key in query_params:
             context[key] = query_params[key] or ""
