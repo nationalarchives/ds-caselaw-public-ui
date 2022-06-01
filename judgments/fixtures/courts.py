@@ -2,12 +2,12 @@ courts = [
     {
         "name": "United Kingdom Supreme Court",
         "href": "/judgments/advanced_search?court=uksc",
-        "years": "2021 &ndash; 2022",
+        "years": "2014 &ndash; 2022",
     },
     {
         "name": "Privy Council",
         "href": "/judgments/advanced_search?court=ukpc",
-        "years": "2021 &ndash; 2022",
+        "years": "2014 &ndash; 2022",
     },
     {
         "name": "Court of Appeal Civil Division",
@@ -42,7 +42,7 @@ courts = [
     {
         "name": "Senior Court Costs Office",
         "href": "/judgments/advanced_search?court=ewhc/costs",
-        "years": "2003 &ndash; 2021",
+        "years": "2003 &ndash; 2022",
     },
     {
         "name": "Family Division of the High Court",
