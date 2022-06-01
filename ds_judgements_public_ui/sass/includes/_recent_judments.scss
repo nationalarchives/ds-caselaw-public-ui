@@ -2,10 +2,7 @@
 
   &__container {
     @include container;
-    padding-top: calc($spacer__unit * 4);
-    padding-right: 0;
-    padding-left: 0;
-    padding-bottom: $spacer__unit;
+    padding: calc($spacer__unit * 4) 0 $spacer__unit;
   }
 
   &__header {
