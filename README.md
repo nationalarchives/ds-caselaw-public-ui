@@ -146,13 +146,6 @@ You can then access the site in your browser as usual:
 
 <http://127.0.0.1:3000>
 
-### Available Judgments
-
-- <http://127.0.0.1:3000/ewca/civ/2004/632>
-- <http://127.0.0.1:3000/ewca/civ/2004/811>
-- <http://127.0.0.1:3000/ewca/civ/2006/392>
-- <http://127.0.0.1:3000/ewca/civ/2007/214>
-
 ### Running tests
 
 ```console
