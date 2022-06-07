@@ -90,46 +90,16 @@ $ docker-compose up
 
 ### 6. Create Docker network
 
+If you see an error message referring to a missing docker network, run the following
+command to create it:
+
 ``` console
 $ docker network create caselaw
 ```
 
-### 7. Start Docker containers
+### 7. Quick start
 
-```console
-$ fab start
-```
-
-### 8. Start a shell session with the 'django' container
-
-```console
-$ fab sh
-```
-
-### 9. Apply database migrations
-
-```console
-$ python manage.py migrate
-```
-
-### 10. Run a 'development' web server
-
-```console
-$ python manage.py runserver_plus 0.0.0.0:3000
-```
-
-### 11. Access the site
-
-<http://127.0.0.1:3000>
-
-**NOTE**: Compiled CSS is not included and therefore needs to be built initially, and after each git pull.
-
-## Additional development tips
-
-### Quick start with `fab run`
-
-While it's handy to be able to access the django container via a shell and interact with it directly, sometimes all you
-want is to view the site in a web browser. In these cases, you can use:
+At this point you can run the following command to "quick start" the application:
 
 ```console
 $ fab run
@@ -142,18 +112,52 @@ This command takes care of the following:
 3. Applying any new database migrations
 4. Starting the Django development server
 
-You can then access the site in your browser as usual:
+You can then access the site in your browser:
 
 <http://127.0.0.1:3000>
 
-### Available Judgments
+### 8. Other development tips
 
-- <http://127.0.0.1:3000/ewca/civ/2004/632>
-- <http://127.0.0.1:3000/ewca/civ/2004/811>
-- <http://127.0.0.1:3000/ewca/civ/2006/392>
-- <http://127.0.0.1:3000/ewca/civ/2007/214>
+For day to day development, running `fab run` should provide you with all you need.
 
-### Running tests
+Other useful commands are:
+
+#### Start Docker containers (in the background)
+
+Note that running this command will fail if you have already started the application with
+`fab run`
+
+```console
+$ fab start
+```
+
+To stop any running containers:
+
+```console
+$ fab stop
+```
+
+#### Start a shell session with the 'django' container
+
+```console
+$ fab sh
+```
+
+#### Apply database migrations
+
+Run the following inside the `django` container
+
+```console
+# python manage.py migrate
+```
+
+#### Run a 'development' web server
+
+```console
+$ python manage.py runserver_plus 0.0.0.0:3000
+```
+
+### Running the test suite
 
 ```console
 $ fab test
