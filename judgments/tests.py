@@ -45,13 +45,13 @@ class TestAtomFeed(TestCase):
         self.assertIn("http://www.w3.org/2005/Atom", decoded_response)
         # that it has an entry
         self.assertIn("<entry>", decoded_response)
-        # and it contains actual content - neither neutral citation or court appear.
+        # and it contains actual content - neither neutral citation or court appear in the feed to test.
         self.assertIn("A SearchResult name!", decoded_response)
 
-    def feed_page_is_blank(self):
-        response = self.client.get("/atom.xml?page=")
+    def test_bad_page_404(self):
+        # "&page=" 404s, not 500
+        response = self.client.get("/atom.xml&page=")
         self.assertEqual(response.status_code, 404)
-
 
 class TestJudgment(TestCase):
     @skip

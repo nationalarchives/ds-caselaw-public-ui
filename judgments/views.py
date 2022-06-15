@@ -17,6 +17,7 @@ from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
+from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.translation import gettext
@@ -72,6 +73,7 @@ def detail(request, judgment_uri):
         context["judgment"] = judgment
         context["page_title"] = model.metadata_name
         context["judgment_uri"] = judgment_uri
+        context["pdf_size"] = get_pdf_size(judgment_uri)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
@@ -170,6 +172,16 @@ def get_pdf_uri(judgment_uri):
     """Create a string saying where the S3 PDF will be for a judgment uri"""
     pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
     return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
+
+
+def get_pdf_size(judgment_uri):
+    """Return the size of the S3 PDF for a judgment as a string in brackets, or an empty string if unavailable"""
+    response = requests.head(get_pdf_uri(judgment_uri))
+    content_length = response.headers.get("Content-Length", None)
+    if content_length:
+        filesize = filesizeformat(int(content_length))
+        return f" ({filesize})"
+    return ""
 
 
 def get_best_pdf(request, judgment_uri):
