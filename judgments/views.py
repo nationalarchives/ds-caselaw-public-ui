@@ -166,14 +166,19 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
         return context
 
 
+def get_pdf_uri(judgment_uri):
+    """Create a string saying where the S3 PDF will be for a judgment uri"""
+    pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
+    return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
+
+
 def get_best_pdf(request, judgment_uri):
     """If there's a DOCX-derived PDF in the S3 bucket, return that.
     Otherwise fall back and redirect to the weasyprint version."""
-    pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
-    pdf_uri = f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
-    response = requests.head(pdf_uri)
+    pdf_uri = get_pdf_uri(judgment_uri)
+    response = requests.get(pdf_uri)
     if response.status_code == 200:
-        return redirect(pdf_uri)
+        return HttpResponse(response.content, content_type="application/pdf")
 
     if response.status_code != 404:
         logging.warn(
