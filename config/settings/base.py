@@ -68,17 +68,13 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
 ]
-THIRD_PARTY_APPS = [
-    "crispy_forms",
-    "crispy_bootstrap5",
-]
 
 LOCAL_APPS = [
     # Your stuff: custom apps go here
     "judgments.apps.JudgmentsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -186,10 +182,6 @@ TEMPLATES = [
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
-
-# http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-CRISPY_TEMPLATE_PACK = "bootstrap5"
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 # FIXTURES
 # ------------------------------------------------------------------------------
