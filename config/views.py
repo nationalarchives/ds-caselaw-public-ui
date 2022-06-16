@@ -48,3 +48,7 @@ class CheckView(TemplateViewWithContext):
 
 class WhatToExpectView(TemplateViewWithContext):
     template_name = "pages/what_to_expect.html"
+
+
+class HowToUseThisService(TemplateViewWithContext):
+    template_name = "pages/how_to_use_this_service.html"
