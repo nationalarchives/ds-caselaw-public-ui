@@ -31,3 +31,24 @@ a {
     z-index: 999;
   }
 }
+
+.anchor-links {
+   h3 {
+     font-size: 1.8rem;
+     margin-bottom: $spacer__unit;
+     padding-bottom: calc($spacer__unit * 1.5);
+     border-bottom: 0.313rem solid $color__yellow;
+   }
+
+   &__list {
+     padding: 0;
+     list-style: none;
+     margin-bottom: calc($spacer__unit / 2);
+     padding-block: $spacer__unit;
+   }
+
+   &__list-option {
+     font-family: $font__roboto;
+     padding-block: 0 $spacer__unit;
+   }
+ }

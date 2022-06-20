@@ -19,6 +19,11 @@ urlpatterns = [
         name="what_to_expect",
     ),
     path(
+        "how-to-use-this-service",
+        views.HowToUseThisService.as_view(),
+        name="how_to_use_this_service",
+    ),
+    path(
         "accessibility-statement",
         views.AccessibilityStatement.as_view(),
         name="accessibility_statement",
