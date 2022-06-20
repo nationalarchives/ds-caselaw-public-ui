@@ -67,7 +67,7 @@
       words are closest together will appear as the most relevant at the top of the search results.</p>
 
     <h3>Search specific fields</h3>
-    <p>Alternatively, you can search using one or more specific search terms on the <a href="/search">More search
+    <p>Alternatively, you can search using one or more specific search terms on the <a href="{% url "structured_search" %}">More search
       options</a> page. You can use multiple search fields at the same time to narrow down your results. The
       search boxes search particular fields. With the exception of keyword, these boxes do not search the full text of
       judgments and decisions.</p>
@@ -111,7 +111,7 @@
     <p>If you are confident that the neutral citation is correct but are struggling to find it, it may be that we don't
       have that judgment within our collection.</p>
     <p>Find out more about our limited coverage of judgments and decisions on our <a
-            href="what_to_expect#section-coverage">What to expect from this service</a> page.</p>
+            href="{% url "what_to_expect" %}#section-coverage">What to expect from this service</a> page.</p>
 
 
     <h4>Party name</h4>
@@ -134,7 +134,7 @@
     <h4>Judge's name</h4>
     <p>The judge(s) who decided a case will appear at the top of the judgment or decision.</p>
     <p>You can search by the name of the judge who has decided a case by using the 'Judge's name' box on the <a
-            href="/search">More search options</a> page. This means that it will only search for judges that have given
+            href="{% url "structured_search" %}">More search options</a> page. This means that it will only search for judges that have given
       a judgment or decision on a case
       instead of searching every reference to the name of the judge within the full text of every judgment or
       decision.</p>
@@ -144,7 +144,7 @@
     <p>The court or chamber where the case was decided will appear at the top of the judgment or decision.</p>
     <p>You can browse by court or chamber division to see all the judgments and decisions we have received from that
       court.</p>
-    <p><a href="https://www.judiciary.uk/about-the-judiciary/the-justice-system/court-structure">Find out more about
+    <p><a href="{% translate "courtstructure.link" %}">Find out more about
       courts and tribunals</a>.</p>
 
 
@@ -193,7 +193,7 @@
 
     <h2 id="section-contact">How to contact us</h2>
     <p>You can get in touch by emailing <a
-            href="mailto:caselaw@nationalarchives.gov.uk">caselaw@nationalarchives.gov.uk</a>.</p>
+            href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.</p>
   </div>
 
 {% endblock %}

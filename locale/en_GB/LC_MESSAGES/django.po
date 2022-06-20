@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 18:10+0100\n"
+"POT-Creation-Date: 2022-06-20 10:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -181,6 +181,21 @@ msgstr ""
 msgid "howtousethisservice.title"
 msgstr "How to use the Find Case Law service"
 
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:147
+msgid "courtstructure.link"
+msgstr ""
+"https://www.judiciary.uk/about-the-judiciary/the-justice-system/court-"
+"structure"
+
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:196
+#: ds_judgements_public_ui/templates/pages/transactional_licence.html:25
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:376
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:414
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:423
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:426
+msgid "caselaw.email"
+msgstr "caselaw@nationalarchives.gov.uk"
+
 #: ds_judgements_public_ui/templates/pages/no_results.html:5
 #, python-format
 msgid "No results for '%(data)s'"
@@ -265,43 +280,36 @@ msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/2/3"
 msgid "sectionfivethree.link"
 msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/5/3"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:205
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:202
 msgid "legaldocml.link"
 msgstr "https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:245
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:242
 msgid "openapi.link"
 msgstr "https://github.com/nationalarchives/ds-caselaw-public-access-service/"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:248
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:245
 msgid "atom.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/atom.xml"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:334
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:333
 msgid "fivesafes.link"
 msgstr "https://en.wikipedia.org/wiki/Five_safes"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:343
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:342
 msgid "reuse.link"
 msgstr "https://www.legislation.gov.uk/uksi/2015/1415/contents"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:346
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:345
 msgid "sectioneight.link"
 msgstr "https://www.legislation.gov.uk/uksi/2015/1415/regulation/8"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:349
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:348
 msgid "sectionthirteen.link"
 msgstr "https://www.legislation.gov.uk/uksi/2015/1415/regulation/13"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:366
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html:365
 msgid "complaint.link"
 msgstr ""
 "https://www.nationalarchives.gov.uk/information-management/re-using-public-"
 "sector-information/complaints-about-re-use/"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:377
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:415
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:424
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:427
-msgid "caselaw.email"
-msgstr "caselaw@nationalarchives.gov.uk"
