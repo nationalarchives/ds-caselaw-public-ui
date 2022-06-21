@@ -1,6 +1,7 @@
 import datetime
 
 from django.contrib.syndication.views import Feed
+from django.http import Http404
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
 
@@ -66,7 +67,10 @@ class LatestJudgmentsFeed(Feed):
         court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
         slugs = filter(lambda x: x is not None, [court, subdivision, year])
         slug = "/".join([str(s) for s in slugs])
-        page = int(request.GET.get("page", 1)) or 1
+        try:
+            page = int(request.GET.get("page", 1))
+        except ValueError:
+            raise Http404
         order = request.GET.get("order", "-date")
         model = perform_advanced_search(
             court=court_query if court_query else None,
