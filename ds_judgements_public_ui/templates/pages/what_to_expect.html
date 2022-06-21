@@ -250,7 +250,7 @@
       could be a minor metadata change, an enrichment with extra links, or a new version from the original submitter,
       with a material change to the judgment.</p>
     <p>The judgment XML contains a content hash which will only change with material changes; you can use this to
-      detect whether or not you need to re-import the DOCX for an updated judgment. In the near future, we hope to
+      detect changes for an updated judgment. In the near future, we hope to
       provide a feed that only shows material changes, so you will not need to keep a list of hashes.</p>
     <p>An example update detection workflow:</p>
     <ol>
@@ -258,7 +258,6 @@
       <li>Detect a new feed item using the timestamps in the feed.</li>
       <li>Fetch the XML representation of the updated document.</li>
       <li>Check the content hash against a stored value.</li>
-      <li>If changed, construct the URL and fetch the DOCX from the asset bucket.</li>
     </ol>
     <p>In order to re-use the data, you must be compliant with the terms set out in our licences.</p>
     <h2 id="section-data-licensing">Data licensing arrangements</h2>
