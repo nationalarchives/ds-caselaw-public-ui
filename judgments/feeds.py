@@ -25,7 +25,7 @@ class JudgmentAtomFeed(Atom1Feed):
         pagination = paginator(self.feed["page"], self.feed["total"])
 
         handler.addQuickElement(
-            "link", "", {"rel": "first", "href": self.feed["feed_url"]}
+            "link", "", {"rel": "first", "href": f'{self.feed["feed_url"]}?page=1'}
         )
         handler.addQuickElement(
             "link",
