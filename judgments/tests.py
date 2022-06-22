@@ -45,27 +45,46 @@ class TestAtomFeed(TestCase):
         self.assertIn("http://www.w3.org/2005/Atom", decoded_response)
         # that it has an entry
         self.assertIn("<entry>", decoded_response)
-        # and it contains actual content - neither neutral citation or court appear.
+        # and it contains actual content - neither neutral citation or court appear in the feed to test.
         self.assertIn("A SearchResult name!", decoded_response)
 
-    def feed_page_is_blank(self):
-        response = self.client.get("/atom.xml?page=")
+    @patch("judgments.utils.perform_advanced_search")
+    def test_bad_page_404(self, fake_advanced_search):
+        # "&page=" 404s, not 500
+        fake_advanced_search.return_value = fake_search_results()
+        response = self.client.get("/atom.xml&page=")
         self.assertEqual(response.status_code, 404)
 
 
 class TestJudgment(TestCase):
-    @skip
-    def test_valid_content(self):
-        response = self.client.get("/judgments/ewca/civ/2004/632")
+    @patch("judgments.views.requests.head")
+    @patch("judgments.views.Judgment")
+    @patch("judgments.views.decoder.MultipartDecoder")
+    @patch("judgments.views.api_client")
+    def test_valid_content(self, client, decoder, judgment, head):
+        head.return_value.headers = {"Content-Length": "1234567890"}
+        client.eval_xslt.return_value = "eval_xslt"
+        decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
+        judgment.create_from_string.return_value.metadata_name = "judgment metadata"
+
+        response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")
-        self.assertIn("[2004] EWCA Civ 632", decoded_response)
+        self.assertIn("(1.1\xa0GB)", decoded_response)
+        # We don't use the Download as PDF text because there's an issue with localisated strings on CI
+        self.assertEqual(response.status_code, 200)
+
+    @skip
+    def test_good_response(self):
+        response = self.client.get("/ewca/civ/2004/637")
+        decoded_response = response.content.decode("utf-8")
+        self.assertIn("[2004] EWCA Civ 637", decoded_response)
         self.assertEqual(response.status_code, 200)
 
     @skip
     def test_404_response(self):
-        response = self.client.get("/judgments/ewca/civ/2004/63X")
+        response = self.client.get("/ewca/civ/2004/63X")
         decoded_response = response.content.decode("utf-8")
-        self.assertIn("Judgment was not found", decoded_response)
+        self.assertIn("Page not found", decoded_response)
         self.assertEqual(response.status_code, 404)
 
 

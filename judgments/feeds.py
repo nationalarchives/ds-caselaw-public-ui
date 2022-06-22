@@ -70,6 +70,7 @@ class LatestJudgmentsFeed(Feed):
         try:
             page = int(request.GET.get("page", 1))
         except ValueError:
+            # e.g. the user provided ?page= or ?page=jam
             raise Http404
         order = request.GET.get("order", "-date")
         model = perform_advanced_search(
