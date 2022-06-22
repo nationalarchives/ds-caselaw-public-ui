@@ -92,7 +92,8 @@ class LatestJudgmentsFeed(Feed):
         return f'Latest judgments for {obj.get("slug", "/")}'
 
     def link(self, obj):
-        return f'{obj.get("slug", "/")}?page={obj["page"]}'
+        page = obj.get("page", 1)
+        return f"/{obj['slug']}/atom.xml?page={page}"
 
     def items(self, obj):
         return [
