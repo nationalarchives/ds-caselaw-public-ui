@@ -43,7 +43,7 @@ class JudgmentAtomFeed(Atom1Feed):
                 "link",
                 "",
                 {
-                    "rel": "previous",
+                    "rel": "next",
                     "href": f'{self.feed["feed_url"]}?page={str(pagination["next_page"])}',
                 },
             )
@@ -53,7 +53,7 @@ class JudgmentAtomFeed(Atom1Feed):
                 "link",
                 "",
                 {
-                    "rel": "next",
+                    "rel": "previous",
                     "href": f'{self.feed["feed_url"]}?page={str(pagination["prev_page"])}',
                 },
             )
