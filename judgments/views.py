@@ -228,9 +228,9 @@ def results(request):
         params = request.GET
         query = params.get("query")
         page = params.get("page") if params.get("page") else "1"
-        order = params.get("order", default="-date")
 
         if query:
+            order = params.get("order", default="-relevance")
             model = perform_advanced_search(query=query, page=page, order=order)
 
             context["search_results"] = [
@@ -245,6 +245,7 @@ def results(request):
             )
             context["query_params"] = {"query": query, "order": order}
         else:
+            order = params.get("order", default="-date")
             model = perform_advanced_search(order=order, page=page)
             search_results = [
                 SearchResult.create_from_node(result) for result in model.results
