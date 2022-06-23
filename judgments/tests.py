@@ -69,7 +69,7 @@ class TestJudgment(TestCase):
 
         response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")
-        self.assertIn("(1.1\xa0GB)", decoded_response)
+        self.assertIn("Download as PDF (1.1\xa0GB)", decoded_response)
         # We don't use the Download as PDF text because there's an issue with localisated strings on CI
         self.assertEqual(response.status_code, 200)
 

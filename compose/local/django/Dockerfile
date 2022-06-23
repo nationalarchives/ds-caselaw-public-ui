@@ -61,5 +61,9 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 # copy application code to WORKDIR
 COPY . ${APP_HOME}
 
+# we have this in the fabfile but that doesn't run on test CI environments
+RUN django-admin makemessages --all
+RUN django-admin compilemessages
+
 # Do nothing forever (use 'exec' to resuse the container)
 CMD tail -f /dev/null
