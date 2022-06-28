@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Forbidden (403){% endblock %}
+{% block title %}Forbidden - Find Case Law{% endblock %}
 
 {% block content %}
-<h1>Forbidden (403)</h1>
-
-<p>{% if exception %}{{ exception }}{% else %}Access to this page is forbidden.{% endif %}</p>
+    <div class="standard-text-template">
+      <h1>Forbidden</h1>
+      <p>{% if exception %}{{ exception }}{% else %}Access to this page is forbidden.{% endif %}</p>
+    </div>
 {% endblock content %}
