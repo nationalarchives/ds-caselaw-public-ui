@@ -25,7 +25,7 @@ class JudgmentAtomFeed(Atom1Feed):
         pagination = paginator(self.feed["page"], self.feed["total"])
 
         handler.addQuickElement(
-            "link", "", {"rel": "first", "href": self.feed["feed_url"]}
+            "link", "", {"rel": "first", "href": f'{self.feed["feed_url"]}?page=1'}
         )
         handler.addQuickElement(
             "link",
@@ -43,7 +43,7 @@ class JudgmentAtomFeed(Atom1Feed):
                 "link",
                 "",
                 {
-                    "rel": "previous",
+                    "rel": "next",
                     "href": f'{self.feed["feed_url"]}?page={str(pagination["next_page"])}',
                 },
             )
@@ -53,7 +53,7 @@ class JudgmentAtomFeed(Atom1Feed):
                 "link",
                 "",
                 {
-                    "rel": "next",
+                    "rel": "previous",
                     "href": f'{self.feed["feed_url"]}?page={str(pagination["prev_page"])}',
                 },
             )
@@ -93,7 +93,8 @@ class LatestJudgmentsFeed(Feed):
         return f'Latest judgments for {obj.get("slug", "/")}'
 
     def link(self, obj):
-        return f'{obj.get("slug", "/")}?page={obj["page"]}'
+        page = obj.get("page", 1)
+        return f"/{obj['slug']}/atom.xml?page={page}"
 
     def items(self, obj):
         return [
