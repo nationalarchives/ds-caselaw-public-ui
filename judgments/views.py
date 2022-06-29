@@ -74,7 +74,7 @@ def detail(request, judgment_uri):
         context["page_title"] = model.metadata_name
         context["judgment_uri"] = judgment_uri
         context["pdf_size"] = get_pdf_size(judgment_uri)
-    except MarklogicResourceNotFoundError:
+    except (MarklogicResourceNotFoundError, AttributeError):
         raise Http404("Judgment was not found")
     template = loader.get_template("judgment/detail.html")
     return TemplateResponse(request, template, context={"context": context})
