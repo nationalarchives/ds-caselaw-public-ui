@@ -267,7 +267,9 @@ def results(request):
 def paginator(current_page, total):
     size_per_page = RESULTS_PER_PAGE
     number_of_pages = math.ceil(int(total) / size_per_page)
-    next_pages = list(range(current_page + 1, min(current_page + 10, number_of_pages)))
+    next_pages = list(
+        range(current_page + 1, min(current_page + 10, number_of_pages) + 1)
+    )
 
     return {
         "current_page": current_page,
