@@ -47,11 +47,16 @@ You will need to be using the dxw vpn. Retrieve the staging Marklogic credential
 one of the other developers/ops). Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
 in your `.env` file (see step 2).
 
+The MARKLOGIC_HOST should likely begin with `caselaw`
+
 #### TNA/other developers
 
 You will need vpn credentials from the dxw ops team, and the staging Marklogic credentials from one of the
 dxw development team. Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
 in your `.env` file (see step 2).
+
+The MARKLOGIC_HOST should most likely begin with `internal`. Some people have experienced difficulties using
+the domain name to connect to the server -- IP addresses may work better.
 
 In both cases, when you run the application, you will be viewing data on staging Marklogic. This
 data is also used for testing and occasionally user research, so please exercise caution when creating/
@@ -62,6 +67,9 @@ editing content!
 ```console
 $ cp .env.example .env
 ```
+
+If new environment variables are required, you might need to update .env to reflect that. Check .env.example
+for suitable default values
 
 ### 3. Compile frontend assets
 
@@ -76,6 +84,12 @@ npm run build
 ```console
 $ fab build
 ```
+
+You might need to run this periodically if there are changes to the setup of the docker container;
+it's a good thing to run if your environment suddenly stops working.
+
+If this fails early on, it's very likely that Docker isn't running, and you'll need to start it by
+clicking the Whale icon.
 
 ### 5. Run Marklogic
 
@@ -253,3 +267,13 @@ To deploy to production:
 4. Automated workflow will then force-push that release to the `production` branch, which will then be deployed to the production environment.
 
 The production app is at [https://caselaw.nationalarchives.gov.uk/](https://caselaw.nationalarchives.gov.uk/)
+
+### Local setup hints
+
+1. Remember to `git pull` the freshest files
+2. If `fab build` fails early, check that Docker is running? (Click the blue whale)
+3. If the public-ui takes forever to load, check that the VPN is running -- you might need to change
+   the IP address if DNS isn't working for you.
+4. If it was working, and you `git pull`ed, and now it isn't, re-run `fab build`.
+5. If it's saying environment variables aren't set (especially after a `git pull`), you might need
+   to add lines to `.env` -- take them from `.env.example`
