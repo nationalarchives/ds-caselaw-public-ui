@@ -119,11 +119,8 @@ class LatestJudgmentsFeed(Feed):
         return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:
-        return (
-            datetime.datetime.strptime(item.last_modified, "%Y-%m-%dT%H:%M:%S.%f")
-            if item.last_modified
-            else datetime.datetime.now()
-        )
+        date_string = item.last_modified or "1970-01-01T00:00:00.000"
+        return datetime.datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S.%f")
 
     def feed_extra_kwargs(self, obj):
         extra_kwargs = super().item_extra_kwargs(obj)
