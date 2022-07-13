@@ -66,7 +66,7 @@
                 Commercial Court
               </option>
               <option value="ewhc/costs"
-              {% if context.court == 'ewhc/costs' %}selected="selected"{% endif %}>
+              {% if context.court == 'ewhc/costs' or context.court == 'ewhc/scco' %}selected="selected"{% endif %}>
                 Senior Court Costs Office
               </option>
               <option value="ewhc/fam"
