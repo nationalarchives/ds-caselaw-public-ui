@@ -10,9 +10,9 @@ import $ from "jquery";
             const $control_container = $('.js-results-control-container', $(this));
 
             const btn = $('<button>', {
-                'class': 'results-search-component__toggle-control',
+                'class': 'results-search-component__toggle-control collapsed',
                 'type': 'button',
-                'text': settings.expanded_text,
+                'text': settings.collapsed_text,
                 'click': (e) => {
                     $toggle_area.toggle();
 
@@ -26,10 +26,6 @@ import $ from "jquery";
                 }
             });
 
-            if (settings.initially_hidden) {
-                btn.trigger('click');
-            }
-
             $control_container.append(btn)
         });
     };
@@ -37,7 +33,6 @@ import $ from "jquery";
     $.fn.manage_filters.defaults = {
         'collapsed_text': 'Show filter options',
         'expanded_text': 'Hide filter options',
-        'initially_hidden': true
     }
 }($));
 
