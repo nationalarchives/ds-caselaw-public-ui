@@ -52,3 +52,6 @@ class WhatToExpectView(TemplateViewWithContext):
 
 class HowToUseThisService(TemplateViewWithContext):
     template_name = "pages/how_to_use_this_service.html"
+
+class View404(TemplateViewWithContext):
+    template_name = "404.html"
