@@ -1,7 +1,9 @@
 // These styles are separated from others because they are JavaScript specific
 // All rules exist to prevent flash of unstyled content where JavaScript is available.
 .js-enabled {
-  .js-results-facets {
-    display: none;
+  .results-search-component {
+    .js-results-facets {
+      display: none;
+    }
   }
 }
