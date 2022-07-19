@@ -5,7 +5,8 @@ module.exports = {
   devtool: false,
   entry: {
     app: './ds_judgements_public_ui/static/js/src/app.js',
-    cookie_consent: './ds_judgements_public_ui/static/js/cookie_consent/src/ds-cookie-consent.js'
+    cookie_consent: './ds_judgements_public_ui/static/js/cookie_consent/src/ds-cookie-consent.js',
+    gtm_script: './ds_judgements_public_ui/static/js/src/gtm_script.js'
   },
   output: {
     filename: '[name].js',

@@ -259,7 +259,7 @@ let doNotRememberSettingsRadioInput = document.querySelector(
           const gaScript = document.createElement("script");
           gaScript.id = "frontEndGA";
           gaScript.src =
-            "https://nationalarchives.gov.uk/wp-content/plugins/ds-cookie-consent/dist/gtm-script.js";
+            "/static/js/dist/gtm_script.js";
           DOMhead.appendChild(gaScript);
         });
       }
