@@ -124,6 +124,10 @@ class LatestJudgmentsFeed(Feed):
         date_string = item.last_modified or "1970-01-01T00:00:00.000"
         return datetime.datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S.%f")
 
+    def item_pubdate(self, item: SearchResult) -> datetime.datetime:
+        date_string = item.date or "1970-01-01"
+        return datetime.datetime.fromisoformat(date_string)
+
     def feed_extra_kwargs(self, obj):
         extra_kwargs = super().item_extra_kwargs(obj)
         extra_kwargs["total"] = int(obj["model"].total)
