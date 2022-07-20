@@ -85,7 +85,7 @@ class LatestJudgmentsFeed(Feed):
             order=order,
             page=page,
         )
-        return {"slug": slug, "model": model, "page": page}
+        return {"slug": slug, "model": model, "page": page, "order": order}
 
     def title(self, obj):
         if not obj["slug"]:
@@ -95,7 +95,7 @@ class LatestJudgmentsFeed(Feed):
 
     def link(self, obj):
         page = obj.get("page", 1)
-        return f"/{obj['slug']}/atom.xml?page={page}"
+        return f"/{obj['slug']}/atom.xml/?page={page}&order={obj.get('order')}"
 
     def items(self, obj):
         return [
