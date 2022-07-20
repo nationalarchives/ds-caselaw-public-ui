@@ -26,7 +26,9 @@ def fake_search_result():
         author="",
         last_modified="2022-01-01T00:01:00.123",
         content_hash="A hash!",
+        transformation_date="2022-01-01T00:02:00",
     )
+
 
 class TestAtomFeed(TestCase):
     @patch("judgments.utils.perform_advanced_search")
@@ -97,6 +99,9 @@ class TestJudgmentModel(TestCase):
                         <identification source="#tna">
                             <FRBRdate date="2004-06-10" name="judgment"/>
                             <FRBRname value="My Judgment Name"/>
+                            <FRBRManifestation>
+                                <FRBRdate date="2020-01-01T10:30:00" name="transform"/>
+                            </FRBRManifestation>
                         </identification>
                         <proprietary source="ewca/civ/2004/811/eng/docx"
                             xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
@@ -114,6 +119,7 @@ class TestJudgmentModel(TestCase):
         self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)
         self.assertEqual("2004-06-10", model.date)
         self.assertEqual("EWCA-Civil", model.court)
+        self.assertEqual("2020-01-01T10:30:00", model.transformation_date)
         self.assertEqual("A hash!", model.content_hash)
 
 

@@ -121,8 +121,8 @@ class LatestJudgmentsFeed(Feed):
         return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:
-        date_string = item.last_modified or "1970-01-01T00:00:00.000"
-        return datetime.datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S.%f")
+        date_string = item.transformation_date or "1970-01-01T00:00:00.000"
+        return datetime.datetime.fromisoformat(date_string)
 
     def item_pubdate(self, item: SearchResult) -> datetime.datetime:
         date_string = item.date or "1970-01-01"
