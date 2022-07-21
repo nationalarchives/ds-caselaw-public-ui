@@ -19,6 +19,7 @@ class JudgmentAtomFeed(Atom1Feed):
     def add_item_elements(self, handler, item) -> None:
         super().add_item_elements(handler, item)
         handler.addQuickElement("tna:uri", item.get("uri", ""))
+        handler.addQuickElement("tna:contenthash", item.get("content_hash", ""))
 
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
@@ -116,6 +117,7 @@ class LatestJudgmentsFeed(Feed):
     def item_extra_kwargs(self, item: SearchResult):
         extra_kwargs = super().item_extra_kwargs(item)
         extra_kwargs["uri"] = item.uri
+        extra_kwargs["content_hash"] = item.content_hash
         return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:

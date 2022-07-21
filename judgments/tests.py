@@ -25,8 +25,8 @@ def fake_search_result():
         date="2022-01-01T00:01:00",
         author="",
         last_modified="2022-01-01T00:01:00.123",
+        content_hash="A hash!",
     )
-
 
 class TestAtomFeed(TestCase):
     @patch("judgments.utils.perform_advanced_search")
@@ -102,6 +102,7 @@ class TestJudgmentModel(TestCase):
                             xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
                             <uk:court>EWCA-Civil</uk:court>
                             <uk:cite>[2017] EWHC 3289 (QB)</uk:cite>
+                            <uk:hash>A hash!</uk:hash>
                         </proprietary>
                     </meta>
                 </judgment>
@@ -113,6 +114,7 @@ class TestJudgmentModel(TestCase):
         self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)
         self.assertEqual("2004-06-10", model.date)
         self.assertEqual("EWCA-Civil", model.court)
+        self.assertEqual("A hash!", model.content_hash)
 
 
 class TestPaginator(TestCase):
