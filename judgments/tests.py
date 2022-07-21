@@ -25,6 +25,8 @@ def fake_search_result():
         date="2022-01-01T00:01:00",
         author="",
         last_modified="2022-01-01T00:01:00.123",
+        content_hash="A hash!",
+        transformation_date="2022-01-01T00:02:00",
     )
 
 
@@ -97,11 +99,15 @@ class TestJudgmentModel(TestCase):
                         <identification source="#tna">
                             <FRBRdate date="2004-06-10" name="judgment"/>
                             <FRBRname value="My Judgment Name"/>
+                            <FRBRManifestation>
+                                <FRBRdate date="2020-01-01T10:30:00" name="transform"/>
+                            </FRBRManifestation>
                         </identification>
                         <proprietary source="ewca/civ/2004/811/eng/docx"
                             xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
                             <uk:court>EWCA-Civil</uk:court>
                             <uk:cite>[2017] EWHC 3289 (QB)</uk:cite>
+                            <uk:hash>A hash!</uk:hash>
                         </proprietary>
                     </meta>
                 </judgment>
@@ -113,6 +119,8 @@ class TestJudgmentModel(TestCase):
         self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)
         self.assertEqual("2004-06-10", model.date)
         self.assertEqual("EWCA-Civil", model.court)
+        self.assertEqual("2020-01-01T10:30:00", model.transformation_date)
+        self.assertEqual("A hash!", model.content_hash)
 
 
 class TestPaginator(TestCase):

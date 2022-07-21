@@ -19,6 +19,7 @@ class JudgmentAtomFeed(Atom1Feed):
     def add_item_elements(self, handler, item) -> None:
         super().add_item_elements(handler, item)
         handler.addQuickElement("tna:uri", item.get("uri", ""))
+        handler.addQuickElement("tna:contenthash", item.get("content_hash", ""))
 
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
@@ -84,7 +85,7 @@ class LatestJudgmentsFeed(Feed):
             order=order,
             page=page,
         )
-        return {"slug": slug, "model": model, "page": page}
+        return {"slug": slug, "model": model, "page": page, "order": order}
 
     def title(self, obj):
         if not obj["slug"]:
@@ -94,7 +95,7 @@ class LatestJudgmentsFeed(Feed):
 
     def link(self, obj):
         page = obj.get("page", 1)
-        return f"/{obj['slug']}/atom.xml?page={page}"
+        return f"/{obj['slug']}/atom.xml/?page={page}&order={obj.get('order')}"
 
     def items(self, obj):
         return [
@@ -116,14 +117,16 @@ class LatestJudgmentsFeed(Feed):
     def item_extra_kwargs(self, item: SearchResult):
         extra_kwargs = super().item_extra_kwargs(item)
         extra_kwargs["uri"] = item.uri
+        extra_kwargs["content_hash"] = item.content_hash
         return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:
-        return (
-            datetime.datetime.strptime(item.last_modified, "%Y-%m-%dT%H:%M:%S.%f")
-            if item.last_modified
-            else datetime.datetime.now()
-        )
+        date_string = item.transformation_date or "1970-01-01T00:00:00.000"
+        return datetime.datetime.fromisoformat(date_string)
+
+    def item_pubdate(self, item: SearchResult) -> datetime.datetime:
+        date_string = item.date or "1970-01-01"
+        return datetime.datetime.fromisoformat(date_string)
 
     def feed_extra_kwargs(self, obj):
         extra_kwargs = super().item_extra_kwargs(obj)

@@ -23,6 +23,11 @@ class Judgment(xmlmodels.XmlModel):
         "//akn:FRBRdate[@name='judgment']/@date", ignore_extra_nodes=True
     )
     court = xmlmodels.XPathTextField("//akn:proprietary/uk:court")
+    content_hash = xmlmodels.XPathTextField("//akn:proprietary/uk:hash")
+    transformation_date = xmlmodels.XPathTextField(
+        "/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRManifestation/"
+        + "akn:FRBRdate[@name='transform']/@date"
+    )
 
 
 class SearchResult:
@@ -36,6 +41,8 @@ class SearchResult:
         matches=[],
         author="",
         last_modified="",
+        content_hash="",
+        transformation_date="",
     ) -> None:
         self.uri = uri
         self.neutral_citation = neutral_citation
@@ -45,6 +52,8 @@ class SearchResult:
         self.matches = matches
         self.author = author
         self.last_modified = last_modified
+        self.content_hash = content_hash
+        self.transformation_date = transformation_date
 
     @staticmethod
     def create_from_node(node):
@@ -72,6 +81,8 @@ class SearchResult:
             date=judgment.date,
             author=author,
             last_modified=last_modified,
+            content_hash=judgment.content_hash,
+            transformation_date=judgment.transformation_date,
         )
 
 
