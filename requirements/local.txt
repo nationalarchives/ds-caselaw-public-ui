@@ -6,7 +6,7 @@ psycopg2==2.9.3  # https://github.com/psycopg/psycopg2
 
 # Testing
 # ------------------------------------------------------------------------------
-mypy==0.942  # https://github.com/python/mypy
+mypy==0.971  # https://github.com/python/mypy
 django-stubs==1.12.0  # https://github.com/typeddjango/django-stubs
 pytest==7.1.2  # https://github.com/pytest-dev/pytest
 pytest-sugar==0.9.4  # https://github.com/Frozenball/pytest-sugar
@@ -23,7 +23,7 @@ flake8-isort==4.1.1  # https://github.com/gforcada/flake8-isort
 coverage==6.4.1  # https://github.com/nedbat/coveragepy
 black==22.6.0  # https://github.com/psf/black
 pylint-django==2.5.3  # https://github.com/PyCQA/pylint-django
-pre-commit==2.19.0  # https://github.com/pre-commit/pre-commit
+pre-commit==2.20.0  # https://github.com/pre-commit/pre-commit
 
 # Django
 # ------------------------------------------------------------------------------
