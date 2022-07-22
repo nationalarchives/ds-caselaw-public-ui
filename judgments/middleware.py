@@ -10,22 +10,14 @@ class CookieConsentMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        print("Init was called") # Do not merge this line
         return self.get_response(request)
 
     def process_template_response(
         self, request: HttpRequest, response: TemplateResponse
     ) -> TemplateResponse:
-        response.context_data["showGTM"] = False
-        cookie_policy = request.COOKIES.get("cookies_policy", None)
-        dont_show_cookie_notice = request.COOKIES.get("dontShowCookieNotice", None)
-
-        if cookie_policy:
-            decoder = json.JSONDecoder()
-            decoded = decoder.decode(unquote(cookie_policy))
-            response.context_data["showGTM"] = decoded["usage"] or False
-
-        if dont_show_cookie_notice:
-            if dont_show_cookie_notice == "true":
-                response.context_data["dontShowCookieNotice"] = True
+        # Do not merge this change
+        print("process_template_response was called")
+        response.context_data["showGTM"] = True
 
         return response
