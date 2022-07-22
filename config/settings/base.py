@@ -129,7 +129,6 @@ MIDDLEWARE = [
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
-    "judgments.middleware.CookieConsentMiddleware",
 ]
 
 # STATIC
@@ -175,6 +174,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
+                "judgments.context_processors.cookie_consent",
             ],
         },
     }
