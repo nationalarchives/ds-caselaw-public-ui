@@ -2,7 +2,7 @@
 
 -r requirements/production.txt
 
-pip~=22.1.2
+pip~=22.2.1
 wheel~=0.37.1
 cryptography~=37.0.2
 packaging~=21.3
