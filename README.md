@@ -177,6 +177,14 @@ $ python manage.py runserver_plus 0.0.0.0:3000
 $ fab test
 ```
 
+### Viewing code coverage
+
+```console
+$ fab coverage
+```
+
+This will generate an HTML file at `htmlcov/index.html` to view code coverage
+
 ### WeasyPrint PDF Library
 
 We are using the [WeasyPrint](https://doc.courtbouillon.org/weasyprint/stable/) library to handle PDF generation on the backend. If you are using the provided Docker images, the dependencies are bundled in the Dockerfile.
