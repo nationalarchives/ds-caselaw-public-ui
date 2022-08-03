@@ -56,8 +56,14 @@ jobs:
       - name: Run DB Migrations
         run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
 
-      - name: Run Django Tests
-        run: docker-compose run django pytest
+      - name: Run Django Tests with coverage
+        run: docker-compose run django coverage run -m pytest
+
+      - name: Generate coverage XML
+        run: docker-compose run django coverage xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
 
       - name: Tear down the Stack
         run: docker-compose down
