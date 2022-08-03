@@ -3,8 +3,20 @@
 {% block title %}Forbidden - Find Case Law{% endblock %}
 
 {% block content %}
+  <header class="page-header">
+      <div class="page-header__breadcrumb">
+      <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
+      <span class="page-header__breadcrumb-you-are-in">You are in: </span>
+        <ol>
+          <li><a href="{% url 'home' %}">Find case law</a></li>
+          <li>Forbidden</li>
+        </ol>
+      </nav>
+    </div>
+  </header>
     <div class="standard-text-template">
       <h1>Forbidden</h1>
       <p>{% if exception %}{{ exception }}{% else %}Access to this page is forbidden.{% endif %}</p>
+      <p><a href="{% url 'home' %}">Return to Find case law</a></p>
     </div>
 {% endblock content %}
