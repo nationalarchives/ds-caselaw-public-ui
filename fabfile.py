@@ -135,6 +135,32 @@ def test(c):
     )
 
 
+@task
+def coverage(c):
+    # Run pytest with coverage
+    subprocess.run(
+        [
+            "docker-compose",
+            "exec",
+            "django",
+            "coverage",
+            "run",
+            "-m",
+            "pytest",
+        ]
+    )
+    # Generate html report
+    subprocess.run(
+        [
+            "docker-compose",
+            "exec",
+            "django",
+            "coverage",
+            "html",
+        ]
+    )
+
+
 # -----------------------------------------------------------------------------
 # Database operations
 # -----------------------------------------------------------------------------
