@@ -40,3 +40,46 @@ def perform_advanced_search(
     )
     multipart_data = decoder.MultipartDecoder.from_response(response)
     return SearchResults.create_from_string(multipart_data.parts[0].text)
+
+
+def a_function_that_is_big_and_untested():
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    kittens = 4
+    print(kittens)
