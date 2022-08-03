@@ -24,6 +24,7 @@
       display: inline-block;
       position: relative;
       margin-right: calc($spacer__unit / 2);
+      color: $color__white;
 
       &:not(:nth-child(1)) {
         padding-left: $spacer__unit;
