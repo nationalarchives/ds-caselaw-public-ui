@@ -1,0 +1,8 @@
+[run]
+branch = True
+omit = ds_judgements_public_ui/conftest.py
+include = judgments/**/*.py, judgments/*.py
+
+[report]
+omit =
+    *__init__*
