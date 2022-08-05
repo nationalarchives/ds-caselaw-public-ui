@@ -1,0 +1,7 @@
+[run]
+branch = True
+include = judgments/**/*.py, judgments/*.py
+
+[report]
+omit =
+    *__init__*
