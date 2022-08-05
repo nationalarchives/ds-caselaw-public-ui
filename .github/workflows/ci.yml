@@ -65,5 +65,10 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
 
+      - name: Upload coverage to CodeClimate
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: 78e20f9f1a8a18a5d1a5dfd8dd3ab33914acf20ab8f5affa1ccf81cbb555516b
+
       - name: Tear down the Stack
         run: docker-compose down
