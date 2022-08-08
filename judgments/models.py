@@ -14,13 +14,17 @@ class Judgment(xmlmodels.XmlModel):
         }
 
     metadata_name = xmlmodels.XPathTextField(
-        "//akn:FRBRname/@value", ignore_extra_nodes=True
+        "/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/"
+        + "akn:FRBRname/@value",
+        ignore_extra_nodes=True,
     )
     neutral_citation = xmlmodels.XPathTextField(
         "//akn:proprietary/uk:cite", ignore_extra_nodes=True
     )
     date = xmlmodels.XPathTextField(
-        "//akn:FRBRdate[@name='judgment']/@date", ignore_extra_nodes=True
+        "/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/"
+        + "akn:FRBRdate/@date",
+        ignore_extra_nodes=True,
     )
     court = xmlmodels.XPathTextField("//akn:proprietary/uk:court")
     content_hash = xmlmodels.XPathTextField("//akn:proprietary/uk:hash")
