@@ -30,6 +30,8 @@ msgstr ""
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html:5
 msgid "common.findcaselaw"
 msgstr "Find case law"
+msgid "common.home"
+msgstr "Home"
 
 #: ds_judgements_public_ui/templates/base.html:29
 #: ds_judgements_public_ui/templates/layout_judgment_html.html:29

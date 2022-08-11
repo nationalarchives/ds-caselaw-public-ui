@@ -7,6 +7,10 @@
     display: block;
     position: relative;
     padding: calc($spacer__unit / 2) calc($spacer__unit * 2);
+    
+    &-container {
+      @include container;
+    }
 
     ol {
       list-style-type: none;
@@ -59,15 +63,23 @@
   &__container {
     @include container;
     display: flex;
-    justify-content: center;
   }
 
   &__logo {
-    height: 5.5rem;
+    min-width: 200px;
+    width: 33%;
     margin: calc($spacer__unit / 2) auto;
   }
 
   &__logo-link {
+    order: 1;
+    color: $color__white;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      color: $color__white;
+    }
 
     &:focus {
       outline: 0;
@@ -76,6 +88,10 @@
         outline: 0.19rem solid $color__white;
         outline-offset: 0.19rem;
       }
+    }
+    
+    .page-header__logo-prefix {
+      display: block;
     }
   }
 }

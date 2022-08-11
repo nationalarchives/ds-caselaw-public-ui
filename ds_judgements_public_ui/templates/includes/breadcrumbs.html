@@ -2,9 +2,9 @@
 
 <div class="page-header__breadcrumb">
   <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
-  <span class="page-header__breadcrumb-you-are-in">You are in: </span>
+  {% comment %} <span class="page-header__breadcrumb-you-are-in">You are in: </span> {% endcomment %}
     <ol>
-      <li><a href="{% url 'home' %}" {% if current == "home"  %}aria-current="page"{% endif %}>{% translate "common.findcaselaw" %}</a></li>
+      <li><a href="{% url 'home' %}" {% if current == "home"  %}aria-current="page"{% endif %}>{% translate "common.home" %}</a></li>
       {% if title and link %}
         <li><a href="{{ link }}" {% if current == title  %}aria-current="page"{% endif %}>{{ title }}</a></li>
       {% endif %}
