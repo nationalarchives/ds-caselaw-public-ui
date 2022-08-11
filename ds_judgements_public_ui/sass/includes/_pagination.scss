@@ -13,11 +13,12 @@
     min-height: 3.125rem;
 
     display: flex;
-    justify-content: start;
+    justify-content: center;
     margin-bottom: 0;
 
     &-pages {
       padding: 0;
+      flex-grow: 2;
 
       ol {
         padding: 0;
@@ -28,16 +29,6 @@
     &-item {
       display: inline-block;
       min-height: 3.125rem;
-
-      &:first-child {
-        margin-left: 0;
-        margin-right: auto;
-      }
-
-      &:last-child {
-        margin-left: auto;
-        margin-right: 0;
-      }
     }
   }
 
@@ -52,6 +43,33 @@
 
       > span {
         @include sr-only
+      }
+    }
+
+    &-link-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      height: 3.125rem;
+      background-color: $color__grey;
+      color: $color__black;
+
+      &:focus, &:visited, &:hover {
+        background-color: $color__white;
+        color: $color__black;
+        font-weight: bold;
+        outline-color: $color__highlight-blue;
+      }
+
+      &--first {
+        padding: 0 10px;
+        border-right: 3px solid $color__black;
+      }
+
+      &--last {
+        padding: 0 10px;
+        border-left: 3px solid $color__black;
       }
     }
 

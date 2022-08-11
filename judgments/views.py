@@ -287,6 +287,8 @@ def paginator(current_page, total):
         "prev_page": current_page - 1,
         "next_pages": next_pages,
         "number_of_pages": number_of_pages,
+        "first_page": 1,
+        "last_page": number_of_pages,
     }
 
 
