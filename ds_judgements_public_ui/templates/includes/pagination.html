@@ -1,6 +1,12 @@
 <nav class="pagination" aria-label="Results pagination">
   <h3>Results pagination</h3>
   <ul class="pagination__list">
+      <li class="pagination__list-item">
+        <a class="pagination__page-chevron-first"
+           href="{{request.path}}?{% if context.query_string %}{{context.query_string}}&{% endif %}page={{context.paginator.first_page}}">
+          <span>First page</span>
+        </a>
+      </li>
     <li class="pagination__list-item">
       {% if context.paginator.has_prev_page %}
         <a class="pagination__page-chevron-previous"
@@ -46,5 +52,10 @@
       </span>
       {% endif %}
     </li>
+    <li class="pagination__list-item">
+      <a class="pagination__page-chevron-last"
+           href="{{request.path}}?{% if context.query_string %}{{context.query_string}}&{% endif %}&page={{context.paginator.last_page}}">
+          <span>Last page</span>
+      </a>
   </ul>
 </nav>

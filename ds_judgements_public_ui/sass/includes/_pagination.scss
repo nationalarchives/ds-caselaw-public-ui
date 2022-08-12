@@ -13,11 +13,12 @@
     min-height: 3.125rem;
 
     display: flex;
-    justify-content: start;
+    justify-content: center;
     margin-bottom: 0;
 
     &-pages {
       padding: 0;
+      flex-grow: 2;
 
       ol {
         padding: 0;
@@ -28,21 +29,11 @@
     &-item {
       display: inline-block;
       min-height: 3.125rem;
-
-      &:first-child {
-        margin-left: 0;
-        margin-right: auto;
-      }
-
-      &:last-child {
-        margin-left: auto;
-        margin-right: 0;
-      }
     }
   }
 
   &__page {
-    &-chevron-next, &-chevron-previous, &-link, &-link-current {
+    &-chevron-next, &-chevron-previous,&-chevron-first, &-chevron-last, &-link, &-link-current {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -55,11 +46,11 @@
       }
     }
 
-    &-chevron-next, &-chevron-previous {
+    &-chevron-next, &-chevron-previous, &-chevron-first, &-chevron-last {
       height: 100%;
     }
 
-    &-chevron-next, &-chevron-previous {
+    &-chevron-next, &-chevron-previous, &-chevron-first, &-chevron-last {
       background-color: $color__grey;
 
       &:hover, &:focus {
@@ -143,6 +134,44 @@
         }
       }
     }
+
+    &-chevron-first {
+      background-image: url($fa_chevrons_left);
+      background-size: 53%;
+
+      &:hover, &:focus {
+        background-image: url($fa_chevrons_left_white);
+        outline-color: $color__highlight-blue;
+        outline-offset: 0.125rem;
+      }
+
+      &:focus {
+        box-shadow: .6rem 0 $color__white;
+      }
+
+      span {
+        @include sr-only;
+      }
+    }
+
+    &-chevron-last {
+      background-image: url($fa_chevrons_right);
+      background-size: 53%;
+
+      &:hover, &:focus {
+        background-image: url($fa_chevrons_right_white);
+        outline-color: $color__highlight-blue;
+        outline-offset: 0.125rem;
+      }
+
+      &:focus {
+        box-shadow: .6rem 0 $color__white;
+      }
+
+        span {
+          @include sr-only;
+        }
+      }
 
     &-link-current {
       font-weight: bold;
