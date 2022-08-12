@@ -2,6 +2,7 @@
   @include container;
 
   font-size: 1.1rem;
+  line-height: 1.4em;
 
   @media (min-width: $grid__breakpoint-medium) {
     max-width: 30rem;
