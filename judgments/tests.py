@@ -192,7 +192,7 @@ class TestPaginator(TestCase):
             "current_page": 1,
             "has_next_page": False,
             "has_prev_page": False,
-            'last_page': 1,
+            "last_page": 1,
             "next_page": 2,  # Note: remember to check has_next_page
             "prev_page": 0,
             "next_pages": [],
