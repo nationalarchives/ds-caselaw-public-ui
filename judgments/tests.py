@@ -160,8 +160,10 @@ class TestPaginator(TestCase):
     def test_paginator_2500(self):
         expected_result = {
             "current_page": 10,
+            "first_page": 1,
             "has_next_page": True,
             "has_prev_page": True,
+            "last_page": 250,
             "next_page": 11,
             "prev_page": 9,
             "next_pages": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
@@ -173,8 +175,10 @@ class TestPaginator(TestCase):
         # 25 items has 5 items on page 3.
         expected_result = {
             "current_page": 1,
+            "first_page": 1,
             "has_next_page": True,
             "has_prev_page": False,
+            "last_page": 3,
             "next_page": 2,
             "prev_page": 0,
             "next_pages": [2, 3],
@@ -184,9 +188,11 @@ class TestPaginator(TestCase):
 
     def test_paginator_5(self):
         expected_result = {
+            "first_page": 1,
             "current_page": 1,
             "has_next_page": False,
             "has_prev_page": False,
+            'last_page': 1,
             "next_page": 2,  # Note: remember to check has_next_page
             "prev_page": 0,
             "next_pages": [],
