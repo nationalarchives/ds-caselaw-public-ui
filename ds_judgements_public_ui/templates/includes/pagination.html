@@ -2,9 +2,9 @@
   <h3>Results pagination</h3>
   <ul class="pagination__list">
       <li class="pagination__list-item">
-        <a class="pagination__page-link-text pagination__page-link-text--first"
+        <a class="pagination__page-chevron-first"
            href="{{request.path}}?{% if context.query_string %}{{context.query_string}}&{% endif %}page={{context.paginator.first_page}}">
-          First page
+          <span>First page</span>
         </a>
       </li>
     <li class="pagination__list-item">
@@ -53,9 +53,9 @@
       {% endif %}
     </li>
     <li class="pagination__list-item">
-      <a class="pagination__page-link-text pagination__page-link-text--last"
+      <a class="pagination__page-chevron-last"
            href="{{request.path}}?{% if context.query_string %}{{context.query_string}}&{% endif %}&page={{context.paginator.last_page}}">
-          Last page
+          <span>Last page</span>
       </a>
   </ul>
 </nav>
