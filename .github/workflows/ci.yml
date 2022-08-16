@@ -63,7 +63,7 @@ jobs:
         run: docker-compose run django coverage xml
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
 
       - name: Tear down the Stack
         run: docker-compose down
