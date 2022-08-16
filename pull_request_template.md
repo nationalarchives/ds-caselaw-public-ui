@@ -10,6 +10,4 @@
 
 ### After
 
-<!-- Have you updated the changelog? -->
-
 - [ ] Requires env variable(s) to be updated
