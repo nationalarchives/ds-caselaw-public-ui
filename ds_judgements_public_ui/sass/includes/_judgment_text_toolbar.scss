@@ -12,8 +12,10 @@
     display: inline-block;
     text-decoration: none;
     outline-offset: 3px;
-    &:first-child {
-      margin-right: $spacer__unit;
+    margin: 0 $spacer__unit $spacer__unit 0;
+
+    @media (min-width: $grid__breakpoint-small) {
+      margin-bottom: 0;
     }
   }
 
@@ -39,12 +41,11 @@
     > div {
       @media (max-width: $grid__breakpoint-small) {
         text-align: center;
-        padding: $spacer__unit;
+        padding: 0.25rem $spacer__unit;
       }
     }
 
     @media (min-width: $grid__breakpoint-small) {
-
       text-align: center;
     }
 
