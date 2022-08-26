@@ -6,7 +6,7 @@
     <ol>
       <li><a href="{% url 'home' %}" {% if current == "home"  %}aria-current="page"{% endif %}>{% translate "common.findcaselaw" %}</a></li>
       {% if title and link %}
-        <li><a href="{{ link }}" {% if current == title  %}aria-current="page"{% endif %}>{{ title }}</a></li>
+        <li>{{ title }}</li>
       {% endif %}
     </ol>
   </nav>
