@@ -52,9 +52,9 @@ class TestAtomFeed(TestCase):
 
     @patch("judgments.utils.perform_advanced_search")
     def test_bad_page_404(self, fake_advanced_search):
-        # "&page=" 404s, not 500
+        # "?page=" 404s, not 500
         fake_advanced_search.return_value = fake_search_results()
-        response = self.client.get("/atom.xml&page=")
+        response = self.client.get("/atom.xml?page=")
         self.assertEqual(response.status_code, 404)
 
 
