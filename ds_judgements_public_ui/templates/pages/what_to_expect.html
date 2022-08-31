@@ -6,6 +6,7 @@
 {% endblock title %}
 
 {% block content %}
+{% translate "whattoexpect.title" as page_title %}
   <header class="page-header">
     {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
     {% include 'includes/logo.html' %}
