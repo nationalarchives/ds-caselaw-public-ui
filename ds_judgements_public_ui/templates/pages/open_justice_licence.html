@@ -7,9 +7,8 @@
 
 {% block content %}
   {% translate "openjusticelicence.title" as page_title %}
-
   <header class="page-header">
-    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.url %}
+    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
     {% include 'includes/logo.html' %}
   </header>
 
