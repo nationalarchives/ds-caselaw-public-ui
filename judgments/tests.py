@@ -31,7 +31,7 @@ def fake_search_result():
 
 
 class TestAtomFeed(TestCase):
-    @patch("judgments.utils.perform_advanced_search")
+    @patch("judgments.feeds.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
     def test_feed_exists(self, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
