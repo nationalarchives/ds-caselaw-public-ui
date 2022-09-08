@@ -1,3 +1,9 @@
 User-Agent: *
 Disallow: /
 Allow: /$
+Allow: /transactional-licence-form
+Allow: /what-to-expect
+Allow: /how-to-use-this-service
+Allow: /accessibility-statement
+Allow: /open-justice-licence
+Allow: /terms-of-use
