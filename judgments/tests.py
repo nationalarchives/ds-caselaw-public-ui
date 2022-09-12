@@ -263,7 +263,7 @@ class TestRobotsDirectives(TestCase):
         )
 
     def test_judgment_results(self):
-        # The judgment search results page should not have a robots meta tag
+        # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/judgments/results?query=waltham+forest")
         self.assertContains(response, '<meta name="robots" content="noindex,nofollow">')
