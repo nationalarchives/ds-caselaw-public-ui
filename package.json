@@ -7,9 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "start-sass": "sass --watch ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css",
+    "start-sass": "npx sass --watch ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css",
     "start-scripts": "npx webpack --watch",
-    "build": "npx webpack && sass ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css"
+    "build": "npx webpack && npx sass ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css"
   },
   "repository": {
     "type": "git",
