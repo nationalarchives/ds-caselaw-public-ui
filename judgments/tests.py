@@ -255,7 +255,7 @@ class TestConverters(TestCase):
 
 
 class TestRobotsDirectives(TestCase):
-    @patch("judgments.feeds.perform_advanced_search")
+    @patch("judgments.views.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
     def test_homepage(self, fake_result, fake_advanced_search):
         # The homepage should not have a robots meta tag with nofollow,noindex
@@ -266,7 +266,7 @@ class TestRobotsDirectives(TestCase):
             response, '<meta name="robots" content="noindex,nofollow">'
         )
 
-    @patch("judgments.feeds.perform_advanced_search")
+    @patch("judgments.views.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
     def test_judgment_results(self, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
