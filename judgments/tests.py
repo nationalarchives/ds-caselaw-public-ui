@@ -268,7 +268,7 @@ class TestRobotsDirectives(TestCase):
 
     @patch("judgments.feeds.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
-    def test_judgment_results(self,fake_result, fake_advanced_search):
+    def test_judgment_results(self, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
         fake_result.return_value = fake_search_result()
         # The judgment search results page should have a robots meta tag
