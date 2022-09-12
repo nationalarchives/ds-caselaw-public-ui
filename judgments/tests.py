@@ -252,3 +252,18 @@ class TestConverters(TestCase):
     def test_subdivision_converter_fails_to_parse(self):
         converter = converters.SubdivisionConverter()
         self.assertIsNone(re.match(converter.regex, "notasubdivision"))
+
+
+class TestRobotsDirectives(TestCase):
+    def test_homepage(self):
+        # The homepage should not have a robots meta tag with nofollow,noindex
+        response = self.client.get("/")
+        self.assertNotContains(
+            response, '<meta name="robots" content="noindex,nofollow">'
+        )
+
+    def test_judgment_results(self):
+        # The judgment search results page should not have a robots meta tag
+        # with nofollow,noindex
+        response = self.client.get("/judgments/results?query=waltham+forest")
+        self.assertContains(response, '<meta name="robots" content="noindex,nofollow">')
