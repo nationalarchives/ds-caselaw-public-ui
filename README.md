@@ -217,6 +217,21 @@ Included in this repository is:
 * To watch and build the site SASS, run `npm run start-sass`
 * To modify styles, navigate to the `sass` folder in your editor.
 
+#### Note about `ds_judgements_public_ui/sass/includes/_judgment_text.scss`
+
+The Judgment display CSS `_judgment_text.scss` should be the same between both
+this application and `ds-caselaw-editor-ui`. Ensuring edits to this repository were being
+replicated to the editor repository was tricky as it relied on the developers
+remembering to make changes in both places.
+
+Instead, we share the judgment CSS between both apps. This repository is the
+"source of truth". Any edits made in `ds-caselaw-public-ui` which are then merged to main and included in a
+production release, will be reflected in `ds-caselaw-editor-ui` (note that the changes have to be included in
+[a release](https://github.com/nationalarchives/ds-caselaw-public-ui/releases) before they are used in the editor).
+
+`_judgment_text.scss` only contains styles for the HTML judgment view. Other CSS styles for the public UI and editor
+UI applications are not shared.
+
 ### Working with JavaScript
 
 * In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
