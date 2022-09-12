@@ -4,7 +4,11 @@
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
     <meta charset="utf-8">
-    <meta name="robots" content="noindex,nofollow">
+
+    {% block robots %}
+      <meta name="robots" content="noindex,nofollow">
+    {% endblock robots %}
+
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
