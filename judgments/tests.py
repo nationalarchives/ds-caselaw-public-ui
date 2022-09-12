@@ -255,14 +255,22 @@ class TestConverters(TestCase):
 
 
 class TestRobotsDirectives(TestCase):
-    def test_homepage(self):
+    @patch("judgments.feeds.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    def test_homepage(self, fake_result, fake_advanced_search):
         # The homepage should not have a robots meta tag with nofollow,noindex
+        fake_advanced_search.return_value = fake_search_results()
+        fake_result.return_value = fake_search_result()
         response = self.client.get("/")
         self.assertNotContains(
             response, '<meta name="robots" content="noindex,nofollow">'
         )
 
-    def test_judgment_results(self):
+    @patch("judgments.feeds.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    def test_judgment_results(self,fake_result, fake_advanced_search):
+        fake_advanced_search.return_value = fake_search_results()
+        fake_result.return_value = fake_search_result()
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/judgments/results?query=waltham+forest")
