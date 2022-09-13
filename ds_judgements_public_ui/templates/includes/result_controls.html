@@ -1,35 +1,23 @@
-{% load i18n query_filters %}
+{% load i18n %}
 <div class="results__result-header">
   <p class="results__results-intro">We found {{ context.total }} judgments</p>
 </div>
 <div class="result-controls">
 
-  {%  comment  %} START: PLACEHOLDER HTML FOR NEW IMPLEMENTATION {%  endcomment %}
-  <form action="#" id="analytics-result-controls">
+{% if context.query %}
+  <form method="get" action="{{request.path}}" id="analytics-result-controls">
+      {% for key, value in context.query_params.items %}
+        {% if key != "order" %}
+          <input type="hidden" name="{{key}}" value="{{value}}" />
+        {% endif %}
+      {% endfor %}
       <label for="order_by">Order results by</label>
-      <select class="result-controls__order-by" id="order_by" name="order_by">
-        <option value="relevance">Relevance</option>
-        <option value="date_dec">Date descending</option>
-        <option value="date_asc">Date ascending</option>
+      <select class="result-controls__order-by" id="order_by" name="order">
+        <option value="relevance" {% if context.order == "relevance" or context.order is None %}selected='selected'{% endif %}>Relevance</option>
+        <option value="-date" {% if context.order == "-date" %}selected='selected'{% endif %}>Date descending</option>
+        <option value="date" {% if context.order == "date" %}selected='selected'{% endif %}>Date ascending</option>
       </select>
       <input type="submit" value="Go" class="result-controls__button">
   </form>
-  {%  comment  %} END: PLACEHOLDER HTML FOR NEW IMPLEMENTATION {%  endcomment %}
-
-
-  {%  comment  %} START: CURRENT LIVE IMPLEMENTATION {%  endcomment %}
-  {%  comment  %}
-    {% if context.query %}
-      <div class="result-controls__order-by-label">
-        {% if context.order == "-date" %}
-          <a class="" href="{{request.path}}?{{context.query_params|remove_query_key:'order'}}&order=relevance">{% translate "results.order-by.relevance" %}</a>
-        {% else %}
-          <a class="" href="{{request.path}}?{{context.query_params|remove_query_key:'order'}}&order=-date">{% translate "results.order-by.date" %}</a>
-        {% endif %}
-      </div>
-    {% endif %}
-  {%  endcomment %}
-  {%  comment  %} END: CURRENT LIVE IMPLEMENTATION {%  endcomment %}
-
+{% endif %}
 </div>
-
