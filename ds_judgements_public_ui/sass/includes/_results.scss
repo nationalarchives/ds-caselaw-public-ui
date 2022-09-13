@@ -17,12 +17,22 @@
   }
 
   &__result-list-container {
-    background-color: #fff;
+    background-color: $color__white;
 
     h2 {
       @include sr-only;
     }
   }
+
+  &__result-controls-container {
+     border-bottom: 1px solid $color__yellow;
+
+     @media (min-width: $grid__breakpoint-extra-large) {
+       display: flex;
+       align-items: flex-start;
+       justify-content: space-between;
+     }
+   }
 
   &__results-intro {
     font-family: $font__roboto;
