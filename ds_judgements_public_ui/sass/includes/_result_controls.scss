@@ -1,15 +1,33 @@
 .result-controls {
-  text-align: right;
+  text-align: left;
+  display: inline-block;
+  margin: $spacer__unit 0 0;
+
+  @media (min-width: $grid__breakpoint-extra-large) {
+    text-align: right;
+    margin: 0;
+  }
 
   &__order-by-label {
     font-family: $font__roboto;
-    font-size: 1.4rem;
+    font-size: 1rem;
+    margin-bottom: $spacer__unit / 2;
     display: block;
-    margin-bottom: $spacer__unit;
   }
 
   &__order-by {
     @include select;
     min-width: auto;
+    display: inline-block;
+  }
+
+  &__button {
+    @include call-to-action-button($color__dark-blue, $color__white);
+    margin: 0;
+    font-size: 0.85rem;
+    outline-color: $color__dark-blue;
+    padding: 0.625rem;
+    font-weight: normal;
+    vertical-align: 1px;
   }
 }
