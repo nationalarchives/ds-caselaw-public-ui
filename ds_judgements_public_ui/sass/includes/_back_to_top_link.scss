@@ -3,13 +3,14 @@
     padding: $spacer__unit;
     background-color: $color__white;
 
-  &.show {
-    margin: auto;
-    position: fixed;
-    top: 0;
-  }
-
-  &.hide {
+  &.autohide {
     display: none;
+
+    &.show {
+      display: inline-block;
+      margin: auto;
+      position: fixed;
+      top: 0;
+    }
   }
 }
