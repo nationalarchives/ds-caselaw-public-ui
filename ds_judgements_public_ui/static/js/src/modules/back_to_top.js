@@ -16,14 +16,15 @@ const manage_class = (intersecting) => {
 
     if (intersecting && pageScrolls) {
         button.classList.add("show");
-        button.classList.remove("hide");
     } else {
         button.classList.remove("show");
-        button.classList.add("hide");
     }
 };
 
-let judgment_body = document.querySelector('.judgment-body');
+let judgment_body = document.querySelector(".judgment-body");
+const button = document.getElementById("js-back-to-top-link");
+
+button.classList.add("autohide");
 
 if (judgment_body) {
     createObserver(judgment_body);
