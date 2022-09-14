@@ -106,7 +106,9 @@ def sh(c):
     """
     Run bash in a local container (with access to dependencies)
     """
-    subprocess.run(["docker-compose", "exec", "django", "bash"])
+    subprocess.run(
+        ["docker-compose", "exec", "django", "env", "DJANGO_SETTINGS_MODULE=", "bash"]
+    )
 
 
 @task
