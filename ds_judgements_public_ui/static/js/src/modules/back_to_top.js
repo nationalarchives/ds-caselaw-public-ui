@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 const handler = (entries) => {
     manage_class(entries[0].isIntersecting)
 };
@@ -9,12 +11,15 @@ const createObserver = (element) => {
 };
 
 const manage_class = (intersecting) => {
-    const button = document.getElementById('js-back-to-top-link');
+    const button = document.getElementById("js-back-to-top-link");
+    const pageScrolls = $(".judgment-body").height() > $(window).height();
 
-    if (intersecting) {
-        button.classList.add('show');
+    if (intersecting && pageScrolls) {
+        button.classList.add("show");
+        button.classList.remove("hide");
     } else {
-        button.classList.remove('show');
+        button.classList.remove("show");
+        button.classList.add("hide");
     }
 };
 

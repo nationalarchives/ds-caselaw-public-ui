@@ -8,4 +8,8 @@
     position: fixed;
     top: 0;
   }
+
+  &.hide {
+    display: none;
+  }
 }
