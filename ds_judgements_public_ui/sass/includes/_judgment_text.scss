@@ -170,6 +170,18 @@
   &__approved-judgment {
     text-align: center;
   }
+
+  &__pr-center {
+    text-align: center !important;
+  }
+
+  &__pr-right {
+    text-align: right !important;
+  }
+
+  &__pr-left {
+    text-align: left !important;
+  }
 }
 
 .judgment-body {
