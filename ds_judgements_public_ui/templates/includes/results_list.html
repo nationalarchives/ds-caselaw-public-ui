@@ -1,8 +1,5 @@
 {% load static i18n %}
 <h2>Results listing</h2>
-<div class="results__result-header">
-  <p class="results__results-intro">We found {{ context.total }} judgments</p>
-</div>
 <ul class="judgment-listing__list">
   {% for item in context.search_results %}
     <li>
