@@ -1,14 +1,16 @@
 {% load i18n %}
 <div class="judgment-toolbar">
     <div class="judgment-toolbar__container">
-        <div class="judgment-toolbar__return-link">
-            {% if request.args.origin == 'results' %}
+
+        {% if request.args.origin == 'results' %}
+            <div class="judgment-toolbar__return-link"></div>
                 <a href="{{ request.args.return_link }}">{% translate "judgment.back" %}</a>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
+
         <div class="judgment-toolbar__download">
-            <a class="judgment-download__option--xml" role="button" draggable="false" href="{% url 'detail_xml' context.judgment_uri %}">{% translate "judgment.downloadasxml" %}</a>
             <a class="judgment-download__option--pdf" role="button" draggable="false" href="{% url 'detail_pdf' context.judgment_uri %}">{% translate "judgment.downloadaspdf" %}{{context.pdf_size}}</a>
+            <p class="judgment-download__download-options" role="note">{% translate "judgment.downloadoptions.shortcutlink" %}</p>
         </div>
     </div>
 </div>

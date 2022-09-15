@@ -12,11 +12,7 @@
     display: inline-block;
     text-decoration: none;
     outline-offset: 3px;
-    margin: 0 $spacer__unit $spacer__unit 0;
-
-    @media (min-width: $grid__breakpoint-small) {
-      margin-bottom: 0;
-    }
+    margin: 0;
   }
 
   &__return-link {
@@ -33,6 +29,7 @@
 
   &__download {
     display: inline-block;
+
   }
 
   &__container {
@@ -41,12 +38,13 @@
     > div {
       @media (max-width: $grid__breakpoint-small) {
         text-align: center;
+        display: block;
         padding: 0.25rem $spacer__unit;
       }
     }
 
     @media (min-width: $grid__breakpoint-small) {
-      text-align: center;
+      text-align: right;
     }
 
     @media (min-width: $grid__breakpoint-medium) {
@@ -55,6 +53,36 @@
 
     @media (min-width: $grid__breakpoint-medium) {
       max-width: 46rem;
+    }
+  }
+}
+
+.judgment-download {
+
+  &__option--pdf {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__download-options {
+    color: $color__dark-grey;
+    font-size: 0.7rem;
+    font-style: italic;
+    margin: calc($spacer__unit * 0.5) 0 0 0;
+
+    a {
+      background-color: transparent;
+      color: $color__aqua-blue;
+      padding: 0;
+      display: inline;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
