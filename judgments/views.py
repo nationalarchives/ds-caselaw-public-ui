@@ -4,6 +4,7 @@ import math
 import os
 import re
 import urllib
+from urllib.parse import urlparse
 
 import environ
 import requests
@@ -82,6 +83,7 @@ def detail(request, judgment_uri):
             context["page_title"] = model.metadata_name
             context["judgment_uri"] = judgment_uri
             context["pdf_size"] = get_pdf_size(judgment_uri)
+            context["back_link"] = get_back_link(request)
         except MarklogicResourceNotFoundError:
             raise Http404("Judgment was not found")
         template = loader.get_template("judgment/detail.html")
@@ -311,3 +313,19 @@ def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
 
 def trim_leading_slash(uri):
     return re.sub("^/|/$", "", uri)
+
+
+def get_back_link(request):
+    back_link = request.META.get("HTTP_REFERER")
+    if display_back_link(back_link):
+        return back_link
+    else:
+        return None
+
+
+def display_back_link(back_link):
+    if back_link:
+        url = urlparse(back_link)
+        return url.path == "/judgments/results"
+    else:
+        return False
