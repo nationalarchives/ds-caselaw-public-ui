@@ -165,7 +165,7 @@ msgstr "Download as PDF"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:13
 msgid "judgment.downloadoptions.shortcutlink"
-msgstr "(Are you looking for <a href=\"#download-options\">more download options</a>?)"
+msgstr "More download options"
 
 #: ds_judgements_public_ui/templates/includes/recent_judgments.html:21
 #: ds_judgements_public_ui/templates/includes/results_list.html:23
