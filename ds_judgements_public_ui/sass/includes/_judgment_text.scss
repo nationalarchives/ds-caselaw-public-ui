@@ -37,6 +37,8 @@
 
 .judgment-header {
 
+  padding-top: $spacer__unit * 3;
+
   table {
 
     td {
@@ -45,7 +47,6 @@
   }
 
   &__logo {
-    padding-top: $spacer__unit * 3;
 
     img {
       display: block;
