@@ -10,7 +10,7 @@
 
         <div class="judgment-toolbar__download">
             <a class="judgment-download__option--pdf" role="button" draggable="false" href="{% url 'detail_pdf' context.judgment_uri %}">{% translate "judgment.downloadaspdf" %}{{context.pdf_size}}</a>
-            <p class="judgment-download__download-options" role="note">{% translate "judgment.downloadoptions.shortcutlink" %}</p>
+            <p class="judgment-download__download-options" role="note"><a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a></p>
         </div>
     </div>
 </div>
