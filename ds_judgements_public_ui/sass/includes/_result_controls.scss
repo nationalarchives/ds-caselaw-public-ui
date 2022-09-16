@@ -11,7 +11,7 @@
   &__order-by-label {
     font-family: $font__roboto;
     font-size: 1rem;
-    margin-bottom: $spacer__unit / 2;
+    margin-bottom: calc($spacer__unit / 2);
     display: block;
   }
 
