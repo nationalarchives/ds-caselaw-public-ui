@@ -65,7 +65,7 @@ courts = [
         "years": "2003 &ndash; 2022",
     },
     {
-        "name": "Queen's Bench Division of the High Court",
+        "name": "King's / Queen's Bench Division of the High Court",
         "href": "/judgments/advanced_search?court=ewhc/qb",
         "years": "2003 &ndash; 2022",
     },
