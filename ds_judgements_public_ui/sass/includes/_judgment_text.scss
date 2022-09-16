@@ -171,6 +171,10 @@
     text-align: center;
   }
 
+  // Classes with `pr-` prefix are purely presentational
+  // escape-hatches for dealing with specific formatting
+  // details in judgments that must be preserved.
+
   &__pr-center {
     text-align: center !important;
   }
