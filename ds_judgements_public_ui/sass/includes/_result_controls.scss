@@ -8,22 +8,36 @@
     margin: 0;
   }
 
-  &__order-by-label {
+  form {
+    display: flex;
+    flex-direction: row;
+    gap: $spacer__unit;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__label {
     font-family: $font__roboto;
     font-size: 1rem;
     margin-bottom: calc($spacer__unit / 2);
     display: block;
   }
 
-  &__order-by {
+  &__select {
     @include select;
     min-width: auto;
+    width: auto;
+    padding-right: calc(1.5 * $spacer__unit);
     display: inline-block;
   }
 
   &__button {
     @include call-to-action-button($color__dark-blue, $color__white);
-    margin: 0;
+    margin: calc(2.2 * $spacer__unit) 0 1rem 0;
     font-size: 0.85rem;
     outline-color: $color__dark-blue;
     padding: 0.625rem;

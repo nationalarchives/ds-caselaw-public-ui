@@ -1,19 +1,21 @@
 {% load query_filters %}
 {% if context.query_params.items %}
-  <h2 class="results-search-component__sub-header">Filters include (select any to remove)</h2>
-  <ul class="results-search-component__removable-options">
-    {% for key, value in context.query_params.items %}
-      {% if value and key != 'order' %}
+<h2 class="results-search-component__sub-header">Filters include (select any to remove)</h2>
+<ul class="results-search-component__removable-options">
+  {% for key, value in context.query_params.items %}
+    {% if value %}
+      {% if key != 'order' and key != 'per_page' %}
         <li>
           <a role="button" draggable="false" class="results-search-component__removable-options-link"
-             href="{% url 'advanced_search' %}?{{ context.query_params|remove_query:key }}">
-            <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
-            <span class="results-search-component__removable-options-value">
-          <span class="results-search-component__removable-options-value-text">{{ value }}</span>
-        </span>
+              href="{% url 'advanced_search' %}?{{ context.query_params|remove_query:key }}">
+              <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
+              <span class="results-search-component__removable-options-value">
+                <span class="results-search-component__removable-options-value-text">{{ value }}</span>
+              </span>
           </a>
         </li>
       {% endif %}
-    {% endfor %}
-  </ul>
+    {% endif %}
+  {% endfor %}
+</ul>
 {% endif %}
