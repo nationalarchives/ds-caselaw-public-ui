@@ -55,7 +55,7 @@ def browse(request, court=None, subdivision=None, year=None):
             SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
-        context["paginator"] = paginator(int(page), model.total)
+        context["paginator"] = paginator(int(page), model.total, RESULTS_PER_PAGE)
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -100,9 +100,13 @@ def advanced_search(request):
         "order": params.get("order", ""),
         "from": params.get("from"),
         "to": params.get("to"),
+        "per_page": params.get("per_page"),
     }
     page = params.get("page", 1)
     page = page if page else 1
+    per_page = (
+        params.get("per_page") if params.get("per_page") else str(RESULTS_PER_PAGE)
+    )
     order = query_params["order"]
     # If there is no query, order by -date, else order by relevance
     if not order and not query_params["query"]:
@@ -124,13 +128,14 @@ def advanced_search(request):
             order=order,
             date_from=query_params["from"],
             date_to=query_params["to"],
+            per_page=per_page,
         )
 
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
-        context["paginator"] = paginator(int(page), model.total)
+        context["paginator"] = paginator(int(page), model.total, int(per_page))
         changed_queries = {
             key: value for key, value in query_params.items() if value is not None
         }
@@ -139,6 +144,7 @@ def advanced_search(request):
         for key in query_params:
             context[key] = query_params[key] or ""
         context["order"] = order
+        context["per_page"] = per_page
 
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
@@ -236,18 +242,24 @@ def results(request):
         params = request.GET
         query = params.get("query")
         page = params.get("page") if params.get("page") else "1"
-
+        per_page = (
+            params.get("per_page") if params.get("per_page") else str(RESULTS_PER_PAGE)
+        )
         if query:
             order = params.get("order", default="-relevance")
-            model = perform_advanced_search(query=query, page=page, order=order)
+            model = perform_advanced_search(
+                query=query, page=page, order=order, per_page=per_page
+            )
 
             context["search_results"] = [
                 SearchResult.create_from_node(result) for result in model.results
             ]
             context["total"] = model.total
-            context["paginator"] = paginator(int(page), model.total)
+            context["paginator"] = paginator(int(page), model.total, int(per_page))
             context["query"] = query
             context["order"] = order
+            context["per_page"] = per_page
+
             context["query_string"] = urllib.parse.urlencode(
                 {"query": query, "order": order}
             )
@@ -265,15 +277,14 @@ def results(request):
             context["order"] = order
             context["query_params"] = {"order": order}
             context["query_string"] = urllib.parse.urlencode({"order": order})
-            context["paginator"] = paginator(int(page), model.total)
+            context["paginator"] = paginator(int(page), model.total, int(per_page))
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
     return TemplateResponse(request, template, context={"context": context})
 
 
-def paginator(current_page, total):
-    size_per_page = RESULTS_PER_PAGE
+def paginator(current_page, total, size_per_page):
     number_of_pages = math.ceil(int(total) / size_per_page)
     next_pages = list(
         range(current_page + 1, min(current_page + 10, number_of_pages) + 1)

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from caselawclient.Client import api_client
+from caselawclient.Client import RESULTS_PER_PAGE, api_client
 from requests_toolbelt.multipart import decoder
 
 from .models import SearchResults
@@ -25,6 +25,7 @@ def perform_advanced_search(
     date_from=None,
     date_to=None,
     page=1,
+    per_page=RESULTS_PER_PAGE,
 ):
     response = api_client.advanced_search(
         q=query,
@@ -37,6 +38,7 @@ def perform_advanced_search(
         order=order,
         date_from=date_from,
         date_to=date_to,
+        page_size=per_page,
     )
     multipart_data = decoder.MultipartDecoder.from_response(response)
     return SearchResults.create_from_string(multipart_data.parts[0].text)
