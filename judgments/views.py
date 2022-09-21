@@ -33,6 +33,8 @@ from .utils import perform_advanced_search
 
 env = environ.Env()
 
+MAX_RESULTS_PER_PAGE = 50
+
 
 def browse(request, court=None, subdivision=None, year=None):
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
@@ -107,6 +109,9 @@ def advanced_search(request):
     per_page = (
         params.get("per_page") if params.get("per_page") else str(RESULTS_PER_PAGE)
     )
+    if int(per_page) > MAX_RESULTS_PER_PAGE:
+        per_page = str(MAX_RESULTS_PER_PAGE)
+
     order = query_params["order"]
     # If there is no query, order by -date, else order by relevance
     if not order and not query_params["query"]:
@@ -245,6 +250,9 @@ def results(request):
         per_page = (
             params.get("per_page") if params.get("per_page") else str(RESULTS_PER_PAGE)
         )
+        if int(per_page) > MAX_RESULTS_PER_PAGE:
+            per_page = str(MAX_RESULTS_PER_PAGE)
+
         if query:
             order = params.get("order", default="-relevance")
             model = perform_advanced_search(
