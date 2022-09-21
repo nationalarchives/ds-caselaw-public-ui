@@ -8,6 +8,7 @@ import judgments.models
 import judgments.utils  # noqa: F401 -- used to mock
 from judgments import converters, views
 from judgments.models import Judgment, SearchResult, SearchResults
+from judgments.views import display_back_link
 
 
 def fake_search_results():
@@ -275,3 +276,19 @@ class TestRobotsDirectives(TestCase):
         # with nofollow,noindex
         response = self.client.get("/judgments/results?query=waltham+forest")
         self.assertContains(response, '<meta name="robots" content="noindex,nofollow">')
+
+
+class TestBackLink(TestCase):
+    def test_no_referrer(self):
+        # When there is no referrer, the back link is not displayed:
+        self.assertIs(display_back_link(None), False)
+
+    def test_refererrer_not_results_page(self):
+        # When there is a referrer, but it is not a results page,
+        # the back link is not displayed:
+        self.assertIs(display_back_link("https://example.com/any/other/path"), False)
+
+    def test_referrer_is_results_page(self):
+        # When there is a referrer, and it is a results page,
+        # the back link is displayed:
+        self.assertIs(display_back_link("https://example.com/judgments/results"), True)
