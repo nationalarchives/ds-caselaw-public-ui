@@ -37,6 +37,8 @@
 
 .judgment-header {
 
+  padding-top: $spacer__unit * 3;
+
   table {
 
     td {
@@ -45,7 +47,6 @@
   }
 
   &__logo {
-    padding-top: $spacer__unit * 3;
 
     img {
       display: block;
@@ -212,24 +213,20 @@
   }
 
   &__section {
-    @media (min-width: $grid__breakpoint-medium) {
       display: grid;
       grid-template-columns: 1fr 15fr;
       grid-template-rows: 1fr;
       gap: 0 $spacer__unit * 0.5;
       grid-template-areas: ". .";
-    }
   }
 
 
   &__nested-section {
-    @media (min-width: $grid__breakpoint-medium) {
       display: grid;
       grid-template-columns: 1fr 24fr;
       grid-template-rows: 1fr;
       gap: 0 $spacer__unit * 0.5;
       grid-template-areas: ". .";
-    }
   }
 
   &__indent {
