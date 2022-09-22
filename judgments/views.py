@@ -326,6 +326,6 @@ def get_back_link(request):
 def display_back_link(back_link):
     if back_link:
         url = urlparse(back_link)
-        return url.path == "/judgments/results"
+        return url.path in ["/judgments/results", "/judgments/advanced_search"]
     else:
         return False
