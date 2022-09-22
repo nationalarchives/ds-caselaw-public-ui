@@ -1,9 +1,9 @@
 /* Error: Undefined variable.
  *   ,
- * 3 |     border: 1px solid  $color__black;
- *   |                        ^^^^^^^^^^^^^
+ * 3 |     border: 1px solid $color__black;
+ *   |                       ^^^^^^^^^^^^^
  *   '
- *   ds_judgements_public_ui/sass/includes/judgment_text_end_document_marker.scss 3:24  root stylesheet */
+ *   ds_judgements_public_ui/sass/includes/judgment_text_end_document_marker.scss 3:23  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 3 \2502      border: 1px solid  $color__black;\a   \2502                         ^^^^^^^^^^^^^\a   \2575 \a   ds_judgements_public_ui/sass/includes/judgment_text_end_document_marker.scss 3:24  root stylesheet";
+  content: "Error: Undefined variable.\a   \2577 \a 3 \2502      border: 1px solid $color__black;\a   \2502                        ^^^^^^^^^^^^^\a   \2575 \a   ds_judgements_public_ui/sass/includes/judgment_text_end_document_marker.scss 3:23  root stylesheet";
 }
