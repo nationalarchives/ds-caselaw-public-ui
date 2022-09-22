@@ -17,9 +17,9 @@
 
     .end-document-marker__top-link {
         display: inline-block;
-        background-color: transparent;
+        background-color: white;
         padding: calc($spacer__unit * 0.5);
-        padding-top: calc($spacer__unit * 1.5);
+        padding-top: calc($spacer__unit * 0.3);
 
         a {
             display: inline-block;
