@@ -279,16 +279,23 @@ class TestRobotsDirectives(TestCase):
 
 
 class TestBackLink(TestCase):
-    def test_no_referrer(self):
-        # When there is no referrer, the back link is not displayed:
-        self.assertIs(display_back_link(None), False)
-
-    def test_refererrer_not_results_page(self):
-        # When there is a referrer, but it is not a results page,
-        # the back link is not displayed:
-        self.assertIs(display_back_link("https://example.com/any/other/path"), False)
-
     def test_referrer_is_results_page(self):
         # When there is a referrer, and it is a results page,
         # the back link is displayed:
         self.assertIs(display_back_link("https://example.com/judgments/results"), True)
+
+    def test_referrer_is_advanced_search_page(self):
+        # When there is a referrer and it is the advanced search page,
+        # the back link is displayed:
+        self.assertIs(
+            display_back_link("https://example.com/judgments/advanced_search"), True
+        )
+
+    def test_refererrer_not_results_or_advanced_search_page(self):
+        # When there is a referrer, but it is not a results page
+        # or the advanced search page, the back link is not displayed:
+        self.assertIs(display_back_link("https://example.com/any/other/path"), False)
+
+    def test_no_referrer(self):
+        # When there is no referrer, the back link is not displayed:
+        self.assertIs(display_back_link(None), False)
