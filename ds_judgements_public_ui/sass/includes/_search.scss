@@ -37,6 +37,10 @@
       font-family: $font__roboto;
       font-weight: bold;
 
+      &:visited {
+        color: $color__black;
+      }
+
       &:hover {
         text-decoration: underline;
         color: $color__black;
