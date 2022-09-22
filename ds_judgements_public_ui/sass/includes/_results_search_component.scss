@@ -207,6 +207,10 @@
     text-decoration: none;
     padding: calc($spacer__unit / 2) $spacer__unit;
 
+    &:visited {
+      color: $color__black;
+    }
+
     &:hover {
       color: $color__white;
       background: $color__black;
@@ -241,6 +245,10 @@
       &:focus {
         @include focus-default;
         text-decoration: underline;
+      }
+
+      &:visited {
+        color: $color__black;
       }
 
       &:hover {
