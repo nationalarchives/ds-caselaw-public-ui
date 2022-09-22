@@ -80,7 +80,14 @@
   }
 }
 
-.judgment-download {
+.judgment-toolbar-download {
+
+  margin: 0 auto;
+
+  @media (min-width: $grid__breakpoint-small) {
+    margin-left: auto;
+    margin-right: 0;
+  }
 
   &__option--pdf {
     margin: 0 !important;
