@@ -276,12 +276,12 @@ def results(request):
             context["query_params"] = {"query": query, "order": order}
         else:
             order = params.get("order", default="-date")
-            model = perform_advanced_search(order=order, page=page)
+            model = perform_advanced_search(order=order, page=page, per_page=per_page)
             search_results = [
                 SearchResult.create_from_node(result) for result in model.results
             ]
             context["recent_judgments"] = search_results
-
+            context["per_page"] = per_page
             context["total"] = model.total
             context["search_results"] = search_results
             context["order"] = order
