@@ -11,8 +11,7 @@
 
   &__result-header {
     @media (min-width: $grid__breakpoint-large) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      margin-bottom: $spacer__unit;
     }
   }
 
@@ -29,7 +28,7 @@
 
      @media (min-width: $grid__breakpoint-extra-large) {
        display: flex;
-       align-items: flex-start;
+       align-items: flex-end;
        justify-content: space-between;
      }
    }
