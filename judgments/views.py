@@ -40,6 +40,16 @@ MAX_RESULTS_PER_PAGE = 50
 def browse(request, court=None, subdivision=None, year=None):
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
     page = request.GET.get("page", 1)
+
+    per_page = (
+        request.GET.get("per_page")
+        if request.GET.get("per_page")
+        else str(RESULTS_PER_PAGE)
+    )
+
+    if int(per_page) > MAX_RESULTS_PER_PAGE:
+        per_page = str(MAX_RESULTS_PER_PAGE)
+
     context = {}
 
     try:
@@ -53,12 +63,14 @@ def browse(request, court=None, subdivision=None, year=None):
             else None,
             order="-date",
             page=int(page or 1),
+            per_page=int(per_page),
         )
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
-        context["paginator"] = paginator(int(page), model.total, RESULTS_PER_PAGE)
+        context["per_page"] = per_page
+        context["paginator"] = paginator(int(page), model.total, int(per_page))
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -276,12 +288,12 @@ def results(request):
             context["query_params"] = {"query": query, "order": order}
         else:
             order = params.get("order", default="-date")
-            model = perform_advanced_search(order=order, page=page)
+            model = perform_advanced_search(order=order, page=page, per_page=per_page)
             search_results = [
                 SearchResult.create_from_node(result) for result in model.results
             ]
             context["recent_judgments"] = search_results
-
+            context["per_page"] = per_page
             context["total"] = model.total
             context["search_results"] = search_results
             context["order"] = order
