@@ -67,6 +67,11 @@ urlpatterns = [
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
+    path(
+        "content-security-policy-reporter",
+        views.csp_view,
+        name="csp",
+    ),
     path("", include("judgments.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

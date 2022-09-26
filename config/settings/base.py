@@ -123,6 +123,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "csp.middleware.CSPMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
@@ -246,3 +247,23 @@ LOGGING = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# Content-Security-Policy configuration
+
+CSP_DEFAULT_SRC = ["'self'"]
+CSP_FONT_SRC = ["fonts.gstatic.com"]
+# unsafe-inline required by HTML view of judgment having many inline styles
+CSP_STYLE_SRC = ["fonts.googleapis.com", "'unsafe-inline'", "'self'"]
+CSP_SCRIPT_SRC = [
+    "www.google-analytics.com",
+    "www.googletagmanager.com",
+    "'sha256-IWjjekDxqqURWMjVH447fuaAvoZKwpDwLS0ZdcJ+Ey4='",
+    "'self'",
+]
+
+# unsafe data: required by css on structured_search wanting a downward arrow from css/main.css
+CSP_IMG_SRC = ["'self'", "data:"]
+CSP_REPORT_URI = (
+    "/content-security-policy-reporter"  # somewhere JSON data can get posted
+)
+CSP_REPORT_ONLY = False  # We need to change this to True when we're happy it's right

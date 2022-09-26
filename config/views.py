@@ -1,5 +1,12 @@
+import rollbar
+from django.http import HttpResponse
 from django.utils.translation import gettext
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
+
+
+class ContentSecurityPolicyReport(Exception):
+    pass
 
 
 class TemplateViewWithContext(TemplateView):
@@ -52,3 +59,16 @@ class WhatToExpectView(TemplateViewWithContext):
 
 class HowToUseThisService(TemplateViewWithContext):
     template_name = "pages/how_to_use_this_service.html"
+
+
+@csrf_exempt
+def csp_view(request):
+    if request.method == "POST":
+        data = request.body
+        rollbar.report_message(f"CSP report: \n{data}", "warning")
+        return HttpResponse("Thanks.", status=200)
+    else:
+        return HttpResponse(
+            "This page is for browsers to submit Content Security Policy errors.",
+            status=405,
+        )

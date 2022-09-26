@@ -29,6 +29,8 @@
   </head>
 
   <body>
+    {# if you change this script, you will need to change the sha256 hash 'IWjjek...' in config/settings/base.html #}
+    {# otherwise the browsers will block this script from running due to the Content-Security-Policy header #}
     <script>
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
