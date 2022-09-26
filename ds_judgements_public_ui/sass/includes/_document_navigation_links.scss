@@ -1,0 +1,39 @@
+.document-navigation-links {
+    a {
+      display: inline-block;
+      margin: $spacer__unit calc($spacer__unit * 1.5);
+      &:visited {
+        color: $color__link-blue
+      }
+    }
+
+  &.autohide {
+    display: none;
+
+    &.show {
+      display: flex;
+      margin: auto;
+      position: fixed;
+      top: 0;
+      background-color: $color__white;
+      width: 100%;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+      box-shadow: $color__dark-grey 1px 1px 6px;
+
+      @media (min-width: $grid__breakpoint-small) {
+        width: auto;
+        display: inline-block;
+
+        a {
+          display: block;
+        }
+      }
+
+      @media (min-width: $grid__breakpoint-large) {
+        box-shadow: none;
+      }
+    }
+  }
+}

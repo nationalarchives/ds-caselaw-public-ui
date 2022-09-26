@@ -22,8 +22,15 @@
         padding-top: calc($spacer__unit * 0.3);
 
         a {
-            display: inline-block;
+            display: none;
             margin-top: 1.5rem;
+            &:visited {
+              color: $color__link-blue
+            }
+
+            &.with-js {
+              display: inline-block;
+            }
         }
     }
 }
