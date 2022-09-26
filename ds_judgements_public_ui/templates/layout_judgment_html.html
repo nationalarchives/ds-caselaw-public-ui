@@ -36,13 +36,13 @@
 {% include 'includes/judgment_text_toolbar.html' %}
 <main id="main-content">
     <div id="js-document-navigation-links-start" class="document-navigation-links">
-      <a href="#end-of-document">Skip to end</a>
+      <a class="down" href="#end-of-document">Skip to end</a>
     </div>
     {% block content %}
     {% endblock %}
     {% include 'includes/judgment_end_document_marker.html' %}
     <div id="js-document-navigation-links-end" class="document-navigation-links">
-      <a href="#start-of-document">Back to top</a>
+      <a class="up" href="#start-of-document">Back to top</a>
     </div>
 
 </main>
