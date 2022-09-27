@@ -67,16 +67,17 @@
       padding: 0;
       box-shadow: $color__dark-grey 1px 1px 6px;
 
-      @media (min-width: $grid__breakpoint-small) {
+      @media (min-width: $grid__breakpoint-medium) {
+        justify-content: center;
+      }
+
+      @media (min-width: $grid__breakpoint-extra-large) {
         width: auto;
         display: inline-block;
 
         a {
           display: block;
         }
-      }
-
-      @media (min-width: $grid__breakpoint-extra-large) {
         box-shadow: none;
       }
     }
