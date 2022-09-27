@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="438px" height="266px" viewBox="0 0 438 266" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>chevron-left</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="chevron-left" transform="translate(219.000631, 133.005000) rotate(90.000000) translate(-219.000631, -133.005000) translate(86.492500, -85.337500)" fill="#1D70B8" fill-rule="nonzero">
+            <path d="M7.0275,201.3675 L201.3775,7.0275 C210.7475,-2.3425 225.9475,-2.3425 235.3175,7.0275 L257.9875,29.6975 C267.3475,39.0575 267.3575,54.2175 258.0275,63.5975 L103.9975,218.3375 L258.0175,373.0875 C267.3575,382.4675 267.3375,397.6275 257.9775,406.9875 L235.3075,429.6575 C225.9375,439.0275 210.7375,439.0275 201.3675,429.6575 L7.0275,235.3075 C-2.3425,225.9375 -2.3425,210.7375 7.0275,201.3675 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>

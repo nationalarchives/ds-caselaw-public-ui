@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="442px" height="271px" viewBox="0 0 442 271" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>chevron-up-aqua-blue</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="chevron-up-aqua-blue" transform="translate(221.037500, 135.050000) rotate(90.000000) translate(-221.037500, -135.050000) translate(88.525000, -83.350000)" fill="#037091" fill-rule="nonzero" stroke="#26262A" stroke-width="5">
+            <path d="M6.975,201.35 L201.375,7.05 C210.775,-2.35 225.975,-2.35 235.275,7.05 L257.975,29.75 C267.375,39.15 267.375,54.25 257.975,63.65 L103.975,218.35 L257.975,373.15 C267.275,382.55 267.275,397.65 257.975,407.05 L235.275,429.75 C225.875,439.15 210.675,439.15 201.375,429.75 L6.975,235.35 C-2.325,225.95 -2.325,210.75 6.975,201.35 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>

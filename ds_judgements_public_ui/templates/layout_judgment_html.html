@@ -29,15 +29,22 @@
 <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
 {% include 'includes/gtm/gtm_body.html' %}
 {% include 'includes/phase_banner.html' %}
-<header class="page-header">
+<header class="page-header" id="start-of-document">
   {% include 'includes/breadcrumbs.html' with current=context.page_title title=context.page_title link=request.path %}
   {% include 'includes/logo.html' %}
 </header>
 {% include 'includes/judgment_text_toolbar.html' %}
 <main id="main-content">
+    <div id="js-document-navigation-links-start" class="document-navigation-links">
+      <a class="down" href="#end-of-document">Skip to end</a>
+    </div>
     {% block content %}
     {% endblock %}
-    <a id="js-back-to-top-link" class="back-to-top-link" href="#js-phase-banner">Back to top</a>
+    {% include 'includes/judgment_end_document_marker.html' %}
+    <div id="js-document-navigation-links-end" class="document-navigation-links">
+      <a class="up" href="#start-of-document">Back to top</a>
+    </div>
+
 </main>
 {% include 'includes/judgment_text_download_options.html' %}
 {% include 'includes/footer.html' %}
