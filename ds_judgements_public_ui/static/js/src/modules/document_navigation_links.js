@@ -50,7 +50,12 @@ $(() => {
                 });
         }
     }
-
-    createObserver(document.querySelector(".judgments-footer"));
-    createObserver(document.querySelector(".judgment-toolbar__container"));
+    let judgmentsFooter = document.querySelector(".judgments-footer");
+    let judgmentsToolbarContainer = document.querySelector(
+        ".judgment-toolbar__container"
+    );
+    if (judgmentsFooter && judgmentsToolbarContainer) {
+        createObserver(judgmentsFooter);
+        createObserver(judgmentsToolbarContainer);
+    }
 });
