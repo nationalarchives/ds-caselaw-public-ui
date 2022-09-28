@@ -65,7 +65,7 @@
               {% if context.court == 'ewhc/comm' %}selected="selected"{% endif %}>
                 Commercial Court
               </option>
-              <option value="ewhc/costs"
+              <option value="ewhc/scco"
               {% if context.court == 'ewhc/costs' or context.court == 'ewhc/scco' %}selected="selected"{% endif %}>
                 Senior Court Costs Office
               </option>
@@ -85,8 +85,8 @@
               {% if context.court == 'ewhc/pat' %}selected="selected"{% endif %}>
                 Patents Court
               </option>
-              <option value="ewhc/qb"
-              {% if context.court == 'ewhc/qb' %}selected="selected"{% endif %}>
+              <option value="ewhc/kb"
+              {% if context.court == 'ewhc/kb' or context.court == "ewhc/qb" %}selected="selected"{% endif %}>
                 King's / Queen's Bench Division of the High Court
               </option>
               <option value="ewhc/tcc"

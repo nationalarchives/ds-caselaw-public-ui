@@ -41,7 +41,7 @@ courts = [
     },
     {
         "name": "Senior Court Costs Office",
-        "href": "/judgments/advanced_search?court=ewhc/costs",
+        "href": "/judgments/advanced_search?court=ewhc/scco",
         "years": "2003 &ndash; 2022",
     },
     {
@@ -66,7 +66,7 @@ courts = [
     },
     {
         "name": "King's / Queen's Bench Division of the High Court",
-        "href": "/judgments/advanced_search?court=ewhc/qb",
+        "href": "/judgments/advanced_search?court=ewhc/kb",
         "years": "2003 &ndash; 2022",
     },
     {
