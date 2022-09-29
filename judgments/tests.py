@@ -3,6 +3,7 @@ from unittest import skip
 from unittest.mock import patch
 
 from django.test import TestCase
+from lxml import etree
 
 import judgments.models
 import judgments.utils  # noqa: F401 -- used to mock
@@ -155,6 +156,76 @@ class TestJudgmentModel(TestCase):
         model = Judgment.create_from_string(xml)
         self.assertEqual("My Judgment Name", model.metadata_name)
         self.assertEqual("2004-06-10T10:30:00", model.date)
+
+
+class TestSearchResult(TestCase):
+    @patch("judgments.models.api_client")
+    def test_create_from_node(self, fake_client):
+        client_attrs = {
+            "get_property.return_value": "something fake",
+            "get_last_modified.return_value": "01-01-2022",
+        }
+        fake_client.configure_mock(**client_attrs)
+        search_result_str = """
+        <search:result xmlns:search="http://marklogic.com/appservices/search" index="1" uri="/ukut/lc/2022/241.xml">
+            <search:snippet/>
+            <search:extracted kind="element">
+                <FRBRdate xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" date="2022-09-09" name="decision"/>
+                <FRBRdate xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" date="2022-10-10" name="transform"/>
+                <FRBRname xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+                          value="London Borough of Waltham Forest v Nasim Hussain"/>
+                <uk:court xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">UKUT-LC</uk:court>
+                <uk:cite xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">[2022] UKUT 241 (LC)</uk:cite>
+                <uk:hash xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
+                    56c551fef5be37cb1658c895c1d15c913e76b712ba3ccc88d3b6b75ea69d3e8a
+                </uk:hash>
+                <neutralCitation xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+                    [2022] UKUT 241 (LC)
+                </neutralCitation>
+            </search:extracted>
+        </search:result>
+        """
+        search_result_xml = etree.fromstring(search_result_str)
+        search_result = SearchResult.create_from_node(search_result_xml)
+        self.assertEqual(
+            "London Borough of Waltham Forest v Nasim Hussain", search_result.name
+        )
+        self.assertEqual("ukut/lc/2022/241", search_result.uri)
+        self.assertEqual("[2022] UKUT 241 (LC)", search_result.neutral_citation)
+        self.assertEqual("UKUT-LC", search_result.court)
+        self.assertEqual("2022-09-09", search_result.date)
+        self.assertEqual("2022-10-10", search_result.transformation_date)
+
+    @patch("judgments.models.api_client")
+    def test_create_from_node_with_missing_elements(self, fake_client):
+        client_attrs = {
+            "get_property.return_value": "something fake",
+            "get_last_modified.return_value": "01-01-2022",
+        }
+        fake_client.configure_mock(**client_attrs)
+        search_result_str = """
+        <search:result xmlns:search="http://marklogic.com/appservices/search" index="1" uri="/ukut/lc/2022/241.xml">
+            <search:snippet/>
+            <search:extracted kind="element">
+                <FRBRdate xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" date="2022-09-09" name="decision"/>
+                <FRBRname xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+                          value="London Borough of Waltham Forest v Nasim Hussain"/>
+                <uk:cite xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn"></uk:cite>
+                <uk:court xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn"></uk:court>
+                <uk:hash xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn"></uk:hash>
+                <uk:court xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn"></uk:court>
+            </search:extracted>
+        </search:result>
+        """
+        search_result_xml = etree.fromstring(search_result_str)
+        search_result = SearchResult.create_from_node(search_result_xml)
+        self.assertEqual(
+            "London Borough of Waltham Forest v Nasim Hussain", search_result.name
+        )
+        self.assertEqual("ukut/lc/2022/241", search_result.uri)
+        self.assertEqual(None, search_result.neutral_citation)
+        self.assertEqual(None, search_result.court)
+        self.assertEqual(None, search_result.content_hash)
 
 
 class TestPaginator(TestCase):
