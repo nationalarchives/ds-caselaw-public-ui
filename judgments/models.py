@@ -65,9 +65,53 @@ class SearchResult:
         matches = SearchMatch.create_from_string(
             etree.tostring(node, encoding="UTF-8").decode("UTF-8")
         )
-        judgment_xml = api_client.get_judgment_xml(uri)
-        judgment = Judgment.create_from_string(judgment_xml)
-
+        namespaces = {
+            "search": "http://marklogic.com/appservices/search",
+            "uk": "https://caselaw.nationalarchives.gov.uk/akn",
+            "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0",
+        }
+        neutral_citation = (
+            node.xpath("search:extracted/uk:cite", namespaces=namespaces)[0].text
+            if node.xpath("search:extracted/uk:cite", namespaces=namespaces)
+            else ""
+        )
+        court = (
+            node.xpath("search:extracted/uk:court", namespaces=namespaces)[0].text
+            if node.xpath("search:extracted/uk:court", namespaces=namespaces)
+            else ""
+        )
+        metadata_name = (
+            node.xpath("search:extracted/akn:FRBRname/@value", namespaces=namespaces)[0]
+            if node.xpath("search:extracted/akn:FRBRname/@value", namespaces=namespaces)
+            else ""
+        )
+        date = (
+            node.xpath(
+                "search:extracted/akn:FRBRdate[(@name='judgment' or @name='decision')]/@date",
+                namespaces=namespaces,
+            )[0]
+            if node.xpath(
+                "search:extracted/akn:FRBRdate[(@name='judgment' or @name='decision')]/@date",
+                namespaces=namespaces,
+            )
+            else ""
+        )
+        transformation_date = (
+            node.xpath(
+                "search:extracted/akn:FRBRdate[@name='transform']/@date",
+                namespaces=namespaces,
+            )[0]
+            if node.xpath(
+                "search:extracted/akn:FRBRdate[@name='transform']/@date",
+                namespaces=namespaces,
+            )
+            else ""
+        )
+        content_hash = (
+            node.xpath("search:extracted/uk:hash", namespaces=namespaces)[0].text
+            if node.xpath("search:extracted/uk:hash", namespaces=namespaces)
+            else ""
+        )
         author = api_client.get_property(uri, "source-organisation")
         last_modified = api_client.get_last_modified(uri)
 
@@ -78,15 +122,15 @@ class SearchResult:
 
         return SearchResult(
             uri=uri,
-            neutral_citation=judgment.neutral_citation,
-            name=judgment.metadata_name,
+            neutral_citation=neutral_citation,
+            name=metadata_name,
             matches=matches,
-            court=judgment.court,
-            date=judgment.date,
+            court=court,
+            date=date,
             author=author,
             last_modified=last_modified,
-            content_hash=judgment.content_hash,
-            transformation_date=judgment.transformation_date,
+            content_hash=content_hash,
+            transformation_date=transformation_date,
         )
 
 
