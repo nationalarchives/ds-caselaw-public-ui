@@ -6,34 +6,6 @@ from djxml import xmlmodels
 from lxml import etree
 
 
-class Judgment(xmlmodels.XmlModel):
-    class Meta:
-        namespaces = {
-            "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0",
-            "uk": "https://caselaw.nationalarchives.gov.uk/akn",
-        }
-
-    metadata_name = xmlmodels.XPathTextField(
-        "/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/"
-        + "akn:FRBRname/@value",
-        ignore_extra_nodes=True,
-    )
-    neutral_citation = xmlmodels.XPathTextField(
-        "//akn:proprietary/uk:cite", ignore_extra_nodes=True
-    )
-    date = xmlmodels.XPathTextField(
-        "/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRWork/"
-        + "akn:FRBRdate/@date",
-        ignore_extra_nodes=True,
-    )
-    court = xmlmodels.XPathTextField("//akn:proprietary/uk:court")
-    content_hash = xmlmodels.XPathTextField("//akn:proprietary/uk:hash")
-    transformation_date = xmlmodels.XPathTextField(
-        "/akn:akomaNtoso/akn:judgment/akn:meta/akn:identification/akn:FRBRManifestation/"
-        + "akn:FRBRdate[@name='transform']/@date"
-    )
-
-
 class SearchResult:
     def __init__(
         self,

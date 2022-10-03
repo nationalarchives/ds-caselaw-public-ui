@@ -8,7 +8,7 @@ from lxml import etree
 import judgments.models
 import judgments.utils  # noqa: F401 -- used to mock
 from judgments import converters, views
-from judgments.models import Judgment, SearchResult, SearchResults
+from judgments.models import SearchResult, SearchResults
 from judgments.views import display_back_link
 
 
@@ -89,72 +89,6 @@ class TestJudgment(TestCase):
         decoded_response = response.content.decode("utf-8")
         self.assertIn("Page not found", decoded_response)
         self.assertEqual(response.status_code, 404)
-
-
-class TestJudgmentModel(TestCase):
-    def test_can_parse_judgment(self):
-        xml = """
-            <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                <judgment name="judgment" contains="originalVersion">
-                    <meta>
-                        <identification source="#tna">
-                            <FRBRManifestation>
-                                <FRBRname value="My Judgment Name"/>
-                                <FRBRdate date="2020-01-01T10:30:00" name="transform"/>
-                            </FRBRManifestation>
-                            <FRBRWork>
-                                <FRBRname value="My Judgment Name"/>
-                                <FRBRdate date="2004-06-10T10:30:00" name="judgment"/>
-                            </FRBRWork>
-                        </identification>
-                        <proprietary source="ewca/civ/2004/811/eng/docx"
-                            xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
-                            <uk:court>EWCA-Civil</uk:court>
-                            <uk:cite>[2017] EWHC 3289 (QB)</uk:cite>
-                            <uk:hash>A hash!</uk:hash>
-                        </proprietary>
-                    </meta>
-                </judgment>
-            </akomaNtoso>
-        """
-
-        model = Judgment.create_from_string(xml)
-        self.assertEqual("My Judgment Name", model.metadata_name)
-        self.assertEqual("[2017] EWHC 3289 (QB)", model.neutral_citation)
-        self.assertEqual("2004-06-10T10:30:00", model.date)
-        self.assertEqual("EWCA-Civil", model.court)
-        self.assertEqual("2020-01-01T10:30:00", model.transformation_date)
-        self.assertEqual("A hash!", model.content_hash)
-
-    def test_can_parse_judgment_hearing_date(self):
-        xml = """
-            <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-                <judgment name="judgment" contains="originalVersion">
-                    <meta>
-                        <identification source="#tna">
-                            <FRBRManifestation>
-                                <FRBRname value="My Judgment Name"/>
-                                <FRBRdate date="2020-01-01T10:30:00" name="transform"/>
-                            </FRBRManifestation>
-                            <FRBRWork>
-                                <FRBRname value="My Judgment Name"/>
-                                <FRBRdate date="2004-06-10T10:30:00" name="hearing"/>
-                            </FRBRWork>
-                        </identification>
-                        <proprietary source="ewca/civ/2004/811/eng/docx"
-                            xmlns:uk="https://caselaw.nationalarchives.gov.uk/akn">
-                            <uk:court>EWCA-Civil</uk:court>
-                            <uk:cite>[2017] EWHC 3289 (QB)</uk:cite>
-                            <uk:hash>A hash!</uk:hash>
-                        </proprietary>
-                    </meta>
-                </judgment>
-            </akomaNtoso>
-        """
-
-        model = Judgment.create_from_string(xml)
-        self.assertEqual("My Judgment Name", model.metadata_name)
-        self.assertEqual("2004-06-10T10:30:00", model.date)
 
 
 class TestSearchResult(TestCase):
