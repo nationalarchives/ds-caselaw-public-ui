@@ -62,14 +62,13 @@ class TestAtomFeed(TestCase):
 
 class TestJudgment(TestCase):
     @patch("judgments.views.requests.head")
-    @patch("judgments.views.Judgment")
     @patch("judgments.views.decoder.MultipartDecoder")
     @patch("judgments.views.api_client")
-    def test_valid_content(self, client, decoder, judgment, head):
+    def test_valid_content(self, client, decoder, head):
         head.return_value.headers = {"Content-Length": "1234567890"}
         client.eval_xslt.return_value = "eval_xslt"
         decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
-        judgment.create_from_string.return_value.metadata_name = "judgment metadata"
+        client.get_judgment_name.return_value = "judgment metadata"
 
         response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")

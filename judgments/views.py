@@ -28,7 +28,7 @@ from requests_toolbelt.multipart import decoder
 
 from judgments.fixtures.courts import courts
 from judgments.fixtures.tribunals import tribunals
-from judgments.models import Judgment, SearchResult
+from judgments.models import SearchResult
 
 from .utils import perform_advanced_search
 
@@ -87,12 +87,10 @@ def detail(request, judgment_uri):
     if is_published:
         try:
             results = api_client.eval_xslt(judgment_uri)
-            xml_results = api_client.get_judgment_xml(judgment_uri)
             multipart_data = decoder.MultipartDecoder.from_response(results)
             judgment = multipart_data.parts[0].text
-            model = Judgment.create_from_string(xml_results)
             context["judgment"] = judgment
-            context["page_title"] = model.metadata_name
+            context["page_title"] = api_client.get_judgment_name(judgment_uri)
             context["judgment_uri"] = judgment_uri
             context["pdf_size"] = get_pdf_size(judgment_uri)
             context["back_link"] = get_back_link(request)
