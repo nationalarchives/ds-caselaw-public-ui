@@ -37,18 +37,39 @@ env = environ.Env()
 MAX_RESULTS_PER_PAGE = 50
 
 
+def as_integer(number_string, minimum, maximum=None, default=None):
+    """
+    Return an integer for user input, making sure it's between the min and max,
+    and if it's not a valid number, that it's the default (or minimum if not set).
+    """
+
+    if default is None:
+        default = minimum
+    if number_string is None:
+        return default
+    try:
+        number = int(number_string)
+    except ValueError:
+        return default
+
+    min_bounded = max(minimum, number)
+    if maximum is not None:
+        return min(min_bounded, maximum)
+    else:
+        return min_bounded
+
+
 def browse(request, court=None, subdivision=None, year=None):
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
-    page = request.GET.get("page", 1)
-
-    per_page = (
-        request.GET.get("per_page")
-        if request.GET.get("per_page")
-        else str(RESULTS_PER_PAGE)
+    page = str(as_integer(request.GET.get("page"), minimum=1))
+    per_page = str(
+        as_integer(
+            request.GET.get("per_page"),
+            minimum=1,
+            maximum=MAX_RESULTS_PER_PAGE,
+            default=RESULTS_PER_PAGE,
+        )
     )
-
-    if int(per_page) > MAX_RESULTS_PER_PAGE:
-        per_page = str(MAX_RESULTS_PER_PAGE)
 
     context = {}
 
@@ -62,15 +83,15 @@ def browse(request, court=None, subdivision=None, year=None):
             if year
             else None,
             order="-date",
-            page=int(page or 1),
-            per_page=int(per_page),
+            page=as_integer(page, minimum=1),
+            per_page=as_integer(per_page, minimum=1),
         )
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
         context["per_page"] = per_page
-        context["paginator"] = paginator(int(page), model.total, int(per_page))
+        context["paginator"] = paginator(page, model.total, per_page)
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -116,13 +137,15 @@ def advanced_search(request):
         "to": params.get("to"),
         "per_page": params.get("per_page"),
     }
-    page = params.get("page", 1)
-    page = page if page else 1
-    per_page = (
-        params.get("per_page") if params.get("per_page") else str(RESULTS_PER_PAGE)
+    page = str(as_integer(params.get("page"), minimum=1))
+    per_page = str(
+        as_integer(
+            params.get("per_page"),
+            minimum=1,
+            maximum=MAX_RESULTS_PER_PAGE,
+            default=RESULTS_PER_PAGE,
+        )
     )
-    if int(per_page) > MAX_RESULTS_PER_PAGE:
-        per_page = str(MAX_RESULTS_PER_PAGE)
 
     order = query_params["order"]
     # If there is no query, order by -date, else order by relevance
@@ -152,7 +175,7 @@ def advanced_search(request):
             SearchResult.create_from_node(result) for result in model.results
         ]
         context["total"] = model.total
-        context["paginator"] = paginator(int(page), model.total, int(per_page))
+        context["paginator"] = paginator(page, model.total, per_page)
         changed_queries = {
             key: value for key, value in query_params.items() if value is not None
         }
@@ -258,12 +281,15 @@ def results(request):
     try:
         params = request.GET
         query = params.get("query")
-        page = params.get("page") if params.get("page") else "1"
-        per_page = (
-            params.get("per_page") if params.get("per_page") else str(RESULTS_PER_PAGE)
+        page = str(as_integer(params.get("page"), minimum=1))
+        per_page = str(
+            as_integer(
+                params.get("per_page"),
+                minimum=1,
+                maximum=MAX_RESULTS_PER_PAGE,
+                default=RESULTS_PER_PAGE,
+            )
         )
-        if int(per_page) > MAX_RESULTS_PER_PAGE:
-            per_page = str(MAX_RESULTS_PER_PAGE)
 
         if query:
             order = params.get("order", default="-relevance")
@@ -275,7 +301,7 @@ def results(request):
                 SearchResult.create_from_node(result) for result in model.results
             ]
             context["total"] = model.total
-            context["paginator"] = paginator(int(page), model.total, int(per_page))
+            context["paginator"] = paginator(page, model.total, per_page)
             context["query"] = query
             context["order"] = order
             context["per_page"] = per_page
@@ -299,7 +325,7 @@ def results(request):
             context["query_string"] = urllib.parse.urlencode(
                 {"order": order, "per_page": per_page}
             )
-            context["paginator"] = paginator(int(page), model.total, int(per_page))
+            context["paginator"] = paginator(page, model.total, per_page)
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -307,6 +333,10 @@ def results(request):
 
 
 def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
+    current_page = as_integer(current_page, minimum=1)
+    size_per_page = as_integer(
+        size_per_page, minimum=1, maximum=MAX_RESULTS_PER_PAGE, default=RESULTS_PER_PAGE
+    )
     number_of_pages = math.ceil(int(total) / size_per_page)
     next_pages = list(
         range(current_page + 1, min(current_page + 10, number_of_pages) + 1)

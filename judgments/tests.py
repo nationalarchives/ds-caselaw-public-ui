@@ -303,3 +303,18 @@ class TestBackLink(TestCase):
     def test_no_referrer(self):
         # When there is no referrer, the back link is not displayed:
         self.assertIs(display_back_link(None), False)
+
+
+def test_min_max():
+    assert views.as_integer("cow", minimum=4) == 4
+    assert views.as_integer(0, minimum=1) == 1
+    assert views.as_integer(0, minimum=1) == 1
+    assert views.as_integer(0, minimum=0, default=1) == 0
+    assert views.as_integer(-1, minimum=0, default=1) == 0
+    assert views.as_integer(0, minimum=1, default=10) == 1
+    assert views.as_integer(2, 1, 3) == 2
+    assert views.as_integer(2, 1) == 2
+    assert views.as_integer(5, 1, 3) == 3
+    assert views.as_integer(2, minimum=1, maximum=3) == 2
+    assert views.as_integer(None, minimum=1, default=4) == 4
+    assert views.as_integer(None, minimum=1) == 1
