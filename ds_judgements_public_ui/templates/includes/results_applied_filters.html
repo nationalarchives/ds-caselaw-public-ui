@@ -1,12 +1,14 @@
 {% load query_filters %}
 {% if context.query_params.items %}
-<h2 class="results-search-component__sub-header">Filters include (select any to remove)</h2>
-<ul class="results-search-component__removable-options">
+{% if context.filtered %}
+  <h2 class="results-search-component__sub-header">Current filters:</h2>
+{% endif %}
+<ul class="results-search-component__removable-options js-results-facets-applied-filters">
   {% for key, value in context.query_params.items %}
     {% if value %}
       {% if key != 'order' and key != 'per_page' %}
         <li>
-          <a role="button" draggable="false" class="results-search-component__removable-options-link"
+          <a role="button" tabindex="0" draggable="false" class="results-search-component__removable-options-link"
               href="{% url 'advanced_search' %}?{{ context.query_params|remove_query:key }}">
               <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
               <span class="results-search-component__removable-options-value">
