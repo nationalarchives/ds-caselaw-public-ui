@@ -185,7 +185,7 @@ def advanced_search(request):
             context[key] = query_params[key] or ""
         context["order"] = order
         context["per_page"] = per_page
-
+        context["filtered"] = has_filters(context["query_params"])
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -310,6 +310,7 @@ def results(request):
                 {"query": query, "order": order, "per_page": per_page}
             )
             context["query_params"] = {"query": query, "order": order}
+            context["filtered"] = has_filters(context["query_params"])
         else:
             order = params.get("order", default="-date")
             model = perform_advanced_search(order=order, page=page, per_page=per_page)
@@ -325,6 +326,7 @@ def results(request):
             context["query_string"] = urllib.parse.urlencode(
                 {"order": order, "per_page": per_page}
             )
+            context["filtered"] = has_filters(context["query_params"])
             context["paginator"] = paginator(page, model.total, per_page)
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
@@ -371,3 +373,7 @@ def display_back_link(back_link):
         return url.path in ["/judgments/results", "/judgments/advanced_search"]
     else:
         return False
+
+
+def has_filters(query_params, exclude=["order", "per_page"]):
+    return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0
