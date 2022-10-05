@@ -281,7 +281,7 @@ def results(request):
             context["per_page"] = per_page
 
             context["query_string"] = urllib.parse.urlencode(
-                {"query": query, "order": order}
+                {"query": query, "order": order, "per_page": per_page}
             )
             context["query_params"] = {"query": query, "order": order}
         else:
@@ -296,7 +296,9 @@ def results(request):
             context["search_results"] = search_results
             context["order"] = order
             context["query_params"] = {"order": order}
-            context["query_string"] = urllib.parse.urlencode({"order": order})
+            context["query_string"] = urllib.parse.urlencode(
+                {"order": order, "per_page": per_page}
+            )
             context["paginator"] = paginator(int(page), model.total, int(per_page))
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
