@@ -4,37 +4,60 @@ import $ from "jquery";
     $.fn.manage_filters = function (options) {
         const settings = $.extend({}, $.fn.manage_filters.defaults, options);
         return this.each(() => {
+            const $wrapper = $(this);
 
-            const $toggle_area = $('.js-results-facets', $(this));
+            const $toggle_area = $(".js-results-facets", $wrapper);
 
-            const $control_container = $('.js-results-control-container', $(this));
+            const $control_container = $(
+                ".js-results-control-container",
+                $wrapper
+            );
 
-            const btn = $('<button>', {
-                'class': 'results-search-component__toggle-control collapsed',
-                'type': 'button',
-                'text': settings.collapsed_text,
-                'click': (e) => {
+            const $filters = $(".js-results-facets-applied-filters", $wrapper);
+
+            window.$ = $;
+
+            const btn = $("<button>", {
+                class: "results-search-component__toggle-control collapsed",
+                type: "button",
+                text:
+                    $filters.children().length == 0
+                        ? settings.collapsed_text_without_filters
+                        : settings.collapsed_text_with_filters,
+                click: (e) => {
                     $toggle_area.toggle();
 
                     const $el = $(e.target);
-
-                    $el.toggleClass('collapsed');
+                    const $filters = $(
+                        ".js-results-facets-applied-filters",
+                        $wrapper
+                    );
+                    $el.toggleClass("collapsed");
 
                     $el.text(() => {
-                        return $el.text() === settings.collapsed_text ? settings.expanded_text : settings.collapsed_text;
-                    })
-                }
+                        if (
+                            $el.hasClass("collapsed") &&
+                            $filters.children().length == 0
+                        ) {
+                            return settings.collapsed_text_without_filters;
+                        } else if ($el.hasClass("collapsed")) {
+                            return settings.collapsed_text_with_filters;
+                        } else {
+                            return settings.expanded_text;
+                        }
+                    });
+                },
             });
 
-            $control_container.append(btn)
+            $control_container.append(btn);
         });
     };
 
     $.fn.manage_filters.defaults = {
-        'collapsed_text': 'Show filter options',
-        'expanded_text': 'Hide filter options',
-    }
-}($));
+        collapsed_text_with_filters: "Add another filter",
+        collapsed_text_without_filters: "Filter by court, date or person",
+        expanded_text: "Hide filter options",
+    };
+})($);
 
-
-$('.js-results-facets-wrapper').manage_filters();
+$(".js-results-facets-wrapper").manage_filters();

@@ -19,14 +19,22 @@
 
   &__container {
     @include container;
+    padding: 0;
+    text-align: left;
   }
 
   &__full-text-panel {
     margin-top: $spacer__unit;
     margin-bottom: $spacer__unit;
+    text-align: left;
+    display: flex;
+    gap: $spacer__unit;
+    flex-direction: column;
     @media (min-width: $grid__breakpoint-medium) {
-      padding: calc($spacer__unit * 1.5) calc($spacer__unit * 2);
+      flex-direction: row;
+      padding: calc($spacer__unit * 1.5) 0;
     }
+
   }
 
   &__full-text-label {
@@ -151,10 +159,20 @@
     margin-top: $spacer__unit;
   }
 
+  input[type=text] {
+    width: 95%;
+  }
+
   input[type=submit] {
     @include call-to-action-button($color__dark-blue, $color__white);
     padding-right: calc($spacer__unit * 3);
     padding-left: calc($spacer__unit * 3);
+    margin-top: calc($spacer__unit * 0.5);
+    margin-bottom: $spacer__unit;
+    width: 100%;
+    @media (min-width: $grid__breakpoint-medium) {
+      width: auto;
+    }
   }
 
   input[type=checkbox] {
