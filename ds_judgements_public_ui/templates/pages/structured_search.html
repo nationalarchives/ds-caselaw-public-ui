@@ -25,7 +25,15 @@
           </div>
         </div>
       </div>
-    {% include 'includes/structured_search_inputs.html' %}
+      <div class="structured-search">
+
+        <div class="structured-search__filter-options js-results-facets">
+          <div class="structured-search__container">
+    {% include 'includes/structured_search_additional_inputs.html' %}
+    {% include 'includes/results_filters_inputs.html' %}
+    </div>
+    </div>
+    </div>
     </div>
   </form>
 {% endblock %}
