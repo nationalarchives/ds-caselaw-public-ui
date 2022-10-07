@@ -3,7 +3,7 @@
   &__main-search {
     background-color: $color__light-grey;
     padding: calc($spacer__unit * 1.5) 0 calc($spacer__unit * 2);
-    margin: 0 0 calc($spacer__unit * 3);
+    margin: 0 0 $spacer__unit;
     text-align: center;
   }
 
@@ -21,6 +21,7 @@
     @include container;
     padding: 0;
     text-align: left;
+    max-width: 100%;
   }
 
   &__full-text-panel {
@@ -64,35 +65,58 @@
 
   }
 
-  &__limit-to-label {
-    font-size: 1.1rem;
-  }
-
   &__limit-to-input {
     @include text_field;
     width: 70%;
+    margin-bottom: 0;
   }
 
   &__limit-to-label {
     display: block;
-    margin-bottom: calc($spacer__unit / 2);
-    font-size: 1.1rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: bold;
   }
 
-  &__limit-to-input {
-    @include text_field;
+  &__single-field-panel {
+    padding-top: $spacer__unit;
+
+    @media (min-width: $grid__breakpoint-medium) {
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-template-columns: 1fr;
+    }
+
+    // Fix display in IE11
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      display: -ms-grid;
+      -ms-grid-columns: 1fr 1rem 1fr;
+
+      div:nth-of-type(1) {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+      }
+
+      div:nth-of-type(2) {
+        -ms-grid-row: 1;
+        -ms-grid-column: 3;
+      }
+
+      legend {
+        padding-left: 0;
+      }
+    }
   }
 
   &__multi-fields-panel {
     padding-top: $spacer__unit;
-    margin-top: $spacer__unit;
-    margin-bottom: $spacer__unit;
+
 
     @media (min-width: $grid__breakpoint-medium) {
       display: grid;
       grid-auto-columns: 1fr;
       grid-template-columns: 1fr 1fr;
-      gap: $spacer__unit
     }
 
     // Fix display in IE11
@@ -119,44 +143,42 @@
 
   &__specific-field-container {
     background-color: $color__yellow;
-    padding: calc($spacer__unit * 2) calc($spacer__unit * 3);
-    margin-bottom: $spacer__unit;
-    min-height: 10rem;
+    padding: $spacer__unit;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
   }
 
   &__limit-to-container {
     background-color: $color__yellow;
-    padding: calc($spacer__unit * 2) calc($spacer__unit * 3);
-    margin-bottom: $spacer__unit;
-    min-height: 10rem;
+    padding: $spacer__unit;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
   }
 
   &__submit-container {
-    margin-bottom: calc($spacer__unit * 3);
+    margin-top: calc($spacer__unit / 2);
+    text-align: right;
   }
 
   &__help-text {
-    margin-bottom: calc($spacer__unit / 2);
+    margin-top: calc($spacer__unit / 4);
+    font-size: 0.8rem;
   }
 
   &__select {
     @include select;
+    width: 100%;
   }
 
   &__date-input {
     @include text_field;
+    width: 95%;
   }
 
   fieldset {
     border: none;
     padding: 0;
-    margin-top: $spacer__unit;
+    margin: 0;
   }
 
   input[type=text] {
