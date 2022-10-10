@@ -10,10 +10,11 @@ from . import views
 
 
 def redirect(request, uri):
-    return HttpResponseRedirect(f"/{uri}")
+    return HttpResponseRedirect(f"/{uri.lower()}")
 
 
 urlpatterns = [
+    re_path("^(?P<uri>.*[A-Z].*?)/?$", redirect),
     re_path("^(?P<uri>.*)/$", redirect),
     path(
         "transactional-licence-form",
