@@ -24,6 +24,7 @@ from django.urls import reverse
 from django.utils.translation import gettext
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
+from ds_caselaw_utils import courts as all_courts
 from requests_toolbelt.multipart import decoder
 
 from judgments.fixtures.courts import courts
@@ -92,6 +93,7 @@ def browse(request, court=None, subdivision=None, year=None):
         context["total"] = model.total
         context["per_page"] = per_page
         context["paginator"] = paginator(page, model.total, per_page)
+        context["courts"] = all_courts.get_selectable()
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -127,7 +129,7 @@ def advanced_search(request):
     params = request.GET
     query_params = {
         "query": params.get("query"),
-        "court": params.get("court"),
+        "court": params.getlist("court"),
         "judge": params.get("judge"),
         "party": params.get("party"),
         "neutral_citation": params.get("neutral_citation"),
@@ -179,13 +181,14 @@ def advanced_search(request):
         changed_queries = {
             key: value for key, value in query_params.items() if value is not None
         }
-        context["query_string"] = urllib.parse.urlencode(changed_queries)
+        context["query_string"] = urllib.parse.urlencode(changed_queries, doseq=True)
         context["query_params"] = query_params
         for key in query_params:
             context[key] = query_params[key] or ""
         context["order"] = order
         context["per_page"] = per_page
         context["filtered"] = has_filters(context["query_params"])
+        context["courts"] = all_courts.get_selectable()
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
@@ -328,6 +331,7 @@ def results(request):
             )
             context["filtered"] = has_filters(context["query_params"])
             context["paginator"] = paginator(page, model.total, per_page)
+        context["courts"] = all_courts.get_selectable()
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")

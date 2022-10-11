@@ -1,5 +1,6 @@
 from django.utils.translation import gettext
 from django.views.generic import TemplateView
+from ds_caselaw_utils import courts
 
 
 class TemplateViewWithContext(TemplateView):
@@ -37,6 +38,11 @@ class StructuredSearchView(TemplateViewWithContext):
     template_name = "pages/structured_search.html"
     page_title = "search.title"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["context"]["courts"] = courts.get_selectable()
+        return context
+
 
 class NoResultsView(TemplateViewWithContext):
     template_name = "pages/no_results.html"
@@ -48,6 +54,11 @@ class CheckView(TemplateViewWithContext):
 
 class WhatToExpectView(TemplateViewWithContext):
     template_name = "pages/what_to_expect.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["context"]["courts"] = courts.get_listable_groups()
+        return context
 
 
 class HowToUseThisService(TemplateViewWithContext):
