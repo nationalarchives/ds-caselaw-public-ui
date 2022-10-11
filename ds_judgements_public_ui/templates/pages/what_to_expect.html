@@ -103,47 +103,29 @@
 
     <h3>Date ranges for our coverage of courts and tribunals:</h3>
     <ul class="court-listing">
-      <li>United Kingdom Supreme Court 2014-2022</li>
-      <li>Privy Council 2014-2022</li>
-      <li>Court of Appeal
-        <ul>
-          <li>Court of Appeal (Civil Division) 2003-2022</li>
-          <li>Court of Appeal (Criminal Division) 2003-2022</li>
-        </ul>
-      </li>
-      <li>High Court
-        <ul>
-          <li>High Court (Administrative Court) 2003-2022</li>
-          <li>High Court (Admiralty Division) 2003-2022</li>
-          <li>High Court (Chancery Division) 2003-2022</li>
-          <li>High Court (Commercial Court) 2003-2022</li>
-          <li>High Court (Senior Court Costs Office) 2003-2022</li>
-          <li>High Court (Family Division) 2003-2022</li>
-          <li>Intellectual Property Enterprise Court 2013-2022</li>
-          <li>High Court (Mercantile Court) 2008-2014</li>
-          <li>High Court (Patents Court) 2003-2022</li>
-          <li>High Court (Queen's Bench Division) 2003-2022</li>
-          <li>High Court (King's Bench Division) 2022-</li>
-          <li>High Court (Technology and Construction Court) 2003-2022</li>
-          <li>Court of Protection 2009-2022</li>
-          <li>Family Court 2014-2022</li>
-        </ul>
-      </li>
-      <li>Upper Tribunals
-        <ul>
-          <li>Upper Tribunal (Immigration and Asylum Chamber) 2010-2022</li>
-          <li>Upper Tribunal (Lands Chamber) 2015-2022</li>
-          <li>Upper Tribunal (Tax and Chancery Chamber) 2017-2022</li>
-          <li>Upper Tribunal (Administrative Appeals Chamber) 2022</li>
-        </ul>
-      </li>
-      <li>Employment Appeal Tribunal</li>
-      <li>First-tier Tribunals
-        <ul>
-          <li>First-tier Tribunal (Tax Chamber) 2022</li>
-          <li>First-tier Tribunal (General Regulatory Chamber) 2022</li>
-        </ul>
-      </li>
+      {% for group in context.courts %}
+        {% if group.name %}
+          <li>{{group.name}}
+            <ul>
+              {% for court in group.courts %}
+                {% if court.start_year == court.end_year %}
+                  <li>{{court.list_name}}  {{court.start_year}}</li>
+                {% else %}
+                  <li>{{court.list_name}}  {{court.start_year}} – {{court.end_year}}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          {% for court in group.courts %}
+            {% if court.start_year == court.end_year %}
+              <li>{{court.list_name}}  {{court.start_year}}</li>
+            {% else %}
+              <li>{{court.list_name}}  {{court.start_year}} – {{court.end_year}}</li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
     </ul>
 
 

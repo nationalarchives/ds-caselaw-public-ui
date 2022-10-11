@@ -1,89 +1,11 @@
-<option value="">All courts</option>
-<option value="uksc"
-{% if context.court == 'uksc' %}selected="selected"{% endif %}>
-United Kingdom Supreme Court
-</option>
-<option value="ukpc"
-{% if context.court == 'ukpc' %}selected="selected"{% endif %}>
-Privy Council
-</option>
-<option value="ewca/civ"
-{% if context.court == 'ewca/civ' %}selected="selected"{% endif %}>
-Court of Appeal Civil Division
-</option>
-<option value="ewca/crim"
-{% if context.court == 'ewca/crim' %}selected="selected"{% endif %}>
-Court of Appeal Criminal Division
-</option>
-<option value="ewhc/admin"
-{% if context.court == 'ewhc/admin' %}selected="selected"{% endif %}>
-Administrative Court
-</option>
-<option value="ewhc/admlty"
-{% if context.court == 'ewhc/admlty' %}selected="selected"{% endif %}>
-Admiralty Court
-</option>
-<option value="ewhc/ch"
-{% if context.court == 'ewhc/ch' %}selected="selected"{% endif %}>
-Chancery Division of the High Court
-</option>
-<option value="ewhc/comm"
-{% if context.court == 'ewhc/comm' %}selected="selected"{% endif %}>
-Commercial Court
-</option>
-<option value="ewhc/scco"
-{% if context.court == 'ewhc/costs' or context.court == 'ewhc/scco' %}selected="selected"{% endif %}>
-Senior Court Costs Office
-</option>
-<option value="ewhc/fam"
-{% if context.court == 'ewhc/fam' %}selected="selected"{% endif %}>
-Family Division of the High Court
-</option>
-<option value="ewhc/ipec"
-{% if context.court == 'ewhc/ipec' %}selected="selected"{% endif %}>
-Intellectual Property Enterprise Court
-</option>
-<option value="ewhc/mercantile"
-{% if context.court == 'ewhc/mercantile' %}selected="selected"{% endif %}>
-Mercantile Court
-</option>
-<option value="ewhc/pat"
-{% if context.court == 'ewhc/pat' %}selected="selected"{% endif %}>
-Patents Court
-</option>
-<option value="ewhc/kb"
-{% if context.court == 'ewhc/kb' or context.court == "ewhc/qb" %}selected="selected"{% endif %}>
-King's / Queen's Bench Division of the High Court
-</option>
-<option value="ewhc/tcc"
-{% if context.court == 'ewhc/tcc' %}selected="selected"{% endif %}>
-Technology and Construction Court
-</option>
-<option value="ewcop"
-{% if context.court == 'ewcop' %}selected="selected"{% endif %}>
-Court of Protection
-</option>
-<option value="ewfc"
-{% if context.court == 'ewfc' %}selected="selected"{% endif %}>
-Family Court
-</option>
-<option value="ukut-aac"
-{% if context.court == 'ukut-aac' %}selected="selected"{% endif %}>
-Upper Tribunal Administrative Appeals Chamber
-</option>
-<option value="ukut-iac"
-{% if context.court == 'ukut-iac' %}selected="selected"{% endif %}>
-Upper Tribunal Immigration and Asylum Chamber
-</option>
-<option value="ukut-lc"
-{% if context.court == 'ukut-lc' %}selected="selected"{% endif %}>
-Upper Tribunal Lands Chamber
-</option>
-<option value="ukut-tcc"
-{% if context.court == 'ukut-tcc' %}selected="selected"{% endif %}>
-Upper Tribunal Tax and Chancery Chamber
-</option>
-<option value="eat"
-{% if context.court == 'eat' %}selected="selected"{% endif %}>
-Employment Appeal Tribunal
-</option>
+{% for court in context.courts %}
+    <div class="structured-search__court-option">
+        <label for="court_{{court.canonical_param}}">
+            <input type="checkbox" name="court"
+            value="{{court.canonical_param}}"
+            id="court_{{court.canonical_param}}"
+            {% for alias in context.court %}{% if alias in court.param_aliases %}checked="checked"{% endif %}{% endfor %}>
+            <span class="structured-search__court-option-label">{{court.name}}</span>
+        </label>
+    </div>
+{% endfor %}

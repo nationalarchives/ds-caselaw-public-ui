@@ -29,7 +29,7 @@ def perform_advanced_search(
 ):
     response = api_client.advanced_search(
         q=query,
-        court=court,
+        court=",".join(court) if isinstance(court, list) else court,
         judge=judge,
         party=party,
         neutral_citation=neutral_citation,
