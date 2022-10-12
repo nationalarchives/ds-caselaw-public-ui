@@ -5,7 +5,11 @@
 <div class="result-controls">
   <form method="get" action="{{request.path}}" id="analytics-result-controls">
       {% for key, value in context.query_params.items %}
-        {% if key != "order" or key != "per_page" %}
+        {% if key == "court" %}
+          {% for court in value %}
+            <input type="hidden" name="court" value="{{court}}" />
+          {% endfor %}
+        {% elif key != "order" or key != "per_page" %}
           <input type="hidden" name="{{key}}" value="{{value}}" />
         {% endif %}
       {% endfor %}
