@@ -1,0 +1,167 @@
+.combined-name-ncn {
+  padding: 1rem;
+  margin: 20px auto;
+  border: solid #FFB952 1px;
+  max-width: 46rem;
+}
+
+p.prefix {
+  font-size: 0.93rem;
+  margin-top: 0px;
+}
+
+span.suffix::before {
+  content: "\2014\00A0 ";
+}
+
+.copy-text-controls {
+  width: 100%;
+  text-align: right;
+}
+
+button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  user-select: none;
+  font-size: 0.93rem;
+  background-color: #eaeaea;
+  border: none;
+  border: 2px solid #000;
+  bottom: 3rem;
+
+  &:hover {
+    background-color: #777;
+    cursor: -webkit-grab; cursor: grab;
+    color: #ffffff;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.judgment-toolbar {
+
+  background-color: $color__light-grey;
+  color: $color__black;
+  padding: $spacer__unit;
+  border-bottom: 0.125rem solid $color__grey;
+
+  &__container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+
+
+    @media (min-width: $grid__breakpoint-small) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    > div {
+      @media (max-width: $grid__breakpoint-small) {
+        text-align: center;
+        display: block;
+        padding: 0.25rem $spacer__unit;
+      }
+    }
+
+    @media (min-width: $grid__breakpoint-small) {
+      text-align: right;
+    }
+
+    @media (min-width: $grid__breakpoint-medium) {
+      max-width: 40rem;
+    }
+
+    @media (min-width: $grid__breakpoint-medium) {
+      max-width: 46rem;
+    }
+  }
+
+  a {
+    background-color: $color__aqua-blue;
+    color: $color__white;
+    padding: calc($spacer__unit / 2) calc($spacer__unit * 3);
+    display: inline-block;
+    text-decoration: none;
+    outline-offset: 3px;
+    margin: 0;
+
+    @media (min-width: $grid__breakpoint-small) {
+      padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);
+    }
+  }
+
+  &__return-link {
+
+    text-align: left;
+
+    a {
+      background: transparent url($fa_chevron_left_aqua_blue) 1.5rem 0.65rem no-repeat;
+      background-size: 0.75rem;
+      color: $color__aqua-blue;
+      padding: calc($spacer__unit / 2) calc($spacer__unit * 3);
+      margin: 0;
+      display: inline-block;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+
+      @media (min-width: $grid__breakpoint-small) {
+        background: transparent url($fa_chevron_left_aqua_blue) 0rem 0.65rem no-repeat;
+        padding: calc($spacer__unit / 2) calc($spacer__unit * 1.2);
+        background-size: 0.75rem;
+      }
+    }
+  }
+}
+
+.judgment-toolbar-download {
+
+  margin: 0 auto;
+
+  @media (min-width: $grid__breakpoint-small) {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  &__option--pdf {
+    margin: 0 !important;
+    text-align: center;
+  }
+
+  &__download-options {
+    color: $color__dark-grey;
+    font-size: 0.75rem;
+    margin: calc($spacer__unit * 0.25) 0 0 0;
+
+    a {
+      background-color: transparent;
+      color: $color__aqua-blue;
+      padding: 0;
+      display: inline;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
