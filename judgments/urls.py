@@ -34,18 +34,20 @@ urlpatterns = [
         name="feed",
     ),
     re_path(
-        "(?P<judgment_uri>.*/.*/.*)/data.pdf",
+        r"(?P<judgment_uri>.*/\d{4}/\d+)/data.pdf",
         views.get_best_pdf,
         name="detail_pdf",
     ),
     re_path(
-        "(?P<judgment_uri>.*/.*/.*)/generated.pdf",
+        r"(?P<judgment_uri>.*/\d{4}/\d+)/generated.pdf",
         views.PdfDetailView.as_view(),
         name="weasy_pdf",
     ),
-    re_path("(?P<judgment_uri>.*/.*/.*)/data.xml", views.detail_xml, name="detail_xml"),
-    re_path("(?P<judgment_uri>.*/.*/.*)/data.html", views.detail, name="detail"),
-    re_path("(?P<judgment_uri>.*/.*/.*)", views.detail, name="detail"),
+    re_path(
+        r"(?P<judgment_uri>.*/\d{4}/\d+)/data.xml", views.detail_xml, name="detail_xml"
+    ),
+    re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)/data.html", views.detail, name="detail"),
+    re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)", views.detail, name="detail"),
     path("judgments/results", views.results, name="results"),
     path("judgments/advanced_search", views.advanced_search, name="advanced_search"),
     path("", views.index, name="home"),
