@@ -24,12 +24,12 @@
 
     {% include 'includes/gtm/gtm_head.html' %}
 </head>
-<body>
+<body id="start-of-document">
 {% include 'includes/cookie_consent/cookie_banner.html' %}
 <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
 {% include 'includes/gtm/gtm_body.html' %}
 {% include 'includes/phase_banner.html' %}
-<header class="page-header" id="start-of-document">
+<header class="page-header">
   {% include 'includes/breadcrumbs.html' with current=context.page_title title=context.page_title link=request.path %}
   {% include 'includes/logo.html' %}
 </header>
