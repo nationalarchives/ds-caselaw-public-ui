@@ -1,13 +1,15 @@
 import $ from "jquery";
 
 const handler = (entries) => {
-    manageClass(entries[0].isIntersecting);
+    manageClass(entries.some((elem) => elem.isIntersecting));
 };
 
-const createObserver = (element) => {
+const createObserver = (elements) => {
     const options = { root: null, rootMargin: "0px" };
     const observer = new IntersectionObserver(handler, options);
-    observer.observe(element);
+    elements.forEach((element) => {
+        observer.observe(element);
+    });
 };
 
 const manageClass = (intersecting) => {
@@ -18,7 +20,7 @@ const manageClass = (intersecting) => {
 
     if (intersecting && pageScrolls) {
         backToTopLinkContainer.classList.remove("show");
-    } else {
+    } else if (pageScrolls) {
         backToTopLinkContainer.classList.add("show");
     }
 };
@@ -55,7 +57,6 @@ $(() => {
         ".judgment-toolbar__container"
     );
     if (judgmentsFooter && judgmentsToolbarContainer) {
-        createObserver(judgmentsFooter);
-        createObserver(judgmentsToolbarContainer);
+        createObserver([judgmentsFooter, judgmentsToolbarContainer]);
     }
 });
