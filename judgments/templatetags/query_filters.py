@@ -19,6 +19,7 @@ def make_query_string(params):
 @register.filter
 def remove_query(query_params, key):
     params = dict(query_params)
+    params["page"] = None
     params[key] = None
     return make_query_string(params)
 
@@ -26,5 +27,6 @@ def remove_query(query_params, key):
 @register.filter
 def remove_court(query_params, court):
     params = dict(query_params)
+    params["page"] = None
     params["court"] = [court2 for court2 in params.get("court", []) if court != court2]
     return make_query_string(params)
