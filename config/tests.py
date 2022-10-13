@@ -7,3 +7,8 @@ class TestRedirect(TestCase):
         response = self.client.get(url)
         assert response.status_code == 302
         assert response.url == url.rstrip("/")
+
+    def test_no_infinite_loop(self):
+        url = "/2022/202"
+        response = self.client.get(url)
+        assert response.status_code == 404
