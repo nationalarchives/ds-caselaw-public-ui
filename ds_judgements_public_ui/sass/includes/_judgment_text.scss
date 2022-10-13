@@ -17,21 +17,39 @@
   }
 
   table {
+    border-collapse: collapse;
     width: 100%;
-    border-collapse: collapse
+
+    &.pr-two-column {
+      table-layout: fixed;
+      width: 100%;
+
+      td:first-child {
+        width: 80%;
+        padding-left: 20%;
+        padding-right: 0;
+      }
+
+      td:last-child {
+        width: 20%;
+        padding: 0;
+        overflow-wrap: anywhere;
+      }
+    }
   }
 
   td {
     padding-left: 1em;
-    padding-right: 1em
+    padding-right: 1em;
   }
 
-  td > p:first-child {
-    margin-top: 0
+  td>p:first-child {
+    margin-top: 0;
   }
 
-  td > p:last-child {
-    margin-bottom: 0
+  td>p:last-child {
+    margin-bottom: 0;
+    text-align: right;
   }
 }
 
@@ -139,7 +157,7 @@
   &__line-separator {
     text-align: center;
 
-    ~ p {
+    ~p {
       text-align: center;
     }
   }
@@ -209,7 +227,7 @@
       animation-duration: 1.5s;
       animation-name: emphasis-border;
 
-      + .judgment-body__text {
+      +.judgment-body__text {
         animation-duration: 1.5s;
         animation-name: emphasis;
       }
@@ -219,14 +237,17 @@
   &__section {
 
     @media (max-width: $grid__breakpoint-medium) {
-      > div {
+      >div {
         display: inline;
+
         &::after {
           content: " ";
           display: block;
         }
+
         p {
           display: inline;
+
           &::after {
             content: " ";
             display: block;
@@ -251,14 +272,17 @@
     @media (max-width: $grid__breakpoint-medium) {
       margin-left: $spacer__unit;
 
-      > div {
+      >div {
         display: inline;
+
         &::after {
           content: " ";
           display: block;
         }
+
         p {
           display: inline;
+
           &::after {
             content: " ";
             display: block;
@@ -294,6 +318,7 @@
 
   &__container {
     margin: auto;
+
     @media (min-width: $grid__breakpoint-medium) {
       max-width: 40rem;
     }
