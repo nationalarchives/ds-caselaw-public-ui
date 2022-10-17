@@ -7,7 +7,7 @@ from lxml import etree
 
 import judgments.models
 import judgments.utils  # noqa: F401 -- used to mock
-from judgments import converters, views
+from judgments import converters, utils, views
 from judgments.models import SearchResult, SearchResults
 from judgments.views import display_back_link
 
@@ -318,3 +318,15 @@ def test_min_max():
     assert views.as_integer(2, minimum=1, maximum=3) == 2
     assert views.as_integer(None, minimum=1, default=4) == 4
     assert views.as_integer(None, minimum=1) == 1
+
+
+def test_prep_query():
+    assert utils.remove_unquoted_stop_words("weight of evidence") == "weight evidence"
+    assert (
+        utils.remove_unquoted_stop_words("'weight of evidence'")
+        == "'weight of evidence'"
+    )
+    assert utils.remove_unquoted_stop_words("the") == "the"
+    assert utils.remove_unquoted_stop_words("'the'") == "'the'"
+    assert utils.remove_unquoted_stop_words("judge and jury") == "judge jury"
+    assert utils.remove_unquoted_stop_words('"judge and jury"') == '"judge and jury"'

@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 
 from caselawclient.Client import RESULTS_PER_PAGE, api_client
@@ -42,3 +43,22 @@ def perform_advanced_search(
     )
     multipart_data = decoder.MultipartDecoder.from_response(response)
     return SearchResults.create_from_string(multipart_data.parts[0].text)
+
+
+def remove_unquoted_stop_words(query):
+    """
+    Remove stop words [the, and, of] from a search query, but only if they
+    are part of an unquoted string AND are not the only word.
+    If they are part of a quoted string, e.g.
+    'body of evidence', or are the only word, they are left alone.
+    """
+    if (
+        re.match(r"^\"|^\'", query) is None
+        and re.match(r"\"$|\'$", query) is None
+        and re.match(r"(^the$)|(^of$)|(^and$)", query) is None
+    ):
+        without_stop_words = re.sub(
+            r"(\band\b)|(\bof\b)|(\bthe\b)", "", query, re.IGNORECASE
+        )
+        return re.sub(r"\s+", " ", without_stop_words)
+    return query
