@@ -31,6 +31,7 @@ from judgments.fixtures.courts import courts
 from judgments.fixtures.tribunals import tribunals
 from judgments.models import SearchResult
 
+from . import utils
 from .utils import perform_advanced_search
 
 env = environ.Env()
@@ -159,8 +160,9 @@ def advanced_search(request):
     context = {}
 
     try:
+        query_without_stop_words = utils.remove_unquoted_stop_words(params.get("query"))
         model = perform_advanced_search(
-            query=query_params["query"],
+            query=query_without_stop_words,
             court=query_params["court"],
             judge=query_params["judge"],
             party=query_params["party"],
