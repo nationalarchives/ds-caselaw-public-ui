@@ -4,6 +4,7 @@ from datetime import datetime
 from caselawclient.Client import RESULTS_PER_PAGE, api_client
 from requests_toolbelt.multipart import decoder
 
+from .fixtures.stop_words import stop_words
 from .models import SearchResults
 
 
@@ -55,10 +56,22 @@ def remove_unquoted_stop_words(query):
     if (
         re.match(r"^\"|^\'", query) is None
         and re.match(r"\"$|\'$", query) is None
-        and re.match(r"(^the$)|(^of$)|(^and$)", query) is None
+        and re.match(solo_stop_word_regex(stop_words), query) is None
     ):
         without_stop_words = re.sub(
-            r"(\band\b)|(\bof\b)|(\bthe\b)", "", query, re.IGNORECASE
+            without_stop_words_regex(stop_words), "", query, re.IGNORECASE
         )
         return re.sub(r"\s+", " ", without_stop_words)
     return query
+
+
+def without_stop_words_regex(stops):
+    modified_stops = [f"(\\b{stop}\\b)" for stop in stops]
+    regex = r"|".join(modified_stops)
+    return regex
+
+
+def solo_stop_word_regex(stops):
+    modified_stops = [f"(^{stop}$)" for stop in stops]
+    regex = r"|".join(modified_stops)
+    return regex

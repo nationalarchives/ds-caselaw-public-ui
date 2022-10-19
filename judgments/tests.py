@@ -330,3 +330,15 @@ def test_prep_query():
     assert utils.remove_unquoted_stop_words("'the'") == "'the'"
     assert utils.remove_unquoted_stop_words("judge and jury") == "judge jury"
     assert utils.remove_unquoted_stop_words('"judge and jury"') == '"judge and jury"'
+
+
+def test_without_stop_word_regex():
+    stop_words = ["and", "of", "the", "for"]
+    expected_output = r"(\band\b)|(\bof\b)|(\bthe\b)|(\bfor\b)"
+    assert utils.without_stop_words_regex(stop_words) == expected_output
+
+
+def test_solo_stop_word_regex():
+    stop_words = ["and", "of", "the", "for"]
+    expected_output = r"(^and$)|(^of$)|(^the$)|(^for$)"
+    assert utils.solo_stop_word_regex(stop_words) == expected_output
