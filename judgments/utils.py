@@ -53,6 +53,8 @@ def remove_unquoted_stop_words(query):
     If they are part of a quoted string, e.g.
     'body of evidence', or are the only word, they are left alone.
     """
+    if query is None:
+        return
     if (
         re.match(r"^\"|^\'", query) is None
         and re.match(r"\"$|\'$", query) is None
