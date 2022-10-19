@@ -26,16 +26,8 @@
     </xsl:template>
 
     <xsl:template match="search:highlight">
-        <xsl:variable name="lowercase_text" select="translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')" />
-        <xsl:choose>
-            <xsl:when test="($lowercase_text = 'of')
-            or ($lowercase_text = 'the')
-            or ($lowercase_text = 'and')"/>
-            <xsl:otherwise>
-                <mark>
-                    <xsl:apply-templates/>
-                </mark>
-            </xsl:otherwise>
-        </xsl:choose>
+        <mark>
+            <xsl:apply-templates/>
+        </mark>
     </xsl:template>
 </xsl:stylesheet>

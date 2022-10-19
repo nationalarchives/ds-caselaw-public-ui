@@ -274,6 +274,15 @@ msgstr "This is my translation"
 django-admin compilemessages
 ```
 
+## Adding or removing stop words from the search
+
+Anyone with access to the Github repo can add or remove stop words from the search.
+
+1. Edit `judgments/fixtures/stop_words.py` to add or remove stop words as desired. Pay attention to the file format -
+   the stop words must be in a Python list, quoted and followed by a comma.
+2. Commit your changes to the repo and open a pull request as normal.
+3. Once the PR is merged, the modified list of stop words will be used in the search.
+
 ## Deployment
 
 ### Staging
