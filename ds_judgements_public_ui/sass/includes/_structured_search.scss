@@ -221,6 +221,10 @@
     width: 50%;
     float: left;
 
+    &:nth-of-type(odd) {
+      clear: left;
+    }
+
     &:nth-of-type(2n) {
       label {
         margin-left: $spacer__unit;
