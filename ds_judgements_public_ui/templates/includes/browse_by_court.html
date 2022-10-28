@@ -6,7 +6,14 @@
             <ul class="judgment-browse__list">
                 {% for court in courts %}
                     <li class="judgment-browse__list-item">
-                        <a class="judgment-browse__link" href="{{ court.href }}">{{ court.name }}</a> <span class="judgment-browse__year-range">{{ court.years | safe }}</span>
+                        <a class="judgment-browse__link" href="/judgments/advanced_search?court={{ court.canonical_param }}">{{ court.list_name }}</a>
+                        <span class="judgment-browse__year-range">
+                            {% if court.start_year == court.end_year %}
+                                {{court.start_year}}
+                            {% else %}
+                                {{court.start_year}} &ndash; {{court.end_year}}
+                            {% endif %}
+                        </span>
                     </li>
                 {% endfor %}
             </ul>
@@ -16,9 +23,16 @@
             <p class="judgment-browse__information-box">We have a limited number of tribunal decisions available as part of our alpha service.</p>
             <ul class="judgment-browse__list">
                 {% for tribunal in tribunals %}
-                    <li class="judgment-browse__list-item">
-                        <a class="judgment-browse__link" href="{{ tribunal.href }}">{{ tribunal.name | safe }}</a> <span class="judgment-browse__year-range">{{ tribunal.years | safe }}</span>
-                    </li>
+                <li class="judgment-browse__list-item">
+                    <a class="judgment-browse__link" href="/judgments/advanced_search?court={{ tribunal.canonical_param }}">{{ tribunal.list_name }}</a>
+                    <span class="judgment-browse__year-range">
+                        {% if tribunal.start_year == tribunal.end_year %}
+                            {{tribunal.start_year}}
+                        {% else %}
+                            {{tribunal.start_year}} &ndash; {{tribunal.end_year}}
+                        {% endif %}
+                    </span>
+                </li>
                 {% endfor %}
             </ul>
         </div>

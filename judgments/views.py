@@ -27,8 +27,6 @@ from django_weasyprint import WeasyTemplateResponseMixin
 from ds_caselaw_utils import courts as all_courts
 from requests_toolbelt.multipart import decoder
 
-from judgments.fixtures.courts import courts
-from judgments.fixtures.tribunals import tribunals
 from judgments.models import SearchResult
 
 from . import utils
@@ -276,7 +274,11 @@ def index(request):
     return TemplateResponse(
         request,
         template,
-        context={"context": context, "courts": courts, "tribunals": tribunals},
+        context={
+            "context": context,
+            "courts": all_courts.get_listable_courts(),
+            "tribunals": all_courts.get_listable_tribunals(),
+        },
     )
 
 
