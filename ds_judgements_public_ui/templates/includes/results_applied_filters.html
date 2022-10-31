@@ -1,4 +1,4 @@
-{% load query_filters %}
+{% load query_filters court_utils %}
 {% if context.query_params.items %}
 {% if context.filtered %}
   <h2 class="results-search-component__sub-header">Current filters:</h2>
@@ -20,7 +20,8 @@
         {% for court in value %}
           <li>
             <a role="button" tabindex="0" draggable="false" class="results-search-component__removable-options-link"
-                href="{% url 'advanced_search' %}?{{ context.query_params|remove_court:court }}">
+                href="{% url 'advanced_search' %}?{{ context.query_params|remove_court:court }}"
+                title="{{court|get_court_name}}">
                 <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">{{ court }}</span>

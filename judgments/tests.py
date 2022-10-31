@@ -9,6 +9,7 @@ import judgments.models
 import judgments.utils  # noqa: F401 -- used to mock
 from judgments import converters, utils, views
 from judgments.models import SearchResult, SearchResults
+from judgments.templatetags.court_utils import get_court_name
 from judgments.views import display_back_link
 
 
@@ -342,3 +343,11 @@ def test_solo_stop_word_regex():
     stop_words = ["and", "of", "the", "for"]
     expected_output = r"(^and$)|(^of$)|(^the$)|(^for$)"
     assert utils.solo_stop_word_regex(stop_words) == expected_output
+
+
+def test_get_court_name():
+    assert get_court_name("uksc") == "United Kingdom Supreme Court"
+
+
+def test_get_court_name_non_existent():
+    assert get_court_name("ffff") == ""
