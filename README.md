@@ -229,6 +229,10 @@ Instead, we share the judgment CSS between both apps. This repository is the
 production release, will be reflected in `ds-caselaw-editor-ui` (note that the changes have to be included in
 [a release](https://github.com/nationalarchives/ds-caselaw-public-ui/releases) before they are used in the editor).
 
+Note that if a release is made on `ds-caselaw-public-ui` which contains edits to this CSS, a deployment will need to be
+made to `ds-caselaw-editor-ui` to force that app to pick up the new version of the CSS. A deployment can be made via
+dalmatian, without needing to do a full release of the editor.
+
 `_judgment_text.scss` only contains styles for the HTML judgment view. Other CSS styles for the public UI and editor
 UI applications are not shared.
 
