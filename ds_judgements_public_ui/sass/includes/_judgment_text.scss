@@ -205,6 +205,17 @@
 
 .judgment-body {
 
+  table {
+    border: 1px solid $color__almost-black;
+    margin:  1rem auto;
+    table-layout: auto;
+    width: 100%;
+
+    td {
+      border: 1px solid $color__almost-black;
+    }
+  }
+
   h3 {
     font-size: 1rem;
   }
