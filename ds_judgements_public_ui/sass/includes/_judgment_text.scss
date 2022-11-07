@@ -52,6 +52,9 @@
   }
 }
 
+
+
+
 .judgment-header {
 
   padding-top: $spacer__unit * 3;
@@ -62,6 +65,37 @@
       border-color: transparent;
     }
   }
+
+  // START – Thi is a fix to correct the alignment of the crest image so that it is centred.
+  // Refer to NCN [2022] EWCA Crim 985 as an example.
+
+  table.crest-alignment-fix {
+    margin-top: 1rem;
+
+    td {
+      border-color: transparent;
+      width: 67%;
+      padding-left: 0;
+
+      &:last-child {
+        padding: 0;
+        width: 33%;
+        text-align: right;
+      }
+
+      img {
+        display: block;
+        padding-left: 57%;
+        margin: 1rem auto;
+      }
+    }
+
+    .judgment-header__neutral-citation {
+      text-align: left;
+    }
+  }
+
+  // ENDS
 
   &__logo {
 
@@ -202,11 +236,12 @@
   }
 }
 
+
 .judgment-body {
 
   table {
     border: 1px solid $color__almost-black;
-    margin:  1rem auto;
+    margin: 1rem auto;
     table-layout: auto;
     width: 100%;
 
