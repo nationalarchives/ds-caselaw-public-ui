@@ -301,6 +301,7 @@ To deploy to production:
 2. Set the tag and release name to `vX.Y.Z`, following semantic versioning.
 3. Publish the release.
 4. Automated workflow will then force-push that release to the `production` branch, which will then be deployed to the production environment.
+5. If you need to roll back to an earlier version, force-push that version to `production` manually.
 
 The production app is at [https://caselaw.nationalarchives.gov.uk/](https://caselaw.nationalarchives.gov.uk/)
 
