@@ -197,8 +197,7 @@ msgstr "Search results"
 
 #: ds_judgements_public_ui/templates/pages/home.html:23
 msgid "home.useservice"
-msgstr ""
-"Use this service to find, view and download judgments and tribunal decisions"
+msgstr "Use this service to find, view and download judgments and tribunal decisions from 2003 gigga"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:8
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:12
@@ -207,9 +206,7 @@ msgstr "How to use the Find Case Law service"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:152
 msgid "courtstructure.link"
-msgstr ""
-"https://www.judiciary.uk/about-the-judiciary/the-justice-system/court-"
-"structure"
+msgstr "https://www.judiciary.uk/about-the-judiciary/the-justice-system/court-structure"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:201
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html:330
