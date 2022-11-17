@@ -114,9 +114,10 @@
     text-align: right;
 
     span {
-      font-weight: bolder;
+      font-weight: normal;
       display: inline-block;
       text-decoration: underline;
+      white-space: nowrap;
     }
   }
 
