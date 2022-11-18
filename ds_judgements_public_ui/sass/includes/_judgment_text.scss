@@ -113,8 +113,11 @@
     text-decoration: underline;
     text-align: right;
 
+    span.ncn-nowrap {
+      white-space: nowrap;
+    }
+
     span {
-      font-weight: bolder;
       display: inline-block;
       text-decoration: underline;
     }
