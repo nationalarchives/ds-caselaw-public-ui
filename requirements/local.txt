@@ -8,7 +8,7 @@ psycopg2==2.9.3  # https://github.com/psycopg/psycopg2
 # ------------------------------------------------------------------------------
 mypy==0.991  # https://github.com/python/mypy
 django-stubs==1.13.0  # https://github.com/typeddjango/django-stubs
-pytest==7.1.2  # https://github.com/pytest-dev/pytest
+pytest==7.2.0  # https://github.com/pytest-dev/pytest
 pytest-sugar==0.9.5  # https://github.com/Frozenball/pytest-sugar
 
 # Documentation
@@ -21,7 +21,7 @@ sphinx-autobuild==2021.3.14 # https://github.com/GaretJax/sphinx-autobuild
 flake8==4.0.1  # https://github.com/PyCQA/flake8
 flake8-isort==4.1.1  # https://github.com/gforcada/flake8-isort
 coverage==6.5.0  # https://github.com/nedbat/coveragepy
-black==22.6.0  # https://github.com/psf/black
+black==22.10.0  # https://github.com/psf/black
 pylint-django==2.5.3  # https://github.com/PyCQA/pylint-django
 pre-commit==2.20.0  # https://github.com/pre-commit/pre-commit
 
