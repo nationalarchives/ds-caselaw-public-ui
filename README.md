@@ -1,5 +1,11 @@
 
-# ds-judgements-public-ui
+# The National Archives: Find Case Law
+
+This repository is part of the [Find Case Law](https://caselaw.nationalarchives.gov.uk/) project at [The National Archives](https://www.nationalarchives.gov.uk/). For more information on the project, check [the documentation](https://github.com/nationalarchives/ds-find-caselaw-docs).
+
+# Public Interface
+
+A public interface to the service, allowing users to search archived items of case law.
 
 ## Local development
 
