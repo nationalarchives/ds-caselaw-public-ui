@@ -6,6 +6,6 @@ pip~=22.2.2
 wheel~=0.38.4
 cryptography~=37.0.2
 packaging~=21.3
-setuptools~=65.4
+setuptools~=65.6
 requests~=2.28.1
 xmltodict~=0.13.0
