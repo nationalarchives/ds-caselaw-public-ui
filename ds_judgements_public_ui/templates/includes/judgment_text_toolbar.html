@@ -1,15 +1,15 @@
 {% load i18n %}
 <div class="judgment-toolbar">
-    <div class="judgment-toolbar__container">
-        {% if context.back_link %}
-            <div class="judgment-toolbar__return-link">
-                <a href="{{ context.back_link }}">{% translate "judgment.back" %}</a>
-            </div>
-        {% endif %}
+  <div class="judgment-toolbar__container">
+    {% if context.back_link %}
+      <div class="judgment-toolbar__return-link">
+        <a href="{{ context.back_link }}">{% translate "judgment.back" %}</a>
+      </div>
+    {% endif %}
 
-        <div class="judgment-toolbar__download judgment-toolbar-download">
-            <a class="judgment-toolbar-download__option--pdf" role="button" draggable="false" href="{% url 'detail_pdf' context.judgment_uri %}">{% translate "judgment.downloadaspdf" %}{{context.pdf_size}}</a>
-            <p class="judgment-toolbar-download__download-options" role="note"><a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a></p>
-        </div>
+    <div class="judgment-toolbar__download judgment-toolbar-download">
+      <a class="judgment-toolbar-download__option--pdf" role="button" draggable="false" href="{% url 'detail_pdf' context.judgment_uri %}">{% translate "judgment.downloadaspdf" %}{{context.pdf_size}}</a>
+      <p class="judgment-toolbar-download__download-options" role="note"><a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a></p>
     </div>
+  </div>
 </div>

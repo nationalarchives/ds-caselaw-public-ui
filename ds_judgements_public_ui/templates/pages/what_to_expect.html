@@ -10,31 +10,30 @@
 {% endblock title %}
 
 {% block content %}
-{% translate "whattoexpect.title" as page_title %}
+  {% translate "whattoexpect.title" as page_title %}
   <header class="page-header">
     {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
     {% include 'includes/logo.html' %}
   </header>
 
-
   <div class="standard-text-template">
     <h1>What to expect from this new service</h1>
 
-    <p><small>Last updated on
-      <time datetime="23-08-2022">23rd August 2022</time>
-    </small></p>
-
+    <p>
+      <small>
+        Last updated on
+        <time datetime="23-08-2022">23rd August 2022</time>
+      </small>
+    </p>
 
     <div class="anchor-links">
       <h3 class="anchor-links__header">Information on this page:</h3>
       <ul class="anchor-links__list">
         <li class="anchor-links__list-option"><a href="#section-about">About the Find Case Law service</a></li>
-        <li class="anchor-links__list-option"><a href="#section-coverage">Limited coverage of judgments and
-          decisions</a></li>
+        <li class="anchor-links__list-option"><a href="#section-coverage">Limited coverage of judgments and decisions</a></li>
         <li class="anchor-links__list-option"><a href="#section-data">Judgments and decisions as data</a></li>
         <li class="anchor-links__list-option"><a href="#section-data-licensing">Data licensing arrangements</a></li>
-        <li class="anchor-links__list-option"><a href="#section-transfer">Transferring judgments and decisions from the
-          courts to The National Archives</a></li>
+        <li class="anchor-links__list-option"><a href="#section-transfer">Transferring judgments and decisions from the courts to The National Archives</a></li>
         <li class="anchor-links__list-option"><a href="#section-publishing">How we publish judgments and decisions</a></li>
         <li class="anchor-links__list-option"><a href="#section-contact">How to contact us</a></li>
       </ul>
@@ -42,48 +41,70 @@
 
     <h2 id="section-about">About the Find Case Law service</h2>
 
-    <p>The Find Case Law service provides public access to court judgments and tribunal decisions.</p>
-    <p>From April 2022, court judgments from the England and Wales High Court, the Court of Appeal, the Supreme Court
+    <p>
+      The Find Case Law service provides public access to court judgments and tribunal decisions.
+    </p>
+    <p>
+      From April 2022, court judgments from the England and Wales High Court, the Court of Appeal, the Supreme Court
       and tribunal decisions from the Upper Tribunals are being sent to The National Archives to be preserved and made
-      available to the public.</p>
-    <p>The service only contains judgments and decisions that have been handed down and made public. It does not include
-      settlements made outside of court.</p>
+      available to the public.
+    </p>
+    <p>
+      The service only contains judgments and decisions that have been handed down and made public. It does not include
+      settlements made outside of court.
+    </p>
 
     <h3>Alpha service</h3>
-    <p>The Find Case Law service is in the very early stages of development, referred to as the ‘Alpha’ phase. This
+    <p>
+      The Find Case Law service is in the very early stages of development, referred to as the ‘Alpha’ phase. This
       means that this is the first version of the service, which will develop and improve over the next few months and
-      years.</p>
-    <p><a href="{% translate "survey.link" %}">Your feedback will help us develop the service</a></p>
+      years.
+    </p>
+    <p>
+      <a href="{% translate "survey.link" %}">Your feedback will help us develop the service</a>
+    </p>
     <h3>Our legal basis for archiving and publishing case law</h3>
-    <p><a href="{% translate "publicrecordsact.link" %}">The Public Records Act 1958</a> provides the legal basis for the Find Case Law service.</p>
-    <p>Court judgments and tribunal decisions are public records. They fall within the scope of court records, defined
-      by the <a href="{% translate "firstschedule.link" %}">First
-        Schedule</a> of the Public Records Act 1958. The judgments that are published through the Find Case Law
+    <p>
+      <a href="{% translate "publicrecordsact.link" %}">The Public Records Act 1958</a>
+      provides the legal basis for the Find Case Law service.
+    </p>
+    <p>
+      Court judgments and tribunal decisions are public records. They fall within the scope of court records, defined
+      by the
+      <a href="{% translate "firstschedule.link" %}">First Schedule</a>
+      of the Public Records Act 1958. The judgments that are published through the Find Case Law
       service have been selected for permanent preservation and have been transferred to The National Archives in
       accordance with <a href="{% translate "sectionthree.link" %}">Section 3</a>, or have
-      been acquired under <a href="{% translate "sectiontwofourh.link" %}">Section
-        2(4)(h)</a>.</p>
-    <p>Judgments and tribunal decisions are being preserved and made available to the public. The Keeper of Public
+      been acquired under <a href="{% translate "sectiontwofourh.link" %}">Section 2(4)(h)</a>.
+    </p>
+
+    <p>
+      Judgments and tribunal decisions are being preserved and made available to the public. The Keeper of Public
       Records at The National Archives is required to take all practicable steps for the preservation of records under
       his charge under <a href="{% translate "sectiontwothree.link" %}">Section 2(3)</a>, and
       to arrange that reasonable facilities are available to the public for inspecting and obtaining copies of those
       public records in the Public Records Office which fall to be disclosed in accordance with the Freedom of
-      Information Act 2000 under <a href="{% translate "sectionfivethree.link" %}">Section
-        5(3)</a>. The Find Case Law service fulfils these statutory duties.</p>
+      Information Act 2000 under <a href="{% translate "sectionfivethree.link" %}">Section 5(3)</a>.
+      The Find Case Law service fulfils these statutory duties.
+    </p>
 
     <h2 id="section-coverage">Limited coverage of judgments and decisions</h2>
     <p>The Find case law service is an Alpha service.</p>
-    <p>The initial collection of judgments and decisions totals to around 50,000 documents that date back to 2003 for
-      Court Judgments, and to 2016 for Tribunal Decisions.</p>
+    <p>
+      The initial collection of judgments and decisions totals to around 50,000 documents that date back to 2003 for
+      Court Judgments, and to 2016 for Tribunal Decisions.
+    </p>
     <p>The collection includes:</p>
     <ul>
-      <li>All judgments and tribunal decisions from the Upper Tribunals, High Court, Court of Appeal and Supreme Court
+      <li>
+        All judgments and tribunal decisions from the Upper Tribunals, High Court, Court of Appeal and Supreme Court
         from 19 April 2022
       </li>
-      <li>First-tier Tribunals (General Regulatory and Tax Chambers)
+      <li>First-tier Tribunals (General Regulatory and Tax Chambers)</li>
+      <li>
+        Judgments and decisions provided by the British and Irish Legal Information Institure (BAILII), that have been published under its contract with His Majesty's
+        Courts and Tribunals Service (HMCTS)/Ministry of Justice (MoJ)
       </li>
-      <li>Judgments and decisions provided by the British and Irish Legal Information Institure (BAILII), that have been published under its contract with His Majesty's
-        Courts and Tribunals Service (HMCTS)/Ministry of Justice (MoJ)</li>
       <li>Judgments provided directly by the Supreme Court and the Upper Tribunals</li>
     </ul>
     <p>The collection does not include judgments from:</p>
@@ -93,36 +114,41 @@
       <li>Magistrate courts</li>
       <li>United Kingdom Competition Appeals Tribunal</li>
       <li>United Kingdom Employment Tribunal</li>
-      <li>First-tier Tribunals
-<ul>
-  <li>Health, Education and Social Care Chamber</li>
-  <li>Immigration and Asylum Chamber</li>
-  <li>Property Chamber</li>
-  <li>Social Entitlement Chamber</li>
-  <li>War Pensions and Armed Forces Compensation Chamber</li>
-</ul>
-
+      <li>
+        <span>First-tier Tribunals</span>
+        <ul>
+          <li>Health, Education and Social Care Chamber</li>
+          <li>Immigration and Asylum Chamber</li>
+          <li>Property Chamber</li>
+          <li>Social Entitlement Chamber</li>
+          <li>War Pensions and Armed Forces Compensation Chamber</li>
+        </ul>
       </li>
     </ul>
 
-    <p>To widen the coverage of the service, we have bought digital copies of other judgments and decisions. We are
+    <p>
+      To widen the coverage of the service, we have bought digital copies of other judgments and decisions. We are
       currently working through these judgments and decisions to get them ready for publication and expand our
-      collection.</p>
-    <p>Initially only judgments and decisions with neutral citations will be available. We are working to assign
-      identifiers to judgments and decisions without neutral citations.</p>
+      collection.
+    </p>
+    <p>
+      Initially only judgments and decisions with neutral citations will be available. We are working to assign
+      identifiers to judgments and decisions without neutral citations.
+    </p>
     <p><a href="#sub-section-uri">Find out more about our Uniform Resource Identifier (URI)</a></p>
 
     <h3>Date ranges for our coverage of courts and tribunals:</h3>
     <ul class="court-listing">
       {% for group in context.courts %}
         {% if group.name %}
-          <li>{{group.name}}
+          <li>
+            <span>{{group.name}}</span>
             <ul>
               {% for court in group.courts %}
                 {% if court.start_year == court.end_year %}
-                  <li>{{court.list_name}}  {{court.start_year}}</li>
+                  <li>{{court.list_name}} {{court.start_year}}</li>
                 {% else %}
-                  <li>{{court.list_name}}  {{court.start_year}} – {{court.end_year}}</li>
+                  <li>{{court.list_name}} {{court.start_year}} – {{court.end_year}}</li>
                 {% endif %}
               {% endfor %}
             </ul>
@@ -130,26 +156,30 @@
         {% else %}
           {% for court in group.courts %}
             {% if court.start_year == court.end_year %}
-              <li>{{court.list_name}}  {{court.start_year}}</li>
+              <li>{{court.list_name}} {{court.start_year}}</li>
             {% else %}
-              <li>{{court.list_name}}  {{court.start_year}} – {{court.end_year}}</li>
+              <li>{{court.list_name}} {{court.start_year}} – {{court.end_year}}</li>
             {% endif %}
           {% endfor %}
         {% endif %}
       {% endfor %}
     </ul>
 
-
     <h2 id="section-data">Judgments and decisions as data</h2>
 
-    <p>We have made judgments and decisions available as data in order to facilitate transparency of the administration
+    <p>
+      We have made judgments and decisions available as data in order to facilitate transparency of the administration
       of justice and enable innovation. We have adopted the international standard legal document mark-up language
-      (LegalDocML).</p>
-    <p>Judgments and decisions are sent to us as Word documents using the TDR service. This is the digital record of the
+      (LegalDocML).
+    </p>
+
+    <p>
+      Judgments and decisions are sent to us as Word documents using the TDR service. This is the digital record of the
       publication version of the judgment. We then create a digital surrogate of the record for publication and
-      re-use. This is the LegalDocML version from which we create the HTML and PDF documents. <a
-              href="{% translate "legaldocml.link" %}">Find out more about
-        LegalDocML</a>.</p>
+      re-use. This is the LegalDocML version from which we create the HTML and PDF documents.
+      <a href="{% translate "legaldocml.link" %}">Find out more about LegalDocML</a>.
+    </p>
+
     <p>This process allows us to have consistent data about judgments and decisions. This includes:</p>
     <ul>
       <li>Neutral citation</li>
@@ -160,47 +190,68 @@
     </ul>
     <p>Data about new judgments can also be consumed as a data feed.</p>
     <h3 id="sub-section-uri">Uniform Resource Identifier (URI)</h3>
-    <p>In most cases we will use the neutral citation as the basis for how we uniquely identify judgments and decisions.
+    <p>
+      In most cases we will use the neutral citation as the basis for how we uniquely identify judgments and decisions.
     </p>
-    <p>For example: https://caselaw.nationalarchives.gov.uk/id/{court}[/{sub-division}/]{year}/{neutral-citation-number}
+    <p>
+      For example: https://caselaw.nationalarchives.gov.uk/id/{court}[/{sub-division}/]{year}/{neutral-citation-number}
     </p>
-    <p>We have a dedicated team who check that all new judgments and decisions we receive have a neutral citation.</p>
-    <p>Neutral citations were adopted in 2001. Where a judgment doesn't have a neutral citation, we will create an
+    <p>
+      We have a dedicated team who check that all new judgments and decisions we receive have a neutral citation.
+    </p>
+    <p>
+      Neutral citations were adopted in 2001. Where a judgment doesn't have a neutral citation, we will create an
       identifier using the standard court abbreviation, the judgment date and an ordinal sequence number assigned by
-      The National Archives (assigned in order the judgments were received).</p>
-    <p>For example:
+      The National Archives (assigned in order the judgments were received).
+    </p>
+    <p>
+      For example:
       https://caselaw.nationalarchives.gov.uk/id/{court}[/{sub-division}/]{year}/{judgment-date}/num/{tna-ordinal-number}
     </p>
-    <p>In the case where a judgment or decision has had a neutral citation issued by BAILII, we will make The National
+    <p>
+      In the case where a judgment or decision has had a neutral citation issued by BAILII, we will make The National
       Archives' ordinal number the same as the one issued by BAILII. This means that there is 1-to-1 mapping of
-      judgments between BAILII and Find Case Law (when the header is replaced).</p>
+      judgments between BAILII and Find Case Law (when the header is replaced).
+    </p>
     <h3>Enrichment</h3>
-    <p>We automatically find and hyperlink neutral citations and titles of legislation within the text of a judgment or
-      decision.</p>
-    <p>Neutral citation links take you to the original judgment or decision if we have it as part of our collection of
-      judgments and decisions. <a href="#section-coverage">Find out more about our coverage of judgments and
-        decisions</a>.</p>
-    <p>Links to acts of legislation will take you to the legislation as it stands today. You can use the legislation
+    <p>
+      We automatically find and hyperlink neutral citations and titles of legislation within the text of a judgment or
+      decision.
+    </p>
+    <p>
+      Neutral citation links take you to the original judgment or decision if we have it as part of our collection of
+      judgments and decisions.
+      <a href="#section-coverage">Find out more about our coverage of judgments and decisions</a>.
+    </p>
+    <p>
+      Links to acts of legislation will take you to the legislation as it stands today. You can use the legislation
       'point in time' feature to find legislation as it stood on a particular date or the original legislation passed
-      by parliament.</p>
+      by parliament.
+    </p>
     <h3>API</h3>
     <p>The LegalDocML data for the judgments is available through the API.</p>
     <h4>Accessing feeds</h4>
-    <p>You can monitor a list of recently published or recently updated judgments using the Atom feeds available in our
-      Updated upstream public API. An OpenAPI specification is available on our <a
-              href="{% translate "openapi.link" %}">
-        Case Law service GitHub project</a> page.</p>
-    <p>Example root feed URL: <a
-            href="{% translate "atom.link" %}">{% translate "atom.link" %}</a>.
+    <p>
+      You can monitor a list of recently published or recently updated judgments using the Atom feeds available in our
+      Updated upstream public API. An OpenAPI specification is available on our
+      <a href="{% translate "openapi.link" %}">Case Law service GitHub project</a> page.
+    </p>
+    <p>
+      Example root feed URL:
+      <a href="{% translate "atom.link" %}">{% translate "atom.link" %}</a>.
     </p>
     <h4>Detecting changes</h4>
 
-    <p>At present, any update to a judgment will result in it being shown in the recently updated list &ndash; this
+    <p>
+      At present, any update to a judgment will result in it being shown in the recently updated list &ndash; this
       could be a minor metadata change, an enrichment with extra links, or a new version from the original submitter,
-      with a material change to the judgment.</p>
-    <p>The judgment XML contains a content hash which will only change with material changes; you can use this to
+      with a material change to the judgment.
+    </p>
+    <p>
+      The judgment XML contains a content hash which will only change with material changes; you can use this to
       detect changes for an updated judgment. In the near future, we hope to
-      provide a feed that only shows material changes, so you will not need to keep a list of hashes.</p>
+      provide a feed that only shows material changes, so you will not need to keep a list of hashes.
+    </p>
     <p>An example update detection workflow:</p>
     <ol>
       <li>Poll the recently-updated feed.</li>
@@ -210,76 +261,103 @@
     </ol>
     <p>In order to re-use the data, you must be compliant with the terms set out in our licences.</p>
     <h2 id="section-data-licensing">Data licensing arrangements</h2>
-    <p>By licensing court judgments and tribunal decisions for re-use we aim to facilitate open justice and enable
-      innovation, while protecting the proper administration of justice.</p>
+    <p>
+      By licensing court judgments and tribunal decisions for re-use we aim to facilitate open justice and enable
+      innovation, while protecting the proper administration of justice.
+    </p>
     <h4>The Open Government Licence does not apply</h4>
-    <p>Judgments and decisions contain personal data. This means the Open Government Licence cannot apply as it
+    <p>
+      Judgments and decisions contain personal data. This means the Open Government Licence cannot apply as it
       excludes
-      personal data.</p>
-    <p>The National Archives has been working in consultation with the Ministry of Justice and the Judicial
+      personal data.
+    </p>
+    <p>
+      The National Archives has been working in consultation with the Ministry of Justice and the Judicial
       Executive
       Board (chaired by the Lord Chief Justice) to develop two licences that permit the re-use of judgments and
-      decisions. Both licences are free to use:</p>
+      decisions. Both licences are free to use:
+    </p>
     <ul>
-      <li><a href="{% url "open_justice_licence" %}">The Open Justice Licence</a> that permits re-use but excludes
+      <li>
+        <a href="{% url "open_justice_licence" %}">The Open Justice Licence</a> that permits re-use but excludes
         computational
         analysis. You do not need to apply for this licence.
       </li>
-      <li>A transactional licence that permits re-use including computational analysis. You will need to apply
+      <li>
+        A transactional licence that permits re-use including computational analysis. You will need to apply
         for this licence.
       </li>
     </ul>
-    <p>The personal information within judgments varies but it can be very extensive and contain distressing
+    <p>
+      The personal information within judgments varies but it can be very extensive and contain distressing
       content.
     </p>
-    <p>It is for the court to decide whether reporting restrictions should apply. It is therefore possible for these
+    <p>
+      It is for the court to decide whether reporting restrictions should apply. It is therefore possible for these
       decisions to be overruled in court and retrospective reporting restrictions be applied. It is important you
       are
       aware of your obligations and are compliant with the licence terms when re-using the data to avoid being in
-      contempt of court.</p>
+      contempt of court.
+    </p>
     <h3>Personal data and GDPR</h3>
     <p>Judgments and decisions contain personal data.</p>
-    <p>Neither type of licence is a data sharing agreement or a processing agreement for personal data. Re-users are
+    <p>
+      Neither type of licence is a data sharing agreement or a processing agreement for personal data. Re-users are
       recipients of the judgments and decisions published by The National Archives. As a Data Controller, re-users
       will need to satisfy themselves that they have a legal basis and valid purpose for processing personal data.
       The
       licences and application process has been carefully designed so as not to create a Data Controller/Data
       Processor arrangement between The National Archives and the re-users (unlike the commercial licences we
       issue
-      for digital surrogates of paper records).</p>
-    <p>The courts are not subject to data protection regulation when acting in their judicial capacity. The National
+      for digital surrogates of paper records).
+    </p>
+    <p> The courts are not subject to data protection regulation when acting in their judicial capacity. The National
       Archives is subject to data protection regulation. The Public Records Act 1958 provides the legal basis for
       our
-      processing of personal data in judgments under UK GDPR.</p>
-    <p>It is important that you are aware of the legal obligations and that your re-use of the data is consistent
+      processing of personal data in judgments under UK GDPR.
+    </p>
+    <p>
+      It is important that you are aware of the legal obligations and that your re-use of the data is consistent
       with
-      the administration of justice.</p>
+      the administration of justice.
+    </p>
     <h3>Open Justice Licence</h3>
-    <p>You can use this licence to re-publish judgments or decisions on your own website. For example, in a blog
+    <p>
+      You can use this licence to re-publish judgments or decisions on your own website. For example, in a blog
       post.
-      Computational analysis of judgments including basic search indexing is not permitted under this licence.</p>
-    <p>You do not need to apply for this licence, however you should be aware of the responsibilities you have. <a
-            href="{% url "open_justice_licence" %}">Find out more about the terms of the Open Justice Licence</a>.</p>
+      Computational analysis of judgments including basic search indexing is not permitted under this licence.
+    </p>
+    <p>
+      You do not need to apply for this licence, however you should be aware of the responsibilities you have.
+      <a href="{% url "open_justice_licence" %}">Find out more about the terms of the Open Justice Licence</a>.
+    </p>
 
-    <p>If you are unsure that you are within the terms of the Open Justice Licence, please <a
-            href="{% url "transactional_licence_form" %}">apply for the transactional licence</a>.</p>
+    <p>
+      If you are unsure that you are within the terms of the Open Justice Licence, please
+      <a href="{% url "transactional_licence_form" %}">apply for the transactional licence</a>.
+    </p>
 
     <h3>Transactional licence</h3>
-    <p>You need to apply for this licence if you intend to use court judgments and tribunal decisions in a way
+    <p>
+      You need to apply for this licence if you intend to use court judgments and tribunal decisions in a way
       that is
       outside the terms of the Open Justice Licence. For example, to run computational analysis across
       judgments and
-      decisions including basic search indexing.</p>
-    <p>You can <a href="{% url "transactional_licence_form" %}">apply for the licence</a> at no cost by completing and
-      submitting an <a
-              href="{% static 'documents/application_form_for_licence_to_re-use.docx' %}">application
-        form</a>.
+      decisions including basic search indexing.
     </p>
-    <p>The application form allows you to explain your purpose, including how you intend to re-use
+    <p>
+      You can <a href="{% url "transactional_licence_form" %}">apply for the licence</a> at no cost by completing and
+      submitting an <a href="{% static 'documents/application_form_for_licence_to_re-use.docx' %}">application form</a>.
+    </p>
+    <p>
+      The application form allows you to explain your purpose, including how you intend to re-use
       the data in a way
-      that is consistent with the administration of justice.</p>
-    <p>We are assessing applications using the <a href="{% translate "fivesafes.link" %}">'five safes'
-      framework</a>:</p>
+      that is consistent with the administration of justice.
+    </p>
+    <p>
+      We are assessing applications using the <a href="{% translate "fivesafes.link" %}">'five safes'
+      framework</a>:
+    </p>
     <ol>
       <li>Safe people</li>
       <li>Safe projects</li>
@@ -287,94 +365,126 @@
       <li>Safe settings</li>
       <li>Safe outputs</li>
     </ol>
-    <p>We work in accordance with <a href="{% translate "reuse.link" %}">The
-      Re-use of Public
-      Sector Information Regulation 2015</a>. We will respond to your application within 20
-      working days <a href="{% translate "sectioneight.link" %}">(Section
-        8)</a>.</p>
-    <p>We do not discriminate against applicants <a
-            href="{% translate "sectionthirteen.link" %}">(Section 13)</a>.
+    <p>
+      We work in accordance with
+      <a href="{% translate "reuse.link" %}">The Re-use of Public Sector Information Regulation 2015</a>.
+      We will respond to your application within 20
+      working days
+      <a href="{% translate "sectioneight.link" %}">(Section 8)</a>.
+    </p>
+    <p>We do not discriminate against applicants
+      <a href="{% translate "sectionthirteen.link" %}">(Section 13)</a>.
       Therefore if we have
       already granted a licence for the same purpose as described in your application, then it
       will be granted within
-      20 working days.</p>
-    <p>However, if your application describes an intended re-use that we have not previously
+      20 working days.
+    </p>
+    <p>
+      However, if your application describes an intended re-use that we have not previously
       considered, this may take
       longer. Where we are uncertain that an application is consistent with the administration of
       justice, we will ask
-      for clarification from the Ministry of Justice and the Judiciary.</p>
-    <p>Once your licence is granted you can be confident that your re-use of the data is consistent
+      for clarification from the Ministry of Justice and the Judiciary.
+    </p>
+    <p>
+      Once your licence is granted you can be confident that your re-use of the data is consistent
       with the proper
       administration of justice. The term of the licence is one calendar year from the date the
       licence has been
-      granted.</p>
+      granted.
+    </p>
     <p>If you are unsure, please apply.</p>
-    <p>If your application is unsuccessful, you can <a
-            href="{% translate "complaint.link" %}">make
-      a complaint against re-use of public sector information</a>.</p>
-    <h2 id="section-transfer">Transferring judgments and decisions from the courts to The National
-      Archives</h2>
-    <p>The National Archives receives a publication version of the judgment or decision. This means
+    <p>
+      If your application is unsuccessful, you can
+      <a href="{% translate "complaint.link" %}">make a complaint against re-use of public sector information</a>.
+    </p>
+    <h2 id="section-transfer">
+      Transferring judgments and decisions from the courts to The National
+      Archives
+    </h2>
+    <p>
+      The National Archives receives a publication version of the judgment or decision. This means
       that any redactions
-      or anonymization needed for publication should already have been made by the court.</p>
-    <p>The judges and clerks send judgments and decisions to The National Archives as Word documents
+      or anonymization needed for publication should already have been made by the court.
+    </p>
+    <p>
+      The judges and clerks send judgments and decisions to The National Archives as Word documents
       using a service
-      called Transfer Digital Records (TDR). Only registered users can use this service.</p>
-    <p>If you are a judge or clerk looking for information about how to transfer digital records,
+      called Transfer Digital Records (TDR). Only registered users can use this service.
+    </p>
+    <p>
+      If you are a judge or clerk looking for information about how to transfer digital records,
       please email <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
     </p>
     <h2 id="section-publishing">How we publish judgments and decisions</h2>
 
-    <p>It is important that court judgments and tribunal decisions are published, unless the Courts decide there is a
-      strong reason to withhold a judgment or decision from the public.</p>
-    <p> Judgments and decisions are sent to The National Archives ready for publication. We will never change a judgment
-      or decision. Each judgment is published as a single web page.</p>
+    <p>
+      It is important that court judgments and tribunal decisions are published, unless the Courts decide there is a
+      strong reason to withhold a judgment or decision from the public.
+    </p>
+    <p>
+      Judgments and decisions are sent to The National Archives ready for publication. We will never change a judgment
+      or decision. Each judgment is published as a single web page.
+    </p>
 
 
     <h3>Revisions</h3>
-    <p>Over time we may receive several publication versions of the same judgment from the court. We
+    <p>
+      Over time we may receive several publication versions of the same judgment from the court. We
       will keep the
       digital record of all the versions, but only publish the latest version authorised by the
       court. Changes,
       refinements or corrections to the text of the currently published judgment can only be made
       by the court by
-      sending a replacement version of the judgment through the TDR service.</p>
+      sending a replacement version of the judgment through the TDR service.
+    </p>
+
     <h3>Our due diligence</h3>
 
-    <p>We appreciate that speedy publication is important for many of our users. The Find case law service has a small
+    <p>
+      We appreciate that speedy publication is important for many of our users. The Find case law service has a small
       dedicated team who are experienced with legal information who review every judgment before we publish them.
       Judgments are received throughout the day for publication but there are peak hours (mid-morning and
       mid-afternoon) when we receive multiple judgments at once. Our current editorial process involves reading the
       entire judgment to check for any inconsistencies or errors resulting in an average publication time of three
       hours after receipt. Extra-long judgments can take longer to review. Judgments received after 5pm will be
-      reviewed the next weekday morning.</p>
+      reviewed the next weekday morning.
+    </p>
 
 
-    <p>Some judgments contain highly sensitive information, publication for these judgments may take up to 24 hours.
+    <p>
+      Some judgments contain highly sensitive information, publication for these judgments may take up to 24 hours.
       Very occasionally we may need to double check the judgment with the judge. In these cases the judgment may take
       even longer to be published as we have to wait for confirmation that we have received the correct publication
       version of the judgment. Sometimes we receive judgments that we cannot publish due to technical issues e.g.
       embedded images in a format not suitable for web presentation. The publication of these judgments is delayed
       until we can resolve the issue. Improvements to the alpha service over time will lead to shorter publication
-      times. We will not make any amendments to a judgment on the court's behalf.</p>
+      times. We will not make any amendments to a judgment on the court's behalf.
+    </p>
 
-    <p>If you spot an error within a judgment or decision, you can email <a
-            href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.</p>
+    <p>
+      If you spot an error within a judgment or decision, you can email
+      <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
+    </p>
+
     <h3>Take down requests</h3>
-    <p>Once a judgment has been published, we will only withdraw it from publication if we are
+    <p>
+      Once a judgment has been published, we will only withdraw it from publication if we are
       instructed to do so by
-      the judge or court.</p>
-    <p>We have developed this publishing policy in consultation with the Judicial Data Working group
+      the judge or court.
+    </p>
+    <p>
+      We have developed this publishing policy in consultation with the Judicial Data Working group
       that is advising
-      us.</p>
-    <p>For more information on our publishing policy, please email <a
-            href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.</p>
+      us.
+    </p>
+    <p>
+      For more information on our publishing policy, please email
+      <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
+    </p>
     <h2 id="section-contact">How to contact us</h2>
-    <p>You can get in touch by emailing <a
-            href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.</p>
+    <p>You can get in touch by emailing
+      <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
+    </p>
   </div>
-
-
-
-
 {% endblock %}

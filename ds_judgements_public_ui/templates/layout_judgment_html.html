@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex,nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,30 +23,29 @@
     {% endblock javascript %}
 
     {% include 'includes/gtm/gtm_head.html' %}
-</head>
-<body id="start-of-document">
-{% include 'includes/cookie_consent/cookie_banner.html' %}
-<a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
-{% include 'includes/gtm/gtm_body.html' %}
-{% include 'includes/phase_banner.html' %}
-<header class="page-header">
-  {% include 'includes/breadcrumbs.html' with current=context.page_title title=context.page_title link=request.path %}
-  {% include 'includes/logo.html' %}
-</header>
-{% include 'includes/judgment_text_toolbar.html' %}
-<main id="main-content">
-    <div id="js-document-navigation-links-start" class="document-navigation-links">
-      <a class="down" href="#end-of-document">Skip to end</a>
-    </div>
-    {% block content %}
-    {% endblock %}
-    {% include 'includes/judgment_end_document_marker.html' %}
-    <div id="js-document-navigation-links-end" class="document-navigation-links">
-      <a class="up" href="#start-of-document">Back to top</a>
-    </div>
-
-</main>
-{% include 'includes/judgment_text_download_options.html' %}
-{% include 'includes/footer.html' %}
-</body>
+  </head>
+  <body id="start-of-document">
+    {% include 'includes/cookie_consent/cookie_banner.html' %}
+    <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
+    {% include 'includes/gtm/gtm_body.html' %}
+    {% include 'includes/phase_banner.html' %}
+    <header class="page-header">
+      {% include 'includes/breadcrumbs.html' with current=context.page_title title=context.page_title link=request.path %}
+      {% include 'includes/logo.html' %}
+    </header>
+    {% include 'includes/judgment_text_toolbar.html' %}
+    <main id="main-content">
+      <div id="js-document-navigation-links-start" class="document-navigation-links">
+        <a class="down" href="#end-of-document">Skip to end</a>
+      </div>
+      {% block content %}
+      {% endblock %}
+      {% include 'includes/judgment_end_document_marker.html' %}
+      <div id="js-document-navigation-links-end" class="document-navigation-links">
+        <a class="up" href="#start-of-document">Back to top</a>
+      </div>
+    </main>
+    {% include 'includes/judgment_text_download_options.html' %}
+    {% include 'includes/footer.html' %}
+  </body>
 </html>

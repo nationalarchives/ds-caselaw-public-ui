@@ -4,34 +4,34 @@
   {% for item in context.search_results %}
     <li>
       <span class="judgment-listing__judgment">
-      <span>
-            <span class="judgment-listing__title">
-              <a href="{% url 'detail' item.uri %}">
-                {{ item.name }}
-              </a>
-            </span>
-            <span class="judgment-listing__neutralcitation">
-              Neutral citation:
-              {{ item.neutral_citation }}
-            </span>
+        <span>
+          <span class="judgment-listing__title">
+            <a href="{% url 'detail' item.uri %}">
+              {{ item.name }}
+            </a>
           </span>
-      <span>
-      <span class="judgment-listing__date">
-              {% translate "judgments.date" %} {{ item.date }}
-            </span>
-      <span class="judgment-listing__court">
-              {% translate "judgments.court" %} {{ item.court }}
-            </span>
-      </span>
+          <span class="judgment-listing__neutralcitation">
+            Neutral citation:
+            {{ item.neutral_citation }}
+          </span>
+        </span>
+        <span>
+          <span class="judgment-listing__date">
+            {% translate "judgments.date" %} {{ item.date }}
+          </span>
+          <span class="judgment-listing__court">
+            {% translate "judgments.court" %} {{ item.court }}
+          </span>
+        </span>
       </span>
       {% if item.matches %}
         <span class="judgment-listing__result-term-matching">
           Matching text sample:
         </span>
         <span class="judgment-listing__matches">
-        {% autoescape off %}
-          {{ item.matches }}
-        {% endautoescape %}
+          {% autoescape off %}
+            {{ item.matches }}
+          {% endautoescape %}
         </span>
       {% endif %}
     </li>
