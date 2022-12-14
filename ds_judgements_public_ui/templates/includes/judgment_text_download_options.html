@@ -1,26 +1,26 @@
 {% load i18n %}
 <div id="download-options" class="judgment-download-options">
-    <h2 class="judgment-download-options__header">{% translate "judgment.downloadoptions.title" %}</h2>
-    <div class="judgment-download-options__options-list">
-        <div class="judgment-download-options__download-option">
-            <h3>
-                <a href="{% url 'detail_pdf' context.judgment_uri %}">
-                    {% translate "judgment.downloadoptions.pdf.cta" %}{{context.pdf_size}}
-                </a>
-            </h3>
-            <p>
-                {% translate "judgment.downloadoptions.pdf.description" %}
-            </p>
-        </div>
-        <div class="judgment-download-options__download-option">
-            <h3>
-                <a href="{% url 'detail_xml' context.judgment_uri %}">
-                    {% translate "judgment.downloadoptions.xml.cta" %}
-                </a>
-            </h3>
-            <p>
-                {% translate "judgment.downloadoptions.xml.description" %}
-            </p>
-        </div>
+  <h2 class="judgment-download-options__header">{% translate "judgment.downloadoptions.title" %}</h2>
+  <div class="judgment-download-options__options-list">
+    <div class="judgment-download-options__download-option">
+      <h3>
+        <a href="{% url 'detail_pdf' context.judgment_uri %}">
+          {% translate "judgment.downloadoptions.pdf.cta" %}{{context.pdf_size}}
+        </a>
+      </h3>
+      <p>
+        {% translate "judgment.downloadoptions.pdf.description" %}
+      </p>
     </div>
+    <div class="judgment-download-options__download-option">
+      <h3>
+        <a href="{% url 'detail_xml' context.judgment_uri %}">
+          {% translate "judgment.downloadoptions.xml.cta" %}
+        </a>
+      </h3>
+      <p>
+        {% translate "judgment.downloadoptions.xml.description" %}
+      </p>
+    </div>
+  </div>
 </div>

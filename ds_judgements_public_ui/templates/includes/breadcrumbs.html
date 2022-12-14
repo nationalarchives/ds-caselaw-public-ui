@@ -1,10 +1,13 @@
 {% load i18n %}
-
 <div class="page-header__breadcrumb">
   <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
-  <span class="page-header__breadcrumb-you-are-in">You are in: </span>
+    <span class="page-header__breadcrumb-you-are-in">You are in: </span>
     <ol>
-      <li><a href="{% url 'home' %}" {% if current == "home"  %}aria-current="page"{% endif %}>{% translate "common.findcaselaw" %}</a></li>
+      <li>
+        <a href="{% url 'home' %}" {% if current == "home"  %}aria-current="page"{% endif %}>
+          {% translate "common.findcaselaw" %}
+        </a>
+      </li>
       {% if title and link %}
         <li>{{ title }}</li>
       {% endif %}
