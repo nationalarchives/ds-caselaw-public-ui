@@ -1,0 +1,22 @@
+[tool.curlylint]
+include = '\.(html|jinja)$'
+exclude = '''
+(
+  /(
+      \.eggs           # exclude a few common directories in the root of the project
+    | \.git
+    | \.venv
+  )/
+  | webpack-stats.html # also separately exclude a file named webpack-stats.html in the root of the project
+)
+'''
+
+[tool.curlylint.rules]
+indent = 2
+html_has_lang = true
+aria_role = true
+django_forms_rendering = true
+image_alt = true
+meta_viewport = true
+no_autofocus = true
+tabindex_no_positive = true
