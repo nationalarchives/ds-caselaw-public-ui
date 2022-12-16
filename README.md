@@ -250,7 +250,7 @@ UI applications are not shared.
 
 We're using [the built-in django translation module](https://docs.djangoproject.com/en/4.0/topics/i18n/translation) to handle our translations.
 
-#### Adding translations
+#### Adding new translations
 
 1) Ensure that the `i18n` module is loaded at the top of the file:
 
@@ -265,7 +265,7 @@ We're using [the built-in django translation module](https://docs.djangoproject.
 <h1>{% translate "namespace.mytranslation" %}</h1>
 ```
 
-3) Update the locale file by running the following command:
+3) Update the locale file by running the following command  (see also 'a note on the django-admin command' below):
 ```
 django-admin makemessages -l {langage_code}
 ```
@@ -275,14 +275,53 @@ where `language_code` is the ISO 3166-1 country code (e.g. en_GB)
 4) In the generated `.po` file, find the generated msgid string and add the translation below it
 
 ```
-msgid "naamespace.mytranslation"
+msgid "namespace.mytranslation"
 msgstr "This is my translation"
 ```
 
-5) Compile the translations to a binary file:
+5) Compile the translations to a binary file  (see also 'a note on the django-admin command' below):
 ```
 django-admin compilemessages
 ```
+
+### Changing existing translations:
+
+1) Find the translation string you want to change in the template:
+
+```django
+   <h1>{% translate "namespace.mytranslation" %}</h1>
+```
+
+2) Go and look for this translation in the `django.po` file (you'll be looking for a line with `msgid` at the start and the string you saw in the template):
+
+```
+msgid "namespace.mytranslation"
+msgstr "This is my translation"
+```
+
+3) Change the text on the following line (begining with `msgstr` to the new translation you want):
+
+
+```
+msgid "namespace.mytranslation"
+msgstr "This is the new tranlation text I have edited"
+```
+
+4) Compile the translations again to make your changes show up (see also 'a note on the django-admin command' below):
+
+```
+django-admin compilemessages
+```
+
+## A note on the `django-admin` command
+
+When running the django-admin command locally, there's two things to be aware of.
+The first is that this command is run within the docker container, not on your machine itself, so
+from your terminal, you will need to first run `fab sh`, which will give you a console where you can run commands within the container
+(you'll see your terminal change from saying something like `tim@Tims-Macbook` at the start of each line to `root@abcde12345`).
+You can then run the commands you need to (such as `django-admin`), and when you're done, type the command `exit` to exit back out to your own machine again (the start of each line will change back).
+
+However, that's not everything, there's also a [slightly tricky bug](https://github.com/nationalarchives/ds-caselaw-public-ui/pull/352) in the way we have django set  up, which means running the `django-admin` command will likely fail with the message `"ModuleNotFoundError: No module named 'config'"`. If you see this, the way to get around it is to run the command again, but _prefix_ it with `DJANGO_SETTINGS_MODULE=""` (those are two quote marks at the end, an empty string), like: `DJANGO_SETTINGS_MODULE="" django-admin`. This will ensure that it runs correctly.
 
 ## Adding or removing stop words from the search
 
