@@ -1,40 +1,40 @@
 {% block content %}
-    <div class="judgment-browse">
-        <h2 class="judgment-browse__header">Find judgments</h2>
-        <div class="judgment-browse__by-type">
-            <h3 id="browse-by-court" class="judgment-browse__sub-header">By court</h3>
-            <ul class="judgment-browse__list">
-                {% for court in courts %}
-                    <li class="judgment-browse__list-item">
-                        <a class="judgment-browse__link" href="/judgments/advanced_search?court={{ court.canonical_param }}">{{ court.list_name }}</a>
-                        <span class="judgment-browse__year-range">
-                            {% if court.start_year == court.end_year %}
-                                {{court.start_year}}
-                            {% else %}
-                                {{court.start_year}} &ndash; {{court.end_year}}
-                            {% endif %}
-                        </span>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="judgment-browse__by-type">
-            <h3 id="browse-by-tribunal" class="judgment-browse__sub-header">By tribunal</h3>
-            <p class="judgment-browse__information-box">We have a limited number of tribunal decisions available as part of our alpha service.</p>
-            <ul class="judgment-browse__list">
-                {% for tribunal in tribunals %}
-                <li class="judgment-browse__list-item">
-                    <a class="judgment-browse__link" href="/judgments/advanced_search?court={{ tribunal.canonical_param }}">{{ tribunal.list_name }}</a>
-                    <span class="judgment-browse__year-range">
-                        {% if tribunal.start_year == tribunal.end_year %}
-                            {{tribunal.start_year}}
-                        {% else %}
-                            {{tribunal.start_year}} &ndash; {{tribunal.end_year}}
-                        {% endif %}
-                    </span>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+  <div class="judgment-browse">
+    <h2 class="judgment-browse__header">Find judgments</h2>
+    <div class="judgment-browse__by-type">
+      <h3 id="browse-by-court" class="judgment-browse__sub-header">By court</h3>
+      <ul class="judgment-browse__list">
+        {% for court in courts %}
+          <li class="judgment-browse__list-item">
+            <a class="judgment-browse__link" href="/judgments/advanced_search?court={{ court.canonical_param }}">{{ court.list_name }}</a>
+            <span class="judgment-browse__year-range">
+              {% if court.start_year == court.end_year %}
+                {{court.start_year}}
+              {% else %}
+                {{court.start_year}} &ndash; {{court.end_year}}
+              {% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
+    <div class="judgment-browse__by-type">
+      <h3 id="browse-by-tribunal" class="judgment-browse__sub-header">By tribunal</h3>
+      <p class="judgment-browse__information-box">We have a limited number of tribunal decisions available as part of our alpha service.</p>
+      <ul class="judgment-browse__list">
+        {% for tribunal in tribunals %}
+          <li class="judgment-browse__list-item">
+            <a class="judgment-browse__link" href="/judgments/advanced_search?court={{ tribunal.canonical_param }}">{{ tribunal.list_name }}</a>
+            <span class="judgment-browse__year-range">
+              {% if tribunal.start_year == tribunal.end_year %}
+                {{tribunal.start_year}}
+              {% else %}
+                {{tribunal.start_year}} &ndash; {{tribunal.end_year}}
+              {% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 {% endblock %}

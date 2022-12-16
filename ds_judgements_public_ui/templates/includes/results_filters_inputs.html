@@ -1,43 +1,43 @@
 
-      <fieldset>
-        <div class="structured-search__single-field-panel">
-          <div class="structured-search__limit-to-container">
-            <label for="court" class="structured-search__limit-to-label">From specific courts or tribunals</label>
-            <div class="structured-search__court-options" id="court">
-              {% include "includes/courts_options.html" %}
-            </div>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset>
-        <div class="structured-search__multi-fields-panel">
-          <div class="structured-search__limit-to-container">
-            <label for="from_date" class="structured-search__limit-to-label">From date</label>
-            <input class="structured-search__date-input" id="from_date" max="3-3-2022" min="02-01-2003" name="from"
-                   placeholder="DD-MM-YYYY" type="date" value="{{context.from}}"/>
-          </div>
-          <div class="structured-search__limit-to-container">
-            <label for="to_date" class="structured-search__limit-to-label">To date</label>
-            <input class="structured-search__date-input" id="to_date" max="3-3-2022" min="02-01-2003" name="to"
-                   placeholder="DD-MM-YYYY" type="date" value="{{context.to}}">
-          </div>
-        </div>
-      </fieldset>
-      <fieldset>
-        <div class="structured-search__multi-fields-panel">
-          <div class="structured-search__specific-field-container">
-            <label for="party_name" class="structured-search__limit-to-label">Party name</label>
-            <input class="structured-search__limit-to-input" id="party_name" name="party" type="text" value="{{context.party}}" aria-describedby="party_name-help-text">
-            <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
-          </div>
-          <div class="structured-search__specific-field-container">
-            <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
-            <input class="structured-search__limit-to-input" id="judge_name" name="judge" type="text" value="{{context.judge}}" aria-describedby="judge_name-help-text">
-            <p class="structured-search__help-text" id="judge_name-help-text">For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'</p>
-          </div>
-
-        </div>
-      </fieldset>
-      <div class="structured-search__submit-container">
-        <input type="submit" value="Update filters">
+<fieldset>
+  <div class="structured-search__single-field-panel">
+    <div class="structured-search__limit-to-container">
+      <label for="court" class="structured-search__limit-to-label">From specific courts or tribunals</label>
+      <div class="structured-search__court-options" id="court">
+        {% include "includes/courts_options.html" %}
       </div>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <div class="structured-search__multi-fields-panel">
+    <div class="structured-search__limit-to-container">
+      <label for="from_date" class="structured-search__limit-to-label">From date</label>
+      <input class="structured-search__date-input" id="from_date" max="3-3-2022" min="02-01-2003" name="from"
+             placeholder="DD-MM-YYYY" type="date" value="{{context.from}}"/>
+    </div>
+    <div class="structured-search__limit-to-container">
+      <label for="to_date" class="structured-search__limit-to-label">To date</label>
+      <input class="structured-search__date-input" id="to_date" max="3-3-2022" min="02-01-2003" name="to"
+             placeholder="DD-MM-YYYY" type="date" value="{{context.to}}">
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <div class="structured-search__multi-fields-panel">
+    <div class="structured-search__specific-field-container">
+      <label for="party_name" class="structured-search__limit-to-label">Party name</label>
+      <input class="structured-search__limit-to-input" id="party_name" name="party" type="text" value="{{context.party}}" aria-describedby="party_name-help-text">
+      <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
+    </div>
+    <div class="structured-search__specific-field-container">
+      <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
+      <input class="structured-search__limit-to-input" id="judge_name" name="judge" type="text" value="{{context.judge}}" aria-describedby="judge_name-help-text">
+      <p class="structured-search__help-text" id="judge_name-help-text">For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'</p>
+    </div>
+
+  </div>
+</fieldset>
+<div class="structured-search__submit-container">
+  <input type="submit" value="Update filters">
+</div>

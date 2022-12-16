@@ -1,5 +1,11 @@
 
-# ds-judgements-public-ui
+# The National Archives: Find Case Law
+
+This repository is part of the [Find Case Law](https://caselaw.nationalarchives.gov.uk/) project at [The National Archives](https://www.nationalarchives.gov.uk/). For more information on the project, check [the documentation](https://github.com/nationalarchives/ds-find-caselaw-docs).
+
+# Public Interface
+
+A public interface to the service, allowing users to search archived items of case law.
 
 ## Local development
 
@@ -30,13 +36,13 @@ The database service built from the official [postgres](https://hub.docker.com/_
 
 ### 1. Get access to Marklogic
 
-This app is intended to edit Judgments in the Marklogic database defined in [ds-caselaw-public-access-service/marklogic](https://github.com/nationalarchives/ds-caselaw-public-access-service/tree/main/marklogic).
+This app is intended to edit Judgments in the Marklogic database defined in [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
 
 Unless you are intending to do any database/Marklogic development work, it is simpler to access a
 shared Marklogic database running on the `staging` environment than to build your own.
 
 If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at
-[ds-caselaw-public-access-service/marklogic](https://github.com/nationalarchives/ds-caselaw-public-access-service/tree/main/marklogic).
+[ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
 
 The **recommended** alternative is to access the shared staging Marklogic database. The way you do this
 depends on where you work:
@@ -96,7 +102,7 @@ clicking the Whale icon.
 **Note** If you are using the staging instance of Marklogic, you do not need to
 follow this step.
 
-Switch to the location of ds-caselaw-public-access-service/marklogic and run:
+Switch to the location of `ds-find-caselaw-docs/marklogic` and run:
 
 ```console
 $ docker-compose up

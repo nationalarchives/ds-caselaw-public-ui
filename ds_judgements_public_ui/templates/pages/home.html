@@ -9,23 +9,23 @@
   {% translate "common.findcaselaw" %}
 {% endblock %}
 {% block content %}
-    <header class="page-header">
-     {% include 'includes/breadcrumbs.html' with current="home" %}
-     {% include 'includes/logo.html' %}
+  <header class="page-header">
+    {% include 'includes/breadcrumbs.html' with current="home" %}
+    {% include 'includes/logo.html' %}
+  </header>
 
-    </header>
-
-    <div class="service-introduction">
-        <div class="service-introduction__container">
-            <span class="service-introduction__separator"></span>
-            <h1 class="service-introduction__header">{% translate "common.findcaselaw" %}</h1>
-            <p class="service-introduction__helper-text">
-                {% translate "home.useservice" %}<br>
-              <a class="service-introduction__what-to-expect" href="{% url 'what_to_expect' %}">What to expect from this new service &gt;</a>
-            </p>
-        </div>
+  <div class="service-introduction">
+    <div class="service-introduction__container">
+      <span class="service-introduction__separator"></span>
+      <h1 class="service-introduction__header">{% translate "common.findcaselaw" %}</h1>
+      <p class="service-introduction__helper-text">
+        {% translate "home.useservice" %}
+        <br>
+        <a class="service-introduction__what-to-expect" href="{% url 'what_to_expect' %}">Learn more about this service &gt;</a>
+      </p>
     </div>
-    {% include 'includes/basic_search_form.html' %}
-    {% include 'includes/recent_judgments.html' %}
-    {% include 'includes/browse_by_court.html' %}
+  </div>
+  {% include 'includes/basic_search_form.html' %}
+  {% include 'includes/recent_judgments.html' %}
+  {% include 'includes/browse_by_court.html' %}
 {% endblock %}

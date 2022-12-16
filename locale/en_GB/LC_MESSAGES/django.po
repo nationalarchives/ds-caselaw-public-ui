@@ -197,8 +197,7 @@ msgstr "Search results"
 
 #: ds_judgements_public_ui/templates/pages/home.html:23
 msgid "home.useservice"
-msgstr ""
-"Use this service to find, view and download judgments and tribunal decisions"
+msgstr "Use this service to find, view and download judgments and tribunal decisions from 2003"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:8
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:12
@@ -316,7 +315,7 @@ msgstr "https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml"
 
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html:197
 msgid "openapi.link"
-msgstr "https://github.com/nationalarchives/ds-caselaw-public-access-service/"
+msgstr "https://github.com/nationalarchives/ds-find-caselaw-docs/"
 
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html:200
 msgid "atom.link"

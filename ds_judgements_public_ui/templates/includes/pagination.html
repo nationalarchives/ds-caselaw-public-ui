@@ -5,12 +5,12 @@
       {% if context.paginator.has_prev_page %}
         <a class="pagination__page-chevron-previous"
            href="{{request.path}}?{% if context.query_string %}{{context.query_string}}&{% endif %}page={{context.paginator.prev_page}}">
-        <span>Previous page</span>
-      </a>
+          <span>Previous page</span>
+        </a>
       {% else %}
         <span class="pagination__page-chevron-previous--disabled">
           <span>Previous page</span>
-      </span>
+        </span>
       {% endif %}
     </li>
     <li class="pagination__list-pages">
@@ -20,7 +20,7 @@
              href="{{request.path}}?{% if context.query_string %}{{context.query_string}}&{% endif %}page={{context.paginator.current_page}}"
              aria-label="Current page, Page {{ context.paginator.current_page }}"
              aria-current="true">
-              <span>Current page </span>{{ context.paginator.current_page }}
+            <span>Current page </span>{{ context.paginator.current_page }}
           </a>
         </li>
         {% for page in context.paginator.next_pages %}
@@ -39,11 +39,11 @@
         <a class="pagination__page-chevron-next"
            href="{{request.path}}?{% if context.query_string %}{{context.query_string}}&{% endif %}&page={{context.paginator.next_page}}">
           <span>Next page</span>
-      </a>
+        </a>
       {% else %}
         <span class="pagination__page-chevron-next--disabled">
           <span>Next page</span>
-      </span>
+        </span>
       {% endif %}
     </li>
   </ul>

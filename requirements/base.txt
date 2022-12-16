@@ -1,6 +1,6 @@
-pytz==2022.1  # https://github.com/stub42/pytz
-python-slugify==6.1.2  # https://github.com/un33k/python-slugify
-Pillow==9.1.1  # https://github.com/python-pillow/Pillow
+pytz==2022.6  # https://github.com/stub42/pytz
+python-slugify==7.0.0  # https://github.com/un33k/python-slugify
+Pillow==9.3.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==21.3.0  # https://github.com/hynek/argon2_cffi
 whitenoise==6.2.0  # https://github.com/evansd/whitenoise
 
@@ -8,7 +8,7 @@ whitenoise==6.2.0  # https://github.com/evansd/whitenoise
 # ------------------------------------------------------------------------------
 django==3.2.14  # pyup: < 4.0  # https://www.djangoproject.com/
 django-environ==0.9.0 # https://github.com/joke2k/django-environ
-django-model-utils==4.2.0  # https://github.com/jazzband/django-model-utils
+django-model-utils==4.3.1  # https://github.com/jazzband/django-model-utils
 
 requests~=2.28.1
 xmltodict~=0.13.0
@@ -16,7 +16,7 @@ requests-toolbelt~=0.9.1
 lxml~=4.9.1
 django-xml~=3.0.0
 wsgi-basic-auth~=1.1.0
-ds-caselaw-marklogic-api-client~=5.0.0
-ds-caselaw-utils~=0.4.1
+ds-caselaw-marklogic-api-client~=5.1.4
+ds-caselaw-utils~=0.4.3
 rollbar
 django-weasyprint==2.2.0
