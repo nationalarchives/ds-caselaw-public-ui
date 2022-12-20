@@ -28,12 +28,21 @@
         width: 80%;
         padding-left: 20%;
         padding-right: 0;
+
+        @media (max-width: $grid__breakpoint-small) {
+          padding: 0 1rem ;
+        }
       }
 
       td:last-child {
         width: 20%;
         padding: 0;
         overflow-wrap: anywhere;
+
+        @media (max-width: $grid__breakpoint-small) {
+          white-space: nowrap;
+          padding-right: 1rem;
+        }
       }
     }
   }
