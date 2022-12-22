@@ -140,3 +140,7 @@ def display_back_link(back_link):
         return url.path in ["/judgments/results", "/judgments/advanced_search"]
     else:
         return False
+
+
+def has_filters(query_params, exclude=["order", "per_page"]):
+    return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0

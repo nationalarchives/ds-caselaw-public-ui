@@ -1,6 +1,7 @@
 from django.urls import path, re_path, register_converter
 
 from . import converters, feeds, views
+from .views.advanced_search import advanced_search
 from .views.browse import browse
 from .views.detail import detail
 
@@ -51,6 +52,6 @@ urlpatterns = [
     re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)/data.html", detail, name="detail"),
     re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)", detail, name="detail"),
     path("judgments/results", views.results, name="results"),
-    path("judgments/advanced_search", views.advanced_search, name="advanced_search"),
+    path("judgments/advanced_search", advanced_search, name="advanced_search"),
     path("", views.index, name="home"),
 ]
