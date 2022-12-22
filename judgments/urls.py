@@ -1,10 +1,11 @@
 from django.urls import path, re_path, register_converter
 
-from . import converters, feeds, views
+from . import converters, feeds
 from .views.advanced_search import advanced_search
 from .views.browse import browse
 from .views.detail import PdfDetailView, detail, detail_xml, get_best_pdf
 from .views.index import index
+from .views.results import results
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -50,7 +51,7 @@ urlpatterns = [
     re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)/data.xml", detail_xml, name="detail_xml"),
     re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)/data.html", detail, name="detail"),
     re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)", detail, name="detail"),
-    path("judgments/results", views.results, name="results"),
+    path("judgments/results", results, name="results"),
     path("judgments/advanced_search", advanced_search, name="advanced_search"),
     path("", index, name="home"),
 ]
