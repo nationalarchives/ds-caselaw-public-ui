@@ -3,7 +3,7 @@ from django.urls import path, re_path, register_converter
 from . import converters, feeds, views
 from .views.advanced_search import advanced_search
 from .views.browse import browse
-from .views.detail import detail, detail_xml
+from .views.detail import PdfDetailView, detail, detail_xml, get_best_pdf
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -38,12 +38,12 @@ urlpatterns = [
     ),
     re_path(
         r"(?P<judgment_uri>.*/\d{4}/\d+)/data.pdf",
-        views.get_best_pdf,
+        get_best_pdf,
         name="detail_pdf",
     ),
     re_path(
         r"(?P<judgment_uri>.*/\d{4}/\d+)/generated.pdf",
-        views.PdfDetailView.as_view(),
+        PdfDetailView.as_view(),
         name="weasy_pdf",
     ),
     re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)/data.xml", detail_xml, name="detail_xml"),
