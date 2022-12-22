@@ -136,6 +136,15 @@ You can then access the site in your browser:
 
 <http://127.0.0.1:3000>
 
+#### Fixing an issue when another project is already running
+When starting up, if you encounter an error message like this:
+
+```ERROR: for postgres  Cannot start service postgres: driver failed programming external connectivity on endpoint ds-caselaw-public-ui_postgres_1 (0fb7572d583761d3a348e8fd9139b0007638a17c6f91b15e8678f2575f94ffa7): Bind for 0.0.0.0:5432 failed: port is already allocated```
+
+It's because the editor UI project is still running, you'll need to reopen that project and run the command `fab stop`.
+Now go back to the Public UI project and use the same command `fab stop`.
+Now you can restart the project up again with `fab run`.
+
 ### 8. Other development tips
 
 For day to day development, running `fab run` should provide you with all you need.
