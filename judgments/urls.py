@@ -4,6 +4,7 @@ from . import converters, feeds, views
 from .views.advanced_search import advanced_search
 from .views.browse import browse
 from .views.detail import PdfDetailView, detail, detail_xml, get_best_pdf
+from .views.index import index
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -51,5 +52,5 @@ urlpatterns = [
     re_path(r"(?P<judgment_uri>.*/\d{4}/\d+)", detail, name="detail"),
     path("judgments/results", views.results, name="results"),
     path("judgments/advanced_search", advanced_search, name="advanced_search"),
-    path("", views.index, name="home"),
+    path("", index, name="home"),
 ]
