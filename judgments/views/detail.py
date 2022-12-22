@@ -4,7 +4,7 @@ from caselawclient.Client import (
     MarklogicResourceNotFoundError,
     api_client,
 )
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.template import loader
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
@@ -36,6 +36,16 @@ def detail(request, judgment_uri):
         return TemplateResponse(request, template, context={"context": context})
     else:
         raise Http404("This Judgment is not available")
+
+
+def detail_xml(_request, judgment_uri):
+    try:
+        judgment_xml = api_client.get_judgment_xml(judgment_uri)
+    except MarklogicResourceNotFoundError:
+        raise Http404("Judgment was not found")
+    response = HttpResponse(judgment_xml, content_type="application/xml")
+    response["Content-Disposition"] = f"attachment; filename={judgment_uri}.xml"
+    return response
 
 
 def get_pdf_size(judgment_uri):

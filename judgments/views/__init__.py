@@ -33,16 +33,6 @@ from judgments.utils import (
 )
 
 
-def detail_xml(_request, judgment_uri):
-    try:
-        judgment_xml = api_client.get_judgment_xml(judgment_uri)
-    except MarklogicResourceNotFoundError:
-        raise Http404("Judgment was not found")
-    response = HttpResponse(judgment_xml, content_type="application/xml")
-    response["Content-Disposition"] = f"attachment; filename={judgment_uri}.xml"
-    return response
-
-
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     template_name = "pdf/judgment.html"
     pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
