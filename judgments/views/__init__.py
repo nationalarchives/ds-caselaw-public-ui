@@ -1,6 +1,4 @@
-import datetime
 import logging
-import math
 import os
 import re
 import urllib
@@ -27,76 +25,16 @@ from django_weasyprint import WeasyTemplateResponseMixin
 from ds_caselaw_utils import courts as all_courts
 from requests_toolbelt.multipart import decoder
 
+from judgments import utils
 from judgments.models import SearchResult
-
-from . import utils
-from .utils import perform_advanced_search
+from judgments.utils import (
+    MAX_RESULTS_PER_PAGE,
+    as_integer,
+    paginator,
+    perform_advanced_search,
+)
 
 env = environ.Env()
-
-MAX_RESULTS_PER_PAGE = 50
-
-
-def as_integer(number_string, minimum, maximum=None, default=None):
-    """
-    Return an integer for user input, making sure it's between the min and max,
-    and if it's not a valid number, that it's the default (or minimum if not set).
-    """
-
-    if default is None:
-        default = minimum
-    if number_string is None:
-        return default
-    try:
-        number = int(number_string)
-    except ValueError:
-        return default
-
-    min_bounded = max(minimum, number)
-    if maximum is not None:
-        return min(min_bounded, maximum)
-    else:
-        return min_bounded
-
-
-def browse(request, court=None, subdivision=None, year=None):
-    court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
-    page = str(as_integer(request.GET.get("page"), minimum=1))
-    per_page = str(
-        as_integer(
-            request.GET.get("per_page"),
-            minimum=1,
-            maximum=MAX_RESULTS_PER_PAGE,
-            default=RESULTS_PER_PAGE,
-        )
-    )
-
-    context = {}
-
-    try:
-        model = perform_advanced_search(
-            court=court_query if court_query else None,
-            date_from=datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
-            if year
-            else None,
-            date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
-            if year
-            else None,
-            order="-date",
-            page=as_integer(page, minimum=1),
-            per_page=as_integer(per_page, minimum=1),
-        )
-        context["search_results"] = [
-            SearchResult.create_from_node(result) for result in model.results
-        ]
-        context["total"] = model.total
-        context["per_page"] = per_page
-        context["paginator"] = paginator(page, model.total, per_page)
-        context["courts"] = all_courts.get_selectable()
-    except MarklogicResourceNotFoundError:
-        raise Http404("Search failed")  # TODO: This should be something else!
-    template = loader.get_template("judgment/results.html")
-    return TemplateResponse(request, template, context={"context": context})
 
 
 def detail(request, judgment_uri):
@@ -340,27 +278,6 @@ def results(request):
         raise Http404("Search error")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
     return TemplateResponse(request, template, context={"context": context})
-
-
-def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
-    current_page = as_integer(current_page, minimum=1)
-    size_per_page = as_integer(
-        size_per_page, minimum=1, maximum=MAX_RESULTS_PER_PAGE, default=RESULTS_PER_PAGE
-    )
-    number_of_pages = math.ceil(int(total) / size_per_page)
-    next_pages = list(
-        range(current_page + 1, min(current_page + 10, number_of_pages) + 1)
-    )
-
-    return {
-        "current_page": current_page,
-        "has_next_page": current_page < number_of_pages,
-        "next_page": current_page + 1,
-        "has_prev_page": current_page > 1,
-        "prev_page": current_page - 1,
-        "next_pages": next_pages,
-        "number_of_pages": number_of_pages,
-    }
 
 
 def trim_leading_slash(uri):

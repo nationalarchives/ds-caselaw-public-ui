@@ -1,3 +1,4 @@
+import math
 import re
 from datetime import datetime
 
@@ -6,6 +7,8 @@ from requests_toolbelt.multipart import decoder
 
 from .fixtures.stop_words import stop_words
 from .models import SearchResults
+
+MAX_RESULTS_PER_PAGE = 50
 
 
 def format_date(date):
@@ -77,3 +80,46 @@ def solo_stop_word_regex(stops):
     modified_stops = [f"(^{stop}$)" for stop in stops]
     regex = r"|".join(modified_stops)
     return regex
+
+
+def as_integer(number_string, minimum, maximum=None, default=None):
+    """
+    Return an integer for user input, making sure it's between the min and max,
+    and if it's not a valid number, that it's the default (or minimum if not set).
+    """
+
+    if default is None:
+        default = minimum
+    if number_string is None:
+        return default
+    try:
+        number = int(number_string)
+    except ValueError:
+        return default
+
+    min_bounded = max(minimum, number)
+    if maximum is not None:
+        return min(min_bounded, maximum)
+    else:
+        return min_bounded
+
+
+def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
+    current_page = as_integer(current_page, minimum=1)
+    size_per_page = as_integer(
+        size_per_page, minimum=1, maximum=MAX_RESULTS_PER_PAGE, default=RESULTS_PER_PAGE
+    )
+    number_of_pages = math.ceil(int(total) / size_per_page)
+    next_pages = list(
+        range(current_page + 1, min(current_page + 10, number_of_pages) + 1)
+    )
+
+    return {
+        "current_page": current_page,
+        "has_next_page": current_page < number_of_pages,
+        "next_page": current_page + 1,
+        "has_prev_page": current_page > 1,
+        "prev_page": current_page - 1,
+        "next_pages": next_pages,
+        "number_of_pages": number_of_pages,
+    }
