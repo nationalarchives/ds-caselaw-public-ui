@@ -1,7 +1,9 @@
 import math
 import re
 from datetime import datetime
+from urllib.parse import urlparse
 
+import environ
 from caselawclient.Client import RESULTS_PER_PAGE, api_client
 from requests_toolbelt.multipart import decoder
 
@@ -123,3 +125,18 @@ def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
         "next_pages": next_pages,
         "number_of_pages": number_of_pages,
     }
+
+
+def get_pdf_uri(judgment_uri):
+    env = environ.Env()
+    """Create a string saying where the S3 PDF will be for a judgment uri"""
+    pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
+    return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
+
+
+def display_back_link(back_link):
+    if back_link:
+        url = urlparse(back_link)
+        return url.path in ["/judgments/results", "/judgments/advanced_search"]
+    else:
+        return False

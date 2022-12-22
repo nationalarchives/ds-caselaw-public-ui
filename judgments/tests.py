@@ -10,7 +10,7 @@ import judgments.utils  # noqa: F401 -- used to mock
 from judgments import converters, utils, views
 from judgments.models import SearchResult, SearchResults
 from judgments.templatetags.court_utils import get_court_name
-from judgments.views import display_back_link
+from judgments.utils import display_back_link
 
 
 def fake_search_results():
@@ -62,9 +62,9 @@ class TestAtomFeed(TestCase):
 
 
 class TestJudgment(TestCase):
-    @patch("judgments.views.requests.head")
-    @patch("judgments.views.decoder.MultipartDecoder")
-    @patch("judgments.views.api_client")
+    @patch("judgments.views.detail.requests.head")
+    @patch("judgments.views.detail.decoder.MultipartDecoder")
+    @patch("judgments.views.detail.api_client")
     def test_valid_content(self, client, decoder, head):
         head.return_value.headers = {"Content-Length": "1234567890"}
         client.eval_xslt.return_value = "eval_xslt"
