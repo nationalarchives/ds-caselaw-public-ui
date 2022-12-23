@@ -5,12 +5,10 @@ from unittest.mock import patch
 from django.test import TestCase
 from lxml import etree
 
-import judgments.models
-import judgments.utils  # noqa: F401 -- used to mock
-from judgments import converters, utils, views
+from judgments import converters, utils
 from judgments.models import SearchResult, SearchResults
 from judgments.templatetags.court_utils import get_court_name
-from judgments.utils import display_back_link
+from judgments.utils import as_integer, display_back_link, paginator
 
 
 def fake_search_results():
@@ -173,7 +171,7 @@ class TestPaginator(TestCase):
             "next_pages": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
             "number_of_pages": 250,
         }
-        self.assertEqual(views.paginator(10, 2500), expected_result)
+        self.assertEqual(paginator(10, 2500), expected_result)
 
     def test_paginator_25(self):
         # 25 items has 5 items on page 3.
@@ -186,7 +184,7 @@ class TestPaginator(TestCase):
             "next_pages": [2, 3],
             "number_of_pages": 3,
         }
-        self.assertEqual(views.paginator(1, 25), expected_result)
+        self.assertEqual(paginator(1, 25), expected_result)
 
     def test_paginator_5(self):
         expected_result = {
@@ -198,7 +196,7 @@ class TestPaginator(TestCase):
             "next_pages": [],
             "number_of_pages": 1,
         }
-        self.assertEqual(views.paginator(1, 5), expected_result)
+        self.assertEqual(paginator(1, 5), expected_result)
 
     @skip("This test works locally but fails on CI, to fix")
     @patch("judgments.utils.perform_advanced_search")
@@ -261,7 +259,7 @@ class TestConverters(TestCase):
 
 
 class TestRobotsDirectives(TestCase):
-    @patch("judgments.views.perform_advanced_search")
+    @patch("judgments.views.index.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
     def test_homepage(self, fake_result, fake_advanced_search):
         # The homepage should not have a robots meta tag with nofollow,noindex
@@ -272,7 +270,7 @@ class TestRobotsDirectives(TestCase):
             response, '<meta name="robots" content="noindex,nofollow">'
         )
 
-    @patch("judgments.views.perform_advanced_search")
+    @patch("judgments.views.index.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
     def test_judgment_results(self, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
@@ -307,18 +305,18 @@ class TestBackLink(TestCase):
 
 
 def test_min_max():
-    assert views.as_integer("cow", minimum=4) == 4
-    assert views.as_integer(0, minimum=1) == 1
-    assert views.as_integer(0, minimum=1) == 1
-    assert views.as_integer(0, minimum=0, default=1) == 0
-    assert views.as_integer(-1, minimum=0, default=1) == 0
-    assert views.as_integer(0, minimum=1, default=10) == 1
-    assert views.as_integer(2, 1, 3) == 2
-    assert views.as_integer(2, 1) == 2
-    assert views.as_integer(5, 1, 3) == 3
-    assert views.as_integer(2, minimum=1, maximum=3) == 2
-    assert views.as_integer(None, minimum=1, default=4) == 4
-    assert views.as_integer(None, minimum=1) == 1
+    assert as_integer("cow", minimum=4) == 4
+    assert as_integer(0, minimum=1) == 1
+    assert as_integer(0, minimum=1) == 1
+    assert as_integer(0, minimum=0, default=1) == 0
+    assert as_integer(-1, minimum=0, default=1) == 0
+    assert as_integer(0, minimum=1, default=10) == 1
+    assert as_integer(2, 1, 3) == 2
+    assert as_integer(2, 1) == 2
+    assert as_integer(5, 1, 3) == 3
+    assert as_integer(2, minimum=1, maximum=3) == 2
+    assert as_integer(None, minimum=1, default=4) == 4
+    assert as_integer(None, minimum=1) == 1
 
 
 def test_prep_query():
