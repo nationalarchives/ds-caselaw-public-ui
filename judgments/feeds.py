@@ -6,8 +6,7 @@ from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
 
 from .models import SearchResult
-from .utils import perform_advanced_search
-from .views import paginator
+from .utils import paginator, perform_advanced_search
 
 
 class JudgmentAtomFeed(Atom1Feed):
