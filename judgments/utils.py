@@ -135,6 +135,11 @@ def get_pdf_uri(judgment_uri):
 
 
 def display_back_link(back_link):
+    """
+    We only display the 'back' link on a judgment detail page if the user
+    navigated from a search result page. This method determines if the referrer
+    corresponds to a search result page, and conditionally returns the link if so.
+    """
     if back_link:
         url = urlparse(back_link)
         return url.path in ["/judgments/results", "/judgments/advanced_search"]
@@ -143,4 +148,8 @@ def display_back_link(back_link):
 
 
 def has_filters(query_params, exclude=["order", "per_page"]):
+    """
+    This method returns true if the query parameters contain any filters,
+    be they query string, court, date, or party.
+    """
     return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0
