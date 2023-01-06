@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n static %}
-
+{% load query_filters court_utils %}
 
 {% block robots %}
 {% endblock robots %}
@@ -145,21 +145,13 @@
             <span>{{group.name}}</span>
             <ul>
               {% for court in group.courts %}
-                {% if court.start_year == court.end_year %}
-                  <li>{{court.list_name}} {{court.start_year}}</li>
-                {% else %}
-                  <li>{{court.list_name}} {{court.start_year}} – {{court.end_year}}</li>
-                {% endif %}
+                <li>{{court.list_name}} {{court|get_court_date_range}}</li>
               {% endfor %}
             </ul>
           </li>
         {% else %}
           {% for court in group.courts %}
-            {% if court.start_year == court.end_year %}
-              <li>{{court.list_name}} {{court.start_year}}</li>
-            {% else %}
-              <li>{{court.list_name}} {{court.start_year}} – {{court.end_year}}</li>
-            {% endif %}
+            <li>{{court.list_name}} {{court|get_court_date_range}}</li>
           {% endfor %}
         {% endif %}
       {% endfor %}
