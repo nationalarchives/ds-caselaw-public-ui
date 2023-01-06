@@ -2,6 +2,7 @@ import re
 from unittest import skip
 from unittest.mock import patch
 
+import pytest
 from django.test import TestCase
 from lxml import etree
 
@@ -343,6 +344,7 @@ def test_solo_stop_word_regex():
     assert utils.solo_stop_word_regex(stop_words) == expected_output
 
 
+@pytest.mark.django_db
 def test_get_court_name():
     assert get_court_name("uksc") == "United Kingdom Supreme Court"
 

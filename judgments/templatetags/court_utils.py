@@ -1,5 +1,6 @@
 from django import template
-from ds_caselaw_utils import courts as all_courts
+
+from judgments.models import courts as all_courts
 
 register = template.Library()
 
