@@ -1,13 +1,8 @@
-# from django.db import models
-from collections.abc import Iterable
 from os.path import dirname, join
 
 from caselawclient.Client import api_client
 from django.db import models
 from djxml import xmlmodels
-from ds_caselaw_utils.courts import Court as UtilsCourt
-from ds_caselaw_utils.courts import CourtGroup as UtilsCourtGroup
-from ds_caselaw_utils.courts import courts as utils_courts
 from lxml import etree
 
 
@@ -130,81 +125,3 @@ class CourtDates(models.Model):
     param = models.CharField(max_length=64, primary_key=True)
     start_year = models.IntegerField(blank=False)
     end_year = models.IntegerField(blank=False)
-
-
-class CourtDecoratedWithDates:
-    """
-    This wraps the Court object from ds_caselaw_utils, checking in the db for
-    up-to-date court date range information, and falling back to the hardcoded
-    value if none is found.
-    """
-
-    def __init__(self, court_meta):
-        self.code = court_meta.code
-        self.name = court_meta.name
-        self.list_name = court_meta.list_name
-        self.link = court_meta.link
-        self.ncn = court_meta.ncn
-        self.canonical_param = court_meta.canonical_param
-        self.param_aliases = court_meta.param_aliases
-        try:
-            dbdate = CourtDates.objects.get(pk=self.canonical_param)
-            self.start_year = dbdate.start_year
-            self.end_year = dbdate.end_year
-        except CourtDates.DoesNotExist:
-            self.start_year = court_meta.start_year
-            self.end_year = court_meta.end_year
-
-
-class CourtGroupDecoratedWithDates:
-    """
-    This wraps the CourtGroup object from ds_caselaw_utils, delegating each court
-    to a decorated object which pulls dates from the db.
-    """
-
-    def __init__(self, group_meta):
-        self.name = group_meta.name
-        self.courts = [
-            CourtDecoratedWithDates(court_meta) for court_meta in group_meta.courts
-        ]
-
-
-class CourtsRepositoryDecoratedWithDates:
-    """
-    This wraps the CourtsRepository object from ds_caselaw_utils, decorating the
-    returned data with the database date.
-    """
-
-    def __decorate(self, data):
-        if type(data) is UtilsCourt:
-            return CourtDecoratedWithDates(data)
-        elif type(data) is UtilsCourtGroup:
-            return CourtGroupDecoratedWithDates(data)
-        elif isinstance(data, Iterable):
-            return [self.__decorate(d) for d in data]
-        else:
-            return data
-
-    def __init__(self, repo):
-        self.repo = repo
-
-    def get_by_param(self, param):
-        return self.__decorate(self.repo.get_by_param(param))
-
-    def get_all(self):
-        return self.__decorate(self.repo.get_all())
-
-    def get_selectable(self):
-        return self.__decorate(self.repo.get_selectable())
-
-    def get_listable_groups(self):
-        return self.__decorate(self.repo.get_listable_groups())
-
-    def get_listable_courts(self):
-        return self.__decorate(self.repo.get_listable_courts())
-
-    def get_listable_tribunals(self):
-        return self.__decorate(self.repo.get_listable_tribunals())
-
-
-courts = CourtsRepositoryDecoratedWithDates(utils_courts)

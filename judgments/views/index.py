@@ -2,9 +2,9 @@ from caselawclient.Client import MarklogicResourceNotFoundError
 from django.http import Http404
 from django.template import loader
 from django.template.response import TemplateResponse
+from ds_caselaw_utils import courts as all_courts
 
 from judgments.models import SearchResult
-from judgments.models import courts as all_courts
 from judgments.utils import perform_advanced_search
 
 

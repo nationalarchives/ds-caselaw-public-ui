@@ -1,7 +1,6 @@
 from django.utils.translation import gettext
 from django.views.generic import TemplateView
-
-from judgments.models import courts
+from ds_caselaw_utils import courts
 
 
 class TemplateViewWithContext(TemplateView):
