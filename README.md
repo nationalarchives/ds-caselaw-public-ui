@@ -179,13 +179,13 @@ $ fab sh
 Run the following inside the `django` container
 
 ```console
-# python manage.py migrate
+python manage.py migrate
 ```
 
 #### Run a 'development' web server
 
 ```console
-$ python manage.py runserver_plus 0.0.0.0:3000
+python manage.py runserver_plus 0.0.0.0:3000
 ```
 
 ### Running the test suite
@@ -290,9 +290,10 @@ We're using [the built-in django translation module](https://docs.djangoproject.
 <h1>{% translate "namespace.mytranslation" %}</h1>
 ```
 
-3) Update the locale file by running the following command  (see also 'a note on the django-admin command' below):
-```
-django-admin makemessages -l {langage_code}
+1. Update the locale file by running the following command:
+
+   ```console
+   python manage.py makemessages -l {langage_code}
 ```
 
 where `language_code` is the ISO 3166-1 country code (e.g. en_GB)
@@ -304,9 +305,10 @@ msgid "namespace.mytranslation"
 msgstr "This is my translation"
 ```
 
-5) Compile the translations to a binary file  (see also 'a note on the django-admin command' below):
-```
-django-admin compilemessages
+1. Compile the translations to a binary file:
+
+   ```console
+   python manage.py compilemessages
 ```
 
 ### Changing existing translations:
@@ -334,19 +336,13 @@ msgstr "This is the new tranlation text I have edited"
 
 4) Compile the translations again to make your changes show up (see also 'a note on the django-admin command' below):
 
+   ```console
+   python manage.py compilemessages
 ```
-django-admin compilemessages
-```
 
-## A note on the `django-admin` command
+## A note on running `django` commands locally
 
-When running the django-admin command locally, there's two things to be aware of.
-The first is that this command is run within the docker container, not on your machine itself, so
-from your terminal, you will need to first run `fab sh`, which will give you a console where you can run commands within the container
-(you'll see your terminal change from saying something like `tim@Tims-Macbook` at the start of each line to `root@abcde12345`).
-You can then run the commands you need to (such as `django-admin`), and when you're done, type the command `exit` to exit back out to your own machine again (the start of each line will change back).
-
-However, that's not everything, there's also a [slightly tricky bug](https://github.com/nationalarchives/ds-caselaw-public-ui/pull/352) in the way we have django set  up, which means running the `django-admin` command will likely fail with the message `"ModuleNotFoundError: No module named 'config'"`. If you see this, the way to get around it is to run the command again, but _prefix_ it with `DJANGO_SETTINGS_MODULE=""` (those are two quote marks at the end, an empty string), like: `DJANGO_SETTINGS_MODULE="" django-admin`. This will ensure that it runs correctly.
+django commands need to be run within the `django` docker container, not on your machine itself, so from your terminal, you will need to first run `fab sh`, which will give you a console where you can run commands within the container (you'll see your terminal change from saying something like `tim@Tims-Macbook` at the start of each line to `root@abcde12345`). You can then run the commands you need to (such as `python manage.py shell_plus`), and when you're done, type the command `exit` to exit back out to your own machine again (the start of each line will change back).
 
 ## Adding or removing stop words from the search
 
