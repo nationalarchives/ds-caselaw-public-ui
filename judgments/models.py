@@ -1,7 +1,7 @@
+# from django.db import models
 from os.path import dirname, join
 
 from caselawclient.Client import api_client
-from django.db import models
 from djxml import xmlmodels
 from lxml import etree
 
@@ -119,9 +119,3 @@ class SearchMatch(xmlmodels.XmlModel):
         namespaces = {"search": "http://marklogic.com/appservices/search"}
 
     transform_to_html = xmlmodels.XsltField(join(dirname(__file__), "search_match.xsl"))
-
-
-class CourtDates(models.Model):
-    param = models.CharField(max_length=64, primary_key=True)
-    start_year = models.IntegerField(blank=False)
-    end_year = models.IntegerField(blank=False)
