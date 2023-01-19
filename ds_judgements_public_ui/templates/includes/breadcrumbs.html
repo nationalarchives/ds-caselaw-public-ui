@@ -4,9 +4,13 @@
     <span class="page-header__breadcrumb-you-are-in">You are in: </span>
     <ol>
       <li>
-        <a href="{% url 'home' %}" {% if current == "home"  %}aria-current="page"{% endif %}>
+        {% if current == "home"  %}
           {% translate "common.findcaselaw" %}
-        </a>
+        {% else %}
+          <a href="{% url 'home' %}">
+            {% translate "common.findcaselaw" %}
+          </a>
+        {% endif %}
       </li>
       {% if title and link %}
         <li>{{ title }}</li>
