@@ -40,13 +40,16 @@
   }
 
   a {
-    background-color: $color__aqua-blue;
-    color: $color__white;
     padding: calc($spacer__unit / 2) calc($spacer__unit * 3);
     display: inline-block;
     text-decoration: none;
     outline-offset: 3px;
     margin: 0;
+
+    &.btn {
+      @include call-to-action-button;
+      margin-bottom: calc($spacer__unit / 3) !important;
+    }
 
     @media (min-width: $grid__breakpoint-small) {
       padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);

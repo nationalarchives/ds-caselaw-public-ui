@@ -12,12 +12,15 @@ $color__highlight-blue: #0066cc;
 $color__yellow: #ffb952;
 $color__aqua-blue: #037091;
 
-$color__link-blue: #1d70b8;
-$color__link-blue-hover: #003078;
+$color__link-blue: $color__aqua-blue;
+$color__link-blue-hover: $color__dark-blue;
+$color__link-blue-focus: $color__dark-blue;
 $color__link-blue-visited: #4c2c92;
 $color__link-blue-active: #1e1e2a;
 
-$color__focus-blue-outline: #1d70b8;
+$color__focus-blue-outline: $color__dark-blue;
+$color__cta-background: $color__aqua-blue;
+$color__cta-background-hover: $color__dark-blue;
 
 $grid__breakpoint-small: 576px;
 $grid__breakpoint-medium: 768px;
