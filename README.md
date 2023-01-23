@@ -73,7 +73,7 @@ editing content!
 ### 2. Create `.env`
 
 ```console
-$ cp .env.example .env
+cp .env.example .env
 ```
 
 If new environment variables are required, you might need to update .env to reflect that. Check .env.example
@@ -90,7 +90,7 @@ npm run build
 ### 4. Build Docker containers
 
 ```console
-$ fab build
+fab build
 ```
 
 You might need to run this periodically if there are changes to the setup of the docker container;
@@ -107,7 +107,7 @@ follow this step.
 Switch to the location of `ds-find-caselaw-docs/marklogic` and run:
 
 ```console
-$ docker-compose up
+docker-compose up
 ```
 
 ### 6. Create Docker network
@@ -116,7 +116,7 @@ If you see an error message referring to a missing docker network, run the follo
 command to create it:
 
 ``` console
-$ docker network create caselaw
+docker network create caselaw
 ```
 
 ### 7. Quick start
@@ -124,7 +124,7 @@ $ docker network create caselaw
 At this point you can run the following command to "quick start" the application:
 
 ```console
-$ fab run
+fab run
 ```
 
 This command takes care of the following:
@@ -139,6 +139,7 @@ You can then access the site in your browser:
 <http://127.0.0.1:3000>
 
 #### Fixing an issue when another project is already running
+
 When starting up, if you encounter an error message like this:
 
 ```ERROR: for postgres  Cannot start service postgres: driver failed programming external connectivity on endpoint ds-caselaw-public-ui_postgres_1 (0fb7572d583761d3a348e8fd9139b0007638a17c6f91b15e8678f2575f94ffa7): Bind for 0.0.0.0:5432 failed: port is already allocated```
@@ -159,19 +160,19 @@ Note that running this command will fail if you have already started the applica
 `fab run`
 
 ```console
-$ fab start
+fab start
 ```
 
-To stop any running containers:
+#### To stop any running containers
 
 ```console
-$ fab stop
+fab stop
 ```
 
 #### Start a shell session with the 'django' container
 
 ```console
-$ fab sh
+fab sh
 ```
 
 #### Apply database migrations
@@ -179,30 +180,30 @@ $ fab sh
 Run the following inside the `django` container
 
 ```console
-# python manage.py migrate
+python manage.py migrate
 ```
 
 #### Run a 'development' web server
 
 ```console
-$ python manage.py runserver_plus 0.0.0.0:3000
+python manage.py runserver_plus 0.0.0.0:3000
 ```
 
-### Running the test suite
+#### Running the test suite
 
 ```console
-$ fab test
+fab test
 ```
 
-### Viewing code coverage
+#### Viewing code coverage
 
 ```console
-$ fab coverage
+fab coverage
 ```
 
 This will generate an HTML file at `htmlcov/index.html` to view code coverage
 
-### WeasyPrint PDF Library
+## WeasyPrint PDF Library
 
 We are using the [WeasyPrint](https://doc.courtbouillon.org/weasyprint/stable/) library to handle PDF generation on the backend. If you are using the provided Docker images, the dependencies are bundled in the Dockerfile.
 
@@ -220,7 +221,7 @@ Then it means the dependencies for WeasyPrint have not been installed correctly.
 
 Copy `pre-push.sample` to `.git/hooks/pre-push` to set up the pre-push hook. This will run Python linting and style checks when you push to the repo and alert you to any linting issues that will cause CI to fail. To use this, you will need to install [pre-commit](https://pre-commit.com/) on your development machine, typically using `pip install pre-commit`.
 
-## Setting up commit signing.
+## Setting up commit signing
 
 Any commit that's merged to `main` needs to be [signed](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits), to ensure the identity of the author is who they say they are.
 
@@ -238,15 +239,15 @@ If you have already made some unsigned commits on a branch before setting up sig
 
 Included in this repository is:
 
-* Webpack and Babel for transpiling JavaScript
-* Sass for compiling CSS
+- Webpack and Babel for transpiling JavaScript
+- Sass for compiling CSS
 
 ### Working with SASS/CSS
 
-* Ensure you have NodeJS & NPM installed.
-* Install SASS globally by running `npm install -g sass`.
-* To watch and build the site SASS, run `npm run start-sass`
-* To modify styles, navigate to the `sass` folder in your editor.
+- Ensure you have NodeJS & NPM installed.
+- Install SASS globally by running `npm install -g sass`.
+- To watch and build the site SASS, run `npm run start-sass`
+- To modify styles, navigate to the `sass` folder in your editor.
 
 #### Note about `ds_judgements_public_ui/sass/includes/_judgment_text.scss`
 
@@ -269,7 +270,7 @@ UI applications are not shared.
 
 ### Working with JavaScript
 
-* In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
+In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
 
 ### Internationalisation
 
@@ -277,76 +278,72 @@ We're using [the built-in django translation module](https://docs.djangoproject.
 
 #### Adding new translations
 
-1) Ensure that the `i18n` module is loaded at the top of the file:
+1. Ensure that the `i18n` module is loaded at the top of the file:
 
-```django
-{% extends 'base.html' %}
-{% load i18n %}
-...
-```
+   ```django
+   {% extends 'base.html' %}
+   {% load i18n %}
+   ...
+   ```
 
-2) Add the translation string to the page:
-```
-<h1>{% translate "namespace.mytranslation" %}</h1>
-```
+1. Add the translation string to the page:
 
-3) Update the locale file by running the following command  (see also 'a note on the django-admin command' below):
-```
-django-admin makemessages -l {langage_code}
-```
-
-where `language_code` is the ISO 3166-1 country code (e.g. en_GB)
-
-4) In the generated `.po` file, find the generated msgid string and add the translation below it
-
-```
-msgid "namespace.mytranslation"
-msgstr "This is my translation"
-```
-
-5) Compile the translations to a binary file  (see also 'a note on the django-admin command' below):
-```
-django-admin compilemessages
-```
-
-### Changing existing translations:
-
-1) Find the translation string you want to change in the template:
-
-```django
+   ```django
    <h1>{% translate "namespace.mytranslation" %}</h1>
-```
+   ```
 
-2) Go and look for this translation in the `django.po` file (you'll be looking for a line with `msgid` at the start and the string you saw in the template):
+1. Update the locale file by running the following command:
 
-```
-msgid "namespace.mytranslation"
-msgstr "This is my translation"
-```
+   ```console
+   python manage.py makemessages -l {langage_code}
+   ```
 
-3) Change the text on the following line (begining with `msgstr` to the new translation you want):
+   where `language_code` is the ISO 3166-1 country code (e.g. en_GB)
 
+1. In the generated `.po` file, find the generated msgid string and add the translation below it:
 
-```
-msgid "namespace.mytranslation"
-msgstr "This is the new tranlation text I have edited"
-```
+   ```console
+   msgid "namespace.mytranslation"
+   msgstr "This is my translation"
+   ```
 
-4) Compile the translations again to make your changes show up (see also 'a note on the django-admin command' below):
+1. Compile the translations to a binary file:
 
-```
-django-admin compilemessages
-```
+   ```console
+   python manage.py compilemessages
+   ```
 
-## A note on the `django-admin` command
+### Changing existing translations
 
-When running the django-admin command locally, there's two things to be aware of.
-The first is that this command is run within the docker container, not on your machine itself, so
-from your terminal, you will need to first run `fab sh`, which will give you a console where you can run commands within the container
-(you'll see your terminal change from saying something like `tim@Tims-Macbook` at the start of each line to `root@abcde12345`).
-You can then run the commands you need to (such as `django-admin`), and when you're done, type the command `exit` to exit back out to your own machine again (the start of each line will change back).
+1. Find the translation string you want to change in the template:
 
-However, that's not everything, there's also a [slightly tricky bug](https://github.com/nationalarchives/ds-caselaw-public-ui/pull/352) in the way we have django set  up, which means running the `django-admin` command will likely fail with the message `"ModuleNotFoundError: No module named 'config'"`. If you see this, the way to get around it is to run the command again, but _prefix_ it with `DJANGO_SETTINGS_MODULE=""` (those are two quote marks at the end, an empty string), like: `DJANGO_SETTINGS_MODULE="" django-admin`. This will ensure that it runs correctly.
+   ```django
+      <h1>{% translate "namespace.mytranslation" %}</h1>
+   ```
+
+1. Go and look for this translation in the `django.po` file (you'll be looking for a line with `msgid` at the start and the string you saw in the template):
+
+   ```console
+   msgid "namespace.mytranslation"
+   msgstr "This is my translation"
+   ```
+
+1. Change the text on the following line (begining with `msgstr` to the new translation you want):
+
+   ```console
+   msgid "namespace.mytranslation"
+   msgstr "This is the new tranlation text I have edited"
+   ```
+
+1. Compile the translations again to make your changes show up:
+
+   ```console
+   python manage.py compilemessages
+   ```
+
+## A note on running `django` commands locally
+
+django commands need to be run within the `django` docker container, not on your machine itself, so from your terminal, you will need to first run `fab sh`, which will give you a console where you can run commands within the container (you'll see your terminal change from saying something like `tim@Tims-Macbook` at the start of each line to `root@abcde12345`). You can then run the commands you need to (such as `python manage.py shell_plus`), and when you're done, type the command `exit` to exit back out to your own machine again (the start of each line will change back).
 
 ## Adding or removing stop words from the search
 
