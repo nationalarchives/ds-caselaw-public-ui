@@ -96,8 +96,7 @@ fab build
 You might need to run this periodically if there are changes to the setup of the docker container;
 it's a good thing to run if your environment suddenly stops working.
 
-If this fails early on, it's very likely that Docker isn't running, and you'll need to start it by
-clicking the Whale icon.
+If this fails early on, it's very likely that Docker isn't running, and you'll need to start it.
 
 ### 5. Run Marklogic
 
