@@ -201,9 +201,11 @@ fab coverage
 
 This will generate an HTML file at `htmlcov/index.html` to view code coverage
 
-## WeasyPrint PDF Library
+### PDF Generation
 
-We are using the [WeasyPrint](https://doc.courtbouillon.org/weasyprint/stable/) library to handle PDF generation on the backend. If you are using the provided Docker images, the dependencies are bundled in the Dockerfile.
+We used the [WeasyPrint](https://doc.courtbouillon.org/weasyprint/stable/) library to handle PDF generation on the backend, but moved to producing PDFs via [LibreOffice](https://github.com/nationalarchives/ds-caselaw-pdf-conversion). But WeasyPrint is still used as a fallback if the PDF is not found in the S3 bucket.
+
+If you are using the provided Docker images, the dependencies for WeasyPrint are bundled in the Dockerfile.
 
 If you see an error containing this message:
 
