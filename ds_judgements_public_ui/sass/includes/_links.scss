@@ -13,6 +13,7 @@ a {
 
   &:focus {
     @include focus-default;
+    color: $color__link-blue-focus;
   }
   &:visited {
     color: $color__link-blue-visited;

@@ -36,7 +36,7 @@
   }
 
   &__button {
-    @include call-to-action-button($color__dark-blue, $color__white);
+    @include call-to-action-button;
     margin: calc(2.2 * $spacer__unit) 0 1rem 0;
     font-size: 0.85rem;
     outline-color: $color__dark-blue;

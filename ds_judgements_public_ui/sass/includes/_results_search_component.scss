@@ -59,7 +59,7 @@
   }
 
   input[type=submit] {
-    @include call-to-action-button($color__dark-blue, $color__white);
+    @include call-to-action-button;
     padding-right: calc($spacer__unit * 3);
     padding-left: calc($spacer__unit * 3 + 1.5rem);
     margin-top: calc($spacer__unit * 0.5);
@@ -132,7 +132,7 @@
   }
 
   &__search-submit-button {
-    @include call-to-action-button($color__dark-blue, $color__white);
+    @include call-to-action-button;
     padding-left: calc($spacer__unit * 3);
     padding-right: calc($spacer__unit * 3);
   }
@@ -235,7 +235,7 @@
   }
 
   &__filter-submit-button {
-    @include call-to-action-button($color__dark-blue, $color__white);
+    @include call-to-action-button;
     margin: 0 auto;
   }
 

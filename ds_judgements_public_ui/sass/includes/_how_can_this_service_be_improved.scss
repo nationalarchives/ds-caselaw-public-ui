@@ -15,7 +15,7 @@
   }
 
   &__cta-button {
-    @include call-to-action-button($color__black, $color__white);
+    @include call-to-action-button-secondary;
     &:visited  {
       color: #ffffff;
     }
