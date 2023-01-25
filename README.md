@@ -43,8 +43,7 @@ This app is intended to edit Judgments in the Marklogic database defined in [ds-
 Unless you are intending to do any database/Marklogic development work, it is simpler to access a
 shared Marklogic database running on the `staging` environment than to build your own.
 
-If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at
-[ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic).
+If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic).
 
 The **recommended** alternative is to access the shared staging Marklogic database. The way you do this
 depends on where you work:
@@ -76,8 +75,7 @@ editing content!
 cp .env.example .env
 ```
 
-If new environment variables are required, you might need to update .env to reflect that. Check .env.example
-for suitable default values
+If new environment variables are required, you might need to update .env to reflect that. Check .env.example for suitable default values
 
 ### 3. Compile frontend assets
 
