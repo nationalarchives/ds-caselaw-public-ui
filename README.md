@@ -45,29 +45,27 @@ shared Marklogic database running on the `staging` environment than to build you
 
 If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic).
 
-The **recommended** alternative is to access the shared staging Marklogic database. The way you do this
-depends on where you work:
+The **recommended** alternative is to access the shared staging Marklogic database.
 
-#### dxw developers
+#### Staging Marklogic Access
 
-You will need to be using the dxw vpn. Retrieve the staging Marklogic credentials from dalmatian (or ask
-one of the other developers/ops). Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
-in your `.env` file (see step 2).
+You will need to:
 
-The MARKLOGIC_HOST should likely begin with `caselaw`
+1. Acquire `MARKLOGIC_HOST`, `MARKLOGIC_USER` and `MARKLOGIC_PASSWORD` staging credentials for the `.env` file (see section 2) and console login.
+   - Ask a `dxw` employee  (or acquire yourself if you are a `dxw` employee ask retrieve it from dalmation) to share the shared staging Marklogic credentials.
+   - Or, only if necessary, ask `dxw` to create you a personal Marklogic account.
+2. Acquire appropriate VPN access
+   - You will need access to one of two VPNs: the `AWS` vpn gives access only for staging data for the locally running app, but the `dxw` vpn also give access to the Marklogic query console and admin interface. [Further details are available.](https://github.com/nationalarchives/ds-find-caselaw-docs/blob/main/doc/infrastructure/vpn.md)
+   - Note: Sometimes you will need to disconnect and reconnect to the VPN as intermittently they seem to go down.
 
-#### TNA/other developers
+Notes:
 
-You will need vpn credentials from the dxw ops team, and the staging Marklogic credentials from one of the
-dxw development team. Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
-in your `.env` file (see step 2).
+- The `MARKLOGIC_HOST` should most likely begin with:
+  - `internal` if your account requires the `dxw` VPN.
+  - `caselaw` if your account requires the `AWS` VPN
+- Some people have experienced difficulties using the domain name to connect to the server -- IP addresses may work better.
 
-The MARKLOGIC_HOST should most likely begin with `internal`. Some people have experienced difficulties using
-the domain name to connect to the server -- IP addresses may work better.
-
-In both cases, when you run the application, you will be viewing data on staging Marklogic. This
-data is also used for testing and occasionally user research, so please exercise caution when creating/
-editing content!
+Caution: When you run the application with staging Marklogic, this data is also used for testing and occasionally user research, so please exercise caution when creating/editing content!
 
 ### 2. Create `.env`
 
