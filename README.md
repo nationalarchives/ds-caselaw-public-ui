@@ -98,7 +98,17 @@ it's a good thing to run if your environment suddenly stops working.
 
 If this fails early on, it's very likely that Docker isn't running, and you'll need to start it.
 
-### 5. Run Marklogic
+### 5. Create Docker network
+
+The `docker-compose` files in this repo and in [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic) both specify an external default network named `caselaw`.
+
+We need to create a network with this name if it does not yet exist:
+
+```console
+docker network create caselaw
+```
+
+### 6. Run Marklogic
 
 **Note** If you are using the staging instance of Marklogic, you do not need to
 follow this step.
@@ -107,15 +117,6 @@ Switch to the location of [ds-caselaw-marklogic](https://github.com/nationalarch
 
 ```console
 docker-compose up
-```
-
-### 6. Create Docker network
-
-If you see an error message referring to a missing docker network, run the following
-command to create it:
-
-``` console
-docker network create caselaw
 ```
 
 ### 7. Quick start
