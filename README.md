@@ -363,6 +363,12 @@ Anyone with access to the Github repo can add or remove stop words from the sear
 
 ## Deployment
 
+### Environment variables
+
+If there are new or changed environment variables, a dxw-er will need to run:
+`dalmatian service set-environment-variable -i caselaw-stg -e staging -s public -k NEW_ENV_VAR -v VALUE`
+(possibly with `caselaw` and `prod` for production and `editor` for the editor ui)
+
 ### Staging
 
 The `main` branch is automatically deployed with each commit. The deployed app can be viewed at [https://staging.caselaw.nationalarchives.gov.uk/](https://staging.caselaw.nationalarchives.gov.uk/)
