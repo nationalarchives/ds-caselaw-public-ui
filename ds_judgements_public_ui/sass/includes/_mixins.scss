@@ -53,12 +53,12 @@
   }
 }
 
-@mixin call-to-action-button($background_color, $foreground_color) {
-  background-color: $background_color;
+@mixin call-to-action-button {
+  background-color: $color__cta-background;
   text-decoration: none;
   font-weight: 700;
   border: 0;
-  color: $foreground_color;
+  color: $color__white;
   padding: 1rem 1.3rem;
   display: inline-block;
   margin-top: 1em;
@@ -66,13 +66,22 @@
 
   &:focus, &:hover {
     @include focus-default;
-    color: $foreground_color;
-    background-color: $background_color;
-    outline-color: $background_color;
+    color: $color__white !important;
+    background-color: $color__cta-background-hover;
+    outline-color: $color__cta-background-hover;
+    border-color: $color__cta-background-hover;
     text-decoration: underline;
     outline-offset: 0.2rem;
   }
 }
+
+@mixin call-to-action-button-secondary {
+  @include call-to-action-button;
+  background-color: transparent;
+  color: $color__cta-background !important;
+  border: 2px solid $color__cta-background;
+}
+
 
 @mixin emphasised-block {
   padding: $spacer__unit;
