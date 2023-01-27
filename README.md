@@ -38,13 +38,12 @@ The database service built from the official [postgres](https://hub.docker.com/_
 
 ### 1. Get access to Marklogic
 
-This app is intended to edit Judgments in the Marklogic database defined in [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
+This app is intended to edit Judgments in the Marklogic database defined in [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic).
 
 Unless you are intending to do any database/Marklogic development work, it is simpler to access a
 shared Marklogic database running on the `staging` environment than to build your own.
 
-If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at
-[ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
+If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic).
 
 The **recommended** alternative is to access the shared staging Marklogic database. The way you do this
 depends on where you work:
@@ -76,8 +75,7 @@ editing content!
 cp .env.example .env
 ```
 
-If new environment variables are required, you might need to update .env to reflect that. Check .env.example
-for suitable default values
+If new environment variables are required, you might need to update .env to reflect that. Check .env.example for suitable default values
 
 ### 3. Compile frontend assets
 
@@ -96,27 +94,27 @@ fab build
 You might need to run this periodically if there are changes to the setup of the docker container;
 it's a good thing to run if your environment suddenly stops working.
 
-If this fails early on, it's very likely that Docker isn't running, and you'll need to start it by
-clicking the Whale icon.
+If this fails early on, it's very likely that Docker isn't running, and you'll need to start it.
 
-### 5. Run Marklogic
+### 5. Create Docker network
+
+The `docker-compose` files in this repo and in [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic) both specify an external default network named `caselaw`.
+
+We need to create a network with this name if it does not yet exist:
+
+```console
+docker network create caselaw
+```
+
+### 6. Run Marklogic
 
 **Note** If you are using the staging instance of Marklogic, you do not need to
 follow this step.
 
-Switch to the location of `ds-find-caselaw-docs/marklogic` and run:
+Switch to the location of [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic) and run:
 
 ```console
 docker-compose up
-```
-
-### 6. Create Docker network
-
-If you see an error message referring to a missing docker network, run the following
-command to create it:
-
-``` console
-docker network create caselaw
 ```
 
 ### 7. Quick start
@@ -237,15 +235,24 @@ If you have already made some unsigned commits on a branch before setting up sig
 
 ## Front end development
 
-Included in this repository is:
+### Pre-requisites
+
+- Ensure you have NodeJS & NPM installed.
+- Install SASS globally by running `npm install -g sass`.
+
+### Dependencies in this repository
+
+Install these with:
+
+```console
+npm i
+```
 
 - Webpack and Babel for transpiling JavaScript
 - Sass for compiling CSS
 
 ### Working with SASS/CSS
 
-- Ensure you have NodeJS & NPM installed.
-- Install SASS globally by running `npm install -g sass`.
 - To watch and build the site SASS, run `npm run start-sass`
 - To modify styles, navigate to the `sass` folder in your editor.
 
