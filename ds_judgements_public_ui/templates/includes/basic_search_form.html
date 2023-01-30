@@ -1,17 +1,18 @@
+{% load i18n %}
 <div class="search-component">
   <div class="search-component__container">
-    <h2 class="search-component__header--sr-only">Search by keyword or neutral citation</h2>
+    <h2 class="search-component__header--sr-only">{% translate "basicsearchform.title" %}</h2>
     <form action="{% url 'results' %}" role="search" aria-label="Search by keyword or neutral citation" id="analytics-basic-search">
 
-      <label for="search_term" class="search-component__search-term-label">Search</label>
-      <input class="search-component__search-term-input" id="search_term" name="query" type="text" value="" placeholder="Enter a party name or neutral citation">
+      <label for="search_term" class="search-component__search-term-label">{% translate "basicsearchform.label" %}</label>
+      <input class="search-component__search-term-input" id="search_term" name="query" type="text" value="" placeholder="{% translate "basicsearchform.placeholder" %}">
       {{ form.search_term }}
-      <input type="submit" value="Search">
+      <input type="submit" value="{%  translate "basicsearchform.cta" %}">
 
     </form>
 
     <div class="search-component__more-options">
-      <a href="{% url 'structured_search' %}">More search options</a>
+      <a href="{% url 'structured_search' %}">{% translate "basicsearchform.structured_search" %}</a>
     </div>
   </div>
 </div>

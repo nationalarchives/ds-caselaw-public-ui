@@ -68,7 +68,7 @@
     <p>
       You can search the full text of every judgment and decision. You can also search and browse judgments by neutral
       citation, court, party, judge and within a date range. These options can be combined on the
-      <a href="{% url "structured_search" %}">More search options</a> page.
+      <a href="{% url "structured_search" %}">{% translate "basicsearchform.structured_search" %}</a> page.
     </p>
 
     <p>
@@ -164,7 +164,7 @@
     </p>
 
     <p>
-      You can use the 'party name' search field on the More search options page to only search against judgments or
+      You can use the 'party name' search field on the <a href="{% url "structured_search" %}">{% translate "basicsearchform.structured_search" %}</a> page to only search against judgments or
       decisions where the name is listed as a party. This will not search for the name within the text of all
       judgments and decisions.
     </p>
@@ -205,7 +205,7 @@
 
     <p>
       You can search by the name of the judge who has decided a case by using the 'Judge's name' box on the
-      <a href="{% url "structured_search" %}">More search options</a> page. This means that it will only search for judges that have given
+      <a href="{% url "structured_search" %}">{% translate "basicsearchform.structured_search" %}</a> page. This means that it will only search for judges that have given
       a judgment or decision on a case instead of searching every reference to the name of the judge within the full text of every judgment or
       decision.
     </p>
