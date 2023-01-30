@@ -1,6 +1,7 @@
+{% load i18n %}
 <div class="results-search-component__full-text-panel">
-  <label for="search_term" class="results-search-component__full-text-label">Search</label>
+  <label for="search_term" class="results-search-component__full-text-label">{% translate "basicsearchform.label" %}</label>
   <input class="search-component__search-term-input" id="search_term" name="query" type="text" value="{{context.query}}"
-         placeholder="Enter keyword, party name or neutral citation">
-  <input type="submit" value="Search" class="results-search-component__search-submit-button results-search-component__desktop-submit-button">
+         placeholder="{% translate "basicsearchform.placeholder" %}">
+  <input type="submit" value="{% translate "basicsearchform.cta" %}" class="results-search-component__search-submit-button results-search-component__desktop-submit-button">
 </div>

@@ -33,7 +33,7 @@ msgstr "Search"
 
 #: ds_judgements_public_ui/templates/includes/basic_search_form.html:8
 msgid "basicsearchform.placeholder"
-msgstr "Enter a party name or neutral citation"
+msgstr "Enter keyword, party name or neutral citation"
 
 #: ds_judgements_public_ui/templates/includes/basic_search_form.html:10
 msgid "basicsearchform.cta"
