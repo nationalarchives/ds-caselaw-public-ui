@@ -54,8 +54,18 @@
     padding-right: calc($spacer__unit * 3);
   }
 
-  &__search-term-label {
+  &__search-term-label.desktop {
+    @media (max-width: $grid__breakpoint-medium) {
+      display: none;
+    }
     @include sr-only;
+
+  }
+
+  &__search-term-label.mobile {
+    @media (min-width: $grid__breakpoint-medium) {
+      display: none;
+    }
   }
 
   &__search-term-input {
@@ -74,6 +84,18 @@
 
     @media (min-width: $grid__breakpoint-extra-large) {
       width: 35rem;
+    }
+
+    &.mobile {
+      @media (min-width: $grid__breakpoint-medium) {
+        display: none;
+      }
+    }
+
+    &.desktop {
+      @media (max-width: $grid__breakpoint-medium) {
+        display: none;
+      }
     }
   }
 
