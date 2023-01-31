@@ -50,6 +50,11 @@
 
   input[type=submit] {
     @include call-to-action-button;
+    @media (min-width: $grid__breakpoint-medium) {
+      position: relative;
+      top: -1px;
+      margin-left: calc($spacer__unit * 0.5);
+    }
     padding-left: calc($spacer__unit * 3);
     padding-right: calc($spacer__unit * 3);
   }
