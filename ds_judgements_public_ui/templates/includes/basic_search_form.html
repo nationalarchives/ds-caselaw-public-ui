@@ -4,8 +4,10 @@
     <h2 class="search-component__header--sr-only">{% translate "basicsearchform.title" %}</h2>
     <form action="{% url 'results' %}" role="search" aria-label="Search by keyword or neutral citation" id="analytics-basic-search">
 
-      <label for="search_term" class="search-component__search-term-label">{% translate "basicsearchform.label" %}</label>
-      <input class="search-component__search-term-input" id="search_term" name="query" type="text" value="" placeholder="{% translate "basicsearchform.placeholder" %}">
+      <label for="search_term" class="search-component__search-term-label desktop">{% translate "basicsearchform.label" %}</label>
+      <input class="search-component__search-term-input desktop" id="search_term" name="query" type="text" value="" placeholder="{% translate "basicsearchform.placeholder" %}">
+      <label for="search_term" class="search-component__search-term-label mobile">{% translate "basicsearchform.placeholder" %}</label>
+      <input class="search-component__search-term-input mobile" id="search_term" name="query" type="text" value="" placeholder="{% translate "basicsearchform.label" %}">
       {{ form.search_term }}
       <input type="submit" value="{%  translate "basicsearchform.cta" %}">
 
