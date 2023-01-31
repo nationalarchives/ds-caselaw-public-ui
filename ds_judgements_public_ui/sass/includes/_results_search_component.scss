@@ -61,20 +61,12 @@
   input[type=submit] {
     @include call-to-action-button;
     padding-right: calc($spacer__unit * 3);
-    padding-left: calc($spacer__unit * 3 + 1.5rem);
+    padding-left: calc($spacer__unit * 3);
     margin-top: calc($spacer__unit * 0.5);
     margin-bottom: $spacer__unit;
     width: 100%;
     @media (min-width: $grid__breakpoint-medium) {
       width: auto;
-    }
-    background-image: url($fa_magnifying_glass_solid_white);
-    background-repeat: no-repeat;
-    background-position: calc(50% - 2rem) 0.42rem;
-    background-size: 1.5rem 2.5rem;
-
-    @media (min-width: $grid__breakpoint-medium) {
-      background-position: 2.5rem 0.42rem;
     }
   }
 
