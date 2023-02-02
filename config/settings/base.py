@@ -123,6 +123,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "config.middleware.CacheHeaderMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
@@ -247,3 +248,4 @@ LOGGING = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 APPEND_SLASH = False
+WHITENOISE_MAX_AGE = 3600  # set Cache-Control header on static-served images
