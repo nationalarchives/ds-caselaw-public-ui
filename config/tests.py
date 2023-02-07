@@ -12,3 +12,15 @@ class TestRedirect(TestCase):
         url = "/2022/202"
         response = self.client.get(url)
         assert response.status_code == 404
+
+
+class TestCacheHeaders(TestCase):
+    def test_static_headers(self):
+        url = "/static/images/tna_logo.svg"
+        response = self.client.get(url)
+        assert response.headers["Cache-Control"] == "max-age=3600, public"
+
+    def test_view_headers(self):
+        url = "/what-to-expect"
+        response = self.client.get(url)
+        assert response.headers["Cache-Control"] == "max-age=3600, public"
