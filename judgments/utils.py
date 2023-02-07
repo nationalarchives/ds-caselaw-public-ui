@@ -131,7 +131,11 @@ def get_pdf_uri(judgment_uri):
     env = environ.Env()
     """Create a string saying where the S3 PDF will be for a judgment uri"""
     pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
-    return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
+    assets = env("ASSETS_CDN_BASE_URL", default=None)
+    if assets:
+        return f"{assets}/{pdf_path}"
+    else:
+        return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
 
 
 def display_back_link(back_link):
