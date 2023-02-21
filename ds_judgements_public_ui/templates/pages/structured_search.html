@@ -17,11 +17,13 @@
     <div class="structured-search">
       <div class="structured-search__main-search">
         <div class="structured-search__container">
-          <h1 class="structured-search__main-search-header">Search everything for</h1>
+          <h1 class="structured-search__main-search-header">Advanced search</h1>
           <div class="structured-search__full-text-panel">
-            <input class="search-component__search-term-input" id="search_term" name="query" type="text" placeholder="{% translate "basicsearchform.placeholder" %}" value="">
-            <label for="search_term" class="structured-search__full-text-label">Search</label>
-            <input type="submit" value="Search">
+            <label for="search_term" class="structured-search__search-term-label desktop">{% translate "basicsearchform.label" %}</label>
+            <input class="structured-search__search-term-input desktop" id="search_term" name="query" type="text" value="" placeholder="{% translate "basicsearchform.placeholder" %}">
+            <label for="search_term" class="structured-search__search-term-label mobile">{% translate "basicsearchform.placeholder" %}</label>
+            <input class="structured-search__search-term-input mobile" id="search_term" name="query_mobile" type="text" value="" placeholder="{% translate "basicsearchform.label" %}">
+            <input type="submit" value="{%  translate "basicsearchform.cta" %}">
           </div>
         </div>
       </div>
