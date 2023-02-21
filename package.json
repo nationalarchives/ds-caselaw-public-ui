@@ -32,5 +32,8 @@
   },
   "browserslist": [
     "IE 11"
-  ]
+  ],
+  "dependencies": {
+    "sass": "^1.58.3"
+  }
 }
