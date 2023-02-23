@@ -15,6 +15,10 @@
     font-weight: normal;
     color: $color__almost-black;
     margin: calc($spacer__unit * 3) 0 0 0;
+    @media (max-width: $grid__breakpoint-medium) {
+      margin: 1rem 0 1rem 1rem;
+      line-height: 2.6rem;
+    }
   }
 
   &__container {
@@ -34,6 +38,7 @@
     @media (min-width: $grid__breakpoint-medium) {
       flex-direction: row;
       padding: calc($spacer__unit * 1.5) 0;
+      margin: auto;
     }
 
   }
@@ -251,6 +256,10 @@
 
   input[type=text] {
     width: 75%;
+    @media (max-width: $grid__breakpoint-medium) {
+      margin: auto 1rem;
+      width: auto;
+      }
   }
 
   input[type=submit] {
@@ -265,6 +274,10 @@
     @media (min-width: $grid__breakpoint-medium) {
       width: auto;
     }
+    @media (max-width: $grid__breakpoint-medium) {
+      margin: auto;
+      width: 10rem;
+      }
   }
   &__search-term-label.desktop {
     @media (max-width: $grid__breakpoint-medium) {
@@ -278,6 +291,9 @@
     @media (min-width: $grid__breakpoint-medium) {
       display: none;
     }
+    @media (max-width: $grid__breakpoint-medium) {
+      margin: auto 1rem;
+      }
   }
 
   &__search-term-input {
@@ -301,6 +317,9 @@
     &.mobile {
       @media (min-width: $grid__breakpoint-medium) {
         display: none;
+      }
+      @media (max-width: $grid__breakpoint-medium) {
+      margin: auto 1rem;
       }
     }
 
