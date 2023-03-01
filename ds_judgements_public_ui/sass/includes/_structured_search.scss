@@ -16,7 +16,7 @@
     color: $color__almost-black;
     margin: calc($spacer__unit * 3) 0 0 0;
     @media (max-width: $grid__breakpoint-medium) {
-      margin: 1rem 0 1rem 1rem;
+      margin: 1px 0 1px 1px;
       line-height: 2.6rem;
     }
   }
@@ -78,7 +78,7 @@
 
   &__limit-to-label {
     display: block;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     font-size: 1rem;
     font-weight: bold;
   }
@@ -163,6 +163,7 @@
   &__submit-container {
     margin-top: calc($spacer__unit / 2);
     text-align: right;
+
   }
 
   &__help-text {
@@ -257,26 +258,26 @@
   input[type=text] {
     width: 75%;
     @media (max-width: $grid__breakpoint-medium) {
-      margin: auto 1rem;
+      margin: auto 1px;
       width: auto;
       }
   }
 
   input[type=submit] {
     @include call-to-action-button;
-    padding-right: calc($spacer__unit * 3);
-    padding-left: calc($spacer__unit * 3);
+    padding-right: calc($spacer__unit * 2.5);
+    padding-left: calc($spacer__unit * 2.5);
     margin-top: calc($spacer__unit * 0.5);
     margin-bottom: $spacer__unit;
     width: 50%;
     position: relative;
-    left: 4px;
     @media (min-width: $grid__breakpoint-medium) {
       width: auto;
     }
     @media (max-width: $grid__breakpoint-medium) {
-      margin: auto;
-      width: 10rem;
+      margin: 1rem 2rem 1rem 2rem;
+      width: 75%;
+      padding: 1rem 1rem 1rem 1rem;
       }
   }
   &__search-term-label.desktop {
@@ -292,7 +293,7 @@
       display: none;
     }
     @media (max-width: $grid__breakpoint-medium) {
-      margin: auto 1rem;
+      margin: auto 1px;
       }
   }
 
@@ -319,7 +320,7 @@
         display: none;
       }
       @media (max-width: $grid__breakpoint-medium) {
-      margin: auto 1rem;
+      margin: auto 1px;
       }
     }
 
