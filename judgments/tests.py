@@ -101,7 +101,26 @@ class TestJudgment(TestCase):
 
         response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")
+        self.assertIn("assets.caselaw.nationalarchives.gov.uk", decoded_response)
+        self.assertIn("ewca_civ_2004_632.pdf", decoded_response)
+        self.assertNotIn("data.pdf", decoded_response)
         self.assertIn("(1.1\xa0GB)", decoded_response)
+        # We don't use the Download as PDF text because there's an issue with localisated strings on CI
+        self.assertEqual(response.status_code, 200)
+
+    @patch("judgments.views.detail.requests.head")
+    @patch("judgments.views.detail.decoder.MultipartDecoder")
+    @patch("judgments.views.detail.api_client")
+    def test_no_valid_pdf(self, client, decoder, head):
+        head.return_value.headers = {}
+        client.eval_xslt.return_value = "eval_xslt"
+        decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
+        client.get_judgment_name.return_value = "judgment metadata"
+
+        response = self.client.get("/ewca/civ/2004/632")
+        decoded_response = response.content.decode("utf-8")
+        self.assertIn("data.pdf", decoded_response)
+        self.assertNotIn("2004_632.pdf", decoded_response)
         # We don't use the Download as PDF text because there's an issue with localisated strings on CI
         self.assertEqual(response.status_code, 200)
 
