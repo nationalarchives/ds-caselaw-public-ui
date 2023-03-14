@@ -34,8 +34,10 @@ def fake_search_result():
 class TestSearchResults(TestCase):
     @patch("judgments.views.results.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
-    def test_judgment_results_desktop(self, fake_result, fake_advanced_search):
+    @patch("judgments.utils.perform_advanced_search")
+    def test_judgment_results_desktop(self, f3, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
+        f3.r = fake_search_results()
         fake_result.return_value = fake_search_result()
         # The judgment search results view takes the query term from the (desktop) query input
         response = self.client.get(
@@ -54,6 +56,34 @@ class TestSearchResults(TestCase):
         # The judgment search results view takes the query term from the mobile query input
         response = self.client.get(
             "/judgments/results?query=&query_mobile=waltham+forest"
+        )
+        self.assertContains(
+            response,
+            '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
+        )
+
+    @patch("judgments.views.advanced_search.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    def test_judgment_advanced_search_desktop(self, fake_result, fake_advanced_search):
+        fake_advanced_search.return_value = fake_search_results()
+        fake_result.return_value = fake_search_result()
+        # The judgment search results view takes the query term from the (desktop) query input
+        response = self.client.get(
+            "/judgments/advanced_search?query=waltham+forest&query_mobile="
+        )
+        self.assertContains(
+            response,
+            '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
+        )
+
+    @patch("judgments.views.advanced_search.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    def test_judgment_advanced_search_mobile(self, fake_result, fake_advanced_search):
+        fake_advanced_search.return_value = fake_search_results()
+        fake_result.return_value = fake_search_result()
+        # The judgment search results view takes the query term from the mobile query input
+        response = self.client.get(
+            "/judgments/advanced_search?query=&query_mobile=waltham+forest"
         )
         self.assertContains(
             response,
