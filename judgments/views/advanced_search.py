@@ -20,7 +20,7 @@ from judgments.utils import (
 def advanced_search(request):
     params = request.GET
     query_params = {
-        "query": params.get("query"),
+        "query": params.get("query") or params.get("query_mobile"),
         "court": params.getlist("court"),
         "judge": params.get("judge"),
         "party": params.get("party"),
@@ -51,7 +51,7 @@ def advanced_search(request):
     context = {}
 
     try:
-        query_without_stop_words = remove_unquoted_stop_words(params.get("query"))
+        query_without_stop_words = remove_unquoted_stop_words(query_params["query"])
         model = perform_advanced_search(
             query=query_without_stop_words,
             court=query_params["court"],
@@ -65,7 +65,7 @@ def advanced_search(request):
             date_to=query_params["to"],
             per_page=per_page,
         )
-
+        context["query"] = query_params["query"]
         context["search_results"] = [
             SearchResult.create_from_node(result) for result in model.results
         ]
