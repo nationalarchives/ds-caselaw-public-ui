@@ -18,9 +18,9 @@ class TestCacheHeaders(TestCase):
     def test_static_headers(self):
         url = "/static/images/tna_logo.svg"
         response = self.client.get(url)
-        assert response.headers["Cache-Control"] == "max-age=3600, public"
+        assert response.headers["Cache-Control"] == "max-age=900, public"
 
     def test_view_headers(self):
         url = "/what-to-expect"
         response = self.client.get(url)
-        assert response.headers["Cache-Control"] == "max-age=3600, public"
+        assert response.headers["Cache-Control"] == "max-age=900, public"
