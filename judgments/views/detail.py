@@ -42,7 +42,10 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
 
 
 def get_best_pdf(request, judgment_uri):
-    """If there's a DOCX-derived PDF in the S3 bucket, return that.
+    """
+    Response for the legacy data.pdf endpoint, used by data reusers
+
+    If there's a DOCX-derived PDF in the S3 bucket, return that.
     Otherwise fall back and redirect to the weasyprint version."""
     pdf_uri = get_pdf_uri(judgment_uri)
     response = requests.get(pdf_uri)
@@ -64,22 +67,29 @@ def detail(request, judgment_uri):
     except MarklogicAPIError:
         raise Http404("Judgment was not found")
 
-    if is_published:
-        try:
-            results = api_client.eval_xslt(judgment_uri)
-            multipart_data = decoder.MultipartDecoder.from_response(results)
-            judgment = multipart_data.parts[0].text
-            context["judgment"] = judgment
-            context["page_title"] = api_client.get_judgment_name(judgment_uri)
-            context["judgment_uri"] = judgment_uri
-            context["pdf_size"] = get_pdf_size(judgment_uri)
-            context["back_link"] = get_back_link(request)
-        except MarklogicResourceNotFoundError:
-            raise Http404("Judgment was not found")
-        template = loader.get_template("judgment/detail.html")
-        return TemplateResponse(request, template, context={"context": context})
-    else:
+    if not is_published:
         raise Http404("This Judgment is not available")
+
+    try:
+        results = api_client.eval_xslt(judgment_uri)
+        multipart_data = decoder.MultipartDecoder.from_response(results)
+        judgment = multipart_data.parts[0].text
+        context["judgment"] = judgment
+        context["page_title"] = api_client.get_judgment_name(judgment_uri)
+        context["judgment_uri"] = judgment_uri
+
+        context["pdf_size"] = get_pdf_size(judgment_uri)
+        if context["pdf_size"]:  # is "" if no PDF was found
+            context["pdf_uri"] = get_pdf_uri(judgment_uri)
+        else:
+            context["pdf_uri"] = reverse("detail_pdf", args=[judgment_uri])
+
+        context["back_link"] = get_back_link(request)
+    except MarklogicResourceNotFoundError:
+        raise Http404("Judgment was not found")
+
+    template = loader.get_template("judgment/detail.html")
+    return TemplateResponse(request, template, context={"context": context})
 
 
 def detail_xml(_request, judgment_uri):

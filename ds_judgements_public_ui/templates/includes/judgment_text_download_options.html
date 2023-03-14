@@ -4,7 +4,7 @@
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% url 'detail_pdf' context.judgment_uri %}">
+        <a href="{{ context.pdf_uri }}">
           {% translate "judgment.downloadoptions.pdf.cta" %}{{context.pdf_size}}
         </a>
       </h3>
