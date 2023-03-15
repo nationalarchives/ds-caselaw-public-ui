@@ -1,4 +1,5 @@
 import re
+from os import environ
 from unittest import skip
 from unittest.mock import Mock, patch
 
@@ -124,6 +125,8 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.decoder.MultipartDecoder")
     @patch("judgments.views.detail.api_client")
     def test_valid_content(self, client, decoder, head):
+        if "ASSETS_CDN_BASE_URL" not in environ:
+            raise "ensure ASSETS_CDN_BASE_URL is set in .env!"
         head.return_value.headers = {"Content-Length": "1234567890"}
         client.eval_xslt.return_value = "eval_xslt"
         decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
@@ -131,7 +134,7 @@ class TestJudgment(TestCase):
 
         response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")
-        self.assertIn("assets.caselaw.nationalarchives.gov.uk", decoded_response)
+        self.assertIn(environ["ASSETS_CDN_BASE_URL"], decoded_response)
         self.assertIn("ewca_civ_2004_632.pdf", decoded_response)
         self.assertNotIn("data.pdf", decoded_response)
         self.assertIn("(1.1\xa0GB)", decoded_response)
