@@ -20,7 +20,7 @@ from judgments.utils import (
 def advanced_search(request):
     params = request.GET
     query_params = {
-        "query": params.get("query") or params.get("query_mobile"),
+        "query": params.get("query"),
         "court": params.getlist("court"),
         "judge": params.get("judge"),
         "party": params.get("party"),

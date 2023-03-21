@@ -2,11 +2,11 @@
 {% load i18n %}
 
 {% block title %}
-  {% translate "search.title" %} - {% translate "commom.findcaselaw" %}
+  {% translate "structured_search.title" %} - {% translate "commom.findcaselaw" %}
 {% endblock title %}
 
 {% block content %}
-  {% translate "search.title" as page_title %}
+  {% translate "structured_search.title" as page_title %}
 
   <header class="page-header">
     {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
@@ -18,12 +18,8 @@
       <div class="structured-search__main-search">
         <div class="structured-search__container">
           <h1 class="structured-search__main-search-header">Structured search</h1>
-          <div class="structured-search__full-text-panel">
-            <input class="structured-search__search-term-input desktop" id="search_term" name="query" type="text" value="" placeholder="{% translate "basicsearchform.placeholder" %}">
-            <label for="search_term" class="structured-search__search-term-label mobile">{% translate "basicsearchform.placeholder" %}</label>
-            <label for="search_term" class="structured-search__full-text-label">Search</label>
-            <input class="structured-search__search-term-input mobile" id="search_term" name="query_mobile" type="text" value="" placeholder="Search">
-            <input type="submit" value="{%  translate "basicsearchform.cta" %}">
+          <div class="structured-search__full-text-panel search-term-component">
+            {% include "includes/search_term_component.html" %}
           </div>
         </div>
       </div>
