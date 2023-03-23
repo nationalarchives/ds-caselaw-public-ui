@@ -2,7 +2,7 @@
 
   &__main-search {
     background-color: $color__light-grey;
-    padding: calc($spacer__unit * 1.5) 0 calc($spacer__unit * 2);
+    padding: calc($spacer__unit * 1.5) 0 calc($spacer__unit * 1.5);
     margin: 0 0 $spacer__unit;
     text-align: center;
   }
@@ -16,7 +16,7 @@
     color: $color__almost-black;
     margin: calc($spacer__unit * 3) 0 0 0;
     @media (max-width: $grid__breakpoint-medium) {
-      margin: 1px 0 1px 1px;
+      margin: 1px $spacer__unit;
       line-height: 2.6rem;
     }
   }
@@ -28,35 +28,16 @@
     max-width: 100%;
   }
 
-   &__full-text-panel {
-    margin-top: $spacer__unit;
-    margin-bottom: $spacer__unit;
-    text-align: left;
-    display: flex;
-    gap: $spacer__unit;
-    flex-direction: column;
-    @media (min-width: $grid__breakpoint-medium) {
-      flex-direction: row;
-      padding: calc($spacer__unit * 1.5) 0;
-      margin: auto;
-    }
-
-  }
-
   &__full-text-label {
     @include sr-only;
   }
 
-  &__full-text-input {
-    @include text_field;
-    width: 70%;
-
-    @media (min-width: $grid__breakpoint-medium) {
-      width: 70%;
-    }
-
-    @media (min-width: $grid__breakpoint-extra-large) {
-      width: 70%;
+  &__full-text-panel {
+    margin-top: $spacer__unit;
+    @media (max-width: $grid__breakpoint-medium) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      box-sizing: border-box;
     }
   }
 
@@ -164,6 +145,10 @@
     margin-top: calc($spacer__unit / 2);
     text-align: right;
 
+    @media (max-width: $grid__breakpoint-medium) {
+      margin: 1rem;
+    }
+
   }
 
   &__help-text {
@@ -256,14 +241,15 @@
   }
 
   input[type=text] {
-    width: 75%;
+    width: 95%;
     @media (max-width: $grid__breakpoint-medium) {
+      width: 75%;
       margin: auto 1px;
       width: auto;
       }
   }
 
-  input[type=submit] {
+  &__update-filters-button {
     @include call-to-action-button;
     padding-right: calc($spacer__unit * 2.5);
     padding-left: calc($spacer__unit * 2.5);
@@ -275,11 +261,11 @@
       width: auto;
     }
     @media (max-width: $grid__breakpoint-medium) {
-      margin: 1rem 2rem 1rem 2rem;
-      width: 75%;
-      padding: 1rem 1rem 1rem 1rem;
-      }
+      margin: 0;
+      width: 100%;
+    }
   }
+
   &__search-term-label.desktop {
     @media (max-width: $grid__breakpoint-medium) {
       display: none;

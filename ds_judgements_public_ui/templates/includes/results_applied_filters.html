@@ -1,7 +1,7 @@
-{% load query_filters court_utils %}
+{% load query_filters court_utils i18n %}
 {% if context.query_params.items %}
   {% if context.filtered %}
-    <h2 class="results-search-component__sub-header">Current filters:</h2>
+    <h2 class="results-search-component__sub-header">{% translate "results.current_filters" %}</h2>
   {% endif %}
   <ul class="results-search-component__removable-options js-results-facets-applied-filters">
     {% for key, value in context.query_params.items %}

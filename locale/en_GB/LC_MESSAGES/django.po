@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 09:02+0000\n"
+"POT-Creation-Date: 2023-03-23 15:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,352 +18,342 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ds_judgements_public_ui/templates/base.html:36
-#: ds_judgements_public_ui/templates/layout_judgment_html.html:29
+#: ds_judgements_public_ui/templates/base.html
+#: ds_judgements_public_ui/templates/layout_judgment_html.html
 msgid "skiplink"
 msgstr "Skip to Main Content"
 
-#: ds_judgements_public_ui/templates/includes/basic_search_form.html:4
+#: ds_judgements_public_ui/templates/includes/basic_search_form.html
 msgid "basicsearchform.title"
 msgstr "Search by keyword or neutral citation"
 
-#: ds_judgements_public_ui/templates/includes/basic_search_form.html:7
-msgid "basicsearchform.label"
-msgstr "Search"
-
-#: ds_judgements_public_ui/templates/includes/basic_search_form.html:8
-msgid "basicsearchform.placeholder"
-msgstr "Enter keyword, party name or neutral&nbsp;citation"
-
-#: ds_judgements_public_ui/templates/includes/basic_search_form.html:10
-msgid "basicsearchform.cta"
-msgstr "Search"
-
-#: ds_judgements_public_ui/templates/includes/basic_search_form.html:15
+#: ds_judgements_public_ui/templates/includes/basic_search_form.html
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "basicsearchform.structured_search"
 msgstr "Filter by court, date or person"
 
-#: ds_judgements_public_ui/templates/includes/breadcrumbs.html:8
-#: ds_judgements_public_ui/templates/includes/breadcrumbs.html:11
-#: ds_judgements_public_ui/templates/judgment/results.html:5
-#: ds_judgements_public_ui/templates/layout_judgment_html.html:11
-#: ds_judgements_public_ui/templates/pages/accessibility_statement.html:8
-#: ds_judgements_public_ui/templates/pages/home.html:9
-#: ds_judgements_public_ui/templates/pages/home.html:20
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:8
-#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:8
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:8
-#: ds_judgements_public_ui/templates/pages/transactional_licence.html:8
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:9
+#: ds_judgements_public_ui/templates/includes/breadcrumbs.html
+#: ds_judgements_public_ui/templates/judgment/results.html
+#: ds_judgements_public_ui/templates/layout_judgment_html.html
+#: ds_judgements_public_ui/templates/pages/accessibility_statement.html
+#: ds_judgements_public_ui/templates/pages/home.html
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
+#: ds_judgements_public_ui/templates/pages/transactional_licence.html
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "common.findcaselaw"
 msgstr "Find case law"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:7
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.websites"
 msgstr "Websites"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:9
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.legislation.link"
 msgstr "https://www.legislation.gov.uk/"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:9
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.legislation"
 msgstr "Legislation"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:10
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.gazette.link"
 msgstr "https://www.thegazette.co.uk/"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:10
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.gazette"
 msgstr "The Gazette"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:11
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.judiciary.link"
 msgstr "https://www.judiciary.uk"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:11
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.judiciary"
 msgstr "Judiciary"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:15
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.sitehelp"
 msgstr "Site help"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:17
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "howtousethisservice.titleshort"
 msgstr "How to use this service"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:18
-#: ds_judgements_public_ui/templates/pages/accessibility_statement.html:8
-#: ds_judgements_public_ui/templates/pages/accessibility_statement.html:12
+#: ds_judgements_public_ui/templates/includes/footer.html
+#: ds_judgements_public_ui/templates/pages/accessibility_statement.html
 msgid "accessibilitystatement.title"
 msgstr "Accessibility statement"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:19
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.contact.link"
 msgstr "https://www.nationalarchives.gov.uk/contact-us/"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:19
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.contact"
 msgstr "Contact us"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:23
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.legal"
 msgstr "Legal"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:25
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:8
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:12
+#: ds_judgements_public_ui/templates/includes/footer.html
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "terms.title"
 msgstr "Terms of use"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:26
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.cookies.link"
 msgstr "https://www.nationalarchives.gov.uk/legal/cookies/"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:26
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.cookies"
 msgstr "Cookies"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:27
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.privacy.link"
 msgstr "https://www.nationalarchives.gov.uk/legal/privacy-policy/"
 
-#: ds_judgements_public_ui/templates/includes/footer.html:27
+#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.privacy"
 msgstr "Privacy"
 
-#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html:4
+#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
 msgid "service.improved"
 msgstr "How can this service be improved?"
 
-#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html:5
-#: ds_judgements_public_ui/templates/includes/phase_banner.html:8
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:64
+#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
+#: ds_judgements_public_ui/templates/includes/phase_banner.html
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "survey.link"
 msgstr "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
 
-#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html:5
+#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
 msgid "survey.link.text"
 msgstr "Fill out our short survey"
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html:3
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.title"
 msgstr "Download options"
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html:8
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.pdf.cta"
 msgstr "Download this judgment as a PDF"
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html:12
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.pdf.description"
 msgstr ""
 "The original format of the judgment as handed down by the court, for "
 "printing and downloading."
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html:18
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.xml.cta"
 msgstr "Download this judgment as XML"
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html:22
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.xml.description"
 msgstr ""
 "The judgment in machine-readable LegalDocML format for developers, data "
 "scientists and researchers."
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_source.html:5
+#: ds_judgements_public_ui/templates/includes/judgment_text_source.html
 msgid "judgment.source_by"
 msgstr "This judgment has been provided to The National Archives by "
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_source.html:7
+#: ds_judgements_public_ui/templates/includes/judgment_text_source.html
 msgid "judgment.bailii"
 msgstr "The British and Irish Legal Information Institute"
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:6
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
 msgid "judgment.back"
 msgstr "Back to search results"
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:11
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
 msgid "judgment.downloadaspdf"
 msgstr "Download as PDF"
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html:12
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
 msgid "judgment.downloadoptions.shortcutlink"
 msgstr "More download options"
 
-#: ds_judgements_public_ui/templates/includes/recent_judgments.html:21
-#: ds_judgements_public_ui/templates/includes/results_list.html:20
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html
+#: ds_judgements_public_ui/templates/includes/results_list.html
 msgid "judgments.date"
 msgstr "Date:"
 
-#: ds_judgements_public_ui/templates/includes/recent_judgments.html:24
-#: ds_judgements_public_ui/templates/includes/results_list.html:23
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html
+#: ds_judgements_public_ui/templates/includes/results_list.html
 msgid "judgments.court"
 msgstr "Court:"
 
-#: ds_judgements_public_ui/templates/includes/recent_judgments.html:30
+#: ds_judgements_public_ui/templates/includes/recent_judgments.html
 msgid "judgments.allrecent"
 msgstr "See all recent judgments"
 
-#: ds_judgements_public_ui/templates/judgment/results.html:5
-#: ds_judgements_public_ui/templates/judgment/results.html:9
-#: judgments/views/results.py:21
+#: ds_judgements_public_ui/templates/includes/results_applied_filters.html
+msgid "results.current_filters"
+msgstr "Current filter(s)"
+
+#: ds_judgements_public_ui/templates/includes/search_term_component.html
+msgid "basicsearchform.label"
+msgstr "Search"
+
+#: ds_judgements_public_ui/templates/includes/search_term_component.html
+msgid "basicsearchform.placeholder"
+msgstr "Search..."
+
+#: ds_judgements_public_ui/templates/includes/search_term_component.html
+msgid "basicsearchform.helptext"
+msgstr "Enter keyword, party name or neutral&nbsp;citation"
+
+#: ds_judgements_public_ui/templates/includes/search_term_component.html
+msgid "basicsearchform.cta"
+msgstr "Search"
+
+#: ds_judgements_public_ui/templates/judgment/results.html
+#: judgments/views/results.py
 msgid "results.search.title"
 msgstr "Search results"
 
-#: ds_judgements_public_ui/templates/pages/home.html:22
+#: ds_judgements_public_ui/templates/pages/home.html
 msgid "home.useservice"
 msgstr ""
 "Use this service to find, view and download judgments and tribunal decisions "
 "from 2003"
 
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:8
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:12
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "howtousethisservice.title"
 msgstr "How to use the Find Case Law service"
 
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:228
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "courtstructure.link"
 msgstr ""
 "https://www.judiciary.uk/about-the-judiciary/the-justice-system/court-"
 "structure"
 
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html:310
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:417
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:467
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:483
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:487
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "caselaw.email"
 msgstr "caselaw@nationalarchives.gov.uk"
 
-#: ds_judgements_public_ui/templates/pages/no_results.html:5
+#: ds_judgements_public_ui/templates/pages/no_results.html
 #, python-format
 msgid "No results for '%(data)s'"
 msgstr ""
 
-#: ds_judgements_public_ui/templates/pages/no_results.html:11
+#: ds_judgements_public_ui/templates/pages/no_results.html
 msgid "search.noresults"
 msgstr "There are no results for your search"
 
-#: ds_judgements_public_ui/templates/pages/no_results.html:12
+#: ds_judgements_public_ui/templates/pages/no_results.html
 msgid "search.improvesearch"
 msgstr ""
 "Improve your search results by removing filters, double-checking your "
 "spelling, using fewer keywords or searching for something less specific."
 
-#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:8
-#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:12
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html
 msgid "openjusticelicence.title"
 msgstr "Open Justice Licence"
 
-#: ds_judgements_public_ui/templates/pages/open_justice_licence.html:178
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html
 msgid "licensingframework.link"
 msgstr ""
 "https://www.nationalarchives.gov.uk/information-management/re-using-public-"
 "sector-information/uk-government-licensing-framework"
 
-#: ds_judgements_public_ui/templates/pages/structured_search.html:5
-#: ds_judgements_public_ui/templates/pages/structured_search.html:9
-msgid "search.title"
-msgstr "Search"
+#: ds_judgements_public_ui/templates/pages/structured_search.html
+msgid "structured_search.title"
+msgstr "Structured search"
 
-#: ds_judgements_public_ui/templates/pages/structured_search.html:5
+#: ds_judgements_public_ui/templates/pages/structured_search.html
 msgid "commom.findcaselaw"
 msgstr "Find case law"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:26
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "caselaw.url"
 msgstr "https://caselaw.nationalarchives.gov.uk"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:36
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "webmaster.email"
 msgstr "webmaster@nationalarchives.gov.uk"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:71
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "robots.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/robots.txt"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html:99
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "bailii.link"
 msgstr "www.bailii.org"
 
-#: ds_judgements_public_ui/templates/pages/transactional_licence.html:8
-#: ds_judgements_public_ui/templates/pages/transactional_licence.html:12
+#: ds_judgements_public_ui/templates/pages/transactional_licence.html
 msgid "transactionallicenceform.title"
 msgstr "Application to re-use Court Judgments and Tribunal Decisions"
 
-#: ds_judgements_public_ui/templates/pages/transactional_licence.html:28
+#: ds_judgements_public_ui/templates/pages/transactional_licence.html
 msgid "caselawlicence.email"
 msgstr "CaseLawLicence@nationalarchives.gov.uk"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:9
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:13
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "whattoexpect.title"
 msgstr "What to expect from this new service"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:68
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "publicrecordsact.link"
 msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/contents"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:74
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "firstschedule.link"
 msgstr ""
 "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/schedule/FIRST/"
 "crossheading/records-of-courts-and-tribunals"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:77
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "sectionthree.link"
 msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/3"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:78
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "sectiontwofourh.link"
 msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/2/4/h"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:84
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "sectiontwothree.link"
 msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/2/3"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:87
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "sectionfivethree.link"
 msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/5/3"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:180
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "legaldocml.link"
 msgstr "https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:237
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "openapi.link"
 msgstr "https://github.com/nationalarchives/ds-find-caselaw-docs/"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:241
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "atom.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/atom.xml"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:358
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "fivesafes.link"
 msgstr "https://en.wikipedia.org/wiki/Five_safes"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:370
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "reuse.link"
 msgstr "https://www.legislation.gov.uk/uksi/2015/1415/contents"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:373
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "sectioneight.link"
 msgstr "https://www.legislation.gov.uk/uksi/2015/1415/regulation/8"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:376
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "sectionthirteen.link"
 msgstr "https://www.legislation.gov.uk/uksi/2015/1415/regulation/13"
 
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html:399
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "complaint.link"
 msgstr ""
 "https://www.nationalarchives.gov.uk/information-management/re-using-public-"
 "sector-information/complaints-about-re-use/"
-
-#~ msgid "results.order-by.relevance"
-#~ msgstr "Order by relevance"
-
-#~ msgid "results.order-by.date"
-#~ msgstr "Order by date"

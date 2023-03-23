@@ -22,7 +22,7 @@ def results(request):
 
     try:
         params = request.GET
-        query = params.get("query") or params.get("query_mobile")
+        query = params.get("query")
         page = str(as_integer(params.get("page"), minimum=1))
         per_page = str(
             as_integer(
