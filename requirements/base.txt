@@ -15,7 +15,7 @@ requests-toolbelt~=0.10.1
 lxml~=4.9.2
 django-xml~=3.0.0
 wsgi-basic-auth~=1.1.0
-ds-caselaw-marklogic-api-client~=5.2.3
+ds-caselaw-marklogic-api-client~=5.2.5
 ds-caselaw-utils~=0.4.4
 rollbar
 django-weasyprint==2.2.0
