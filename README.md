@@ -290,35 +290,43 @@ We're using [the built-in django translation module](https://docs.djangoproject.
 1. Ensure that the `i18n` module is loaded at the top of the file:
 
    ```django
-   {% extends 'base.html' %}
+   {% extends 'layouts/base.html' %}
    {% load i18n %}
    ...
    ```
 
-1. Add the translation string to the page:
+2. Add the translation string to the page:
 
-   ```django
+   ```
    <h1>{% translate "namespace.mytranslation" %}</h1>
    ```
 
-1. Update the locale file by running the following command:
+3. Update the locale file by running the following command in a `fab sh` shell:
 
-   ```console
-   python manage.py makemessages -l {langage_code}
+   ```
+   python manage.py makemessages --no-obsolete --add-location file -l en_GB
    ```
 
-   where `language_code` is the ISO 3166-1 country code (e.g. en_GB)
+4. In the generated `.po` file, find the generated translation section, it will be a block like this, with the `msgid` corresponding to the key you added in the template:
 
-1. In the generated `.po` file, find the generated msgid string and add the translation below it:
+   ```
+   #: ds_caselaw_editor_ui/templates/includes/my_template.html
+   #, fuzzy
+   #| msgid "namespace.othertranslation"
+   msgid "namespace.mytranslation"
+   msgstr "An existing translation autofilled as an example"
+   ```
 
-   ```console
+   You need to do two things here - first remove the line starting with `#, fuzzy` and any lines starting with `#|` below it, then edit the line starting with `msgstr` to include your translation string. The end result will look something like this:
+
+   ```
+   #: ds_caselaw_editor_ui/templates/includes/my_template.html
    msgid "namespace.mytranslation"
    msgstr "This is my translation"
    ```
 
-1. Compile the translations to a binary file:
-
-   ```console
+5. Compile the translations to a binary file (this should also be run inside a `fab sh` shell):
+   ```
    python manage.py compilemessages
    ```
 
@@ -330,23 +338,23 @@ We're using [the built-in django translation module](https://docs.djangoproject.
       <h1>{% translate "namespace.mytranslation" %}</h1>
    ```
 
-1. Go and look for this translation in the `django.po` file (you'll be looking for a line with `msgid` at the start and the string you saw in the template):
+2. Go and look for this translation in the `django.po` file (you'll be looking for a line with `msgid` at the start and the string you saw in the template):
 
-   ```console
+   ```
    msgid "namespace.mytranslation"
    msgstr "This is my translation"
    ```
 
-1. Change the text on the following line (begining with `msgstr` to the new translation you want):
+3. Change the text on the following line (begining with `msgstr` to the new translation you want):
 
-   ```console
+   ```
    msgid "namespace.mytranslation"
    msgstr "This is the new tranlation text I have edited"
    ```
 
-1. Compile the translations again to make your changes show up:
+4. Compile the translations again to make your changes show up (this should be run inside a `fab sh` shell):
 
-   ```console
+   ```
    python manage.py compilemessages
    ```
 
