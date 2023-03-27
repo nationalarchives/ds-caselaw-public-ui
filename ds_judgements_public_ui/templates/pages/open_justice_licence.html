@@ -1,43 +1,49 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block robots %}
 {% endblock robots %}
-
 {% block title %}
   {% translate "openjusticelicence.title" %} - {% translate "common.findcaselaw" %}
-{% endblock %}
-
+{% endblock title %}
 {% block content %}
   {% translate "openjusticelicence.title" as page_title %}
   <header class="page-header">
-    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
-    {% include 'includes/logo.html' %}
+    {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
+    {% include "includes/logo.html" %}
   </header>
-
   <div class="standard-text-template">
-
     <h1>Open Justice Licence</h1>
-
     <div class="anchor-links">
       <h3 class="anchor-links__header">Information on this page:</h3>
       <ul class="anchor-links__list">
-        <li class="anchor-links__list-option"><a href="#section-purpose">Purpose of this licence</a></li>
-        <li class="anchor-links__list-option"><a href="#section-information">Using Information under this licence</a></li>
-        <li class="anchor-links__list-option"><a href="#section-exclusions">Exclusions</a></li>
-        <li class="anchor-links__list-option"><a href="#section-no-warranty">No warranty</a></li>
-        <li class="anchor-links__list-option"><a href="#section-governing">Governing Law</a></li>
-        <li class="anchor-links__list-option"><a href="#section-definitions">Definitions</a></li>
-        <li class="anchor-links__list-option"><a href="#section-about">About the Open Justice Licence</a></li>
+        <li class="anchor-links__list-option">
+          <a href="#section-purpose">Purpose of this licence</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-information">Using Information under this licence</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-exclusions">Exclusions</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-no-warranty">No warranty</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-governing">Governing Law</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-definitions">Definitions</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-about">About the Open Justice Licence</a>
+        </li>
       </ul>
     </div>
-
     <h2 id="section-purpose">Purpose of this licence</h2>
     <p>
       Open justice is a fundamental constitutional principle and necessary for the rule of law. The purpose of this
       licence is to support open justice.
     </p>
-
     <h2 id="section-information">Using Information under this licence</h2>
     <p>
       You are able to use and re-use the Information that is available under this licence freely. There are some
@@ -58,7 +64,8 @@
     <p>You are free to:</p>
     <ul>
       <li>copy, publish, distribute and transmit the Information;</li>
-      <li>exploit the Information commercially, for example, by combining it with other Information, or by including it
+      <li>
+        exploit the Information commercially, for example, by combining it with other Information, or by including it
         in your own product or application.
       </li>
     </ul>
@@ -96,26 +103,17 @@
       These are important conditions of this licence and if you fail to comply with them the rights granted to you
       under this licence, or any similar licence granted by the Licensor, will end automatically.
     </p>
-
     <h2 id="section-exclusions">Exclusions</h2>
     <p>This licence does not cover:</p>
     <ul>
-      <li>
-        computational analysis of the Information (including indexing by search engines);
-      </li>
+      <li>computational analysis of the Information (including indexing by search engines);</li>
       <li>
         information that has neither been published nor disclosed under information access legislation (including the
         Freedom of Information Acts for the UK and Scotland) by or with the consent of the Licensor;
       </li>
-      <li>
-        emblems and insignia of the courts and tribunals;
-      </li>
-      <li>
-        third party rights the Licensor is not authorised to license; and
-      </li>
-      <li>
-        information subject to other intellectual property rights, including patents, trademarks, and design rights.
-      </li>
+      <li>emblems and insignia of the courts and tribunals;</li>
+      <li>third party rights the Licensor is not authorised to license; and</li>
+      <li>information subject to other intellectual property rights, including patents, trademarks, and design rights.</li>
     </ul>
     <p>For the avoidance of doubt:</p>
     <ul>
@@ -135,13 +133,21 @@
       The Licensor is not liable for any errors or omissions in the Information and shall not be liable for any loss,
       injury or damage of any kind caused by its use.
     </p>
-    <p>The Licensor does not guarantee the continued supply of the Information.</p>
-    <h2 id="section-governing">Governing Law</h2>
-    <p>This licence is governed by the laws of England and Wales.</p>
-
-
-    <h2 id="section-definitions">Definitions</h2>
-    <p>In this licence, the terms below have the following meanings:</p>
+    <p>
+      The Licensor does not guarantee the continued supply of the Information.
+    </p>
+    <h2 id="section-governing">
+      Governing Law
+    </h2>
+    <p>
+      This licence is governed by the laws of England and Wales.
+    </p>
+    <h2 id="section-definitions">
+      Definitions
+    </h2>
+    <p>
+      In this licence, the terms below have the following meanings:
+    </p>
     <ul>
       <li>
         ‘Information’ means information protected by copyright or by database right offered for use under the terms of
@@ -163,8 +169,9 @@
         this licence.
       </li>
     </ul>
-
-    <h2 id="section-about">About the Open Justice Licence</h2>
+    <h2 id="section-about">
+      About the Open Justice Licence
+    </h2>
     <p>
       This is version 1.0 of the Open Justice Licence. The Licensor may, from time to time, issue new versions of the
       Open Justice Licence.
@@ -179,4 +186,4 @@
       on The National Archives website.
     </p>
   </div>
-{% endblock %}
+{% endblock content %}

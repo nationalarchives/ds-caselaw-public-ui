@@ -4,23 +4,15 @@
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{{ context.pdf_uri }}">
-          {% translate "judgment.downloadoptions.pdf.cta" %}{{context.pdf_size}}
-        </a>
+        <a href="{{ context.pdf_uri }}">{% translate "judgment.downloadoptions.pdf.cta" %}{{ context.pdf_size }}</a>
       </h3>
-      <p>
-        {% translate "judgment.downloadoptions.pdf.description" %}
-      </p>
+      <p>{% translate "judgment.downloadoptions.pdf.description" %}</p>
     </div>
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% url 'detail_xml' context.judgment_uri %}">
-          {% translate "judgment.downloadoptions.xml.cta" %}
-        </a>
+        <a href="{% url 'detail_xml' context.judgment_uri %}">{% translate "judgment.downloadoptions.xml.cta" %}</a>
       </h3>
-      <p>
-        {% translate "judgment.downloadoptions.xml.description" %}
-      </p>
+      <p>{% translate "judgment.downloadoptions.xml.description" %}</p>
     </div>
   </div>
 </div>

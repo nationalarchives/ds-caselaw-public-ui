@@ -3,38 +3,57 @@
   <p class="results__results-intro">We found {{ context.total }} judgments</p>
 </div>
 <div class="result-controls">
-  <form method="get" action="{{request.path}}" id="analytics-result-controls">
+  <form method="get"
+        action="{{ request.path }}"
+        id="analytics-result-controls">
     {% for key, value in context.query_params.items %}
       {% if value != None %}
         {% if key == "court" %}
-          {% for court in value %}
-            <input type="hidden" name="court" value="{{court}}" />
-          {% endfor %}
+          {% for court in value %}<input type="hidden" name="court" value="{{ court }}" />{% endfor %}
         {% elif key != "order" or key != "per_page" %}
-          <input type="hidden" name="{{key}}" value="{{value}}" />
+          <input type="hidden" name="{{ key }}" value="{{ value }}" />
         {% endif %}
       {% endif %}
     {% endfor %}
-
     {% if context.query %}
       <div>
         <label for="order_by" class="result-controls__label">Order results by</label>
         <select class="result-controls__select" id="order_by" name="order">
-          <option value="relevance" {% if context.order == "relevance" or context.order is None %}selected='selected'{% endif %}>Most relevant</option>
-          <option value="-date" {% if context.order == "-date" %}selected='selected'{% endif %}>Newest</option>
-          <option value="date" {% if context.order == "date" %}selected='selected'{% endif %}>Oldest</option>
+          <option value="relevance"
+                  {% if context.order == "relevance" or context.order is None %}selected='selected'{% endif %}>
+            Most relevant
+          </option>
+          <option value="-date"
+                  {% if context.order == "-date" %}selected='selected'{% endif %}>
+            Newest
+          </option>
+          <option value="date"
+                  {% if context.order == "date" %}selected='selected'{% endif %}>
+            Oldest
+          </option>
         </select>
       </div>
     {% endif %}
-
     <div>
       <label for="per_page" class="result-controls__label">Results per page</label>
       <select class="result-controls__select" id="per_page" name="per_page">
-        <option value="10" {% if context.per_page == "10" or context.per_page is None %}selected='selected'{% endif %}>10</option>
-        <option value="25" {% if context.per_page == "25" %}selected='selected'{% endif %}>25</option>
-        <option value="50" {% if context.per_page == "50" %}selected='selected'{% endif %}>50</option>
+        <option value="10"
+                {% if context.per_page == "10" or context.per_page is None %}selected='selected'{% endif %}>
+          10
+        </option>
+        <option value="25"
+                {% if context.per_page == "25" %}selected='selected'{% endif %}>
+          25
+        </option>
+        <option value="50"
+                {% if context.per_page == "50" %}selected='selected'{% endif %}>
+          50
+        </option>
       </select>
     </div>
-    <input aria-label="Sort judgments" type="submit" value="Go" class="result-controls__button">
+    <input aria-label="Sort judgments"
+           type="submit"
+           value="Go"
+           class="result-controls__button"/>
   </form>
 </div>

@@ -1,46 +1,43 @@
-{% load static i18n %}<!DOCTYPE html>
+{% load static i18n %}
+<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
-
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
-    <meta charset="utf-8">
-
+    <meta charset="utf-8" />
     {% block robots %}
-      <meta name="robots" content="noindex,nofollow">
+      <meta name="robots" content="noindex,nofollow" />
     {% endblock robots %}
-
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" href="{% static 'images/favicons/favicon.png' %}">
-
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>
+      {% block title %}
+      {% endblock title %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'images/favicons/favicon.png' %}" />
     {% block css %}
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Roboto:wght@400;600;700&amp;display=swap" rel="stylesheet">
-      <link href="{% static 'css/main.css' %}" rel="stylesheet">
-    {% endblock %}
-
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Roboto:wght@400;600;700&amp;display=swap"
+            rel="stylesheet"/>
+      <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+    {% endblock css %}
     {% block javascript %}
       <script defer src="{% static 'js/dist/app.js' %}"></script>
       <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>
     {% endblock javascript %}
-
-    {% include 'includes/gtm/gtm_head.html' %}
+    {% include "includes/gtm/gtm_head.html" %}
   </head>
-
   <body>
     <script>
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
-    {% include 'includes/cookie_consent/cookie_banner.html' %}
+    {% include "includes/cookie_consent/cookie_banner.html" %}
     <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
-    {% include 'includes/gtm/gtm_body.html' %}
-    {% include 'includes/phase_banner.html' %}
+    {% include "includes/gtm/gtm_body.html" %}
+    {% include "includes/phase_banner.html" %}
     <main id="main-content">
       {% block content %}
       {% endblock content %}
     </main>
-    {% include 'includes/how_can_this_service_be_improved.html' %}
-    {% include 'includes/footer.html' %}
+    {% include "includes/how_can_this_service_be_improved.html" %}
+    {% include "includes/footer.html" %}
   </body>
 </html>

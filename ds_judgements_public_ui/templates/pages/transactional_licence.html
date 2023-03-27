@@ -1,34 +1,28 @@
 {% extends "base.html" %}
 {% load static i18n %}
-
 {% block robots %}
 {% endblock robots %}
-
 {% block title %}
   {% translate "transactionallicenceform.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
-
 {% block content %}
   {% translate "transactionallicenceform.title" as page_title %}
   <header class="page-header">
-    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
-    {% include 'includes/logo.html' %}
+    {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
+    {% include "includes/logo.html" %}
   </header>
-
   <div class="standard-text-template">
     <h1>Application to re-use Court Judgments and Tribunal Decisions</h1>
-
     <h2>Part 1 &ndash; Instructions</h2>
-
     <h3>How to apply</h3>
     <ol>
       <li>Read Part 1 &ndash; Instructions.</li>
       <li>Answer all the relevant questions in Part 2 &ndash; Application Form.</li>
-      <li>Submit your completed application form, by email, to The National Archives’ Licensing Team at:
+      <li>
+        Submit your completed application form, by email, to The National Archives’ Licensing Team at:
         <a href="mailto:{% translate "caselawlicence.email" %}">{% translate "caselawlicence.email" %}</a>
       </li>
     </ol>
-
     <h3>Who is the application form for?</h3>
     <p>
       You need to complete an application form if you intend to use Court Judgments and/or Tribunal Decisions
@@ -39,7 +33,6 @@
       of judgments and tribunal decisions, including by compiling a search engine index.
     </p>
     <p>Anyone can apply for a licence and there is no charge to apply.</p>
-
     <h3>Why is a licence necessary?</h3>
     <p>
       Open Justice is a fundamental constitutional principle and necessary for the rule of law. It is important that
@@ -55,7 +48,6 @@
       Justice Licence, re-users need to apply
       for a specific licence from The National Archives.
     </p>
-
     <h3>Exclusions from the licence</h3>
     <p>
       We will licence the information ‘as is’ and exclude all representations, warranties, obligations and liabilities
@@ -65,7 +57,6 @@
       We will not be liable for any errors or omissions in the information. We will not be liable for any loss, injury
       or damage of any kind caused by its use.
     </p>
-
     <h3>Personal data</h3>
     <p>
       Court Judgments and Tribunal Decisions contain information about people. This typically includes the names of
@@ -89,11 +80,8 @@
       <li>the licence we issue will not be a data sharing agreement for personal data; and</li>
       <li>the licence we issue will not be a processing agreement for personal data.</li>
     </ul>
-
     <h3>What is the purpose of the questions?</h3>
-    <p>
-      The questions in this form will help The National Archives understand how you intend to re-use the information.
-    </p>
+    <p>The questions in this form will help The National Archives understand how you intend to re-use the information.</p>
     <p>
       Court Judgments and Tribunal Decisions contain sensitive information. Your answers to the questions will help
       us to understand how you will re-use the information. They will also help you to understand your obligations.
@@ -107,7 +95,6 @@
       <li>Safe outputs</li>
     </ol>
     <p>You should answer the questions as fully as possible.</p>
-
     <h3>What will The National Archives do with the information?</h3>
     <p>
       The National Archives is licensing the information in accordance with its obligations under the Re-use of
@@ -119,90 +106,137 @@
       justice. We may ask you for some additional information or to submit a revised application form. We may
       consult the Ministry of Justice, including any advisory body or group it establishes from time to time.
     </p>
-
-
-    <h2>Part 2 &ndash; Application Form</h2>
-
+    <h2>
+      Part 2 &ndash; Application Form
+    </h2>
     <p>
       This section lists the information that is required by the Licensing Team and included in the
       <a href="{% static 'documents/application_form_for_licence_to_re-use.docx' %}">
         downloadable application form (Microsoft Word 42 KB)
       </a>
     </p>
-
-    <h3>2.1 Safe People</h3>
-    <h4>Your details</h4>
+    <h3>
+      2.1 Safe People
+    </h3>
+    <h4>
+      Your details
+    </h4>
     <ul>
-      <li>Name</li>
-      <li>Address</li>
-      <li>Organisation or company</li>
-      <li>Email address:</li>
+      <li>
+        Name
+      </li>
+      <li>
+        Address
+      </li>
+      <li>
+        Organisation or company
+      </li>
+      <li>
+        Email address:
+      </li>
     </ul>
-
-    <h4>Ethics</h4>
+    <h4>
+      Ethics
+    </h4>
     <ul>
-      <li>Do you follow a Data Ethics Framework? If so, please provide details</li>
-      <li>Are you re-using the information for academic research?</li>
-      <li>If yes, will you consult an ethics committee? Please provide details.</li>
-      <li>How will ethical considerations be taken in to account in your use of the information?</li>
+      <li>
+        Do you follow a Data Ethics Framework? If so, please provide details
+      </li>
+      <li>
+        Are you re-using the information for academic research?
+      </li>
+      <li>
+        If yes, will you consult an ethics committee? Please provide details.
+      </li>
+      <li>
+        How will ethical considerations be taken in to account in your use of the information?
+      </li>
     </ul>
-
-    <h3>2.2 Safe Projects</h3>
-    <h4>Purpose</h4>
+    <h3>
+      2.2 Safe Projects
+    </h3>
+    <h4>
+      Purpose
+    </h4>
     <ul>
-      <li>What is the purpose of the re-use? (Describe all the activities that you plan undertake with the
+      <li>
+        What is the purpose of the re-use? (Describe all the activities that you plan undertake with the
         information)
       </li>
-      <li>How long do you wish to re-use the information?</li>
+      <li>
+        How long do you wish to re-use the information?
+      </li>
     </ul>
-
-    <h4>Publishing</h4>
+    <h4>
+      Publishing
+    </h4>
     <ul>
-      <li>Do you intend to publish the information on the web?</li>
-      <li>If yes, what controls will you put in place on third parties accessing the information from you?</li>
+      <li>
+        Do you intend to publish the information on the web?
+      </li>
+      <li>
+        If yes, what controls will you put in place on third parties accessing the information from you?
+      </li>
     </ul>
-
-    <h4>Risks</h4>
+    <h4>
+      Risks
+    </h4>
     <ul>
-      <li>What risks have you identified in relation to your proposed purpose?</li>
-      <li>What mitigations have you put in place in relation to the risks you have identified?</li>
+      <li>
+        What risks have you identified in relation to your proposed purpose?
+      </li>
+      <li>
+        What mitigations have you put in place in relation to the risks you have identified?
+      </li>
     </ul>
-
-    <h4>Complying with the terms of the licence</h4>
+    <h4>
+      Complying with the terms of the licence
+    </h4>
     <ul>
-      <li>What steps will you take so that you do not misrepresent the information or its source?</li>
-      <li>What steps will you take to maintain the dignity of the Courts and Tribunals and not undermine their
+      <li>
+        What steps will you take so that you do not misrepresent the information or its source?
+      </li>
+      <li>
+        What steps will you take to maintain the dignity of the Courts and Tribunals and not undermine their
         functioning as working bodies?
       </li>
-      <li>What steps will you take to ensure your use of the information does not jeopardise the proper administration
+      <li>
+        What steps will you take to ensure your use of the information does not jeopardise the proper administration
         of justice?
       </li>
     </ul>
-
-    <h4>Transparency</h4>
+    <h4>
+      Transparency
+    </h4>
     <ul>
-      <li>How will you let the general public know what you are doing with the information?</li>
+      <li>
+        How will you let the general public know what you are doing with the information?
+      </li>
     </ul>
-
-    <h3>2.3 Safe Data</h3>
-
-    <h4>Scope</h4>
+    <h3>
+      2.3 Safe Data
+    </h3>
+    <h4>
+      Scope
+    </h4>
     <ul>
       <li>
         What is the scope of the information you intend to re-use? (Please detail the courts / tribunals /
         years)
       </li>
     </ul>
-
-    <h4>Complying with reporting restrictions</h4>
+    <h4>
+      Complying with reporting restrictions
+    </h4>
     <ul>
       <li>
         How will you make sure you comply with any reporting restrictions when using the information, a) that
         are specified by the court/tribunal in the text of the judgment/decision, b) that apply in law more generally?
       </li>
     </ul>
-
-    <h4>Identifiable groups</h4>
+    <h4>
+      Identifiable groups
+    </h4>
     <ul>
       <li>
         Does you purpose involve processing or analysing data about an identifiable group of people in the
@@ -213,30 +247,49 @@
         or analysis you wish to undertake:
       </li>
     </ul>
-
-    <h3>2.4 Safe Settings</h3>
-    <h4>Location</h4>
+    <h3>
+      2.4 Safe Settings
+    </h3>
+    <h4>
+      Location
+    </h4>
     <ul>
-      <li>Will you be processing the information outside the UK?</li>
-      <li> Where will the information be stored and processed?</li>
+      <li>
+        Will you be processing the information outside the UK?
+      </li>
+      <li>
+        Where will the information be stored and processed?
+      </li>
     </ul>
-
-    <h4>Systems and controls</h4>
+    <h4>
+      Systems and controls
+    </h4>
     <ul>
-      <li>What systems and controls will you have in place for storing and processing the information?</li>
+      <li>
+        What systems and controls will you have in place for storing and processing the information?
+      </li>
     </ul>
-
-    <h3>2.5 Safe Outputs</h3>
-    <h4>Statistical Analysis</h4>
+    <h3>
+      2.5 Safe Outputs
+    </h3>
+    <h4>
+      Statistical Analysis
+    </h4>
     <ul>
-      <li>Are you undertaking any form of statistical analysis?</li>
-      <li>If yes, are you following any code of practice or professional code of conduct? (such as the Royal
+      <li>
+        Are you undertaking any form of statistical analysis?
+      </li>
+      <li>
+        If yes, are you following any code of practice or professional code of conduct? (such as the Royal
         Statistical Society’s Code of Conduct). Please provide details.
       </li>
-      <li>Are you intending to publish the results of your analysis?</li>
-      <li>If yes, would you be willing to share your findings with The National Archives and The Ministry of
+      <li>
+        Are you intending to publish the results of your analysis?
+      </li>
+      <li>
+        If yes, would you be willing to share your findings with The National Archives and The Ministry of
         Justice, as they emerge, to aid public policy development?
       </li>
     </ul>
   </div>
-{% endblock %}
+{% endblock content %}

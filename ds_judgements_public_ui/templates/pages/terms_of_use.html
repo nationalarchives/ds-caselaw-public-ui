@@ -1,49 +1,37 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block robots %}
 {% endblock robots %}
-
 {% block title %}
   {% translate "terms.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
-
 {% block content %}
   {% translate "terms.title" as page_title %}
   <header class="page-header">
-    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
-    {% include 'includes/logo.html' %}
+    {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
+    {% include "includes/logo.html" %}
   </header>
-
   <div class="standard-text-template">
     <h1>Terms of use</h1>
     <section>
       <h2>What is in these terms</h2>
-
-
       <p>
         These terms tell you the rules for using the Find Case Law service at
         <a href="{% translate "caselaw.url" %}">{% translate "caselaw.url" %}</a>
       </p>
     </section>
-
     <section>
       <h2>Who we are and how to contact us</h2>
       <p>The Find Case Law service is provided by The National Archives.</p>
-
-
       <p>
         You can contact us by email at <a href="mailto:{% translate "webmaster.email" %}">{% translate "webmaster.email" %}</a>
       </p>
-
-
       <p>
         If your online access is limited and you need to speak to someone you can call us during office hours on
         <a href="tel:+4420 8876 3444">020 8876 3444</a>.
         Please leave your number and message and we will call you back
       </p>
     </section>
-
     <section>
       <h2>By using Find Case Law service you accept these terms</h2>
       <p>
@@ -51,7 +39,6 @@
         comply with them.
       </p>
     </section>
-
     <section>
       <h2>Fair and reasonable use</h2>
       <p>
@@ -60,12 +47,9 @@
         making too many requests.
       </p>
     </section>
-
     <section>
       <h2>Crawling and indexing</h2>
-      <p>
-        You may access the Find Case Law service through the website, or access the data through the API.
-      </p>
+      <p>You may access the Find Case Law service through the website, or access the data through the API.</p>
       <p>
         We do not permit external indexing of documents by search engine robots or spiders. You must adhere to
         the instructions in the robots.txt file at: <a href="{% translate "robots.link" %}">{% translate "robots.link" %}</a>
@@ -75,7 +59,6 @@
         search engine index.
       </p>
     </section>
-
     <section>
       <h2>Coverage</h2>
       <p>
@@ -92,14 +75,11 @@
         Archives directly by the courts and tribunals. We have a complete chain of custody for these records
         through the transfer process.
       </p>
-
-
       <p>
         You should be aware that judgments given prior to 19 April 2022 have been sourced by The National
         Archives from a variety of different sources, including BAILII (<a href="https://{% translate "bailii.link" %}">{% translate "bailii.link" %}</a>).
       </p>
     </section>
-
     <section>
       <h2>Formats</h2>
       <p>
@@ -115,7 +95,6 @@
         with the published version of the judgments as a result of the conversion and enrichment process.
       </p>
     </section>
-
     <section>
       <h2>Licensing</h2>
       <p>
@@ -135,7 +114,6 @@
         rather than attempt to crawl or scrape the website.
       </p>
     </section>
-
     <section>
       <h2>Crawling and indexing</h2>
       <p>
@@ -143,6 +121,5 @@
         Judgments and Tribunal Decisions for the courts or tribunals.
       </p>
     </section>
-
   </div>
-{% endblock %}
+{% endblock content %}

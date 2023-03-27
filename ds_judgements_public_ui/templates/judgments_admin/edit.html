@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-  {% if context.success %}
-    {{ context.success }}
-  {% endif %}
-  {% if context.error %}
-    {{ context.error }}
-  {% endif %}
-  <p>Editing {{context.uri}}</p>
+  {% if context.success %}{{ context.success }}{% endif %}
+  {% if context.error %}{{ context.error }}{% endif %}
+  <p>Editing {{ context.uri }}</p>
   <form action="{% url 'update' %}" method="post">
     {% csrf_token %}
-    <input type="text" value="{{context.metadata_name}}" name="metadata_name" />
-    <input type="hidden" name="uri" value="{{context.uri}}"/>
+    <input type="text" value="{{ context.metadata_name }}" name="metadata_name" />
+    <input type="hidden" name="uri" value="{{ context.uri }}"/>
     <input type="submit" value="Save"/>
   </form>
   <a href="{% url 'detail' context.uri %}">Back to Judgment detail page</a>

@@ -6,10 +6,14 @@
         <a href="{{ context.back_link }}">{% translate "judgment.back" %}</a>
       </div>
     {% endif %}
-
     <div class="judgment-toolbar__download judgment-toolbar-download">
-      <a class="judgment-toolbar-download__option--pdf btn" role="button" draggable="false" href="{{ context.pdf_uri }}">{% translate "judgment.downloadaspdf" %}{{context.pdf_size}}</a>
-      <p class="judgment-toolbar-download__download-options" role="note"><a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a></p>
+      <a class="judgment-toolbar-download__option--pdf btn"
+         role="button"
+         draggable="false"
+         href="{{ context.pdf_uri }}">{% translate "judgment.downloadaspdf" %}{{ context.pdf_size }}</a>
+      <p class="judgment-toolbar-download__download-options" role="note">
+        <a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a>
+      </p>
     </div>
   </div>
 </div>

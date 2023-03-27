@@ -317,7 +317,7 @@ class TestRobotsDirectives(TestCase):
         fake_result.return_value = fake_search_result()
         response = self.client.get("/")
         self.assertNotContains(
-            response, '<meta name="robots" content="noindex,nofollow">'
+            response, '<meta name="robots" content="noindex,nofollow" />'
         )
 
     @patch("judgments.views.results.perform_advanced_search")
@@ -328,7 +328,9 @@ class TestRobotsDirectives(TestCase):
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/judgments/results?query=waltham+forest")
-        self.assertContains(response, '<meta name="robots" content="noindex,nofollow">')
+        self.assertContains(
+            response, '<meta name="robots" content="noindex,nofollow" />'
+        )
 
 
 class TestBackLink(TestCase):
