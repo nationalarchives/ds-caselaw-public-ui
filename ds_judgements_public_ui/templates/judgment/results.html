@@ -1,32 +1,25 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block title %}
   {% translate "results.search.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
-
 {% block content %}
   {% translate "results.search.title" as pagetitle %}
-
   <header class="page-header">
-    {% include 'includes/breadcrumbs.html' with current=pagetitle title=pagetitle link=request.path %}
-    {% include 'includes/logo.html' %}
+    {% include "includes/breadcrumbs.html" with current=pagetitle title=pagetitle link=request.path %}
+    {% include "includes/logo.html" %}
   </header>
-
   <div class="results">
     <h1>{{ pagetitle }}</h1>
-
-    {% include 'includes/results_search_component.html' %}
+    {% include "includes/results_search_component.html" %}
     <div class="results__container">
       <div class="results__list-layout-container">
-        <div class="results__result-controls-container">
-          {% include 'includes/result_controls.html' %}
-        </div>
+        <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
         <div class="results__result-list-container">
-          {% include 'includes/results_list.html' %}
-          {% include 'includes/pagination.html' %}
+          {% include "includes/results_list.html" %}
+          {% include "includes/pagination.html" %}
         </div>
       </div>
     </div>
   </div>
-{% endblock %}
+{% endblock content %}

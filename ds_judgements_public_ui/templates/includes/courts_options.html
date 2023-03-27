@@ -1,11 +1,13 @@
 {% for court in context.courts %}
   <div class="structured-search__court-option">
-    <label for="court_{{court.canonical_param}}">
-      <input type="checkbox" name="court"
-             value="{{court.canonical_param}}"
-             id="court_{{court.canonical_param}}"
-             {% for alias in context.court %}{% if alias in court.param_aliases %}checked="checked"{% endif %}{% endfor %}>
-      <span class="structured-search__court-option-label">{{court.name}}</span>
+    <label for="court_{{ court.canonical_param }}">
+      <input type="checkbox"
+             name="court"
+             value="{{ court.canonical_param }}"
+             id="court_{{ court.canonical_param }}"
+             {% for alias in context.court %}{% if alias in court.param_aliases %}checked="checked"{% endif %}
+             {% endfor %}/>
+      <span class="structured-search__court-option-label">{{ court.name }}</span>
     </label>
   </div>
 {% endfor %}

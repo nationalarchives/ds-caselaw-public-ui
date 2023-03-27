@@ -1,14 +1,13 @@
 {% load static i18n %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="robots" content="noindex,nofollow">
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex,nofollow" />
     <title>{{ judgment_uri }}</title>
     {% block css %}
-      <link href="{% static 'css/judgmentpdf.css' %}" rel="stylesheet">
-    {% endblock %}
+      <link href="{% static 'css/judgmentpdf.css' %}" rel="stylesheet" />
+    {% endblock css %}
   </head>
   <body>
     <main id="main-content">

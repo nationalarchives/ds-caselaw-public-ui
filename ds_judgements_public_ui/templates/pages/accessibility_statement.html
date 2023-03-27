@@ -1,20 +1,16 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block robots %}
 {% endblock robots %}
-
 {% block title %}
   {% translate "accessibilitystatement.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
-
 {% block content %}
   {% translate "accessibilitystatement.title" as page_title %}
   <header class="page-header">
-    {% include 'includes/breadcrumbs.html' with current=page_title title=page_title link=request.path %}
-    {% include 'includes/logo.html' %}
+    {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
+    {% include "includes/logo.html" %}
   </header>
-
   <div class="standard-text-template">
     <h1>{{ page_title }}</h1>
     <div class="entry-content clearfix">
@@ -47,18 +43,20 @@
       <p>Some parts of this website may not be fully accessible:</p>
       <ul>
         <li>Judgments contain images that do not have a text alternative that serves the equivalent purpose</li>
-        <li>Information, structure, and relationships conveyed through a judgment presentation may not be programmatically determined or are available in text</li>
+        <li>
+          Information, structure, and relationships conveyed through a judgment presentation may not be programmatically determined or are available in text
+        </li>
       </ul>
-      <p>Specific non-compliances are listed <a href="#Non-Compliances">below</a>.</p>
+      <p>
+        Specific non-compliances are listed <a href="#Non-Compliances">below</a>.
+      </p>
       <h2>Feedback, contact information and reporting accessibility problems</h2>
       <p>
         If you need information on this website in a different format, for example accessible PDF, large print,
         easy read, audio recording or Braille, email <a href="mailto:webmaster@nationalarchives.gov.uk">webmaster@nationalarchives.gov.uk</a>
         or call 020 8876 3444. We will respond to your request within 10 working days.
       </p>
-      <p>
-        You can also use these contact details to report accessibility problems with this website.
-      </p>
+      <p>You can also use these contact details to report accessibility problems with this website.</p>
       <p>
         If you have an accessibility need and would like to participate in user testing as we make improvements
         to our website, email <a href="mailto:uxresearch@nationalarchives.gov.uk">uxresearch@nationalarchives.gov.uk</a>.
@@ -71,7 +69,8 @@
         <a href="https://www.equalityadvisoryservice.com/">contact the Equality Advisory and Support Service (EASS)</a>.
       </p>
       <h2>Contacting us or visiting in person</h2>
-      <p>You can <a href="https://www.nationalarchives.gov.uk/contact-us/">contact us</a> by phone, email or Live
+      <p>
+        You can <a href="https://www.nationalarchives.gov.uk/contact-us/">contact us</a> by phone, email or Live
         chat. We provide information about
         <a href="https://www.nationalarchives.gov.uk/about/visit-us/">visiting in person</a>.
         People with health conditions or impairments that may impact their visit can
@@ -93,25 +92,46 @@
         Based on sample testing of pages selected by our user experience and metrics teams, we know that the
         content listed below is non-compliant with the accessibility regulations for the following reasons:
       </p>
-      <h3 id="Non-Compliances">Non-compliance with the accessibility regulations</h3>
+      <h3 id="Non-Compliances">
+        Non-compliance with the accessibility regulations
+      </h3>
       <ol>
-        <li>Images within judgment text do not have a text alternative (Success Criterion 1.1.1 Non-text Content)</li>
-        <li>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text (Success Criterion 1.3.1 Info and Relationships)</li>
+        <li>
+          Images within judgment text do not have a text alternative (Success Criterion 1.1.1 Non-text Content)
+        </li>
+        <li>
+          Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text (Success Criterion 1.3.1 Info and Relationships)
+        </li>
       </ol>
-      <h2>Disproportionate burden</h2>
-      <p>Not applicable.</p>
-      <h2>Content that's not within the scope of the accessibility regulations</h2>
+      <h2>
+        Disproportionate burden
+      </h2>
+      <p>
+        Not applicable.
+      </p>
+      <h2>
+        Content that's not within the scope of the accessibility regulations
+      </h2>
       <ul>
-        <li>PDFs or other documents published before 23 September 2018.</li>
-        <li>Live video.</li>
+        <li>
+          PDFs or other documents published before 23 September 2018.
+        </li>
+        <li>
+          Live video.
+        </li>
       </ul>
-      <p>While reproductions of items in heritage collections are
-        <a href="http://www.legislation.gov.uk/uksi/2018/952/regulation/4/made">exempt from meeting the accessibility regulations</a>,
+      <p>
+        While reproductions of items in heritage collections are
+        <a href="https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made">exempt from meeting the accessibility regulations</a>,
         we are investigating ways to use emerging technology to improve the data
         and accessibility of our heritage collections.
       </p>
-      <h2>Preparation of this accessibility statement</h2>
-      <p>This statement was prepared on 12 April 2022.</p>
+      <h2>
+        Preparation of this accessibility statement
+      </h2>
+      <p>
+        This statement was prepared on 12 April 2022.
+      </p>
     </div>
   </div>
-{% endblock %}
+{% endblock content %}

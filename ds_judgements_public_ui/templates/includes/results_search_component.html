@@ -1,23 +1,19 @@
 <div class="results-search-component">
   <form action="{% url 'advanced_search' %}" id="analytics-results-filters">
-    {% if context.per_page is not None %}
-      <input type="hidden" name="per_page" value="{{context.per_page}}" />
-    {% endif %}
-    {% if context.order is not None %}
-      <input type="hidden" name="order" value="{{context.order}}" />
-    {% endif %}
-
+    {% if context.per_page is not None %}<input type="hidden" name="per_page" value="{{ context.per_page }}" />{% endif %}
+    {% if context.order is not None %}<input type="hidden" name="order" value="{{ context.order }}" />{% endif %}
     <div class="results-search-component__container js-results-facets-wrapper">
-      {% include 'includes/results_search_field.html' %}
+      {% include "includes/results_search_field.html" %}
       <div class="results-search-component__filters-row">
-        {% include 'includes/results_applied_filters.html' %}
+        {% include "includes/results_applied_filters.html" %}
         <div class="results-search-component__control-container js-results-control-container"></div>
       </div>
-      <div>{% include 'includes/results_filters.html' %}</div>
+      <div>{% include "includes/results_filters.html" %}</div>
       <div class="results-search-component__mobile-submit-button">
-        <input type="submit" value="Search" class="results-search-component__search-submit-button">
+        <input type="submit"
+               value="Search"
+               class="results-search-component__search-submit-button"/>
       </div>
     </div>
-
   </form>
 </div>
