@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-23 15:23+0000\n"
+"POT-Creation-Date: 2023-03-27 19:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,12 +122,6 @@ msgstr "Privacy"
 #: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
 msgid "service.improved"
 msgstr "How can this service be improved?"
-
-#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
-#: ds_judgements_public_ui/templates/includes/phase_banner.html
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "survey.link"
-msgstr "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
 
 #: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
 msgid "survey.link.text"
