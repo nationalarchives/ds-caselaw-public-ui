@@ -40,6 +40,10 @@ class FeedbackLinkMiddleware:
         params = {
             "full_url": request.build_absolute_uri(),
         }
+
+        if "query" in response.context_data["context"]:
+            params["search_term"] = response.context_data["context"]["query"]
+
         response.context_data["feedback_survey_link"] = (
             self.BASE_FEEDBACK_URL + "?" + urlencode(params)
         )
