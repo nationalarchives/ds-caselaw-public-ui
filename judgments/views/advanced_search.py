@@ -85,4 +85,11 @@ def advanced_search(request):
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     template = loader.get_template("judgment/results.html")
-    return TemplateResponse(request, template, context={"context": context})
+    return TemplateResponse(
+        request,
+        template,
+        context={
+            "context": context,
+            "feedback_survey_type": "structured_search",
+        },
+    )

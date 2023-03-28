@@ -44,6 +44,9 @@ class FeedbackLinkMiddleware:
         if "query" in response.context_data["context"]:
             params["search_term"] = response.context_data["context"]["query"]
 
+        if "feedback_survey_type" in response.context_data:
+            params["type"] = response.context_data["feedback_survey_type"]
+
         response.context_data["feedback_survey_link"] = (
             self.BASE_FEEDBACK_URL + "?" + urlencode(params)
         )
