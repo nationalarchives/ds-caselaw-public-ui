@@ -89,7 +89,15 @@ def detail(request, judgment_uri):
         raise Http404("Judgment was not found")
 
     template = loader.get_template("judgment/detail.html")
-    return TemplateResponse(request, template, context={"context": context})
+    return TemplateResponse(
+        request,
+        template,
+        context={
+            "context": context,
+            "feedback_survey_type": "judgment",
+            "feedback_survey_judgment_uri": judgment_uri,
+        },
+    )
 
 
 def detail_xml(_request, judgment_uri):

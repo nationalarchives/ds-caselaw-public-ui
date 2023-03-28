@@ -18,20 +18,40 @@ class TransactionalLicenceFormView(TemplateViewWithContext):
     template_name = "pages/transactional_licence.html"
     page_title = "transactionallicenceform.title"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
 
 class AccessibilityStatement(TemplateViewWithContext):
     template_name = "pages/accessibility_statement.html"
     page_title = "accessibilitystatement.title"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "support"
+        return context
 
 
 class OpenJusticeLicenceView(TemplateViewWithContext):
     template_name = "pages/open_justice_licence.html"
     page_title = "openjusticelicence.title"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
 
 class TermsOfUseView(TemplateViewWithContext):
     template_name = "pages/terms_of_use.html"
     page_title = "terms.title"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "support"
+        return context
 
 
 class StructuredSearchView(TemplateViewWithContext):
@@ -41,11 +61,17 @@ class StructuredSearchView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["context"]["courts"] = courts.get_selectable()
+        context["feedback_survey_type"] = "structured_search"
         return context
 
 
 class NoResultsView(TemplateViewWithContext):
     template_name = "pages/no_results.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "search"
+        return context
 
 
 class CheckView(TemplateViewWithContext):
@@ -58,8 +84,14 @@ class WhatToExpectView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["context"]["courts"] = courts.get_listable_groups()
+        context["feedback_survey_type"] = "support"
         return context
 
 
 class HowToUseThisService(TemplateViewWithContext):
     template_name = "pages/how_to_use_this_service.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "support"
+        return context

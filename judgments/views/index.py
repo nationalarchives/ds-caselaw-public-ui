@@ -29,5 +29,6 @@ def index(request):
             "context": context,
             "courts": all_courts.get_listable_courts(),
             "tribunals": all_courts.get_listable_tribunals(),
+            "feedback_survey_type": "home",
         },
     )

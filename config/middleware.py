@@ -1,3 +1,5 @@
+from urllib.parse import urlencode
+
 from django.utils.cache import patch_cache_control
 
 
@@ -18,4 +20,42 @@ class CacheHeaderMiddleware:
         # Code to be executed for each request/response after
         # the view is called.
 
+        return response
+
+
+class FeedbackLinkMiddleware:
+
+    BASE_FEEDBACK_URL: str = (
+        "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
+    )
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # We don't manipulate the response here
+        return self.get_response(request)
+
+    def process_template_response(self, request, response):
+        params = {
+            "full_url": request.build_absolute_uri(),
+        }
+
+        if "query" in response.context_data["context"]:
+            params["search_term"] = response.context_data["context"]["query"]
+
+        if "feedback_survey_type" in response.context_data:
+            params["type"] = response.context_data["feedback_survey_type"]
+
+        if "feedback_survey_judgment_uri" in response.context_data:
+            params["judgment_uri"] = response.context_data[
+                "feedback_survey_judgment_uri"
+            ]
+
+        if "feedback_survey_court" in response.context_data:
+            params["court"] = response.context_data["feedback_survey_court"]
+
+        response.context_data["feedback_survey_link"] = (
+            self.BASE_FEEDBACK_URL + "?" + urlencode(params)
+        )
         return response
