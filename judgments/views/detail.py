@@ -95,6 +95,7 @@ def detail(request, judgment_uri):
         context={
             "context": context,
             "feedback_survey_type": "judgment",
+            "feedback_survey_judgment_uri": judgment_uri,
         },
     )
 
