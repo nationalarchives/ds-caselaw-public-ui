@@ -58,5 +58,6 @@ def browse(request, court=None, subdivision=None, year=None):
         context={
             "context": context,
             "feedback_survey_type": "browse",
+            "feedback_survey_court": court_query,
         },
     )
