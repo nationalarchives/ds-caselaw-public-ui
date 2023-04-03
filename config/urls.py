@@ -51,11 +51,6 @@ urlpatterns = [
         name="structured_search",
     ),
     path(
-        "no_results",
-        views.NoResultsView.as_view(),
-        name="no_results",
-    ),
-    path(
         "check",
         views.CheckView.as_view(),
         name="check",

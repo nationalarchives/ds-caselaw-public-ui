@@ -65,15 +65,6 @@ class StructuredSearchView(TemplateViewWithContext):
         return context
 
 
-class NoResultsView(TemplateViewWithContext):
-    template_name = "pages/no_results.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "search"
-        return context
-
-
 class CheckView(TemplateViewWithContext):
     template_name = "pages/check.html"
 
