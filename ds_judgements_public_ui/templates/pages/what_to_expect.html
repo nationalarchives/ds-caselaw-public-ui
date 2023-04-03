@@ -13,7 +13,11 @@
     {% include "includes/logo.html" %}
   </header>
   <div class="standard-text-template">
-    <h1>What to expect from this new service</h1>
+    <div id="js-document-navigation-links-start"
+         class="document-navigation-links">
+      <a class="down" href="#end-of-document">Skip to end</a>
+    </div>
+    <h1 id="start-of-document">What to expect from this new service</h1>
     <p>
       <small>
         Last updated on
@@ -108,7 +112,9 @@
       </li>
       <li>Judgments provided directly by the Supreme Court and the Upper Tribunals</li>
     </ul>
-    <p>The collection does not include judgments from:</p>
+    <p>
+      The collection does not include judgments from:
+    </p>
     <ul>
       <li>
         Crown courts
@@ -562,9 +568,13 @@
     <h2 id="section-contact">
       How to contact us
     </h2>
-    <p>
+    <p id="end-of-document">
       You can get in touch by emailing
       <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
     </p>
+  </div>
+  <div id="js-document-navigation-links-end"
+       class="document-navigation-links">
+    <a class="up" href="#start-of-document">Back to top</a>
   </div>
 {% endblock content %}
