@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 19:55+0000\n"
+"POT-Creation-Date: 2023-04-03 13:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,21 +230,6 @@ msgstr ""
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "caselaw.email"
 msgstr "caselaw@nationalarchives.gov.uk"
-
-#: ds_judgements_public_ui/templates/pages/no_results.html
-#, python-format
-msgid "No results for '%(data)s'"
-msgstr ""
-
-#: ds_judgements_public_ui/templates/pages/no_results.html
-msgid "search.noresults"
-msgstr "There are no results for your search"
-
-#: ds_judgements_public_ui/templates/pages/no_results.html
-msgid "search.improvesearch"
-msgstr ""
-"Improve your search results by removing filters, double-checking your "
-"spelling, using fewer keywords or searching for something less specific."
 
 #: ds_judgements_public_ui/templates/pages/open_justice_licence.html
 msgid "openjusticelicence.title"
