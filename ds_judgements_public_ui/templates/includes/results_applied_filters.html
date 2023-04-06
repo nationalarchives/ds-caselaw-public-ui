@@ -28,9 +28,8 @@
                  class="results-search-component__removable-options-link"
                  href="{% url 'advanced_search' %}?{{ context.query_params|remove_court:court }}"
                  title="{{ court|get_court_name }}">
-                <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
                 <span class="results-search-component__removable-options-value">
-                  <span class="results-search-component__removable-options-value-text">{{ court }}</span>
+                  <span class="results-search-component__removable-options-value-text">{{ court|get_court_name }}</span>
                 </span>
               </a>
             </li>

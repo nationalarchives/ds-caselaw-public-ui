@@ -3,6 +3,7 @@ from os import environ
 from unittest import skip
 from unittest.mock import Mock, patch
 
+from dateutil import parser as dateparser
 from django.test import TestCase
 from lxml import etree
 
@@ -197,8 +198,8 @@ class TestSearchResult(TestCase):
         )
         self.assertEqual("ukut/lc/2022/241", search_result.uri)
         self.assertEqual("[2022] UKUT 241 (LC)", search_result.neutral_citation)
-        self.assertEqual("UKUT-LC", search_result.court)
-        self.assertEqual("2022-09-09", search_result.date)
+        self.assertEqual("UKUT-LC", search_result.court.code)
+        self.assertEqual(dateparser.parse("2022-09-09"), search_result.date)
         self.assertEqual("2022-10-10", search_result.transformation_date)
 
     @patch("judgments.models.api_client")

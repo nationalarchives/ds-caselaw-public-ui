@@ -1,8 +1,10 @@
 from os.path import dirname, join
 
 from caselawclient.Client import api_client
+from dateutil import parser as dateparser
 from django.db import models
 from djxml import xmlmodels
+from ds_caselaw_utils import courts
 from lxml import etree
 
 
@@ -23,8 +25,11 @@ class SearchResult:
         self.uri = uri
         self.neutral_citation = neutral_citation
         self.name = name
-        self.date = date
-        self.court = court
+        self.date = dateparser.parse(date)
+        try:
+            self.court = courts.get_by_code(court)
+        except KeyError:
+            self.court = None
         self.matches = matches
         self.author = author
         self.last_modified = last_modified

@@ -264,12 +264,13 @@
     text-decoration: none;
     padding: calc($spacer__unit / 2) calc($spacer__unit / 2) calc($spacer__unit / 2) $spacer__unit;
 
-    &:visited {
+    &:hover {
+      background: $color__yellow;
       color: $color__black;
     }
 
-    &:hover {
-      background: $color__yellow;
+    &:visited {
+      color: $color__black;
     }
 
     &:focus {
