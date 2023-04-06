@@ -5,6 +5,7 @@
     padding: calc($spacer__unit * 1.5) 0 calc($spacer__unit * 1.5);
     margin: 0 0 $spacer__unit;
     text-align: center;
+    border-top: 4px solid $color__yellow;
   }
 
   &__main-search-header {
@@ -59,7 +60,7 @@
 
   &__limit-to-label {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
     font-size: 1rem;
     font-weight: bold;
   }
@@ -128,17 +129,19 @@
   }
 
   &__specific-field-container {
-    background-color: $color__yellow;
+    background-color: $color__light-grey;
     padding: $spacer__unit;
     display: flex;
     flex-direction: column;
+    border-top: 4px solid $color__yellow;
   }
 
   &__limit-to-container {
-    background-color: $color__yellow;
+    background-color: $color__light-grey;
     padding: $spacer__unit;
     display: flex;
     flex-direction: column;
+    border-top: 4px solid $color__yellow;
   }
 
   &__submit-container {
