@@ -7,7 +7,7 @@
 {% endblock title %}
 {% block content %}
   {% translate "howtousethisservice.title" as page_title %}
-  <header class="page-header">
+  <header class="page-header" id="start-of-document">
     {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
     {% include "includes/logo.html" %}
   </header>
@@ -304,4 +304,5 @@
       <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
     </p>
   </div>
+  {% include "includes/help_end_document_marker.html" %}
 {% endblock content %}

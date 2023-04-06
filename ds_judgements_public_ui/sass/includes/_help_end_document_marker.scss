@@ -1,11 +1,10 @@
-.judgment-end-document-marker {
+.help-end-document-marker {
     width: 100%;
-    border: 1px dashed $color__black;
-    border-top: none;
+    border-top: 4px solid $color__yellow;
     height: $spacer__unit;
     max-width: 90%;
     margin: auto;
-    margin-bottom: calc($spacer__unit * 7);
+    margin-bottom: calc($spacer__unit * 8);
     text-align: center;
     @media (min-width: $grid__breakpoint-medium) {
       max-width: 40rem;
@@ -20,9 +19,9 @@
         background-color: white;
         padding: calc($spacer__unit * 0.5);
         padding-top: calc($spacer__unit * 0.3);
+        margin-top: 0.5rem;
 
         a {
-            display: none;
             margin-top: 1.5rem;
 
             &::before {

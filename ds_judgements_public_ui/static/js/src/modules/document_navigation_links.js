@@ -35,7 +35,7 @@ $(() => {
     );
 
     let footerBackLink = document.querySelector(
-        ".end-document-marker__top-link a"
+        ".judgment-end-document-marker__top-link a"
     );
 
     if (footerBackLink) {
