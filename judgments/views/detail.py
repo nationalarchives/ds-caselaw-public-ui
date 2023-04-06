@@ -116,10 +116,13 @@ def get_pdf_size(judgment_uri):
         get_pdf_uri(judgment_uri), headers={"Accept-Encoding": None}
     )
     content_length = response.headers.get("Content-Length", None)
+    if response.status_code >= 400:
+        return ""
     if content_length:
         filesize = filesizeformat(int(content_length))
         return f" ({filesize})"
-    return ""
+    logging.warn(f"Unable to determine PDF size for {judgment_uri}")
+    return " (unknown size)"
 
 
 def get_back_link(request):
