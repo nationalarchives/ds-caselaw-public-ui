@@ -40,21 +40,11 @@
     font-family: $font__roboto;
   }
 
-  &__neutralcitation {
-    font-size: 0.9rem;
-  }
-
-  &__date {
-    display: block;
-    font-size: 0.9rem;
-    color: $color__dark-grey;
-
-    @media (min-width: $grid__breakpoint-medium) {
-      text-align: right;
-    }
-  }
-
   &__court {
+    font-size: 0.9rem;
+  }
+
+  &__neutralcitation {
     display: block;
     font-size: 0.9rem;
     color: $color__dark-grey;
@@ -67,6 +57,17 @@
       margin-top: 0;
     }
   }
+
+  &__date {
+    display: block;
+    font-size: 0.9rem;
+    color: $color__dark-grey;
+
+    @media (min-width: $grid__breakpoint-medium) {
+      text-align: right;
+    }
+  }
+
 
   &__result-term-matching {
     display: block;

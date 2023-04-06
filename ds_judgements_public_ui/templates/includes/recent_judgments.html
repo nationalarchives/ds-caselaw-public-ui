@@ -9,14 +9,11 @@
             <span class="judgment-listing__title">
               <a href="{% url 'detail' item.uri %}">{{ item.name }}</a>
             </span>
-            <span class="judgment-listing__neutralcitation">
-              Neutral citation:
-              {{ item.neutral_citation }}
-            </span>
+            <span class="judgment-listing__court">{% translate "judgments.court" %} {{ item.court }}</span>
           </span>
           <span>
-            <span class="judgment-listing__date">{% translate "judgments.date" %} {{ item.date }}</span>
-            <span class="judgment-listing__court">{% translate "judgments.court" %} {{ item.court }}</span>
+            <span class="judgment-listing__neutralcitation">{{ item.neutral_citation }}</span>
+            <span class="judgment-listing__date">{{ item.date }}</span>
           </span>
         </li>
       {% endfor %}
