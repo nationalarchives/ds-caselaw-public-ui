@@ -14,13 +14,13 @@
           <span class="judgment-listing__neutralcitation">{{ item.neutral_citation }}</span>
           <span class="judgment-listing__date">{{ item.date }}</span>
         </span>
-        {% if item.matches %}
-          <span class="judgment-listing__result-term-matching">Matching text sample:</span>
-          <span class="judgment-listing__matches">
-            {% autoescape off %}
-              {{ item.matches }}
-            {% endautoescape %}
-          </span>
+      </span>
+      {% if item.matches %}
+        <span class="judgment-listing__result-term-matching">Matching text sample:</span>
+        <span class="judgment-listing__matches">
+          {% autoescape off %}
+            {{ item.matches }}
+          {% endautoescape %}
         </span>
       {% endif %}
     </li>
