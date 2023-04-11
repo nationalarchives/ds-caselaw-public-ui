@@ -105,4 +105,9 @@
     margin: calc($spacer__unit / 3) 0 calc($spacer__unit / 2) 0;
     font-size: 0.8rem;
   }
+
+  &__main-label {
+    text-align: left;
+    margin: calc($spacer__unit / 3) 0 calc($spacer__unit / 2) 0;
+  }
 }

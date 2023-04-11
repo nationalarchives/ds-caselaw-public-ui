@@ -2,7 +2,7 @@
 
   &__main-search {
     background-color: $color__light-grey;
-    padding: calc($spacer__unit * 1.5) 0 calc($spacer__unit * 1.5);
+    padding: calc($spacer__unit * 1) 0 calc($spacer__unit * 1.5);
     margin: 0 0 $spacer__unit;
     text-align: center;
   }
@@ -14,7 +14,7 @@
     font-family: $font__roboto;
     font-weight: normal;
     color: $color__almost-black;
-    margin: calc($spacer__unit * 3) 0 0 0;
+    margin: calc($spacer__unit * 1) 0 0 0;
     @media (max-width: $grid__breakpoint-medium) {
       margin: 1px $spacer__unit;
       line-height: 2.6rem;
