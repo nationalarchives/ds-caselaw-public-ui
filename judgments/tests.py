@@ -96,6 +96,7 @@ class TestJudgment(TestCase):
         if "ASSETS_CDN_BASE_URL" not in environ:
             raise "ensure ASSETS_CDN_BASE_URL is set in .env!"
         head.return_value.headers = {"Content-Length": "1234567890"}
+        head.return_value.status_code = 200
         client.eval_xslt.return_value = "eval_xslt"
         decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
         client.get_judgment_name.return_value = "judgment metadata"
@@ -112,8 +113,30 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.requests.head")
     @patch("judgments.views.detail.decoder.MultipartDecoder")
     @patch("judgments.views.detail.api_client")
+    def test_valid_content_no_filesize(self, client, decoder, head):
+        if "ASSETS_CDN_BASE_URL" not in environ:
+            raise "ensure ASSETS_CDN_BASE_URL is set in .env!"
+        head.return_value.headers = {}
+        head.return_value.status_code = 200
+        client.eval_xslt.return_value = "eval_xslt"
+        decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
+        client.get_judgment_name.return_value = "judgment metadata"
+
+        response = self.client.get("/ewca/civ/2004/632")
+        decoded_response = response.content.decode("utf-8")
+        self.assertIn(environ["ASSETS_CDN_BASE_URL"], decoded_response)
+        self.assertIn("ewca_civ_2004_632.pdf", decoded_response)
+        self.assertNotIn("data.pdf", decoded_response)
+        self.assertIn("(unknown size)", decoded_response)
+        # We don't use the Download as PDF text because there's an issue with localisated strings on CI
+        self.assertEqual(response.status_code, 200)
+
+    @patch("judgments.views.detail.requests.head")
+    @patch("judgments.views.detail.decoder.MultipartDecoder")
+    @patch("judgments.views.detail.api_client")
     def test_no_valid_pdf(self, client, decoder, head):
         head.return_value.headers = {}
+        head.return_value.status_code = 404
         client.eval_xslt.return_value = "eval_xslt"
         decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
         client.get_judgment_name.return_value = "judgment metadata"
