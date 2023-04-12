@@ -16,6 +16,6 @@ lxml~=4.9.2
 django-xml~=3.0.0
 wsgi-basic-auth~=1.1.0
 ds-caselaw-marklogic-api-client~=5.2.6
-ds-caselaw-utils~=0.4.4
+ds-caselaw-utils~=0.5.0
 rollbar
 django-weasyprint==2.2.0
