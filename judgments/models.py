@@ -4,7 +4,7 @@ from caselawclient.Client import api_client
 from dateutil import parser as dateparser
 from django.db import models
 from djxml import xmlmodels
-from ds_caselaw_utils import courts
+from ds_caselaw_utils.courts import CourtNotFoundException, courts
 from lxml import etree
 
 
@@ -28,7 +28,7 @@ class SearchResult:
         self.date = dateparser.parse(date)
         try:
             self.court = courts.get_by_code(court)
-        except KeyError:
+        except CourtNotFoundException:
             self.court = None
         self.matches = matches
         self.author = author
