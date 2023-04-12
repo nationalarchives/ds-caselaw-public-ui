@@ -106,8 +106,8 @@
 }
 @media (max-width: 560px) {
   #ds-cookie-consent-banner .container #hide_this_message,
-#ds-cookie-consent-banner .container #reject_optional_cookies,
-#ds-cookie-consent-banner .container #accept_optional_cookies {
+  #ds-cookie-consent-banner .container #reject_optional_cookies,
+  #ds-cookie-consent-banner .container #accept_optional_cookies {
     display: block;
     margin-bottom: 15px;
     width: 100%;

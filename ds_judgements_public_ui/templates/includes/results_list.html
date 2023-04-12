@@ -12,7 +12,7 @@
         </span>
         <span>
           <span class="judgment-listing__neutralcitation">{{ item.neutral_citation }}</span>
-          <span class="judgment-listing__date">{{ item.date|date }}</span>
+          <time class="judgment-listing__date" datetime="{{ item.date }}">{{ item.date|date }}</time>
         </span>
       </span>
       {% if item.matches %}
