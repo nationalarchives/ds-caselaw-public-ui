@@ -1,6 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
-from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.courts import CourtNotFoundException
+from ds_caselaw_utils.courts import courts as all_courts
 
 from judgments.models import CourtDates
 
@@ -9,8 +10,9 @@ register = template.Library()
 
 @register.filter
 def get_court_name(court):
-    court_object = all_courts.get_by_param(court)
-    if court_object is None:
+    try:
+        court_object = all_courts.get_by_param(court)
+    except CourtNotFoundException:
         return ""
     return court_object.name
 

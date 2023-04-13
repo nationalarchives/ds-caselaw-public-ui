@@ -124,8 +124,7 @@ class LatestJudgmentsFeed(Feed):
         return datetime.datetime.fromisoformat(date_string)
 
     def item_pubdate(self, item: SearchResult) -> datetime.datetime:
-        date_string = item.date or "1970-01-01"
-        return datetime.datetime.fromisoformat(date_string)
+        return item.date
 
     def feed_extra_kwargs(self, obj):
         extra_kwargs = super().item_extra_kwargs(obj)
