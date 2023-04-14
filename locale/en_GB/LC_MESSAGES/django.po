@@ -197,9 +197,11 @@ msgstr "Search"
 msgid "basicsearchform.placeholder"
 msgstr "Search..."
 
+
+
 #: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basicsearchform.helptext"
-msgstr "Enter keyword, party name or neutral&nbsp;citation"
+msgid "basic.search.helptext"
+msgstr "How to search"
 
 #: ds_judgements_public_ui/templates/includes/search_term_component.html
 msgid "basicsearchform.cta"
