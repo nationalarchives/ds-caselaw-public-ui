@@ -126,6 +126,8 @@
   margin-top: calc($spacer__unit / 2);
   background-color: $color__white;
   width: 80%;
+  font-family: $font__open-sans;
+  font-size: 1rem;
 
   &:focus {
     @include focus-default
