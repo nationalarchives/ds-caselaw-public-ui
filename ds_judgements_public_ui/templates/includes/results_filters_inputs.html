@@ -1,38 +1,120 @@
-<fieldset>
-  <div class="structured-search__single-field-panel">
-    <div class="structured-search__limit-to-container">
+{% load court_utils feature_flags %}
+{% flag_enabled 'TEXT_DATE_INPUT' as text_date_input %}
+<div class="structured-search__single-field-panel">
+  <div class="structured-search__limit-to-container">
+    <fieldset>
       <label for="court" class="structured-search__limit-to-label">From specific courts or tribunals</label>
       <div class="structured-search__court-options" id="court">{% include "includes/courts_options.html" %}</div>
-    </div>
+    </fieldset>
   </div>
-</fieldset>
-<fieldset>
-  <div class="structured-search__multi-fields-panel">
-    <div class="structured-search__limit-to-container">
-      <label for="from_date" class="structured-search__limit-to-label">From date</label>
-      <input class="structured-search__date-input"
-             id="from_date"
-             min="2003-01-02"
-             name="from"
-             placeholder="DD-MM-YYYY"
-             type="date"
-             value="{{ context.from }}" />
-    </div>
-    <div class="structured-search__limit-to-container">
+</div>
+<div class="structured-search__multi-fields-panel">
+  <div class="structured-search__limit-to-container">
+    <fieldset>
+      <legend>
+        <span class="structured-search__limit-to-label" name="from_date">From date</span>
+      </legend>
+      {% if text_date_input %}
+        <div class="structured-search__date-input-group js-date-input">
+          <div>
+            <label for="from_day" class="structured-search__help-text">Day</label>
+            <input class="structured-search__date-input"
+                   id="from_day"
+                   name="from_day"
+                   type="number"
+                   min="1"
+                   max="31"
+                   step="1"
+                   value="{{ context.from }}"/>
+          </div>
+          <div>
+            <label for="from_month" class="structured-search__help-text">Month</label>
+            <input class="structured-search__date-input"
+                   id="from_month"
+                   name="from_month"
+                   type="number"
+                   min="1"
+                   max="12"
+                   step="1"
+                   value="{{ context.from }}"/>
+          </div>
+          <div>
+            <label for="from_year" class="structured-search__help-text">Year</label>
+            <input class="structured-search__date-input"
+                   id="from_year"
+                   name="from_year"
+                   type="number"
+                   min="{% get_first_judgment_year %}"
+                   max="{% get_last_judgment_year %}"
+                   step="1"
+                   value="{{ context.from }}"/>
+          </div>
+        </div>
+      {% else %}
+        <input class="structured-search__date-input"
+               id="from_date"
+               min="2003-01-02"
+               name="from"
+               placeholder="DD-MM-YYYY"
+               type="date"
+               value="{{ context.from }}"/>
+      {% endif %}
+    </fieldset>
+  </div>
+  <div class="structured-search__limit-to-container">
+    <fieldset>
       <label for="to_date" class="structured-search__limit-to-label">To date</label>
-      <input class="structured-search__date-input"
-             id="to_date"
-             min="2003-01-02"
-             name="to"
-             placeholder="DD-MM-YYYY"
-             type="date"
-             value="{{ context.to }}" />
-    </div>
+      {% if text_date_input %}
+        <div class="structured-search__date-input-group js-date-input">
+          <div>
+            <label for="to_day" class="structured-search__help-text">Day</label>
+            <input class="structured-search__date-input"
+                   id="to_day"
+                   name="to_day"
+                   type="number"
+                   min="1"
+                   max="31"
+                   step="1"
+                   value="{{ context.from }}"/>
+          </div>
+          <div>
+            <label for="to_month" class="structured-search__help-text">Month</label>
+            <input class="structured-search__date-input"
+                   id="to_month"
+                   name="to_month"
+                   type="number"
+                   min="1"
+                   max="12"
+                   step="1"
+                   value="{{ context.from }}"/>
+          </div>
+          <div>
+            <label for="to_year" class="structured-search__help-text">Year</label>
+            <input class="structured-search__date-input"
+                   id="to_year"
+                   name="to_year"
+                   type="number"
+                   min="{% get_first_judgment_year %}"
+                   max="{% get_last_judgment_year %}"
+                   step="1"
+                   value="{{ context.from }}"/>
+          </div>
+        </div>
+      {% else %}
+        <input class="structured-search__date-input"
+               id="to_date"
+               min="2003-01-02"
+               name="to"
+               placeholder="DD-MM-YYYY"
+               type="date"
+               value="{{ context.to }}"/>
+      {% endif %}
+    </fieldset>
   </div>
-</fieldset>
-<fieldset>
-  <div class="structured-search__multi-fields-panel">
-    <div class="structured-search__specific-field-container">
+</div>
+<div class="structured-search__multi-fields-panel">
+  <div class="structured-search__specific-field-container">
+    <fieldset>
       <label for="party_name" class="structured-search__limit-to-label">Party name</label>
       <input class="structured-search__limit-to-input"
              id="party_name"
@@ -41,8 +123,10 @@
              value="{{ context.party }}"
              aria-describedby="party_name-help-text" />
       <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
-    </div>
-    <div class="structured-search__specific-field-container">
+    </fieldset>
+  </div>
+  <div class="structured-search__specific-field-container">
+    <fieldset>
       <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
       <input class="structured-search__limit-to-input"
              id="judge_name"
@@ -53,9 +137,9 @@
       <p class="structured-search__help-text" id="judge_name-help-text">
         For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
       </p>
-    </div>
+    </fieldset>
   </div>
-</fieldset>
+</div>
 <div class="structured-search__submit-container">
   <input type="submit"
          class="structured-search__update-filters-button"

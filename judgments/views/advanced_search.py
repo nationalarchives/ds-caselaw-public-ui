@@ -11,6 +11,7 @@ from judgments.utils import (
     as_integer,
     has_filters,
     paginator,
+    parse_date_parameter,
     perform_advanced_search,
     preprocess_query,
 )
@@ -18,6 +19,19 @@ from judgments.utils import (
 
 def advanced_search(request):
     params = request.GET
+
+    try:
+        from_date = parse_date_parameter(params, "from")
+    except ValueError:
+        from_date = None  # TODO - we need to add a mechanism
+        # for informing user of input validation errors
+        # - see https://trello.com/c/vsN1NKLu
+
+    try:
+        to_date = parse_date_parameter(params, "to", default_to_last=True)
+    except ValueError:
+        to_date = None  # TODO - as above, see https://trello.com/c/vsN1NKLu
+
     query_params = {
         "query": params.get("query", ""),
         "court": params.getlist("court"),
@@ -26,8 +40,8 @@ def advanced_search(request):
         "neutral_citation": params.get("neutral_citation"),
         "specific_keyword": params.get("specific_keyword"),
         "order": params.get("order", ""),
-        "from": params.get("from"),
-        "to": params.get("to"),
+        "from": from_date,
+        "to": to_date,
         "per_page": params.get("per_page"),
     }
     page = str(as_integer(params.get("page"), minimum=1))

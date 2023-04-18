@@ -50,7 +50,8 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-FLAGS: Dict[str, Any] = {}
+# Feature flags for django-flags
+FLAGS: Dict[str, Any] = {"TEXT_DATE_INPUT": []}
 
 # URLS
 # ------------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 import math
 import re
+from calendar import monthrange
 from datetime import datetime
 from urllib.parse import urlparse
 
@@ -167,3 +168,35 @@ def has_filters(query_params, exclude=["order", "per_page"]):
     be they query string, court, date, or party.
     """
     return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0
+
+
+def parameter_provided(params, parameter_name):
+    value = params.get(parameter_name)
+    return value and len(value)
+
+
+def parse_parameter_as_int(params, parameter_name, default=None):
+    if parameter_provided(params, parameter_name):
+        return int(params.get(parameter_name))
+    else:
+        return default
+
+
+def parse_date_parameter(params, param_name, default_to_last=False):
+    year_param_name = f"{param_name}_year"
+    month_param_name = f"{param_name}_month"
+    day_param_name = f"{param_name}_day"
+
+    if parameter_provided(params, param_name):
+        return params[param_name]
+    elif parameter_provided(params, year_param_name):
+        year = parse_parameter_as_int(params, year_param_name, default=1)
+
+        default_month = 12 if default_to_last else 1
+        month = parse_parameter_as_int(params, month_param_name, default=default_month)
+
+        default_day = monthrange(year, month)[1] if default_to_last else 1
+        day = parse_parameter_as_int(params, day_param_name, default=default_day)
+
+        dt = datetime(year, month, day)
+        return dt.strftime("%Y-%m-%d")

@@ -7,6 +7,7 @@ from caselawclient.Client import api_client
 from dateutil import parser as dateparser
 from dateutil.parser import ParserError
 from django.db import models
+from django.db.models import Max, Min
 from djxml import xmlmodels
 from ds_caselaw_utils.courts import CourtNotFoundException, courts
 from lxml import etree
@@ -144,3 +145,13 @@ class CourtDates(models.Model):
     param = models.CharField(max_length=64, primary_key=True)
     start_year = models.IntegerField(blank=False)
     end_year = models.IntegerField(blank=False)
+
+    @staticmethod
+    def min_year():
+        result = CourtDates.objects.aggregate(Min("start_year"))
+        return result["start_year__min"]
+
+    @staticmethod
+    def max_year():
+        result = CourtDates.objects.aggregate(Max("end_year"))
+        return result["end_year__max"]
