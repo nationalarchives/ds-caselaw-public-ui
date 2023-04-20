@@ -110,6 +110,24 @@ def sh(c):
 
 
 @task
+def translate(c):
+    """
+    Make messages for translations
+    """
+    subprocess.run(
+        [
+            "docker-compose",
+            "exec",
+            "django",
+            "bash",
+            "-c",
+            "python manage.py makemessages --no-obsolete --add-location file -l en_GB "
+            + "&& python manage.py compilemessages",
+        ]
+    )
+
+
+@task
 def test(c):
     """
     Run python tests in the web container
