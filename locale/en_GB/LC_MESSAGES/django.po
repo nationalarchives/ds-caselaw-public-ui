@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-03 13:01+0100\n"
+"POT-Creation-Date: 2023-04-20 16:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,14 +111,6 @@ msgstr "https://www.nationalarchives.gov.uk/legal/cookies/"
 msgid "footer.cookies"
 msgstr "Cookies"
 
-#: ds_judgements_public_ui/templates/includes/footer.html
-msgid "footer.privacy.link"
-msgstr "https://www.nationalarchives.gov.uk/legal/privacy-policy/"
-
-#: ds_judgements_public_ui/templates/includes/footer.html
-msgid "footer.privacy"
-msgstr "Privacy"
-
 #: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
 msgid "service.improved"
 msgstr "How can this service be improved?"
@@ -172,16 +164,6 @@ msgid "judgment.downloadoptions.shortcutlink"
 msgstr "More download options"
 
 #: ds_judgements_public_ui/templates/includes/recent_judgments.html
-#: ds_judgements_public_ui/templates/includes/results_list.html
-msgid "judgments.date"
-msgstr "Date:"
-
-#: ds_judgements_public_ui/templates/includes/recent_judgments.html
-#: ds_judgements_public_ui/templates/includes/results_list.html
-msgid "judgments.court"
-msgstr "Court:"
-
-#: ds_judgements_public_ui/templates/includes/recent_judgments.html
 msgid "judgments.allrecent"
 msgstr "See all recent judgments"
 
@@ -196,8 +178,6 @@ msgstr "Search"
 #: ds_judgements_public_ui/templates/includes/search_term_component.html
 msgid "basicsearchform.placeholder"
 msgstr "Search..."
-
-
 
 #: ds_judgements_public_ui/templates/includes/search_term_component.html
 msgid "basic.search.helptext"
