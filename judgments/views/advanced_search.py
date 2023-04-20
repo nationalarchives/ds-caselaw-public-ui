@@ -13,7 +13,7 @@ from judgments.utils import (
     has_filters,
     paginator,
     perform_advanced_search,
-    remove_unquoted_stop_words,
+    preprocess_query,
 )
 
 
@@ -51,7 +51,7 @@ def advanced_search(request):
     context = {}
 
     try:
-        query_without_stop_words = remove_unquoted_stop_words(query_params["query"])
+        query_without_stop_words = preprocess_query(query_params["query"])
         model = perform_advanced_search(
             query=query_without_stop_words,
             court=query_params["court"],

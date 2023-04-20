@@ -37,12 +37,37 @@ class TestSearchResults(TestCase):
     @patch("judgments.views.results.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
     @patch("judgments.utils.perform_advanced_search")
-    def test_judgment_results_desktop(self, f3, fake_result, fake_advanced_search):
+    def test_judgment_results(self, f3, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
         f3.r = fake_search_results()
         fake_result.return_value = fake_search_result()
-        # The judgment search results view takes the query term from the (desktop) query input
         response = self.client.get("/judgments/results?query=waltham+forest")
+        self.assertContains(
+            response,
+            '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
+        )
+
+    @patch("judgments.views.results.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    @patch("judgments.utils.perform_advanced_search")
+    @patch("judgments.views.results.preprocess_query")
+    def test_jugdment_results_query_preproccesed(
+        self, fake_preprocess_query, f3, fake_result, fake_advanced_search
+    ):
+        fake_advanced_search.return_value = fake_search_results()
+        f3.r = fake_search_results()
+        fake_result.return_value = fake_search_result()
+        fake_preprocess_query.return_value = "normalised query"
+        self.client.get("/judgments/results?query=waltham+forest")
+
+        fake_preprocess_query.assert_called()
+
+    @patch("judgments.views.advanced_search.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    def test_judgment_advanced_search(self, fake_result, fake_advanced_search):
+        fake_advanced_search.return_value = fake_search_results()
+        fake_result.return_value = fake_search_result()
+        response = self.client.get("/judgments/advanced_search?query=waltham+forest")
         self.assertContains(
             response,
             '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
@@ -50,15 +75,15 @@ class TestSearchResults(TestCase):
 
     @patch("judgments.views.advanced_search.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
-    def test_judgment_advanced_search_desktop(self, fake_result, fake_advanced_search):
+    @patch("judgments.views.advanced_search.preprocess_query")
+    def test_judgment_advanced_search_query_preprocessed(
+        self, fake_preprocess_query, fake_result, fake_advanced_search
+    ):
         fake_advanced_search.return_value = fake_search_results()
         fake_result.return_value = fake_search_result()
-        # The judgment search results view takes the query term from the (desktop) query input
-        response = self.client.get("/judgments/advanced_search?query=waltham+forest")
-        self.assertContains(
-            response,
-            '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
-        )
+        fake_preprocess_query.return_value = "normalised query"
+        self.client.get("/judgments/advanced_search?query=waltham+forest")
+        fake_preprocess_query.assert_called()
 
 
 class TestAtomFeed(TestCase):
@@ -395,14 +420,35 @@ def test_min_max():
     assert as_integer(None, minimum=1) == 1
 
 
-def test_prep_query():
-    assert utils.remove_unquoted_stop_words("weight of evidence") == "weight evidence"
+def test_preprocess_query():
+    # Stopwords are removed
+    assert utils.preprocess_query("weight of evidence") == "weight evidence"
+    # Quotes are normalised
     assert (
-        utils.remove_unquoted_stop_words("'weight of evidence'")
-        == "'weight of evidence'"
+        utils.preprocess_query("“excessively difficult”") == '"excessively difficult"'
     )
+    # Quote normalisation happens before stopwords are removed, so curly quoted # strings retain stopwords:
+    assert utils.preprocess_query("“weight of evidence”") == '"weight of evidence"'
+
+
+def test_normalise_quotes():
+    # Curly double quotes are replaced by straight ones
+    assert (
+        utils.normalise_quotes("“excessively difficult”") == '"excessively difficult"'
+    )
+
+
+def test_remove_unquoted_stop_words():
+    # Stopwords outside quoted strings are removed.
+    assert utils.remove_unquoted_stop_words("weight of evidence") == "weight evidence"
+    # Stopwords inside quoted strings are removed
+    assert (
+        utils.remove_unquoted_stop_words('"weight of evidence"')
+        == '"weight of evidence"'
+    )
+
     assert utils.remove_unquoted_stop_words("the") == "the"
-    assert utils.remove_unquoted_stop_words("'the'") == "'the'"
+    assert utils.remove_unquoted_stop_words('"the"') == '"the"'
     assert utils.remove_unquoted_stop_words("judge and jury") == "judge jury"
     assert utils.remove_unquoted_stop_words('"judge and jury"') == '"judge and jury"'
 

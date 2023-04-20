@@ -51,6 +51,16 @@ def perform_advanced_search(
     return SearchResults.create_from_string(multipart_data.parts[0].text)
 
 
+def preprocess_query(query):
+    query = normalise_quotes(query)
+    query = remove_unquoted_stop_words(query)
+    return query
+
+
+def normalise_quotes(query):
+    return re.sub(r"[“”]", '"', query)
+
+
 def remove_unquoted_stop_words(query):
     """
     Remove stop words [the, and, of] from a search query, but only if they
