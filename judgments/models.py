@@ -2,6 +2,7 @@ from os.path import dirname, join
 
 from caselawclient.Client import api_client
 from dateutil import parser as dateparser
+from dateutil.parser import ParserError
 from django.db import models
 from djxml import xmlmodels
 from ds_caselaw_utils.courts import CourtNotFoundException, courts
@@ -25,7 +26,11 @@ class SearchResult:
         self.uri = uri
         self.neutral_citation = neutral_citation
         self.name = name
-        self.date = dateparser.parse(date)
+
+        try:
+            self.date = dateparser.parse(date)
+        except ParserError:
+            self.date = date
         try:
             self.court = courts.get_by_code(court)
         except CourtNotFoundException:
