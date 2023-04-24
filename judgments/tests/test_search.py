@@ -12,18 +12,29 @@ def fake_search_results():
         return SearchResults.create_from_string(f.read())
 
 
-def fake_search_result():
+def fake_search_result(
+    uri="ewhc/ch/2022/1.xml",
+    neutral_citation="[2022] EWHC 1 (Ch)",
+    name="A SearchResult name!",
+    matches=[],
+    court="A court!",
+    date="2022-01-01T00:01:00",
+    author="",
+    last_modified="2022-01-01T00:01:00.123",
+    content_hash="A hash!",
+    transformation_date="2022-01-01T00:02:00",
+):
     return SearchResult(
-        uri="ewhc/ch/2022/1.xml",
-        neutral_citation="[2022] EWHC 1 (Ch)",
-        name="A SearchResult name!",
-        matches=[],
-        court="A court!",
-        date="2022-01-01T00:01:00",
-        author="",
-        last_modified="2022-01-01T00:01:00.123",
-        content_hash="A hash!",
-        transformation_date="2022-01-01T00:02:00",
+        uri=uri,
+        neutral_citation=neutral_citation,
+        name=name,
+        matches=matches,
+        court=court,
+        date=date,
+        author=author,
+        last_modified=last_modified,
+        content_hash=content_hash,
+        transformation_date=transformation_date,
     )
 
 
