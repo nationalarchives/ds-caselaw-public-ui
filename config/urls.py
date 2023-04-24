@@ -14,6 +14,9 @@ def redirect(request, uri):
 
 
 urlpatterns = [
+    # Django Admin, use {% url 'admin:index' %}
+    path(settings.ADMIN_URL, admin.site.urls),
+    # Your stuff: custom urls includes go here
     re_path("^(?P<uri>.*)/$", redirect),
     path(
         "transactional-licence-form",
@@ -55,9 +58,6 @@ urlpatterns = [
         views.CheckView.as_view(),
         name="check",
     ),
-    # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls),
-    # Your stuff: custom urls includes go here
     path(
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
