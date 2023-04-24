@@ -30,3 +30,14 @@ class TestAtomFeed(TestCase):
         fake_advanced_search.return_value = fake_search_results()
         response = self.client.get("/atom.xml?page=")
         self.assertEqual(response.status_code, 404)
+
+    @patch("judgments.feeds.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    def test_feed_with_empty_date(self, fake_result, fake_advanced_search):
+        fake_advanced_search.return_value = fake_search_results()
+        fake_result.return_value = fake_search_result(date="")
+
+        response = self.client.get("/atom.xml")
+        decoded_response = response.content.decode("utf-8")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("A SearchResult name!", decoded_response)
