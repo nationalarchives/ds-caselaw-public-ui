@@ -30,7 +30,7 @@ class SearchResult:
         try:
             self.date = dateparser.parse(date)
         except ParserError:
-            self.date = date
+            self.date = None
         try:
             self.court = courts.get_by_code(court)
         except CourtNotFoundException:
