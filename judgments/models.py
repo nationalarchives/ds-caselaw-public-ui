@@ -1,3 +1,4 @@
+import logging
 from os.path import dirname, join
 
 from caselawclient.Client import api_client
@@ -29,8 +30,12 @@ class SearchResult:
 
         try:
             self.date = dateparser.parse(date)
-        except ParserError:
-            self.date = date
+        except ParserError as e:
+            if date != "":
+                logging.warning(
+                    f'Unable to parse document date "{date}". Full error: {e}'
+                )
+            self.date = None
         try:
             self.court = courts.get_by_code(court)
         except CourtNotFoundException:
