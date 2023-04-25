@@ -51,7 +51,7 @@ def perform_advanced_search(
     return SearchResults.create_from_string(multipart_data.parts[0].text)
 
 
-def preprocess_query(query):
+def preprocess_query(query: str) -> str:
     query = normalise_quotes(query)
     query = remove_unquoted_stop_words(query)
     return query

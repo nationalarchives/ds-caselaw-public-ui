@@ -122,6 +122,7 @@ def test(c):
             "django",
             "mypy",
             "ds_judgements_public_ui",
+            "judgments",
         ]
     )
     # Pytest
