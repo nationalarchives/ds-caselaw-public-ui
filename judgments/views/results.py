@@ -3,7 +3,6 @@ from typing import Any, Dict
 
 from caselawclient.Client import RESULTS_PER_PAGE, MarklogicAPIError
 from django.http import Http404
-from django.template import loader
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
@@ -74,10 +73,9 @@ def results(request):
         context["courts"] = all_courts.get_selectable()
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!
-    template = loader.get_template("judgment/results.html")
     return TemplateResponse(
         request,
-        template,
+        "judgment/results.html",
         context={
             "context": context,
             "feedback_survey_type": "search",

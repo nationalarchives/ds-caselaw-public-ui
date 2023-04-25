@@ -2,7 +2,6 @@ import urllib
 
 from caselawclient.Client import RESULTS_PER_PAGE, MarklogicResourceNotFoundError
 from django.http import Http404
-from django.template import loader
 from django.template.response import TemplateResponse
 from ds_caselaw_utils import courts as all_courts
 
@@ -84,10 +83,9 @@ def advanced_search(request):
         context["courts"] = all_courts.get_selectable()
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
-    template = loader.get_template("judgment/results.html")
     return TemplateResponse(
         request,
-        template,
+        "judgment/results.html",
         context={
             "context": context,
             "feedback_survey_type": "structured_search",

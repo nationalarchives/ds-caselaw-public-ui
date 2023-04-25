@@ -42,6 +42,21 @@ def fake_search_result(
     )
 
 
+class TestBrowseResults(TestCase):
+    @patch("judgments.views.browse.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    @patch("judgments.utils.perform_advanced_search")
+    def test_browse_results(self, f3, fake_result, fake_advanced_search):
+        fake_advanced_search.return_value = fake_search_results()
+        f3.r = fake_search_results()
+        fake_result.return_value = fake_search_result()
+        response = self.client.get("/ewhc/ch/2022")
+        self.assertContains(
+            response,
+            "A SearchResult name!",
+        )
+
+
 class TestSearchResults(TestCase):
     @patch("judgments.views.results.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")

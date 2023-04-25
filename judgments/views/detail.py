@@ -10,7 +10,6 @@ from caselawclient.Client import (
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect
-from django.template import loader
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
 from django.urls import reverse
@@ -87,11 +86,9 @@ def detail(request, judgment_uri):
         context["back_link"] = get_back_link(request)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
-
-    template = loader.get_template("judgment/detail.html")
     return TemplateResponse(
         request,
-        template,
+        "judgment/detail.html",
         context={
             "context": context,
             "feedback_survey_type": "judgment",
