@@ -1,5 +1,7 @@
 import logging
+from datetime import datetime
 from os.path import dirname, join
+from typing import Optional
 
 from caselawclient.Client import api_client
 from dateutil import parser as dateparser
@@ -24,9 +26,11 @@ class SearchResult:
         content_hash="",
         transformation_date="",
     ) -> None:
-        self.uri = uri
-        self.neutral_citation = neutral_citation
-        self.name = name
+        self.uri: str = uri
+        self.neutral_citation: str = neutral_citation
+        self.name: str = name
+        self.date: Optional[datetime]
+        self.court: Optional[str]
 
         try:
             self.date = dateparser.parse(date)
@@ -41,9 +45,9 @@ class SearchResult:
         except CourtNotFoundException:
             self.court = None
         self.matches = matches
-        self.author = author
+        self.author: Optional[str] = author
         self.last_modified = last_modified
-        self.content_hash = content_hash
+        self.content_hash: str = content_hash
         self.transformation_date = transformation_date
 
     @staticmethod

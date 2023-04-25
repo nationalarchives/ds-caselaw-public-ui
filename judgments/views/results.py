@@ -1,4 +1,5 @@
 import urllib
+from typing import Any, Dict
 
 from caselawclient.Client import RESULTS_PER_PAGE, MarklogicAPIError
 from django.http import Http404
@@ -19,7 +20,7 @@ from judgments.utils import (
 
 
 def results(request):
-    context = {"page_title": gettext("results.search.title")}
+    context: Dict[str, Any] = {"page_title": gettext("results.search.title")}
     try:
         params = request.GET
         query = preprocess_query(params.get("query", ""))

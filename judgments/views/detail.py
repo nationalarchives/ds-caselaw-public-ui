@@ -113,7 +113,9 @@ def detail_xml(_request, judgment_uri):
 def get_pdf_size(judgment_uri):
     """Return the size of the S3 PDF for a judgment as a string in brackets, or an empty string if unavailable"""
     response = requests.head(
-        get_pdf_uri(judgment_uri), headers={"Accept-Encoding": None}
+        # it is possible that "" is a better value than None, but that is untested
+        get_pdf_uri(judgment_uri),
+        headers={"Accept-Encoding": None},  # type: ignore
     )
     content_length = response.headers.get("Content-Length", None)
     if response.status_code >= 400:

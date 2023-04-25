@@ -137,7 +137,7 @@ def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
     }
 
 
-def get_pdf_uri(judgment_uri):
+def get_pdf_uri(judgment_uri: str) -> str:
     env = environ.Env()
     """Create a string saying where the S3 PDF will be for a judgment uri"""
     pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'

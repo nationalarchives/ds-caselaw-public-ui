@@ -1,4 +1,5 @@
 import datetime
+from typing import List, Optional
 
 from django.contrib.syndication.views import Feed
 from django.http import Http404
@@ -96,24 +97,24 @@ class LatestJudgmentsFeed(Feed):
         page = obj.get("page", 1)
         return f"/{obj['slug']}/atom.xml/?page={page}&order={obj.get('order')}"
 
-    def items(self, obj):
+    def items(self, obj) -> List[SearchResult]:
         return [
             SearchResult.create_from_node(result) for result in obj["model"].results
         ]
 
-    def item_description(self, item: SearchResult) -> str:
+    def item_description(self, item) -> str:
         return ""
 
-    def item_title(self, item: SearchResult):
+    def item_title(self, item):
         return item.name
 
-    def item_link(self, item: SearchResult) -> str:
+    def item_link(self, item) -> str:
         return reverse("detail", kwargs={"judgment_uri": item.uri})
 
-    def item_author_name(self, item: SearchResult) -> str:
+    def item_author_name(self, item) -> Optional[str]:
         return item.author
 
-    def item_extra_kwargs(self, item: SearchResult):
+    def item_extra_kwargs(self, item):
         extra_kwargs = super().item_extra_kwargs(item)
         extra_kwargs["uri"] = item.uri
         extra_kwargs["content_hash"] = item.content_hash
@@ -123,7 +124,7 @@ class LatestJudgmentsFeed(Feed):
         date_string = item.transformation_date or "1970-01-01T00:00:00.000"
         return datetime.datetime.fromisoformat(date_string)
 
-    def item_pubdate(self, item: SearchResult) -> datetime.datetime:
+    def item_pubdate(self, item: SearchResult) -> Optional[datetime.datetime]:
         return item.date
 
     def feed_extra_kwargs(self, obj):

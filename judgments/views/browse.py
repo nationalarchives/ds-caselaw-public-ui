@@ -1,4 +1,5 @@
 import datetime
+from typing import Any, Dict
 
 from caselawclient.Client import RESULTS_PER_PAGE, MarklogicResourceNotFoundError
 from django.http import Http404
@@ -27,7 +28,7 @@ def browse(request, court=None, subdivision=None, year=None):
         )
     )
 
-    context = {}
+    context: Dict[str, Any] = {}
 
     try:
         model = perform_advanced_search(
