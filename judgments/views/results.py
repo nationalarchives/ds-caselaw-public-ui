@@ -22,7 +22,7 @@ def results(request):
     context = {"page_title": gettext("results.search.title")}
     try:
         params = request.GET
-        query = preprocess_query(params.get("query"))
+        query = preprocess_query(params.get("query", ""))
         page = str(as_integer(params.get("page"), minimum=1))
         per_page = str(
             as_integer(
