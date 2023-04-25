@@ -70,14 +70,14 @@ class TestJudgment(TestCase):
         # We don't use the Download as PDF text because there's an issue with localisated strings on CI
         self.assertEqual(response.status_code, 200)
 
-    @skip
+    @skip("requires network")
     def test_good_response(self):
         response = self.client.get("/ewca/civ/2004/637")
         decoded_response = response.content.decode("utf-8")
         self.assertIn("[2004] EWCA Civ 637", decoded_response)
         self.assertEqual(response.status_code, 200)
 
-    @skip
+    @skip("requires network")
     def test_404_response(self):
         response = self.client.get("/ewca/civ/2004/63X")
         decoded_response = response.content.decode("utf-8")
