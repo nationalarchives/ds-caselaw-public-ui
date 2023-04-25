@@ -123,7 +123,7 @@ def get_pdf_size(judgment_uri):
     if content_length:
         filesize = filesizeformat(int(content_length))
         return f" ({filesize})"
-    logging.warn(f"Unable to determine PDF size for {judgment_uri}")
+    logging.warning(f"Unable to determine PDF size for {judgment_uri}")
     return " (unknown size)"
 
 
