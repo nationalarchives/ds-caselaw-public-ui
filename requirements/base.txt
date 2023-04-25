@@ -20,8 +20,3 @@ ds-caselaw-marklogic-api-client~=6.0.0
 ds-caselaw-utils~=1.0.0
 rollbar
 django-weasyprint==2.2.0
-
-# type stubs
-types-python-dateutil==2.8.19.12
-types-requests==2.28.11.17
-django-stubs==1.16.0
