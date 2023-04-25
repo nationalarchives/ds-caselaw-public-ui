@@ -1,5 +1,9 @@
+from datetime import datetime
+from logging import WARNING
+from typing import Any
 from unittest.mock import patch
 
+import pytest
 from dateutil import parser as dateparser
 from django.test import TestCase
 from lxml import etree
@@ -159,3 +163,33 @@ class TestSearchResult(TestCase):
         self.assertEqual(None, search_result.neutral_citation)
         self.assertEqual(None, search_result.court)
         self.assertEqual(None, search_result.content_hash)
+
+
+class TestSearchResultInit:
+    @pytest.mark.parametrize(
+        "date_string, expected",
+        [
+            ["", None],
+            ["2023-05-09", datetime(2023, 5, 9, 0, 0)],
+            ["2023-04-05T06:54:00", datetime(2023, 4, 5, 6, 54)],
+            ["ffffff", None],
+        ],
+    )
+    def test_searchresult_date_parsing(self, date_string: str, expected: Any):
+        search_result = fake_search_result(date=date_string)
+
+        assert search_result.date == expected
+
+    def test_unparseable_non_empty_string_logs_warning(self, caplog):
+        caplog.set_level(WARNING)
+
+        fake_search_result(date="ffffff")
+
+        assert "Unable to parse document date" in caplog.text
+
+    def test_unparseable_empty_string_doesnt_log_warning(self, caplog):
+        caplog.set_level(WARNING)
+
+        fake_search_result(date="")
+
+        assert "Unable to parse document date" not in caplog.text
