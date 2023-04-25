@@ -16,7 +16,7 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.api_client")
     def test_valid_content(self, client, decoder, head):
         if "ASSETS_CDN_BASE_URL" not in environ:
-            raise "ensure ASSETS_CDN_BASE_URL is set in .env!"
+            raise RuntimeError("ensure ASSETS_CDN_BASE_URL is set in .env!")
         head.return_value.headers = {"Content-Length": "1234567890"}
         head.return_value.status_code = 200
         client.eval_xslt.return_value = "eval_xslt"
@@ -37,7 +37,7 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.api_client")
     def test_valid_content_no_filesize(self, client, decoder, head):
         if "ASSETS_CDN_BASE_URL" not in environ:
-            raise "ensure ASSETS_CDN_BASE_URL is set in .env!"
+            raise RuntimeError("ensure ASSETS_CDN_BASE_URL is set in .env!")
         head.return_value.headers = {}
         head.return_value.status_code = 200
         client.eval_xslt.return_value = "eval_xslt"
