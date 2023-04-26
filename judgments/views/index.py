@@ -1,6 +1,5 @@
 from caselawclient.Client import MarklogicResourceNotFoundError
 from django.http import Http404
-from django.template import loader
 from django.template.response import TemplateResponse
 from ds_caselaw_utils import courts as all_courts
 
@@ -21,10 +20,9 @@ def index(request):
         raise Http404(
             "Search results not found"
         )  # TODO: This should be something else!
-    template = loader.get_template("pages/home.html")
     return TemplateResponse(
         request,
-        template,
+        "pages/home.html",
         context={
             "context": context,
             "courts": all_courts.get_listable_courts(),

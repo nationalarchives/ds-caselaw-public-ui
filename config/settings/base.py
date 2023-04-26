@@ -2,6 +2,7 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
+from typing import Any, Dict
 
 import django
 import environ
@@ -49,7 +50,7 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-FLAGS = {}
+FLAGS: Dict[str, Any] = {}
 
 # URLS
 # ------------------------------------------------------------------------------

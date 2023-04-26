@@ -64,6 +64,9 @@ jobs:
       - name: Generate coverage XML
         run: docker-compose run django coverage xml
 
+      - name: Run mypy
+        run: docker-compose run django mypy ds_judgements_public_ui judgments
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
 

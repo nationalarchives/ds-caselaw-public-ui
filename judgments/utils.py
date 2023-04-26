@@ -51,7 +51,7 @@ def perform_advanced_search(
     return SearchResults.create_from_string(multipart_data.parts[0].text)
 
 
-def preprocess_query(query):
+def preprocess_query(query: str) -> str:
     query = normalise_quotes(query)
     query = remove_unquoted_stop_words(query)
     return query
@@ -137,7 +137,7 @@ def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
     }
 
 
-def get_pdf_uri(judgment_uri):
+def get_pdf_uri(judgment_uri: str) -> str:
     env = environ.Env()
     """Create a string saying where the S3 PDF will be for a judgment uri"""
     pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'

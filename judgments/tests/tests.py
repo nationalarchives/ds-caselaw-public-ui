@@ -16,7 +16,7 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.api_client")
     def test_valid_content(self, client, decoder, head):
         if "ASSETS_CDN_BASE_URL" not in environ:
-            raise "ensure ASSETS_CDN_BASE_URL is set in .env!"
+            raise RuntimeError("ensure ASSETS_CDN_BASE_URL is set in .env!")
         head.return_value.headers = {"Content-Length": "1234567890"}
         head.return_value.status_code = 200
         client.eval_xslt.return_value = "eval_xslt"
@@ -37,7 +37,7 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.api_client")
     def test_valid_content_no_filesize(self, client, decoder, head):
         if "ASSETS_CDN_BASE_URL" not in environ:
-            raise "ensure ASSETS_CDN_BASE_URL is set in .env!"
+            raise RuntimeError("ensure ASSETS_CDN_BASE_URL is set in .env!")
         head.return_value.headers = {}
         head.return_value.status_code = 200
         client.eval_xslt.return_value = "eval_xslt"
@@ -70,14 +70,14 @@ class TestJudgment(TestCase):
         # We don't use the Download as PDF text because there's an issue with localisated strings on CI
         self.assertEqual(response.status_code, 200)
 
-    @skip
+    @skip("requires network")
     def test_good_response(self):
         response = self.client.get("/ewca/civ/2004/637")
         decoded_response = response.content.decode("utf-8")
         self.assertIn("[2004] EWCA Civ 637", decoded_response)
         self.assertEqual(response.status_code, 200)
 
-    @skip
+    @skip("requires network")
     def test_404_response(self):
         response = self.client.get("/ewca/civ/2004/63X")
         decoded_response = response.content.decode("utf-8")
@@ -143,8 +143,7 @@ class TestConverters(TestCase):
     def test_year_converter_parses_year(self):
         converter = converters.YearConverter()
         match = re.match(converter.regex, "1994")
-
-        self.assertEqual(match.group(0), "1994")
+        self.assertEqual(match.group(0), "1994")  # type: ignore
 
     def test_year_converter_converts_to_python(self):
         converter = converters.YearConverter()
@@ -157,7 +156,7 @@ class TestConverters(TestCase):
     def test_date_converter_parses_date(self):
         converter = converters.DateConverter()
         match = re.match(converter.regex, "2022-02-28")
-        self.assertEqual(match.group(0), "2022-02-28")
+        self.assertEqual(match.group(0), "2022-02-28")  # type: ignore
 
     def test_date_converter_fails_to_parse_string(self):
         converter = converters.DateConverter()
@@ -167,7 +166,7 @@ class TestConverters(TestCase):
     def test_court_converter_parses_court(self):
         converter = converters.CourtConverter()
         match = re.match(converter.regex, "ewhc")
-        self.assertEqual(match.group(0), "ewhc")
+        self.assertEqual(match.group(0), "ewhc")  # type: ignore
 
     def test_court_converter_fails_to_parse(self):
         converter = converters.CourtConverter()
@@ -176,7 +175,7 @@ class TestConverters(TestCase):
     def test_subdivision_converter_parses_court(self):
         converter = converters.SubdivisionConverter()
         match = re.match(converter.regex, "comm")
-        self.assertEqual(match.group(0), "comm")
+        self.assertEqual(match.group(0), "comm")  # type:ignore
 
     def test_subdivision_converter_fails_to_parse(self):
         converter = converters.SubdivisionConverter()
