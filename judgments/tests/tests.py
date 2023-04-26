@@ -25,6 +25,7 @@ class TestJudgment(TestCase):
 
         response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
         self.assertIn(environ["ASSETS_CDN_BASE_URL"], decoded_response)
         self.assertIn("ewca_civ_2004_632.pdf", decoded_response)
         self.assertNotIn("data.pdf", decoded_response)
@@ -193,6 +194,7 @@ class TestRobotsDirectives(TestCase):
         self.assertNotContains(
             response, '<meta name="robots" content="noindex,nofollow" />'
         )
+        self.assertNotEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch("judgments.views.results.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
@@ -205,6 +207,28 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(
             response, '<meta name="robots" content="noindex,nofollow" />'
         )
+
+    @patch("judgments.views.detail.requests.get")
+    def test_aws_pdf(self, get_pdf):
+        get_pdf.return_value.content = b"CAT"
+        get_pdf.return_value.status_code = 200
+        response = self.client.get("/eat/2023/1/data.pdf")
+        self.assertContains(response, "CAT")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+
+    @patch("judgments.views.detail.api_client.get_judgment_xml")
+    def test_xml(self, mock_xml):
+        mock_xml.return_value = "<cat></cat>"
+        response = self.client.get("/eat/2023/1/data.xml")
+        self.assertContains(response, "cat")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+
+    @patch("judgments.views.detail.PdfDetailView.get_context_data")
+    def test_weasy_pdf(self, mock_context):
+        mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
+        response = self.client.get("/eat/2023/1/generated.pdf")
+        self.assertContains(response, b"%PDF-1.7")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
 
 class TestBackLink(TestCase):
