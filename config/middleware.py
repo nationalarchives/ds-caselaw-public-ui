@@ -1,6 +1,32 @@
 from urllib.parse import urlencode
 
+from django.urls import resolve
 from django.utils.cache import patch_cache_control
+
+# these should match the names in config/urls.py
+INDEXABLE_VIEWS = [
+    "home",
+    "transactional_licence_form",
+    "what_to_expect",
+    "how_to_use_this_service",
+    "accessibility_statement",
+    "open_justice_licence",
+    "terms_of_use",
+]
+
+
+class RobotsTagMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+        # One-time configuration and initialization.
+
+    def __call__(self, request):
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+        response = self.get_response(request)
+        if resolve(request.path).view_name not in INDEXABLE_VIEWS:
+            response.headers["X-Robots-Tag"] = "noindex,nofollow"
+        return response
 
 
 class CacheHeaderMiddleware:
