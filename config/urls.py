@@ -62,6 +62,12 @@ urlpatterns = [
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
+    path(
+        "googleb0ce3f99fae65e7c.html",
+        TemplateView.as_view(
+            template_name="googleb0ce3f99fae65e7c.html", content_type="text/html"
+        ),
+    ),
     path("", include("judgments.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
