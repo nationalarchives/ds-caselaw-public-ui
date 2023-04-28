@@ -2,11 +2,7 @@ import logging
 import os
 
 import requests
-from caselawclient.Client import (
-    MarklogicAPIError,
-    MarklogicResourceNotFoundError,
-    api_client,
-)
+from caselawclient.Client import MarklogicResourceNotFoundError, api_client
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect
@@ -17,7 +13,7 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 from requests_toolbelt.multipart import decoder
 
-from judgments.utils import display_back_link, get_pdf_uri
+from judgments.utils import display_back_link, get_judgment_by_uri, get_pdf_uri
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
@@ -60,39 +56,38 @@ def get_best_pdf(request, judgment_uri):
 
 
 def detail(request, judgment_uri):
-    context = {}
     try:
-        is_published = api_client.get_published(judgment_uri)
-    except MarklogicAPIError:
-        raise Http404("Judgment was not found")
-
-    if not is_published:
-        raise Http404("This Judgment is not available")
-
-    try:
-        results = api_client.eval_xslt(judgment_uri)
-        multipart_data = decoder.MultipartDecoder.from_response(results)
-        judgment = multipart_data.parts[0].text
-        context["judgment"] = judgment
-        context["page_title"] = api_client.get_judgment_name(judgment_uri)
-        context["judgment_uri"] = judgment_uri
-
-        context["pdf_size"] = get_pdf_size(judgment_uri)
-        if context["pdf_size"]:  # is "" if no PDF was found
-            context["pdf_uri"] = get_pdf_uri(judgment_uri)
-        else:
-            context["pdf_uri"] = reverse("detail_pdf", args=[judgment_uri])
-
-        context["back_link"] = get_back_link(request)
+        judgment = get_judgment_by_uri(judgment_uri)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
+
+    if not judgment.is_published:
+        raise Http404("This Judgment is not available")
+
+    context = {}
+
+    context["judgment"] = judgment.content_as_html(
+        ""
+    )  # Empty string here uses most recent version.
+    context["page_title"] = judgment.name
+    context["judgment_uri"] = judgment.uri
+
+    context["pdf_size"] = get_pdf_size(judgment.uri)
+    context["pdf_uri"] = (
+        get_pdf_uri(judgment.uri)
+        if context["pdf_size"]
+        else reverse("detail_pdf", args=[judgment.uri])
+    )
+
+    context["back_link"] = get_back_link(request)
+
     return TemplateResponse(
         request,
         "judgment/detail.html",
         context={
             "context": context,
             "feedback_survey_type": "judgment",
-            "feedback_survey_judgment_uri": judgment_uri,
+            "feedback_survey_judgment_uri": judgment.uri,
         },
     )
 

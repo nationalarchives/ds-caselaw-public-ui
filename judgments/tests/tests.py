@@ -5,6 +5,7 @@ from unittest.mock import patch
 
 import pytest
 from django.test import TestCase
+from factories import JudgmentFactory
 from test_search import fake_search_result, fake_search_results
 
 from judgments import converters, utils
@@ -14,16 +15,17 @@ from judgments.utils import as_integer, display_back_link, paginator
 
 class TestJudgment(TestCase):
     @patch("judgments.views.detail.requests.head")
-    @patch("judgments.views.detail.decoder.MultipartDecoder")
-    @patch("judgments.views.detail.api_client")
-    def test_valid_content(self, client, decoder, head):
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_valid_content(self, mock_judgment, head):
         if "ASSETS_CDN_BASE_URL" not in environ:
             raise RuntimeError("ensure ASSETS_CDN_BASE_URL is set in .env!")
         head.return_value.headers = {"Content-Length": "1234567890"}
         head.return_value.status_code = 200
-        client.eval_xslt.return_value = "eval_xslt"
-        decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
-        client.get_judgment_name.return_value = "judgment metadata"
+
+        mock_judgment.return_value = JudgmentFactory.build(
+            uri="edtest/4321/123",
+            name="Test v Tested",
+        )
 
         response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")
