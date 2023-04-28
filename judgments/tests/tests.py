@@ -4,6 +4,7 @@ from unittest import skip
 from unittest.mock import patch
 
 import pytest
+from caselawclient.Client import MarklogicResourceNotFoundError
 from django.test import TestCase
 from factories import JudgmentFactory
 from test_search import fake_search_result, fake_search_results
@@ -22,10 +23,7 @@ class TestJudgment(TestCase):
         head.return_value.headers = {"Content-Length": "1234567890"}
         head.return_value.status_code = 200
 
-        mock_judgment.return_value = JudgmentFactory.build(
-            uri="edtest/4321/123",
-            name="Test v Tested",
-        )
+        mock_judgment.return_value = JudgmentFactory.build(uri="ewca/civ/2004/632")
 
         response = self.client.get("/ewca/civ/2004/632")
         decoded_response = response.content.decode("utf-8")
@@ -90,9 +88,22 @@ class TestJudgment(TestCase):
         self.assertIn("<p>This is a judgment.</p>", decoded_response)
         self.assertEqual(response.status_code, 200)
 
-    @skip("requires network")
-    def test_404_response(self):
-        response = self.client.get("/ewca/civ/2004/63X")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_judgment_not_published_404_response(self, mock_judgment):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=False)
+
+        response = self.client.get("/test/2023/123")
+
+        decoded_response = response.content.decode("utf-8")
+        self.assertIn("Page not found", decoded_response)
+        self.assertEqual(response.status_code, 404)
+
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_judgment_not_found_404_response(self, mock_judgment):
+        mock_judgment.side_effect = MarklogicResourceNotFoundError()
+
+        response = self.client.get("/test/2023/123")
+
         decoded_response = response.content.decode("utf-8")
         self.assertIn("Page not found", decoded_response)
         self.assertEqual(response.status_code, 404)
