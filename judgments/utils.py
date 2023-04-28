@@ -5,7 +5,9 @@ from datetime import datetime
 from urllib.parse import urlparse
 
 import environ
-from caselawclient.Client import RESULTS_PER_PAGE, api_client
+from caselawclient.Client import RESULTS_PER_PAGE, MarklogicApiClient, api_client
+from caselawclient.models.judgments import Judgment
+from django.conf import settings
 from requests_toolbelt.multipart import decoder
 
 from .fixtures.stop_words import stop_words
@@ -200,3 +202,14 @@ def parse_date_parameter(params, param_name, default_to_last=False):
 
         dt = datetime(year, month, day)
         return dt.strftime("%Y-%m-%d")
+
+
+def get_judgment_by_uri(judgment_uri: str) -> Judgment:
+    api_client = MarklogicApiClient(
+        host=settings.MARKLOGIC_HOST,
+        username=settings.MARKLOGIC_USER,
+        password=settings.MARKLOGIC_PASSWORD,
+        use_https=settings.MARKLOGIC_USE_HTTPS,
+    )
+
+    return Judgment(judgment_uri, api_client)
