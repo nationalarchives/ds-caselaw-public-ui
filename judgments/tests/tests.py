@@ -78,11 +78,16 @@ class TestJudgment(TestCase):
         # We don't use the Download as PDF text because there's an issue with localisated strings on CI
         self.assertEqual(response.status_code, 200)
 
-    @skip("requires network")
-    def test_good_response(self):
-        response = self.client.get("/ewca/civ/2004/637")
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_good_response(self, mock_judgment, mock_pdf_size):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+
+        mock_pdf_size.return_value = "1234KB"
+
+        response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
-        self.assertIn("[2004] EWCA Civ 637", decoded_response)
+        self.assertIn("<p>This is a judgment.</p>", decoded_response)
         self.assertEqual(response.status_code, 200)
 
     @skip("requires network")
