@@ -33,6 +33,9 @@ class TestJudgment(TestCase):
         self.assertIn("(1.1\xa0GB)", decoded_response)
         # We don't use the Download as PDF text because there's an issue with localisated strings on CI
         self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            '<meta name="robots" content="noindex,nofollow" />', decoded_response
+        )
 
     @patch("judgments.views.detail.requests.head")
     @patch("judgments.views.detail.decoder.MultipartDecoder")
@@ -199,7 +202,7 @@ class TestRobotsDirectives(TestCase):
 
     @patch("judgments.views.results.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
-    def test_judgment_results(self, fake_result, fake_advanced_search):
+    def test_judgment_search_results(self, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
         fake_result.return_value = fake_search_result()
         # The judgment search results page should have a robots meta tag
@@ -231,6 +234,17 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/eat/2023/1/generated.pdf")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+
+    @patch("judgments.views.results.perform_advanced_search")
+    @patch("judgments.models.SearchResult.create_from_node")
+    def test_static_page(self, fake_result, fake_advanced_search):
+        fake_advanced_search.return_value = fake_search_results()
+        fake_result.return_value = fake_search_result()
+        # The judgment search results page should have a robots meta tag
+        # with nofollow,noindex
+        response = self.client.get("/what-to-expect")
+        self.assertNotContains(response, "noindex")
+        self.assertContains(response, "Public Records Office")  # actual content of page
 
 
 class TestBackLink(TestCase):
