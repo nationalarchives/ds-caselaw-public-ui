@@ -50,7 +50,6 @@ class CacheHeaderMiddleware:
 
 
 class FeedbackLinkMiddleware:
-
     BASE_FEEDBACK_URL: str = (
         "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
     )

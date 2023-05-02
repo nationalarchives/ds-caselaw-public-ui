@@ -6,7 +6,7 @@
              value="{{ court.canonical_param }}"
              id="court_{{ court.canonical_param }}"
              {% for alias in context.court %}{% if alias in court.param_aliases %}checked="checked"{% endif %}
-             {% endfor %}/>
+             {% endfor %} />
       <span class="structured-search__court-option-label">{{ court.name }}</span>
     </label>
   </div>
