@@ -16,7 +16,7 @@
              name="from"
              placeholder="DD-MM-YYYY"
              type="date"
-             value="{{ context.from }}"/>
+             value="{{ context.from }}" />
     </div>
     <div class="structured-search__limit-to-container">
       <label for="to_date" class="structured-search__limit-to-label">To date</label>
@@ -26,7 +26,7 @@
              name="to"
              placeholder="DD-MM-YYYY"
              type="date"
-             value="{{ context.to }}"/>
+             value="{{ context.to }}" />
     </div>
   </div>
 </fieldset>
@@ -39,7 +39,7 @@
              name="party"
              type="text"
              value="{{ context.party }}"
-             aria-describedby="party_name-help-text"/>
+             aria-describedby="party_name-help-text" />
       <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
     </div>
     <div class="structured-search__specific-field-container">
@@ -49,7 +49,7 @@
              name="judge"
              type="text"
              value="{{ context.judge }}"
-             aria-describedby="judge_name-help-text"/>
+             aria-describedby="judge_name-help-text" />
       <p class="structured-search__help-text" id="judge_name-help-text">
         For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
       </p>
@@ -59,5 +59,5 @@
 <div class="structured-search__submit-container">
   <input type="submit"
          class="structured-search__update-filters-button"
-         value="Update filters"/>
+         value="Update filters" />
 </div>

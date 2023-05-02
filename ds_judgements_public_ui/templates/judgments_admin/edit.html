@@ -6,8 +6,8 @@
   <form action="{% url 'update' %}" method="post">
     {% csrf_token %}
     <input type="text" value="{{ context.metadata_name }}" name="metadata_name" />
-    <input type="hidden" name="uri" value="{{ context.uri }}"/>
-    <input type="submit" value="Save"/>
+    <input type="hidden" name="uri" value="{{ context.uri }}" />
+    <input type="submit" value="Save" />
   </form>
   <a href="{% url 'detail' context.uri %}">Back to Judgment detail page</a>
 {% endblock content %}
