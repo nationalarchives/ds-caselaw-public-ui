@@ -5,7 +5,7 @@ register = template.Library()
 
 def make_query_string(params):
     pairs = []
-    for (key, value) in params.items():
+    for key, value in params.items():
         if isinstance(value, list):
             for value2 in value:
                 pairs.append(f"{key}={value2}")
