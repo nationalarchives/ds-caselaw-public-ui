@@ -27,7 +27,7 @@ class TestJudgment(TestCase):
 
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-        self.assertIn("<p>This is a judgment.</p>", decoded_response)
+        self.assertIn("<p>This is a judgment in HTML.</p>", decoded_response)
         self.assertIn(
             '<meta name="robots" content="noindex,nofollow" />', decoded_response
         )
@@ -245,11 +245,11 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.detail.api_client.get_judgment_xml")
-    def test_xml(self, mock_xml):
-        mock_xml.return_value = "<cat></cat>"
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_xml(self, mock_judgment):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
-        self.assertContains(response, "cat")
+        self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @pytest.mark.local("Needs static file in CI")

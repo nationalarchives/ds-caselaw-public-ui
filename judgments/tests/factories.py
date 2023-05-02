@@ -28,12 +28,18 @@ class JudgmentFactory:
     def build(cls, **kwargs) -> Judgment:
         judgment_mock = Mock(spec=Judgment, autospec=True)
 
-        if "html" in kwargs:
-            judgment_mock.return_value.content_as_html.return_value = kwargs.pop("html")
-        else:
-            judgment_mock.return_value.content_as_html.return_value = (
-                "<p>This is a judgment.</p>"
-            )
+        judgment_mock.return_value.content_as_html.return_value = kwargs.pop(
+            "html",
+            "<p>This is a judgment in HTML.</p>",
+        )
+
+        judgment_mock.return_value.content_as_xml.return_value = kwargs.pop(
+            "xml",
+            """<?xml version="1.0" encoding="UTF-8"?>
+<judgment>
+<p>This is a judgment in XML.</p><
+/judgment>""",
+        )
 
         for param, value in cls.PARAMS_MAP.items():
             if param in kwargs:

@@ -2,7 +2,7 @@ import logging
 import os
 
 import requests
-from caselawclient.Client import MarklogicResourceNotFoundError, api_client
+from caselawclient.Client import MarklogicResourceNotFoundError
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect
@@ -88,11 +88,17 @@ def detail(request, judgment_uri):
 
 def detail_xml(_request, judgment_uri):
     try:
-        judgment_xml = api_client.get_judgment_xml(judgment_uri)
+        judgment = get_judgment_by_uri(judgment_uri)
     except MarklogicResourceNotFoundError:
         raise Http404("Judgment was not found")
+
+    if not judgment.is_published:
+        raise Http404("This Judgment is not available")
+
+    judgment_xml = judgment.content_as_xml()
+
     response = HttpResponse(judgment_xml, content_type="application/xml")
-    response["Content-Disposition"] = f"attachment; filename={judgment_uri}.xml"
+    response["Content-Disposition"] = f"attachment; filename={judgment.uri}.xml"
     return response
 
 
