@@ -11,7 +11,6 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
-from requests_toolbelt.multipart import decoder
 
 from judgments.utils import display_back_link, get_judgment_by_uri, get_pdf_uri
 
@@ -21,17 +20,14 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
     pdf_attachment = True
 
-    def dispatch(self, request, *args, **kwargs):
-        self.pdf_filename = f'{kwargs["judgment_uri"]}.pdf'
-
-        return super(PdfDetailView, self).dispatch(request, *args, **kwargs)
-
     def get_context_data(self, judgment_uri, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        results = api_client.eval_xslt(judgment_uri)
-        multipart_data = decoder.MultipartDecoder.from_response(results)
-        context["judgment"] = multipart_data.parts[0].text
+        judgment = get_judgment_by_uri(judgment_uri)
+
+        self.pdf_filename = f"{judgment.uri}.pdf"
+
+        context["judgment"] = judgment.content_as_html("")  # "" is most recent version
 
         return context
 
@@ -66,9 +62,7 @@ def detail(request, judgment_uri):
 
     context = {}
 
-    context["judgment"] = judgment.content_as_html(
-        ""
-    )  # Empty string here uses most recent version.
+    context["judgment"] = judgment.content_as_html("")  # "" is most recent version
     context["page_title"] = judgment.name
     context["judgment_uri"] = judgment.uri
 
