@@ -8,6 +8,7 @@ from django.test import TestCase
 from test_search import fake_search_result, fake_search_results
 
 from judgments import converters, utils
+from judgments.models import CourtDates
 from judgments.utils import as_integer, display_back_link, paginator
 
 
@@ -88,6 +89,22 @@ class TestJudgment(TestCase):
         decoded_response = response.content.decode("utf-8")
         self.assertIn("Page not found", decoded_response)
         self.assertEqual(response.status_code, 404)
+
+
+class TestCourtDates(TestCase):
+    def setUp(self):
+        CourtDates.objects.create(
+            param="earliest_starting_court", start_year=2001, end_year=2020
+        )
+        CourtDates.objects.create(
+            param="last_ending_court", start_year=2005, end_year=2023
+        )
+
+    def test_min_year(self):
+        self.assertEqual(CourtDates.min_year(), 2001)
+
+    def test_max_year(self):
+        self.assertEqual(CourtDates.max_year(), 2023)
 
 
 class TestPaginator(TestCase):

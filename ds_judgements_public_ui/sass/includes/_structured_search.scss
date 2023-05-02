@@ -53,7 +53,8 @@
 
   &__limit-to-input {
     @include text_field;
-    width: 70%;
+    width: 95%;
+    margin-top: calc(0.5 * $spacer__unit);
     margin-bottom: 0;
   }
 
@@ -66,6 +67,10 @@
 
   &__single-field-panel {
     padding-top: $spacer__unit;
+
+    @media (max-width: $grid__breakpoint-medium) {
+      padding-top: 0;
+    }
 
     @media (min-width: $grid__breakpoint-medium) {
       display: grid;
@@ -97,6 +102,9 @@
 
   &__multi-fields-panel {
     padding-top: $spacer__unit;
+    @media (max-width: $grid__breakpoint-medium) {
+      padding-top: 0;
+    }
 
 
     @media (min-width: $grid__breakpoint-medium) {
@@ -133,6 +141,9 @@
     display: flex;
     flex-direction: column;
     border-top: 4px solid $color__yellow;
+    @media (max-width: $grid__breakpoint-medium) {
+      margin-bottom: 1rem;
+    }
   }
 
   &__limit-to-container {
@@ -141,6 +152,9 @@
     display: flex;
     flex-direction: column;
     border-top: 4px solid $color__yellow;
+    @media (max-width: $grid__breakpoint-medium) {
+      margin-bottom: 1rem;
+    }
   }
 
   &__submit-container {
@@ -233,22 +247,29 @@
 
   &__date-input {
     @include text_field;
-    width: 95%;
+    margin-bottom: 0;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  &__date-input-group {
+    display: flex;
+    gap: calc(0.5 * $spacer__unit);
+    & :nth-of-type(1) {
+      width: 10%;
+    }
+    & :nth-of-type(2){
+      width: 10%;
+    }
+    & :nth-of-type(3){
+      width: 20%;
+    }
   }
 
   fieldset {
     border: none;
     padding: 0;
     margin: 0;
-  }
-
-  input[type=text] {
-    width: 95%;
-    @media (max-width: $grid__breakpoint-medium) {
-      width: 75%;
-      margin: auto 1px;
-      width: auto;
-      }
   }
 
   &__update-filters-button {
