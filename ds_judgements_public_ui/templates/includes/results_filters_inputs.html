@@ -25,7 +25,7 @@
                    min="1"
                    max="31"
                    step="1"
-                   value="{{ context.from }}"/>
+                   value="{{ context.from }}" />
           </div>
           <div>
             <label for="from_month" class="structured-search__help-text">Month</label>
@@ -36,7 +36,7 @@
                    min="1"
                    max="12"
                    step="1"
-                   value="{{ context.from }}"/>
+                   value="{{ context.from }}" />
           </div>
           <div>
             <label for="from_year" class="structured-search__help-text">Year</label>
@@ -47,7 +47,7 @@
                    min="{% get_first_judgment_year %}"
                    max="{% get_last_judgment_year %}"
                    step="1"
-                   value="{{ context.from }}"/>
+                   value="{{ context.from }}" />
           </div>
         </div>
       {% else %}
@@ -57,7 +57,7 @@
                name="from"
                placeholder="DD-MM-YYYY"
                type="date"
-               value="{{ context.from }}"/>
+               value="{{ context.from }}" />
       {% endif %}
     </fieldset>
   </div>
@@ -75,7 +75,7 @@
                    min="1"
                    max="31"
                    step="1"
-                   value="{{ context.from }}"/>
+                   value="{{ context.from }}" />
           </div>
           <div>
             <label for="to_month" class="structured-search__help-text">Month</label>
@@ -86,7 +86,7 @@
                    min="1"
                    max="12"
                    step="1"
-                   value="{{ context.from }}"/>
+                   value="{{ context.from }}" />
           </div>
           <div>
             <label for="to_year" class="structured-search__help-text">Year</label>
@@ -97,7 +97,7 @@
                    min="{% get_first_judgment_year %}"
                    max="{% get_last_judgment_year %}"
                    step="1"
-                   value="{{ context.from }}"/>
+                   value="{{ context.from }}" />
           </div>
         </div>
       {% else %}
@@ -107,7 +107,7 @@
                name="to"
                placeholder="DD-MM-YYYY"
                type="date"
-               value="{{ context.to }}"/>
+               value="{{ context.to }}" />
       {% endif %}
     </fieldset>
   </div>
