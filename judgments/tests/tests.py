@@ -4,88 +4,52 @@ from unittest import skip
 from unittest.mock import patch
 
 import pytest
+from caselawclient.Client import MarklogicResourceNotFoundError
 from django.test import TestCase
+from factories import JudgmentFactory
 from test_search import fake_search_result, fake_search_results
 
 from judgments import converters, utils
 from judgments.models import CourtDates
 from judgments.utils import as_integer, display_back_link, paginator
+from judgments.views.detail import get_pdf_size
 
 
 class TestJudgment(TestCase):
-    @patch("judgments.views.detail.requests.head")
-    @patch("judgments.views.detail.decoder.MultipartDecoder")
-    @patch("judgments.views.detail.api_client")
-    def test_valid_content(self, client, decoder, head):
-        if "ASSETS_CDN_BASE_URL" not in environ:
-            raise RuntimeError("ensure ASSETS_CDN_BASE_URL is set in .env!")
-        head.return_value.headers = {"Content-Length": "1234567890"}
-        head.return_value.status_code = 200
-        client.eval_xslt.return_value = "eval_xslt"
-        decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
-        client.get_judgment_name.return_value = "judgment metadata"
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_published_judgment_response(self, mock_judgment, mock_pdf_size):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+        mock_pdf_size.return_value = "1234KB"
 
-        response = self.client.get("/ewca/civ/2004/632")
+        response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
+
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
-        self.assertIn(environ["ASSETS_CDN_BASE_URL"], decoded_response)
-        self.assertIn("ewca_civ_2004_632.pdf", decoded_response)
-        self.assertNotIn("data.pdf", decoded_response)
-        self.assertIn("(1.1\xa0GB)", decoded_response)
-        # We don't use the Download as PDF text because there's an issue with localisated strings on CI
-        self.assertEqual(response.status_code, 200)
+
+        self.assertIn("<p>This is a judgment in HTML.</p>", decoded_response)
         self.assertIn(
             '<meta name="robots" content="noindex,nofollow" />', decoded_response
         )
 
-    @patch("judgments.views.detail.requests.head")
-    @patch("judgments.views.detail.decoder.MultipartDecoder")
-    @patch("judgments.views.detail.api_client")
-    def test_valid_content_no_filesize(self, client, decoder, head):
-        if "ASSETS_CDN_BASE_URL" not in environ:
-            raise RuntimeError("ensure ASSETS_CDN_BASE_URL is set in .env!")
-        head.return_value.headers = {}
-        head.return_value.status_code = 200
-        client.eval_xslt.return_value = "eval_xslt"
-        decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
-        client.get_judgment_name.return_value = "judgment metadata"
-
-        response = self.client.get("/ewca/civ/2004/632")
-        decoded_response = response.content.decode("utf-8")
-        self.assertIn(environ["ASSETS_CDN_BASE_URL"], decoded_response)
-        self.assertIn("ewca_civ_2004_632.pdf", decoded_response)
-        self.assertNotIn("data.pdf", decoded_response)
-        self.assertIn("(unknown size)", decoded_response)
-        # We don't use the Download as PDF text because there's an issue with localisated strings on CI
         self.assertEqual(response.status_code, 200)
 
-    @patch("judgments.views.detail.requests.head")
-    @patch("judgments.views.detail.decoder.MultipartDecoder")
-    @patch("judgments.views.detail.api_client")
-    def test_no_valid_pdf(self, client, decoder, head):
-        head.return_value.headers = {}
-        head.return_value.status_code = 404
-        client.eval_xslt.return_value = "eval_xslt"
-        decoder.MultipartDecoder.from_response.return_value.parts[0].text = "part0text"
-        client.get_judgment_name.return_value = "judgment metadata"
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_judgment_not_published_404_response(self, mock_judgment):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=False)
 
-        response = self.client.get("/ewca/civ/2004/632")
+        response = self.client.get("/test/2023/123")
+
         decoded_response = response.content.decode("utf-8")
-        self.assertIn("data.pdf", decoded_response)
-        self.assertNotIn("2004_632.pdf", decoded_response)
-        # We don't use the Download as PDF text because there's an issue with localisated strings on CI
-        self.assertEqual(response.status_code, 200)
+        self.assertIn("Page not found", decoded_response)
+        self.assertEqual(response.status_code, 404)
 
-    @skip("requires network")
-    def test_good_response(self):
-        response = self.client.get("/ewca/civ/2004/637")
-        decoded_response = response.content.decode("utf-8")
-        self.assertIn("[2004] EWCA Civ 637", decoded_response)
-        self.assertEqual(response.status_code, 200)
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_judgment_not_found_404_response(self, mock_judgment):
+        mock_judgment.side_effect = MarklogicResourceNotFoundError()
 
-    @skip("requires network")
-    def test_404_response(self):
-        response = self.client.get("/ewca/civ/2004/63X")
+        response = self.client.get("/test/2023/123")
+
         decoded_response = response.content.decode("utf-8")
         self.assertIn("Page not found", decoded_response)
         self.assertEqual(response.status_code, 404)
@@ -105,6 +69,50 @@ class TestCourtDates(TestCase):
 
     def test_max_year(self):
         self.assertEqual(CourtDates.max_year(), 2023)
+
+
+class TestJudgmentPdfLinkText(TestCase):
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
+    def test_pdf_link_with_size(self, mock_judgment, mock_pdf_size):
+        """
+        `get_pdf_size` serves several purposes; it can _either_ return a string with the size of a PDF if one exists
+        in S3, _or_ return a string saying "unknown size" if the file exists but S3 doesn't tell us the size, _or_
+        return an empty string. This tests the case where it returns a non-empty string (either a file size or
+        "unknown"), in which case we should link to the file in S3 via our assets URL and display the size string.
+        """
+
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+        mock_pdf_size.return_value = " (1234KB)"
+
+        response = self.client.get("/test/2023/123")
+        decoded_response = response.content.decode("utf-8")
+
+        self.assertIn(
+            "https://example.com/test/2023/123/test_2023_123.pdf", decoded_response
+        )
+        self.assertNotIn("data.pdf", decoded_response)
+        self.assertIn("(1234KB)", decoded_response)
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
+    def test_pdf_link_with_no_size(self, mock_judgment, mock_pdf_size):
+        """
+        `get_pdf_size` serves several purposes; it can _either_ return a string with the size of a PDF if one exists
+        in S3, _or_ return a string saying "unknown size" if the file exists but S3 doesn't tell us the size, _or_
+        return an empty string. This tests the case where it returns an empty string (implying that the file doesn't
+        exist in S3), so we should link to our generated PDF instead and not S3."""
+
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+        mock_pdf_size.return_value = ""
+
+        response = self.client.get("/test/2023/123")
+        decoded_response = response.content.decode("utf-8")
+
+        self.assertNotIn("test_2023_123.pdf", decoded_response)
+        self.assertIn("/test/2023/123/data.pdf", decoded_response)
 
 
 class TestPaginator(TestCase):
@@ -237,11 +245,11 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.detail.api_client.get_judgment_xml")
-    def test_xml(self, mock_xml):
-        mock_xml.return_value = "<cat></cat>"
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_xml(self, mock_judgment):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
-        self.assertContains(response, "cat")
+        self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @pytest.mark.local("Needs static file in CI")
@@ -285,6 +293,44 @@ class TestBackLink(TestCase):
     def test_no_referrer(self):
         # When there is no referrer, the back link is not displayed:
         self.assertIs(display_back_link(None), False)
+
+
+class TestGetPdfSize(TestCase):
+    @patch("judgments.views.detail.get_pdf_uri")
+    @patch("judgments.views.detail.requests.head")
+    def test_returns_valid_size(self, mock_head, mock_get_pdf_uri):
+        mock_head.return_value.headers = {"Content-Length": "1234567890"}
+        mock_head.return_value.status_code = 200
+        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
+
+        assert get_pdf_size("") == " (1.1\xa0GB)"
+        mock_head.assert_called_with(
+            "http://example.com/test.pdf", headers={"Accept-Encoding": None}
+        )
+
+    @patch("judgments.views.detail.get_pdf_uri")
+    @patch("judgments.views.detail.requests.head")
+    def test_pdf_exists_with_no_size(self, mock_head, mock_get_pdf_uri):
+        mock_head.return_value.headers = {}
+        mock_head.return_value.status_code = 200
+        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
+
+        assert get_pdf_size("") == " (unknown size)"
+        mock_head.assert_called_with(
+            "http://example.com/test.pdf", headers={"Accept-Encoding": None}
+        )
+
+    @patch("judgments.views.detail.get_pdf_uri")
+    @patch("judgments.views.detail.requests.head")
+    def test_no_pdf_exists(self, mock_head, mock_get_pdf_uri):
+        mock_head.return_value.headers = {}
+        mock_head.return_value.status_code = 404
+        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
+
+        assert get_pdf_size("") == ""
+        mock_head.assert_called_with(
+            "http://example.com/test.pdf", headers={"Accept-Encoding": None}
+        )
 
 
 def test_min_max():
