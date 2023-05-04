@@ -4,7 +4,6 @@ from unittest import skip
 from unittest.mock import patch
 
 import pytest
-from caselawclient.Client import MarklogicResourceNotFoundError
 from django.test import TestCase
 from factories import JudgmentFactory
 from test_search import fake_search_result, fake_search_results
@@ -44,10 +43,11 @@ class TestJudgment(TestCase):
         self.assertIn("Page not found", decoded_response)
         self.assertEqual(response.status_code, 404)
 
-    @patch("judgments.views.detail.get_judgment_by_uri")
-    def test_judgment_not_found_404_response(self, mock_judgment):
-        mock_judgment.side_effect = MarklogicResourceNotFoundError()
-
+    @patch(
+        "caselawclient.models.judgments.Judgment.judgment_exists",
+        return_value=False,
+    )
+    def test_judgment_not_found_404_response(self, exists):
         response = self.client.get("/test/2023/123")
 
         decoded_response = response.content.decode("utf-8")
