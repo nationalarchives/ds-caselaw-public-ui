@@ -212,4 +212,5 @@ def get_judgment_by_uri(judgment_uri: str) -> Judgment:
         use_https=settings.MARKLOGIC_USE_HTTPS,
     )
 
+    # raises a JudgmentNotFoundError if it doesn't exist
     return Judgment(judgment_uri, api_client)

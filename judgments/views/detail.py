@@ -2,7 +2,8 @@ import logging
 import os
 
 import requests
-from caselawclient.Client import MarklogicResourceNotFoundError
+from caselawclient.errors import JudgmentNotFoundError
+from caselawclient.models.judgments import Judgment
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect
@@ -15,6 +16,17 @@ from django_weasyprint import WeasyTemplateResponseMixin
 from judgments.utils import display_back_link, get_judgment_by_uri, get_pdf_uri
 
 
+def get_published_judgment_by_uri(judgment_uri: str) -> Judgment:
+    try:
+        judgment = get_judgment_by_uri(judgment_uri)
+    except JudgmentNotFoundError:
+        raise Http404(f"Judgment {judgment_uri} was not found")
+
+    if not judgment.is_published:
+        raise Http404(f"This Judgment {judgment_uri} is not available")
+    return judgment
+
+
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     template_name = "pdf/judgment.html"
     pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
@@ -23,7 +35,7 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     def get_context_data(self, judgment_uri, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        judgment = get_judgment_by_uri(judgment_uri)
+        judgment = get_published_judgment_by_uri(judgment_uri)
 
         self.pdf_filename = f"{judgment.uri}.pdf"
 
@@ -52,14 +64,7 @@ def get_best_pdf(request, judgment_uri):
 
 
 def detail(request, judgment_uri):
-    try:
-        judgment = get_judgment_by_uri(judgment_uri)
-    except MarklogicResourceNotFoundError:
-        raise Http404("Judgment was not found")
-
-    if not judgment.is_published:
-        raise Http404("This Judgment is not available")
-
+    judgment = get_published_judgment_by_uri(judgment_uri)
     context = {}
 
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
@@ -87,13 +92,7 @@ def detail(request, judgment_uri):
 
 
 def detail_xml(_request, judgment_uri):
-    try:
-        judgment = get_judgment_by_uri(judgment_uri)
-    except MarklogicResourceNotFoundError:
-        raise Http404("Judgment was not found")
-
-    if not judgment.is_published:
-        raise Http404("This Judgment is not available")
+    judgment = get_published_judgment_by_uri(judgment_uri)
 
     judgment_xml = judgment.content_as_xml()
 
