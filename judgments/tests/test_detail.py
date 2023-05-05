@@ -33,7 +33,7 @@ class TestGetPublishedJudgment:
 
 class TestJudgment(TestCase):
     @patch("judgments.views.detail.get_pdf_size")
-    @patch("judgments.views.detail.get_judgment_by_uri")
+    @patch("judgments.views.detail.get_published_judgment_by_uri")
     def test_published_judgment_response(self, mock_judgment, mock_pdf_size):
         mock_judgment.return_value = JudgmentFactory.build(is_published=True)
         mock_pdf_size.return_value = "1234KB"
@@ -50,31 +50,10 @@ class TestJudgment(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    @patch("judgments.views.detail.get_judgment_by_uri")
-    def test_judgment_not_published_404_response(self, mock_judgment):
-        mock_judgment.return_value = JudgmentFactory.build(is_published=False)
-
-        response = self.client.get("/test/2023/123")
-
-        decoded_response = response.content.decode("utf-8")
-        self.assertIn("Page not found", decoded_response)
-        self.assertEqual(response.status_code, 404)
-
-    @patch(
-        "caselawclient.models.judgments.Judgment.judgment_exists",
-        return_value=False,
-    )
-    def test_judgment_not_found_404_response(self, exists):
-        response = self.client.get("/test/2023/123")
-
-        decoded_response = response.content.decode("utf-8")
-        self.assertIn("Page not found", decoded_response)
-        self.assertEqual(response.status_code, 404)
-
 
 class TestJudgmentPdfLinkText(TestCase):
     @patch("judgments.views.detail.get_pdf_size")
-    @patch("judgments.views.detail.get_judgment_by_uri")
+    @patch("judgments.views.detail.get_published_judgment_by_uri")
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
     def test_pdf_link_with_size(self, mock_judgment, mock_pdf_size):
         """
@@ -97,7 +76,7 @@ class TestJudgmentPdfLinkText(TestCase):
         self.assertIn("(1234KB)", decoded_response)
 
     @patch("judgments.views.detail.get_pdf_size")
-    @patch("judgments.views.detail.get_judgment_by_uri")
+    @patch("judgments.views.detail.get_published_judgment_by_uri")
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
     def test_pdf_link_with_no_size(self, mock_judgment, mock_pdf_size):
         """
