@@ -1,10 +1,34 @@
 from os import environ
 from unittest.mock import patch
 
+import pytest
+from caselawclient.errors import JudgmentNotFoundError
+from django.http import Http404
 from django.test import TestCase
 from factories import JudgmentFactory
 
-from judgments.views.detail import get_pdf_size
+from judgments.views.detail import get_pdf_size, get_published_judgment_by_uri
+
+
+class TestGetPublishedJudgment:
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def judgment_is_published(self, mock_judgment):
+        judgment = JudgmentFactory.build(is_published=True)
+        mock_judgment.return_value = judgment
+        assert get_published_judgment_by_uri("2022/eat/1") == judgment
+
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def judgment_is_unpublished(self, mock_judgment):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=False)
+        with pytest.raises(Http404):
+            get_published_judgment_by_uri("2099/eat/1")
+
+    @patch(
+        "judgments.views.detail.get_judgment_by_uri", side_effect=JudgmentNotFoundError
+    )
+    def judgment_missing(self):
+        with pytest.raises(Http404):
+            get_published_judgment_by_uri("not-a-judgment")
 
 
 class TestJudgment(TestCase):
