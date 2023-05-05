@@ -19,18 +19,20 @@
 
   h1 {
     font-size: 2.2rem;
+    line-height: 2.4rem;
     margin: 0 0 calc($spacer__unit * 2);
-    line-height: 2.8rem;
   }
 
   h2 {
     font-size: 1.8rem;
+    line-height: 2rem;
     margin: 0 0 calc($spacer__unit * 1.25);
     padding: calc($spacer__unit * 2) 0 0;
   }
 
   h3 {
     font-size: 1.5rem;
+    line-height: 1.8rem;
     padding: calc($spacer__unit * 1.25) 0 0;
     margin: 0 0 calc($spacer__unit * 1.25);
   }
