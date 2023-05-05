@@ -22,5 +22,5 @@ rollbar
 django-weasyprint==2.2.0
 
 # Type stubs
-mypy-boto3-s3==1.26.116
+mypy-boto3-s3==1.26.127
 mypy-boto3-sns==1.26.69
