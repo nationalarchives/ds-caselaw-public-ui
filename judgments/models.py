@@ -27,7 +27,7 @@ class SearchResult:
         content_hash="",
         transformation_date="",
     ) -> None:
-        self.uri: str = uri
+        self.uri: str = uri.removesuffix(".xml")
         self.neutral_citation: str = neutral_citation
         self.name: str = name
         self.date: Optional[datetime]

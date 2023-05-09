@@ -30,6 +30,11 @@ class TestGetPublishedJudgment:
         with pytest.raises(Http404):
             get_published_judgment_by_uri("not-a-judgment")
 
+    def test_judgment_url_with_trailing_stuff_fails_to_resolve(self, client):
+        response = client.get("/eat/2022/1/kitten")
+        with pytest.raises(Resolver404):
+            response.resolver_match.func
+
 
 class TestJudgment(TestCase):
     @patch("judgments.views.detail.get_pdf_size")
