@@ -14,11 +14,15 @@
     {% include "includes/results_search_component.html" %}
     <div class="results__container">
       <div class="results__list-layout-container">
-        <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
-        <div class="results__result-list-container">
-          {% include "includes/results_list.html" %}
-          {% include "includes/pagination.html" %}
-        </div>
+        {% if context.search_results %}
+          <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
+          <div class="results__result-list-container">
+            {% include "includes/results_list.html" %}
+            {% include "includes/pagination.html" %}
+          </div>
+        {% else %}
+          found nowt
+        {% endif %}
       </div>
     </div>
   </div>
