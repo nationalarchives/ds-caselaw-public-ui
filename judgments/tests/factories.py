@@ -7,9 +7,9 @@ from caselawclient.models.judgments import Judgment
 class JudgmentFactory:
     # "name_of_attribute": ("name of incoming param", "default value")
     PARAMS_MAP: dict[str, Any] = {
-        "uri": "test/2023/123",
+        "uri": "eat/ch/2099/123",
         "name": "Judgment v Judgement",
-        "neutral_citation": "[2023] Test 123",
+        "neutral_citation": "[2099] Test 123",
         "court": "Court of Testing",
         "judgment_date_as_string": "2023-02-03",
         "is_published": False,

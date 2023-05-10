@@ -44,7 +44,7 @@ class TestJudgment(TestCase):
         mock_judgment.return_value = JudgmentFactory.build(is_published=True)
         mock_pdf_size.return_value = "1234KB"
 
-        response = self.client.get("/test/2023/123")
+        response = self.client.get("/eat/1234/123")
         decoded_response = response.content.decode("utf-8")
 
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
@@ -72,11 +72,11 @@ class TestJudgmentPdfLinkText(TestCase):
         mock_judgment.return_value = JudgmentFactory.build(is_published=True)
         mock_pdf_size.return_value = " (1234KB)"
 
-        response = self.client.get("/test/2023/123")
+        response = self.client.get("/eat/1234/123")
         decoded_response = response.content.decode("utf-8")
 
         self.assertIn(
-            "https://example.com/test/2023/123/test_2023_123.pdf", decoded_response
+            "https://example.com/eat/ch/2099/123/eat_ch_2099_123.pdf", decoded_response
         )
         self.assertNotIn("data.pdf", decoded_response)
         self.assertIn("(1234KB)", decoded_response)
@@ -94,11 +94,11 @@ class TestJudgmentPdfLinkText(TestCase):
         mock_judgment.return_value = JudgmentFactory.build(is_published=True)
         mock_pdf_size.return_value = ""
 
-        response = self.client.get("/test/2023/123")
+        response = self.client.get("/eat/1234/123")
         decoded_response = response.content.decode("utf-8")
 
-        self.assertNotIn("test_2023_123.pdf", decoded_response)
-        self.assertIn("/test/2023/123/data.pdf", decoded_response)
+        self.assertNotIn("123.pdf", decoded_response)
+        self.assertIn("/eat/ch/2099/123/data.pdf", decoded_response)
 
 
 class TestGetPdfSize(TestCase):
