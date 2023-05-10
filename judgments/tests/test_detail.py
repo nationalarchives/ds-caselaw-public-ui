@@ -5,6 +5,7 @@ import pytest
 from caselawclient.errors import JudgmentNotFoundError
 from django.http import Http404
 from django.test import TestCase
+from django.urls.exceptions import Resolver404
 from factories import JudgmentFactory
 
 from judgments.views.detail import get_pdf_size, get_published_judgment_by_uri
@@ -12,13 +13,13 @@ from judgments.views.detail import get_pdf_size, get_published_judgment_by_uri
 
 class TestGetPublishedJudgment:
     @patch("judgments.views.detail.get_judgment_by_uri")
-    def judgment_is_published(self, mock_judgment):
+    def test_judgment_is_published(self, mock_judgment):
         judgment = JudgmentFactory.build(is_published=True)
         mock_judgment.return_value = judgment
         assert get_published_judgment_by_uri("2022/eat/1") == judgment
 
     @patch("judgments.views.detail.get_judgment_by_uri")
-    def judgment_is_unpublished(self, mock_judgment):
+    def test_judgment_is_unpublished(self, mock_judgment):
         mock_judgment.return_value = JudgmentFactory.build(is_published=False)
         with pytest.raises(Http404):
             get_published_judgment_by_uri("2099/eat/1")
@@ -26,9 +27,14 @@ class TestGetPublishedJudgment:
     @patch(
         "judgments.views.detail.get_judgment_by_uri", side_effect=JudgmentNotFoundError
     )
-    def judgment_missing(self):
+    def test_judgment_missing(self, mock_judgment):
         with pytest.raises(Http404):
             get_published_judgment_by_uri("not-a-judgment")
+
+    def test_judgment_url_with_trailing_stuff_fails_to_resolve(self, client):
+        response = client.get("/eat/2022/1/kitten")
+        with pytest.raises(Resolver404):
+            response.resolver_match.func
 
 
 class TestJudgment(TestCase):
