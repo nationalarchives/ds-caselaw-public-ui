@@ -1,0 +1,42 @@
+@mixin notification {
+  color: $color__white;
+  padding: 0.5rem 1rem;
+}
+
+@mixin page-notification {
+  @include notification;
+  margin: $spacer__unit 15% calc(0.5 * $spacer__unit) 15%;
+
+  @media (max-width: $grid__breakpoint-medium) {
+    margin: auto 0;
+  }
+}
+
+.page-notification {
+  &--success {
+    @include page-notification;
+    background-color: $color__success;
+  }
+
+  &--failure {
+    @include page-notification;
+    background-color: $color__failure;
+  }
+}
+
+@mixin context-notification {
+  @include notification;
+  display: inline-block;
+}
+
+.context-notification {
+  &--success {
+    @include context-notification;
+    background-color: $color__success;
+  }
+
+  &--failure {
+    @include context-notification;
+    background-color: $color__failure;
+  }
+}

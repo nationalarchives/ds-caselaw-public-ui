@@ -6,7 +6,7 @@
   <ul class="results-search-component__removable-options js-results-facets-applied-filters">
     {% for key, value in context.query_params.items %}
       {% if value %}
-        {% if key != 'order' and key != 'per_page' and key != 'court' %}
+        {% if key|removable_filter_param %}
           <li>
             <a role="button"
                tabindex="0"

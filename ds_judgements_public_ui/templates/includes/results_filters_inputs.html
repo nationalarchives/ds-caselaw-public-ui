@@ -1,4 +1,4 @@
-{% load court_utils feature_flags %}
+{% load court_utils feature_flags errors %}
 {% flag_enabled 'TEXT_DATE_INPUT' as text_date_input %}
 <div class="structured-search__single-field-panel">
   <div class="structured-search__limit-to-container">
@@ -10,104 +10,102 @@
 </div>
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
-    <fieldset>
+    <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">
       <legend>
-        <span class="structured-search__limit-to-label" name="from_date">From date</span>
+        <span class="structured-search__limit-to-label" id="from_date_label">From date</span>
       </legend>
+      <p class="structured-search__help-text" id="party_name-help-text">For example 01 01 2003</p>
+      {% if context.errors|has_errors_for_field:"from_date" %}
+        <p class="structured-search__from-date-error-message"
+           id="from-date-error">{{ context.errors|errors_for_field:"from_date" }}</p>
+      {% endif %}
       {% if text_date_input %}
+        <input type="hidden" name="text_date_input" value="True" />
         <div class="structured-search__date-input-group js-date-input">
           <div>
             <label for="from_day" class="structured-search__help-text">Day</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="from_day"
                    name="from_day"
                    type="number"
-                   min="1"
-                   max="31"
-                   step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.from_day }}" />
           </div>
           <div>
             <label for="from_month" class="structured-search__help-text">Month</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="from_month"
                    name="from_month"
                    type="number"
-                   min="1"
-                   max="12"
-                   step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.from_month }}" />
           </div>
           <div>
             <label for="from_year" class="structured-search__help-text">Year</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="from_year"
                    name="from_year"
                    type="number"
-                   min="{% get_first_judgment_year %}"
-                   max="{% get_last_judgment_year %}"
-                   step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.from_year }}" />
           </div>
         </div>
       {% else %}
-        <input class="structured-search__date-input"
+        <input class="structured-search__date-input "
                id="from_date"
-               min="2003-01-02"
                name="from"
                placeholder="DD-MM-YYYY"
                type="date"
-               value="{{ context.from }}" />
+               value="{{ context.from }}"
+               aria-labelledby="from_date_label" />
       {% endif %}
     </fieldset>
   </div>
   <div class="structured-search__limit-to-container">
-    <fieldset>
-      <label for="to_date" class="structured-search__limit-to-label">To date</label>
+    <fieldset class="{% if context.errors|has_errors_for_field:"to_date" %}with-errors{% endif %}">
+      <legend>
+        <span class="structured-search__limit-to-label"
+              name="to_date"
+              id="to_date_label">To date</span>
+      </legend>
+      <p class="structured-search__help-text" id="to_date -help-text">For example 30 04 2023</p>
+      {% if context.errors|has_errors_for_field:"to_date" %}
+        <p class="structured-search__to-date-error-message" id="from-date-error">
+          {{ context.errors|errors_for_field:"to_date" }}
+        </p>
+      {% endif %}
       {% if text_date_input %}
         <div class="structured-search__date-input-group js-date-input">
           <div>
             <label for="to_day" class="structured-search__help-text">Day</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="to_day"
                    name="to_day"
                    type="number"
-                   min="1"
-                   max="31"
-                   step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.to_day }}" />
           </div>
           <div>
             <label for="to_month" class="structured-search__help-text">Month</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="to_month"
                    name="to_month"
                    type="number"
-                   min="1"
-                   max="12"
-                   step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.to_month }}" />
           </div>
           <div>
             <label for="to_year" class="structured-search__help-text">Year</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="to_year"
                    name="to_year"
                    type="number"
-                   min="{% get_first_judgment_year %}"
-                   max="{% get_last_judgment_year %}"
-                   step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.to_year }}" />
           </div>
         </div>
       {% else %}
         <input class="structured-search__date-input"
                id="to_date"
-               min="2003-01-02"
                name="to"
                placeholder="DD-MM-YYYY"
                type="date"
-               value="{{ context.to }}" />
+               value="{{ context.to }}"
+               aria-labelledby="to_date_label" />
       {% endif %}
     </fieldset>
   </div>
