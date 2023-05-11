@@ -1,6 +1,6 @@
-{% load i18n %}
+{% load i18n humanize %}
 <div class="results__result-header">
-  <p class="results__results-intro">We found {{ context.total }} judgments</p>
+  <p class="results__results-intro">We found {{ context.total|intcomma }} judgments</p>
 </div>
 <div class="result-controls">
   <form method="get"
