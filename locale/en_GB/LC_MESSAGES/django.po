@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 10:02+0000\n"
+"POT-Creation-Date: 2023-06-07 16:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -286,3 +286,23 @@ msgstr "Application to re-use Court Judgments and Tribunal Decisions"
 #: ds_judgements_public_ui/templates/pages/transactional_licence.html
 msgid "caselawlicence.email"
 msgstr "CaseLawLicence@nationalarchives.gov.uk"
+
+#: judgments/utils.py
+msgid "search.errors.missing_year_detail"
+msgstr "You must specify a year"
+
+#: judgments/views/advanced_search.py
+msgid "search.errors.from_date_headline"
+msgstr "Errors in 'from' date - see below for details"
+
+#: judgments/views/advanced_search.py
+msgid "search.errors.to_date_headline"
+msgstr "Errors in 'to' date - see below for details"
+
+#: judgments/views/advanced_search.py
+msgid "search.errors.to_before_from_headline"
+msgstr "The 'to' date entered is before the 'from' date"
+
+#: judgments/views/advanced_search.py
+msgid "search.errors.to_before_from_detail"
+msgstr "Please enter a date after the 'from' date"

@@ -1,0 +1,7 @@
+{% if messages %}
+  {% for message in messages %}
+    {% spaceless %}
+      <div class="page-notification--{% if message.tags %}{{ message.tags }}{% else %}success{% endif %}">{{ message }}</div>
+    {% endspaceless %}
+  {% endfor %}
+{% endif %}

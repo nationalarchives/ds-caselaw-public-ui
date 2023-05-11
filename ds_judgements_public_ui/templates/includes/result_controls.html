@@ -5,6 +5,7 @@
 <div class="result-controls">
   <form method="get"
         action="{{ request.path }}"
+        novalidate="novalidate"
         id="analytics-result-controls">
     {% for key, value in context.query_params.items %}
       {% if value != None %}
