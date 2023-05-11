@@ -14,14 +14,20 @@
       <legend>
         <span class="structured-search__limit-to-label" name="from_date">From date</span>
       </legend>
+      <p class="structured-search__help-text" id="party_name-help-text">For example 01 01 2003</p>
+      <p class="structured-search__from-date-error-message"
+         id="from-date-error">
+        <span class="structured-search__from-date-visually-hidden">Error:</span> Enter a date in the correct format
+      </p>
       {% if text_date_input %}
         <div class="structured-search__date-input-group js-date-input">
           <div>
             <label for="from_day" class="structured-search__help-text">Day</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="from_day"
                    name="from_day"
                    type="number"
+                   formnovalidate="formnovalidate"
                    min="1"
                    max="31"
                    step="1"
@@ -29,7 +35,7 @@
           </div>
           <div>
             <label for="from_month" class="structured-search__help-text">Month</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="from_month"
                    name="from_month"
                    type="number"
@@ -40,18 +46,18 @@
           </div>
           <div>
             <label for="from_year" class="structured-search__help-text">Year</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="from_year"
                    name="from_year"
+                   min="1995"
+                   max="2020"
                    type="number"
-                   min="{% get_first_judgment_year %}"
-                   max="{% get_last_judgment_year %}"
                    step="1"
                    value="{{ context.from }}" />
           </div>
         </div>
       {% else %}
-        <input class="structured-search__date-input"
+        <input class="structured-search__date-input "
                id="from_date"
                min="2003-01-02"
                name="from"
@@ -64,38 +70,36 @@
   <div class="structured-search__limit-to-container">
     <fieldset>
       <label for="to_date" class="structured-search__limit-to-label">To date</label>
+      <p class="structured-search__help-text" id="party_name-help-text">For example 30 04 2023</p>
+      <p class="structured-search__to-date-error-message" id="to-date-error">
+        <span class="structured-search__to-date-visually-hidden">Error:</span> Enter a date in the correct format
+      </p>
       {% if text_date_input %}
         <div class="structured-search__date-input-group js-date-input">
           <div>
             <label for="to_day" class="structured-search__help-text">Day</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="to_day"
                    name="to_day"
                    type="number"
-                   min="1"
-                   max="31"
                    step="1"
                    value="{{ context.from }}" />
           </div>
           <div>
             <label for="to_month" class="structured-search__help-text">Month</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="to_month"
                    name="to_month"
                    type="number"
-                   min="1"
-                   max="12"
                    step="1"
                    value="{{ context.from }}" />
           </div>
           <div>
             <label for="to_year" class="structured-search__help-text">Year</label>
-            <input class="structured-search__date-input"
+            <input class="structured-search__date-input date-input--error"
                    id="to_year"
                    name="to_year"
                    type="number"
-                   min="{% get_first_judgment_year %}"
-                   max="{% get_last_judgment_year %}"
                    step="1"
                    value="{{ context.from }}" />
           </div>
@@ -143,5 +147,6 @@
 <div class="structured-search__submit-container">
   <input type="submit"
          class="structured-search__update-filters-button"
+         formnovalidate="formnovalidate"
          value="Update filters" />
 </div>

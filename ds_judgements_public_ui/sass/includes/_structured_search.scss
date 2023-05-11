@@ -172,6 +172,40 @@
     font-size: 0.8rem;
   }
 
+  &__from-date-visually-hidden {
+    display: none;
+  }
+
+  &__from-date-error-message {
+    margin-top: calc($spacer__unit /-2);
+    margin-bottom: calc($spacer__unit /-10);
+    color: #d4351c;
+    font-weight: 700;
+    font-size: 0.8rem;
+    #display: none;
+  }
+
+  &__to-date-visually-hidden {
+    display: none;
+  }
+
+  &__to-date-error-message {
+    margin-top: calc($spacer__unit /-2);
+    margin-bottom: calc($spacer__unit /-10);
+    color: #d4351c;
+    font-weight: 700;
+    font-size: 0.8rem;
+   #display: none;
+  }
+
+  input:invalid {
+    border-color: #d4351c;
+  }
+
+  input:focus:invalid {
+    outline: none;
+  }
+
   &__select {
     @include select;
     width: 100%;
@@ -250,6 +284,14 @@
     margin-bottom: 0;
     width: 100% !important;
     box-sizing: border-box;
+  }
+
+  &__date-input--error {
+    @include text_field;
+    margin-bottom: 0;
+    width: 100% !important;
+    box-sizing: border-box;
+    border-color: #d4351c
   }
 
   &__date-input-group {
