@@ -1,22 +1,27 @@
 {% extends "layouts/base.html" %}
-{% load i18n %}
+{% load i18n errors %}
 {% block title %}
   {% translate "structured_search.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
 {% block content %}
   <form action="{% url "advanced_search" %}"
         role="search"
+        novalidate="novalidate"
         id="analytics-structured-search"
-        method="get">
+        method="get"
+        novalidate="novalidate">
     <div class="structured-search">
       <div class="structured-search__main-search">
         <div class="structured-search__container">
           <h1 class="structured-search__main-search-header">Structured search</h1>
           <div class="structured-search__full-text-panel search-term-component">
-            {% include "includes/search_term_component.html" with show_help_text=True %}
+            {% include "includes/search_term_component.html" with show_help_text=True query=context.query %}
           </div>
         </div>
       </div>
+      {% if context.errors|has_errors %}
+        <div class="page-notification--failure">{{ context.errors|error_messages }}</div>
+      {% endif %}
       <div class="structured-search">
         <div class="structured-search__filter-options js-results-facets">
           <div class="structured-search__container">

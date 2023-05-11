@@ -22,5 +22,5 @@ function setupDateInput() {
 }
 
 $(() => {
-    $(".js-date-input").each(setupDateInput);
+    //$(".js-date-input").each(setupDateInput);
 });

@@ -1,5 +1,7 @@
 <div class="results-search-component">
-  <form action="{% url 'advanced_search' %}" id="analytics-results-filters">
+  <form action="{% url 'advanced_search' %}"
+        id="analytics-results-filters"
+        novalidate="novalidate">
     {% if context.per_page is not None %}<input type="hidden" name="per_page" value="{{ context.per_page }}" />{% endif %}
     {% if context.order is not None %}<input type="hidden" name="order" value="{{ context.order }}" />{% endif %}
     <div class="results-search-component__container js-results-facets-wrapper">

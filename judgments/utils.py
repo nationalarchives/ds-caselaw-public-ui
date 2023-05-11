@@ -188,12 +188,11 @@ def parse_date_parameter(params, param_name, default_to_last=False):
     year_param_name = f"{param_name}_year"
     month_param_name = f"{param_name}_month"
     day_param_name = f"{param_name}_day"
-
+    print(month_param_name, day_param_name)
     if parameter_provided(params, param_name):
         return params[param_name]
     elif parameter_provided(params, year_param_name):
-        year = parse_parameter_as_int(params, year_param_name, default=1)
-
+        year = parse_parameter_as_int(params, year_param_name)
         default_month = 12 if default_to_last else 1
         month = parse_parameter_as_int(params, month_param_name, default=default_month)
 
@@ -202,6 +201,10 @@ def parse_date_parameter(params, param_name, default_to_last=False):
 
         dt = datetime(year, month, day)
         return dt.strftime("%Y-%m-%d")
+    elif parameter_provided(params, month_param_name) or parameter_provided(
+        params, day_param_name
+    ):
+        raise ValueError("You must specify a year!")
 
 
 def get_judgment_by_uri(judgment_uri: str) -> Judgment:
