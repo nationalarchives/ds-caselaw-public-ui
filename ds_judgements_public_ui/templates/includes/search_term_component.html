@@ -3,12 +3,18 @@
   <label for="search_term" class="search-term-component__search-term-label">
     {% translate "basicsearchform.label" %}
   </label>
-  <input class="search-term-component__search-term-input"
-         id="search_term"
-         name="query"
-         type="text"
-         value="{{ query }}"
-         placeholder="{% translate "basicsearchform.placeholder" %}" />
+  {% if form %}
+    {{ form.query }}
+  {% else %}
+    <!-- TODO Tim - make the case where this is rendered apart from the
+    advanved search form work using the django form as well -->
+    <input class="search-term-component__search-term-input"
+           id="search_term"
+           name="query"
+           type="text"
+           value="{{ query }}"
+           placeholder="{% translate "basicsearchform.placeholder" %}" />
+  {% endif %}
   {% if show_help_text %}
     <p class="search-term-component__help-text">
       <a href='{% url "how_to_use_this_service" %}#section-search'>{% translate "basic.search.helptext" %}</a>

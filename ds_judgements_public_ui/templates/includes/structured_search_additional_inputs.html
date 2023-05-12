@@ -1,23 +1,16 @@
 <fieldset>
   <div class="structured-search__multi-fields-panel">
     <div class="structured-search__specific-field-container">
-      <label for="neutral_citation" class="structured-search__limit-to-label">Neutral citation</label>
+      <label for="{{ form.neutral_citation.auto_id }}"
+             class="structured-search__limit-to-label">{{ form.neutral_citation.label }}</label>
       <p class="structured-search__help-text" id="neutral_citation-help-text">For example [2021] EWCA Crim 1785</p>
-      <input class="structured-search__limit-to-input"
-             id="neutral_citation"
-             name="neutral_citation"
-             type="text"
-             value="{{ context.neutral_citation }}"
-             aria-describedby="neutral_citation-help-text" />
+      {{ form.neutral_citation }}
     </div>
     <div class="structured-search__limit-to-container">
-      <label for="specific_keywords" class="structured-search__limit-to-label">Containing specific keywords</label>
-      <p class="structured-search__help-text" id="neutral_citation-help-text">For example, London Borough of...</p>
-      <input class="structured-search__limit-to-input"
-             id="specific_keywords"
-             name="specific_keyword"
-             type="text"
-             value="{{ context.specific_keyword }}" />
+      <label for="{{ form.specific_keyword.auto_id }}"
+             class="structured-search__limit-to-label">{{ form.specific_keyword.label }}</label>
+      <p class="structured-search__help-text" id="specific_keyword-help-text">For example, London Borough of...</p>
+      {{ form.specific_keyword }}
     </div>
   </div>
 </fieldset>

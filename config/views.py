@@ -2,6 +2,8 @@ from django.utils.translation import gettext
 from django.views.generic import TemplateView
 from ds_caselaw_utils import courts
 
+from judgments.forms.structured_search import StructuredSearchForm
+
 
 class TemplateViewWithContext(TemplateView):
     page_title = None
@@ -62,6 +64,7 @@ class StructuredSearchView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["context"]["courts"] = courts.get_selectable()
         context["feedback_survey_type"] = "structured_search"
+        context["form"] = StructuredSearchForm(self.request.GET)
         return context
 
 

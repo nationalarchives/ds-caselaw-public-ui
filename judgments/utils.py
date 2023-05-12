@@ -191,6 +191,12 @@ def parse_date_parameter(params, param_name, default_to_last=False):
 
     if parameter_provided(params, param_name):
         return params[param_name]
+    elif parameter_provided(params, f"{param_name}_date"):
+        # We add this option because eg `from` is a reserved word
+        # in python which causes some very nasty problems with django forms
+        # allowing us to provide the parameter with `_date` suffixed is the
+        # most pragmatic way of dealing with this currently.
+        return params[param_name]
     elif parameter_provided(params, year_param_name):
         year = parse_parameter_as_int(params, year_param_name, default=1)
 

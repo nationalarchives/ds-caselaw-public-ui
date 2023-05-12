@@ -120,28 +120,46 @@
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__specific-field-container">
     <fieldset>
-      <label for="party_name" class="structured-search__limit-to-label">Party name</label>
-      <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
-      <input class="structured-search__limit-to-input"
-             id="party_name"
-             name="party"
-             type="text"
-             value="{{ context.party }}"
-             aria-describedby="party_name-help-text" />
+      {% if form %}
+        <label for="{{ form.party.auto_id }}"
+               class="structured-search__limit-to-label">{{ form.party.label }}</label>
+        <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
+        {{ form.party }}
+      {% else %}
+        <!-- TODO Tim factor this out using the form everywhere -->
+        <label for="party_name" class="structured-search__limit-to-label">Party name</label>
+        <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
+        <input class="structured-search__limit-to-input"
+               id="party_name"
+               name="party"
+               type="text"
+               value="{{ context.party }}"
+               aria-describedby="party_name-help-text" />
+      {% endif %}
     </fieldset>
   </div>
   <div class="structured-search__specific-field-container">
     <fieldset>
-      <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
-      <p class="structured-search__help-text" id="judge_name-help-text">
-        For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
-      </p>
-      <input class="structured-search__limit-to-input"
-             id="judge_name"
-             name="judge"
-             type="text"
-             value="{{ context.judge }}"
-             aria-describedby="judge_name-help-text" />
+      {% if form %}
+        <label for="{{ form.judge.auto_id }}"
+               class="structured-search__limit-to-label">{{ form.judge.label }}</label>
+        <p class="structured-search__help-text" id="judge_name-help-text">
+          For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
+        </p>
+        {{ form.judge }}
+      {% else %}
+        <!-- TODO Tim use the form on the results filters and get rid of this -->
+        <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
+        <p class="structured-search__help-text" id="judge_name-help-text">
+          For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
+        </p>
+        <input class="structured-search__limit-to-input"
+               id="judge_name"
+               name="judge"
+               type="text"
+               value="{{ context.judge }}"
+               aria-describedby="judge_name-help-text" />
+      {% endif %}
     </fieldset>
   </div>
 </div>
