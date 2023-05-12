@@ -20,6 +20,7 @@
         <span class="structured-search__from-date-visually-hidden">Error:</span> Enter a date in the correct format
       </p>
       {% if text_date_input %}
+        <input type="hidden" name="text_date_input" value="True" />
         <div class="structured-search__date-input-group js-date-input">
           <div>
             <label for="from_day" class="structured-search__help-text">Day</label>
@@ -31,7 +32,7 @@
                    min="1"
                    max="31"
                    step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.from_day }}" />
           </div>
           <div>
             <label for="from_month" class="structured-search__help-text">Month</label>
@@ -42,7 +43,7 @@
                    min="1"
                    max="12"
                    step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.from_month }}" />
           </div>
           <div>
             <label for="from_year" class="structured-search__help-text">Year</label>
@@ -53,7 +54,7 @@
                    max="2020"
                    type="number"
                    step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.from_year }}" />
           </div>
         </div>
       {% else %}
@@ -83,7 +84,7 @@
                    name="to_day"
                    type="number"
                    step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.to_day }}" />
           </div>
           <div>
             <label for="to_month" class="structured-search__help-text">Month</label>
@@ -92,7 +93,7 @@
                    name="to_month"
                    type="number"
                    step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.to_month }}" />
           </div>
           <div>
             <label for="to_year" class="structured-search__help-text">Year</label>
@@ -101,7 +102,7 @@
                    name="to_year"
                    type="number"
                    step="1"
-                   value="{{ context.from }}" />
+                   value="{{ context.to_year }}" />
           </div>
         </div>
       {% else %}

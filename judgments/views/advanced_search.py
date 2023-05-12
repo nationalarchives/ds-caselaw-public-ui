@@ -41,7 +41,13 @@ def advanced_search(request):
         "specific_keyword": params.get("specific_keyword"),
         "order": params.get("order", ""),
         "from": from_date,
+        "from_day": params.get("from_day"),
+        "from_month": params.get("from_month"),
+        "from_year": params.get("from_year"),
         "to": to_date,
+        "to_day": params.get("to_day"),
+        "to_month": params.get("to_month"),
+        "to_year": params.get("to_year"),
         "per_page": params.get("per_page"),
     }
     page = str(as_integer(params.get("page"), minimum=1))

@@ -172,10 +172,6 @@
     font-size: 0.8rem;
   }
 
-  &__from-date-visually-hidden {
-    display: none;
-  }
-
   &__from-date-error-message {
     margin-top: calc($spacer__unit /-2);
     margin-bottom: calc($spacer__unit /-10);
@@ -183,10 +179,6 @@
     font-weight: 700;
     font-size: 0.8rem;
     #display: none;
-  }
-
-  &__to-date-visually-hidden {
-    display: none;
   }
 
   &__to-date-error-message {
