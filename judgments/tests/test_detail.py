@@ -8,7 +8,22 @@ from django.test import TestCase
 from django.urls.exceptions import Resolver404
 from factories import JudgmentFactory
 
-from judgments.views.detail import get_pdf_size, get_published_judgment_by_uri
+from judgments.views.detail import (
+    PdfDetailView,
+    get_pdf_size,
+    get_published_judgment_by_uri,
+)
+
+
+class TestWeasyWithoutCSS(TestCase):
+    @patch.object(PdfDetailView, "pdf_stylesheets", [])
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_weasy_without_css_runs_in_ci(self, mock_judgment):
+        judgment = JudgmentFactory.build(is_published=True)
+        mock_judgment.return_value = judgment
+        response = self.client.get("/eat/2023/1/generated.pdf")
+        assert response.status_code == 200
+        assert b"%PDF-1.7" in response.content
 
 
 class TestGetPublishedJudgment:
