@@ -21,7 +21,7 @@ ds-caselaw-utils~=1.0.0
 rollbar
 django-weasyprint==2.2.0
 # pinned to avoid https://github.com/fdemmer/django-weasyprint/issues/71
-weasyprint~=58.0
+weasyprint~=59.0
 
 # Type stubs
 mypy-boto3-s3==1.26.127
