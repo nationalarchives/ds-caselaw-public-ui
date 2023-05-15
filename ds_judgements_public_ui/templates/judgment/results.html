@@ -14,11 +14,28 @@
     {% include "includes/results_search_component.html" %}
     <div class="results__container">
       <div class="results__list-layout-container">
-        <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
-        <div class="results__result-list-container">
-          {% include "includes/results_list.html" %}
-          {% include "includes/pagination.html" %}
-        </div>
+        {% if context.search_results %}
+          <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
+          <div class="results__result-list-container">
+            {% include "includes/results_list.html" %}
+            {% include "includes/pagination.html" %}
+          </div>
+        {% else %}
+          <h2>We found no results</h2>
+          <p>
+            If you're unable to find a particular judgment, you may wish to check
+            <a href="{% url 'what_to_expect' %}#section-coverage">whether we cover that court and date</a>.
+          </p>
+          <p>
+            In particular, we do not have:
+            <ul>
+              <li>any court judgments before 2003</li>
+              <li>any Crown Court, County Court or Magistrates' Court judgments,</li>
+            </ul>
+            and only have a limited selection of tribunal decisions.
+          </p>
+          <p>We are working to add more historical judgments.</p>
+        {% endif %}
       </div>
     </div>
   </div>
