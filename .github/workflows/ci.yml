@@ -55,6 +55,12 @@ jobs:
       - name: Build the Stack
         run: docker-compose build postgres django
 
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Compile css files from scss
+        run: npm run build
+
       - name: Run DB Migrations
         run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
 

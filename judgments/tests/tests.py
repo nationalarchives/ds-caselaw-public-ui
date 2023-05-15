@@ -2,7 +2,6 @@ import re
 from unittest import skip
 from unittest.mock import patch
 
-import pytest
 from django.test import TestCase
 from factories import JudgmentFactory
 from test_search import fake_search_result, fake_search_results
@@ -165,7 +164,6 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @pytest.mark.local("Needs static file in CI")
     @patch("judgments.views.detail.PdfDetailView.get_context_data")
     def test_weasy_pdf(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
