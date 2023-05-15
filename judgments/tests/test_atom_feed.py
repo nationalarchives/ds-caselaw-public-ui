@@ -13,8 +13,23 @@ class TestAtomFeed(TestCase):
 
         response = self.client.get("/atom.xml")
         decoded_response = response.content.decode("utf-8")
-        # that there is a valid page
+
+        # that perform_advanced_search is called with the appropriate parameters
+        fake_advanced_search.assert_called_with(
+            court=None,
+            date_from=None,
+            date_to=None,
+            order="-date",
+            page=1,
+        )
+
+        # that there is a successful response
         self.assertEqual(response.status_code, 200)
+        # that it is an atom feed
+        self.assertEqual(
+            response["Content-Type"], "application/atom+xml; charset=utf-8"
+        )
+
         # that it has the correct site name
         self.assertIn("<name>The National Archives</name>", decoded_response)
         # that it is like an Atom XML document
@@ -24,7 +39,7 @@ class TestAtomFeed(TestCase):
         # and it contains actual content - neither neutral citation or court appear in the feed to test.
         self.assertIn("A SearchResult name!", decoded_response)
 
-    @patch("judgments.utils.perform_advanced_search")
+    @patch("judgments.feeds.perform_advanced_search")
     def test_bad_page_404(self, fake_advanced_search):
         # "?page=" 404s, not 500
         fake_advanced_search.return_value = fake_search_results()

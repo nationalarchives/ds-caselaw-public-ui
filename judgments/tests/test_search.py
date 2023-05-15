@@ -45,12 +45,18 @@ def fake_search_result(
 class TestBrowseResults(TestCase):
     @patch("judgments.views.browse.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
-    @patch("judgments.utils.perform_advanced_search")
-    def test_browse_results(self, f3, fake_result, fake_advanced_search):
+    def test_browse_results(self, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
-        f3.r = fake_search_results()
         fake_result.return_value = fake_search_result()
         response = self.client.get("/ewhc/ch/2022")
+        fake_advanced_search.assert_called_with(
+            court="ewhc/ch",
+            date_from="2022-01-01",
+            date_to="2022-12-31",
+            order="-date",
+            page=1,
+            per_page=10,
+        )
         self.assertContains(
             response,
             "A SearchResult name!",
@@ -60,12 +66,13 @@ class TestBrowseResults(TestCase):
 class TestSearchResults(TestCase):
     @patch("judgments.views.results.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
-    @patch("judgments.utils.perform_advanced_search")
-    def test_judgment_results(self, f3, fake_result, fake_advanced_search):
+    def test_judgment_results(self, fake_result, fake_advanced_search):
         fake_advanced_search.return_value = fake_search_results()
-        f3.r = fake_search_results()
         fake_result.return_value = fake_search_result()
         response = self.client.get("/judgments/results?query=waltham+forest")
+        fake_advanced_search.assert_called_with(
+            query="waltham forest", page="1", order="-relevance", per_page="10"
+        )
         self.assertContains(
             response,
             '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
@@ -73,13 +80,11 @@ class TestSearchResults(TestCase):
 
     @patch("judgments.views.results.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
-    @patch("judgments.utils.perform_advanced_search")
     @patch("judgments.views.results.preprocess_query")
     def test_jugdment_results_query_preproccesed(
-        self, fake_preprocess_query, f3, fake_result, fake_advanced_search
+        self, fake_preprocess_query, fake_result, fake_advanced_search
     ):
         fake_advanced_search.return_value = fake_search_results()
-        f3.r = fake_search_results()
         fake_result.return_value = fake_search_result()
         fake_preprocess_query.return_value = "normalised query"
         self.client.get("/judgments/results?query=waltham+forest")
@@ -95,6 +100,19 @@ class TestSearchResults(TestCase):
         self.assertContains(
             response,
             '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
+        )
+        fake_advanced_search.assert_called_with(
+            query="waltham forest",
+            court=[],
+            judge=None,
+            party=None,
+            neutral_citation=None,
+            specific_keyword=None,
+            page="1",
+            order="relevance",
+            date_from=None,
+            date_to=None,
+            per_page="10",
         )
 
     @patch("judgments.views.advanced_search.perform_advanced_search")
