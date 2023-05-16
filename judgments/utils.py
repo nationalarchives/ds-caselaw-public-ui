@@ -49,6 +49,7 @@ def perform_advanced_search(
         date_from=date_from,
         date_to=date_to,
         page_size=per_page,
+        collections=["judgment"],
     )
     multipart_data = decoder.MultipartDecoder.from_response(response)
     return SearchResults.create_from_string(multipart_data.parts[0].text)
