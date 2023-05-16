@@ -30,7 +30,19 @@
   &__matches {
     p {
       display: inline;
-      padding-right: 0.5rem;
+    }
+  }
+
+  &__matches {
+    p:after {
+      content: " | ";
+      color: #888888;
+    }
+  }
+
+  &__matches {
+    p:last-child:after {
+      content: "";
     }
   }
 
