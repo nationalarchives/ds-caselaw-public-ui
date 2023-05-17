@@ -34,15 +34,9 @@
   }
 
   &__matches {
-    p:after {
+    p:not(:last-child):after {
       content: " | ";
       color: #888888;
-    }
-  }
-
-  &__matches {
-    p:last-child:after {
-      content: "";
     }
   }
 
