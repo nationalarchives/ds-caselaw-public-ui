@@ -1,6 +1,12 @@
 .page-header {
   background-color: $color__almost-black;
   padding: 0 0 calc($spacer__unit * 1.25);
+  display:flex;
+  justify-content: normal;
+  @media only screen and (max-width: $grid__breakpoint-medium) {
+    flex-direction: column-reverse;
+ }
+
 
   &__breadcrumb {
 
@@ -57,15 +63,30 @@
   }
 
   &__container {
-    @include container;
-    display: flex;
-    justify-content: center;
+    //@include container;
+    margin-left: -4rem;
   }
 
   &__logo {
-    height: 5.5rem;
-    margin: calc($spacer__unit / 2) auto;
+    height: 4.5rem;
+    margin-top: -2rem;
+    margin-left: -2rem;
+    //margin: calc($spacer__unit / 2) auto;
+    width: 13rem;
+    @media only screen and (max-width: $grid__breakpoint-medium) {
+      margin-left: 13rem;
+    }
   }
+
+
+
+  &__logo-block-text {
+    color: grey;
+    text-align: right;
+    @media only screen and (max-width: $grid__breakpoint-medium) {
+      text-align: center;
+   }
+ }
 
   &__logo-link {
 
