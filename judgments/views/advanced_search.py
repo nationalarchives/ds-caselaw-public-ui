@@ -5,7 +5,9 @@ from django.http import Http404
 from django.template.response import TemplateResponse
 from ds_caselaw_utils import courts as all_courts
 
+from judgments.forms.structured_search import StructuredSearchForm
 from judgments.models import SearchResult
+
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     as_integer,
@@ -19,7 +21,7 @@ from judgments.utils import (
 
 def advanced_search(request):
     params = request.GET
-
+    form = StructuredSearchForm(params)
     try:
         from_date = parse_date_parameter(params, "from")
     except ValueError:

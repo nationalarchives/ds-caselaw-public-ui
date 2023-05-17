@@ -3,13 +3,37 @@
 <div class="structured-search__single-field-panel">
   <div class="structured-search__limit-to-container">
     <fieldset>
+    {% if form %}
+      <label for="{{form.court.auto_id}}" class="structured-search__limit-to-label">
+        {{form.court.label}}
+      </label>
+      <div class="structured-search__court-options" id="court">
+        {% for court in form.court %}
+          <div class="structured-search__court-option">
+            <label for="{{court.id_for_label}}">
+              {{court.tag}}
+              <span class="structured-search__court-option-label">{{ court.choice_label }}</span>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
       <label for="court" class="structured-search__limit-to-label">From specific courts or tribunals</label>
       <div class="structured-search__court-options" id="court">{% include "includes/courts_options.html" %}</div>
+      {% endif %}
     </fieldset>
   </div>
 </div>
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
+  {% if form %}
+  <fieldset>
+      <legend>
+        <span class="structured-search__limit-to-label" name="from_date">{{form.from_date.label}}</span>
+      </legend>
+      <p class="structured-search__help-text" id="party_name-help-text">For example 01 01 2003</p>
+  {{form.from_date }}
+  {% else %}
     <fieldset>
       <legend>
         <span class="structured-search__limit-to-label" name="from_date">From date</span>
@@ -67,6 +91,7 @@
                value="{{ context.from }}" />
       {% endif %}
     </fieldset>
+    {% endif %}
   </div>
   <div class="structured-search__limit-to-container">
     <fieldset>
