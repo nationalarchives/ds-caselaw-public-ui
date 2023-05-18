@@ -29,8 +29,10 @@
     {% include "includes/gtm/gtm_body.html" %}
     {% include "includes/phase_banner.html" %}
     <header class="page-header">
-      {% include "includes/breadcrumbs.html" with current=context.page_title title=context.page_title link=request.path %}
-      {% include "includes/logo.html" %}
+      <div class="page-header__container">
+        {% include "includes/breadcrumbs.html" with current=context.page_title title=context.page_title link=request.path %}
+        {% include "includes/logo.html" %}
+      </div>
     </header>
     {% include "includes/judgment_text_toolbar.html" %}
     <main id="main-content">

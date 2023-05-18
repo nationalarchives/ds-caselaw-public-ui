@@ -4,8 +4,8 @@
 
   &__breadcrumb {
 
-    display: block;
-    position: relative;
+    display: flex;
+    align-items: center;
     padding: calc($spacer__unit / 2) 0;
 
     ol {
@@ -93,7 +93,7 @@
   &__logo-block {
     color: $color__white;
     text-align: right;
-    padding-top: 1rem;
+    padding: 1rem 0;
     @media only screen and (max-width: $grid__breakpoint-medium) {
       text-align: center;
    }
