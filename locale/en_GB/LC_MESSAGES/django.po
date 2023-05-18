@@ -152,10 +152,6 @@ msgid "judgment.bailii"
 msgstr "The British and Irish Legal Information Institute"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
-msgid "judgment.back"
-msgstr "Back to search results"
-
-#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
 msgid "judgment.downloadaspdf"
 msgstr "Download as PDF"
 

@@ -70,6 +70,8 @@ def detail(request, judgment_uri):
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
     context["page_title"] = judgment.name
     context["judgment_uri"] = judgment.uri
+    context["judgment_title"] = judgment.name
+    context["judgment_ncn"] = judgment.neutral_citation
 
     context["pdf_size"] = get_pdf_size(judgment.uri)
     context["pdf_uri"] = (
