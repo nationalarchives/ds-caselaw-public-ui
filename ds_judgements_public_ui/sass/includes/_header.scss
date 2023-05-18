@@ -25,13 +25,15 @@
       position: relative;
       margin-right: calc($spacer__unit / 2);
       color: $color__white;
+      break-inside: avoid;
+      line-height: 1.3rem;
 
       &:not(:nth-child(1)) {
         padding-left: $spacer__unit;
 
         &::before {
           content: "";
-          display: block;
+          display: inline-block;
           position: absolute;
           top: 0;
           bottom: 0;
@@ -51,17 +53,20 @@
 
     @media only screen and (max-width: $grid__breakpoint-medium) {
       ol, li {
-        display: inline;
+        display: block;
+      }
+      li {
+        &:not(:nth-child(1)) {
+          &::before {
+            display: none;
+          }
+        }
       }
     }
 
     &-you-are-in {
       color: $color__white;
-      font-size: 0.9rem;
       margin-right: calc($spacer__unit / 2);
-      @media only screen and (max-width: $grid__breakpoint-medium) {
-        display: inline;
-      }
     }
   }
 
@@ -91,11 +96,13 @@
 
 
   &__logo-block {
+    font-size: 0.9rem;
     color: $color__white;
     text-align: right;
     padding: 1rem 0;
     @media only screen and (max-width: $grid__breakpoint-medium) {
       text-align: center;
+      padding-bottom: 0;
    }
  }
 
