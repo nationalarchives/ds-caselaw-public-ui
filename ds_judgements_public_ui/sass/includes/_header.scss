@@ -1,18 +1,22 @@
 .page-header {
   background-color: $color__almost-black;
-  padding: 0 0 calc($spacer__unit * 1.25);
+  padding: 0 $spacer__unit calc($spacer__unit * 1.25);
   display:flex;
-  justify-content: normal;
+  justify-content: space-between;
   @media only screen and (max-width: $grid__breakpoint-medium) {
     flex-direction: column-reverse;
- }
+  }
+  @media (min-width: $grid__breakpoint-extra-large) {
+    padding-left: calc(7.25 * $spacer__unit);
+    padding-right: calc(7.25 * $spacer__unit);
+  }
 
 
   &__breadcrumb {
 
     display: block;
     position: relative;
-    padding: calc($spacer__unit / 2) calc($spacer__unit * 2);
+    padding: calc($spacer__unit / 2) 0;
 
     ol {
       list-style-type: none;
@@ -55,16 +59,27 @@
       }
     }
 
+    @media only screen and (max-width: $grid__breakpoint-medium) {
+      ol, li {
+        display: inline;
+      }
+    }
+
     &-you-are-in {
       color: $color__white;
       font-size: 0.9rem;
       margin-right: calc($spacer__unit / 2);
+      @media only screen and (max-width: $grid__breakpoint-medium) {
+        display: inline;
+      }
     }
   }
 
   &__container {
     //@include container;
-    margin-left: -4rem;
+    @media only screen and (min-width: $grid__breakpoint-medium) {
+      margin-left: -4rem;
+    }
   }
 
   &__logo {
@@ -89,6 +104,14 @@
  }
 
   &__logo-link {
+    @media only screen and (max-width: $grid__breakpoint-medium) {
+      display: block;
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+   }
 
     &:focus {
       outline: 0;
