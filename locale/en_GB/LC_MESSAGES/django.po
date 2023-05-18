@@ -196,7 +196,7 @@ msgstr "Search results"
 msgid "home.useservice"
 msgstr ""
 "Find, view and download judgments and tribunal"
-" decisions from 2003"
+" decisions from 2003 onwards"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "howtousethisservice.title"

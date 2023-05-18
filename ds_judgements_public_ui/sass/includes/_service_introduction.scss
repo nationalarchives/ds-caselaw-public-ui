@@ -1,14 +1,14 @@
 .service-introduction {
   background-color: $color__almost-black;
   padding: 0 0 2rem;
+  flex-grow: 1;
 
-  &__container {
-    @include container;
-    text-align: center;
-    @media (min-width: $grid__breakpoint-medium) {
-      text-align: left;
-    }
-  }
+  // &__container {
+  //   text-align: center;
+  //   @media (min-width: $grid__breakpoint-medium) {
+  //     text-align: left;
+  //   }
+  // }
 
   &__header {
     font-size: 2.5rem;
@@ -26,6 +26,8 @@
     font-size: 1.2rem;
     font-family: $font__roboto;
     color: $color__yellow;
+    line-height: 1.6rem;
+    margin: 0 auto;
   }
 
   &__further-information {

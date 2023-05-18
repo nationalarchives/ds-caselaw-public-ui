@@ -1,16 +1,6 @@
 .page-header {
   background-color: $color__almost-black;
-  padding: 0 $spacer__unit calc($spacer__unit * 1.25);
-  display:flex;
-  justify-content: space-between;
-  @media only screen and (max-width: $grid__breakpoint-medium) {
-    flex-direction: column-reverse;
-  }
-  @media (min-width: $grid__breakpoint-extra-large) {
-    padding-left: calc(7.25 * $spacer__unit);
-    padding-right: calc(7.25 * $spacer__unit);
-  }
-
+  padding: 0;
 
   &__breadcrumb {
 
@@ -76,42 +66,40 @@
   }
 
   &__container {
-    //@include container;
-    @media only screen and (min-width: $grid__breakpoint-medium) {
-      margin-left: -4rem;
+    @include container;
+    display:flex;
+    justify-content: space-between;
+    @media only screen and (max-width: $grid__breakpoint-medium) {
+      flex-direction: column-reverse;
+      text-align: center;
     }
+    @media (min-width: $grid__breakpoint-extra-large) {
+      padding-left: calc(7.25 * $spacer__unit);
+      padding-right: calc(7.25 * $spacer__unit);
   }
+}
 
   &__logo {
-    height: 4.5rem;
-    margin-top: -2rem;
-    margin-left: -2rem;
-    //margin: calc($spacer__unit / 2) auto;
-    width: 13rem;
+    width: 250px;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
     @media only screen and (max-width: $grid__breakpoint-medium) {
-      margin-left: 13rem;
+      max-width: 200px;
     }
   }
 
 
 
-  &__logo-block-text {
-    color: grey;
+  &__logo-block {
+    color: $color__white;
     text-align: right;
+    padding-top: 1rem;
     @media only screen and (max-width: $grid__breakpoint-medium) {
       text-align: center;
    }
  }
 
   &__logo-link {
-    @media only screen and (max-width: $grid__breakpoint-medium) {
-      display: block;
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-   }
 
     &:focus {
       outline: 0;
