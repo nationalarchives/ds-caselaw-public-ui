@@ -31,4 +31,8 @@
     margin: 0;
     display: inline;
   }
+
+  &__container {
+    @include container;
+  }
 }

@@ -1,11 +1,7 @@
 .service-introduction {
   background-color: $color__almost-black;
   padding: 0 0 2rem;
-
-  &__container {
-    @include container;
-    text-align: center;
-  }
+  flex-grow: 1;
 
   &__header {
     font-size: 2.5rem;
@@ -23,6 +19,8 @@
     font-size: 1.2rem;
     font-family: $font__roboto;
     color: $color__yellow;
+    line-height: 1.6rem;
+    margin: 0 auto;
   }
 
   &__further-information {
@@ -32,19 +30,20 @@
 
   &__what-to-expect {
     @include link-on-dark-bg;
+    background: transparent url($fa_chevron_right_white) 0 0.2rem no-repeat;
+    background-size: 0.7rem;
     display: inline-block;
-    padding: 0 0 calc($spacer__unit / 2);
+    padding: 0 0 0 calc($spacer__unit / 1);
     color: $color__white;
     margin: calc($spacer__unit * 1.6) 0 0;
     font-weight: bold;
-    text-decoration: none;
     font-size: 1.1rem;
-    border-bottom: 0.125rem solid $color__white;
+    text-decoration: underline;
+
+
 
     &:hover {
-      border-bottom-color: transparent;
-      text-decoration: underline;
-      border-bottom: 0.125rem solid $color__white;
+      text-decoration: none;
     }
 
     &:active {
