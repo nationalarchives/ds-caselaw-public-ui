@@ -236,8 +236,8 @@ msgid "caselaw.url"
 msgstr "https://caselaw.nationalarchives.gov.uk"
 
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
-msgid "webmaster.email"
-msgstr "webmaster@nationalarchives.gov.uk"
+msgid "caselaw.email"
+msgstr "caselaw@nationalarchives.gov.uk"
 
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "robots.link"
