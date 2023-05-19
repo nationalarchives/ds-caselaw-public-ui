@@ -3,29 +3,28 @@
 {% block robots %}
 {% endblock robots %}
 {% block title %}
-{% translate "terms.title" %} - {% translate "common.findcaselaw" %}
+  {% translate "terms.title" %} - {% translate "common.findcaselaw" %}
 {% endblock title %}
 {% block content %}
-{% translate "terms.title" as page_title %}
-<header class="page-header" id="start-of-document">
-  {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
-  {% include "includes/logo.html" %}
-</header>
-<div class="standard-text-template">
-  <h1>Terms of use</h1>
-  <section>
-    <h2>What is in these terms</h2>
-    <p>
-      These terms tell you the rules for using the Find Case Law service at
-      <a href="{% translate "caselaw.url" %}">{% translate "caselaw.url" %}</a>
-    </p>
-  </section>
-  <section>
-    <h2>Who we are and how to contact us</h2>
-    <p>The Find Case Law service is provided by The National Archives.</p>
-    <p>
-      You can contact us by email at <a href="mailto:{% translate " caselaw.email" %}">{% translate "caselaw.email"
-        %}</a>
+  {% translate "terms.title" as page_title %}
+  <header class="page-header" id="start-of-document">
+    {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
+    {% include "includes/logo.html" %}
+  </header>
+  <div class="standard-text-template">
+    <h1>Terms of use</h1>
+    <section>
+      <h2>What is in these terms</h2>
+      <p>
+        These terms tell you the rules for using the Find Case Law service at
+        <a href="{% translate "caselaw.url" %}">{% translate "caselaw.url" %}</a>
+      </p>
+    </section>
+    <section>
+      <h2>Who we are and how to contact us</h2>
+      <p>The Find Case Law service is provided by The National Archives.</p>
+      <p>
+        You can contact us by email at <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>
     </p>
     <p>
       If your online access is limited and you need to speak to someone you can call us during office hours on
@@ -52,13 +51,12 @@
     <h2>Crawling and indexing</h2>
     <p>You may access the Find Case Law service through the website, or access the data through the API.</p>
     <p>
-      We do not permit external indexing of documents by search engine robots or spiders. 
-      You must adhere to both, the instructions in the robots.txt file at: 
-      <a href="{% translate " robots.link" %}">{% translate "robots.link" %}</a>
+      We do not permit external indexing of documents by search engine robots or spiders.
+      You must adhere to both, the instructions in the robots.txt file at:
+      <a href="{% translate "robots.link" %}">{% translate "robots.link" %}</a>
       and the 'noindex' directive in the 'X- Robots-Tag' meta tag
-    HTTP header response for the URLs of all documents and their related assets.
+      HTTP header response for the URLs of all documents and their related assets.
     </p>
-
     <p>
       We may block or disable use of the service from certain IP addresses, if they appear to be compiling a
       search engine index.
@@ -82,8 +80,7 @@
     </p>
     <p>
       You should be aware that judgments given prior to 19 April 2022 have been sourced by The National
-      Archives from a variety of different sources, including BAILII (<a href="https://{% translate " bailii.link"
-        %}">{% translate "bailii.link" %}</a>).
+      Archives from a variety of different sources, including BAILII (<a href="https://{% translate "bailii.link" %}">{% translate "bailii.link" %}</a>).
     </p>
   </section>
   <section>
@@ -104,9 +101,8 @@
   <section>
     <h2>Licensing</h2>
     <p>
-      You may use and re-use the contents of the Find Case Law service under the terms of the 
+      You may use and re-use the contents of the Find Case Law service under the terms of the
       <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">Open Justice Licence</a>.
-      
     </p>
     <p>
       You must read the licence and understand its terms if you are re-using the information from the Find Case
@@ -121,7 +117,6 @@
       rather than attempt to crawl or scrape the website.
     </p>
   </section>
-
 </div>
 {% include "includes/help_end_document_marker.html" %}
 {% endblock content %}
