@@ -1,5 +1,4 @@
 import re
-from unittest import skip
 from unittest.mock import patch
 
 from django.test import TestCase
@@ -66,7 +65,6 @@ class TestPaginator(TestCase):
         }
         self.assertEqual(paginator(1, 5), expected_result)
 
-    @skip("This test works locally but fails on CI, to fix")
     @patch("judgments.views.advanced_search.perform_advanced_search")
     @patch("judgments.models.SearchResult.create_from_node")
     def test_pagination_links(self, fake_result, fake_advanced_search):
