@@ -33,6 +33,12 @@ msgstr "Filter by court, date or person"
 #: ds_judgements_public_ui/templates/layouts/static_content.html
 #: ds_judgements_public_ui/templates/pages/home.html
 #: ds_judgements_public_ui/templates/pages/structured_search.html
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
+#: ds_judgements_public_ui/templates/pages/open_justice_licence.html
+#: ds_judgements_public_ui/templates/pages/publishing_policy.html
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
+#: ds_judgements_public_ui/templates/pages/transactional_licence.html
+#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "common.findcaselaw"
 msgstr "Find case law"
 
@@ -220,13 +226,18 @@ msgstr ""
 "https://www.nationalarchives.gov.uk/information-management/re-using-public-"
 "sector-information/uk-government-licensing-framework"
 
-#: ds_judgements_public_ui/templates/pages/structured_search.html
-msgid "structured_search.title"
-msgstr "Structured search"
+#: ds_judgements_public_ui/templates/pages/publishing_policy.html
+msgid "publishing_policy.title"
+msgstr "Publishing Policy"
 
+#: ds_judgements_public_ui/templates/pages/publishing_policy.html
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "caselaw.url"
 msgstr "https://caselaw.nationalarchives.gov.uk"
+
+#: ds_judgements_public_ui/templates/pages/structured_search.html
+msgid "structured_search.title"
+msgstr "Structured search"
 
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "robots.link"

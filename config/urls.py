@@ -49,6 +49,11 @@ urlpatterns = [
         name="terms_of_use",
     ),
     path(
+        "publishing-policy",
+        views.PublishingPolicyView.as_view(),
+        name="publishing_policy",
+    ),
+    path(
         "structured_search",
         views.StructuredSearchView.as_view(),
         name="structured_search",

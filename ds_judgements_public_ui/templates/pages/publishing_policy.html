@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block robots %}
+{% endblock robots %}
+{% block title %}
+{% translate "publishing_policy.title" %} - {% translate "common.findcaselaw" %}
+{% endblock title %}
+{% block content %}
+{% translate "publishing_policy.title" as page_title %}
+<header class="page-header" id="start-of-document">
+  {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
+  {% include "includes/logo.html" %}
+</header>
+<div class="standard-text-template">
+  <h1>Publishing Policy for Judgments and Decisions published on Find Case Law</h1>
+  <section>
+    <h2>Background</h2>
+    <ol>
+      <li>Court Judgments and Tribunal Decisions are important public records.</li>
+      <li>The National Archives receives selected Court Judgments and Tribunal Decisions for
+        permanent preservation and publication on the Find Case Law service. Currently we
+        receive judgments from the Privy Council, the UK Supreme Court, the Court of Appeal,
+        The High Court, the Upper Tribunals and The Employment Appeal Tribunal. We also
+        receive decisions from some first-tier tribunal chambers and some judgments from the
+        family court.</li>
+      <li>The National Archives works in partnership with the Ministry of Justice, HMCTS, and
+        the Judicial Office.</li>
+      <li>The National Archives receives judgments from the Courts and Tribunals through the
+        Transfer Digital Records service (TDR).</li>
+      <li>The National Archives publishes judgments on the Find Case Law service, which is
+        available to the public at <a href="{% translate 'caselaw.url' %}">{% translate "caselaw.url" %}</a>.</li>
+      <li>From 19 April 2022 judgments can be transferred to The National Archives by the
+        court, straight away, for permanent preservation and immediate publication.</li>
+    </ol>
+
+    <h2>Open justice </h2>
+    <ol start="7">
+      <li>Open justice is a fundamental principle at the heart of the justice system. It is part of
+        the administration of justice and vital to the rule of law. Justice must not only be done,
+        but it must also be seen to be done. The importance and history of open justice as part
+        of our law can be traced back to before Magna Carta.</li>
+      <li>Therefore it is important that significant Court Judgments and Tribunal Decisions are
+        available to the public. We publish judgments we receive from the courts and tribunals
+        on the Find Case Law service. It is up to the court to decide whether there is a reason to
+        withhold a judgment from publication.</li>
+    </ol>
+
+    <h2>Personal data</h2>
+    <ol start="9">
+      <li>Judgments contain information about people. This typically includes the names of
+        parties and other people mentioned in the judgment, as well as the representatives,
+        and the names of the judges hearing the case. The information about people varies
+        and can be very extensive. It can include a variety of types of special category personal
+        data, depending on the subject matter of the case. The details given in a judgment
+        about the facts of a case may sometimes constitute distressing content (particularly in
+        criminal cases, or cases involving children).</li>
+      <li>The Court that decided the case is the Data Controller for the publication of
+        judgments on the Find Case Law service. The National Archives is a Data Processor.<br><br>
+        The National Archives cannot and will not takedown a published judgment without
+        explicit instruction from the court. Revisions to judgments already published must also
+        come directly from the court. To contact a specific court or tribunal please see: 
+       <a href="https://www.gov.uk/find-court-tribunal">https://www.gov.uk/find-court-tribunal</a>.</li>
+      <li>The National Archives publishes selected judgments at the behest of the relevant
+        Courts, who are acting in their judicial capacity. Therefore, this activity is exempt from
+        the provisions of Data Protection Law that would normally apply to the publication of
+        personal data.</li>
+    </ol>
+
+    <h2>Transfer and preservation</h2>
+    <ol start="12">
+      <li>The National Archives should only receive a publication version of the judgment.
+        That means any redactions or anonymisation needed for publication, should already
+        have been made by the court.</li>
+      <li>The National Archives requires that clerks and judges use the Transfer Digital
+        Records (TDR) service to pass the publication version of the judgment to The National
+        Archives.</li>
+      <li> Judges (those without clerks) can email a Judicial Office Helpdesk for support. The
+        Helpdesk may also use TDR to transfer judgments to The National Archives.</li>
+      <li>The transfer process has been made as easy as possible for the clerks and judges.
+        The clerk logs in, uploads the document, and receives a reference number. They are
+        then emailed confirmation when the judgment is published.</li>
+      <li>There are some controls and checks as part of the TDR process. The publication
+        version of the judgment must be a Word document. The TDR service creates a
+        checksum of the judgment on the clerk’s computer, transmits the judgment, and runs
+        various checks on receipt. These include virus scanning, file format signature
+        identification, as well as creating another checksum and compares the two. TDR
+        creates an audit trail that provides the chain of custody for the judgment from the
+        court to The National Archives.</li>
+      <li> The Word file The National Archives receives through TDR is the digital record of the
+        publication version of the judgment.</li>
+      <li>In accordance with The Public Records Act 1958 (PRA), The National Archives also
+        permanently preserves the digital record in the Digital Records Infrastructure and
+        creates digital surrogates of the record, for publication and re-use. Our choice of
+        surrogate formats is driven by what is most suitable for the three main types of access
+        we provide. For reading judgments on the Find Case Law website, we use HTML 5. For
+        re-using the judgments as data via our API, we provide LegalDocML. This is an
+        international XML standard for legal documents, also used for legislation. For
+        download and printing a copy of a judgment, we provide a PDF.</li>
+    </ol>
+
+    <h2>Creating digital surrogates</h2>
+    <ol start="19">
+      <li>The National Archives will never change the digital record (the Word document we
+        receive from the court).</li>
+      <li> The National Archives will never change the text of the digital surrogate (i.e., we will
+        not undertake redactions).</li>
+      <li>The digital surrogate will retain styling and formatting information extracted from
+        the digital record. This enables The National Archives to present the judgment in HTML
+        with reasonable fidelity to the original record.</li>
+      <li>The National Archives will create and adapt the mark-up of the digital surrogate and
+        adapt the styling and layout in the HTML. This is to make the content as accessible as
+        possible to people using the web. This includes standardising indentation of
+        paragraphs, standardising fonts and font size, converting images to a format that a
+        web browser can properly display and adjusting tables, so they appear sensibly on
+        a wide range of screen sizes and orientations.</li>
+    </ol>
+
+    <h2>Creating digital surrogates</h2>
+    <ol start="23">
+      <li>The National Archives anticipates that there may be several publication versions of
+        the same judgment sent to us by the court over time.</li>
+      <li>The National Archives will keep the digital record of each of the versions that are
+        sent to us, but only publish the latest version authorised by the court.</li>
+      <li>Amendments to the text of the currently published judgment can only be made by
+        the court sending another publication version of the judgment to the archive through
+        TDR.</li>
+    </ol>
+
+    <h2>Due diligence checks</h2>
+    <ol start="26">
+      <li>The National Archives will undertake due diligence checks before publishing each
+        judgment.</li>
+      <li>The checks are to mitigate the risk that a judgment is sent in error by the court; and
+        for The National Archives to comply with its obligations as a publisher, in relation to
+        reporting restrictions.</li>
+      <li>The checking process takes a risk-based approach to achieve the right balance
+        between speed of publication and the depth and thoroughness of checking.</li>
+      <li>As a result of the checking process, The National Archives will either </li>
+      <ol type="a">
+        <li>Publish the judgment (using the digital surrogate that has been created); or,</li>
+        <li>Ask for clarification or confirmation from the court.</li>
+      </ol>
+    </ol>
+
+    <ol start="30">
+      <li>The judge has the final word on suitability for publication and The National Archives
+        will always publish judgments having received confirmation from the clerk or judge.</li>
+      <li>The initial assessment involves:</li>
+      <ol type="a">
+        <li>Checking whether the judgment says it is “Approved” and has been “released to The
+          National Archives” for publication.</li>
+        <li>Reading the first few sentences of the judgment body to see if there is a restriction
+          or condition on publication (i.e., reporting restrictions).</li>
+        <li>Checking for any obvious errors in the judgment header (dates / neutral citations).</li>
+        <li>Checking the whole html and pdf versions of the judgment against the Word original
+          to check for any formatting errors.</li>
+      </ol>
+    </ol>
+
+
+    <ol start="32">
+      <li>In the case that the judgment is subject to reporting restrictions we will make an
+        overall assessment on whether the version of the judgment supplied complies with any
+        notice requiring anonymisation or redaction, checking whether the reporting
+        restriction has been consistently applied throughout the body of the judgment e.g.,
+        consistent anonymisation of parties.</li>
+      <li>The National Archives will iteratively develop this checking process considering
+        operational experience and feedback.</li>
+      <li>The National Archives will provide reports on the operation of the checking process
+        to the Ministry of Justice, HMCTS, and the Judiciary.</li>
+      </ol>
+
+        <h2>Timing of publication</h2>
+        <ol start="35">
+          <li>The National Archives understands that rapid publication of judgments is important
+            for the users of its service. Most judgments will be published within 2 working days of
+            receipt. Judgments that have not appeared on the service after 2 working days of
+            public hand-down, are likely to have not been sent to The National Archives for
+            publication.</li>
+          <li>Judgments with reporting restrictions may take longer, due to the checks required
+            and whether we have requested confirmation or clarification from the court.</li>
+          <li>The National Archives will measure the time it takes from receipt to publication and
+            report on the results, including the reasons for delays.</li>
+        </ol>
+
+        <h2>Withdrawal from publication</h2>
+        <ol start="38">
+          <li>Once a judgment has been published, The National Archives will only withdraw it
+            from publication if we are instructed to do so by the Court or Tribunal</li>
+          <li>When the National Archives receives takedown requests from the public, the usual
+            response will be to deny the request and refer them to the court/tribunal.</li>
+        </ol>
+  </section>
+</div>
+{% include "includes/help_end_document_marker.html" %}
+{% endblock content %}

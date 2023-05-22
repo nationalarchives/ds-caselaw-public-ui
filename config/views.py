@@ -54,6 +54,16 @@ class TermsOfUseView(TemplateViewWithContext):
         return context
 
 
+class PublishingPolicyView(TemplateViewWithContext):
+    template_name = "pages/publishing_policy.html"
+    page_title = "publishing_policy.title"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "publishing_policy"
+        return context
+
+
 class StructuredSearchView(TemplateViewWithContext):
     template_name = "pages/structured_search.html"
     page_title = "structured_search.title"
