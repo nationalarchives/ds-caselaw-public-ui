@@ -9,13 +9,13 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
 
-
-    @media (min-width: $grid__breakpoint-small) {
-      flex-direction: row;
-      align-items: flex-start;
+    > h1 {
+      color: black;
     }
 
     > div {
@@ -55,7 +55,6 @@
       padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);
     }
   }
-
   &__return-link {
 
     text-align: left;
@@ -87,27 +86,23 @@
 
   margin: 0 auto;
 
-  @media (min-width: $grid__breakpoint-small) {
-    margin-left: auto;
-    margin-right: 0;
-  }
 
   &__option--pdf {
-    margin: 0 !important;
     text-align: center;
   }
 
   &__download-options {
     color: $color__dark-grey;
     font-size: 0.75rem;
-    margin: calc($spacer__unit * 0.25) 0 0 0;
+
 
     a {
       background-color: transparent;
       color: $color__aqua-blue;
-      padding: 0;
+      padding: 1px;
       display: inline;
       text-decoration: underline;
+      font-size: 2rem;
 
       &:hover {
         text-decoration: none;
