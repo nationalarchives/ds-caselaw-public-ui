@@ -1,7 +1,8 @@
 .recent-judgments {
   &__container {
     @include container;
-    padding: calc($spacer__unit * 4) 0 $spacer__unit;
+    padding-top: calc($spacer__unit * 2);
+    padding-bottom: calc($spacer__unit * 2);
   }
 
   &__header {

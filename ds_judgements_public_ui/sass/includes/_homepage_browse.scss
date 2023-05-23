@@ -1,8 +1,7 @@
 .judgment-browse {
-  @include container;
-  padding-bottom: calc($spacer__unit * 2);
-
-  @media only screen and (min-width: $grid__breakpoint-medium) {
+  &__container {
+    @include container;
+    padding-bottom: calc($spacer__unit * 2);
   }
 
   &__header {
