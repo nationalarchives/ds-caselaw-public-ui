@@ -70,6 +70,9 @@ def results(request):
             )
             context["filtered"] = has_filters(context["query_params"])
             context["paginator"] = paginator(page, model.total, per_page)
+
+            context["page_title"] = gettext("results.search.title")
+
         context["courts"] = all_courts.get_selectable()
     except MarklogicAPIError:
         raise Http404("Search error")  # TODO: This should be something else!

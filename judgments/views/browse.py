@@ -4,6 +4,7 @@ from typing import Any, Dict
 from caselawclient.Client import RESULTS_PER_PAGE, MarklogicResourceNotFoundError
 from django.http import Http404
 from django.template.response import TemplateResponse
+from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
 
 from judgments.models import SearchResult
@@ -49,6 +50,9 @@ def browse(request, court=None, subdivision=None, year=None):
         context["per_page"] = per_page
         context["paginator"] = paginator(page, model.total, per_page)
         context["courts"] = all_courts.get_selectable()
+
+        context["page_title"] = gettext("results.search.title")
+
     except MarklogicResourceNotFoundError:
         raise Http404("Search failed")  # TODO: This should be something else!
     return TemplateResponse(
