@@ -1,10 +1,11 @@
 {% load i18n %}
 <div class="judgment-toolbar">
-  <div class="judgment-toolbar__return-link">
-    <a href="{{ context.back_link }}">{% translate "judgment.back" %}</a>
-  </div>
+  {% if context.back_link %}
+    <div class="judgment-toolbar__return-link">
+      <a href="{{ context.back_link }}">{% translate "judgment.back" %}</a>
+    </div>
+  {% endif %}
   <div class="judgment-toolbar__container">
-    {% if context.back_link %}{% endif %}
     <h1 class="judgment-toolbar__title">
       {{ context.judgment_title }}
       <br>

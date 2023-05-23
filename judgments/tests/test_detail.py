@@ -72,6 +72,19 @@ class TestJudgment(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+class TestJudgmentBackToSearchLink(TestCase):
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_published_judgment_by_uri")
+    def test_no_link_if_no_context(self, mock_judgment, mock_pdf_size):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+        mock_pdf_size.return_value = "1234KB"
+
+        response = self.client.get("/test/2023/123")
+        decoded_response = response.content.decode("utf-8")
+
+        assert "Back to search results" not in decoded_response
+
+
 class TestJudgmentPdfLinkText(TestCase):
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_published_judgment_by_uri")
