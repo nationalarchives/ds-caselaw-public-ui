@@ -79,10 +79,6 @@
       flex-direction: column-reverse;
       text-align: center;
     }
-    @media (min-width: $grid__breakpoint-extra-large) {
-      padding-left: calc(7.25 * $spacer__unit);
-      padding-right: calc(7.25 * $spacer__unit);
-  }
 }
 
   &__logo {
