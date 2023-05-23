@@ -16,10 +16,6 @@
 
     @include container;
 
-    > h1 {
-      color: black;
-    }
-
     > div {
       @media (max-width: $grid__breakpoint-small) {
         text-align: center;
@@ -46,6 +42,7 @@
       padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);
     }
   }
+
   &__return-link {
 
     @include container;
@@ -70,6 +67,12 @@
         background-size: 0.75rem;
       }
     }
+  }
+
+  &__title {
+    margin: 1rem 0;
+    color: $color__almost-black;
+    text-align: center;
   }
 }
 
