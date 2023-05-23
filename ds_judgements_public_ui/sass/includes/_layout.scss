@@ -1,0 +1,22 @@
+@mixin container {
+  padding: 0 $spacer__unit;
+  margin: auto;
+  max-width: 90%;
+
+  @media (min-width: $grid__breakpoint-small) {
+    max-width: 30rem;
+  }
+
+  @media (min-width: $grid__breakpoint-medium) {
+    min-width: 45rem;
+  }
+
+  @media (min-width: $grid__breakpoint-extra-large) {
+    max-width: 1400px;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: $font__open-sans;
+}
