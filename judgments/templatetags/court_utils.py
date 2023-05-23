@@ -52,4 +52,4 @@ def get_court_date_range(court):
     if start_year == end_year:
         return str(start_year)
     else:
-        return mark_safe("%s &ndash; %s" % (start_year, end_year))
+        return mark_safe("%s&nbsp;to&nbsp;%s" % (start_year, end_year))

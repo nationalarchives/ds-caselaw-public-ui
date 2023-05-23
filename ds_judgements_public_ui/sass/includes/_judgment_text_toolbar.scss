@@ -14,9 +14,7 @@
     flex-wrap: wrap;
     align-content: center;
 
-    > h1 {
-      color: black;
-    }
+    @include container;
 
     > div {
       @media (max-width: $grid__breakpoint-small) {
@@ -26,17 +24,6 @@
       }
     }
 
-    @media (min-width: $grid__breakpoint-small) {
-      text-align: right;
-    }
-
-    @media (min-width: $grid__breakpoint-medium) {
-      max-width: 40rem;
-    }
-
-    @media (min-width: $grid__breakpoint-medium) {
-      max-width: 46rem;
-    }
   }
 
   a {
@@ -55,9 +42,10 @@
       padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);
     }
   }
+
   &__return-link {
 
-    text-align: left;
+    @include container;
 
     a {
       background: transparent url($fa_chevron_left_aqua_blue) 1.5rem 0.65rem no-repeat;
@@ -79,6 +67,12 @@
         background-size: 0.75rem;
       }
     }
+  }
+
+  &__title {
+    margin: 1rem 0;
+    color: $color__almost-black;
+    text-align: center;
   }
 }
 

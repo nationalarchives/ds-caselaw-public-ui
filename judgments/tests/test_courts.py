@@ -33,7 +33,7 @@ class TestCourtDatesHelper(TestCase):
     ):
         get.side_effect = CourtDates.DoesNotExist
         court = self.mock_court_dates(2011, 2012)
-        self.assertEqual(get_court_date_range(court), "2011 &ndash; 2012")
+        self.assertEqual(get_court_date_range(court), "2011&nbsp;to&nbsp;2012")
 
     def test_when_court_with_param_exists_and_dates_in_db_and_start_end_same(self, get):
         get.return_value = self.mock_court_dates(2013, 2013)
@@ -45,4 +45,4 @@ class TestCourtDatesHelper(TestCase):
     ):
         get.return_value = self.mock_court_dates(2013, 2015)
         court = self.mock_court_dates(2011, 2012)
-        self.assertEqual(get_court_date_range(court), "2013 &ndash; 2015")
+        self.assertEqual(get_court_date_range(court), "2013&nbsp;to&nbsp;2015")
