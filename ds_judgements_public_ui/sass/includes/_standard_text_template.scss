@@ -4,10 +4,6 @@
   font-size: 1.1rem;
   line-height: 1.4em;
 
-  @media (min-width: $grid__breakpoint-medium) {
-    max-width: 30rem;
-  }
-
   margin-top: calc($spacer__unit * 4);
   margin-bottom: calc($spacer__unit * 4);
   min-height: 18rem;
