@@ -27,6 +27,7 @@
       color: $color__white;
       break-inside: avoid;
       line-height: 1.3rem;
+      letter-spacing: 0.3px;
 
       &:not(:nth-child(1)) {
         padding-left: $spacer__unit;
