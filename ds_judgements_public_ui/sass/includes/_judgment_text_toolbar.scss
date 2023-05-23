@@ -14,6 +14,8 @@
     flex-wrap: wrap;
     align-content: center;
 
+    @include container;
+
     > h1 {
       color: black;
     }
@@ -26,17 +28,6 @@
       }
     }
 
-    @media (min-width: $grid__breakpoint-small) {
-      text-align: right;
-    }
-
-    @media (min-width: $grid__breakpoint-medium) {
-      max-width: 40rem;
-    }
-
-    @media (min-width: $grid__breakpoint-medium) {
-      max-width: 46rem;
-    }
   }
 
   a {
@@ -57,7 +48,7 @@
   }
   &__return-link {
 
-    text-align: left;
+    @include container;
 
     a {
       background: transparent url($fa_chevron_left_aqua_blue) 1.5rem 0.65rem no-repeat;
