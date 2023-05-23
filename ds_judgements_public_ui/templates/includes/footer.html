@@ -18,16 +18,16 @@
         </ul>
       </div>
       <div>
-        <h3>{% translate "footer.sitehelp" %}</h3>
+        <h3>{% translate "footer.about" %}</h3>
         <ul>
+          <li>
+            <a href="{% url "about_this_service" %}">{% translate "aboutthisservice.titleshort" %}</a>
+          </li>
           <li>
             <a href="{% url "how_to_use_this_service" %}">{% translate "howtousethisservice.titleshort" %}</a>
           </li>
           <li>
-            <a href="{% url "accessibility_statement" %}">{% translate "accessibilitystatement.title" %}</a>
-          </li>
-          <li>
-            <a href="{% translate "footer.contact.link" %}">{% translate "footer.contact" %}</a>
+            <a href="mailto:{% translate "caselaw.email" %}">{% translate "footer.contact" %}</a>
           </li>
         </ul>
       </div>
@@ -40,13 +40,17 @@
           <li>
             <a href="{% translate "footer.cookies.link" %}">{% translate "footer.cookies" %}</a>
           </li>
+          <li>
+            <a href="{% url "accessibility_statement" %}">{% translate "accessibilitystatement.title" %}</a>
+          </li>
         </ul>
       </div>
     </div>
     <p class="judgments-footer__base-paragraph">
       All content is available under the
       <a class="judgments-footer__link"
-         href="{% url "open_justice_licence" %}">Open Justice Licence</a>. For re-use that is not covered by the Open Justice Licence, please <a href="{% url "transactional_licence_form" %}">apply for a transactional licence</a>.
+         href="{% url "open_justice_licence" %}">Open Justice Licence</a>. For re-use that is not covered by the Open Justice Licence, please
+      <a href="{% url "transactional_licence_form" %}">apply for a transactional licence</a>.
     </p>
   </div>
 </footer>

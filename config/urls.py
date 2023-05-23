@@ -24,14 +24,19 @@ urlpatterns = [
         name="transactional_licence_form",
     ),
     path(
-        "what-to-expect",
-        views.WhatToExpectView.as_view(),
-        name="what_to_expect",
+        "about-this-service",
+        views.AboutThisServiceView.as_view(),
+        name="about_this_service",
     ),
     path(
         "how-to-use-this-service",
         views.HowToUseThisService.as_view(),
         name="how_to_use_this_service",
+    ),
+    path(
+        "privacy-notice",
+        views.PrivacyNotice.as_view(),
+        name="privacy_notice",
     ),
     path(
         "accessibility-statement",
