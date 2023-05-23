@@ -1,0 +1,17 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block robots %}
+{% endblock robots %}
+{% block title %}
+  {{ context.page_title }} - {% translate "common.findcaselaw" %}
+{% endblock title %}
+{% block content %}
+  <div class="standard-text-template">
+    <h1 id="start-of-document">{{ context.page_title }}</h1>
+    <div class="entry-content clearfix">
+      {% block static_content %}
+      {% endblock static_content %}
+    </div>
+  </div>
+  {% include "includes/help_end_document_marker.html" %}
+{% endblock content %}

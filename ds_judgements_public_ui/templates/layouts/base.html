@@ -33,6 +33,14 @@
     <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
     {% include "includes/gtm/gtm_body.html" %}
     {% include "includes/phase_banner.html" %}
+    <header class="page-header">
+      {% block header %}
+        <div class="page-header__container">
+          {% include "includes/breadcrumbs.html" with current=context.page_title title=context.page_title link=request.path %}
+          {% include "includes/logo.html" %}
+        </div>
+      {% endblock header %}
+    </header>
     <main id="main-content">
       {% block content %}
       {% endblock content %}
