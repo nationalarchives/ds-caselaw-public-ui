@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 16:42+0000\n"
+"POT-Creation-Date: 2023-05-23 15:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,8 +195,7 @@ msgstr "Search results"
 #: ds_judgements_public_ui/templates/pages/home.html
 msgid "home.useservice"
 msgstr ""
-"Find, view and download judgments and tribunal"
-" decisions from 2003 onwards"
+"Find, view and download judgments and tribunal decisions from 2003 onwards"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "howtousethisservice.title"
@@ -209,6 +208,7 @@ msgstr ""
 "structure"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
 #: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "caselaw.email"
 msgstr "caselaw@nationalarchives.gov.uk"
@@ -234,10 +234,6 @@ msgstr "Find case law"
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "caselaw.url"
 msgstr "https://caselaw.nationalarchives.gov.uk"
-
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
-msgid "caselaw.email"
-msgstr "caselaw@nationalarchives.gov.uk"
 
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "robots.link"
