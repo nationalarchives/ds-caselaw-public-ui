@@ -42,7 +42,10 @@
   }
 
   &__page {
-    &-chevron-next, &-chevron-previous, &-link, &-link-current {
+    &-chevron-next,
+    &-chevron-previous,
+    &-link,
+    &-link-current {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -51,18 +54,21 @@
       height: 3.125rem;
 
       > span {
-        @include sr-only
+        @include sr-only;
       }
     }
 
-    &-chevron-next, &-chevron-previous {
+    &-chevron-next,
+    &-chevron-previous {
       height: 100%;
     }
 
-    &-chevron-next, &-chevron-previous {
+    &-chevron-next,
+    &-chevron-previous {
       background-color: $color__grey;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         @include focus-default;
         background-color: $color__dark-grey;
       }
@@ -75,14 +81,15 @@
     &-chevron-next {
       background-image: url($fa_chevron_right);
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-image: url($fa_chevron_right_white);
         outline-color: $color__highlight-blue;
         outline-offset: 0.125rem;
       }
 
       &:focus {
-        box-shadow: -.6rem 0 $color__white;
+        box-shadow: -0.6rem 0 $color__white;
       }
 
       &--disabled {
@@ -96,7 +103,8 @@
         display: flex;
         justify-content: center;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           background-image: url($fa_chevron_right_disabled);
           outline-color: transparent;
           outline-offset: 0;
@@ -111,14 +119,15 @@
     &-chevron-previous {
       background-image: url($fa_chevron_left);
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-image: url($fa_chevron_left_white);
         outline-color: $color__highlight-blue;
         outline-offset: 0.125rem;
       }
 
       &:focus {
-        box-shadow: .6rem 0 $color__white;
+        box-shadow: 0.6rem 0 $color__white;
       }
 
       &--disabled {
@@ -132,7 +141,8 @@
         display: flex;
         justify-content: center;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           background-image: url($fa_chevron_left_disabled);
           outline-color: transparent;
           outline-offset: 0;
@@ -148,21 +158,27 @@
       font-weight: bold;
     }
 
-    &-link, &-link-current {
+    &-link,
+    &-link-current {
       margin-top: 0;
 
       @media only screen and (min-width: $grid__breakpoint-medium) {
         width: 2.5rem;
         height: 1.875rem;
-        margin-top: .5rem;
+        margin-top: 0.5rem;
       }
     }
 
-    &-link, &-link:visited {
+    &-link,
+    &-link:visited {
       color: $color__white;
     }
 
-    &-link-current, &-link-current:focus, &-link-current:visited, &-link:hover, &-link:focus {
+    &-link-current,
+    &-link-current:focus,
+    &-link-current:visited,
+    &-link:hover,
+    &-link:focus {
       background-color: $color__white;
       color: $color__black;
       font-weight: bold;

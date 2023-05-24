@@ -1,5 +1,4 @@
 .judgment-toolbar {
-
   background-color: $color__light-grey;
   color: $color__black;
   padding: $spacer__unit;
@@ -23,7 +22,6 @@
         padding: 0.25rem $spacer__unit;
       }
     }
-
   }
 
   a {
@@ -44,11 +42,11 @@
   }
 
   &__return-link {
-
     @include container;
 
     a {
-      background: transparent url($fa_chevron_left_aqua_blue) 1.5rem 0.65rem no-repeat;
+      background: transparent url($fa_chevron_left_aqua_blue) 1.5rem 0.65rem
+        no-repeat;
       background-size: 0.75rem;
       color: $color__aqua-blue;
       padding: calc($spacer__unit / 2) calc($spacer__unit * 3);
@@ -60,9 +58,9 @@
         text-decoration: none;
       }
 
-
       @media (min-width: $grid__breakpoint-small) {
-        background: transparent url($fa_chevron_left_aqua_blue) 0rem 0.65rem no-repeat;
+        background: transparent url($fa_chevron_left_aqua_blue) 0rem 0.65rem
+          no-repeat;
         padding: calc($spacer__unit / 2) calc($spacer__unit * 1.2);
         background-size: 0.75rem;
       }
@@ -77,9 +75,7 @@
 }
 
 .judgment-toolbar-download {
-
   margin: 0 auto;
-
 
   &__option--pdf {
     text-align: center;
@@ -88,7 +84,6 @@
   &__download-options {
     color: $color__dark-grey;
     font-size: 0.75rem;
-
 
     a {
       background-color: transparent;

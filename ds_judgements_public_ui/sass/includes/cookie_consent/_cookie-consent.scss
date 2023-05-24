@@ -1,9 +1,8 @@
 #ds-cookie-consent-banner {
   .container {
-
     @include container;
 
-    padding: $spacer__unit calc($spacer__unit  * 2);
+    padding: $spacer__unit calc($spacer__unit * 2);
 
     .cookie_head {
       font-family: $font__roboto;

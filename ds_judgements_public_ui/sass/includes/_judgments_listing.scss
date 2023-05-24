@@ -1,11 +1,11 @@
 .judgment-listing {
-
   &__list {
     padding: 0;
     list-style-type: none;
 
     li {
-      padding: $spacer__unit calc($spacer__unit / 4) $spacer__unit calc($spacer__unit / 4);
+      padding: $spacer__unit calc($spacer__unit / 4) $spacer__unit
+        calc($spacer__unit / 4);
       border-bottom: 1px dotted $color__yellow;
     }
   }
@@ -20,7 +20,6 @@
     }
 
     > span:first-child {
-
       @media (min-width: $grid__breakpoint-medium) {
         flex-basis: 75%;
       }
@@ -76,7 +75,6 @@
       text-align: right;
     }
   }
-
 
   &__result-term-matching {
     display: block;

@@ -27,34 +27,31 @@ $grid__breakpoint-medium: 768px;
 $grid__breakpoint-large: 992px;
 $grid__breakpoint-extra-large: 1200px;
 
-$font__roboto: 'Roboto', sans-serif;
-$font__open-sans: 'Open Sans', sans-serif;
+$font__roboto: "Roboto", sans-serif;
+$font__open-sans: "Open Sans", sans-serif;
 $font__serif: serif;
 
 // Paths
-$fa_path: '/static/fontawesome-svgs/';
+$fa_path: "/static/fontawesome-svgs/";
 
 // Images
-$fa_chevron_right: '#{$fa_path}chevron-right.svg';
-$fa_chevron_right_white: '#{$fa_path}chevron-right-white.svg';
-$fa_chevron_right_aqua_blue: '#{$fa_path}chevron-left-aqua-blue.svg';
-$fa_chevron_right_disabled: '#{$fa_path}chevron-right-disabled.svg';
-$fa_chevron_left: '#{$fa_path}chevron-left.svg';
-$fa_chevron_left_white: '#{$fa_path}chevron-left-white.svg';
-$fa_chevron_left_aqua_blue: '#{$fa_path}chevron-left-aqua-blue.svg';
-$fa_chevron_left_disabled: '#{$fa_path}chevron-left-disabled.svg';
-$fa_chevron_up_aqua_blue: '#{$fa_path}chevron-up-aqua-blue.svg';
-$fa_chevron_up_link_blue: '#{$fa_path}chevron-up-link-blue.svg';
-$fa_chevron_up_link_hover_blue: '#{$fa_path}chevron-up-link-hover-blue.svg';
-$fa_chevron_down_link_blue: '#{$fa_path}chevron-down-link-blue.svg';
-$fa_chevron_down_link_hover_blue: '#{$fa_path}chevron-down-link-hover-blue.svg';
-$fa_circle_xmark_solid: '#{$fa_path}circle-xmark-solid.svg';
-$fa_circle_xmark_solid_white: '#{$fa_path}circle-xmark-solid-white.svg';
-$fa_circle_xmark_light: '#{$fa_path}circle-xmark-light.svg';
-$fa_xmark_solid: '#{$fa_path}xmark-solid.svg';
-$fa_magnifying_glass_solid_white: '#{$fa_path}magnifying-glass-solid-white.svg';
+$fa_chevron_right: "#{$fa_path}chevron-right.svg";
+$fa_chevron_right_white: "#{$fa_path}chevron-right-white.svg";
+$fa_chevron_right_aqua_blue: "#{$fa_path}chevron-left-aqua-blue.svg";
+$fa_chevron_right_disabled: "#{$fa_path}chevron-right-disabled.svg";
+$fa_chevron_left: "#{$fa_path}chevron-left.svg";
+$fa_chevron_left_white: "#{$fa_path}chevron-left-white.svg";
+$fa_chevron_left_aqua_blue: "#{$fa_path}chevron-left-aqua-blue.svg";
+$fa_chevron_left_disabled: "#{$fa_path}chevron-left-disabled.svg";
+$fa_chevron_up_aqua_blue: "#{$fa_path}chevron-up-aqua-blue.svg";
+$fa_chevron_up_link_blue: "#{$fa_path}chevron-up-link-blue.svg";
+$fa_chevron_up_link_hover_blue: "#{$fa_path}chevron-up-link-hover-blue.svg";
+$fa_chevron_down_link_blue: "#{$fa_path}chevron-down-link-blue.svg";
+$fa_chevron_down_link_hover_blue: "#{$fa_path}chevron-down-link-hover-blue.svg";
+$fa_circle_xmark_solid: "#{$fa_path}circle-xmark-solid.svg";
+$fa_circle_xmark_solid_white: "#{$fa_path}circle-xmark-solid-white.svg";
+$fa_circle_xmark_light: "#{$fa_path}circle-xmark-light.svg";
+$fa_xmark_solid: "#{$fa_path}xmark-solid.svg";
+$fa_magnifying_glass_solid_white: "#{$fa_path}magnifying-glass-solid-white.svg";
 
-
-
-
-$fa_download: '#{$fa_path}download.svg';
+$fa_download: "#{$fa_path}download.svg";
