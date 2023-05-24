@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   ds_judgements_public_ui_local_postgres_data: {}
@@ -47,7 +47,6 @@ services:
       MARKLOGIC_INIT: "true"
     volumes:
       - ./docker/db/data/:/var/opt/MarkLogic/
-
 
   docs:
     image: ds_judgements_public_ui_local_docs

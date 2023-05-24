@@ -48,10 +48,9 @@
     }
   }
 
-  input[type=checkbox] {
+  input[type="checkbox"] {
     &:focus {
       @include focus-default;
-
     }
   }
 
@@ -71,7 +70,7 @@
     width: 100%;
   }
 
-  input[type=submit] {
+  input[type="submit"] {
     @include call-to-action-button;
     padding-left: calc($spacer__unit * 3);
     padding-right: calc($spacer__unit * 3);
@@ -80,7 +79,6 @@
     @media (max-width: $grid__breakpoint-medium) {
       margin-bottom: calc($spacer__unit * 0.5);
     }
-
   }
 
   &__search-term-container {

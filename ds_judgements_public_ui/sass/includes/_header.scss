@@ -3,7 +3,6 @@
   padding: 0;
 
   &__breadcrumb {
-
     display: flex;
     align-items: center;
     padding: calc($spacer__unit / 2) 0;
@@ -53,7 +52,8 @@
     }
 
     @media only screen and (max-width: $grid__breakpoint-medium) {
-      ol, li {
+      ol,
+      li {
         display: block;
       }
       li {
@@ -73,13 +73,13 @@
 
   &__container {
     @include container;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     @media only screen and (max-width: $grid__breakpoint-medium) {
       flex-direction: column-reverse;
       text-align: center;
     }
-}
+  }
 
   &__logo {
     width: 250px;
@@ -90,8 +90,6 @@
     }
   }
 
-
-
   &__logo-block {
     font-size: 0.9rem;
     color: $color__white;
@@ -100,11 +98,10 @@
     @media only screen and (max-width: $grid__breakpoint-medium) {
       text-align: center;
       padding-bottom: 0;
-   }
- }
+    }
+  }
 
   &__logo-link {
-
     &:focus {
       outline: 0;
 

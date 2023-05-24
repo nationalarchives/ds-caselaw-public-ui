@@ -1,55 +1,55 @@
 .help-end-document-marker {
-    width: 100%;
-    border-top: 4px solid $color__yellow;
-    height: $spacer__unit;
-    max-width: 90%;
-    margin: auto;
-    margin-bottom: calc($spacer__unit * 8);
-    text-align: center;
-    @media (min-width: $grid__breakpoint-medium) {
-      max-width: 40rem;
-    }
+  width: 100%;
+  border-top: 4px solid $color__yellow;
+  height: $spacer__unit;
+  max-width: 90%;
+  margin: auto;
+  margin-bottom: calc($spacer__unit * 8);
+  text-align: center;
+  @media (min-width: $grid__breakpoint-medium) {
+    max-width: 40rem;
+  }
 
-    @media (min-width: $grid__breakpoint-medium) {
-      max-width: 46rem;
-    }
+  @media (min-width: $grid__breakpoint-medium) {
+    max-width: 46rem;
+  }
 
-    &__top-link {
+  &__top-link {
+    display: inline-block;
+    background-color: white;
+    padding: calc($spacer__unit * 0.5);
+    padding-top: calc($spacer__unit * 0.3);
+    margin-top: 0.5rem;
+
+    a {
+      margin-top: 1.5rem;
+
+      &::before {
+        content: " ";
+        background: url($fa_chevron_up_link_blue) left no-repeat;
+        background-size: contain;
+        height: $spacer__unit;
+        width: $spacer__unit;
         display: inline-block;
-        background-color: white;
-        padding: calc($spacer__unit * 0.5);
-        padding-top: calc($spacer__unit * 0.3);
-        margin-top: 0.5rem;
+        margin: 0 0.5rem 0 0;
+        top: 2px;
+        position: relative;
+      }
 
-        a {
-            margin-top: 1.5rem;
+      &:visited {
+        color: $color__link-blue;
+      }
 
-            &::before {
-              content: " ";
-              background: url($fa_chevron_up_link_blue) left no-repeat;
-              background-size: contain;
-              height: $spacer__unit;
-              width: $spacer__unit;
-              display: inline-block;
-              margin: 0 0.5rem 0 0;
-              top: 2px;
-              position: relative;
-            }
-
-            &:visited {
-              color: $color__link-blue;
-            }
-
-            &:hover {
-              color: $color__link-blue-hover;
-              &::before {
-                background-image: url($fa_chevron_up_link_hover_blue);
-              }
-            }
-
-            &.with-js {
-              display: inline-block;
-            }
+      &:hover {
+        color: $color__link-blue-hover;
+        &::before {
+          background-image: url($fa_chevron_up_link_hover_blue);
         }
+      }
+
+      &.with-js {
+        display: inline-block;
+      }
     }
+  }
 }

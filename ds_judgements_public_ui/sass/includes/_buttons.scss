@@ -1,43 +1,48 @@
 .button-cta {
-    @include call-to-action-button;
-    border: 2px solid $color__cta-background;
+  @include call-to-action-button;
+  border: 2px solid $color__cta-background;
 
-    &:disabled,  &[aria-disabled="true"] {
+  &:disabled,
+  &[aria-disabled="true"] {
+    background-color: $color__dark-grey;
+    &:focus,
+    &:hover {
+      outline: none;
       background-color: $color__dark-grey;
-      &:focus, &:hover {
-        outline: none;
-        background-color: $color__dark-grey;
-        color: $color__white;
-        text-decoration: none;
-        cursor: not-allowed;
-      }
+      color: $color__white;
+      text-decoration: none;
+      cursor: not-allowed;
     }
   }
+}
 
-  .button-secondary {
-    @include call-to-action-button;
-    background-color: $color__white;
+.button-secondary {
+  @include call-to-action-button;
+  background-color: $color__white;
+  color: $color__cta-background;
+  border: 2px solid $color__cta-background;
+
+  &:visited {
     color: $color__cta-background;
-    border: 2px solid $color__cta-background;
+  }
 
-    &:visited {
-      color: $color__cta-background;
-    }
+  &:focus,
+  &:hover {
+    color: white;
+  }
 
-    &:focus, &:hover {
-      color: white;
-    }
-
-    &:disabled,  &[aria-disabled="true"] {
-      color: $color__dark-grey;
+  &:disabled,
+  &[aria-disabled="true"] {
+    color: $color__dark-grey;
+    background-color: transparent;
+    border-color: $color__grey;
+    &:focus,
+    &:hover {
+      outline: none;
       background-color: transparent;
-      border-color: $color__grey;
-      &:focus, &:hover {
-        outline: none;
-        background-color: transparent;
-        color: $color__dark-grey;
-        text-decoration: none;
-        cursor: not-allowed;
-      }
+      color: $color__dark-grey;
+      text-decoration: none;
+      cursor: not-allowed;
     }
   }
+}

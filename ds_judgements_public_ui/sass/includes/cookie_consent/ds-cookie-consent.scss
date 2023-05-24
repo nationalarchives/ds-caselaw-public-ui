@@ -85,8 +85,8 @@
       text-decoration: none;
       margin-right: 20px;
       border: 2px solid #fff;
-      font-family: "Roboto Mono",monospace;
-      padding: .5em .9em;
+      font-family: "Roboto Mono", monospace;
+      padding: 0.5em 0.9em;
       display: inline-block;
       min-width: 24px;
       text-align: center;
@@ -102,7 +102,7 @@
       @media (max-width: 560px) {
         display: block;
         margin-bottom: 15px;
-        width:100%;
+        width: 100%;
       }
     }
     #btn_preferences {

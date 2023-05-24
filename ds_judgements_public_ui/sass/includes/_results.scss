@@ -24,22 +24,20 @@
   }
 
   &__result-controls-container {
-     border-bottom: 1px solid $color__yellow;
+    border-bottom: 1px solid $color__yellow;
 
-     @media (min-width: $grid__breakpoint-extra-large) {
-       display: flex;
-       align-items: flex-end;
-       justify-content: space-between;
-     }
-   }
+    @media (min-width: $grid__breakpoint-extra-large) {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
 
   &__results-intro {
     font-family: $font__roboto;
     font-size: 1.8rem;
     margin: calc($spacer__unit / 2) 0 0 0;
   }
-
-
 
   &__filter-heading {
     @include sr-only;

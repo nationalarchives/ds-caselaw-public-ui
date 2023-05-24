@@ -1,5 +1,4 @@
 .structured-search {
-
   &__main-search {
     background-color: $color__light-grey;
     padding: calc($spacer__unit * 1) 0 calc($spacer__unit * 1.5);
@@ -42,13 +41,11 @@
   }
 
   &__filter-options {
-
     legend {
       font-family: $font__roboto;
       font-size: 1.5rem;
       font-weight: normal;
     }
-
   }
 
   &__limit-to-input {
@@ -105,7 +102,6 @@
     @media (max-width: $grid__breakpoint-medium) {
       padding-top: 0;
     }
-
 
     @media (min-width: $grid__breakpoint-medium) {
       display: grid;
@@ -164,7 +160,6 @@
     @media (max-width: $grid__breakpoint-medium) {
       margin: 1rem;
     }
-
   }
 
   &__help-text {
@@ -177,73 +172,78 @@
     width: 100%;
   }
 
-&__court-options {
-  display: block;
-  width: 100%;
-}
+  &__court-options {
+    display: block;
+    width: 100%;
+  }
 
+  &__court-option {
+    margin-top: calc($spacer__unit * 0.5);
 
-&__court-option {
-  margin-top: calc($spacer__unit * 0.5);
-
-  label {
-    display: grid;
-    grid-template-columns: 1em auto;
-    gap: 0.5em;
-
-    input[type="checkbox"] {
-      -webkit-appearance: none;
-      appearance: none;
-      background-color: $color__white;
-      margin: 0;
-      font: inherit;
-      color: $color__dark-grey;
-      width: 1.5em;
-      height: 1.5em;
-      border: 2px solid $color__dark-grey;
-      transform: translateY(-0.075em);
+    label {
       display: grid;
-      place-content: center;
+      grid-template-columns: 1em auto;
+      gap: 0.5em;
 
-      &::before {
-        content: "";
-        width: calc($spacer__unit * 0.75);
-        height: calc($spacer__unit * 0.75);
-        transform: scale(0);
-        transition: 120ms transform ease-in-out;
-        box-shadow: inset $spacer__unit $spacer__unit $color__black;
-        transform-origin: bottom left;
-        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-        // For compatibility in Windows High Contrast Mode:
-        background-color: CanvasText;
+      input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: $color__white;
+        margin: 0;
+        font: inherit;
+        color: $color__dark-grey;
+        width: 1.5em;
+        height: 1.5em;
+        border: 2px solid $color__dark-grey;
+        transform: translateY(-0.075em);
+        display: grid;
+        place-content: center;
+
+        &::before {
+          content: "";
+          width: calc($spacer__unit * 0.75);
+          height: calc($spacer__unit * 0.75);
+          transform: scale(0);
+          transition: 120ms transform ease-in-out;
+          box-shadow: inset $spacer__unit $spacer__unit $color__black;
+          transform-origin: bottom left;
+          clip-path: polygon(
+            14% 44%,
+            0 65%,
+            50% 100%,
+            100% 16%,
+            80% 0%,
+            43% 62%
+          );
+          // For compatibility in Windows High Contrast Mode:
+          background-color: CanvasText;
+        }
+
+        &:checked::before {
+          transform: scale(1);
+        }
+      }
+    }
+
+    @media (min-width: $grid__breakpoint-medium) {
+      width: 50%;
+      float: left;
+
+      &:nth-of-type(odd) {
+        clear: left;
       }
 
-      &:checked::before {
-        transform: scale(1);
+      &:nth-of-type(2n) {
+        label {
+          margin-left: $spacer__unit;
+        }
       }
     }
   }
 
-  @media (min-width: $grid__breakpoint-medium) {
-    width: 50%;
-    float: left;
-
-    &:nth-of-type(odd) {
-      clear: left;
-    }
-
-    &:nth-of-type(2n) {
-      label {
-        margin-left: $spacer__unit;
-      }
-    }
+  &__court-option-label {
+    margin-left: calc(0.5 * $spacer__unit);
   }
-}
-
-&__court-option-label {
-  margin-left: calc(0.5 * $spacer__unit);
-}
-
 
   &__date-input {
     @include text_field;
@@ -258,10 +258,10 @@
     & :nth-of-type(1) {
       width: 10%;
     }
-    & :nth-of-type(2){
+    & :nth-of-type(2) {
       width: 10%;
     }
-    & :nth-of-type(3){
+    & :nth-of-type(3) {
       width: 20%;
     }
   }
@@ -294,7 +294,6 @@
       display: none;
     }
     @include sr-only;
-
   }
 
   &__search-term-label.mobile {
@@ -303,7 +302,7 @@
     }
     @media (max-width: $grid__breakpoint-medium) {
       margin: auto 1px;
-      }
+    }
   }
 
   &__search-term-input {
@@ -329,7 +328,7 @@
         display: none;
       }
       @media (max-width: $grid__breakpoint-medium) {
-      margin: auto 1px;
+        margin: auto 1px;
       }
     }
 
@@ -340,7 +339,7 @@
     }
   }
 
-  input[type=checkbox] {
-    @include checkbox
+  input[type="checkbox"] {
+    @include checkbox;
   }
 }

@@ -14,11 +14,10 @@
     font-family: $font__roboto;
     font-weight: bold;
     color: $color__almost-black;
-    flex-shrink:0;
+    flex-shrink: 0;
     margin: 0 0.25rem 0 0;
     padding: 0.1rem 0 0 0;
     display: inline-block;
-
 
     &--sr-only {
       @include sr-only;
@@ -36,7 +35,7 @@
     @media (min-width: $grid__breakpoint-medium) {
       padding: calc($spacer__unit / 4) 0 0 0;
       gap: $spacer__unit;
-      flex-direction: row
+      flex-direction: row;
     }
   }
 
@@ -84,7 +83,7 @@
     }
   }
 
-  .search-term-component input[type=submit] {
+  .search-term-component input[type="submit"] {
     @media (max-width: $grid__breakpoint-medium) {
       display: none !important;
     }
@@ -262,7 +261,8 @@
     border: 0.188rem solid $color__yellow;
     color: $color__black;
     text-decoration: none;
-    padding: calc($spacer__unit / 2) calc($spacer__unit / 2) calc($spacer__unit / 2) $spacer__unit;
+    padding: calc($spacer__unit / 2) calc($spacer__unit / 2)
+      calc($spacer__unit / 2) $spacer__unit;
 
     &:hover {
       background: $color__yellow;
@@ -280,14 +280,12 @@
 }
 
 .results {
-
   &-search-component {
-
     &__control-container {
       display: inline-block;
-      padding-top: calc(2 *$spacer__unit);
+      padding-top: calc(2 * $spacer__unit);
       padding-top: 0;
-      flex-shrink:0;
+      flex-shrink: 0;
 
       @media (min-width: $grid__breakpoint-medium) {
         text-align: left;
@@ -321,20 +319,20 @@
       }
 
       &::after {
-          content: "";
-          display: block;
-          position: absolute;
-          bottom: 0.7rem;
-          width: 0.438rem;
-          height: 0.438rem;
-          left: 0.3rem;
-          margin: auto 0;
-          -webkit-transform: rotate(313deg);
-          -ms-transform: rotate(313deg);
-          transform: rotate(313deg);
-          border: solid;
-          border-width: 0.125rem 0.125rem 0 0;
-          border-color: $color__dark-grey;
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0.7rem;
+        width: 0.438rem;
+        height: 0.438rem;
+        left: 0.3rem;
+        margin: auto 0;
+        -webkit-transform: rotate(313deg);
+        -ms-transform: rotate(313deg);
+        transform: rotate(313deg);
+        border: solid;
+        border-width: 0.125rem 0.125rem 0 0;
+        border-color: $color__dark-grey;
       }
 
       &.collapsed {

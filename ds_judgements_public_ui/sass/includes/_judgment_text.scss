@@ -30,7 +30,7 @@
         padding-right: 0;
 
         @media (max-width: $grid__breakpoint-small) {
-          padding: 0 1rem ;
+          padding: 0 1rem;
         }
       }
 
@@ -52,24 +52,19 @@
     padding-right: 1em;
   }
 
-  td>p:first-child {
+  td > p:first-child {
     margin-top: 0;
   }
 
-  td>p:last-child {
+  td > p:last-child {
     margin-bottom: 0;
   }
 }
 
-
-
-
 .judgment-header {
-
   padding-top: $spacer__unit * 3;
 
   table {
-
     td {
       border-color: transparent;
     }
@@ -107,7 +102,6 @@
   // ENDS
 
   &__logo {
-
     img {
       display: block;
       margin: auto;
@@ -172,7 +166,6 @@
   }
 
   &__between {
-
     h2 {
       font-size: $spacer__unit;
       text-align: center;
@@ -180,7 +173,6 @@
   }
 
   @media (min-width: $grid__breakpoint-medium) {
-
     &__party {
       @include three-columns($spacer__unit);
       font-weight: bold;
@@ -204,9 +196,7 @@
   }
 
   &__queens-counsel {
-
     @media (min-width: $grid__breakpoint-medium) {
-
       ul {
         padding: 0;
       }
@@ -219,7 +209,6 @@
           font-weight: bold;
         }
       }
-
     }
   }
 
@@ -248,9 +237,7 @@
   }
 }
 
-
 .judgment-body {
-
   table {
     border: 1px solid $color__almost-black;
     margin: 1rem auto;
@@ -280,7 +267,7 @@
       animation-duration: 1.5s;
       animation-name: emphasis-border;
 
-      +.judgment-body__text {
+      + .judgment-body__text {
         animation-duration: 1.5s;
         animation-name: emphasis;
       }
@@ -288,9 +275,8 @@
   }
 
   &__section {
-
     @media (max-width: $grid__breakpoint-medium) {
-      >div {
+      > div {
         display: inline;
 
         &::after {
@@ -319,13 +305,11 @@
     }
   }
 
-
   &__nested-section {
-
     @media (max-width: $grid__breakpoint-medium) {
       margin-left: $spacer__unit;
 
-      >div {
+      > div {
         display: inline;
 
         &::after {
@@ -394,7 +378,7 @@
   }
 
   &__description {
-    @include sr-only
+    @include sr-only;
   }
 
   a {
@@ -403,7 +387,7 @@
     background-repeat: no-repeat;
     background-size: 1rem;
     background-position: calc($spacer__unit / 4) calc($spacer__unit / 4);
-    padding: calc($spacer__unit * .3);
+    padding: calc($spacer__unit * 0.3);
     padding-left: calc($spacer__unit * 2);
   }
 }

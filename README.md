@@ -1,4 +1,3 @@
-
 # The National Archives: Find Case Law
 
 This repository is part of the [Find Case Law](https://caselaw.nationalarchives.gov.uk/) project at [The National Archives](https://www.nationalarchives.gov.uk/). For more information on the project, check [the documentation](https://github.com/nationalarchives/ds-find-caselaw-docs).
@@ -140,7 +139,7 @@ You can then access the site in your browser:
 
 When starting up, if you encounter an error message like this:
 
-```ERROR: for postgres  Cannot start service postgres: driver failed programming external connectivity on endpoint ds-caselaw-public-ui_postgres_1 (0fb7572d583761d3a348e8fd9139b0007638a17c6f91b15e8678f2575f94ffa7): Bind for 0.0.0.0:5432 failed: port is already allocated```
+`ERROR: for postgres Cannot start service postgres: driver failed programming external connectivity on endpoint ds-caselaw-public-ui_postgres_1 (0fb7572d583761d3a348e8fd9139b0007638a17c6f91b15e8678f2575f94ffa7): Bind for 0.0.0.0:5432 failed: port is already allocated`
 
 It's because the editor UI project is still running, you'll need to reopen that project and run the command `fab stop`.
 Now go back to the Public UI project and use the same command `fab stop`.
@@ -229,7 +228,7 @@ We recommend signing with your ssh key, as it's probably the easiest method of d
 
 - Add your SSH key as a _signing key_ in your [github account](https://github.com/settings/keys) - note this is different to an _authentication key_, which you likely already have set up. You can use the same key for both purposes, but you need to add it separately for each one twice.
 - In your terminal, run the following commands. This assumes you want to set up commit signing by default for all repositories. If you don't want this for whatever, reason, leave out the `--global` flag (but in that case you'll have to remember to repeat these steps in every TNA repository you work on):
-  - Enable signing with  `git config --global commit.gpgsign true`
+  - Enable signing with `git config --global commit.gpgsign true`
   - Specify that we'll use SSH for signing with: `git config --global gpg.format ssh`
   - Specify the key you'll use to sign. If it's not id_rsa.pub, give the correct path here: `git config --global user.signingkey ~/.ssh/id_rsa.pub`
 
