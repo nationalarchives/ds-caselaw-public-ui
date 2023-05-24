@@ -56,7 +56,7 @@ class TermsOfUseView(TemplateViewWithContext):
 
 class StructuredSearchView(TemplateViewWithContext):
     template_name = "pages/structured_search.html"
-    page_title = "search.title"
+    page_title = "structured_search.title"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -71,6 +71,7 @@ class CheckView(TemplateViewWithContext):
 
 class WhatToExpectView(TemplateViewWithContext):
     template_name = "pages/what_to_expect.html"
+    page_title = "whattoexpect.title"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -81,6 +82,7 @@ class WhatToExpectView(TemplateViewWithContext):
 
 class HowToUseThisService(TemplateViewWithContext):
     template_name = "pages/how_to_use_this_service.html"
+    page_title = "howtousethisservice.title"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

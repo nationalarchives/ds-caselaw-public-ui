@@ -1,122 +1,109 @@
-{% extends "base.html" %}
+{% extends "layouts/static_content.html" %}
 {% load i18n %}
-{% block robots %}
-{% endblock robots %}
-{% block title %}
-  {% translate "terms.title" %} - {% translate "common.findcaselaw" %}
-{% endblock title %}
-{% block content %}
-  {% translate "terms.title" as page_title %}
-  <header class="page-header" id="start-of-document">
-    {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
-    {% include "includes/logo.html" %}
-  </header>
-  <div class="standard-text-template">
-    <h1>Terms of use</h1>
-    <section>
-      <h2>What is in these terms</h2>
-      <p>
-        These terms tell you the rules for using the Find Case Law service at
-        <a href="{% translate "caselaw.url" %}">{% translate "caselaw.url" %}</a>.
-      </p>
-    </section>
-    <section>
-      <h2>Who we are and how to contact us</h2>
-      <p>The Find Case Law service is provided by The National Archives.</p>
-      <p>
-        You can contact us by email at <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>
-      </p>
-      <p>
-        If your online access is limited and you need to speak to someone you can call us during office hours on
-        <a href="tel:+4420 8876 3444">020 8876 3444</a>.
-        Please leave your number and message and we will call you back.
-      </p>
-    </section>
-    <section>
-      <h2>By using the Find Case Law service you accept these terms</h2>
-      <p>
-        By using the Find Case Law service, you confirm that you accept these terms of use and that you agree to
-        comply with them.
-      </p>
-    </section>
-    <section>
-      <h2>Fair and reasonable use</h2>
-      <p>
-        You must use the service responsibly by not making too many requests. In order to maintain the integrity
-        of the service for everyone, we may block or disable use of the service from certain IP addresses, for
-        making too many requests.
-      </p>
-    </section>
-    <section>
-      <h2>Crawling and indexing</h2>
-      <p>You may access the Find Case Law service through the website, or access the data through the API.</p>
-      <p>
-        We do not permit external indexing of documents by search engine robots or spiders.
-        You must adhere to both, the instructions in the robots.txt file at:
-        <a href="{% translate "robots.link" %}">{% translate "robots.link" %}</a>
-        and the 'noindex' directive in the 'X- Robots-Tag' meta tag
-        HTTP header response for the URLs of all documents and their related assets.
-      </p>
-      <p>
-        We may block or disable use of the service from certain IP addresses, if they appear to be compiling a
-        search engine index.
-      </p>
-    </section>
-    <section>
-      <h2>Coverage</h2>
-      <p>
-        You should be aware that the Find Case Law service is incomplete. It is not a complete record of Court
-        Judgments and Tribunal Decisions for the courts or tribunals.
-      </p>
-      <p>
-        You should be aware that some judgments may subsequently have been appealed and the judgments on appeal
-        may not be included in the Find Case Law service. You should satisfy yourself that a judgment has not
-        been the subject of an appeal before relying on it as an authority.
-      </p>
-      <p>
-        You should be aware that judgments given from 19 April 2022 onwards have been transferred to The National
-        Archives directly by the courts and tribunals. We have a complete chain of custody for these records
-        through the transfer process.
-      </p>
-      <p>
-        You should be aware that judgments given prior to 19 April 2022 have been sourced by The National
-        Archives from a variety of different sources, including BAILII (<a href="https://{% translate "bailii.link" %}">{% translate "bailii.link" %}</a>).
-      </p>
-    </section>
-    <section>
-      <h2>Formats</h2>
-      <p>
-        The Find Case Law service has been designed to provide users with access to Court Judgments and Tribunal
-        Decisions in a variety of different formats. The available formats include web pages (HTML) with
-        hyperlinks, PDFs to download, and XML data for re-use by third parties. There is an API which provides
-        access to the data, including details of newly published judgments and decisions.
-      </p>
-      <p>
-        You should be aware that, as part of our publishing process, we have transformed the original version of
-        the judgment from (typically) Word into XML (the Legal Document Mark-up language) and PDF. We have used the XML
-        to create the HTML versions of the judgments. We have also added hyperlinks. There may be minor formatting issues
-        with the published version of the judgments as a result of the conversion and enrichment process.
-      </p>
-    </section>
-    <section>
-      <h2>Licensing</h2>
-      <p>
-        You may use and re-use the contents of the Find Case Law service under the terms of the
-        <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">Open Justice Licence</a>.
-      </p>
-      <p>
-        You must read the licence and understand its terms if you are re-using the information from the Find Case
-        Law service, as there are important conditions and exclusions that apply.
-      </p>
-      <p>
-        You must apply for a separate, free, <a href="https://caselaw.nationalarchives.gov.uk/transactional-licence-form">transactional licence</a> if you wish to conduct computational analysis of the
-        information provided by the Find Case Law service. The application process is free of charge.
-      </p>
-      <p>
-        You should contact us if you require bulk access to the data provided by the Find Case Law service,
-        rather than attempt to crawl or scrape the website.
-      </p>
-    </section>
-  </div>
-  {% include "includes/help_end_document_marker.html" %}
-{% endblock content %}
+{% block static_content %}
+  <h1>{% translate "terms.title" %}</h1>
+  <section>
+    <h2>What is in these terms</h2>
+    <p>
+      These terms tell you the rules for using the Find Case Law service at
+      <a href="{% translate "caselaw.url" %}">{% translate "caselaw.url" %}</a>.
+    </p>
+  </section>
+  <section>
+    <h2>Who we are and how to contact us</h2>
+    <p>The Find Case Law service is provided by The National Archives.</p>
+    <p>
+      You can contact us by email at <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>
+    </p>
+    <p>
+      If your online access is limited and you need to speak to someone you can call us during office hours on
+      <a href="tel:+4420 8876 3444">020 8876 3444</a>.
+      Please leave your number and message and we will call you back.
+    </p>
+  </section>
+  <section>
+    <h2>By using the Find Case Law service you accept these terms</h2>
+    <p>
+      By using the Find Case Law service, you confirm that you accept these terms of use and that you agree to
+      comply with them.
+    </p>
+  </section>
+  <section>
+    <h2>Fair and reasonable use</h2>
+    <p>
+      You must use the service responsibly by not making too many requests. In order to maintain the integrity
+      of the service for everyone, we may block or disable use of the service from certain IP addresses, for
+      making too many requests.
+    </p>
+  </section>
+  <section>
+    <h2>Crawling and indexing</h2>
+    <p>You may access the Find Case Law service through the website, or access the data through the API.</p>
+    <p>
+      We do not permit external indexing of documents by search engine robots or spiders.
+      You must adhere to both, the instructions in the robots.txt file at:
+      <a href="{% translate "robots.link" %}">{% translate "robots.link" %}</a>
+      and the 'noindex' directive in the 'X- Robots-Tag' meta tag
+      HTTP header response for the URLs of all documents and their related assets.
+    </p>
+    <p>
+      We may block or disable use of the service from certain IP addresses, if they appear to be compiling a
+      search engine index.
+    </p>
+  </section>
+  <section>
+    <h2>Coverage</h2>
+    <p>
+      You should be aware that the Find Case Law service is incomplete. It is not a complete record of Court
+      Judgments and Tribunal Decisions for the courts or tribunals.
+    </p>
+    <p>
+      You should be aware that some judgments may subsequently have been appealed and the judgments on appeal
+      may not be included in the Find Case Law service. You should satisfy yourself that a judgment has not
+      been the subject of an appeal before relying on it as an authority.
+    </p>
+    <p>
+      You should be aware that judgments given from 19 April 2022 onwards have been transferred to The National
+      Archives directly by the courts and tribunals. We have a complete chain of custody for these records
+      through the transfer process.
+    </p>
+    <p>
+      You should be aware that judgments given prior to 19 April 2022 have been sourced by The National
+      Archives from a variety of different sources, including BAILII (<a href="https://{% translate "bailii.link" %}">{% translate "bailii.link" %}</a>).
+    </p>
+  </section>
+  <section>
+    <h2>Formats</h2>
+    <p>
+      The Find Case Law service has been designed to provide users with access to Court Judgments and Tribunal
+      Decisions in a variety of different formats. The available formats include web pages (HTML) with
+      hyperlinks, PDFs to download, and XML data for re-use by third parties. There is an API which provides
+      access to the data, including details of newly published judgments and decisions.
+    </p>
+    <p>
+      You should be aware that, as part of our publishing process, we have transformed the original version of
+      the judgment from (typically) Word into XML (the Legal Document Mark-up language) and PDF. We have used the XML
+      to create the HTML versions of the judgments. We have also added hyperlinks. There may be minor formatting issues
+      with the published version of the judgments as a result of the conversion and enrichment process.
+    </p>
+  </section>
+  <section>
+    <h2>Licensing</h2>
+    <p>
+      You may use and re-use the contents of the Find Case Law service under the terms of the
+      <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">Open Justice Licence</a>.
+    </p>
+    <p>
+      You must read the licence and understand its terms if you are re-using the information from the Find Case
+      Law service, as there are important conditions and exclusions that apply.
+    </p>
+    <p>
+      You must apply for a separate, free, <a href="https://caselaw.nationalarchives.gov.uk/transactional-licence-form">transactional licence</a> if you wish to conduct computational analysis of the
+      information provided by the Find Case Law service. The application process is free of charge.
+    </p>
+    <p>
+      You should contact us if you require bulk access to the data provided by the Find Case Law service,
+      rather than attempt to crawl or scrape the website.
+    </p>
+  </section>
+{% endblock static_content %}

@@ -1,0 +1,25 @@
+@mixin container {
+  padding: 0 $minimum_gutter_width;
+  margin: auto;
+
+  @media (min-width: $grid__breakpoint-small) {
+    max-width: $grid__breakpoint-small - ($minimum_gutter_width * 2);
+  }
+
+  @media (min-width: $grid__breakpoint-medium) {
+    max-width: $grid__breakpoint-medium - ($minimum_gutter_width * 2);
+  }
+
+  @media (min-width: $grid__breakpoint-large) {
+    max-width: $grid__breakpoint-large - ($minimum_gutter_width * 2);
+  }
+
+  @media (min-width: $grid__breakpoint-extra-large) {
+    max-width: $grid__breakpoint-extra-large - ($minimum_gutter_width * 2);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: $font__open-sans;
+}

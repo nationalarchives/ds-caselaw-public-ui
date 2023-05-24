@@ -1,3 +1,27 @@
+.pre-footer {
+  background-color: $color__light-grey;
+
+  &__container {
+    @include container;
+    padding: calc($spacer__unit * 2.5) 0;
+
+    text-align: center;
+
+    h2 {
+      padding-top: 0;
+      font-weight: normal;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__cta-button {
+    @include call-to-action-button-secondary;
+    &:visited {
+      color: #ffffff;
+    }
+  }
+}
+
 .judgments-footer {
   background-color: $color__almost-black;
   color: $color__white;

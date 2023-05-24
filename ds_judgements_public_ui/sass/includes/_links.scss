@@ -1,25 +1,3 @@
-a {
-  color: $color__link-blue;
-  text-decoration: underline;
-
-  &:hover {
-    color: $color__link-blue-hover;
-    text-decoration: none;
-  }
-
-  &:active {
-    color: $color__link-blue-active;
-  }
-
-  &:focus {
-    @include focus-default;
-    color: $color__link-blue-focus;
-  }
-  &:visited {
-    color: $color__link-blue-visited;
-  }
-}
-
 #skip-to-main-content {
   position: absolute;
   top: -3rem;

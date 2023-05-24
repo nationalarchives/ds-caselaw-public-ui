@@ -1,6 +1,5 @@
 .service-introduction {
   background-color: $color__almost-black;
-  padding: 0 0 2rem;
   flex-grow: 1;
 
   &__header {
@@ -11,7 +10,7 @@
     font-family: $font__roboto;
     font-weight: normal;
     color: $color__white;
-    margin: $spacer__unit 0 0 0;
+    margin: 0;
   }
 
   &__helper-text {

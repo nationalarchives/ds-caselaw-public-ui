@@ -1,7 +1,11 @@
 .phase-banner {
   background-color: $color__yellow;
   color: $color__black;
-  padding: calc($spacer__unit / 2) calc($spacer__unit * 2);
+
+  &__container {
+    @include container;
+    padding: calc($spacer__unit / 2) 0;
+  }
 
   &__notice {
     padding: 0.3em 0;
@@ -30,9 +34,5 @@
   &__message {
     margin: 0;
     display: inline;
-  }
-
-  &__container {
-    @include container;
   }
 }
