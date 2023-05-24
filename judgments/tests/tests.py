@@ -180,9 +180,11 @@ class TestRobotsDirectives(TestCase):
         fake_result.return_value = fake_search_result()
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
-        response = self.client.get("/what-to-expect")
+        response = self.client.get("/about-this-service")
         self.assertNotContains(response, "noindex")
-        self.assertContains(response, "Public Records Office")  # actual content of page
+        self.assertContains(
+            response, "We have well defined URL structures"
+        )  # actual content of page
 
 
 class TestBackLink(TestCase):

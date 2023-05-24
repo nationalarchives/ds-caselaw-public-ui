@@ -81,7 +81,7 @@ class CheckView(TemplateViewWithContext):
 
 class AboutThisServiceView(TemplateViewWithContext):
     template_name = "pages/about_this_service.html"
-    page_title = "whattoexpect.title"
+    page_title = "aboutthisservice.titleshort"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

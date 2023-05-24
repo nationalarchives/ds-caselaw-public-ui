@@ -1,365 +1,351 @@
-{% extends "base.html" %}
-{% load i18n static %}
-{% load query_filters court_utils %}
-{% block robots %}
-{% endblock robots %}
-{% block title %}
-  {% translate "whattoexpect.title" %} - {% translate "common.findcaselaw" %}
-{% endblock title %}
-{% block content %}
-  {% translate "whattoexpect.title" as page_title %}
-  <header class="page-header" id="start-of-document">
-    {% include "includes/breadcrumbs.html" with current=page_title title=page_title link=request.path %}
-    {% include "includes/logo.html" %}
-  </header>
-  <div class="standard-text-template">
-    <h1>About the Find case law service</h1>
-    <p>
-      <small>
-        Last updated on
-        <time datetime="23-08-2022">23rd May 2023</time>
-      </small>
-    </p>
-    <div class="anchor-links">
-      <h3 class="anchor-links__header">Information on this page:</h3>
-      <ul class="anchor-links__list">
-        <li class="anchor-links__list-option">
-          <a href="#section-about">About the Find Case Law service</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-coverage">Current coverage of courts and tribunals available on Find Case Law</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-historic">Historical judgments and decisions</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-justice">Open justice</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-personal-data">Personal data</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-data">Judgments and decisions as data</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-reuse">Re-use of judgments and decisions on Find Case Law: The Open Justice Licence</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-transferring">Transferring judgments and decisions from the courts to The National Archives</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-publishing">How we publish judgments and decisions</a>
-        </li>
-        <li class="anchor-links__list-option">
-          <a href="#section-contact">How to contact us</a>
-        </li>
-      </ul>
-    </div>
-    <h2 id="section-about">About the Find Case Law service</h2>
-    <p>The Find Case Law service provides public access to court judgments and tribunal decisions.</p>
-    <h2 id="section-coverage">Current coverage of courts and tribunals available on Find Case Law</h2>
-    <p>
-      As of April 2022; The National Archives receives selected Court Judgments and Tribunal Decisions for permanent
-      preservation and publication on the Find Case Law service. Currently we receive judgments from the Privy Council,
-      the UK Supreme Court, the Court of Appeal, The High Court, the Upper Tribunals and The Employment Appeal Tribunal.
-      We also receive decisions from some first-tier tribunal chambers and some judgments from the family court. 
-      Judgments given prior to 19 April 2022 have been sourced by The National Archives from a variety of
-      different sources, including BAILII (<a href="https://{% translate "bailii.link" %}">{% translate "bailii.link" %}</a>).
-    </p>
-    <p>
-      We share an ambition with the Ministry of Justice and the Judiciary to grow the scope of Find Case Law to become
-      a comprehensive and authoritative repository for case law in England and Wales.
-    </p>
-    <p>
-      The service only contains judgments and decisions that have been handed down and made public. Ex tempore (verbal)
-      judgments that are not routinely transcribed may not be sent to the archive, please contact the court or tribunal
-      directly.
-    </p>
-    <h3>Date ranges for judgments and decisions available on Find Case Law</h3>
-    <ul class="court-listing">
-      {% for group in context.courts %}
-        {% if group.name %}
-          <li>
-            <span>{{ group.name }}</span>
-            <ul>
-              {% for court in group.courts %}<li>{{ court.list_name }} {{ court|get_court_date_range }}</li>{% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          {% for court in group.courts %}<li>{{ court.list_name }} {{ court|get_court_date_range }}</li>{% endfor %}
-        {% endif %}
-      {% endfor %}
-    </ul>
-    <p>We do not have judgments or decisions from any other tribunals or:</p>
-    <ul>
-      <li>Crown courts</li>
-      <li>County courts</li>
-      <li>Magistrates' courts</li>
-    </ul>
-    <p>We do not have any judgments or decisions from Scottish, Northern Irish or Irish courts or tribunals.</p>
-    <h2 id="section-historic">Historical judgments and decisions</h2>
-    <p>
-      Historic legal records transferred as paper records can be found on The National Archive’s main catalogue &ndash;
-      Discovery.
-      This allows you to search the descriptions of records.
-      You can read more about how to search the main catalogue to find particular records in our research guides.
-    </p>
-    <h2 id="section-justice">Open justice</h2>
-    <p>
-      Open justice is a fundamental principle at the heart of the justice system. It is part of the administration
-      of justice and vital to the rule of law. Justice must not only be done, but it must also be seen to be done.
-      The importance and history of open justice as part of our law can be traced back to before Magna Carta.
-    </p>
-    <p>
-      Therefore it is important that significant Court Judgments and Tribunal Decisions are available to the public.
-      We publish judgments we receive from the courts and tribunals on the Find Case Law service.
-      It is up to the court to decide whether there is a reason to withhold a judgment from publication.
-    </p>
-    <h2 id="section-personal-data">Personal data</h2>
-    <p>
-      Judgments contain information about people. This typically includes the names of parties and other people
-      mentioned in the judgment, as well as the representatives, and the names of the judges hearing the case.
-      The information about people varies and can be very extensive. It can include a variety of types of special
-      category personal data, depending on the subject matter of the case. The details given in a judgment about
-      the facts of a case may sometimes constitute distressing content
-      (particularly in criminal cases, or cases involving children).
-    </p>
-    <p>
-      The Court that decided the case is the Data Controller for the publication of judgments on the Find Case Law
-      service.
-      The National Archives is a Data Processor.
-    </p>
-    <p>
-      The National Archives cannot and will not takedown a published judgment without explicit instruction from the
-      court.
-      Revisions to judgments already published must also come directly from the court.  
-      To contact a specific court or tribunal please see:
-      <a href="https://{% translate "find.court" %}">{% translate "find.court" %}</a>.
-    </p>
-    <p>
-      The National Archives publishes selected judgments at the behest of the relevant Courts, who are acting in
-      their judicial capacity. Therefore, this activity is exempt from the provisions of Data Protection Law that
-      would normally apply to the publication of personal data.
-    </p>
-    <h2 id="section-data">Judgments and decisions as data</h2>
-    <p>
-      We have made judgments and decisions available as data in order to facilitate transparency of the administration of
-      justice and enable innovation.
-      We have adopted the international standard legal document mark-up language (LegalDocML).
-    </p>
-    <p>
-      Judgments and decisions are sent to us as Word documents using the National Archive’s Transfer Digital Records
-      service.
-      This is the digital record of the publication version of the judgment. We then create a digital surrogates of the
-      record
-      for publication and re-use. This is the LegalDocML version from which we create the HTML. 
-      <a href="{% translate "legaldocml.link" %}">Find out more about LegalDocML</a>.
-      (We also provide a PDF copy from the Word original for download.)
-    </p>
-    <p>This process allows us to have consistent data about judgments and decisions. This includes:</p>
-    <ul>
-      <li>Neutral citation</li>
-      <li>Court/chamber</li>
-      <li>Party names</li>
-      <li>Judge's name(s)</li>
-      <li>Date</li>
-    </ul>
-    <h3>Uniform Resource Identifiers (URIs)</h3>
-    <p>
-      In most cases we will use the neutral citation as the basis for how we uniquely identify judgments and decisions.
-    </p>
-    <p>
-      For example: https://caselaw.nationalarchives.gov.uk/id/{court}[/{sub-division}/]{year}/{neutral-citation-number}
-    </p>
-    <p>
-      Our editorial team check that all new judgments and decisions we receive have a unique neutral citation. Neutral citations were adopted in 2001.
-    </p>
-    <h3>Enrichment</h3>
-    <p>
-      We automatically find and hyperlink neutral citations and titles of legislation within the text of a judgment or decision.
-    </p>
-    <p>
-      Neutral citation links take you to the original judgment or decision if we have it as part of our collection of judgments and decisions.
-    </p>
-    <p>
-      Links to acts of legislation will take you to the legislation as it stands today. You can use the legislation.gov.uk 'point in time'
-      feature to find legislation as it stood on a particular date or the original legislation passed by parliament.
-    </p>
-    <h3>API</h3>
-    <p>The LegalDocML data for the judgments is available through the API.</p>
-    <h3>Accessing feeds</h3>
-    <p>
-      You can monitor a list of recently published or recently updated judgments using the Atom feeds available in our public API. An OpenAPI
-      specification is available at <a href='{% translate "openapi.link" %}'>Case Law service GitHub project</a> page.
-    </p>
-    <h3>Example root feed URL</h3>
-    <p>
-      <a href='{% translate "atom.link" %}'>{% translate "atom.link" %}</a>.
-    </p>
-    <p>
-      We have well defined URL structures, to get to the XML it is always at <code> https://caselaw.nationalarchives.gov.uk/year/court/subdivision/id/data.xml</code>
-    </p>
-    <h3>Parameters</h3>
-    <p>(not yet added to the specification)</p>
-    <p>
-      <code>order=-updated ;</code> updated (XML database last updated)
-    </p>
-    <p>
-      <code>order=-date ;</code> date (date field)
-    </p>
-    <p>
-      <code>page=3</code> (paginated response, starts at page 1)
-    </p>
-    <h4>Example workflow</h4>
-    <ol>
-      <li>Poll the recently-published feed</li>
-      <li>Detect a new item using the timestamps in the feed</li>
-      <li>Get the URI of the judgment from the id field of the item</li>
-    </ol>
-    <h3>Detecting changes</h3>
-    <p>
-      At present, any update to a judgment will result in it being shown in the recently updated list; this could be a
-      minor metadata change, an enrichment with extra links, or a new version from the original submitter, with a material
-      change to the judgment.
-    </p>
-    <p>
-      The judgment XML contains a content hash which will only change with material changes. In the near future, we hope to
-      provide a feed that only shows material changes, so you will not need to keep a list of hashes.
-    </p>
-    <h4>Example update detection workflow</h4>
-    <ol>
-      <li>Poll the recently-updated feed</li>
-      <li>Detect a new feed item using the timestamps in the feed</li>
-      <li>Fetch the XML representation of the updated document</li>
-    </ol>
-    <p>In order to re-use the data, you must be compliant with the terms set out in our licences.</p>
-    <h2 id="section-reuse">
-      Re-use of judgments and decisions on Find Case Law: <small>The Open Justice Licence and Transactional Licence</small>
-    </h2>
-    <p>
-      By licensing court judgments and tribunal decisions for re-use we aim to facilitate open justice and enable
-      innovation, while protecting the proper administration of justice.
-    </p>
-    <p>
-      The Open Government Licence does not apply. Judgments and decisions contain personal data. This means the Open Government Licence cannot apply as it
-      excludes personal data.
-    </p>
-    <p>
-      The National Archives has worked in consultation with the Ministry of Justice and the Judicial
-      Executive Board (chaired by the Lord Chief Justice) to develop two licences that permit the re-use of judgments and
-      decisions. Both licences are free to use:
-    </p>
-    <ul>
-      <li>
-        <b>The Open Justice Licence</b> permits re-use but excludes
-        computational analysis. You do not need to apply for this licence.
+{% extends "layouts/static_content.html" %}
+{% load i18n court_utils static %}
+{% block static_content %}
+  <h1>About the Find case law service</h1>
+  <p>
+    <small>
+      Last updated on
+      <time datetime="23-08-2022">23rd May 2023</time>
+    </small>
+  </p>
+  <div class="anchor-links">
+    <h3 class="anchor-links__header">Information on this page:</h3>
+    <ul class="anchor-links__list">
+      <li class="anchor-links__list-option">
+        <a href="#section-about">About the Find Case Law service</a>
       </li>
-    </br>
-    <li>
-      <b>A transactional licence</b> permits re-use including computational analysis. You will need to
-      <a href="{% static 'documents/application_form_for_licence_to_re-use.docx' %}">download and complete a form</a> to apply for this licence.
-    </li>
-  </ul>
+      <li class="anchor-links__list-option">
+        <a href="#section-coverage">Current coverage of courts and tribunals available on Find Case Law</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-historic">Historical judgments and decisions</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-justice">Open justice</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-personal-data">Personal data</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-data">Judgments and decisions as data</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-reuse">Re-use of judgments and decisions on Find Case Law: The Open Justice Licence</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-transferring">Transferring judgments and decisions from the courts to The National Archives</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-publishing">How we publish judgments and decisions</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-contact">How to contact us</a>
+      </li>
+    </ul>
+  </div>
+  <h2 id="section-about">About the Find Case Law service</h2>
+  <p>The Find Case Law service provides public access to court judgments and tribunal decisions.</p>
+  <h2 id="section-coverage">Current coverage of courts and tribunals available on Find Case Law</h2>
   <p>
-    It is important you are aware of the legal obligations and that your re-use of the data is consistent with the
-    administration of justice.
+    As of April 2022; The National Archives receives selected Court Judgments and Tribunal Decisions for permanent
+    preservation and publication on the Find Case Law service. Currently we receive judgments from the Privy Council,
+    the UK Supreme Court, the Court of Appeal, The High Court, the Upper Tribunals and The Employment Appeal Tribunal.
+    We also receive decisions from some first-tier tribunal chambers and some judgments from the family court. 
+    Judgments given prior to 19 April 2022 have been sourced by The National Archives from a variety of
+    different sources, including BAILII (<a href="https://{% translate "bailii.link" %}">{% translate "bailii.link" %}</a>).
   </p>
-  <p>For the full terms of these licences please refer to:</p>
+  <p>
+    We share an ambition with the Ministry of Justice and the Judiciary to grow the scope of Find Case Law to become
+    a comprehensive and authoritative repository for case law in England and Wales.
+  </p>
+  <p>
+    The service only contains judgments and decisions that have been handed down and made public. Ex tempore (verbal)
+    judgments that are not routinely transcribed may not be sent to the archive, please contact the court or tribunal
+    directly.
+  </p>
+  <h3>Date ranges for judgments and decisions available on Find Case Law</h3>
+  <ul class="court-listing">
+    {% for group in context.courts %}
+      {% if group.name %}
+        <li>
+          <span>{{ group.name }}</span>
+          <ul>
+            {% for court in group.courts %}<li>{{ court.list_name }} {{ court|get_court_date_range }}</li>{% endfor %}
+          </ul>
+        </li>
+      {% else %}
+        {% for court in group.courts %}<li>{{ court.list_name }} {{ court|get_court_date_range }}</li>{% endfor %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <p>We do not have judgments or decisions from any other tribunals or:</p>
+  <ul>
+    <li>Crown courts</li>
+    <li>County courts</li>
+    <li>Magistrates' courts</li>
+  </ul>
+  <p>We do not have any judgments or decisions from Scottish, Northern Irish or Irish courts or tribunals.</p>
+  <h2 id="section-historic">Historical judgments and decisions</h2>
+  <p>
+    Historic legal records transferred as paper records can be found on The National Archive’s main catalogue &ndash;
+    Discovery.
+    This allows you to search the descriptions of records.
+    You can read more about how to search the main catalogue to find particular records in our research guides.
+  </p>
+  <h2 id="section-justice">Open justice</h2>
+  <p>
+    Open justice is a fundamental principle at the heart of the justice system. It is part of the administration
+    of justice and vital to the rule of law. Justice must not only be done, but it must also be seen to be done.
+    The importance and history of open justice as part of our law can be traced back to before Magna Carta.
+  </p>
+  <p>
+    Therefore it is important that significant Court Judgments and Tribunal Decisions are available to the public.
+    We publish judgments we receive from the courts and tribunals on the Find Case Law service.
+    It is up to the court to decide whether there is a reason to withhold a judgment from publication.
+  </p>
+  <h2 id="section-personal-data">Personal data</h2>
+  <p>
+    Judgments contain information about people. This typically includes the names of parties and other people
+    mentioned in the judgment, as well as the representatives, and the names of the judges hearing the case.
+    The information about people varies and can be very extensive. It can include a variety of types of special
+    category personal data, depending on the subject matter of the case. The details given in a judgment about
+    the facts of a case may sometimes constitute distressing content
+    (particularly in criminal cases, or cases involving children).
+  </p>
+  <p>
+    The Court that decided the case is the Data Controller for the publication of judgments on the Find Case Law
+    service.
+    The National Archives is a Data Processor.
+  </p>
+  <p>
+    The National Archives cannot and will not takedown a published judgment without explicit instruction from the
+    court.
+    Revisions to judgments already published must also come directly from the court.  
+    To contact a specific court or tribunal please see:
+    <a href="https://{% translate "find.court" %}">{% translate "find.court" %}</a>.
+  </p>
+  <p>
+    The National Archives publishes selected judgments at the behest of the relevant Courts, who are acting in
+    their judicial capacity. Therefore, this activity is exempt from the provisions of Data Protection Law that
+    would normally apply to the publication of personal data.
+  </p>
+  <h2 id="section-data">Judgments and decisions as data</h2>
+  <p>
+    We have made judgments and decisions available as data in order to facilitate transparency of the administration of
+    justice and enable innovation.
+    We have adopted the international standard legal document mark-up language (LegalDocML).
+  </p>
+  <p>
+    Judgments and decisions are sent to us as Word documents using the National Archive’s Transfer Digital Records
+    service.
+    This is the digital record of the publication version of the judgment. We then create a digital surrogates of the
+    record
+    for publication and re-use. This is the LegalDocML version from which we create the HTML. 
+    <a href="{% translate "legaldocml.link" %}">Find out more about LegalDocML</a>.
+    (We also provide a PDF copy from the Word original for download.)
+  </p>
+  <p>This process allows us to have consistent data about judgments and decisions. This includes:</p>
+  <ul>
+    <li>Neutral citation</li>
+    <li>Court/chamber</li>
+    <li>Party names</li>
+    <li>Judge's name(s)</li>
+    <li>Date</li>
+  </ul>
+  <h3>Uniform Resource Identifiers (URIs)</h3>
+  <p>
+    In most cases we will use the neutral citation as the basis for how we uniquely identify judgments and decisions.
+  </p>
+  <p>
+    For example: https://caselaw.nationalarchives.gov.uk/id/{court}[/{sub-division}/]{year}/{neutral-citation-number}
+  </p>
+  <p>
+    Our editorial team check that all new judgments and decisions we receive have a unique neutral citation. Neutral citations were adopted in 2001.
+  </p>
+  <h3>Enrichment</h3>
+  <p>
+    We automatically find and hyperlink neutral citations and titles of legislation within the text of a judgment or decision.
+  </p>
+  <p>
+    Neutral citation links take you to the original judgment or decision if we have it as part of our collection of judgments and decisions.
+  </p>
+  <p>
+    Links to acts of legislation will take you to the legislation as it stands today. You can use the legislation.gov.uk 'point in time'
+    feature to find legislation as it stood on a particular date or the original legislation passed by parliament.
+  </p>
+  <h3>API</h3>
+  <p>The LegalDocML data for the judgments is available through the API.</p>
+  <h3>Accessing feeds</h3>
+  <p>
+    You can monitor a list of recently published or recently updated judgments using the Atom feeds available in our public API. An OpenAPI
+    specification is available at <a href='{% translate "openapi.link" %}'>Case Law service GitHub project</a> page.
+  </p>
+  <h3>Example root feed URL</h3>
+  <p>
+    <a href='{% translate "atom.link" %}'>{% translate "atom.link" %}</a>.
+  </p>
+  <p>
+    We have well defined URL structures, to get to the XML it is always at <code> https://caselaw.nationalarchives.gov.uk/year/court/subdivision/id/data.xml</code>
+  </p>
+  <h3>Parameters</h3>
+  <p>(not yet added to the specification)</p>
+  <p>
+    <code>order=-updated ;</code> updated (XML database last updated)
+  </p>
+  <p>
+    <code>order=-date ;</code> date (date field)
+  </p>
+  <p>
+    <code>page=3</code> (paginated response, starts at page 1)
+  </p>
+  <h4>Example workflow</h4>
+  <ol>
+    <li>Poll the recently-published feed</li>
+    <li>Detect a new item using the timestamps in the feed</li>
+    <li>Get the URI of the judgment from the id field of the item</li>
+  </ol>
+  <h3>Detecting changes</h3>
+  <p>
+    At present, any update to a judgment will result in it being shown in the recently updated list; this could be a
+    minor metadata change, an enrichment with extra links, or a new version from the original submitter, with a material
+    change to the judgment.
+  </p>
+  <p>
+    The judgment XML contains a content hash which will only change with material changes. In the near future, we hope to
+    provide a feed that only shows material changes, so you will not need to keep a list of hashes.
+  </p>
+  <h4>Example update detection workflow</h4>
+  <ol>
+    <li>Poll the recently-updated feed</li>
+    <li>Detect a new feed item using the timestamps in the feed</li>
+    <li>Fetch the XML representation of the updated document</li>
+  </ol>
+  <p>In order to re-use the data, you must be compliant with the terms set out in our licences.</p>
+  <h2 id="section-reuse">
+    Re-use of judgments and decisions on Find Case Law: <small>The Open Justice Licence and Transactional Licence</small>
+  </h2>
+  <p>
+    By licensing court judgments and tribunal decisions for re-use we aim to facilitate open justice and enable
+    innovation, while protecting the proper administration of justice.
+  </p>
+  <p>
+    The Open Government Licence does not apply. Judgments and decisions contain personal data. This means the Open Government Licence cannot apply as it
+    excludes personal data.
+  </p>
+  <p>
+    The National Archives has worked in consultation with the Ministry of Justice and the Judicial
+    Executive Board (chaired by the Lord Chief Justice) to develop two licences that permit the re-use of judgments and
+    decisions. Both licences are free to use:
+  </p>
   <ul>
     <li>
-      <a href="{% url "open_justice_licence" %}">https://caselaw.nationalarchives.gov.uk/open-justice-licence</a>
+      <b>The Open Justice Licence</b> permits re-use but excludes
+      computational analysis. You do not need to apply for this licence.
     </li>
-    <li>
-      <a href="{% url "transactional_licence_form" %}">https://caselaw.nationalarchives.gov.uk/transactional-licence-form</a>
-    </li>
-  </ul>
-  <h2 id="section-transferring">Transferring judgments and decisions from the courts to The National Archives</h2>
-  <p>
-    The National Archives receives a publication version of the judgment or decision. This means
-    that any redactions
-    or anonymization needed for publication should already have been made by the court.
-  </p>
-  <p>
-    The judges and clerks send judgments and decisions to The National Archives as Word documents
-    using a service
-    called Transfer Digital Records (TDR). Only registered users can use this service.
-  </p>
-  <p>
-    If you are a judge or clerk looking for information about how to transfer digital records,
-    please email <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
-  </p>
-  <h2 id="section-publishing">How we publish judgments and decisions</h2>
-  <h3>Our due diligence</h3>
-  <p>
-    The Find Case Law service has a dedicated team who review every record sent to The National Archives by the Courts
-    and Tribunals before it is published. Once a judgment or decision has been reviewed we immediately publish it on the
-    Find Case Law service. We do this as quickly as possible.
-  </p>
-  <p>It may take us longer to review and publish judgments and decisions that:</p>
-  <ul>
-    <li>are unusually long</li>
-    <li>contain reporting restrictions</li>
-    <li>are received after 5pm, these will be reviewed the next working morning</li>
-  </ul>
-  <p>
-    This team checks that the record sent by the Court or Tribunal is the version intended to be published. In the case
-    that the judgment is subject to reporting restrictions they make an overall assessment on whether the version of the
-    judgment supplied complies with any notice requiring anonymisation or redaction, checking whether the reporting
-    restriction has been consistently applied throughout the body of the judgment e.g., consistent anonymisation of
-    parties.
-  </p>
-  <p>
-    The National Archives does not make any changes to any of the original records sent to us. Changes to judgments and
-    decisions can only be made by the Courts and Tribunals.
-  </p>
-  <p>
-    Occasionally we need to double check with the Court or Tribunal whether the version of the record that has been sent
-    to us is the version they intended to publish. In these cases publication may take longer while we wait for
-    confirmation from the Court or Tribunal, or for the correct version to be sent to us.
-  </p>
-  <p>
-    This review step means it is less likely for judgments or decisions to be published in error.
-    If you believe there is an error within a published judgment or decision,
-    you can flag it for review by emailing caselaw@nationalarchives.gov.uk. If necessary, we will refer it back to the
-    court to determine the appropriate course of action.
-  </p>
-  <p>
-    We appreciate that speedy publication is important for many of our users. It is very unusual for judgments or
-    decisions to take longer than two working days to be reviewed and published. If it has been more than two working
-    days, it is more likely that we have not received the judgment or decision from the Courts or Tribunals.
-  </p>
-  <p>
-    If you believe a judgment is missing from the service and it has been more than two working days since it was handed
-    down you can email <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
-  </p>
-  <h3>Revisions</h3>
-  <p>
-    Over time we may receive several publication versions of the same judgment from the court. We will keep the digital
-    record of all the versions, but only publish the latest version authorised by the court. Changes, refinements or
-    corrections to the text of currently published judgments can only be made by the court by sending a replacement
-    version of the judgment through the TDR service.
-  </p>
-  <h3>Take down requests</h3>
-  <p>
-    The National Archives take down and reclosure policy does not apply to judgments or decisions published on the Find
-    Case Law Service.
-  </p>
-  <p>
-    Once a judgment or decision has been published, we will only withdraw it from publication (or replace it with a
-    revised version) if we are instructed to do so by the court or tribunal.
-  </p>
-  <p>
-    If you believe that a judgment or decision should not be publicly available to you should contact the court or
-    tribunal directly.
-  </p>
-  <p>
-    Please refer to our full publishing policy for more details <a href='{% url “publishing_policy” %}'>{% url “publishing_policy” %}</a>.
-  </p>
-  <h2 id="section-contact">How to contact us</h2>
-  <p>
-    You can get in touch by emailing
-    <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
-  </p>
-</div>
-{% include "includes/help_end_document_marker.html" %}
-{% endblock content %}
+  </br>
+  <li>
+    <b>A transactional licence</b> permits re-use including computational analysis. You will need to
+    <a href="{% static 'documents/application_form_for_licence_to_re-use.docx' %}">download and complete a form</a> to apply for this licence.
+  </li>
+</ul>
+<p>
+  It is important you are aware of the legal obligations and that your re-use of the data is consistent with the
+  administration of justice.
+</p>
+<p>For the full terms of these licences please refer to:</p>
+<ul>
+  <li>
+    <a href="{% url "open_justice_licence" %}">https://caselaw.nationalarchives.gov.uk/open-justice-licence</a>
+  </li>
+  <li>
+    <a href="{% url "transactional_licence_form" %}">https://caselaw.nationalarchives.gov.uk/transactional-licence-form</a>
+  </li>
+</ul>
+<h2 id="section-transferring">Transferring judgments and decisions from the courts to The National Archives</h2>
+<p>
+  The National Archives receives a publication version of the judgment or decision. This means
+  that any redactions
+  or anonymization needed for publication should already have been made by the court.
+</p>
+<p>
+  The judges and clerks send judgments and decisions to The National Archives as Word documents
+  using a service
+  called Transfer Digital Records (TDR). Only registered users can use this service.
+</p>
+<p>
+  If you are a judge or clerk looking for information about how to transfer digital records,
+  please email <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
+</p>
+<h2 id="section-publishing">How we publish judgments and decisions</h2>
+<h3>Our due diligence</h3>
+<p>
+  The Find Case Law service has a dedicated team who review every record sent to The National Archives by the Courts
+  and Tribunals before it is published. Once a judgment or decision has been reviewed we immediately publish it on the
+  Find Case Law service. We do this as quickly as possible.
+</p>
+<p>It may take us longer to review and publish judgments and decisions that:</p>
+<ul>
+  <li>are unusually long</li>
+  <li>contain reporting restrictions</li>
+  <li>are received after 5pm, these will be reviewed the next working morning</li>
+</ul>
+<p>
+  This team checks that the record sent by the Court or Tribunal is the version intended to be published. In the case
+  that the judgment is subject to reporting restrictions they make an overall assessment on whether the version of the
+  judgment supplied complies with any notice requiring anonymisation or redaction, checking whether the reporting
+  restriction has been consistently applied throughout the body of the judgment e.g., consistent anonymisation of
+  parties.
+</p>
+<p>
+  The National Archives does not make any changes to any of the original records sent to us. Changes to judgments and
+  decisions can only be made by the Courts and Tribunals.
+</p>
+<p>
+  Occasionally we need to double check with the Court or Tribunal whether the version of the record that has been sent
+  to us is the version they intended to publish. In these cases publication may take longer while we wait for
+  confirmation from the Court or Tribunal, or for the correct version to be sent to us.
+</p>
+<p>
+  This review step means it is less likely for judgments or decisions to be published in error.
+  If you believe there is an error within a published judgment or decision,
+  you can flag it for review by emailing caselaw@nationalarchives.gov.uk. If necessary, we will refer it back to the
+  court to determine the appropriate course of action.
+</p>
+<p>
+  We appreciate that speedy publication is important for many of our users. It is very unusual for judgments or
+  decisions to take longer than two working days to be reviewed and published. If it has been more than two working
+  days, it is more likely that we have not received the judgment or decision from the Courts or Tribunals.
+</p>
+<p>
+  If you believe a judgment is missing from the service and it has been more than two working days since it was handed
+  down you can email <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
+</p>
+<h3>Revisions</h3>
+<p>
+  Over time we may receive several publication versions of the same judgment from the court. We will keep the digital
+  record of all the versions, but only publish the latest version authorised by the court. Changes, refinements or
+  corrections to the text of currently published judgments can only be made by the court by sending a replacement
+  version of the judgment through the TDR service.
+</p>
+<h3>Take down requests</h3>
+<p>
+  The National Archives take down and reclosure policy does not apply to judgments or decisions published on the Find
+  Case Law Service.
+</p>
+<p>
+  Once a judgment or decision has been published, we will only withdraw it from publication (or replace it with a
+  revised version) if we are instructed to do so by the court or tribunal.
+</p>
+<p>
+  If you believe that a judgment or decision should not be publicly available to you should contact the court or
+  tribunal directly.
+</p>
+<p>
+  Please refer to our full publishing policy for more details <a href='{% url "publishing_policy" %}'>{% translate "publishing_policy.title" %}</a>.
+</p>
+<h2 id="section-contact">How to contact us</h2>
+<p>
+  You can get in touch by emailing
+  <a href="mailto:{% translate "caselaw.email" %}">{% translate "caselaw.email" %}</a>.
+</p>
+{% endblock static_content %}

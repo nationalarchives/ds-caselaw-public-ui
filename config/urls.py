@@ -24,6 +24,11 @@ urlpatterns = [
         name="transactional_licence_form",
     ),
     path(
+        "what-to-expect",
+        lambda request: HttpResponseRedirect("/about-this-service"),
+        name="what_to_expect",
+    ),
+    path(
         "about-this-service",
         views.AboutThisServiceView.as_view(),
         name="about_this_service",
