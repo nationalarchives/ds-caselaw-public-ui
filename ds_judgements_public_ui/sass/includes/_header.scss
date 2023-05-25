@@ -15,6 +15,12 @@
     display: flex;
     align-items: center;
 
+    &-flex-container {
+      @media only screen and (max-width: $grid__breakpoint-medium) {
+        flex-grow: 1;
+      }
+    }
+
     ol {
       list-style-type: none;
       padding: 0;
