@@ -2,7 +2,7 @@ User-Agent: Googlebot
 User-Agent: bingbot
 Allow: /
 Allow: /transactional-licence-form
-Allow: /what-to-expect
+Allow: /about-this-service
 Allow: /how-to-use-this-service
 Allow: /accessibility-statement
 Allow: /open-justice-licence
@@ -12,7 +12,7 @@ Disallow: /$
 User-Agent: *
 Disallow: /
 Allow: /transactional-licence-form
-Allow: /what-to-expect
+Allow: /about-this-service
 Allow: /how-to-use-this-service
 Allow: /accessibility-statement
 Allow: /open-justice-licence

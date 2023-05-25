@@ -79,9 +79,9 @@ class CheckView(TemplateViewWithContext):
     template_name = "pages/check.html"
 
 
-class WhatToExpectView(TemplateViewWithContext):
-    template_name = "pages/what_to_expect.html"
-    page_title = "whattoexpect.title"
+class AboutThisServiceView(TemplateViewWithContext):
+    template_name = "pages/about_this_service.html"
+    page_title = "aboutthisservice.titleshort"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -97,4 +97,13 @@ class HowToUseThisService(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
+        return context
+
+
+class PrivacyNotice(TemplateViewWithContext):
+    template_name = "pages/privacy_notice.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "privacy_notice"
         return context

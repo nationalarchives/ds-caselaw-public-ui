@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 10:59+0000\n"
+"POT-Creation-Date: 2023-05-24 17:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,6 @@ msgstr "Filter by court, date or person"
 #: ds_judgements_public_ui/templates/layouts/static_content.html
 #: ds_judgements_public_ui/templates/pages/home.html
 #: ds_judgements_public_ui/templates/pages/structured_search.html
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
-#: ds_judgements_public_ui/templates/pages/open_justice_licence.html
-#: ds_judgements_public_ui/templates/pages/publishing_policy.html
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
-#: ds_judgements_public_ui/templates/pages/transactional_licence.html
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
 msgid "common.findcaselaw"
 msgstr "Find case law"
 
@@ -71,42 +65,49 @@ msgid "footer.judiciary"
 msgstr "Judiciary"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-msgid "footer.sitehelp"
-msgstr "Site help"
+msgid "footer.about"
+msgstr "About"
+
+#: ds_judgements_public_ui/templates/includes/footer.html
+msgid "aboutthisservice.titleshort"
+msgstr "About this service"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
 msgid "howtousethisservice.titleshort"
 msgstr "How to use this service"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-#: ds_judgements_public_ui/templates/pages/accessibility_statement.html
-msgid "accessibilitystatement.title"
-msgstr "Accessibility statement"
-
-#: ds_judgements_public_ui/templates/includes/footer.html
-msgid "footer.contact.link"
-msgstr "https://www.nationalarchives.gov.uk/contact-us/"
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
+#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
+msgid "caselaw.email"
+msgstr "caselaw@nationalarchives.gov.uk"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.contact"
-msgstr "Contact us"
+msgstr "Contact us by email"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.legal"
 msgstr "Legal"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "terms.title"
 msgstr "Terms of use"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
+#: ds_judgements_public_ui/templates/pages/privacy_notice.html
 msgid "footer.cookies.link"
 msgstr "https://www.nationalarchives.gov.uk/legal/cookies/"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.cookies"
 msgstr "Cookies"
+
+#: ds_judgements_public_ui/templates/includes/footer.html
+#: ds_judgements_public_ui/templates/pages/accessibility_statement.html
+msgid "accessibilitystatement.title"
+msgstr "Accessibility statement"
 
 #: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
 msgid "service.improved"
@@ -195,6 +196,34 @@ msgstr "Search results"
 msgid "skiplink"
 msgstr "Skip to Main Content"
 
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
+#: ds_judgements_public_ui/templates/pages/terms_of_use.html
+msgid "bailii.link"
+msgstr "www.bailii.org"
+
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
+#: ds_judgements_public_ui/templates/pages/privacy_notice.html
+msgid "find.court"
+msgstr "https://www.gov.uk/find-court-tribunal"
+
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
+msgid "legaldocml.link"
+msgstr "https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml"
+
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
+msgid "openapi.link"
+msgstr ""
+"https://github.com/nationalarchives/ds-caselaw-public-access-service/blob/"
+"main/doc/openapi/public_api.yml"
+
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
+msgid "atom.link"
+msgstr "https://caselaw.nationalarchives.gov.uk/atom.xml"
+
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
+msgid "publishing_policy.title"
+msgstr "Publishing policy"
+
 #: ds_judgements_public_ui/templates/pages/home.html
 msgid "home.useservice"
 msgstr ""
@@ -210,12 +239,6 @@ msgstr ""
 "https://www.judiciary.uk/about-the-judiciary/the-justice-system/court-"
 "structure"
 
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "caselaw.email"
-msgstr "caselaw@nationalarchives.gov.uk"
-
 #: ds_judgements_public_ui/templates/pages/open_justice_licence.html
 msgid "openjusticelicence.title"
 msgstr "Open Justice Licence"
@@ -226,14 +249,15 @@ msgstr ""
 "https://www.nationalarchives.gov.uk/information-management/re-using-public-"
 "sector-information/uk-government-licensing-framework"
 
-#: ds_judgements_public_ui/templates/pages/publishing_policy.html
-msgid "publishing_policy.title"
-msgstr "Publishing Policy"
-
+#: ds_judgements_public_ui/templates/pages/privacy_notice.html
 #: ds_judgements_public_ui/templates/pages/publishing_policy.html
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "caselaw.url"
 msgstr "https://caselaw.nationalarchives.gov.uk"
+
+#: ds_judgements_public_ui/templates/pages/privacy_notice.html
+msgid "judiciary.email"
+msgstr "JODataPrivacyOfficer@judiciary.uk"
 
 #: ds_judgements_public_ui/templates/pages/structured_search.html
 msgid "structured_search.title"
@@ -243,10 +267,6 @@ msgstr "Structured search"
 msgid "robots.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/robots.txt"
 
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
-msgid "bailii.link"
-msgstr "www.bailii.org"
-
 #: ds_judgements_public_ui/templates/pages/transactional_licence.html
 msgid "transactionallicenceform.title"
 msgstr "Application to re-use Court Judgments and Tribunal Decisions"
@@ -254,67 +274,3 @@ msgstr "Application to re-use Court Judgments and Tribunal Decisions"
 #: ds_judgements_public_ui/templates/pages/transactional_licence.html
 msgid "caselawlicence.email"
 msgstr "CaseLawLicence@nationalarchives.gov.uk"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "whattoexpect.title"
-msgstr "What to expect from this new service"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "publicrecordsact.link"
-msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/contents"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "firstschedule.link"
-msgstr ""
-"https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/schedule/FIRST/"
-"crossheading/records-of-courts-and-tribunals"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "sectionthree.link"
-msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/3"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "sectiontwofourh.link"
-msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/2/4/h"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "sectiontwothree.link"
-msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/2/3"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "sectionfivethree.link"
-msgstr "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/section/5/3"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "legaldocml.link"
-msgstr "https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "openapi.link"
-msgstr "https://github.com/nationalarchives/ds-find-caselaw-docs/"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "atom.link"
-msgstr "https://caselaw.nationalarchives.gov.uk/atom.xml"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "fivesafes.link"
-msgstr "https://en.wikipedia.org/wiki/Five_safes"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "reuse.link"
-msgstr "https://www.legislation.gov.uk/uksi/2015/1415/contents"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "sectioneight.link"
-msgstr "https://www.legislation.gov.uk/uksi/2015/1415/regulation/8"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "sectionthirteen.link"
-msgstr "https://www.legislation.gov.uk/uksi/2015/1415/regulation/13"
-
-#: ds_judgements_public_ui/templates/pages/what_to_expect.html
-msgid "complaint.link"
-msgstr ""
-"https://www.nationalarchives.gov.uk/information-management/re-using-public-"
-"sector-information/complaints-about-re-use/"

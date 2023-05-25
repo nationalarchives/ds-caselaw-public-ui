@@ -25,13 +25,23 @@ urlpatterns = [
     ),
     path(
         "what-to-expect",
-        views.WhatToExpectView.as_view(),
+        lambda request: HttpResponseRedirect("/about-this-service"),
         name="what_to_expect",
+    ),
+    path(
+        "about-this-service",
+        views.AboutThisServiceView.as_view(),
+        name="about_this_service",
     ),
     path(
         "how-to-use-this-service",
         views.HowToUseThisService.as_view(),
         name="how_to_use_this_service",
+    ),
+    path(
+        "privacy-notice",
+        views.PrivacyNotice.as_view(),
+        name="privacy_notice",
     ),
     path(
         "accessibility-statement",

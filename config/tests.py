@@ -21,6 +21,6 @@ class TestCacheHeaders(TestCase):
         assert response.headers["Cache-Control"] == "max-age=900, public"
 
     def test_view_headers(self):
-        url = "/what-to-expect"
+        url = "/about-this-service"
         response = self.client.get(url)
         assert response.headers["Cache-Control"] == "max-age=900, public"
