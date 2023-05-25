@@ -15,6 +15,10 @@ from django_weasyprint import WeasyTemplateResponseMixin
 
 from judgments.utils import display_back_link, get_judgment_by_uri, get_pdf_uri
 
+# suppress weasyprint log spam
+if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
+    logging.getLogger("weasyprint").handlers = []
+
 
 def get_published_judgment_by_uri(judgment_uri: str) -> Judgment:
     try:
