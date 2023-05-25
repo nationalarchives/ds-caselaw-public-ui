@@ -9,7 +9,7 @@
              {% for alias in context.court %}{% if alias in court.param_aliases %}checked="checked"{% endif %}
              {% endfor %} />
       <span class="structured-search__court-option-label">{{ court.name }}
-        <span style="color:#555; font-size: 0.9rem">&mdash; {{ court|get_court_date_range }}</span>
+        <span class="structured-search__court-date-range">&mdash; {{ court|get_court_date_range }}</span>
       </span>
     </label>
   </div>
