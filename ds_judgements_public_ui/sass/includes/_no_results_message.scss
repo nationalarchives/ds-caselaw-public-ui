@@ -1,0 +1,19 @@
+.no-results-message {
+  background-color: $color__light-grey;
+  padding: $spacer__unit;
+  margin-bottom: $spacer__unit;
+  border-top: 4px solid $color__yellow;
+  border-bottom: 4px solid $color__yellow;
+  font-size: 0.9rem;
+  h2 {
+    position: initial;
+    height: initial;
+    width: initial;
+    padding-top: 0;
+  }
+
+  @media (min-width: $grid__breakpoint-large) {
+    padding-left: calc(5 * $spacer__unit);
+    padding-right: calc(5 * $spacer__unit);
+  }
+}

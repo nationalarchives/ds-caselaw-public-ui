@@ -13,35 +13,13 @@
           <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
           <div class="results__result-list-container">
             {% include "includes/results_list.html" %}
+            {% if not context.paginator.has_next_page %}
+              {% include "includes/no_results_message.html" with title="End of results" %}
+            {% endif %}
             {% include "includes/pagination.html" %}
           </div>
-          {% if not context.paginator.has_next_page %}
-            <h2>End of results</h2>
-            <p>
-              If you can't find the judgment you're looking for, please review the search filters
-              you have applied to increase the number of search results.
-            </p>
-            <p>
-              Please bear in mind that as an alpha service, we don't yet have all historical judgments available --
-              you can check the <a href="{% url 'what_to_expect' %}">availability list</a> or
-              <a href="mailto:{{ caselaw.email }}">contact us</a> if you believe there is a problem.
-            </p>
-          {% endif %}
         {% else %}
-          <h2>We found no results</h2>
-          <p>
-            If you're unable to find a particular judgment, you may wish to check
-            <a href="{% url 'about_this_service' %}#section-coverage">whether we cover that court and date</a>.
-          </p>
-          <p>
-            In particular, we do not have:
-            <ul>
-              <li>any court judgments before 2003</li>
-              <li>any Crown Court, County Court or Magistrates' Court judgments,</li>
-            </ul>
-            and only have a limited selection of tribunal decisions.
-          </p>
-          <p>We are working to add more historical judgments.</p>
+          {% include "includes/no_results_message.html" %}
         {% endif %}
       </div>
     </div>
