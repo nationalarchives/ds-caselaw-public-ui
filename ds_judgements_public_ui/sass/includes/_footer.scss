@@ -21,10 +21,11 @@
 .judgments-footer {
   background-color: $color__almost-black;
   color: $color__white;
-  padding: $spacer__unit;
 
-  &__container {
-    @include container;
+  font-size: 0.9rem;
+
+  @media (min-width: $grid__breakpoint-medium) {
+    font-size: 1rem;
   }
 
   &__links-container {
@@ -53,9 +54,13 @@
 
   &__base-paragraph {
     text-align: left;
-    margin: calc($spacer__unit * 2) 0 calc($spacer__unit * 3);
-    font-size: 0.9rem;
-    line-height: 1.75rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+
+    @media (min-width: $grid__breakpoint-medium) {
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+    }
 
     @media (min-width: $grid__breakpoint-extra-large) {
       text-align: center;
