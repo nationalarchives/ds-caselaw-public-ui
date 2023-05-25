@@ -35,7 +35,7 @@
     {% include "includes/phase_banner.html" %}
     <header class="page-header">
       {% block header %}
-        <div class="page-header__container">
+        <div class="page-header__flex-container container py-1">
           {% include "includes/breadcrumbs.html" with current=context.page_title title=context.page_title link=request.path %}
           {% include "includes/logo.html" %}
         </div>

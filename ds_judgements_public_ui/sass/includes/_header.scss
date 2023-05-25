@@ -1,10 +1,7 @@
 .page-header {
   background-color: $color__almost-black;
 
-  &__container {
-    @include container;
-    padding: calc($spacer__unit * 1.5) 0;
-
+  &__flex-container {
     display: flex;
     justify-content: space-between;
 
