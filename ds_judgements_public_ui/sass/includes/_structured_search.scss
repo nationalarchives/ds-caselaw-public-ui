@@ -244,7 +244,10 @@
   &__court-option-label {
     margin-left: calc(0.5 * $spacer__unit);
   }
-
+  &__court-date-range {
+    color: $color__dark-grey;
+    font-size: 0.9rem;
+  }
   &__date-input {
     @include text_field;
     margin-bottom: 0;
