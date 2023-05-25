@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 17:07+0000\n"
+"POT-Creation-Date: 2023-05-25 11:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,7 @@ msgid "footer.websites"
 msgstr "Websites"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
+#: ds_judgements_public_ui/templates/pages/about_this_service.html
 msgid "footer.legislation.link"
 msgstr "https://www.legislation.gov.uk/"
 
@@ -75,6 +76,10 @@ msgstr "About this service"
 #: ds_judgements_public_ui/templates/includes/footer.html
 msgid "howtousethisservice.titleshort"
 msgstr "How to use this service"
+
+#: ds_judgements_public_ui/templates/includes/footer.html
+msgid "publishingpolicy.titleshort"
+msgstr "Publishing policy"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
 #: ds_judgements_public_ui/templates/pages/about_this_service.html
