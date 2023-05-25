@@ -70,11 +70,11 @@
         <li>
           <span>{{ group.name }}</span>
           <ul>
-            {% for court in group.courts %}<li>{{ court.list_name }} {{ court|get_court_date_range }}</li>{% endfor %}
+            {% for court in group.courts %}<li>{{ court.list_name }} &mdash;{{ court|get_court_date_range }}</li>{% endfor %}
           </ul>
         </li>
       {% else %}
-        {% for court in group.courts %}<li>{{ court.list_name }} {{ court|get_court_date_range }}</li>{% endfor %}
+        {% for court in group.courts %}<li>{{ court.list_name }} &mdash;{{ court|get_court_date_range }}</li>{% endfor %}
       {% endif %}
     {% endfor %}
   </ul>
