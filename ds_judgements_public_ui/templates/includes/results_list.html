@@ -1,6 +1,6 @@
 {% load static i18n %}
 <h2>Results listing</h2>
-<ul class="judgment-listing__list">
+<ul class="judgment-listing__list {% if not context.paginator.has_next_page %}judgment-listing__list--last-page{% endif %}">
   {% for item in context.search_results %}
     <li>
       <span class="judgment-listing__judgment">
