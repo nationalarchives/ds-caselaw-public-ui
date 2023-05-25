@@ -2,11 +2,6 @@
   background-color: $color__yellow;
   color: $color__black;
 
-  &__container {
-    @include container;
-    padding: calc($spacer__unit / 2) 0;
-  }
-
   &__notice {
     padding: 0.3em 0;
 

@@ -1,17 +1,13 @@
 .pre-footer {
   background-color: $color__light-grey;
 
-  &__container {
-    @include container;
-    padding: calc($spacer__unit * 2.5) 0;
+  text-align: center;
 
-    text-align: center;
-
-    h2 {
-      padding-top: 0;
-      font-weight: normal;
-      font-size: 1.3rem;
-    }
+  h2 {
+    padding-top: 0;
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 1.3rem;
   }
 
   &__cta-button {
@@ -25,10 +21,11 @@
 .judgments-footer {
   background-color: $color__almost-black;
   color: $color__white;
-  padding: $spacer__unit;
 
-  &__container {
-    @include container;
+  font-size: 0.9rem;
+
+  @media (min-width: $grid__breakpoint-medium) {
+    font-size: 1rem;
   }
 
   &__links-container {
@@ -42,13 +39,24 @@
     @include sr-only;
   }
 
+  h3 {
+    @media (max-width: $grid__breakpoint-medium) {
+      padding-top: calc($spacer__unit / 2);
+      margin-bottom: calc($spacer__unit / 3);
+    }
+  }
+
   ul {
     padding: 0;
   }
 
   li {
     list-style: none;
-    margin-bottom: calc($spacer__unit / 2);
+    margin-bottom: calc($spacer__unit / 4);
+
+    @media (min-width: $grid__breakpoint-medium) {
+      margin-bottom: calc($spacer__unit / 2);
+    }
   }
 
   a {
@@ -57,9 +65,14 @@
 
   &__base-paragraph {
     text-align: left;
-    margin: calc($spacer__unit * 2) 0 calc($spacer__unit * 3);
-    font-size: 0.9rem;
-    line-height: 1.75rem;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    margin-top: $spacer__unit * 1.5;
+
+    @media (min-width: $grid__breakpoint-medium) {
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+    }
 
     @media (min-width: $grid__breakpoint-extra-large) {
       text-align: center;

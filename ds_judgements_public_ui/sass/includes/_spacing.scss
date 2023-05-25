@@ -1,0 +1,22 @@
+@for $i from 1 through 3 {
+  .my-#{$i} {
+    margin-top: $spacer__unit * $i;
+    margin-bottom: $spacer__unit * $i;
+  }
+  .mt-#{$i} {
+    margin-top: $spacer__unit * $i;
+  }
+  .mb-#{$i} {
+    margin-top: $spacer__unit * $i;
+  }
+  .py-#{$i} {
+    padding-top: $spacer__unit * $i;
+    padding-bottom: $spacer__unit * $i;
+  }
+  .pt-#{$i} {
+    padding-top: $spacer__unit * $i;
+  }
+  .pb-#{$i} {
+    padding-bottom: $spacer__unit * $i;
+  }
+}
