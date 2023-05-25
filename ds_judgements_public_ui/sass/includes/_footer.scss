@@ -39,13 +39,24 @@
     @include sr-only;
   }
 
+  h3 {
+    @media (max-width: $grid__breakpoint-medium) {
+      padding-top: calc($spacer__unit / 2);
+      margin-bottom: calc($spacer__unit / 3);
+    }
+  }
+
   ul {
     padding: 0;
   }
 
   li {
     list-style: none;
-    margin-bottom: calc($spacer__unit / 2);
+    margin-bottom: calc($spacer__unit / 4);
+
+    @media (min-width: $grid__breakpoint-medium) {
+      margin-bottom: calc($spacer__unit / 2);
+    }
   }
 
   a {
@@ -56,6 +67,7 @@
     text-align: left;
     font-size: 0.8rem;
     line-height: 1.2rem;
+    margin-top: $spacer__unit * 1.5;
 
     @media (min-width: $grid__breakpoint-medium) {
       font-size: 0.9rem;
