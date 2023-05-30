@@ -32,6 +32,18 @@ $font__roboto: "Roboto", sans-serif;
 $font__open-sans: "Open Sans", sans-serif;
 $font__serif: serif;
 
+$typography__base-text-size: 1rem;
+
+$typography__header__line-size-multiplier: 1.3;
+$typography__header__medium-breakpoint-multiplier: 0.8;
+
+$typography__header__margin-top-multiplier: 1.3;
+$typography__header__margin-bottom-multiplier: 0.8;
+
+$typography__header__h1-size: 2.5 * $typography__base-text-size;
+$typography__header__h2-size: $typography__header__h1-size * 0.8;
+$typography__header__h3-size: $typography__header__h1-size * 0.6;
+
 // Paths
 $fa_path: "/static/fontawesome-svgs/";
 
