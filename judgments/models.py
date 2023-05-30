@@ -142,6 +142,10 @@ class SearchMatch(xmlmodels.XmlModel):
 
 
 class CourtDates(models.Model):
+    class Meta:
+        verbose_name = "court date range"
+        verbose_name_plural = "court date ranges"
+
     param = models.CharField(max_length=64, primary_key=True)
     start_year = models.IntegerField(blank=False)
     end_year = models.IntegerField(blank=False)

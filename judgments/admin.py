@@ -1,3 +1,8 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from judgments.models import CourtDates
+
+
+@admin.register(CourtDates)
+class CourtDatesAdmin(admin.ModelAdmin):
+    pass
