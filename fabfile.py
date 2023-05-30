@@ -69,7 +69,7 @@ def start(c, container_name=None):
 @task
 def run(c):
     start(c, "django")
-    django_exec("pip install -r requirements/local.txt -U")
+    django_exec("poetry install")
     django_exec("DJANGO_SETTINGS_MODULE= django-admin compilemessages")
     django_exec("python manage.py migrate")
     django_exec("rm -rf /app/staticfiles")

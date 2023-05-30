@@ -3,3 +3,69 @@
 ignore="H021,H023,H030,H031"
 profile="django"
 indent=2
+
+[tool.poetry]
+name = "ds-caselaw-public-ui"
+version = "0.1.0"
+description = ""
+authors = []
+readme = "README.md"
+packages = [{include = "ds_caselaw_public_ui"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytz = "2023.3"
+pillow = "9.5.0"
+argon2-cffi = "21.3.0"
+whitenoise = "6.4.0"
+django = "3.2.19"
+django-environ = "0.10.0"
+django-flags = "5.0.12"
+django-model-utils = "4.3.1"
+django-xml = ">=3.0.0,<3.1.0"
+django-weasyprint = "2.2.0"
+requests = ">=2.31.0,<2.32.0"
+requests-toolbelt = ">=1.0.0,<1.1.0"
+xmltodict = ">=0.13.0,<0.14.0"
+lxml = ">=4.9.2,<4.10.0"
+wsgi-basic-auth = ">=1.1.0,<1.2.0"
+ds-caselaw-marklogic-api-client = ">=7.0.0,<7.1.0"
+ds-caselaw-utils = ">=1.0.1,<1.1.0"
+weasyprint = ">=58.0,<59.0"
+mypy-boto3-s3 = "1.26.127"
+mypy-boto3-sns = "1.26.69"
+rollbar = "^0.16.3"
+
+[tool.poetry.group.dev.dependencies]
+werkzeug = {version = "2.3.4", extras = ["watchdog"]}
+ipdb = "0.13.13"
+mypy = "1.3.0"
+django-stubs = "4.2.0"
+pytest = "7.3.1"
+pytest-sugar = "0.9.7"
+pytest-socket = "0.6.0"
+flake8 = "6.0.0"
+flake8-isort = "6.0.0"
+coverage = "7.2.6"
+black = "23.3.0"
+pylint-django = "2.5.3"
+pre-commit = "3.3.2"
+factory-boy = "3.2.1"
+django-debug-toolbar = "4.1.0"
+django-extensions = "3.2.1"
+django-coverage-plugin = "3.0.0"
+pytest-django = "4.5.2"
+pytest-cov = "4.1.0"
+pytest-timeout = "2.1.0"
+types-python-dateutil = "2.8.19.13"
+types-requests = "2.31.0.0"
+
+[tool.poetry.group.prod]
+optional = true
+
+[tool.poetry.group.prod.dependencies]
+gunicorn = "20.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
