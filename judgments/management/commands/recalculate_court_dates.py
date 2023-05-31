@@ -19,7 +19,6 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        CourtDates.objects.all().delete()
         for court in courts.get_all():
             self.stdout.write(self.style.NOTICE(f"{court.name}"))
 
