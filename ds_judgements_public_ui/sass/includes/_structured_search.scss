@@ -173,7 +173,6 @@
     color: #d4351c;
     font-weight: 700;
     font-size: 0.8rem;
-    #display: none;
   }
 
   &__to-date-error-message {
@@ -182,7 +181,6 @@
     color: #d4351c;
     font-weight: 700;
     font-size: 0.8rem;
-    #display: none;
   }
 
   input:invalid {
@@ -307,6 +305,18 @@
     border: none;
     padding: 0;
     margin: 0;
+  }
+
+  &__multi-fields-panel {
+    fieldset.set-1 {
+      padding-left: 20px;
+      border-left: 4px solid #d4351c;
+    }
+
+    fieldset.set-2 {
+      padding-left: 20px;
+      border-left: 4px solid #d4351c;
+    }
   }
 
   &__update-filters-button {

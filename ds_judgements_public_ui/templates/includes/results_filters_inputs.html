@@ -10,7 +10,7 @@
 </div>
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
-    <fieldset>
+    {% if context.errors %}<fieldset class="set-1">{% endif %}
       <legend>
         <span class="structured-search__limit-to-label" id="from_date_label">From date</span>
       </legend>
@@ -62,7 +62,7 @@
     </fieldset>
   </div>
   <div class="structured-search__limit-to-container">
-    <fieldset>
+    {% if context.errors %}<fieldset class="set-2">{% endif %}
       <legend>
         <span class="structured-search__limit-to-label"
               name="to_date"
