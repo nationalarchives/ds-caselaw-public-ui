@@ -1,10 +1,14 @@
 import datetime
 
+from caselawclient.Client import api_client
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.search_parameters import SearchParameters
 from django.core.management.base import BaseCommand
 from ds_caselaw_utils import courts
 
-from judgments.models import CourtDates, SearchResult
-from judgments.utils import perform_advanced_search
+from judgments.models import CourtDates
 
 
 class Command(BaseCommand):
@@ -41,47 +45,47 @@ class Command(BaseCommand):
             )
 
     def get_start_year(self, court):
+        fallback_start_year = court.start_year
         start_year = self._get_year_of_first_document_in_order(
-            court.canonical_param, "date", "oldest", court.start_year
+            court.canonical_param, "date", "oldest", fallback_start_year
         )
 
         if start_year < 2000:
             self.stdout.write(
                 self.style.WARNING(
                     f"Calculated start year of {start_year} seems improbable, \
-falling back to config value of {court.start_year}"
+falling back to config value of {fallback_start_year}"
                 )
             )
-            start_year = court.start_year
+            start_year = fallback_start_year
 
         return start_year
 
     def get_end_year(self, court):
+        fallback_end_year = court.end_year
         end_year = self._get_year_of_first_document_in_order(
-            court.canonical_param, "-date", "newest", court.end_year
+            court.canonical_param, "-date", "newest", fallback_end_year
         )
 
         if end_year > datetime.date.today().year:
             self.stdout.write(
                 self.style.WARNING(
                     f"Calculated end year of {end_year} is impossible, \
-falling back to config value of {court.end_year}"
+falling back to config value of {fallback_end_year}"
                 )
             )
-            end_year = court.end_year
+            end_year = fallback_end_year
 
         return end_year
 
     def _get_year_of_first_document_in_order(
-        self, canonical_param, order, document_reference, fallback
+        self, canonical_court_param, order, document_reference, fallback
     ):
-        search_results = perform_advanced_search(
-            court=canonical_param,
-            order=order,
-            per_page=1,
+        search_response = search_judgments_and_parse_response(
+            api_client, SearchParameters(court=canonical_court_param, order=order)
         )
 
-        first_document = SearchResult.create_from_node(search_results.results[0])
+        first_document = search_response.results[0]
 
         if first_document.date:
             year = first_document.date.year

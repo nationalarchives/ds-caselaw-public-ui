@@ -1,26 +1,33 @@
 from unittest.mock import patch
 
+from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
-from test_search import fake_search_result, fake_search_results
+
+from judgments.tests.fixtures import FakeSearchResponse
 
 
 class TestAtomFeed(TestCase):
-    @patch("judgments.feeds.perform_advanced_search")
-    @patch("judgments.models.SearchResult.create_from_node")
-    def test_feed_exists(self, fake_result, fake_advanced_search):
-        fake_advanced_search.return_value = fake_search_results()
-        fake_result.return_value = fake_search_result()
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_feed_exists(
+        self, mock_api_client, mock_search_judgments_and_parse_response
+    ):
+        search_response = FakeSearchResponse()
+        mock_search_judgments_and_parse_response.return_value = search_response
 
         response = self.client.get("/atom.xml")
         decoded_response = response.content.decode("utf-8")
 
-        # that perform_advanced_search is called with the appropriate parameters
-        fake_advanced_search.assert_called_with(
-            court=None,
-            date_from=None,
-            date_to=None,
-            order="-date",
-            page=1,
+        # that search_judgments_and_parse_response is called with the appropriate parameters
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                court=None,
+                date_from=None,
+                date_to=None,
+                order="-date",
+                page=1,
+            ),
         )
 
         # that there is a successful response
@@ -39,18 +46,16 @@ class TestAtomFeed(TestCase):
         # and it contains actual content - neither neutral citation or court appear in the feed to test.
         self.assertIn("A SearchResult name!", decoded_response)
 
-    @patch("judgments.feeds.perform_advanced_search")
-    def test_bad_page_404(self, fake_advanced_search):
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    def test_bad_page_404(self, mock_search_judgments_and_parse_response):
         # "?page=" 404s, not 500
-        fake_advanced_search.return_value = fake_search_results()
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/atom.xml?page=")
         self.assertEqual(response.status_code, 404)
 
-    @patch("judgments.feeds.perform_advanced_search")
-    @patch("judgments.models.SearchResult.create_from_node")
-    def test_feed_with_empty_date(self, fake_result, fake_advanced_search):
-        fake_advanced_search.return_value = fake_search_results()
-        fake_result.return_value = fake_search_result(date="")
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    def test_feed_with_empty_date(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
         response = self.client.get("/atom.xml")
         decoded_response = response.content.decode("utf-8")

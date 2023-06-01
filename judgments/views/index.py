@@ -1,19 +1,20 @@
-from caselawclient.Client import MarklogicResourceNotFoundError
+from caselawclient.Client import MarklogicResourceNotFoundError, api_client
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
 from django.template.response import TemplateResponse
 from ds_caselaw_utils import courts as all_courts
-
-from judgments.models import SearchResult
-from judgments.utils import perform_advanced_search
 
 
 def index(request):
     context = {}
     try:
-        model = perform_advanced_search(order="-date")
-        search_results = [
-            SearchResult.create_from_node(result) for result in model.results
-        ]
+        search_response = search_judgments_and_parse_response(
+            api_client, SearchParameters(order="-date")
+        )
+        search_results = search_response.results
         context["recent_judgments"] = search_results
 
     except MarklogicResourceNotFoundError:
