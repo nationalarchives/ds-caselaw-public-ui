@@ -15,6 +15,15 @@
 }
 
 .anchor-links {
+  border: 2px solid $color__yellow;
+  padding: 0 calc($spacer__unit * 4);
+
+  &__header {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    line-height: $spacer__unit;
+  }
+
   &__list {
     padding: 0;
     list-style: none;
