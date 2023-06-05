@@ -2,15 +2,49 @@
 {% load i18n %}
 {% block static_content %}
   <h1>Terms of use</h1>
+  <p>
+    <small>Last updated on
+      <time datetime="05-06-2023">5th June 2023</time>
+    </small>
+  </p>
+  <div class="anchor-links">
+    <h2 class="anchor-links__header">Information on this page</h2>
+    <ul class="anchor-links__list">
+      <li class="anchor-links__list-option">
+        <a href="#section-terms">What is in these terms</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-contact-us">Who we are and how to contact us</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-accept-terms">By using the Find Case Law service you accept these terms</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-reasonable-use">Fair and reasonable use</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-crawling">Crawling and indexing</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-coverage">Coverage</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-formats">Formats</a>
+      </li>
+      <li class="anchor-links__list-option">
+        <a href="#section-licensing">Licensing</a>
+      </li>
+    </ul>
+  </div>
   <section>
-    <h2>What is in these terms</h2>
+    <h2 id="section-terms">What is in these terms</h2>
     <p>
       These terms tell you the rules for using the Find Case Law service at
       <a href="{% translate "caselaw.url" %}">{% translate "caselaw.url" %}</a>.
     </p>
   </section>
   <section>
-    <h2>Who we are and how to contact us</h2>
+    <h2 id="section-contact-us">Who we are and how to contact us</h2>
     <p>The Find Case Law service is provided by The National Archives.</p>
     <p>
       You can contact us by email at <a href='mailto:{% translate "caselaw.email" %}'>{% translate "caselaw.email" %}</a>.
@@ -22,14 +56,14 @@
     </p>
   </section>
   <section>
-    <h2>By using the Find Case Law service you accept these terms</h2>
+    <h2 id="section-accept-terms">By using the Find Case Law service you accept these terms</h2>
     <p>
       By using the Find Case Law service, you confirm that you accept these terms of use and that you agree to
       comply with them.
     </p>
   </section>
   <section>
-    <h2>Fair and reasonable use</h2>
+    <h2 id="section-reasonable-use">Fair and reasonable use</h2>
     <p>
       You must use the service responsibly by not making too many requests. In order to maintain the integrity
       of the service for everyone, we may block or disable use of the service from certain IP addresses, for
@@ -37,7 +71,7 @@
     </p>
   </section>
   <section>
-    <h2>Crawling and indexing</h2>
+    <h2 id="section-crawling">Crawling and indexing</h2>
     <p>You may access the Find Case Law service through the website, or access the data through the API.</p>
     <p>
       We do not permit external indexing of documents by search engine robots or spiders.
@@ -52,7 +86,7 @@
     </p>
   </section>
   <section>
-    <h2>Coverage</h2>
+    <h2 id="section-coverage">Coverage</h2>
     <p>
       You should be aware that the Find Case Law service is incomplete. It is not a complete record of Court
       Judgments and Tribunal Decisions for the courts or tribunals.
@@ -73,7 +107,7 @@
     </p>
   </section>
   <section>
-    <h2>Formats</h2>
+    <h2 id="section-formats">Formats</h2>
     <p>
       The Find Case Law service has been designed to provide users with access to Court Judgments and Tribunal
       Decisions in a variety of different formats. The available formats include web pages (HTML) with
@@ -88,7 +122,7 @@
     </p>
   </section>
   <section>
-    <h2>Licensing</h2>
+    <h2 id="section-licensing">Licensing</h2>
     <p>
       You may use and re-use the contents of the Find Case Law service under the terms of the
       <a href='{% url "open_justice_licence" %}'>Open Justice Licence</a>.
