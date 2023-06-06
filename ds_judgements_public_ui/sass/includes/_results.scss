@@ -44,7 +44,8 @@
   }
 
   mark {
-    background-color: $color__yellow;
+    border-bottom: 3px solid $color__yellow;
+    background-color: transparent;
     font-weight: bold;
   }
 
