@@ -178,4 +178,7 @@ stop_words = [
     "won't",
     "wouldn",
     "wouldn't",
+    "v",
+    "vs",
+    "&",
 ]
