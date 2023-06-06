@@ -35,6 +35,7 @@
   }
 
   &__matches {
+    line-height: 1.7em;
     p {
       display: inline;
     }
@@ -93,5 +94,13 @@
     @media (max-width: $grid__breakpoint-medium) {
       margin-top: calc($spacer__unit / 2);
     }
+  }
+
+  &__exact-match-label {
+    background-color: $color__yellow;
+    display: inline-block;
+    padding: calc(0.25 * $spacer__unit) calc(0.5 * $spacer__unit);
+    font-size: 0.8rem;
+    margin-bottom: calc(0.5 * $spacer__unit);
   }
 }

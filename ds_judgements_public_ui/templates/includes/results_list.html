@@ -1,8 +1,17 @@
-{% load static i18n %}
+{% load static i18n search_results_filters %}
 <h2>Results listing</h2>
 <ul class="judgment-listing__list {% if not context.paginator.has_next_page %}judgment-listing__list--last-page{% endif %}">
   {% for item in context.search_results %}
     <li>
+      {% if item|is_exact_match:context.query %}
+        <span class="judgment-listing__exact-match-label">
+          {% if item|is_exact_title_match:context.query %}
+            {% translate "results.exact_title_match" %}
+          {% elif item|is_exact_ncn_match:context.query %}
+            {% translate "results.exact_ncn_match" %}
+          {% endif %}
+        </span>
+      {% endif %}
       <span class="judgment-listing__judgment">
         <span>
           <span class="judgment-listing__title">
@@ -15,7 +24,7 @@
           <time class="judgment-listing__date" datetime="{{ item.date }}">{{ item.date|date }}</time>
         </span>
       </span>
-      {% if item.matches %}
+      {% if item|show_matches:context.query %}
         <span class="judgment-listing__result-term-matching">Matching text sample:</span>
         <span class="judgment-listing__matches">
           {% autoescape off %}
