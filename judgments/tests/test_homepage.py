@@ -1,18 +1,20 @@
 from unittest.mock import patch
 
+from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 
-from judgments.tests.test_search import fake_search_result, fake_search_results
+from judgments.tests.fixtures import FakeSearchResponse
 
 
 class TestHomepage(TestCase):
-    @patch("judgments.views.index.perform_advanced_search")
-    @patch("judgments.models.SearchResult.create_from_node")
-    def test_homepage(self, fake_result, fake_advanced_search):
-        fake_advanced_search.return_value = fake_search_results()
-        fake_result.return_value = fake_search_result()
+    @patch("judgments.views.index.api_client")
+    @patch("judgments.views.index.search_judgments_and_parse_response")
+    def test_homepage(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/")
-        fake_advanced_search.assert_called_with(order="-date")
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client, SearchParameters(order="-date")
+        )
         self.assertContains(
             response,
             "A SearchResult name!",

@@ -1,13 +1,18 @@
 import datetime
 from typing import List, Optional
 
+from caselawclient.Client import api_client
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.responses.search_result import SearchResult
+from caselawclient.search_parameters import SearchParameters
 from django.contrib.syndication.views import Feed
 from django.http import Http404
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
 
-from .models import SearchResult
-from .utils import paginator, perform_advanced_search
+from .utils import paginator
 
 
 class JudgmentAtomFeed(Atom1Feed):
@@ -65,16 +70,18 @@ class LatestJudgmentsFeed(Feed):
     author_name = "The National Archives"
 
     def get_object(self, request, court=None, subdivision=None, year=None):
-        court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
-        slugs = filter(lambda x: x is not None, [court, subdivision, year])
-        slug = "/".join([str(s) for s in slugs])
         try:
             page = int(request.GET.get("page", 1))
         except ValueError:
             # e.g. the user provided ?page= or ?page=jam
             raise Http404
+
+        court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
+        slugs = filter(lambda x: x is not None, [court, subdivision, year])
+        slug = "/".join([str(s) for s in slugs])
         order = request.GET.get("order", "-date")
-        model = perform_advanced_search(
+
+        search_parameters = SearchParameters(
             court=court_query if court_query else None,
             date_from=datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
             if year
@@ -83,9 +90,18 @@ class LatestJudgmentsFeed(Feed):
             if year
             else None,
             order=order,
-            page=page,
+            page=int(page),
         )
-        return {"slug": slug, "model": model, "page": page, "order": order}
+        search_response = search_judgments_and_parse_response(
+            api_client, search_parameters
+        )
+
+        return {
+            "slug": slug,
+            "search_response": search_response,
+            "page": page,
+            "order": order,
+        }
 
     def title(self, obj):
         if not obj["slug"]:
@@ -98,9 +114,7 @@ class LatestJudgmentsFeed(Feed):
         return f"/{obj['slug']}/atom.xml/?page={page}&order={obj.get('order')}"
 
     def items(self, obj) -> List[SearchResult]:
-        return [
-            SearchResult.create_from_node(result) for result in obj["model"].results
-        ]
+        return obj["search_response"].results
 
     def item_description(self, item) -> str:
         return ""
@@ -112,7 +126,7 @@ class LatestJudgmentsFeed(Feed):
         return reverse("detail", kwargs={"judgment_uri": item.uri})
 
     def item_author_name(self, item) -> Optional[str]:
-        return item.author
+        return item.metadata.author
 
     def item_extra_kwargs(self, item):
         extra_kwargs = super().item_extra_kwargs(item)
@@ -129,6 +143,6 @@ class LatestJudgmentsFeed(Feed):
 
     def feed_extra_kwargs(self, obj):
         extra_kwargs = super().item_extra_kwargs(obj)
-        extra_kwargs["total"] = int(obj["model"].total)
+        extra_kwargs["total"] = int(obj["search_response"].total)
         extra_kwargs["page"] = obj["page"]
         return extra_kwargs

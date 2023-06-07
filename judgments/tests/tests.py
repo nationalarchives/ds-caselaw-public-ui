@@ -4,10 +4,10 @@ from unittest.mock import patch
 
 from django.test import TestCase
 from factories import JudgmentFactory
-from test_search import fake_search_result, fake_search_results
 
 from judgments import converters, utils
 from judgments.models import CourtDates
+from judgments.tests.fixtures import FakeSearchResponse
 from judgments.utils import as_integer, display_back_link, paginator
 from judgments.views.detail import PdfDetailView
 
@@ -67,11 +67,9 @@ class TestPaginator(TestCase):
         self.assertEqual(paginator(1, 5), expected_result)
 
     @skip("This test works locally but fails on CI, to fix")
-    @patch("judgments.views.advanced_search.perform_advanced_search")
-    @patch("judgments.models.SearchResult.create_from_node")
-    def test_pagination_links(self, fake_result, fake_advanced_search):
-        fake_advanced_search.return_value = fake_search_results()
-        fake_result.return_value = fake_search_result()
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_pagination_links(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get(
             "/judgments/advanced_search?court=ukut-iac&order=&page=3"
         )
@@ -126,23 +124,19 @@ class TestConverters(TestCase):
 
 
 class TestRobotsDirectives(TestCase):
-    @patch("judgments.views.index.perform_advanced_search")
-    @patch("judgments.models.SearchResult.create_from_node")
-    def test_homepage(self, fake_result, fake_advanced_search):
+    @patch("judgments.views.index.search_judgments_and_parse_response")
+    def test_homepage(self, mock_search_judgments_and_parse_response):
         # The homepage should not have a robots meta tag with nofollow,noindex
-        fake_advanced_search.return_value = fake_search_results()
-        fake_result.return_value = fake_search_result()
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/")
         self.assertNotContains(
             response, '<meta name="robots" content="noindex,nofollow" />'
         )
         self.assertNotEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.results.perform_advanced_search")
-    @patch("judgments.models.SearchResult.create_from_node")
-    def test_judgment_search_results(self, fake_result, fake_advanced_search):
-        fake_advanced_search.return_value = fake_search_results()
-        fake_result.return_value = fake_search_result()
+    @patch("judgments.views.results.search_judgments_and_parse_response")
+    def test_judgment_search_results(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/judgments/results?query=waltham+forest")
@@ -173,11 +167,9 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.results.perform_advanced_search")
-    @patch("judgments.models.SearchResult.create_from_node")
-    def test_static_page(self, fake_result, fake_advanced_search):
-        fake_advanced_search.return_value = fake_search_results()
-        fake_result.return_value = fake_search_result()
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    def test_static_page(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/about-this-service")

@@ -1,19 +1,21 @@
 import urllib
 
-from caselawclient.Client import RESULTS_PER_PAGE, MarklogicResourceNotFoundError
+from caselawclient.Client import MarklogicResourceNotFoundError, api_client
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
 
-from judgments.models import SearchResult
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     as_integer,
     has_filters,
     paginator,
     parse_date_parameter,
-    perform_advanced_search,
     preprocess_query,
 )
 
@@ -35,7 +37,7 @@ def advanced_search(request):
 
     query_params = {
         "query": params.get("query", ""),
-        "court": params.getlist("court"),
+        "court": ",".join(params.getlist("court")),
         "judge": params.get("judge"),
         "party": params.get("party"),
         "neutral_citation": params.get("neutral_citation"),
@@ -66,25 +68,27 @@ def advanced_search(request):
 
     try:
         query_without_stop_words = preprocess_query(query_params["query"])
-        model = perform_advanced_search(
+        search_parameters = SearchParameters(
             query=query_without_stop_words,
             court=query_params["court"],
             judge=query_params["judge"],
             party=query_params["party"],
             neutral_citation=query_params["neutral_citation"],
             specific_keyword=query_params["specific_keyword"],
-            page=page,
+            page=int(page),
             order=order,
             date_from=query_params["from"],
             date_to=query_params["to"],
-            per_page=per_page,
+            page_size=int(per_page),
         )
+        search_response = search_judgments_and_parse_response(
+            api_client, search_parameters
+        )
+
         context["query"] = query_params["query"]
-        context["search_results"] = [
-            SearchResult.create_from_node(result) for result in model.results
-        ]
-        context["total"] = model.total
-        context["paginator"] = paginator(page, model.total, per_page)
+        context["search_results"] = search_response.results
+        context["total"] = search_response.total
+        context["paginator"] = paginator(page, search_response.total, per_page)
         changed_queries = {
             key: value for key, value in query_params.items() if value is not None
         }

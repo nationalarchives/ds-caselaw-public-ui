@@ -5,13 +5,12 @@ from datetime import datetime
 from urllib.parse import urlparse
 
 import environ
-from caselawclient.Client import RESULTS_PER_PAGE, MarklogicApiClient, api_client
+from caselawclient.Client import MarklogicApiClient
 from caselawclient.models.judgments import Judgment
+from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
-from requests_toolbelt.multipart import decoder
 
 from .fixtures.stop_words import stop_words
-from .models import SearchResults
 
 MAX_RESULTS_PER_PAGE = 50
 
@@ -22,36 +21,6 @@ def format_date(date):
 
     time = datetime.strptime(date, "%Y-%m-%d")
     return time.strftime("%d-%m-%Y")
-
-
-def perform_advanced_search(
-    query=None,
-    court=None,
-    judge=None,
-    party=None,
-    order=None,
-    neutral_citation=None,
-    specific_keyword=None,
-    date_from=None,
-    date_to=None,
-    page=1,
-    per_page=RESULTS_PER_PAGE,
-):
-    response = api_client.advanced_search(
-        q=query,
-        court=",".join(court) if isinstance(court, list) else court,
-        judge=judge,
-        party=party,
-        neutral_citation=neutral_citation,
-        specific_keyword=specific_keyword,
-        page=page,
-        order=order,
-        date_from=date_from,
-        date_to=date_to,
-        page_size=per_page,
-    )
-    multipart_data = decoder.MultipartDecoder.from_response(response)
-    return SearchResults.create_from_string(multipart_data.parts[0].text)
 
 
 def preprocess_query(query: str) -> str:
