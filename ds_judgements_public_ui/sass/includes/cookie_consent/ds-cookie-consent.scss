@@ -38,7 +38,7 @@
     box-sizing: border-box;
     border-radius: 5px;
     .cookie_head {
-      font-family: "Roboto Mono";
+      font-family: "Serif";
       font-style: normal;
       font-weight: normal;
       font-size: 20.8px;
@@ -48,7 +48,7 @@
       margin-bottom: 0;
     }
     .cookie-p {
-      font-family: "Open Sans";
+      font-family: "Serif";
       font-size: 16px;
       line-height: inherit;
       color: #ffffff;
@@ -85,7 +85,7 @@
       text-decoration: none;
       margin-right: 20px;
       border: 2px solid #fff;
-      font-family: "Roboto Mono", monospace;
+      font-family: "Serif";
       padding: 0.5em 0.9em;
       display: inline-block;
       min-width: 24px;
@@ -107,6 +107,7 @@
     }
     #btn_preferences {
       background: none;
+      color: #fff;
       border: none;
       border: 2px solid transparent;
       text-decoration: underline;
