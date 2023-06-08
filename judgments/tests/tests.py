@@ -149,6 +149,20 @@ class TestRobotsDirectives(TestCase):
         get_pdf.return_value.content = b"CAT"
         get_pdf.return_value.status_code = 200
         response = self.client.get("/eat/2023/1/data.pdf")
+        get_pdf.assert_called_with(
+            "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
+        )
+        self.assertContains(response, "CAT")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+
+    @patch("judgments.views.detail.requests.get")
+    def test_aws_pdf_press_summary(self, get_pdf):
+        get_pdf.return_value.content = b"CAT"
+        get_pdf.return_value.status_code = 200
+        response = self.client.get("/eat/2023/1/press-summary/1/data.pdf")
+        get_pdf.assert_called_with(
+            "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
+        )
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
@@ -156,6 +170,15 @@ class TestRobotsDirectives(TestCase):
     def test_xml(self, mock_judgment):
         mock_judgment.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
+        mock_judgment.assert_called_with("eat/2023/1")
+        self.assertContains(response, "This is a judgment in XML.")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_xml_press_summary(self, mock_judgment):
+        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+        response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
+        mock_judgment.assert_called_with("eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
@@ -164,6 +187,16 @@ class TestRobotsDirectives(TestCase):
     def test_weasy_pdf(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/generated.pdf")
+        mock_context.assert_called_with(judgment_uri="eat/2023/1")
+        self.assertContains(response, b"%PDF-1.7")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+
+    @patch.object(PdfDetailView, "pdf_stylesheets", [])
+    @patch("judgments.views.detail.PdfDetailView.get_context_data")
+    def test_weasy_pdf_press_summary(self, mock_context):
+        mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
+        response = self.client.get("/eat/2023/1/press-summary/1/generated.pdf")
+        mock_context.assert_called_with(judgment_uri="eat/2023/1/press-summary/1")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
