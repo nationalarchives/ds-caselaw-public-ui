@@ -37,7 +37,7 @@ def advanced_search(request):
 
     query_params = {
         "query": params.get("query", ""),
-        "court": ",".join(params.getlist("court")),
+        "court": params.getlist("court"),
         "judge": params.get("judge"),
         "party": params.get("party"),
         "neutral_citation": params.get("neutral_citation"),
@@ -70,7 +70,7 @@ def advanced_search(request):
         query_without_stop_words = preprocess_query(query_params["query"])
         search_parameters = SearchParameters(
             query=query_without_stop_words,
-            court=query_params["court"],
+            court=",".join(query_params["court"]),
             judge=query_params["judge"],
             party=query_params["party"],
             neutral_citation=query_params["neutral_citation"],
