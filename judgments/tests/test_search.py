@@ -98,7 +98,70 @@ class TestSearchResults(TestCase):
         mock_search_judgments_and_parse_response,
         fake_preprocess_query,
     ):
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         fake_preprocess_query.return_value = "normalised query"
         self.client.get("/judgments/advanced_search?query=waltham+forest")
         fake_preprocess_query.assert_called()
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_judgment_advanced_search_court_filters(
+        self,
+        mock_search_judgments_and_parse_response,
+        mock_api_client,
+    ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/advanced_search?court=ewhc/ch&court=ewhc/ipec"
+        THEN the response should contain the expected applied filters HTML
+        AND the `search_judgments_and_parse_response` function should be called with the correct court string.
+
+        The expected applied filters HTML:
+        - Includes a list with class "results-search-component__removable-options"
+        - Contains two list items (li) with links (a) representing the applied filters:
+        - The first link represents the "Chancery Division of the High Court" filter
+        - The second link represents the "Intellectual Property Enterprise Court" filter
+        """
+        response = self.client.get(
+            "/judgments/advanced_search?court=ewhc/ch&court=ewhc/ipec"
+        )
+
+        expected_applied_filters_html = """
+        <ul class="results-search-component__removable-options js-results-facets-applied-filters">
+            <li>
+              <a role="button"
+                 tabindex="0"
+                 draggable="false"
+                 class="results-search-component__removable-options-link"
+                 href="/judgments/advanced_search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;to=&amp;per_page=&amp;page="
+                 title="Chancery Division of the High Court">
+                <span class="results-search-component__removable-options-value">
+                  <span class="results-search-component__removable-options-value-text">
+                    Chancery Division of the High Court
+                  </span>
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a role="button"
+                 tabindex="0"
+                 draggable="false"
+                 class="results-search-component__removable-options-link"
+                 href="/judgments/advanced_search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;to=&amp;per_page=&amp;page="
+                 title="Intellectual Property Enterprise Court">
+                <span class="results-search-component__removable-options-value">
+                  <span class="results-search-component__removable-options-value-text">
+                    Intellectual Property Enterprise Court
+                  </span>
+                </span>
+              </a>
+            </li>
+        </ul>
+"""
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(query="", court="ewhc/ch,ewhc/ipec", order="-date"),
+        )
+        assert expected_applied_filters_html.replace(" ", "").replace(
+            "\n", ""
+        ) in response.content.decode().replace(" ", "").replace("\n", "")
