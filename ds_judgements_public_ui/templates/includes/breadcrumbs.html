@@ -11,7 +11,13 @@
           <a href="{% url 'home' %}">{% translate "common.findcaselaw" %}</a>
         {% endif %}
       </li>
-      {% if title and link %}<li>{{ title }}</li>{% endif %}
-    </ol>
-  </nav>
-</div>
+      {% if search_context %}
+        <li>
+          <a href="{{ search_context.search_url }}">{% translate "breadcrumbs.search" %}
+            {% if search_context.query %}for "{{ search_context.query }}"{% endif %}</a>
+          </li>
+        {% endif %}
+        {% if title and link %}<li>{{ title }}</li>{% endif %}
+      </ol>
+    </nav>
+  </div>

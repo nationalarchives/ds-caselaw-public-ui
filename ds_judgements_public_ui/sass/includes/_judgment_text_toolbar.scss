@@ -41,32 +41,6 @@
     }
   }
 
-  &__return-link {
-    @include container;
-
-    a {
-      background: transparent url($fa_chevron_left_aqua_blue) 1.5rem 0.65rem
-        no-repeat;
-      background-size: 0.75rem;
-      color: $color__aqua-blue;
-      padding: calc($spacer__unit / 2) calc($spacer__unit * 3);
-      margin: 0;
-      display: inline-block;
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: none;
-      }
-
-      @media (min-width: $grid__breakpoint-small) {
-        background: transparent url($fa_chevron_left_aqua_blue) 0rem 0.65rem
-          no-repeat;
-        padding: calc($spacer__unit / 2) calc($spacer__unit * 1.2);
-        background-size: 0.75rem;
-      }
-    }
-  }
-
   &__title {
     margin: 1rem 0;
     color: $color__almost-black;
