@@ -58,5 +58,5 @@ services:
 
 networks:
   default:
-    external:
-      name: caselaw
+    name: caselaw
+    external: true
