@@ -6,6 +6,14 @@ from judgments.utils import parse_date_parameter
 
 
 class TestDateParsing(TestCase):
+    def test_when_nothing_is_provided(self):
+        """When the given parameter is not provided, either as a complete or
+        separate value, don't return anything, and don't raise an error
+        """
+        params = {"query": "Some other query param"}
+        parsed = parse_date_parameter(params, "date")
+        self.assertIsNone(parsed)
+
     def test_when_a_date_is_provided(self):
         """
         When a parameter is provided with the given name, return that value itself.

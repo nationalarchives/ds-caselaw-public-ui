@@ -1,4 +1,10 @@
 .structured-search {
+  legend {
+    /* https://stackoverflow.com/questions/3973456/default-css-values-for-a-fieldset-legend */
+    float: left;
+    width: 100%;
+  }
+
   &__main-search {
     background-color: $color__light-grey;
     padding: calc($spacer__unit * 1) 0 calc($spacer__unit * 1.5);
@@ -167,6 +173,28 @@
     font-size: 0.8rem;
   }
 
+  &__from-date-error-message {
+    margin: 0;
+    color: #d4351c;
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  &__to-date-error-message {
+    margin: 0;
+    color: #d4351c;
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  input:invalid {
+    border-color: #d4351c;
+  }
+
+  input:focus:invalid {
+    outline: none;
+  }
+
   &__select {
     @include select;
     width: 100%;
@@ -255,6 +283,14 @@
     box-sizing: border-box;
   }
 
+  &__date-input--error {
+    @include text_field;
+    margin-bottom: 0;
+    width: 100% !important;
+    box-sizing: border-box;
+    border-color: #d4351c;
+  }
+
   &__date-input-group {
     display: flex;
     gap: calc(0.5 * $spacer__unit);
@@ -273,6 +309,16 @@
     border: none;
     padding: 0;
     margin: 0;
+  }
+
+  &__multi-fields-panel {
+    fieldset.with-errors {
+      padding-left: calc($spacer__unit * 1.5);
+      border-left: 4px solid #d4351c;
+      .structured-search__help-text {
+        margin-bottom: calc(0.5 * $spacer__unit);
+      }
+    }
   }
 
   &__update-filters-button {
@@ -344,5 +390,11 @@
 
   input[type="checkbox"] {
     @include checkbox;
+  }
+
+  .page-notification--failure {
+    margin: 0 auto;
+    box-sizing: border-box;
+    max-width: 65rem;
   }
 }
