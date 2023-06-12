@@ -8,7 +8,7 @@ from factories import JudgmentFactory
 from judgments import converters, utils
 from judgments.models import CourtDates
 from judgments.tests.fixtures import FakeSearchResponse
-from judgments.utils import as_integer, display_back_link, paginator
+from judgments.utils import as_integer, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView
 
 
@@ -213,28 +213,47 @@ class TestRobotsDirectives(TestCase):
 
 
 class TestBackLink(TestCase):
-    # sometimes we pass the referring page into the details view to make sure the Back
-    # link works properly
-    def test_referrer_is_results_page(self):
+    def test_referrer_is_results_page_without_query(self):
+        assert search_context_from_url("https://example.com/judgments/results") == {
+            "search_url": "https://example.com/judgments/results",
+            "query": None,
+        }
+
+    def test_referrer_is_advanced_search_page_without_query(self):
+        assert search_context_from_url(
+            "https://example.com/judgments/advanced_search"
+        ) == {
+            "search_url": "https://example.com/judgments/advanced_search",
+            "query": None,
+        }
+
+    def test_referrer_is_results_page_with_query(self):
         # When there is a referrer, and it is a results page,
         # the back link is displayed:
-        self.assertIs(display_back_link("https://example.com/judgments/results"), True)
+        assert search_context_from_url(
+            "https://example.com/judgments/results?query=test+query"
+        ) == {
+            "search_url": "https://example.com/judgments/results?query=test+query",
+            "query": "test query",
+        }
 
-    def test_referrer_is_advanced_search_page(self):
+    def test_referrer_is_advanced_search_page_with_query(self):
         # When there is a referrer and it is the advanced search page,
         # the back link is displayed:
+        assert search_context_from_url(
+            "https://example.com/judgments/advanced_search?query=test+query"
+        ) == {
+            "search_url": "https://example.com/judgments/advanced_search?query=test+query",
+            "query": "test query",
+        }
+
+    def test_referrer_not_results_or_advanced_search_page(self):
         self.assertIs(
-            display_back_link("https://example.com/judgments/advanced_search"), True
+            search_context_from_url("https://example.com/any/other/path"), None
         )
 
-    def test_refererrer_not_results_or_advanced_search_page(self):
-        # When there is a referrer, but it is not a results page
-        # or the advanced search page, the back link is not displayed:
-        self.assertIs(display_back_link("https://example.com/any/other/path"), False)
-
     def test_no_referrer(self):
-        # When there is no referrer, the back link is not displayed:
-        self.assertIs(display_back_link(None), False)
+        self.assertIs(search_context_from_url(None), None)
 
 
 def test_min_max():

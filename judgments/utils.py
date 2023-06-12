@@ -2,7 +2,8 @@ import math
 import re
 from calendar import monthrange
 from datetime import datetime
-from urllib.parse import urlparse
+from typing import Optional, TypedDict
+from urllib.parse import parse_qs, urlparse
 
 import environ
 from caselawclient.Client import MarklogicApiClient
@@ -121,17 +122,33 @@ def get_pdf_uri(judgment_uri: str) -> str:
         return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
 
 
-def display_back_link(back_link):
+class SearchContextDict(TypedDict):
+    search_url: str
+    query: Optional[str]
+
+
+def search_context_from_url(url) -> Optional[dict]:
     """
     We only display the 'back' link on a judgment detail page if the user
     navigated from a search result page. This method determines if the referrer
     corresponds to a search result page, and conditionally returns the link if so.
     """
-    if back_link:
-        url = urlparse(back_link)
-        return url.path in ["/judgments/results", "/judgments/advanced_search"]
-    else:
-        return False
+    if url:
+        parsed_url = urlparse(url)
+        is_search_link = parsed_url.path in [
+            "/judgments/results",
+            "/judgments/advanced_search",
+        ]
+
+        if is_search_link:
+            query_elements = parse_qs(parsed_url.query).get("query", None)
+            query = query_elements[0] if query_elements else None
+
+            return {
+                "search_url": url,
+                "query": query,
+            }
+    return None
 
 
 def has_filters(query_params, exclude=["order", "per_page"]):

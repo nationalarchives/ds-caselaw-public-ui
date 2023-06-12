@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
-from judgments.utils import display_back_link, get_judgment_by_uri, get_pdf_uri
+from judgments.utils import get_judgment_by_uri, get_pdf_uri, search_context_from_url
 
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
@@ -84,8 +84,6 @@ def detail(request, judgment_uri):
         else reverse("detail_pdf", args=[judgment.uri])
     )
 
-    context["back_link"] = get_back_link(request)
-
     return TemplateResponse(
         request,
         "judgment/detail.html",
@@ -93,6 +91,7 @@ def detail(request, judgment_uri):
             "context": context,
             "feedback_survey_type": "judgment",
             "feedback_survey_judgment_uri": judgment.uri,
+            "search_context": search_context_from_url(request.META.get("HTTP_REFERER")),
         },
     )
 
@@ -122,11 +121,3 @@ def get_pdf_size(judgment_uri):
         return f" ({filesize})"
     logging.warning(f"Unable to determine PDF size for {judgment_uri}")
     return " (unknown size)"
-
-
-def get_back_link(request):
-    back_link = request.META.get("HTTP_REFERER")
-    if display_back_link(back_link):
-        return back_link
-    else:
-        return None
