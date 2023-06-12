@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-07 16:21+0000\n"
+"POT-Creation-Date: 2023-06-12 14:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,10 @@ msgstr "Filter by court, date or person"
 #: ds_judgements_public_ui/templates/pages/structured_search.html
 msgid "common.findcaselaw"
 msgstr "Find case law"
+
+#: ds_judgements_public_ui/templates/includes/breadcrumbs.html
+msgid "breadcrumbs.search"
+msgstr "Search"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.websites"
@@ -153,10 +157,6 @@ msgstr "This judgment has been provided to The National Archives by "
 #: ds_judgements_public_ui/templates/includes/judgment_text_source.html
 msgid "judgment.bailii"
 msgstr "The British and Irish Legal Information Institute"
-
-#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
-msgid "judgment.back"
-msgstr "Back to search results"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
 msgid "judgment.downloadaspdf"
