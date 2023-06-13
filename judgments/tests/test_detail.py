@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import pytest
 from caselawclient.errors import JudgmentNotFoundError
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.test import TestCase
 from factories import JudgmentFactory
 
@@ -167,3 +167,15 @@ class TestGetPdfSize(TestCase):
         mock_head.assert_called_with(
             "http://example.com/test.pdf", headers={"Accept-Encoding": None}
         )
+
+
+class TestDocumentURIRedirects(TestCase):
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_non_canonical_uri_redirects(self, mock_judgment):
+        mock_judgment.return_value = JudgmentFactory.build(
+            uri="test/1234/567", is_published=True
+        )
+        response = self.client.get("/test/1234/567/")
+        assert isinstance(response, HttpResponseRedirect)
+        assert response.status_code == 302
+        assert response.url == "/test/1234/567"
