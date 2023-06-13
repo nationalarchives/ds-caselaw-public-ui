@@ -5,7 +5,7 @@ import requests
 from caselawclient.errors import JudgmentNotFoundError
 from caselawclient.models.judgments import Judgment
 from django.conf import settings
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
@@ -69,6 +69,13 @@ def get_best_pdf(request, judgment_uri):
 
 def detail(request, judgment_uri):
     judgment = get_published_judgment_by_uri(judgment_uri)
+
+    # If the judgment_uri which was requested isn't the canonical URI of the judgment, redirect the user
+    if judgment_uri != judgment.uri:
+        return HttpResponseRedirect(
+            reverse("detail", kwargs={"judgment_uri": judgment.uri})
+        )
+
     context = {}
 
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
