@@ -15,21 +15,23 @@
         {% endif %}
       {% endif %}
     {% endfor %}
-    {% if context.query %}
-      <div>
-        <label for="order_by" class="result-controls__label">Order results by</label>
-        <select class="result-controls__select" id="order_by" name="order">
+    <div>
+      <label for="order_by" class="result-controls__label">Order results by</label>
+      <select class="result-controls__select" id="order_by" name="order">
+        {% if context.query %}
           <option value="relevance"
                   {% if context.order == "relevance" or context.order is None %}selected='selected'{% endif %}>
             Most relevant
           </option>
-          <option value="-date"
-                  {% if context.order == "-date" %}selected='selected'{% endif %}>Newest</option>
-          <option value="date"
-                  {% if context.order == "date" %}selected='selected'{% endif %}>Oldest</option>
-        </select>
-      </div>
-    {% endif %}
+        {% endif %}
+        <option value="-date"
+                {% if context.order == "-date" or context.order is None and not context.query %}selected='selected'{% endif %}>
+          Newest
+        </option>
+        <option value="date"
+                {% if context.order == "date" %}selected='selected'{% endif %}>Oldest</option>
+      </select>
+    </div>
     <div>
       <label for="per_page" class="result-controls__label">Results per page</label>
       <select class="result-controls__select" id="per_page" name="per_page">
