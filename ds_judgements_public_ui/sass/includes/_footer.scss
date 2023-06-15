@@ -52,10 +52,10 @@
 
   li {
     list-style: none;
-    margin-bottom: calc($spacer__unit / 4);
+    margin-bottom: calc($spacer__unit * 1.6);
 
     @media (min-width: $grid__breakpoint-medium) {
-      margin-bottom: calc($spacer__unit / 2);
+      margin-bottom: calc($spacer__unit * 1.4);
     }
   }
 
