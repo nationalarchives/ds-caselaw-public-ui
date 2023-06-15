@@ -17,19 +17,13 @@
     margin: 0 0 calc($spacer__unit * 3);
 
     @media (min-width: $grid__breakpoint-medium) {
-      display: grid;
-      grid-auto-columns: 1fr;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      column-count: 2;
+      column-gap: $spacer__unit;
     }
+  }
 
-    @media (min-width: $grid__breakpoint-large) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @media (min-width: $grid__breakpoint-extra-large) {
-      grid-template-columns: 1fr 1fr;
-    }
+  &__list-item {
+    break-inside: avoid;
   }
 
   &__court {

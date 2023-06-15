@@ -23,8 +23,7 @@
     padding: 0;
 
     @media (min-width: $grid__breakpoint-medium) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      column-count: 2;
       column-gap: $spacer__unit;
     }
   }
@@ -33,6 +32,7 @@
     padding: calc($spacer__unit / 2) 0;
     font-family: $font__roboto;
     font-size: 1.1rem;
+    break-inside: avoid;
   }
 
   &__year-range {

@@ -203,6 +203,11 @@
   &__court-options {
     display: block;
     width: 100%;
+
+    @media (min-width: $grid__breakpoint-medium) {
+      column-count: 2;
+      column-gap: calc(2 * $spacer__unit);
+    }
   }
 
   &__court-option {
@@ -249,21 +254,6 @@
 
         &:checked::before {
           transform: scale(1);
-        }
-      }
-    }
-
-    @media (min-width: $grid__breakpoint-medium) {
-      width: 50%;
-      float: left;
-
-      &:nth-of-type(odd) {
-        clear: left;
-      }
-
-      &:nth-of-type(2n) {
-        label {
-          margin-left: $spacer__unit;
         }
       }
     }
