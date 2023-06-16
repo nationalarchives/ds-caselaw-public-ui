@@ -59,3 +59,8 @@ h4 {
   margin: 0;
   padding: calc($spacer__unit * 1.25) 0 0;
 }
+
+.standard-text-template ol li {
+  padding-bottom: calc($spacer__unit / 1.5);
+  padding-left: calc($spacer__unit / 2);
+}
