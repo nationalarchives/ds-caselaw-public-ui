@@ -19,7 +19,17 @@ class TestExactMatch(TestCase):
 
     def test_when_the_name_matches_the_query_but_without_a_stopword(self):
         result = buildResult()
-        query = "Alice Xenakis Bob Young"
+        query = "Alice and Xenakis v Bob Young"
+        self.assertTrue(is_exact_match(result, query))
+
+    def test_when_the_name_matches_the_query_but_with_trailing_spaces(self):
+        result = buildResult()
+        query = "Alice Xenakis v Bob Young       "
+        self.assertTrue(is_exact_match(result, query))
+
+    def test_when_the_name_matches_the_query_but_with_parentheticals(self):
+        result = buildResult()
+        query = "Alice Xenakis (on the application of Carlos Zamora) v Bob Young"
         self.assertTrue(is_exact_match(result, query))
 
     def test_when_the_name_matches_the_query_but_differs_in_case(self):
