@@ -1,0 +1,28 @@
+{% load i18n %}
+<div class="page-header__nav">
+  <div class="page-header__site-logo">
+    <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+  </div>
+  <div class="page-header__breadcrumb">
+    <nav class="page-header__breadcrumb-flex-container"
+         aria-label="Breadcrumb">
+      <ol>
+        <li>
+          <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+          {% if current == "home" %}
+            {% translate "common.findcaselaw" %}
+          {% else %}
+            <a href="{% url 'home' %}">{% translate "common.findcaselaw" %}</a>
+          {% endif %}
+        </li>
+        {% if search_context %}
+          <li>
+            <a href="{{ search_context.search_url }}">{% translate "breadcrumbs.search" %}
+              {% if search_context.query %}for "{{ search_context.query }}"{% endif %}</a>
+            </li>
+          {% endif %}
+          {% if title and link %}<li>{{ title }}</li>{% endif %}
+        </ol>
+      </nav>
+    </div>
+  </div>
