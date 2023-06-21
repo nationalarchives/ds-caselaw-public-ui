@@ -11,9 +11,6 @@
     <h2 class="anchor-links__header">Information on this page</h2>
     <ul class="anchor-links__list">
       <li class="anchor-links__list-option">
-        <a href="#section-no-advice">We do not provide legal advice</a>
-      </li>
-      <li class="anchor-links__list-option">
         <a href="#section-search">How to search</a>
       </li>
       <li class="anchor-links__list-option">
@@ -29,16 +26,16 @@
     <p>
       You can search the full text of every judgment and decision. You can also search and browse judgments by neutral
       citation, court, party, judge and within a date range. These options can be combined on the
-      <a href="{% url "structured_search" %}">{% translate "basicsearchform.structured_search" %}</a> page.
+      <a href="{% url "structured_search" %}">structured search</a> page.
     </p>
     <p>
-      The latest published judgments and decisions are listed on the <a href="{% url "home" %}">Find case law</a> page.
+      The latest published judgments and decisions are listed on the <a href="{% url "home" %}">home page</a>.
       Alternatively, you can browse
       by court and filter results.
     </p>
     <h3>Search the text of every judgment and decision</h3>
     <p>
-      The search box on the <a href="{% url "home" %}">Find case law</a> page lets you search using any search term including
+      The search box on the <a href="{% url "home" %}">home page</a> lets you search using any search term including
       a neutral citation, name(s) and keyword(s). This will search the full text of every judgment or decision we
       have.
     </p>
@@ -54,8 +51,7 @@
     </p>
     <h3>Search specific fields</h3>
     <p>
-      Alternatively, you can search using one or more specific search terms on the <a href="{% url "structured_search" %}">More search
-      options</a> page. You can use multiple search fields at the same time to narrow down your results. The
+      Alternatively, you can search using one or more specific search terms on the <a href="{% url "structured_search" %}">structured search</a> page. You can use multiple search fields at the same time to narrow down your results. The
       search boxes search particular fields. With the exception of keyword, these boxes do not search the full text of
       judgments and decisions.
     </p>
@@ -110,7 +106,7 @@
       party names listed at the top of the judgment or decision.
     </p>
     <p>
-      You can use the 'party name' search field on the <a href="{% url "structured_search" %}">{% translate "basicsearchform.structured_search" %}</a> page to only search against judgments or
+      You can use the 'party name' search field on the <a href="{% url "structured_search" %}">structured search</a> page to only search against judgments or
       decisions where the name is listed as a party. This will not search for the name within the text of all
       judgments and decisions.
     </p>
@@ -131,7 +127,7 @@
     <p>The judge(s) who decided a case will appear at the top of the judgment or decision.</p>
     <p>
       You can search by the name of the judge who has decided a case by using the 'Judge's name' box on the
-      <a href="{% url "structured_search" %}">{% translate "basicsearchform.structured_search" %}</a> page. This means that it will only search for judges that have given
+      <a href="{% url "structured_search" %}">structured search</a> page. This means that it will only search for judges that have given
       a judgment or decision on a case instead of searching every reference to the name of the judge within the full text of every judgment or
       decision.
     </p>
@@ -150,18 +146,7 @@
     <p>You can search by date range to look for judgments and decisions within a particular time frame.</p>
     <h3>Search results</h3>
     <p>
-      The search results are ordered by relevance. Judgments and decisions that contain the search terms within their
-      'metadata' will be listed above other judgments that only contain the search terms within the full text of the
-      judgment or decision.
-    </p>
-    <p>
-      Search terms found within the text will be ordered by how many times that search term is used and the proximity
-      between each search term.
-    </p>
-    <p>
-      For example: if you searched for ‘Jones theft’ then the judgments with ‘Jones’ listed as a party name or judge’s
-      name will appear at the top of the search results, followed by judgments that contain 'Jones' and 'theft' within
-      the text of the judgment.
+      The search results are ordered by relevance by default - this means that the more closely the result matches the tet of your query, the higher in the list it will be. You can also choose to order the results by judgment date, ascending or descending, using the drop-down menu above the results list.
     </p>
     <p>You can filter results by date range, courts/chamber, party name and judge’s name.</p>
     <h2 id="section-understanding">Understanding a judgment or decision</h2>
