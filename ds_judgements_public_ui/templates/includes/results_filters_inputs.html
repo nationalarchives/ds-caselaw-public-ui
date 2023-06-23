@@ -11,10 +11,8 @@
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">
-      <legend>
-        <span class="structured-search__limit-to-label" id="from_date_label">From date</span>
-      </legend>
-      <p class="structured-search__help-text" id="party_name-help-text">For example 01 01 2003</p>
+      <label for="from_date_label" class="structured-search__limit-to-label">From date</label>
+      <p class="structured-search__help-text" id="party_name-help-text">For example 01 01 2003 or 2003</p>
       {% if context.errors|has_errors_for_field:"from_date" %}
         <p class="structured-search__from-date-error-message"
            id="from-date-error">{{ context.errors|errors_for_field:"from_date" }}</p>
@@ -60,12 +58,8 @@
   </div>
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"to_date" %}with-errors{% endif %}">
-      <legend>
-        <span class="structured-search__limit-to-label"
-              name="to_date"
-              id="to_date_label">To date</span>
-      </legend>
-      <p class="structured-search__help-text" id="to_date -help-text">For example 30 04 2023</p>
+      <label for="to_date_label" class="structured-search__limit-to-label">To date</label>
+      <p class="structured-search__help-text" id="to_date -help-text">For example 30 04 2023 or 2023</p>
       {% if context.errors|has_errors_for_field:"to_date" %}
         <p class="structured-search__to-date-error-message" id="from-date-error">
           {{ context.errors|errors_for_field:"to_date" }}
