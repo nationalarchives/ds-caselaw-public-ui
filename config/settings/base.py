@@ -51,7 +51,7 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Feature flags for django-flags
-FLAGS: Dict[str, Any] = {"TEXT_DATE_INPUT": []}
+FLAGS: Dict[str, Any] = {}
 
 # URLS
 # ------------------------------------------------------------------------------
