@@ -32,7 +32,6 @@ def removable_filter_param(key):
         "to_day",
         "to_month",
         "to_year",
-        "text_date_input",
     ]
     return key not in excluded
 

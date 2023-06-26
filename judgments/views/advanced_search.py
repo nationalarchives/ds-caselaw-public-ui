@@ -63,7 +63,6 @@ def advanced_search(request):
         "to_month": params.get("to_month"),
         "to_year": params.get("to_year"),
         "per_page": params.get("per_page"),
-        "text_date_input": params.get("text_date_input"),
     }
     page = str(as_integer(params.get("page"), minimum=1))
     per_page = str(
