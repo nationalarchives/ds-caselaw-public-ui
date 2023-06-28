@@ -78,10 +78,18 @@ def detail(request, judgment_uri):
 
     context = {}
 
-    if "press-summary" in judgment_uri:
+    press_summary_suffix = "/press-summary/1"
+    if judgment_uri.endswith(press_summary_suffix):
         context["document_type"] = "press_summary"
+        context["linked_document_uri"] = judgment_uri.removesuffix(press_summary_suffix)
     else:
         context["document_type"] = "judgment"
+        context["linked_document_uri"] = judgment_uri + press_summary_suffix
+
+    try:
+        get_published_judgment_by_uri(context["linked_document_uri"])
+    except Http404:
+        context["linked_document_uri"] = ""
 
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
     context["page_title"] = judgment.name

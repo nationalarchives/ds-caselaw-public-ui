@@ -267,3 +267,129 @@ class TestPressSummaryLabel(TestCase):
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
         )
+
+
+class TestViewRelatedDocumentButton(TestCase):
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_view_judgment_button_when_press_summary_with_judgment(
+        self, mock_get_judgment_by_uri, mock_get_pdf_size
+    ):
+        """
+        GIVEN a press summary with an associated judgment
+        WHEN a request is made to the press summary URI
+        THEN the response should contain a button linking to the related judgment
+        """
+
+        def get_judgment_by_uri_side_effect(uri):
+            if uri == "eat/2023/1/press-summary/1":
+                return JudgmentFactory.build(uri=uri, is_published=True)
+            elif uri == "eat/2023/1":
+                return JudgmentFactory.build(uri=uri, is_published=True)
+            else:
+                raise JudgmentNotFoundError()
+
+        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
+
+        expected_html_button = """
+        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1">
+            View Judgment
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+        """
+        response = self.client.get("/eat/2023/1/press-summary/1")
+        assert expected_html_button.replace(" ", "").replace(
+            "\n", ""
+        ) in response.content.decode().replace(" ", "").replace("\n", "")
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_view_press_summary_button_when_judgment_with_press_summary(
+        self, mock_get_judgment_by_uri, mock_get_pdf_size
+    ):
+        """
+        GIVEN a judgment with an associated press summary
+        WHEN a request is made to the judgment URI
+        THEN the response should contain a button linking to the related press summary
+        """
+
+        def get_judgment_by_uri_side_effect(uri):
+            if uri == "eat/2023/1/press-summary/1":
+                return JudgmentFactory.build(uri=uri, is_published=True)
+            elif uri == "eat/2023/1":
+                return JudgmentFactory.build(uri=uri, is_published=True)
+            else:
+                raise JudgmentNotFoundError()
+
+        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
+
+        expected_html_button = """
+        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1/press-summary/1">
+            View Press Summary
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+        """
+        response = self.client.get("/eat/2023/1")
+        assert expected_html_button.replace(" ", "").replace(
+            "\n", ""
+        ) in response.content.decode().replace(" ", "").replace("\n", "")
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_no_view_judgment_button_when_press_summary_without_judgment(
+        self, mock_get_judgment_by_uri, mock_get_pdf_size
+    ):
+        """
+        GIVEN a press summary without an associated judgment
+        WHEN a request is made to the press summary URI
+        THEN the response should not contain a button linking to the related judgment
+        """
+
+        def get_judgment_by_uri_side_effect(uri):
+            if uri == "eat/2023/1/press-summary/1":
+                return JudgmentFactory.build(uri=uri, is_published=True)
+            else:
+                raise JudgmentNotFoundError()
+
+        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
+
+        expected_html_button = """
+        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1">
+            View Judgment
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+        """
+        response = self.client.get("/eat/2023/1/press-summary/1")
+        assert expected_html_button.replace(" ", "").replace(
+            "\n", ""
+        ) not in response.content.decode().replace(" ", "").replace("\n", "")
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_no_view_press_summary_button_when_judgment_without_press_summary(
+        self, mock_get_judgment_by_uri, mock_get_pdf_size
+    ):
+        """
+        GIVEN a judgment without an associated press summary
+        WHEN a request is made to the judgment URI
+        THEN the response should not contain a button linking to the related press summary
+        """
+
+        def get_judgment_by_uri_side_effect(uri):
+            if uri == "eat/2023/1":
+                return JudgmentFactory.build(uri=uri, is_published=True)
+            else:
+                raise JudgmentNotFoundError()
+
+        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
+
+        expected_html_button = """
+        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1/press-summary/1">
+            View Press Summary
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+        """
+        response = self.client.get("/eat/2023/1")
+        assert expected_html_button.replace(" ", "").replace(
+            "\n", ""
+        ) not in response.content.decode().replace(" ", "").replace("\n", "")

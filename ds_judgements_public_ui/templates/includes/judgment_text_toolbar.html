@@ -7,6 +7,19 @@
     <h1 class="judgment-toolbar__title">{{ context.judgment_title }}</h1>
     <p class="judgment-toolbar__reference">{{ context.judgment_ncn }}</p>
     <div class="judgment-toolbar__download judgment-toolbar-download">
+      {% if context.linked_document_uri %}
+        <a class="judgment-toolbar-download__option--ps btn-ps"
+           role="button"
+           draggable="false"
+           href="{% url 'detail' judgment_uri=context.linked_document_uri %}">
+          {% if context.document_type == "judgment" %}
+            {% translate "judgment.view_press_summary" %}
+          {% else %}
+            {% translate "judgment.view_judgment" %}
+          {% endif %}
+          <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+      {% endif %}
       <a class="judgment-toolbar-download__option--pdf btn"
          role="button"
          draggable="false"
