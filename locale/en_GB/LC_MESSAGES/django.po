@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 11:44+0000\n"
+"POT-Creation-Date: 2023-06-27 12:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,6 @@ msgid "basicsearchform.title"
 msgstr "Search by keyword or neutral citation"
 
 #: ds_judgements_public_ui/templates/includes/basic_search_form.html
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "basicsearchform.structured_search"
 msgstr "Filter by court, date or person"
 
@@ -122,13 +121,13 @@ msgstr "Find case law"
 msgid "breadcrumbs.search"
 msgstr "Search"
 
-#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
+#: ds_judgements_public_ui/templates/includes/help_improve_this_service.html
 msgid "service.improved"
-msgstr "How can this service be improved?"
+msgstr "Help us improve this service"
 
-#: ds_judgements_public_ui/templates/includes/how_can_this_service_be_improved.html
+#: ds_judgements_public_ui/templates/includes/help_improve_this_service.html
 msgid "survey.link.text"
-msgstr "Fill out our short survey"
+msgstr "Complete our short survey"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.title"
