@@ -1,11 +1,8 @@
 {% load i18n %}
 <div class="judgment-toolbar">
   <div class="judgment-toolbar__container">
-    <h1 class="judgment-toolbar__title">
-      {{ context.judgment_title }}
-      <br>
-      <small>{{ context.judgment_ncn }}</small>
-    </h1>
+    <h1 class="judgment-toolbar__title">{{ context.judgment_title }}</h1>
+    <p class="judgment-toolbar__reference">{{ context.judgment_ncn }}</p>
     <div class="judgment-toolbar__download judgment-toolbar-download">
       <a class="judgment-toolbar-download__option--pdf btn"
          role="button"

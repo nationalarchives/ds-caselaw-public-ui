@@ -42,7 +42,18 @@
   }
 
   &__title {
-    margin: 1rem 0;
+    text-wrap: balance;
+    margin-top: $spacer__unit;
+    margin-bottom: 0;
+    color: $color__almost-black;
+    text-align: center;
+  }
+
+  &__reference {
+    text-wrap: balance;
+    margin-top: 0.5 * $spacer__unit;
+    margin-bottom: $spacer__unit;
+    font-size: 2rem;
     color: $color__almost-black;
     text-align: center;
   }
