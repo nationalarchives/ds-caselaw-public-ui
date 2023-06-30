@@ -4,15 +4,40 @@
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{{ context.pdf_uri }}">{% translate "judgment.downloadoptions.pdf.cta" %}{{ context.pdf_size }}</a>
+        <a href="{{ context.pdf_uri }}">
+          {% if context.document_type == 'press_summary' %}
+            {% translate "press_summary.downloadoptions.pdf.cta" %}
+          {% else %}
+            {% translate "judgment.downloadoptions.pdf.cta" %}
+          {% endif %}
+          {{ context.pdf_size }}
+        </a>
       </h3>
-      <p>{% translate "judgment.downloadoptions.pdf.description" %}</p>
+      <p>
+        {% if context.document_type == 'press_summary' %}
+          {% translate "press_summary.downloadoptions.pdf.description" %}
+        {% else %}
+          {% translate "judgment.downloadoptions.pdf.description" %}
+        {% endif %}
+      </p>
     </div>
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% url 'detail_xml' context.judgment_uri %}">{% translate "judgment.downloadoptions.xml.cta" %}</a>
+        <a href="{% url 'detail_xml' context.judgment_uri %}">
+          {% if context.document_type == 'press_summary' %}
+            {% translate "press_summary.downloadoptions.xml.cta" %}
+          {% else %}
+            {% translate "judgment.downloadoptions.xml.cta" %}
+          {% endif %}
+        </a>
       </h3>
-      <p>{% translate "judgment.downloadoptions.xml.description" %}</p>
+      <p>
+        {% if context.document_type == 'press_summary' %}
+          {% translate "press_summary.downloadoptions.xml.description" %}
+        {% else %}
+          {% translate "judgment.downloadoptions.xml.description" %}
+        {% endif %}
+      </p>
     </div>
   </div>
 </div>

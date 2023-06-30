@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 from caselawclient.errors import JudgmentNotFoundError
 from django.http import Http404, HttpResponseRedirect
-from django.test import TestCase
+from django.test import Client, TestCase
 from factories import JudgmentFactory
 
 from judgments.views.detail import (
@@ -129,6 +129,53 @@ class TestJudgmentPdfLinkText(TestCase):
 
         self.assertNotIn("test_2023_123.pdf", decoded_response)
         self.assertIn("/test/2023/123/data.pdf", decoded_response)
+
+
+@pytest.mark.django_db
+class TestDocumentDownloadOptions:
+    @patch("judgments.views.detail.get_pdf_uri")
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    @pytest.mark.parametrize(
+        "uri,document_type",
+        [("eat/2023/1/press-summary/1", "press summary"), ("eat/2023/1", "judgment")],
+    )
+    def test_download_options(
+        self, mock_judgment, mock_get_pdf_size, mock_get_pdf_uri, uri, document_type
+    ):
+        """
+        GIVEN a document
+        WHEN a request is made with document uri
+        THEN html response should contain the download options div
+        AND this contains the Download PDF button
+        AND this contains the Download XML button
+        AND the descriptions refer to the document's type
+        """
+        mock_judgment.return_value = JudgmentFactory.build(uri=uri, is_published=True)
+        mock_get_pdf_size.return_value = "(112KB)"
+        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
+        client = Client()
+        response = client.get(f"/{uri}")
+        download_options_html = f"""
+        <div id="download-options" class="judgment-download-options">
+        <h2 class="judgment-download-options__header">Download options</h2>
+        <div class="judgment-download-options__options-list">
+            <div class="judgment-download-options__download-option">
+            <h3><a href="http://example.com/test.pdf">Download this {document_type} as a PDF (112KB)</a></h3>
+            <p>The original format of the {document_type} as handed down by the court, for printing and downloading.</p>
+            </div>
+            <div class="judgment-download-options__download-option">
+            <h3><a href="/{uri}/data.xml">Download this {document_type} as XML</a></h3>
+            <p>
+            The {document_type} in machine-readable LegalDocML format for developers, data scientists and researchers.
+            </p>
+            </div>
+        </div>
+        </div>
+        """
+        assert download_options_html.replace(" ", "").replace(
+            "\n", ""
+        ) in response.content.decode().replace(" ", "").replace("\n", "")
 
 
 class TestGetPdfSize(TestCase):

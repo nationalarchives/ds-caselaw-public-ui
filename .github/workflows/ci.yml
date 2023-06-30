@@ -58,8 +58,11 @@ jobs:
       - name: Run DB Migrations
         run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
 
+      - name: Run Django Translation Compiling
+        run: docker-compose run --rm django python manage.py compilemessages
+
       - name: Run Django Tests with coverage
-        run: docker-compose run django coverage run -m pytest -m "not local"
+        run: docker-compose run django coverage run -m pytest -vvvv -rsa -m "not local"
 
       - name: Generate coverage XML
         run: docker-compose run django coverage xml
