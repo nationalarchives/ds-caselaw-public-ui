@@ -78,12 +78,16 @@ def detail(request, judgment_uri):
 
     context = {}
 
+    if "press-summary" in judgment_uri:
+        context["document_type"] = "press_summary"
+    else:
+        context["document_type"] = "judgment"
+
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
     context["page_title"] = judgment.name
     context["judgment_uri"] = judgment.uri
     context["judgment_title"] = judgment.name
     context["judgment_ncn"] = judgment.neutral_citation
-
     context["pdf_size"] = get_pdf_size(judgment.uri)
     context["pdf_uri"] = (
         get_pdf_uri(judgment.uri)

@@ -138,9 +138,19 @@ msgid "judgment.downloadoptions.pdf.cta"
 msgstr "Download this judgment as a PDF"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.pdf.cta"
+msgstr "Download this press summary as a PDF"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.pdf.description"
 msgstr ""
 "The original format of the judgment as handed down by the court, for "
+"printing and downloading."
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.pdf.description"
+msgstr ""
+"The original format of the press summary as handed down by the court, for "
 "printing and downloading."
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
@@ -148,9 +158,19 @@ msgid "judgment.downloadoptions.xml.cta"
 msgstr "Download this judgment as XML"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.xml.cta"
+msgstr "Download this press summary as XML"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.xml.description"
 msgstr ""
 "The judgment in machine-readable LegalDocML format for developers, data "
+"scientists and researchers."
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.xml.description"
+msgstr ""
+"The press summary in machine-readable LegalDocML format for developers, data "
 "scientists and researchers."
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_source.html
