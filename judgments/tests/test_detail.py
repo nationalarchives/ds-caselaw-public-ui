@@ -227,6 +227,8 @@ class TestDocumentURIRedirects(TestCase):
         assert response.status_code == 302
         assert response.url == "/test/1234/567"
 
+
+class TestPressSummaryLabel(TestCase):
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_judgment_by_uri")
     def test_label_when_press_summary(self, mock_judgment, mock_get_pdf_size):
