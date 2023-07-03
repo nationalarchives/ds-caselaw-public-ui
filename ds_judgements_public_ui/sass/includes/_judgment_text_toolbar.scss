@@ -37,7 +37,7 @@
       margin-bottom: calc($spacer__unit / 3) !important;
     }
 
-    &.btn-ps {
+    &.btn-related-document {
       background-color: transparent;
       text-decoration: none;
       font-weight: 700;
@@ -95,10 +95,10 @@
   }
 }
 
-.judgment-toolbar-download {
+.judgment-toolbar-buttons {
   margin: 0 auto;
 
-  &__option--ps {
+  &__option--related-document {
     text-align: center;
   }
 
@@ -106,7 +106,7 @@
     text-align: center;
   }
 
-  &__download-options {
+  &__options {
     color: $color__dark-grey;
     font-size: 0.75rem;
     text-align: center;

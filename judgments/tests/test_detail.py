@@ -292,7 +292,10 @@ class TestViewRelatedDocumentButton(TestCase):
         mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
 
         expected_html_button = """
-        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1">
+        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+            role="button" draggable="false"
+            href="/eat/2023/1"
+        >
             View Judgment
             <span style="font-weight:normal;font-size:0.9rem"></span>
         </a>
@@ -324,7 +327,10 @@ class TestViewRelatedDocumentButton(TestCase):
         mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
 
         expected_html_button = """
-        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1/press-summary/1">
+        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+            role="button" draggable="false"
+            href="/eat/2023/1/press-summary/1"
+        >
             View Press Summary
             <span style="font-weight:normal;font-size:0.9rem"></span>
         </a>
@@ -354,7 +360,10 @@ class TestViewRelatedDocumentButton(TestCase):
         mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
 
         expected_html_button = """
-        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1">
+        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+            role="button" draggable="false"
+            href="/eat/2023/1"
+        >
             View Judgment
             <span style="font-weight:normal;font-size:0.9rem"></span>
         </a>
@@ -384,7 +393,10 @@ class TestViewRelatedDocumentButton(TestCase):
         mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
 
         expected_html_button = """
-        <a class="judgment-toolbar-download__option--ps btn-ps" role="button" draggable="false" href="/eat/2023/1/press-summary/1">
+        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+            role="button" draggable="false"
+            href="/eat/2023/1/press-summary/1"
+        >
             View Press Summary
             <span style="font-weight:normal;font-size:0.9rem"></span>
         </a>
