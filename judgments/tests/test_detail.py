@@ -226,3 +226,44 @@ class TestDocumentURIRedirects(TestCase):
         assert isinstance(response, HttpResponseRedirect)
         assert response.status_code == 302
         assert response.url == "/test/1234/567"
+
+
+class TestPressSummaryLabel(TestCase):
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_label_when_press_summary(self, mock_judgment, mock_get_pdf_size):
+        """
+        GIVEN press summary
+        WHEN request is made with press summary uri
+        THEN response should contain the press summary label
+        """
+
+        mock_judgment.return_value = JudgmentFactory.build(
+            uri="eat/2023/1/press-summary/1", is_published=True
+        )
+        response = self.client.get("/eat/2023/1/press-summary/1")
+        mock_judgment.assert_called_with("eat/2023/1/press-summary/1")
+        self.assertContains(
+            response,
+            '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
+        )
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_no_press_summary_label_when_on_judgment(
+        self, mock_judgment, mock_get_pdf_size
+    ):
+        """
+        GIVEN judgment
+        WHEN request is made with judgment uri
+        THEN response should NOT contain the press summary label
+        """
+        mock_judgment.return_value = JudgmentFactory.build(
+            uri="eat/2023/1", is_published=True
+        )
+        response = self.client.get("/eat/2023/1")
+        mock_judgment.assert_called_with("eat/2023/1")
+        self.assertNotContains(
+            response,
+            '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
+        )

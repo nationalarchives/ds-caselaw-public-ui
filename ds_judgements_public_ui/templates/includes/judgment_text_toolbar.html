@@ -1,6 +1,9 @@
 {% load i18n %}
 <div class="judgment-toolbar">
   <div class="judgment-toolbar__container">
+    {% if context.document_type == "press_summary" %}
+      <p class="judgment-toolbar__press-summary-title">Press Summary</p>
+    {% endif %}
     <h1 class="judgment-toolbar__title">{{ context.judgment_title }}</h1>
     <p class="judgment-toolbar__reference">{{ context.judgment_ncn }}</p>
     <div class="judgment-toolbar__download judgment-toolbar-download">

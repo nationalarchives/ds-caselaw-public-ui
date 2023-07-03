@@ -41,6 +41,16 @@
     }
   }
 
+  &__press-summary-title {
+    text-wrap: balance;
+    margin-top: -1 * $spacer__unit;
+    margin-bottom: 0;
+    background-color: $color__yellow;
+    color: $color__almost-black;
+    padding: calc($spacer__unit / 3) calc($spacer__unit / 2);
+    text-align: center;
+  }
+
   &__title {
     text-wrap: balance;
     margin-top: $spacer__unit;
