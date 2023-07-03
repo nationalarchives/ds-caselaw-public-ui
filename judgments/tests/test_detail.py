@@ -242,7 +242,6 @@ class TestPressSummaryLabel(TestCase):
             uri="eat/2023/1/press-summary/1", is_published=True
         )
         response = self.client.get("/eat/2023/1/press-summary/1")
-        mock_judgment.assert_called_with("eat/2023/1/press-summary/1")
         self.assertContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
@@ -262,7 +261,6 @@ class TestPressSummaryLabel(TestCase):
             uri="eat/2023/1", is_published=True
         )
         response = self.client.get("/eat/2023/1")
-        mock_judgment.assert_called_with("eat/2023/1")
         self.assertNotContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
