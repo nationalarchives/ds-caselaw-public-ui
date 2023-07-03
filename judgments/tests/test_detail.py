@@ -267,139 +267,107 @@ class TestPressSummaryLabel(TestCase):
         )
 
 
-class TestViewRelatedDocumentButton(TestCase):
+@pytest.mark.django_db
+class TestViewRelatedDocumentButton:
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_judgment_by_uri")
+    @pytest.mark.parametrize(
+        "uri,expected_text,expected_href",
+        [
+            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1"),
+            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1"),
+        ],
+    )
     def test_view_judgment_button_when_press_summary_with_judgment(
-        self, mock_get_judgment_by_uri, mock_get_pdf_size
+        self,
+        mock_get_judgment_by_uri,
+        mock_get_pdf_size,
+        uri,
+        expected_text,
+        expected_href,
     ):
         """
-        GIVEN a press summary with an associated judgment
-        WHEN a request is made to the press summary URI
-        THEN the response should contain a button linking to the related judgment
+        GIVEN a document with an associated document
+        WHEN a request is made to the document URI
+        THEN the response should contain a button linking to the related document
         """
 
-        def get_judgment_by_uri_side_effect(uri):
-            if uri == "eat/2023/1/press-summary/1":
+        def get_judgment_by_uri_side_effect(document_uri):
+            if document_uri == uri:
                 return JudgmentFactory.build(uri=uri, is_published=True)
-            elif uri == "eat/2023/1":
-                return JudgmentFactory.build(uri=uri, is_published=True)
+            elif document_uri == expected_href:
+                return JudgmentFactory.build(uri=expected_href, is_published=True)
             else:
                 raise JudgmentNotFoundError()
 
         mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
 
-        expected_html_button = """
+        expected_html_button = f"""
         <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
             role="button" draggable="false"
-            href="/eat/2023/1"
+            href="/{expected_href}"
         >
-            View Judgment
+            {expected_text}
             <span style="font-weight:normal;font-size:0.9rem"></span>
         </a>
         """
-        response = self.client.get("/eat/2023/1/press-summary/1")
-        assert expected_html_button.replace(" ", "").replace(
-            "\n", ""
-        ) in response.content.decode().replace(" ", "").replace("\n", "")
+        client = Client()
+        response = client.get(f"/{uri}")
+        assert_contains_html(response, expected_html_button)
 
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_judgment_by_uri")
-    def test_view_press_summary_button_when_judgment_with_press_summary(
-        self, mock_get_judgment_by_uri, mock_get_pdf_size
-    ):
-        """
-        GIVEN a judgment with an associated press summary
-        WHEN a request is made to the judgment URI
-        THEN the response should contain a button linking to the related press summary
-        """
-
-        def get_judgment_by_uri_side_effect(uri):
-            if uri == "eat/2023/1/press-summary/1":
-                return JudgmentFactory.build(uri=uri, is_published=True)
-            elif uri == "eat/2023/1":
-                return JudgmentFactory.build(uri=uri, is_published=True)
-            else:
-                raise JudgmentNotFoundError()
-
-        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
-
-        expected_html_button = """
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
-            role="button" draggable="false"
-            href="/eat/2023/1/press-summary/1"
-        >
-            View Press Summary
-            <span style="font-weight:normal;font-size:0.9rem"></span>
-        </a>
-        """
-        response = self.client.get("/eat/2023/1")
-        assert expected_html_button.replace(" ", "").replace(
-            "\n", ""
-        ) in response.content.decode().replace(" ", "").replace("\n", "")
-
-    @patch("judgments.views.detail.get_pdf_size")
-    @patch("judgments.views.detail.get_judgment_by_uri")
+    @pytest.mark.parametrize(
+        "uri,unexpected_text,unexpected_href",
+        [
+            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1"),
+            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1"),
+        ],
+    )
     def test_no_view_judgment_button_when_press_summary_without_judgment(
-        self, mock_get_judgment_by_uri, mock_get_pdf_size
+        self,
+        mock_get_judgment_by_uri,
+        mock_get_pdf_size,
+        uri,
+        unexpected_text,
+        unexpected_href,
     ):
         """
-        GIVEN a press summary without an associated judgment
-        WHEN a request is made to the press summary URI
+        GIVEN a document without an associated document
+        WHEN a request is made to the document URI
         THEN the response should not contain a button linking to the related judgment
         """
 
-        def get_judgment_by_uri_side_effect(uri):
-            if uri == "eat/2023/1/press-summary/1":
-                return JudgmentFactory.build(uri=uri, is_published=True)
+        def get_judgment_by_uri_side_effect(document_uri):
+            if document_uri == uri:
+                return JudgmentFactory.build(uri=document_uri, is_published=True)
             else:
                 raise JudgmentNotFoundError()
 
         mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
 
-        expected_html_button = """
+        unexpected_html_button = f"""
         <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
             role="button" draggable="false"
-            href="/eat/2023/1"
+            href="/{unexpected_href}"
         >
-            View Judgment
+            {unexpected_text}
             <span style="font-weight:normal;font-size:0.9rem"></span>
         </a>
         """
-        response = self.client.get("/eat/2023/1/press-summary/1")
-        assert expected_html_button.replace(" ", "").replace(
-            "\n", ""
-        ) not in response.content.decode().replace(" ", "").replace("\n", "")
 
-    @patch("judgments.views.detail.get_pdf_size")
-    @patch("judgments.views.detail.get_judgment_by_uri")
-    def test_no_view_press_summary_button_when_judgment_without_press_summary(
-        self, mock_get_judgment_by_uri, mock_get_pdf_size
-    ):
-        """
-        GIVEN a judgment without an associated press summary
-        WHEN a request is made to the judgment URI
-        THEN the response should not contain a button linking to the related press summary
-        """
+        client = Client()
+        response = client.get(f"/{uri}")
+        assert_not_contains_html(response, unexpected_html_button)
 
-        def get_judgment_by_uri_side_effect(uri):
-            if uri == "eat/2023/1":
-                return JudgmentFactory.build(uri=uri, is_published=True)
-            else:
-                raise JudgmentNotFoundError()
 
-        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
+def assert_contains_html(response, html):
+    assert html.replace(" ", "").replace("\n", "") in response.content.decode().replace(
+        " ", ""
+    ).replace("\n", "")
 
-        expected_html_button = """
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
-            role="button" draggable="false"
-            href="/eat/2023/1/press-summary/1"
-        >
-            View Press Summary
-            <span style="font-weight:normal;font-size:0.9rem"></span>
-        </a>
-        """
-        response = self.client.get("/eat/2023/1")
-        assert expected_html_button.replace(" ", "").replace(
-            "\n", ""
-        ) not in response.content.decode().replace(" ", "").replace("\n", "")
+
+def assert_not_contains_html(response, html):
+    assert html.replace(" ", "").replace(
+        "\n", ""
+    ) not in response.content.decode().replace(" ", "").replace("\n", "")
