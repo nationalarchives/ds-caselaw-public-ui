@@ -9,7 +9,7 @@
       <ol>
         <li>
           <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-          {% if current == "home" %}
+          {% if title == "home" %}
             {% translate "common.findcaselaw" %}
           {% else %}
             <a href="{% url 'home' %}">{% translate "common.findcaselaw" %}</a>
@@ -17,8 +17,10 @@
         </li>
         {% if search_context %}
           <li>
-            <a href="{{ search_context.search_url }}">{% translate "breadcrumbs.search" %}
-              {% if search_context.query %}for "{{ search_context.query }}"{% endif %}</a>
+            <a href="{{ search_context.search_url }}">
+              {% translate "breadcrumbs.search" %}
+              {% if search_context.query %}for "{{ search_context.query }}"{% endif %}
+              </a>
             </li>
           {% endif %}
           {% if title and link %}

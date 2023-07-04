@@ -36,7 +36,7 @@
     <header class="page-header">
       {% block header %}
         <div class="page-header__flex-container container py-1">
-          {% include "includes/header_nav.html" with current=context.page_title title=context.page_title link=request.path %}
+          {% include "includes/header_nav.html" with title=context.page_title link=request.path %}
           {% include "includes/logo.html" %}
         </div>
       {% endblock header %}
