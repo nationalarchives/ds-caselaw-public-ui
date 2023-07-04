@@ -7,6 +7,10 @@ from django.http import Http404, HttpResponseRedirect
 from django.test import Client, TestCase
 from factories import JudgmentFactory
 
+from judgments.tests.utils.assertions import (
+    assert_contains_html,
+    assert_not_contains_html,
+)
 from judgments.views.detail import (
     PdfDetailView,
     get_pdf_size,
@@ -173,9 +177,7 @@ class TestDocumentDownloadOptions:
         </div>
         </div>
         """
-        assert download_options_html.replace(" ", "").replace(
-            "\n", ""
-        ) in response.content.decode().replace(" ", "").replace("\n", "")
+        assert_contains_html(response, download_options_html)
 
 
 class TestGetPdfSize(TestCase):
@@ -242,7 +244,6 @@ class TestPressSummaryLabel(TestCase):
             uri="eat/2023/1/press-summary/1", is_published=True
         )
         response = self.client.get("/eat/2023/1/press-summary/1")
-        mock_judgment.assert_called_with("eat/2023/1/press-summary/1")
         self.assertContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
@@ -262,8 +263,101 @@ class TestPressSummaryLabel(TestCase):
             uri="eat/2023/1", is_published=True
         )
         response = self.client.get("/eat/2023/1")
-        mock_judgment.assert_called_with("eat/2023/1")
         self.assertNotContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
         )
+
+
+@pytest.mark.django_db
+class TestViewRelatedDocumentButton:
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    @pytest.mark.parametrize(
+        "uri,expected_text,expected_href",
+        [
+            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1"),
+            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1"),
+        ],
+    )
+    def test_view_judgment_button_when_press_summary_with_judgment(
+        self,
+        mock_get_judgment_by_uri,
+        mock_get_pdf_size,
+        uri,
+        expected_text,
+        expected_href,
+    ):
+        """
+        GIVEN a document with an associated document
+        WHEN a request is made to the document URI
+        THEN the response should contain a button linking to the related document
+        """
+
+        def get_judgment_by_uri_side_effect(document_uri):
+            if document_uri == uri:
+                return JudgmentFactory.build(uri=uri, is_published=True)
+            elif document_uri == expected_href:
+                return JudgmentFactory.build(uri=expected_href, is_published=True)
+            else:
+                raise JudgmentNotFoundError()
+
+        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
+
+        expected_html_button = f"""
+        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+            role="button" draggable="false"
+            href="/{expected_href}"
+        >
+            {expected_text}
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+        """
+        client = Client()
+        response = client.get(f"/{uri}")
+        assert_contains_html(response, expected_html_button)
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    @pytest.mark.parametrize(
+        "uri,unexpected_text,unexpected_href",
+        [
+            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1"),
+            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1"),
+        ],
+    )
+    def test_no_view_judgment_button_when_press_summary_without_judgment(
+        self,
+        mock_get_judgment_by_uri,
+        mock_get_pdf_size,
+        uri,
+        unexpected_text,
+        unexpected_href,
+    ):
+        """
+        GIVEN a document without an associated document
+        WHEN a request is made to the document URI
+        THEN the response should not contain a button linking to the related judgment
+        """
+
+        def get_judgment_by_uri_side_effect(document_uri):
+            if document_uri == uri:
+                return JudgmentFactory.build(uri=document_uri, is_published=True)
+            else:
+                raise JudgmentNotFoundError()
+
+        mock_get_judgment_by_uri.side_effect = get_judgment_by_uri_side_effect
+
+        unexpected_html_button = f"""
+        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+            role="button" draggable="false"
+            href="/{unexpected_href}"
+        >
+            {unexpected_text}
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+        """
+
+        client = Client()
+        response = client.get(f"/{uri}")
+        assert_not_contains_html(response, unexpected_html_button)

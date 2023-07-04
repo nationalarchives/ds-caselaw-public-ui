@@ -33,7 +33,33 @@
 
     &.btn {
       @include call-to-action-button;
+      margin-right: 1rem;
       margin-bottom: calc($spacer__unit / 3) !important;
+    }
+
+    &.btn-related-document {
+      background-color: transparent;
+      text-decoration: none;
+      font-weight: 700;
+      border: 0;
+      outline: 2px solid $color__cta-background !important;
+      color: $color__cta-background !important;
+      padding: 0.7rem 1.3rem;
+      display: inline-block;
+      margin-top: 1em;
+      font-size: 1rem;
+      margin-bottom: calc($spacer__unit / 3) !important;
+      margin-right: calc($spacer__unit / 1) !important;
+    }
+    &:focus,
+    &:hover {
+      @include focus-default;
+      color: $color__white !important;
+      background-color: $color__cta-background-hover;
+      outline-color: $color__cta-background-hover;
+      border-color: $color__cta-background-hover;
+      text-decoration: underline;
+      outline-offset: 0.2rem;
     }
 
     @media (min-width: $grid__breakpoint-small) {
@@ -69,14 +95,18 @@
   }
 }
 
-.judgment-toolbar-download {
+.judgment-toolbar-buttons {
   margin: 0 auto;
+
+  &__option--related-document {
+    text-align: center;
+  }
 
   &__option--pdf {
     text-align: center;
   }
 
-  &__download-options {
+  &__options {
     color: $color__dark-grey;
     font-size: 0.75rem;
     text-align: center;

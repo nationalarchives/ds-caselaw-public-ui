@@ -326,6 +326,14 @@ msgstr "The 'to' date entered is before the 'from' date"
 msgid "search.errors.missing_year_detail"
 msgstr "You must specify a year"
 
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
+msgid "judgment.view_press_summary"
+msgstr "View Press Summary"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
+msgid "judgment.view_judgment"
+msgstr "View Judgment"
+
 #: judgments/views/advanced_search.py
 msgid "search.errors.to_before_from_detail"
 msgstr "Please enter a date after the 'from' date"
