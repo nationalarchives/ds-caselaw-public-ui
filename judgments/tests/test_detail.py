@@ -361,3 +361,67 @@ class TestViewRelatedDocumentButton:
         client = Client()
         response = client.get(f"/{uri}")
         assert_not_contains_html(response, unexpected_html_button)
+
+
+class TestPressSummaryBreadcrumb(TestCase):
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_breadcrumb_when_press_summary(self, mock_judgment, mock_get_pdf_size):
+        """
+        GIVEN a press summary
+        WHEN a request is made with the press summary URI
+        THEN the response should contain breadcrumbs including the press summary name
+        AND an additional `Press Summary` breadcrumb
+        """
+        mock_judgment.return_value = JudgmentFactory.build(
+            uri="eat/2023/1/press-summary/1",
+            is_published=True,
+            name="Press Summary of Judgment",
+        )
+        response = self.client.get("/eat/2023/1/press-summary/1")
+        breadcrumb_html = """
+        <div class="page-header__breadcrumb">
+            <nav class="page-header__breadcrumb-flex-container" aria-label="Breadcrumb">
+                <ol>
+                    <li>
+                        <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                        <a href="/">Find case law</a>
+                    </li>
+                    <li>Press Summary of Judgment</li>
+                    <li>Press Summary</li>
+                </ol>
+            </nav>
+        </div>
+        """
+        assert_contains_html(response, breadcrumb_html)
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    def test_no_press_summary_breadcrumb_when_on_judgment(
+        self, mock_judgment, mock_get_pdf_size
+    ):
+        """
+        GIVEN a judgment
+        WHEN a request is made with the judgment URI
+        THEN the response should contain breadcrumbs including the judgment name
+        AND NOT contain an additional `Press Summary` breadcrumb
+        """
+        mock_judgment.return_value = JudgmentFactory.build(
+            uri="eat/2023/1",
+            is_published=True,
+            name="Judgment",
+        )
+        response = self.client.get("/eat/2023/1")
+        breadcrumb_html = """
+        <div class="page-header__breadcrumb">
+            <nav class="page-header__breadcrumb-flex-container" aria-label="Breadcrumb">
+            <ol>
+                <li>
+                    <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                    <a href="/">Find case law</a>
+                </li>
+                <li>Judgment</li>
+            </ol>
+            </nav>
+        </div>"""
+        assert_contains_html(response, breadcrumb_html)
