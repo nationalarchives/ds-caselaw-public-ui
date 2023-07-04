@@ -6,6 +6,7 @@ from django.test import TestCase
 from django.utils.translation import gettext
 
 from judgments.tests.fixtures import FakeSearchResponse
+from judgments.tests.utils.assertions import assert_contains_html
 
 
 class TestBrowseResults(TestCase):
@@ -164,9 +165,7 @@ class TestSearchResults(TestCase):
             mock_api_client,
             SearchParameters(query="", court="ewhc/ch,ewhc/ipec", order="-date"),
         )
-        assert expected_applied_filters_html.replace(" ", "").replace(
-            "\n", ""
-        ) in response.content.decode().replace(" ", "").replace("\n", "")
+        assert_contains_html(response, expected_applied_filters_html)
 
     @patch("judgments.views.results.api_client")
     @patch("judgments.views.results.search_judgments_and_parse_response")

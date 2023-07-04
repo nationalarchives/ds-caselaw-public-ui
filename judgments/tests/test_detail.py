@@ -7,6 +7,10 @@ from django.http import Http404, HttpResponseRedirect
 from django.test import Client, TestCase
 from factories import JudgmentFactory
 
+from judgments.tests.utils.assertions import (
+    assert_contains_html,
+    assert_not_contains_html,
+)
 from judgments.views.detail import (
     PdfDetailView,
     get_pdf_size,
@@ -173,9 +177,7 @@ class TestDocumentDownloadOptions:
         </div>
         </div>
         """
-        assert download_options_html.replace(" ", "").replace(
-            "\n", ""
-        ) in response.content.decode().replace(" ", "").replace("\n", "")
+        assert_contains_html(response, download_options_html)
 
 
 class TestGetPdfSize(TestCase):
@@ -359,15 +361,3 @@ class TestViewRelatedDocumentButton:
         client = Client()
         response = client.get(f"/{uri}")
         assert_not_contains_html(response, unexpected_html_button)
-
-
-def assert_contains_html(response, html):
-    assert html.replace(" ", "").replace("\n", "") in response.content.decode().replace(
-        " ", ""
-    ).replace("\n", "")
-
-
-def assert_not_contains_html(response, html):
-    assert html.replace(" ", "").replace(
-        "\n", ""
-    ) not in response.content.decode().replace(" ", "").replace("\n", "")
