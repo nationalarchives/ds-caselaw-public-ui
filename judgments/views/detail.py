@@ -91,17 +91,22 @@ def detail(request, judgment_uri):
     except Http404:
         context["linked_document_uri"] = ""
 
+    # TODO: All references to `judgment` here need to be updated to the more general `document`
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
-    context["page_title"] = judgment.name
     context["judgment_uri"] = judgment.uri
     context["judgment_title"] = judgment.name
-    context["judgment_ncn"] = judgment.neutral_citation
+    context["page_title"] = judgment.name
     context["pdf_size"] = get_pdf_size(judgment.uri)
     context["pdf_uri"] = (
         get_pdf_uri(judgment.uri)
         if context["pdf_size"]
         else reverse("detail_pdf", args=[judgment.uri])
     )
+
+    # judgment_ncn is actually unique to the judgment
+    # and we will still use the press summary's related judgment's ncn to display
+    # but will fix this up in its own focussed PR.
+    context["judgment_ncn"] = judgment.neutral_citation
 
     return TemplateResponse(
         request,
