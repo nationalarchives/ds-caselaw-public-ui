@@ -432,10 +432,11 @@ class TestDocumentHeadings(TestCase):
         self, mock_judgment, mock_get_pdf_size
     ):
         """
-        GIVEN a press summary
+        GIVEN a press summary and related judgment
         WHEN a request is made with the press summary URI
         THEN the response should contain the heading HTML with the press summary
             name without the "Press Summary of " prefix"
+        AND a p tag subheading with the related judgment's NCN
         """
 
         def get_judgment_by_uri_side_effect(document_uri):
@@ -444,12 +445,14 @@ class TestDocumentHeadings(TestCase):
                     uri="eat/2023/1/press-summary/1",
                     is_published=True,
                     name="Press Summary of Judgment A (with some slightly different wording)",
+                    neutral_citation="",
                 )
             elif document_uri == "eat/2023/1":
                 return JudgmentFactory.build(
                     uri="eat/2023/1",
                     is_published=True,
                     name="Judgment A",
+                    neutral_citation="Judgment_A_NCN",
                 )
             else:
                 raise JudgmentNotFoundError()
@@ -458,6 +461,7 @@ class TestDocumentHeadings(TestCase):
         response = self.client.get("/eat/2023/1/press-summary/1")
         headings_html = """
         <h1 class="judgment-toolbar__title">Judgment A (with some slightly different wording)</h1>
+        <p class="judgment-toolbar__reference">Judgment_A_NCN</p>
         """
         assert_contains_html(response, headings_html)
 
@@ -468,15 +472,18 @@ class TestDocumentHeadings(TestCase):
         GIVEN a judgment exists with URI "eat/2023/1"
         WHEN a request is made with the judgment URI "/eat/2023/1"
         THEN the response should contain the heading HTML with the judgment name
+        AND a p tag subheading with the judgment's NCN
         """
         mock_judgment.return_value = JudgmentFactory.build(
             uri="eat/2023/1",
             is_published=True,
             name="Judgment A",
+            neutral_citation="Judgment_A_NCN",
         )
         response = self.client.get("/eat/2023/1")
         headings_html = """
         <h1 class="judgment-toolbar__title">Judgment A</h1>
+        <p class="judgment-toolbar__reference">Judgment_A_NCN</p>
         """
         assert_contains_html(response, headings_html)
 

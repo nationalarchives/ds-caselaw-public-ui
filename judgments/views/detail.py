@@ -82,14 +82,20 @@ def detail(request, judgment_uri):
     if judgment_uri.endswith(press_summary_suffix):
         context["document_type"] = "press_summary"
         context["linked_document_uri"] = judgment_uri.removesuffix(press_summary_suffix)
+        context["judgment_ncn"] = ""
     else:
         context["document_type"] = "judgment"
         context["linked_document_uri"] = judgment_uri + press_summary_suffix
+        context["judgment_ncn"] = judgment.neutral_citation
 
+    linked_document = None
     try:
-        get_published_judgment_by_uri(context["linked_document_uri"])
+        linked_document = get_published_judgment_by_uri(context["linked_document_uri"])
     except Http404:
         context["linked_document_uri"] = ""
+
+    if context["document_type"] == "press_summary" and linked_document:
+        context["judgment_ncn"] = linked_document.neutral_citation
 
     # TODO: All references to `judgment` here need to be updated to the more general `document`
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
@@ -101,11 +107,6 @@ def detail(request, judgment_uri):
         if context["pdf_size"]
         else reverse("detail_pdf", args=[judgment.uri])
     )
-
-    # judgment_ncn is actually unique to the judgment
-    # and we will still use the press summary's related judgment's ncn to display
-    # but will fix this up in its own focussed PR.
-    context["judgment_ncn"] = judgment.neutral_citation
 
     return TemplateResponse(
         request,
