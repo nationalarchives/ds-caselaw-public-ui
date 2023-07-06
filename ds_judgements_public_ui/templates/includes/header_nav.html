@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n document_utils %}
 <div class="page-header__nav">
   <div class="page-header__site-logo">
     <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
@@ -9,7 +9,7 @@
       <ol>
         <li>
           <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-          {% if current == "home" %}
+          {% if title == "home" %}
             {% translate "common.findcaselaw" %}
           {% else %}
             <a href="{% url 'home' %}">{% translate "common.findcaselaw" %}</a>
@@ -17,11 +17,26 @@
         </li>
         {% if search_context %}
           <li>
-            <a href="{{ search_context.search_url }}">{% translate "breadcrumbs.search" %}
-              {% if search_context.query %}for "{{ search_context.query }}"{% endif %}</a>
+            <a href="{{ search_context.search_url }}">
+              {% translate "breadcrumbs.search" %}
+              {% if search_context.query %}for "{{ search_context.query }}"{% endif %}
+              </a>
             </li>
           {% endif %}
-          {% if title and link %}<li>{{ title }}</li>{% endif %}
+          {% if link %}
+            {% if context.document_type == "press_summary" %}
+              <li>
+                {% if context.linked_document_uri %}
+                  <a href="{% url 'detail' context.linked_document_uri %}">{{ title|get_title_to_display_in_html:context.document_type }}</a>
+                {% else %}
+                  <a>{{ title|get_title_to_display_in_html:context.document_type }}</a>
+                {% endif %}
+              </li>
+              <li>Press Summary</li>
+            {% else %}
+              <li>{{ title }}</li>
+            {% endif %}
+          {% endif %}
         </ol>
       </nav>
     </div>
