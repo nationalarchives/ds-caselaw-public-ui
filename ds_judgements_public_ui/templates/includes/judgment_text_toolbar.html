@@ -1,10 +1,10 @@
-{% load i18n %}
+{% load i18n document_utils %}
 <div class="judgment-toolbar">
   <div class="judgment-toolbar__container">
     {% if context.document_type == "press_summary" %}
       <p class="judgment-toolbar__press-summary-title">Press Summary</p>
     {% endif %}
-    <h1 class="judgment-toolbar__title">{{ context.judgment_title }}</h1>
+    <h1 class="judgment-toolbar__title">{{ context.page_title|get_title_to_display_in_html:context.document_type }}</h1>
     <p class="judgment-toolbar__reference">{{ context.judgment_ncn }}</p>
     <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
       {% if context.linked_document_uri %}

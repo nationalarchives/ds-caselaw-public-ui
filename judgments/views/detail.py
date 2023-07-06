@@ -94,7 +94,6 @@ def detail(request, judgment_uri):
     # TODO: All references to `judgment` here need to be updated to the more general `document`
     context["judgment"] = judgment.content_as_html("")  # "" is most recent version
     context["judgment_uri"] = judgment.uri
-    context["judgment_title"] = judgment.name
     context["page_title"] = judgment.name
     context["pdf_size"] = get_pdf_size(judgment.uri)
     context["pdf_uri"] = (
