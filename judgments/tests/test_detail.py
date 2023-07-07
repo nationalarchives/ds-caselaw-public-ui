@@ -363,7 +363,10 @@ class TestViewRelatedDocumentButton:
         assert_not_contains_html(response, unexpected_html_button)
 
 
-class TestBreadcrumbs(TestCase):
+@pytest.mark.django_db
+class TestBreadcrumbs:
+    client = Client(raise_request_exception=False)
+
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_judgment_by_uri")
     def test_breadcrumb_when_press_summary(self, mock_judgment, mock_get_pdf_size):
@@ -419,6 +422,44 @@ class TestBreadcrumbs(TestCase):
                     <a href="/">Find case law</a>
                 </li>
                 <li>Judgment A</li>
+            </ol>
+            </nav>
+        </div>"""
+        assert_contains_html(response, breadcrumb_html)
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_judgment_by_uri")
+    @pytest.mark.parametrize(
+        "http_error,expected_breadcrumb",
+        [
+            (JudgmentNotFoundError, "Page not found"),
+            (Exception, "Server Error"),
+        ],
+    )
+    def test_breadcrumb_when_errors(
+        self, mock_judgment, mock_get_pdf_size, http_error, expected_breadcrumb
+    ):
+        """
+        GIVEN an URI matching the detail URI structure but does not match a valid document
+        WHEN a request is made with the URI
+        THEN the response should contain breadcrumbs including the appropriate error reference
+        """
+
+        def get_judgment_by_uri_side_effect(document_uri):
+            raise http_error()
+
+        mock_judgment.side_effect = get_judgment_by_uri_side_effect
+
+        response = self.client.get("/eat/2023/1")
+        breadcrumb_html = f"""
+        <div class="page-header__breadcrumb">
+            <nav class="page-header__breadcrumb-flex-container" aria-label="Breadcrumb">
+            <ol>
+                <li>
+                    <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                    <a href="/">Find case law</a>
+                </li>
+                <li>{expected_breadcrumb}</li>
             </ol>
             </nav>
         </div>"""
