@@ -2,20 +2,10 @@
 {% block title %}
   Page not found - Find case law
 {% endblock title %}
+{% block breadcrumbs %}
+  <li>Page not found</li>
+{% endblock breadcrumbs %}
 {% block content %}
-  <header class="page-header">
-    <div class="page-header__breadcrumb">
-      <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
-        <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-        <ol>
-          <li>
-            <a href="{% url 'home' %}">Find case law</a>
-          </li>
-          <li>Page not found</li>
-        </ol>
-      </nav>
-    </div>
-  </header>
   <div class="standard-text-template container py-3">
     <h1>Page not found</h1>
     <p>If you typed the web address, check it is correct.</p>

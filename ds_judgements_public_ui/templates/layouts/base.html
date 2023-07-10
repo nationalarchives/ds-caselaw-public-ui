@@ -36,7 +36,28 @@
     <header class="page-header">
       {% block header %}
         <div class="page-header__flex-container container py-1">
-          {% include "includes/header_nav.html" with title=context.page_title link=request.path %}
+          <div class="page-header__nav">
+            <div class="page-header__site-logo">
+              <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+            </div>
+            <div class="page-header__breadcrumb">
+              <nav class="page-header__breadcrumb-flex-container"
+                   aria-label="Breadcrumb">
+                <ol>
+                  <li>
+                    <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                    {% if title == "home" %}
+                      {% translate "common.findcaselaw" %}
+                    {% else %}
+                      <a href="{% url 'home' %}">{% translate "common.findcaselaw" %}</a>
+                    {% endif %}
+                  </li>
+                  {% block breadcrumbs %}
+                  {% endblock breadcrumbs %}
+                </ol>
+              </nav>
+            </div>
+          </div>
           {% include "includes/logo.html" %}
         </div>
       {% endblock header %}

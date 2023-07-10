@@ -2,20 +2,10 @@
 {% block title %}
   Server Error - Find Case Law
 {% endblock title %}
+{% block breadcrumbs %}
+  <li>Server Error</li>
+{% endblock breadcrumbs %}
 {% block content %}
-  <header class="page-header">
-    <div class="page-header__breadcrumb">
-      <nav class="page-header__breadcrumb-container" aria-label="Breadcrumb">
-        <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-        <ol>
-          <li>
-            <a href="{% url 'home' %}">Find case law</a>
-          </li>
-          <li>Server error</li>
-        </ol>
-      </nav>
-    </div>
-  </header>
   <div class="standard-text-template container py-3">
     <h1>Server Error</h1>
     <p>Sorry, there seems to be an error. Please try again soon.</p>
