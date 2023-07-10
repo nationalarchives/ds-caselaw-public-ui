@@ -43,7 +43,7 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
 
         self.pdf_filename = f"{document.uri}.pdf"
 
-        context["judgment"] = document.content_as_html("")  # "" is most recent version
+        context["document"] = document.content_as_html("")  # "" is most recent version
 
         return context
 
@@ -97,8 +97,7 @@ def detail(request, document_uri):
     if context["document_type"] == "press_summary" and linked_document:
         context["judgment_ncn"] = linked_document.neutral_citation
 
-    # TODO: All references to `document` here need to be updated to the more general `document`
-    context["judgment"] = document.content_as_html("")  # "" is most recent version
+    context["document"] = document.content_as_html("")  # "" is most recent version
     context["document_uri"] = document.uri
     context["page_title"] = document.name
     context["pdf_size"] = get_pdf_size(document.uri)
