@@ -123,9 +123,9 @@ def detail(request, document_uri):
 def detail_xml(_request, document_uri):
     document = get_published_document_by_uri(document_uri)
 
-    judgment_xml = document.content_as_xml()
+    document_xml = document.content_as_xml()
 
-    response = HttpResponse(judgment_xml, content_type="application/xml")
+    response = HttpResponse(document_xml, content_type="application/xml")
     response["Content-Disposition"] = f"attachment; filename={document.uri}.xml"
     return response
 
