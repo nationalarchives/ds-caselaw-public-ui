@@ -187,7 +187,7 @@ class TestRobotsDirectives(TestCase):
     def test_weasy_pdf(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/generated.pdf")
-        mock_context.assert_called_with(judgment_uri="eat/2023/1")
+        mock_context.assert_called_with(document_uri="eat/2023/1")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
@@ -196,7 +196,7 @@ class TestRobotsDirectives(TestCase):
     def test_weasy_pdf_press_summary(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/press-summary/1/generated.pdf")
-        mock_context.assert_called_with(judgment_uri="eat/2023/1/press-summary/1")
+        mock_context.assert_called_with(document_uri="eat/2023/1/press-summary/1")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 

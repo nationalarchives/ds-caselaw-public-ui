@@ -72,9 +72,9 @@ class FeedbackLinkMiddleware:
         if "feedback_survey_type" in response.context_data:
             params["type"] = response.context_data["feedback_survey_type"]
 
-        if "feedback_survey_judgment_uri" in response.context_data:
+        if "feedback_survey_document_uri" in response.context_data:
             params["judgment_uri"] = response.context_data[
-                "feedback_survey_judgment_uri"
+                "feedback_survey_document_uri"
             ]
 
         if "feedback_survey_court" in response.context_data:

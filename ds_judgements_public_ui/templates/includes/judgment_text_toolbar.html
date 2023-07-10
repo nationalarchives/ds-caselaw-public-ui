@@ -11,7 +11,7 @@
         <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
            role="button"
            draggable="false"
-           href="{% url 'detail' judgment_uri=context.linked_document_uri %}">
+           href="{% url 'detail' document_uri=context.linked_document_uri %}">
           {% if context.document_type == "judgment" %}
             {% translate "judgment.view_press_summary" %}
           {% else %}

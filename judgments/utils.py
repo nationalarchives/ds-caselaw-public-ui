@@ -121,10 +121,10 @@ def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
     }
 
 
-def get_pdf_uri(judgment_uri: str) -> str:
+def get_pdf_uri(document_uri: str) -> str:
     env = environ.Env()
     """Create a string saying where the S3 PDF will be for a judgment uri"""
-    pdf_path = f'{judgment_uri}/{judgment_uri.replace("/", "_")}.pdf'
+    pdf_path = f'{document_uri}/{document_uri.replace("/", "_")}.pdf'
     assets = env("ASSETS_CDN_BASE_URL", default=None)
     if assets:
         return f"{assets}/{pdf_path}"
@@ -203,7 +203,7 @@ def parse_date_parameter(params, param_name, default_to_last=False):
         raise ValueError(gettext("search.errors.missing_year_detail"))
 
 
-def get_judgment_by_uri(judgment_uri: str) -> Judgment:
+def get_judgment_by_uri(document_uri: str) -> Judgment:
     api_client = MarklogicApiClient(
         host=settings.MARKLOGIC_HOST,
         username=settings.MARKLOGIC_USER,
@@ -212,4 +212,4 @@ def get_judgment_by_uri(judgment_uri: str) -> Judgment:
     )
 
     # raises a JudgmentNotFoundError if it doesn't exist
-    return Judgment(judgment_uri, api_client)
+    return Judgment(document_uri, api_client)

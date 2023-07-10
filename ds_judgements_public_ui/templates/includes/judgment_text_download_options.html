@@ -23,7 +23,7 @@
     </div>
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% url 'detail_xml' context.judgment_uri %}">
+        <a href="{% url 'detail_xml' context.document_uri %}">
           {% if context.document_type == 'press_summary' %}
             {% translate "press_summary.downloadoptions.xml.cta" %}
           {% else %}
