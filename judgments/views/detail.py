@@ -112,7 +112,8 @@ def detail(request, document_uri):
         "judgment/detail.html",
         context={
             "context": context,
-            "feedback_survey_type": "judgment",
+            "feedback_survey_type": "judgment",  # TODO: update the survey to allow for generalisation to `document`
+            # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
             "feedback_survey_document_uri": document.uri,
             "search_context": search_context_from_url(request.META.get("HTTP_REFERER")),
         },
