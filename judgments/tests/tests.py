@@ -166,19 +166,19 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.detail.get_judgment_by_uri")
-    def test_xml(self, mock_judgment):
-        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+    @patch("judgments.views.detail.get_document_by_uri")
+    def test_xml(self, mock_get_document_by_uri):
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
-        mock_judgment.assert_called_with("eat/2023/1")
+        mock_get_document_by_uri.assert_called_with("eat/2023/1")
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.detail.get_judgment_by_uri")
-    def test_xml_press_summary(self, mock_judgment):
-        mock_judgment.return_value = JudgmentFactory.build(is_published=True)
+    @patch("judgments.views.detail.get_document_by_uri")
+    def test_xml_press_summary(self, mock_get_document_by_uri):
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
-        mock_judgment.assert_called_with("eat/2023/1/press-summary/1")
+        mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 

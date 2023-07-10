@@ -203,7 +203,7 @@ def parse_date_parameter(params, param_name, default_to_last=False):
         raise ValueError(gettext("search.errors.missing_year_detail"))
 
 
-def get_judgment_by_uri(document_uri: str) -> Judgment:
+def get_document_by_uri(document_uri: str) -> Judgment:
     api_client = MarklogicApiClient(
         host=settings.MARKLOGIC_HOST,
         username=settings.MARKLOGIC_USER,

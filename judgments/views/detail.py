@@ -13,21 +13,21 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
-from judgments.utils import get_judgment_by_uri, get_pdf_uri, search_context_from_url
+from judgments.utils import get_document_by_uri, get_pdf_uri, search_context_from_url
 
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
 
-def get_published_judgment_by_uri(document_uri: str) -> Judgment:
+def get_published_document_by_uri(document_uri: str) -> Judgment:
     try:
-        document = get_judgment_by_uri(document_uri)
+        document = get_document_by_uri(document_uri)
     except JudgmentNotFoundError:
-        raise Http404(f"Judgment {document_uri} was not found")
+        raise Http404(f"Document {document_uri} was not found")
 
     if not document.is_published:
-        raise Http404(f"This Judgment {document_uri} is not available")
+        raise Http404(f"Document {document_uri} is not available")
     return document
 
 
@@ -39,7 +39,7 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     def get_context_data(self, document_uri, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        document = get_published_judgment_by_uri(document_uri)
+        document = get_published_document_by_uri(document_uri)
 
         self.pdf_filename = f"{document.uri}.pdf"
 
@@ -68,7 +68,7 @@ def get_best_pdf(request, document_uri):
 
 
 def detail(request, document_uri):
-    document = get_published_judgment_by_uri(document_uri)
+    document = get_published_document_by_uri(document_uri)
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
     if document_uri != document.uri:
@@ -90,7 +90,7 @@ def detail(request, document_uri):
 
     linked_document = None
     try:
-        linked_document = get_published_judgment_by_uri(context["linked_document_uri"])
+        linked_document = get_published_document_by_uri(context["linked_document_uri"])
     except Http404:
         context["linked_document_uri"] = ""
 
@@ -121,7 +121,7 @@ def detail(request, document_uri):
 
 
 def detail_xml(_request, document_uri):
-    document = get_published_judgment_by_uri(document_uri)
+    document = get_published_document_by_uri(document_uri)
 
     judgment_xml = document.content_as_xml()
 
