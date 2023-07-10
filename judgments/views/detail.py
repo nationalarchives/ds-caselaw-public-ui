@@ -22,13 +22,13 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
 
 def get_published_judgment_by_uri(judgment_uri: str) -> Judgment:
     try:
-        judgment = get_judgment_by_uri(judgment_uri)
+        document = get_judgment_by_uri(judgment_uri)
     except JudgmentNotFoundError:
         raise Http404(f"Judgment {judgment_uri} was not found")
 
-    if not judgment.is_published:
+    if not document.is_published:
         raise Http404(f"This Judgment {judgment_uri} is not available")
-    return judgment
+    return document
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
@@ -39,11 +39,11 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     def get_context_data(self, judgment_uri, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        judgment = get_published_judgment_by_uri(judgment_uri)
+        document = get_published_judgment_by_uri(judgment_uri)
 
-        self.pdf_filename = f"{judgment.uri}.pdf"
+        self.pdf_filename = f"{document.uri}.pdf"
 
-        context["judgment"] = judgment.content_as_html("")  # "" is most recent version
+        context["judgment"] = document.content_as_html("")  # "" is most recent version
 
         return context
 
@@ -68,12 +68,12 @@ def get_best_pdf(request, judgment_uri):
 
 
 def detail(request, judgment_uri):
-    judgment = get_published_judgment_by_uri(judgment_uri)
+    document = get_published_judgment_by_uri(judgment_uri)
 
-    # If the judgment_uri which was requested isn't the canonical URI of the judgment, redirect the user
-    if judgment_uri != judgment.uri:
+    # If the judgment_uri which was requested isn't the canonical URI of the document, redirect the user
+    if judgment_uri != document.uri:
         return HttpResponseRedirect(
-            reverse("detail", kwargs={"judgment_uri": judgment.uri})
+            reverse("detail", kwargs={"judgment_uri": document.uri})
         )
 
     context = {}
@@ -86,7 +86,7 @@ def detail(request, judgment_uri):
     else:
         context["document_type"] = "judgment"
         context["linked_document_uri"] = judgment_uri + press_summary_suffix
-        context["judgment_ncn"] = judgment.neutral_citation
+        context["judgment_ncn"] = document.neutral_citation
 
     linked_document = None
     try:
@@ -97,15 +97,15 @@ def detail(request, judgment_uri):
     if context["document_type"] == "press_summary" and linked_document:
         context["judgment_ncn"] = linked_document.neutral_citation
 
-    # TODO: All references to `judgment` here need to be updated to the more general `document`
-    context["judgment"] = judgment.content_as_html("")  # "" is most recent version
-    context["judgment_uri"] = judgment.uri
-    context["page_title"] = judgment.name
-    context["pdf_size"] = get_pdf_size(judgment.uri)
+    # TODO: All references to `document` here need to be updated to the more general `document`
+    context["judgment"] = document.content_as_html("")  # "" is most recent version
+    context["judgment_uri"] = document.uri
+    context["page_title"] = document.name
+    context["pdf_size"] = get_pdf_size(document.uri)
     context["pdf_uri"] = (
-        get_pdf_uri(judgment.uri)
+        get_pdf_uri(document.uri)
         if context["pdf_size"]
-        else reverse("detail_pdf", args=[judgment.uri])
+        else reverse("detail_pdf", args=[document.uri])
     )
 
     return TemplateResponse(
@@ -114,24 +114,24 @@ def detail(request, judgment_uri):
         context={
             "context": context,
             "feedback_survey_type": "judgment",
-            "feedback_survey_judgment_uri": judgment.uri,
+            "feedback_survey_judgment_uri": document.uri,
             "search_context": search_context_from_url(request.META.get("HTTP_REFERER")),
         },
     )
 
 
 def detail_xml(_request, judgment_uri):
-    judgment = get_published_judgment_by_uri(judgment_uri)
+    document = get_published_judgment_by_uri(judgment_uri)
 
-    judgment_xml = judgment.content_as_xml()
+    judgment_xml = document.content_as_xml()
 
     response = HttpResponse(judgment_xml, content_type="application/xml")
-    response["Content-Disposition"] = f"attachment; filename={judgment.uri}.xml"
+    response["Content-Disposition"] = f"attachment; filename={document.uri}.xml"
     return response
 
 
 def get_pdf_size(judgment_uri):
-    """Return the size of the S3 PDF for a judgment as a string in brackets, or an empty string if unavailable"""
+    """Return the size of the S3 PDF for a document as a string in brackets, or an empty string if unavailable"""
     response = requests.head(
         # it is possible that "" is a better value than None, but that is untested
         get_pdf_uri(judgment_uri),
