@@ -13,22 +13,22 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
-from judgments.utils import get_judgment_by_uri, get_pdf_uri, search_context_from_url
+from judgments.utils import get_document_by_uri, get_pdf_uri, search_context_from_url
 
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
 
-def get_published_judgment_by_uri(judgment_uri: str) -> Judgment:
+def get_published_document_by_uri(document_uri: str) -> Judgment:
     try:
-        judgment = get_judgment_by_uri(judgment_uri)
+        document = get_document_by_uri(document_uri)
     except JudgmentNotFoundError:
-        raise Http404(f"Judgment {judgment_uri} was not found")
+        raise Http404(f"Document {document_uri} was not found")
 
-    if not judgment.is_published:
-        raise Http404(f"This Judgment {judgment_uri} is not available")
-    return judgment
+    if not document.is_published:
+        raise Http404(f"Document {document_uri} is not available")
+    return document
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
@@ -36,76 +36,75 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
     pdf_attachment = True
 
-    def get_context_data(self, judgment_uri, **kwargs):
+    def get_context_data(self, document_uri, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        judgment = get_published_judgment_by_uri(judgment_uri)
+        document = get_published_document_by_uri(document_uri)
 
-        self.pdf_filename = f"{judgment.uri}.pdf"
+        self.pdf_filename = f"{document.uri}.pdf"
 
-        context["judgment"] = judgment.content_as_html("")  # "" is most recent version
+        context["document"] = document.content_as_html("")  # "" is most recent version
 
         return context
 
 
-def get_best_pdf(request, judgment_uri):
+def get_best_pdf(request, document_uri):
     """
     Response for the legacy data.pdf endpoint, used by data reusers
 
     If there's a DOCX-derived PDF in the S3 bucket, return that.
     Otherwise fall back and redirect to the weasyprint version."""
-    pdf_uri = get_pdf_uri(judgment_uri)
+    pdf_uri = get_pdf_uri(document_uri)
     response = requests.get(pdf_uri)
     if response.status_code == 200:
         return HttpResponse(response.content, content_type="application/pdf")
 
     if response.status_code != 404:
         logging.warn(
-            f"Unexpected {response.status_code} error on {judgment_uri} whilst trying to get_best_pdf"
+            f"Unexpected {response.status_code} error on {document_uri} whilst trying to get_best_pdf"
         )
     # fall back to weasy_pdf
-    return redirect(reverse("weasy_pdf", kwargs={"judgment_uri": judgment_uri}))
+    return redirect(reverse("weasy_pdf", kwargs={"document_uri": document_uri}))
 
 
-def detail(request, judgment_uri):
-    judgment = get_published_judgment_by_uri(judgment_uri)
+def detail(request, document_uri):
+    document = get_published_document_by_uri(document_uri)
 
-    # If the judgment_uri which was requested isn't the canonical URI of the judgment, redirect the user
-    if judgment_uri != judgment.uri:
+    # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
+    if document_uri != document.uri:
         return HttpResponseRedirect(
-            reverse("detail", kwargs={"judgment_uri": judgment.uri})
+            reverse("detail", kwargs={"document_uri": document.uri})
         )
 
     context = {}
 
     press_summary_suffix = "/press-summary/1"
-    if judgment_uri.endswith(press_summary_suffix):
+    if document_uri.endswith(press_summary_suffix):
         context["document_type"] = "press_summary"
-        context["linked_document_uri"] = judgment_uri.removesuffix(press_summary_suffix)
+        context["linked_document_uri"] = document_uri.removesuffix(press_summary_suffix)
         context["judgment_ncn"] = ""
     else:
         context["document_type"] = "judgment"
-        context["linked_document_uri"] = judgment_uri + press_summary_suffix
-        context["judgment_ncn"] = judgment.neutral_citation
+        context["linked_document_uri"] = document_uri + press_summary_suffix
+        context["judgment_ncn"] = document.neutral_citation
 
     linked_document = None
     try:
-        linked_document = get_published_judgment_by_uri(context["linked_document_uri"])
+        linked_document = get_published_document_by_uri(context["linked_document_uri"])
     except Http404:
         context["linked_document_uri"] = ""
 
     if context["document_type"] == "press_summary" and linked_document:
         context["judgment_ncn"] = linked_document.neutral_citation
 
-    # TODO: All references to `judgment` here need to be updated to the more general `document`
-    context["judgment"] = judgment.content_as_html("")  # "" is most recent version
-    context["judgment_uri"] = judgment.uri
-    context["page_title"] = judgment.name
-    context["pdf_size"] = get_pdf_size(judgment.uri)
+    context["document"] = document.content_as_html("")  # "" is most recent version
+    context["document_uri"] = document.uri
+    context["page_title"] = document.name
+    context["pdf_size"] = get_pdf_size(document.uri)
     context["pdf_uri"] = (
-        get_pdf_uri(judgment.uri)
+        get_pdf_uri(document.uri)
         if context["pdf_size"]
-        else reverse("detail_pdf", args=[judgment.uri])
+        else reverse("detail_pdf", args=[document.uri])
     )
 
     return TemplateResponse(
@@ -113,28 +112,29 @@ def detail(request, judgment_uri):
         "judgment/detail.html",
         context={
             "context": context,
-            "feedback_survey_type": "judgment",
-            "feedback_survey_judgment_uri": judgment.uri,
+            "feedback_survey_type": "judgment",  # TODO: update the survey to allow for generalisation to `document`
+            # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
+            "feedback_survey_document_uri": document.uri,
             "search_context": search_context_from_url(request.META.get("HTTP_REFERER")),
         },
     )
 
 
-def detail_xml(_request, judgment_uri):
-    judgment = get_published_judgment_by_uri(judgment_uri)
+def detail_xml(_request, document_uri):
+    document = get_published_document_by_uri(document_uri)
 
-    judgment_xml = judgment.content_as_xml()
+    document_xml = document.content_as_xml()
 
-    response = HttpResponse(judgment_xml, content_type="application/xml")
-    response["Content-Disposition"] = f"attachment; filename={judgment.uri}.xml"
+    response = HttpResponse(document_xml, content_type="application/xml")
+    response["Content-Disposition"] = f"attachment; filename={document.uri}.xml"
     return response
 
 
-def get_pdf_size(judgment_uri):
-    """Return the size of the S3 PDF for a judgment as a string in brackets, or an empty string if unavailable"""
+def get_pdf_size(document_uri):
+    """Return the size of the S3 PDF for a document as a string in brackets, or an empty string if unavailable"""
     response = requests.head(
         # it is possible that "" is a better value than None, but that is untested
-        get_pdf_uri(judgment_uri),
+        get_pdf_uri(document_uri),
         headers={"Accept-Encoding": None},  # type: ignore
     )
     content_length = response.headers.get("Content-Length", None)
@@ -143,5 +143,5 @@ def get_pdf_size(judgment_uri):
     if content_length:
         filesize = filesizeformat(int(content_length))
         return f" ({filesize})"
-    logging.warning(f"Unable to determine PDF size for {judgment_uri}")
+    logging.warning(f"Unable to determine PDF size for {document_uri}")
     return " (unknown size)"

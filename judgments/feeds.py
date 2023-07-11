@@ -123,7 +123,7 @@ class LatestJudgmentsFeed(Feed):
         return item.name
 
     def item_link(self, item) -> str:
-        return reverse("detail", kwargs={"judgment_uri": item.uri})
+        return reverse("detail", kwargs={"document_uri": item.uri})
 
     def item_author_name(self, item) -> Optional[str]:
         return item.metadata.author
