@@ -1,11 +1,11 @@
 import pytest
-from factories import JudgmentFactory
+from factories import DocumentFactory
 
 
-class TestJudgmentFactory:
+class TestDocumentFactory:
     def test_default_uri(self):
         # The default URI gets a test where others don't because without a URI judgments fall apart
-        judgment = JudgmentFactory.build()
+        judgment = DocumentFactory.build()
 
         assert type(judgment.uri) == str
         assert judgment.uri != ""
@@ -31,16 +31,16 @@ class TestJudgmentFactory:
         ],
     )
     def test_params(self, parameter, value):
-        judgment = JudgmentFactory.build(**{parameter: value})
+        judgment = DocumentFactory.build(**{parameter: value})
 
         assert getattr(judgment, parameter) == value
 
     def test_html(self):
-        judgment = JudgmentFactory.build(html="<h1>Testing HTML</h1>")
+        judgment = DocumentFactory.build(html="<h1>Testing HTML</h1>")
 
         assert judgment.content_as_html("") == "<h1>Testing HTML</h1>"
 
     def test_xml(self):
-        judgment = JudgmentFactory.build(xml="<h1>Testing XML</h1>")
+        judgment = DocumentFactory.build(xml="<h1>Testing XML</h1>")
 
         assert judgment.content_as_xml("") == "<h1>Testing XML</h1>"

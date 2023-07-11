@@ -3,7 +3,7 @@ from unittest import skip
 from unittest.mock import patch
 
 from django.test import TestCase
-from factories import JudgmentFactory
+from factories import DocumentFactory
 
 from judgments import converters, utils
 from judgments.models import CourtDates
@@ -168,7 +168,7 @@ class TestRobotsDirectives(TestCase):
 
     @patch("judgments.views.detail.get_document_by_uri")
     def test_xml(self, mock_get_document_by_uri):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+        mock_get_document_by_uri.return_value = DocumentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
         mock_get_document_by_uri.assert_called_with("eat/2023/1")
         self.assertContains(response, "This is a judgment in XML.")
@@ -176,7 +176,7 @@ class TestRobotsDirectives(TestCase):
 
     @patch("judgments.views.detail.get_document_by_uri")
     def test_xml_press_summary(self, mock_get_document_by_uri):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+        mock_get_document_by_uri.return_value = DocumentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
         mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a judgment in XML.")

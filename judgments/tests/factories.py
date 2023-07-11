@@ -1,11 +1,10 @@
 from typing import Any
 from unittest.mock import Mock
 
-from caselawclient.models.judgments import Judgment
+from caselawclient.models.documents import Document
 
 
-class JudgmentFactory:
-    # "name_of_attribute": ("name of incoming param", "default value")
+class DocumentFactory:
     PARAMS_MAP: dict[str, Any] = {
         "uri": "test/2023/123",
         "name": "Judgment v Judgement",
@@ -25,15 +24,15 @@ class JudgmentFactory:
     }
 
     @classmethod
-    def build(cls, **kwargs) -> Judgment:
-        judgment_mock = Mock(spec=Judgment, autospec=True)
+    def build(cls, **kwargs) -> Document:
+        mock_document = Mock(spec=Document, autospec=True)
 
-        judgment_mock.return_value.content_as_html.return_value = kwargs.pop(
+        mock_document.return_value.content_as_html.return_value = kwargs.pop(
             "html",
             "<p>This is a judgment in HTML.</p>",
         )
 
-        judgment_mock.return_value.content_as_xml.return_value = kwargs.pop(
+        mock_document.return_value.content_as_xml.return_value = kwargs.pop(
             "xml",
             """<?xml version="1.0" encoding="UTF-8"?>
 <judgment>
@@ -43,8 +42,8 @@ class JudgmentFactory:
 
         for param, value in cls.PARAMS_MAP.items():
             if param in kwargs:
-                setattr(judgment_mock.return_value, param, kwargs[param])
+                setattr(mock_document.return_value, param, kwargs[param])
             else:
-                setattr(judgment_mock.return_value, param, value)
+                setattr(mock_document.return_value, param, value)
 
-        return judgment_mock()
+        return mock_document()
