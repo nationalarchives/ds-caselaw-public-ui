@@ -20,24 +20,24 @@
             <a href="{{ search_context.search_url }}">
               {% translate "breadcrumbs.search" %}
               {% if search_context.query %}for "{{ search_context.query }}"{% endif %}
-              </a>
+            </a>
+          </li>
+        {% endif %}
+        {% if link %}
+          {% if context.document_type == "press_summary" %}
+            <li>
+              {% if context.linked_document_uri %}
+                <a href="{% url 'detail' context.linked_document_uri %}">{{ title|get_title_to_display_in_html:context.document_type }}</a>
+              {% else %}
+                <a>{{ title|get_title_to_display_in_html:context.document_type }}</a>
+              {% endif %}
             </li>
+            <li>Press Summary</li>
+          {% else %}
+            <li>{{ title }}</li>
           {% endif %}
-          {% if link %}
-            {% if context.document_type == "press_summary" %}
-              <li>
-                {% if context.linked_document_uri %}
-                  <a href="{% url 'detail' context.linked_document_uri %}">{{ title|get_title_to_display_in_html:context.document_type }}</a>
-                {% else %}
-                  <a>{{ title|get_title_to_display_in_html:context.document_type }}</a>
-                {% endif %}
-              </li>
-              <li>Press Summary</li>
-            {% else %}
-              <li>{{ title }}</li>
-            {% endif %}
-          {% endif %}
-        </ol>
-      </nav>
-    </div>
+        {% endif %}
+      </ol>
+    </nav>
   </div>
+</div>
