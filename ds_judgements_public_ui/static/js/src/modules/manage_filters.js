@@ -10,7 +10,7 @@ import $ from "jquery";
 
             const $control_container = $(
                 ".js-results-control-container",
-                $wrapper
+                $wrapper,
             );
 
             const $filters = $(".js-results-facets-applied-filters", $wrapper);
@@ -30,7 +30,7 @@ import $ from "jquery";
                     const $el = $(e.target);
                     const $filters = $(
                         ".js-results-facets-applied-filters",
-                        $wrapper
+                        $wrapper,
                     );
                     $el.toggleClass("collapsed");
 
