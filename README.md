@@ -263,14 +263,14 @@ npm i
 - To watch and build the site SASS, run `npm run start-sass`
 - To modify styles, navigate to the `sass` folder in your editor.
 
-#### Note about `ds_judgements_public_ui/sass/includes/_judgment_text.scss`
+#### Note about `ds_judgements_public_ui/sass/includes/_document_text.scss`
 
-The Judgment display CSS `_judgment_text.scss` should be the same between both
+The document display CSS `_document_text.scss` should be the same between both
 this application and `ds-caselaw-editor-ui`. Ensuring edits to this repository were being
 replicated to the editor repository was tricky as it relied on the developers
 remembering to make changes in both places.
 
-Instead, we share the judgment CSS between both apps. This repository is the
+Instead, we share the document CSS between both apps. This repository is the
 "source of truth". Any edits made in `ds-caselaw-public-ui` which are then merged to main and included in a
 production release, will be reflected in `ds-caselaw-editor-ui` (note that the changes have to be included in
 [a release](https://github.com/nationalarchives/ds-caselaw-public-ui/releases) before they are used in the editor).
@@ -279,7 +279,7 @@ Note that if a release is made on `ds-caselaw-public-ui` which contains edits to
 made to `ds-caselaw-editor-ui` to force that app to pick up the new version of the CSS. A deployment can be made via
 dalmatian, without needing to do a full release of the editor.
 
-`_judgment_text.scss` only contains styles for the HTML judgment view. Other CSS styles for the public UI and editor
+`_document_text.scss` only contains styles for the HTML document view. Other CSS styles for the public UI and editor
 UI applications are not shared.
 
 ### Working with JavaScript

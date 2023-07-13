@@ -1,4 +1,4 @@
-.judgment {
+.document {
   max-width: 90%;
   margin: auto;
   margin-bottom: calc($spacer__unit * 2);
@@ -61,7 +61,7 @@
   }
 }
 
-.judgment-header {
+.document-header {
   padding-top: $spacer__unit * 3;
 
   table {
@@ -94,7 +94,7 @@
       }
     }
 
-    .judgment-header__neutral-citation {
+    .document-header__neutral-citation {
       text-align: left;
     }
   }
@@ -216,13 +216,13 @@
     text-align: center;
   }
 
-  &__approved-judgment {
+  &__approved-document {
     text-align: center;
   }
 
   // Classes with `pr-` prefix are purely presentational
   // escape-hatches for dealing with specific formatting
-  // details in judgments that must be preserved.
+  // details in document that must be preserved.
 
   &__pr-center {
     text-align: center !important;
@@ -237,7 +237,7 @@
   }
 }
 
-.judgment-body {
+.document-body {
   table {
     border: 1px solid $color__almost-black;
     margin: 1rem auto;
@@ -267,7 +267,7 @@
       animation-duration: 1.5s;
       animation-name: emphasis-border;
 
-      + .judgment-body__text {
+      + .document-body__text {
         animation-duration: 1.5s;
         animation-name: emphasis;
       }
@@ -347,7 +347,7 @@
   }
 }
 
-.judgment-download {
+.document-download {
   background-color: $color__almost-black;
   padding: calc($spacer__unit / 2);
   color: $color__white;

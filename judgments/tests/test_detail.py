@@ -170,14 +170,14 @@ class TestDocumentDownloadOptions:
         client = Client()
         response = client.get(f"/{uri}")
         download_options_html = f"""
-        <div id="download-options" class="judgment-download-options">
-        <h2 class="judgment-download-options__header">Download options</h2>
-        <div class="judgment-download-options__options-list">
-            <div class="judgment-download-options__download-option">
+        <div id="download-options" class="document-download-options">
+        <h2 class="document-download-options__header">Download options</h2>
+        <div class="document-download-options__options-list">
+            <div class="document-download-options__download-option">
             <h3><a href="http://example.com/test.pdf">Download this {document_type} as a PDF (112KB)</a></h3>
             <p>The original format of the {document_type} as handed down by the court, for printing and downloading.</p>
             </div>
-            <div class="judgment-download-options__download-option">
+            <div class="document-download-options__download-option">
             <h3><a href="/{uri}/data.xml">Download this {document_type} as XML</a></h3>
             <p>
             The {document_type} in machine-readable LegalDocML format for developers, data scientists and researchers.
@@ -257,7 +257,7 @@ class TestPressSummaryLabel(TestCase):
         response = self.client.get("/eat/2023/1/press-summary/1")
         self.assertContains(
             response,
-            '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
+            '<p class="document-toolbar__press-summary-title">Press Summary</p>',
         )
 
     @patch("judgments.views.detail.get_pdf_size")
@@ -276,7 +276,7 @@ class TestPressSummaryLabel(TestCase):
         response = self.client.get("/eat/2023/1")
         self.assertNotContains(
             response,
-            '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
+            '<p class="document-toolbar__press-summary-title">Press Summary</p>',
         )
 
 
@@ -316,7 +316,7 @@ class TestViewRelatedDocumentButton:
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
         expected_html_button = f"""
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+        <a class="document-toolbar-buttons__option--related-document btn-related-document"
             role="button" draggable="false"
             href="/{expected_href}"
         >
@@ -360,7 +360,7 @@ class TestViewRelatedDocumentButton:
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
         unexpected_html_button = f"""
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+        <a class="document-toolbar-buttons__option--related-document btn-related-document"
             role="button" draggable="false"
             href="/{unexpected_href}"
         >
@@ -520,8 +520,8 @@ class TestDocumentHeadings(TestCase):
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
         headings_html = """
-        <h1 class="judgment-toolbar__title">Judgment A (with some slightly different wording)</h1>
-        <p class="judgment-toolbar__reference">Judgment_A_NCN</p>
+        <h1 class="document-toolbar__title">Judgment A (with some slightly different wording)</h1>
+        <p class="document-toolbar__reference">Judgment_A_NCN</p>
         """
         assert_contains_html(response, headings_html)
 
@@ -544,8 +544,8 @@ class TestDocumentHeadings(TestCase):
         )
         response = self.client.get("/eat/2023/1")
         headings_html = """
-        <h1 class="judgment-toolbar__title">Judgment A</h1>
-        <p class="judgment-toolbar__reference">Judgment_A_NCN</p>
+        <h1 class="document-toolbar__title">Judgment A</h1>
+        <p class="document-toolbar__reference">Judgment_A_NCN</p>
         """
         assert_contains_html(response, headings_html)
 

@@ -1,4 +1,4 @@
-.judgment-toolbar {
+.document-toolbar {
   background-color: $color__light-grey;
   color: $color__black;
   padding: $spacer__unit;
@@ -75,7 +75,7 @@
   }
 }
 
-.judgment-toolbar-buttons {
+.document-toolbar-buttons {
   margin: 0 auto;
 
   &__option--related-document {

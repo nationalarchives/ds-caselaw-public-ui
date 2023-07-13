@@ -1,8 +1,8 @@
 {% load i18n %}
-<div id="download-options" class="judgment-download-options">
-  <h2 class="judgment-download-options__header">{% translate "document.downloadoptions.title" %}</h2>
-  <div class="judgment-download-options__options-list">
-    <div class="judgment-download-options__download-option">
+<div id="download-options" class="document-download-options">
+  <h2 class="document-download-options__header">{% translate "document.downloadoptions.title" %}</h2>
+  <div class="document-download-options__options-list">
+    <div class="document-download-options__download-option">
       <h3>
         <a href="{{ context.pdf_uri }}">
           {% if context.document_type == 'press_summary' %}
@@ -21,7 +21,7 @@
         {% endif %}
       </p>
     </div>
-    <div class="judgment-download-options__download-option">
+    <div class="document-download-options__download-option">
       <h3>
         <a href="{% url 'detail_xml' context.document_uri %}">
           {% if context.document_type == 'press_summary' %}
