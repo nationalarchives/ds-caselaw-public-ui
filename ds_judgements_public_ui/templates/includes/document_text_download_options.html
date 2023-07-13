@@ -1,6 +1,6 @@
 {% load i18n %}
 <div id="download-options" class="judgment-download-options">
-  <h2 class="judgment-download-options__header">{% translate "judgment.downloadoptions.title" %}</h2>
+  <h2 class="judgment-download-options__header">{% translate "document.downloadoptions.title" %}</h2>
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
       <h3>
@@ -8,7 +8,7 @@
           {% if context.document_type == 'press_summary' %}
             {% translate "press_summary.downloadoptions.pdf.cta" %}
           {% else %}
-            {% translate "judgment.downloadoptions.pdf.cta" %}
+            {% translate "document.downloadoptions.pdf.cta" %}
           {% endif %}
           {{ context.pdf_size }}
         </a>
@@ -17,7 +17,7 @@
         {% if context.document_type == 'press_summary' %}
           {% translate "press_summary.downloadoptions.pdf.description" %}
         {% else %}
-          {% translate "judgment.downloadoptions.pdf.description" %}
+          {% translate "document.downloadoptions.pdf.description" %}
         {% endif %}
       </p>
     </div>
@@ -27,7 +27,7 @@
           {% if context.document_type == 'press_summary' %}
             {% translate "press_summary.downloadoptions.xml.cta" %}
           {% else %}
-            {% translate "judgment.downloadoptions.xml.cta" %}
+            {% translate "document.downloadoptions.xml.cta" %}
           {% endif %}
         </a>
       </h3>
@@ -35,7 +35,7 @@
         {% if context.document_type == 'press_summary' %}
           {% translate "press_summary.downloadoptions.xml.description" %}
         {% else %}
-          {% translate "judgment.downloadoptions.xml.description" %}
+          {% translate "document.downloadoptions.xml.description" %}
         {% endif %}
       </p>
     </div>
