@@ -173,14 +173,6 @@ msgstr ""
 "The press summary in machine-readable LegalDocML format for developers, data "
 "scientists and researchers."
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_source.html
-msgid "judgment.source_by"
-msgstr "This judgment has been provided to The National Archives by "
-
-#: ds_judgements_public_ui/templates/includes/judgment_text_source.html
-msgid "judgment.bailii"
-msgstr "The British and Irish Legal Information Institute"
-
 #: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
 msgid "judgment.downloadaspdf"
 msgstr "Download as PDF"
