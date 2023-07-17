@@ -143,8 +143,8 @@ class TestDocumentDownloadOptions:
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
-        "uri,document_type",
-        [("eat/2023/1/press-summary/1", "press summary"), ("eat/2023/1", "judgment")],
+        "uri",
+        [("eat/2023/1/press-summary/1"), ("eat/2023/1")],
     )
     def test_download_options(
         self,
@@ -152,7 +152,6 @@ class TestDocumentDownloadOptions:
         mock_get_pdf_size,
         mock_get_pdf_uri,
         uri,
-        document_type,
     ):
         """
         GIVEN a document
@@ -160,7 +159,6 @@ class TestDocumentDownloadOptions:
         THEN html response should contain the download options div
         AND this contains the Download PDF button
         AND this contains the Download XML button
-        AND the descriptions refer to the document's type
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             uri=uri, is_published=True
@@ -174,13 +172,13 @@ class TestDocumentDownloadOptions:
         <h2 class="document-download-options__header">Download options</h2>
         <div class="document-download-options__options-list">
             <div class="document-download-options__download-option">
-            <h3><a href="http://example.com/test.pdf">Download this {document_type} as a PDF (112KB)</a></h3>
-            <p>The original format of the {document_type} as handed down by the court, for printing and downloading.</p>
+            <h3><a href="http://example.com/test.pdf">Download this document as a PDF (112KB)</a></h3>
+            <p>The original format of the document as handed down by the court, for printing and downloading.</p>
             </div>
             <div class="document-download-options__download-option">
-            <h3><a href="/{uri}/data.xml">Download this {document_type} as XML</a></h3>
+            <h3><a href="/{uri}/data.xml">Download this document as XML</a></h3>
             <p>
-            The {document_type} in machine-readable LegalDocML format for developers, data scientists and researchers.
+            The document in machine-readable LegalDocML format for developers, data scientists and researchers.
             </p>
             </div>
         </div>

@@ -5,39 +5,17 @@
     <div class="document-download-options__download-option">
       <h3>
         <a href="{{ context.pdf_uri }}">
-          {% if context.document_type == 'press_summary' %}
-            {% translate "press_summary.downloadoptions.pdf.cta" %}
-          {% else %}
-            {% translate "document.downloadoptions.pdf.cta" %}
-          {% endif %}
+          {% translate "document.downloadoptions.pdf.cta" %}
           {{ context.pdf_size }}
         </a>
       </h3>
-      <p>
-        {% if context.document_type == 'press_summary' %}
-          {% translate "press_summary.downloadoptions.pdf.description" %}
-        {% else %}
-          {% translate "document.downloadoptions.pdf.description" %}
-        {% endif %}
-      </p>
+      <p>{% translate "document.downloadoptions.pdf.description" %}</p>
     </div>
     <div class="document-download-options__download-option">
       <h3>
-        <a href="{% url 'detail_xml' context.document_uri %}">
-          {% if context.document_type == 'press_summary' %}
-            {% translate "press_summary.downloadoptions.xml.cta" %}
-          {% else %}
-            {% translate "document.downloadoptions.xml.cta" %}
-          {% endif %}
-        </a>
+        <a href="{% url 'detail_xml' context.document_uri %}">{% translate "document.downloadoptions.xml.cta" %}</a>
       </h3>
-      <p>
-        {% if context.document_type == 'press_summary' %}
-          {% translate "press_summary.downloadoptions.xml.description" %}
-        {% else %}
-          {% translate "document.downloadoptions.xml.description" %}
-        {% endif %}
-      </p>
+      <p>{% translate "document.downloadoptions.xml.description" %}</p>
     </div>
   </div>
 </div>
