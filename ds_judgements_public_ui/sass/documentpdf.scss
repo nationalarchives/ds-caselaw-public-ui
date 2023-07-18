@@ -1,12 +1,12 @@
 @import "includes/variables";
 @import "includes/mixins";
-@import "includes/judgment_text";
+@import "includes/document_text";
 
 html {
   font-size: 12px;
 }
 
-.judgment {
+.document {
   max-width: 100%;
   font-size: 1rem;
   line-height: 1.7;
