@@ -32,7 +32,7 @@ def get_published_document_by_uri(document_uri: str) -> Judgment:
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
-    template_name = "pdf/document.html"
+    template_name = "pdf/judgment.html"
     pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
     pdf_attachment = True
 

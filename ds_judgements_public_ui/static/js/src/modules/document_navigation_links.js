@@ -16,7 +16,7 @@ const manageClass = (intersecting) => {
     const backToTopLinkContainer = document.getElementById(
         "js-document-navigation-links-end",
     );
-    const pageScrolls = $(".document-body").height() > $(window).height();
+    const pageScrolls = $(".judgment-body").height() > $(window).height();
 
     if (intersecting && pageScrolls) {
         backToTopLinkContainer.classList.remove("show");
@@ -35,7 +35,7 @@ $(() => {
     );
 
     let footerBackLink = document.querySelector(
-        ".document-end-document-marker__top-link a",
+        ".judgment-end-document-marker__top-link a",
     );
 
     if (footerBackLink) {
@@ -52,9 +52,9 @@ $(() => {
                 });
         }
     }
-    let judgmentsFooter = document.querySelector(".documents-footer");
+    let judgmentsFooter = document.querySelector(".judgments-footer");
     let judgmentsToolbarContainer = document.querySelector(
-        ".document-toolbar__container",
+        ".judgment-toolbar__container",
     );
     if (judgmentsFooter && judgmentsToolbarContainer) {
         createObserver([judgmentsFooter, judgmentsToolbarContainer]);
