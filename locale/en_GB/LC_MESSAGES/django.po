@@ -110,7 +110,7 @@ msgstr "Find case law"
 
 #: ds_judgements_public_ui/templates/includes/header_nav.html
 #: ds_judgements_public_ui/templates/judgment/results.html
-#: ds_judgements_public_ui/templates/layouts/document.html
+#: ds_judgements_public_ui/templates/layouts/judgment.html
 #: ds_judgements_public_ui/templates/layouts/static_content.html
 #: ds_judgements_public_ui/templates/pages/home.html
 #: ds_judgements_public_ui/templates/pages/structured_search.html
@@ -129,36 +129,56 @@ msgstr "Help us improve this service"
 msgid "survey.link.text"
 msgstr "Complete our short survey"
 
-#: ds_judgements_public_ui/templates/includes/document_text_download_options.html
-msgid "document.downloadoptions.title"
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "judgment.downloadoptions.title"
 msgstr "Download options"
 
-#: ds_judgements_public_ui/templates/includes/document_text_download_options.html
-msgid "document.downloadoptions.pdf.cta"
-msgstr "Download this document as a PDF"
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "judgment.downloadoptions.pdf.cta"
+msgstr "Download this judgment as a PDF"
 
-#: ds_judgements_public_ui/templates/includes/document_text_download_options.html
-msgid "document.downloadoptions.pdf.description"
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.pdf.cta"
+msgstr "Download this press summary as a PDF"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "judgment.downloadoptions.pdf.description"
 msgstr ""
-"The original format of the document as handed down by the court, for "
+"The original format of the judgment as handed down by the court, for "
 "printing and downloading."
 
-#: ds_judgements_public_ui/templates/includes/document_text_download_options.html
-msgid "document.downloadoptions.xml.cta"
-msgstr "Download this document as XML"
-
-#: ds_judgements_public_ui/templates/includes/document_text_download_options.html
-msgid "document.downloadoptions.xml.description"
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.pdf.description"
 msgstr ""
-"The document in machine-readable LegalDocML format for developers, data "
+"The original format of the press summary as handed down by the court, for "
+"printing and downloading."
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "judgment.downloadoptions.xml.cta"
+msgstr "Download this judgment as XML"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.xml.cta"
+msgstr "Download this press summary as XML"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "judgment.downloadoptions.xml.description"
+msgstr ""
+"The judgment in machine-readable LegalDocML format for developers, data "
+"scientists and researchers."
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.xml.description"
+msgstr ""
+"The press summary in machine-readable LegalDocML format for developers, data "
 "scientists and researchers."
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
-msgid "document.downloadaspdf"
+msgid "judgment.downloadaspdf"
 msgstr "Download as PDF"
 
-#: ds_judgements_public_ui/templates/includes/document_text_toolbar.html
-msgid "document.downloadoptions.shortcutlink"
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
+msgid "judgment.downloadoptions.shortcutlink"
 msgstr "More download options"
 
 #: ds_judgements_public_ui/templates/includes/recent_judgments.html
@@ -200,7 +220,7 @@ msgid "results.search.title"
 msgstr "Search results"
 
 #: ds_judgements_public_ui/templates/layouts/base.html
-#: ds_judgements_public_ui/templates/layouts/document.html
+#: ds_judgements_public_ui/templates/layouts/judgment.html
 msgid "skiplink"
 msgstr "Skip to Main Content"
 
@@ -298,12 +318,12 @@ msgstr "The 'to' date entered is before the 'from' date"
 msgid "search.errors.missing_year_detail"
 msgstr "You must specify a year"
 
-#: ds_judgements_public_ui/templates/includes/document_text_toolbar.html
-msgid "document.view_press_summary"
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
+msgid "judgment.view_press_summary"
 msgstr "View Press Summary"
 
-#: ds_judgements_public_ui/templates/includes/document_text_toolbar.html
-msgid "document.view_judgment"
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
+msgid "judgment.view_judgment"
 msgstr "View Judgment"
 
 #: judgments/views/advanced_search.py

@@ -34,7 +34,7 @@
         {% include "includes/logo.html" %}
       </div>
     </header>
-    {% include "includes/document_text_toolbar.html" %}
+    {% include "includes/judgment_text_toolbar.html" %}
     <main id="main-content">
       <div id="js-document-navigation-links-start"
            class="document-navigation-links">
@@ -42,13 +42,13 @@
       </div>
       {% block content %}
       {% endblock content %}
-      {% include "includes/document_end_document_marker.html" %}
+      {% include "includes/judgment_end_document_marker.html" %}
       <div id="js-document-navigation-links-end"
            class="document-navigation-links">
         <a class="up" href="#start-of-document">Back to top</a>
       </div>
     </main>
-    {% include "includes/document_text_download_options.html" %}
+    {% include "includes/judgment_text_download_options.html" %}
     {% include "includes/footer.html" %}
   </body>
 </html>
