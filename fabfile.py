@@ -65,12 +65,19 @@ def start(c, container_name=None):
         cmd += f" {container_name}"
     local(cmd)
 
+
 @task
-def run(c):
+def pip(c):
     start(c, "django")
     django_exec("pip install -r requirements/local.txt -U")
     django_exec("DJANGO_SETTINGS_MODULE= django-admin compilemessages")
     django_exec("python manage.py migrate")
+    stop(c, "django")
+
+
+@task
+def runquick(c):
+    start(c, "django")
     django_exec("rm -rf /app/staticfiles")
     django_exec("python manage.py collectstatic")
     try:
@@ -78,6 +85,11 @@ def run(c):
     except KeyboardInterrupt:
         pass
     stop(c, "django")
+
+
+@task(pip, runquick)
+def run(c):
+    ...
 
 
 @task
@@ -115,7 +127,8 @@ def translate(c):
     """
     subprocess.run(
         [
-            "docker", "compose",
+            "docker",
+            "compose",
             "exec",
             "django",
             "bash",
@@ -134,7 +147,8 @@ def test(c):
     # Static analysis
     subprocess.run(
         [
-            "docker", "compose",
+            "docker",
+            "compose",
             "exec",
             "django",
             "mypy",
@@ -145,7 +159,8 @@ def test(c):
     # Pytest
     subprocess.run(
         [
-            "docker", "compose",
+            "docker",
+            "compose",
             "exec",
             "django",
             "pytest",
@@ -158,7 +173,8 @@ def coverage(c):
     # Run pytest with coverage
     subprocess.run(
         [
-            "docker", "compose",
+            "docker",
+            "compose",
             "exec",
             "django",
             "coverage",
@@ -170,7 +186,8 @@ def coverage(c):
     # Generate html report
     subprocess.run(
         [
-            "docker", "compose",
+            "docker",
+            "compose",
             "exec",
             "django",
             "coverage",
@@ -190,7 +207,8 @@ def psql(c, command=None):
     Connect to the local postgres DB using psql
     """
     cmd_list = [
-        "docker", "compose",
+        "docker",
+        "compose",
         "exec",
         "postgres",
         "psql",
