@@ -7,7 +7,7 @@ class TestJudgmentFactory:
         # The default URI gets a test where others don't because without a URI judgments fall apart
         judgment = JudgmentFactory.build()
 
-        assert type(judgment.uri) == str
+        assert isinstance(judgment.uri, str)
         assert judgment.uri != ""
 
     @pytest.mark.parametrize(
