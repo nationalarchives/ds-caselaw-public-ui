@@ -33,12 +33,14 @@ class JudgmentFactory:
             "<p>This is a judgment in HTML.</p>",
         )
 
-        judgment_mock.return_value.content_as_xml.return_value = kwargs.pop(
+        judgment_mock.return_value.content_as_xml = kwargs.pop(
             "xml",
-            """<?xml version="1.0" encoding="UTF-8"?>
-<judgment>
-<p>This is a judgment in XML.</p><
-/judgment>""",
+            """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <judgment>
+                <p>This is a judgment in XML.</p>
+            </judgment>
+            """,
         )
 
         for param, value in cls.PARAMS_MAP.items():
