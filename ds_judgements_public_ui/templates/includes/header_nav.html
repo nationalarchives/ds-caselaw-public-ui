@@ -24,7 +24,7 @@
           </li>
         {% endif %}
         {% if link %}
-          {% if context.document_type == "press_summary" %}
+          {% if context.document_type == "press summary" %}
             <li>
               {% if context.linked_document_uri %}
                 <a href="{% url 'detail' context.linked_document_uri %}">{{ title|get_title_to_display_in_html:context.document_type }}</a>
