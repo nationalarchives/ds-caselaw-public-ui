@@ -3,7 +3,7 @@ import os
 
 import requests
 from caselawclient.errors import DocumentNotFoundError
-from caselawclient.models.judgments import Judgment
+from caselawclient.models.documents import Document
 from django.conf import settings
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
@@ -19,8 +19,7 @@ from judgments.utils import get_document_by_uri, get_pdf_uri, search_context_fro
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
-
-def get_published_document_by_uri(document_uri: str) -> Judgment:
+def get_published_document_by_uri(document_uri: str) -> Document:
     try:
         document = get_document_by_uri(document_uri)
     except DocumentNotFoundError:
@@ -86,7 +85,7 @@ def detail(request, document_uri):
     else:
         context["document_type"] = "judgment"
         context["linked_document_uri"] = document_uri + press_summary_suffix
-        context["judgment_ncn"] = document.neutral_citation
+        context["judgment_ncn"] = document.neutral_citation  # type: ignore
 
     linked_document = None
     try:
@@ -95,7 +94,7 @@ def detail(request, document_uri):
         context["linked_document_uri"] = ""
 
     if context["document_type"] == "press_summary" and linked_document:
-        context["judgment_ncn"] = linked_document.neutral_citation
+        context["judgment_ncn"] = linked_document.neutral_citation  # type: ignore
 
     context["document"] = document.content_as_html("")  # "" is most recent version
     context["document_uri"] = document.uri
