@@ -2,7 +2,7 @@ from os import environ
 from unittest.mock import patch
 
 import pytest
-from caselawclient.errors import JudgmentNotFoundError
+from caselawclient.errors import DocumentNotFoundError
 from django.http import Http404, HttpResponseRedirect
 from django.test import Client, TestCase
 from factories import JudgmentFactory
@@ -45,7 +45,7 @@ class TestGetPublishedDocument:
             get_published_document_by_uri("2099/eat/1")
 
     @patch(
-        "judgments.views.detail.get_document_by_uri", side_effect=JudgmentNotFoundError
+        "judgments.views.detail.get_document_by_uri", side_effect=DocumentNotFoundError
     )
     def test_judgment_missing(self, mock_get_document_by_uri):
         with pytest.raises(Http404):
@@ -311,7 +311,7 @@ class TestViewRelatedDocumentButton:
             elif document_uri == expected_href:
                 return JudgmentFactory.build(uri=expected_href, is_published=True)
             else:
-                raise JudgmentNotFoundError()
+                raise DocumentNotFoundError()
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
@@ -355,7 +355,7 @@ class TestViewRelatedDocumentButton:
             if document_uri == uri:
                 return JudgmentFactory.build(uri=document_uri, is_published=True)
             else:
-                raise JudgmentNotFoundError()
+                raise DocumentNotFoundError()
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
@@ -447,7 +447,7 @@ class TestBreadcrumbs:
     @pytest.mark.parametrize(
         "http_error,expected_breadcrumb",
         [
-            (JudgmentNotFoundError, "Page not found"),
+            (DocumentNotFoundError, "Page not found"),
             (Exception, "Server Error"),
         ],
     )
@@ -515,7 +515,7 @@ class TestDocumentHeadings(TestCase):
                     neutral_citation="Judgment_A_NCN",
                 )
             else:
-                raise JudgmentNotFoundError()
+                raise DocumentNotFoundError()
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
@@ -576,7 +576,7 @@ class TestHTMLTitle(TestCase):
                     name="Judgment A",
                 )
             else:
-                raise JudgmentNotFoundError()
+                raise DocumentNotFoundError()
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
