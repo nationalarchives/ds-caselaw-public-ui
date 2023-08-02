@@ -2,7 +2,7 @@ import logging
 import os
 
 import requests
-from caselawclient.errors import JudgmentNotFoundError
+from caselawclient.errors import DocumentNotFoundError
 from caselawclient.models.judgments import Judgment
 from django.conf import settings
 from django.http import Http404, HttpResponse, HttpResponseRedirect
@@ -23,7 +23,7 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
 def get_published_document_by_uri(document_uri: str) -> Judgment:
     try:
         document = get_document_by_uri(document_uri)
-    except JudgmentNotFoundError:
+    except DocumentNotFoundError:
         raise Http404(f"Document {document_uri} was not found")
 
     if not document.is_published:
