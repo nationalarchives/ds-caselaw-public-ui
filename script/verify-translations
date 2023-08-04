@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+if git diff -I POT-Creation-Date --exit-code; then
+  echo Translations check passed: all messages are up to date.
+else
+  echo Translations check failed: you may need to run script/makemessages and commit the changes to django.po
+  exit 1
+fi
