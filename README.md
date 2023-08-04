@@ -309,7 +309,7 @@ We're using [the built-in django translation module](https://docs.djangoproject.
 3. Update the locale file by running the following command in a `fab sh` shell:
 
    ```
-   python manage.py makemessages --no-obsolete --add-location file -l en_GB
+   script/makemessages
    ```
 
 4. In the generated `.po` file, find the generated translation section, it will be a block like this, with the `msgid` corresponding to the key you added in the template:
