@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 12:34+0000\n"
+"POT-Creation-Date: 2023-08-04 12:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,11 +105,13 @@ msgid "accessibilitystatement.title"
 msgstr "Accessibility statement"
 
 #: ds_judgements_public_ui/templates/includes/header_nav.html
+#: ds_judgements_public_ui/templates/layouts/base.html
 msgid "home"
 msgstr "Find case law"
 
 #: ds_judgements_public_ui/templates/includes/header_nav.html
 #: ds_judgements_public_ui/templates/judgment/results.html
+#: ds_judgements_public_ui/templates/layouts/base.html
 #: ds_judgements_public_ui/templates/layouts/judgment.html
 #: ds_judgements_public_ui/templates/layouts/static_content.html
 #: ds_judgements_public_ui/templates/pages/home.html
@@ -134,18 +136,12 @@ msgid "judgment.downloadoptions.title"
 msgstr "Download options"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
-msgid "judgment.downloadoptions.pdf.cta"
-msgstr "Download this judgment as a PDF"
-
-#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "press_summary.downloadoptions.pdf.cta"
 msgstr "Download this press summary as a PDF"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
-msgid "judgment.downloadoptions.pdf.description"
-msgstr ""
-"The original format of the judgment as handed down by the court, for "
-"printing and downloading."
+msgid "judgment.downloadoptions.pdf.cta"
+msgstr "Download this judgment as a PDF"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "press_summary.downloadoptions.pdf.description"
@@ -154,12 +150,24 @@ msgstr ""
 "printing and downloading."
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
-msgid "judgment.downloadoptions.xml.cta"
-msgstr "Download this judgment as XML"
+msgid "judgment.downloadoptions.pdf.description"
+msgstr ""
+"The original format of the judgment as handed down by the court, for "
+"printing and downloading."
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "press_summary.downloadoptions.xml.cta"
 msgstr "Download this press summary as XML"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "judgment.downloadoptions.xml.cta"
+msgstr "Download this judgment as XML"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
+msgid "press_summary.downloadoptions.xml.description"
+msgstr ""
+"The press summary in machine-readable LegalDocML format for developers, data "
+"scientists and researchers."
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
 msgid "judgment.downloadoptions.xml.description"
@@ -167,11 +175,13 @@ msgstr ""
 "The judgment in machine-readable LegalDocML format for developers, data "
 "scientists and researchers."
 
-#: ds_judgements_public_ui/templates/includes/judgment_text_download_options.html
-msgid "press_summary.downloadoptions.xml.description"
-msgstr ""
-"The press summary in machine-readable LegalDocML format for developers, data "
-"scientists and researchers."
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
+msgid "judgment.view_press_summary"
+msgstr "View Press Summary"
+
+#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
+msgid "judgment.view_judgment"
+msgstr "View Judgment"
 
 #: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
 msgid "judgment.downloadaspdf"
@@ -317,14 +327,6 @@ msgstr "The 'to' date entered is before the 'from' date"
 #: judgments/utils.py
 msgid "search.errors.missing_year_detail"
 msgstr "You must specify a year"
-
-#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
-msgid "judgment.view_press_summary"
-msgstr "View Press Summary"
-
-#: ds_judgements_public_ui/templates/includes/judgment_text_toolbar.html
-msgid "judgment.view_judgment"
-msgstr "View Judgment"
 
 #: judgments/views/advanced_search.py
 msgid "search.errors.to_before_from_detail"
