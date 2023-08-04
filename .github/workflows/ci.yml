@@ -55,6 +55,11 @@ jobs:
       - name: Build the Stack
         run: docker-compose build postgres django
 
+      - name: Verify translations
+        run: |
+          docker-compose run --rm django script/makemessages
+          script/verify-translations
+
       - name: Run DB Migrations
         run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
 
