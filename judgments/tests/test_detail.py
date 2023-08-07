@@ -506,6 +506,7 @@ class TestDocumentHeadings(TestCase):
                     is_published=True,
                     name="Press Summary of Judgment A (with some slightly different wording)",
                     neutral_citation="",
+                    document_type="press summary",
                 )
             elif document_uri == "eat/2023/1":
                 return JudgmentFactory.build(
@@ -513,6 +514,7 @@ class TestDocumentHeadings(TestCase):
                     is_published=True,
                     name="Judgment A",
                     neutral_citation="Judgment_A_NCN",
+                    document_type="judgment",
                 )
             else:
                 raise DocumentNotFoundError()
