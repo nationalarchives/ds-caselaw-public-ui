@@ -143,7 +143,7 @@ class TestDocumentDownloadOptions:
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
-        "uri,document_type",
+        "uri,document_noun",
         [("eat/2023/1/press-summary/1", "press summary"), ("eat/2023/1", "judgment")],
     )
     def test_download_options(
@@ -152,7 +152,7 @@ class TestDocumentDownloadOptions:
         mock_get_pdf_size,
         mock_get_pdf_uri,
         uri,
-        document_type,
+        document_noun,
     ):
         """
         GIVEN a document
@@ -163,7 +163,7 @@ class TestDocumentDownloadOptions:
         AND the descriptions refer to the document's type
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri=uri, is_published=True
+            uri=uri, document_noun=document_noun, is_published=True
         )
         mock_get_pdf_size.return_value = "(112KB)"
         mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
@@ -174,13 +174,13 @@ class TestDocumentDownloadOptions:
         <h2 class="judgment-download-options__header">Download options</h2>
         <div class="judgment-download-options__options-list">
             <div class="judgment-download-options__download-option">
-            <h3><a href="http://example.com/test.pdf">Download this {document_type} as a PDF (112KB)</a></h3>
-            <p>The original format of the {document_type} as handed down by the court, for printing and downloading.</p>
+            <h3><a href="http://example.com/test.pdf">Download this {document_noun} as a PDF (112KB)</a></h3>
+            <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
             </div>
             <div class="judgment-download-options__download-option">
-            <h3><a href="/{uri}/data.xml">Download this {document_type} as XML</a></h3>
+            <h3><a href="/{uri}/data.xml">Download this {document_noun} as XML</a></h3>
             <p>
-            The {document_type} in machine-readable LegalDocML format for developers, data scientists and researchers.
+            The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
             </p>
             </div>
         </div>
@@ -246,15 +246,15 @@ class TestPressSummaryLabel(TestCase):
         self, mock_get_document_by_uri, mock_get_pdf_size
     ):
         """
-        GIVEN press summary
-        WHEN request is made with press summary uri
+        WHEN a request is made for a document's detail page
+        GIVEN the document is a  press summary
         THEN response should contain the press summary label
         """
 
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri="eat/2023/1/press-summary/1", is_published=True
+            document_noun="press summary", is_published=True
         )
-        response = self.client.get("/eat/2023/1/press-summary/1")
+        response = self.client.get("/test/2023/123") # has to match factory to avoid redirect.
         self.assertContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
@@ -285,10 +285,10 @@ class TestViewRelatedDocumentButton:
     @patch("judgments.views.detail.get_pdf_size")
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
-        "uri,expected_text,expected_href",
+        "uri,expected_text,expected_href,document_noun",
         [
-            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1"),
-            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1"),
+            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1", "press summary"),
+            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1", "judgment"),
         ],
     )
     def test_view_related_document_button_when_document_with_related_document(
@@ -298,6 +298,7 @@ class TestViewRelatedDocumentButton:
         uri,
         expected_text,
         expected_href,
+        document_noun,
     ):
         """
         GIVEN a document with an associated document
@@ -307,9 +308,9 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
-                return JudgmentFactory.build(uri=uri, is_published=True)
+                return JudgmentFactory.build(uri=uri, is_published=True, document_noun=document_noun)
             elif document_uri == expected_href:
-                return JudgmentFactory.build(uri=expected_href, is_published=True)
+                return JudgmentFactory.build(uri=expected_href, is_published=True, document_noun=document_noun)
             else:
                 raise DocumentNotFoundError()
 
@@ -384,14 +385,15 @@ class TestBreadcrumbs:
         self, mock_get_document_by_uri, mock_get_pdf_size
     ):
         """
-        GIVEN a press summary
-        WHEN a request is made with the press summary URI
+        WHEN a request is made to a document detail page
+        GIVEN the document returned is a press summary
         THEN the response should contain breadcrumbs including the press summary name
         AND an additional `Press Summary` breadcrumb
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             uri="eat/2023/1/press-summary/1",
             is_published=True,
+            document_noun="press summary",
             name="Press Summary of Judgment A",
         )
         response = self.client.get("/eat/2023/1/press-summary/1")
@@ -492,8 +494,8 @@ class TestDocumentHeadings(TestCase):
         self, mock_get_document_by_uri, mock_get_pdf_size
     ):
         """
-        GIVEN a press summary and related judgment
-        WHEN a request is made with the press summary URI
+        WHEN a request is made with to a document detail page
+        GIVEN the document is a press summary
         THEN the response should contain the heading HTML with the press summary
             name without the "Press Summary of " prefix"
         AND a p tag subheading with the related judgment's NCN
@@ -504,9 +506,9 @@ class TestDocumentHeadings(TestCase):
                 return JudgmentFactory.build(
                     uri="eat/2023/1/press-summary/1",
                     is_published=True,
+                    document_noun="press summary",
                     name="Press Summary of Judgment A (with some slightly different wording)",
-                    neutral_citation="",
-                    document_type="press summary",
+                    neutral_citation=""
                 )
             elif document_uri == "eat/2023/1":
                 return JudgmentFactory.build(
@@ -514,7 +516,7 @@ class TestDocumentHeadings(TestCase):
                     is_published=True,
                     name="Judgment A",
                     neutral_citation="Judgment_A_NCN",
-                    document_type="judgment",
+                    document_noun="judgment",
                 )
             else:
                 raise DocumentNotFoundError()

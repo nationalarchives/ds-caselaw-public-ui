@@ -5,7 +5,7 @@
     <div class="judgment-download-options__download-option">
       <h3>
         <a href="{{ context.pdf_uri }}">
-          {% if context.document_type == 'press summary' %}
+          {% if context.document_noun == 'press summary' %}
             {% translate "press_summary.downloadoptions.pdf.cta" %}
           {% else %}
             {% translate "judgment.downloadoptions.pdf.cta" %}
@@ -14,7 +14,7 @@
         </a>
       </h3>
       <p>
-        {% if context.document_type == 'press summary' %}
+        {% if context.document_noun == 'press summary' %}
           {% translate "press_summary.downloadoptions.pdf.description" %}
         {% else %}
           {% translate "judgment.downloadoptions.pdf.description" %}
@@ -24,7 +24,7 @@
     <div class="judgment-download-options__download-option">
       <h3>
         <a href="{% url 'detail_xml' context.document_uri %}">
-          {% if context.document_type == 'press summary' %}
+          {% if context.document_noun == 'press summary' %}
             {% translate "press_summary.downloadoptions.xml.cta" %}
           {% else %}
             {% translate "judgment.downloadoptions.xml.cta" %}
@@ -32,7 +32,7 @@
         </a>
       </h3>
       <p>
-        {% if context.document_type == 'press summary' %}
+        {% if context.document_noun == 'press summary' %}
           {% translate "press_summary.downloadoptions.xml.description" %}
         {% else %}
           {% translate "judgment.downloadoptions.xml.description" %}

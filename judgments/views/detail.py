@@ -78,12 +78,11 @@ def detail(request, document_uri):
     context = {}
 
     press_summary_suffix = "/press-summary/1"
+    context["document_noun"] = document.document_noun
     if document.document_noun == "press summary":
-        context["document_type"] = "press summary"
         context["linked_document_uri"] = document_uri.removesuffix(press_summary_suffix)
         context["judgment_ncn"] = ""
     else:
-        context["document_type"] = "judgment"
         context["linked_document_uri"] = document_uri + press_summary_suffix
         context["judgment_ncn"] = document.neutral_citation  # type: ignore
 
@@ -93,7 +92,7 @@ def detail(request, document_uri):
     except Http404:
         context["linked_document_uri"] = ""
 
-    if context["document_type"] == "press summary" and linked_document:
+    if context["document_noun"] == "press summary" and linked_document:
         context["judgment_ncn"] = linked_document.neutral_citation  # type: ignore
 
     context["document"] = document.content_as_html("")  # "" is most recent version

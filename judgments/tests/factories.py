@@ -22,7 +22,7 @@ class JudgmentFactory:
         "consignment_reference": "TDR-12345",
         "assigned_to": "",
         "versions": [],
-        "document_type": "judgment",
+        "document_noun": "judgment",
     }
 
     @classmethod
