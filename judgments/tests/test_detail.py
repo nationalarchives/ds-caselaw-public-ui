@@ -254,7 +254,9 @@ class TestPressSummaryLabel(TestCase):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             document_noun="press summary", is_published=True
         )
-        response = self.client.get("/test/2023/123") # has to match factory to avoid redirect.
+        response = self.client.get(
+            "/test/2023/123"
+        )  # has to match factory to avoid redirect.
         self.assertContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
@@ -287,8 +289,18 @@ class TestViewRelatedDocumentButton:
     @pytest.mark.parametrize(
         "uri,expected_text,expected_href,document_noun",
         [
-            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1", "press summary"),
-            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1", "judgment"),
+            (
+                "eat/2023/1/press-summary/1",
+                "View Judgment",
+                "eat/2023/1",
+                "press summary",
+            ),
+            (
+                "eat/2023/1",
+                "View Press Summary",
+                "eat/2023/1/press-summary/1",
+                "judgment",
+            ),
         ],
     )
     def test_view_related_document_button_when_document_with_related_document(
@@ -308,9 +320,13 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
-                return JudgmentFactory.build(uri=uri, is_published=True, document_noun=document_noun)
+                return JudgmentFactory.build(
+                    uri=uri, is_published=True, document_noun=document_noun
+                )
             elif document_uri == expected_href:
-                return JudgmentFactory.build(uri=expected_href, is_published=True, document_noun=document_noun)
+                return JudgmentFactory.build(
+                    uri=expected_href, is_published=True, document_noun=document_noun
+                )
             else:
                 raise DocumentNotFoundError()
 
@@ -354,7 +370,9 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
-                return JudgmentFactory.build(uri=document_uri, is_published=True)
+                return JudgmentFactory.build(
+                    uri=document_uri, is_published=True, document_noun="press summary"
+                )
             else:
                 raise DocumentNotFoundError()
 
@@ -508,7 +526,7 @@ class TestDocumentHeadings(TestCase):
                     is_published=True,
                     document_noun="press summary",
                     name="Press Summary of Judgment A (with some slightly different wording)",
-                    neutral_citation=""
+                    neutral_citation="Judgment_A_NCN",
                 )
             elif document_uri == "eat/2023/1":
                 return JudgmentFactory.build(

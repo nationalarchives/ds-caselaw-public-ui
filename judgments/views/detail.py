@@ -15,9 +15,15 @@ from django_weasyprint import WeasyTemplateResponseMixin
 
 from judgments.utils import get_document_by_uri, get_pdf_uri, search_context_from_url
 
+
+class NoNeutralCitationError(Exception):
+    pass
+
+
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
+
 
 def get_published_document_by_uri(document_uri: str) -> Document:
     try:
@@ -79,21 +85,25 @@ def detail(request, document_uri):
 
     press_summary_suffix = "/press-summary/1"
     context["document_noun"] = document.document_noun
+    if document.best_human_identifier is None:
+        raise NoNeutralCitationError(document.uri)
+    context["judgment_ncn"] = document.best_human_identifier
+
     if document.document_noun == "press summary":
         context["linked_document_uri"] = document_uri.removesuffix(press_summary_suffix)
-        context["judgment_ncn"] = ""
     else:
         context["linked_document_uri"] = document_uri + press_summary_suffix
-        context["judgment_ncn"] = document.neutral_citation  # type: ignore
 
-    linked_document = None
     try:
         linked_document = get_published_document_by_uri(context["linked_document_uri"])
     except Http404:
         context["linked_document_uri"] = ""
-
-    if context["document_noun"] == "press summary" and linked_document:
-        context["judgment_ncn"] = linked_document.neutral_citation  # type: ignore
+    else:
+        if context["document_noun"] == "press summary" and linked_document:
+            if linked_document.best_human_identifier:
+                context["judgment_ncn"] = linked_document.best_human_identifier
+            else:
+                raise NoNeutralCitationError(linked_document.uri)
 
     context["document"] = document.content_as_html("")  # "" is most recent version
     context["document_uri"] = document.uri
