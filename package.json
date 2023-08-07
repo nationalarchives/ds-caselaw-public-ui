@@ -25,10 +25,10 @@
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^9.0.0",
+    "babel-loader": "^8.3.0",
     "jquery": "^3.6.0",
     "webpack": "^5.76.0",
-    "webpack-cli": "^5.0.0"
+    "webpack-cli": "^4.9.2"
   },
   "browserslist": [
     "IE 11"
