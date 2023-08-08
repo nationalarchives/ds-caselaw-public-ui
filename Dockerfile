@@ -70,7 +70,7 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
   && rm -rf /wheels/
 COPY --chown=django:django package-lock.json package-lock.json
 COPY --chown=django:django package.json package.json
-RUN npm ci
+RUN npm ci --engine-strict=true
 COPY --chown=django:django ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
