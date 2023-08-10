@@ -258,6 +258,14 @@ npm i
 - Webpack and Babel for transpiling JavaScript
 - Sass for compiling CSS
 
+### Working with local copies of shared SASS
+
+To use a local development copy of the shared CSS instead of the latest git main:
+
+```console
+npm link ../path/to/your/copy
+```
+
 ### Working with SASS/CSS
 
 - To watch and build the site SASS, run `npm run start-sass`
