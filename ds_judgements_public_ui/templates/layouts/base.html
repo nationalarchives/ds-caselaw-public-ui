@@ -4,6 +4,8 @@
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
     <meta charset="utf-8" />
+    {% block meta_description %}
+    {% endblock meta_description %}
     {% block robots %}
       <meta name="robots" content="noindex,nofollow" />
     {% endblock robots %}
