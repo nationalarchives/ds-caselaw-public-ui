@@ -212,4 +212,4 @@ def get_document_by_uri(document_uri: str) -> Document:
     )
 
     # raises a JudgmentNotFoundError if it doesn't exist
-    return Document(document_uri, api_client)
+    return api_client.get_document_by_uri(document_uri)
