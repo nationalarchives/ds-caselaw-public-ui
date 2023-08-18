@@ -88,14 +88,13 @@ def detail(request, document_uri):
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)
     context["judgment_ncn"] = document.best_human_identifier
-
     if document.document_noun == "press summary":
-        context["linked_document_uri"] = document_uri.removesuffix(press_summary_suffix)
+        linked_doc_url = document_uri.removesuffix(press_summary_suffix)
     else:
-        context["linked_document_uri"] = document_uri + press_summary_suffix
+        linked_doc_url = document_uri + press_summary_suffix
 
     try:
-        linked_document = get_published_document_by_uri(context["linked_document_uri"])
+        linked_document = get_published_document_by_uri(linked_doc_url)
         context["linked_document_uri"] = linked_document.uri
     except Http404:
         linked_document = None

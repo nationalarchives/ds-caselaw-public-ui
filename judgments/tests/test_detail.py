@@ -409,11 +409,23 @@ class TestBreadcrumbs:
         THEN the response should contain breadcrumbs including the press summary name
         AND an additional `Press Summary` breadcrumb
         """
-        mock_get_document_by_uri.return_value = PressSummaryFactory.build(
-            uri="eat/2023/1/press-summary/1",
-            is_published=True,
-            name="Press Summary of Judgment A",
-        )
+
+        def pj(uri):
+            if "press" in uri:
+                return PressSummaryFactory.build(
+                    uri="eat/2023/1/press-summary/1",
+                    is_published=True,
+                    name="Press Summary of Judgment A",
+                )
+            else:
+                return JudgmentFactory.build(
+                    uri="eat/2023/1/the_judgment_uri",
+                    is_published=True,
+                    name="The Title of Judgment A",
+                )
+
+        mock_get_document_by_uri.side_effect = pj
+
         response = self.client.get("/eat/2023/1/press-summary/1")
         breadcrumb_html = """
         <div class="page-header__breadcrumb">
@@ -423,8 +435,8 @@ class TestBreadcrumbs:
                         <span class="page-header__breadcrumb-you-are-in">You are in:</span>
                         <a href="/">Find case law</a>
                     </li>
-                    <li><a href="/eat/2023/1">Judgment A</a></li>
-                    <li>Press Summary</li>
+                    <li><a href="/eat/2023/1/the_judgment_uri">Judgment A</a></li>
+                <li>Press Summary</li>
                 </ol>
             </nav>
         </div>
