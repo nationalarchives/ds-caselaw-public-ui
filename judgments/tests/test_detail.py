@@ -512,8 +512,8 @@ class TestDocumentHeadings(TestCase):
         self, mock_get_document_by_uri, mock_get_pdf_size
     ):
         """
+        GIVEN that the document returned will be a press summary
         WHEN a request is made with to a document detail page
-        GIVEN the document is a press summary
         THEN the response should contain the heading HTML with the press summary
             name without the "Press Summary of " prefix"
         AND a p tag subheading with the related judgment's NCN

@@ -211,5 +211,5 @@ def get_document_by_uri(document_uri: str) -> Document:
         use_https=settings.MARKLOGIC_USE_HTTPS,
     )
 
-    # raises a JudgmentNotFoundError if it doesn't exist
+    # raises a DocumentNotFoundError if it doesn't exist
     return api_client.get_document_by_uri(document_uri)
