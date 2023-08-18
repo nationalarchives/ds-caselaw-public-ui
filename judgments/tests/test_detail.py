@@ -5,13 +5,14 @@ import pytest
 from caselawclient.errors import DocumentNotFoundError
 from django.http import Http404, HttpResponseRedirect
 from django.test import Client, TestCase
-from factories import JudgmentFactory
+from factories import JudgmentFactory, PressSummaryFactory
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
     assert_not_contains_html,
 )
 from judgments.views.detail import (
+    NoNeutralCitationError,
     PdfDetailView,
     get_pdf_size,
     get_published_document_by_uri,
@@ -408,10 +409,9 @@ class TestBreadcrumbs:
         THEN the response should contain breadcrumbs including the press summary name
         AND an additional `Press Summary` breadcrumb
         """
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(
+        mock_get_document_by_uri.return_value = PressSummaryFactory.build(
             uri="eat/2023/1/press-summary/1",
             is_published=True,
-            document_noun="press summary",
             name="Press Summary of Judgment A",
         )
         response = self.client.get("/eat/2023/1/press-summary/1")
@@ -521,10 +521,9 @@ class TestDocumentHeadings(TestCase):
 
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == "eat/2023/1/press-summary/1":
-                return JudgmentFactory.build(
+                return PressSummaryFactory.build(
                     uri="eat/2023/1/press-summary/1",
                     is_published=True,
-                    document_noun="press summary",
                     name="Press Summary of Judgment A (with some slightly different wording)",
                     neutral_citation="Judgment_A_NCN",
                 )
@@ -534,7 +533,6 @@ class TestDocumentHeadings(TestCase):
                     is_published=True,
                     name="Judgment A",
                     neutral_citation="Judgment_A_NCN",
-                    document_noun="judgment",
                 )
             else:
                 raise DocumentNotFoundError()
@@ -623,3 +621,17 @@ class TestHTMLTitle(TestCase):
         response = self.client.get("/eat/2023/1")
         html_title = "<title>Judgment A - Find case law</title>"
         assert_contains_html(response, html_title)
+
+
+class TestNoNeutralCitation(TestCase):
+    @patch("judgments.views.detail.get_document_by_uri")
+    def test_document_baseclass_raises_error(self, get_document):
+        doc = JudgmentFactory.build(
+            uri="eat/2023/1",
+            is_published=True,
+            name="Judgment A",
+        )
+        doc.best_human_identifier = None
+        get_document.return_value = doc
+        with pytest.raises(NoNeutralCitationError):
+            self.client.get("/eat/2023/1")
