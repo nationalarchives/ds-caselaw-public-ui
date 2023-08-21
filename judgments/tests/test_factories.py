@@ -43,4 +43,4 @@ class TestJudgmentFactory:
     def test_xml(self):
         judgment = JudgmentFactory.build(xml="<h1>Testing XML</h1>")
 
-        assert judgment.content_as_xml("") == "<h1>Testing XML</h1>"
+        assert judgment.content_as_xml == "<h1>Testing XML</h1>"

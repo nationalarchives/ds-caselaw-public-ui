@@ -1,10 +1,14 @@
 from typing import Any
 from unittest.mock import Mock
 
+from caselawclient.models.documents import Document
 from caselawclient.models.judgments import Judgment
+from caselawclient.models.press_summaries import PressSummary
 
 
-class JudgmentFactory:
+class DocumentFactory:
+    target_class = Document
+
     # "name_of_attribute": ("name of incoming param", "default value")
     PARAMS_MAP: dict[str, Any] = {
         "uri": "test/2023/123",
@@ -22,23 +26,26 @@ class JudgmentFactory:
         "consignment_reference": "TDR-12345",
         "assigned_to": "",
         "versions": [],
+        "document_noun": "document",
     }
 
     @classmethod
-    def build(cls, **kwargs) -> Judgment:
-        judgment_mock = Mock(spec=Judgment, autospec=True)
+    def build(cls, **kwargs) -> Document:
+        judgment_mock = Mock(spec=cls.target_class, autospec=True)
 
         judgment_mock.return_value.content_as_html.return_value = kwargs.pop(
             "html",
             "<p>This is a judgment in HTML.</p>",
         )
 
-        judgment_mock.return_value.content_as_xml.return_value = kwargs.pop(
+        judgment_mock.return_value.content_as_xml = kwargs.pop(
             "xml",
-            """<?xml version="1.0" encoding="UTF-8"?>
-<judgment>
-<p>This is a judgment in XML.</p><
-/judgment>""",
+            """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <judgment>
+                <p>This is a judgment in XML.</p>
+            </judgment>
+            """,
         )
 
         for param, value in cls.PARAMS_MAP.items():
@@ -47,4 +54,19 @@ class JudgmentFactory:
             else:
                 setattr(judgment_mock.return_value, param, value)
 
+        judgment_mock.return_value.best_human_identifier = kwargs.get(
+            "neutral_citation"
+        ) or cls.PARAMS_MAP.get("neutral_citation")
         return judgment_mock()
+
+
+class JudgmentFactory(DocumentFactory):
+    target_class = Judgment
+    PARAMS_MAP = dict(DocumentFactory.PARAMS_MAP)
+    PARAMS_MAP["document_noun"] = "judgment"
+
+
+class PressSummaryFactory(DocumentFactory):
+    target_class = PressSummary
+    PARAMS_MAP = dict(DocumentFactory.PARAMS_MAP)
+    PARAMS_MAP["document_noun"] = "press summary"

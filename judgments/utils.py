@@ -7,7 +7,7 @@ from urllib.parse import parse_qs, urlparse
 
 import environ
 from caselawclient.Client import MarklogicApiClient
-from caselawclient.models.judgments import Judgment
+from caselawclient.models.documents import Document
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.utils.translation import gettext
@@ -203,7 +203,7 @@ def parse_date_parameter(params, param_name, default_to_last=False):
         raise ValueError(gettext("search.errors.missing_year_detail"))
 
 
-def get_document_by_uri(document_uri: str) -> Judgment:
+def get_document_by_uri(document_uri: str) -> Document:
     api_client = MarklogicApiClient(
         host=settings.MARKLOGIC_HOST,
         username=settings.MARKLOGIC_USER,
@@ -211,5 +211,5 @@ def get_document_by_uri(document_uri: str) -> Judgment:
         use_https=settings.MARKLOGIC_USE_HTTPS,
     )
 
-    # raises a JudgmentNotFoundError if it doesn't exist
-    return Judgment(document_uri, api_client)
+    # raises a DocumentNotFoundError if it doesn't exist
+    return api_client.get_document_by_uri(document_uri)

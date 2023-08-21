@@ -2,8 +2,8 @@ import logging
 import os
 
 import requests
-from caselawclient.errors import JudgmentNotFoundError
-from caselawclient.models.judgments import Judgment
+from caselawclient.errors import DocumentNotFoundError
+from caselawclient.models.documents import Document
 from django.conf import settings
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
@@ -15,15 +15,20 @@ from django_weasyprint import WeasyTemplateResponseMixin
 
 from judgments.utils import get_document_by_uri, get_pdf_uri, search_context_from_url
 
+
+class NoNeutralCitationError(Exception):
+    pass
+
+
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
 
-def get_published_document_by_uri(document_uri: str) -> Judgment:
+def get_published_document_by_uri(document_uri: str) -> Document:
     try:
         document = get_document_by_uri(document_uri)
-    except JudgmentNotFoundError:
+    except DocumentNotFoundError:
         raise Http404(f"Document {document_uri} was not found")
 
     if not document.is_published:
@@ -79,23 +84,21 @@ def detail(request, document_uri):
     context = {}
 
     press_summary_suffix = "/press-summary/1"
-    if document_uri.endswith(press_summary_suffix):
-        context["document_type"] = "press_summary"
-        context["linked_document_uri"] = document_uri.removesuffix(press_summary_suffix)
-        context["judgment_ncn"] = ""
+    context["document_noun"] = document.document_noun
+    if document.best_human_identifier is None:
+        raise NoNeutralCitationError(document.uri)
+    context["judgment_ncn"] = document.best_human_identifier
+    if document.document_noun == "press summary":
+        linked_doc_url = document_uri.removesuffix(press_summary_suffix)
     else:
-        context["document_type"] = "judgment"
-        context["linked_document_uri"] = document_uri + press_summary_suffix
-        context["judgment_ncn"] = document.neutral_citation
+        linked_doc_url = document_uri + press_summary_suffix
 
-    linked_document = None
     try:
-        linked_document = get_published_document_by_uri(context["linked_document_uri"])
+        context["linked_document_uri"] = get_published_document_by_uri(
+            linked_doc_url
+        ).uri
     except Http404:
         context["linked_document_uri"] = ""
-
-    if context["document_type"] == "press_summary" and linked_document:
-        context["judgment_ncn"] = linked_document.neutral_citation
 
     context["document"] = document.content_as_html("")  # "" is most recent version
     context["document_uri"] = document.uri
@@ -123,7 +126,7 @@ def detail(request, document_uri):
 def detail_xml(_request, document_uri):
     document = get_published_document_by_uri(document_uri)
 
-    document_xml = document.content_as_xml()
+    document_xml = document.content_as_xml
 
     response = HttpResponse(document_xml, content_type="application/xml")
     response["Content-Disposition"] = f"attachment; filename={document.uri}.xml"
