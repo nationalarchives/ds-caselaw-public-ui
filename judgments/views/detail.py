@@ -94,16 +94,11 @@ def detail(request, document_uri):
         linked_doc_url = document_uri + press_summary_suffix
 
     try:
-        linked_document = get_published_document_by_uri(linked_doc_url)
-        context["linked_document_uri"] = linked_document.uri
+        context["linked_document_uri"] = get_published_document_by_uri(
+            linked_doc_url
+        ).uri
     except Http404:
-        linked_document = None
         context["linked_document_uri"] = ""
-
-    if context["document_noun"] == "press summary" and linked_document:
-        if linked_document.best_human_identifier is None:
-            raise NoNeutralCitationError(linked_document.uri)
-        context["judgment_ncn"] = linked_document.best_human_identifier
 
     context["document"] = document.content_as_html("")  # "" is most recent version
     context["document_uri"] = document.uri
