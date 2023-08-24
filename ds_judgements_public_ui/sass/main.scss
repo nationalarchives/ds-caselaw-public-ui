@@ -9,6 +9,9 @@
 @import "includes/header";
 @import "includes/footer";
 
+// Shared
+@import "../../node_modules/@nationalarchives/ds-caselaw-frontend/src/main.scss";
+
 // Components
 @import "includes/animations";
 @import "includes/browse_by_court";
@@ -26,7 +29,6 @@
 @import "includes/judgment_text_service_introduction";
 @import "includes/judgment_text_source";
 @import "includes/judgment_text_toolbar";
-@import "includes/judgment_text";
 @import "includes/judgments_listing";
 @import "includes/links";
 @import "includes/pagination";
