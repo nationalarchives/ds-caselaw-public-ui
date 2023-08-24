@@ -127,7 +127,7 @@ LOGGING = {
 ROLLBAR = {
     "access_token": env("ROLLBAR_ACCESS_TOKEN"),
     "environment": env("ROLLBAR_ENV"),
-    "root": ROOT_DIR,
+    "root": str(ROOT_DIR),
 }
 
 rollbar.init(**ROLLBAR)
