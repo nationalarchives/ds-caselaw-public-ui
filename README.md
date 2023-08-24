@@ -258,12 +258,18 @@ npm i
 - Webpack and Babel for transpiling JavaScript
 - Sass for compiling CSS
 
-### Working with local copies of shared SASS
+### Working with local copies of shared `nationalarchives/ds-caselaw-frontend`
 
-To use a local development copy of the shared CSS instead of the latest git main:
+To use a local development copy of `nationalarchives/ds-caselaw-frontend`, for example to use your local copy of the shared CSS instead of what's currently in its github repo's main branch:
 
 ```console
-npm link ../path/to/your/copy
+npm link ../path/to/your/copy/nationalarchives/ds-caselaw-frontend
+```
+
+To stop using your local copy, you can then run:
+
+```console
+npm unlink ../path/to/your/copy/nationalarchives/ds-caselaw-frontend
 ```
 
 ### Working with SASS/CSS
