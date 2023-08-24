@@ -245,7 +245,6 @@ If you have already made some unsigned commits on a branch before setting up sig
 ### Pre-requisites
 
 - Ensure you have NodeJS & NPM installed.
-- Install SASS globally by running `npm install -g sass`.
 
 ### Dependencies in this repository
 
