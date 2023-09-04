@@ -1,7 +1,6 @@
 import datetime
 from typing import List, Optional
 
-from caselawclient.Client import api_client
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -11,6 +10,8 @@ from django.contrib.syndication.views import Feed
 from django.http import Http404
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
+
+from judgments.utils import api_client
 
 from .utils import paginator
 

@@ -1,6 +1,6 @@
 import urllib
 
-from caselawclient.Client import MarklogicResourceNotFoundError, api_client
+from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -13,6 +13,7 @@ from ds_caselaw_utils import courts as all_courts
 from judgments.models import SearchFormErrors
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
+    api_client,
     as_integer,
     has_filters,
     paginator,

@@ -6,7 +6,7 @@ from typing import Optional, TypedDict
 from urllib.parse import parse_qs, urlparse
 
 import environ
-from caselawclient.Client import MarklogicApiClient
+from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
 from caselawclient.models.documents import Document
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
@@ -15,6 +15,14 @@ from django.utils.translation import gettext
 from .fixtures.stop_words import stop_words
 
 MAX_RESULTS_PER_PAGE = 50
+
+api_client = MarklogicApiClient(
+    host=settings.MARKLOGIC_HOST,
+    username=settings.MARKLOGIC_USER,
+    password=settings.MARKLOGIC_PASSWORD,
+    use_https=settings.MARKLOGIC_USE_HTTPS,
+    user_agent=f"ds-caselaw-public-ui/unknown {DEFAULT_USER_AGENT}",
+)
 
 
 def format_date(date):
@@ -204,12 +212,5 @@ def parse_date_parameter(params, param_name, default_to_last=False):
 
 
 def get_document_by_uri(document_uri: str) -> Document:
-    api_client = MarklogicApiClient(
-        host=settings.MARKLOGIC_HOST,
-        username=settings.MARKLOGIC_USER,
-        password=settings.MARKLOGIC_PASSWORD,
-        use_https=settings.MARKLOGIC_USE_HTTPS,
-    )
-
     # raises a DocumentNotFoundError if it doesn't exist
     return api_client.get_document_by_uri(document_uri)

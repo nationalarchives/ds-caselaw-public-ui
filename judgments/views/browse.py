@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Dict
 
-from caselawclient.Client import MarklogicResourceNotFoundError, api_client
+from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -11,7 +11,7 @@ from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
 
-from judgments.utils import MAX_RESULTS_PER_PAGE, as_integer, paginator
+from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, as_integer, paginator
 
 
 def browse(request, court=None, subdivision=None, year=None):

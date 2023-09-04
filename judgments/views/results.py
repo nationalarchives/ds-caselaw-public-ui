@@ -1,7 +1,7 @@
 import urllib
 from typing import Any, Dict
 
-from caselawclient.Client import MarklogicAPIError, api_client
+from caselawclient.Client import MarklogicAPIError
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -13,6 +13,7 @@ from ds_caselaw_utils import courts as all_courts
 
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
+    api_client,
     as_integer,
     has_filters,
     paginator,
