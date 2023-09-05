@@ -1,6 +1,5 @@
 import datetime
 
-from caselawclient.Client import api_client
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -9,6 +8,7 @@ from django.core.management.base import BaseCommand
 from ds_caselaw_utils import courts
 
 from judgments.models import CourtDates
+from judgments.utils import api_client
 
 
 class Command(BaseCommand):

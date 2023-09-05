@@ -1,4 +1,4 @@
-from caselawclient.Client import MarklogicResourceNotFoundError, api_client
+from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -6,6 +6,8 @@ from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
 from django.template.response import TemplateResponse
 from ds_caselaw_utils import courts as all_courts
+
+from judgments.utils import api_client
 
 
 def index(request):
