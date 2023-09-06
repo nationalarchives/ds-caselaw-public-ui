@@ -1,6 +1,8 @@
 import json
 from urllib.parse import unquote
 
+from config.settings.base import env
+
 
 def cookie_consent(request):
     showGTM = False
@@ -17,3 +19,7 @@ def cookie_consent(request):
         dontShowCookieNotice = True
 
     return {"showGTM": showGTM, "dontShowCookieNotice": dontShowCookieNotice}
+
+
+def environment(request):
+    return {"environment": env("ROLLBAR_ENV", None)}
