@@ -31,9 +31,10 @@
     <script>
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
+    {% include "includes/gtm/gtm_body.html" %}
     {% include "includes/cookie_consent/cookie_banner.html" %}
     <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
-    {% include "includes/gtm/gtm_body.html" %}
+    {% include "includes/environment_banner.html" %}
     {% include "includes/phase_banner.html" %}
     <header class="page-header">
       {% block header %}

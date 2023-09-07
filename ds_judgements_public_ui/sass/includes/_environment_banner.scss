@@ -1,0 +1,33 @@
+.environment-banner {
+  background-color: $color__information;
+  color: $color__black;
+
+  &__notice {
+    padding: 0;
+
+    a {
+      color: $color__black;
+      font-weight: bold;
+
+      &:focus {
+        outline: 0.125rem solid $color__black;
+        background-color: $color__white;
+        color: $color__black;
+      }
+    }
+  }
+
+  &__environment {
+    background-color: $color__white;
+    color: $color__black;
+    text-transform: uppercase;
+    padding: 0 calc($spacer__unit / 4);
+    margin-right: $spacer__unit;
+    font-weight: 700;
+  }
+
+  &__message {
+    margin: 0;
+    display: inline;
+  }
+}
