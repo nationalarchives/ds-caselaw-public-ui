@@ -13,7 +13,7 @@ const Data = {
         class: "button",
     },
     hideThisMessage: {
-        text: "Close this message",
+        text: "Close cookie message",
         url: "#",
         id: "hide_this_message",
         class: "button",
