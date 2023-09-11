@@ -17,6 +17,21 @@ on:
   merge_group:
 
 jobs:
+  build-scss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up node
+        uses: actions/setup-node@v3.8.1
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Build scss
+        run: npm run build
+
   linter:
     runs-on: ubuntu-latest
     steps:
