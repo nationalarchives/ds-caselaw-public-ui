@@ -84,8 +84,7 @@
 </div>
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__specific-field-container">
-    <fieldset>
-      <label for="party_name" class="structured-search__limit-to-label">Party name</label>
+      <label for="party_name" class="structured-search__limit-to-label" aria-label="Search by party name">Party name</label>
       <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
       <input class="structured-search__limit-to-input"
              id="party_name"
@@ -93,11 +92,9 @@
              type="text"
              value="{{ context.party }}"
              aria-describedby="party_name-help-text" />
-    </fieldset>
   </div>
   <div class="structured-search__specific-field-container">
-    <fieldset>
-      <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
+      <label for="judge_name" class="structured-search__limit-to-label" aria-label="Search by judge name">Judge name</label>
       <p class="structured-search__help-text" id="judge_name-help-text">
         For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
       </p>
@@ -107,7 +104,6 @@
              type="text"
              value="{{ context.judge }}"
              aria-describedby="judge_name-help-text" />
-    </fieldset>
   </div>
 </div>
 <div class="structured-search__submit-container">
