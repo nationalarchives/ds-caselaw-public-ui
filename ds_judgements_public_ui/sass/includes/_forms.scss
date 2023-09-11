@@ -7,3 +7,8 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+input::placeholder {
+    color: $color__dark-grey;
+    opacity: 1;
+}
