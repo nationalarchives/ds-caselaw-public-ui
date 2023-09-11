@@ -46,13 +46,6 @@
     }
   }
 
-  &__filter-options {
-    legend {
-      font-family: $font__roboto;
-      font-size: 1.5rem;
-      font-weight: normal;
-    }
-  }
 
   &__limit-to-input {
     @include text_field;
@@ -64,6 +57,7 @@
   &__limit-to-label {
     display: block;
     margin-bottom: 0rem;
+    margin-left: 0;
     font-size: 1rem;
     font-weight: bold;
   }
