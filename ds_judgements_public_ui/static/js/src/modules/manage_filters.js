@@ -10,7 +10,7 @@ import $ from "jquery";
 
             const $control_container = $(
                 ".js-results-control-container",
-                $wrapper,
+                $wrapper
             );
 
             const $filters = $(".js-results-facets-applied-filters", $wrapper);
@@ -20,6 +20,8 @@ import $ from "jquery";
             const btn = $("<button>", {
                 class: "results-search-component__toggle-control collapsed",
                 type: "button",
+                "aria-expanded": "false",
+                "aria-controls": "js-results-facets",
                 text:
                     $filters.children().length == 0
                         ? settings.collapsed_text_without_filters
@@ -30,10 +32,14 @@ import $ from "jquery";
                     const $el = $(e.target);
                     const $filters = $(
                         ".js-results-facets-applied-filters",
-                        $wrapper,
+                        $wrapper
                     );
                     $el.toggleClass("collapsed");
-
+                    if ($el.hasClass("collapsed")) {
+                        btn.attr("aria-expanded", "false");
+                    } else {
+                        btn.attr("aria-expanded", "true");
+                    }
                     $el.text(() => {
                         if (
                             $el.hasClass("collapsed") &&
