@@ -24,9 +24,8 @@
          role="button"
          draggable="false"
          href="{{ context.pdf_uri }}"
-         aria-label="{{ context.page_title|get_title_to_display_in_html:context.document_noun }} - Download as PDF"
-         >{% translate "judgment.downloadaspdf" %}
-         <span style="font-weight:normal;font-size:0.9rem">{{ context.pdf_size }}</span></a>
+         aria-label="{{ context.page_title|get_title_to_display_in_html:context.document_noun }} - Download as PDF">{% translate "judgment.downloadaspdf" %}
+        <span style="font-weight:normal;font-size:0.9rem">{{ context.pdf_size }}</span></a>
       <p class="judgment-toolbar-buttons__option--download-options"
          role="note">
         <a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a>
