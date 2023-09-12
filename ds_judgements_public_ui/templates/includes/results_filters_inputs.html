@@ -2,7 +2,7 @@
 <div class="structured-search__single-field-panel">
   <div class="structured-search__limit-to-container">
     <fieldset>
-      <label for="court" class="structured-search__limit-to-label">From specific courts or tribunals</label>
+      <legend class="structured-search__limit-to-label">From specific courts or tribunals</legend>
       <div class="structured-search__court-options" id="court">{% include "includes/courts_options.html" %}</div>
     </fieldset>
   </div>
@@ -10,8 +10,8 @@
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">
-      <label for="from_date_label" class="structured-search__limit-to-label">From date</label>
-      <p class="structured-search__help-text" id="party_name-help-text">For example 01 01 2003 or 2003</p>
+      <legend class="structured-search__limit-to-label">From date</legend>
+      <p class="structured-search__help-text" id="from_date-help-text">For example 01 01 2003 or 2003</p>
       {% if context.errors|has_errors_for_field:"from_date" %}
         <p class="structured-search__from-date-error-message"
            id="from-date-error">{{ context.errors|errors_for_field:"from_date" }}</p>
@@ -46,8 +46,8 @@
   </div>
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"to_date" %}with-errors{% endif %}">
-      <label for="to_date_label" class="structured-search__limit-to-label">To date</label>
-      <p class="structured-search__help-text" id="to_date -help-text">For example 30 04 2023 or 2023</p>
+      <legend class="structured-search__limit-to-label">To date</legend>
+      <p class="structured-search__help-text" id="to_date-help-text">For example 30 04 2023 or 2023</p>
       {% if context.errors|has_errors_for_field:"to_date" %}
         <p class="structured-search__to-date-error-message" id="from-date-error">
           {{ context.errors|errors_for_field:"to_date" }}
@@ -84,30 +84,30 @@
 </div>
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__specific-field-container">
-    <fieldset>
-      <label for="party_name" class="structured-search__limit-to-label">Party name</label>
-      <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
-      <input class="structured-search__limit-to-input"
-             id="party_name"
-             name="party"
-             type="text"
-             value="{{ context.party }}"
-             aria-describedby="party_name-help-text" />
-    </fieldset>
+    <label for="party_name"
+           class="structured-search__limit-to-label"
+           aria-label="Search by party name">Party name</label>
+    <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
+    <input class="structured-search__limit-to-input"
+           id="party_name"
+           name="party"
+           type="text"
+           value="{{ context.party }}"
+           aria-describedby="party_name-help-text" />
   </div>
   <div class="structured-search__specific-field-container">
-    <fieldset>
-      <label for="judge_name" class="structured-search__limit-to-label">Judge name</label>
-      <p class="structured-search__help-text" id="judge_name-help-text">
-        For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
-      </p>
-      <input class="structured-search__limit-to-input"
-             id="judge_name"
-             name="judge"
-             type="text"
-             value="{{ context.judge }}"
-             aria-describedby="judge_name-help-text" />
-    </fieldset>
+    <label for="judge_name"
+           class="structured-search__limit-to-label"
+           aria-label="Search by judge name">Judge name</label>
+    <p class="structured-search__help-text" id="judge_name-help-text">
+      For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
+    </p>
+    <input class="structured-search__limit-to-input"
+           id="judge_name"
+           name="judge"
+           type="text"
+           value="{{ context.judge }}"
+           aria-describedby="judge_name-help-text" />
   </div>
 </div>
 <div class="structured-search__submit-container">

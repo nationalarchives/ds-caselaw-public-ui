@@ -20,6 +20,8 @@ import $ from "jquery";
             const btn = $("<button>", {
                 class: "results-search-component__toggle-control collapsed",
                 type: "button",
+                "aria-expanded": "false",
+                "aria-controls": "js-results-facets",
                 text:
                     $filters.children().length == 0
                         ? settings.collapsed_text_without_filters
@@ -33,7 +35,11 @@ import $ from "jquery";
                         $wrapper,
                     );
                     $el.toggleClass("collapsed");
-
+                    if ($el.hasClass("collapsed")) {
+                        btn.attr("aria-expanded", "false");
+                    } else {
+                        btn.attr("aria-expanded", "true");
+                    }
                     $el.text(() => {
                         if (
                             $el.hasClass("collapsed") &&

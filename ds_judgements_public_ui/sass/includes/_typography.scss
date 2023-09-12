@@ -64,3 +64,7 @@ h4 {
   padding-bottom: calc($spacer__unit / 1.5);
   padding-left: calc($spacer__unit / 2);
 }
+
+code {
+  word-wrap: break-word;
+}
