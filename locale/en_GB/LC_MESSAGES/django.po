@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-04 12:15+0000\n"
+"POT-Creation-Date: 2023-09-12 14:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,25 +103,6 @@ msgstr "Cookies"
 #: ds_judgements_public_ui/templates/pages/accessibility_statement.html
 msgid "accessibilitystatement.title"
 msgstr "Accessibility statement"
-
-#: ds_judgements_public_ui/templates/includes/header_nav.html
-#: ds_judgements_public_ui/templates/layouts/base.html
-msgid "home"
-msgstr "Find case law"
-
-#: ds_judgements_public_ui/templates/includes/header_nav.html
-#: ds_judgements_public_ui/templates/judgment/results.html
-#: ds_judgements_public_ui/templates/layouts/base.html
-#: ds_judgements_public_ui/templates/layouts/judgment.html
-#: ds_judgements_public_ui/templates/layouts/static_content.html
-#: ds_judgements_public_ui/templates/pages/home.html
-#: ds_judgements_public_ui/templates/pages/structured_search.html
-msgid "common.findcaselaw"
-msgstr "Find case law"
-
-#: ds_judgements_public_ui/templates/includes/header_nav.html
-msgid "breadcrumbs.search"
-msgstr "Search"
 
 #: ds_judgements_public_ui/templates/includes/help_improve_this_service.html
 msgid "service.improved"
@@ -223,6 +204,15 @@ msgstr "How to search"
 msgid "basicsearchform.cta"
 msgstr "Search"
 
+#: ds_judgements_public_ui/templates/judgment/detail.html
+#: ds_judgements_public_ui/templates/judgment/results.html
+#: ds_judgements_public_ui/templates/layouts/base.html
+#: ds_judgements_public_ui/templates/layouts/static_content.html
+#: ds_judgements_public_ui/templates/pages/home.html
+#: ds_judgements_public_ui/templates/pages/structured_search.html
+msgid "common.findcaselaw"
+msgstr "Find case law"
+
 #: ds_judgements_public_ui/templates/judgment/results.html
 #: judgments/views/advanced_search.py judgments/views/browse.py
 #: judgments/views/results.py
@@ -230,9 +220,12 @@ msgid "results.search.title"
 msgstr "Search results"
 
 #: ds_judgements_public_ui/templates/layouts/base.html
-#: ds_judgements_public_ui/templates/layouts/judgment.html
 msgid "skiplink"
 msgstr "Skip to Main Content"
+
+#: ds_judgements_public_ui/templates/layouts/base.html
+msgid "home"
+msgstr "Find case law"
 
 #: ds_judgements_public_ui/templates/pages/about_this_service.html
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html

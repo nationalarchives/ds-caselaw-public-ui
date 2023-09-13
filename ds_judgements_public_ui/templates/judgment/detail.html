@@ -1,5 +1,35 @@
-{% extends "layouts/judgment.html" %}
+{% extends "layouts/base.html" %}
+{% load i18n document_utils %}
+{% block robots %}
+  <meta name="robots" content="noindex,nofollow" />
+{% endblock robots %}
+{% block title %}
+  {% if context.page_title %}{{ context.page_title }} -{% endif %}
+  {% translate "common.findcaselaw" %}
+{% endblock title %}
+{% block breadcrumbs %}
+  {% if context.document_noun == "press summary" %}
+    <li>
+      {% if context.linked_document_uri %}
+        <a href="{% url 'detail' context.linked_document_uri %}">{{ context.page_title|get_title_to_display_in_html:context.document_noun }}</a>
+      {% else %}
+        <a>{{ context.page_title|get_title_to_display_in_html:context.document_noun }}</a>
+      {% endif %}
+    </li>
+    <li>Press Summary</li>
+  {% else %}
+    <li>{{ context.page_title }}</li>
+  {% endif %}
+{% endblock breadcrumbs %}
+{% block precontent %}
+  {% include "includes/judgment_text_toolbar.html" %}
+{% endblock precontent %}
 {% block content %}
+  <div id="js-document-navigation-links-start"
+       class="document-navigation-links">
+    <a class="down" href="#end-of-document">Skip to end</a>
+  </div>
+  <div id="start-of-document"></div>
   {% if context.document %}
     {% autoescape off %}
       {{ context.document }}
@@ -7,4 +37,12 @@
   {% else %}
     {{ content }}
   {% endif %}
+  {% include "includes/judgment_end_document_marker.html" %}
+  <div id="js-document-navigation-links-end"
+       class="document-navigation-links">
+    <a class="up" href="#start-of-document">Back to top</a>
+  </div>
 {% endblock content %}
+{% block postcontent %}
+  {% include "includes/judgment_text_download_options.html" %}
+{% endblock postcontent %}

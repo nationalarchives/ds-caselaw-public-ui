@@ -66,10 +66,14 @@
       {% endblock header %}
     </header>
     {% include "includes/notifications.html" %}
+    {% block precontent %}
+    {% endblock precontent %}
     <main id="main-content">
       {% block content %}
       {% endblock content %}
     </main>
+    {% block postcontent %}
+    {% endblock postcontent %}
     {% include "includes/help_improve_this_service.html" %}
     {% include "includes/footer.html" %}
   </body>
