@@ -7,20 +7,6 @@
   {% if context.page_title %}{{ context.page_title }} -{% endif %}
   {% translate "common.findcaselaw" %}
 {% endblock title %}
-{% block breadcrumbs %}
-  {% if context.document_noun == "press summary" %}
-    <li>
-      {% if context.linked_document_uri %}
-        <a href="{% url 'detail' context.linked_document_uri %}">{{ context.page_title|get_title_to_display_in_html:context.document_noun }}</a>
-      {% else %}
-        <a>{{ context.page_title|get_title_to_display_in_html:context.document_noun }}</a>
-      {% endif %}
-    </li>
-    <li>Press Summary</li>
-  {% else %}
-    <li>{{ context.page_title }}</li>
-  {% endif %}
-{% endblock breadcrumbs %}
 {% block precontent %}
   {% include "includes/judgment_text_toolbar.html" %}
 {% endblock precontent %}

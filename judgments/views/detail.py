@@ -110,11 +110,27 @@ def detail(request, document_uri):
         else reverse("detail_pdf", args=[document.uri])
     )
 
+    if document.document_noun == "press summary":
+        breadcrumbs = [
+            {
+                "url": "/" + context["linked_document_uri"],
+                "text": document.name.removeprefix("Press Summary of "),
+            },
+            {
+                "text": "Press Summary",
+            },
+        ]
+    else:
+        breadcrumbs = [
+            {"text": document.name},
+        ]
+
     return TemplateResponse(
         request,
         "judgment/detail.html",
         context={
             "context": context,
+            "breadcrumbs": breadcrumbs,
             "feedback_survey_type": "judgment",  # TODO: update the survey to allow for generalisation to `document`
             # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
             "feedback_survey_document_uri": document.uri,
