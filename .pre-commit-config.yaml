@@ -29,20 +29,10 @@ repos:
   - repo: https://github.com/Riverside-Healthcare/djLint
     rev: v1.32.1
     hooks:
+      - id: djlint-reformat-django
+        require_serial: true
       - id: djlint-django
-        name: djLint Reformatting for Django
-        entry: djlint --profile=django --reformat
-        types_or: [html]
-        language: python
-
-  - repo: https://github.com/Riverside-Healthcare/djLint
-    rev: v1.32.1
-    hooks:
-      - id: djlint-django
-        name: djLint Checks for Django
-        entry: djlint --profile=django
-        types_or: [html]
-        language: python
+        require_serial: true
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.0.3
