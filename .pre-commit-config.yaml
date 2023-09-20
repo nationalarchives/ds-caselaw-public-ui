@@ -27,7 +27,7 @@ repos:
         args: ["--config=setup.cfg"]
 
   - repo: https://github.com/Riverside-Healthcare/djLint
-    rev: v1.33.0
+    rev: v1.34.0
     hooks:
       - id: djlint-django
         name: djLint Reformatting for Django
@@ -36,7 +36,7 @@ repos:
         language: python
 
   - repo: https://github.com/Riverside-Healthcare/djLint
-    rev: v1.33.0
+    rev: v1.34.0
     hooks:
       - id: djlint-django
         name: djLint Checks for Django
