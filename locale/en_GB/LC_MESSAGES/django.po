@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-12 14:00+0000\n"
+"POT-Creation-Date: 2023-09-20 16:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -215,7 +215,6 @@ msgstr "Find case law"
 
 #: ds_judgements_public_ui/templates/judgment/results.html
 #: judgments/views/advanced_search.py judgments/views/browse.py
-#: judgments/views/results.py
 msgid "results.search.title"
 msgstr "Search results"
 

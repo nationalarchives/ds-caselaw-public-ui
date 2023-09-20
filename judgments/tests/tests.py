@@ -70,12 +70,10 @@ class TestPaginator(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_pagination_links(self, mock_search_judgments_and_parse_response):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get(
-            "/judgments/advanced_search?court=ukut-iac&order=&page=3"
-        )
+        response = self.client.get("/judgments/search?court=ukut-iac&order=&page=3")
         decoded_response = response.content.decode("utf-8")
         self.assertIn(
-            "/judgments/advanced_search?court=ukut-iac&amp;order=&page=4",
+            "/judgments/search?court=ukut-iac&amp;order=&page=4",
             decoded_response,
         )
 
@@ -134,12 +132,12 @@ class TestRobotsDirectives(TestCase):
         )
         self.assertNotEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.results.search_judgments_and_parse_response")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_search_results(self, mock_search_judgments_and_parse_response):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
-        response = self.client.get("/judgments/results?query=waltham+forest")
+        response = self.client.get("/judgments/search?query=waltham+forest")
         self.assertContains(
             response, '<meta name="robots" content="noindex,nofollow" />'
         )
@@ -213,37 +211,19 @@ class TestRobotsDirectives(TestCase):
 
 
 class TestBackLink(TestCase):
-    def test_referrer_is_results_page_without_query(self):
-        assert search_context_from_url("https://example.com/judgments/results") == {
-            "search_url": "https://example.com/judgments/results",
+    def test_referrer_is_search_page_without_query(self):
+        assert search_context_from_url("https://example.com/judgments/search") == {
+            "search_url": "https://example.com/judgments/search",
             "query": None,
         }
 
-    def test_referrer_is_advanced_search_page_without_query(self):
-        assert search_context_from_url(
-            "https://example.com/judgments/advanced_search"
-        ) == {
-            "search_url": "https://example.com/judgments/advanced_search",
-            "query": None,
-        }
-
-    def test_referrer_is_results_page_with_query(self):
+    def test_referrer_is_search_page_with_query(self):
         # When there is a referrer, and it is a results page,
         # the back link is displayed:
         assert search_context_from_url(
-            "https://example.com/judgments/results?query=test+query"
+            "https://example.com/judgments/search?query=test+query"
         ) == {
-            "search_url": "https://example.com/judgments/results?query=test+query",
-            "query": "test query",
-        }
-
-    def test_referrer_is_advanced_search_page_with_query(self):
-        # When there is a referrer and it is the advanced search page,
-        # the back link is displayed:
-        assert search_context_from_url(
-            "https://example.com/judgments/advanced_search?query=test+query"
-        ) == {
-            "search_url": "https://example.com/judgments/advanced_search?query=test+query",
+            "search_url": "https://example.com/judgments/search?query=test+query",
             "query": "test query",
         }
 

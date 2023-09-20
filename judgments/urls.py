@@ -5,7 +5,6 @@ from .views.advanced_search import advanced_search
 from .views.browse import browse
 from .views.detail import PdfDetailView, detail, detail_xml, get_best_pdf
 from .views.index import index
-from .views.results import results
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -55,7 +54,8 @@ urlpatterns = [
         r"^(?P<document_uri>.*/\d{4}/\d+.*)/data.html$", detail, name="detail_html"
     ),
     re_path(r"^(?P<document_uri>.*/\d{4}/\d+.*)/?$", detail, name="detail"),
-    path("judgments/results", results, name="results"),
-    path("judgments/advanced_search", advanced_search, name="advanced_search"),
+    path("judgments/results", advanced_search),
+    path("judgments/advanced_search", advanced_search),
+    path("judgments/search", advanced_search, name="search"),
     path("", index, name="home"),
 ]
