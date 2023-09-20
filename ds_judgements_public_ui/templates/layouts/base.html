@@ -49,13 +49,18 @@
                 <ol>
                   <li>
                     <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-                    {% if title == "home" %}
-                      {% translate "common.findcaselaw" %}
-                    {% else %}
-                      <a href="{% url 'home' %}">{% translate "common.findcaselaw" %}</a>
-                    {% endif %}
+                    <a href="{% url 'home' %}">{% translate "common.findcaselaw" %}</a>
                   </li>
                   {% block breadcrumbs %}
+                    {% for breadcrumb in breadcrumbs %}
+                      {% if breadcrumb.url %}
+                        <li>
+                          <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
+                        </li>
+                      {% else %}
+                        <li>{{ breadcrumb.text }}</li>
+                      {% endif %}
+                    {% endfor %}
                   {% endblock breadcrumbs %}
                 </ol>
               </nav>
