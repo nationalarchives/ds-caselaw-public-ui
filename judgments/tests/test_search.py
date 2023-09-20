@@ -35,44 +35,13 @@ class TestBrowseResults(TestCase):
 
 
 class TestSearchResults(TestCase):
-    @patch("judgments.views.results.api_client")
-    @patch("judgments.views.results.search_judgments_and_parse_response")
-    def test_judgment_results(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/results?query=waltham+forest")
-        mock_search_judgments_and_parse_response.assert_called_with(
-            mock_api_client,
-            SearchParameters(
-                query="waltham forest", page=1, order="-relevance", page_size=10
-            ),
-        )
-        self.assertContains(
-            response,
-            '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
-        )
-
-    @patch("judgments.views.results.preprocess_query")
-    @patch("judgments.views.results.search_judgments_and_parse_response")
-    def test_jugdment_results_query_preproccesed(
-        self,
-        mock_search_judgments_and_parse_response,
-        fake_preprocess_query,
-    ):
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        fake_preprocess_query.return_value = "normalised query"
-        self.client.get("/judgments/results?query=waltham+forest")
-
-        fake_preprocess_query.assert_called()
-
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/advanced_search?query=waltham+forest")
+        response = self.client.get("/judgments/search?query=waltham+forest")
         self.assertContains(
             response,
             '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
@@ -102,7 +71,7 @@ class TestSearchResults(TestCase):
         fake_preprocess_query,
     ):
         fake_preprocess_query.return_value = "normalised query"
-        self.client.get("/judgments/advanced_search?query=waltham+forest")
+        self.client.get("/judgments/search?query=waltham+forest")
         fake_preprocess_query.assert_called()
 
     @patch("judgments.views.advanced_search.api_client")
@@ -114,7 +83,7 @@ class TestSearchResults(TestCase):
     ):
         """
         GIVEN a client for making HTTP requests
-        WHEN a GET request is made to "/judgments/advanced_search?court=ewhc/ch&court=ewhc/ipec"
+        WHEN a GET request is made to "/judgments/search?court=ewhc/ch&court=ewhc/ipec"
         THEN the response should contain the expected applied filters HTML
         AND the `search_judgments_and_parse_response` function should be called with the correct court string.
 
@@ -124,9 +93,7 @@ class TestSearchResults(TestCase):
         - The first link represents the "Chancery Division of the High Court" filter
         - The second link represents the "Intellectual Property Enterprise Court" filter
         """
-        response = self.client.get(
-            "/judgments/advanced_search?court=ewhc/ch&court=ewhc/ipec"
-        )
+        response = self.client.get("/judgments/search?court=ewhc/ch&court=ewhc/ipec")
 
         expected_applied_filters_html = """
         <ul class="results-search-component__removable-options js-results-facets-applied-filters">
@@ -135,7 +102,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/advanced_search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
                  title="Chancery Division of the High Court">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -150,7 +117,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/advanced_search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
                  title="Intellectual Property Enterprise Court">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -167,43 +134,41 @@ class TestSearchResults(TestCase):
         )
         assert_contains_html(response, expected_applied_filters_html)
 
-    @patch("judgments.views.results.api_client")
-    @patch("judgments.views.results.search_judgments_and_parse_response")
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_shows_message_with_invalid_from_date(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get(
-            "/judgments/advanced_search?from_year=2023&from_month=12&from_day=32"
+            "/judgments/search?from_year=2023&from_month=12&from_day=32"
         )
         message = html.escape(gettext("search.errors.from_date_headline"))
         self.assertContains(
             response, f'<div class="page-notification--failure">{message}</div>'
         )
 
-    @patch("judgments.views.results.api_client")
-    @patch("judgments.views.results.search_judgments_and_parse_response")
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_shows_message_with_invalid_to_date(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get(
-            "/judgments/advanced_search?to_year=2023&to_month=12&to_day=32"
+            "/judgments/search?to_year=2023&to_month=12&to_day=32"
         )
         message = html.escape(gettext("search.errors.to_date_headline"))
         self.assertContains(
             response, f'<div class="page-notification--failure">{message}</div>'
         )
 
-    @patch("judgments.views.results.api_client")
-    @patch("judgments.views.results.search_judgments_and_parse_response")
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_shows_message_with_crossed_dates(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get(
-            "/judgments/advanced_search?to_year=2022&from_year=2023"
-        )
+        response = self.client.get("/judgments/search?to_year=2022&from_year=2023")
         message = html.escape(gettext("search.errors.to_before_from_headline"))
         self.assertContains(
             response, f'<div class="page-notification--failure">{message}</div>'
