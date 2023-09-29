@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Dict
 
 from django.test import TestCase
@@ -41,7 +42,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date": "", "date_day": "3", "date_month": "1", "date_year": "2020"}
         parsed = parse_date_parameter(params, "date")
-        self.assertEqual(parsed, "2020-01-03")
+        self.assertEqual(parsed, date(2020, 1, 3))
 
     def test_constructs_a_date_from_date_parts(self):
         """
@@ -49,7 +50,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date_day": "3", "date_month": "1", "date_year": "2020"}
         parsed = parse_date_parameter(params, "date")
-        self.assertEqual(parsed, "2020-01-03")
+        self.assertEqual(parsed, date(2020, 1, 3))
 
     def test_returns_none_if_no_date_provided(self):
         """
@@ -65,7 +66,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date_month": "5", "date_year": "2020"}
         parsed = parse_date_parameter(params, "date")
-        self.assertEqual(parsed, "2020-05-01")
+        self.assertEqual(parsed, date(2020, 5, 1))
 
     def test_returns_january_when_no_month(self):
         """
@@ -73,7 +74,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date_year": "2020"}
         parsed = parse_date_parameter(params, "date")
-        self.assertEqual(parsed, "2020-01-01")
+        self.assertEqual(parsed, date(2020, 1, 1))
 
     def test_returns_none_if_year_is_blank(self):
         """When a year parameter is provided but empty, it returns none"""
@@ -85,7 +86,7 @@ class TestDateParsing(TestCase):
         """Blank months and days are treated as undefined, and default to the first month / day."""
         params = {"date_year": "2009", "date_month": "", "date_day": ""}
         parsed = parse_date_parameter(params, "date")
-        self.assertEqual(parsed, "2009-01-01")
+        self.assertEqual(parsed, date(2009, 1, 1))
 
     def test_returns_december_when_no_month_and_default_to_last_selected(self):
         """
@@ -94,7 +95,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date_year": "2020"}
         parsed = parse_date_parameter(params, "date", default_to_last=True)
-        self.assertEqual(parsed, "2020-12-31")
+        self.assertEqual(parsed, date(2020, 12, 31))
 
     def test_returns_lastday_long_month_when_year_and_month_given(self):
         """
@@ -103,7 +104,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date_month": "5", "date_year": "2020"}
         parsed = parse_date_parameter(params, "date", default_to_last=True)
-        self.assertEqual(parsed, "2020-05-31")
+        self.assertEqual(parsed, date(2020, 5, 31))
 
     def test_returns_lastday_short_month_when_year_and_month_given(self):
         """
@@ -112,7 +113,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date_month": "2", "date_year": "2021"}
         parsed = parse_date_parameter(params, "date", default_to_last=True)
-        self.assertEqual(parsed, "2021-02-28")
+        self.assertEqual(parsed, date(2021, 2, 28))
 
     def test_returns_lastday_month_when_leap_year_and_month_given(self):
         """
@@ -121,7 +122,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date_month": "2", "date_year": "2020"}
         parsed = parse_date_parameter(params, "date", default_to_last=True)
-        self.assertEqual(parsed, "2020-02-29")
+        self.assertEqual(parsed, date(2020, 2, 29))
 
     def test_raises_error_when_a_silly_month_is_given(self):
         """
@@ -136,3 +137,11 @@ class TestDateParsing(TestCase):
         """
         params = {"date_month": "04", "date_day": "31", "date_year": "2020"}
         self.assertRaises(ValueError, parse_date_parameter, params, "date")
+
+    def test_checks_return_date_format_as_day_month_year(self):
+        """
+        Checks date is provided in day, month, year format.
+        """
+        params = {"date_day": "3", "date_month": "1", "date_year": "2020"}
+        parsed = parse_date_parameter(params, "date")
+        self.assertEqual(parsed, date(2020, 1, 3))

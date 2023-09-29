@@ -1,7 +1,7 @@
 import math
 import re
 from calendar import monthrange
-from datetime import datetime
+from datetime import date, datetime
 from typing import Optional, TypedDict
 from urllib.parse import parse_qs, urlparse
 
@@ -190,7 +190,7 @@ def parse_parameter_as_int(params, parameter_name, default=None):
         return default
 
 
-def parse_date_parameter(params, param_name, default_to_last=False):
+def parse_date_parameter(params, param_name, default_to_last=False) -> Optional[date]:
     year_param_name = f"{param_name}_year"
     month_param_name = f"{param_name}_month"
     day_param_name = f"{param_name}_day"
@@ -204,12 +204,12 @@ def parse_date_parameter(params, param_name, default_to_last=False):
         default_day = monthrange(year, month)[1] if default_to_last else 1
         day = parse_parameter_as_int(params, day_param_name, default=default_day)
 
-        dt = datetime(year, month, day)
-        return dt.strftime("%Y-%m-%d")
+        return date(year, month, day)
     elif parameter_provided(params, month_param_name) or parameter_provided(
         params, day_param_name
     ):
         raise ValueError(gettext("search.errors.missing_year_detail"))
+    return None
 
 
 def get_document_by_uri(document_uri: str) -> Document:
