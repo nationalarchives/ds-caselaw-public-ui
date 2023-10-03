@@ -190,7 +190,9 @@ def parse_parameter_as_int(params, parameter_name, default=None):
         return default
 
 
-def parse_date_parameter(params, param_name, default_to_last=False) -> Optional[date]:
+def parse_date_parameter(
+    params, param_name, default_to_last=False, start_year=None, end_year=None
+) -> Optional[date]:
     year_param_name = f"{param_name}_year"
     month_param_name = f"{param_name}_month"
     day_param_name = f"{param_name}_day"
@@ -198,6 +200,13 @@ def parse_date_parameter(params, param_name, default_to_last=False) -> Optional[
         return params[param_name]
     elif parameter_provided(params, year_param_name):
         year = parse_parameter_as_int(params, year_param_name)
+
+        if start_year and year < start_year:
+            raise ValueError("Year must not be before %s" % start_year)
+
+        if end_year and year > end_year:
+            raise ValueError("Year must not be after %s" % end_year)
+
         default_month = 12 if default_to_last else 1
         month = parse_parameter_as_int(params, month_param_name, default=default_month)
 

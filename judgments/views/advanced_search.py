@@ -10,7 +10,7 @@ from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
 
-from judgments.models import SearchFormErrors
+from judgments.models import CourtDates, SearchFormErrors
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
@@ -26,14 +26,25 @@ def advanced_search(request):
     params = request.GET
     errors = SearchFormErrors()
     try:
-        from_date = parse_date_parameter(params, "from")
+        from_date = parse_date_parameter(
+            params,
+            "from",
+            start_year=CourtDates.min_year(),
+            end_year=CourtDates.max_year(),
+        )
     except ValueError as error:
         from_date = None
         errors.add_error(
             gettext("search.errors.from_date_headline"), "from_date", str(error)
         )
     try:
-        to_date = parse_date_parameter(params, "to", default_to_last=True)
+        to_date = parse_date_parameter(
+            params,
+            "to",
+            default_to_last=True,
+            start_year=CourtDates.min_year(),
+            end_year=CourtDates.max_year(),
+        )
     except ValueError as error:
         to_date = None
         errors.add_error(
