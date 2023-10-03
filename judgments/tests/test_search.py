@@ -173,3 +173,25 @@ class TestSearchResults(TestCase):
         self.assertContains(
             response, f'<div class="page-notification--failure">{message}</div>'
         )
+
+
+class TestSearchBreadcrumbs(TestCase):
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_search_breadcrumbs_without_query_string(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/judgments/search")
+        assert response.context["breadcrumbs"] == [{"text": "Search results"}]
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_search_breadcrumbs_with_query_string(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/judgments/search?query=waltham+forest")
+        assert response.context["breadcrumbs"] == [
+            {"text": 'Search results for "waltham forest"'}
+        ]

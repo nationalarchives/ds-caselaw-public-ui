@@ -132,11 +132,18 @@ def advanced_search(request):
 
         except MarklogicResourceNotFoundError:
             raise Http404("Search failed")  # TODO: This should be something else!
+
+        # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
+        if query_params["query"]:
+            breadcrumbs = [{"text": f'Search results for "{query_params["query"]}"'}]
+        else:
+            breadcrumbs = [{"text": "Search results"}]
         return TemplateResponse(
             request,
             "judgment/results.html",
             context={
                 "context": context,
+                "breadcrumbs": breadcrumbs,
                 "feedback_survey_type": "structured_search",
             },
         )
