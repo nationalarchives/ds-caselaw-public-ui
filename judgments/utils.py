@@ -202,10 +202,10 @@ def parse_date_parameter(
         year = parse_parameter_as_int(params, year_param_name)
 
         if start_year and year < start_year:
-            raise ValueError("Year must not be before %s" % start_year)
+            raise ValueError("Find Case Law has no judgments before %s" % start_year)
 
         if end_year and year > end_year:
-            raise ValueError("Year must not be after %s" % end_year)
+            raise ValueError("Find Case Law has no judgments after %s" % end_year)
 
         default_month = 12 if default_to_last else 1
         month = parse_parameter_as_int(params, month_param_name, default=default_month)
