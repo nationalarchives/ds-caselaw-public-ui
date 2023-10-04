@@ -1,12 +1,4 @@
 {% load court_utils feature_flags errors %}
-<div class="structured-search__single-field-panel">
-  <div class="structured-search__limit-to-container">
-    <fieldset>
-      <legend class="structured-search__limit-to-label">From specific courts or tribunals</legend>
-      <div class="structured-search__court-options" id="court">{% include "includes/courts_options.html" %}</div>
-    </fieldset>
-  </div>
-</div>
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">
@@ -82,6 +74,15 @@
     </fieldset>
   </div>
 </div>
+<div class="structured-search__single-field-panel">
+  <div class="structured-search__limit-to-container">
+    <fieldset>
+      <legend class="structured-search__limit-to-label">From specific courts or tribunals</legend>
+      <div class="structured-search__court-options" id="court">{% include "includes/courts_options.html" %}</div>
+    </fieldset>
+  </div>
+</div>
+{% include "includes/structured_search_additional_inputs.html" %}
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__specific-field-container">
     <label for="party_name"
