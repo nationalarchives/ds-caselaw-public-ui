@@ -145,3 +145,15 @@ class TestDateParsing(TestCase):
         params = {"date_day": "3", "date_month": "1", "date_year": "2020"}
         parsed = parse_date_parameter(params, "date")
         self.assertEqual(parsed, date(2020, 1, 3))
+
+    def test_raises_error_when_a_year_before_first_judgment_given(self):
+        params = {"date_year": "1999"}
+        self.assertRaises(
+            ValueError, parse_date_parameter, params, "date", start_year=2020
+        )
+
+    def test_raises_error_when_a_year_after_last_judgment_given(self):
+        params = {"date_year": "2024"}
+        self.assertRaises(
+            ValueError, parse_date_parameter, params, "date", end_year=2023
+        )
