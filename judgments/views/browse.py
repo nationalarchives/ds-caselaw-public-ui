@@ -49,7 +49,7 @@ def browse(request, court=None, subdivision=None, year=None):
         context["total"] = search_response.total
         context["per_page"] = per_page
         context["paginator"] = paginator(page, search_response.total, per_page)
-        context["courts"] = all_courts.get_selectable()
+        context["courts"] = all_courts.get_selectable_groups()
 
         context["page_title"] = gettext("results.search.title")
 

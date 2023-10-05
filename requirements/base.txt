@@ -15,7 +15,7 @@ requests-toolbelt~=1.0.0
 lxml~=4.9.3
 wsgi-basic-auth~=1.1.0
 ds-caselaw-marklogic-api-client~=14.1.0
-ds-caselaw-utils~=1.0.2
+ds-caselaw-utils==1.1.0
 rollbar
 django-weasyprint==2.2.0
 # pinned to avoid https://github.com/fdemmer/django-weasyprint/issues/71

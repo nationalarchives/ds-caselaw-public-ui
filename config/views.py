@@ -70,7 +70,7 @@ class StructuredSearchView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["context"]["courts"] = courts.get_selectable()
+        context["context"]["courts"] = courts.get_selectable_groups()
         context["feedback_survey_type"] = "structured_search"
         return context
 

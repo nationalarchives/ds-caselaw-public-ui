@@ -252,6 +252,16 @@
     }
   }
 
+  &__court-group-label {
+    margin-top: calc(0.5 * $spacer__unit);
+    margin-bottom: calc(0.5 * $spacer__unit);
+  }
+
+  &__court-group {
+    margin-left: calc(2 * $spacer__unit);
+    break-inside: avoid;
+  }
+
   &__court-option-label {
     margin-left: calc(0.5 * $spacer__unit);
   }

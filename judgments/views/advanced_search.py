@@ -96,7 +96,7 @@ def advanced_search(request):
     context = {
         "errors": errors,
         "query": query_params["query"],
-        "courts": all_courts.get_selectable(),
+        "courts": all_courts.get_selectable_groups(),
         "query_params": query_params,
     }
 
