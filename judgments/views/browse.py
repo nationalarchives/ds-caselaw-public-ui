@@ -49,8 +49,8 @@ def browse(request, court=None, subdivision=None, year=None):
         context["total"] = search_response.total
         context["per_page"] = per_page
         context["paginator"] = paginator(page, search_response.total, per_page)
-        context["courts"] = all_courts.get_selectable_groups()
-
+        context["courts"] = all_courts.get_grouped_selectable_courts()
+        context["tribunals"] = all_courts.get_grouped_selectable_tribunals()
         context["page_title"] = gettext("results.search.title")
 
     except MarklogicResourceNotFoundError:

@@ -1,4 +1,4 @@
-{% for group in context.courts %}
+{% for group in courts %}
   {% if group.display_heading %}
     <div class="structured-search__court-group-label">{{ group.name }}</div>
     <div class="structured-search__court-group">
@@ -8,7 +8,7 @@
     </div>
   {% else %}
     {% for court in group.courts %}
-      {% include "includes/court_option.html" with court=court %}
+      {% include "includes/court_option.html" with court=court ungrouped=True %}
     {% endfor %}
   {% endif %}
 {% endfor %}

@@ -103,10 +103,10 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link"
                  href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
-                 title="Chancery Division of the High Court">
+                 title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
-                    Chancery Division of the High Court
+                    High Court (Chancery Division)
                   </span>
                 </span>
               </a>
@@ -118,10 +118,10 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link"
                  href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;neutral_citation=&amp;specific_keyword=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
-                 title="Intellectual Property Enterprise Court">
+                 title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
-                    Intellectual Property Enterprise Court
+                    High Court (Intellectual Property Enterprise Court)
                   </span>
                 </span>
               </a>

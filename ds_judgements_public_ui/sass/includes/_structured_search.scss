@@ -198,9 +198,13 @@
     width: 100%;
 
     @media (min-width: $grid__breakpoint-medium) {
-      column-count: 2;
-      column-gap: calc(2 * $spacer__unit);
+      display: flex;
+      gap: calc(2 * $spacer__unit);
     }
+  }
+
+  &__court-options-column {
+    break-inside: avoid;
   }
 
   &__court-option {
@@ -254,6 +258,8 @@
 
   &__court-group-label {
     margin-top: calc(0.5 * $spacer__unit);
+    line-height: calc(1.5 * $spacer__unit);
+    vertical-align: baseline;
     margin-bottom: calc(0.5 * $spacer__unit);
   }
 
@@ -264,6 +270,8 @@
 
   &__court-option-label {
     margin-left: calc(0.5 * $spacer__unit);
+    line-height: calc(1.5 * $spacer__unit);
+    vertical-align: baseline;
   }
   &__court-date-range {
     color: $color__dark-grey;
