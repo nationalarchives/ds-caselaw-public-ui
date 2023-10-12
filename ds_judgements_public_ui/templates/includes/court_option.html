@@ -1,0 +1,14 @@
+{% load query_filters court_utils %}
+<div class="structured-search__court-option {% if ungrouped %}ungrouped{% endif %}">
+  <label for="court_{{ court.canonical_param }}">
+    <input type="checkbox"
+           name="court"
+           value="{{ court.canonical_param }}"
+           id="court_{{ court.canonical_param }}"
+           {% for alias in context.court %}{% if alias in court.param_aliases %}checked="checked"{% endif %}
+           {% endfor %} />
+    <span class="structured-search__court-option-label">{{ court.grouped_name }}
+      <span class="structured-search__court-date-range">&mdash; {{ court|get_court_date_range }}</span>
+    </span>
+  </label>
+</div>

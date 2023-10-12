@@ -78,7 +78,14 @@
   <div class="structured-search__limit-to-container">
     <fieldset>
       <legend class="structured-search__limit-to-label">From specific courts or tribunals</legend>
-      <div class="structured-search__court-options" id="court">{% include "includes/courts_options.html" %}</div>
+      <div class="structured-search__court-options" id="court">
+        <div class="structured-search__court-options-column">
+          {% include "includes/courts_options.html" with courts=context.courts %}
+        </div>
+        <div class="structured-search__court-options-column">
+          {% include "includes/courts_options.html" with courts=context.tribunals %}
+        </div>
+      </div>
     </fieldset>
   </div>
 </div>
