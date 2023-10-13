@@ -22,5 +22,5 @@ django-weasyprint==2.2.0
 weasyprint~=58.0
 
 # Type stubs
-mypy-boto3-s3==1.28.0
+mypy-boto3-s3==1.28.55
 mypy-boto3-sns==1.28.0
