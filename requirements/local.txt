@@ -17,7 +17,7 @@ pytest-socket==0.6.0 # https://github.com/miketheman/pytest-socket
 flake8==6.0.0  # https://github.com/PyCQA/flake8
 flake8-isort==6.0.0  # https://github.com/gforcada/flake8-isort
 coverage==7.2.7  # https://github.com/nedbat/coveragepy
-black==23.3.0  # https://github.com/psf/black
+black==23.9.1  # https://github.com/psf/black
 pylint-django==2.5.3  # https://github.com/PyCQA/pylint-django
 pre-commit==3.3.3  # https://github.com/pre-commit/pre-commit
 
