@@ -13,7 +13,14 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
-from judgments.utils import get_document_by_uri, get_pdf_uri, search_context_from_url
+from judgments.utils import (
+    get_document_by_uri,
+    get_pdf_uri,
+    preprocess_query,
+    search_context_from_url,
+)
+
+MOST_RECENT_VERSION = DocumentURIString("")
 
 
 class NoNeutralCitationError(Exception):
@@ -48,9 +55,7 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
 
         self.pdf_filename = f"{document.uri}.pdf"
 
-        context["document"] = document.content_as_html(
-            DocumentURIString("")  # "" is most recent version
-        )
+        context["document"] = document.content_as_html(MOST_RECENT_VERSION)
 
         return context
 
@@ -75,21 +80,23 @@ def get_best_pdf(request, document_uri):
 
 
 def detail(request, document_uri):
+    query = request.GET.get("query")
     document = get_published_document_by_uri(document_uri)
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
     if document_uri != document.uri:
-        return HttpResponseRedirect(
-            reverse("detail", kwargs={"document_uri": document.uri})
-        )
+        redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
+        return HttpResponseRedirect(redirect_uri)
 
     context = {}
-
     press_summary_suffix = "/press-summary/1"
     context["document_noun"] = document.document_noun
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)
     context["judgment_ncn"] = document.best_human_identifier
+    if query:
+        context["number_of_mentions"] = str(document.number_of_mentions(query))
+        context["query"] = query
     if document.document_noun == "press summary":
         linked_doc_url = document_uri.removesuffix(press_summary_suffix)
     else:
@@ -103,8 +110,9 @@ def detail(request, document_uri):
         context["linked_document_uri"] = ""
 
     context["document"] = document.content_as_html(
-        DocumentURIString("")  # "" is most recent version
-    )
+        MOST_RECENT_VERSION,
+        query=preprocess_query(query) if query is not None else None,
+    )  # "" is most recent version
     context["document_uri"] = document.uri
     context["page_title"] = document.name
     context["pdf_size"] = get_pdf_size(document.uri)

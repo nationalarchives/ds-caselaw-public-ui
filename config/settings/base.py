@@ -2,7 +2,6 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
-from typing import Any, Dict
 
 import django
 import environ
@@ -50,8 +49,6 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Feature flags for django-flags
-FLAGS: Dict[str, Any] = {}
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -72,7 +69,10 @@ DJANGO_APPS = [
     "django.contrib.humanize",
     "django.contrib.admin",
     # "django.forms",
-    "flags",
+]
+
+THIRD_PARTY_APPS = [
+    "waffle",
 ]
 
 LOCAL_APPS = [
@@ -80,7 +80,7 @@ LOCAL_APPS = [
     "judgments.apps.JudgmentsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -137,6 +137,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
     "config.middleware.FeedbackLinkMiddleware",
+    "waffle.middleware.WaffleMiddleware",
 ]
 
 # STATIC

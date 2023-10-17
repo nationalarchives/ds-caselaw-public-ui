@@ -68,3 +68,15 @@ h4 {
 code {
   word-wrap: break-word;
 }
+
+mark {
+  border-bottom: 3px solid $color__yellow;
+  background-color: transparent;
+  font-weight: bold;
+  scroll-margin-top: 50vh;
+
+  &.current {
+    border-top: 3px solid $color__yellow;
+    background-color: $color__yellow;
+  }
+}
