@@ -1,8 +1,6 @@
 .structured-search {
   legend {
-    /* https://stackoverflow.com/questions/3973456/default-css-values-for-a-fieldset-legend */
-    float: left;
-    width: 100%;
+    padding: 0;
   }
 
   &__main-search {
