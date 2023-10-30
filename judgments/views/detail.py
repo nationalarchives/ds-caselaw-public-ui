@@ -3,7 +3,7 @@ import os
 
 import requests
 from caselawclient.errors import DocumentNotFoundError
-from caselawclient.models.documents import Document
+from caselawclient.models.documents import Document, DocumentURIString
 from django.conf import settings
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
@@ -48,7 +48,9 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
 
         self.pdf_filename = f"{document.uri}.pdf"
 
-        context["document"] = document.content_as_html("")  # "" is most recent version
+        context["document"] = document.content_as_html(
+            DocumentURIString("")  # "" is most recent version
+        )
 
         return context
 
@@ -100,7 +102,9 @@ def detail(request, document_uri):
     except Http404:
         context["linked_document_uri"] = ""
 
-    context["document"] = document.content_as_html("")  # "" is most recent version
+    context["document"] = document.content_as_html(
+        DocumentURIString("")  # "" is most recent version
+    )
     context["document_uri"] = document.uri
     context["page_title"] = document.name
     context["pdf_size"] = get_pdf_size(document.uri)
