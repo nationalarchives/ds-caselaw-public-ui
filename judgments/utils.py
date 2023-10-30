@@ -213,6 +213,11 @@ def parse_date_parameter(
         default_day = monthrange(year, month)[1] if default_to_last else 1
         day = parse_parameter_as_int(params, day_param_name, default=default_day)
 
+        if day > 31 or month > 12:
+            raise ValueError("Some part of the date was too big")
+        if day < 1 or month < 1:
+            raise ValueError("Some part of the date was too small")
+
         return date(year, month, day)
     elif parameter_provided(params, month_param_name) or parameter_provided(
         params, day_param_name

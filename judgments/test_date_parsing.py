@@ -1,6 +1,7 @@
 from datetime import date
 from typing import Dict
 
+import pytest
 from django.test import TestCase
 
 from judgments.utils import parse_date_parameter
@@ -157,3 +158,32 @@ class TestDateParsing(TestCase):
         self.assertRaises(
             ValueError, parse_date_parameter, params, "date", end_year=2023
         )
+
+    def test_raise_if_date_fragment_too_big(self):
+        with pytest.raises(ValueError, match="too big"):
+            parse_date_parameter(
+                {"test_year": "2001", "test_month": "9", "test_day": "999"}, "test"
+            )
+        with pytest.raises(ValueError, match="too big"):
+            parse_date_parameter(
+                {"test_year": "2001", "test_month": "999", "test_day": "9"}, "test"
+            )
+        with pytest.raises(ValueError, match="too big"):
+            parse_date_parameter(
+                {
+                    "test_year": "2001",
+                    "test_month": "9999999999999999999999999999999999999999999999",
+                    "test_day": "9",
+                },
+                "test",
+            )
+
+    def test_raise_if_date_fragment_too_small(self):
+        with pytest.raises(ValueError, match="too small"):
+            parse_date_parameter(
+                {"test_year": "2001", "test_month": "-1", "test_day": "9"}, "test"
+            )
+        with pytest.raises(ValueError, match="too small"):
+            parse_date_parameter(
+                {"test_year": "2001", "test_month": "9", "test_day": "-1"}, "test"
+            )
