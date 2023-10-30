@@ -1,4 +1,5 @@
 import pytest
+from caselawclient.models.documents import DocumentURIString
 from factories import JudgmentFactory
 
 
@@ -38,7 +39,9 @@ class TestJudgmentFactory:
     def test_html(self):
         judgment = JudgmentFactory.build(html="<h1>Testing HTML</h1>")
 
-        assert judgment.content_as_html("") == "<h1>Testing HTML</h1>"
+        assert (
+            judgment.content_as_html(DocumentURIString("")) == "<h1>Testing HTML</h1>"
+        )
 
     def test_xml(self):
         judgment = JudgmentFactory.build(xml="<h1>Testing XML</h1>")

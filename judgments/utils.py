@@ -7,7 +7,7 @@ from urllib.parse import parse_qs, urlparse
 
 import environ
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
-from caselawclient.models.documents import Document
+from caselawclient.models.documents import Document, DocumentURIString
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.utils.translation import gettext
@@ -228,4 +228,4 @@ def parse_date_parameter(
 
 def get_document_by_uri(document_uri: str) -> Document:
     # raises a DocumentNotFoundError if it doesn't exist
-    return api_client.get_document_by_uri(document_uri)
+    return api_client.get_document_by_uri(DocumentURIString(document_uri))
