@@ -14,7 +14,7 @@ xmltodict~=0.13.0
 requests-toolbelt~=1.0.0
 lxml~=4.9.3
 wsgi-basic-auth~=1.1.0
-ds-caselaw-marklogic-api-client~=17.1.0
+ds-caselaw-marklogic-api-client~=17.2.0
 ds-caselaw-utils==1.2.1
 rollbar
 django-weasyprint==2.2.1
