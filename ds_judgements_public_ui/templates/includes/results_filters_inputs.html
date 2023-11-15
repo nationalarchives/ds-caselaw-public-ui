@@ -1,4 +1,4 @@
-{% load court_utils feature_flags errors %}
+{% load court_utils errors %}
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">

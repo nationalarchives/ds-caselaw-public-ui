@@ -80,6 +80,18 @@ class TestJudgment(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_published_document_by_uri")
+    def test_query_passed_to_api_client(self, mock_get_document_by_uri, mock_pdf_size):
+        judgment = JudgmentFactory.build(is_published=True)
+        mock_get_document_by_uri.return_value = judgment
+        mock_pdf_size.return_value = "1234KB"
+
+        response = self.client.get("/test/2023/123?query=Query")
+        judgment.content_as_html.assert_called_with("", query="Query")
+
+        self.assertEqual(response.status_code, 200)
+
 
 class TestJudgmentBackToSearchLink(TestCase):
     @patch("judgments.views.detail.get_pdf_size")
@@ -344,6 +356,67 @@ class TestViewRelatedDocumentButton:
         """
         client = Client()
         response = client.get(f"/{uri}")
+        assert_contains_html(response, expected_html_button)
+
+    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.get_document_by_uri")
+    @pytest.mark.parametrize(
+        "uri,expected_text,expected_href,document_noun",
+        [
+            (
+                "eat/2023/1/press-summary/1",
+                "View Judgment",
+                "eat/2023/1",
+                "press summary",
+            ),
+            (
+                "eat/2023/1",
+                "View Press Summary",
+                "eat/2023/1/press-summary/1",
+                "judgment",
+            ),
+        ],
+    )
+    def test_view_related_document_button_when_document_with_related_document_and_query_string(
+        self,
+        mock_get_document_by_uri,
+        mock_get_pdf_size,
+        uri,
+        expected_text,
+        expected_href,
+        document_noun,
+    ):
+        """
+        GIVEN a document with an associated document
+        WHEN a request is made to the document URI
+        THEN the response should contain a button linking to the related document
+        """
+
+        def get_document_by_uri_side_effect(document_uri):
+            if document_uri == uri:
+                return JudgmentFactory.build(
+                    uri=uri, is_published=True, document_noun=document_noun
+                )
+            elif document_uri == expected_href:
+                return JudgmentFactory.build(
+                    uri=expected_href, is_published=True, document_noun=document_noun
+                )
+            else:
+                raise DocumentNotFoundError()
+
+        mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
+
+        expected_html_button = f"""
+        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+            role="button" draggable="false"
+            href="/{expected_href}?query=Query"
+        >
+            {expected_text}
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+        </a>
+        """
+        client = Client()
+        response = client.get(f"/{uri}?query=Query")
         assert_contains_html(response, expected_html_button)
 
     @patch("judgments.views.detail.get_pdf_size")

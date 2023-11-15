@@ -1,4 +1,4 @@
-{% load i18n document_utils %}
+{% load i18n document_utils utilities %}
 <div class="judgment-toolbar">
   <div class="judgment-toolbar__container">
     {% if context.document_noun == "press summary" %}
@@ -8,17 +8,19 @@
     <p class="judgment-toolbar__reference">{{ context.judgment_ncn }}</p>
     <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
       {% if context.linked_document_uri %}
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
-           role="button"
-           draggable="false"
-           href="{% url 'detail' document_uri=context.linked_document_uri %}">
-          {% if context.document_noun == "judgment" %}
-            {% translate "judgment.view_press_summary" %}
-          {% else %}
-            {% translate "judgment.view_judgment" %}
-          {% endif %}
-          <span style="font-weight:normal;font-size:0.9rem"></span>
-        </a>
+        {% spaceless %}
+          <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+             role="button"
+             draggable="false"
+             href="{% url 'detail' document_uri=context.linked_document_uri %}{% if context.query %}?query={{ context.query | urlencode }}{% endif %}">
+            {% if context.document_noun == "judgment" %}
+              {% translate "judgment.view_press_summary" %}
+            {% else %}
+              {% translate "judgment.view_judgment" %}
+            {% endif %}
+            <span style="font-weight:normal;font-size:0.9rem"></span>
+          </a>
+        {% endspaceless %}
       {% endif %}
       <a class="judgment-toolbar-buttons__option--pdf btn"
          role="button"

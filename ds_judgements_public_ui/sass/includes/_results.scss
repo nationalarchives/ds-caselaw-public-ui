@@ -43,12 +43,6 @@
     @include sr-only;
   }
 
-  mark {
-    border-bottom: 3px solid $color__yellow;
-    background-color: transparent;
-    font-weight: bold;
-  }
-
   fieldset {
     border: none;
     padding: 0;
