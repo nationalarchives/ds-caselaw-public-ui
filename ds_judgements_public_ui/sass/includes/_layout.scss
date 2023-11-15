@@ -25,3 +25,7 @@ body {
 .container {
   @include container;
 }
+
+#main-content {
+  overflow-x: hidden;
+}
