@@ -24,7 +24,7 @@ services:
     command: tail -f /dev/null
 
   postgres:
-    image: postgres:15.4
+    image: postgres:15.5
     ports:
       - "5432:5432"
     environment:
