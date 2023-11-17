@@ -20,5 +20,5 @@ django-weasyprint==2.2.1
 django-waffle==4.0.0  # https://github.com/django-waffle/django-waffle
 
 # Type stubs
-mypy-boto3-s3==1.28.55
+mypy-boto3-s3==1.29.0
 mypy-boto3-sns==1.28.72
