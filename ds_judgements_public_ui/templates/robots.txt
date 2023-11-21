@@ -1,19 +1,8 @@
-User-Agent: Googlebot
-User-Agent: bingbot
-Allow: /
-Allow: /transactional-licence-form
-Allow: /about-this-service
-Allow: /how-to-use-this-service
-Allow: /accessibility-statement
-Allow: /open-justice-licence
-Allow: /terms-of-use
-Disallow: /$
-
 User-Agent: *
-Disallow: /
 Allow: /transactional-licence-form
 Allow: /about-this-service
 Allow: /how-to-use-this-service
 Allow: /accessibility-statement
 Allow: /open-justice-licence
 Allow: /terms-of-use
+Disallow: /
