@@ -1,5 +1,5 @@
 .service-introduction {
-  background-color: $color__almost-black;
+  background-color: $color-almost-black;
   flex-grow: 1;
 
   &__header {
@@ -7,24 +7,24 @@
     line-height: 3.8rem;
     display: inline-block;
     width: 100%;
-    font-family: $font__roboto;
+    font-family: $font-roboto;
     font-weight: normal;
-    color: $color__white;
+    color: $color-white;
     margin: 0;
   }
 
   &__helper-text {
     display: inline-block;
     font-size: 1.2rem;
-    font-family: $font__roboto;
-    color: $color__yellow;
+    font-family: $font-roboto;
+    color: $color-yellow;
     line-height: 1.6rem;
     margin: 0 auto;
   }
 
   &__further-information {
     display: inline-block;
-    margin-top: $spacer__unit;
+    margin-top: $spacer-unit;
   }
 
   &__what-to-expect {
@@ -32,9 +32,9 @@
     background: transparent url($fa_chevron_right_white) 0 0.2rem no-repeat;
     background-size: 0.7rem;
     display: inline-block;
-    padding: 0 0 0 calc($spacer__unit / 1);
-    color: $color__white;
-    margin: calc($spacer__unit * 1.6) 0 0;
+    padding: 0 0 0 calc($spacer-unit / 1);
+    color: $color-white;
+    margin: calc($spacer-unit * 1.6) 0 0;
     font-weight: bold;
     font-size: 1.1rem;
     text-decoration: underline;

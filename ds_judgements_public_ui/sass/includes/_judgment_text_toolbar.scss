@@ -1,8 +1,8 @@
 .judgment-toolbar {
-  background-color: $color__light-grey;
-  color: $color__black;
-  padding: $spacer__unit;
-  border-bottom: 0.125rem solid $color__grey;
+  background-color: $color-light-grey;
+  color: $color-black;
+  padding: $spacer-unit;
+  border-bottom: 0.125rem solid $color-grey;
 
   &__container {
     margin: auto;
@@ -16,16 +16,16 @@
     @include container;
 
     > div {
-      @media (max-width: $grid__breakpoint-small) {
+      @media (max-width: $grid-breakpoint-small) {
         text-align: center;
         display: block;
-        padding: 0.25rem $spacer__unit;
+        padding: 0.25rem $spacer-unit;
       }
     }
   }
 
   a {
-    padding: calc($spacer__unit / 2) calc($spacer__unit * 3);
+    padding: calc($spacer-unit / 2) calc($spacer-unit * 3);
     display: inline-block;
     text-decoration: none;
     outline-offset: 3px;
@@ -33,44 +33,44 @@
 
     &.btn {
       @include call-to-action-button;
-      margin-bottom: calc($spacer__unit / 3) !important;
+      margin-bottom: calc($spacer-unit / 3) !important;
     }
 
     &.btn-related-document {
       @include call-to-action-button-secondary;
-      margin-bottom: calc($spacer__unit / 3) !important;
+      margin-bottom: calc($spacer-unit / 3) !important;
       margin-right: 1rem;
     }
 
-    @media (min-width: $grid__breakpoint-small) {
-      padding: calc($spacer__unit / 2) calc($spacer__unit * 1.5);
+    @media (min-width: $grid-breakpoint-small) {
+      padding: calc($spacer-unit / 2) calc($spacer-unit * 1.5);
     }
   }
 
   &__press-summary-title {
     text-wrap: balance;
-    margin-top: -1 * $spacer__unit;
+    margin-top: -1 * $spacer-unit;
     margin-bottom: 0;
-    background-color: $color__yellow;
-    color: $color__almost-black;
-    padding: calc($spacer__unit / 3) calc($spacer__unit / 2);
+    background-color: $color-yellow;
+    color: $color-almost-black;
+    padding: calc($spacer-unit / 3) calc($spacer-unit / 2);
     text-align: center;
   }
 
   &__title {
     text-wrap: balance;
-    margin-top: $spacer__unit;
+    margin-top: $spacer-unit;
     margin-bottom: 0;
-    color: $color__almost-black;
+    color: $color-almost-black;
     text-align: center;
   }
 
   &__reference {
     text-wrap: balance;
-    margin-top: 0.5 * $spacer__unit;
-    margin-bottom: $spacer__unit;
+    margin-top: 0.5 * $spacer-unit;
+    margin-bottom: $spacer-unit;
     font-size: 2rem;
-    color: $color__almost-black;
+    color: $color-almost-black;
     text-align: center;
   }
 }
@@ -87,13 +87,13 @@
   }
 
   &__option--download-options {
-    color: $color__dark-grey;
+    color: $color-dark-grey;
     font-size: 0.75rem;
     text-align: center;
 
     a {
       background-color: transparent;
-      color: $color__aqua-blue;
+      color: $color-aqua-blue;
       padding: 1px;
       display: inline;
       text-decoration: underline;

@@ -1,25 +1,25 @@
 .judgment-end-document-marker {
   width: 100%;
-  border: 1px dashed $color__black;
+  border: 1px dashed $color-black;
   border-top: none;
-  height: $spacer__unit;
+  height: $spacer-unit;
   max-width: 90%;
   margin: auto;
-  margin-bottom: calc($spacer__unit * 7);
+  margin-bottom: calc($spacer-unit * 7);
   text-align: center;
-  @media (min-width: $grid__breakpoint-medium) {
+  @media (min-width: $grid-breakpoint-medium) {
     max-width: 40rem;
   }
 
-  @media (min-width: $grid__breakpoint-medium) {
+  @media (min-width: $grid-breakpoint-medium) {
     max-width: 46rem;
   }
 
   &__top-link {
     display: inline-block;
     background-color: white;
-    padding: calc($spacer__unit * 0.5);
-    padding-top: calc($spacer__unit * 0.3);
+    padding: calc($spacer-unit * 0.5);
+    padding-top: calc($spacer-unit * 0.3);
 
     a {
       display: none;
@@ -29,8 +29,8 @@
         content: " ";
         background: url($fa_chevron_up_link_blue) left no-repeat;
         background-size: contain;
-        height: $spacer__unit;
-        width: $spacer__unit;
+        height: $spacer-unit;
+        width: $spacer-unit;
         display: inline-block;
         margin: 0 0.5rem 0 0;
         top: 2px;
@@ -38,11 +38,11 @@
       }
 
       &:visited {
-        color: $color__link-blue;
+        color: $color-link-blue;
       }
 
       &:hover {
-        color: $color__link-blue-hover;
+        color: $color-link-blue-hover;
         &::before {
           background-image: url($fa_chevron_up_link_hover_blue);
         }

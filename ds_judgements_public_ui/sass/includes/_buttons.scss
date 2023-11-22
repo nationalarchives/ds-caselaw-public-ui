@@ -1,15 +1,15 @@
 .button-cta {
   @include call-to-action-button;
-  border: 2px solid $color__cta-background;
+  border: 2px solid $color-cta-background;
 
   &:disabled,
   &[aria-disabled="true"] {
-    background-color: $color__dark-grey;
+    background-color: $color-dark-grey;
     &:focus,
     &:hover {
       outline: none;
-      background-color: $color__dark-grey;
-      color: $color__white;
+      background-color: $color-dark-grey;
+      color: $color-white;
       text-decoration: none;
       cursor: not-allowed;
     }
@@ -18,12 +18,12 @@
 
 .button-secondary {
   @include call-to-action-button;
-  background-color: $color__white;
-  color: $color__cta-background;
-  border: 2px solid $color__cta-background;
+  background-color: $color-white;
+  color: $color-cta-background;
+  border: 2px solid $color-cta-background;
 
   &:visited {
-    color: $color__cta-background;
+    color: $color-cta-background;
   }
 
   &:focus,
@@ -33,14 +33,14 @@
 
   &:disabled,
   &[aria-disabled="true"] {
-    color: $color__dark-grey;
+    color: $color-dark-grey;
     background-color: transparent;
-    border-color: $color__grey;
+    border-color: $color-grey;
     &:focus,
     &:hover {
       outline: none;
       background-color: transparent;
-      color: $color__dark-grey;
+      color: $color-dark-grey;
       text-decoration: none;
       cursor: not-allowed;
     }

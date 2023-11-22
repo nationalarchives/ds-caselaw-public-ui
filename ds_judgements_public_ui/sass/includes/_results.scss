@@ -10,13 +10,13 @@
   }
 
   &__result-header {
-    @media (min-width: $grid__breakpoint-large) {
-      margin-bottom: $spacer__unit;
+    @media (min-width: $grid-breakpoint-large) {
+      margin-bottom: $spacer-unit;
     }
   }
 
   &__result-list-container {
-    background-color: $color__white;
+    background-color: $color-white;
 
     h2 {
       @include sr-only;
@@ -24,9 +24,9 @@
   }
 
   &__result-controls-container {
-    border-bottom: 1px solid $color__yellow;
+    border-bottom: 1px solid $color-yellow;
 
-    @media (min-width: $grid__breakpoint-extra-large) {
+    @media (min-width: $grid-breakpoint-extra-large) {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -34,9 +34,9 @@
   }
 
   &__results-intro {
-    font-family: $font__roboto;
+    font-family: $font-roboto;
     font-size: 1.8rem;
-    margin: calc($spacer__unit / 2) 0 0 0;
+    margin: calc($spacer-unit / 2) 0 0 0;
   }
 
   &__filter-heading {
@@ -49,8 +49,8 @@
   }
 
   &__container-extend-search-option {
-    background-color: $color__light-grey;
-    padding: $spacer__unit calc($spacer__unit * 2);
-    margin: $spacer__unit 0;
+    background-color: $color-light-grey;
+    padding: $spacer-unit calc($spacer-unit * 2);
+    margin: $spacer-unit 0;
   }
 }

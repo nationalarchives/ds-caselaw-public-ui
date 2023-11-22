@@ -4,9 +4,9 @@
   }
 
   &__main-search {
-    background-color: $color__light-grey;
-    padding: calc($spacer__unit * 1) 0 calc($spacer__unit * 1.5);
-    margin: 0 0 $spacer__unit;
+    background-color: $color-light-grey;
+    padding: calc($spacer-unit * 1) 0 calc($spacer-unit * 1.5);
+    margin: 0 0 $spacer-unit;
     text-align: center;
   }
 
@@ -14,12 +14,12 @@
     font-size: 2.4rem;
     line-height: 2rem;
     display: inline-block;
-    font-family: $font__roboto;
+    font-family: $font-roboto;
     font-weight: normal;
-    color: $color__almost-black;
-    margin: calc($spacer__unit * 1) 0 0 0;
-    @media (max-width: $grid__breakpoint-medium) {
-      margin: 1px $spacer__unit;
+    color: $color-almost-black;
+    margin: calc($spacer-unit * 1) 0 0 0;
+    @media (max-width: $grid-breakpoint-medium) {
+      margin: 1px $spacer-unit;
       line-height: 2.6rem;
     }
   }
@@ -36,8 +36,8 @@
   }
 
   &__full-text-panel {
-    margin-top: $spacer__unit;
-    @media (max-width: $grid__breakpoint-medium) {
+    margin-top: $spacer-unit;
+    @media (max-width: $grid-breakpoint-medium) {
       padding-left: 1rem;
       padding-right: 1rem;
       box-sizing: border-box;
@@ -47,7 +47,7 @@
   &__limit-to-input {
     @include text_field;
     width: 95%;
-    margin-top: calc(0.5 * $spacer__unit);
+    margin-top: calc(0.5 * $spacer-unit);
     margin-bottom: 0;
   }
 
@@ -60,13 +60,13 @@
   }
 
   &__single-field-panel {
-    padding-top: $spacer__unit;
+    padding-top: $spacer-unit;
 
-    @media (max-width: $grid__breakpoint-medium) {
+    @media (max-width: $grid-breakpoint-medium) {
       padding-top: 0;
     }
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: grid;
       grid-auto-columns: 1fr;
       grid-template-columns: 1fr;
@@ -95,12 +95,12 @@
   }
 
   &__multi-fields-panel {
-    padding-top: $spacer__unit;
-    @media (max-width: $grid__breakpoint-medium) {
+    padding-top: $spacer-unit;
+    @media (max-width: $grid-breakpoint-medium) {
       padding-top: 0;
     }
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: grid;
       grid-auto-columns: 1fr;
       grid-template-columns: 1fr 1fr;
@@ -129,38 +129,38 @@
   }
 
   &__specific-field-container {
-    background-color: $color__light-grey;
-    padding: $spacer__unit;
+    background-color: $color-light-grey;
+    padding: $spacer-unit;
     display: flex;
     flex-direction: column;
-    border-top: 4px solid $color__yellow;
-    @media (max-width: $grid__breakpoint-medium) {
+    border-top: 4px solid $color-yellow;
+    @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: 1rem;
     }
   }
 
   &__limit-to-container {
-    background-color: $color__light-grey;
-    padding: $spacer__unit;
+    background-color: $color-light-grey;
+    padding: $spacer-unit;
     display: flex;
     flex-direction: column;
-    border-top: 4px solid $color__yellow;
-    @media (max-width: $grid__breakpoint-medium) {
+    border-top: 4px solid $color-yellow;
+    @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: 1rem;
     }
   }
 
   &__submit-container {
-    margin-top: calc($spacer__unit / 2);
+    margin-top: calc($spacer-unit / 2);
     text-align: right;
 
-    @media (max-width: $grid__breakpoint-medium) {
+    @media (max-width: $grid-breakpoint-medium) {
       margin: 1rem;
     }
   }
 
   &__help-text {
-    margin-top: calc($spacer__unit / 4);
+    margin-top: calc($spacer-unit / 4);
     font-size: 0.8rem;
   }
 
@@ -195,9 +195,9 @@
     display: block;
     width: 100%;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: flex;
-      gap: calc(2 * $spacer__unit);
+      gap: calc(2 * $spacer-unit);
     }
   }
 
@@ -207,7 +207,7 @@
   }
 
   &__court-option {
-    margin-top: calc($spacer__unit * 0.5);
+    margin-top: calc($spacer-unit * 0.5);
 
     label {
       display: grid;
@@ -217,24 +217,24 @@
       input[type="checkbox"] {
         -webkit-appearance: none;
         appearance: none;
-        background-color: $color__white;
+        background-color: $color-white;
         margin: 0;
         font: inherit;
-        color: $color__dark-grey;
+        color: $color-dark-grey;
         width: 1.5em;
         height: 1.5em;
-        border: 2px solid $color__dark-grey;
+        border: 2px solid $color-dark-grey;
         transform: translateY(-0.075em);
         display: grid;
         place-content: center;
 
         &::before {
           content: "";
-          width: calc($spacer__unit * 0.75);
-          height: calc($spacer__unit * 0.75);
+          width: calc($spacer-unit * 0.75);
+          height: calc($spacer-unit * 0.75);
           transform: scale(0);
           transition: 120ms transform ease-in-out;
-          box-shadow: inset $spacer__unit $spacer__unit $color__black;
+          box-shadow: inset $spacer-unit $spacer-unit $color-black;
           transform-origin: bottom left;
           clip-path: polygon(
             14% 44%,
@@ -256,24 +256,24 @@
   }
 
   &__court-group-label {
-    margin-top: calc(0.5 * $spacer__unit);
-    line-height: calc(1.5 * $spacer__unit);
+    margin-top: calc(0.5 * $spacer-unit);
+    line-height: calc(1.5 * $spacer-unit);
     vertical-align: baseline;
-    margin-bottom: calc(0.5 * $spacer__unit);
+    margin-bottom: calc(0.5 * $spacer-unit);
   }
 
   &__court-group {
-    margin-left: calc(2 * $spacer__unit);
+    margin-left: calc(2 * $spacer-unit);
     break-inside: avoid;
   }
 
   &__court-option-label {
-    margin-left: calc(0.5 * $spacer__unit);
-    line-height: calc(1.5 * $spacer__unit);
+    margin-left: calc(0.5 * $spacer-unit);
+    line-height: calc(1.5 * $spacer-unit);
     vertical-align: baseline;
   }
   &__court-date-range {
-    color: $color__dark-grey;
+    color: $color-dark-grey;
     font-size: 0.9rem;
   }
   &__date-input {
@@ -293,22 +293,22 @@
 
   &__date-input-group {
     display: flex;
-    gap: calc(0.5 * $spacer__unit);
+    gap: calc(0.5 * $spacer-unit);
     & :nth-of-type(1) {
       width: 10%;
-      @media (max-width: $grid__breakpoint-small) {
+      @media (max-width: $grid-breakpoint-small) {
         width: 20%;
       }
     }
     & :nth-of-type(2) {
       width: 10%;
-      @media (max-width: $grid__breakpoint-small) {
+      @media (max-width: $grid-breakpoint-small) {
         width: 20%;
       }
     }
     & :nth-of-type(3) {
       width: 20%;
-      @media (max-width: $grid__breakpoint-small) {
+      @media (max-width: $grid-breakpoint-small) {
         width: 40%;
       }
     }
@@ -322,43 +322,43 @@
 
   &__multi-fields-panel {
     fieldset.with-errors {
-      padding-left: calc($spacer__unit * 1.5);
+      padding-left: calc($spacer-unit * 1.5);
       border-left: 4px solid #d4351c;
       .structured-search__help-text {
-        margin-bottom: calc(0.5 * $spacer__unit);
+        margin-bottom: calc(0.5 * $spacer-unit);
       }
     }
   }
 
   &__update-filters-button {
     @include call-to-action-button;
-    padding-right: calc($spacer__unit * 2.5);
-    padding-left: calc($spacer__unit * 2.5);
-    margin-top: calc($spacer__unit * 0.5);
-    margin-bottom: $spacer__unit;
+    padding-right: calc($spacer-unit * 2.5);
+    padding-left: calc($spacer-unit * 2.5);
+    margin-top: calc($spacer-unit * 0.5);
+    margin-bottom: $spacer-unit;
     width: 50%;
     position: relative;
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       width: auto;
     }
-    @media (max-width: $grid__breakpoint-medium) {
+    @media (max-width: $grid-breakpoint-medium) {
       margin: 0;
       width: 100%;
     }
   }
 
   &__search-term-label.desktop {
-    @media (max-width: $grid__breakpoint-medium) {
+    @media (max-width: $grid-breakpoint-medium) {
       display: none;
     }
     @include sr-only;
   }
 
   &__search-term-label.mobile {
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: none;
     }
-    @media (max-width: $grid__breakpoint-medium) {
+    @media (max-width: $grid-breakpoint-medium) {
       margin: auto 1px;
     }
   }
@@ -366,32 +366,32 @@
   &__search-term-input {
     @include text_field;
     width: 80%;
-    min-height: calc($spacer__unit * 2);
+    min-height: calc($spacer-unit * 2);
     font-size: 1.2rem;
 
-    @media (min-width: $grid__breakpoint-small) {
+    @media (min-width: $grid-breakpoint-small) {
       width: 20rem;
     }
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       width: 25rem;
     }
 
-    @media (min-width: $grid__breakpoint-extra-large) {
+    @media (min-width: $grid-breakpoint-extra-large) {
       width: 35rem;
     }
 
     &.mobile {
-      @media (min-width: $grid__breakpoint-medium) {
+      @media (min-width: $grid-breakpoint-medium) {
         display: none;
       }
-      @media (max-width: $grid__breakpoint-medium) {
+      @media (max-width: $grid-breakpoint-medium) {
         margin: auto 1px;
       }
     }
 
     &.desktop {
-      @media (max-width: $grid__breakpoint-medium) {
+      @media (max-width: $grid-breakpoint-medium) {
         display: none;
       }
     }

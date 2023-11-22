@@ -1,6 +1,6 @@
 .pagination {
-  background-color: $color__almost-black;
-  margin-bottom: calc($spacer__unit * 2);
+  background-color: $color-almost-black;
+  margin-bottom: calc($spacer-unit * 2);
 
   h3 {
     @include sr-only;
@@ -65,12 +65,12 @@
 
     &-chevron-next,
     &-chevron-previous {
-      background-color: $color__grey;
+      background-color: $color-grey;
 
       &:hover,
       &:focus {
         @include focus-default;
-        background-color: $color__dark-grey;
+        background-color: $color-dark-grey;
       }
 
       background-repeat: no-repeat;
@@ -84,16 +84,16 @@
       &:hover,
       &:focus {
         background-image: url($fa_chevron_right_white);
-        outline-color: $color__highlight-blue;
+        outline-color: $color-highlight-blue;
         outline-offset: 0.125rem;
       }
 
       &:focus {
-        box-shadow: -0.6rem 0 $color__white;
+        box-shadow: -0.6rem 0 $color-white;
       }
 
       &--disabled {
-        background-color: $color__grey;
+        background-color: $color-grey;
         background-image: url($fa_chevron_right_disabled);
         background-repeat: no-repeat;
         background-position: center;
@@ -122,16 +122,16 @@
       &:hover,
       &:focus {
         background-image: url($fa_chevron_left_white);
-        outline-color: $color__highlight-blue;
+        outline-color: $color-highlight-blue;
         outline-offset: 0.125rem;
       }
 
       &:focus {
-        box-shadow: 0.6rem 0 $color__white;
+        box-shadow: 0.6rem 0 $color-white;
       }
 
       &--disabled {
-        background-color: $color__grey;
+        background-color: $color-grey;
         background-image: url($fa_chevron_left_disabled);
         background-repeat: no-repeat;
         background-position: center;
@@ -162,7 +162,7 @@
     &-link-current {
       margin-top: 0;
 
-      @media only screen and (min-width: $grid__breakpoint-medium) {
+      @media only screen and (min-width: $grid-breakpoint-medium) {
         width: 2.5rem;
         height: 1.875rem;
         margin-top: 0.5rem;
@@ -171,7 +171,7 @@
 
     &-link,
     &-link:visited {
-      color: $color__white;
+      color: $color-white;
     }
 
     &-link-current,
@@ -179,10 +179,10 @@
     &-link-current:visited,
     &-link:hover,
     &-link:focus {
-      background-color: $color__white;
-      color: $color__black;
+      background-color: $color-white;
+      color: $color-black;
       font-weight: bold;
-      outline-color: $color__highlight-blue;
+      outline-color: $color-highlight-blue;
     }
   }
 }

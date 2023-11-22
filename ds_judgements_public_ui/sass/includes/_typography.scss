@@ -1,68 +1,68 @@
 a {
-  color: $color__link-blue;
+  color: $color-link-blue;
   text-decoration: underline;
 
   &:hover {
-    color: $color__link-blue-hover;
+    color: $color-link-blue-hover;
     text-decoration: none;
   }
 
   &:visited {
-    color: $color__link-blue-visited;
+    color: $color-link-blue-visited;
   }
 
   &:active {
-    color: $color__link-blue-active;
+    color: $color-link-blue-active;
   }
 
   &:focus {
     @include focus-default;
-    color: $color__link-blue-focus;
+    color: $color-link-blue-focus;
   }
 }
 
 h1,
 h2,
 h3 {
-  font-family: $font__roboto;
+  font-family: $font-roboto;
   font-weight: normal;
 }
 
 @mixin header($base-size) {
   font-size: $base-size;
-  line-height: $base-size * $typography__header__line-size-multiplier;
-  margin-top: $base-size * $typography__header__margin-top-multiplier;
-  margin-bottom: $base-size * $typography__header__margin-bottom-multiplier;
+  line-height: $base-size * $typography-header-line-size-multiplier;
+  margin-top: $base-size * $typography-header-margin-top-multiplier;
+  margin-bottom: $base-size * $typography-header-margin-bottom-multiplier;
 
-  @media only screen and (max-width: $grid__breakpoint-medium) {
-    font-size: $base-size * $typography__header__medium-breakpoint-multiplier;
-    line-height: $base-size * $typography__header__line-size-multiplier *
-      $typography__header__medium-breakpoint-multiplier;
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    font-size: $base-size * $typography-header-medium-breakpoint-multiplier;
+    line-height: $base-size * $typography-header-line-size-multiplier *
+      $typography-header-medium-breakpoint-multiplier;
   }
 }
 
 h1 {
-  @include header($typography__header__h1-size);
+  @include header($typography-header-h1-size);
 }
 
 h2 {
-  @include header($typography__header__h2-size);
+  @include header($typography-header-h2-size);
 }
 
 h3 {
-  @include header($typography__header__h3-size);
+  @include header($typography-header-h3-size);
 }
 
 h4 {
   font-size: 1.1rem;
   font-weight: bold;
   margin: 0;
-  padding: calc($spacer__unit * 1.25) 0 0;
+  padding: calc($spacer-unit * 1.25) 0 0;
 }
 
 .standard-text-template ol li {
-  padding-bottom: calc($spacer__unit / 1.5);
-  padding-left: calc($spacer__unit / 2);
+  padding-bottom: calc($spacer-unit / 1.5);
+  padding-left: calc($spacer-unit / 2);
 }
 
 code {
@@ -70,13 +70,13 @@ code {
 }
 
 mark {
-  border-bottom: 3px solid $color__yellow;
+  border-bottom: 3px solid $color-yellow;
   background-color: transparent;
   font-weight: bold;
   scroll-margin-top: 50vh;
 
   &.current {
-    border-top: 3px solid $color__yellow;
-    background-color: $color__yellow;
+    border-top: 3px solid $color-yellow;
+    background-color: $color-yellow;
   }
 }

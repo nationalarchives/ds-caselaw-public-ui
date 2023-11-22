@@ -1,28 +1,28 @@
 .environment-banner {
-  background-color: $color__information;
-  color: $color__black;
+  background-color: $color-information;
+  color: $color-black;
 
   &__notice {
     padding: 0;
 
     a {
-      color: $color__black;
+      color: $color-black;
       font-weight: bold;
 
       &:focus {
-        outline: 0.125rem solid $color__black;
-        background-color: $color__white;
-        color: $color__black;
+        outline: 0.125rem solid $color-black;
+        background-color: $color-white;
+        color: $color-black;
       }
     }
   }
 
   &__environment {
-    background-color: $color__white;
-    color: $color__black;
+    background-color: $color-white;
+    color: $color-black;
     text-transform: uppercase;
-    padding: 0 calc($spacer__unit / 4);
-    margin-right: $spacer__unit;
+    padding: 0 calc($spacer-unit / 4);
+    margin-right: $spacer-unit;
     font-weight: 700;
   }
 
