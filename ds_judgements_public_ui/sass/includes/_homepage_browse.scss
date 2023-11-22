@@ -1,15 +1,15 @@
 .judgment-browse {
   &__container {
     @include container;
-    padding-bottom: calc($spacer__unit * 2);
+    padding-bottom: calc($spacer-unit * 2);
   }
 
   &__header {
     @include heading_text;
     font-size: 1.8rem;
-    margin-bottom: $spacer__unit;
-    padding-bottom: calc($spacer__unit * 1.5);
-    border-bottom: 5px solid $color__yellow;
+    margin-bottom: $spacer-unit;
+    padding-bottom: calc($spacer-unit * 1.5);
+    border-bottom: 5px solid $color-yellow;
   }
 
   &__sub-header {
@@ -22,28 +22,28 @@
     list-style: none;
     padding: 0;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       column-count: 2;
-      column-gap: $spacer__unit;
+      column-gap: $spacer-unit;
     }
   }
 
   &__list-item {
-    padding: calc($spacer__unit / 2) 0;
-    font-family: $font__roboto;
+    padding: calc($spacer-unit / 2) 0;
+    font-family: $font-roboto;
     font-size: 1.1rem;
     break-inside: avoid;
   }
 
   &__year-range {
-    margin-left: calc($spacer__unit / 2);
+    margin-left: calc($spacer-unit / 2);
     font-size: 0.9rem;
-    font-family: $font__open-sans;
+    font-family: $font-open-sans;
   }
 
   &__alpha-label {
-    background-color: $color__yellow;
-    color: $color__black;
+    background-color: $color-yellow;
+    color: $color-black;
     text-transform: uppercase;
     padding: 0.2rem 0.5rem;
     margin-left: 0.5rem;
@@ -53,7 +53,7 @@
   }
 
   &__information-box {
-    padding: calc($spacer__unit / 1.5) $spacer__unit;
-    background-color: $color__grey;
+    padding: calc($spacer-unit / 1.5) $spacer-unit;
+    background-color: $color-grey;
   }
 }

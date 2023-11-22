@@ -1,32 +1,32 @@
 .recent-judgments {
   &__container {
     @include container;
-    padding-top: calc($spacer__unit * 2);
-    padding-bottom: calc($spacer__unit * 2);
+    padding-top: calc($spacer-unit * 2);
+    padding-bottom: calc($spacer-unit * 2);
   }
 
   &__header {
     @include heading_text;
     font-size: 1.8rem;
-    padding-bottom: calc($spacer__unit * 1.5);
-    border-bottom: 5px solid $color__yellow;
+    padding-bottom: calc($spacer-unit * 1.5);
+    border-bottom: 5px solid $color-yellow;
   }
 
   &__more-info {
     border: 0;
     font-size: 1rem;
     position: relative;
-    padding: 0 0 calc($spacer__unit / 2);
-    font-family: $font__roboto;
+    padding: 0 0 calc($spacer-unit / 2);
+    font-family: $font-roboto;
     font-weight: normal;
 
     a {
-      margin: calc($spacer__unit / 4) 0;
-      padding: calc($spacer__unit / 4) 0;
+      margin: calc($spacer-unit / 4) 0;
+      padding: calc($spacer-unit / 4) 0;
       display: inline-block;
-      border-bottom: 0.125rem solid $color__black;
+      border-bottom: 0.125rem solid $color-black;
       text-decoration: none;
-      color: $color__black;
+      color: $color-black;
     }
   }
 }

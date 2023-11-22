@@ -1,6 +1,6 @@
 @keyframes emphasis {
   from {
-    background-color: lighten($color__highlight-blue, 40);
+    background-color: lighten($color-highlight-blue, 40);
   }
 
   to {
@@ -10,7 +10,7 @@
 
 @keyframes emphasis-border {
   from {
-    background-color: lighten($color__light-grey, 30);
+    background-color: lighten($color-light-grey, 30);
   }
 
   to {

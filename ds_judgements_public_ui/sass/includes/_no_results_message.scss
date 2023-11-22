@@ -1,9 +1,9 @@
 .no-results-message {
-  background-color: $color__light-grey;
-  padding: $spacer__unit;
-  margin-bottom: $spacer__unit;
-  border-top: 4px solid $color__yellow;
-  border-bottom: 4px solid $color__yellow;
+  background-color: $color-light-grey;
+  padding: $spacer-unit;
+  margin-bottom: $spacer-unit;
+  border-top: 4px solid $color-yellow;
+  border-bottom: 4px solid $color-yellow;
   font-size: 0.9rem;
   h2 {
     position: initial;
@@ -12,8 +12,8 @@
     padding-top: 0;
   }
 
-  @media (min-width: $grid__breakpoint-large) {
-    padding-left: calc(5 * $spacer__unit);
-    padding-right: calc(5 * $spacer__unit);
+  @media (min-width: $grid-breakpoint-large) {
+    padding-left: calc(5 * $spacer-unit);
+    padding-right: calc(5 * $spacer-unit);
   }
 }

@@ -1,31 +1,31 @@
 .judgment-download-options {
   max-width: 90%;
-  margin: 0 auto calc($spacer__unit * 3) auto;
+  margin: 0 auto calc($spacer-unit * 3) auto;
 
-  @media (min-width: $grid__breakpoint-medium) {
+  @media (min-width: $grid-breakpoint-medium) {
     max-width: 46rem;
   }
 
   &__header {
-    border-bottom: 4px solid $color__yellow;
-    padding-bottom: calc($spacer__unit * 0.5);
-    margin-bottom: calc($spacer__unit * 2);
+    border-bottom: 4px solid $color-yellow;
+    padding-bottom: calc($spacer-unit * 0.5);
+    margin-bottom: calc($spacer-unit * 2);
     display: inline-block;
   }
 
   &__options-list {
     display: flex;
     flex-direction: column;
-    gap: $spacer__unit;
+    gap: $spacer-unit;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
     }
   }
 
   &__download-option {
-    border: 1px solid $color__yellow;
-    padding: $spacer__unit;
+    border: 1px solid $color-yellow;
+    padding: $spacer-unit;
   }
 
   h3 {

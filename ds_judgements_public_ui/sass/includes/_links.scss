@@ -3,36 +3,36 @@
   top: -3rem;
 
   &:focus {
-    background-color: $color__white;
-    padding: calc($spacer__unit / 3);
-    color: $color__black;
+    background-color: $color-white;
+    padding: calc($spacer-unit / 3);
+    color: $color-black;
     top: 0.313rem;
     left: 0.313rem;
-    outline: 0.313rem solid $color__white;
-    border: 0.19rem solid $color__black;
+    outline: 0.313rem solid $color-white;
+    border: 0.19rem solid $color-black;
     z-index: 999;
   }
 }
 
 .anchor-links {
-  border: 2px solid $color__yellow;
-  padding: 0 calc($spacer__unit * 4);
+  border: 2px solid $color-yellow;
+  padding: 0 calc($spacer-unit * 4);
 
   &__header {
     padding-bottom: 0;
     margin-bottom: 0;
-    line-height: $spacer__unit;
+    line-height: $spacer-unit;
   }
 
   &__list {
     padding: 0;
     list-style: none;
-    margin-bottom: calc($spacer__unit / 2);
-    padding-block: $spacer__unit;
+    margin-bottom: calc($spacer-unit / 2);
+    padding-block: $spacer-unit;
   }
 
   &__list-option {
-    font-family: $font__roboto;
-    padding-block: 0 $spacer__unit;
+    font-family: $font-roboto;
+    padding-block: 0 $spacer-unit;
   }
 }

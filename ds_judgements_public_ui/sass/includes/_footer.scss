@@ -1,5 +1,5 @@
 .pre-footer {
-  background-color: $color__light-grey;
+  background-color: $color-light-grey;
 
   text-align: center;
 
@@ -19,17 +19,17 @@
 }
 
 .judgments-footer {
-  background-color: $color__almost-black;
-  color: $color__white;
+  background-color: $color-almost-black;
+  color: $color-white;
 
   font-size: 0.9rem;
 
-  @media (min-width: $grid__breakpoint-medium) {
+  @media (min-width: $grid-breakpoint-medium) {
     font-size: 1rem;
   }
 
   &__links-container {
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: flex;
       justify-content: space-between;
     }
@@ -40,9 +40,9 @@
   }
 
   h3 {
-    @media (max-width: $grid__breakpoint-medium) {
-      padding-top: calc($spacer__unit / 2);
-      margin-bottom: calc($spacer__unit / 3);
+    @media (max-width: $grid-breakpoint-medium) {
+      padding-top: calc($spacer-unit / 2);
+      margin-bottom: calc($spacer-unit / 3);
     }
   }
 
@@ -52,10 +52,10 @@
 
   li {
     list-style: none;
-    margin-bottom: calc($spacer__unit * 1.6);
+    margin-bottom: calc($spacer-unit * 1.6);
 
-    @media (min-width: $grid__breakpoint-medium) {
-      margin-bottom: calc($spacer__unit * 1.4);
+    @media (min-width: $grid-breakpoint-medium) {
+      margin-bottom: calc($spacer-unit * 1.4);
     }
   }
 
@@ -67,14 +67,14 @@
     text-align: left;
     font-size: 0.8rem;
     line-height: 1.2rem;
-    margin-top: $spacer__unit * 1.5;
+    margin-top: $spacer-unit * 1.5;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       font-size: 0.9rem;
       line-height: 1.4rem;
     }
 
-    @media (min-width: $grid__breakpoint-extra-large) {
+    @media (min-width: $grid-breakpoint-extra-large) {
       text-align: center;
     }
   }

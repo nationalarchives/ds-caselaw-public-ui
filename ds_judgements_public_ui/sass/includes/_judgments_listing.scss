@@ -8,9 +8,9 @@
     list-style-type: none;
 
     li {
-      padding: $spacer__unit calc($spacer__unit / 4) $spacer__unit
-        calc($spacer__unit / 4);
-      border-bottom: 1px dotted $color__yellow;
+      padding: $spacer-unit calc($spacer-unit / 4) $spacer-unit
+        calc($spacer-unit / 4);
+      border-bottom: 1px dotted $color-yellow;
 
       &:last-child {
         border-bottom: none;
@@ -19,16 +19,16 @@
   }
 
   &__judgment {
-    padding: 0 0 $spacer__unit 0;
+    padding: 0 0 $spacer-unit 0;
     line-height: 2rem;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: flex;
       justify-content: space-between;
     }
 
     > span:first-child {
-      @media (min-width: $grid__breakpoint-medium) {
+      @media (min-width: $grid-breakpoint-medium) {
         flex-basis: 75%;
       }
     }
@@ -52,7 +52,7 @@
     display: block;
     font-weight: normal;
     font-size: 1.1rem;
-    font-family: $font__roboto;
+    font-family: $font-roboto;
     margin-bottom: 0.5rem;
     line-height: 1.6rem;
   }
@@ -64,13 +64,13 @@
   &__neutralcitation {
     display: block;
     font-size: 0.9rem;
-    color: $color__dark-grey;
+    color: $color-dark-grey;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       text-align: right;
     }
 
-    @media (max-width: $grid__breakpoint-medium) {
+    @media (max-width: $grid-breakpoint-medium) {
       margin-top: 0;
     }
   }
@@ -78,29 +78,29 @@
   &__date {
     display: block;
     font-size: 0.9rem;
-    color: $color__dark-grey;
+    color: $color-dark-grey;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       text-align: right;
     }
   }
 
   &__result-term-matching {
     display: block;
-    margin-bottom: calc($spacer__unit / 2);
-    color: $color__dark-grey;
+    margin-bottom: calc($spacer-unit / 2);
+    color: $color-dark-grey;
     font-size: 0.9rem;
 
-    @media (max-width: $grid__breakpoint-medium) {
-      margin-top: calc($spacer__unit / 2);
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-top: calc($spacer-unit / 2);
     }
   }
 
   &__exact-match-label {
-    background-color: $color__yellow;
+    background-color: $color-yellow;
     display: inline-block;
-    padding: calc(0.25 * $spacer__unit) calc(0.5 * $spacer__unit);
+    padding: calc(0.25 * $spacer-unit) calc(0.5 * $spacer-unit);
     font-size: 0.8rem;
-    margin-bottom: calc(0.5 * $spacer__unit);
+    margin-bottom: calc(0.5 * $spacer-unit);
   }
 }

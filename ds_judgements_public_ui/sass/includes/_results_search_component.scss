@@ -1,7 +1,7 @@
 .results-search-component {
-  background-color: $color__light-grey;
-  padding: calc($spacer__unit * 1.5) 0 calc($spacer__unit * 2);
-  margin: 0 0 calc($spacer__unit * 3);
+  background-color: $color-light-grey;
+  padding: calc($spacer-unit * 1.5) 0 calc($spacer-unit * 2);
+  margin: 0 0 calc($spacer-unit * 3);
 
   &__container {
     @include container;
@@ -11,9 +11,9 @@
   &__sub-header {
     font-size: 1rem;
     line-height: 2.65rem;
-    font-family: $font__roboto;
+    font-family: $font-roboto;
     font-weight: bold;
-    color: $color__almost-black;
+    color: $color-almost-black;
     flex-shrink: 0;
     margin: 0 0.25rem 0 0;
     padding: 0.1rem 0 0 0;
@@ -25,23 +25,23 @@
   }
 
   &__full-text-panel {
-    margin: calc($spacer__unit / 2) 0 0 0;
+    margin: calc($spacer-unit / 2) 0 0 0;
     text-align: left;
     display: flex;
     gap: 0;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    @media (min-width: $grid__breakpoint-medium) {
-      padding: calc($spacer__unit / 4) 0 0 0;
-      gap: $spacer__unit;
+    @media (min-width: $grid-breakpoint-medium) {
+      padding: calc($spacer-unit / 4) 0 0 0;
+      gap: $spacer-unit;
       flex-direction: row;
     }
   }
 
   .structured-search__submit-container {
     display: none;
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: block;
     }
   }
@@ -50,12 +50,12 @@
     display: block;
     text-align: left;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: flex;
       justify-content: space-between;
       flex-direction: row;
       align-items: stretch;
-      gap: $spacer__unit;
+      gap: $spacer-unit;
       align-items: flex-start;
     }
   }
@@ -63,13 +63,13 @@
   &__full-text-input {
     @include text_field;
     width: 90%;
-    min-height: calc($spacer__unit * 3);
+    min-height: calc($spacer-unit * 3);
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       width: 27rem;
     }
 
-    @media (min-width: $grid__breakpoint-extra-large) {
+    @media (min-width: $grid-breakpoint-extra-large) {
       width: 35rem;
     }
   }
@@ -78,42 +78,42 @@
     display: block;
     width: 100%;
     padding-top: 1rem;
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: none;
     }
   }
 
   .search-term-component input[type="submit"] {
-    @media (max-width: $grid__breakpoint-medium) {
+    @media (max-width: $grid-breakpoint-medium) {
       display: none !important;
     }
   }
 
   &__search-submit-button {
     @include call-to-action-button;
-    padding-left: calc($spacer__unit * 3);
-    padding-right: calc($spacer__unit * 3);
+    padding-left: calc($spacer-unit * 3);
+    padding-right: calc($spacer-unit * 3);
     width: 100%;
   }
 
   &__facet-outer-container {
-    margin: calc($spacer__unit * 2) 0;
-    padding: calc($spacer__unit * 1) calc($spacer__unit * 3);
+    margin: calc($spacer-unit * 2) 0;
+    padding: calc($spacer-unit * 1) calc($spacer-unit * 3);
     text-align: center;
   }
 
   &__facet-inner-container {
-    margin: 0 0 calc($spacer__unit * 2);
+    margin: 0 0 calc($spacer-unit * 2);
     text-align: left;
 
-    @media (min-width: $grid__breakpoint-medium) {
+    @media (min-width: $grid-breakpoint-medium) {
       display: grid;
       grid-auto-columns: 1fr;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
 
-    @media (min-width: $grid__breakpoint-extra-large) {
+    @media (min-width: $grid-breakpoint-extra-large) {
       grid-template-columns: 1fr 1fr 1fr;
     }
 
@@ -145,20 +145,20 @@
 
   &__fieldset {
     border: 0;
-    padding: calc($spacer__unit * 2);
+    padding: calc($spacer-unit * 2);
     margin: 0.25rem;
-    background: $color__yellow;
-    color: $color__black;
+    background: $color-yellow;
+    color: $color-black;
   }
 
   &__help-text {
-    margin: calc($spacer__unit / 4) 0 calc($spacer__unit / 2) 0;
+    margin: calc($spacer-unit / 4) 0 calc($spacer-unit / 2) 0;
     font-size: 0.8rem;
   }
 
   &__multi-fields-panel {
-    margin-top: $spacer__unit;
-    margin-bottom: $spacer__unit;
+    margin-top: $spacer-unit;
+    margin-bottom: $spacer-unit;
   }
 
   &__name-label {
@@ -198,14 +198,14 @@
 
   &__name-container {
     border-left-width: 0.375rem;
-    padding: 0 $spacer__unit;
-    margin-bottom: $spacer__unit;
+    padding: 0 $spacer-unit;
+    margin-bottom: $spacer-unit;
   }
 
   &__limit-to-container {
     border-left-width: 0.375rem;
-    padding: 0 $spacer__unit;
-    margin-bottom: $spacer__unit;
+    padding: 0 $spacer-unit;
+    margin-bottom: $spacer-unit;
   }
 
   &__removable-options {
@@ -237,8 +237,8 @@
       content: " ";
       background: url($fa_xmark_solid) left no-repeat;
       background-size: contain;
-      height: $spacer__unit;
-      width: $spacer__unit;
+      height: $spacer-unit;
+      width: $spacer-unit;
       display: inline-block;
       margin: 0 0.5rem 0 0.5rem;
       top: 2px;
@@ -251,23 +251,23 @@
 
   &__removable-options-link {
     display: inline-block;
-    border: 0.188rem solid $color__yellow;
-    color: $color__black;
+    border: 0.188rem solid $color-yellow;
+    color: $color-black;
     text-decoration: none;
-    padding: calc($spacer__unit / 2) calc($spacer__unit / 2)
-      calc($spacer__unit / 2) $spacer__unit;
+    padding: calc($spacer-unit / 2) calc($spacer-unit / 2)
+      calc($spacer-unit / 2) $spacer-unit;
 
     &:hover {
-      background: $color__yellow;
-      color: $color__black;
+      background: $color-yellow;
+      color: $color-black;
     }
 
     &:visited {
-      color: $color__black;
+      color: $color-black;
     }
 
     &:focus {
-      outline-offset: calc($spacer__unit / 4);
+      outline-offset: calc($spacer-unit / 4);
     }
   }
 }
@@ -276,11 +276,11 @@
   &-search-component {
     &__control-container {
       display: inline-block;
-      padding-top: calc(2 * $spacer__unit);
+      padding-top: calc(2 * $spacer-unit);
       padding-top: 0;
       flex-shrink: 0;
 
-      @media (min-width: $grid__breakpoint-medium) {
+      @media (min-width: $grid-breakpoint-medium) {
         text-align: left;
       }
     }
@@ -290,8 +290,8 @@
       background-color: transparent;
       font-size: 1rem;
       position: relative;
-      padding: 0 0 calc($spacer__unit / 2) 1.2rem;
-      border-bottom: 0.188rem solid $color__yellow;
+      padding: 0 0 calc($spacer-unit / 2) 1.2rem;
+      border-bottom: 0.188rem solid $color-yellow;
       margin: 0 auto;
       font-weight: bold;
       flex-basis: content;
@@ -303,7 +303,7 @@
       }
 
       &:visited {
-        color: $color__black;
+        color: $color-black;
       }
 
       &:hover {
@@ -325,7 +325,7 @@
         transform: rotate(313deg);
         border: solid;
         border-width: 0.125rem 0.125rem 0 0;
-        border-color: $color__dark-grey;
+        border-color: $color-dark-grey;
       }
 
       &.collapsed {
