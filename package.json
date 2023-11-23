@@ -34,7 +34,7 @@
     "IE 11"
   ],
   "dependencies": {
-    "@nationalarchives/ds-caselaw-frontend": "github:nationalarchives/ds-caselaw-frontend#v2.0.0",
+    "@nationalarchives/ds-caselaw-frontend": "github:nationalarchives/ds-caselaw-frontend#v1.2.0",
     "sass": "^1.58.3"
   }
 }
