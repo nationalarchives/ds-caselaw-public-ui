@@ -3,7 +3,9 @@
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">
       <legend class="structured-search__limit-to-label">From date</legend>
-      <p class="structured-search__help-text" id="from_date-help-text">For example 01 01 2003 or 2003</p>
+      <p class="structured-search__help-text" id="from_date-help-text">
+        For example <em>01 01 2003</em> or <em>2003</em>
+      </p>
       {% if context.errors|has_errors_for_field:"from_date" %}
         <p class="structured-search__from-date-error-message"
            id="from-date-error">{{ context.errors|errors_for_field:"from_date" }}</p>
@@ -39,7 +41,9 @@
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"to_date" %}with-errors{% endif %}">
       <legend class="structured-search__limit-to-label">To date</legend>
-      <p class="structured-search__help-text" id="to_date-help-text">For example 30 04 2023 or 2023</p>
+      <p class="structured-search__help-text" id="to_date-help-text">
+        For example <em>30 04 2023</em> or <em>2023</em>
+      </p>
       {% if context.errors|has_errors_for_field:"to_date" %}
         <p class="structured-search__to-date-error-message" id="from-date-error">
           {{ context.errors|errors_for_field:"to_date" }}
@@ -107,7 +111,7 @@
            class="structured-search__limit-to-label"
            aria-label="Search by judge name">Judge name</label>
     <p class="structured-search__help-text" id="judge_name-help-text">
-      For example 'Smith', 'Judge Smith' or 'Lord Justice Smith'
+      For example <em>Smith</em>, or multiple judges separated by commas: <em>Smith, Jones</em>
     </p>
     <input class="structured-search__limit-to-input"
            id="judge_name"
