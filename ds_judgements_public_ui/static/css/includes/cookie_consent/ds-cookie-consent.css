@@ -23,7 +23,6 @@
 #ds-cookie-consent-banner {
   z-index: 999;
   padding: 10px 10px 20px 10px;
-  position: fixed;
   display: block;
   bottom: 0px;
   font-size: 14px;
