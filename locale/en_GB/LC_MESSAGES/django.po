@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 16:33+0000\n"
+"POT-Creation-Date: 2023-12-04 18:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,11 +230,6 @@ msgstr "Find case law"
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "bailii.link"
 msgstr "www.bailii.org"
-
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
-#: ds_judgements_public_ui/templates/pages/privacy_notice.html
-msgid "find.court"
-msgstr "https://www.gov.uk/find-court-tribunal"
 
 #: ds_judgements_public_ui/templates/pages/about_this_service.html
 msgid "legaldocml.link"
