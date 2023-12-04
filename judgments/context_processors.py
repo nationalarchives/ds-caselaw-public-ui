@@ -1,6 +1,8 @@
 import json
 from urllib.parse import unquote
 
+from django.core.exceptions import SuspiciousOperation
+
 from config.settings.base import env
 
 
@@ -12,7 +14,10 @@ def cookie_consent(request):
 
     if cookie_policy:
         decoder = json.JSONDecoder()
-        decoded = decoder.decode(unquote(cookie_policy))
+        try:
+            decoded = decoder.decode(unquote(cookie_policy))
+        except json.JSONDecodeError:
+            raise SuspiciousOperation("Cookie tampered with: not valid JSON")
         showGTM = decoded["usage"] or False
 
     if dont_show_cookie_notice == "true":
