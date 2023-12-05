@@ -13,6 +13,7 @@
     <title>
       {% block title %}
       {% endblock title %}
+      - The National Archives
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{% static 'images/favicons/favicon.png' %}" />
@@ -49,7 +50,7 @@
                 <ol>
                   <li>
                     <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-                    <a href="{% url 'home' %}">Find case law - The National Archives</a>
+                    <a href="{% url 'home' %}">Find case law</a>
                   </li>
                   {% block breadcrumbs %}
                     {% for breadcrumb in breadcrumbs %}
