@@ -204,15 +204,6 @@ msgstr "How to search"
 msgid "basicsearchform.cta"
 msgstr "Search"
 
-#: ds_judgements_public_ui/templates/judgment/detail.html
-#: ds_judgements_public_ui/templates/judgment/results.html
-#: ds_judgements_public_ui/templates/layouts/base.html
-#: ds_judgements_public_ui/templates/layouts/static_content.html
-#: ds_judgements_public_ui/templates/pages/home.html
-#: ds_judgements_public_ui/templates/pages/structured_search.html
-msgid "common.findcaselaw"
-msgstr "Find case law"
-
 #: ds_judgements_public_ui/templates/judgment/results.html
 #: judgments/views/advanced_search.py judgments/views/browse.py
 msgid "results.search.title"

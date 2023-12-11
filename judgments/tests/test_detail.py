@@ -664,7 +664,8 @@ class TestHTMLTitle(TestCase):
         """
         GIVEN a press summary
         WHEN a request is made with the press summary URI
-        THEN the response should have an HTML title containing the press summary name and "- Find case law"
+        THEN the response should have an HTML title containing the press
+        summary name and "- Find case law - The National Archives"
         """
 
         def get_document_by_uri_side_effect(document_uri):
@@ -685,7 +686,12 @@ class TestHTMLTitle(TestCase):
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
-        html_title = "<title>Press Summary of Judgment A (with some slightly different wording) - Find case law</title>"
+        html_title = """
+            <title>
+                Press Summary of Judgment A (with some slightly different wording)
+                - Find case law - The National Archives
+            </title>
+        """
         assert_contains_html(response, html_title)
 
     @patch("judgments.views.detail.get_pdf_size")
@@ -696,7 +702,8 @@ class TestHTMLTitle(TestCase):
         """
         GIVEN a judgment
         WHEN a request is made with the judgment URI
-        THEN the response should have an HTML title containing the judgment name and  "- Find case law"
+        THEN the response should have an HTML title containing the judgment
+        name and  "- Find case law - The National Archives"
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             uri="eat/2023/1",
@@ -704,7 +711,7 @@ class TestHTMLTitle(TestCase):
             name="Judgment A",
         )
         response = self.client.get("/eat/2023/1")
-        html_title = "<title>Judgment A - Find case law</title>"
+        html_title = "<title>Judgment A - Find case law - The National Archives</title>"
         assert_contains_html(response, html_title)
 
 
