@@ -1,5 +1,9 @@
 {% extends "layouts/static_content.html" %}
 {% load static i18n %}
+{% block meta_description %}
+  <meta name="description"
+        content="You need to complete an application form if you intend to use Court Judgments and/or Tribunal Decisions information in a way that is outside the terms of the Open Justice Licence." />
+{% endblock meta_description %}
 {% block static_content %}
   <h1>{% translate "transactionallicenceform.title" %}</h1>
   <h2>Part 1 &ndash; Instructions</h2>
