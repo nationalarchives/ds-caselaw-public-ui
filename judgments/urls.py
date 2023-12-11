@@ -1,3 +1,4 @@
+from django.http import HttpResponsePermanentRedirect
 from django.urls import path, re_path, register_converter
 
 from . import converters, feeds
@@ -46,6 +47,12 @@ urlpatterns = [
         r"^(?P<document_uri>.*/\d{4}/\d+.*)/generated.pdf$",
         PdfDetailView.as_view(),
         name="weasy_pdf",
+    ),
+    re_path(
+        r"^/*(?P<original_url>.*/press-summary)/?$",
+        lambda request, original_url: HttpResponsePermanentRedirect(
+            f"/{original_url}/1"
+        ),
     ),
     re_path(
         r"^(?P<document_uri>.*/\d{4}/\d+.*)/data.xml$", detail_xml, name="detail_xml"

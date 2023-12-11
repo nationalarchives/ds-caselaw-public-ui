@@ -302,3 +302,19 @@ def test_solo_stop_word_regex():
     stop_words = ["and", "of", "the", "for"]
     expected_output = r"(^and$)|(^of$)|(^the$)|(^for$)"
     assert utils.solo_stop_word_regex(stop_words) == expected_output
+
+
+class TestPressSummaryRedirection(TestCase):
+    def test_press_summary_redirection_no_trailing_slash(self):
+        response = self.client.get("/uksc/1701/press-summary")
+        assert response.status_code == 301
+        assert response.url == "/uksc/1701/press-summary/1"  # type: ignore[attr-defined]
+
+    def test_press_summary_redirection_trailing_slash(self):
+        response = self.client.get("/uksc/1701/press-summary/")
+        assert response.status_code == 301
+        assert response.url == "/uksc/1701/press-summary/1"  # type: ignore[attr-defined]
+
+    def test_press_summary_no_redirection_if_suffix(self):
+        response = self.client.get("/uksc/1701/press-summary/1")
+        assert response.status_code == 404
