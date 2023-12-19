@@ -35,8 +35,8 @@ def format_date(date):
 
 def preprocess_query(query: str) -> str:
     query = normalise_quotes(query)
-    query = remove_unquoted_stop_words(query)
     query = normalise_vs(query)
+    query = remove_unquoted_stop_words(query)
     query = normalise_spaces(query)
     return query
 

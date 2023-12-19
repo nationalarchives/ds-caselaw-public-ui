@@ -14,7 +14,7 @@ def replace_parens(string):
 
 
 def preprocess_title(string):
-    return replace_parens(preprocess_query(string)).lower().strip()
+    return preprocess_query(replace_parens(string)).lower().strip()
 
 
 def preprocess_ncn(string):

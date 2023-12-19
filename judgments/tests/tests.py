@@ -260,14 +260,14 @@ def test_preprocess_query():
     )
     # Quote normalisation happens before stopwords are removed, so curly quoted # strings retain stopwords:
     assert utils.preprocess_query("“weight of evidence”") == '"weight of evidence"'
-    # "vs", "- v -", etc are normalised to "v",
-    assert utils.preprocess_query("Riley vs Murray") == "Riley v Murray"
-    assert utils.preprocess_query("Riley - v - Murray") == "Riley v Murray"
-    assert utils.preprocess_query("Riley -v- Murray") == "Riley v Murray"
+    # "vs", "- v -", etc are stopwords,
+    assert utils.preprocess_query("Riley vs Murray") == "Riley Murray"
+    assert utils.preprocess_query("Riley - v - Murray") == "Riley Murray"
+    assert utils.preprocess_query("Riley -v- Murray") == "Riley Murray"
 
     # multiple spaces are normalised:
 
-    assert utils.preprocess_query("Riley       v       Murray") == "Riley v Murray"
+    assert utils.preprocess_query("Riley       v       Murray") == "Riley Murray"
 
 
 def test_normalise_quotes():
