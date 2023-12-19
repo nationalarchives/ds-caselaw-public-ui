@@ -4,7 +4,9 @@
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{{ context.pdf_uri }}">
+        <a href="{{ context.pdf_uri }}"
+           aria-label="Download this document as a PDF"
+           download="">
           {% if context.document_noun == 'press summary' %}
             {% translate "press_summary.downloadoptions.pdf.cta" %}
           {% else %}
@@ -23,7 +25,8 @@
     </div>
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% url 'detail_xml' context.document_uri %}">
+        <a href="{% url 'detail_xml' context.document_uri %}"
+           aria-label="Download this document as XML">
           {% if context.document_noun == 'press summary' %}
             {% translate "press_summary.downloadoptions.xml.cta" %}
           {% else %}
