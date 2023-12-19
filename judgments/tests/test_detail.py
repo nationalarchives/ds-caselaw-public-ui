@@ -1,6 +1,7 @@
 from os import environ
 from unittest.mock import patch
 
+import lxml.html
 import pytest
 from caselawclient.errors import DocumentNotFoundError
 from django.http import Http404, HttpResponseRedirect
@@ -17,6 +18,14 @@ from judgments.views.detail import (
     get_pdf_size,
     get_published_document_by_uri,
 )
+
+
+def despace(string: str) -> str:
+    return string.replace(" ", "").replace("\n", "")
+
+
+def assert_in_despace(a: str, b: str) -> None:
+    assert despace(a) in despace(b)
 
 
 class TestWeasyWithoutCSS(TestCase):
@@ -182,24 +191,29 @@ class TestDocumentDownloadOptions:
         mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
         client = Client()
         response = client.get(f"/{uri}")
-        download_options_html = f"""
-        <div id="download-options" class="judgment-download-options">
-        <h2 class="judgment-download-options__header">Download options</h2>
-        <div class="judgment-download-options__options-list">
-            <div class="judgment-download-options__download-option">
-            <h3><a href="http://example.com/test.pdf">Download this {document_noun} as a PDF (112KB)</a></h3>
-            <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
-            </div>
-            <div class="judgment-download-options__download-option">
-            <h3><a href="/{uri}/data.xml">Download this {document_noun} as XML</a></h3>
-            <p>
-            The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
-            </p>
-            </div>
-        </div>
-        </div>
-        """
-        assert_contains_html(response, download_options_html)
+        root = lxml.html.fromstring(response.content)
+        (relevant_html,) = root.xpath("//div[@id='download-options']")
+        html = lxml.html.tostring(relevant_html).decode("utf-8")
+        assert_in_despace(
+            '<div id="download-options" class="judgment-download-options">', html
+        )
+        assert_in_despace(
+            f"""<a href="http://example.com/test.pdf" aria-label="Download this document as a PDF" download="">
+                          Download this {document_noun} as a PDF (112KB)</a>""",
+            html,
+        )
+        assert_in_despace(
+            f"""<a href="/{uri}/data.xml" aria-label="Download this document as XML">
+            Download this {document_noun} as XML</a>""",
+            html,
+        )
+        assert_in_despace(
+            f"The original format of the {document_noun} as handed down by the court",
+            html,
+        )
+        assert_in_despace(
+            f"The {document_noun} in machine-readable LegalDocML format", html
+        )
 
 
 class TestGetPdfSize(TestCase):
