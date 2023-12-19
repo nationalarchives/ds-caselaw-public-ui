@@ -187,11 +187,13 @@ class TestDocumentDownloadOptions:
         <h2 class="judgment-download-options__header">Download options</h2>
         <div class="judgment-download-options__options-list">
             <div class="judgment-download-options__download-option">
-            <h3><a href="http://example.com/test.pdf">Download this {document_noun} as a PDF (112KB)</a></h3>
+            <h3><a href="http://example.com/test.pdf"aria-label="Download this document as a PDF" download="">
+            Download this {document_noun} as a PDF (112KB)</a></h3>
             <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
             </div>
             <div class="judgment-download-options__download-option">
-            <h3><a href="/{uri}/data.xml">Download this {document_noun} as XML</a></h3>
+            <h3><a href="/{uri}/data.xml" aria-label="Download this document as XML">
+            Download this {document_noun} as XML</a></h3>
             <p>
             The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
             </p>
