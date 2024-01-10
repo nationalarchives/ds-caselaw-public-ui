@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-04 18:04+0000\n"
+"POT-Creation-Date: 2024-01-10 16:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,10 +281,6 @@ msgstr "Structured search"
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "robots.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/robots.txt"
-
-#: ds_judgements_public_ui/templates/pages/transactional_licence.html
-msgid "transactionallicenceform.title"
-msgstr "Application to re-use Court Judgments and Tribunal Decisions"
 
 #: ds_judgements_public_ui/templates/pages/transactional_licence.html
 msgid "caselawlicence.email"

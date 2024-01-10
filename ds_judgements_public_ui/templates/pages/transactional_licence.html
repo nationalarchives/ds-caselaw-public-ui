@@ -5,207 +5,141 @@
         content="You need to complete an application form if you intend to use Court Judgments and/or Tribunal Decisions information in a way that is outside the terms of the Open Justice Licence." />
 {% endblock meta_description %}
 {% block static_content %}
-  <h1>{% translate "transactionallicenceform.title" %}</h1>
-  <h2>Part 1 &ndash; Instructions</h2>
-  <h3>How to apply</h3>
-  <ol>
-    <li>Read Part 1 &ndash; Instructions.</li>
-    <li>
-      Answer all the relevant questions in Part 2 &ndash;<a href="https://caselaw.nationalarchives.gov.uk/static/documents/Find_Case_Law_Computational_Analysis_Licence_Application_Form.docx"> Application Form.</a>
-    </li>
-    <li>
-      Submit your completed application form, by email, to The National Archives’ Licensing Team at:
-      <a href="mailto:{% translate "caselawlicence.email" %}">{% translate "caselawlicence.email" %}</a>
-    </li>
-  </ol>
-  <h3>Who is the application form for?</h3>
+  <h1>Apply to do computational analysis</h1>
   <p>
-    You need to complete an application form if you intend to use Court Judgments and/or Tribunal Decisions
-    information in a way that is outside the terms of the <a href="{% url "open_justice_licence" %}">Open Justice Licence</a>.
-  </p>
-  <p>
-    For example, you will need to apply for a licence if you are undertaking any type of computational analysis
-    of judgments and tribunal decisions, including by compiling a search engine index.
-  </p>
-  <p>Anyone can apply for a licence and there is no charge to apply.</p>
-  <h3>Why is a licence necessary?</h3>
-  <p>
-    Open Justice is a fundamental constitutional principle and necessary for the rule of law. It is important that
-    Court Judgments and Tribunal Decisions are published and made available for re-use by third parties. It is
-    also important that re-users understand their responsibilities and do not jeopardise the proper administration
-    of justice.
-  </p>
-  <p>
-    The Crown holds rights (copyright and database rights) in Court Judgments and Tribunal Decisions. In order to
-    re-use the information you need permission from the Keeper of Public Records, as the Crown’s officeholder
-    under Letters Patent, for the re-use of this material. <a href="{% url "open_justice_licence" %}">Open Justice Licence</a>
-    provides standard terms for re-use. If the purpose of the re-use cannot be met within the terms of the Open
-    Justice Licence, re-users need to apply
-    for a specific licence from The National Archives.
-  </p>
-  <h3>Exclusions from the licence</h3>
-  <p>
-    We will licence the information ‘as is’ and exclude all representations, warranties, obligations and liabilities
-    in relation to the information to the maximum extent permitted by law.
-  </p>
-  <p>
-    We will not be liable for any errors or omissions in the information. We will not be liable for any loss, injury
-    or damage of any kind caused by its use.
-  </p>
-  <h3>Personal data</h3>
-  <p>
-    Court Judgments and Tribunal Decisions contain information about people. This typically includes the names of
-    parties and other people mentioned in the judgment or decision, as well as the representatives of the parties,
-    and the names of the judges hearing the case. The information about people varies. It can include a variety of
-    types of special category personal data, depending on the subject matter of the case.
-  </p>
-  <p>
-    Any licence we issue will only apply to the currently published version of the Court Judgments and Tribunal
-    Decisions (as published by the Keeper of Public Records on The National Archives’ Case Law website).
-  </p>
-  <p>
-    As a recipient of the information, you are responsible for complying with any judicial decision that
-    restricts the use of personal data within it. If you choose to store and process the information, you will be a
-    Data
-    Controller under UK data protection law. You need to satisfy yourself that you have a legal basis and valid
-    purpose for processing the personal data.
-  </p>
-  <p>For the avoidance of doubt:</p>
-  <ul>
-    <li>the licence we issue will not be a data sharing agreement for personal data; and</li>
-    <li>the licence we issue will not be a processing agreement for personal data.</li>
-  </ul>
-  <h3>What is the purpose of the questions?</h3>
-  <p>The questions in this form will help The National Archives understand how you intend to re-use the information.</p>
-  <p>
-    Court Judgments and Tribunal Decisions contain sensitive information. Your answers to the questions will help
-    us to understand how you will re-use the information. They will also help you to understand your obligations.
-    We are using the “five safes” framework to group the questions.
-  </p>
-  <ol>
-    <li>Safe people</li>
-    <li>Safe projects</li>
-    <li>Safe data</li>
-    <li>Safe settings</li>
-    <li>Safe outputs</li>
-  </ol>
-  <p>You should answer the questions as fully as possible.</p>
-  <h3>What will The National Archives do with the information?</h3>
-  <p>
-    The National Archives is licensing the information in accordance with its obligations under the Re-use of
-    Public Sector Information Regulations 2015 (SI 2015/1415).
-  </p>
-  <p>We will keep a record of your application.</p>
-  <p>
-    We will consider whether the purpose of your re-use is likely to jeopardise the proper administration of
-    justice. We may ask you for some additional information or to submit a revised application form. We may
-    consult the Ministry of Justice, including any advisory body or group it establishes from time to time.
-  </p>
-  <h2>Part 2 &ndash; Application Form</h2>
-  <p>
-    This section lists the information that is required by the Licensing Team and included in the
+    You need to apply for a licence if you would like to programmatically analyse Find Case Law records
+    as data. Licences are free. Please complete the
     <a href="{% static '/documents/Find_Case_Law_Computational_Analysis_Licence_Application_Form.docx' %}">
       downloadable application form (Microsoft Word 85.7 KB)
     </a>
   </p>
-  <h3>2.1 Safe People</h3>
-  <h4>Your details</h4>
+  <p>There are two types of licences we issue that permit computational analysis:</p>
+  <ol>
+    <li>Research and development licence</li>
+    <li>Transactional licence</li>
+  </ol>
+  <p>
+    There is one application form for both licences. The application form is made up of 5 sections
+    including :
+  </p>
   <ul>
-    <li>Name</li>
-    <li>Address</li>
-    <li>Organisation or company</li>
-    <li>Email address:</li>
+    <li>Contact</li>
+    <li>About your organisation</li>
+    <li>Purpose and activities</li>
+    <li>Public statement</li>
+    <li>Statements and Principles</li>
   </ul>
-  <h4>Ethics</h4>
+  <p>
+    You can read more about case law as data and licences: <a href="https://caselaw.nationalarchives.gov.uk/about-this-service#section-data">https://caselaw.nationalarchives.gov.uk/about-this-service#section-data</a>.
+  </p>
+  <h2>Before you start</h2>
+  <h3>1. Check you need to apply</h3>
+  <p>
+    You only need to apply for a licence if you intend to use computational analysis in your re-use of Find
+    Case Law records in ways that are not already permitted under the Open Justice Licence.
+    The Open Justice licence permits certain re-uses without the need to apply for an additional licence, for example, when you want to:
+  </p>
   <ul>
-    <li>Do you follow a Data Ethics Framework? If so, please provide details</li>
-    <li>Are you re-using the information for academic research?</li>
-    <li>If yes, will you consult an ethics committee? Please provide details.</li>
-    <li>How will ethical considerations be taken in to account in your use of the information?</li>
-  </ul>
-  <h3>2.2 Safe Projects</h3>
-  <h4>Purpose</h4>
-  <ul>
+    <li>copy, publish, distribute and transmit the Information;</li>
     <li>
-      What is the purpose of the re-use? (Describe all the activities that you plan undertake with the
-      information)
-    </li>
-    <li>How long do you wish to re-use the information?</li>
-  </ul>
-  <h4>Publishing</h4>
-  <ul>
-    <li>Do you intend to publish the information on the web?</li>
-    <li>If yes, what controls will you put in place on third parties accessing the information from you?</li>
-  </ul>
-  <h4>Risks</h4>
-  <ul>
-    <li>What risks have you identified in relation to your proposed purpose?</li>
-    <li>What mitigations have you put in place in relation to the risks you have identified?</li>
-  </ul>
-  <h4>Complying with the terms of the licence</h4>
-  <ul>
-    <li>What steps will you take so that you do not misrepresent the information or its source?</li>
-    <li>
-      What steps will you take to maintain the dignity of the Courts and Tribunals and not undermine their
-      functioning as working bodies?
-    </li>
-    <li>
-      What steps will you take to ensure your use of the information does not jeopardise the proper administration
-      of justice?
+      exploit the Information commercially, for example, by combining it with other Information,
+      or by including it in your own product or application.
     </li>
   </ul>
-  <h4>Transparency</h4>
+  <p>
+    More information can be found:  <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">Open Justice Licence - Find case law (nationalarchives.gov.uk)</a>.
+  </p>
+  <h3>2. Check whether your application is likely to be considered high risk</h3>
+  <p>Computational analysis of judgments is currently considered high-risk when it is used to:</p>
   <ul>
-    <li>How will you let the general public know what you are doing with the information?</li>
-  </ul>
-  <h3>2.3 Safe Data</h3>
-  <h4>Scope</h4>
-  <ul>
+    <li>produce fully automated legal advice; or</li>
     <li>
-      What is the scope of the information you intend to re-use? (Please detail the courts / tribunals /
-      years)
-    </li>
-  </ul>
-  <h4>Complying with reporting restrictions</h4>
-  <ul>
-    <li>
-      How will you make sure you comply with any reporting restrictions when using the information, a) that
-      are specified by the court/tribunal in the text of the judgment/decision, b) that apply in law more generally?
-    </li>
-  </ul>
-  <h4>Identifiable groups</h4>
-  <ul>
-    <li>
-      Does you purpose involve processing or analysing data about an identifiable group of people in the
-      information? (e.g. claimants; defendants; lawyers; judges) Choose an item.
+      perform automation to anticipate legal decisions directly for a client or consumer, such as
+      tools which set expectations for case outcomes through modelling or predictive analytics; or
     </li>
     <li>
-      If yes, please provide details of the identifiable groups of people involved and the type of processing
-      or analysis you wish to undertake:
+      otherwise directly inform or influence the decision of a third-party whether to pursue justice
+      or legal action.
     </li>
   </ul>
-  <h3>2.4 Safe Settings</h3>
-  <h4>Location</h4>
+  <h3>3. Make sure your re-use complies with all existing regulations</h3>
+  <p>
+    Examples include the Legal Services Act (LSA), and UK General Data Protection Regulation (UKGDPR).
+    Please note that this licence:
+  </p>
   <ul>
-    <li>Will you be processing the information outside the UK?</li>
-    <li>Where will the information be stored and processed?</li>
+    <li>is not a data sharing agreement for personal data is not a processing agreement for personal data</li>
   </ul>
-  <h4>Systems and controls</h4>
+  <h3>4. Part of your application may be published</h3>
+  <p>
+    We keep a record of all applications. If your application is successful your answers to the questions
+    in the ‘About your organisation’, ‘Purpose and activity’ and ‘public statement’ sections may be made
+    publicly available in the future.
+  </p>
+  <h2>Information you will need to apply</h2>
+  <h3>1. The details of the person responsible for the licence</h3>
+  <p>
+    They should be someone who is senior in your organisation and will be responsible for licence
+    application and compliance. They will need to be someone we can talk to if we have questions about
+    the application.
+  </p>
   <ul>
-    <li>What systems and controls will you have in place for storing and processing the information?</li>
+    <li>their name</li>
+    <li>their email</li>
   </ul>
-  <h3>2.5 Safe Outputs</h3>
-  <h4>Statistical Analysis</h4>
+  <h3>2. The details of your organisation including:</h3>
   <ul>
-    <li>Are you undertaking any form of statistical analysis?</li>
-    <li>
-      If yes, are you following any code of practice or professional code of conduct? (such as the Royal
-      Statistical Society’s Code of Conduct). Please provide details.
-    </li>
-    <li>Are you intending to publish the results of your analysis?</li>
-    <li>
-      If yes, would you be willing to share your findings with The National Archives and The Ministry of
-      Justice, as they emerge, to aid public policy development?
-    </li>
+    <li>legal name of your organisation</li>
+    <li>what type of organisation is it (e.g. private limited company or registered charity)</li>
   </ul>
+  <h3>3. A public statement</h3>
+  <p>
+    This statement should describe the purpose for your re-use of Find Case Law records and
+    summarises including:
+  </p>
+  <ul>
+    <li>anticipated outcomes</li>
+    <li>individuals or communities served</li>
+    <li>methodology or activities used to analyse the records</li>
+  </ul>
+  <p>
+    Details of your organisation and the public statement you submit as part of your application may be
+    published in the future.
+  </p>
+  <h3>4. Read the 9 principles</h3>
+  <p>
+    There are 9 principles that have been established by the Ministry of Justice that may be relevant to
+    our decision about whether to grant a licence. Please be prepared to give details of any
+    considerations you have made in relation to these principles.
+  </p>
+  <p>The 9 principles are:</p>
+  <ol>
+    <li>Dignity of the court</li>
+    <li>Independence of the court</li>
+    <li>Appropriate scrutiny</li>
+    <li>Anti-discriminatory harm</li>
+    <li>Anti Bias</li>
+    <li>Personal Privacy</li>
+    <li>Algorithmic transparency</li>
+    <li>Accurate data representation</li>
+  </ol>
+  <p>
+    <b>Important Note:</b> Please answer all questions in the application form. Please do not include any
+    sensitive or financial information as part of your application. There will be the opportunity to leave
+    further comments at the end of the application.
+  </p>
+  <p>
+    Download the
+    <a href="{% static '/documents/Find_Case_Law_Computational_Analysis_Licence_Application_Form.docx' %}">
+      application form (Microsoft Word 85.7 KB)
+    </a>
+  </p>
+  <p>Complete and send to the case law licencing team.</p>
+  <p>
+    You can read more about how the licences are reviewed here: <a href="https://caselaw.nationalarchives.gov.uk/about-this-service#section-data">https://caselaw.nationalarchives.gov.uk/about-this-service#section-data</a>.
+  </p>
+  <h2>Contact</h2>
+  <p>
+    If you're not sure what licence applies or what information we need please contact the licence team:  <a href="mailto:{% translate "caselawlicence.email" %}">{% translate "caselawlicence.email" %}</a>
+  </p>
 {% endblock static_content %}
