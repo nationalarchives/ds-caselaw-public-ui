@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 16:34+0000\n"
+"POT-Creation-Date: 2024-01-11 17:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,6 @@ msgid "footer.websites"
 msgstr "Websites"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
 msgid "footer.legislation.link"
 msgstr "https://www.legislation.gov.uk/"
 
@@ -221,20 +220,6 @@ msgstr "Find case law"
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "bailii.link"
 msgstr "www.bailii.org"
-
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
-msgid "legaldocml.link"
-msgstr "https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml"
-
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
-msgid "openapi.link"
-msgstr ""
-"https://github.com/nationalarchives/ds-caselaw-public-access-service/blob/"
-"main/doc/openapi/public_api.yml"
-
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
-msgid "atom.link"
-msgstr "https://caselaw.nationalarchives.gov.uk/atom.xml"
 
 #: ds_judgements_public_ui/templates/pages/about_this_service.html
 msgid "publishing_policy.title"
