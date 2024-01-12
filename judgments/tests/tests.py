@@ -206,7 +206,8 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/about-this-service")
         self.assertNotContains(response, "noindex")
         self.assertContains(
-            response, "We have well defined URL structures"
+            response,
+            "The Find Case Law service provides public access to court judgments and tribunal decisions.",
         )  # actual content of page
 
 
