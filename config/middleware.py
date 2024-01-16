@@ -6,7 +6,7 @@ from django.utils.cache import patch_cache_control
 # these should match the names in config/urls.py
 INDEXABLE_VIEWS = [
     "home",
-    "transactional_licence_form",
+    "computational_licence_form",
     "what_to_expect",
     "how_to_use_this_service",
     "accessibility_statement",

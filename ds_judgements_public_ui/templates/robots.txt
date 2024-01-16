@@ -1,5 +1,5 @@
 User-Agent: *
-Allow: /transactional-licence-form
+Allow: /computational-licence-form
 Allow: /about-this-service
 Allow: /how-to-use-this-service
 Allow: /accessibility-statement

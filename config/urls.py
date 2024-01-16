@@ -13,9 +13,9 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
     path(
-        "transactional-licence-form",
-        views.TransactionalLicenceFormView.as_view(),
-        name="transactional_licence_form",
+        "computational-licence-form",
+        views.ComputationalLicenceFormView.as_view(),
+        name="computational_licence_form",
     ),
     path(
         "what-to-expect",
