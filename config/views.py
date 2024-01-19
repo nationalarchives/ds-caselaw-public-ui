@@ -14,8 +14,8 @@ class TemplateViewWithContext(TemplateView):
         }
 
 
-class TransactionalLicenceFormView(TemplateViewWithContext):
-    template_name = "pages/transactional_licence.html"
+class ComputationalLicenceFormView(TemplateViewWithContext):
+    template_name = "pages/computational_licence.html"
     page_title = "Apply to do computational analysis"
 
     def get_context_data(self, **kwargs):
