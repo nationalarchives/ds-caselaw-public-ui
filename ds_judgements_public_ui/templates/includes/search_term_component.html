@@ -9,10 +9,8 @@
          type="text"
          value="{{ query }}"
          placeholder="{% translate "basicsearchform.placeholder" %}" />
-  {% if show_help_text %}
-    <p class="search-term-component__help-text">
-      <a href='{% url "how_to_use_this_service" %}#section-search'>{% translate "basic.search.helptext" %}</a>
-    </p>
-  {% endif %}
+  <p class="search-term-component__help-text">
+    <a href='{% url "how_to_use_this_service" %}#section-search'>{% translate "basic.search.helptext" %}</a>
+  </p>
 </div>
 <input type="submit" value="{% translate "basicsearchform.cta" %}" />
