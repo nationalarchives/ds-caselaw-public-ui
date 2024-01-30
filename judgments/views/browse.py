@@ -31,12 +31,16 @@ def browse(request, court=None, subdivision=None, year=None):
     try:
         search_parameters = SearchParameters(
             court=court_query if court_query else None,
-            date_from=datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
-            if year
-            else None,
-            date_to=datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
-            if year
-            else None,
+            date_from=(
+                datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
+                if year
+                else None
+            ),
+            date_to=(
+                datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
+                if year
+                else None
+            ),
             order="-date",
             page=as_integer(page, minimum=1),
             page_size=as_integer(per_page, minimum=1),

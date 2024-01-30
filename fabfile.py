@@ -88,8 +88,7 @@ def runquick(c):
 
 
 @task(pip, runquick)
-def run(c):
-    ...
+def run(c): ...
 
 
 @task
