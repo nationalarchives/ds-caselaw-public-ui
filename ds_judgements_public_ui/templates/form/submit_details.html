@@ -1,0 +1,52 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'submit_details' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Contact</h2>
+              </legend>
+              <p>
+                Please provide details of the main contact for this licence. This will be the person we contact to discuss your application.
+              </p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__fullname">Enter your full name</label>
+                  </h4>
+                </div>
+                <input type="text"
+                       id="tna-form__fullname"
+                       class="tna-text-input "
+                       name="fullname"
+                       value=""
+                       spellcheck="false">
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__email">Enter your email address</label>
+                  </h4>
+                </div>
+                <input type="text"
+                       id="tna-form__emailaddress"
+                       class="tna-text-input "
+                       name="emailaddress"
+                       value=""
+                       spellcheck="false">
+              </div>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'your_organisation' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

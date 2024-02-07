@@ -1,0 +1,116 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'algorithmic_transparency' %}"
+              method="post"
+              novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Algorithmic Transparency</h2>
+              </legend>
+              <p>Where possible, algorithms should be explainable and transparent.</p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__transparency">
+                      Do you intend to use computational analysis to do any of the following?
+                    </label>
+                  </h4>
+                  <p>
+                    <i>Tick all that apply</i>
+                  </p>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__automate-advice"
+                           value="advice"
+                           name="transparency">
+                    <label for="tna-form__automate-advice" class="tna-checkboxes__item-label">Produce fully automated legal advice</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__automate-decision"
+                           value="decision"
+                           name="transparency">
+                    <label for="tna-form__automate-decision" class="tna-checkboxes__item-label">
+                      Perform automation to anticipate legal decisions directly for a client or consumer
+                    </label>
+                  </div>
+                </div>
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__direct-inform"
+                         value="inform"
+                         name="transparency">
+                  <label for="tna-form__direct-inform" class="tna-checkboxes__item-label">
+                    Directly inform or influence the decision of a third-party whether to pursue justice or legal action
+                  </label>
+                </div>
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__none-above"
+                         value="none"
+                         name="transparency">
+                  <label for="tna-form__none-above" class="tna-checkboxes__item-label">None of the above</label>
+                </div>
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__transparency">
+                      Will you notify people when they are using generative AI services or content?
+                    </label>
+                  </h4>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__ai-yes"
+                           value="aiyes"
+                           name="transparency">
+                    <label for="tna-form__ai-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox" id="tna-form__ai-no" value="aino" name="transparency">
+                    <label for="tna-form__ai-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__not-using"
+                         value="notusing"
+                         name="transparency">
+                  <label for="tna-form__not-using" class="tna-checkboxes__item-label">Not using Generative AI</label>
+                </div>
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__discriminatorymonitor">
+                      Please give as much detail as you can about how you will be transparent in your use of algorithms to people using your project or product.
+                    </label>
+                  </h4>
+                </div>
+                <textarea id="tna-form__feedback"
+                          class="tna-textarea "
+                          name="feedback"
+                          spellcheck="false"
+                          rows="5"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'discoverability' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'accurate_data_representation' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

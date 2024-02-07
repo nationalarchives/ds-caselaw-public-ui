@@ -1,0 +1,191 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'your_organisation' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">About your organisation</h2>
+              </legend>
+              <i>
+                This may be published alongside your statement in the future.
+              </i>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__nameorganisation">
+                      What is the full legal name of your organisation?
+                    </label>
+                  </h4>
+                </div>
+                <input type="text"
+                       id="tna-form__nameorganisation"
+                       class="tna-text-input "
+                       name="nameorganisation"
+                       value=""
+                       spellcheck="false">
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__othernames">Is your organisation known by any other names?</label>
+                  </h4>
+                </div>
+                <input type="text"
+                       id="tna-form__othernames"
+                       class="tna-text-input "
+                       name="othernames"
+                       value=""
+                       spellcheck="false">
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__registeredin">Where is your organisation registered?</label>
+                  </h4>
+                </div>
+                <input type="text"
+                       id="tna-form__registeredin"
+                       class="tna-text-input "
+                       name="registeredin"
+                       value=""
+                       spellcheck="false">
+              </div>
+              <div class="tna-form__group ">
+                <fieldset class="tna-form__fieldset">
+                  <legend class="tna-form__legend">
+                    <h4 class="tna-form__heading tna-form__heading--s">What type of organisation is it?</h4>
+                  </legend>
+                  <i>
+                    Tick all that apply.
+                  </i>
+                  <div class="tna-checkboxes">
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-ltd"
+                             value="ltd"
+                             name="organisation">
+                      <label for="tna-form__organisation-ltd" class="tna-checkboxes__item-label">Public limited company</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-plc"
+                             value="plc"
+                             name="organisation">
+                      <label for="tna-form__organisation-plc" class="tna-checkboxes__item-label">Public limited company</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-pship"
+                             value="pship"
+                             name="organisation">
+                      <label for="tna-form__organisation-pship" class="tna-checkboxes__item-label">Partnership</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-st"
+                             value="st"
+                             name="organisation">
+                      <label for="tna-form__organisation-st" class="tna-checkboxes__item-label">Sole trader</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-rc"
+                             value="rc"
+                             name="organisation">
+                      <label for="tna-form__organisation-rc" class="tna-checkboxes__item-label">Registered Charity</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-cic"
+                             value="cic"
+                             name="organisation">
+                      <label for="tna-form__organisation-cic" class="tna-checkboxes__item-label">Community interest company</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-iro"
+                             value="iro"
+                             name="organisation">
+                      <label for="tna-form__organisation-iro" class="tna-checkboxes__item-label">Independent research organisation</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-pb"
+                             value="pb"
+                             name="organisation">
+                      <label for="tna-form__organisation-pb" class="tna-checkboxes__item-label">Public body</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-ib"
+                             value="ib"
+                             name="organisation">
+                      <label for="tna-form__organisation-ib" class="tna-checkboxes__item-label">Independent body</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__organisation-other"
+                             value="other"
+                             name="organisation">
+                      <label for="tna-form__organisation-other" class="tna-checkboxes__item-label">Other (please specify below)</label>
+                    </div>
+                    <h4 class="tna-form__heading tna-form__heading--s">
+                      <label class="tna-form__label" for="tna-form__otherorg">
+                        If other has been selected above, please specify type of organisation here:
+                      </label>
+                    </h4>
+                    <input type="text"
+                           id="tna-form__identifier"
+                           class="tna-text-input "
+                           name="identifier"
+                           value=""
+                           spellcheck="false">
+                    <div class="tna-form__group">
+                      <div class="tna-form__group-contents">
+                        <h4 class="tna-form__heading tna-form__heading--s">
+                          <label class="tna-form__label" for="tna-form__identifier">
+                            Please give your organisation identifier (e.g. company or charity registration number)
+                          </label>
+                        </h4>
+                      </div>
+                      <input type="text"
+                             id="tna-form__identifier"
+                             class="tna-text-input "
+                             name="identifier"
+                             value=""
+                             spellcheck="false">
+                    </div>
+                    <div class="tna-form__group">
+                      <div class="tna-form__group-contents">
+                        <h4 class="tna-form__heading tna-form__heading--s">
+                          <label class="tna-form__label" for="tna-form__partners">
+                            Please give the name of any partners or organisations you are working with
+                          </label>
+                        </h4>
+                      </div>
+                      <input type="text"
+                             id="tna-form__partners"
+                             class="tna-text-input "
+                             name="partners"
+                             value=""
+                             spellcheck="false">
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'submit_details' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'purpose_and_activities' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

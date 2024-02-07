@@ -1,0 +1,174 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'discoverability' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Discoverability</h2>
+              </legend>
+              <p>
+                We acknowledge a distinction between publicly available and readily available information.
+                For example, care should be given to data subjects’ discoverability in line with MoJ/The National Archives’ decision
+                not to index the content of judgments on search engines.
+              </p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__discoverability">
+                      Licence holders must not index the contents of judgments and decisions on search engines. Do you agree to this term of the licence?
+                    </label>
+                  </h4>
+                </div>
+              </div>
+              <div class="tna-checkboxes">
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__index-yes"
+                         value="indexyes"
+                         name="discoverability">
+                  <label for="tna-form__index-yes" class="tna-checkboxes__item-label">Yes</label>
+                </div>
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__index-no"
+                         value="indexno"
+                         name="discoverability">
+                  <label for="tna-form__index-no" class="tna-checkboxes__item-label">No</label>
+                </div>
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__discoverability">
+                      Will you make the entire record available online?
+                    </label>
+                  </h4>
+                  <p>
+                    <i>For example this may include publishing a full judgment to users of a digital service.</i>
+                  </p>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__available-yes"
+                           value="availableyes"
+                           name="discoverability">
+                    <label for="tna-form__available-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__available-no"
+                           value="availableno"
+                           name="discoverability">
+                    <label for="tna-form__available-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <div class="tna-form__group">
+                  <div class="tna-form__group-contents">
+                    <h4 class="tna-form__heading tna-form__heading--s">
+                      <label class="tna-form__label" for="tna-form__discoverability">
+                        Will data extracted from these records be published online?
+                      </label>
+                    </h4>
+                  </div>
+                  <p>
+                    <i>Any statistical analysis for example: lists of citations or entities from within the records.</i>
+                  </p>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__extract-yes"
+                           value="extractyes"
+                           name="discoverability">
+                    <label for="tna-form__extract-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__extract-no"
+                           value="extractno"
+                           name="discoverability">
+                    <label for="tna-form__extract-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <div class="tna-form__group">
+                  <div class="tna-form__group-contents">
+                    <h4 class="tna-form__heading tna-form__heading--s">
+                      <label class="tna-form__label" for="tna-form__discoverability">
+                        Will you make your methodology available for scrutiny online?
+                      </label>
+                    </h4>
+                  </div>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__methodology-yes"
+                           value="methodologyyes"
+                           name="discoverability">
+                    <label for="tna-form__methodology-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__methodology-no"
+                           value="methodologyno"
+                           name="discoverability">
+                    <label for="tna-form__methodology-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <div class="tna-form__group">
+                  <div class="tna-form__group-contents">
+                    <h4 class="tna-form__heading tna-form__heading--s">
+                      <label class="tna-form__label" for="tna-form__discoverability">Will you analyse and publish findings online?</label>
+                    </h4>
+                  </div>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__analyse-yes"
+                           value="analyseyes"
+                           name="discoverability">
+                    <label for="tna-form__analyse-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__analyse-no"
+                           value="analyseno"
+                           name="discoverability">
+                    <label for="tna-form__analyse-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <div class="tna-form__group">
+                  <div class="tna-form__group-contents">
+                    <h4 class="tna-form__heading tna-form__heading--s">
+                      <label class="tna-form__label" for="tna-form__discoverabilityscraping">
+                        Describe what you will do to prevent third party services from crawling or scraping either:
+                      </label>
+                    </h4>
+                    <p>a. the text of the records and /or,</p>
+                    <p>b. data you have extracted from the records</p>
+                  </div>
+                  <textarea id="tna-form__feedback"
+                            class="tna-textarea "
+                            name="feedback"
+                            spellcheck="false"
+                            rows="5"></textarea>
+                </div>
+              </div>
+            </fieldset>
+            <div class="tna-button-group">
+              <a href="{% url 'anti_bias' %}" class="tna-button ">Previous</a>
+              <a href="{% url 'algorithmic_transparency' %}" class="tna-button ">Next</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

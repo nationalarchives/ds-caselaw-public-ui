@@ -1,0 +1,273 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'purpose_and_activities' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Purpose and activities</h2>
+              </legend>
+              <i>
+                Your answers to this section may be published alongside your statement in the future.
+              </i>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__project">
+                      Please give any project or product name associated with this work
+                    </label>
+                  </h4>
+                </div>
+                <input type="text"
+                       id="tna-form__project"
+                       class="tna-text-input "
+                       name="project"
+                       value=""
+                       spellcheck="false">
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__projectsite">
+                      If possible, please share a link to the project or product site
+                    </label>
+                  </h4>
+                </div>
+                <input type="text"
+                       id="tna-form__projectsite"
+                       class="tna-text-input "
+                       name="projectsite"
+                       value=""
+                       spellcheck="false">
+              </div>
+              <div class="tna-form__group">
+                <fieldset class="tna-form__fieldset">
+                  <legend class="tna-form__legend">
+                    <h4 class="tna-form__heading tna-form__heading--s">What is the main purpose of your project or product?</h4>
+                  </legend>
+                  <i>
+                    Tick all that apply.
+                  </i>
+                  <div class="tna-checkboxes">
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__publish-legalinfo"
+                             value="legalinfo"
+                             name="purpose">
+                      <label for="tna-form__publish-legalinfo" class="tna-checkboxes__item-label">Publish legal information</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__produce-summaries"
+                             value="summaries"
+                             name="purpose">
+                      <label for="tna-form__produce-summaries" class="tna-checkboxes__item-label">
+                        Produce summaries and interpretation of the records
+                      </label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__research-develop"
+                             value="develop"
+                             name="purpose">
+                      <label for="tna-form__research-develop" class="tna-checkboxes__item-label">
+                        Research and develop new technologies
+                      </label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__research-trends"
+                             value="trends"
+                             name="purpose">
+                      <label for="tna-form__research-trends" class="tna-checkboxes__item-label">
+                        Research activity and trends across records
+                      </label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__service-consumer"
+                             value="consumer"
+                             name="purpose">
+                      <label for="tna-form__service-consumer" class="tna-checkboxes__item-label">Deliver a consumer service</label>
+                    </div>
+                    <div class="tna-checkboxes__item">
+                      <input type="checkbox"
+                             id="tna-form__purpose-other"
+                             value="other"
+                             name="purpose">
+                      <label for="tna-form__purpose-other" class="tna-checkboxes__item-label">Other (please specify)</label>
+                    </div>
+                    <h4 class="tna-form__heading tna-form__heading--s">
+                      <label class="tna-form__label" for="tna-form__otherorg">
+                        If other has been selected above, please specify purpose of your project or product here:
+                      </label>
+                    </h4>
+                    <input type="text"
+                           id="tna-form__identifier"
+                           class="tna-text-input "
+                           name="identifier"
+                           value=""
+                           spellcheck="false">
+                  </fieldset>
+                </div>
+                <div class="tna-form__group">
+                  <fieldset class="tna-form__fieldset">
+                    <legend class="tna-form__legend">
+                      <h4 class="tna-form__heading tna-form__heading--s">
+                        Which one best describes who will be able to access the outcomes of your computational analysis?
+                      </h4>
+                    </legend>
+                    <i>
+                      Tick one.
+                    </i>
+                    <div class="tna-checkboxes">
+                      <div class="tna-checkboxes__item">
+                        <input type="checkbox"
+                               id="tna-form__access-public"
+                               value="public"
+                               name="access">
+                        <label for="tna-form__access-public" class="tna-checkboxes__item-label">
+                          Public access (e.g. anyone can freely access)
+                        </label>
+                      </div>
+                      <div class="tna-checkboxes__item">
+                        <input type="checkbox"
+                               id="tna-form__access-restricted"
+                               value="restricted"
+                               name="access">
+                        <label for="tna-form__access-restricted" class="tna-checkboxes__item-label">
+                          Restricted access (e.g. only subscribers or research peers)
+                        </label>
+                      </div>
+                      <div class="tna-checkboxes__item">
+                        <input type="checkbox"
+                               id="tna-form__access-internal"
+                               value="internal"
+                               name="access">
+                        <label for="tna-form__access-internal" class="tna-checkboxes__item-label">
+                          Internal access (e.g. only colleagues from within your organisation)
+                        </label>
+                      </div>
+                      <div class="tna-checkboxes__item">
+                        <input type="checkbox"
+                               id="tna-form__access-private"
+                               value="private"
+                               name="access">
+                        <label for="tna-form__access-private" class="tna-checkboxes__item-label">Private for personal use only</label>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="tna-form__group ">
+                    <fieldset class="tna-form__fieldset">
+                      <legend class="tna-form__legend">
+                        <h4 class="tna-form__heading tna-form__heading--s">
+                          Which Individuals or communities will benefit from your computational analysis?
+                        </h4>
+                      </legend>
+                      <i>
+                        Tick all that apply.
+                      </i>
+                      <div class="tna-checkboxes">
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-general"
+                                 value="general"
+                                 name="benefit">
+                          <label for="tna-form__benefit-general" class="tna-checkboxes__item-label">General Public</label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-professionals"
+                                 value="prefessionals"
+                                 name="benefit">
+                          <label for="tna-form__benefit-professionals"
+                                 class="tna-checkboxes__item-label">Legal professionals and law firms</label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-courtusers"
+                                 value="courtusers"
+                                 name="benefit">
+                          <label for="tna-form__benefit-courtusers" class="tna-checkboxes__item-label">
+                            Court users (e.g. litigants in person)
+                          </label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-judiciary"
+                                 value="judiciary"
+                                 name="benefit">
+                          <label for="tna-form__benefit-judiciary" class="tna-checkboxes__item-label">The Judiciary</label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-publicbodies"
+                                 value="publicbodies"
+                                 name="benefit">
+                          <label for="tna-form__benefit-publicbodies"
+                                 class="tna-checkboxes__item-label">Public bodies</label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-researchers"
+                                 value="researchers"
+                                 name="benefit">
+                          <label for="tna-form__benefit-researchers"
+                                 class="tna-checkboxes__item-label">Researchers and academics</label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-community"
+                                 value="community"
+                                 name="benefit">
+                          <label for="tna-form___benefit-community" class="tna-checkboxes__item-label">
+                            A specific community (please specify)
+                          </label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__benefit-nonlegal"
+                                 value="nonlegal"
+                                 name="benefit">
+                          <label for="tna-form___benefit-nonlegal" class="tna-checkboxes__item-label">
+                            A specific (non-legal) profession (please specify)
+                          </label>
+                        </div>
+                        <div class="tna-checkboxes__item">
+                          <input type="checkbox"
+                                 id="tna-form__purpose-other"
+                                 value="other"
+                                 name="purpose">
+                          <label for="tna-form__purpose-other" class="tna-checkboxes__item-label">Other (please specify)</label>
+                        </div>
+                        <h4 class="tna-form__heading tna-form__heading--s">
+                          <label class="tna-form__label" for="tna-form__otherorg">
+                            If other has been selected above, please specify individuals or communities that will benefit here:
+                          </label>
+                        </h4>
+                        <input type="text"
+                               id="tna-form__identifier"
+                               class="tna-text-input "
+                               name="identifier"
+                               value=""
+                               spellcheck="false">
+                      </fieldset>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="tna-button-group">
+                  <a href="{% url 'your_organisation' %}" class="tna-button ">Previous</a>
+                  <a href="{% url 'public_statement' %}" class="tna-button ">Next</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

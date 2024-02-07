@@ -1,0 +1,140 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'anti_bias' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Anti-bias</h2>
+              </legend>
+              <p>
+                Re-users have responsibility to operate effective governance to ensure that bias does not enter the process over time.
+              </p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__bias">
+                      Licence holders must ensure bias does not enter their process. Do you agree with this licence term?
+                    </label>
+                  </h4>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__process-yes"
+                           value="processyes"
+                           name="bias">
+                    <label for="tna-form__process-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__process-no"
+                           value="processno"
+                           name="bias">
+                    <label for="tna-form__process-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__bias">Will you regularly review algorithms for bias?</label>
+                </h4>
+              </div>
+              <div class="tna-checkboxes">
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__review-yes"
+                         value="reviewyes"
+                         name="bias">
+                  <label for="tna-form__review-yes" class="tna-checkboxes__item-label">Yes</label>
+                </div>
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox" id="tna-form__review-no" value="reviewno" name="bias">
+                  <label for="tna-form__review-no" class="tna-checkboxes__item-label">No</label>
+                </div>
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__monitorbias">
+                      Please describe how you will regularly monitor for bias.
+                    </label>
+                  </h4>
+                </div>
+                <textarea id="tna-form__feedback"
+                          class="tna-textarea "
+                          name="feedback"
+                          spellcheck="false"
+                          rows="5"></textarea>
+              </div>
+              <h4 class="tna-form__heading tna-form__heading--s">
+                <label class="tna-form__label" for="tna-form__bias">Do you have a code of ethics?</label>
+              </h4>
+            </div>
+            <div class="tna-checkboxes">
+              <div class="tna-checkboxes__item">
+                <input type="checkbox"
+                       id="tna-form__ethics-yes"
+                       value="ethicsyes"
+                       name="bias">
+                <label for="tna-form__ethics-yes" class="tna-checkboxes__item-label">Yes</label>
+              </div>
+              <div class="tna-checkboxes__item">
+                <input type="checkbox" id="tna-form__ethics-no" value="ethicsno" name="bias">
+                <label for="tna-form__ethics-no" class="tna-checkboxes__item-label">No</label>
+              </div>
+            </div>
+            <div class="tna-form__group">
+              <div class="tna-form__group-contents">
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__bias">
+                    Does an impartial party review your work against an ethical framework?
+                  </label>
+                </div>
+              </h4>
+              <p>
+                <i>For example, an Ethics Advisory Board (EAB) or Research Ethics Committee (REC)</i>
+              </p>
+            </div>
+            <div class="tna-checkboxes">
+              <div class="tna-checkboxes__item">
+                <input type="checkbox"
+                       id="tna-form__framework-yes"
+                       value="frameworkyes"
+                       name="bias">
+                <label for="tna-form__framework-yes" class="tna-checkboxes__item-label">Yes</label>
+              </div>
+              <div class="tna-checkboxes__item">
+                <input type="checkbox"
+                       id="tna-form__framework-no"
+                       value="frameworkno"
+                       name="bias">
+                <label for="tna-form__framework-no" class="tna-checkboxes__item-label">No</label>
+              </div>
+            </div>
+            <div class="tna-form__group">
+              <div class="tna-form__group-contents">
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__governance">
+                    Please describe any ethical governance structures you have in place.
+                  </label>
+                </h4>
+              </div>
+              <textarea id="tna-form__feedback"
+                        class="tna-textarea "
+                        name="feedback"
+                        spellcheck="false"
+                        rows="5"></textarea>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'anti_discriminatory_harm' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'personal_privacy' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

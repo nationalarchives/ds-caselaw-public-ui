@@ -1,0 +1,37 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'any_comments' %}" method="post" novalidate>
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Any comments</h2>
+              </legend>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__anycomments">
+                      Any additional comments you’d like to make to your application?
+                    </label>
+                  </h4>
+                </div>
+                <textarea id="tna-form__feedback"
+                          class="tna-textarea "
+                          name="feedback"
+                          spellcheck="false"
+                          rows="5"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'accurate_data_representation' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'check_answers' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

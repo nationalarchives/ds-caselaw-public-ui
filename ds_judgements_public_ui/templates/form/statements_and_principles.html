@@ -1,0 +1,27 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <h2 class="tna-heading-l">Statements and Principles</h2>
+        <h4 class="tna-heading-s">
+          These are 9 principles that may be relevant to our decision about whether to grant a licence:
+        </h4>
+        <p>1. Dignity of the court</p>
+        <p>2. Independence of the court</p>
+        <p>3. Appropriate scrutiny</p>
+        <p>4. Anti-discriminatory harm</p>
+        <p>5. Anti Bias</p>
+        <p>6. Personal Privacy</p>
+        <p>7. Discoverability</p>
+        <p>8. Algorithmic transparency</p>
+        <p>9. Accurate data representation</p>
+        <div class="tna-button-group">
+          <a href="{% url 'public_statement' %}" class="tna-button ">Previous</a>
+          <a href="{% url 'dignity_of_the_courts' %}" class="tna-button ">Next</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

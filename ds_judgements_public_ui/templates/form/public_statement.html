@@ -1,0 +1,44 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'public_statement' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Public statement</h2>
+              </legend>
+              <i>
+                Your written statement may be published in the future.
+              </i>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__publicstatement">
+                      Please provide a public statement that briefly describes:
+                    </label>
+                  </h4>
+                  <p>&#x2022; purpose and anticipated outcomes</p>
+                  <p>&#x2022; individuals or communities served</p>
+                  <p>&#x2022; methodologies or activities this will involve</p>
+                </div>
+                <textarea id="tna-form__feedback"
+                          class="tna-textarea "
+                          name="feedback"
+                          spellcheck="false"
+                          rows="5"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'purpose_and_activities' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'statements_and_principles' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

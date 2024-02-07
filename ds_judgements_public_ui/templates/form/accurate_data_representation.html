@@ -1,0 +1,114 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'accurate_data_representation' %}"
+              method="post"
+              novalidate>
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Accurate data representation</h2>
+              </legend>
+              <p>
+                The ‘Find Case Law’ service comprises an incomplete set of court judgments and tribunal decisions.
+                Outcomes from analysis should therefore reflect the limitations of the data and avoid misrepresenting the significance of findings.
+              </p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__data">
+                      Licence holders must avoid misrepresenting the significance of findings. Do you agree with this licence term?
+                    </label>
+                  </h4>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__avoid-yes"
+                           value="avoidsyes"
+                           name="data">
+                    <label for="tna-form__avoid-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox" id="tna-form__avoid-no" value="avoidno" name="data">
+                    <label for="tna-form__avoid-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__data">
+                    Will you explain how the limits of the find case law collection impacts your computational analysis to users?
+                  </label>
+                </h4>
+              </div>
+              <div class="tna-checkboxes">
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox" id="tna-form__limit-yes" value="limityes" name="data">
+                  <label for="tna-form__limit-yes" class="tna-checkboxes__item-label">Yes</label>
+                </div>
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox" id="tna-form__limit-no" value="limitno" name="data">
+                  <label for="tna-form__limit-no" class="tna-checkboxes__item-label">No</label>
+                </div>
+              </div>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__notify">
+                      Please describe how you will notify people that the records may not be representative.
+                    </label>
+                  </h4>
+                </div>
+                <textarea id="tna-form__feedback"
+                          class="tna-textarea "
+                          name="feedback"
+                          spellcheck="false"
+                          rows="5"></textarea>
+              </div>
+              <h4 class="tna-form__heading tna-form__heading--s">
+                <label class="tna-form__label" for="tna-form__data">
+                  Occasionally records that have been published will be revised and taken down by the court.
+                  Licence holders must regularly check to make sure they are re-using the authoritative version
+                  of the record. Do you agree to this licence term?
+                </label>
+              </h4>
+            </div>
+            <div class="tna-checkboxes">
+              <div class="tna-checkboxes__item">
+                <input type="checkbox"
+                       id="tna-form__checks-yes"
+                       value="checkssyes"
+                       name="data">
+                <label for="tna-form__checks-yes" class="tna-checkboxes__item-label">Yes</label>
+              </div>
+              <div class="tna-checkboxes__item">
+                <input type="checkbox" id="tna-form__checks-no" value="checksno" name="data">
+                <label for="tna-form__checks-no" class="tna-checkboxes__item-label">No</label>
+              </div>
+            </div>
+            <div class="tna-form__group">
+              <div class="tna-form__group-contents">
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__governance">
+                    Please describe how you will make sure the records you use are the most up to date list of published records?
+                  </label>
+                </h4>
+              </div>
+              <textarea id="tna-form__feedback"
+                        class="tna-textarea "
+                        name="feedback"
+                        spellcheck="false"
+                        rows="5"></textarea>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'algorithmic_transparency' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'any_comments' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

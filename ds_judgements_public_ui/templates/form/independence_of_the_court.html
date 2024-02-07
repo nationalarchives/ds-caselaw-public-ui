@@ -1,0 +1,72 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'independence_of_the_court' %}"
+              method="post"
+              novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Independence of the court</h2>
+              </legend>
+              <p>It is important that any analysis respects the independence of the judiciary and their impartial judgment.</p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__independence">
+                      Licence holders must respect the independence of the judiciary. Do you accept this licence term?
+                    </label>
+                  </h4>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__independence-yes"
+                           value="indyes"
+                           name="independence">
+                    <label for="tna-form__independence-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__independence-no"
+                           value="indno"
+                           name="independence">
+                    <label for="tna-form__independence-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <div class="tna-form__group">
+                  <div class="tna-form__group-contents">
+                    <h4 class="tna-form__heading tna-form__heading--s">
+                      <label class="tna-form__label" for="tna-form__independencecourts">Please describe:</label>
+                    </h4>
+                    <p>a. the risks you have identified and</p>
+                    <p>b. how you will protect the independence of the justice system</p>
+                    <p>
+                      <i>
+                        You should consider anything that may undermine the ability for the justice system
+                        to be fair and transparent, free of any influence outside the rule of law.
+                      </p>
+                    </i>
+                  </div>
+                  <textarea id="tna-form__feedback"
+                            class="tna-textarea "
+                            name="feedback"
+                            spellcheck="false"
+                            rows="5"></textarea>
+                </div>
+              </div>
+            </fieldset>
+            <div class="tna-button-group">
+              <a href="{% url 'dignity_of_the_courts' %}" class="tna-button ">Previous</a>
+              <a href="{% url 'appropriate_scrutiny' %}" class="tna-button ">Next</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

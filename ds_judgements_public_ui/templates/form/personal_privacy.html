@@ -1,0 +1,64 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{ url 'personal_privacy' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Personal Privacy</h2>
+              </legend>
+              <p>
+                Re-users should satisfy themselves that their practices comply with the
+                standards set out in the DPA and UK GDPR regarding data security and data subjects’ rights, regardless of their location.
+              </p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__publicstatement">Please note that this licence:</label>
+                  </h4>
+                  <p>&#x2022; is not a data sharing agreement for personal data</p>
+                  <p>&#x2022; is not a processing agreement for personal data</p>
+                  <p>
+                    You can read more about the licencing framework on <a href='{% url "computational_licence_application" %}'>the Find Case Law site.</a>
+                  </p>
+                </div>
+                <textarea id="tna-form__feedback"
+                          class="tna-textarea "
+                          name="feedback"
+                          spellcheck="false"
+                          rows="5"></textarea>
+              </div>
+            </div>
+            <div class="tna-form__group">
+              <div class="tna-form__group-contents">
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__appropriatescrutiny">
+                    Please describe any personal privacy or data protection regimes you are complying with.
+                  </label>
+                </h4>
+                <p>
+                  <i>
+                    Example regimes include UK General Data Protection Regulations (UKGDPR) or UK Data Protection Act.
+                  </p>
+                </i>
+              </div>
+              <textarea id="tna-form__feedback"
+                        class="tna-textarea "
+                        name="feedback"
+                        spellcheck="false"
+                        rows="5"></textarea>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'anti_bias' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'discoverability' %}" class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

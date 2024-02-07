@@ -1,0 +1,23 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block meta_description %}
+  <meta name="description"
+        content="You need to submit this online form if you intend to use Court Judgments and/or Tribunal Decisions information in a way that is outside the terms of the Open Justice Licence." />
+{% endblock meta_description %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <h2 class="tna-heading-l">Check you need to apply</h2>
+        <p>Do you intend to use computational analysis on Find Case Law records?</p>
+        <p>
+          <i>For example, any programmatic searching across the records to identify, extract or enrich contents within the records.</i>
+        </p>
+        <div class="tna-button-group">
+          <a href="https://caselaw.nationalarchives.gov.uk/" class="tna-button">No - Go back</a>
+          <a href="{% url 'submit_details' %}" class="tna-button">Yes - Proceed</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

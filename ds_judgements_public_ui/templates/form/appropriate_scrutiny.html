@@ -1,0 +1,118 @@
+{% extends "layouts/static_content.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--full">
+        <form action="{% url 'appropriate_scrutiny' %}" method="post" novalidate>
+          {% csrf_token %}
+          <fieldset class="tna-form__fieldset">
+            <div class="tna-form__group-contents">
+              <legend class="tna-form__legend">
+                <h2 class="tna-form__heading tna-form__heading--l">Appropriate scrutiny</h2>
+              </legend>
+              <p>
+                We seek to encourage the analysis of machine-readable judgments to allow the public to scrutinise justice
+                outcomes and the law more effectively. We also acknowledge that the incomplete nature of the dataset and the
+                current lack of safeguard against opaque or biased methodologies increases the risk of inaccurate or biased conclusions
+                which may cause harm to individuals named therein.
+              </p>
+              <div class="tna-form__group">
+                <div class="tna-form__group-contents">
+                  <h4 class="tna-form__heading tna-form__heading--s">
+                    <label class="tna-form__label" for="tna-form__scrutiny">
+                      Licence holders must acknowledge the incomplete nature of the dataset and apply appropriate scrutiny. Do you accept this licence term?
+                    </label>
+                  </h4>
+                </div>
+                <div class="tna-checkboxes">
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__scrutiny-incomplete"
+                           value="incompyes"
+                           name="scrutiny">
+                    <label for="tna-form__scrutiny-yes" class="tna-checkboxes__item-label">Yes</label>
+                  </div>
+                  <div class="tna-checkboxes__item">
+                    <input type="checkbox"
+                           id="tna-form__scrutiny-incomplete"
+                           value="incompno"
+                           name="scrutiny">
+                    <label for="tna-form__scrutiny-no" class="tna-checkboxes__item-label">No</label>
+                  </div>
+                </div>
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__scrutiny">
+                    Will the computational analysis focus on specific individuals or groups of people?
+                  </label>
+                </h4>
+              </div>
+              <div class="tna-checkboxes">
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__scrutiny-focus"
+                         value="focusyes"
+                         name="scrutiny">
+                  <label for="tna-form__scrutiny-yes" class="tna-checkboxes__item-label">Yes</label>
+                </div>
+                <div class="tna-checkboxes__item">
+                  <input type="checkbox"
+                         id="tna-form__scrutiny-focus"
+                         value="focusno"
+                         name="scrutiny">
+                  <label for="tna-form__scrutiny-no" class="tna-checkboxes__item-label">No</label>
+                </div>
+              </div>
+              <h4 class="tna-form__heading tna-form__heading--s">
+                <label class="tna-form__label" for="tna-form__scrutiny">
+                  Will you anonymise individuals before you analyse records?
+                </label>
+              </h4>
+            </div>
+            <div class="tna-checkboxes">
+              <div class="tna-checkboxes__item">
+                <input type="checkbox"
+                       id="tna-form__anonymise-yes"
+                       value="anonyes"
+                       name="scrutiny">
+                <label for="tna-form__anonymise-yes" class="tna-checkboxes__item-label">Yes</label>
+              </div>
+              <div class="tna-checkboxes__item">
+                <input type="checkbox"
+                       id="tna-form__anonymise-no"
+                       value="anonno"
+                       name="scrutiny">
+                <label for="tna-form__anonymise-no" class="tna-checkboxes__item-label">No</label>
+              </div>
+            </div>
+            <div class="tna-form__group">
+              <div class="tna-form__group-contents">
+                <h4 class="tna-form__heading tna-form__heading--s">
+                  <label class="tna-form__label" for="tna-form__appropriatescrutiny">
+                    How will you prevent anonymised people from being re-identified?
+                  </label>
+                </h4>
+                <p>
+                  <i>
+                    This is referred to as jigsaw identification. This involves putting together information in a way
+                    that identifies individuals even if they have been anonymised. Please describe the actions you will take
+                    to reduce the ability to identify individuals after they have been anonymised.
+                  </p>
+                </i>
+              </div>
+              <textarea id="tna-form__feedback"
+                        class="tna-textarea "
+                        name="feedback"
+                        spellcheck="false"
+                        rows="5"></textarea>
+            </div>
+          </fieldset>
+          <div class="tna-button-group">
+            <a href="{% url 'independence_of_the_court' %}" class="tna-button ">Previous</a>
+            <a href="{% url 'anti_discriminatory_harm' %} " class="tna-button ">Next</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

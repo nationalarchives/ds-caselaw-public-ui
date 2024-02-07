@@ -14,6 +14,176 @@ class TemplateViewWithContext(TemplateView):
         }
 
 
+class CheckAnswersView(TemplateViewWithContext):
+    template_name = "form/check_answers.html"
+    page_title = "Check Answers"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class AnyCommentsView(TemplateViewWithContext):
+    template_name = "form/any_comments.html"
+    page_title = "Any Comments"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class AccurateDataRepresentationView(TemplateViewWithContext):
+    template_name = "form/accurate_data_representation.html"
+    page_title = "Accurate Data Representation"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class AlgorithmicTransparencyView(TemplateViewWithContext):
+    template_name = "form/algorithmic_transparency.html"
+    page_title = "Algorithmic Transparency"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class DiscoverabilityView(TemplateViewWithContext):
+    template_name = "form/discoverability.html"
+    page_title = "Discoverability"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class PersonalPrivacyView(TemplateViewWithContext):
+    template_name = "form/personal_privacy.html"
+    page_title = "Personal Privacy"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class AntiBiasView(TemplateViewWithContext):
+    template_name = "form/anti_bias.html"
+    page_title = "Anti-bias"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class AntiDiscriminatoryHarmView(TemplateViewWithContext):
+    template_name = "form/anti_discriminatory_harm.html"
+    page_title = "Anti-Discriminatory Harm"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class AppropriateScrutinyView(TemplateViewWithContext):
+    template_name = "form/appropriate_scrutiny.html"
+    page_title = "Appropriate scrutiny"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class IndependenceCourtView(TemplateViewWithContext):
+    template_name = "form/independence_of_the_court.html"
+    page_title = "Independence of the court"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class DignityCourtsView(TemplateViewWithContext):
+    template_name = "form/dignity_of_the_courts.html"
+    page_title = "Dignity of the courts"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class StatementsPrinciplestView(TemplateViewWithContext):
+    template_name = "form/statements_and_principles.html"
+    page_title = "Statements and Principles"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class PublicStatementView(TemplateViewWithContext):
+    template_name = "form/public_statement.html"
+    page_title = "Public Statement"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class PurposeActivitiesView(TemplateViewWithContext):
+    template_name = "form/purpose_and_activities.html"
+    page_title = "Purpose and Activities"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class YourOrganisationView(TemplateViewWithContext):
+    template_name = "form/your_organisation.html"
+    page_title = "About your organisation"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class SubmitDetailsView(TemplateViewWithContext):
+    template_name = "form/submit_details.html"
+    page_title = "Submission form to do computational analysis"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
+class ComputationalLicenceSubmitView(TemplateViewWithContext):
+    template_name = "form/computational_licence_application.html"
+    page_title = "Check you need to apply"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "license"
+        return context
+
+
 class ComputationalLicenceFormView(TemplateViewWithContext):
     template_name = "pages/computational_licence.html"
     page_title = "Apply to do computational analysis"
