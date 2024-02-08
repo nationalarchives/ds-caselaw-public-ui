@@ -130,10 +130,13 @@ This command takes care of the following:
 2. Installing any new python dependencies
 3. Applying any new database migrations
 4. Starting the Django development server
+5. Watching the Sass and JavaScript files for changes
 
 You can then access the site in your browser:
 
 <http://127.0.0.1:3000>
+
+(NOTE: The output of the asset and JS builds are logged in the ./assets.log file)
 
 #### Fixing an issue when another project is already running
 

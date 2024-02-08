@@ -32,6 +32,11 @@ def container_exec(cmd, container_name="django", check_returncode=False):
     return result
 
 
+def background_exec(cmd, logfile):
+    "Run a command in the background and capture logs."
+    local(f"nohup {cmd} &> {logfile}.log &")
+
+
 def postgres_exec(cmd, check_returncode=False):
     "Execute something in the 'postgres' Docker container."
     return container_exec(cmd, "postgres", check_returncode)
@@ -76,10 +81,27 @@ def pip(c):
 
 
 @task
-def runquick(c):
-    start(c, "django")
+def npm_install(c):
+    """
+    Install NPM packages
+    """
+    local("npm install")
+
+
+@task
+def collectstatic(c):
+    """
+    Update static assets
+    """
     django_exec("rm -rf /app/staticfiles")
     django_exec("python manage.py collectstatic")
+
+
+@task
+def runquick(c):
+    start(c, "django")
+    background_exec("npm run watch", "assets")
+    collectstatic(c)
     try:
         django_exec("python manage.py runserver 0.0.0.0:3000")
     except KeyboardInterrupt:
@@ -87,7 +109,7 @@ def runquick(c):
     stop(c, "django")
 
 
-@task(pip, runquick)
+@task(pip, npm_install, runquick)
 def run(c): ...
 
 
