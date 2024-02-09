@@ -160,33 +160,36 @@ def translate(c):
     )
 
 
-@task
-def test(c):
+@task(optional=["test"])
+def test(c, test=None):
     """
     Run python tests in the web container
     """
-    # Static analysis
-    subprocess.run(
-        [
-            "docker",
-            "compose",
-            "exec",
-            "django",
-            "mypy",
-            "ds_judgements_public_ui",
-            "judgments",
-        ]
-    )
-    # Pytest
-    subprocess.run(
-        [
-            "docker",
-            "compose",
-            "exec",
-            "django",
-            "pytest",
-        ]
-    )
+    if test is None:
+        # Static analysis
+        subprocess.run(
+            [
+                "docker",
+                "compose",
+                "exec",
+                "django",
+                "mypy",
+                "ds_judgements_public_ui",
+                "judgments",
+            ]
+        )
+        # Pytest
+        subprocess.run(
+            [
+                "docker",
+                "compose",
+                "exec",
+                "django",
+                "pytest",
+            ]
+        )
+    else:
+        subprocess.run(["docker", "compose", "exec", "django", "pytest", test])
 
 
 @task
