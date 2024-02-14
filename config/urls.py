@@ -2,11 +2,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from django.urls import include, path
+from django.urls import include, path, register_converter
 from django.views import defaults as default_views
+from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
 
 from . import views
+from .converters import SchemaFileConverter
+
+register_converter(SchemaFileConverter, "schemafile")
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
@@ -76,6 +80,11 @@ urlpatterns = [
         TemplateView.as_view(
             template_name="googleb0ce3f99fae65e7c.html", content_type="text/html"
         ),
+    ),
+    path(
+        "schema/<schemafile:schemafile>",
+        cache_page(60 * 60)(views.schema),
+        name="schema",
     ),
     path("", include("judgments.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
