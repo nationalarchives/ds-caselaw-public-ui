@@ -1,6 +1,11 @@
+import requests
+from django.http import Http404, HttpResponse
 from django.utils.translation import gettext
 from django.views.generic import TemplateView
 from ds_caselaw_utils import courts
+
+# where the schemas can be downloaded from. Slash-terminated.
+SCHEMA_ROOT = "https://raw.githubusercontent.com/nationalarchives/ds-caselaw-marklogic/main/src/main/ml-schemas/"
 
 
 class TemplateViewWithContext(TemplateView):
@@ -108,3 +113,11 @@ class PrivacyNotice(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "privacy_notice"
         return context
+
+
+def schema(request, schemafile: str):
+    response = requests.get(f"{SCHEMA_ROOT}{schemafile}")
+    if response.status_code != 200:
+        raise Http404("Could not get schema")
+
+    return HttpResponse(response.content, content_type="application/xml")
