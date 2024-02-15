@@ -1,15 +1,17 @@
-from django.urls import path, re_path, register_converter
+from django.urls import path, register_converter
 
 from . import converters, feeds
+from .resolvers.document_resolver_engine import DocumentResolverEngine
 from .views.advanced_search import advanced_search
 from .views.browse import browse
-from .views.detail import PdfDetailView, detail, detail_xml, get_best_pdf
 from .views.index import index
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
 register_converter(converters.CourtConverter, "court")
 register_converter(converters.SubdivisionConverter, "subdivision")
+register_converter(converters.DocumentUriConverter, "document_uri")
+register_converter(converters.FileFormatConverter, "file_format")
 
 urlpatterns = [
     path("<court:court>", browse, name="browse"),
@@ -37,23 +39,16 @@ urlpatterns = [
         feeds.LatestJudgmentsFeed(),
         name="feed",
     ),
-    re_path(
-        r"^(?P<document_uri>.*/\d{4}/\d+.*)/data.pdf$",
-        get_best_pdf,
-        name="detail_pdf",
+    path(
+        "<document_uri:document_uri>/<file_format:file_format>",
+        DocumentResolverEngine.as_view(),
+        name="detail",
     ),
-    re_path(
-        r"^(?P<document_uri>.*/\d{4}/\d+.*)/generated.pdf$",
-        PdfDetailView.as_view(),
-        name="weasy_pdf",
+    path(
+        "<document_uri:document_uri>",
+        DocumentResolverEngine.as_view(),
+        name="detail",
     ),
-    re_path(
-        r"^(?P<document_uri>.*/\d{4}/\d+.*)/data.xml$", detail_xml, name="detail_xml"
-    ),
-    re_path(
-        r"^(?P<document_uri>.*/\d{4}/\d+.*)/data.html$", detail, name="detail_html"
-    ),
-    re_path(r"^(?P<document_uri>.*/\d{4}/\d+.*)/?$", detail, name="detail"),
     path("judgments/results", advanced_search),
     path("judgments/advanced_search", advanced_search),
     path("judgments/search", advanced_search, name="search"),

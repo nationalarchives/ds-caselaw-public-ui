@@ -14,6 +14,7 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
 from judgments.utils import (
+    formatted_document_uri,
     get_document_by_uri,
     get_pdf_uri,
     preprocess_query,
@@ -60,6 +61,10 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
         context["document"] = document.content_as_html(MOST_RECENT_VERSION)
 
         return context
+
+
+def get_generated_pdf(request, document_uri):
+    return PdfDetailView.as_view()(request, document_uri=document_uri)
 
 
 def get_best_pdf(request, document_uri):
@@ -121,7 +126,7 @@ def detail(request, document_uri):
     context["pdf_uri"] = (
         get_pdf_uri(document.uri)
         if context["pdf_size"]
-        else reverse("detail_pdf", args=[document.uri])
+        else formatted_document_uri(document.uri, "pdf")
     )
 
     if document.document_noun == "press summary":

@@ -10,6 +10,7 @@ from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
 from caselawclient.models.documents import Document, DocumentURIString
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
+from django.urls import reverse
 from django.utils.translation import gettext
 
 from .fixtures.stop_words import stop_words
@@ -229,3 +230,17 @@ def parse_date_parameter(
 def get_document_by_uri(document_uri: str) -> Document:
     # raises a DocumentNotFoundError if it doesn't exist
     return api_client.get_document_by_uri(DocumentURIString(document_uri))
+
+
+def formatted_document_uri(document_uri: str, format: Optional[str] = None) -> str:
+    url = reverse("detail", args=[document_uri])
+    if format == "pdf":
+        url = url + "/data.pdf"
+    elif format == "generated_pdf":
+        url = url + "/generated.pdf"
+    elif format == "xml":
+        url = url + "/data.xml"
+    elif format == "html":
+        url = url + "/data.html"
+
+    return url
