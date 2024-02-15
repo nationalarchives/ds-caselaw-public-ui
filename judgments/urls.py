@@ -12,6 +12,7 @@ register_converter(converters.CourtConverter, "court")
 register_converter(converters.SubdivisionConverter, "subdivision")
 register_converter(converters.DocumentUriConverter, "document_uri")
 register_converter(converters.FileFormatConverter, "file_format")
+register_converter(converters.ComponentConverter, "component")
 
 urlpatterns = [
     path("<court:court>", browse, name="browse"),
@@ -41,6 +42,11 @@ urlpatterns = [
     ),
     path(
         "<document_uri:document_uri>/<file_format:file_format>",
+        DocumentResolverEngine.as_view(),
+        name="detail",
+    ),
+    path(
+        "<document_uri:document_uri>/<component:component>",
         DocumentResolverEngine.as_view(),
         name="detail",
     ),

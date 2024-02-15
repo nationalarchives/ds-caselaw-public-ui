@@ -62,3 +62,13 @@ class DocumentUriConverter:
 
     def to_url(self, value):
         return value
+
+
+class ComponentConverter:
+    regex = "press-summary"
+
+    def to_python(self, value):
+        return value
+
+    def to_url(self, value):
+        return value

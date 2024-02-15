@@ -7,8 +7,10 @@ from judgments.tests.factories import JudgmentFactory, PressSummaryFactory
 from judgments.utils import (
     formatted_document_uri,
     get_document_by_uri,
+    get_press_summaries_for_document_uri,
     linked_doc_title,
     linked_doc_url,
+    press_summary_list_breadcrumbs,
 )
 
 
@@ -53,10 +55,29 @@ class TestGetDocumentByUri(unittest.TestCase):
 
     def test_linked_doc_title_removes_prefix_for_press_summary(self):
         document = PressSummaryFactory.build(name="Press Summary of Arkell v Pressdram")
-
         assert linked_doc_title(document) == "Arkell v Pressdram"
 
     def test_linked_doc_title_adds_prefix_for_judgment(self):
         document = JudgmentFactory.build(name="Arkell v Pressdram")
-
         assert linked_doc_title(document) == "Press Summary of Arkell v Pressdram"
+
+    def test_press_summary_list_breadcrumbs(self):
+        document = PressSummaryFactory.build()
+
+        assert press_summary_list_breadcrumbs(document) == [
+            {
+                "url": "/" + linked_doc_url(document),
+                "text": linked_doc_title(document),
+            },
+            {
+                "text": "Press Summaries",
+            },
+        ]
+
+    @mock.patch("judgments.utils.api_client")
+    def test_get_press_summaries_for_document_uri(self, mock_api_client):
+        summaries = [mock.Mock(), mock.Mock()]
+        mock_api_client.get_press_summaries_for_document_uri.return_value = summaries
+
+        result = get_press_summaries_for_document_uri("sample_uri")
+        self.assertEqual(result, summaries)
