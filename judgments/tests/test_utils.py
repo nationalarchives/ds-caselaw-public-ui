@@ -3,7 +3,13 @@ from unittest import mock
 
 from caselawclient.errors import DocumentNotFoundError
 
-from judgments.utils import formatted_document_uri, get_document_by_uri
+from judgments.tests.factories import JudgmentFactory, PressSummaryFactory
+from judgments.utils import (
+    formatted_document_uri,
+    get_document_by_uri,
+    linked_doc_title,
+    linked_doc_url,
+)
 
 
 class TestGetDocumentByUri(unittest.TestCase):
@@ -34,3 +40,23 @@ class TestGetDocumentByUri(unittest.TestCase):
                     formatted_document_uri(document_uri, format),
                     "/" + document_uri + suffix,
                 )
+
+    def test_linked_doc_url_returns_press_summary_for_a_judgement(self):
+        document = JudgmentFactory.build()
+
+        assert linked_doc_url(document) == document.uri + "/press-summary/1"
+
+    def test_linked_doc_url_returns_judgement_for_a_press_summary(self):
+        document = PressSummaryFactory.build(uri="/foo/bar/press-summary/1")
+
+        assert linked_doc_url(document) == "/foo/bar"
+
+    def test_linked_doc_title_removes_prefix_for_press_summary(self):
+        document = PressSummaryFactory.build(name="Press Summary of Arkell v Pressdram")
+
+        assert linked_doc_title(document) == "Arkell v Pressdram"
+
+    def test_linked_doc_title_adds_prefix_for_judgment(self):
+        document = JudgmentFactory.build(name="Arkell v Pressdram")
+
+        assert linked_doc_title(document) == "Press Summary of Arkell v Pressdram"

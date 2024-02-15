@@ -244,3 +244,19 @@ def formatted_document_uri(document_uri: str, format: Optional[str] = None) -> s
         url = url + "/data.html"
 
     return url
+
+
+def linked_doc_url(document: Document):
+    press_summary_suffix = "/press-summary/1"
+    if document.document_noun == "press summary":
+        return document.uri.removesuffix(press_summary_suffix)
+    else:
+        return document.uri + press_summary_suffix
+
+
+def linked_doc_title(document: Document):
+    press_summary_title_prefix = "Press Summary of "
+    if document.document_noun == "press summary":
+        return document.name.removeprefix(press_summary_title_prefix)
+    else:
+        return press_summary_title_prefix + document.name
