@@ -212,6 +212,23 @@ class TestRobotsDirectives(TestCase):
             "The Find Case Law service provides public access to court judgments and tribunal decisions.",
         )  # actual content of page
 
+    def test_static_pages(self):
+        for url in [
+            "computational-licence-form",
+            "transactional-licence-form",
+            "what-to-expect",
+            "about-this-service",
+            "how-to-use-this-service",
+            "privacy-notice",
+            "accessibility-statement",
+            "open-justice-licence",
+            "terms-of-use",
+            "publishing-policy",
+            "robots.txt",
+        ]:
+            response = self.client.get(f"/{url}", follow=True)
+            assert response.status_code == 200
+
 
 class TestBackLink(TestCase):
     def test_referrer_is_search_page_without_query(self):

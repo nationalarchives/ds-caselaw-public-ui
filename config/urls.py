@@ -22,6 +22,11 @@ urlpatterns = [
         name="computational_licence_form",
     ),
     path(
+        "transactional-licence-form",
+        lambda request: HttpResponseRedirect("/computational-licence-form"),
+        name="transactional-licence-form",
+    ),
+    path(
         "what-to-expect",
         lambda request: HttpResponseRedirect("/about-this-service"),
         name="what_to_expect",
