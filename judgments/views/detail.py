@@ -13,10 +13,9 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
+from judgments.models.document_pdf import DocumentPdf
 from judgments.utils import (
-    formatted_document_uri,
     get_document_by_uri,
-    get_pdf_uri,
     linked_doc_title,
     linked_doc_url,
     preprocess_query,
@@ -75,8 +74,9 @@ def get_best_pdf(request, document_uri):
 
     If there's a DOCX-derived PDF in the S3 bucket, return that.
     Otherwise fall back and redirect to the weasyprint version."""
-    pdf_uri = get_pdf_uri(document_uri)
-    response = requests.get(pdf_uri)
+    pdf = DocumentPdf(document_uri)
+    response = requests.get(pdf.uri)
+    logging.debug("Response %s", response.status_code)
     if response.status_code == 200:
         return HttpResponse(response.content, content_type="application/pdf")
 
@@ -91,6 +91,7 @@ def get_best_pdf(request, document_uri):
 def detail(request, document_uri):
     query = request.GET.get("query")
     document = get_published_document_by_uri(document_uri)
+    pdf = DocumentPdf(document_uri)
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
     if document_uri != document.uri:
@@ -119,12 +120,10 @@ def detail(request, document_uri):
     )  # "" is most recent version
     context["document_uri"] = document.uri
     context["page_title"] = document.name
-    context["pdf_size"] = get_pdf_size(document.uri)
-    context["pdf_uri"] = (
-        get_pdf_uri(document.uri)
-        if context["pdf_size"]
-        else formatted_document_uri(document.uri, "pdf")
+    context["pdf_size"] = (
+        f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
     )
+    context["pdf_uri"] = pdf.uri
 
     if document.document_noun == "press summary":
         breadcrumbs = [
@@ -163,20 +162,3 @@ def detail_xml(_request, document_uri):
     response = HttpResponse(document_xml, content_type="application/xml")
     response["Content-Disposition"] = f"attachment; filename={document.uri}.xml"
     return response
-
-
-def get_pdf_size(document_uri):
-    """Return the size of the S3 PDF for a document as a string in brackets, or an empty string if unavailable"""
-    response = requests.head(
-        # it is possible that "" is a better value than None, but that is untested
-        get_pdf_uri(document_uri),
-        headers={"Accept-Encoding": None},  # type: ignore
-    )
-    content_length = response.headers.get("Content-Length", None)
-    if response.status_code >= 400:
-        return ""
-    if content_length:
-        filesize = filesizeformat(int(content_length))
-        return f" ({filesize})"
-    logging.warning(f"Unable to determine PDF size for {document_uri}")
-    return " (unknown size)"

@@ -5,7 +5,6 @@ from datetime import date, datetime
 from typing import Optional, TypedDict
 from urllib.parse import parse_qs, urlparse
 
-import environ
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
 from caselawclient.models.documents import Document, DocumentURIString
 from caselawclient.models.press_summaries import PressSummary
@@ -129,17 +128,6 @@ def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
         "next_pages": next_pages,
         "number_of_pages": number_of_pages,
     }
-
-
-def get_pdf_uri(document_uri: str) -> str:
-    env = environ.Env()
-    """Create a string saying where the S3 PDF will be for a judgment uri"""
-    pdf_path = f'{document_uri}/{document_uri.replace("/", "_")}.pdf'
-    assets = env("ASSETS_CDN_BASE_URL", default=None)
-    if assets:
-        return f"{assets}/{pdf_path}"
-    else:
-        return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
 
 
 class SearchContextDict(TypedDict):
