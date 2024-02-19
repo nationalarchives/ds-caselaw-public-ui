@@ -42,3 +42,33 @@ class SubdivisionConverter:
 
     def to_url(self, value):
         return value
+
+
+class FileFormatConverter:
+    regex = "data.pdf|generated.pdf|data.xml|data.html"
+
+    def to_python(self, value):
+        return value
+
+    def to_url(self, value):
+        return value
+
+
+class DocumentUriConverter:
+    regex = r".*/\d{4}/\d+.*"
+
+    def to_python(self, value):
+        return value
+
+    def to_url(self, value):
+        return value
+
+
+class ComponentConverter:
+    regex = "press-summary"
+
+    def to_python(self, value):
+        return value
+
+    def to_url(self, value):
+        return value

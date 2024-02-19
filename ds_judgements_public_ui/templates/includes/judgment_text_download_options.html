@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n utilities document_utils %}
 <div id="download-options" class="judgment-download-options">
   <h2 class="judgment-download-options__header">{% translate "judgment.downloadoptions.title" %}</h2>
   <div class="judgment-download-options__options-list">
@@ -25,7 +25,7 @@
     </div>
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% url 'detail_xml' context.document_uri %}"
+        <a href="{% formatted_document_uri context.document_uri 'xml' %}"
            aria-label="Download this document as XML">
           {% if context.document_noun == 'press summary' %}
             {% translate "press_summary.downloadoptions.xml.cta" %}

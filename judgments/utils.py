@@ -8,8 +8,10 @@ from urllib.parse import parse_qs, urlparse
 import environ
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
 from caselawclient.models.documents import Document, DocumentURIString
+from caselawclient.models.press_summaries import PressSummary
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
+from django.urls import reverse
 from django.utils.translation import gettext
 
 from .fixtures.stop_words import stop_words
@@ -229,3 +231,51 @@ def parse_date_parameter(
 def get_document_by_uri(document_uri: str) -> Document:
     # raises a DocumentNotFoundError if it doesn't exist
     return api_client.get_document_by_uri(DocumentURIString(document_uri))
+
+
+def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary]:
+    return api_client.get_press_summaries_for_document_uri(
+        DocumentURIString(document_uri)
+    )
+
+
+def formatted_document_uri(document_uri: str, format: Optional[str] = None) -> str:
+    url = reverse("detail", args=[document_uri])
+    if format == "pdf":
+        url = url + "/data.pdf"
+    elif format == "generated_pdf":
+        url = url + "/generated.pdf"
+    elif format == "xml":
+        url = url + "/data.xml"
+    elif format == "html":
+        url = url + "/data.html"
+
+    return url
+
+
+def linked_doc_url(document: Document):
+    press_summary_suffix = "/press-summary/1"
+    if document.document_noun == "press summary":
+        return document.uri.removesuffix(press_summary_suffix)
+    else:
+        return document.uri + press_summary_suffix
+
+
+def linked_doc_title(document: Document):
+    press_summary_title_prefix = "Press Summary of "
+    if document.document_noun == "press summary":
+        return document.name.removeprefix(press_summary_title_prefix)
+    else:
+        return press_summary_title_prefix + document.name
+
+
+def press_summary_list_breadcrumbs(press_summary: Document):
+    return [
+        {
+            "url": "/" + linked_doc_url(press_summary),
+            "text": linked_doc_title(press_summary),
+        },
+        {
+            "text": "Press Summaries",
+        },
+    ]

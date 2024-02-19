@@ -14,8 +14,11 @@ from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
 from judgments.utils import (
+    formatted_document_uri,
     get_document_by_uri,
     get_pdf_uri,
+    linked_doc_title,
+    linked_doc_url,
     preprocess_query,
     search_context_from_url,
 )
@@ -62,6 +65,10 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
         return context
 
 
+def get_generated_pdf(request, document_uri):
+    return PdfDetailView.as_view()(request, document_uri=document_uri)
+
+
 def get_best_pdf(request, document_uri):
     """
     Response for the legacy data.pdf endpoint, used by data reusers
@@ -91,7 +98,6 @@ def detail(request, document_uri):
         return HttpResponseRedirect(redirect_uri)
 
     context = {}
-    press_summary_suffix = "/press-summary/1"
     context["document_noun"] = document.document_noun
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)
@@ -99,14 +105,10 @@ def detail(request, document_uri):
     if query:
         context["number_of_mentions"] = str(document.number_of_mentions(query))
         context["query"] = query
-    if document.document_noun == "press summary":
-        linked_doc_url = document_uri.removesuffix(press_summary_suffix)
-    else:
-        linked_doc_url = document_uri + press_summary_suffix
 
     try:
         context["linked_document_uri"] = get_published_document_by_uri(
-            linked_doc_url
+            linked_doc_url(document)
         ).uri
     except Http404:
         context["linked_document_uri"] = ""
@@ -121,14 +123,14 @@ def detail(request, document_uri):
     context["pdf_uri"] = (
         get_pdf_uri(document.uri)
         if context["pdf_size"]
-        else reverse("detail_pdf", args=[document.uri])
+        else formatted_document_uri(document.uri, "pdf")
     )
 
     if document.document_noun == "press summary":
         breadcrumbs = [
             {
                 "url": "/" + context["linked_document_uri"],
-                "text": document.name.removeprefix("Press Summary of "),
+                "text": linked_doc_title(document),
             },
             {
                 "text": "Press Summary",
