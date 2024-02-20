@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block robots %}
+  <meta name="robots" content="noindex,nofollow" />
+{% endblock robots %}
+{% block title %}
+  {% if context.page_title %}{{ context.page_title }} -{% endif %}
+  Judgements and decisions by court or tribunal
+{% endblock title %}
+{% block content %}
+  <div class="judgment-decisions">{% include "includes/browse_decisions.html" %}</div>
+{% endblock content %}
