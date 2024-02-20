@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 from ds_caselaw_utils.courts import CourtNotFoundException
 from ds_caselaw_utils.courts import courts as all_courts
 
-from judgments.models import CourtDates
+from judgments.models.court_dates import CourtDates
 
 register = template.Library()
 

@@ -10,7 +10,8 @@ from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
 
-from judgments.models import CourtDates, SearchFormErrors
+from judgments.models.court_dates import CourtDates
+from judgments.models.search_form_errors import SearchFormErrors
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,

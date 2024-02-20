@@ -6,7 +6,7 @@ from django.test import TestCase
 from factories import JudgmentFactory
 
 from judgments import converters, utils
-from judgments.models import CourtDates
+from judgments.models.court_dates import CourtDates
 from judgments.tests.fixtures import FakeSearchResponse
 from judgments.utils import as_integer, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView
@@ -142,25 +142,27 @@ class TestRobotsDirectives(TestCase):
             response, '<meta name="robots" content="noindex,nofollow" />'
         )
 
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.requests.get")
-    def test_aws_pdf(self, get_pdf):
-        get_pdf.return_value.content = b"CAT"
-        get_pdf.return_value.status_code = 200
+    def test_aws_pdf(self, mock_get, mock_pdf):
+        url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
+        mock_pdf.return_value.uri = url
+        mock_get.return_value.content = b"CAT"
+        mock_get.return_value.status_code = 200
         response = self.client.get("/eat/2023/1/data.pdf")
-        get_pdf.assert_called_with(
-            "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
-        )
+        mock_get.assert_called_with(url)
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.requests.get")
-    def test_aws_pdf_press_summary(self, get_pdf):
-        get_pdf.return_value.content = b"CAT"
-        get_pdf.return_value.status_code = 200
+    def test_aws_pdf_press_summary(self, mock_get, mock_pdf):
+        url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
+        mock_pdf.return_value.uri = url
+        mock_get.return_value.content = b"CAT"
+        mock_get.return_value.status_code = 200
         response = self.client.get("/eat/2023/1/press-summary/1/data.pdf")
-        get_pdf.assert_called_with(
-            "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
-        )
+        mock_get.assert_called_with(url)
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 

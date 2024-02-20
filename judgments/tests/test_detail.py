@@ -4,6 +4,7 @@ from unittest.mock import patch
 import pytest
 from caselawclient.errors import DocumentNotFoundError
 from django.http import Http404, HttpResponseRedirect
+from django.template.defaultfilters import filesizeformat
 from django.test import Client, TestCase
 from factories import JudgmentFactory, PressSummaryFactory
 
@@ -14,7 +15,6 @@ from judgments.tests.utils.assertions import (
 from judgments.views.detail import (
     NoNeutralCitationError,
     PdfDetailView,
-    get_pdf_size,
     get_published_document_by_uri,
 )
 
@@ -62,11 +62,11 @@ class TestGetPublishedDocument:
 
 
 class TestJudgment(TestCase):
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.get_published_document_by_uri")
-    def test_published_judgment_response(self, mock_get_document_by_uri, mock_pdf_size):
+    def test_published_judgment_response(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
-        mock_pdf_size.return_value = "1234KB"
+        mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
@@ -80,12 +80,12 @@ class TestJudgment(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.get_published_document_by_uri")
-    def test_query_passed_to_api_client(self, mock_get_document_by_uri, mock_pdf_size):
+    def test_query_passed_to_api_client(self, mock_get_document_by_uri, mock_pdf):
         judgment = JudgmentFactory.build(is_published=True)
         mock_get_document_by_uri.return_value = judgment
-        mock_pdf_size.return_value = "1234KB"
+        mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123?query=Query")
         judgment.content_as_html.assert_called_with("", query="Query")
@@ -94,11 +94,11 @@ class TestJudgment(TestCase):
 
 
 class TestJudgmentBackToSearchLink(TestCase):
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.get_published_document_by_uri")
-    def test_no_link_if_no_context(self, mock_get_document_by_uri, mock_pdf_size):
+    def test_no_link_if_no_context(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
-        mock_pdf_size.return_value = "1234KB"
+        mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
@@ -107,19 +107,15 @@ class TestJudgmentBackToSearchLink(TestCase):
 
 
 class TestJudgmentPdfLinkText(TestCase):
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.get_published_document_by_uri")
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
-    def test_pdf_link_with_size(self, mock_get_document_by_uri, mock_pdf_size):
-        """
-        `get_pdf_size` serves several purposes; it can _either_ return a string with the size of a PDF if one exists
-        in S3, _or_ return a string saying "unknown size" if the file exists but S3 doesn't tell us the size, _or_
-        return an empty string. This tests the case where it returns a non-empty string (either a file size or
-        "unknown"), in which case we should link to the file in S3 via our assets URL and display the size string.
-        """
-
+    def test_pdf_link_with_size(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
-        mock_pdf_size.return_value = " (1234KB)"
+        mock_pdf.return_value.uri = (
+            "https://example.com/test/2023/123/test_2023_123.pdf"
+        )
+        mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
@@ -128,20 +124,15 @@ class TestJudgmentPdfLinkText(TestCase):
             "https://example.com/test/2023/123/test_2023_123.pdf", decoded_response
         )
         self.assertNotIn("data.pdf", decoded_response)
-        self.assertIn("(1234KB)", decoded_response)
+        self.assertIn(f"({filesizeformat(1234)})", decoded_response)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.get_published_document_by_uri")
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
-    def test_pdf_link_with_no_size(self, mock_get_document_by_uri, mock_pdf_size):
-        """
-        `get_pdf_size` serves several purposes; it can _either_ return a string with the size of a PDF if one exists
-        in S3, _or_ return a string saying "unknown size" if the file exists but S3 doesn't tell us the size, _or_
-        return an empty string. This tests the case where it returns an empty string (implying that the file doesn't
-        exist in S3), so we should link to our generated PDF instead and not S3."""
-
+    def test_pdf_link_with_no_size(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
-        mock_pdf_size.return_value = ""
+        mock_pdf.return_value.uri = "/test/2023/123/data.pdf"
+        mock_pdf.return_value.size = None
 
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
@@ -152,8 +143,7 @@ class TestJudgmentPdfLinkText(TestCase):
 
 @pytest.mark.django_db
 class TestDocumentDownloadOptions:
-    @patch("judgments.views.detail.get_pdf_uri")
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
         "uri,document_noun",
@@ -162,8 +152,7 @@ class TestDocumentDownloadOptions:
     def test_download_options(
         self,
         mock_get_document_by_uri,
-        mock_get_pdf_size,
-        mock_get_pdf_uri,
+        mock_pdf,
         uri,
         document_noun,
     ):
@@ -178,8 +167,8 @@ class TestDocumentDownloadOptions:
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             uri=uri, document_noun=document_noun, is_published=True
         )
-        mock_get_pdf_size.return_value = "(112KB)"
-        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
+        mock_pdf.return_value.size = 112
+        mock_pdf.return_value.uri = "http://example.com/test.pdf"
         client = Client()
         response = client.get(f"/{uri}")
         download_options_html = f"""
@@ -188,7 +177,7 @@ class TestDocumentDownloadOptions:
         <div class="judgment-download-options__options-list">
             <div class="judgment-download-options__download-option">
             <h3><a href="http://example.com/test.pdf"aria-label="Download this document as a PDF" download="">
-            Download this {document_noun} as a PDF (112KB)</a></h3>
+            Download this {document_noun} as a PDF ({filesizeformat(112)})</a></h3>
             <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
             </div>
             <div class="judgment-download-options__download-option">
@@ -204,44 +193,6 @@ class TestDocumentDownloadOptions:
         assert_contains_html(response, download_options_html)
 
 
-class TestGetPdfSize(TestCase):
-    @patch("judgments.views.detail.get_pdf_uri")
-    @patch("judgments.views.detail.requests.head")
-    def test_returns_valid_size(self, mock_head, mock_get_pdf_uri):
-        mock_head.return_value.headers = {"Content-Length": "1234567890"}
-        mock_head.return_value.status_code = 200
-        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
-
-        assert get_pdf_size("") == " (1.1\xa0GB)"
-        mock_head.assert_called_with(
-            "http://example.com/test.pdf", headers={"Accept-Encoding": None}
-        )
-
-    @patch("judgments.views.detail.get_pdf_uri")
-    @patch("judgments.views.detail.requests.head")
-    def test_pdf_exists_with_no_size(self, mock_head, mock_get_pdf_uri):
-        mock_head.return_value.headers = {}
-        mock_head.return_value.status_code = 200
-        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
-
-        assert get_pdf_size("") == " (unknown size)"
-        mock_head.assert_called_with(
-            "http://example.com/test.pdf", headers={"Accept-Encoding": None}
-        )
-
-    @patch("judgments.views.detail.get_pdf_uri")
-    @patch("judgments.views.detail.requests.head")
-    def test_no_pdf_exists(self, mock_head, mock_get_pdf_uri):
-        mock_head.return_value.headers = {}
-        mock_head.return_value.status_code = 404
-        mock_get_pdf_uri.return_value = "http://example.com/test.pdf"
-
-        assert get_pdf_size("") == ""
-        mock_head.assert_called_with(
-            "http://example.com/test.pdf", headers={"Accept-Encoding": None}
-        )
-
-
 class TestDocumentURIRedirects(TestCase):
     @patch("judgments.views.detail.get_document_by_uri")
     def test_non_canonical_uri_redirects(self, mock_get_document_by_uri):
@@ -255,11 +206,9 @@ class TestDocumentURIRedirects(TestCase):
 
 
 class TestPressSummaryLabel(TestCase):
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_label_when_press_summary(
-        self, mock_get_document_by_uri, mock_get_pdf_size
-    ):
+    def test_label_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
         """
         WHEN a request is made for a document's detail page
         GIVEN the document is a  press summary
@@ -277,10 +226,10 @@ class TestPressSummaryLabel(TestCase):
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
         )
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
     def test_no_press_summary_label_when_on_judgment(
-        self, mock_get_document_by_uri, mock_get_pdf_size
+        self, mock_get_document_by_uri, mock_pdf
     ):
         """
         GIVEN judgment
@@ -299,7 +248,7 @@ class TestPressSummaryLabel(TestCase):
 
 @pytest.mark.django_db
 class TestViewRelatedDocumentButton:
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
         "uri,expected_text,expected_href,document_noun",
@@ -321,7 +270,7 @@ class TestViewRelatedDocumentButton:
     def test_view_related_document_button_when_document_with_related_document(
         self,
         mock_get_document_by_uri,
-        mock_get_pdf_size,
+        mock_pdf,
         uri,
         expected_text,
         expected_href,
@@ -360,7 +309,7 @@ class TestViewRelatedDocumentButton:
         response = client.get(f"/{uri}")
         assert_contains_html(response, expected_html_button)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
         "uri,expected_text,expected_href,document_noun",
@@ -382,7 +331,7 @@ class TestViewRelatedDocumentButton:
     def test_view_related_document_button_when_document_with_related_document_and_query_string(
         self,
         mock_get_document_by_uri,
-        mock_get_pdf_size,
+        mock_pdf,
         uri,
         expected_text,
         expected_href,
@@ -421,7 +370,7 @@ class TestViewRelatedDocumentButton:
         response = client.get(f"/{uri}?query=Query")
         assert_contains_html(response, expected_html_button)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
         "uri,unexpected_text,unexpected_href",
@@ -433,7 +382,7 @@ class TestViewRelatedDocumentButton:
     def test_no_view_related_document_button_when_document_without_related_document(
         self,
         mock_get_document_by_uri,
-        mock_get_pdf_size,
+        mock_pdf,
         uri,
         unexpected_text,
         unexpected_href,
@@ -473,11 +422,9 @@ class TestViewRelatedDocumentButton:
 class TestBreadcrumbs:
     client = Client(raise_request_exception=False)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_breadcrumb_when_press_summary(
-        self, mock_get_document_by_uri, mock_get_pdf_size
-    ):
+    def test_breadcrumb_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
         """
         WHEN a request is made to a document detail page
         GIVEN the document returned is a press summary
@@ -518,11 +465,9 @@ class TestBreadcrumbs:
         """
         assert_contains_html(response, breadcrumb_html)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_breadcrumb_when_judgment(
-        self, mock_get_document_by_uri, mock_get_pdf_size
-    ):
+    def test_breadcrumb_when_judgment(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN a judgment
         WHEN a request is made with the judgment URI
@@ -549,7 +494,7 @@ class TestBreadcrumbs:
         </div>"""
         assert_contains_html(response, breadcrumb_html)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
     @pytest.mark.parametrize(
         "http_error,expected_breadcrumb",
@@ -561,7 +506,7 @@ class TestBreadcrumbs:
     def test_breadcrumb_when_errors(
         self,
         mock_get_document_by_uri,
-        mock_get_pdf_size,
+        mock_pdf,
         http_error,
         expected_breadcrumb,
     ):
@@ -593,10 +538,10 @@ class TestBreadcrumbs:
 
 
 class TestDocumentHeadings(TestCase):
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
     def test_document_headings_when_press_summary(
-        self, mock_get_document_by_uri, mock_get_pdf_size
+        self, mock_get_document_by_uri, mock_pdf
     ):
         """
         GIVEN that the document returned will be a press summary
@@ -632,11 +577,9 @@ class TestDocumentHeadings(TestCase):
         """
         assert_contains_html(response, headings_html)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_document_headings_when_judgment(
-        self, mock_get_document_by_uri, mock_get_pdf_size
-    ):
+    def test_document_headings_when_judgment(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN a judgment exists with URI "eat/2023/1"
         WHEN a request is made with the judgment URI "/eat/2023/1"
@@ -658,11 +601,9 @@ class TestDocumentHeadings(TestCase):
 
 
 class TestHTMLTitle(TestCase):
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_html_title_when_press_summary(
-        self, mock_get_document_by_uri, mock_get_pdf_size
-    ):
+    def test_html_title_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN a press summary
         WHEN a request is made with the press summary URI
@@ -696,11 +637,9 @@ class TestHTMLTitle(TestCase):
         """
         assert_contains_html(response, html_title)
 
-    @patch("judgments.views.detail.get_pdf_size")
+    @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_html_title_when_judgment(
-        self, mock_get_document_by_uri, mock_get_pdf_size
-    ):
+    def test_html_title_when_judgment(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN a judgment
         WHEN a request is made with the judgment URI

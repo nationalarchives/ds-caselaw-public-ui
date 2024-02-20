@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from judgments.models import CourtDates
+from judgments.models.court_dates import CourtDates
 
 
 @admin.register(CourtDates)
