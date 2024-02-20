@@ -1,0 +1,11 @@
+.judgment-decisions {
+  &__header {
+    @include heading_text;
+    font-size: 1.8rem;
+    right: calc($spacer-unit * 1);
+    position: relative;
+    margin-bottom: $spacer-unit;
+    padding-bottom: calc($spacer-unit * 1.5);
+    border-bottom: 1px solid $color-yellow;
+  }
+}
