@@ -74,6 +74,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "waffle",
+    "formtools",
 ]
 
 LOCAL_APPS = [

@@ -1,0 +1,25 @@
+{% autoescape off %}
+<contact_email></contact_email>
+<enquiry_id>TNA1548082972A10</enquiry_id>
+<title></title>
+<mandatory_forename>{{contact_first_name}}</mandatory_forename>
+<mandatory_surname>{{contact_last_name}}</mandatory_surname>
+<mandatory_email>test@example.com</mandatory_email>
+<mandatory_address1>{{organization_name}}</mandatory_address1>
+<address2></address2>
+<address3></address3>
+<mandatory_town>Test town</mandatory_town>
+<county></county>
+<mandatory_postcode>WC1A 1AA</mandatory_postcode>
+<mandatory_country>United Kingdom</mandatory_country>
+<telephone></telephone>
+<mandatory_certificate_forename>{{contact_first_name}}</mandatory_certificate_forename>
+<mandatory_certificate_surname>{{contact_last_name}}</mandatory_certificate_surname>
+<mandatory_birth_date_noval>16/06/1925</mandatory_birth_date_noval>
+<mandatory_search_county>Durham</mandatory_search_county>
+<mandatory_catalogue_reference>WO 409/27/69/435</mandatory_catalogue_reference>
+<enquiry></enquiry>
+<mandatory_is_data_subject>True</mandatory_is_data_subject>
+<mandatory_upload_file_name>7891a9be-a99d-4a74-9d69-6b9f9897504e.png</mandatory_upload_file_name>
+<upload_file_name_consent></upload_file_name_consent>
+{% end autoescape %}
