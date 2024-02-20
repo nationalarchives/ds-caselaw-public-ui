@@ -6,7 +6,7 @@ from django.test import TestCase
 from factories import JudgmentFactory
 
 from judgments import converters, utils
-from judgments.models import CourtDates
+from judgments.models.court_dates import CourtDates
 from judgments.tests.fixtures import FakeSearchResponse
 from judgments.utils import as_integer, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView

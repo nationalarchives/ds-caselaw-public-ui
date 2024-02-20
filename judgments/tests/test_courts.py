@@ -2,7 +2,7 @@ from unittest.mock import Mock, patch
 
 from django.test import TestCase
 
-from judgments.models import CourtDates
+from judgments.models.court_dates import CourtDates
 from judgments.templatetags.court_utils import get_court_date_range, get_court_name
 
 

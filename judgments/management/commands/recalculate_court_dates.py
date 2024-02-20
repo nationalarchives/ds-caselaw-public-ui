@@ -7,7 +7,7 @@ from caselawclient.search_parameters import SearchParameters
 from django.core.management.base import BaseCommand
 from ds_caselaw_utils import courts
 
-from judgments.models import CourtDates
+from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
 
 
