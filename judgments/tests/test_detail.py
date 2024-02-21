@@ -6,7 +6,7 @@ from caselawclient.errors import DocumentNotFoundError
 from django.http import Http404, HttpResponseRedirect
 from django.template.defaultfilters import filesizeformat
 from django.test import Client, TestCase
-from factories import JudgmentFactory, PressSummaryFactory
+from factories import DocumentFactory, JudgmentFactory, PressSummaryFactory
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
@@ -221,6 +221,11 @@ class TestPressSummaryLabel(TestCase):
         response = self.client.get(
             "/test/2023/123"
         )  # has to match factory to avoid redirect.
+
+        import logging
+
+        logging.info("xxxxxxxx Response: %s xxxxxx", response.content)
+
         self.assertContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
@@ -285,11 +290,17 @@ class TestViewRelatedDocumentButton:
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
                 return JudgmentFactory.build(
-                    uri=uri, is_published=True, document_noun=document_noun
+                    uri=uri,
+                    is_published=True,
+                    document_noun=document_noun,
+                    linked_document=DocumentFactory.build(uri=expected_href),
                 )
             elif document_uri == expected_href:
                 return JudgmentFactory.build(
-                    uri=expected_href, is_published=True, document_noun=document_noun
+                    uri=expected_href,
+                    is_published=True,
+                    document_noun=document_noun,
+                    linked_document=DocumentFactory.build(uri=expected_href),
                 )
             else:
                 raise DocumentNotFoundError()
@@ -346,11 +357,17 @@ class TestViewRelatedDocumentButton:
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
                 return JudgmentFactory.build(
-                    uri=uri, is_published=True, document_noun=document_noun
+                    uri=uri,
+                    is_published=True,
+                    document_noun=document_noun,
+                    linked_document=DocumentFactory.build(uri=expected_href),
                 )
             elif document_uri == expected_href:
                 return JudgmentFactory.build(
-                    uri=expected_href, is_published=True, document_noun=document_noun
+                    uri=expected_href,
+                    is_published=True,
+                    document_noun=document_noun,
+                    linked_document=DocumentFactory.build(uri=expected_href),
                 )
             else:
                 raise DocumentNotFoundError()
@@ -432,21 +449,18 @@ class TestBreadcrumbs:
         AND an additional `Press Summary` breadcrumb
         """
 
-        def pj(uri):
-            if "press" in uri:
-                return PressSummaryFactory.build(
-                    uri="eat/2023/1/press-summary/1",
-                    is_published=True,
-                    name="Press Summary of Judgment A",
-                )
-            else:
-                return JudgmentFactory.build(
-                    uri="eat/2023/1/the_judgment_uri",
-                    is_published=True,
-                    name="The Title of Judgment A",
-                )
+        judgment = DocumentFactory.build(
+            uri="eat/2023/1/the_judgment_uri", name="Judgment A"
+        )
 
-        mock_get_document_by_uri.side_effect = pj
+        press_summary = PressSummaryFactory.build(
+            uri="eat/2023/1/press-summary/1",
+            is_published=True,
+            name="Press Summary of Judgment A",
+            linked_document=judgment,
+        )
+
+        mock_get_document_by_uri.return_value = press_summary
 
         response = self.client.get("/eat/2023/1/press-summary/1")
         breadcrumb_html = """

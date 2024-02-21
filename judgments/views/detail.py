@@ -7,20 +7,14 @@ from caselawclient.models.documents import Document, DocumentURIString
 from django.conf import settings
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
-from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
 from judgments.models.document_pdf import DocumentPdf
-from judgments.utils import (
-    get_document_by_uri,
-    linked_doc_title,
-    linked_doc_url,
-    preprocess_query,
-    search_context_from_url,
-)
+from judgments.presenters.document_presenter import DocumentPresenter
+from judgments.utils import get_document_by_uri, search_context_from_url
 
 MOST_RECENT_VERSION = DocumentURIString("")
 
@@ -96,62 +90,25 @@ def get_best_pdf(request, document_uri):
 
 def detail(request, document_uri):
     query = request.GET.get("query")
-    document = get_published_document_by_uri(document_uri)
     pdf = DocumentPdf(document_uri)
+    document = DocumentPresenter(
+        get_published_document_by_uri(document_uri), pdf, query
+    )
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
-    if document_uri != document.uri:
+    if document_uri != document.document_uri:
         redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
         return HttpResponseRedirect(redirect_uri)
 
-    context = {}
-    context["document_noun"] = document.document_noun
-    if document.best_human_identifier is None:
+    if document.judgment_ncn is None:
         raise NoNeutralCitationError(document.uri)
-    context["judgment_ncn"] = document.best_human_identifier
-    if query:
-        context["number_of_mentions"] = str(document.number_of_mentions(query))
-        context["query"] = query
-
-    try:
-        context["linked_document_uri"] = get_published_document_by_uri(
-            linked_doc_url(document)
-        ).uri
-    except Http404:
-        context["linked_document_uri"] = ""
-
-    context["document"] = document.content_as_html(
-        MOST_RECENT_VERSION,
-        query=preprocess_query(query) if query is not None else None,
-    )  # "" is most recent version
-    context["document_uri"] = document.uri
-    context["page_title"] = document.name
-    context["pdf_size"] = (
-        f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
-    )
-    context["pdf_uri"] = pdf.uri
-
-    if document.document_noun == "press summary":
-        breadcrumbs = [
-            {
-                "url": "/" + context["linked_document_uri"],
-                "text": linked_doc_title(document),
-            },
-            {
-                "text": "Press Summary",
-            },
-        ]
-    else:
-        breadcrumbs = [
-            {"text": document.name},
-        ]
 
     return TemplateResponse(
         request,
         "judgment/detail.html",
         context={
-            "context": context,
-            "breadcrumbs": breadcrumbs,
+            "context": {"query": query, "document": document},
+            "breadcrumbs": document.breadcrumbs,
             "feedback_survey_type": "judgment",  # TODO: update the survey to allow for generalisation to `document`
             # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
             "feedback_survey_document_uri": document.uri,
