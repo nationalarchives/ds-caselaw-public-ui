@@ -4,19 +4,19 @@
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{{ context.document.pdf_uri }}"
+        <a href="{{ context.pdf_uri }}"
            aria-label="Download this document as a PDF"
            download="">
-          {% if context.document.document_noun == 'press summary' %}
+          {% if context.document_noun == 'press summary' %}
             {% translate "press_summary.downloadoptions.pdf.cta" %}
           {% else %}
             {% translate "judgment.downloadoptions.pdf.cta" %}
           {% endif %}
-          {{ context.document.pdf_size }}
+          {{ context.pdf_size }}
         </a>
       </h3>
       <p>
-        {% if context.document.document_noun == 'press summary' %}
+        {% if context.document_noun == 'press summary' %}
           {% translate "press_summary.downloadoptions.pdf.description" %}
         {% else %}
           {% translate "judgment.downloadoptions.pdf.description" %}
@@ -25,9 +25,9 @@
     </div>
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% formatted_document_uri context.document.uri 'xml' %}"
+        <a href="{% formatted_document_uri context.document_uri 'xml' %}"
            aria-label="Download this document as XML">
-          {% if context.document.document_noun == 'press summary' %}
+          {% if context.document_noun == 'press summary' %}
             {% translate "press_summary.downloadoptions.xml.cta" %}
           {% else %}
             {% translate "judgment.downloadoptions.xml.cta" %}
@@ -35,7 +35,7 @@
         </a>
       </h3>
       <p>
-        {% if context.document.document_noun == 'press summary' %}
+        {% if context.document_noun == 'press summary' %}
           {% translate "press_summary.downloadoptions.xml.description" %}
         {% else %}
           {% translate "judgment.downloadoptions.xml.description" %}

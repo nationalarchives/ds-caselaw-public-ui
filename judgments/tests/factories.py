@@ -67,11 +67,9 @@ class JudgmentFactory(DocumentFactory):
     target_class = Judgment
     PARAMS_MAP = dict(DocumentFactory.PARAMS_MAP)
     PARAMS_MAP["document_noun"] = "judgment"
-    PARAMS_MAP["linked_document"] = DocumentFactory.build()
 
 
 class PressSummaryFactory(DocumentFactory):
     target_class = PressSummary
     PARAMS_MAP = dict(DocumentFactory.PARAMS_MAP)
     PARAMS_MAP["document_noun"] = "press summary"
-    PARAMS_MAP["linked_document"] = DocumentFactory.build()
