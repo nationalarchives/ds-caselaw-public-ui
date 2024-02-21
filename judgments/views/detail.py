@@ -85,7 +85,13 @@ def get_best_pdf(request, document_uri):
             f"Unexpected {response.status_code} error on {document_uri} whilst trying to get_best_pdf"
         )
     # fall back to weasy_pdf
-    return redirect(reverse("weasy_pdf", kwargs={"document_uri": document_uri}))
+
+    return redirect(
+        reverse(
+            "detail",
+            kwargs={"document_uri": document_uri, "file_format": "generated.pdf"},
+        )
+    )
 
 
 def detail(request, document_uri):
