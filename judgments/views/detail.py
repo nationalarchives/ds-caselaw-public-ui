@@ -69,7 +69,7 @@ def get_best_pdf(request, document_uri):
     If there's a DOCX-derived PDF in the S3 bucket, return that.
     Otherwise fall back and redirect to the weasyprint version."""
     pdf = DocumentPdf(document_uri)
-    response = requests.get(pdf.uri)
+    response = requests.get(pdf.generate_uri())
     logging.debug("Response %s", response.status_code)
     if response.status_code == 200:
         return HttpResponse(response.content, content_type="application/pdf")

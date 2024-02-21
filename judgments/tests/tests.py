@@ -146,7 +146,7 @@ class TestRobotsDirectives(TestCase):
     @patch("judgments.views.detail.requests.get")
     def test_aws_pdf(self, mock_get, mock_pdf):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
-        mock_pdf.return_value.uri = url
+        mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
         response = self.client.get("/eat/2023/1/data.pdf")
@@ -158,7 +158,7 @@ class TestRobotsDirectives(TestCase):
     @patch("judgments.views.detail.requests.get")
     def test_aws_pdf_press_summary(self, mock_get, mock_pdf):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
-        mock_pdf.return_value.uri = url
+        mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
         response = self.client.get("/eat/2023/1/press-summary/1/data.pdf")
