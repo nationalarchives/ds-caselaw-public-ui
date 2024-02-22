@@ -24,6 +24,16 @@ class DocumentPresenter:
         "page_title": "name",
     }
 
+    METHODS = {
+        "number_of_mentions",
+        "linked_document_uri",
+        "linked_document",
+        "content",
+        "pdf_size",
+        "pdf_uri",
+        "breadcrumbs",
+    }
+
     def __init__(self, doc: Document, pdf: DocumentPdf, query: Optional[str] = None):
         self.doc: Union[PressSummary, Judgment]
         if doc.document_noun == "press summary":
@@ -38,6 +48,8 @@ class DocumentPresenter:
             return getattr(self.doc, name)
         elif name in self.PASSTHROUGH_ALIASES.keys():
             return getattr(self.doc, self.PASSTHROUGH_ALIASES[name])
+        elif name in self.METHODS:
+            return self.__getattribute__(name)
         else:
             raise AttributeError(name)
 
