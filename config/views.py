@@ -19,6 +19,18 @@ class TemplateViewWithContext(TemplateView):
         }
 
 
+class ListingsDescriptionView(TemplateViewWithContext):
+    template_name = "pages/listings.html"
+    page_title = ""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["context"]["courts"] = courts.get_grouped_selectable_courts()
+        context["context"]["tribunals"] = courts.get_grouped_selectable_tribunals()
+        context["feedback_survey_type"] = "structured_search"
+        return context
+
+
 class CourtsTribunalsView(TemplateViewWithContext):
     template_name = "pages/courts_and_tribunals.html"
     page_title = "Judgments and decisions by court or tribunal"

@@ -1,0 +1,19 @@
+{% load static %}
+{% block css %}
+  <link href="{% static 'css/includes/listing_and_description.css' %}"
+        rel="stylesheet" />
+{% endblock css %}
+{% block content %}
+  <div class="tna-container tna-grid--listing">
+    <div class="tna-column--width-2-3">
+      <p>Placeholder crest image to go here</p>
+    </div>
+    <div class="tna-column--width-2-3">
+      <h1 class="listing">Placeholder listing title</h1>
+      <p>Placeholder description text will do here for each listing dynamically changes</p>
+    </div>
+    <div class="tna-column--width-2-3">
+      <h4 class="listing__judgment">All listings documents titles with links data show here</h4>
+    </div>
+  </div>
+{% endblock content %}
