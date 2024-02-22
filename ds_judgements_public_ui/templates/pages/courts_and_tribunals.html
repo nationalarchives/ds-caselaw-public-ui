@@ -8,5 +8,33 @@
   Judgements and decisions by court or tribunal
 {% endblock title %}
 {% block content %}
-  <div class="judgment-decisions">{% include "includes/browse_decisions.html" %}</div>
+  <div class="courts-and-tribunals container">
+    <div>
+      <div class="courts-and-tribunals__intro">
+        <h1>
+          Judgments and decisions by
+          <wbr />
+          court or tribunal
+        </h1>
+        <p>
+          The UK courts and tribunal system is like a legal hierachy.  The Supreme Court is at the top, dealing with the final appeals.
+          Below that, there are different courts for various legal issues, such as the Court of Appeal and the Crown Court.  Specialised
+          tribunals handle specific problems like employment or immigration.  Overall, these courts and tribunals are essential for making
+          fair legal decisions and resolving different types of issues.
+        </p>
+      </div>
+      <div>
+        <h2 class="courts-and-tribunals__header">Courts</h2>
+      </div>
+      {% for group in context.courts %}
+        {% include "includes/courts_and_tribunals_group.html" with group=group %}
+      {% endfor %}
+      <div>
+        <h2 class="courts-and-tribunals__header">Tribunals</h2>
+      </div>
+      {% for group in context.tribunals %}
+        {% include "includes/courts_and_tribunals_group.html" with group=group %}
+      {% endfor %}
+    </div>
+  </div>
 {% endblock content %}

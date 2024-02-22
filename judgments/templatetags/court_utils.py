@@ -1,12 +1,17 @@
 import logging
 from datetime import date
 
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.search_parameters import SearchParameters
 from django import template
 from django.utils.safestring import mark_safe
 from ds_caselaw_utils.courts import CourtNotFoundException
 from ds_caselaw_utils.courts import courts as all_courts
 
 from judgments.models.court_dates import CourtDates
+from judgments.utils import api_client
 
 register = template.Library()
 
@@ -53,3 +58,10 @@ def get_court_date_range(court):
         return str(start_year)
     else:
         return mark_safe("%s&nbsp;to&nbsp;%s" % (start_year, end_year))
+
+
+@register.filter
+def get_court_judgments_count(court):
+    return search_judgments_and_parse_response(
+        api_client, SearchParameters(court=court.canonical_param)
+    ).total

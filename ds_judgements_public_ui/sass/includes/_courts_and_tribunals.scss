@@ -1,0 +1,35 @@
+.courts-and-tribunals {
+  &__intro {
+    @media (min-width: $grid-breakpoint-medium) {
+      width: 66%;
+    }
+    text-wrap: balance;
+  }
+
+  &__header {
+    @include heading_text;
+    margin-bottom: calc(2 * $spacer-unit);
+    padding-bottom: $spacer-unit;
+    border-bottom: 1px solid $color-yellow;
+  }
+  h2 {
+    font-size: 2rem;
+    line-height: 2.6rem;
+    margin-top: 1rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.95rem;
+    margin-top: 1rem;
+  }
+  h4 {
+    font-weight: normal;
+    font-size: 1rem;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  p {
+    margin-top: $spacer-unit;
+    margin-bottom: calc(2 * $spacer-unit);
+  }
+}
