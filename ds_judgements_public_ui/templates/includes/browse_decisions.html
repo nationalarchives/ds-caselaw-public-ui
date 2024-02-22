@@ -1,3 +1,8 @@
+{% load static %}
+{% block css %}
+  <link href="{% static 'css/includes/browse_decisions.css' %}"
+        rel="stylesheet" />
+{% endblock css %}
 {% block content %}
   <div class="tna-container tna-grid--judgment-decisions">
     <div class="tna-column--width-2-3">
