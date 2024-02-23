@@ -33,7 +33,7 @@ The database service built from the official [postgres](https://hub.docker.com/_
 
 ## Getting started
 
-**NOTE**: For any of the following commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html). Once installed, you can type `fab -l` to see a list of available commands.
+**NOTE**: For any of the following commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html). (Homebrew is also an option: `brew install fabric`.) Once installed, you can type `fab -l` to see a list of available commands.
 
 ### 1. Get access to Marklogic
 
@@ -221,7 +221,7 @@ Then it means the dependencies for WeasyPrint have not been installed correctly.
 
 ## Setting up the pre-commit hooks (strongly advised)
 
-To use this, you will need to install [pre-commit](https://pre-commit.com/) on your development machine, typically using `pip install pre-commit`.
+To use this, you will need to install [pre-commit](https://pre-commit.com/) on your development machine, typically using `pip install pre-commit`. If you prefer Homebrew, you can use `brew install pre-commit`.
 
 Install the git hooks configured in `.pre-commit-config.yaml` with:
 
