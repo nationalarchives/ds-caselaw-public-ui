@@ -236,7 +236,7 @@ Any commit that's merged to `main` needs to be [signed](https://docs.github.com/
 We recommend signing with your ssh key, as it's probably the easiest method of doing so. Assuming you already have an ssh key created, just follow the following steps:
 
 - Add your SSH key as a _signing key_ in your [github account](https://github.com/settings/keys) - note this is different to an _authentication key_, which you likely already have set up. You can use the same key for both purposes, but you need to add it separately for each one twice.
-- In your terminal, run the following commands. This assumes you want to set up commit signing by default for all repositories. If you don't want this for whatever, reason, leave out the `--global` flag (but in that case you'll have to remember to repeat these steps in every TNA repository you work on):
+- In your terminal, run the following commands. This assumes you want to set up commit signing by default for all repositories. If you don't want this for whatever reason, leave out the `--global` flag (but in that case you'll have to remember to repeat these steps in every TNA repository you work on):
   - Enable signing with `git config --global commit.gpgsign true`
   - Specify that we'll use SSH for signing with: `git config --global gpg.format ssh`
   - Specify the key you'll use to sign. If it's not id_rsa.pub, give the correct path here: `git config --global user.signingkey ~/.ssh/id_rsa.pub`
