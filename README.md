@@ -49,7 +49,7 @@ depends on where you work:
 
 #### dxw developers
 
-You will need to be using the dxw vpn. Retrieve the staging Marklogic credentials from dalmatian (or ask
+You will need to be using the dxw VPN. Retrieve the staging Marklogic credentials from dalmatian (or ask
 one of the other developers/ops). Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
 in your `.env` file (see step 2).
 
@@ -57,7 +57,7 @@ The MARKLOGIC_HOST should likely begin with `caselaw`
 
 #### TNA/other developers
 
-You will need vpn credentials from the dxw ops team, and the staging Marklogic credentials from one of the
+You will need VPN credentials from the dxw ops team, and the staging Marklogic credentials from one of the
 dxw development team. Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
 in your `.env` file (see step 2).
 
