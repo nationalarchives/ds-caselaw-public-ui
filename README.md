@@ -33,7 +33,7 @@ The database service built from the official [postgres](https://hub.docker.com/_
 
 ## Getting started
 
-**NOTE**: For any of the following commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html). Once installed, you can type `fab -l` to see a list of available commands.
+**NOTE**: For any of the following commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html). (Homebrew is also an option: `brew install fabric`.) Once installed, you can type `fab -l` to see a list of available commands.
 
 ### 1. Get access to Marklogic
 
@@ -49,7 +49,7 @@ depends on where you work:
 
 #### dxw developers
 
-You will need to be using the dxw vpn. Retrieve the staging Marklogic credentials from dalmatian (or ask
+You will need to be using the dxw VPN. Retrieve the staging Marklogic credentials from dalmatian (or ask
 one of the other developers/ops). Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
 in your `.env` file (see step 2).
 
@@ -57,7 +57,7 @@ The MARKLOGIC_HOST should likely begin with `caselaw`
 
 #### TNA/other developers
 
-You will need vpn credentials from the dxw ops team, and the staging Marklogic credentials from one of the
+You will need VPN credentials from the dxw ops team, and the staging Marklogic credentials from one of the
 dxw development team. Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
 in your `.env` file (see step 2).
 
@@ -221,7 +221,7 @@ Then it means the dependencies for WeasyPrint have not been installed correctly.
 
 ## Setting up the pre-commit hooks (strongly advised)
 
-To use this, you will need to install [pre-commit](https://pre-commit.com/) on your development machine, typically using `pip install pre-commit`.
+To use this, you will need to install [pre-commit](https://pre-commit.com/) on your development machine, typically using `pip install pre-commit`. If you prefer Homebrew, you can use `brew install pre-commit`.
 
 Install the git hooks configured in `.pre-commit-config.yaml` with:
 
@@ -236,7 +236,7 @@ Any commit that's merged to `main` needs to be [signed](https://docs.github.com/
 We recommend signing with your ssh key, as it's probably the easiest method of doing so. Assuming you already have an ssh key created, just follow the following steps:
 
 - Add your SSH key as a _signing key_ in your [github account](https://github.com/settings/keys) - note this is different to an _authentication key_, which you likely already have set up. You can use the same key for both purposes, but you need to add it separately for each one twice.
-- In your terminal, run the following commands. This assumes you want to set up commit signing by default for all repositories. If you don't want this for whatever, reason, leave out the `--global` flag (but in that case you'll have to remember to repeat these steps in every TNA repository you work on):
+- In your terminal, run the following commands. This assumes you want to set up commit signing by default for all repositories. If you don't want this for whatever reason, leave out the `--global` flag (but in that case you'll have to remember to repeat these steps in every TNA repository you work on):
   - Enable signing with `git config --global commit.gpgsign true`
   - Specify that we'll use SSH for signing with: `git config --global gpg.format ssh`
   - Specify the key you'll use to sign. If it's not id_rsa.pub, give the correct path here: `git config --global user.signingkey ~/.ssh/id_rsa.pub`
