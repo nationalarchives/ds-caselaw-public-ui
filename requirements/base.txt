@@ -21,4 +21,4 @@ django-waffle==4.1.0  # https://github.com/django-waffle/django-waffle
 
 # Type stubs
 mypy-boto3-s3==1.34.14
-mypy-boto3-sns==1.34.0
+mypy-boto3-sns==1.34.44
