@@ -1,4 +1,7 @@
-{% load i18n %}
+{% load static i18n %}
+{% block css %}
+  <link href="{% static 'css/includes/ncn_not_found.css' %}" rel="stylesheet" />
+{% endblock css %}
 <div class="search-term-component__search-term-container">
   <label for="search_term" class="search-term-component__search-term-label">
     {% translate "basicsearchform.label" %}
