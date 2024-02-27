@@ -17,6 +17,11 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
     path(
+        "courts-and-tribunals/<path:param>",
+        views.CourtOrTribunalView.as_view(),
+        name="court_or_tribunal",
+    ),
+    path(
         "courts-and-tribunals",
         views.CourtsTribunalsView.as_view(),
         name="courts_and_tribunals",

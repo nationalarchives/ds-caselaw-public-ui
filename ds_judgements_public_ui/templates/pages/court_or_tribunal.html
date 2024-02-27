@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+{% load i18n static court_utils %}
+{% block robots %}
+  <meta name="robots" content="noindex,nofollow" />
+{% endblock robots %}
+{% block title %}
+  {{ context.page_title }}
+{% endblock title %}
+{% block content %}
+  <div class="container court-or-tribunal">
+    <div class="court-or-tribunal__crest">
+      <img src="{{ court | get_court_crest_path }}"
+           alt=""
+           width="150"
+           height="150" />
+    </div>
+    <div class="court-or-tribunal__intro">
+      <h1 class="listing">{{ court.name }}</h1>
+      {% autoescape off %}
+        {{ court | get_court_intro_text }}
+      {% endautoescape %}
+    </div>
+    <div>
+      {% for judgment in judgments %}
+        <div class="court-or-tribunal__judgment">
+          <h2>
+            <a href="{% url 'detail' judgment.uri %}">{{ judgment.name }}</a>
+          </h2>
+          <p class="court-or-tribunal__judgment-meta">
+            {{ judgment.neutral_citation }}
+            <br />
+            {{ judgment.date|date }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="court-or-tribunal__pagination-links">
+      {% if paginator.has_prev_page %}
+        <div class="court-or-tribunal__pagination-link prev">
+          <a href="{{ request.path }}?page={{ paginator.prev_page }}">Previous</a>
+          <br />
+          <span>{{ paginator.prev_page }} of {{ paginator.number_of_pages }}</span>
+        </div>
+      {% endif %}
+      {% if paginator.has_next_page %}
+        <div class="court-or-tribunal__pagination-link next">
+          <a href="{{ request.path }}?page={{ paginator.next_page }}">Next</a>
+          <br />
+          <span>{{ paginator.next_page }} of {{ paginator.number_of_pages }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
