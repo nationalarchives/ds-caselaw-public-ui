@@ -1,0 +1,8 @@
+{% if group.display_heading %}
+  <div>
+    <h3 class="courts-and-tribunals__header">{{ group.name }}</h3>
+  </div>
+{% endif %}
+{% for court in group.courts %}
+  {% include "includes/courts_and_tribunals_court.html" with court=court %}
+{% endfor %}

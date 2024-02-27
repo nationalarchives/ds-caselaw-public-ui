@@ -1,8 +1,14 @@
 import requests
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404, HttpResponse
 from django.utils.translation import gettext
 from django.views.generic import TemplateView
 from ds_caselaw_utils import courts
+
+from judgments.utils import api_client, as_integer, paginator
 
 # where the schemas can be downloaded from. Slash-terminated.
 SCHEMA_ROOT = "https://raw.githubusercontent.com/nationalarchives/ds-caselaw-marklogic/main/src/main/ml-schemas/"
@@ -17,6 +23,56 @@ class TemplateViewWithContext(TemplateView):
                 "page_title": gettext(self.page_title) if self.page_title else None
             }
         }
+
+
+class CourtsTribunalsView(TemplateViewWithContext):
+    template_name = "pages/courts_and_tribunals.html"
+    page_title = "Judgments and decisions by court or tribunal"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["context"]["courts"] = courts.get_grouped_selectable_courts()
+        context["context"]["tribunals"] = courts.get_grouped_selectable_tribunals()
+        context["feedback_survey_type"] = "courts_and_tribunals"
+        return context
+
+
+class CourtOrTribunalView(TemplateViewWithContext):
+    template_name = "pages/court_or_tribunal.html"
+
+    @property
+    def page_title(self):
+        return "Judgments for %s" % self.court.name
+
+    @property
+    def court(self):
+        return courts.get_by_param(self.kwargs["param"])
+
+    @property
+    def page(self):
+        return str(as_integer(self.request.GET.get("page"), minimum=1))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        search_response = search_judgments_and_parse_response(
+            api_client,
+            SearchParameters(
+                court=self.court.canonical_param, order="-date", page=self.page
+            ),
+        )
+
+        context["feedback_survey_type"] = (
+            "court_or_tribunal_%s" % self.court.canonical_param
+        )
+        context["request"] = self.request
+        context["court"] = self.court
+        context["judgments"] = search_response.results
+        context["paginator"] = paginator(
+            self.page, search_response.total, RESULTS_PER_PAGE
+        )
+
+        return context
 
 
 class ComputationalLicenceFormView(TemplateViewWithContext):
