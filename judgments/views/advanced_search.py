@@ -13,6 +13,7 @@ from ds_caselaw_utils.neutral import neutral_url
 
 from judgments.models.court_dates import CourtDates
 from judgments.models.search_form_errors import SearchFormErrors
+from judgments.templatetags.search_results_filters import is_exact_ncn_match
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
@@ -22,6 +23,13 @@ from judgments.utils import (
     parse_date_parameter,
     preprocess_query,
 )
+
+
+def search_results_have_exact_ncn(search_results, query):
+    for search_result in search_results:
+        if is_exact_ncn_match(search_result, query):
+            return True
+    return False
 
 
 def advanced_search(request):
@@ -76,6 +84,8 @@ def advanced_search(request):
         "to_year": params.get("to_year"),
         "per_page": params.get("per_page"),
     }
+
+    query_text = query_params["query"]
     page = str(as_integer(params.get("page"), minimum=1))
     per_page = str(
         as_integer(
@@ -88,18 +98,17 @@ def advanced_search(request):
 
     order = query_params["order"]
     # If there is no query, order by -date, else order by relevance
-    if not order and not query_params["query"]:
+    if not order and not query_text:
         order = "-date"
     elif not order:
         order = "relevance"
 
     context = {
         "errors": errors,
-        "query": query_params["query"],
+        "query": query_text,
         "courts": all_courts.get_grouped_selectable_courts(),
         "tribunals": all_courts.get_grouped_selectable_tribunals(),
         "query_params": query_params,
-        "query_is_ncn": bool(neutral_url(query_params["query"])),
     }
 
     for key in query_params:
@@ -111,7 +120,7 @@ def advanced_search(request):
         )
     else:
         try:
-            query_without_stop_words = preprocess_query(query_params["query"])
+            query_without_stop_words = preprocess_query(query_text)
             search_parameters = SearchParameters(
                 query=query_without_stop_words,
                 court=",".join(query_params["court"]),
@@ -140,13 +149,18 @@ def advanced_search(request):
             context["per_page"] = per_page
             context["filtered"] = has_filters(context["query_params"])
             context["page_title"] = gettext("results.search.title")
+            context["query_is_ncn"] = not (
+                search_results_have_exact_ncn(search_response.results, query_text)
+            ) and bool(neutral_url(query_text))
+            # TODO: hide if not on page 1; fill in "..." on search results, rethink nonono logic.
+            # TODO: think about changing the 404 below to a 500.
 
         except MarklogicResourceNotFoundError:
             raise Http404("Search failed")  # TODO: This should be something else!
 
         # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
-        if query_params["query"]:
-            breadcrumbs = [{"text": f'Search results for "{query_params["query"]}"'}]
+        if query_text:
+            breadcrumbs = [{"text": f'Search results for "{query_text}"'}]
         else:
             breadcrumbs = [{"text": "Search results"}]
         return TemplateResponse(
