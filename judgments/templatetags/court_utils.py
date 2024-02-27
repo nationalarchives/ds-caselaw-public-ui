@@ -75,8 +75,8 @@ def get_court_judgments_count(court):
 def get_court_intro_text(court):
     def read_markdown(param):
         filename = param.replace("/", "_")
-        base_path = "markdown/court_descriptions/%s.md"
-        path = finders.find(base_path % filename)
+        base_path = r"markdown/court_descriptions/{filename}.md"
+        path = finders.find(base_path.format(filename=filename))
         md = MarkdownIt("commonmark", {"breaks": True, "html": True}).use(attrs_plugin)
         if path:
             with open(path) as file:
@@ -89,9 +89,9 @@ def get_court_intro_text(court):
 def get_court_crest_path(court):
     param = court.canonical_param
     filename = param.replace("/", "_")
-    base_path = "images/court_crests/%s.%s"
+    base_path = r"images/court_crests/{filename}.{extension}"
     for extension in ["gif", "png", "jpg", "svg"]:
-        path = base_path % (filename, extension)
+        path = base_path.format(filename=filename, extension=extension)
         if finders.find(path):
             return static(path)
-    return static(base_path % ("default", "svg"))
+    return static(base_path.format(filename="default", extension="svg"))

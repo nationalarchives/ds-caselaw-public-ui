@@ -25,7 +25,9 @@ class TemplateViewWithContext(TemplateView):
         }
 
 
-class CourtsTribunalsView(TemplateViewWithContext):
+class CourtsTribunalsListView(TemplateViewWithContext):
+    """List view for all courts and tribunals in the Find Case Law database."""
+
     template_name = "pages/courts_and_tribunals.html"
     page_title = "Judgments and decisions by court or tribunal"
 
@@ -38,6 +40,8 @@ class CourtsTribunalsView(TemplateViewWithContext):
 
 
 class CourtOrTribunalView(TemplateViewWithContext):
+    """Individual view for a specific court or tribunal."""
+
     template_name = "pages/court_or_tribunal.html"
 
     @property

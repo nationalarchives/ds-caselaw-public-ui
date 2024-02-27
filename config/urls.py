@@ -23,7 +23,7 @@ urlpatterns = [
     ),
     path(
         "courts-and-tribunals",
-        views.CourtsTribunalsView.as_view(),
+        views.CourtsTribunalsListView.as_view(),
         name="courts_and_tribunals",
     ),
     path(
