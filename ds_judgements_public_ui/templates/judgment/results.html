@@ -10,12 +10,14 @@
     <div class="results__container">
       <div class="results__list-layout-container">
         {% if context.search_results %}
-          <div class="tna-message ">
-            <h class="tna-message__heading">
-            <span class="tna-message__heading-icon">I</span>mportant information
-            </h>
-            <div class="tna-message__message">There is no judgment with the Neutral Citation of ....  in our database.</div>
-          </div>
+          {% if context.query_is_ncn %}
+            <div class="tna-message ">
+              <h class="tna-message__heading">
+              <span class="tna-message__heading-icon">I</span>mportant information
+              </h>
+              <div class="tna-message__message">There is no judgment with the Neutral Citation of ....  in our database.</div>
+            </div>
+          {% endif %}
           <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
           <div class="results__result-list-container">
             {% include "includes/results_list.html" %}

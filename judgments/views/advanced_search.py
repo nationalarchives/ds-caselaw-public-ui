@@ -9,6 +9,7 @@ from django.http import Http404
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.neutral import neutral_url
 
 from judgments.models.court_dates import CourtDates
 from judgments.models.search_form_errors import SearchFormErrors
@@ -98,6 +99,7 @@ def advanced_search(request):
         "courts": all_courts.get_grouped_selectable_courts(),
         "tribunals": all_courts.get_grouped_selectable_tribunals(),
         "query_params": query_params,
+        "query_is_ncn": bool(neutral_url(query_params["query"])),
     }
 
     for key in query_params:
