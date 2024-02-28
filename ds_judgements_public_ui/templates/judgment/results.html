@@ -14,7 +14,9 @@
             <h class="tna-message__heading">
             <span class="tna-message__heading-icon">I</span>mportant information
             </h>
-            <div class="tna-message__message">There is no judgment with the Neutral Citation of ....  in our database.</div>
+            <div class="tna-message__message">
+              There is no judgment with the Neutral Citation of {{ context.query }} in our database.
+            </div>
           </div>
         {% endif %}
         {% if context.search_results %}

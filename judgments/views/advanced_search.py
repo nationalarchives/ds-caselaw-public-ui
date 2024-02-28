@@ -152,7 +152,7 @@ def advanced_search(request):
             context["query_is_ncn"] = not (
                 search_results_have_exact_ncn(search_response.results, query_text)
             ) and bool(neutral_url(query_text))
-            # TODO: hide if not on page 1; fill in "..." on search results, rethink nonono logic.
+            # TODO: hide if not on page 1; rethink nonono logic?
             # TODO: think about changing the 404 below to a 500.
 
         except MarklogicResourceNotFoundError:
