@@ -14,7 +14,7 @@ from judgments.utils import (
 )
 
 
-class TestGetDocumentByUri(unittest.TestCase):
+class TestUtils(unittest.TestCase):
     @mock.patch("judgments.utils.api_client")
     def test_get_existing_document(self, mock_api_client):
         document = mock.Mock()
