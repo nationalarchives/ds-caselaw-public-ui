@@ -1,0 +1,77 @@
+{% load static %}
+{% block css %}
+  <link href="{% static 'css/cards_homepage.css' %}" rel="stylesheet" />
+{% endblock css %}
+<div class="tna-section tna-!--no-padding-bottom">
+  <ul class="tna-ul tna-ul--plain tna-container">
+    <li class="tna-column tna-column--width-1-3 tna-column--width-1-2-medium tna-column--width-1-2-small tna-column--full-tiny tna-!--margin-bottom-l">
+      <article class="tna-card">
+        <div class="tna-card__inner">
+          <h3 class="tna-card__heading">
+            <b><a href="https://caselaw.nationalarchives.gov.uk/judgments/search"
+   class="tna-card__heading-link">Recently published</a></b>
+          </h3>
+          <a href="https://caselaw.nationalarchives.gov.uk/judgments/search"
+             class="tna-card__image-container"
+             tabindex="-1">
+            <picture class="tna-card__image">
+              <img src="{% static '/images/recently_added.png' %}"
+                   alt="Recently published"
+                   width="499"
+                   height="333">
+            </picture>
+          </a>
+          <div class="tna-card__body">
+            <p>Browse legal decisions most recently added to the Find Case Law site.</p>
+          </div>
+        </div>
+      </article>
+    </li>
+    <li class="tna-column tna-column--width-1-3 tna-column--width-1-2-medium tna-column--width-1-2-small tna-column--full-tiny tna-!--margin-bottom-l">
+      <article class="tna-card">
+        <div class="tna-card__inner">
+          <h3 class="tna-card__heading">
+            <b><a href="{% url 'courts_and_tribunals' %}"
+   class="tna-card__heading-link">Browse by court or tribunal</a></b>
+          </h3>
+          <a href="{% url 'courts_and_tribunals' %}"
+             class="tna-card__image-container"
+             tabindex="-1">
+            <picture class="tna-card__image">
+              <img src="{% static '/images/browse-courts-tribunals.png' %}"
+                   alt="Browse by court or tribunal"
+                   width="499"
+                   height="333">
+            </picture>
+          </a>
+          <div class="tna-card__body">
+            <p>Browse judgments and tribunals from the United Kingdoms's 18 courts and 7 tribunals.</p>
+          </div>
+        </div>
+      </article>
+    </li>
+    <li class="tna-column tna-column--width-1-3 tna-column--width-1-2-medium tna-column--width-1-2-small tna-column--full-tiny tna-!--margin-bottom-l">
+      <article class="tna-card">
+        <div class="tna-card__inner">
+          <h3 class="tna-card__heading">
+            <b><a href="{% url 'how_to_use_this_service' %}"
+   class="tna-card__heading-link">Help and Support</a></b>
+          </h3>
+          <a href="{% url 'how_to_use_this_service' %}"
+             class="tna-card__image-container"
+             tabindex="-1">
+            <picture class="tna-card__image">
+              <img src="{% static '/images/help-and-guidance.png' %}"
+                   alt="Help and Support"
+                   width="499"
+                   height="333">
+            </picture>
+          </a>
+          <div class="tna-card__body">
+            <p>Find out how to search for judgements and decisions.</p>
+          </div>
+        </div>
+      </article>
+    </li>
+  </ul>
+</div>

@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load i18n %}
+{% load i18n waffle_tags %}
 {% block meta_description %}
   <meta name="description"
         content="Judgments and decisions from 2003 onwards." />
@@ -21,6 +21,11 @@
 {% endblock header %}
 {% block content %}
   {% include "includes/basic_search_form.html" %}
-  {% include "includes/recent_judgments.html" %}
-  {% include "includes/browse_by_court.html" %}
+  {% flag cards_homepage %}
+    {% include "includes/cards_homepage.html" %}
+  {% endflag %}
+  {% flag remove_recent_browse %}
+    {% include "includes/recent_judgments.html" %}
+    {% include "includes/browse_by_court.html" %}
+  {% endflag %}
 {% endblock content %}
