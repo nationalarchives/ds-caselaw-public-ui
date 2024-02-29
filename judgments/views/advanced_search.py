@@ -149,11 +149,11 @@ def advanced_search(request):
             context["per_page"] = per_page
             context["filtered"] = has_filters(context["query_params"])
             context["page_title"] = gettext("results.search.title")
-            context["show_no_exact_ncn_warning"] = not (
-                search_results_have_exact_ncn(search_response.results, query_text)
-            ) and bool(neutral_url(query_text))
-            # TODO: hide if not on page 1; rethink nonono logic?
-            # TODO: think about changing the 404 below to a 500.
+            context["show_no_exact_ncn_warning"] = (
+                not (search_results_have_exact_ncn(search_response.results, query_text))
+                and bool(neutral_url(query_text))
+                and page == "1"
+            )
 
         except MarklogicResourceNotFoundError:
             raise Http404("Search failed")  # TODO: This should be something else!
