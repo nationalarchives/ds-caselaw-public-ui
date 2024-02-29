@@ -9,7 +9,7 @@
     {% include "includes/results_search_component.html" %}
     <div class="results__container">
       <div class="results__list-layout-container">
-        {% if context.query_is_ncn %}
+        {% if context.show_no_exact_ncn_warning %}
           <div class="tna-message ">
             <h class="tna-message__heading">
             <span class="tna-message__heading-icon">I</span>mportant information
