@@ -12,6 +12,7 @@ from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext
+from ds_caselaw_utils.neutral import neutral_url
 
 from .fixtures.stop_words import stop_words
 
@@ -267,3 +268,37 @@ def press_summary_list_breadcrumbs(press_summary: Document):
             "text": "Press Summaries",
         },
     ]
+
+
+not_alphanumeric = re.compile("[^a-zA-Z0-9]")
+
+
+def replace_parens(string):
+    return normalise_spaces(re.sub("\\(.+\\)", "", string))
+
+
+def preprocess_title(string):
+    return preprocess_query(replace_parens(string)).lower().strip()
+
+
+def preprocess_ncn(string):
+    return re.sub(not_alphanumeric, "", preprocess_query(string).lower()).strip()
+
+
+def is_exact_ncn_match(result, query):
+    return preprocess_ncn(query) == preprocess_ncn(result.neutral_citation)
+
+
+def search_results_have_exact_ncn(search_results, query):
+    for search_result in search_results:
+        if is_exact_ncn_match(search_result, query):
+            return True
+    return False
+
+
+def show_no_exact_ncn_warning(search_results, query_text, page):
+    return (
+        not (search_results_have_exact_ncn(search_results, query_text))
+        and bool(neutral_url(query_text))
+        and page == "1"
+    )

@@ -9,11 +9,9 @@ from django.http import Http404
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
-from ds_caselaw_utils.neutral import neutral_url
 
 from judgments.models.court_dates import CourtDates
 from judgments.models.search_form_errors import SearchFormErrors
-from judgments.templatetags.search_results_filters import is_exact_ncn_match
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
@@ -22,14 +20,8 @@ from judgments.utils import (
     paginator,
     parse_date_parameter,
     preprocess_query,
+    show_no_exact_ncn_warning,
 )
-
-
-def search_results_have_exact_ncn(search_results, query):
-    for search_result in search_results:
-        if is_exact_ncn_match(search_result, query):
-            return True
-    return False
 
 
 def advanced_search(request):
@@ -149,10 +141,8 @@ def advanced_search(request):
             context["per_page"] = per_page
             context["filtered"] = has_filters(context["query_params"])
             context["page_title"] = gettext("results.search.title")
-            context["show_no_exact_ncn_warning"] = (
-                not (search_results_have_exact_ncn(search_response.results, query_text))
-                and bool(neutral_url(query_text))
-                and page == "1"
+            context["show_no_exact_ncn_warning"] = show_no_exact_ncn_warning(
+                search_response.results, query_text, page
             )
 
         except MarklogicResourceNotFoundError:
