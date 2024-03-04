@@ -139,7 +139,7 @@ class TestRobotsDirectives(TestCase):
         # with nofollow,noindex
         response = self.client.get("/judgments/search?query=waltham+forest")
         self.assertContains(
-            response, '<meta name="robots" content="noindex,nofollow" />'
+            response, '<meta name="robots" content="noindex,nofollow" />', html=True
         )
 
     @patch("judgments.views.detail.DocumentPdf")
@@ -210,6 +210,7 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(
             response,
             "The Find Case Law service provides public access to court judgments and tribunal decisions.",
+            html=True,
         )  # actual content of page
 
     def test_static_pages(self):

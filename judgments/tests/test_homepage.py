@@ -15,7 +15,4 @@ class TestHomepage(TestCase):
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client, SearchParameters(order="-date")
         )
-        self.assertContains(
-            response,
-            "A SearchResult name!",
-        )
+        self.assertContains(response, "A SearchResult name!", html=True)
