@@ -22,7 +22,7 @@ class TestDateParsing(TestCase):
         """
         params = {"date": "2019-12-02"}
         parsed = parse_date_parameter(params, "date")
-        self.assertEqual(parsed, "2019-12-02")
+        self.assertEqual(parsed, date(2019, 12, 2))
 
     def test_provided_date_takes_precedence(self):
         """
@@ -35,7 +35,7 @@ class TestDateParsing(TestCase):
             "date_year": "2020",
         }
         parsed = parse_date_parameter(params, "date")
-        self.assertEqual(parsed, "2019-12-02")
+        self.assertEqual(parsed, date(2019, 12, 2))
 
     def test_a_blank_date_does_not_count_as_provided(self):
         """
