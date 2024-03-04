@@ -15,7 +15,13 @@
                href="{% url 'search' %}?{{ context.query_params|remove_query:key }}">
               <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
               <span class="results-search-component__removable-options-value">
-                <span class="results-search-component__removable-options-value-text">{{ value }}</span>
+                <span class="results-search-component__removable-options-value-text">
+                  {% if key == 'from' or key == 'to' %}
+                    {{ value|date:"d M Y" }}
+                  {% else %}
+                    {{ value }}
+                  {% endif %}
+                </span>
               </span>
             </a>
           </li>

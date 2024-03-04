@@ -30,7 +30,7 @@ def format_date(date):
     if date == "" or date is None:
         return None
 
-    time = datetime.strptime(date, "%Y-%m-%d")
+    time = date.strptime(date, "%Y-%m-%d")
     return time.strftime("%d-%m-%Y")
 
 
@@ -187,7 +187,7 @@ def parse_date_parameter(
     month_param_name = f"{param_name}_month"
     day_param_name = f"{param_name}_day"
     if parameter_provided(params, param_name):
-        return params[param_name]
+        return datetime.strptime(params[param_name], "%Y-%m-%d").date()
     elif parameter_provided(params, year_param_name):
         year = parse_parameter_as_int(params, year_param_name)
 

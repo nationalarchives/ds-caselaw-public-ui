@@ -224,6 +224,7 @@ class TestPressSummaryLabel(TestCase):
         self.assertContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
+            html=True,
         )
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)

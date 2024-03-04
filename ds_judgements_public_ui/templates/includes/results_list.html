@@ -29,7 +29,7 @@
         </span>
         <span>
           <span class="judgment-listing__neutralcitation">{{ item.neutral_citation }}</span>
-          <time class="judgment-listing__date" datetime="{{ item.date }}">{{ item.date|date }}</time>
+          <time class="judgment-listing__date" datetime="{{ item.date }}">{{ item.date|date:"d M Y" }}</time>
         </span>
       </span>
       {% if item|show_matches:context.query %}

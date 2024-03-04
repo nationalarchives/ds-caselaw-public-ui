@@ -28,10 +28,7 @@ class TestBrowseResults(TestCase):
                 page_size=10,
             ),
         )
-        self.assertContains(
-            response,
-            "A SearchResult name!",
-        )
+        self.assertContains(response, "A SearchResult name!", html=True)
 
 
 class TestSearchResults(TestCase):
@@ -45,6 +42,7 @@ class TestSearchResults(TestCase):
         self.assertContains(
             response,
             '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
+            html=True,
         )
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
@@ -143,7 +141,9 @@ class TestSearchResults(TestCase):
         )
         message = html.escape(gettext("search.errors.from_date_headline"))
         self.assertContains(
-            response, f'<div class="page-notification--failure">{message}</div>'
+            response,
+            f'<div class="page-notification--failure">{message}</div>',
+            html=True,
         )
 
     @patch("judgments.views.advanced_search.api_client")
@@ -157,7 +157,9 @@ class TestSearchResults(TestCase):
         )
         message = html.escape(gettext("search.errors.to_date_headline"))
         self.assertContains(
-            response, f'<div class="page-notification--failure">{message}</div>'
+            response,
+            f'<div class="page-notification--failure">{message}</div>',
+            html=True,
         )
 
     @patch("judgments.views.advanced_search.api_client")
@@ -169,7 +171,9 @@ class TestSearchResults(TestCase):
         response = self.client.get("/judgments/search?to_year=2022&from_year=2023")
         message = html.escape(gettext("search.errors.to_before_from_headline"))
         self.assertContains(
-            response, f'<div class="page-notification--failure">{message}</div>'
+            response,
+            f'<div class="page-notification--failure">{message}</div>',
+            html=True,
         )
 
 
