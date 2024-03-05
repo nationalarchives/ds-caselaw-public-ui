@@ -1,8 +1,17 @@
 // Setup
-@import "includes/variables";
-@import "includes/mixins";
+@use "includes/variables" as *;
+
+// Override variables in tna-frontend
+@use "../../node_modules/@nationalarchives/frontend/nationalarchives/variables/colour"
+  with (
+  $link-colour: $color-link-blue
+);
+// Include all of tna-frontend
+@use "../../node_modules/@nationalarchives/frontend/nationalarchives/all";
 
 // Core
+@import "includes/variables";
+@import "includes/mixins";
 @import "includes/layout";
 @import "includes/spacing";
 @import "includes/typography";

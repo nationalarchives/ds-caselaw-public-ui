@@ -1,5 +1,10 @@
 @import "../../../node_modules/@nationalarchives/ds-caselaw-frontend/src/includes/variables/colours";
 
+// set main link color var to ensure tna-frontend doens't override it
+:root {
+  --link: #{$color-link-blue};
+}
+
 $spacer-unit: 1rem;
 
 $gutter_unit: 25px;

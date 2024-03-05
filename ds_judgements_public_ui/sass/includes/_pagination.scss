@@ -171,7 +171,7 @@
 
     &-link,
     &-link:visited {
-      color: $color-white;
+      color: $color-white !important; // Needs !important to override tna-frontend
     }
 
     &-link-current,
@@ -180,7 +180,7 @@
     &-link:hover,
     &-link:focus {
       background-color: $color-white;
-      color: $color-black;
+      color: $color-black !important; //Needs !important to override tna-frontend
       font-weight: bold;
       outline-color: $color-highlight-blue;
     }
