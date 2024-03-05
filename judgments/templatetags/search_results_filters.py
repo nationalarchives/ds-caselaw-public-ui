@@ -1,24 +1,9 @@
-import re
-
 from django import template
 
-from judgments.utils import normalise_spaces, preprocess_query
+import judgments.utils
+from judgments.utils import preprocess_title
 
 register = template.Library()
-
-not_alphanumeric = re.compile("[^a-zA-Z0-9]")
-
-
-def replace_parens(string):
-    return normalise_spaces(re.sub("\\(.+\\)", "", string))
-
-
-def preprocess_title(string):
-    return preprocess_query(replace_parens(string)).lower().strip()
-
-
-def preprocess_ncn(string):
-    return re.sub(not_alphanumeric, "", preprocess_query(string).lower()).strip()
 
 
 @register.filter
@@ -33,7 +18,7 @@ def is_exact_title_match(result, query):
 
 @register.filter
 def is_exact_ncn_match(result, query):
-    return preprocess_ncn(query) == preprocess_ncn(result.neutral_citation)
+    return judgments.utils.is_exact_ncn_match(result, query)
 
 
 @register.filter
