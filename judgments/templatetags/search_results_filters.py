@@ -1,6 +1,6 @@
 from django import template
 
-from judgments.utils import is_exact_ncn_match as _is_exact_ncn_match
+import judgments.utils
 from judgments.utils import preprocess_title
 
 register = template.Library()
@@ -18,7 +18,7 @@ def is_exact_title_match(result, query):
 
 @register.filter
 def is_exact_ncn_match(result, query):
-    return _is_exact_ncn_match(result, query)
+    return judgments.utils.is_exact_ncn_match(result, query)
 
 
 @register.filter
