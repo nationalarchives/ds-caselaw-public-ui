@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load i18n %}
+{% load i18n utilities %}
 {% block title %}
   {% translate "results.search.title" %} - Find case law
 {% endblock title %}
@@ -10,14 +10,9 @@
     <div class="results__container">
       <div class="results__list-layout-container">
         {% if context.show_no_exact_ncn_warning %}
-          <div class="tna-message">
-            <h class="tna-message__heading">
-            <span class="tna-message__heading-icon">I</span>mportant information
-            </h>
-            <div class="tna-message__message">
-              There is no judgment with the Neutral Citation of {{ context.query }} in our database.
-            </div>
-          </div>
+          {% with message="There is no judgment with the Neutral Citation of %s in our database."|interpolate:context.query %}
+            {% include "includes/advice_message.html" with message=message %}
+          {% endwith %}
         {% endif %}
         {% if context.search_results %}
           <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>

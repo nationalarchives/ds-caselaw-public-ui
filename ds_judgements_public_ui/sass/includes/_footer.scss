@@ -42,6 +42,7 @@
   h3 {
     @media (max-width: $grid-breakpoint-medium) {
       padding-top: calc($spacer-unit / 2);
+      margin-bottom: calc($spacer-unit / 3);
     }
   }
 

@@ -8,3 +8,8 @@ register = template.Library()
 @register.filter
 def urlencode(string):
     return quote_plus(string)
+
+
+@register.filter
+def interpolate(template, values):
+    return template % values
