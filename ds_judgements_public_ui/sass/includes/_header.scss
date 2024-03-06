@@ -12,14 +12,18 @@
   }
 
   &__site-logo a {
-    color: $color-white;
+    color: $color-white !important;
     font-size: 2rem;
     text-decoration: none;
 
     &:focus {
-      outline: 5px solid $color-white;
+      outline: 5px solid $color-white !important;
       outline-offset: 5px;
       z-index: 999;
+    }
+
+    &:visited {
+      color: $color-white !important;
     }
   }
 

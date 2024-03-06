@@ -3,4 +3,8 @@
   line-height: 1.4em;
 
   min-height: 18rem;
+
+  p {
+    margin-bottom: $spacer-unit; /* Override global margin reset from tna-frontend */
+  }
 }
