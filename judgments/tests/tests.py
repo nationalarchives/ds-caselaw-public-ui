@@ -289,6 +289,11 @@ def test_preprocess_query():
     # multiple spaces are normalised:
 
     assert utils.preprocess_query("Riley       v       Murray") == "Riley Murray"
+    assert utils.preprocess_query("Riley  -    vs  -   Murray") == "Riley Murray"
+
+    # a separator is required around v
+
+    assert utils.preprocess_query("environment") == "environment"
 
 
 def test_normalise_quotes():

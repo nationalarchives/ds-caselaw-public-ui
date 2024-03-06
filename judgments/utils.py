@@ -37,14 +37,15 @@ def format_date(date):
 
 def preprocess_query(query: str) -> str:
     query = normalise_quotes(query)
+    query = normalise_spaces(query)
     query = normalise_vs(query)
     query = remove_unquoted_stop_words(query)
-    query = normalise_spaces(query)
     return query
 
 
 def normalise_vs(query):
-    return re.sub("(- *| +)vs?( *-| +)", " v ", query, re.IGNORECASE)
+    # Note: this assumes it runs after spaces are normalised
+    return re.sub(r"-? ?\bvs?\b ?-?", " v ", query, re.IGNORECASE)
 
 
 def normalise_spaces(query):
