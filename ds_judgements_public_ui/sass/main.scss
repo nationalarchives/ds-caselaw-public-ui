@@ -4,10 +4,16 @@
 // Override variables in tna-frontend
 @use "../../node_modules/@nationalarchives/frontend/nationalarchives/variables/colour"
   with (
-  $link-colour: $color-link-blue
+  $link-colour: $color-link-blue,
+  $link-colour-visited: $color-link-blue-visited
 );
 // Include all of tna-frontend
 @use "../../node_modules/@nationalarchives/frontend/nationalarchives/all";
+
+.judgment * {
+  /* The tna-frontend css overrides default margins on everything and sets them to 0, which breaks the formatting of judgments. This rule restores the original spacings within the judgment (at least to a degree of similarity perceptible by me (Tim)). We don't want to include this in the ds-caselaw-frontend shared code yet, as the tna-frontend issue is (for now) specific to PUI. */
+  margin-bottom: calc(0.5 * $spacer-unit);
+}
 
 // Core
 @import "includes/variables";
