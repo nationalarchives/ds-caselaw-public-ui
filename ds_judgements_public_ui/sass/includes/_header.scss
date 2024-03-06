@@ -129,6 +129,10 @@
       outline-color: $color-white;
     }
 
+    img {
+      display: inline; /* tna-frontend unilaterally sets all images to block which breaks the layout without specifying this explicitly here */
+    }
+
     @media only screen and (max-width: $grid-breakpoint-medium) {
       text-align: center;
       padding-bottom: 0;
