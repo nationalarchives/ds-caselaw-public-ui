@@ -94,4 +94,3 @@ def get_court_crest_path(court):
         path = base_path.format(filename=filename, extension=extension)
         if finders.find(path):
             return static(path)
-    return static(base_path.format(filename="default", extension="svg"))
