@@ -252,7 +252,7 @@
   &__removable-options-link {
     display: inline-block;
     border: 0.188rem solid $color-yellow;
-    color: $color-black !important; // Must be !important to override tna-front
+    color: $color-black;
     text-decoration: none;
     padding: calc($spacer-unit / 2) calc($spacer-unit / 2)
       calc($spacer-unit / 2) $spacer-unit;

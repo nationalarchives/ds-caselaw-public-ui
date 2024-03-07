@@ -80,20 +80,20 @@
 }
 
 @mixin link-on-dark-bg {
-  color: $color-white !important;
+  color: $color-white;
   text-decoration: underline;
 
   &:hover {
     text-decoration: none;
-    color: $color-white !important;
+    color: $color-white;
   }
 
   &:visited {
-    color: $color-white !important;
+    color: $color-white;
   }
 
   &:active {
-    color: $color-white !important;
+    color: $color-white;
   }
 
   &:focus {
