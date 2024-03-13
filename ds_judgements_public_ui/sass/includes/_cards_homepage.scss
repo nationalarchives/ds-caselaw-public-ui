@@ -1,0 +1,50 @@
+.cards-homepage {
+  @include container;
+  list-style-type: none;
+  margin: calc(1.5 * $spacer-unit) auto;
+  @media (min-width: $grid-breakpoint-small) {
+    margin: calc(3 * $spacer-unit) auto;
+  }
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(3 * $spacer-unit);
+  @media (min-width: $grid-breakpoint-medium) {
+    flex-direction: row;
+    li {
+      width: 33%;
+    }
+  }
+}
+
+.card-homepage {
+  margin: $spacer-unit calc(2 * $spacer-unit);
+  @media (min-width: $grid-breakpoint-small) {
+    margin: 0;
+  }
+
+  h3 {
+    margin-top: calc(0.5 * $spacer-unit);
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 1.6rem;
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      font-size: 1.6rem;
+      line-height: 1.95rem;
+    }
+
+    a {
+      color: $color-black;
+    }
+  }
+
+  p {
+    margin-top: calc(0.5 * $spacer-unit);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
