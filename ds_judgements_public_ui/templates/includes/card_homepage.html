@@ -1,0 +1,15 @@
+{% load static %}
+<div class="card-homepage">
+  <a href="{% url link_route %}" tabindex="-1">
+    <img src="{% static image_src %}"
+         alt="{{ title }}"
+         width="499"
+         height="333" />
+  </a>
+  <div class="card-homepage__legend">
+    <h3>
+      <a href="{% url link_route %}">{{ title }}</a>
+    </h3>
+    <p>{{ body }}</p>
+  </div>
+</div>

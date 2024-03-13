@@ -23,8 +23,7 @@
   {% include "includes/basic_search_form.html" %}
   {% flag cards_homepage %}
     {% include "includes/cards_homepage.html" %}
-  {% endflag %}
-  {% flag remove_recent_browse %}
+  {% else %}
     {% include "includes/recent_judgments.html" %}
     {% include "includes/browse_by_court.html" %}
   {% endflag %}
