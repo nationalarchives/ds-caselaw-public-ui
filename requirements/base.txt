@@ -22,5 +22,5 @@ markdown-it-py~=3.0.0
 mdit-py-plugins~=0.4.0
 
 # Type stubs
-mypy-boto3-s3==1.34.14
+mypy-boto3-s3==1.34.64
 mypy-boto3-sns==1.34.44
