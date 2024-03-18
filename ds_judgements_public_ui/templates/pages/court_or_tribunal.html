@@ -9,10 +9,9 @@
 {% block content %}
   <div class="container court-or-tribunal">
     <div class="court-or-tribunal__crest">
-      <img src="{{ court | get_court_crest_path }}"
-           alt=""
-           width="150"
-           height="150" />
+      {% with court_crest_path=court|get_court_crest_path %}
+        {% if court_crest_path %}<img src="{{ court_crest_path }}" alt="" width="150" height="150" />{% endif %}
+      {% endwith %}
     </div>
     <div class="court-or-tribunal__intro">
       <h1 class="listing">{{ court.name }}</h1>

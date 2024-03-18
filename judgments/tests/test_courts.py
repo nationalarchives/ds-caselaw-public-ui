@@ -115,11 +115,8 @@ class TestCourtContentHelpers(TestCase):
         self.assertEqual(result, static_path)
 
     @patch("judgments.templatetags.court_utils.finders.find")
-    @patch("judgments.templatetags.court_utils.static")
-    def test_get_court_crest_path_when_crest_does_not_exist(self, static, find):
-        static_path = "/static/images/court_crests/default.svg"
+    def test_get_court_crest_path_when_crest_does_not_exist(self, find):
         find.side_effect = [None, None, None, None]
-        static.return_value = static_path
         result = get_court_crest_path(self.mock_court_param("ewhc/mercantile"))
         find.assert_has_calls(
             [
@@ -129,5 +126,4 @@ class TestCourtContentHelpers(TestCase):
                 call("images/court_crests/ewhc_mercantile.svg"),
             ]
         )
-        static.assert_called_with("images/court_crests/default.svg")
-        self.assertEqual(result, static_path)
+        self.assertEqual(result, None)
