@@ -1,25 +1,86 @@
 {% autoescape off %}
-<contact_email></contact_email>
-<enquiry_id>TNA1548082972A10</enquiry_id>
-<title></title>
-<mandatory_forename>{{contact_first_name}}</mandatory_forename>
-<mandatory_surname>{{contact_last_name}}</mandatory_surname>
-<mandatory_email>test@example.com</mandatory_email>
-<mandatory_address1>{{organization_name}}</mandatory_address1>
-<address2></address2>
-<address3></address3>
-<mandatory_town>Test town</mandatory_town>
-<county></county>
-<mandatory_postcode>WC1A 1AA</mandatory_postcode>
-<mandatory_country>United Kingdom</mandatory_country>
-<telephone></telephone>
-<mandatory_certificate_forename>{{contact_first_name}}</mandatory_certificate_forename>
-<mandatory_certificate_surname>{{contact_last_name}}</mandatory_certificate_surname>
-<mandatory_birth_date_noval>16/06/1925</mandatory_birth_date_noval>
-<mandatory_search_county>Durham</mandatory_search_county>
-<mandatory_catalogue_reference>WO 409/27/69/435</mandatory_catalogue_reference>
-<enquiry></enquiry>
-<mandatory_is_data_subject>True</mandatory_is_data_subject>
-<mandatory_upload_file_name>7891a9be-a99d-4a74-9d69-6b9f9897504e.png</mandatory_upload_file_name>
-<upload_file_name_consent></upload_file_name_consent>
-{% end autoescape %}
+
+<contact_surname>{{contact_first_name}} {{contact_last_name}}</contact_surname>
+<contact_email>test@example.com</contact_email>
+<agent_companyname>{{organization_name}}</agent_companyname>
+<agent_country>Spain</agent_country>
+<tna_contacttype>Private Limated Company</tna_contacttype>
+<agent_companyid>KZA2346786</agent_companyid>
+<ProjName>Our project</ProjName>
+<Partners>Another organization, and oanother</Partners>
+<URLProj>https://example.com</URLProj>
+<Purp>Publish Legal Information</Purp>
+<Use>Public Access</Use>
+<Benefit>General public</Benefit>
+<BenPub>CaseSummarizer aims to revolutionise how HR officials stay updated with the latest employment law cases in the UK by providing automated summaries. Our platform will empower legal professionals and court users, ensuring efficient access to critical information.</BenPub>
+<DigAcc>Yes</DigAcc>
+<DigR>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur, enim et tristique tempus, lacus diam pellentesque lorem, eget pulvinar ipsum justo vel turpis. Praesent tristique felis nunc, ac tristique eros tempor a. Cras eget quam magna. Proin eu urna volutpat libero rutrum pulvinar id id risus. Nulla sit amet sem a felis varius sagittis id vitae lectus. Suspendisse at lectus pretium, pellentesque justo vel, euismod justo. Duis convallis lacinia rutrum. Phasellus dapibus elementum est, eu pulvinar purus semper at. Maecenas quis felis non felis vulputate tincidunt ornare id metus. Suspendisse ex odio, fermentum in congue nec, gravida sed nisi. Integer in laoreet arcu, a faucibus nunc.
+
+Praesent vitae sodales lorem. Etiam nec ante vel diam vehicula sollicitudin. Suspendisse et ipsum vel ligula facilisis scelerisque. Praesent finibus eget erat et consequat. Nulla dapibus pulvinar ex, vel rutrum nibh ultricies ac. Cras eleifend a massa a tincidunt. Integer accumsan orci in.
+</DigR>
+<DigRM>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod consequat metus, et finibus lorem mollis non. Nunc id lacus et purus accumsan facilisis. Donec ut fringilla nulla, quis luctus turpis. Fusce eget quam lectus. Fusce egestas eros vitae pharetra vehicula. Fusce eu nisi non erat fringilla varius a sit amet nunc. Maecenas vehicula molestie ante ac cursus. Cras et est quam.
+
+Suspendisse suscipit tortor luctus orci mattis eleifend. Vivamus nec rhoncus velit. Nunc at turpis in ex viverra maximus non in erat. Cras ut lacinia lectus, eget suscipit ex. Sed volutpat at lorem sit amet laoreet. Praesent sit amet nulla aliquet justo semper lobortis ut eu magna. Pellentesque ac interdum nunc. Phasellus iaculis dui non convallis posuere. Integer ornare id turpis in hendrerit. Nulla porta, orci vitae condimentum interdum, lacus justo ultricies purus, eget rhoncus ipsum nulla finibus lectus. Etiam justo sem, elementum mollis posuere bibendum, aliquet a lacus.
+</DigRM>
+<IndAcc>Yes</IndAcc>
+<IndR>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+
+Ut volutpat imperdiet arcu id posuere. Vestibulum aliquet nunc eget mauris ultrices, quis lacinia turpis facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean congue ligula sed justo consectetur, eget euismod nisi rhoncus. Ut in rhoncus nulla. Phasellus sollicitudin quis felis in porttitor. Cras sodales magna a augue dapibus, sit amet varius ante mattis. Curabitur diam nibh, laoreet a pellentesque in.
+</IndR>
+<AcknowledgeIncomplete>Yes</AcknowledgeIncomplete>
+<FocusOn>No</FocusOn>
+<AnonymiseIndividuals>Yes</AnonymiseIndividuals>
+<PreventReidentification>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+
+Ut volutpat imperdiet arcu id posuere. Vestibulum aliquet nunc eget mauris ultrices, quis lacinia turpis facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean congue ligula sed justo consectetur, eget euismod nisi rhoncus. Ut in rhoncus nulla. Phasellus sollicitudin quis felis in porttitor. Cras sodales magna a augue dapibus, sit amet varius ante mattis. Curabitur diam nibh, laoreet a pellentesque in.
+</PreventReidentification>
+<AcceptDiscriminatoryHarm>Yes</AcceptDiscriminatoryHarm>
+<DiscriminatoryHarmProcess>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+
+Ut volutpat imperdiet arcu id posuere. Vestibulum aliquet nunc eget mauris ultrices, quis lacinia turpis facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean congue ligula sed justo consectetur, eget euismod nisi rhoncus. Ut in rhoncus nulla. Phasellus sollicitudin quis felis in porttitor. Cras sodales magna a augue dapibus, sit amet varius ante mattis. Curabitur diam nibh, laoreet a pellentesque in.
+</DiscriminatoryHarmProcess>
+<AcceptAntiBias>Yes</AcceptAntiBias>
+<AcceptAlgorithmReview>Yes</AcceptAlgorithmReview>
+<AlgorighmReviewProcess>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+
+Ut volutpat imperdiet arcu id posuere. Vestibulum aliquet nunc eget mauris ultrices, quis lacinia turpis facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean congue ligula sed justo consectetur, eget euismod nisi rhoncus. Ut in rhoncus nulla. Phasellus sollicitudin quis felis in porttitor. Cras sodales magna a augue dapibus, sit amet varius ante mattis. Curabitur diam nibh, laoreet a pellentesque in.
+</AlgorighmReviewProcess>
+<ThirdPartyEthicsReview>Yes</ThirdPartyEthicsReview>
+<EthicalGovernanceProcess>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+
+Ut volutpat imperdiet arcu id posuere. Vestibulum aliquet nunc eget mauris ultrices, quis lacinia turpis facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean congue ligula sed justo consectetur, eget euismod nisi rhoncus. Ut in rhoncus nulla. Phasellus sollicitudin quis felis in porttitor. Cras sodales magna a augue dapibus, sit amet varius ante mattis. Curabitur diam nibh, laoreet a pellentesque in.
+</EthicalGovernanceProcess>
+<DataProtectionRegimes>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+</DataProtectionRegimes>
+<AcceptNoIndexing>Yes</AcceptNoIndexing>
+<EntireRecordAvailable>No</EntireRecordAvailable>
+<DataExtractedAvailable>Yes</DataExtractedAvailable>
+<MethodologyAvailable>Yes</MethodologyAvailable>
+<PublishFindings>Yes</PublishFindings>
+<PreventionOfCrawling>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+</PreventionOfCrawling>
+<ComputationalAnalysisType>Produce fully automated legal advice</ComputationalAnalysisType>
+<GenerativeAIUse>No</GenerativeAIUse>
+<AlgorithmExplanation>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+</AlgorithmExplanation>
+<AcceptAvoidMisrepresentation>Yes</AcceptAvoidMisrepresentation>
+<AcceptExplainLimitations>Yes</AcceptExplainLimitations>
+<LimitationsExplanation>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+</LimitationsExplanation>
+<AcceptRegularReview>Yes</AcceptRegularReview>
+<ReviewProcess>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+</ReviewProcess>
+<AdditionalComments>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue odio sit amet elementum dictum. Ut vel dui rhoncus, luctus turpis quis, hendrerit metus. Donec fringilla diam nec quam faucibus, at maximus ligula vehicula. Sed sollicitudin convallis est. Phasellus eget erat neque. Curabitur vitae risus dolor. Nam eget felis egestas, tristique diam sit amet, dapibus nunc. Ut ut posuere ante, sit amet sodales ex. Cras vitae sapien pretium, mollis metus non, pretium lacus. Aenean gravida nulla ac nulla tempor, a vehicula diam interdum.
+</AdditionalComments>
+{% endautoescape %}
