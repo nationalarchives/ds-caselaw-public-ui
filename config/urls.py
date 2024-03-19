@@ -106,6 +106,9 @@ urlpatterns = [
         cache_page(60 * 60)(views.schema),
         name="schema",
     ),
+    path(
+        "apply-for-a-transactional-licence", include("transactional_licence_form.urls")
+    ),
     path("", include("judgments.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
