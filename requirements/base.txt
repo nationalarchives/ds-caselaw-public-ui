@@ -20,6 +20,8 @@ django-weasyprint==2.3.0
 django-waffle==4.1.0  # https://github.com/django-waffle/django-waffle
 markdown-it-py~=3.0.0
 mdit-py-plugins~=0.4.0
+django-formtools~=2.5.1
+notifications-python-client~=9.0.0
 
 # Type stubs
 mypy-boto3-s3==1.34.64

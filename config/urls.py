@@ -2,15 +2,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from django.urls import include, path, register_converter
+from django.urls import include, path, re_path, register_converter
 from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
+
+from judgments.forms.transactional_licence import wizard_view
 
 from . import views
 from .converters import SchemaFileConverter
 
 register_converter(SchemaFileConverter, "schemafile")
+
+transactional_licence_path = "transactional_licence"
+transactional_licence_wizard = wizard_view("%s_step" % transactional_licence_path)
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
@@ -80,6 +85,16 @@ urlpatterns = [
         "structured_search",
         views.StructuredSearchView.as_view(),
         name="structured_search",
+    ),
+    re_path(
+        r"^transactional_licence/(?P<step>.+)/$",
+        transactional_licence_wizard,
+        name="%s_step" % transactional_licence_path,
+    ),
+    path(
+        transactional_licence_path,
+        transactional_licence_wizard,
+        name=transactional_licence_path,
     ),
     path(
         "check",
