@@ -127,7 +127,8 @@ def advanced_search(request):
             search_response = search_judgments_and_parse_response(
                 api_client, search_parameters
             )
-
+            # TODO: Change this to handle multiple types of facets, instead of assuming we only have one!!
+            context["facets"] = search_response.facets
             context["search_results"] = search_response.results
             context["total"] = search_response.total
             context["paginator"] = paginator(page, search_response.total, per_page)
