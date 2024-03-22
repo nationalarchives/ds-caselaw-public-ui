@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.utils.translation import gettext
 from ds_caselaw_utils.neutral import neutral_url
 
-from .fixtures.stop_words import stop_words
+from judgments.fixtures.stop_words import stop_words
 
 MAX_RESULTS_PER_PAGE = 50
 

@@ -22,6 +22,23 @@ class FakeSearchResult:
     metadata = FakeMetadata()
 
 
-class FakeSearchResponse:
+class FakeSearchResponseBaseClass:
+    """
+    AbstractBaseClass for FakeSearchResponse, extend to
+    modify attributes
+    """
+
     total = 2
     results = [FakeSearchResult(), FakeSearchResult()]
+    facets = {"EAT": "3", "": "5", "invalid_court": "10", "2010": "103", "1900": "4"}
+
+    class Meta:
+        abstract = True
+
+
+class FakeSearchResponse(FakeSearchResponseBaseClass):
+    pass
+
+
+class FakeSearchResponseNoFacets(FakeSearchResponseBaseClass):
+    facets = {}

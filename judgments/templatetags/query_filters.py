@@ -68,3 +68,17 @@ def remove_court(query_params, court):
     params["page"] = None
     params["court"] = [court2 for court2 in params.get("court", []) if court != court2]
     return make_query_string(params)
+
+
+@register.filter
+def replace_year_in_query(query_params, year):
+    params = dict(query_params)
+    del params["from"]
+    del params["from_day"]
+    del params["from_month"]
+    del params["to"]
+    del params["to_day"]
+    del params["to_month"]
+    params["from_year"] = year
+    params["to_year"] = year
+    return make_query_string(params)
