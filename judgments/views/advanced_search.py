@@ -9,6 +9,7 @@ from django.http import Http404
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.courts import CourtNotFoundException
 
 from judgments.models.court_dates import CourtDates
 from judgments.models.search_form_errors import SearchFormErrors
@@ -129,6 +130,14 @@ def advanced_search(request):
             )
             # TODO: Change this to handle multiple types of facets, instead of assuming we only have one!!
             context["facets"] = search_response.facets
+            context["court_facets"] = {}
+            for court_code, judgment_count in search_response.facets.items():
+                try:
+                    context["court_facets"][
+                        all_courts.get_by_code(court_code)
+                    ] = judgment_count
+                except CourtNotFoundException:
+                    pass
             context["search_results"] = search_response.results
             context["total"] = search_response.total
             context["paginator"] = paginator(page, search_response.total, per_page)
