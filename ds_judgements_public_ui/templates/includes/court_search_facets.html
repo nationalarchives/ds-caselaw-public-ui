@@ -1,3 +1,8 @@
-{% for facet_name, facet_value in context.facets %}
-    <div>{{facet_name}} {{facet_value}}</div>
-{% endfor %}
+{% load query_filters court_utils %}
+<div>
+  Courts relevant to your query:
+  {% for court, item_count in context.court_facets.items %}
+    <a href="{% url "search" %}?query={{ context.query }}&court={{ court.canonical_param }}">{{ court.grouped_name }} ({{ item_count }})</a>
+    {% if not forloop.last %},{% endif %}
+  {% endfor %}
+</div>
