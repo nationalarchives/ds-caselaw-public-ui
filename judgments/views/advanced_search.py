@@ -128,16 +128,20 @@ def advanced_search(request):
             search_response = search_judgments_and_parse_response(
                 api_client, search_parameters
             )
-            # TODO: Change this to handle multiple types of facets, instead of assuming we only have one!!
-            context["facets"] = search_response.facets
             context["court_facets"] = {}
-            for court_code, judgment_count in search_response.facets.items():
+            # Assign to a new dictionary we can remove items for as we process facets
+            unprocessed_facets = search_response.facets
+
+            # TODO: Move this into a seperate method!
+            for facet_key, facet_value in unprocessed_facets.items():
                 try:
-                    context["court_facets"][
-                        all_courts.get_by_code(court_code)
-                    ] = judgment_count
+                    court_code = all_courts.get_by_code(facet_key)
                 except CourtNotFoundException:
-                    pass
+                    continue
+                context["court_facets"][court_code] = facet_value
+                # Once we have handled a facet, remove it from facets.
+                unprocessed_facets.pop(facet_key)
+    
             context["search_results"] = search_response.results
             context["total"] = search_response.total
             context["paginator"] = paginator(page, search_response.total, per_page)
