@@ -21,6 +21,7 @@ from judgments.utils import (
     paginator,
     parse_date_parameter,
     preprocess_query,
+    process_facets,
     show_no_exact_ncn_warning,
 )
 
@@ -128,19 +129,14 @@ def advanced_search(request):
             search_response = search_judgments_and_parse_response(
                 api_client, search_parameters
             )
-            context["court_facets"] = {}
+            
             # Assign to a new dictionary we can remove items for as we process facets
             unprocessed_facets = search_response.facets
+            court_facets = {}
 
-            # TODO: Move this into a seperate method!
-            for facet_key, facet_value in unprocessed_facets.items():
-                try:
-                    court_code = all_courts.get_by_code(facet_key)
-                except CourtNotFoundException:
-                    continue
-                context["court_facets"][court_code] = facet_value
-                # Once we have handled a facet, remove it from facets.
-                unprocessed_facets.pop(facet_key)
+            if search_parameters.query:
+                unprocessed_facets, court_facets = process_facets(search_response.facets)
+            context["court_facets"] = court_facets
     
             context["search_results"] = search_response.results
             context["total"] = search_response.total
