@@ -4,6 +4,9 @@
     {% if context.order is not None %}<input type="hidden" name="order" value="{{ context.order }}" />{% endif %}
     <div class="results-search-component__container js-results-facets-wrapper">
       {% include "includes/results_search_field.html" %}
+      {% if context.court_facets %}
+        {% include "includes/court_search_facets.html" %}
+      {% endif %}
       <div class="results-search-component__filters-row">
         {% include "includes/results_applied_filters.html" %}
         <div class="results-search-component__control-container js-results-control-container"></div>

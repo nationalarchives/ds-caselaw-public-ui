@@ -9,6 +9,7 @@ from django.http import Http404
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.courts import CourtNotFoundException
 
 from judgments.models.court_dates import CourtDates
 from judgments.models.search_form_errors import SearchFormErrors
@@ -20,6 +21,7 @@ from judgments.utils import (
     paginator,
     parse_date_parameter,
     preprocess_query,
+    process_facets,
     show_no_exact_ncn_warning,
 )
 
@@ -127,7 +129,15 @@ def advanced_search(request):
             search_response = search_judgments_and_parse_response(
                 api_client, search_parameters
             )
+            
+            # Assign to a new dictionary we can remove items for as we process facets
+            unprocessed_facets = search_response.facets
+            court_facets = {}
 
+            if search_parameters.query:
+                unprocessed_facets, court_facets = process_facets(search_response.facets)
+            context["court_facets"] = court_facets
+    
             context["search_results"] = search_response.results
             context["total"] = search_response.total
             context["paginator"] = paginator(page, search_response.total, per_page)
