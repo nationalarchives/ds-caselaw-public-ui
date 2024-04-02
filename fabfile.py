@@ -34,7 +34,8 @@ def container_exec(cmd, container_name="django", check_returncode=False):
 
 def background_exec(cmd, logfile):
     "Run a command in the background and capture logs."
-    local(f"nohup {cmd} &> {logfile}.log &")
+    if os.name == "posix":
+        local(f"nohup {cmd} &> {logfile}.log &")
 
 
 def postgres_exec(cmd, check_returncode=False):

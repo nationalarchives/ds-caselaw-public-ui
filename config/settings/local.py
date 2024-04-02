@@ -33,25 +33,6 @@ INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
 
 SECRET_KEY = "not-secret-whatsoever"
 
-
-# django-debug-toolbar
-# ------------------------------------------------------------------------------
-def show_debug_toolbar(request):
-    return True
-
-
-# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites
-if DEBUG:
-    INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
-    # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#middleware
-    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
-    # https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#debug-toolbar-config
-    DEBUG_TOOLBAR_CONFIG = {
-        "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
-        "SHOW_TEMPLATE_CONTEXT": True,
-        "SHOW_TOOLBAR_CALLBACK": show_debug_toolbar,
-    }
-
 # django-extensions
 # ------------------------------------------------------------------------------
 # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
