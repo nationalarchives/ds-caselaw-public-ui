@@ -11,6 +11,7 @@
 
 // Shared
 @import "../../node_modules/@nationalarchives/ds-caselaw-frontend/src/main";
+@import "../../node_modules/govuk-frontend/dist/govuk/all";
 
 // Components
 @import "includes/animations";
@@ -52,3 +53,4 @@
 @import "includes/court_or_tribunal";
 @import "includes/advice_message";
 @import "includes/cards_homepage";
+@import "includes/gds_page";

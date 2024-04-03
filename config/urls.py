@@ -62,6 +62,11 @@ urlpatterns = [
         name="accessibility_statement",
     ),
     path(
+        "gds-page",
+        views.GdsPage.as_view(),
+        name="gds_page",
+    ),
+    path(
         "open-justice-licence",
         views.OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",
