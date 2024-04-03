@@ -99,6 +99,16 @@ class AccessibilityStatement(TemplateViewWithContext):
         return context
 
 
+class GdsPage(TemplateViewWithContext):
+    template_name = "pages/gds_page.html"
+    page_title = "GDS Page"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "support"
+        return context
+
+
 class OpenJusticeLicenceView(TemplateViewWithContext):
     template_name = "pages/open_justice_licence.html"
     page_title = "openjusticelicence.title"

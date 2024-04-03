@@ -1,0 +1,34 @@
+.govuk-fieldset__legend {
+  font-family: $font-roboto;
+}
+
+.govuk-notification-banner {
+  border: 5px solid $color-aqua-blue;
+  background-color: $color-aqua-blue;
+}
+
+.govuk-summary-card {
+  font-family: $font-roboto;
+  &__title-wrapper {
+    background-color: $color-grey;
+  }
+}
+
+.govuk-button {
+  @include call-to-action-button;
+  box-shadow: none;
+}
+
+.govuk-label {
+  color: $color-black;
+  font-family: $font-roboto;
+}
+
+.govuk-hint {
+  color: $color-black;
+}
+
+.govuk-summary-list {
+  color: $color-black;
+  font-family: $font-roboto;
+}
