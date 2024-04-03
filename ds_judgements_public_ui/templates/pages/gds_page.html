@@ -1,0 +1,330 @@
+{% extends "layouts/base.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="standard-text-template container py-3">
+    <h1>
+      <b>Components</b>
+    </h1>
+    <h3>
+      <b>Checkboxes</b> can contain multiple items which have an associated ‘further details’ checkbox.
+    </h3>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend">
+          <strong>What type of organistation is it?</strong>
+        </legend>
+        <div id="organisation-hint" class="govuk-hint">Select all that apply.</div>
+        <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input"
+                   id="orginisation"
+                   name="orginistation"
+                   type="checkbox"
+                   value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="orginisation">Private Limited Company</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input"
+                   id="waste-2"
+                   name="waste"
+                   type="checkbox"
+                   value="mines">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-2">Public Limited Company</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input"
+                   id="waste-3"
+                   name="waste"
+                   type="checkbox"
+                   value="farm">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              Other (please specify )
+              <input class="govuk-input govuk-!-width-full"
+                     id="contact-by-email"
+                     name="contactByEmail"
+                     type="email"
+                     spellcheck="false"
+                     autocomplete="email">
+            </label>
+          </div>
+        </fieldset>
+      </div>
+      <h3>
+        <b>Radios</b> may contain error messages also can progressively reveal subfields (eg ‘details of the person responsible for compliance’)
+      </h3>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            <strong>Who is the person in your organistion who will be responsible for licence compliance?</strong>
+          </legend>
+          <div id="contact-hint" class="govuk-hint">Select the correct option below.</div>
+          <div class="govuk-radios--small" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="contact"
+                     name="contact"
+                     type="radio"
+                     value="email"
+                     checked
+                     data-aria-controls="conditional-contact">
+              <label class="govuk-label govuk-radios__label" for="contact">Email</label>
+            </div>
+            <div class="govuk-radios__conditional" id="conditional-contact">
+              <div class="govuk-form-group govuk-form-group--error">
+                <label class="govuk-label" for="contact-by-email">Email address</label>
+                <p id="contact-by-email-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Email address cannot be blank
+                </p>
+                <input class="govuk-input govuk-!-width-one-half govuk-input--error"
+                       id="contact-by-email"
+                       name="contactByEmail"
+                       type="email"
+                       spellcheck="false"
+                       aria-describedby="contact-by-email-error"
+                       autocomplete="email">
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="contact-2"
+                     name="contact"
+                     type="radio"
+                     value="phone"
+                     data-aria-controls="conditional-contact-2">
+              <label class="govuk-label govuk-radios__label" for="contact-2">This is the same person as the main contact</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="contact-3"
+                     name="contact"
+                     type="radio"
+                     value="text"
+                     data-aria-controls="conditional-contact-3">
+              <label class="govuk-label govuk-radios__label" for="contact-3">
+                This is a different person (please enter the details below)
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
+                 id="conditional-contact-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="contact-by-text">
+                  2a. The full name of the person in your organistion who will be responsible for licence compliance
+                </label>
+                <input class="govuk-input govuk-!-width-one-third"
+                       id="contact-by-text"
+                       name="contactByText"
+                       type="tel"
+                       autocomplete="tel">
+                <label class="govuk-label" for="contact-by-text">
+                  3a. The email address of the person in your organistion who will be responsible for licence compliance
+                </label>
+                <input class="govuk-input govuk-!-width-one-half"
+                       id="licence-email"
+                       name="contactByText"
+                       type="email"
+                       spellcheck="false"
+                       aria-describedby="contact-by-email-error"
+                       autocomplete="email">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <h3>Text input should have an optional heading and can include “hint text, error state, plus an error message</h3>
+      <div class="govuk-form-group govuk-form-group--error">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="event-name">
+            5. If your organisation is known by any other names, please enter them here
+          </label>
+        </h1>
+        <div id="event-name-hint" class="govuk-hint">If your organisation is known by any other names, please type name</div>
+        <p id="event-name-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> If your organisation is known by any other names, please type name
+        </p>
+        <input class="govuk-input govuk-input--error"
+               id="event-name"
+               name="eventName"
+               type="text"
+               aria-describedby="event-name-hint event-name-error">
+      </div>
+      <h3>
+        <b>Notification banners </b>to tell the user about something they need to know about, but that’s not directly related to the page content
+      </h3>
+      <div class="govuk-notification-banner"
+           role="region"
+           aria-labelledby="govuk-notification-banner-title"
+           data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title"
+              id="govuk-notification-banner-title">Important</h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            You have 7 days left to send your application.
+            <a class="govuk-notification-banner__link" href="#">View application</a>.
+          </p>
+        </div>
+      </div>
+      <h3>
+        <b>Character count </b>Help users know how much text they can enter when there is a limit on the number of characters.
+      </h3>
+      <div class="govuk-character-count"
+           data-module="govuk-character-count"
+           data-maxlength="100">
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--s" for="with-hint">17a. Please Describe</label>
+          </h1>
+          <div id="with-hint-hint" class="govuk-hint">
+            <p>
+              a. the risks you have identified, and
+              <br>
+              b. how you will protect the ability of the courts and tribunals to function
+              <br>
+            </p>
+            <p>
+              You should consider anything that may undermine the ability for the justice system to operate impartially and ...
+            </p>
+            <p>Maximum 100 words</p>
+          </div>
+          <textarea class="govuk-textarea govuk-js-character-count"
+                    id="with-hint"
+                    name="withHint"
+                    rows="5"
+                    aria-describedby="with-hint-info with-hint-hint"></textarea>
+        </div>
+        <div id="with-hint-info" class="govuk-hint govuk-character-count__message">You can enter up to 100 characters</div>
+      </div>
+      <h3>
+        <b>Summary card </b>If you’re showing multiple summary lists on a page, you can show each list within a summary card. This lets you visually separate each summary list and give each a title and some actions.
+      </h3>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Contact details</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Full Name</dt>
+              <dd class="govuk-summary-list__value">
+                Sarah
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">email (Licence Applicant)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Email</dt>
+              <dd class="govuk-summary-list__value">
+                sarah@hotmail.com
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">nationality (Lead tenant)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Working situation</dt>
+              <dd class="govuk-summary-list__value">
+                Part time – less than 30 hours a week
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">working situation (Lead tenant)</span></a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Person 2</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Details known</dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">whether details are known (Person 2)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Relationship to lead tenant</dt>
+              <dd class="govuk-summary-list__value">
+                Partner
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">relationship to lead tenant (Person 2)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Age</dt>
+              <dd class="govuk-summary-list__value">
+                42
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">age (Person 2)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Working situation</dt>
+              <dd class="govuk-summary-list__value">
+                Unable to work because of long-term sickness or disability
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">working situation (Person 2)</span></a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Person 3</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Details known</dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">whether details are known (Person 3)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Relationship to lead tenant</dt>
+              <dd class="govuk-summary-list__value">
+                Child
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">relationship to lead tenant (Person 3)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Age</dt>
+              <dd class="govuk-summary-list__value">
+                7
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">age (Person 3)</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Working situation</dt>
+              <dd class="govuk-summary-list__value">
+                Child under 16
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">working situation (Person 3)</span></a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <button type="submit" class="govuk-button" data-module="govuk-button">Save and submit</button>
+    </div>
+  </div>
+{% endblock content %}
