@@ -22,15 +22,11 @@
             rel="stylesheet" />
       <link href="{% static 'css/main.css' %}" rel="stylesheet" />
     {% endblock css %}
-    {% block javascript %}
-      <script defer src="{% static 'js/dist/app.js' %}"></script>
-      <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>
-    {% endblock javascript %}
     {% include "includes/gtm/gtm_head.html" %}
   </head>
   <body>
     <script>
-      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+      document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
     {% include "includes/gtm/gtm_body.html" %}
     {% include "includes/cookie_consent/cookie_banner.html" %}
@@ -82,5 +78,9 @@
     {% endblock postcontent %}
     {% include "includes/help_improve_this_service.html" %}
     {% include "includes/footer.html" %}
+    {% block javascript %}
+      <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>
+      <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>
+    {% endblock javascript %}
   </body>
 </html>
