@@ -99,9 +99,9 @@ class AccessibilityStatement(TemplateViewWithContext):
         return context
 
 
-class GdsPage(TemplateViewWithContext):
-    template_name = "pages/gds_page.html"
-    page_title = "GDS Page"
+class StyleGuide(TemplateViewWithContext):
+    template_name = "pages/style_guide.html"
+    page_title = "Style Guide"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
