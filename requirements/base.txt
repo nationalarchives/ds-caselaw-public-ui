@@ -7,7 +7,7 @@ whitenoise==6.6.0  # https://github.com/evansd/whitenoise
 django==5.0.4  # https://www.djangoproject.com/
 django-environ==0.11.2 # https://github.com/joke2k/django-environ
 django-model-utils==4.4.0  # https://github.com/jazzband/django-model-utils
-
+django-formtools~=2.5.1
 requests~=2.31.0
 xmltodict~=0.13.0
 requests-toolbelt~=1.0.0
