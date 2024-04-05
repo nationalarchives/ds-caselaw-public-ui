@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+  <h1>Placehoder for review page</h1>
+  <dl>
+    {% for form in forms %}
+      {% for key, value in form.cleaned_data.items %}
+        <dt>{{ key }}</dt>
+        <dd>
+          {{ value }}
+        </dd>
+      {% endfor %}
+    {% endfor %}
+  </dl>
+{% endblock content %}
