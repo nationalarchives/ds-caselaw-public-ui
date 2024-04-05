@@ -24,9 +24,14 @@ register = template.Library()
 def get_court_name(court):
     try:
         court_object = all_courts.get_by_param(court)
+        return court_object.name
+    except CourtNotFoundException:
+        pass
+    try:
+        court_object = all_courts.get_by_code(court)
+        return court_object.name
     except CourtNotFoundException:
         return ""
-    return court_object.name
 
 
 @register.simple_tag
