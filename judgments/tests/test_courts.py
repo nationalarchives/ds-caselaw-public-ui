@@ -11,8 +11,12 @@ from judgments.templatetags.court_utils import (
 )
 
 
-def test_get_court_name():
-    assert get_court_name("uksc") == "United Kingdom Supreme Court"
+def test_get_court_name_from_code():
+    assert get_court_name("EWHC-Chancery") == "High Court (Chancery Division)"
+
+
+def test_get_court_name_from_param():
+    assert get_court_name("ewhc/ch") == "High Court (Chancery Division)"
 
 
 def test_get_court_name_non_existent():
