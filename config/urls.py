@@ -62,6 +62,11 @@ urlpatterns = [
         name="accessibility_statement",
     ),
     path(
+        "style-guide",
+        views.StyleGuide.as_view(),
+        name="style_guide",
+    ),
+    path(
         "open-justice-licence",
         views.OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",
