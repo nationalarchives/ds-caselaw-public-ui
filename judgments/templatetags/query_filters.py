@@ -3,6 +3,7 @@ from django import template
 register = template.Library()
 
 
+@register.filter
 def make_query_string(params):
     pairs = []
     for key, value in params.items():

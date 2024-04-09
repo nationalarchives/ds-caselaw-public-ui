@@ -1,8 +1,9 @@
+{% load query_filters %}
 <div style="text-align: left;">
   <b>Courts relevant to your query:</b>
   {% for court, item_count in context.court_facets.items %}
     {% if court.code not in context.query_params.court %}
-      <a href="{% url "search" %}?{{ context.query_params }}&court={{ court.code }}">{{ court.grouped_name }} ({{ item_count }})</a>
+      <a href="{% url "search" %}?{{ context.query_params|make_query_string }}&court={{ court.code }}">{{ court.grouped_name }} ({{ item_count }})</a>
       {% if not forloop.last %},{% endif %}
     {% endif %}
   {% endfor %}
