@@ -1,14 +1,14 @@
-{% extends "layouts/base.html" %}
-{% block content %}
-  <h1>Placehoder for review page</h1>
+{% extends "layouts/form_step.html" %}
+{% block step_title %}
+  <h1>Placeholder for review page</h1>
+{% endblock step_title %}
+{% block pre_form %}
   <dl>
-    {% for form in forms %}
-      {% for key, value in form.cleaned_data.items %}
-        <dt>{{ key }}</dt>
-        <dd>
-          {{ value }}
-        </dd>
-      {% endfor %}
+    {% for key, value in all_data.items %}
+      <dt>{{ key }}</dt>
+      <dd>
+        {{ value }}
+      </dd>
     {% endfor %}
   </dl>
-{% endblock content %}
+{% endblock pre_form %}
