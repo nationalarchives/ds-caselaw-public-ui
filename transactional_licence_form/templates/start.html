@@ -1,5 +1,194 @@
 {% extends "layouts/base.html" %}
+{% load i18n %}
 {% block content %}
-  <h1>Placeholder page for the introductory text</h1>
+  <div class="standard-text-template container py-3">
+    <h1>Reusing case law data</h1>
+    <p>
+      <small>
+        Last updated on
+        <time datetime="09-04-2024">9th April 2024</time>
+      </small>
+    </p>
+    <p>
+      Open justice is a fundamental principle at the heart of the justice system - justice must not only be done, but it must also be seen to be done.
+      Access to judgments and decisions as data supports the principles of open justice by fostering transparency and promoting innovation in legal technology
+      and legal research. We have converted the judgments and decisions we hold into XML format, and made them freely available via the
+      <a href="https://github.com/nationalarchives/ds-find-caselaw-docs/blob/main/doc/openapi/public_api.yml">
+        Find Case Law API
+      </a>
+    </p>
+    <h3>You need a licence to reuse case law data</h3>
+    <p>
+      The National Archives, in collaboration with The Ministry of Justice and the Judicial Executive Board, have worked together to design a new licensing
+      framework for the reuse of case law as data. All licences are free but you may need to apply for a specific licence, depending on your reuse of the data.
+    </p>
+    <div class="info-box">
+      <h3 class="info-box__heading">
+        If you are not doing computational analysis, you maybe able to operate under the Open Justice Licence
+      </h3>
+      <div class="info-box__content">
+        <p>
+          Under this licence you can copy, publish, distribute and transmit case law data, and use the data commercially, for example, by combining it with other information,
+          or by including it in your own product or application, all with certain conditions.
+        </p>
+        <p>You can operate under the Open Justice Licence without needing to apply for one.</p>
+        <p>
+          <em>This licence does not cover computational analysis in bulk.</em>
+        </p>
+      </div>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">What is possible under the Open Justice Licence</span>
+        </summary>
+        <div class="govuk-details__text">
+          <div class="start-form">
+            <strong>Purpose of this licence</strong>
+            <p>
+              Open justice is a fundamental constitutional principle and necessary for the rule of law. The purpose of this licence is to support open justice.
+            </p>
+            <strong>Using Information under this licence</strong>
+            <p>
+              You are able to use and re-use the Information that is available under this licence freely. There are some conditions to protect the proper administration of justice.
+            </p>
+            <p>
+              Use of copyright and database right material made available under this licence (the ‘Information’) indicates your
+              acceptance of the terms and conditions below.
+            </p>
+            <p>
+              The Licensor grants you a worldwide, royalty-free, non-exclusive licence to use the Information subject to the
+              conditions below.
+            </p>
+            <p>
+              This licence does not affect your freedom under fair dealing or fair use or any other copyright or database right
+              exceptions and limitations.
+            </p>
+            <p>You are free to:</p>
+            <ul>
+              <li>copy, publish, distribute and transmit the Information;</li>
+              <li>
+                exploit the Information commercially, for example, by combining it with other Information, or by including it
+                in your own product or application.
+              </li>
+            </ul>
+            <p>You must (where you do any of the above):</p>
+            <p>
+              Use the current version of the Information (as published by the Keeper of Public Records on The National Archives
+              website) and in particular, but not exhaustively:
+            </p>
+            <ul>
+              <li>comply with any judicial decision that restricts the use of personal data within the Information;</li>
+              <li>
+                remove from publication any documents you are using under this licence, that are subsequently no longer
+                published by the Keeper of Public Records on The National Archives website, or have been replaced by a revised
+                version from the Courts or Tribunals
+              </li>
+              <li>
+                acknowledge the source of the Information by including the following attribution statement and, where possible,
+                provide a link to this licence;
+                <ul>
+                  <li>Contains information licensed under the Open Justice - Licence v1.0.</li>
+                </ul>
+              </li>
+              <li>
+                ensure that you do not use the Information in a way that suggests any official status or that the Licensor
+                endorses you or your use of the Information;
+              </li>
+              <li>
+                ensure that you (i) do not mislead others or misrepresent the Information or its source; (ii) do not present the
+                Information in a way that does not have regard to the dignity of the Courts or Tribunals, or to their function
+                as working bodies; and (iii) do not use the Information in any way that jeopardises the proper administration of
+                justice;
+              </li>
+            </ul>
+            <p>
+              These are important conditions of this licence and if you fail to comply with them the rights granted to you
+              under this licence, or any similar licence granted by the Licensor, will end automatically.
+            </p>
+            <strong>Exclusions</strong>
+            <p>This licence does not cover:</p>
+            <ul>
+              <li>computational analysis of the Information (including indexing by search engines);</li>
+              <li>
+                information that has neither been published nor disclosed under information access legislation (including the
+                Freedom of Information Acts for the UK and Scotland) by or with the consent of the Licensor;
+              </li>
+              <li>emblems and insignia of the courts and tribunals;</li>
+              <li>third party rights the Licensor is not authorised to license; and</li>
+              <li>information subject to other intellectual property rights, including patents, trademarks, and design rights.</li>
+            </ul>
+            <p>For the avoidance of doubt:</p>
+            <ul>
+              <li>this licence is not a data sharing agreement for personal data; and</li>
+              <li>this licence is not a processing agreement for personal data.</li>
+            </ul>
+            <p>
+              Data Controllers will need to satisfy themselves that they have a legal basis and valid purpose for processing
+              personal data.
+            </p>
+            <strong>No warranty</strong>
+            <p>
+              The Information is licensed ‘as is’ and the Licensor excludes all representations, warranties, obligations and
+              liabilities in relation to the Information to the maximum extent permitted by law.
+            </p>
+            <p>
+              The Licensor is not liable for any errors or omissions in the Information and shall not be liable for any loss,
+              injury or damage of any kind caused by its use.
+            </p>
+            <p>The Licensor does not guarantee the continued supply of the Information.</p>
+            <strong>Governing Law</strong>
+            <p>This licence is governed by the laws of England and Wales.</p>
+            <strong>Definitions</strong>
+            <p>In this licence, the terms below have the following meanings:</p>
+            <ul>
+              <li>
+                ’Information’ means information protected by copyright or by database right offered for use under the terms
+                of this licence, namely court judgments and tribunal decisions published by the Keeper of Public Records on The National Archives website.
+              </li>
+              <li>
+                Licensor’ means (a) in relation to copyright, the Keeper of Public Records, and (b) in relation to database right, the Keeper of Public Records.
+              </li>
+              <li>
+                Use’ as a verb, means doing any act which is restricted by copyright or database right, whether in the original medium or in any other medium,
+                and includes without limitation distributing, copying, adapting, modifying as may be technically necessary to use it in a different mode or format.
+              </li>
+              <li>
+                ‘You' means the natural or legal person, or body of persons corporate or incorporate, acquiring rights under this licence.
+              </li>
+            </ul>
+            <strong>About the Open Justice Licence</strong>
+            <p>
+              This is version 1.0 of the Open Justice Licence. The Licensor may, from time to time, issue new versions of the Open Justice Licence.
+            </p>
+            <p>
+              The Information licensed under the Open Justice Licence includes court judgments and tribunal decisions in which Crown copyright subsists.
+            </p>
+            <p>
+              Further context, best practice and guidance relating to the re-use of public sector information can be found in the <a href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/">
+              section on The National Archives website.
+            </a>
+          </p>
+        </div>
+      </div>
+    </details>
+    <div class="info-box__content">
+      <h3 class="info-box__heading">I want to perform computational analysis</h3>
+      <p>
+        To do any programmatic searching across the records in bulk to identify, extract, index or enrich contents within the records,
+        you will need to apply for a licence. This licence is free but is subject to approval by a cross departmental board at The National Archives.
+      </p>
+      <a role="button"
+         tabindex="0"
+         draggable="false"
+         class="govuk-button"
+         data-module="govuk-button"
+         value="I want to perform computational analysis"
+         href="{% url 'transactional-licence-form-steps' %}">I want to perform computational analysis</a>
+    </div>
+  </div>
+  <h3>Not sure what licence you need?</h3>
+  <p>
+    If you have any questions about licencing, please <a href="mailto:{% translate "caselaw.email" %}">email the licence team</a>
+  </p>
   <a href="{% url 'transactional-licence-form-steps' %}">Click to start</a>
+</div>
 {% endblock content %}
