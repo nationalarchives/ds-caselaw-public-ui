@@ -283,7 +283,7 @@ msgstr "Errors in 'to' date - see below for details"
 msgid "search.errors.to_before_from_headline"
 msgstr "The 'to' date entered is before the 'from' date"
 
-#: judgments/utils.py
+#: judgments/utils/utils.py
 msgid "search.errors.missing_year_detail"
 msgstr "You must specify a year"
 

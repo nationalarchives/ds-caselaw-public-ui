@@ -20,6 +20,8 @@ from judgments.utils import (
     paginator,
     parse_date_parameter,
     preprocess_query,
+    process_court_facets,
+    process_year_facets,
     show_no_exact_ncn_warning,
 )
 
@@ -128,6 +130,19 @@ def advanced_search(request):
                 api_client, search_parameters
             )
 
+            court_facets = {}
+            year_facets = {}
+
+            if search_parameters.query:
+                unprocessed_facets, court_facets = process_court_facets(
+                    search_response.facets, context["query_params"].get("court")
+                )
+                unprocessed_facets, year_facets = process_year_facets(
+                    unprocessed_facets
+                )
+
+            context["court_facets"] = court_facets
+            context["year_facets"] = year_facets
             context["search_results"] = search_response.results
             context["total"] = search_response.total
             context["paginator"] = paginator(page, search_response.total, per_page)

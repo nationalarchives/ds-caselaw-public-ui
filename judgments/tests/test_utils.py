@@ -3,6 +3,7 @@ from unittest import mock
 from unittest.mock import Mock
 
 from caselawclient.errors import DocumentNotFoundError
+from ds_caselaw_utils import courts as all_courts
 
 from judgments.tests.factories import JudgmentFactory, PressSummaryFactory
 from judgments.utils import (
@@ -12,19 +13,21 @@ from judgments.utils import (
     linked_doc_title,
     linked_doc_url,
     press_summary_list_breadcrumbs,
+    process_court_facets,
+    process_year_facets,
     show_no_exact_ncn_warning,
 )
 
 
 class TestUtils(unittest.TestCase):
-    @mock.patch("judgments.utils.api_client")
+    @mock.patch("judgments.utils.utils.api_client")
     def test_get_existing_document(self, mock_api_client):
         document = mock.Mock()
         mock_api_client.get_document_by_uri.return_value = document
         result = get_document_by_uri("sample_uri")
         self.assertEqual(result, document)
 
-    @mock.patch("judgments.utils.api_client")
+    @mock.patch("judgments.utils.utils.api_client")
     def test_get_nonexistent_document(self, mock_api_client):
         mock_api_client.get_document_by_uri.side_effect = DocumentNotFoundError
         with self.assertRaises(DocumentNotFoundError):
@@ -76,7 +79,7 @@ class TestUtils(unittest.TestCase):
             },
         ]
 
-    @mock.patch("judgments.utils.api_client")
+    @mock.patch("judgments.utils.utils.api_client")
     def test_get_press_summaries_for_document_uri(self, mock_api_client):
         summaries = [mock.Mock(), mock.Mock()]
         mock_api_client.get_press_summaries_for_document_uri.return_value = summaries
@@ -145,3 +148,28 @@ class TestUtils(unittest.TestCase):
         ]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertFalse(result)
+
+
+class TestSearchUtils(unittest.TestCase):
+    def test_process_court_facets(self):
+        """
+        process_court_facets returns court facets, and invalid facets.
+        """
+        raw_facets = {"EAT": "3", "INVALID": "5", "": "1"}
+        eat_court_code = all_courts.get_by_code("EAT")
+
+        remaining_facets, court_facets = process_court_facets(raw_facets)
+
+        self.assertEqual(remaining_facets, {"INVALID": "5", "": "1"})
+        self.assertEqual(court_facets, {eat_court_code: "3"})
+
+    def test_process_year_facets(self):
+        """
+        process_year_facets returns year facets, and invalid facets.
+        """
+        raw_facets = {"EAT": "3", "2010": "103", "1900": "4"}
+
+        remaining_facets, year_facets = process_year_facets(raw_facets)
+
+        self.assertEqual(remaining_facets, {"EAT": "3", "1900": "4"})
+        self.assertEqual(year_facets, {"2010": "103"})

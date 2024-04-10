@@ -4,8 +4,9 @@ from unittest.mock import patch
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 from django.utils.translation import gettext
+from ds_caselaw_utils import courts as all_courts
 
-from judgments.tests.fixtures import FakeSearchResponse
+from judgments.tests.fixtures import FakeSearchResponse, FakeSearchResponseNoFacets
 from judgments.tests.utils.assertions import assert_contains_html
 
 
@@ -194,6 +195,68 @@ class TestSearchBreadcrumbs(TestCase):
     ):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/judgments/search?query=waltham+forest")
+
         assert response.context["breadcrumbs"] == [
             {"text": 'Search results for "waltham forest"'}
         ]
+
+
+class TestSearchFacets(TestCase):
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_populated_court_facets(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        eat_court_code = all_courts.get_by_code("EAT")
+        response = self.client.get("/judgments/search?query=example+query")
+
+        # Desired court_facet is present
+        assert response.context["context"]["court_facets"] == {eat_court_code: "3"}
+        # Blank keys are not present
+        assert "" not in response.context["context"]["court_facets"].keys()
+        # Keys that don't match existing courts are not present
+        assert "invalid_court" not in response.context["context"]["court_facets"].keys()
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_unpopulated_court_facet_keys(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        Advanced search only populates court_facets if they are available
+        """
+        mock_search_judgments_and_parse_response.return_value = (
+            FakeSearchResponseNoFacets()
+        )
+        response = self.client.get("/judgments/search?query=example+query")
+
+        assert response.context["context"]["court_facets"] == {}
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_populated_year_facets(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/judgments/search?query=example+query")
+
+        # Desired year_facet is present
+        assert response.context["context"]["year_facets"] == {"2010": "103"}
+        # Keys that don't match valid years are not present
+        assert "1900" not in response.context["context"]["year_facets"].keys()
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_unpopulated_year_facet_keys(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        Advanced search only populates year_facets if they are available
+        """
+        mock_search_judgments_and_parse_response.return_value = (
+            FakeSearchResponseNoFacets()
+        )
+        response = self.client.get("/judgments/search?query=example+query")
+
+        assert response.context["context"]["year_facets"] == {}
