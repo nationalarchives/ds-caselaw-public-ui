@@ -297,6 +297,14 @@ class NinePrinciplesForm(forms.Form):
     )
 
 
+class ReviewForm(forms.Form):
+    # The Review screen has to be a form 'step' with none of its own inputs
+    # and a custom tempalte, as once the `done` callback of the form-tools
+    # wizard is called, the form data has been scrubbed from the session,
+    # making amendments impossible.
+    pass
+
+
 FORMS = (
     ("contact", ContactForm),
     ("organization", OrganizationForm),
@@ -305,4 +313,5 @@ FORMS = (
     ("working-practices-1", WorkingPractices1Form),
     ("working-practices-2", WorkingPractices2Form),
     ("nine-principles", NinePrinciplesForm),
+    ("review", ReviewForm),
 )

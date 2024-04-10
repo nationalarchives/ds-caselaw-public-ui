@@ -1,4 +1,39 @@
 {% extends "layouts/base.html" %}
+{% load i18n %}
+{% block head %}
+  {{ wizard.form.media }}
+{% endblock head %}
+{% block content %}
+  {% block step_number %}
+    <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+  {% endblock step_number %}
+  {% block step_title %}
+    <h1>We're rendering the actual form</h1>
+  {% endblock step_title %}
+  {% block pre_form %}
+  {% endblock pre_form %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ wizard.management_form }}
+    {% if wizard.form.forms %}
+      {{ wizard.form.management_form }}
+      {% for form in wizard.form.forms %}<div>{{ form.as_div }}</div>{% endfor %}
+    {% else %}
+      <div>{{ wizard.form }}</div>
+    {% endif %}
+    <div>
+      {% if wizard.steps.prev %}
+        <button name="wizard_goto_step"
+                type="submit"
+                value="{{ wizard.steps.first }}">{% translate "first step" %}</button>
+        <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% translate "prev step" %}</button>
+      {% endif %}
+      <input type="submit" value="{% translate "submit" %}" />
+    </div>
+  </form>
+  {% block post_form %}
+  {% endblock post_form %}
+{% endblock content %}
 {% block feedback_cta %}
   {% comment %}
         This block left intentionally blank (we don't want
