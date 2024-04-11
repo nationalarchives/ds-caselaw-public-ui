@@ -35,6 +35,18 @@ class StartView3(TemplateView):
     template_name = "start3.html"
 
 
+class ConfirmationView(TemplateView):
+    template_name = "confirmation.html"
+
+    def post(self, _request, *_args, **_kwargs):
+        # TODO Tim handle the logic for the 'pre-applcation check' step here.
+        pass
+
+
+class EarlyExitView(TemplateView):
+    template_name = "early_exit.html"
+
+
 def wizard_view(url_name):
     return FormWizardView.as_view(
         FORMS,
