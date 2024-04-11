@@ -34,10 +34,9 @@ def sanitize_value(value):
 def sanitize_and_format_response_as_xml(form_data):
     lines = []
     for key, value in form_data.items():
-        print(key, value)
         sanitized = sanitize_value(value)
         lines.append(f"<{key}>{sanitized}</{key}>")
-    return "\n".join(sanitized)
+    return "\n".join(lines)
 
 
 def send_text_email_with_smtp_tls(
