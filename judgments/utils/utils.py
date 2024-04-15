@@ -15,6 +15,7 @@ from django.utils.translation import gettext
 from ds_caselaw_utils.neutral import neutral_url
 
 from judgments.fixtures.stop_words import stop_words
+from judgments.models.court_dates import CourtDates
 
 MAX_RESULTS_PER_PAGE = 50
 
@@ -183,39 +184,62 @@ def parse_parameter_as_int(params, parameter_name, default=None):
 
 
 def parse_date_parameter(
-    params, param_name, default_to_last=False, start_year=None, end_year=None
-) -> Optional[date]:
+    params, param_name, default_to_last=False,
+):
     year_param_name = f"{param_name}_year"
     month_param_name = f"{param_name}_month"
     day_param_name = f"{param_name}_day"
+
+    start_year = CourtDates.min_year()
+    end_year = CourtDates.max_year()
+
+    parser_errors = {}
+
     if parameter_provided(params, param_name):
-        return datetime.strptime(params[param_name], "%Y-%m-%d").date()
+        # TODO: Verify that this definitely cannot fail!!!
+        return datetime.strptime(params[param_name], "%Y-%m-%d").date(), {}
+
     elif parameter_provided(params, year_param_name):
         year = parse_parameter_as_int(params, year_param_name)
 
         if start_year and year < start_year:
-            raise ValueError("Find Case Law has no judgments before %s" % start_year)
+            year = start_year
+            parser_errors[year_param_name] = "This is a date before the start year"
 
         if end_year and year > end_year:
-            raise ValueError("Find Case Law has no judgments after %s" % end_year)
+            year = end_year
+            parser_errors[year_param_name] = "This is a date before the current year"
 
         default_month = 12 if default_to_last else 1
         month = parse_parameter_as_int(params, month_param_name, default=default_month)
 
+        if month > 12:
+            month = 12
+            parser_errors[month_param_name] = "This is a month greater than 12"
+        if month < 1:
+            month = 1
+            parser_errors[month_param_name] = "This is a month less than 1"
+
         default_day = monthrange(year, month)[1] if default_to_last else 1
         day = parse_parameter_as_int(params, day_param_name, default=default_day)
 
-        if day > 31 or month > 12:
-            raise ValueError("Some part of the date was too big")
-        if day < 1 or month < 1:
-            raise ValueError("Some part of the date was too small")
+        if day > 31:
+            day = 31
+            parser_errors[day_param_name] = "This is a day greater than 31"
+        if day < 1:
+            day = 1
+            parser_errors[day_param_name] = "This is a day less than 1"
 
-        return date(year, month, day)
+        return (date(year, month, day), parser_errors)
     elif parameter_provided(params, month_param_name) or parameter_provided(
         params, day_param_name
     ):
-        raise ValueError(gettext("search.errors.missing_year_detail"))
-    return None
+        breakpoint()
+        if param_name == "to_year":
+            year = end_year
+        else:
+            year = start_year
+        return None, parser_errors
 
 
 def get_document_by_uri(document_uri: str) -> Document:

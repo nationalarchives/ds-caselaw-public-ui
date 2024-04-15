@@ -7,7 +7,7 @@ from caselawclient.client_helpers.search_helpers import (
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
 from django.template.response import TemplateResponse
-from django.utils.translation import gettext
+from django.utils.translation import gettext as _
 from ds_caselaw_utils import courts as all_courts
 
 from judgments.models.court_dates import CourtDates
@@ -29,37 +29,24 @@ from judgments.utils import (
 def advanced_search(request):
     params = request.GET
     errors = SearchFormErrors()
-    try:
-        from_date = parse_date_parameter(
-            params,
-            "from",
-            start_year=CourtDates.min_year(),
-            end_year=CourtDates.max_year(),
-        )
-    except ValueError as error:
-        from_date = None
-        errors.add_error(
-            gettext("search.errors.from_date_headline"), "from_date", str(error)
-        )
-    try:
-        to_date = parse_date_parameter(
-            params,
-            "to",
-            default_to_last=True,
-            start_year=CourtDates.min_year(),
-            end_year=CourtDates.max_year(),
-        )
-    except ValueError as error:
-        to_date = None
-        errors.add_error(
-            gettext("search.errors.to_date_headline"), "to_date", str(error)
-        )
+
+    # breakpoint()
+    from_date, from_parser_errors = parse_date_parameter(
+        params,
+        "from",
+    )
+    to_date, to_parser_errors = parse_date_parameter(
+        params,
+        "to",
+        default_to_last=True,
+    )
+    parser_errors = {**from_parser_errors, **to_parser_errors}
 
     if to_date is not None and from_date is not None and to_date < from_date:
         errors.add_error(
-            gettext("search.errors.to_before_from_headline"),
+            _("search.errors.to_before_from_headline"),
             "to_date",
-            gettext("search.errors.to_before_from_detail"),
+            _("search.errors.to_before_from_detail"),
         )
 
     query_params = {
@@ -141,6 +128,8 @@ def advanced_search(request):
                     unprocessed_facets
                 )
 
+            # TODO: Maybe separate this dictionary into it's component parts?
+            context["parser_errors"] = parser_errors
             context["court_facets"] = court_facets
             context["year_facets"] = year_facets
             context["search_results"] = search_response.results
@@ -155,7 +144,7 @@ def advanced_search(request):
             context["order"] = order
             context["per_page"] = per_page
             context["filtered"] = has_filters(context["query_params"])
-            context["page_title"] = gettext("results.search.title")
+            context["page_title"] = _("results.search.title")
             context["show_no_exact_ncn_warning"] = show_no_exact_ncn_warning(
                 search_response.results, query_text, page
             )
