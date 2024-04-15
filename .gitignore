@@ -288,3 +288,7 @@ docker/*
 /ds_judgements_public_ui/static/css/judgmentpdf.css.map
 /ds_judgements_public_ui/static/js/dist/app.js
 .vscode
+
+# Extra config for development environments on NixOS (I'm sorry - Tim)
+.envrc
+shell.nix
