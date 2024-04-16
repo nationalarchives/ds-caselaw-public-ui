@@ -1,42 +1,48 @@
 {% extends "layouts/base.html" %}
-{% load i18n %}
+{% load i18n crispy_forms_tags %}
 {% block head %}
   {{ wizard.form.media }}
 {% endblock head %}
 {% block content %}
-  {% block step_number %}
-    <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-  {% endblock step_number %}
-  {% block step_title %}
-    <h1>We're rendering the actual form</h1>
-  {% endblock step_title %}
-  {% block pre_form %}
-  {% endblock pre_form %}
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ wizard.management_form }}
-    {% if wizard.form.forms %}
-      {{ wizard.form.management_form }}
-      {% for form in wizard.form.forms %}<div>{{ form.as_div }}</div>{% endfor %}
-    {% else %}
-      <div>{{ wizard.form }}</div>
-    {% endif %}
-    <div>
-      {% if wizard.steps.prev %}
-        <button name="wizard_goto_step"
-                type="submit"
-                value="{{ wizard.steps.first }}">{% translate "first step" %}</button>
-        <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% translate "prev step" %}</button>
+  <div class="standard-text-template container py-3">
+    {% block step_number %}
+      <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+    {% endblock step_number %}
+    {% block step_title %}
+      <h1>We're rendering the actual form</h1>
+    {% endblock step_title %}
+    {% block pre_form %}
+    {% endblock pre_form %}
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ wizard.management_form }}
+      {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}<div>{{ form|crispy }}</div>{% endfor %}
+      {% else %}
+        <div>{{ wizard.form|crispy }}</div>
       {% endif %}
-      <input type="submit" value="{% translate "submit" %}" />
-    </div>
-  </form>
-  {% block post_form %}
-  {% endblock post_form %}
+      <div>
+        {% if wizard.steps.prev %}
+          <button name="wizard_goto_step"
+                  class="button-secondary"
+                  type="submit"
+                  value="{{ wizard.steps.first }}">{% translate "first step" %}</button>
+          <button name="wizard_goto_step"
+                  type="submit"
+                  class="button-secondary"
+                  value="{{ wizard.steps.prev }}">{% translate "prev step" %}</button>
+        {% endif %}
+        <input type="submit" class="button-cta" value="{% translate "submit" %}" />
+      </div>
+    </form>
+    {% block post_form %}
+    {% endblock post_form %}
+  </div>
 {% endblock content %}
 {% block feedback_cta %}
   {% comment %}
-        This block left intentionally blank (we don't want
-        the feedback survey showing on form steps)
+This block left intentionally blank (we don't want
+the feedback survey showing on form steps)
   {% endcomment %}
 {% endblock feedback_cta %}
