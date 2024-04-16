@@ -48,11 +48,11 @@ class ContactForm(forms.Form):
     )
     alternative_contact = FCLChoiceField(
         label=(
-            "We need to ensure we have contact details of the person in your"
-            "organisation who will be responsible for licence compliance. This"
-            "should be someone senior who has overall responsibility for"
-            "ensuring your organisation complies with all terms and conditions"
-            "of the licence"
+            "We need to ensure we have contact details of the person in your "
+            "organisation who will be responsible for licence compliance. This "
+            "should be someone senior who has overall responsibility for "
+            "ensuring your organisation complies with all terms and conditions "
+            "of the licence."
         ),
         widget=forms.RadioSelect,
         choices=list_to_choices(ALTERNATIVE_CONTACT_CHOICES),
@@ -231,8 +231,8 @@ class WorkingPractices2Form(forms.Form):
     entire_record_available = FCLChoiceField(
         label="Will you make the entire record available online?",
         help_text=(
-            "For example, you may choose to signpost a full judgment"
-            "to users, where you have published or highlighted parts"
+            "For example, you may choose to signpost a full judgment "
+            "to users, where you have published or highlighted parts "
             "of a judgment."
         ),
         widget=forms.RadioSelect,
@@ -267,7 +267,7 @@ class WorkingPractices2Form(forms.Form):
     )
     explain_limitations = FCLChoiceField(
         label=(
-            "Will you explain how the limits of the find case law"
+            "Will you explain how the limits of the find case law "
             "collection impacts your computational analysis to users?"
         ),
         widget=forms.RadioSelect,
