@@ -43,10 +43,6 @@ class ConfirmationView(TemplateView):
         pass
 
 
-class EarlyExitView(TemplateView):
-    template_name = "early_exit.html"
-
-
 def wizard_view(url_name):
     return FormWizardView.as_view(
         FORMS,

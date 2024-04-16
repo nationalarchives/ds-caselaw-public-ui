@@ -54,5 +54,6 @@ $govuk-font-family: $font-open-sans;
 @import "includes/court_or_tribunal";
 @import "includes/advice_message";
 @import "includes/cards_homepage";
-@import "includes/govuk_overrides.scss";
-@import "includes/start.scss";
+@import "includes/govuk_overrides";
+@import "includes/start";
+@import "includes/confirmation";
