@@ -85,10 +85,10 @@ class OrganizationForm(forms.Form):
         "Other (please specify)",
     ]
 
-    agent_companyname = forms.CharField(
+    agent_companyname = FCLCharField(
         label="What is the full legal name of your organisation?", max_length=50
     )
-    agent_companyname_other = forms.CharField(
+    agent_companyname_other = FCLCharField(
         label="Please enter any other names your organisation is known by",
         max_length=50,
         help_text="If your organisation is not known by any other names, please type <strong>none</strong>.",
