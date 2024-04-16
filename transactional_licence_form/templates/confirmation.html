@@ -1,5 +1,88 @@
 {% extends "layouts/base.html" %}
 {% block content %}
-  <h1>Placeholder page for the initial 'do you need a licence' step</h1>
-  <a href="{% url 'transactional-licence-form-steps' %}">Click to start</a>
+  <div class="standard-text-template container py-3">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+      <span class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Information</span>
+        You cannot save your application half way through; you will need to complete your application in one session. Please make sure you have prepared
+        all your answers to the questions before starting the application process.
+      </span>
+    </div>
+    <h1 class="confirmation-steps">Do you need to apply for a licence?</h1>
+    <h3>
+      Step <b>1</b> of 17
+    </h3>
+    <p>
+      You only need to apply for a licence if you intend to use computational analysis in your re-use of Find Case Law records in ways
+      that are not already permitted under the Open Justice Licence.
+    </p>
+    <p>
+      The Open Justice licence permits certain re-uses without the need to apply for an additional licence. Before continuing, please make
+      sure you have read and understood what the <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">Open Justice Licence</a> permits you to do.
+    </p>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend">
+          <strong>Have you got details of who is applying for this licence?</strong>
+        </legend>
+        <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input"
+                   id="orginisation"
+                   name="orginistation"
+                   type="checkbox"
+                   value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="orginisation">
+              Yes, I have all the details of who is applying for this licence.
+            </label>
+          </div>
+        </div>
+        <legend class="govuk-fieldset__legend">
+          <strong>Have you prepared your public statement?</strong>
+        </legend>
+        <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input"
+                   id="orginisation"
+                   name="orginistation"
+                   type="checkbox"
+                   value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="orginisation">Yes, I have prepared my public statement.</label>
+          </div>
+        </div>
+        <legend class="govuk-fieldset__legend">
+          <strong>Have you prepared details of the consideration you have given to the nine principles?</strong>
+        </legend>
+        <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input"
+                   id="orginisation"
+                   name="orginistation"
+                   type="checkbox"
+                   value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="orginisation">
+              Yes, I can outline our considerations of the nine principles.
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="confirmation-btn-group">
+      <a role="button"
+         tabindex="0"
+         draggable="false"
+         class="govuk-button"
+         data-module="govuk-button"
+         value="Apply for a licence"
+         href="{% url 'transactional-licence-form-page-3' %}">Back</a>
+      <a role="button"
+         tabindex="0"
+         draggable="false"
+         class="govuk-button"
+         data-module="govuk-button"
+         value="Apply for a licence"
+         href="{% url 'transactional-licence-form-steps' %}">Next</a>
+    </div>
+  </div>
 {% endblock content %}
