@@ -36,6 +36,7 @@
       grid-template-rows: 1fr;
       row-gap: $spacer-unit;
       column-gap: $spacer-unit;
+      z-index: 2000;
       @media (max-width: $grid-breakpoint-medium) {
         column-gap: 0;
       }
