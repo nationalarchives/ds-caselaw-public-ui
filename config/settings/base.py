@@ -74,6 +74,8 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "waffle",
+    "crispy_forms",
+    "crispy_forms_gds",
 ]
 
 LOCAL_APPS = [
@@ -191,6 +193,9 @@ TEMPLATES = [
         },
     }
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = ["gds"]
+CRISPY_TEMPLATE_PACK = "gds"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
