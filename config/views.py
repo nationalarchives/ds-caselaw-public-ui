@@ -8,6 +8,7 @@ from django.utils.translation import gettext
 from django.views.generic import TemplateView
 from ds_caselaw_utils import courts
 
+from judgments.forms import AdvancedSearchForm
 from judgments.utils import api_client, as_integer, paginator
 
 # where the schemas can be downloaded from. Slash-terminated.
@@ -148,6 +149,7 @@ class StructuredSearchView(TemplateViewWithContext):
         context["context"]["courts"] = courts.get_grouped_selectable_courts()
         context["context"]["tribunals"] = courts.get_grouped_selectable_tribunals()
         context["feedback_survey_type"] = "structured_search"
+        context["form"] = AdvancedSearchForm()
         return context
 
 

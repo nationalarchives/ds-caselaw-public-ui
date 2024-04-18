@@ -1,4 +1,4 @@
-{% load court_utils errors %}
+{% load court_utils errors search_results_filters %}
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
     <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">
@@ -45,18 +45,21 @@
         For example <em>30 04 2023</em> or <em>2023</em>
       </p>
       {% if context.errors|has_errors_for_field:"to_date" %}
+      {{ context.errors }}
         <p class="structured-search__to-date-error-message" id="from-date-error">
-          {{ context.errors|errors_for_field:"to_date" }}
         </p>
       {% endif %}
       <div class="structured-search__date-input-group js-date-input">
         <div>
           <label for="to_day" class="structured-search__help-text">Day</label>
+          {{ form.from_date|addcss:"structured-search__date-input date-input--error" }}
+          <!--
           <input class="structured-search__date-input date-input--error"
                  id="to_day"
                  name="to_day"
                  type="number"
                  value="{{ context.to_day }}" />
+          -->
         </div>
         <div>
           <label for="to_month" class="structured-search__help-text">Month</label>
@@ -99,12 +102,7 @@
            class="structured-search__limit-to-label"
            aria-label="Search by party name">Party name</label>
     <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
-    <input class="structured-search__limit-to-input"
-           id="party_name"
-           name="party"
-           type="text"
-           value="{{ context.party }}"
-           aria-describedby="party_name-help-text" />
+    {{ form.party_name|addcss:"structured-search__limit-to-input" }}
   </div>
   <div class="structured-search__specific-field-container">
     <label for="judge_name"
@@ -113,12 +111,7 @@
     <p class="structured-search__help-text" id="judge_name-help-text">
       For example <em>Smith</em>, or multiple judges: <em>Smith, Jones</em>
     </p>
-    <input class="structured-search__limit-to-input"
-           id="judge_name"
-           name="judge"
-           type="text"
-           value="{{ context.judge }}"
-           aria-describedby="judge_name-help-text" />
+    {{ form.judge_name|addcss:"structured-search__limit-to-input" }}
   </div>
 </div>
 <div class="structured-search__submit-container">

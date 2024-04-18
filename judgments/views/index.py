@@ -7,6 +7,7 @@ from django.http import Http404
 from django.template.response import TemplateResponse
 from ds_caselaw_utils import courts as all_courts
 
+from judgments.forms import AdvancedSearchForm
 from judgments.utils import api_client
 
 
@@ -18,6 +19,7 @@ def index(request):
         )
         search_results = search_response.results
         context["recent_judgments"] = search_results
+        context["form"] = AdvancedSearchForm()
 
     except MarklogicResourceNotFoundError:
         raise Http404(
@@ -31,5 +33,6 @@ def index(request):
             "courts": all_courts.get_listable_courts(),
             "tribunals": all_courts.get_listable_tribunals(),
             "feedback_survey_type": "home",
+            "form": AdvancedSearchForm(),
         },
     )

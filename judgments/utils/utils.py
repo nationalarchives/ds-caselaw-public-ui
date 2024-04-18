@@ -1,7 +1,6 @@
 import math
 import re
-from calendar import monthrange
-from datetime import date, datetime
+from datetime import datetime
 from typing import Optional, TypedDict
 from urllib.parse import parse_qs, urlparse
 
@@ -11,11 +10,9 @@ from caselawclient.models.press_summaries import PressSummary
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.urls import reverse
-from django.utils.translation import gettext
 from ds_caselaw_utils.neutral import neutral_url
 
 from judgments.fixtures.stop_words import stop_words
-from judgments.models.court_dates import CourtDates
 
 MAX_RESULTS_PER_PAGE = 50
 
@@ -171,75 +168,8 @@ def has_filters(query_params, exclude=["order", "per_page"]):
     return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0
 
 
-def parameter_provided(params, parameter_name):
-    value = params.get(parameter_name)
-    return value and len(value)
-
-
-def parse_parameter_as_int(params, parameter_name, default=None):
-    if parameter_provided(params, parameter_name):
-        return int(params.get(parameter_name))
-    else:
-        return default
-
-
-def parse_date_parameter(
-    params, param_name, default_to_last=False,
-):
-    year_param_name = f"{param_name}_year"
-    month_param_name = f"{param_name}_month"
-    day_param_name = f"{param_name}_day"
-
-    start_year = CourtDates.min_year()
-    end_year = CourtDates.max_year()
-
-    parser_errors = {}
-
-    if parameter_provided(params, param_name):
-        # TODO: Verify that this definitely cannot fail!!!
-        return datetime.strptime(params[param_name], "%Y-%m-%d").date(), {}
-
-    elif parameter_provided(params, year_param_name):
-        year = parse_parameter_as_int(params, year_param_name)
-
-        if start_year and year < start_year:
-            year = start_year
-            parser_errors[year_param_name] = "This is a date before the start year"
-
-        if end_year and year > end_year:
-            year = end_year
-            parser_errors[year_param_name] = "This is a date before the current year"
-
-        default_month = 12 if default_to_last else 1
-        month = parse_parameter_as_int(params, month_param_name, default=default_month)
-
-        if month > 12:
-            month = 12
-            parser_errors[month_param_name] = "This is a month greater than 12"
-        if month < 1:
-            month = 1
-            parser_errors[month_param_name] = "This is a month less than 1"
-
-        default_day = monthrange(year, month)[1] if default_to_last else 1
-        day = parse_parameter_as_int(params, day_param_name, default=default_day)
-
-        if day > 31:
-            day = 31
-            parser_errors[day_param_name] = "This is a day greater than 31"
-        if day < 1:
-            day = 1
-            parser_errors[day_param_name] = "This is a day less than 1"
-
-        return (date(year, month, day), parser_errors)
-    elif parameter_provided(params, month_param_name) or parameter_provided(
-        params, day_param_name
-    ):
-        breakpoint()
-        if param_name == "to_year":
-            year = end_year
-        else:
-            year = start_year
-        return None, parser_errors
+def test_date_and_dict():
+    return datetime.today(), {"key": 1}
 
 
 def get_document_by_uri(document_uri: str) -> Document:

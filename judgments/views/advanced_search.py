@@ -6,11 +6,12 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
+from django.shortcuts import render
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext as _
 from ds_caselaw_utils import courts as all_courts
 
-from judgments.models.court_dates import CourtDates
+from judgments.forms import AdvancedSearchForm
 from judgments.models.search_form_errors import SearchFormErrors
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
@@ -25,12 +26,114 @@ from judgments.utils import (
     show_no_exact_ncn_warning,
 )
 
+def _get_search_parameters(query_text:str, params: dict, form: AdvancedSearchForm):
+    return SearchParameters(
+        query=query_text,
+        court=params.get("court", ""),
+        judge=form.fields.get("judge", ""),
+        party=form.fields.get("party", ""),
+        page=params.get("page", "1"),
+        order=params.get("order", "-date"),
+        date_from=form.fields.get("from"),
+        date_to=form.fields.get("to", ""),
+        page_size=params.get("per_page", 10),
+        )
+
 
 def advanced_search(request):
+    # TODO: You should be able to just split the form in the templates using form.field, they don't have to be wrapped in inputs or forms in html.
+    # TODO: Probably worth just changing this back to a GET request
+    if request.method == "GET":
+        form = AdvancedSearchForm(request.GET)
+        params = request.GET
+
+        """
+        Form should be valid unless there is a critical issue
+        with the submission (i.e. Month > 12)
+        """
+        if form.is_valid():
+            try:
+                context: dict = {}
+                query_text: str = params.get("query", "")
+
+                search_parameters: SearchParameters = _get_search_parameters(preprocess_query(query_text), params, form)
+                
+                search_response = search_judgments_and_parse_response(
+                    api_client, search_parameters
+                )
+
+                court_facets = {}
+                year_facets = {}
+                """
+                if search_parameters.query:
+                    unprocessed_facets, court_facets = process_court_facets(
+                        search_response.facets, params["query_params"].get("court", {})
+                    )
+                    unprocessed_facets, year_facets = process_year_facets(
+                        unprocessed_facets
+                    )
+                """
+                
+                page: str = str(as_integer("1", minimum=1))
+                per_page: str = str(
+                    as_integer(
+                        params.get("per_page", "10"),
+                        minimum=1,
+                        maximum=MAX_RESULTS_PER_PAGE,
+                        default=RESULTS_PER_PAGE,
+                    )
+                )
+                order=params.get("order", "-date")
+
+                # TODO: Maybe separate this dictionary into it's component parts?
+                context["court_facets"] = court_facets
+                context["year_facets"] = year_facets
+                context["search_results"] = search_response.results
+                context["total"] = search_response.total
+                context["paginator"] = paginator(params.get("page", "1"), search_response.total, per_page)
+                changed_queries = {
+                    key: value for key, value in params.items() if value is not None
+                }
+                context["query_string"] = urllib.parse.urlencode(
+                    changed_queries, doseq=True
+                )
+                context["order"] = order
+                context["per_page"] = per_page
+                context["filtered"] = has_filters(params)
+                context["page_title"] = _("results.search.title")
+                context["show_no_exact_ncn_warning"] = show_no_exact_ncn_warning(
+                    search_response.results, query_text, page
+                )
+
+            except MarklogicResourceNotFoundError:
+                raise Http404("Search failed")
+            # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
+            if query_text:
+                breadcrumbs = [{"text": f'Search results for "{query_text}"'}]
+            else:
+                breadcrumbs = [{"text": "Search results"}]
+            return TemplateResponse(
+                request,
+                "judgment/results.html",
+                context={
+                    "form": form,
+                    "context": context,
+                    "breadcrumbs": breadcrumbs,
+                    "feedback_survey_type": "structured_search",
+                }
+            )
+        else:
+            return TemplateResponse(
+                request, "pages/structured_search.html", {"form": form}
+        )
+    else:
+        form = AdvancedSearchForm()
+    return render(request, "pages/structured_search.html", {"form": form})
+
+def advanced_search_remove(request):
     params = request.GET
     errors = SearchFormErrors()
 
-    # breakpoint()
     from_date, from_parser_errors = parse_date_parameter(
         params,
         "from",

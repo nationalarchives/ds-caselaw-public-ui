@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load i18n errors %}
+{% load i18n errors search_results_filters %}
 {% block title %}
   {% translate "structured_search.title" %} - Find case law
 {% endblock title %}
@@ -13,7 +13,9 @@
         <div class="structured-search__container">
           <h1 class="structured-search__main-search-header">Structured search</h1>
           <div class="structured-search__full-text-panel search-term-component">
-            {% include "includes/search_term_component.html" with show_help_text=True query=context.query %}
+            {% csrf_token %}
+            {{ form.query|addcss:"search-term-component__search-term-input" }}
+            <input type="submit" action="{% url 'search' %}">
           </div>
         </div>
       </div>

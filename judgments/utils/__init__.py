@@ -1,4 +1,4 @@
-from .search_utils import ALL_COURT_CODES, process_court_facets, process_year_facets
+from .search_utils import ALL_COURT_CODES, parse_date_parameter, process_court_facets, process_year_facets
 from .utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
@@ -12,7 +12,6 @@ from .utils import (
     linked_doc_url,
     normalise_quotes,
     paginator,
-    parse_date_parameter,
     preprocess_query,
     preprocess_title,
     press_summary_list_breadcrumbs,
@@ -21,9 +20,11 @@ from .utils import (
     show_no_exact_ncn_warning,
     solo_stop_word_regex,
     without_stop_words_regex,
+    test_date_and_dict,
 )
 
 __all__ = [
+    "test_date_and_dict",
     "ALL_COURT_CODES",
     "api_client",
     "as_integer",
