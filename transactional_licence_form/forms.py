@@ -1,3 +1,5 @@
+from crispy_forms_gds.helper import FormHelper
+from crispy_forms_gds.layout import Field, Layout
 from django import forms
 
 from .utils import countries_and_territories
@@ -14,26 +16,38 @@ def list_to_choices(values):
     return [(v, v) for v in values]
 
 
-class FCLFormMixin(object):
+class FCLFieldMixin(object):
     def __init__(self, **kwargs):
         self.send_to_dynamics = kwargs.pop("send_to_dynamics", True)
         self.label_class = kwargs.pop("label_class", None)
-        super(FCLFormMixin, self).__init__(**kwargs)
+        super(FCLFieldMixin, self).__init__(**kwargs)
 
 
-class FCLCharField(FCLFormMixin, forms.CharField):
+class FCLCharField(FCLFieldMixin, forms.CharField):
     pass
 
 
-class FCLChoiceField(FCLFormMixin, forms.ChoiceField):
+class FCLChoiceField(FCLFieldMixin, forms.ChoiceField):
     pass
 
 
-class FCLMultipleChoiceField(FCLFormMixin, forms.MultipleChoiceField):
+class FCLMultipleChoiceField(FCLFieldMixin, forms.MultipleChoiceField):
     pass
 
 
-class ContactForm(forms.Form):
+class FCLForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.layout = self.layout()
+
+    def layout(self):
+        pass
+
+
+class ContactForm(FCLForm):
 
     ALTERNATIVE_CONTACT_CHOICES = [
         "This is the same person as the main contact",
@@ -72,7 +86,7 @@ class ContactForm(forms.Form):
     )
 
 
-class OrganizationForm(forms.Form):
+class OrganizationForm(FCLForm):
 
     TNA_CONTACTTYPE_CHOICES = [
         "Private limited company",
@@ -120,7 +134,7 @@ class OrganizationForm(forms.Form):
     )
 
 
-class ProjectPurposeForm(forms.Form):
+class ProjectPurposeForm(FCLForm):
 
     PROJECT_PURPOSE_CHOICES = [
         "Publish legal information",
@@ -183,16 +197,19 @@ class ProjectPurposeForm(forms.Form):
     benefit_other = FCLCharField(max_length=50)
 
 
-class PublicStatementForm(forms.Form):
+class PublicStatementForm(FCLForm):
+    def layout(self):
+        return Layout(Field.textarea("public_statement", max_characters=1500))
+
     public_statement = FCLCharField(
         label="Please provide a public statement",
         help_text="Please aim for no more than around 150 words.",
         max_length=1500,
-        widget=forms.Textarea,
+        widget=forms.Textarea(),
     )
 
 
-class WorkingPractices1Form(forms.Form):
+class WorkingPractices1Form(FCLForm):
     focus_on_specific = FCLChoiceField(
         label=" Will the computational analysis focus on specific individuals or specific groups of people?",
         widget=forms.RadioSelect,
@@ -221,7 +238,7 @@ class WorkingPractices1Form(forms.Form):
     )
 
 
-class WorkingPractices2Form(forms.Form):
+class WorkingPractices2Form(FCLForm):
 
     COMPUTATIONAL_ANALYSIS_TYPE_CHOICES = [
         "Produce fully automated legal advice",
@@ -279,7 +296,14 @@ class WorkingPractices2Form(forms.Form):
     )
 
 
-class NinePrinciplesForm(forms.Form):
+class NinePrinciplesForm(FCLForm):
+    def layout(self):
+        return Layout(
+            Field.radios("accept_principles"),
+            Field.textarea("principles_statement", max_characters=2500),
+            Field.textarea("additional_comments", max_characters=500),
+        )
+
     accept_principles = FCLChoiceField(
         label="Licence holders must acknowledge and abide by all the 9 principles. Do you accept this licence term?",
         widget=forms.RadioSelect,
@@ -289,7 +313,7 @@ class NinePrinciplesForm(forms.Form):
     principles_statement = FCLCharField(
         label="Please describe how you will meet the 9 principles",
         help_text="You should identify any risks and how you will address these risks for each of the 9 principles.",
-        max_length=1500,
+        max_length=2500,
         widget=forms.Textarea,
     )
 
@@ -301,7 +325,7 @@ class NinePrinciplesForm(forms.Form):
     )
 
 
-class ReviewForm(forms.Form):
+class ReviewForm(FCLForm):
     # The Review screen has to be a form 'step' with none of its own inputs
     # and a custom tempalte, as once the `done` callback of the form-tools
     # wizard is called, the form data has been scrubbed from the session,

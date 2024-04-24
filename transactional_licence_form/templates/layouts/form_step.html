@@ -20,7 +20,7 @@
         {{ wizard.form.management_form }}
         {% for form in wizard.form.forms %}<div>{{ form|crispy }}</div>{% endfor %}
       {% else %}
-        <div>{{ wizard.form|crispy }}</div>
+        <div>{% crispy wizard.form %}</div>
       {% endif %}
       <div>
         {% if wizard.steps.prev %}
