@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load i18n crispy_forms_tags %}
+{% load crispy_forms_tags transactional_licence_utils %}
 {% block head %}
   {{ wizard.form.media }}
 {% endblock head %}
@@ -25,15 +25,13 @@
       <div>
         {% if wizard.steps.prev %}
           <button name="wizard_goto_step"
-                  class="button-secondary"
-                  type="submit"
-                  value="{{ wizard.steps.first }}">{% translate "first step" %}</button>
-          <button name="wizard_goto_step"
                   type="submit"
                   class="button-secondary"
-                  value="{{ wizard.steps.prev }}">{% translate "prev step" %}</button>
+                  value="{{ wizard.steps.prev }}">Previous</button>
         {% endif %}
-        <input type="submit" class="button-cta" value="{% translate "submit" %}" />
+        <input type="submit"
+               class="button-cta"
+               value="{{ wizard.steps.current|submit_label_for_step }}" />
       </div>
     </form>
     {% block post_form %}
