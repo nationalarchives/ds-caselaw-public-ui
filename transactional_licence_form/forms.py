@@ -1,5 +1,7 @@
 from django import forms
 
+from .utils import countries_and_territories
+
 YES_NO_CHOICES = ["Yes", "No"]
 
 
@@ -93,9 +95,11 @@ class OrganizationForm(forms.Form):
         max_length=50,
         help_text="If your organisation is not known by any other names, please type <strong>none</strong>.",
     )
-    agent_country = FCLCharField(
-        label="Where is your organisation registered?"
-    )  # TODO Tim make this an autocomplete
+    agent_country = FCLChoiceField(
+        label="Where is your organisation registered?",
+        choices=countries_and_territories,
+        widget=forms.Select(attrs={"class": "location-autocomplete"}),
+    )
 
     tna_contacttype = FCLMultipleChoiceField(
         label="What type of organisation is it?",

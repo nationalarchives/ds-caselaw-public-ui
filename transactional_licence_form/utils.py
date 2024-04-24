@@ -1,9 +1,19 @@
+import json
 import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 DISALLOWED_CHARACTERS = {"<": "&lt;", ">": "&gt;"}
+
+COUNTRIES_AND_TERRITORIES_JSON_PATH = (
+    "ds_judgements_public_ui/static/js/location-autocomplete-canonical-list.json"
+)
+
+
+def countries_and_territories():
+    with open(COUNTRIES_AND_TERRITORIES_JSON_PATH) as file:
+        return [(pair[1], pair[0]) for pair in json.load(file)]
 
 
 def send_form_response_to_dynamics(form_data):
