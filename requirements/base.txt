@@ -8,7 +8,6 @@ django==5.0.4  # https://www.djangoproject.com/
 django-environ==0.11.2 # https://github.com/joke2k/django-environ
 
 requests~=2.31.0
-xmltodict~=0.13.0
 requests-toolbelt~=1.0.0
 lxml~=5.2.0
 wsgi-basic-auth~=1.1.0
