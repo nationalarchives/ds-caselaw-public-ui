@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load crispy_forms_tags transactional_licence_utils %}
+{% load crispy_forms_tags crispy_forms_gds transactional_licence_utils %}
 {% block head %}
   {{ wizard.form.media }}
 {% endblock head %}
@@ -9,16 +9,19 @@
       <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
     {% endblock step_number %}
     {% block step_title %}
-      <h1>We're rendering the actual form</h1>
+      <h1>{{ wizard.form.title }}</h1>
     {% endblock step_title %}
     {% block pre_form %}
     {% endblock pre_form %}
+    {% error_summary form %}
     <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ wizard.management_form }}
       {% if wizard.form.forms %}
         {{ wizard.form.management_form }}
-        {% for form in wizard.form.forms %}<div>{{ form|crispy }}</div>{% endfor %}
+        {% for form in wizard.form.forms %}
+          <div>{% crispy form %}</div>
+        {% endfor %}
       {% else %}
         <div>{% crispy wizard.form %}</div>
       {% endif %}

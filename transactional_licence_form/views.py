@@ -5,7 +5,10 @@ from formtools.wizard.views import NamedUrlSessionWizardView
 from .forms import FORMS
 from .utils import send_form_response_to_dynamics
 
-TEMPLATE_OVERRIDES = {"review": "review.html"}
+TEMPLATE_OVERRIDES = {
+    "review": "review.html",
+    "nine-principles-1": "nine_principles_1.html",
+}
 
 
 class FormWizardView(NamedUrlSessionWizardView):
