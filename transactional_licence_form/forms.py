@@ -48,6 +48,7 @@ class FCLForm(forms.Form):
 
 
 class ContactForm(FCLForm):
+    title = "Contact Details"
 
     ALTERNATIVE_CONTACT_CHOICES = [
         "This is the same person as the main contact",
@@ -87,6 +88,8 @@ class ContactForm(FCLForm):
 
 
 class OrganizationForm(FCLForm):
+
+    title = "About your organisastion"
 
     TNA_CONTACTTYPE_CHOICES = [
         "Private limited company",
@@ -135,6 +138,8 @@ class OrganizationForm(FCLForm):
 
 
 class ProjectPurposeForm(FCLForm):
+
+    title = "Purpose and Activities"
 
     PROJECT_PURPOSE_CHOICES = [
         "Publish legal information",
@@ -198,6 +203,9 @@ class ProjectPurposeForm(FCLForm):
 
 
 class PublicStatementForm(FCLForm):
+
+    title = "Public Statement"
+
     def layout(self):
         return Layout(Field.textarea("public_statement", max_characters=1500))
 
@@ -210,6 +218,9 @@ class PublicStatementForm(FCLForm):
 
 
 class WorkingPractices1Form(FCLForm):
+
+    title = "Working Practices"
+
     focus_on_specific = FCLChoiceField(
         label=" Will the computational analysis focus on specific individuals or specific groups of people?",
         widget=forms.RadioSelect,
@@ -239,6 +250,8 @@ class WorkingPractices1Form(FCLForm):
 
 
 class WorkingPractices2Form(FCLForm):
+
+    title = "Working Practices"
 
     COMPUTATIONAL_ANALYSIS_TYPE_CHOICES = [
         "Produce fully automated legal advice",
@@ -296,13 +309,8 @@ class WorkingPractices2Form(FCLForm):
     )
 
 
-class NinePrinciplesForm(FCLForm):
-    def layout(self):
-        return Layout(
-            Field.radios("accept_principles"),
-            Field.textarea("principles_statement", max_characters=2500),
-            Field.textarea("additional_comments", max_characters=500),
-        )
+class NinePrinciplesAgreementForm(FCLForm):
+    title = "Statements and Principles"
 
     accept_principles = FCLChoiceField(
         label="Licence holders must acknowledge and abide by all the 9 principles. Do you accept this licence term?",
@@ -310,12 +318,30 @@ class NinePrinciplesForm(FCLForm):
         choices=list_to_choices(YES_NO_CHOICES),
     )
 
+
+class NinePrinciplesStatementForm(FCLForm):
+    title = "Statements and Principles"
+
+    def layout(self):
+        return Layout(
+            Field.textarea("principles_statement", max_characters=2500),
+        )
+
     principles_statement = FCLCharField(
         label="Please describe how you will meet the 9 principles",
         help_text="You should identify any risks and how you will address these risks for each of the 9 principles.",
         max_length=2500,
         widget=forms.Textarea,
     )
+
+
+class AdditionalCommentsForm(FCLForm):
+    title = "Additional Comments"
+
+    def layout(self):
+        return Layout(
+            Field.textarea("additional_comments", max_characters=500),
+        )
 
     additional_comments = FCLCharField(
         label="Are there any additional comments you would like to make in relation to your application?",
@@ -326,6 +352,7 @@ class NinePrinciplesForm(FCLForm):
 
 
 class ReviewForm(FCLForm):
+    title = "Review your Answers"
     # The Review screen has to be a form 'step' with none of its own inputs
     # and a custom tempalte, as once the `done` callback of the form-tools
     # wizard is called, the form data has been scrubbed from the session,
@@ -340,6 +367,8 @@ FORMS = (
     ("public-statement", PublicStatementForm),
     ("working-practices-1", WorkingPractices1Form),
     ("working-practices-2", WorkingPractices2Form),
-    ("nine-principles", NinePrinciplesForm),
+    ("nine-principles-1", NinePrinciplesAgreementForm),
+    ("nine-principles-2", NinePrinciplesStatementForm),
+    ("additional-comments", AdditionalCommentsForm),
     ("review", ReviewForm),
 )
