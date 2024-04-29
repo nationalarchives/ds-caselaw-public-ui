@@ -17,6 +17,14 @@
 .govuk-button {
   @include call-to-action-button;
   box-shadow: none;
+  &:focus {
+    background-color: $color-dark-blue !important;
+    color: $color-white !important;
+    box-shadow: none !important;
+    @include focus-default;
+    outline-offset: 0.2rem !important;
+    outline-color: $color-dark-blue !important;
+  }
 }
 
 .govuk-label {
@@ -42,6 +50,11 @@
 .govuk-details__summary {
   padding-left: 1.5rem;
   color: $color-dark-blue;
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+    @include focus-default;
+  }
 }
 
 .govuk-details__summary-text {
@@ -107,4 +120,11 @@
   border-left: 0.5rem $color-yellow solid;
   background-color: #fef8df;
   padding: calc($spacer-unit * 2) calc($spacer-unit * 2);
+}
+
+.govuk-checkboxes__input {
+  &:focus {
+    @include focus-default;
+    outline-color: $color-focus-blue-outline;
+  }
 }
