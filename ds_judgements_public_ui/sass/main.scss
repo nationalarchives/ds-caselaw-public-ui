@@ -12,6 +12,7 @@
 // Shared
 @import "../../node_modules/@nationalarchives/ds-caselaw-frontend/src/main";
 $govuk-font-family: $font-open-sans;
+$govuk-focus-colour: $color-focus-blue-outline;
 @import "../../node_modules/govuk-frontend/dist/govuk/all";
 
 // Components
