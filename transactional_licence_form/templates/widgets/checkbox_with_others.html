@@ -1,0 +1,43 @@
+{% load l10n crispy_forms_gds transactional_licence_utils %}
+<fieldset class="govuk-fieldset"
+          {% if field.help_text or field.errors %} aria-describedby="{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}
+          {% for error in field.errors %}{{ field.auto_id }}_{{ i }}_error{% endfor %}
+          "
+          {% endif %}>
+  {% if field.label %}
+    <legend class="govuk-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
+      {% if legend_tag %}<{{ legend_tag }} class="govuk-fieldset__heading">{% endif %}
+      {{ field.label|safe }}
+      {% if legend_tag %}</{{ legend_tag }}>{% endif %}
+    </legend>
+  {% endif %}
+  {% include "gds/layout/help_text_and_errors.html" %}
+  <div class="govuk-checkboxes{% if inline %}--inline{% endif %}{% if checkboxes_small %} govuk-checkboxes--small{% endif %}">
+    {% for choice in field.choices %}
+      {% with i=forloop.counter choose_widget_name=widget.subwidgets.0.name %}
+        <div class="govuk-checkboxes__item">
+          <input type="checkbox"
+                 name="{{ choose_widget_name }}"
+                 class="govuk-checkboxes__input"
+                 id="id_{{ choose_widget_name }}_{{ i }}"
+                 value="{{ choice.0|unlocalize }}"
+                 {% if choice.0 in widget.subwidgets.0.value or choice.0|stringformat:"s" in widget.subwidgets.0.value %} checked="checked" {% endif %}
+                 {% if choice.hint %}aria-describedby="id_{{ choose_widget_name }}_{{ i }}_hint"{% endif %}>
+          <label class="govuk-label govuk-checkboxes__label"
+                 for="id_{{ choose_widget_name }}_{{ i }}"
+                 id="id_{{ choose_widget_name }}_{{ i }}_label">{{ choice.1|unlocalize }}</label>
+          {% if choice.hint %}
+            <span id="id_{{ choose_widget_name }}_{{ i }}_hint"
+                  class="govuk-hint govuk-checkboxes__hint">{{ choice.hint }}</span>
+          {% endif %}
+          {% if i|has_other_field:other_fields %}
+            {% with subwidget=i|get_subwidget_for_other_field:other_field_subwidgets %}
+              {% include subwidget.template_name with widget=subwidget choose_widget_name=choose_widget_name option_index=i %}
+            {% endwith %}
+          {% endif %}
+        </div>
+        {% if choice.divider %}<div class="govuk-checkboxes__divider">{{ choice.divider }}</div>{% endif %}
+      {% endwith %}
+    {% endfor %}
+  </div>
+</fieldset>

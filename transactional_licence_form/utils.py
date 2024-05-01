@@ -11,6 +11,10 @@ COUNTRIES_AND_TERRITORIES_JSON_PATH = (
 )
 
 
+def list_to_choices(values):
+    return [(v, v) for v in values]
+
+
 def countries_and_territories():
     with open(COUNTRIES_AND_TERRITORIES_JSON_PATH) as file:
         return [(pair[1], pair[0]) for pair in json.load(file)]
@@ -41,11 +45,23 @@ def sanitize_value(value):
     return sanitized
 
 
+def format_and_sanitize_field(key, value):
+    if isinstance(value, dict):
+        lines = []
+        for key2 in value.keys():
+            combined_key = "%s_%s" % (key, key2)
+            lines = lines + format_and_sanitize_field(combined_key, value[key2])
+        return lines
+    else:
+        return [(key, sanitize_value(value))]
+
+
 def sanitize_and_format_response_as_xml(form_data):
     lines = []
     for key, value in form_data.items():
-        sanitized = sanitize_value(value)
-        lines.append(f"<{key}>{sanitized}</{key}>")
+        field_lines = format_and_sanitize_field(key, value)
+        for key2, sanitized_value in field_lines:
+            lines.append(f"<{key2}>{sanitized_value}</{key2}>")
     return "\n".join(lines)
 
 
