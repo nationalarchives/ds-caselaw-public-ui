@@ -1,0 +1,6 @@
+<input aria-labelled-by="id_{{ choose_widget_name }}_{{ i }}_label"
+       type="{{ widget.type }}"
+       name="{{ widget.name }}"
+       class="govuk-input govuk-input--inline"
+       {% if widget.value != None %}value="{{ widget.value|stringformat:'s' }}"{% endif %}
+       {% include "django/forms/widgets/attrs.html" %}>

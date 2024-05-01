@@ -2,37 +2,8 @@ from crispy_forms_gds.helper import FormHelper
 from crispy_forms_gds.layout import Field, Layout
 from django import forms
 
-from .utils import countries_and_territories
-
-YES_NO_CHOICES = ["Yes", "No"]
-
-
-def with_label_class(class_name, field):
-    field.label_class = class_name
-    return field
-
-
-def list_to_choices(values):
-    return [(v, v) for v in values]
-
-
-class FCLFieldMixin(object):
-    def __init__(self, **kwargs):
-        self.send_to_dynamics = kwargs.pop("send_to_dynamics", True)
-        self.label_class = kwargs.pop("label_class", None)
-        super(FCLFieldMixin, self).__init__(**kwargs)
-
-
-class FCLCharField(FCLFieldMixin, forms.CharField):
-    pass
-
-
-class FCLChoiceField(FCLFieldMixin, forms.ChoiceField):
-    pass
-
-
-class FCLMultipleChoiceField(FCLFieldMixin, forms.MultipleChoiceField):
-    pass
+from . import choices, fields
+from .utils import countries_and_territories, list_to_choices
 
 
 class FCLForm(forms.Form):
@@ -50,20 +21,15 @@ class FCLForm(forms.Form):
 class ContactForm(FCLForm):
     title = "Contact Details"
 
-    ALTERNATIVE_CONTACT_CHOICES = [
-        "This is the same person as the main contact",
-        "This is a different person (please enter their details below)",
-    ]
-
-    contact_lastname = FCLCharField(
+    contact_lastname = fields.FCLCharField(
         label="The full name of the person we can discuss your licence application with",
         max_length=50,
     )
-    contact_email = FCLCharField(
+    contact_email = fields.FCLCharField(
         label="The email address of the person we can discuss your licence application with",
         max_length=50,
     )
-    alternative_contact = FCLChoiceField(
+    alternative_contact = fields.FCLChoiceField(
         label=(
             "We need to ensure we have contact details of the person in your "
             "organisation who will be responsible for licence compliance. This "
@@ -71,16 +37,15 @@ class ContactForm(FCLForm):
             "ensuring your organisation complies with all terms and conditions "
             "of the licence."
         ),
-        widget=forms.RadioSelect,
-        choices=list_to_choices(ALTERNATIVE_CONTACT_CHOICES),
+        choices=list_to_choices(choices.ALTERNATIVE_CONTACT_CHOICES),
         label_class="as_para",
     )
-    licence_holder_lastname = FCLCharField(
+    licence_holder_lastname = fields.FCLCharField(
         label="The full name of the person in your organisation who will be responsible for licence compliance",
         max_length=50,
         show_hidden_initial=True,
     )
-    licence_holder_email = FCLCharField(
+    licence_holder_email = fields.FCLCharField(
         label="The email address of the person in your organisation who will be responsible for licence compliance",
         max_length=50,
         show_hidden_initial=True,
@@ -91,46 +56,33 @@ class OrganizationForm(FCLForm):
 
     title = "About your organisastion"
 
-    TNA_CONTACTTYPE_CHOICES = [
-        "Private limited company",
-        "Public limited company",
-        "Partnership",
-        "Sole trader",
-        "Registered Charity",
-        "Community interest company",
-        "Independent research organisation",
-        "Public body",
-        "Independent body",
-        "Other (please specify)",
-    ]
-
-    agent_companyname = FCLCharField(
+    agent_companyname = fields.FCLCharField(
         label="What is the full legal name of your organisation?", max_length=50
     )
-    agent_companyname_other = FCLCharField(
+    agent_companyname_other = fields.FCLCharField(
         label="Please enter any other names your organisation is known by",
         max_length=50,
         help_text="If your organisation is not known by any other names, please type <strong>none</strong>.",
     )
-    agent_country = FCLChoiceField(
+    agent_country = fields.FCLChoiceField(
         label="Where is your organisation registered?",
         choices=countries_and_territories,
         widget=forms.Select(attrs={"class": "location-autocomplete"}),
     )
 
-    tna_contacttype = FCLMultipleChoiceField(
+    tna_contacttype = fields.FCLMultipleChoiceFieldWithOthers(
         label="What type of organisation is it?",
         help_text="Select all that apply.",
-        widget=forms.CheckboxSelectMultiple,
-        choices=list_to_choices(TNA_CONTACTTYPE_CHOICES),
+        choices=list_to_choices(choices.TNA_CONTACTTYPE_CHOICES),
+        other_fields={9: "other"},
     )
-    org_other = FCLCharField(max_length=50)
-    agent_companyid = FCLCharField(
+
+    agent_companyid = fields.FCLCharField(
         max_length=100,
         label="Please provide your organisation identifier (e.g. company number or charity registration number)",
         help_text="If your organisation does not have an identifier, please type <strong>none</strong>.",
     )
-    partners = FCLCharField(
+    partners = fields.FCLCharField(
         max_length=100,
         label="Please provide the name of any partners or organisations you are working with",
         help_text="If you are not working with any partners or organisations, please type <strong>none</strong>.",
@@ -138,68 +90,37 @@ class OrganizationForm(FCLForm):
 
 
 class ProjectPurposeForm(FCLForm):
-
     title = "Purpose and Activities"
 
-    PROJECT_PURPOSE_CHOICES = [
-        "Publish legal information",
-        "Produce summaries and interpretation of the records",
-        "Research and develop new technologies",
-        "Research activity and trends across records",
-        "Deliver a consumer service",
-        "Other (please specify)",
-    ]
-
-    USER_CHOICES = [
-        "Public access (e.g. anyone can freely access)",
-        "Restricted access (e.g. only subscribers or research peers)",
-        "Internal access (e.g. only colleagues from within your organisation)",
-        "Private for personal use only",
-    ]
-
-    BENEFIT_CHOICES = [
-        "General public",
-        "Legal professionals and law firms",
-        "Court users (e.g. litigants in person)",
-        "The Judiciary",
-        "Public bodies",
-        "Researchers and academics",
-        "A specific community (please specify)",
-        "A specific (non-legal) profession (please specify)",
-        "Other (please specify)",
-    ]
-
-    project_name = FCLCharField(
+    project_name = fields.FCLCharField(
         label="Please give any project or product name associated with this work",
         max_length=250,
     )
-    project_url = FCLCharField(
+    project_url = fields.FCLCharField(
         label="Please share a link to the project or product site",
         help_text="If you cannot share a link, please type <strong>none</strong>.",
         max_length=250,
     )
-    project_purpose = FCLMultipleChoiceField(
+
+    project_purpose = fields.FCLMultipleChoiceFieldWithOthers(
         label="What is the main purpose of your project or product?",
         help_text="Select all that apply.",
-        widget=forms.CheckboxSelectMultiple,
-        choices=list_to_choices(PROJECT_PURPOSE_CHOICES),
+        choices=list_to_choices(choices.PROJECT_PURPOSE_CHOICES),
+        other_fields={5: "other"},
     )
-    purpose_other = FCLCharField(max_length=50)
-    user = FCLChoiceField(
+
+    user = fields.FCLChoiceField(
         label="Which one best describes who will be able to access the outcomes of your computational analysis?",
         help_text="Please select one.",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(USER_CHOICES),
+        choices=list_to_choices(choices.USER_CHOICES),
     )
-    benefit = FCLMultipleChoiceField(
+
+    benefit = fields.FCLMultipleChoiceFieldWithOthers(
         label="Which Individuals or communities will benefit from your computational analysis?",
         help_text="Select all that apply.",
-        widget=forms.CheckboxSelectMultiple,
-        choices=list_to_choices(BENEFIT_CHOICES),
+        choices=list_to_choices(choices.BENEFIT_CHOICES),
+        other_fields={6: "community_other", 7: "profession_other", 8: "benefit_other"},
     )
-    community_other = FCLCharField(max_length=50)
-    profession_other = FCLCharField(max_length=50)
-    benefit_other = FCLCharField(max_length=50)
 
 
 class PublicStatementForm(FCLForm):
@@ -209,7 +130,7 @@ class PublicStatementForm(FCLForm):
     def layout(self):
         return Layout(Field.textarea("public_statement", max_characters=1500))
 
-    public_statement = FCLCharField(
+    public_statement = fields.FCLCharField(
         label="Please provide a public statement",
         help_text="Please aim for no more than around 150 words.",
         max_length=1500,
@@ -221,31 +142,26 @@ class WorkingPractices1Form(FCLForm):
 
     title = "Working Practices"
 
-    focus_on_specific = FCLChoiceField(
+    focus_on_specific = fields.FCLChoiceField(
         label=" Will the computational analysis focus on specific individuals or specific groups of people?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    anonymise_individuals = FCLChoiceField(
+    anonymise_individuals = fields.FCLChoiceField(
         label="Will you anonymise individuals before you analyse records?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    algorithm_review = FCLChoiceField(
+    algorithm_review = fields.FCLChoiceField(
         label="Will you regularly review algorithms for bias?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    code_of_ethics = FCLChoiceField(
+    code_of_ethics = fields.FCLChoiceField(
         label="Will you abide by a code of ethics?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    third_party_ethics_review = FCLChoiceField(
+    third_party_ethics_review = fields.FCLChoiceField(
         label="Will an impartial party review your work against an ethical framework?",
         help_text="For example, an Ethics Advisory Board (EAB) or Research Ethics Committee (REC).",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
 
 
@@ -253,69 +169,52 @@ class WorkingPractices2Form(FCLForm):
 
     title = "Working Practices"
 
-    COMPUTATIONAL_ANALYSIS_TYPE_CHOICES = [
-        "Produce fully automated legal advice",
-        "Perform automation to anticipate legal decisions directly for a client or consumer",
-        "Directly inform or influence the decision of a third-party whether to pursue justice or legal action",
-        "None of the above",
-    ]
-
-    GENERATIVE_AI_USE_CHOICES = YES_NO_CHOICES + ["Not using Generative AI"]
-
-    entire_record_available = FCLChoiceField(
+    entire_record_available = fields.FCLChoiceField(
         label="Will you make the entire record available online?",
         help_text=(
             "For example, you may choose to signpost a full judgment "
             "to users, where you have published or highlighted parts "
             "of a judgment."
         ),
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    data_extracted_available = FCLChoiceField(
+    data_extracted_available = fields.FCLChoiceField(
         label="Will data extracted from these records be published online?",
         help_text="Any statistical analysis, for example: lists of citations or entities from within the records",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    methodology_available = FCLChoiceField(
+    methodology_available = fields.FCLChoiceField(
         label="For transparency, will you make your methodology available to others for scrutiny?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    publish_findings = FCLChoiceField(
+    publish_findings = fields.FCLChoiceField(
         label="Will you analyse and publish findings online?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
-    computational_analysis_type = FCLMultipleChoiceField(
+    computational_analysis_type = fields.FCLMultipleChoiceField(
         label="Do you intend to use computational analysis to do any of the following?",
         help_text="Select all that apply.",
-        widget=forms.CheckboxSelectMultiple,
-        choices=list_to_choices(COMPUTATIONAL_ANALYSIS_TYPE_CHOICES),
+        choices=list_to_choices(choices.COMPUTATIONAL_ANALYSIS_TYPE_CHOICES),
     )
-    generative_ai_use = FCLChoiceField(
+    generative_ai_use = fields.FCLChoiceField(
         label="Will you notify people when they are using generative AI services or content?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(GENERATIVE_AI_USE_CHOICES),
+        choices=list_to_choices(choices.GENERATIVE_AI_USE_CHOICES),
     )
-    explain_limitations = FCLChoiceField(
+    explain_limitations = fields.FCLChoiceField(
         label=(
             "Will you explain how the limits of the find case law "
             "collection impacts your computational analysis to users?"
         ),
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
 
 
 class NinePrinciplesAgreementForm(FCLForm):
     title = "Statements and Principles"
 
-    accept_principles = FCLChoiceField(
+    accept_principles = fields.FCLChoiceField(
         label="Licence holders must acknowledge and abide by all the 9 principles. Do you accept this licence term?",
-        widget=forms.RadioSelect,
-        choices=list_to_choices(YES_NO_CHOICES),
+        choices=list_to_choices(choices.YES_NO_CHOICES),
     )
 
 
@@ -327,7 +226,7 @@ class NinePrinciplesStatementForm(FCLForm):
             Field.textarea("principles_statement", max_characters=2500),
         )
 
-    principles_statement = FCLCharField(
+    principles_statement = fields.FCLCharField(
         label="Please describe how you will meet the 9 principles",
         help_text="You should identify any risks and how you will address these risks for each of the 9 principles.",
         max_length=2500,
@@ -343,7 +242,7 @@ class AdditionalCommentsForm(FCLForm):
             Field.textarea("additional_comments", max_characters=500),
         )
 
-    additional_comments = FCLCharField(
+    additional_comments = fields.FCLCharField(
         label="Are there any additional comments you would like to make in relation to your application?",
         help_text="This question is optional.",
         max_length=500,
