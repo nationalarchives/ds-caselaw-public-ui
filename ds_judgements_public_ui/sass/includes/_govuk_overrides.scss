@@ -141,3 +141,10 @@
     outline-color: $color-focus-blue-outline;
   }
 }
+
+.govuk-input {
+  &--inline {
+    margin-top: 1px;
+    width: auto;
+  }
+}
