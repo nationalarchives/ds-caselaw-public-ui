@@ -41,6 +41,7 @@
 
 .govuk-details__summary {
   padding-left: 1.5rem;
+  color: $color-dark-blue;
 }
 
 .govuk-details__summary-text {
@@ -49,6 +50,7 @@
 
 .govuk-details__text {
   border-left: none;
+  font-size: 1rem;
 }
 
 .info-box {
@@ -93,7 +95,13 @@
   color: $color-black;
   border: $color-black solid 3px;
   margin-left: 1rem;
+  transform: rotate(180deg);
 }
+.govuk-warning-text__text {
+  position: relative;
+  bottom: 7px;
+}
+
 
 .govuk-warning-text {
   border: transparent;
