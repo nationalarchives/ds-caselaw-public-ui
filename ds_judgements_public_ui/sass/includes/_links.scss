@@ -17,6 +17,9 @@
 .anchor-links {
   border: 2px solid $color-yellow;
   padding: 0 calc($spacer-unit * 4);
+  position: relative;
+  top: 15px;
+
 
   &__header {
     padding-bottom: 0;
