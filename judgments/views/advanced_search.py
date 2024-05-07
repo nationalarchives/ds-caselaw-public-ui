@@ -49,7 +49,7 @@ def advanced_search(request):
     * Given a valid search form, query Marklogic and return the results
     * Given an invalid search form, render it again with the errors
     * Given GET request without form submission return an empty form
-    * Given anything except a GET request raise an error
+    * Given anything except an HTTP GET request raise an error
     """
     # We should only be handling GET requests here since we aren't changing anything on the server
     if request.method == "GET":
@@ -75,10 +75,9 @@ def advanced_search(request):
             )
             order: str = params.get("order", "-date")
 
-            # If a from_date is not specified, set it to the current min year
             from_date: Optional[date] = form.cleaned_data.get("from_date")
-    
-            # And not from date in params!!!!
+            to_date: Optional[date] = form.cleaned_data.get("to_date", None)
+            # If a from_date is not specified, set it to the current min year
             if not from_date:
                 from_date = date(CourtDates.min_year(), 1, 1)
             else:
@@ -89,18 +88,24 @@ def advanced_search(request):
                     "from_month": getattr(from_date, "month", None),
                     "from_year": getattr(from_date, "year", None)
                     }
-    
-            to_date: Optional[date] = form.cleaned_data.get("to_date", None)
+            # If a to_date is not specified, set it to the current min year
+            if not to_date:
+                to_date = date(CourtDates.max_year(), 12, 31)
+            else:
+                # Only provide the param back to the user if they set it
+                query_params = query_params | {
+                    "to": to_date,
+                    "to_day":  to_date.day,
+                    "to_month": to_date.month,
+                    "to_year": to_date.year
+                    }
+            
             query_params = query_params | {
                 "query": query_text,
                 "court": form.cleaned_data.get("court", []),
                 "judge": form.cleaned_data.get("judge", ""),
                 "party": form.cleaned_data.get("party", ""),
-                "order": params.get("order", "-date"),
-                "to": to_date,
-                "to_day": getattr(to_date, "day", None),
-                "to_month": getattr(to_date, "month", None),
-                "to_year": getattr(to_date, "year", None),
+                "order": order,
             }
             page: str = str(as_integer("1", minimum=1))
             # Merge the courts and tribunals as they are treated as the same in MarkLogic.
@@ -139,27 +144,25 @@ def advanced_search(request):
             if from_date and to_date:
                 requires_from_warning, requires_to_warning = _do_dates_require_warnings(from_date, to_date)
 
-            # Populate context to provide feedback about filters etc. back to user
-            # TODO: Maybe separate this dictionary into it's component parts?
-            context["court_facets"] = court_facets
-            context["year_facets"] = year_facets
-            context["search_results"] = search_response.results
-            context["total"] = search_response.total
-            context["paginator"] = paginator(params.get("page", "1"), search_response.total, per_page)
             changed_queries = {
                 key: value for key, value in params.items() if value is not None
             }
-            context["query_string"] = urllib.parse.urlencode(
-                changed_queries, doseq=True
-            )
-            context["order"] = order
-            context["per_page"] = per_page
-            context["filtered"] = has_filters(params)
-            context["page_title"] = _("results.search.title")
-            context["show_no_exact_ncn_warning"] = show_no_exact_ncn_warning(
-                search_response.results, query_text, page
-            )
-            context["query_params"] = query_params
+            # Populate context to provide feedback about filters etc. back to user
+            # TODO: Maybe separate this dictionary into it's component parts?
+            context = context | {
+                "court_facets": court_facets,
+                "year_facets": year_facets,
+                "search_results": search_response.results,
+                "total": search_response.total,
+                "paginator": paginator(params.get("page", "1"), search_response.total, per_page),
+                "query_string": urllib.parse.urlencode(changed_queries, doseq=True),
+                "order": order,
+                "per_page": per_page,
+                "filtered": has_filters(params),
+                "page_title": _("results.search.title"),
+                "show_no_exact_ncn_warning": show_no_exact_ncn_warning(search_response.results, query_text, page),
+                "query_params": query_params
+            }
 
             # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
             if query_text:

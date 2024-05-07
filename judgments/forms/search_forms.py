@@ -83,6 +83,7 @@ class AdvancedSearchForm(forms.Form):
 
 
     def clean(self):
+        # Validate that from is before to now that we have access to both fields
         cleaned_data = super().clean()
         to_date = cleaned_data.get("to_date", None)
         from_date = cleaned_data.get("from_date", None)
