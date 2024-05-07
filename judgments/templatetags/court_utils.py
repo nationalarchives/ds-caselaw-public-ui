@@ -57,7 +57,7 @@ def get_last_judgment_year():
 @register.filter
 def get_court_date_range(court):
     try:
-        court_dates = CourtDates.objects.get(pk=court.canonical_param)
+        court_dates = CourtDates.objects.get(pk=court)
         start_year = court_dates.start_year
         end_year = court_dates.end_year
     except CourtDates.DoesNotExist:

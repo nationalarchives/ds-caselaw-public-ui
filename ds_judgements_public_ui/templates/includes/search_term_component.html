@@ -3,7 +3,6 @@
   <label for="search_term" class="search-term-component__search-term-label">
     {% translate "basicsearchform.label" %}
   </label>
-  {% csrf_token %}
   {{ form.query }}
   <p class="search-term-component__help-text">
     <a href='{% url "how_to_use_this_service" %}#section-search'>{% translate "basic.search.helptext" %}</a>

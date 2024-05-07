@@ -1,8 +1,10 @@
+from .court_utils import get_court_date_range
 from .search_utils import ALL_COURT_CODES, parse_date_parameter, process_court_facets, process_year_facets
 from .utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
     as_integer,
+    Choice,
     formatted_document_uri,
     get_document_by_uri,
     get_press_summaries_for_document_uri,
@@ -28,7 +30,9 @@ __all__ = [
     "ALL_COURT_CODES",
     "api_client",
     "as_integer",
+    "Choice",
     "formatted_document_uri",
+    "get_court_date_range",
     "get_document_by_uri",
     "get_press_summaries_for_document_uri",
     "has_filters",

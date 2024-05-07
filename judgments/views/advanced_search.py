@@ -9,13 +9,12 @@ from caselawclient.client_helpers.search_helpers import (
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from caselawclient.responses.search_response import SearchResponse
 from django.http import Http404
-from django.shortcuts import render
 from django.template.response import TemplateResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import gettext as _
 
 from judgments.forms import AdvancedSearchForm
 from judgments.models.court_dates import CourtDates
-from judgments.models.search_form_errors import SearchFormErrors
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
@@ -27,20 +26,6 @@ from judgments.utils import (
     process_year_facets,
     show_no_exact_ncn_warning,
 )
-
-
-def _set_search_parameters(query_text:str, params: dict, form: AdvancedSearchForm, page:str):
-    return SearchParameters(
-        query=query_text,
-        court=params.get("court", ""),
-        judge=form.fields.get("judge", ""),
-        party=form.fields.get("party", ""),
-        page=page,
-        order=params.get("order", "-date"),
-        date_from=form.fields.get("from_date"),
-        date_to=form.fields.get("to_date", ""),
-        page_size=int(params.get("per_page", "10")),
-    )
 
 
 def _do_dates_require_warnings(from_date, to_date):
@@ -56,6 +41,7 @@ def _do_dates_require_warnings(from_date, to_date):
     return from_warning, to_warning
 
 
+@csrf_exempt
 def advanced_search(request):
     """
     The advanced search view handles any searches made in the application
@@ -105,6 +91,7 @@ def advanced_search(request):
                     }
     
             to_date: Optional[date] = form.cleaned_data.get("to_date", None)
+            breakpoint()
             query_params = query_params | {
                 "query": query_text,
                 "court": form.cleaned_data.get("court", []),

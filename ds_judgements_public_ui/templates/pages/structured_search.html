@@ -13,7 +13,6 @@
         <div class="structured-search__container">
           <h1 class="structured-search__main-search-header">Structured search</h1>
           <div class="structured-search__full-text-panel search-term-component">
-            {% csrf_token %}
             {{ form.query }}
             <input type="submit" action="{% url 'search' %}">
           </div>

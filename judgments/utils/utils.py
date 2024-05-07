@@ -10,11 +10,31 @@ from caselawclient.models.press_summaries import PressSummary
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.urls import reverse
+from django.utils.functional import Promise
 from ds_caselaw_utils.neutral import neutral_url
 
 from judgments.fixtures.stop_words import stop_words
 
 MAX_RESULTS_PER_PAGE = 50
+
+
+class Choice(Promise):
+    """
+    A custom choice implementation to allow us to inject additional
+    information into choice fields.
+    """
+    def __init__(self, value, label, **kwargs):
+        self.value = value
+        self.label = label
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def __iter__(self):
+        return iter((self.value, self.label))
+
+    def __getitem__(self, index):
+        return (self.value, self.label)[index]
+
 
 api_client = MarklogicApiClient(
     host=settings.MARKLOGIC_HOST,
