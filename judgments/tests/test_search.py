@@ -99,7 +99,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=&amp;from=&amp;from_date_0=&amp;from_date_1=&amp;from_date_2=&amp;to=&amp;to_date_0=&amp;to_date_1=&amp;to_date_2=&amp;per_page=&amp;page="
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -114,7 +114,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=&amp;from=&amp;from_date_0=&amp;from_date_1=&amp;from_date_2=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -138,7 +138,7 @@ class TestSearchResults(TestCase):
     ):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get(
-            "/judgments/search?from_year=2023&from_month=12&from_day=32"
+            "/judgments/search?from_date_2=2023&from_date_1=12&from_date_0=32"
         )
         message = html.escape(gettext("search.errors.from_date_headline"))
         self.assertContains(

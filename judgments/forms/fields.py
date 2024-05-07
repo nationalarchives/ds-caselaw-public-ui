@@ -9,17 +9,18 @@ class DateRangeInputField(DateInputField):
     """
     A custom version of the gds DateInputField which fixes the issue
     preventing us from not requiring all fields to be populated.
-    
+
     The expected use case for this is to have two of these fields on a given
     form, one being date from and one being date to.
 
     If a day or month is not provided, default to the minimum or maximum
     date value depending on whether it is to/from.
-    
+
     e.g. - value of only year provided as from 2010, default to 01/01/2010
          - value of only year provided as to 2010, default to 31/12/2010
-         - value of year and month provded as to 02/2010, default to 28/02/2010 
+         - value of year and month provded as to 02/2010, default to 28/02/2010
     """
+
     DateType = Literal["from", "to"]
 
     date_type: DateType

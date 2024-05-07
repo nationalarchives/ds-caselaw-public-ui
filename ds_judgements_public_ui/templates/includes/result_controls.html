@@ -8,7 +8,7 @@
         id="analytics-result-controls">
     {% for key, value in context.query_params.items %}
       {% if value != None %}
-        {% if key == "court" %}
+        {% if key == "courts" %}
           {% for court in value %}<input type="hidden" name="court" value="{{ court }}" />{% endfor %}
         {% elif key == "from" or key == "to" %}
           <input type="hidden" name="{{ key }}" value="{{ value|date:'Y-m-d' }}" />

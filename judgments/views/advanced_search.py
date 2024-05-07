@@ -1,17 +1,17 @@
+import urllib
 from datetime import date
 from typing import Optional
-import urllib
 
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
-from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from caselawclient.responses.search_response import SearchResponse
+from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
 from django.template.response import TemplateResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import gettext as _
+from django.views.decorators.csrf import csrf_exempt
 
 from judgments.forms import AdvancedSearchForm
 from judgments.models.court_dates import CourtDates
@@ -21,7 +21,6 @@ from judgments.utils import (
     as_integer,
     has_filters,
     paginator,
-    preprocess_query,
     process_court_facets,
     process_year_facets,
     show_no_exact_ncn_warning,
@@ -35,7 +34,7 @@ def _do_dates_require_warnings(from_date, to_date):
     end_year = CourtDates.max_year()
     if from_date and to_date:
         if from_date.year < start_year:
-            from_warning= True
+            from_warning = True
         if to_date.year > end_year:
             to_warning = True
     return from_warning, to_warning
@@ -84,10 +83,10 @@ def advanced_search(request):
                 # Only provide the param back to the user if they set it
                 query_params = query_params | {
                     "from": from_date,
-                    "from_day":  from_date.day,
-                    "from_month": getattr(from_date, "month", None),
-                    "from_year": getattr(from_date, "year", None)
-                    }
+                    "from_date_0": from_date.day,
+                    "from_date_1": from_date.month,
+                    "from_date_2": from_date.year,
+                }
             # If a to_date is not specified, set it to the current min year
             if not to_date:
                 to_date = date(CourtDates.max_year(), 12, 31)
@@ -95,25 +94,27 @@ def advanced_search(request):
                 # Only provide the param back to the user if they set it
                 query_params = query_params | {
                     "to": to_date,
-                    "to_day":  to_date.day,
-                    "to_month": to_date.month,
-                    "to_year": to_date.year
-                    }
-            
+                    "to_date_0": to_date.day,
+                    "to_date_1": to_date.month,
+                    "to_date_2": to_date.year,
+                }
+
             query_params = query_params | {
                 "query": query_text,
-                "court": form.cleaned_data.get("court", []),
+                "courts": form.cleaned_data.get("courts", []),
                 "judge": form.cleaned_data.get("judge", ""),
                 "party": form.cleaned_data.get("party", ""),
                 "order": order,
             }
             page: str = str(as_integer("1", minimum=1))
             # Merge the courts and tribunals as they are treated as the same in MarkLogic.
-            courts_and_tribunals = form.cleaned_data.get("courts") + form.cleaned_data.get("tribunals")
+            courts_and_tribunals = form.cleaned_data.get(
+                "courts"
+            ) + form.cleaned_data.get("tribunals")
             # Construct the search parameter object required for Marklogic query
             search_parameters: SearchParameters = SearchParameters(
                 # Should process query be moved to a clean method?
-                query=preprocess_query(query_text),
+                query=query_text,
                 court=",".join(courts_and_tribunals),
                 judge=form.cleaned_data.get("judge_name", ""),
                 party=form.cleaned_data.get("party_name", ""),
@@ -121,28 +122,29 @@ def advanced_search(request):
                 order=params.get("order", "-date"),
                 date_from=from_date,
                 date_to=to_date,
-                page_size=int(params.get("per_page", "10"))
-                )
+                page_size=int(params.get("per_page", "10")),
+            )
 
             # Get the response from Marklogic
             try:
                 search_response: SearchResponse = search_judgments_and_parse_response(
                     api_client, search_parameters
-                    )
+                )
             except MarklogicResourceNotFoundError:
                 raise Http404("Search failed")
 
             # If a query was provided, get relevant search facets to display to the user
             if search_parameters.query:
                 unprocessed_facets, court_facets = process_court_facets(
-                    search_response.facets, form.cleaned_data.get("court", [])
+                    search_response.facets, form.cleaned_data.get("courts", [])
                 )
                 unprocessed_facets, year_facets = process_year_facets(
                     unprocessed_facets
                 )
-            
             if from_date and to_date:
-                requires_from_warning, requires_to_warning = _do_dates_require_warnings(from_date, to_date)
+                requires_from_warning, requires_to_warning = _do_dates_require_warnings(
+                    from_date, to_date
+                )
 
             changed_queries = {
                 key: value for key, value in params.items() if value is not None
@@ -154,14 +156,18 @@ def advanced_search(request):
                 "year_facets": year_facets,
                 "search_results": search_response.results,
                 "total": search_response.total,
-                "paginator": paginator(params.get("page", "1"), search_response.total, per_page),
+                "paginator": paginator(
+                    params.get("page", "1"), search_response.total, per_page
+                ),
                 "query_string": urllib.parse.urlencode(changed_queries, doseq=True),
                 "order": order,
                 "per_page": per_page,
                 "filtered": has_filters(params),
                 "page_title": _("results.search.title"),
-                "show_no_exact_ncn_warning": show_no_exact_ncn_warning(search_response.results, query_text, page),
-                "query_params": query_params
+                "show_no_exact_ncn_warning": show_no_exact_ncn_warning(
+                    search_response.results, query_text, page
+                ),
+                "query_params": query_params,
             }
 
             # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
@@ -177,13 +183,11 @@ def advanced_search(request):
                     "context": context,
                     "breadcrumbs": breadcrumbs,
                     "feedback_survey_type": "structured_search",
-                }
+                },
             )
         else:
             # If the form has errors, return it for rendering!
-            return TemplateResponse(
-                request, "pages/structured_search.html", {"form": form}
-        )
+            return TemplateResponse(request, "judgment/results.html", {"form": form})
     else:
         # Raise an error if the user has tried any not GET HTTP requests.
         raise Http404("GET requests only")

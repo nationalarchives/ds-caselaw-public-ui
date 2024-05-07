@@ -26,13 +26,13 @@ def removable_filter_param(key):
     excluded = [
         "order",
         "per_page",
-        "court",
-        "from_day",
-        "from_month",
-        "from_year",
-        "to_day",
-        "to_month",
-        "to_year",
+        "courts",
+        "from_date_0",
+        "from_date_1",
+        "from_date_2",
+        "to_date_0",
+        "to_date_1",
+        "to_date_2",
     ]
     return key not in excluded
 
@@ -45,6 +45,7 @@ def date_filter_param(key):
 @register.filter
 def remove_query(query_params, key):
     if date_filter_param(key):
+        print(key)
         return remove_date(query_params, key)
     else:
         params = dict(query_params)
@@ -57,9 +58,9 @@ def remove_date(query_params, key):
     params = dict(query_params)
     params["page"] = None
     params[key] = None
-    params[f"{key}_day"] = None
-    params[f"{key}_month"] = None
-    params[f"{key}_year"] = None
+    params[f"{key}_date_0"] = None
+    params[f"{key}_date_1"] = None
+    params[f"{key}_date_2"] = None
     return make_query_string(params)
 
 
@@ -67,19 +68,21 @@ def remove_date(query_params, key):
 def remove_court(query_params, court):
     params = dict(query_params)
     params["page"] = None
-    params["court"] = [court2 for court2 in params.get("court", []) if court != court2]
+    params["courts"] = [
+        court2 for court2 in params.get("courts", []) if court != court2
+    ]
     return make_query_string(params)
 
 
 @register.filter
 def replace_year_in_query(query_params, year):
     params = dict(query_params)
-    #del params["from"]
-    params.pop("from_day", None)
-    params.pop("from_month", None)
-    #del params["to"]
-    del params["to_day"]
-    del params["to_month"]
-    params["from_year"] = year
-    params["to_year"] = year
+    params.pop("from", None)
+    params.pop("from_date_0", None)
+    params.pop("from_date_1", None)
+    params.pop("to", None)
+    params.pop("to_date_0", None)
+    params.pop("to_date_1", None)
+    params["from_date_2"] = year
+    params["to_date_2"] = year
     return make_query_string(params)

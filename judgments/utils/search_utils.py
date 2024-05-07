@@ -1,8 +1,6 @@
-from calendar import monthrange
 import datetime
 
 from ds_caselaw_utils import courts as all_courts
-
 
 ALL_COURT_CODES = [court.code for court in all_courts.get_all()]
 
