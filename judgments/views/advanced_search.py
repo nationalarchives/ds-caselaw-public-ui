@@ -91,7 +91,6 @@ def advanced_search(request):
                     }
     
             to_date: Optional[date] = form.cleaned_data.get("to_date", None)
-            breakpoint()
             query_params = query_params | {
                 "query": query_text,
                 "court": form.cleaned_data.get("court", []),

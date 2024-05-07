@@ -1,6 +1,7 @@
 import math
 import re
-from datetime import datetime
+from calendar import monthrange
+from datetime import date, datetime
 from typing import Optional, TypedDict
 from urllib.parse import parse_qs, urlparse
 
@@ -10,31 +11,12 @@ from caselawclient.models.press_summaries import PressSummary
 from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.urls import reverse
-from django.utils.functional import Promise
+from django.utils.translation import gettext
 from ds_caselaw_utils.neutral import neutral_url
 
 from judgments.fixtures.stop_words import stop_words
 
 MAX_RESULTS_PER_PAGE = 50
-
-
-class Choice(Promise):
-    """
-    A custom choice implementation to allow us to inject additional
-    information into choice fields.
-    """
-    def __init__(self, value, label, **kwargs):
-        self.value = value
-        self.label = label
-        for key, value in kwargs.items():
-            setattr(self, key, value)
-
-    def __iter__(self):
-        return iter((self.value, self.label))
-
-    def __getitem__(self, index):
-        return (self.value, self.label)[index]
-
 
 api_client = MarklogicApiClient(
     host=settings.MARKLOGIC_HOST,
@@ -188,8 +170,52 @@ def has_filters(query_params, exclude=["order", "per_page"]):
     return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0
 
 
-def test_date_and_dict():
-    return datetime.today(), {"key": 1}
+def parameter_provided(params, parameter_name):
+    value = params.get(parameter_name)
+    return value and len(value)
+
+
+def parse_parameter_as_int(params, parameter_name, default=None):
+    if parameter_provided(params, parameter_name):
+        return int(params.get(parameter_name))
+    else:
+        return default
+
+
+def parse_date_parameter(
+    params, param_name, default_to_last=False, start_year=None, end_year=None
+) -> Optional[date]:
+    year_param_name = f"{param_name}_year"
+    month_param_name = f"{param_name}_month"
+    day_param_name = f"{param_name}_day"
+    if parameter_provided(params, param_name):
+        return datetime.strptime(params[param_name], "%Y-%m-%d").date()
+    elif parameter_provided(params, year_param_name):
+        year = parse_parameter_as_int(params, year_param_name)
+
+        if start_year and year < start_year:
+            raise ValueError("Find Case Law has no judgments before %s" % start_year)
+
+        if end_year and year > end_year:
+            raise ValueError("Find Case Law has no judgments after %s" % end_year)
+
+        default_month = 12 if default_to_last else 1
+        month = parse_parameter_as_int(params, month_param_name, default=default_month)
+
+        default_day = monthrange(year, month)[1] if default_to_last else 1
+        day = parse_parameter_as_int(params, day_param_name, default=default_day)
+
+        if day > 31 or month > 12:
+            raise ValueError("Some part of the date was too big")
+        if day < 1 or month < 1:
+            raise ValueError("Some part of the date was too small")
+
+        return date(year, month, day)
+    elif parameter_provided(params, month_param_name) or parameter_provided(
+        params, day_param_name
+    ):
+        raise ValueError(gettext("search.errors.missing_year_detail"))
+    return None
 
 
 def get_document_by_uri(document_uri: str) -> Document:
