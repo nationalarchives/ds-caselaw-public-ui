@@ -44,11 +44,13 @@ class ContactForm(FCLForm):
         label="The full name of the person in your organisation who will be responsible for licence compliance",
         max_length=50,
         show_hidden_initial=True,
+        required=False,
     )
     licence_holder_email = fields.FCLCharField(
         label="The email address of the person in your organisation who will be responsible for licence compliance",
         max_length=50,
         show_hidden_initial=True,
+        required=False,
     )
 
 
