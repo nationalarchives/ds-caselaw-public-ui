@@ -1,13 +1,20 @@
 {% extends "layouts/base.html" %}
 {% block content %}
   <div class="standard-text-template container py-3">
-    <div class="govuk-warning-text__confirmation">
-      <span class="govuk-warning-text__icon-confirmation" aria-hidden="true">!</span>
-      <span class="govuk-warning-text__text__confirmation">
-        <span class="govuk-visually-hidden">Information</span>
-        You cannot save your application half way through; you will need to complete your application in one session. Please make sure you have prepared
-        all your answers to the questions before starting the application process.
-      </span>
+    <div class="govuk-notification-banner_red"
+         role="region"
+         aria-labelledby="govuk-notification-banner-title"
+         data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title"
+            id="govuk-notification-banner-title">Important</h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-notification-banner__heading">
+          You cannot save your application half way through; you will need to complete your application in one session.  Please make sure you have prepared
+          all your answers to the questions before starting the application process.
+        </p>
+      </div>
     </div>
     <h1 class="confirmation-steps">Do you need to apply for a licence?</h1>
     <h3>
@@ -22,18 +29,18 @@
       sure you have read and understood what the <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">Open Justice Licence</a> permits you to do.
     </p>
     <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+      <fieldset class="govuk-fieldset" aria-describedby="who-applying">
         <legend class="govuk-fieldset__legend">
           <strong>Have you got details of who is applying for this licence?</strong>
         </legend>
         <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input"
-                   id="orginisation"
-                   name="orginistation"
+                   id="details"
+                   name="details"
                    type="checkbox"
-                   value="carcasses">
-            <label class="govuk-label govuk-checkboxes__label" for="orginisation">
+                   value="applying">
+            <label class="govuk-label govuk-checkboxes__label" for="details">
               Yes, I have all the details of who is applying for this licence.
             </label>
           </div>
@@ -44,11 +51,11 @@
         <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input"
-                   id="orginisation"
-                   name="orginistation"
+                   id="statement"
+                   name="statement"
                    type="checkbox"
-                   value="carcasses">
-            <label class="govuk-label govuk-checkboxes__label" for="orginisation">Yes, I have prepared my public statement.</label>
+                   value="prepared">
+            <label class="govuk-label govuk-checkboxes__label" for="statement">Yes, I have prepared my public statement.</label>
           </div>
         </div>
         <legend class="govuk-fieldset__legend">
@@ -57,11 +64,11 @@
         <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input"
-                   id="orginisation"
-                   name="orginistation"
+                   id="principles"
+                   name="principles"
                    type="checkbox"
-                   value="carcasses">
-            <label class="govuk-label govuk-checkboxes__label" for="orginisation">
+                   value="consideration">
+            <label class="govuk-label govuk-checkboxes__label" for="principles">
               Yes, I can outline our considerations of the nine principles.
             </label>
           </div>
