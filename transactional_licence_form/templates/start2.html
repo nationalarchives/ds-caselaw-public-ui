@@ -1,8 +1,8 @@
 {% extends "layouts/base.html" %}
-{% load i18n %}
+{% load static i18n %}
 {% block content %}
   <div class="standard-text-template container py-3">
-    <h1>What you need to know before you apply for a licence to perform computational analysis</h1>
+    <h1>Licence application process</h1>
     <p>
       <small>
         Last updated on
@@ -13,43 +13,95 @@
       <h2 class="anchor-links__header">Information on this page</h2>
       <ul class="anchor-links__list">
         <li class="anchor-links__list-option">
-          <a href="#section-licences">The licences we grant for computational analysis are bespoke, tailored and based on your application</a>
+          <a href="#section-records">Records published on the Find Case Law service</a>
         </li>
         <li class="anchor-links__list-option">
-          <a href="#section-protect">We support innovation and technology, we also have a duty to protect the public</a>
+          <a href="#section-principles">Assessing applications to perform computational analysis</a>
         </li>
         <li class="anchor-links__list-option">
-          <a href="#section-reuse">Your reuse of data must comply with all relevant regulations</a>
+          <a href="#section-licences">Two types of licence</a>
         </li>
         <li class="anchor-links__list-option">
-          <a href="#section-published">Part of your application may be published</a>
+          <a href="#section-decisions">Approval process</a>
         </li>
         <li class="anchor-links__list-option">
-          <a href="#section-decisions">Decisions on licences are taken once a month</a>
+          <a href="#section-published">Publication of approved licences</a>
         </li>
       </ul>
     </div>
-    <h2 id="section-licences">
-      The licences we grant for computational analysis are bespoke, tailored and based on your application
-    </h2>
-    <p>Licences for computational analysis fall into two categories:</p>
+    <h2 id="section-records">Records published on the Find Case Law service</h2>
+    <p>
+      Are available for re-use under the<a href="{% url 'open_justice_licence' %}">terms of the Open Justice licence.</a>
+      You do not need to apply if your re-use complies with these terms. However if you want to perform computational analysis then you will need to apply for an additional licence.
+    </p>
+    <p>
+      Computational analysis includes activities such as: any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records.
+    </p>
+    <p>There are no costs to apply for a licence to perform computational analysis.</p>
+    <h2 id="section-principles">Assessing applications to perform computational analysis</h2>
+    <p>
+      Licences for computational analysis are assessed based on the activities and re-use you state in your application. The licences we issue will be specific to your re-use.
+    </p>
+    <p>
+      The licence team at The National Archives will assess your application against <a href="https://en.wikipedia.org/wiki/Five_safes">the five safes framework</a>as well as the 9 principles established in 2023 by the Ministry of Justice:
+      <br>
+      <ol>
+        <li>Dignity of the court</li>
+        <li>Independence of the court</li>
+        <li>Appropriate scrutiny</li>
+        <li>Anti-discriminatory harm</li>
+        <li>Anti-Bias</li>
+        <li>Personal Privacy</li>
+        <li>Discoverability</li>
+        <li>Algorithmic transparency</li>
+        <li>Accurate data representation</li>
+      </ol>
+    </p>
+    <p>
+      The Licence team will determine whether your re-use is high risk or not. They will use this to decide the type of licence you will receive.
+    </p>
+    <p>
+      Activities currently considered high risk include:
+      <br>
+      <ul>
+        <li>Whether you intend to produce fully automated legal advice.</li>
+        <li>
+          Whether you intend to perform automation to anticipate legal decisions directly for a client or consumer, such as tools which set expectations for case outcomes through modelling or predictive analytics.
+        </li>
+        <li>
+          Whether you intend to directly inform or influence the decision of a third-party regarding whether to pursue justice or legal action.
+        </li>
+      </ul>
+    </p>
+    <p>
+      Context is important when understanding risk. If you have an idea that you think might be high risk, please apply giving as much detail as you can.
+    </p>
+    <h2 id="section-licences">Two types of licence</h2>
+    <p>Based on your application there are two main categories for licences we issue to perform computational analysis.</p>
     <ul style="list-style: none;">
       <li>
         <p>
-          <strong>Research and development licences</strong>
+          <strong>Research and Development</strong>
           <br>
-          These licences do not allow for commercial reuse; they are granted for a period of 1 year.
+          These licences are typically granted for 1 year where the purpose of re-using the data is to gain insight or develop new technologies or practices.
         </p>
       </li>
       <li>
         <p>
-          <strong>Transactional licences</strong>
+          <strong>Transactional</strong>
           <br>
-          These licences are suitable for commercial reuse; they can be granted for up to 5 years.
+          These licences are typically granted for up to 5 years. These are for when computational analysis is necessary to deliver a commercial product or service and it is not high risk.
+          <br>
+          It is important to note that any licence we issue will not be :
+          <br>
+          <ul>
+            <li>a data sharing agreement for personal data</li>
+            <li>a processing agreement for personal data</li>
+          </ul>
+          You should make sure that you comply with all relevant regulations.
         </p>
       </li>
     </ul>
-    <h2 id="section-protect">We support innovation and technology, we also have a duty to protect the public</h2>
     <p>
       In the interests of transparency, we consider the following risk factors during licence applications for computational analysis:
     </p>
@@ -70,22 +122,21 @@
     <p>
       We use the five safes framework to assess all applications for risk. You can read more about the <a href="https://en.wikipedia.org/wiki/Five_safes">Five safes on Wikipedia</a>
     </p>
-    <h2 id="section-reuse">Your reuse of data must comply with all relevant regulations</h2>
+    <h2 id="section-decisions">Approval process</h2>
     <p>
-      Examples include the Legal Services Act (LSA), and UK General Data Protection Regulation (UKGDPR). Please note that this licence:
+      Once your licence has been assessed by the licence team, your licence application will be reviewed by <a href="https://www.nationalarchives.gov.uk/about/our-role/boards-and-advisory-groups/discovery-board/">Discovery board.</a>
+      This is a cross-departmental board at The National Archives. The board meets once a month.
     </p>
-    <ul>
-      <li>is not a data sharing agreement for personal data</li>
-      <li>is not a processing agreement for personal data</li>
-    </ul>
-    <h2 id="section-published">Part of your application may be published</h2>
     <p>
-      We keep a record of all applications. If your application is successful your answers to the questions in the ‘About your organisation’, ‘Purpose and activity’ sections,
-      along with your public statement, may be made publicly available.
+      Rarely,  applications will need to be reviewed by the <a href="https://www.gov.uk/government/news/data-governance-panel-formed-to-improve-use-of-court-and-tribunals-data#:~:text=About%20the%20senior%20data%20governance%20panel&text=Its%20role%20is%20to%20advise,rule%20of%20law">Data Governance Panel</a> that meets 4 times a year.
     </p>
-    <h2 id="section-decisions">Decisions on licences are taken once a month</h2>
     <p>
-      Licence applications are reviewed by The Discovery board, a cross-departmental board at The National Archives that board meets once a month. It may be a few weeks until you get a decision.
+      You will be updated on the status of your application. It may be a few weeks until you get a decision on your application.
+    </p>
+    <h2 id="section-published">Publication of approved licences</h2>
+    <p>
+      We keep a record of all applications. If your application is successful, part of your application may be made publicly available in the future. This will support transparency #
+      in activities using computational analysis that have been approved under licence.
     </p>
     <a role="button"
        tabindex="0"
@@ -93,10 +144,10 @@
        class="govuk-button"
        data-module="govuk-button"
        value="Apply for a licence"
-       href="{% url 'application-download-page' %}">Apply for a licence</a>
-    <h3 class="transactional-licence-form-content__heading">Need to ask a question before you start applying?</h3>
+       href="{% url 'application-download-page' %}">What you need to apply for a licence</a>
+    <h2 class="transactional-licence-form-content__heading">Contact</h2>
     <p>
-      If you are not sure what licence applies to you or have a question about applying for a licence, please <a href="mailto:{% translate "caselaw.email" %}">email the licence team</a>
+      If you have any questions about licencing, please email the licence team: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>
     </p>
   </div>
 {% endblock content %}
