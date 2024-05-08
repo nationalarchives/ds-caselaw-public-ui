@@ -9,27 +9,12 @@
         <time datetime="10-04-2024">10th April 2024</time>
       </small>
     </p>
-    <div class="govuk-notification-banner_red"
-         role="region"
-         aria-labelledby="govuk-notification-banner-title"
-         data-module="govuk-notification-banner">
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title"
-            id="govuk-notification-banner-title">Important</h2>
-      </div>
-      <div class="govuk-notification-banner__content">
-        <p class="govuk-notification-banner__heading">
-          You do not need to apply for a licence if your re-use is already covered under <a href="{% url 'open_justice_licence' %}">the Open Justice licence.</a>
-        </p>
-        <p>
-          There is one application form to apply to perform computational analysis across Find Case Law records. It is made up of 5 main sections.
-          You will need to respond to all the questions we ask. There is no way to save the application part way through.
-        </p>
-      </div>
-    </div>
     <div class="anchor-links">
       <h2 class="anchor-links__header">Information on this page</h2>
       <ul class="anchor-links__list">
+        <li class="anchor-links__list-option">
+          <a href="#section-need">Do you need to apply for a licence?</a>
+        </li>
         <li class="anchor-links__list-option">
           <a href="#section-person">1. The details of the person responsible for the licence</a>
         </li>
@@ -56,6 +41,14 @@
         </li>
       </ul>
     </div>
+    <h2 id="section-need">Do you need to apply for a licence?</h2>
+    <p>
+      You do not need to apply for a licence if your re-use is already covered under <a href="{% url 'open_justice_licence' %}">the Open Justice licence.</a>
+    </p>
+    <p>
+      There is one application form to apply to perform computational analysis across Find Case Law records. It is made up of 5 main sections.
+      You will need to respond to all the questions we ask. There is no way to save the application part way through.
+    </p>
     <h2 id="section-person">1. The details of the person responsible for the licence</h2>
     <p>
       They should be someone who is senior in your organisation and will be responsible for licence application and compliance. They will need to be someone we can talk to if we have questions about the application.
@@ -533,7 +526,7 @@
        class="govuk-button"
        data-module="govuk-button"
        value="I want to perform computational analysis"
-       href="{% static '/documents/Find_Case_Law_Computational_Analysis_Licence_Application_Form.docx' %}">Download to continue this application</a>
+       href="{% static '/documents/Find_Case_Law_Computational_Analysis_Licence_Application_Form.docx' %}">Download application form (Microsoft Word 85.7 KB)</a>
     <h2 id="section-contact">Contact</h2>
     <p>
       If you have any questions about licencing, please email the licence team: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>
