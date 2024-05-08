@@ -13,8 +13,16 @@ form_name = "transactional-licence-form-steps"
 form_view = wizard_view("%s-step" % form_name)
 
 urlpatterns = [
-    path("", StartView1.as_view(), name="transactional-licence-form"),
-    path("/page-2", StartView2.as_view(), name="transactional-licence-form-page-2"),
+    path(
+        "/re-use-find-case-law-records",
+        StartView1.as_view(),
+        name="transactional-licence-form",
+    ),
+    path(
+        "/licence-application-process",
+        StartView2.as_view(),
+        name="transactional-licence-form-page-2",
+    ),
     path("/page-3", StartView3.as_view(), name="transactional-licence-form-page-3"),
     path(
         "/download-application",
