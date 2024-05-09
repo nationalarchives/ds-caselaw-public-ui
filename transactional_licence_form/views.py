@@ -10,6 +10,8 @@ TEMPLATE_OVERRIDES = {
     "nine-principles-1": "nine_principles_1.html",
 }
 
+REVIEWING_SESSION_KEY = "transactional_licence_form_reviewing"
+
 
 class FormWizardView(NamedUrlSessionWizardView):
 
@@ -21,12 +23,12 @@ class FormWizardView(NamedUrlSessionWizardView):
         self.storage.current_step = goto_step
         url = self.get_step_url(goto_step)
         if self.in_review():
-            self.request.session["transactional_licence_form_reviewing"] = True
+            self.request.session[REVIEWING_SESSION_KEY] = True
         return redirect(url)
 
     def in_review(self):
         has_review_parameter = bool(
-            self.request.session.get("transactional_licence_form_reviewing", False)
+            self.request.session.get(REVIEWING_SESSION_KEY, False)
             or self.request.POST.get("reviewing", False)
         )
         return has_review_parameter and self.steps.current != "review"
@@ -81,7 +83,8 @@ class FormWizardView(NamedUrlSessionWizardView):
         return context
 
     def done(self, form_list, **kwargs):
-        del self.request.session["transactional_licence_form_reviewing"]
+        if REVIEWING_SESSION_KEY in self.request.session:
+            del self.request.session[REVIEWING_SESSION_KEY]
         send_form_response_to_dynamics(self.get_all_cleaned_data())
         return render(self.request, "submitted.html")
 
