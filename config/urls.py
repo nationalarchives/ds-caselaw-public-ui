@@ -28,7 +28,7 @@ urlpatterns = [
     ),
     path(
         "computational-licence-form",
-        views.ComputationalLicenceFormView.as_view(),
+        lambda request: HttpResponseRedirect("/re-use-find-case-law-records"),
         name="computational_licence_form",
     ),
     path(
