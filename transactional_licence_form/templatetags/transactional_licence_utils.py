@@ -22,3 +22,13 @@ def has_other_field(option_index, other_field_subwidgets):
 @register.filter
 def get_subwidget_for_other_field(option_index, other_field_subwidgets):
     return other_field_subwidgets[option_index - 1]
+
+
+@register.filter
+def get_field_name(field, field_names):
+    return field_names[field]
+
+
+@register.filter
+def get_form_title(form, form_titles):
+    return form_titles[form]
