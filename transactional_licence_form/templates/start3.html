@@ -1,5 +1,351 @@
 {% extends "layouts/base.html" %}
+{% load i18n %}
 {% block content %}
-  <h1>Placeholder page for the third page of introductory text</h1>
-  <a href="{% url 'transactional-licence-form-steps' %}">Click to start</a>
+  <div class="standard-text-template container py-3">
+    <h1>What you need to apply for a licence</h1>
+    <p>
+      <small>
+        Last updated on
+        <time datetime="10-04-2024">10th April 2024</time>
+      </small>
+    </p>
+    <div class="govuk-notification-banner_red"
+         role="region"
+         aria-labelledby="govuk-notification-banner-title"
+         data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title"
+            id="govuk-notification-banner-title">Important</h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-notification-banner__heading">
+          You cannot save your application half way through; you will need to complete your application in one session.  Please make sure you have prepared
+          all your answers to the questions before starting the application process.
+        </p>
+      </div>
+    </div>
+    <div class="anchor-links">
+      <h2 class="anchor-links__header">Information on this page</h2>
+      <ul class="anchor-links__list">
+        <li class="anchor-links__list-option">
+          <a href="#section-who">1.  Details of who is applying for this licence</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-why">2. A public statement outlining why and how you want to re-use Find Case Law records</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-principles">3. We make decisions based on how you will meet the nine principles established by the Ministry of Justice </a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-list">Here is the full list of information we ask for during the application process, to help you prepare</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-apply">Ready to apply?</a>
+        </li>
+      </ul>
+    </div>
+    <h2 id="section-who">1.  Details of who is applying for this licence</h2>
+    <p>
+      We may have some questions for you regarding your application so please give us the contact details for someone
+      we can speak to during the application process.
+    </p>
+    <p>
+      We need to know the legal name of your organisation and the type of organisation is it, for example, is it a private
+      limited company, registered charity, etc.
+    </p>
+    <p>
+      We also need the contact details of someone sufficiently senior in your organisation that they will be responsible for licence compliance.
+    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Information we ask about your organisation and contacts</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <strong>Do you intend to apply for a licence?</strong>
+          <p>
+            If you intend to use computational analysis on Find Case Law records, you will need a computational analysis licence
+          </p>
+          <ol>
+            <li>Do you intend to use a computational analysis on Find Case Law records?</li>
+          </ol>
+          <strong>Contact details</strong>
+          <p>Full name of person we can discuss your application with</p>
+          <p>Email address of person we can discuss your application with</p>
+          <p style="text-indent: 1rem;">2a. Full name of person responsible for licence compliance</p>
+          <p style="text-indent: 1rem;">3a. Email address of person responsible for licence compliance</p>
+          <strong>About your organisation</strong>
+          <ol start="4">
+            <li>What is the full legal name of your organisation?</li>
+            <li>Is your organisation known by any other names?</li>
+            <li>Where is your organisation registered?</li>
+            <li>
+              What type of organisation is it?
+              <br />
+              Select all that apply
+              <ul>
+                <li>Private limited company</li>
+                <li>Public limited company</li>
+                <li>Partnership</li>
+                <li>Sole trader</li>
+                <li>Registered charity</li>
+                <li>Community interesr company</li>
+                <li>Independant research organisation</li>
+                <li>Public body</li>
+                <li>Independant body</li>
+                <li>Other (please specify)</li>
+              </ul>
+            </li>
+            <li>Please give your organisation identifier (e.g. company number or charity registration number)</li>
+            <li>Please give the name of any partners or organisations you are working with</li>
+          </ol>
+        </div>
+      </div>
+    </details>
+    <h2 id="section-why">2.  A public statement outlining why and how you want to re-use Find Case Law records</h2>
+    <p>
+      Your statement should summarise the purpose and anticipated outcomes of your product or service, the individuals or communities you intend
+      to serve, and the methodologies or activities you will use to analyse the records, and it should be no longer than about 150 words. Your public statement may be published in the future, for example, if we receive a freedom of information request.
+    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Information we ask about the purpose and anticipated outcomes of your product or service</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <span class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Information</span>
+            In the interests of transparency, we may publish your responses to the purpose and activities questions and you public statement,
+            alongside details of your organisation in the future - we will tell you which responses, as you fill in the application process.
+          </span>
+        </div>
+        <div class="transactional-licence-form-content">
+          <ol start="10">
+            <li>Please give any project or product name associated with this work</li>
+            <li>If possible, please share a link to the project or product site</li>
+            <li>
+              What is the main purpose of your project or product?
+              <br />
+              Select all that apply
+              <ul>
+                <li>Publish legal information</li>
+                <li>Produce summaries and interpretation of the records</li>
+                <li>Research and develop new technologies</li>
+                <li>Research activity and trends across records</li>
+                <li>Deliver a consumer service</li>
+                <li>Other (please specify)</li>
+              </ul>
+            </li>
+            <li>
+              Which one best describes who will be able to access the outcomes of your computational analysis?
+              <ul>
+                <li>Public access (e.g. anyone can freely access)</li>
+                <li>Restricted access (e.g. only subscribers or research peers)</li>
+                <li>Internal access (e.g. only colleagues from within your organisation)</li>
+                <li>Private for personal use only</li>
+              </ul>
+            </li>
+            <li>
+              Which Individuals or communities will benefit from your computational analysis?
+              <br />
+              Select all that apply
+              <ul>
+                <li>General public</li>
+                <li>Legal professionals and law firms</li>
+                <li>Court users (e.g. litigants in person)</li>
+                <li>The Judiciary</li>
+                <li>Public bodies</li>
+                <li>Researchers and academics</li>
+                <li>A specific community (please specify)</li>
+                <li>A specific (non-legal) profession (please specify)</li>
+                <li>Other (please specify)</li>
+              </ul>
+            </li>
+            <strong>Public Statement</strong>
+            <li>
+              Please provide a public statement<em>(Please aim for no more than around 150 words)</em>
+              <br>
+              Briefly describe the purpose and anticipated outcomes of your product or service,
+              the individuals or communities you intend to serve, and the methodologies or activities you will use to analyse the records
+            </li>
+          </ol>
+          <strong>To give you an indication of the level of information we are looking for, here is an example Public Statement…</strong>
+          <div class="transactional-licence-form-content__example-responses">
+            <p>
+              <em>“CaseSummarizer aims to revolutionise how HR officials stay updated with the latest employment law cases in the UK by providing
+              automated summaries. Our platform will empower legal professionals and court users, ensuring efficient access to critical information.”</em>
+            </p>
+          </div>
+        </div>
+      </details>
+      <h2 id="section-principles">
+        3.  We make decisions based on how you will meet the nine principles established by the Ministry of Justice
+      </h2>
+      <p>The Ministry of Justice has established the following nine principles:</p>
+      <ol>
+        <li>Dignity of the Court</li>
+        <li>Independence of the Court</li>
+        <li>Appropriate Scrutiny</li>
+        <li>Anti-Discriminatory Harm</li>
+        <li>Anti-Bias</li>
+        <li>Personal Privacy</li>
+        <li>Discoverability</li>
+        <li>Algorithmic Transparency</li>
+        <li>Accurate Data Representation</li>
+      </ol>
+      <p>
+        In your application you need to detail the consideration you have given to these principles. Your responses will inform our decision about
+        whether to grant a licence. See the information below to get an understanding of what we will ask you, in relation to these principles.
+      </p>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Information we ask about how you will meet the nine principles established by the Ministry of Justice</span>
+        </summary>
+        <div class="govuk-details__text">
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <span class="govuk-warning-text__text">
+              <span class="govuk-visually-hidden">Information</span>
+              In the interests of transparency, we may publish your responses to some of the principles, alongside your public statement and details of your
+              organisation in the future - we will tell you which responses, as you fill in the application process.
+            </span>
+          </div>
+          <div class="transactional-licence-form-content">
+            <strong>Dignity of the Courts</strong>
+            <p>
+              It is important that any analysis maintains the dignity of the courts and tribunals and does not undermine their functioning as working bodies. This is consistent with access to justice.
+            </p>
+            <ol start="16">
+              <li>
+                Licence holders must not undermine the courts and tribunals’ ability to function as working bodies. Do you accept this licence term?
+              </li>
+              <li>
+                Please describe the risks you have identified and how you will protect the ability for the courts and tribunals to function <em>(maximum 100 words)</em>
+                You should consider anything that may undermine the ability for the justice system to operate impartially and with integrity and treat all members of
+                the public equally and fairly, no matter who they are.
+              </li>
+            </ol>
+            <strong>Independence of the Court</strong>
+            <p>It is important that any analysis respects the independence of the judiciary and their impartial judgment.</p>
+            <ol start="18">
+              <li>Licence holders must respect the independence of the judiciary. Do you accept this licence term?</li>
+              <li>
+                Please describe the risks you have identified and how you will protect the independence of the justice system<em>(maximum 100 words)</em>
+                <br>
+                You should consider anything that may undermine the ability for the justice system to be fair and transparent, free of any influence outside the rule of law.
+              </li>
+            </ol>
+            <strong>Appropriate Scrutiny</strong>
+            <p>
+              We seek to encourage the analysis of machine-readable judgments to allow the public to scrutinise justice outcomes and the law more effectively.
+              We also acknowledge that the incomplete nature of the dataset and the current lack of safeguard against opaque or biased methodologies increases the risk of inaccurate or biased conclusions which may cause harm to individuals named therein.
+            </p>
+            <ol start="20">
+              <li>
+                Licence holders must acknowledge the incomplete nature of the dataset and apply appropriate scrutiny. Do you accept this licence term?
+              </li>
+              <li>Will the computational analysis focus on specific individuals or specific groups of people?</li>
+              <li>Will you anonymise individuals before you analyse records?</li>
+              <li>
+                Please describe the actions you will take to prevent anonymised people from being identified <em>(maximum 100 words)</em>
+                <br>
+                This is referred to as jigsaw identification - putting together information in a way that identifies individuals even if they have been anonymised.
+              </li>
+            </ol>
+          </div>
+        </details>
+        <div class="info-box">
+          <h3 id="section-list" class="info-box__heading">
+            Here is the full list of information we ask for during the application process, to help you prepare
+          </h3>
+          <div class="info-box__content">
+            <p>
+              Below is a complete list of the information - 47 questions in total - in the licence application process, along with guidance on word
+              limits for statements and explanations. To help you prepare you can also download this information as a PDF checklist, or in MS Word format.
+            </p>
+          </div>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">A complete list of information we ask for when you apply for your licence</span>
+            </summary>
+            <div class="govuk-details__text">
+              <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+                <span class="govuk-warning-text__text">
+                  <span class="govuk-visually-hidden">Information</span>
+                  In the interests of transparency, we may publish both your public statement and your responses to some of the principles,
+                  alongside details of your organisation in the future - we will tell you which responses, as you fill in the application process.
+                </span>
+              </div>
+              <div class=" ">
+                <strong>Do you intend to apply for a licence?</strong>
+                <p>
+                  If you intend to use computational analysis on Find Case Law records, you will need a computational analysis licence
+                </p>
+                <ol>
+                  <li>Do you intend to use a computational analysis on Find Case Law records?</li>
+                </ol>
+                <strong>Contact details</strong>
+                <p>Full name of person we can discuss your application with</p>
+                <p>Email address of person we can discuss your application with</p>
+                <p style="text-indent: 1rem;">2a. Full name of person responsible for licence compliance</p>
+                <p style="text-indent: 1rem;">3a. Email address of person responsible for licence compliance</p>
+                <strong>About your organisation</strong>
+                <ol start="4">
+                  <li>What is the full legal name of your organisation?</li>
+                  <li>Is your organisation known by any other names?</li>
+                  <li>Where is your organisation registered?</li>
+                  <li>
+                    What type of organisation is it?
+                    <br />
+                    Select all that apply
+                    <ul>
+                      <li>Private limited company</li>
+                      <li>Public limited company</li>
+                      <li>Partnership</li>
+                      <li>Sole trader</li>
+                      <li>Registered charity</li>
+                      <li>Community interesr company</li>
+                      <li>Independant research organisation</li>
+                      <li>Public body</li>
+                      <li>Independant body</li>
+                      <li>Other (please specify)</li>
+                    </ul>
+                  </li>
+                  <li>Please give your organisation identifier (e.g. company number or charity registration number)</li>
+                  <li>Please give the name of any partners or organisations you are working with</li>
+                </ol>
+                <strong>Purpose and Activities</strong>
+                <p>Your answers to this section may be published alongside your statement in the future.</p>
+                <ol start="10">
+                  <li>Please give any project or product name associated with this work</li>
+                </ol>
+              </div>
+            </div>
+          </details>
+          <a role="button"
+             tabindex="0"
+             draggable="false"
+             class="govuk-button"
+             data-module="govuk-button"
+             value="I want to perform computational analysis"
+             href="{% url 'transactional-licence-form-page-2' %}">Download as PDF</a>
+        </div>
+        <h2 id="section-apply">Ready to apply?</h2>
+        <p>If you have prepared all of your information, you can now apply for your licence.</p>
+        <a role="button"
+           tabindex="0"
+           draggable="false"
+           class="govuk-button"
+           data-module="govuk-button"
+           value="Apply for a licence"
+           href="{% url 'transactional-licence-form-confirmation' %}">Apply for a licence</a>
+        <h3 class="transactional-licence-form-content__heading">Contact</h3>
+        <p>
+          If you have any questions about licencing, please email the licence team: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>
+        </p>
+      </div>
+    </div>
+  </div>
 {% endblock content %}

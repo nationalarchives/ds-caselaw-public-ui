@@ -1,0 +1,16 @@
+.transactional-licence-form-content {
+  &__example-responses {
+    border: solid 1px $color-black;
+    padding: 1rem;
+    margin-top: calc(1 * $spacer-unit);
+  }
+
+  h3.transactional-licence-form-content__heading {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+}

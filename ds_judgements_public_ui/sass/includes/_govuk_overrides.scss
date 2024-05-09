@@ -17,6 +17,15 @@
 .govuk-button {
   @include call-to-action-button;
   box-shadow: none;
+  margin-bottom: 0;
+  &:focus {
+    background-color: $color-dark-blue !important;
+    color: $color-white !important;
+    box-shadow: none !important;
+    @include focus-default;
+    outline-offset: 0.2rem !important;
+    outline-color: $color-dark-blue !important;
+  }
 }
 
 .govuk-label {
@@ -37,10 +46,21 @@
   border: 3px solid $color-aqua-blue;
   background-color: $color-white;
   padding: 0.5rem;
+  margin-top: calc(2 * $spacer-unit);
+  margin-bottom: calc(2 * $spacer-unit);
 }
 
 .govuk-details__summary {
   padding-left: 1.5rem;
+  color: $color-aqua-blue;
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+    @include focus-default;
+  }
+  &::before {
+    top: 2px;
+  }
 }
 
 .govuk-details__summary-text {
@@ -49,6 +69,8 @@
 
 .govuk-details__text {
   border-left: none;
+  font-size: 1rem;
+  padding: 1rem;
 }
 
 .info-box {
@@ -56,7 +78,9 @@
   padding: 2rem;
   background-color: $color-light-grey;
 }
+
 .info-box__heading {
+  margin-top: 0;
   font-size: 1.4rem;
   font-weight: bold;
 }
@@ -88,11 +112,20 @@
   color: #4c2c92;
 }
 
+.govuk-warning-text {
+  margin-bottom: 0;
+}
+
 .govuk-warning-text__icon {
   background-color: #fef8df;
   color: $color-black;
   border: $color-black solid 3px;
   margin-left: 1rem;
+  transform: rotate(180deg);
+}
+.govuk-warning-text__text {
+  position: relative;
+  bottom: 7px;
 }
 
 .govuk-warning-text {
@@ -100,4 +133,11 @@
   border-left: 0.5rem $color-yellow solid;
   background-color: #fef8df;
   padding: calc($spacer-unit * 2) calc($spacer-unit * 2);
+}
+
+.govuk-checkboxes__input {
+  &:focus {
+    @include focus-default;
+    outline-color: $color-focus-blue-outline;
+  }
 }
