@@ -17,14 +17,17 @@
     <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ wizard.management_form }}
-      {% if wizard.form.forms %}
-        {{ wizard.form.management_form }}
-        {% for form in wizard.form.forms %}
-          <div>{% crispy form %}</div>
-        {% endfor %}
-      {% else %}
-        <div>{% crispy wizard.form %}</div>
-      {% endif %}
+      {% if wizard.form.forms %}{{ wizard.form.management_form }}{% endif %}
+      {% block form_inner %}
+        {% if reviewing %}<input type="hidden" name="reviewing" value="true" />{% endif %}
+        {% if wizard.form.forms %}
+          {% for form in wizard.form.forms %}
+            <div>{% crispy form %}</div>
+          {% endfor %}
+        {% else %}
+          <div>{% crispy wizard.form %}</div>
+        {% endif %}
+      {% endblock form_inner %}
       <div>
         {% if wizard.steps.prev %}
           <button name="wizard_goto_step"
@@ -33,8 +36,14 @@
                   value="{{ wizard.steps.prev }}">Previous</button>
         {% endif %}
         <input type="submit"
-               class="button-cta"
+               class="{% if reviewing %}button-secondary{% else %}button-cta{% endif %}"
                value="{{ wizard.steps.current|submit_label_for_step }}" />
+        {% if reviewing %}
+          <button name="wizard_goto_step"
+                  type="submit"
+                  class="button-cta"
+                  value="review">Review your answers</button>
+        {% endif %}
       </div>
     </form>
     {% block post_form %}

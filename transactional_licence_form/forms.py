@@ -29,6 +29,7 @@ class ContactForm(FCLForm):
         label="The email address of the person we can discuss your licence application with",
         max_length=50,
     )
+    # NOTE: please see comment in transactional_lcence_form.js if changing the wording / order of the options here.
     alternative_contact = fields.FCLChoiceField(
         label=(
             "We need to ensure we have contact details of the person in your "
@@ -255,7 +256,7 @@ class AdditionalCommentsForm(FCLForm):
 class ReviewForm(FCLForm):
     title = "Review your Answers"
     # The Review screen has to be a form 'step' with none of its own inputs
-    # and a custom tempalte, as once the `done` callback of the form-tools
+    # and a custom template, as once the `done` callback of the form-tools
     # wizard is called, the form data has been scrubbed from the session,
     # making amendments impossible.
     pass

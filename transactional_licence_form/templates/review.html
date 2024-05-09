@@ -1,11 +1,22 @@
 {% extends "layouts/form_step.html" %}
-{% block pre_form %}
-  <dl>
-    {% for key, value in all_data.items %}
-      <dt>{{ key }}</dt>
-      <dd>
-        {{ value }}
-      </dd>
+{% load transactional_licence_utils %}
+{% block form_inner %}
+  <input type="hidden" name="reviewing" value="true" />
+  <ol class="transactional-licence-review-page">
+    {% for form, data in all_data.items %}
+      <h3>{{ form|get_form_title:all_form_titles }}</h3>
+      {% for key, value in data.items %}
+        <li>
+          <strong>{{ key|get_field_name:all_field_names }}</strong>
+          <p>{{ value }}</p>
+          <p>
+            <button name="wizard_goto_step"
+                    type="submit"
+                    class="button-secondary"
+                    value="{{ form }}">Edit</button>
+          </p>
+        </li>
+      {% endfor %}
     {% endfor %}
-  </dl>
-{% endblock pre_form %}
+  </ol>
+{% endblock form_inner %}
