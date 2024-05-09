@@ -61,6 +61,7 @@ def sanitize_and_format_response_as_xml(form_data):
     for key, value in form_data.items():
         field_lines = format_and_sanitize_field(key, value)
         for key2, sanitized_value in field_lines:
+            key2 = key2.replace("_choices", "") if key2.endswith("_choices") else key2
             lines.append(f"<{key2}>{sanitized_value}</{key2}>")
     return "\n".join(lines)
 
@@ -77,4 +78,4 @@ def send_text_email_with_smtp_tls(
     server.starttls()
     server.login(username, password)
     server.sendmail(from_mail, to_mail, msg.as_string())
-    server.quit
+    server.quit()
