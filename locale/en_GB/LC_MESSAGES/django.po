@@ -306,12 +306,3 @@ msgstr "Previous step"
 #: transactional_licence_form/templates/layouts/form_step.html
 msgid "submit"
 msgstr "Submit"
-
-#: venv/lib/python3.11/site-packages/isort/main.py
-msgid "show this help message and exit"
-msgstr "Show this help message and exit"
-
-#: venv/lib/python3.11/site-packages/mypy/main.py
-#, python-format
-msgid "%(prog)s: error: %(message)s\n"
-msgstr "%(prog)s: error: %(message)s\n"
