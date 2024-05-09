@@ -10,6 +10,18 @@ from .widgets import CheckBoxSelectCourtWithYearRange
 
 
 def _get_choices_by_group(courts):
+    """
+    Given a list of court objects, construct a dictionary containing
+    {"key1": "value1"} for non-grouped courts, and {"court_group": {"key1": "value1"}}
+    for grouped courts. This allows us to nest choices within groups when rendering
+    a `MultipleChoiceField` field in Django.
+
+    e.g.
+    {
+        "court_group_1": {"key1": "value1"},
+        "key2": "value2"
+    }
+    """
     options: dict = {}
     for group in courts:
         if group.display_heading:

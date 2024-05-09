@@ -75,7 +75,6 @@
     padding-left: calc($spacer-unit * 3);
     padding-right: calc($spacer-unit * 3);
     margin-top: calc($spacer-unit * 0.5);
-    margin-bottom: calc($spacer-unit * 2);
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: calc($spacer-unit * 0.5);
     }

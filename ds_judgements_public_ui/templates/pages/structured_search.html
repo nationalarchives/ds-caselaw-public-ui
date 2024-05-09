@@ -16,6 +16,7 @@
             {{ form.query }}
             <input type="submit" action="{% url 'search' %}">
           </div>
+          {% include "includes/search/search_help_text.html" %}
         </div>
       </div>
       {% if context.errors|has_errors %}

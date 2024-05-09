@@ -27,17 +27,13 @@ from judgments.utils import (
 )
 
 
-def _do_dates_require_warnings(from_date, to_date):
+def _do_dates_require_warnings(from_date):
     from_warning = False
-    to_warning = False
     start_year = CourtDates.min_year()
-    end_year = CourtDates.max_year()
-    if from_date and to_date:
+    if from_date:
         if from_date.year < start_year:
             from_warning = True
-        if to_date.year > end_year:
-            to_warning = True
-    return from_warning, to_warning
+    return from_warning
 
 
 @csrf_exempt
@@ -141,10 +137,8 @@ def advanced_search(request):
                 unprocessed_facets, year_facets = process_year_facets(
                     unprocessed_facets
                 )
-            if from_date and to_date:
-                requires_from_warning, requires_to_warning = _do_dates_require_warnings(
-                    from_date, to_date
-                )
+            if from_date:
+                requires_from_warning: bool = _do_dates_require_warnings(from_date)
 
             changed_queries = {
                 key: value for key, value in params.items() if value is not None
@@ -152,6 +146,7 @@ def advanced_search(request):
             # Populate context to provide feedback about filters etc. back to user
             # TODO: Maybe separate this dictionary into it's component parts?
             context = context | {
+                "requires_from_warning": requires_from_warning,
                 "court_facets": court_facets,
                 "year_facets": year_facets,
                 "search_results": search_response.results,
@@ -189,5 +184,5 @@ def advanced_search(request):
             # If the form has errors, return it for rendering!
             return TemplateResponse(request, "judgment/results.html", {"form": form})
     else:
-        # Raise an error if the user has tried any not GET HTTP requests.
+        # Raise an error if the user has tried any non GET HTTP requests.
         raise Http404("GET requests only")

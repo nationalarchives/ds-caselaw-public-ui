@@ -202,8 +202,11 @@
   }
 
   &__court-options-column {
-    width: 50%;
+    width: 100%;
     break-inside: avoid;
+    @media (min-width: $grid-breakpoint-medium) {
+      width: 50%;
+    }
   }
 
   &__court-option {

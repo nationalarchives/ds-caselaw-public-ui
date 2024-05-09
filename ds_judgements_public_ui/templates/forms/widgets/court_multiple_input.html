@@ -1,0 +1,17 @@
+{% with id=widget.attrs.id %}
+  <div {% if id %}id="{{ id }}"{% endif %}
+       {% if widget.attrs.class %}class="{{ widget.attrs.class }}"{% endif %}>
+    {% for group, options, index in widget.optgroups %}
+      {% if group %}
+        <div class="structured-search__court-group-label">
+          <label>{{ group }}</label>
+        </div>
+        <div class="structured-search__court-group">
+        {% endif %}
+        {% for option in options %}
+          <div>{% include option.template_name with widget=option %}</div>
+        {% endfor %}
+        {% if group %}</div>{% endif %}
+    {% endfor %}
+  </div>
+{% endwith %}

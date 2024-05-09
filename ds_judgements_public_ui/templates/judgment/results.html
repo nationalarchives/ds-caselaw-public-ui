@@ -14,6 +14,11 @@
             {% include "includes/advice_message.html" with message=message %}
           {% endwith %}
         {% endif %}
+        {% if context.requires_from_warning %}
+          {% with message="This time range starts before our official start date, results may be limited." %}
+            {% include "includes/advice_message.html" with message=message %}
+          {% endwith %}
+        {% endif %}
         {% if context.search_results %}
           <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
           <div class="results__result-list-container">

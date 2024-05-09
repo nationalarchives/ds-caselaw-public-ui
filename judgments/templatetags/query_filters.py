@@ -45,7 +45,6 @@ def date_filter_param(key):
 @register.filter
 def remove_query(query_params, key):
     if date_filter_param(key):
-        print(key)
         return remove_date(query_params, key)
     else:
         params = dict(query_params)

@@ -49,6 +49,7 @@
   &__filters-row {
     display: block;
     text-align: left;
+    padding-top: 0.5rem;
 
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
