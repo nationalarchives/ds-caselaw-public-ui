@@ -297,21 +297,21 @@ msgstr "Please enter a date after the 'from' date"
 
 #: transactional_licence_form/templates/layouts/form_step.html
 msgid "first step"
-msgstr ""
+msgstr "First step"
 
 #: transactional_licence_form/templates/layouts/form_step.html
 msgid "prev step"
-msgstr ""
+msgstr "Previous step"
 
 #: transactional_licence_form/templates/layouts/form_step.html
 msgid "submit"
-msgstr ""
+msgstr "Submit"
 
 #: venv/lib/python3.11/site-packages/isort/main.py
 msgid "show this help message and exit"
-msgstr ""
+msgstr "Show this help message and exit"
 
 #: venv/lib/python3.11/site-packages/mypy/main.py
 #, python-format
 msgid "%(prog)s: error: %(message)s\n"
-msgstr ""
+msgstr "%(prog)s: error: %(message)s\n"
