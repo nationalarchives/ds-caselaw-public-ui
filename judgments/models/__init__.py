@@ -1,3 +1,3 @@
-from judgments.forms.court_dates import CourtDates  # NOQA
+from judgments.models.court_dates import CourtDates  # NOQA
 
 __ALL__ = ["CourtDates"]
