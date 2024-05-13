@@ -47,14 +47,22 @@ def advanced_search(request):
     * Given anything except an HTTP GET request raise an error
     """
     # We should only be handling GET requests here since we aren't changing anything on the server
-    if request.method == "GET":
+    if not request.method == "GET":
+        # Raise an error if the user has tried any non GET HTTP requests.
+        raise Http404("GET requests only")
+    else:
         form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
         params: dict = request.GET
         """
         Form should be valid unless there is a critical issue
         with the submission (i.e. Month > 12)
         """
-        if form.is_valid():
+        if not form.is_valid():
+            # If the form has errors, return it for rendering!
+            return TemplateResponse(
+                request, "pages/structured_search.html", {"form": form}
+            )
+        else:
             context: dict = {}
             court_facets: dict = {}
             year_facets: dict = {}
@@ -83,7 +91,7 @@ def advanced_search(request):
                     "from_date_1": from_date.month,
                     "from_date_2": from_date.year,
                 }
-            # If a to_date is not specified, set it to the current min year
+            # If a to_date is not specified, set it to the current max year
             if not to_date:
                 to_date = date(CourtDates.max_year(), 12, 31)
             else:
@@ -98,6 +106,7 @@ def advanced_search(request):
             query_params = query_params | {
                 "query": query_text,
                 "courts": form.cleaned_data.get("courts", []),
+                "tribunals": form.cleaned_data.get("tribunals", []),
                 "judge": form.cleaned_data.get("judge", ""),
                 "party": form.cleaned_data.get("party", ""),
                 "order": order,
@@ -180,9 +189,3 @@ def advanced_search(request):
                     "feedback_survey_type": "structured_search",
                 },
             )
-        else:
-            # If the form has errors, return it for rendering!
-            return TemplateResponse(request, "judgment/results.html", {"form": form})
-    else:
-        # Raise an error if the user has tried any non GET HTTP requests.
-        raise Http404("GET requests only")

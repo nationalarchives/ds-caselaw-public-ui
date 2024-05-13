@@ -106,7 +106,7 @@ class AdvancedSearchForm(forms.Form):
         if from_date and to_date:
             if from_date > to_date:
                 raise ValidationError(
-                    _("To date must be after from date"),
+                    _("search.errors.to_before_from_headline"),
                     code="to_date",
                 )
         # Run the pre-process query steps

@@ -27,6 +27,7 @@ def removable_filter_param(key):
         "order",
         "per_page",
         "courts",
+        "tribunals",
         "from_date_0",
         "from_date_1",
         "from_date_2",

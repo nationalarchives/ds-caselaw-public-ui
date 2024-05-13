@@ -283,11 +283,19 @@ msgstr "Errors in 'from' date - see below for details"
 msgid "search.errors.to_date_headline"
 msgstr "Errors in 'to' date - see below for details"
 
-#: judgments/tests/test_search.py judgments/views/advanced_search.py
+#: judgments/tests/test_search.py judgments/forms/search_forms.py
 msgid "search.errors.to_before_from_headline"
 msgstr "The 'to' date entered is before the 'from' date"
 
-#: judgments/utils/utils.py
+#: judgments/forms/fields.py
+msgid "search.errors.missing_day_detail"
+msgtr "You must specify a day"
+
+#: judgments/forms/fields.py
+msgid "search.errors.missing_month_detail"
+msgtr "You must specify a month"
+
+#: judgments/forms/fields.py
 msgid "search.errors.missing_year_detail"
 msgstr "You must specify a year"
 

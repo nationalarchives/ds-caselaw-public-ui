@@ -3,6 +3,9 @@ from datetime import date
 from typing import Literal
 
 from crispy_forms_gds.fields import DateInputField
+from django import forms
+from django.core.validators import RegexValidator
+from django.utils.translation import gettext as _
 
 
 class DateRangeInputField(DateInputField):
@@ -16,6 +19,8 @@ class DateRangeInputField(DateInputField):
     If a day or month is not provided, default to the minimum or maximum
     date value depending on whether it is to/from.
 
+    If year is missing raise a validation error.
+
     e.g. - value of only year provided as from 2010, default to 01/01/2010
          - value of only year provided as to 2010, default to 31/12/2010
          - value of year and month provded as to 02/2010, default to 28/02/2010
@@ -27,11 +32,48 @@ class DateRangeInputField(DateInputField):
 
     def __init__(self, date_type, **kwargs):
         self.date_type = date_type
-        super().__init__(**kwargs)
+        # Define one message for all fields.
+        error_messages = {
+            "required": "Enter the day, month and year",
+            "incomplete": "Enter the day, month and year",
+        }
+        # Or define a different message for each field.
+        fields = (
+            forms.CharField(
+                label=_("Day"),
+                error_messages={"incomplete": _("search.errors.missing_day_detail")},
+                validators=[RegexValidator(r"^[0-9]+$", "Enter a valid date")],
+                required=False,
+            ),
+            forms.CharField(
+                label=_("Month"),
+                error_messages={"incomplete": _("search.errors.missing_month_detail")},
+                validators=[RegexValidator(r"^[0-9]+$", "Enter a valid month")],
+                required=False,
+            ),
+            forms.CharField(
+                label=_("Year"),
+                error_messages={"incomplete": _("search.errors.missing_year_detail")},
+                validators=[
+                    RegexValidator(r"^[0-9]+$", _("search.errors.missing_year_detail"))
+                ],
+                required=True,
+            ),
+        )
+        forms.MultiValueField.__init__(
+            self, error_messages=error_messages, fields=fields, **kwargs
+        )
 
     def compress(self, data_list):
         """
         Convert the values entered into the fields as a ``date``.
+        * Return None if year is not provided, raising an error in validation.
+        * Default to beginning or end of month if day is not provided depending on
+            whether this is a from or to field.
+        * Default to the minimum or maximum month depending on whether this is a
+            from or a to respectively
+        * Default to the minimum month and day if only year is provided and this is a from date,
+            and vice-versa for a to date
 
         Args:
             data_list (tuple): a 3-tuple the of values entered into the fields.
