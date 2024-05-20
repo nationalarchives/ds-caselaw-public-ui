@@ -1,4 +1,9 @@
-from .search_utils import ALL_COURT_CODES, process_court_facets, process_year_facets
+from .search_utils import (
+    ALL_COURT_CODES,
+    get_minimum_valid_year,
+    process_court_facets,
+    process_year_facets,
+)
 from .utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
@@ -29,6 +34,7 @@ __all__ = [
     "as_integer",
     "formatted_document_uri",
     "get_document_by_uri",
+    "get_minimum_valid_year",
     "get_press_summaries_for_document_uri",
     "has_filters",
     "is_exact_ncn_match",

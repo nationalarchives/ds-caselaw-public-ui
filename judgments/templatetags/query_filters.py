@@ -1,3 +1,5 @@
+import calendar
+
 from django import template
 
 register = template.Library()
@@ -57,10 +59,9 @@ def remove_query(query_params, key):
 def remove_date(query_params, key):
     params = dict(query_params)
     params["page"] = None
-    params[key] = None
-    params[f"{key}_date_0"] = None
-    params[f"{key}_date_1"] = None
-    params[f"{key}_date_2"] = None
+    del params[f"{key}_date_0"]
+    del params[f"{key}_date_1"]
+    del params[f"{key}_date_2"]
     return make_query_string(params)
 
 
@@ -71,18 +72,31 @@ def remove_court(query_params, court):
     params["courts"] = [
         court2 for court2 in params.get("courts", []) if court != court2
     ]
+    params["tribunals"] = [
+        court2 for court2 in params.get("tribunals", []) if court != court2
+    ]
     return make_query_string(params)
 
 
 @register.filter
 def replace_year_in_query(query_params, year):
     params = dict(query_params)
-    params.pop("from", None)
     params.pop("from_date_0", None)
     params.pop("from_date_1", None)
-    params.pop("to", None)
     params.pop("to_date_0", None)
     params.pop("to_date_1", None)
     params["from_date_2"] = year
     params["to_date_2"] = year
     return make_query_string(params)
+
+
+@register.filter
+def replace_integer_with_day(day):
+    if day < 10:
+        return f"0{day}"
+    return str(day)
+
+
+@register.filter
+def replace_integer_with_month(month):
+    return calendar.month_name[month][0:3]

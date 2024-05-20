@@ -101,8 +101,8 @@ class AdvancedSearchForm(forms.Form):
     def clean(self):
         # Validate that from is before to now that we have access to both fields
         cleaned_data = super().clean()
-        to_date = cleaned_data.get("to_date", None)
-        from_date = cleaned_data.get("from_date", None)
+        to_date = cleaned_data.get("to_date")
+        from_date = cleaned_data.get("from_date")
         if from_date and to_date:
             if from_date > to_date:
                 raise ValidationError(

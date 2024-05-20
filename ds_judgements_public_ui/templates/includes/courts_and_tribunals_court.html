@@ -5,6 +5,6 @@
   </h4>
   <p>
     {{ court | get_court_judgments_count }} documents from
-    {{ court | get_court_date_range }}
+    {{ court.canonical_param | get_court_date_range }}
   </p>
 </div>

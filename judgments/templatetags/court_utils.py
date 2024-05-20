@@ -61,8 +61,8 @@ def get_court_date_range(court):
         start_year = court_dates.start_year
         end_year = court_dates.end_year
     except CourtDates.DoesNotExist:
-        start_year = court.start_year
-        end_year = court.end_year
+        start_year = all_courts.get_by_param(court).start_year
+        end_year = all_courts.get_by_param(court).end_year
     if start_year == end_year:
         return str(start_year)
     else:

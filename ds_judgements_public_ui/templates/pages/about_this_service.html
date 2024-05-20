@@ -106,11 +106,15 @@
         <li>
           <span>{{ group.name }}</span>
           <ul>
-            {% for court in group.courts %}<li>{{ court.grouped_name }} &mdash; {{ court|get_court_date_range }}</li>{% endfor %}
+            {% for court in group.courts %}
+              <li>{{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}</li>
+            {% endfor %}
           </ul>
         </li>
       {% else %}
-        {% for court in group.courts %}<li>{{ court.grouped_name }} &mdash; {{ court|get_court_date_range }}</li>{% endfor %}
+        {% for court in group.courts %}
+          <li>{{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}</li>
+        {% endfor %}
       {% endif %}
     {% endfor %}
   </ul>

@@ -14,11 +14,11 @@ from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
 
 from judgments.forms import AdvancedSearchForm
-from judgments.models.court_dates import CourtDates
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
     as_integer,
+    get_minimum_valid_year,
     has_filters,
     paginator,
     process_court_facets,
@@ -29,7 +29,7 @@ from judgments.utils import (
 
 def _do_dates_require_warnings(from_date):
     from_warning = False
-    start_year = CourtDates.min_year()
+    start_year = get_minimum_valid_year()
     if from_date:
         if from_date.year < start_year:
             from_warning = True
@@ -76,33 +76,31 @@ def advanced_search(request):
                     default=RESULTS_PER_PAGE,
                 )
             )
-            order: str = params.get("order", "-date")
+            order = query_params.get("order", None)
+            # If there is no query, order by -date, else order by relevance
+            if not order and not query_text:
+                order = "-date"
+            elif not order:
+                order = "relevance"
 
             from_date: Optional[date] = form.cleaned_data.get("from_date")
-            to_date: Optional[date] = form.cleaned_data.get("to_date", None)
+            to_date: Optional[date] = form.cleaned_data.get("to_date")
             # If a from_date is not specified, set it to the current min year
             if not from_date:
-                from_date = date(CourtDates.min_year(), 1, 1)
+                from_date = date(get_minimum_valid_year(), 1, 1)
             else:
                 # Only provide the param back to the user if they set it
                 query_params = query_params | {
-                    "from": from_date,
                     "from_date_0": from_date.day,
                     "from_date_1": from_date.month,
                     "from_date_2": from_date.year,
                 }
-            # If a to_date is not specified, set it to the current max year
-            if not to_date:
-                to_date = date(CourtDates.max_year(), 12, 31)
-            else:
-                # Only provide the param back to the user if they set it
+            if to_date:
                 query_params = query_params | {
-                    "to": to_date,
                     "to_date_0": to_date.day,
                     "to_date_1": to_date.month,
                     "to_date_2": to_date.year,
                 }
-
             query_params = query_params | {
                 "query": query_text,
                 "courts": form.cleaned_data.get("courts", []),
@@ -111,20 +109,21 @@ def advanced_search(request):
                 "party": form.cleaned_data.get("party", ""),
                 "order": order,
             }
+            # TODO: This isn't correct!!
             page: str = str(as_integer("1", minimum=1))
             # Merge the courts and tribunals as they are treated as the same in MarkLogic.
             courts_and_tribunals = form.cleaned_data.get(
                 "courts"
             ) + form.cleaned_data.get("tribunals")
             # Construct the search parameter object required for Marklogic query
+            # breakpoint()
             search_parameters: SearchParameters = SearchParameters(
-                # Should process query be moved to a clean method?
                 query=query_text,
                 court=",".join(courts_and_tribunals),
-                judge=form.cleaned_data.get("judge_name", ""),
-                party=form.cleaned_data.get("party_name", ""),
+                judge=form.cleaned_data.get("judge_name"),
+                party=form.cleaned_data.get("party_name"),
                 page=page,
-                order=params.get("order", "-date"),
+                order=order,
                 date_from=from_date,
                 date_to=to_date,
                 page_size=int(params.get("per_page", "10")),

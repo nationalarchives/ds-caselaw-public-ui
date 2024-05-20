@@ -11,7 +11,7 @@ from django.utils.translation import gettext as _
 class DateRangeInputField(DateInputField):
     """
     A custom version of the gds DateInputField which fixes the issue
-    preventing us from not requiring all fields to be populated.
+    preventing some of the sub-fields being set as not required.
 
     The expected use case for this is to have two of these fields on a given
     form, one being date from and one being date to.
@@ -96,4 +96,4 @@ class DateRangeInputField(DateInputField):
                 month = 12
             if not day:
                 day = monthrange(year, month)[1]
-        return date(day=day, month=month, year=year)
+        return date(year=year, month=month, day=day)

@@ -15,13 +15,7 @@
                href="{% url 'search' %}?{{ context.query_params|remove_query:key }}">
               <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
               <span class="results-search-component__removable-options-value">
-                <span class="results-search-component__removable-options-value-text">
-                  {% if key == 'from' or key == 'to' %}
-                    {{ value|date:"d M Y" }}
-                  {% else %}
-                    {{ value }}
-                  {% endif %}
-                </span>
+                <span class="results-search-component__removable-options-value-text">{{ value }}</span>
               </span>
             </a>
           </li>
@@ -40,6 +34,40 @@
               </a>
             </li>
           {% endfor %}
+        {% elif key == "from_date_2" %}
+          <li>
+            <a role="button"
+               tabindex="0"
+               draggable="false"
+               class="results-search-component__removable-options-link"
+               href="{% url 'search' %}?{{ context.query_params|remove_query:'from' }}">
+              <span class="results-search-component__removable-options-key">From:</span>
+              <span class="results-search-component__removable-options-value">
+                <span class="results-search-component__removable-options-value-text">
+                  {{ context.query_params.from_date_0|replace_integer_with_day }}
+                  {{ context.query_params.from_date_1|replace_integer_with_month }}
+                  {{ value }}
+                </span>
+              </span>
+            </a>
+          </li>
+        {% elif key == "to_date_2" %}
+          <li>
+            <a role="button"
+               tabindex="0"
+               draggable="false"
+               class="results-search-component__removable-options-link"
+               href="{% url 'search' %}?{{ context.query_params|remove_query:'to' }}">
+              <span class="results-search-component__removable-options-key">To:</span>
+              <span class="results-search-component__removable-options-value">
+                <span class="results-search-component__removable-options-value-text">
+                  {{ context.query_params.to_date_0|replace_integer_with_day }}
+                  {{ context.query_params.to_date_1|replace_integer_with_month }}
+                  {{ value }}
+                </span>
+              </span>
+            </a>
+          </li>
         {% endif %}
       {% endif %}
     {% endfor %}
