@@ -58,6 +58,8 @@ def format_and_sanitize_field(key, value):
             combined_key = "%s_%s" % (key, key2)
             lines = lines + format_and_sanitize_field(combined_key, value[key2])
         return lines
+    elif key == "agent_country":
+        return [(key, countries_and_territories_dict().get(value))]
     else:
         return [(key, sanitize_value(value))]
 
