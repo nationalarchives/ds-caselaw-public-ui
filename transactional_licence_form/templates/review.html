@@ -5,7 +5,7 @@
   {% for form_key, data in all_data.items %}
     {% with form=form_key|get_form:all_forms %}
       {% if form.display_in_review %}
-        <h2>{{ forloop.counter }}. {{ form.title }}</h2>
+        <h2>{{ form.title }}</h2>
         <dl class="govuk-summary-list">
           {% for key, value in data.items %}
             <div class="govuk-summary-list__row">
