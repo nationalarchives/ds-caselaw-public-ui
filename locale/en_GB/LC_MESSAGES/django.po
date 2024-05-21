@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-09 13:45+0000\n"
+"POT-Creation-Date: 2024-05-21 15:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -295,14 +295,11 @@ msgstr "You must specify a year"
 msgid "search.errors.to_before_from_detail"
 msgstr "Please enter a date after the 'from' date"
 
-#: transactional_licence_form/templates/layouts/form_step.html
-msgid "first step"
-msgstr "First step"
+#: venv/lib/python3.11/site-packages/isort/main.py
+msgid "show this help message and exit"
+msgstr ""
 
-#: transactional_licence_form/templates/layouts/form_step.html
-msgid "prev step"
-msgstr "Previous step"
-
-#: transactional_licence_form/templates/layouts/form_step.html
-msgid "submit"
-msgstr "Submit"
+#: venv/lib/python3.11/site-packages/mypy/main.py
+#, python-format
+msgid "%(prog)s: error: %(message)s\n"
+msgstr ""
