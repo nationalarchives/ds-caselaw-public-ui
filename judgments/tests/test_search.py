@@ -68,20 +68,6 @@ class TestSearchResults(TestCase):
             ),
         )
 
-    # TODO: Move this test coverage to forms!!!
-    """
-    @patch("judgments.views.advanced_search.preprocess_query")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search_query_preprocessed(
-        self,
-        mock_search_judgments_and_parse_response,
-        fake_preprocess_query,
-    ):
-        fake_preprocess_query.return_value = "normalised query"
-        self.client.get("/judgments/search?query=waltham+forest")
-        fake_preprocess_query.assert_called()
-    """
-
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_court_filters_no_date(
@@ -101,7 +87,7 @@ class TestSearchResults(TestCase):
         - The first link represents the "Chancery Division of the High Court" filter
         - The second link represents the "Intellectual Property Enterprise Court" filter
         """
-        response = self.client.get("/judgments/search?courts=ewhc/ch&courts=ewhc/ipec")
+        response = self.client.get("/judgments/search?court=ewhc/ch&court=ewhc/ipec")
 
         expected_applied_filters_html = """
         <ul class="results-search-component__removable-options js-results-facets-applied-filters">
@@ -110,7 +96,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;courts=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -125,7 +111,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;courts=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -150,6 +136,7 @@ class TestSearchResults(TestCase):
                 page_size=10,
             ),
         )
+
         assert_contains_html(response, expected_applied_filters_html)
 
     @patch("judgments.views.advanced_search.api_client")
@@ -174,7 +161,7 @@ class TestSearchResults(TestCase):
         - The third link represents the "Intellectual Property Enterprise Court" filter
         """
         response = self.client.get(
-            "/judgments/search?courts=ewhc/ch&courts=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=1970"
+            "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=2011"
         )
 
         expected_applied_filters_html = """
@@ -184,10 +171,10 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;courts=ewhc/ch&amp;courts=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page=">
+                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page=">
                  <span class="results-search-component__removable-options-key">From:</span>
                  <span class="results-search-component__removable-options-value">
-                   <span class="results-search-component__removable-options-value-text"> 01 Jan 1970</span>
+                   <span class="results-search-component__removable-options-value-text"> 01 Jan 2011</span>
                 </span>
               </a>
             </li>
@@ -196,7 +183,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=1970&amp;query=&amp;courts=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -210,7 +197,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=1970&amp;query=&amp;courts=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -230,7 +217,7 @@ class TestSearchResults(TestCase):
                 order="-date",
                 judge="",
                 party="",
-                date_from=date(1970, 1, 1),
+                date_from=date(2011, 1, 1),
                 date_to=None,
                 page="1",
                 page_size=10,
@@ -257,7 +244,6 @@ class TestSearchBreadcrumbs(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/judgments/search?query=waltham+forest")
 
-        breakpoint()
         assert response.context["breadcrumbs"] == [
             {"text": 'Search results for "waltham forest"'}
         ]

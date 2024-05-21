@@ -73,4 +73,8 @@ def process_year_facets(facets: dict):
 
 
 def get_minimum_valid_year():
-    return CourtDates.min_year() or settings.MINIMUM_ALLOWED_YEAR_DEFAULT
+    """
+    As `CourtDates.min_year()` would return None if the model is not populated,
+    return a sensible default instead.
+    """
+    return CourtDates.min_year() or settings.MINIMUM_WARNING_YEAR

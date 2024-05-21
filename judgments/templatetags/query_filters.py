@@ -28,8 +28,9 @@ def removable_filter_param(key):
     excluded = [
         "order",
         "per_page",
-        "courts",
-        "tribunals",
+        "page",
+        "court",
+        "tribunal",
         "from_date_0",
         "from_date_1",
         "from_date_2",
@@ -69,11 +70,9 @@ def remove_date(query_params, key):
 def remove_court(query_params, court):
     params = dict(query_params)
     params["page"] = None
-    params["courts"] = [
-        court2 for court2 in params.get("courts", []) if court != court2
-    ]
-    params["tribunals"] = [
-        court2 for court2 in params.get("tribunals", []) if court != court2
+    params["court"] = [court2 for court2 in params.get("court", []) if court != court2]
+    params["tribunal"] = [
+        court2 for court2 in params.get("tribunal", []) if court != court2
     ]
     return make_query_string(params)
 

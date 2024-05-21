@@ -6,6 +6,8 @@ from crispy_forms_gds.fields import DateInputField
 from django import forms
 from django.core.validators import RegexValidator
 
+from .validators import ValidateYearRange
+
 
 class DateRangeInputField(DateInputField):
     """
@@ -53,7 +55,7 @@ class DateRangeInputField(DateInputField):
             forms.CharField(
                 label="Year",
                 error_messages={"incomplete": "Missing year."},
-                validators=[RegexValidator(r"^[0-9]+$", "Enter a valid year")],
+                validators=[validate_year_is_within_sensible_range],
                 required=True,
             ),
         )

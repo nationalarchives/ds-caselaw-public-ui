@@ -37,7 +37,7 @@
     <li class="pagination__list-item">
       {% if context.paginator.has_next_page %}
         <a class="pagination__page-chevron-next"
-           href="{{ request.path }}?{% if context.query_string %}{{ context.query_string }}&{% endif %}&page={{ context.paginator.next_page }}">
+           href="{{ request.path }}?{% if context.query_string %}{{ context.query_string }}{% endif %}&page={{ context.paginator.next_page }}">
           <span>Next page</span>
         </a>
       {% else %}

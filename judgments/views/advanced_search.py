@@ -8,7 +8,8 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.responses.search_response import SearchResponse
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
-from django.http import Http404
+from django.conf import settings
+from django.http import HttpResponseBadRequest, HttpResponseServerError
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
@@ -28,10 +29,13 @@ from judgments.utils import (
 
 
 def _do_dates_require_warnings(from_date):
+    """
+    Check if users have requested a year before what we technically handle,
+    if it is, then we provide a warning letting them know.
+    """
     from_warning = False
-    start_year = get_minimum_valid_year()
     if from_date:
-        if from_date.year < start_year:
+        if from_date.year < settings.MINIMUM_WARNING_YEAR:
             from_warning = True
     return from_warning
 
@@ -49,7 +53,7 @@ def advanced_search(request):
     # We should only be handling GET requests here since we aren't changing anything on the server
     if not request.method == "GET":
         # Raise an error if the user has tried any non GET HTTP requests.
-        raise Http404("GET requests only")
+        raise HttpResponseBadRequest("GET requests only")
     else:
         form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
         params: dict = request.GET
@@ -68,6 +72,7 @@ def advanced_search(request):
             year_facets: dict = {}
             query_params: dict = {}
             query_text: str = form.cleaned_data.get("query", "")
+            page: str = str(as_integer(params.get("page"), minimum=1))
             per_page: str = str(
                 as_integer(
                     params.get("per_page", "10"),
@@ -103,20 +108,18 @@ def advanced_search(request):
                 }
             query_params = query_params | {
                 "query": query_text,
-                "courts": form.cleaned_data.get("courts", []),
-                "tribunals": form.cleaned_data.get("tribunals", []),
+                "court": form.cleaned_data.get("court", []),
+                "tribunal": form.cleaned_data.get("tribunal", []),
                 "judge": form.cleaned_data.get("judge", ""),
                 "party": form.cleaned_data.get("party", ""),
                 "order": order,
+                "page": page,
             }
-            # TODO: This isn't correct!!
-            page: str = str(as_integer("1", minimum=1))
             # Merge the courts and tribunals as they are treated as the same in MarkLogic.
             courts_and_tribunals = form.cleaned_data.get(
-                "courts"
-            ) + form.cleaned_data.get("tribunals")
+                "court"
+            ) + form.cleaned_data.get("tribunal")
             # Construct the search parameter object required for Marklogic query
-            # breakpoint()
             search_parameters: SearchParameters = SearchParameters(
                 query=query_text,
                 court=",".join(courts_and_tribunals),
@@ -135,12 +138,12 @@ def advanced_search(request):
                     api_client, search_parameters
                 )
             except MarklogicResourceNotFoundError:
-                raise Http404("Search failed")
+                return HttpResponseServerError("Search failed")
 
             # If a query was provided, get relevant search facets to display to the user
             if search_parameters.query:
                 unprocessed_facets, court_facets = process_court_facets(
-                    search_response.facets, form.cleaned_data.get("courts", [])
+                    search_response.facets, form.cleaned_data.get("court", [])
                 )
                 unprocessed_facets, year_facets = process_year_facets(
                     unprocessed_facets
@@ -149,22 +152,22 @@ def advanced_search(request):
                 requires_from_warning: bool = _do_dates_require_warnings(from_date)
 
             changed_queries = {
-                key: value for key, value in params.items() if value is not None
+                key: value
+                for key, value in params.items()
+                if value is not None and not key == "page"
             }
             # Populate context to provide feedback about filters etc. back to user
-            # TODO: Maybe separate this dictionary into it's component parts?
             context = context | {
                 "requires_from_warning": requires_from_warning,
                 "court_facets": court_facets,
                 "year_facets": year_facets,
                 "search_results": search_response.results,
                 "total": search_response.total,
-                "paginator": paginator(
-                    params.get("page", "1"), search_response.total, per_page
-                ),
+                "paginator": paginator(page, search_response.total, per_page),
                 "query_string": urllib.parse.urlencode(changed_queries, doseq=True),
                 "order": order,
                 "per_page": per_page,
+                "page": page,
                 "filtered": has_filters(params),
                 "page_title": _("results.search.title"),
                 "show_no_exact_ncn_warning": show_no_exact_ncn_warning(

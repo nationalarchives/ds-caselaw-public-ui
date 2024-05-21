@@ -71,13 +71,13 @@ class AdvancedSearchForm(forms.Form):
     )
     # Courts and tribunals are split here because it's easier to render
     # them and then recombine in the view for querying MarkLogic
-    courts = forms.MultipleChoiceField(
+    court = forms.MultipleChoiceField(
         choices=COURT_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         label="From specific courts or tribunals",
         required=False,
     )
-    tribunals = forms.MultipleChoiceField(
+    tribunal = forms.MultipleChoiceField(
         choices=TRIBUNAL_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         required=False,

@@ -286,5 +286,5 @@ SES_SMTP_PASSWORD = env("SES_SMTP_PASSWORD", default=None)
 SES_SMTP_SERVER = env("SES_SMTP_SERVER", default=None)
 SES_SMTP_PORT = env("SES_SMTP_PORT", default=None)
 
-# A default to use if we don't have populated CourtDates
-MINIMUM_ALLOWED_YEAR_DEFAULT = 2003
+# This is the minimum year the site currently says it handles
+MINIMUM_WARNING_YEAR = 2003

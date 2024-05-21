@@ -30,8 +30,8 @@ def index(request):
         "pages/home.html",
         context={
             "context": context,
-            "courts": all_courts.get_listable_courts(),
-            "tribunals": all_courts.get_listable_tribunals(),
+            "court": all_courts.get_listable_courts(),
+            "tribunal": all_courts.get_listable_tribunals(),
             "feedback_survey_type": "home",
             "form": AdvancedSearchForm(),
         },

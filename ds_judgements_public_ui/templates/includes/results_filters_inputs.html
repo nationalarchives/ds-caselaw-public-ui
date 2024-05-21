@@ -1,7 +1,7 @@
 {% load court_utils errors search_results_filters crispy_forms_tags %}
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
-    <fieldset class="{% if form.non_field_errors %}with-errors{% endif %}">
+    <fieldset class="{% if form.non_field_errors or form.from_date.errors %}with-errors{% endif %}">
       <legend class="structured-search__limit-to-label">From date</legend>
       <p class="structured-search__help-text" id="from_date-help-text">
         For example <em>01 01 2003</em> or <em>2003</em>
@@ -10,6 +10,11 @@
         <p class="structured-search__from-date-error-message"
            id="from-date-error">{{ form.non_field_errors.0 }}</p>
       {% endif %}
+      {% if form.from_date.errors %}
+        {% for error in form.from_date.errors %}
+          <p class="structured-search__from-date-error-message">{{ error }}</p>
+        {% endfor %}
+      {% endif %}
       {% if form.from_date.errors.2 %}
         <p class="structured-search__from-date-error-message">{{ form.from_date.errors.2 }}</p>
       {% endif %}
@@ -17,7 +22,7 @@
     </fieldset>
   </div>
   <div class="structured-search__limit-to-container">
-    <fieldset class="{% if form.non_field_errors %}with-errors{% endif %}">
+    <fieldset class="{% if form.non_field_errors or form.has_errors %}with-errors{% endif %}">
       <legend class="structured-search__limit-to-label">To date</legend>
       <p class="structured-search__help-text" id="to_date-help-text">
         For example <em>30 04 2023</em> or <em>2023</em>
@@ -25,6 +30,9 @@
       {% if form.non_field_errors %}
         <p class="structured-search__from-date-error-message"
            id="from-date-error">{{ form.non_field_errors.0 }}</p>
+      {% endif %}
+      {% if form.to_date.errors %}
+        {% for error in form.to_date.errors %}<p class="structured-search__to-date-error-message">{{ error }}</p>{% endfor %}
       {% endif %}
       {% if form.to_date.errors.2 %}
         <p class="structured-search__to-date-error-message">{{ form.to_date.errors.2 }}</p>
@@ -39,11 +47,11 @@
       <div class="structured-search__court-options" id="court">
         <div class="structured-search__court-options-column">
           <legend class="structured-search__limit-to-label">From specific courts</legend>
-          {{ form.courts }}
+          {{ form.court }}
         </div>
         <div class="structured-search__court-options-column">
           <legend class="structured-search__limit-to-label">From specific tribunals</legend>
-          {{ form.tribunals }}
+          {{ form.tribunal }}
         </div>
       </div>
     </fieldset>
