@@ -2,21 +2,27 @@
 {% load transactional_licence_utils %}
 {% block form_inner %}
   <input type="hidden" name="reviewing" value="true" />
-  <ol class="transactional-licence-review-page">
-    {% for form, data in all_data.items %}
-      <h3>{{ form|get_form_title:all_form_titles }}</h3>
-      {% for key, value in data.items %}
-        <li>
-          <strong>{{ key|get_field_name:all_field_names }}</strong>
-          <p>{{ value }}</p>
-          <p>
-            <button name="wizard_goto_step"
-                    type="submit"
-                    class="button-secondary"
-                    value="{{ form }}">Edit</button>
-          </p>
-        </li>
-      {% endfor %}
-    {% endfor %}
-  </ol>
+  {% for form_key, data in all_data.items %}
+    {% with form=form_key|get_form:all_forms %}
+      {% if form.display_in_review %}
+        <h2>{{ forloop.counter }}. {{ form.title }}</h2>
+        <dl class="govuk-summary-list">
+          {% for key, value in data.items %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">{{ key|get_field_name:all_field_names }}</dt>
+              <dd class="govuk-summary-list__value">
+                {{ value|format_value_for_review:key }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <button name="wizard_goto_step"
+                        type="submit"
+                        class="button-link"
+                        value="{{ form_key }}">Change</button>
+              </dd>
+            </div>
+          {% endfor %}
+        </dl>
+      {% endif %}
+    {% endwith %}
+  {% endfor %}
 {% endblock form_inner %}

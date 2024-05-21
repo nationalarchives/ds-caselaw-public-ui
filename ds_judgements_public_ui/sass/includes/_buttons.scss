@@ -46,3 +46,13 @@
     }
   }
 }
+
+.button-link {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: underline;
+  cursor: pointer;
+  @include link;
+  font-size: 1rem;
+}

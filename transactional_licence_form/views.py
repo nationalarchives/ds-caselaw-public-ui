@@ -1,5 +1,8 @@
+from django.core.exceptions import SuspiciousOperation
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
+from formtools.wizard.forms import ManagementForm
 from formtools.wizard.views import NamedUrlSessionWizardView
 
 from .forms import FORMS
@@ -25,6 +28,48 @@ class FormWizardView(NamedUrlSessionWizardView):
         if self.in_review():
             self.request.session[REVIEWING_SESSION_KEY] = True
         return redirect(url)
+
+    def post(self, *args, **kwargs):
+        # We override this to ensure that the form is saved when returning to the review page
+
+        wizard_goto_step = self.request.POST.get("wizard_goto_step", None)
+        if not self.in_review():
+            # If we are not reviewing, we follow the default behaviour: we do not validate or save the form
+            # and go directly to the step.
+            if wizard_goto_step and wizard_goto_step in self.get_form_list():
+                return self.render_goto_step(wizard_goto_step)
+
+        management_form = ManagementForm(self.request.POST, prefix=self.prefix)
+        if not management_form.is_valid():
+            raise SuspiciousOperation(
+                _("ManagementForm data is missing or has been tampered.")
+            )
+
+        form_current_step = management_form.cleaned_data["current_step"]
+        if (
+            form_current_step != self.steps.current
+            and self.storage.current_step is not None
+        ):
+            self.storage.current_step = form_current_step
+
+        form = self.get_form(data=self.request.POST, files=self.request.FILES)
+
+        if form.is_valid():
+            self.storage.set_step_data(self.steps.current, self.process_step(form))
+            self.storage.set_step_files(
+                self.steps.current, self.process_step_files(form)
+            )
+
+            if self.steps.current == self.steps.last:
+                return self.render_done(form, **kwargs)
+            else:
+                if wizard_goto_step and wizard_goto_step in self.get_form_list():
+                    # If we are reviewing, and there is a goto step, we go to that step.
+                    return self.render_goto_step(wizard_goto_step)
+                else:
+                    # Otherwise we follow the default behaviour.
+                    return self.render_next_step(form)
+        return self.render(form)
 
     def in_review(self):
         has_review_parameter = bool(
@@ -63,22 +108,22 @@ class FormWizardView(NamedUrlSessionWizardView):
                 field_names.update({field.name: field.label})
         return field_names
 
-    def get_all_form_titles(self):
-        form_titles = {}
+    def get_all_forms(self):
+        all_forms = {}
         for form_key in self.get_form_list():
             form_obj = self.get_form(
                 step=form_key,
                 data=self.storage.get_step_data(form_key),
                 files=self.storage.get_step_files(form_key),
             )
-            form_titles.update({form_key: form_obj.title})
-        return form_titles
+            all_forms.update({form_key: form_obj})
+        return all_forms
 
     def get_context_data(self, form, **kwargs):
         context = super(FormWizardView, self).get_context_data(form)
         context["all_data"] = self.get_all_cleaned_data_by_form()
         context["all_field_names"] = self.get_all_field_names()
-        context["all_form_titles"] = self.get_all_form_titles()
+        context["all_forms"] = self.get_all_forms()
         context["reviewing"] = self.in_review()
         return context
 

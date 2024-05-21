@@ -39,7 +39,10 @@
 
 .govuk-summary-list {
   color: $color-black;
-  font-family: $font-roboto;
+  margin-bottom: 5.2rem;
+  .button-link {
+    font-size: 1.1875rem;
+  }
 }
 
 .govuk-details {
@@ -145,6 +148,6 @@
 .govuk-input {
   &--inline {
     margin-top: 1px;
-    width: auto;
+    width: auto !important;
   }
 }
