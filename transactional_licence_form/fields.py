@@ -63,6 +63,10 @@ class FCLCharField(FCLFieldMixin, forms.CharField):
     pass
 
 
+class FCLEmailField(FCLFieldMixin, forms.EmailField):
+    pass
+
+
 class FCLChoiceField(FCLFieldMixin, forms.ChoiceField):
     widget = forms.RadioSelect
 
