@@ -5,6 +5,8 @@
 {% endblock head %}
 {% block content %}
   <div class="standard-text-template container py-3 transactional-licence-form">
+    {% block pre_title %}
+    {% endblock pre_title %}
     {% block step_title %}
       <h1 class="transactional-licence-form__step-title">{{ wizard.form.title }}</h1>
     {% endblock step_title %}
