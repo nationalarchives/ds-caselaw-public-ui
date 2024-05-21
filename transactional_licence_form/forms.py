@@ -58,6 +58,10 @@ class ContactForm(FCLForm):
 
 class OrganizationForm(FCLForm):
 
+    def __init__(self, *args, **kwargs):
+        super(OrganizationForm, self).__init__(*args, **kwargs)
+        self.initial["agent_country"] = "country:GB"
+
     title = "About your organisastion"
 
     agent_companyname = fields.FCLCharField(
