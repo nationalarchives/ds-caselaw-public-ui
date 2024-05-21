@@ -11,23 +11,34 @@ var licenceHolderEmailId = "div_id_contact-licence_holder_email";
 var licenceHolderControlSelector = "#div_id_contact-alternative_contact input";
 var licenceHolderVisibleValue =
     "This is a different person (please enter their details below)";
-$(`#${licenceHolderNameId}`).hide();
-$(`#${licenceHolderEmailId}`).hide();
-$(licenceHolderControlSelector).attr(
-    "aria-controls",
-    `${licenceHolderNameId} ${licenceHolderEmailId}`,
-);
-$(licenceHolderControlSelector).attr("aria-expanded", false);
+
+let toggleFieldState = function (element) {
+    if (element.value == licenceHolderVisibleValue) {
+        showFields();
+    } else {
+        hideFields();
+    }
+};
+
+let showFields = function () {
+    $(licenceHolderControlSelector).attr("aria-expanded", true);
+    $(`#${licenceHolderNameId}`).show();
+    $(`#${licenceHolderEmailId}`).show();
+};
+
+let hideFields = function () {
+    $(licenceHolderControlSelector).attr("aria-expanded", false);
+    $(`#${licenceHolderNameId}`).hide();
+    $(`#${licenceHolderEmailId}`).hide();
+};
+
 $(function () {
+    $(licenceHolderControlSelector).attr(
+        "aria-controls",
+        `${licenceHolderNameId} ${licenceHolderEmailId}`,
+    );
+    toggleFieldState($(`${licenceHolderControlSelector}:checked`)[0]);
     $(licenceHolderControlSelector).change(function (event) {
-        if (this.value == licenceHolderVisibleValue) {
-            $(licenceHolderControlSelector).attr("aria-expanded", true);
-            $(`#${licenceHolderNameId}`).show();
-            $(`#${licenceHolderEmailId}`).show();
-        } else {
-            $(licenceHolderControlSelector).attr("aria-expanded", false);
-            $(`#${licenceHolderNameId}`).hide();
-            $(`#${licenceHolderEmailId}`).hide();
-        }
+        toggleFieldState(this);
     });
 });
