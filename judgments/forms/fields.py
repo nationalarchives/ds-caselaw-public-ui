@@ -5,7 +5,6 @@ from typing import Literal
 from crispy_forms_gds.fields import DateInputField
 from django import forms
 from django.core.validators import RegexValidator
-from django.utils.translation import gettext as _
 
 
 class DateRangeInputField(DateInputField):
@@ -40,23 +39,21 @@ class DateRangeInputField(DateInputField):
         # Or define a different message for each field.
         fields = (
             forms.CharField(
-                label=_("Day"),
-                error_messages={"incomplete": _("search.errors.missing_day_detail")},
+                label="Day",
+                error_messages={"incomplete": "Missing Day"},
                 validators=[RegexValidator(r"^[0-9]+$", "Enter a valid date")],
                 required=False,
             ),
             forms.CharField(
-                label=_("Month"),
-                error_messages={"incomplete": _("search.errors.missing_month_detail")},
+                label="Month",
+                error_messages={"incomplete": "Missing Month"},
                 validators=[RegexValidator(r"^[0-9]+$", "Enter a valid month")],
                 required=False,
             ),
             forms.CharField(
-                label=_("Year"),
-                error_messages={"incomplete": _("search.errors.missing_year_detail")},
-                validators=[
-                    RegexValidator(r"^[0-9]+$", _("search.errors.missing_year_detail"))
-                ],
+                label="Year",
+                error_messages={"incomplete": "Missing year."},
+                validators=[RegexValidator(r"^[0-9]+$", "Enter a valid year")],
                 required=True,
             ),
         )

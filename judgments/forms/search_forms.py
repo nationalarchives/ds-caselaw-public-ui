@@ -1,6 +1,5 @@
 from django import forms
 from django.forms import ValidationError
-from django.utils.translation import gettext as _
 from ds_caselaw_utils import courts as all_courts
 
 from judgments.utils import preprocess_query
@@ -38,6 +37,8 @@ def _get_choices_by_group(courts):
     return options
 
 
+# TODO: REMEMBER REMOVE TRANSLATIONS!!!!!
+
 COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_courts())
 TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_tribunals())
 
@@ -47,7 +48,7 @@ class AdvancedSearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             {
-                "placeholder": _("basicsearchform.placeholder"),
+                "placeholder": "Search...",
                 "id": "search_form",
                 "class": "search-term-component__search-term-input",
             }
@@ -55,15 +56,15 @@ class AdvancedSearchForm(forms.Form):
     )
     # Validation for multi-field fields such as `DateInputField` is done on the sub fields
     from_date = DateRangeInputField(
-        label=_("From Date"),
-        help_text=_("For example <em>01 01 2003</em> or <em>2003</em>"),
+        label="From Date",
+        help_text="For example <em>01 01 2003</em> or <em>2003</em>",
         require_all_fields=False,
         required=False,
         date_type="from",
     )
     to_date = DateRangeInputField(
-        label=_("To Date"),
-        help_text=_("For example <em>30 04 2023</em> or <em>2023</em>"),
+        label="To Date",
+        help_text="For example <em>30 04 2023</em> or <em>2023</em>",
         require_all_fields=False,
         required=False,
         date_type="to",
@@ -106,7 +107,7 @@ class AdvancedSearchForm(forms.Form):
         if from_date and to_date:
             if from_date > to_date:
                 raise ValidationError(
-                    _("search.errors.to_before_from_headline"),
+                    "Please enter a date after the 'from' date",
                     code="to_date",
                 )
         # Run the pre-process query steps
