@@ -1,6 +1,5 @@
 from django.core.exceptions import SuspiciousOperation
 from django.shortcuts import redirect, render
-from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 from formtools.wizard.forms import ManagementForm
 from formtools.wizard.views import NamedUrlSessionWizardView
@@ -46,7 +45,7 @@ class FormWizardView(NamedUrlSessionWizardView):
         management_form = ManagementForm(self.request.POST, prefix=self.prefix)
         if not management_form.is_valid():
             raise SuspiciousOperation(
-                _("ManagementForm data is missing or has been tampered.")
+                "ManagementForm data is missing or has been tampered."
             )
 
         form_current_step = management_form.cleaned_data["current_step"]

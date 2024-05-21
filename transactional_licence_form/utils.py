@@ -1,9 +1,10 @@
 import functools
 import json
-import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+from django.conf import settings
 
 DISALLOWED_CHARACTERS = {"<": "&lt;", ">": "&gt;"}
 
@@ -27,13 +28,13 @@ def countries_and_territories_choices():
 
 
 def send_form_response_to_dynamics(form_data):
-    from_mail = os.environ["TRANSACTIONAL_LICENCE_FROM_EMAIL"]
-    to_mail = os.environ["TRANSACTIONAL_LICENCE_DELIVERY_EMAIL"]
-    subject = os.environ["TRANSACTIONAL_LICENCE_EMAIL_SUBJECT"]
-    username = os.environ["SES_SMTP_USERNAME"]
-    password = os.environ["SES_SMTP_PASSWORD"]
-    hostname = os.environ["SES_SMTP_SERVER"]
-    port = os.environ["SES_SMTP_PORT"]
+    from_mail = settings.TRANSACTIONAL_LICENCE_FROM_EMAIL
+    to_mail = settings.TRANSACTIONAL_LICENCE_DELIVERY_EMAIL
+    subject = settings.TRANSACTIONAL_LICENCE_EMAIL_SUBJECT
+    username = settings.SES_SMTP_USERNAME
+    password = settings.SES_SMTP_PASSWORD
+    hostname = settings.SES_SMTP_SERVER
+    port = settings.SES_SMTP_PORT
 
     body_text = sanitize_and_format_response_as_xml(form_data)
 
