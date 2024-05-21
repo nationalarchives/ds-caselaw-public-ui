@@ -35,6 +35,29 @@
   overflow: hidden;
 }
 
+@mixin link {
+  color: $color-link-blue;
+  text-decoration: underline;
+
+  &:hover {
+    color: $color-link-blue-hover;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: $color-link-blue-visited;
+  }
+
+  &:active {
+    color: $color-link-blue-active;
+  }
+
+  &:focus {
+    @include focus-default;
+    color: $color-link-blue-focus;
+  }
+}
+
 @mixin call-to-action-button {
   background-color: $color-cta-background;
   text-decoration: none;

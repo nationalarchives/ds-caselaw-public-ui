@@ -3,10 +3,12 @@ from crispy_forms_gds.layout import Field, Layout
 from django import forms
 
 from . import choices, fields
-from .utils import countries_and_territories, list_to_choices
+from .utils import countries_and_territories_choices, list_to_choices
 
 
 class FCLForm(forms.Form):
+
+    display_in_review = True
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -69,7 +71,7 @@ class OrganizationForm(FCLForm):
     )
     agent_country = fields.FCLChoiceField(
         label="Where is your organisation registered?",
-        choices=countries_and_territories,
+        choices=countries_and_territories_choices,
         widget=forms.Select(attrs={"class": "location-autocomplete"}),
     )
 
@@ -255,6 +257,7 @@ class AdditionalCommentsForm(FCLForm):
 
 class ReviewForm(FCLForm):
     title = "Review your Answers"
+    display_in_review = False
     # The Review screen has to be a form 'step' with none of its own inputs
     # and a custom template, as once the `done` callback of the form-tools
     # wizard is called, the form data has been scrubbed from the session,

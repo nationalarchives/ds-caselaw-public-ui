@@ -1,3 +1,4 @@
+import functools
 import json
 import os
 import smtplib
@@ -15,9 +16,14 @@ def list_to_choices(values):
     return [(v, v) for v in values]
 
 
-def countries_and_territories():
+@functools.lru_cache(maxsize=1)
+def countries_and_territories_dict():
     with open(COUNTRIES_AND_TERRITORIES_JSON_PATH) as file:
-        return [(pair[1], pair[0]) for pair in json.load(file)]
+        return dict([(pair[1], pair[0]) for pair in json.load(file)])
+
+
+def countries_and_territories_choices():
+    return list(countries_and_territories_dict().items())
 
 
 def send_form_response_to_dynamics(form_data):

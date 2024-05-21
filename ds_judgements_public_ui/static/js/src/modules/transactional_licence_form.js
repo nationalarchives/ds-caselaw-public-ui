@@ -11,7 +11,6 @@ var licenceHolderEmailId = "div_id_contact-licence_holder_email";
 var licenceHolderControlSelector = "#div_id_contact-alternative_contact input";
 var licenceHolderVisibleValue =
     "This is a different person (please enter their details below)";
-
 $(`#${licenceHolderNameId}`).hide();
 $(`#${licenceHolderEmailId}`).hide();
 $(licenceHolderControlSelector).attr(
