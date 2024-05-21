@@ -191,22 +191,6 @@ msgstr "Title matches"
 msgid "results.exact_ncn_match"
 msgstr "Neutral citation matches"
 
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basicsearchform.label"
-msgstr "Search"
-
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basicsearchform.placeholder"
-msgstr "Search..."
-
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basic.search.helptext"
-msgstr "How to search"
-
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basicsearchform.cta"
-msgstr "Search"
-
 #: ds_judgements_public_ui/templates/judgment/results.html
 #: judgments/views/advanced_search.py judgments/views/browse.py
 msgid "results.search.title"
