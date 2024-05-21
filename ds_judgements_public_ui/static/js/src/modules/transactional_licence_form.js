@@ -13,7 +13,7 @@ var licenceHolderVisibleValue =
     "This is a different person (please enter their details below)";
 
 let toggleFieldState = function (element) {
-    if (element.value == licenceHolderVisibleValue) {
+    if (element && element.value == licenceHolderVisibleValue) {
         showFields();
     } else {
         hideFields();

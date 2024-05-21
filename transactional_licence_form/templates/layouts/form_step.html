@@ -17,7 +17,6 @@
     {% endblock step_number %}
     {% block pre_form %}
     {% endblock pre_form %}
-    {% error_summary form %}
     <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ wizard.management_form }}
