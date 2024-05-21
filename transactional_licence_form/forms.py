@@ -229,13 +229,13 @@ class NinePrinciplesStatementForm(FCLForm):
 
     def layout(self):
         return Layout(
-            Field.textarea("principles_statement", max_words=150),
+            Field.textarea("principles_statement", max_words=350),
         )
 
     principles_statement = fields.FCLCharField(
         label="28. Please describe how you will meet the 9 principles",
         help_text="You should identify any risks and how you will address these risks for each of the 9 principles.",
-        widget=forms.Textarea(attrs={"data-maxwords": 150}),
+        widget=forms.Textarea(attrs={"data-maxwords": 350}),
     )
 
 

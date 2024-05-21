@@ -1,0 +1,204 @@
+{% extends "layouts/form_step.html" %}
+{% block pre_title %}
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <span class="govuk-warning-text__text">
+      <span class="govuk-visually-hidden">Information</span>
+      You should address each of the 9 prinicples in your answer. Applications that do not reference each of the 9 principles may experience delays.
+    </span>
+  </div>
+{% endblock pre_title %}
+{% block pre_form %}
+  <div class="transactional-licence-form__preamble">
+    <p>Please describe how you will meet the 9 Principles as terms of your licence. You should state:</p>
+    <ul>
+      <li>Any risks you have identified</li>
+      <li>How you plan to address these risks.</li>
+    </ul>
+    <p>
+      In your answer you should be clear about which principle you are referring to. You should consider all the principles. Applications that don’t consider each of these principles may experience delays.
+    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">1. Dignity of the court</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            It is important that any analysis maintains the dignity of the courts and tribunals and does not undermine their functioning as working bodies. This is consistent with access to justice.
+          </p>
+          <ul>
+            <li>Licence holders must not undermine the courts and tribunals’ ability to function as working bodies.</li>
+          </ul>
+          <p>
+            You should consider anything that may undermine the ability for the justice system to operate impartially and with integrity and treat all members of the public equally and fairly, no matter who they are.
+          </p>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">2. Independence of the court</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>It is important that any analysis respects the independence of the judiciary and their impartial judgment.</p>
+          <ul>
+            <li>Licence holders must respect the independence of the judiciary.</li>
+          </ul>
+          <p>
+            You should consider anything that may undermine the ability for the justice system to be fair and transparent, free of any influence outside the rule of law.
+          </p>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">3. Appropriate scrutiny</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            We seek to encourage the analysis of machine-readable judgments to allow the public to scrutinise justice outcomes and the law more effectively. We also acknowledge that the incomplete nature of the dataset and the current lack of safeguard against opaque or biased methodologies increases the risk of inaccurate or biased conclusions which may cause harm to individuals named therein.
+          </p>
+          <ul>
+            <li>Licence holders must acknowledge the incomplete nature of the dataset and apply appropriate scrutiny.</li>
+          </ul>
+          <p>
+            You should consider how you will prevent anonymised people from being identified. This is referred to as jigsaw identification - putting together information in a way that identifies individuals even if they have been anonymised.
+          </p>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">4. Anti-discriminatory harm</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            Outcomes of analysis should not cause direct discriminatory harm and reasonable steps should be taken by the licence holder to avoid introducing or compounding bias.
+          </p>
+          <ul>
+            <li>Licence holders must take actions to prevent discriminatory harm.</li>
+          </ul>
+          <p>
+            You should consider how you will monitor for and address harmful outcomes including misleading analysis or conclusions and discrimination against individuals or communities.
+          </p>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">5. Anti Bias</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            Licence holders have a responsibility to operate effective governance to ensure that bias does not enter the process over time.
+          </p>
+          <ul>
+            <li>Licence holders must ensure bias does not enter their process over time.</li>
+          </ul>
+          <p>You should consider any ethical governance structures you have in place.</p>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">6. Personal Privacy</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            Re-users should satisfy themselves that their practices comply with the standards set out in the DPA and UK GDPR regarding data security and data subjects’ rights, regardless of their location.
+          </p>
+          <p>Please note that this licence:</p>
+          <ul>
+            <li>Is not a data sharing agreement for personal data</li>
+            <li>Is not a processing agreement for personal data</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">7. Discoverability</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            We acknowledge a distinction between publicly available and readily available information. For example, care should be given to data subjects’ discoverability in line with Ministry of Justice/The National Archives’ decision not to index the content of judgments on search engines.
+          </p>
+          <ul>
+            <li>Licence holders must not index the contents of judgments and decisions on search engines.</li>
+          </ul>
+          <p>
+            You should consider what you will do to prevent third party services from crawling or scraping either the text of the records or the data you have extracted from the records.
+          </p>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">8. Algorithmic transparency</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>Where possible, algorithms should be explainable and transparent.</p>
+          <p>
+            You should consider how you will be transparent in your use of algorithms to people using your project or product.
+          </p>
+        </div>
+      </div>
+    </details>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">9. Accurate data representation</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            The ‘Find Case Law’ service comprises an incomplete set of court judgments and tribunal decisions. Outcomes from analysis should therefore reflect the limitations of the data and avoid misrepresenting the significance of findings.
+          </p>
+          <ul>
+            <li>Licence holders must avoid misrepresenting the significance of findings.</li>
+            <li>
+              Occasionally records that have been published will be revised and taken down by the court. Licence holders must regularly check to make sure they are re-using the authoritative version of the record.
+            </li>
+          </ul>
+          <p>
+            You should consider how you will make sure the records you use are the most up to date published version of the records.
+          </p>
+        </div>
+      </div>
+    </details>
+    <p>to help you write your answer, we have included a fictional, example answer.</p>
+    <div class="transactional-licence-form-content__example-responses">
+      <p>
+        Our AB case law summariser prioritises fairness and integrity, aligning with the principle of <strong>dignity of the court</strong>. We make sure our analysis respects the importance of the courts and does not undermine their work by meticulously checking for accuracy and fairness.
+      </p>
+      <p>
+        Regarding the <strong>independence of the court</strong>, we uphold impartial judgment by implementing rigorous quality control measures including regular reviews of our algorithms to prevent any external influence on our analysis.
+      </p>
+      <p>
+        In line with <strong>Appropriate scrutiny</strong>, we acknowledge the potential of biased conclusions drawn from an incomplete dataset. We use robust validation techniques that involve our legal experts in our review process to make sure our summaries are reliable.
+      </p>
+      <p>
+        To address <strong>Anti-discriminatory Harm</strong> and <strong>Anti-bias</strong>,  we monitor our analysis for misleading or discriminatory outcomes and prioritise measures to address any issues identified.
+      </p>
+      <p>
+        In terms of <strong>personal privacy</strong> we already adhere to data protection regulations in the UK and EU.
+      </p>
+      <p>
+        For <strong>Discoverability</strong> and <strong>Algorithmic transparency</strong>, we provide clear explanations of our methodologies on our website so that users can understand how we create our summaries. The summaries can only be accessed if the user has an account and signs in.
+      </p>
+      <p>
+        Finally we maintain <strong>Accurate Data Representation</strong> by acknowledging the limitations of our dataset and providing context to our analysis. We warn people that this is not the same as legal advice.
+      </p>
+      <p>
+        Through these measures we provide a trustworthy and ethical service that upholds the highest standards of integrity and fairness.
+      </p>
+    </div>
+  </div>
+{% endblock pre_form %}
