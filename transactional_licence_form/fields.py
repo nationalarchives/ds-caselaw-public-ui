@@ -4,7 +4,6 @@ from django import forms
 class FCLFieldMixin(object):
     def __init__(self, *args, **kwargs):
         self.send_to_dynamics = kwargs.pop("send_to_dynamics", True)
-        self.label_class = kwargs.pop("label_class", None)
         super(FCLFieldMixin, self).__init__(*args, **kwargs)
 
 

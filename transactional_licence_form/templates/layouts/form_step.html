@@ -4,13 +4,15 @@
   {{ wizard.form.media }}
 {% endblock head %}
 {% block content %}
-  <div class="standard-text-template container py-3">
-    {% block step_number %}
-      <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-    {% endblock step_number %}
+  <div class="standard-text-template container py-3 transactional-licence-form">
     {% block step_title %}
-      <h1>{{ wizard.form.title }}</h1>
+      <h1 class="transactional-licence-form__step-title">{{ wizard.form.title }}</h1>
     {% endblock step_title %}
+    {% block step_number %}
+      <h3 class="transactional-licence-form__steps">
+        Step <b>{{ wizard.steps.step1|add:"1" }}</b> of {{ wizard.steps.count|add:"1" }}
+      </h3>
+    {% endblock step_number %}
     {% block pre_form %}
     {% endblock pre_form %}
     {% error_summary form %}
@@ -32,16 +34,16 @@
         {% if wizard.steps.prev %}
           <button name="wizard_goto_step"
                   type="submit"
-                  class="button-secondary"
+                  class="button-secondary button-inline"
                   value="{{ wizard.steps.prev }}">Previous</button>
         {% endif %}
         <input type="submit"
-               class="{% if reviewing %}button-secondary{% else %}button-cta{% endif %}"
+               class="button-inline {% if reviewing %}button-secondary{% else %}button-cta{% endif %}"
                value="{{ wizard.steps.current|submit_label_for_step }}" />
         {% if reviewing %}
           <button name="wizard_goto_step"
                   type="submit"
-                  class="button-cta"
+                  class="button-cta button-inline"
                   value="review">Review your answers</button>
         {% endif %}
       </div>
