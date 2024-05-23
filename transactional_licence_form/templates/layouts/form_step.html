@@ -45,7 +45,13 @@
           <button name="wizard_goto_step"
                   type="submit"
                   class="button-cta button-inline"
-                  value="review">Review your answers</button>
+                  value="review">
+            {% if reviewing %}
+              Save and review
+            {% else %}
+              Review your answers
+            {% endif %}
+          </button>
         {% endif %}
       </div>
     </form>

@@ -127,7 +127,7 @@ class ProjectPurposeForm(FCLForm):
         label="13. Which Individuals or communities will benefit from your computational analysis?",
         help_text="Select all that apply.",
         choices=list_to_choices(choices.BENEFIT_CHOICES),
-        other_fields={6: "community_other", 7: "profession_other", 8: "benefit_other"},
+        other_fields={6: "community_other", 7: "profession_other", 8: "other"},
     )
 
 
@@ -233,13 +233,13 @@ class NinePrinciplesStatementForm(FCLForm):
 
     def layout(self):
         return Layout(
-            Field.textarea("principles_statement", max_words=350),
+            Field.textarea("principles_statement"),
         )
 
     principles_statement = fields.FCLCharField(
         label="28. Please describe how you will meet the 9 principles",
         help_text="You should identify any risks and how you will address these risks for each of the 9 principles.",
-        widget=forms.Textarea(attrs={"data-maxwords": 350}),
+        widget=forms.Textarea(),
     )
 
 
