@@ -81,6 +81,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     # Your stuff: custom apps go here
     "judgments.apps.JudgmentsConfig",
+    "transactional_licence_form.apps.TransactionalLicenceFormConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -270,3 +271,17 @@ MARKLOGIC_HOST = env("MARKLOGIC_HOST", default=None)
 MARKLOGIC_USER = env("MARKLOGIC_USER", default=None)
 MARKLOGIC_PASSWORD = env("MARKLOGIC_PASSWORD", default=None)
 MARKLOGIC_USE_HTTPS = env("MARKLOGIC_USE_HTTPS", default=False)
+
+# SMTP credentials for transaacitonal licence form delivery
+
+TRANSACTIONAL_LICENCE_FROM_EMAIL = env("TRANSACTIONAL_LICENCE_FROM_EMAIL", default=None)
+TRANSACTIONAL_LICENCE_DELIVERY_EMAIL = env(
+    "TRANSACTIONAL_LICENCE_DELIVERY_EMAIL", default=None
+)
+TRANSACTIONAL_LICENCE_EMAIL_SUBJECT = env(
+    "TRANSACTIONAL_LICENCE_EMAIL_SUBJECT", default=None
+)
+SES_SMTP_USERNAME = env("SES_SMTP_USERNAME", default=None)
+SES_SMTP_PASSWORD = env("SES_SMTP_PASSWORD", default=None)
+SES_SMTP_SERVER = env("SES_SMTP_SERVER", default=None)
+SES_SMTP_PORT = env("SES_SMTP_PORT", default=None)

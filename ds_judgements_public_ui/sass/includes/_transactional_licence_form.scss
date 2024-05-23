@@ -1,0 +1,32 @@
+.transactional-licence-form {
+  &__step-title {
+    margin-bottom: 0rem;
+  }
+
+  &__steps {
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .govuk-label,
+  .govuk-fieldset__legend {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  &__preamble {
+    margin-bottom: 3rem;
+  }
+
+  .govuk-checkboxes__item .govuk-label, .govuk-radios__item .govuk-label,
+  // Include special-cased fields which should have a paragraph styled label here. This is a bit of a hack,
+  // but django-forms/crispy-gds doesn't offer an obvious way to add a class to these.
+  #div_id_contact-alternative_contact legend {
+    font-weight: normal;
+    font-size: 1.1875rem;
+  }
+
+  .govuk-form-group {
+    margin-bottom: 3rem;
+  }
+}

@@ -12,6 +12,7 @@
 // Shared
 @import "../../node_modules/@nationalarchives/ds-caselaw-frontend/src/main";
 $govuk-font-family: $font-open-sans;
+$govuk-focus-colour: $color-focus-blue-outline;
 @import "../../node_modules/govuk-frontend/dist/govuk/all";
 
 // Components
@@ -54,4 +55,7 @@ $govuk-font-family: $font-open-sans;
 @import "includes/court_or_tribunal";
 @import "includes/advice_message";
 @import "includes/cards_homepage";
-@import "includes/govuk_overrides.scss";
+@import "includes/govuk_overrides";
+@import "includes/transactional_licence_form_content";
+@import "includes/confirmation";
+@import "includes/transactional_licence_form";

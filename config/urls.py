@@ -28,7 +28,7 @@ urlpatterns = [
     ),
     path(
         "computational-licence-form",
-        views.ComputationalLicenceFormView.as_view(),
+        lambda request: HttpResponseRedirect("/re-use-find-case-law-records"),
         name="computational_licence_form",
     ),
     path(
@@ -106,6 +106,7 @@ urlpatterns = [
         cache_page(60 * 60)(views.schema),
         name="schema",
     ),
+    path("re-use-find-case-law-records", include("transactional_licence_form.urls")),
     path("", include("judgments.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

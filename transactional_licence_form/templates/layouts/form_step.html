@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_tags crispy_forms_gds transactional_licence_utils %}
+{% block head %}
+  {{ wizard.form.media }}
+{% endblock head %}
+{% block content %}
+  <div class="standard-text-template container py-3 transactional-licence-form">
+    {% block pre_title %}
+    {% endblock pre_title %}
+    {% block step_title %}
+      <h1 class="transactional-licence-form__step-title">{{ wizard.form.title }}</h1>
+    {% endblock step_title %}
+    {% block step_number %}
+      <h3 class="transactional-licence-form__steps">
+        Step <b>{{ wizard.steps.step1|add:"1" }}</b> of {{ wizard.steps.count|add:"1" }}
+      </h3>
+    {% endblock step_number %}
+    {% block pre_form %}
+    {% endblock pre_form %}
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ wizard.management_form }}
+      {% if wizard.form.forms %}{{ wizard.form.management_form }}{% endif %}
+      {% block form_inner %}
+        {% if reviewing %}<input type="hidden" name="reviewing" value="true" />{% endif %}
+        {% if wizard.form.forms %}
+          {% for form in wizard.form.forms %}
+            <div>{% crispy form %}</div>
+          {% endfor %}
+        {% else %}
+          <div>{% crispy wizard.form %}</div>
+        {% endif %}
+      {% endblock form_inner %}
+      <div>
+        {% if wizard.steps.prev %}
+          <button name="wizard_goto_step"
+                  type="submit"
+                  class="button-secondary button-inline"
+                  value="{{ wizard.steps.prev }}">Previous</button>
+        {% endif %}
+        <input type="submit"
+               class="button-inline {% if reviewing %}button-secondary{% else %}button-cta{% endif %}"
+               value="{{ wizard.steps.current|submit_label_for_step }}" />
+        {% if reviewing %}
+          <button name="wizard_goto_step"
+                  type="submit"
+                  class="button-cta button-inline"
+                  value="review">
+            {% if reviewing %}
+              Save and review
+            {% else %}
+              Review your answers
+            {% endif %}
+          </button>
+        {% endif %}
+      </div>
+    </form>
+    {% block post_form %}
+    {% endblock post_form %}
+  </div>
+{% endblock content %}
+{% block feedback_cta %}
+  {% comment %}
+This block left intentionally blank (we don't want
+the feedback survey showing on form steps)
+  {% endcomment %}
+{% endblock feedback_cta %}

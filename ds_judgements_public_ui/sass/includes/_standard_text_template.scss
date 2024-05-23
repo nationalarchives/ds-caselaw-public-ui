@@ -3,4 +3,13 @@
   line-height: 1.4em;
 
   min-height: 18rem;
+
+  li ul,
+  li ol {
+    margin-top: calc(0.5 * $spacer-unit);
+  }
+
+  ol > li > ul {
+    list-style-type: disc;
+  }
 }
