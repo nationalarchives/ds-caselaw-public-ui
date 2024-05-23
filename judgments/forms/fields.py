@@ -33,35 +33,25 @@ class DateRangeInputField(DateInputField):
 
     def __init__(self, date_type, **kwargs):
         self.date_type = date_type
-        # Define one message for all fields.
-        error_messages = {
-            "required": "Enter the day, month and year",
-            "incomplete": "Enter the day, month and year",
-        }
-        # Or define a different message for each field.
         fields = (
             forms.CharField(
                 label="Day",
-                error_messages={"incomplete": "Missing Day"},
                 validators=[RegexValidator(r"^[0-9]+$", "Enter a valid date")],
                 required=False,
             ),
             forms.CharField(
                 label="Month",
-                error_messages={"incomplete": "Missing Month"},
                 validators=[RegexValidator(r"^[0-9]+$", "Enter a valid month")],
                 required=False,
             ),
             forms.CharField(
                 label="Year",
-                error_messages={"incomplete": "Missing year."},
-                validators=[validate_year_is_within_sensible_range],
+                error_messages={"incomplete": "You must specify a year"},
+                validators=[ValidateYearRange(self.date_type)],
                 required=True,
             ),
         )
-        forms.MultiValueField.__init__(
-            self, error_messages=error_messages, fields=fields, **kwargs
-        )
+        forms.MultiValueField.__init__(self, fields=fields, **kwargs)
 
     def compress(self, data_list):
         """
