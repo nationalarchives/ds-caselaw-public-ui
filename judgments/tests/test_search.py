@@ -32,14 +32,25 @@ class TestBrowseResults(TestCase):
 
 
 class TestSearchResults(TestCase):
-    def setUp(self):
-        CourtDateFactory()
-
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search(
+    def test_judgment_advanced_search_with_populated_court_dates(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest" and the `CourtDates` model has a row
+        THEN the response should contain the expected applied filters HTML excluding the implicitly set minimum date
+        AND the `search_judgments_and_parse_response` function should be called with the correct query string and the
+        minimum date from CourtDates
+
+        The expected applied filters HTML:
+        - Includes a list with class "results-search-component__removable-options"
+        - Contains two list items (li) with links (a) representing the applied filters:
+        - The first link represents the "Chancery Division of the High Court" filter
+        - The second link represents the "Intellectual Property Enterprise Court" filter
+        """
+        CourtDateFactory()
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
         response = self.client.get(
@@ -51,7 +62,6 @@ class TestSearchResults(TestCase):
             '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
             html=True,
         )
-
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
             SearchParameters(
@@ -69,7 +79,83 @@ class TestSearchResults(TestCase):
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search_court_filters_no_date(
+    def test_judgment_advanced_search_without_populated_court_dates(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest" and the `CourtDates` model is empty
+        THEN the response should contain the expected applied filters HTML excluding the implicitly set minimum date
+        AND the `search_judgments_and_parse_response` function should be called with the correct query string and the
+        minimum date from `settings.MINIMUM_WARNING_YEAR`
+
+        The expected applied filters HTML:
+        - Includes a list with class "results-search-component__removable-options"
+        - Contains two list items (li) with links (a) representing the applied filters:
+        - The first link represents the "Chancery Division of the High Court" filter
+        - The second link represents the "Intellectual Property Enterprise Court" filter
+        """
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        response = self.client.get(
+            "/judgments/search?query=waltham+forest", {"query": "waltham forest"}
+        )
+
+        self.assertContains(
+            response,
+            '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
+            html=True,
+        )
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="waltham forest",
+                court="",
+                judge="",
+                party="",
+                page=1,
+                order="relevance",
+                date_from="2003-01-01",
+                date_to=None,
+                page_size=10,
+            ),
+        )
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_judgment_advanced_search_warns_user_with_date_before_minimum_warning_year(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest"
+        AND the from_date is before `settings.MINIMUM_WARNING_YEAR`
+        THEN the response should contain the expected warning
+
+        The expected applied filters HTML:
+        - Includes a div with class `advice-message`
+        """
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        expected_html = """
+        <div class="advice-message">
+            <h class="advice-message__heading">
+                <span class="advice-message__heading-icon">I</span>mportant information
+            </h>
+            <div class="advice-message__message">
+            This time range starts before our official start date, results may be limited.
+            </div>
+        </div>
+"""
+
+        response = self.client.get(
+            "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444"
+        )
+
+        assert_contains_html(response, expected_html)
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_judgment_advanced_search_court_filters(
         self,
         mock_search_judgments_and_parse_response,
         mock_api_client,
@@ -77,7 +163,7 @@ class TestSearchResults(TestCase):
         """
         GIVEN a client for making HTTP requests
         WHEN a GET request is made to "/judgments/search?court=ewhc/ch&court=ewhc/ipec"
-        THEN the response should contain the expected applied filters HTML excluding implicitly set date
+        THEN the response should contain the expected applied filters HTML
         AND the `search_judgments_and_parse_response` function should be called with the correct court string.
 
         The expected applied filters HTML:
@@ -86,7 +172,7 @@ class TestSearchResults(TestCase):
         - The first link represents the "Chancery Division of the High Court" filter
         - The second link represents the "Intellectual Property Enterprise Court" filter
         """
-        response = self.client.get("/judgments/search?court=ewhc/ch&court=ewhc/ipec")
+        CourtDateFactory()
 
         expected_applied_filters_html = """
         <ul class="results-search-component__removable-options js-results-facets-applied-filters">
@@ -121,6 +207,7 @@ class TestSearchResults(TestCase):
             </li>
         </ul>
 """
+        response = self.client.get("/judgments/search?court=ewhc/ch&court=ewhc/ipec")
 
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
@@ -222,6 +309,7 @@ class TestSearchResults(TestCase):
                 page_size=10,
             ),
         )
+
         assert_contains_html(response, expected_applied_filters_html)
 
 

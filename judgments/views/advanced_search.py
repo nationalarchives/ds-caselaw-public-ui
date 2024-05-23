@@ -81,7 +81,7 @@ def advanced_search(request):
                     default=RESULTS_PER_PAGE,
                 )
             )
-            order = query_params.get("order", None)
+            order = params.get("order", None)
             # If there is no query, order by -date, else order by relevance
             if not order and not query_text:
                 order = "-date"
@@ -93,6 +93,7 @@ def advanced_search(request):
             )
             to_date: Optional[date] = form.cleaned_data.get("to_date")
             # If a from_date is not specified, set it to the current min year
+            # This allows the users to choose if they'd like to go beyond that range
             if not from_date:
                 from_date = date(get_minimum_valid_year(), 1, 1)
             else:
@@ -156,8 +157,8 @@ def advanced_search(request):
                 unprocessed_facets, year_facets = process_year_facets(
                     unprocessed_facets
                 )
-            if from_date:
-                requires_from_warning: bool = _do_dates_require_warnings(from_date)
+
+            requires_from_warning: bool = _do_dates_require_warnings(from_date)
 
             changed_queries = {
                 key: value

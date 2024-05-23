@@ -288,3 +288,5 @@ SES_SMTP_PORT = env("SES_SMTP_PORT", default=None)
 
 # This is the minimum year the site currently says it handles
 MINIMUM_WARNING_YEAR = 2003
+# Constant enforcing the minimum possible year a user can search for
+MINIMUM_ALLOWED_YEAR = 1085

@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.conf import settings
 from django.test import TestCase
 
 from judgments.forms import AdvancedSearchForm
@@ -26,6 +27,34 @@ class TestAdvancedSearchForm(TestCase):
         form = AdvancedSearchForm(data=data)
 
         self.assertFalse(form.is_valid())
+        # Since this validation is done at a form level, rather than a field level,
+        # the errors will be at the __all__ key.
+        self.assertEqual(
+            form.errors, {"__all__": ["Please enter a 'to' date after the 'from' date"]}
+        )
+
+    def test_advanced_search_form_date_limit(self):
+        """
+        We have a hard limit on the minimum date allowed, ensure
+        an error is raised if we try to submit a date before that!
+        """
+        data = {
+            "from_date_0": "10",
+            "from_date_1": "12",
+            "from_date_2": "1000",
+            "to_date_0": "9",
+            "to_date_1": "10",
+            "to_date_2": "1020",
+        }
+        expected_warning = f"Year must be after {settings.MINIMUM_ALLOWED_YEAR}"
+
+        form = AdvancedSearchForm(data=data)
+
+        self.assertFalse(form.is_valid())
+        self.assertEqual(
+            form.errors,
+            {"from_date": [expected_warning], "to_date": [expected_warning]},
+        )
 
 
 class TestDateRangeInputField(TestCase):
