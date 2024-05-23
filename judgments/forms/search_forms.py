@@ -37,8 +37,6 @@ def _get_choices_by_group(courts):
     return options
 
 
-# TODO: REMEMBER REMOVE TRANSLATIONS!!!!!
-
 COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_courts())
 TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_tribunals())
 
@@ -82,7 +80,7 @@ class AdvancedSearchForm(forms.Form):
         widget=CheckBoxSelectCourtWithYearRange(),
         required=False,
     )
-    party_name = forms.CharField(
+    party = forms.CharField(
         widget=forms.TextInput(
             {
                 "class": "structured-search__limit-to-input",
@@ -90,7 +88,7 @@ class AdvancedSearchForm(forms.Form):
         ),
         required=False,
     )
-    judge_name = forms.CharField(
+    judge = forms.CharField(
         widget=forms.TextInput(
             {
                 "class": "structured-search__limit-to-input",
@@ -100,16 +98,19 @@ class AdvancedSearchForm(forms.Form):
     )
 
     def clean(self):
-        # Validate that from is before to now that we have access to both fields
         cleaned_data = super().clean()
-        to_date = cleaned_data.get("to_date")
-        from_date = cleaned_data.get("from_date")
+        # Validate that from is before to now that we have access to both fields
+        # Cleaned data can never be `None`, so supress warning
+        to_date = cleaned_data.get("to_date")  # type: ignore
+        from_date = cleaned_data.get("from_date")  # type: ignore
         if from_date and to_date:
             if from_date > to_date:
                 raise ValidationError(
-                    "Please enter a date after the 'from' date",
+                    "Please enter a 'to' date after the 'from' date",
                     code="to_date",
                 )
-        # Run the pre-process query steps
-        cleaned_data["query"] = preprocess_query(cleaned_data["query"])
+        # Run the pre-process query step
+        # Ignore warnings related to MyPy not understanding what cleaned_data is
+        if cleaned_data.get("query"):  # type: ignore
+            cleaned_data["query"] = preprocess_query(cleaned_data.get("query"))  # type: ignore
         return cleaned_data

@@ -5,7 +5,6 @@ from unittest.mock import Mock
 from caselawclient.models.documents import Document
 from caselawclient.models.judgments import Judgment
 from caselawclient.models.press_summaries import PressSummary
-from ds_caselaw_utils.courts import Court
 from factory.django import DjangoModelFactory
 
 from judgments.models import CourtDates
@@ -86,7 +85,3 @@ class CourtDateFactory(DjangoModelFactory):
     param = "uksc"
     start_year = 2001
     end_year = 2024
-
-
-class CourtFactory:
-    target_class = Court

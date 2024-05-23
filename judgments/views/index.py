@@ -19,7 +19,6 @@ def index(request):
         )
         search_results = search_response.results
         context["recent_judgments"] = search_results
-        context["form"] = AdvancedSearchForm()
 
     except MarklogicResourceNotFoundError:
         raise Http404(
@@ -30,8 +29,8 @@ def index(request):
         "pages/home.html",
         context={
             "context": context,
-            "court": all_courts.get_listable_courts(),
-            "tribunal": all_courts.get_listable_tribunals(),
+            "courts": all_courts.get_listable_courts(),
+            "tribunals": all_courts.get_listable_tribunals(),
             "feedback_survey_type": "home",
             "form": AdvancedSearchForm(),
         },

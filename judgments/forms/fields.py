@@ -95,4 +95,4 @@ class DateRangeInputField(DateInputField):
                 month = 12
             if not day:
                 day = monthrange(year, month)[1]
-        return date(year=year, month=month, day=day)
+        return date(year=year, month=month, day=day)  # type: ignore

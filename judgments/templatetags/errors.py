@@ -5,8 +5,11 @@ register = template.Library()
 
 @register.filter
 def error_messages(errors):
+    error_message = ""
     if errors:
-        error_message = ""
         for key in errors.keys():
-            ", ".join(f"Errors in {key} - see below for details")
-        return error_message
+            if key == "__all__":
+                return "There are errors in the filters, please see below for details"
+            else:
+                error_message += f"Error in '{key}' - see below for details. "
+    return error_message

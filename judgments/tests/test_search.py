@@ -1,4 +1,3 @@
-from datetime import date
 from unittest.mock import patch
 
 from caselawclient.search_parameters import SearchParameters
@@ -60,9 +59,9 @@ class TestSearchResults(TestCase):
                 court="",
                 judge="",
                 party="",
-                page="1",
+                page=1,
                 order="relevance",
-                date_from=date(2001, 1, 1),
+                date_from="2001-01-01",
                 date_to=None,
                 page_size=10,
             ),
@@ -122,6 +121,7 @@ class TestSearchResults(TestCase):
             </li>
         </ul>
 """
+
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
             SearchParameters(
@@ -130,13 +130,12 @@ class TestSearchResults(TestCase):
                 order="-date",
                 judge="",
                 party="",
-                date_from=date(2001, 1, 1),
+                date_from="2001-01-01",
                 date_to=None,
-                page="1",
+                page=1,
                 page_size=10,
             ),
         )
-
         assert_contains_html(response, expected_applied_filters_html)
 
     @patch("judgments.views.advanced_search.api_client")
@@ -217,9 +216,9 @@ class TestSearchResults(TestCase):
                 order="-date",
                 judge="",
                 party="",
-                date_from=date(2011, 1, 1),
+                date_from="2011-01-01",
                 date_to=None,
-                page="1",
+                page=1,
                 page_size=10,
             ),
         )

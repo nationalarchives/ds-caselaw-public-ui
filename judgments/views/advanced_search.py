@@ -53,7 +53,7 @@ def advanced_search(request):
     # We should only be handling GET requests here since we aren't changing anything on the server
     if not request.method == "GET":
         # Raise an error if the user has tried any non GET HTTP requests.
-        raise HttpResponseBadRequest("GET requests only")
+        return HttpResponseBadRequest("GET requests only")
     else:
         form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
         params: dict = request.GET
@@ -88,7 +88,9 @@ def advanced_search(request):
             elif not order:
                 order = "relevance"
 
-            from_date: Optional[date] = form.cleaned_data.get("from_date")
+            from_date: date = form.cleaned_data.get(
+                "from_date", date(get_minimum_valid_year(), 1, 1)
+            )
             to_date: Optional[date] = form.cleaned_data.get("to_date")
             # If a from_date is not specified, set it to the current min year
             if not from_date:
@@ -117,18 +119,24 @@ def advanced_search(request):
             }
             # Merge the courts and tribunals as they are treated as the same in MarkLogic.
             courts_and_tribunals = form.cleaned_data.get(
-                "court"
-            ) + form.cleaned_data.get("tribunal")
+                "court", []
+            ) + form.cleaned_data.get("tribunal", [])
+            # `SearchParameters` takes an optional string for dates
+            if not to_date:
+                to_date_as_search_param = None
+            else:
+                to_date_as_search_param = to_date.strftime("%Y-%m-%d")
+
             # Construct the search parameter object required for Marklogic query
             search_parameters: SearchParameters = SearchParameters(
                 query=query_text,
                 court=",".join(courts_and_tribunals),
-                judge=form.cleaned_data.get("judge_name"),
-                party=form.cleaned_data.get("party_name"),
-                page=page,
+                judge=form.cleaned_data.get("judge"),
+                party=form.cleaned_data.get("party"),
+                page=int(page),
                 order=order,
-                date_from=from_date,
-                date_to=to_date,
+                date_from=from_date.strftime("%Y-%m-%d"),
+                date_to=to_date_as_search_param,
                 page_size=int(params.get("per_page", "10")),
             )
 
