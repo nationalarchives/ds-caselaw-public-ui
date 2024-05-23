@@ -95,14 +95,14 @@ class FCLMultipleChoiceFieldWithOthers(FCLFieldMixin, forms.MultiValueField):
             fields, **kwargs, require_all_fields=False
         )
 
-    def compress(self, values=None):
-        if values is None or len(values) == 0:
-            values = [None]
+    def compress(self, values=[[]]):
+        if len(values) == 0:
+            values = [[]]
         choices, *others = values
-        compressed = {"choices": choices if choices else []}
+        compressed = {"choices": choices}
         for field in self.other_fields.values():
-            try:
-                compressed[field["name"]] = others[field["field_index"]]
-            except IndexError:
-                pass
+            field_name = field["name"]
+            field_index = field["field_index"]
+            if len(others) > field_index:
+                compressed[field_name] = others[field_index]
         return compressed

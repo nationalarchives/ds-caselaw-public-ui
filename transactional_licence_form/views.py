@@ -81,32 +81,30 @@ class FormWizardView(NamedUrlSessionWizardView):
         )
         return has_review_parameter and self.steps.current != "review"
 
+    def get_form_object(self, form_key):
+        return self.get_form(
+            step=form_key,
+            data=self.storage.get_step_data(form_key),
+            files=self.storage.get_step_files(form_key),
+        )
+
     def get_all_cleaned_data_by_form(self):
         cleaned_data = {}
         for form_key in self.get_form_list():
             cleaned_data[form_key] = {}
-            form_obj = self.get_form(
-                step=form_key,
-                data=self.storage.get_step_data(form_key),
-                files=self.storage.get_step_files(form_key),
-            )
-            if form_obj.is_valid():
-                if isinstance(form_obj.cleaned_data, (tuple, list)):
-                    cleaned_data[form_key].update(
-                        {"formset-%s" % form_key: form_obj.cleaned_data}
-                    )
-                else:
-                    cleaned_data[form_key].update(form_obj.cleaned_data)
+            form_obj = self.get_form_object(form_key)
+            if form_obj.is_valid() and isinstance(form_obj.cleaned_data, (tuple, list)):
+                cleaned_data[form_key].update(
+                    {"formset-%s" % form_key: form_obj.cleaned_data}
+                )
+            elif form_obj.is_valid():
+                cleaned_data[form_key].update(form_obj.cleaned_data)
         return cleaned_data
 
     def get_all_field_names(self):
         field_names = {}
         for form_key in self.get_form_list():
-            form_obj = self.get_form(
-                step=form_key,
-                data=self.storage.get_step_data(form_key),
-                files=self.storage.get_step_files(form_key),
-            )
+            form_obj = self.get_form_object(form_key)
             for field in form_obj:
                 field_names.update({field.name: field.label})
         return field_names
@@ -114,11 +112,7 @@ class FormWizardView(NamedUrlSessionWizardView):
     def get_all_forms(self):
         all_forms = {}
         for form_key in self.get_form_list():
-            form_obj = self.get_form(
-                step=form_key,
-                data=self.storage.get_step_data(form_key),
-                files=self.storage.get_step_files(form_key),
-            )
+            form_obj = self.get_form_object(form_key)
             all_forms.update({form_key: form_obj})
         return all_forms
 

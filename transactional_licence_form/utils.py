@@ -13,6 +13,31 @@ COUNTRIES_AND_TERRITORIES_JSON_PATH = (
 )
 
 
+class EmailSender:
+    def __init__(self, hostname, port, username, password):
+        self.hostname = hostname
+        self.port = port
+        self.username = username
+        self.password = password
+        self.server = smtplib.SMTP(self.hostname, self.port)
+
+    def __enter__(self):
+        self.server.starttls()
+        self.server.login(self.username, self.password)
+        return self
+
+    def __exit__(self, *args, **kwargs):
+        self.server.quit()
+
+    def send_mail(self, from_mail, to_mail, subject, body_text):
+        msg = MIMEMultipart()
+        msg["From"] = from_mail
+        msg["To"] = to_mail
+        msg["Subject"] = subject
+        msg.attach(MIMEText(body_text, "plain"))
+        self.server.sendmail(from_mail, to_mail, msg.as_string())
+
+
 def list_to_choices(values):
     return [(v, v) for v in values]
 
@@ -38,9 +63,8 @@ def send_form_response_to_dynamics(form_data):
 
     body_text = sanitize_and_format_response_as_xml(form_data)
 
-    send_text_email_with_smtp_tls(
-        from_mail, to_mail, subject, body_text, hostname, port, username, password
-    )
+    with EmailSender(hostname, port, username, password) as sender:
+        sender.send_mail(from_mail, to_mail, subject, body_text)
 
 
 def sanitize_value(value):
@@ -54,15 +78,19 @@ def sanitize_value(value):
 
 def format_and_sanitize_field(key, value):
     if isinstance(value, dict):
-        lines = []
-        for key2 in value.keys():
-            combined_key = "%s_%s" % (key, key2)
-            lines = lines + format_and_sanitize_field(combined_key, value[key2])
-        return lines
+        return format_and_sanitize_composite_field(key, value)
     elif key == "agent_country":
         return [(key, countries_and_territories_dict().get(value))]
     else:
         return [(key, sanitize_value(value))]
+
+
+def format_and_sanitize_composite_field(key, value):
+    lines = []
+    for key2 in value.keys():
+        combined_key = "%s_%s" % (key, key2)
+        lines = lines + format_and_sanitize_field(combined_key, value[key2])
+    return lines
 
 
 def sanitize_and_format_response_as_xml(form_data):
@@ -70,21 +98,10 @@ def sanitize_and_format_response_as_xml(form_data):
     for key, value in form_data.items():
         field_lines = format_and_sanitize_field(key, value)
         for key2, sanitized_value in field_lines:
-            key2 = key2.replace("_choices", "") if key2.endswith("_choices") else key2
-            lines.append(f"<{key2}>{sanitized_value}</{key2}>")
+            xml_key = xml_key_for(key2)
+            lines.append(f"<{xml_key}>{sanitized_value}</{xml_key}>")
     return "\n".join(lines)
 
 
-def send_text_email_with_smtp_tls(
-    from_mail, to_mail, subject, body_text, hostname, port, username, password
-):
-    msg = MIMEMultipart()
-    msg["From"] = from_mail
-    msg["To"] = to_mail
-    msg["Subject"] = subject
-    msg.attach(MIMEText(body_text, "plain"))
-    server = smtplib.SMTP(hostname, port)
-    server.starttls()
-    server.login(username, password)
-    server.sendmail(from_mail, to_mail, msg.as_string())
-    server.quit()
+def xml_key_for(key):
+    return key.replace("_choices", "") if key.endswith("_choices") else key
