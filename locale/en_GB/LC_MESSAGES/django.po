@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 16:35+0000\n"
+"POT-Creation-Date: 2024-05-23 09:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,6 +74,10 @@ msgstr "Publishing policy"
 #: ds_judgements_public_ui/templates/pages/about_this_service.html
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
+#: transactional_licence_form/templates/download.html
+#: transactional_licence_form/templates/start.html
+#: transactional_licence_form/templates/start2.html
+#: transactional_licence_form/templates/start3.html
 msgid "caselaw.email"
 msgstr "caselaw@nationalarchives.gov.uk"
 
