@@ -151,3 +151,20 @@
     width: auto !important;
   }
 }
+
+.govuk-date-input__label {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.govuk-date-input__input {
+  border: 2px solid #555;
+}
+
+.govuk-date-input__item {
+  margin-right: 0.5rem;
+}
+
+.govuk-form-group {
+  margin-bottom: 0;
+}

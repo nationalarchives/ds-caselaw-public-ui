@@ -4,28 +4,15 @@ register = template.Library()
 
 
 @register.filter
-def has_errors_for_field(errors, field):
-    if errors:
-        return errors.has_errors(field)
-    else:
-        return False
-
-
-@register.filter
-def has_errors(errors):
-    if errors:
-        return errors.has_errors()
-    else:
-        return False
-
-
-@register.filter
 def error_messages(errors):
-    if errors:
-        return ",".join(errors.messages)
+    """
+    Templatetag to construct the error message for `page-notification-failure`.
 
-
-@register.filter
-def errors_for_field(errors, field):
-    if errors:
-        return ", ".join(errors.fields[field])
+    Given a form level error return a generic error.
+    Given a field level error append the problem fields into the error message.
+    """
+    if "__all__" in errors.keys():
+        return "Errors in form - see below for details"
+    errors = [f"""'{error.replace("_", " ")}'""" for error in list(errors.keys())]
+    errors = ", ".join(errors)
+    return f"Errors in {errors} - see below for details"

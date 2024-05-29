@@ -1,93 +1,57 @@
-{% load court_utils errors %}
+{% load court_utils errors search_results_filters crispy_forms_tags %}
 <div class="structured-search__multi-fields-panel">
   <div class="structured-search__limit-to-container">
-    <fieldset class="{% if context.errors|has_errors_for_field:"from_date" %}with-errors{% endif %}">
+    <fieldset class="{% if form.non_field_errors or form.from_date.errors %}with-errors{% endif %}">
       <legend class="structured-search__limit-to-label">From date</legend>
       <p class="structured-search__help-text" id="from_date-help-text">
         For example <em>01 01 2003</em> or <em>2003</em>
       </p>
-      {% if context.errors|has_errors_for_field:"from_date" %}
+      {% if form.non_field_errors %}
         <p class="structured-search__from-date-error-message"
-           id="from-date-error">{{ context.errors|errors_for_field:"from_date" }}</p>
+           id="from-date-error">{{ form.non_field_errors.0 }}</p>
       {% endif %}
-      <div class="structured-search__date-input-group js-date-input">
-        <div>
-          <label for="from_day" class="structured-search__help-text">Day</label>
-          <input class="structured-search__date-input date-input--error"
-                 id="from_day"
-                 name="from_day"
-                 type="number"
-                 value="{{ context.from_day }}" />
-        </div>
-        <div>
-          <label for="from_month" class="structured-search__help-text">Month</label>
-          <input class="structured-search__date-input date-input--error"
-                 id="from_month"
-                 name="from_month"
-                 type="number"
-                 value="{{ context.from_month }}" />
-        </div>
-        <div>
-          <label for="from_year" class="structured-search__help-text">Year</label>
-          <input class="structured-search__date-input date-input--error"
-                 id="from_year"
-                 name="from_year"
-                 type="number"
-                 value="{{ context.from_year }}" />
-        </div>
-      </div>
+      {% if form.from_date.errors %}
+        {% for error in form.from_date.errors %}
+          <p class="structured-search__from-date-error-message">{{ error }}</p>
+        {% endfor %}
+      {% endif %}
+      {% if form.from_date.errors.2 %}
+        <p class="structured-search__from-date-error-message">{{ form.from_date.errors.2 }}</p>
+      {% endif %}
+      <div class="structured-search__date-input-group js-date-input">{{ form.from_date }}</div>
     </fieldset>
   </div>
   <div class="structured-search__limit-to-container">
-    <fieldset class="{% if context.errors|has_errors_for_field:"to_date" %}with-errors{% endif %}">
+    <fieldset class="{% if form.non_field_errors or form.has_errors %}with-errors{% endif %}">
       <legend class="structured-search__limit-to-label">To date</legend>
       <p class="structured-search__help-text" id="to_date-help-text">
         For example <em>30 04 2023</em> or <em>2023</em>
       </p>
-      {% if context.errors|has_errors_for_field:"to_date" %}
-        <p class="structured-search__to-date-error-message" id="from-date-error">
-          {{ context.errors|errors_for_field:"to_date" }}
-        </p>
+      {% if form.non_field_errors %}
+        <p class="structured-search__from-date-error-message"
+           id="from-date-error">{{ form.non_field_errors.0 }}</p>
       {% endif %}
-      <div class="structured-search__date-input-group js-date-input">
-        <div>
-          <label for="to_day" class="structured-search__help-text">Day</label>
-          <input class="structured-search__date-input date-input--error"
-                 id="to_day"
-                 name="to_day"
-                 type="number"
-                 value="{{ context.to_day }}" />
-        </div>
-        <div>
-          <label for="to_month" class="structured-search__help-text">Month</label>
-          <input class="structured-search__date-input date-input--error"
-                 id="to_month"
-                 name="to_month"
-                 type="number"
-                 value="{{ context.to_month }}" />
-        </div>
-        <div>
-          <label for="to_year" class="structured-search__help-text">Year</label>
-          <input class="structured-search__date-input date-input--error"
-                 id="to_year"
-                 name="to_year"
-                 type="number"
-                 value="{{ context.to_year }}" />
-        </div>
-      </div>
+      {% if form.to_date.errors %}
+        {% for error in form.to_date.errors %}<p class="structured-search__to-date-error-message">{{ error }}</p>{% endfor %}
+      {% endif %}
+      {% if form.to_date.errors.2 %}
+        <p class="structured-search__to-date-error-message">{{ form.to_date.errors.2 }}</p>
+      {% endif %}
+      <div class="structured-search__date-input-group js-date-input">{{ form.to_date }}</div>
     </fieldset>
   </div>
 </div>
 <div class="structured-search__single-field-panel">
   <div class="structured-search__limit-to-container">
     <fieldset>
-      <legend class="structured-search__limit-to-label">From specific courts or tribunals</legend>
       <div class="structured-search__court-options" id="court">
         <div class="structured-search__court-options-column">
-          {% include "includes/courts_options.html" with courts=context.courts %}
+          <legend class="structured-search__limit-to-label">From specific courts</legend>
+          {{ form.court }}
         </div>
         <div class="structured-search__court-options-column">
-          {% include "includes/courts_options.html" with courts=context.tribunals %}
+          <legend class="structured-search__limit-to-label">From specific tribunals</legend>
+          {{ form.tribunal }}
         </div>
       </div>
     </fieldset>
@@ -99,12 +63,7 @@
            class="structured-search__limit-to-label"
            aria-label="Search by party name">Party name</label>
     <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
-    <input class="structured-search__limit-to-input"
-           id="party_name"
-           name="party"
-           type="text"
-           value="{{ context.party }}"
-           aria-describedby="party_name-help-text" />
+    {{ form.party }}
   </div>
   <div class="structured-search__specific-field-container">
     <label for="judge_name"
@@ -113,12 +72,7 @@
     <p class="structured-search__help-text" id="judge_name-help-text">
       For example <em>Smith</em>, or multiple judges: <em>Smith, Jones</em>
     </p>
-    <input class="structured-search__limit-to-input"
-           id="judge_name"
-           name="judge"
-           type="text"
-           value="{{ context.judge }}"
-           aria-describedby="judge_name-help-text" />
+    {{ form.judge }}
   </div>
 </div>
 <div class="structured-search__submit-container">

@@ -1,4 +1,9 @@
-from .search_utils import ALL_COURT_CODES, process_court_facets, process_year_facets
+from .search_utils import (
+    ALL_COURT_CODES,
+    get_minimum_valid_year,
+    process_court_facets,
+    process_year_facets,
+)
 from .utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
@@ -12,7 +17,6 @@ from .utils import (
     linked_doc_url,
     normalise_quotes,
     paginator,
-    parse_date_parameter,
     preprocess_query,
     preprocess_title,
     press_summary_list_breadcrumbs,
@@ -24,11 +28,13 @@ from .utils import (
 )
 
 __all__ = [
+    "test_date_and_dict",
     "ALL_COURT_CODES",
     "api_client",
     "as_integer",
     "formatted_document_uri",
     "get_document_by_uri",
+    "get_minimum_valid_year",
     "get_press_summaries_for_document_uri",
     "has_filters",
     "is_exact_ncn_match",
@@ -37,7 +43,6 @@ __all__ = [
     "MAX_RESULTS_PER_PAGE",
     "normalise_quotes",
     "paginator",
-    "parse_date_parameter",
     "preprocess_query",
     "preprocess_title",
     "press_summary_list_breadcrumbs",

@@ -191,22 +191,6 @@ msgstr "Title matches"
 msgid "results.exact_ncn_match"
 msgstr "Neutral citation matches"
 
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basicsearchform.label"
-msgstr "Search"
-
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basicsearchform.placeholder"
-msgstr "Search..."
-
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basic.search.helptext"
-msgstr "How to search"
-
-#: ds_judgements_public_ui/templates/includes/search_term_component.html
-msgid "basicsearchform.cta"
-msgstr "Search"
-
 #: ds_judgements_public_ui/templates/judgment/results.html
 #: judgments/views/advanced_search.py judgments/views/browse.py
 msgid "results.search.title"
@@ -274,23 +258,3 @@ msgstr "Structured search"
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "robots.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/robots.txt"
-
-#: judgments/tests/test_search.py judgments/views/advanced_search.py
-msgid "search.errors.from_date_headline"
-msgstr "Errors in 'from' date - see below for details"
-
-#: judgments/tests/test_search.py judgments/views/advanced_search.py
-msgid "search.errors.to_date_headline"
-msgstr "Errors in 'to' date - see below for details"
-
-#: judgments/tests/test_search.py judgments/views/advanced_search.py
-msgid "search.errors.to_before_from_headline"
-msgstr "The 'to' date entered is before the 'from' date"
-
-#: judgments/utils/utils.py
-msgid "search.errors.missing_year_detail"
-msgstr "You must specify a year"
-
-#: judgments/views/advanced_search.py
-msgid "search.errors.to_before_from_detail"
-msgstr "Please enter a date after the 'from' date"

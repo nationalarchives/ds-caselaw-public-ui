@@ -1,3 +1,5 @@
+import calendar
+
 from django import template
 
 register = template.Library()
@@ -26,13 +28,15 @@ def removable_filter_param(key):
     excluded = [
         "order",
         "per_page",
+        "page",
         "court",
-        "from_day",
-        "from_month",
-        "from_year",
-        "to_day",
-        "to_month",
-        "to_year",
+        "tribunal",
+        "from_date_0",
+        "from_date_1",
+        "from_date_2",
+        "to_date_0",
+        "to_date_1",
+        "to_date_2",
     ]
     return key not in excluded
 
@@ -56,10 +60,9 @@ def remove_query(query_params, key):
 def remove_date(query_params, key):
     params = dict(query_params)
     params["page"] = None
-    params[key] = None
-    params[f"{key}_day"] = None
-    params[f"{key}_month"] = None
-    params[f"{key}_year"] = None
+    del params[f"{key}_date_0"]
+    del params[f"{key}_date_1"]
+    del params[f"{key}_date_2"]
     return make_query_string(params)
 
 
@@ -68,18 +71,31 @@ def remove_court(query_params, court):
     params = dict(query_params)
     params["page"] = None
     params["court"] = [court2 for court2 in params.get("court", []) if court != court2]
+    params["tribunal"] = [
+        court2 for court2 in params.get("tribunal", []) if court != court2
+    ]
     return make_query_string(params)
 
 
 @register.filter
 def replace_year_in_query(query_params, year):
     params = dict(query_params)
-    del params["from"]
-    del params["from_day"]
-    del params["from_month"]
-    del params["to"]
-    del params["to_day"]
-    del params["to_month"]
-    params["from_year"] = year
-    params["to_year"] = year
+    params.pop("from_date_0", None)
+    params.pop("from_date_1", None)
+    params.pop("to_date_0", None)
+    params.pop("to_date_1", None)
+    params["from_date_2"] = year
+    params["to_date_2"] = year
     return make_query_string(params)
+
+
+@register.filter
+def replace_integer_with_day(day):
+    if day < 10:
+        return f"0{day}"
+    return str(day)
+
+
+@register.filter
+def replace_integer_with_month(month):
+    return calendar.month_name[month][0:3]

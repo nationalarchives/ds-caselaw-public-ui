@@ -5,6 +5,9 @@ from unittest.mock import Mock
 from caselawclient.models.documents import Document
 from caselawclient.models.judgments import Judgment
 from caselawclient.models.press_summaries import PressSummary
+from factory.django import DjangoModelFactory
+
+from judgments.models import CourtDates
 
 
 class DocumentFactory:
@@ -73,3 +76,12 @@ class PressSummaryFactory(DocumentFactory):
     target_class = PressSummary
     PARAMS_MAP = dict(DocumentFactory.PARAMS_MAP)
     PARAMS_MAP["document_noun"] = "press summary"
+
+
+class CourtDateFactory(DjangoModelFactory):
+    class Meta:
+        model = CourtDates
+
+    param = "uksc"
+    start_year = 2001
+    end_year = 2024

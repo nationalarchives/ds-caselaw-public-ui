@@ -1,16 +1,7 @@
-{% load static i18n %}
+{% load static search_results_filters %}
 <div class="search-term-component__search-term-container">
-  <label for="search_term" class="search-term-component__search-term-label">
-    {% translate "basicsearchform.label" %}
-  </label>
-  <input class="search-term-component__search-term-input"
-         id="search_term"
-         name="query"
-         type="text"
-         value="{{ query }}"
-         placeholder="{% translate "basicsearchform.placeholder" %}" />
-  <p class="search-term-component__help-text">
-    <a href='{% url "how_to_use_this_service" %}#section-search'>{% translate "basic.search.helptext" %}</a>
-  </p>
+  <label for="search_term" class="search-term-component__search-term-label">Search</label>
+  {{ form.query }}
+  {% include "includes/search/search_help_text.html" %}
 </div>
-<input type="submit" value="{% translate "basicsearchform.cta" %}" />
+<input type="submit" value="Search" />

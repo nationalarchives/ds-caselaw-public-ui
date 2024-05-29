@@ -1,6 +1,9 @@
 import datetime
 
+from django.conf import settings
 from ds_caselaw_utils import courts as all_courts
+
+from judgments.models.court_dates import CourtDates
 
 ALL_COURT_CODES = [court.code for court in all_courts.get_all()]
 
@@ -67,3 +70,11 @@ def process_year_facets(facets: dict):
     }
 
     return unprocessed_facets, year_facets
+
+
+def get_minimum_valid_year():
+    """
+    As `CourtDates.min_year()` would return None if the model is not populated,
+    return a sensible default instead.
+    """
+    return CourtDates.min_year() or settings.MINIMUM_WARNING_YEAR

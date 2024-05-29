@@ -1,11 +1,10 @@
-import html
 from unittest.mock import patch
 
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
-from django.utils.translation import gettext
 from ds_caselaw_utils import courts as all_courts
 
+from judgments.tests.factories import CourtDateFactory
 from judgments.tests.fixtures import FakeSearchResponse, FakeSearchResponseNoFacets
 from judgments.tests.utils.assertions import assert_contains_html
 
@@ -35,11 +34,29 @@ class TestBrowseResults(TestCase):
 class TestSearchResults(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search(
+    def test_judgment_advanced_search_with_populated_court_dates(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest" and the `CourtDates` model has a row
+        THEN the response should contain the expected applied filters HTML excluding the implicitly set minimum date
+        AND the `search_judgments_and_parse_response` function should be called with the correct query string and the
+        minimum date from CourtDates
+
+        The expected applied filters HTML:
+        - Includes a list with class "results-search-component__removable-options"
+        - Contains two list items (li) with links (a) representing the applied filters:
+        - The first link represents the "Chancery Division of the High Court" filter
+        - The second link represents the "Intellectual Property Enterprise Court" filter
+        """
+        CourtDateFactory()
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?query=waltham+forest")
+
+        response = self.client.get(
+            "/judgments/search?query=waltham+forest", {"query": "waltham forest"}
+        )
+
         self.assertContains(
             response,
             '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
@@ -50,26 +67,91 @@ class TestSearchResults(TestCase):
             SearchParameters(
                 query="waltham forest",
                 court="",
-                judge=None,
-                party=None,
+                judge="",
+                party="",
                 page=1,
                 order="relevance",
-                date_from=None,
+                date_from="2001-01-01",
                 date_to=None,
                 page_size=10,
             ),
         )
 
-    @patch("judgments.views.advanced_search.preprocess_query")
+    @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search_query_preprocessed(
-        self,
-        mock_search_judgments_and_parse_response,
-        fake_preprocess_query,
+    def test_judgment_advanced_search_without_populated_court_dates(
+        self, mock_search_judgments_and_parse_response, mock_api_client
     ):
-        fake_preprocess_query.return_value = "normalised query"
-        self.client.get("/judgments/search?query=waltham+forest")
-        fake_preprocess_query.assert_called()
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest" and the `CourtDates` model is empty
+        THEN the response should contain the expected applied filters HTML excluding the implicitly set minimum date
+        AND the `search_judgments_and_parse_response` function should be called with the correct query string and the
+        minimum date from `settings.MINIMUM_WARNING_YEAR`
+
+        The expected applied filters HTML:
+        - Includes a list with class "results-search-component__removable-options"
+        - Contains two list items (li) with links (a) representing the applied filters:
+        - The first link represents the "Chancery Division of the High Court" filter
+        - The second link represents the "Intellectual Property Enterprise Court" filter
+        """
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        response = self.client.get(
+            "/judgments/search?query=waltham+forest", {"query": "waltham forest"}
+        )
+
+        self.assertContains(
+            response,
+            '<span class="results-search-component__removable-options-value-text">waltham forest</span>',
+            html=True,
+        )
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="waltham forest",
+                court="",
+                judge="",
+                party="",
+                page=1,
+                order="relevance",
+                date_from="2003-01-01",
+                date_to=None,
+                page_size=10,
+            ),
+        )
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_judgment_advanced_search_warns_user_with_date_before_minimum_warning_year(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest"
+        AND the from_date is before `settings.MINIMUM_WARNING_YEAR`
+        THEN the response should contain the expected warning
+
+        The expected applied filters HTML:
+        - Includes a div with class `advice-message`
+        """
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        expected_html = """
+        <div class="advice-message">
+            <h class="advice-message__heading">
+                <span class="advice-message__heading-icon">I</span>mportant information
+            </h>
+            <div class="advice-message__message">
+            This time range starts before our official start date, results may be limited.
+            </div>
+        </div>
+"""
+
+        response = self.client.get(
+            "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444"
+        )
+
+        assert_contains_html(response, expected_html)
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
@@ -90,7 +172,7 @@ class TestSearchResults(TestCase):
         - The first link represents the "Chancery Division of the High Court" filter
         - The second link represents the "Intellectual Property Enterprise Court" filter
         """
-        response = self.client.get("/judgments/search?court=ewhc/ch&court=ewhc/ipec")
+        CourtDateFactory()
 
         expected_applied_filters_html = """
         <ul class="results-search-component__removable-options js-results-facets-applied-filters">
@@ -99,7 +181,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -114,7 +196,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=&amp;from=&amp;from_day=&amp;from_month=&amp;from_year=&amp;to=&amp;to_day=&amp;to_month=&amp;to_year=&amp;per_page=&amp;page="
+                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -125,57 +207,110 @@ class TestSearchResults(TestCase):
             </li>
         </ul>
 """
+        response = self.client.get("/judgments/search?court=ewhc/ch&court=ewhc/ipec")
+
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
-            SearchParameters(query="", court="ewhc/ch,ewhc/ipec", order="-date"),
+            SearchParameters(
+                query="",
+                court="ewhc/ch,ewhc/ipec",
+                order="-date",
+                judge="",
+                party="",
+                date_from="2001-01-01",
+                date_to=None,
+                page=1,
+                page_size=10,
+            ),
         )
         assert_contains_html(response, expected_applied_filters_html)
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search_shows_message_with_invalid_from_date(
-        self, mock_search_judgments_and_parse_response, mock_api_client
+    def test_judgment_advanced_search_court_filters_with_from_date(
+        self,
+        mock_search_judgments_and_parse_response,
+        mock_api_client,
     ):
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to:
+            "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=1970"
+        THEN the response should contain the expected applied filters HTML including explicitly set date
+        AND the `search_judgments_and_parse_response` function should be called with the correct court string.
+
+        The expected applied filters HTML:
+        - Includes a list with class "results-search-component__removable-options"
+        - Contains three list items (li) with links (a) representing the applied filters:
+        - The first link represents the provided from date filter
+        - The second link represents the "Chancery Division of the High Court" filter
+        - The third link represents the "Intellectual Property Enterprise Court" filter
+        """
         response = self.client.get(
-            "/judgments/search?from_year=2023&from_month=12&from_day=32"
-        )
-        message = html.escape(gettext("search.errors.from_date_headline"))
-        self.assertContains(
-            response,
-            f'<div class="page-notification--failure">{message}</div>',
-            html=True,
+            "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=2011"
         )
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search_shows_message_with_invalid_to_date(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get(
-            "/judgments/search?to_year=2023&to_month=12&to_day=32"
-        )
-        message = html.escape(gettext("search.errors.to_date_headline"))
-        self.assertContains(
-            response,
-            f'<div class="page-notification--failure">{message}</div>',
-            html=True,
+        expected_applied_filters_html = """
+        <ul class="results-search-component__removable-options js-results-facets-applied-filters">
+            <li>
+              <a role="button"
+                 tabindex="0"
+                 draggable="false"
+                 class="results-search-component__removable-options-link"
+                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page=">
+                 <span class="results-search-component__removable-options-key">From:</span>
+                 <span class="results-search-component__removable-options-value">
+                   <span class="results-search-component__removable-options-value-text"> 01 Jan 2011</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a role="button"
+                 tabindex="0"
+                 draggable="false"
+                 class="results-search-component__removable-options-link"
+                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 title="High Court (Chancery Division)">
+                <span class="results-search-component__removable-options-value">
+                  <span class="results-search-component__removable-options-value-text">
+                    High Court (Chancery Division)
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a role="button"
+                 tabindex="0"
+                 draggable="false"
+                 class="results-search-component__removable-options-link"
+                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 title="High Court (Intellectual Property Enterprise Court)">
+                <span class="results-search-component__removable-options-value">
+                  <span class="results-search-component__removable-options-value-text">
+                    High Court (Intellectual Property Enterprise Court)
+                  </span>
+                </span>
+              </a>
+            </li>
+        </ul>
+"""
+
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="",
+                court="ewhc/ch,ewhc/ipec",
+                order="-date",
+                judge="",
+                party="",
+                date_from="2011-01-01",
+                date_to=None,
+                page=1,
+                page_size=10,
+            ),
         )
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search_shows_message_with_crossed_dates(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?to_year=2022&from_year=2023")
-        message = html.escape(gettext("search.errors.to_before_from_headline"))
-        self.assertContains(
-            response,
-            f'<div class="page-notification--failure">{message}</div>',
-            html=True,
-        )
+        assert_contains_html(response, expected_applied_filters_html)
 
 
 class TestSearchBreadcrumbs(TestCase):

@@ -6,24 +6,20 @@ from judgments.templatetags.query_filters import replace_year_in_query
 class TestQueryFilters(unittest.TestCase):
     def test_replace_year_in_query(self):
         query_params = {
-            "from": "2010",
-            "from_day": "3",
-            "from_month": "9",
-            "from_year": "2009",
-            "to": "2014",
-            "to_day": "7",
-            "to_month": "10",
-            "to_year": "2019",
+            "from_date_0": "3",
+            "from_date_1": "9",
+            "from_date_2": "2009",
+            "to_date_0": "7",
+            "to_date_1": "10",
+            "to_date_2": "2019",
             "per_page": "10",
         }
 
         replaced = replace_year_in_query(query_params, "2015")
 
-        self.assertNotIn("from_day=", replaced)
-        self.assertNotIn("from_month=", replaced)
-        self.assertNotIn("to_day=", replaced)
-        self.assertNotIn("to_month=", replaced)
-        self.assertNotIn("to=", replaced)
-        self.assertNotIn("from=", replaced)
-        self.assertIn("from_year=2015", replaced)
-        self.assertIn("to_year=2015", replaced)
+        self.assertNotIn("from_date_0=", replaced)
+        self.assertNotIn("from_date_1=", replaced)
+        self.assertNotIn("to_date_0=", replaced)
+        self.assertNotIn("to_date_1=", replaced)
+        self.assertIn("from_date_2=2015", replaced)
+        self.assertIn("to_date_2=2015", replaced)

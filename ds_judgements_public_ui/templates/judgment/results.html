@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load i18n utilities %}
+{% load i18n utilities search_results_filters %}
 {% block title %}
   {% translate "results.search.title" %} - Find case law
 {% endblock title %}
@@ -11,6 +11,11 @@
       <div class="results__list-layout-container">
         {% if context.show_no_exact_ncn_warning %}
           {% with message="There is no judgment with the Neutral Citation of %s in our database."|interpolate:context.query %}
+            {% include "includes/advice_message.html" with message=message %}
+          {% endwith %}
+        {% endif %}
+        {% if context.requires_from_warning %}
+          {% with message="This time range starts before our official start date, results may be limited." %}
             {% include "includes/advice_message.html" with message=message %}
           {% endwith %}
         {% endif %}

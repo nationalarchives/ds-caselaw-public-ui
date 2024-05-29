@@ -1,179 +1,202 @@
 import urllib
+from datetime import date
+from typing import Optional
 
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
+from caselawclient.responses.search_response import SearchResponse
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
-from django.http import Http404
+from django.conf import settings
+from django.http import HttpResponseBadRequest, HttpResponseServerError
 from django.template.response import TemplateResponse
-from django.utils.translation import gettext
-from ds_caselaw_utils import courts as all_courts
+from django.utils.translation import gettext as _
+from django.views.decorators.csrf import csrf_exempt
 
-from judgments.models.court_dates import CourtDates
-from judgments.models.search_form_errors import SearchFormErrors
+from judgments.forms import AdvancedSearchForm
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
     as_integer,
+    get_minimum_valid_year,
     has_filters,
     paginator,
-    parse_date_parameter,
-    preprocess_query,
     process_court_facets,
     process_year_facets,
     show_no_exact_ncn_warning,
 )
 
 
+def _do_dates_require_warnings(from_date):
+    """
+    Check if users have requested a year before what we technically handle,
+    if it is, then we provide a warning letting them know.
+    """
+    from_warning = False
+    if from_date:
+        if from_date.year < settings.MINIMUM_WARNING_YEAR:
+            from_warning = True
+    return from_warning
+
+
+@csrf_exempt
 def advanced_search(request):
-    params = request.GET
-    errors = SearchFormErrors()
-    try:
-        from_date = parse_date_parameter(
-            params,
-            "from",
-            start_year=CourtDates.min_year(),
-            end_year=CourtDates.max_year(),
-        )
-    except ValueError as error:
-        from_date = None
-        errors.add_error(
-            gettext("search.errors.from_date_headline"), "from_date", str(error)
-        )
-    try:
-        to_date = parse_date_parameter(
-            params,
-            "to",
-            default_to_last=True,
-            start_year=CourtDates.min_year(),
-            end_year=CourtDates.max_year(),
-        )
-    except ValueError as error:
-        to_date = None
-        errors.add_error(
-            gettext("search.errors.to_date_headline"), "to_date", str(error)
-        )
+    """
+    The advanced search view handles any searches made in the application
 
-    if to_date is not None and from_date is not None and to_date < from_date:
-        errors.add_error(
-            gettext("search.errors.to_before_from_headline"),
-            "to_date",
-            gettext("search.errors.to_before_from_detail"),
-        )
-
-    query_params = {
-        "query": params.get("query", ""),
-        "court": params.getlist("court"),
-        "judge": params.get("judge"),
-        "party": params.get("party"),
-        "order": params.get("order", ""),
-        "from": from_date,
-        "from_day": params.get("from_day"),
-        "from_month": params.get("from_month"),
-        "from_year": params.get("from_year"),
-        "to": to_date,
-        "to_day": params.get("to_day"),
-        "to_month": params.get("to_month"),
-        "to_year": params.get("to_year"),
-        "per_page": params.get("per_page"),
-    }
-
-    query_text = query_params["query"]
-    page = str(as_integer(params.get("page"), minimum=1))
-    per_page = str(
-        as_integer(
-            params.get("per_page"),
-            minimum=1,
-            maximum=MAX_RESULTS_PER_PAGE,
-            default=RESULTS_PER_PAGE,
-        )
-    )
-
-    order = query_params["order"]
-    # If there is no query, order by -date, else order by relevance
-    if not order and not query_text:
-        order = "-date"
-    elif not order:
-        order = "relevance"
-
-    context = {
-        "errors": errors,
-        "query": query_text,
-        "courts": all_courts.get_grouped_selectable_courts(),
-        "tribunals": all_courts.get_grouped_selectable_tribunals(),
-        "query_params": query_params,
-    }
-
-    for key in query_params:
-        context[key] = query_params[key] or ""
-
-    if errors.has_errors():
-        return TemplateResponse(
-            request, "pages/structured_search.html", context={"context": context}
-        )
+    * Given a valid search form, query Marklogic and return the results
+    * Given an invalid search form, render it again with the errors
+    * Given GET request without form submission return an empty form
+    * Given anything except an HTTP GET request raise an error
+    """
+    # We should only be handling GET requests here since we aren't changing anything on the server
+    if not request.method == "GET":
+        # Raise an error if the user has tried any non GET HTTP requests.
+        return HttpResponseBadRequest("GET requests only")
     else:
-        try:
-            query_without_stop_words = preprocess_query(query_text)
-            search_parameters = SearchParameters(
-                query=query_without_stop_words,
-                court=",".join(query_params["court"]),
-                judge=query_params["judge"],
-                party=query_params["party"],
+        form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
+        params: dict = request.GET
+        """
+        Form should be valid unless there is a critical issue
+        with the submission (i.e. Month > 12)
+        """
+        if not form.is_valid():
+            # If the form has errors, return it for rendering!
+            return TemplateResponse(
+                request, "pages/structured_search.html", {"form": form}
+            )
+        else:
+            context: dict = {}
+            court_facets: dict = {}
+            year_facets: dict = {}
+            query_params: dict = {}
+            query_text: str = form.cleaned_data.get("query", "")
+            page: str = str(as_integer(params.get("page"), minimum=1))
+            per_page: str = str(
+                as_integer(
+                    params.get("per_page", "10"),
+                    minimum=1,
+                    maximum=MAX_RESULTS_PER_PAGE,
+                    default=RESULTS_PER_PAGE,
+                )
+            )
+            order = params.get("order", None)
+            # If there is no query, order by -date, else order by relevance
+            if not order and not query_text:
+                order = "-date"
+            elif not order:
+                order = "relevance"
+
+            from_date: date = form.cleaned_data.get(
+                "from_date", date(get_minimum_valid_year(), 1, 1)
+            )
+            to_date: Optional[date] = form.cleaned_data.get("to_date")
+            # If a from_date is not specified, set it to the current min year
+            # This allows the users to choose if they'd like to go beyond that range
+            if not from_date:
+                from_date = date(get_minimum_valid_year(), 1, 1)
+            else:
+                # Only provide the param back to the user if they set it
+                query_params = query_params | {
+                    "from_date_0": from_date.day,
+                    "from_date_1": from_date.month,
+                    "from_date_2": from_date.year,
+                }
+            if to_date:
+                query_params = query_params | {
+                    "to_date_0": to_date.day,
+                    "to_date_1": to_date.month,
+                    "to_date_2": to_date.year,
+                }
+            query_params = query_params | {
+                "query": query_text,
+                "court": form.cleaned_data.get("court", []),
+                "tribunal": form.cleaned_data.get("tribunal", []),
+                "judge": form.cleaned_data.get("judge", ""),
+                "party": form.cleaned_data.get("party", ""),
+                "order": order,
+                "page": page,
+            }
+            # Merge the courts and tribunals as they are treated as the same in MarkLogic.
+            courts_and_tribunals = form.cleaned_data.get(
+                "court", []
+            ) + form.cleaned_data.get("tribunal", [])
+            # `SearchParameters` takes an optional string for dates
+            if not to_date:
+                to_date_as_search_param = None
+            else:
+                to_date_as_search_param = to_date.strftime("%Y-%m-%d")
+
+            # Construct the search parameter object required for Marklogic query
+            search_parameters: SearchParameters = SearchParameters(
+                query=query_text,
+                court=",".join(courts_and_tribunals),
+                judge=form.cleaned_data.get("judge"),
+                party=form.cleaned_data.get("party"),
                 page=int(page),
                 order=order,
-                date_from=query_params["from"],
-                date_to=query_params["to"],
-                page_size=int(per_page),
-            )
-            search_response = search_judgments_and_parse_response(
-                api_client, search_parameters
+                date_from=from_date.strftime("%Y-%m-%d"),
+                date_to=to_date_as_search_param,
+                page_size=int(params.get("per_page", "10")),
             )
 
-            court_facets = {}
-            year_facets = {}
+            # Get the response from Marklogic
+            try:
+                search_response: SearchResponse = search_judgments_and_parse_response(
+                    api_client, search_parameters
+                )
+            except MarklogicResourceNotFoundError:
+                return HttpResponseServerError("Search failed")
 
+            # If a query was provided, get relevant search facets to display to the user
             if search_parameters.query:
                 unprocessed_facets, court_facets = process_court_facets(
-                    search_response.facets, context["query_params"].get("court")
+                    search_response.facets, form.cleaned_data.get("court", [])
                 )
                 unprocessed_facets, year_facets = process_year_facets(
                     unprocessed_facets
                 )
 
-            context["court_facets"] = court_facets
-            context["year_facets"] = year_facets
-            context["search_results"] = search_response.results
-            context["total"] = search_response.total
-            context["paginator"] = paginator(page, search_response.total, per_page)
+            requires_from_warning: bool = _do_dates_require_warnings(from_date)
+
             changed_queries = {
-                key: value for key, value in query_params.items() if value is not None
+                key: value
+                for key, value in params.items()
+                if value is not None and not key == "page"
             }
-            context["query_string"] = urllib.parse.urlencode(
-                changed_queries, doseq=True
-            )
-            context["order"] = order
-            context["per_page"] = per_page
-            context["filtered"] = has_filters(context["query_params"])
-            context["page_title"] = gettext("results.search.title")
-            context["show_no_exact_ncn_warning"] = show_no_exact_ncn_warning(
-                search_response.results, query_text, page
-            )
+            # Populate context to provide feedback about filters etc. back to user
+            context = context | {
+                "requires_from_warning": requires_from_warning,
+                "court_facets": court_facets,
+                "year_facets": year_facets,
+                "search_results": search_response.results,
+                "total": search_response.total,
+                "paginator": paginator(page, search_response.total, per_page),
+                "query_string": urllib.parse.urlencode(changed_queries, doseq=True),
+                "order": order,
+                "per_page": per_page,
+                "page": page,
+                "filtered": has_filters(params),
+                "page_title": _("results.search.title"),
+                "show_no_exact_ncn_warning": show_no_exact_ncn_warning(
+                    search_response.results, query_text, page
+                ),
+                "query_params": query_params,
+            }
 
-        except MarklogicResourceNotFoundError:
-            raise Http404("Search failed")  # TODO: This should be something else!
-
-        # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
-        if query_text:
-            breadcrumbs = [{"text": f'Search results for "{query_text}"'}]
-        else:
-            breadcrumbs = [{"text": "Search results"}]
-        return TemplateResponse(
-            request,
-            "judgment/results.html",
-            context={
-                "context": context,
-                "breadcrumbs": breadcrumbs,
-                "feedback_survey_type": "structured_search",
-            },
-        )
+            # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
+            if query_text:
+                breadcrumbs = [{"text": f'Search results for "{query_text}"'}]
+            else:
+                breadcrumbs = [{"text": "Search results"}]
+            return TemplateResponse(
+                request,
+                "judgment/results.html",
+                context={
+                    "form": form,
+                    "context": context,
+                    "breadcrumbs": breadcrumbs,
+                    "feedback_survey_type": "structured_search",
+                },
+            )

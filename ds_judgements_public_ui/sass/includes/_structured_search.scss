@@ -202,8 +202,11 @@
   }
 
   &__court-options-column {
-    width: 50%;
+    width: 100%;
     break-inside: avoid;
+    @media (min-width: $grid-breakpoint-medium) {
+      width: 50%;
+    }
   }
 
   &__court-option {
@@ -289,29 +292,6 @@
     width: 100% !important;
     box-sizing: border-box;
     border-color: #d4351c;
-  }
-
-  &__date-input-group {
-    display: flex;
-    gap: calc(0.5 * $spacer-unit);
-    & :nth-of-type(1) {
-      width: 10%;
-      @media (max-width: $grid-breakpoint-small) {
-        width: 20%;
-      }
-    }
-    & :nth-of-type(2) {
-      width: 10%;
-      @media (max-width: $grid-breakpoint-small) {
-        width: 20%;
-      }
-    }
-    & :nth-of-type(3) {
-      width: 20%;
-      @media (max-width: $grid-breakpoint-small) {
-        width: 40%;
-      }
-    }
   }
 
   fieldset {
@@ -404,6 +384,9 @@
   .page-notification--failure {
     margin: 0 auto;
     box-sizing: border-box;
-    max-width: 65rem;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-bottom: $spacer-unit;
+    }
   }
 }
