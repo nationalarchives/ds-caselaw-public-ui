@@ -4,6 +4,7 @@ from typing import Literal
 
 from crispy_forms_gds.fields import DateInputField
 from django import forms
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
 from .validators import ValidateYearRange
@@ -80,9 +81,14 @@ class DateRangeInputField(DateInputField):
                 month = 1
             if not day:
                 day = 1
-        if self.date_type == "to":
+        elif self.date_type == "to":
             if not month:
                 month = 12
             if not day:
                 day = monthrange(year, month)[1]
-        return date(year=year, month=month, day=day)  # type: ignore
+        else:
+            raise RuntimeError("date_type is neither `from` nor `to`")
+        try:
+            return date(day=day, month=month, year=year)
+        except ValueError as e:
+            raise ValidationError(str(e)) from e
