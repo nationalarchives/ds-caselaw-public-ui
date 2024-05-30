@@ -138,7 +138,12 @@ def advanced_search(request):
                 order=order,
                 date_from=from_date.strftime("%Y-%m-%d"),
                 date_to=to_date_as_search_param,
-                page_size=int(params.get("per_page", "10")),
+                page_size=as_integer(
+                    params.get("per_page", "10"),
+                    minimum=1,
+                    maximum=MAX_RESULTS_PER_PAGE,
+                    default=RESULTS_PER_PAGE,
+                ),
             )
 
             # Get the response from Marklogic
