@@ -167,6 +167,7 @@ def advanced_search(request):
             }
             # Populate context to provide feedback about filters etc. back to user
             context = context | {
+                "query": query_text,
                 "requires_from_warning": requires_from_warning,
                 "court_facets": court_facets,
                 "year_facets": year_facets,
