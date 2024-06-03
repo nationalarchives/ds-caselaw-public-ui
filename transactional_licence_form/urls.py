@@ -24,7 +24,7 @@ urlpatterns = [
         name="transactional-licence-form-page-2",
     ),
     re_path(
-        "^/licence-application-process-2/?$",
+        "^/what-you-need-to-apply-for-a-licence/?$",
         StartView3.as_view(),
         name="transactional-licence-form-page-3",
     ),
