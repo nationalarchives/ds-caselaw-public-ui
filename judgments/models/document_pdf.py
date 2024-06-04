@@ -17,7 +17,7 @@ class DocumentPdf:
         response = requests.head(
             # it is possible that "" is a better value than None, but that is untested
             self.generate_uri(),
-            headers={"Accept-Encoding": None},  # type: ignore
+            headers={"Accept-Encoding": None},
         )
         content_length = response.headers.get("Content-Length", None)
         if response.status_code >= 400:
