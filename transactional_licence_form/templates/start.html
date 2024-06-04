@@ -153,38 +153,38 @@
             </p>
             <p>
               Further context, best practice and guidance relating to the re-use of public sector information can be found in the <a href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/">
-              section on The National Archives website.
-            </a>
-          </p>
+                section on The National Archives website.
+              </a>
+            </p>
+          </div>
         </div>
+      </details>
+      <div class="info-box__content">
+        <h3 class="info-box__heading">The Open Justice licence does not permit computational analysis.</h3>
+        <p>
+          If you intend to do any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records
+          you will need to apply to perform computational analysis. There are no application charges.
+        </p>
+        <a role="button"
+           tabindex="0"
+           draggable="false"
+           class="govuk-button"
+           data-module="govuk-button"
+           value="I want to perform computational analysis"
+           href="{% url 'transactional-licence-form-page-2' %}">I want to perform computational analysis</a>
       </div>
-    </details>
-    <div class="info-box__content">
-      <h3 class="info-box__heading">The Open Justice licence does not permit computational analysis.</h3>
-      <p>
-        If you intend to do any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records
-        you will need to apply to perform computational analysis. There are no application charges.
-      </p>
-      <a role="button"
-         tabindex="0"
-         draggable="false"
-         class="govuk-button"
-         data-module="govuk-button"
-         value="I want to perform computational analysis"
-         href="{% url 'transactional-licence-form-page-2' %}">I want to perform computational analysis</a>
     </div>
+    <h2 class="transactional-licence-form-content__heading">How to access records as data</h2>
+    <p>
+      You can access Find Case Law records as data using the <a href="https://github.com/nationalarchives/ds-find-caselaw-docs/blob/main/doc/openapi/public_api.yml">Find Case Law API.</a>
+    </p>
+    <p>
+      We have converted judgments and decisions we hold into XML and automatically mark the records up according to <a href="https://groups.oasis-open.org/communities/tc-community-home2?CommunityKey=3425f20f-b704-4076-9fab-018dc7d3efbe">the international data standard: LegalDocML</a>.
+      This markup is then validated by our legal editorial team. You can read more about <a href="https://caselaw.nationalarchives.gov.uk/about-this-service#section-case-law-data"> how to access the records as data on our support page. </a>
+    </p>
+    <h2 class="transactional-licence-form-content__heading">Contact</h2>
+    <p>
+      If you have any questions about licensing, please email the Licensing Department: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>.
+    </p>
   </div>
-  <h2 class="transactional-licence-form-content__heading">How to access records as data</h2>
-  <p>
-    You can access Find Case Law records as data using the <a href="https://github.com/nationalarchives/ds-find-caselaw-docs/blob/main/doc/openapi/public_api.yml">Find Case Law API.</a>
-  </p>
-  <p>
-    We have converted judgments and decisions we hold into XML and automatically mark the records up according to <a href="https://groups.oasis-open.org/communities/tc-community-home2?CommunityKey=3425f20f-b704-4076-9fab-018dc7d3efbe">the international data standard: LegalDocML</a>.
-    This markup is then validated by our legal editorial team. You can read more about <a href="https://caselaw.nationalarchives.gov.uk/about-this-service#section-case-law-data"> how to access the records as data on our support page. </a>
-  </p>
-  <h2 class="transactional-licence-form-content__heading">Contact</h2>
-  <p>
-    If you have any questions about licensing, please email the Licensing Department: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>.
-  </p>
-</div>
 {% endblock content %}

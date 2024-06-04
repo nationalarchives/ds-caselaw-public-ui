@@ -1,8 +1,8 @@
 {% load l10n crispy_forms_gds transactional_licence_utils %}
 <fieldset class="govuk-fieldset"
           {% if field.help_text or field.errors %} aria-describedby="{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}
-          {% for error in field.errors %}{{ field.auto_id }}_{{ i }}_error{% endfor %}
-          "
+                                                                       {% for error in field.errors %}{{ field.auto_id }}_{{ i }}_error{% endfor %}
+                                                                      "
           {% endif %}>
   {% if field.label %}
     <legend class="govuk-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
