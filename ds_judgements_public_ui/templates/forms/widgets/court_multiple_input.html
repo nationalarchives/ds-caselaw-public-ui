@@ -7,11 +7,11 @@
           <label>{{ group }}</label>
         </div>
         <div class="structured-search__court-group">
-        {% endif %}
-        {% for option in options %}
-          <div>{% include option.template_name with widget=option %}</div>
-        {% endfor %}
-        {% if group %}</div>{% endif %}
+      {% endif %}
+      {% for option in options %}
+        <div>{% include option.template_name with widget=option %}</div>
+      {% endfor %}
+      {% if group %}</div>{% endif %}
     {% endfor %}
   </div>
 {% endwith %}
