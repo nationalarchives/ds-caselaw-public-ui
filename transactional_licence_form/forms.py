@@ -140,8 +140,10 @@ class PublicStatementForm(FCLForm):
 
     public_statement = fields.FCLCharField(
         label="14. Please provide a public statement",
-        help_text="Please aim for no more than around 150 words.",
-        widget=forms.Textarea(attrs={"data-maxwords": 150}),
+        help_text="Please aim for a minimum of 150 words",
+        # Set a large but not infinite maxlength to prevent malicious actors
+        # trying to break the email functionality or crash the instance.
+        widget=forms.Textarea(attrs={"data-minwords": 150, "maxlength": 1566274}),
     )
 
 
@@ -255,6 +257,7 @@ class AdditionalCommentsForm(FCLForm):
         label="29. Are there any additional comments you would like to make in relation to your application?",
         help_text="This question is optional.",
         widget=forms.Textarea(attrs={"data-maxwords": 250}),
+        required=False,
     )
 
 

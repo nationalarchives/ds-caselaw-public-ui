@@ -150,10 +150,6 @@ class DownloadView(TemplateView):
 class ConfirmationView(TemplateView):
     template_name = "confirmation.html"
 
-    def post(self, _request, *_args, **_kwargs):
-        # TODO Tim handle the logic for the 'pre-applcation check' step here.
-        pass
-
 
 def wizard_view(url_name):
     return FormWizardView.as_view(
