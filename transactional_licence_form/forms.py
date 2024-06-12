@@ -136,12 +136,11 @@ class PublicStatementForm(FCLForm):
     title = "Public Statement"
 
     def layout(self):
-        # TODO: Confirm the max vs min words here!
         return Layout(Field.textarea("public_statement", max_words=250))
 
     public_statement = fields.FCLCharField(
         label="14. Please provide a public statement",
-        help_text="Please aim for a minimum of 150 words",
+        help_text="Please aim for not more than 250 words",
         widget=forms.Textarea(attrs={"maxlength": 1500}),
     )
 
@@ -255,7 +254,7 @@ class AdditionalCommentsForm(FCLForm):
     additional_comments = fields.FCLCharField(
         label="29. Are there any additional comments you would like to make in relation to your application?",
         help_text="This question is optional.",
-        widget=forms.Textarea(attrs={"data-maxwords": 250, "maxlength": 5000}),
+        widget=forms.Textarea(attrs={"data-maxwords": 250, "maxlength": 1500}),
         required=False,
     )
 
