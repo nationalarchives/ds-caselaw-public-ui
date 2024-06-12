@@ -143,10 +143,6 @@ class StartView3(TemplateView):
     template_name = "start3.html"
 
 
-class DownloadView(TemplateView):
-    template_name = "download.html"
-
-
 class ConfirmationView(TemplateView):
     template_name = "confirmation.html"
 
