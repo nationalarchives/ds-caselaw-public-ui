@@ -88,9 +88,8 @@ def advanced_search(request):
             elif not order:
                 order = "relevance"
 
-            from_date: date = form.cleaned_data.get(
-                "from_date", date(get_minimum_valid_year(), 1, 1)
-            )
+            from_date: date = form.cleaned_data.get("from_date", None)
+            requires_from_warning: bool = _do_dates_require_warnings(from_date)
             to_date: Optional[date] = form.cleaned_data.get("to_date")
             # If a from_date is not specified, set it to the current min year
             # This allows the users to choose if they'd like to go beyond that range
@@ -162,8 +161,6 @@ def advanced_search(request):
                 unprocessed_facets, year_facets = process_year_facets(
                     unprocessed_facets
                 )
-
-            requires_from_warning: bool = _do_dates_require_warnings(from_date)
 
             changed_queries = {
                 key: value
