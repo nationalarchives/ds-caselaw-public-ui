@@ -257,12 +257,3 @@ msgstr "Structured search"
 #: ds_judgements_public_ui/templates/pages/terms_of_use.html
 msgid "robots.link"
 msgstr "https://caselaw.nationalarchives.gov.uk/robots.txt"
-
-#: venv/lib/python3.11/site-packages/isort/main.py
-msgid "show this help message and exit"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/mypy/main.py
-#, python-format
-msgid "%(prog)s: error: %(message)s\n"
-msgstr ""
