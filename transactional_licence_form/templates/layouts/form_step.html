@@ -17,7 +17,10 @@
     {% endblock step_number %}
     {% block pre_form %}
     {% endblock pre_form %}
-    <form action="" method="post" novalidate>
+    <form action=""
+          method="post"
+          id="transactional-licence-form-form"
+          novalidate>
       {% csrf_token %}
       {{ wizard.management_form }}
       {% if wizard.form.forms %}{{ wizard.form.management_form }}{% endif %}
@@ -34,9 +37,11 @@
       <div>
         {% if wizard.steps.prev %}
           <button name="wizard_goto_step"
-                  type="submit"
+                  type="button"
+                  id="transactional-licence-form-previous-button"
                   class="button-secondary button-inline"
-                  value="{{ wizard.steps.prev }}">Previous</button>
+                  value="{{ wizard.steps.prev }}"
+                  style="display:none">Previous</button>
         {% endif %}
         <input type="submit"
                class="button-inline {% if reviewing %}button-secondary{% else %}button-cta{% endif %}"
