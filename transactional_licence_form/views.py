@@ -8,6 +8,7 @@ from .forms import FORMS
 from .utils import send_form_response_to_dynamics
 
 TEMPLATE_OVERRIDES = {
+    "contact": "contact.html",
     "review": "review.html",
     "nine-principles-1": "nine_principles_1.html",
     "nine-principles-2": "nine_principles_2.html",
