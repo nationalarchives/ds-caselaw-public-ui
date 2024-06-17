@@ -63,7 +63,7 @@ class OrganizationForm(FCLForm):
     title = "Step 3 - About your organisastion"
 
     agent_companyname = fields.FCLCharField(
-        label="4. What is the full legal name of your organisation?", max_length=50
+        label="4. What is the full legal name of your organisation?", max_length=100
     )
     agent_companyname_other = fields.FCLCharField(
         label="5. Please enter any other names your organisation is known by",
