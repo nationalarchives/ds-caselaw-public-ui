@@ -8,7 +8,6 @@ from .forms import FORMS
 from .utils import send_form_response_to_dynamics
 
 TEMPLATE_OVERRIDES = {
-    "contact": "contact.html",
     "review": "review.html",
     "nine-principles-1": "nine_principles_1.html",
     "nine-principles-2": "nine_principles_2.html",
@@ -144,8 +143,16 @@ class StartView3(TemplateView):
     template_name = "start3.html"
 
 
+class DownloadView(TemplateView):
+    template_name = "download.html"
+
+
 class ConfirmationView(TemplateView):
     template_name = "confirmation.html"
+
+    def post(self, _request, *_args, **_kwargs):
+        # TODO Tim handle the logic for the 'pre-applcation check' step here.
+        pass
 
 
 def wizard_view(url_name):

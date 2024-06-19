@@ -18,13 +18,6 @@
     margin-bottom: 3rem;
   }
 
-  &__pre-form-content {
-    margin-bottom: 3rem;
-    &:empty {
-      margin-bottom: 0;
-    }
-  }
-
   .govuk-checkboxes__item .govuk-label, .govuk-radios__item .govuk-label,
   // Include special-cased fields which should have a paragraph styled label here. This is a bit of a hack,
   // but django-forms/crispy-gds doesn't offer an obvious way to add a class to these.

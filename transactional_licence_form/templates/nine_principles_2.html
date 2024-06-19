@@ -1,5 +1,5 @@
 {% extends "layouts/form_step.html" %}
-{% block pre_form %}
+{% block pre_title %}
   <div class="govuk-warning-text">
     <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
     <span class="govuk-warning-text__text">
@@ -7,6 +7,8 @@
       You should address each of the 9 prinicples in your answer. Applications that do not reference each of the 9 principles may experience delays.
     </span>
   </div>
+{% endblock pre_title %}
+{% block pre_form %}
   <div class="transactional-licence-form__preamble">
     <p>Please describe how you will meet the 9 Principles as terms of your licence. You should state:</p>
     <ul>
@@ -40,7 +42,7 @@
       </summary>
       <div class="govuk-details__text">
         <div class="transactional-licence-form-content">
-          <p>It is important that any analysis respects the independence of the judiciary and their impartial judgement.</p>
+          <p>It is important that any analysis respects the independence of the judiciary and their impartial judgment.</p>
           <ul>
             <li>Licence holders must respect the independence of the judiciary.</li>
           </ul>
@@ -157,7 +159,7 @@
       <div class="govuk-details__text">
         <div class="transactional-licence-form-content">
           <p>
-            The Find Case Law service comprises an incomplete set of court judgments and tribunal decisions. Outcomes from analysis should therefore reflect the limitations of the data and avoid misrepresenting the significance of findings.
+            The ‘Find Case Law’ service comprises an incomplete set of court judgments and tribunal decisions. Outcomes from analysis should therefore reflect the limitations of the data and avoid misrepresenting the significance of findings.
           </p>
           <ul>
             <li>Licence holders must avoid misrepresenting the significance of findings.</li>
@@ -171,103 +173,32 @@
         </div>
       </div>
     </details>
-    <p>To help you write your answer, we have included a fictional, example answer.</p>
-    <details class="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">Example 9 principles statement</span>
-      </summary>
-      <div class="govuk-details__text">
-        <div class="transactional-licence-form-content">
-          <div class="transactional-licence-form-content__example-responses">
-            <p>
-              Our case law summariser is designed to produce reliable and impartial summaries of the latest cases for HR officials. We are fully committed to meeting the highest accuracy, ethical standards and legal compliance.
-            </p>
-            <br />
-            <p>
-              <strong>Dignity of the courts</strong>
-            </p>
-            <p>We respect the courts as working bodies and will not denigrate or undermine the work of the court.</p>
-            <p>
-              We make sure our tool respects the importance of the courts and does not undermine their work by meticulously checking for accuracy and fairness. We will be transparent in our sources and follow legal ethical standards in order to support the court as functioning bodies.
-            </p>
-            <p>
-              We have quality control measures in place that make sure our summaries are consistent and reflect the formal language used by the courts.
-            </p>
-            <p>
-              Our legal editorial team will check all summaries to avoid misrepresentation and reflect the solemnity of court proceedings.
-            </p>
-            <br />
-            <p>
-              <strong>Independence of the court</strong>
-            </p>
-            <p>
-              We respect the independence of the judiciary and uphold their impartial judgment by checking and correcting our summaries for bias or partiality. The summaries are designed to succinctly lay out the decision the court made without subjective interpretation. We review and refine our summaries against legal ethical standards.
-            </p>
-            <p>
-              We believe it is important for judges to make decisions free from fear or favour and will not seek to manipulate judicial decision making with our HR summary service. It is important that our users trust that our summaries of decisions made on employment matters are objective.
-            </p>
-            <br />
-            <p>
-              <strong>Appropriate scrutiny</strong>
-            </p>
-            <p>
-              We acknowledge there is potential for biased conclusions to be drawn from an incomplete dataset. We use robust validation techniques that involve our legal experts in our review process to make sure our summaries are reliable. We conduct regular audits and evaluations to make sure our outputs are appropriate and accurate.
-            </p>
-            <p>
-              We will notify our users that our summaries are trained on available datasets that may not be representative of all decisions made.
-            </p>
-            <br />
-            <p>
-              <strong>Anti-discriminatory Harm</strong>
-            </p>
-            <p>
-              We are committed to preventing any form of discriminatory harm. Our algorithms will be monitored for bias against race, gender, ethnicity, religion, age, disability or other protected characteristics. We will conduct regular testing across our outputs to make sure the tool works equitably across all cases.
-            </p>
-            <p>
-              We will support users to leave feedback on the service. Any reported discriminatory outputs would immediately trigger a thorough investigation. The reported summary would be temporarily taken down during the investigation while we identify and address the issue. We would then re-evaluate our algorithms and data sets by conducting a risk assessment that identifies actions to reduce the likelihood of future occurrences.
-            </p>
-            <br />
-            <p>
-              <strong>Anti-bias</strong>
-            </p>
-            <p>
-              To prevent bias we train our tool on a diverse and representative dataset. Our legal editorial team reviews the outputs and helps train our model to recognise and avoid biased summaries. We continually monitor our summaries for any emerging bias or misrepresentation.Any anomalies that are identified would trigger a thorough investigation to understand the cause and address it.
-            </p>
-            <br />
-            <p>
-              <strong>Personal privacy</strong>
-            </p>
-            <p>
-              We adhere to data protection regulations in the UK and EU. We are satisfied that we meet the requirements of these regulations. All names of individuals mentioned in cases will be anonymised before processing. We do not share access to raw data with third parties for processing.
-            </p>
-            <br />
-            <p>
-              <strong>Discoverability</strong>
-            </p>
-            <p>
-              Our tool will be designed to support the discoverability of cases for HR officials.  We will index the case name and categorisation of the summary but not the body of the judgment in order to protect the identities of others cited in the case. While our content will be easily discoverable online, users will be asked to sign after reading the first paragraph of the summary. On their account users curate the type of case they want to see by area of employment law.
-            </p>
-            <br />
-            <p>
-              <strong>Algorithmic transparency,</strong>
-            </p>
-            <p>
-              We provide clear explanations of our methodologies on our website so that users can understand how we create our summaries. In addition we publish transparency reports annually in order to maintain our accountability.
-            </p>
-            <br />
-            <p>
-              <strong>Accurate Data Representation</strong>
-            </p>
-            <p>
-              Accurate data representation is important to the accuracy of our summaries. We regularly check our training datasets are up to date with the latest cases and remove decisions that  have been taken down from the Find Case Law service under the instruction of the courts. Our tool uses Natural Language Processing to summarise court decisions without interpretation or distortion.  We clearly label our summaries as automatically produced summaries and signpost users to the full judgment. We warn users that our service does not offer legal advice. Documentation about the datasets we use and how we have developed the tool is available to our users on our website .
-            </p>
-            <br />
-            <p>
-              We adhere to all 9 principles as part of delivering a reliable and trustworthy service to our users. We can provide more detail upon request.
-            </p>
-          </div>
-        </div>
-      </div>
-    </details>
+    <p>to help you write your answer, we have included a fictional, example answer.</p>
+    <div class="transactional-licence-form-content__example-responses">
+      <p>
+        Our AB case law summariser prioritises fairness and integrity, aligning with the principle of <strong>dignity of the court</strong>. We make sure our analysis respects the importance of the courts and does not undermine their work by meticulously checking for accuracy and fairness.
+      </p>
+      <p>
+        Regarding the <strong>independence of the court</strong>, we uphold impartial judgment by implementing rigorous quality control measures including regular reviews of our algorithms to prevent any external influence on our analysis.
+      </p>
+      <p>
+        In line with <strong>Appropriate scrutiny</strong>, we acknowledge the potential of biased conclusions drawn from an incomplete dataset. We use robust validation techniques that involve our legal experts in our review process to make sure our summaries are reliable.
+      </p>
+      <p>
+        To address <strong>Anti-discriminatory Harm</strong> and <strong>Anti-bias</strong>,  we monitor our analysis for misleading or discriminatory outcomes and prioritise measures to address any issues identified.
+      </p>
+      <p>
+        In terms of <strong>personal privacy</strong> we already adhere to data protection regulations in the UK and EU.
+      </p>
+      <p>
+        For <strong>Discoverability</strong> and <strong>Algorithmic transparency</strong>, we provide clear explanations of our methodologies on our website so that users can understand how we create our summaries. The summaries can only be accessed if the user has an account and signs in.
+      </p>
+      <p>
+        Finally we maintain <strong>Accurate Data Representation</strong> by acknowledging the limitations of our dataset and providing context to our analysis. We warn people that this is not the same as legal advice.
+      </p>
+      <p>
+        Through these measures we provide a trustworthy and ethical service that upholds the highest standards of integrity and fairness.
+      </p>
+    </div>
   </div>
 {% endblock pre_form %}

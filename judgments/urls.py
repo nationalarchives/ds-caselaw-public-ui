@@ -1,4 +1,3 @@
-from django.http import HttpResponseRedirect
 from django.urls import path, register_converter
 
 from . import converters, feeds
@@ -30,11 +29,6 @@ urlpatterns = [
     path("<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
     path(
         "<court:court>/<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"
-    ),
-    path(
-        "transactional-licence-form",
-        lambda request: HttpResponseRedirect("/computational-licence-form"),
-        name="transactional-licence-form",
     ),
     path(
         "<court:court>/<subdivision:subdivision>/atom.xml",

@@ -11,12 +11,12 @@
       </div>
       <div class="govuk-notification-banner__content">
         <p class="govuk-notification-banner__heading">
-          You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
-          your answers before you apply.
+          You cannot save your application half way through; you will need to complete your application in one session.  Please make sure you have prepared
+          all your answers to the questions before starting the application process.
         </p>
       </div>
     </div>
-    <h1 class="transactional-licence-form__step-title">Step 1 - Are you ready to apply?</h1>
+    <h1 class="transactional-licence-form__step-title">Do you need to apply for a licence?</h1>
     <h3 class="transactional-licence-form__steps">
       Step <b>1</b> of 11
     </h3>
@@ -24,46 +24,52 @@
       You only need to apply for a licence if you intend to use computational analysis in your re-use of Find Case Law records in ways
       that are not already permitted under the Open Justice Licence.
     </p>
+    <p>
+      The Open Justice licence permits certain re-uses without the need to apply for an additional licence. Before continuing, please make
+      sure you have read and understood what the <a href="https://caselaw.nationalarchives.gov.uk/open-justice-licence">Open Justice Licence</a> permits you to do.
+    </p>
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset" aria-describedby="who-applying">
         <legend class="govuk-fieldset__legend">
-          <strong>The application can not be saved part way through. Please make sure you are ready to apply in one session: Have you...</strong>
+          <strong>Have you got details of who is applying for this licence?</strong>
         </legend>
-        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input"
                    id="details"
                    name="details"
                    type="checkbox"
                    value="applying">
-            <label class="govuk-label govuk-checkboxes__label" for="details">Read the terms of the Open Justice Licence</label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input"
-                   id="licence_holder"
-                   name="licence_holder"
-                   type="checkbox"
-                   value="prepared">
-            <label class="govuk-label govuk-checkboxes__label" for="licence_holder">
-              Got the details of the licence holder (This will need to be someone senior in your organisation)
+            <label class="govuk-label govuk-checkboxes__label" for="details">
+              Yes, I have all the details of who is applying for this licence.
             </label>
           </div>
+        </div>
+        <legend class="govuk-fieldset__legend">
+          <strong>Have you prepared your public statement?</strong>
+        </legend>
+        <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input"
                    id="statement"
                    name="statement"
                    type="checkbox"
                    value="prepared">
-            <label class="govuk-label govuk-checkboxes__label" for="statement">Prepared your public statement</label>
+            <label class="govuk-label govuk-checkboxes__label" for="statement">Yes, I have prepared my public statement.</label>
           </div>
+        </div>
+        <legend class="govuk-fieldset__legend">
+          <strong>Have you prepared details of the consideration you have given to the nine principles?</strong>
+        </legend>
+        <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input"
-                   id="nine_principles"
-                   name="nine_principles"
+                   id="principles"
+                   name="principles"
                    type="checkbox"
-                   value="prepared">
-            <label class="govuk-label govuk-checkboxes__label" for="nine_principles">
-              Read and identified risks against the nine principles
+                   value="consideration">
+            <label class="govuk-label govuk-checkboxes__label" for="principles">
+              Yes, I can outline our considerations of the nine principles.
             </label>
           </div>
         </div>
@@ -76,7 +82,14 @@
          class="govuk-button"
          data-module="govuk-button"
          value="Apply for a licence"
-         href="{% url 'transactional-licence-form-steps' %}">Apply now</a>
+         href="{% url 'transactional-licence-form-page-3' %}">Back</a>
+      <a role="button"
+         tabindex="0"
+         draggable="false"
+         class="govuk-button"
+         data-module="govuk-button"
+         value="Apply for a licence"
+         href="{% url 'transactional-licence-form-steps' %}">Next</a>
     </div>
   </div>
 {% endblock content %}
