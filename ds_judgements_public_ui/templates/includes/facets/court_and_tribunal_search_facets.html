@@ -1,0 +1,10 @@
+{% load query_filters %}
+<div style="text-align: left;">
+  <b>{{ type|title }}s relevant to your query:</b>
+  {% for court, item_count in facets %}
+    {% if court.canonical_param not in query_param %}
+      <a href="{% url "search" %}?{{ context.query_params|make_query_string }}&{{ type }}={{ court.canonical_param }}">{{ court.grouped_name }} ({{ item_count }})</a>
+      {% if not forloop.last %},{% endif %}
+    {% endif %}
+  {% endfor %}
+</div>

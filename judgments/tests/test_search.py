@@ -343,15 +343,33 @@ class TestSearchFacets(TestCase):
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        eat_court_code = all_courts.get_by_code("EAT")
+        court_code = all_courts.get_by_code("EWHC-KBD-TCC")
         response = self.client.get("/judgments/search?query=example+query")
 
         # Desired court_facet is present
-        assert response.context["context"]["court_facets"] == {eat_court_code: "3"}
+        assert response.context["context"]["court_facets"] == {court_code: "1"}
         # Blank keys are not present
         assert "" not in response.context["context"]["court_facets"].keys()
         # Keys that don't match existing courts are not present
         assert "invalid_court" not in response.context["context"]["court_facets"].keys()
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_populated_tribunal_facets(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        tribunal_code = all_courts.get_by_code("EAT")
+        response = self.client.get("/judgments/search?query=example+query")
+
+        # Desired tribunal_facet is present
+        assert response.context["context"]["tribunal_facets"] == {tribunal_code: "3"}
+        # Blank keys are not present
+        assert "" not in response.context["context"]["tribunal_facets"].keys()
+        # Keys that don't match existing tribunals are not present
+        assert (
+            "invalid_court" not in response.context["context"]["tribunal_facets"].keys()
+        )
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
@@ -367,6 +385,7 @@ class TestSearchFacets(TestCase):
         response = self.client.get("/judgments/search?query=example+query")
 
         assert response.context["context"]["court_facets"] == {}
+        assert response.context["context"]["tribunal_facets"] == {}
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")

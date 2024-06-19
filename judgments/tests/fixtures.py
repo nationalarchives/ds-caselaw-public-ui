@@ -30,7 +30,14 @@ class FakeSearchResponseBaseClass:
 
     total = 2
     results = [FakeSearchResult(), FakeSearchResult()]
-    facets = {"EAT": "3", "": "5", "invalid_court": "10", "2010": "103", "1900": "4"}
+    facets = {
+        "EAT": "3",
+        "EWHC-KBD-TCC": "1",
+        " ": "5",
+        "invalid_court": "10",
+        "2010": "103",
+        "1900": "4",
+    }
 
     class Meta:
         abstract = True
