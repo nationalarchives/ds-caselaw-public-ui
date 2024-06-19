@@ -1,13 +1,6 @@
 from django.urls import re_path
 
-from .views import (
-    ConfirmationView,
-    DownloadView,
-    StartView1,
-    StartView2,
-    StartView3,
-    wizard_view,
-)
+from .views import ConfirmationView, StartView1, StartView2, StartView3, wizard_view
 
 form_name = "transactional-licence-form-steps"
 form_view = wizard_view("%s-step" % form_name)
@@ -27,11 +20,6 @@ urlpatterns = [
         "^/what-you-need-to-apply-for-a-licence/?$",
         StartView3.as_view(),
         name="transactional-licence-form-page-3",
-    ),
-    re_path(
-        "^/download-application/?$",
-        DownloadView.as_view(),
-        name="application-download-page",
     ),
     re_path(
         "^/confirmation/?$",
