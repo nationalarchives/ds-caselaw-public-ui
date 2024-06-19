@@ -3,6 +3,7 @@
     <h3 class="courts-and-tribunals__header">{{ group.name }}</h3>
   </div>
 {% endif %}
+{# these 'courts' could instead be tribunals #}
 {% for court in group.courts %}
-  {% include "includes/courts_and_tribunals_court.html" with court=court %}
+  {% include "includes/courts_and_tribunals_court.html" with court=court type=type %}
 {% endfor %}
