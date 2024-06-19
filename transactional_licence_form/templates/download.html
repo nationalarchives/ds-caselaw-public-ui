@@ -1,0 +1,534 @@
+{% extends "layouts/base.html" %}
+{% load static i18n %}
+{% block content %}
+  <div class="standard-text-template container py-3">
+    <h1>What you need to apply for a licence</h1>
+    <p>
+      <small>
+        Last updated on
+        <time datetime="10-04-2024">10th April 2024</time>
+      </small>
+    </p>
+    <div class="anchor-links">
+      <h2 class="anchor-links__header">Information on this page</h2>
+      <ul class="anchor-links__list">
+        <li class="anchor-links__list-option">
+          <a href="#section-need">Do you need to apply for a licence?</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-person">1. The details of the person responsible for the licence</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-details">2. The details of your organisation</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-purpose">3. The purpose of your re-use</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-statement">4. A public statement</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-principles">5. Statements and principles</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-comments">6. Additional comments</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-apply">Apply Now</a>
+        </li>
+        <li class="anchor-links__list-option">
+          <a href="#section-contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <h2 id="section-need">Do you need to apply for a licence?</h2>
+    <p>
+      You do not need to apply for a licence if your re-use is already covered under <a href="{% url 'open_justice_licence' %}">the Open Justice licence.</a>
+    </p>
+    <p>
+      There is one application form to apply to perform computational analysis across Find Case Law records. It is made up of 5 main sections.
+      You will need to respond to all the questions we ask. There is no way to save the application part way through.
+    </p>
+    <h2 id="section-person">1. The details of the person responsible for the licence</h2>
+    <p>
+      They should be someone who is senior in your organisation and will be responsible for licence application and compliance. They will need to be someone we can talk to if we have questions about the application:
+    </p>
+    <ul>
+      <li>their name</li>
+      <li>their email</li>
+    </ul>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Contact</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>
+            Please provide details of the main contact for this licence. This will be the person we contact to discuss your application.
+          </p>
+          <ol start="2">
+            <li>Their Full name</li>
+            <li>Their Email</li>
+          </ol>
+        </div>
+      </div>
+    </details>
+    <h2 id="section-details">2. The details of your organisation</h2>
+    <p>We will ask you information about your organisation</p>
+    <ul>
+      <li>legal name of your organisation</li>
+      <li>what type of organisation is it (e.g. private limited company or registered charity)</li>
+    </ul>
+    <p>
+      Responses to this section may be published in the future for example if we receive a freedom of information request.
+    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Organisation details</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>This may be published alongside your statement in the future</p>
+          <ol start="4">
+            <li>What is the full legal name of your organisation?</li>
+            <li>Is your organisation known by any other names?</li>
+            <li>Where is your organisation registered?</li>
+            <li>
+              What type of organisation is it?
+              <br />
+              Tick all that apply:
+              <ul>
+                <li>Private limited company</li>
+                <li>Public limited company</li>
+                <li>Partnership</li>
+                <li>Sole trader</li>
+                <li>Registered Charity</li>
+                <li>Community interest company</li>
+                <li>Independent research organisation</li>
+                <li>Public body</li>
+                <li>Independent body</li>
+                <li>Other (please specify)</li>
+              </ul>
+            </li>
+            <li>Please give your organisation identifier (e.g. company or charity registration number)</li>
+            <li>Please give the name of any partners or organisations you are working with</li>
+          </ol>
+        </div>
+      </div>
+    </details>
+    <h2 id="section-purpose">3. The purpose of your re-use</h2>
+    <p>
+      We will ask you about your planned activities including anticipated outcomes and who will be able to access the outcomes of your computational analysis.
+    </p>
+    <p>
+      Responses to this section may be published in the future for example if we receive a freedom of information request.
+    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Purpose and Activities</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>Your answers to this section may be published alongside your statement in the future.</p>
+          <ol start="10">
+            <li>Please give any project or product name associated with this work</li>
+            <li>If possible, please share a link to the project or product site</li>
+            <li>
+              What is the main purpose of your project or product?
+              <br />
+              Tick all that apply
+              <ul>
+                <li>Publish legal information</li>
+                <li>Produce summaries and interpretation of the records</li>
+                <li>Research and develop new technologies</li>
+                <li>Research activity and trends across records</li>
+                <li>Deliver a consumer service</li>
+                <li>Other (please specify)</li>
+              </ul>
+            </li>
+          </ol>
+          <ol start="13">
+            <li>
+              Which one best describes who will be able to access the outcomes of your computational analysis?
+              <br />
+              Tick all that apply
+              <ul>
+                <li>Public access (e.g. anyone can freely access)</li>
+                <li>Restricted access (e.g. only subscribers or research peers)</li>
+                <li>Internal access (e.g. only colleagues from within your organisation)</li>
+                <li>Private for personal use only</li>
+              </ul>
+            </li>
+          </ol>
+          <ol start="14">
+            <li>
+              Which individuals or communities will benefit from your computational analysis?
+              <br />
+              Tick all that apply
+              <ul>
+                <li>General Public</li>
+                <li>Legal professionals and law firms</li>
+                <li>Court users (e.g. litigants in person)</li>
+                <li>The Judiciary</li>
+                <li>Public bodies</li>
+                <li>Researchers and academics</li>
+                <li>A specific community (please specify)</li>
+                <li>A specific (non-legal) profession (please specify).</li>
+                <li>Other (please specify)</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </details>
+    <h2 id="section-statement">4. A public statement</h2>
+    <p>
+      We will ask you to write a brief public statement that summarises the reasons why you want to perform computational analysis. This statement should include:
+    </p>
+    <ul>
+      <li>purpose and anticipated outcomes</li>
+      <li>individuals or communities served</li>
+      <li>methodologies or activities this will involve</li>
+    </ul>
+    <p>You should aim for no more than 250 words in your public statement.</p>
+    <p>
+      Responses to this section may be published in the future, for example if we receive a freedom of information (FOI) request.
+    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Public statement</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="transactional-licence-form-content">
+          <p>This may be published alongside your statement in the future</p>
+          <ol start="15">
+            <li>
+              Please provide a public statement that briefly describes:
+              <ul>
+                <li>purpose and anticipated outcomes</li>
+                <li>individuals or communities served</li>
+                <li>methodologies or activities this will involve</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </details>
+    <h2 id="section-principles">5. Statements and principles</h2>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Statements and principles</span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <span class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Information</span>
+            In the interests of transparency, we may publish your responses to some of the principles, alongside your public statement and details of your
+            organisation in the future - we will tell you which responses, as you fill in the application process.
+          </span>
+        </div>
+        <div class="transactional-licence-form-content">
+          <h4>1. Dignity of the Courts</h4>
+          <p>
+            It is important that any analysis maintains the dignity of the courts and tribunals and does not undermine their functioning as working bodies. This is consistent with access to justice.
+          </p>
+          <ol start="16">
+            <li>
+              Licence holders must not undermine the courts and tribunals’ ability to function as working bodies. Do you accept this licence term?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Please describe
+              <br />
+              a. the risks you have identified and
+              <br />
+              b. how you will protect the ability for the courts and tribunals to function.
+              <br />
+              You should consider anything that may undermine the ability for the justice system to operate impartially and with integrity and treat all members of
+              the public equally and fairly, no matter who they are.
+            </li>
+          </ol>
+          <h4>2. Independence of the Court</h4>
+          <p>It is important that any analysis respects the independence of the judiciary and their impartial judgment.</p>
+          <ol start="18">
+            <li>
+              Licence holders must respect the independence of the judiciary. Do you accept this licence term?
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Please describe
+              <br />
+              a. the risks you have identified and
+              <br />
+              b. how you will protect the independence of the justice system
+              <br />
+              You should consider anything that may undermine the ability for the justice system to be fair and transparent, free of any influence outside the rule of law.
+            </li>
+          </ol>
+          <h4>3. Appropriate Scrutiny</h4>
+          <p>
+            We seek to encourage the analysis of machine-readable judgments to allow the public to scrutinise justice outcomes and the law more effectively.
+            We also acknowledge that the incomplete nature of the dataset and the current lack of safeguard against opaque or biased methodologies increases the risk of inaccurate or biased conclusions which may cause harm to individuals named therein.
+          </p>
+          <ol start="20">
+            <li>
+              Licence holders must acknowledge the incomplete nature of the dataset and apply appropriate scrutiny. Do you accept this licence term?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will the computational analysis focus on specific individuals or specific groups of people?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will you anonymise individuals before you analyse records?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              How will you prevent anonymised people from being re-identified? This is referred to as jigsaw identification. This involves putting together information in a way that identifies individuals even if they have been anonymised. Please describe the actions you will take to reduce the ability to identify individuals after they have been anonymised.
+            </li>
+          </ol>
+          <h4>4. Anti-Discriminatory Harm</h4>
+          <p>
+            Outcomes of analysis should not cause direct discriminatory harm and reasonable steps should be taken by the re-user to avoid introducing or compounding bias.
+          </p>
+          <ol start="24">
+            <li>
+              Licence holders must take actions to prevent discriminatory harm. Do you accept this licence term?
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Please describe how you will monitor for and address any harmful outcomes including:
+              <br />
+              a. misleading analysis or conclusions
+              <br />
+              b. discrimination against individuals or communities
+            </li>
+          </ol>
+          <h4>5. Anti-bias</h4>
+          <p>
+            Re-users have responsibility to operate effective governance to ensure that bias does not enter the process over time
+          </p>
+          <ol start="26">
+            <li>
+              Licence holders must ensure bias does not enter their process. Do you agree with this licence term?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will you regularly review algorithms for bias?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>Please describe how you will regularly monitor for bias</li>
+            <li>
+              Do you have a code of ethics?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Does an impartial party review your work against an ethical framework?
+              <br />
+              For example, an Ethics Advisory Board (EAB) or Research Ethics Committee (REC)
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>Please describe any ethical governance structures you have in place</li>
+          </ol>
+          <h4>6. Personal Privacy</h4>
+          <p>
+            Re-users should satisfy themselves that their practices comply with the standards set out in
+            the DPA and UK GDPR regarding data security and data subjects’ rights, regardless of their location.
+          </p>
+          <p>
+            Please note that this licence:
+            <ul>
+              <li>is not a data sharing agreement for personal data</li>
+              <li>
+                is not a processing agreement for personal data You can read more about the licencing framework on the Find Case Law site
+              </li>
+            </ul>
+          </p>
+          <ol start="32">
+            <li>
+              Please describe any personal privacy or data protection regimes you are complying with. Example regimes include UK General Data Protection Regulations (UKGDPR) or UK Data Protection Act
+            </li>
+          </ol>
+          <h4>7. Discoverability</h4>
+          <p>
+            We acknowledge a distinction between publicly available and readily available information. For example, care should be given to data subjects’ discoverability in line
+            with MoJ/The National Archives’ decision not to index the content of judgments on search engines.
+          </p>
+          <ol start="33">
+            <li>
+              Licence holders must not index the contents of judgments and decisions on search engines. Do you agree to this term of the licence?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will you make the entire record available online?
+              <br />
+              For example this may include publishing a full judgment to users of a digital service
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will data extracted from these records be published online?
+              <br />
+              Any statistical analysis for example: lists of citations or entities from within the records,
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will you make your methodology available for scrutiny online?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will you analyse and publish findings online?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Describe what you will do to prevent third party services from crawling or scraping either:
+              <br />
+              a. the text of the records and /or,
+              <br />
+              b. data you have extracted from the records
+            </li>
+          </ol>
+          <h4>8. Algorithmic Transparency</h4>
+          <p>Where possible, algorithms should be explainable and transparent</p>
+          <ol start="39">
+            <li>
+              Do you intend to use computational analysis to do any of the following?
+              <br />
+              Tick all that apply
+              <br />
+              <ul>
+                <li>Produce fully automated legal advice</li>
+                <li>Perform automation to anticipate legal decisions directly for a client or consumer</li>
+                <li>Directly inform or influence the decision of a third-party whether to pursue justice or legal action</li>
+                <li>None of the above</li>
+              </ul>
+            </li>
+            <li>
+              Will you notify people when they are using generative AI services or content?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+                <li>Not using Generative AI</li>
+              </ul>
+            </li>
+            <li>
+              Please give as much detail as you can about how you will be transparent in your use of algorithms to people using your project or product
+            </li>
+          </ol>
+          <h4>9. Accurate data representation</h4>
+          <p>
+            The ‘Find Case Law’ service comprises an incomplete set of court judgments and tribunal decisions. Outcomes from analysis should therefore reflect the limitations of the data and avoid misrepresenting the significance of findings.
+          </p>
+          <ol start="42">
+            <li>
+              Licence holders must avoid misrepresenting the significance of findings. Do you agree with this licence term?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>
+              Will you explain how the limits of the find case law collection impacts your computational analysis to users?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>Please describe how you will notify people that the records may not be representative</li>
+            <li>
+              Occasionally records that have been published will be revised and taken down by the court. Licence holders must regularly check to make sure they are re-using the authoritative version of the record. Do you agree to this licence term?
+              <br />
+              <ul>
+                <li>Yes</li>
+                <li>No</li>
+              </ul>
+            </li>
+            <li>Please describe how you will make sure the records you use are the most up to date list of published records?</li>
+          </ol>
+        </div>
+      </details>
+      <h2 id="section-comments">6. Additional comments</h2>
+      <p>There will be space at the end of the application for any additional comments you wish to make.</p>
+      <h2 id="section-apply">Apply Now</h2>
+      <p>Please apply by downloading and completing the application form below.</p>
+      <p>
+        Once you have completed the application form, please save as an attachment and email The National Archives Licence team: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>.
+      </p>
+      <p>
+        It may take a few weeks until you receive a decision on your application. You can read more about the approval process on the licence application process page.
+      </p>
+      <a role="button"
+         tabindex="0"
+         draggable="false"
+         class="govuk-button"
+         data-module="govuk-button"
+         value="I want to perform computational analysis"
+         href="{% static '/documents/Find_Case_Law_Computational_Analysis_Licence_Application_Form.docx' %}">Download application form (Microsoft Word 85.7 KB)</a>
+      <h2 id="section-contact">Contact</h2>
+      <p>
+        If you have any questions about licencing, please email the licence team: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>.
+      </p>
+    </div>
+  </div>
+{% endblock content %}

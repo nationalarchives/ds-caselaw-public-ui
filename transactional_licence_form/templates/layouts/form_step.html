@@ -15,14 +15,9 @@
         Step <b>{{ wizard.steps.step1|add:"1" }}</b> of {{ wizard.steps.count|add:"1" }}
       </h3>
     {% endblock step_number %}
-    <div class="transactional-licence-form__pre-form-content">
-      {% block pre_form %}
-      {% endblock pre_form %}
-    </div>
-    <form action=""
-          method="post"
-          id="transactional-licence-form-form"
-          novalidate>
+    {% block pre_form %}
+    {% endblock pre_form %}
+    <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ wizard.management_form }}
       {% if wizard.form.forms %}{{ wizard.form.management_form }}{% endif %}
@@ -39,11 +34,9 @@
       <div>
         {% if wizard.steps.prev %}
           <button name="wizard_goto_step"
-                  type="button"
-                  id="transactional-licence-form-previous-button"
+                  type="submit"
                   class="button-secondary button-inline"
-                  value="{{ wizard.steps.prev }}"
-                  style="display:none">Previous</button>
+                  value="{{ wizard.steps.prev }}">Previous</button>
         {% endif %}
         <input type="submit"
                class="button-inline {% if reviewing %}button-secondary{% else %}button-cta{% endif %}"
