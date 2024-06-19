@@ -1,0 +1,74 @@
+.beta-header {
+  margin: 0.5rem 4rem;
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    padding: 1rem;
+  }
+
+  &__tna-logo {
+    width: 100px;
+    height: 100px;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    margin-left: -6rem;
+
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      max-width: 100px;
+      margin-left: -5rem;
+    }
+  }
+
+  &__service {
+    display: flex;
+    flex-direction: column;
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      margin-top: 7rem;
+      position: sticky;
+      padding: 1.25rem;
+      margin-left: -6rem;
+    }
+  }
+
+  &__service-title {
+    font-size: 2.5rem;
+    line-height: 0.8rem;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    color: $color-white;
+    white-space: nowrap;
+
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      font-size: 2rem;
+      line-height: 1.8rem;
+      padding-right: 8rem;
+      margin-top: -4rem;
+    }
+  }
+
+  &__beta-label {
+    background-color: $color-yellow;
+    color: $color-black;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    vertical-align: 2px;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  &__helper-text {
+    display: inline-block;
+    position: sticky;
+    font-size: 1.2rem;
+    font-family: "Roboto", sans-serif;
+    color: #ffb952;
+    line-height: 1.6rem;
+    margin-top: -1.3rem;
+
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      max-width: 200px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      line-height: 0.6rem;
+    }
+  }
+}

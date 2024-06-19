@@ -17,6 +17,7 @@ $govuk-focus-colour: $color-focus-blue-outline;
 
 // Components
 @import "includes/animations";
+@import "includes/beta_header";
 @import "includes/browse_by_court";
 @import "includes/buttons";
 @import "includes/cookie_consent/cookie-consent";
