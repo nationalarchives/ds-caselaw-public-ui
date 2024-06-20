@@ -155,13 +155,17 @@ class TestSearchUtils(unittest.TestCase):
         """
         process_court_facets returns court facets, and invalid facets.
         """
-        raw_facets = {"EAT": "3", "INVALID": "5", "": "1"}
-        eat_court_code = all_courts.get_by_code("EAT")
+        raw_facets = {"EAT": "3", "EWHC-KBD-TCC": "20", "INVALID": "5", "": "1"}
+        court_code = all_courts.get_by_code("EWHC-KBD-TCC")
+        tribunal_code = all_courts.get_by_code("EAT")
 
-        remaining_facets, court_facets = process_court_facets(raw_facets)
+        remaining_facets, court_facets, tribunal_facets = process_court_facets(
+            raw_facets
+        )
 
         self.assertEqual(remaining_facets, {"INVALID": "5", "": "1"})
-        self.assertEqual(court_facets, {eat_court_code: "3"})
+        self.assertEqual(court_facets, {court_code: "20"})
+        self.assertEqual(tribunal_facets, {tribunal_code: "3"})
 
     def test_process_year_facets(self):
         """

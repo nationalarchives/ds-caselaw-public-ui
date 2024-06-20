@@ -69,6 +69,7 @@ def advanced_search(request):
         else:
             context: dict = {}
             court_facets: dict = {}
+            tribunal_facets: dict = {}
             year_facets: dict = {}
             query_params: dict = {}
             query_text: str = form.cleaned_data.get("query", "")
@@ -155,8 +156,8 @@ def advanced_search(request):
 
             # If a query was provided, get relevant search facets to display to the user
             if search_parameters.query:
-                unprocessed_facets, court_facets = process_court_facets(
-                    search_response.facets, form.cleaned_data.get("court", [])
+                unprocessed_facets, court_facets, tribunal_facets = (
+                    process_court_facets(search_response.facets, courts_and_tribunals)
                 )
                 unprocessed_facets, year_facets = process_year_facets(
                     unprocessed_facets
@@ -172,6 +173,7 @@ def advanced_search(request):
                 "query": query_text,
                 "requires_from_warning": requires_from_warning,
                 "court_facets": court_facets,
+                "tribunal_facets": tribunal_facets,
                 "year_facets": year_facets,
                 "search_results": search_response.results,
                 "total": search_response.total,

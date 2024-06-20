@@ -1,7 +1,7 @@
 {% load court_utils %}
 <div>
   <h4>
-    <a href="{% url "search" %}?court={{ court.canonical_param }}">{{ court.grouped_name }}</a>
+    <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court.grouped_name }}</a>
   </h4>
   <p>
     {{ court | get_court_judgments_count }} documents from
