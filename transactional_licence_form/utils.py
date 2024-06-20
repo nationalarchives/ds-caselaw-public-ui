@@ -5,12 +5,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from django.conf import settings
+from django.template.loader import render_to_string
 
 DISALLOWED_CHARACTERS = {"<": "&lt;", ">": "&gt;"}
 
 COUNTRIES_AND_TERRITORIES_JSON_PATH = (
     "ds_judgements_public_ui/static/js/location-autocomplete-canonical-list.json"
 )
+
+EMAIL_TEMPLATE_PATH = "dynamics_email_template.txt"
 
 
 class EmailSender:
@@ -76,32 +79,12 @@ def sanitize_value(value):
     return sanitized
 
 
-def format_and_sanitize_field(key, value):
-    if isinstance(value, dict):
-        return format_and_sanitize_composite_field(key, value)
-    elif key == "agent_country":
-        return [(key, countries_and_territories_dict().get(value))]
-    else:
-        return [(key, sanitize_value(value))]
-
-
-def format_and_sanitize_composite_field(key, value):
-    lines = []
-    for key2 in value.keys():
-        combined_key = "%s_%s" % (key, key2)
-        lines = lines + format_and_sanitize_field(combined_key, value[key2])
-    return lines
-
-
 def sanitize_and_format_response_as_xml(form_data):
-    lines = []
+    sanitized_fields = {}
     for key, value in form_data.items():
-        field_lines = format_and_sanitize_field(key, value)
-        for key2, sanitized_value in field_lines:
-            xml_key = xml_key_for(key2)
-            lines.append(f"<{xml_key}>{sanitized_value}</{xml_key}>")
-    return "\n".join(lines)
-
-
-def xml_key_for(key):
-    return key.replace("_choices", "") if key.endswith("_choices") else key
+        if isinstance(value, dict):
+            for key2, value2 in value.items():
+                sanitized_fields[f"{key}_{key2}"] = sanitize_value(value2)
+        else:
+            sanitized_fields[key] = sanitize_value(value)
+    return render_to_string(EMAIL_TEMPLATE_PATH, sanitized_fields)

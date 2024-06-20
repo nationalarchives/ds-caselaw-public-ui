@@ -6,6 +6,14 @@ register = template.Library()
 
 
 @register.filter
+def default_if_empty(value, default):
+    if value is not None and len(value.strip()) > 0:
+        return value
+    else:
+        return default
+
+
+@register.filter
 def submit_label_for_step(step):
     match step:
         case "nine-principles":
@@ -37,9 +45,14 @@ def get_form(form_key, all_forms):
 
 
 @register.filter
+def get_country_name(code):
+    return countries_and_territories_dict().get(code)
+
+
+@register.filter
 def format_value_for_review(value, key):
     if key == "agent_country":
-        return countries_and_territories_dict().get(value)
+        return get_country_name(value)
     elif isinstance(value, list):
         return ", ".join(value)
     elif isinstance(value, dict):
