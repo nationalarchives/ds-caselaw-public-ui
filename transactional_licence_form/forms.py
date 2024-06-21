@@ -38,7 +38,7 @@ class ContactForm(FCLForm):
             "for the licence. This should be someone senior who has overall responsibility "
             "for complaince with the terms and conditions of the licence."
         ),
-        choices=list_to_choices(choices.ALTERNATIVE_CONTACT_CHOICES),
+        choices=choices.ALTERNATIVE_CONTACT_CHOICES,
     )
     licence_holder_lastname = fields.FCLCharField(
         label="1a. Licence holder Full Name",

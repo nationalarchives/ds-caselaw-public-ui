@@ -11,8 +11,7 @@ let setupTogglableFields = function () {
     var licenceHolderEmailId = "div_id_contact-licence_holder_email";
     var licenceHolderControlSelector =
         "#div_id_contact-alternative_contact input";
-    var licenceHolderVisibleValue =
-        "This is a different person (please enter their details below)";
+    var licenceHolderVisibleValue = "Yes";
 
     let toggleFieldState = function (element) {
         if (element && element.value == licenceHolderVisibleValue) {
