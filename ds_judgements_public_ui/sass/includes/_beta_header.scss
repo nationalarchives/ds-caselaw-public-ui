@@ -10,6 +10,12 @@
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
     margin-left: -6rem;
+    margin-right: 6rem;
+
+    @media only screen and (max-width: 980px) {
+      max-width: 100px;
+      margin-left: -5rem;
+    }
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       max-width: 100px;
@@ -35,6 +41,7 @@
     font-family: "Roboto", sans-serif;
     color: $color-white;
     white-space: nowrap;
+    font-weight: bold;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       font-size: 2rem;
@@ -61,8 +68,9 @@
     font-size: 1.2rem;
     font-family: "Roboto", sans-serif;
     color: #ffb952;
-    line-height: 1.6rem;
+    line-height: 1.5rem;
     margin-top: -1.3rem;
+    white-space: nowrap;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       max-width: 200px;
