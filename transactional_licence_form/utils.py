@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.utils.safestring import mark_safe
 
 DISALLOWED_CHARACTERS = {"<": "&lt;", ">": "&gt;"}
 
@@ -76,7 +77,7 @@ def sanitize_value(value):
         sanitized = ", ".join(sanitized)
     for remove, replacement in DISALLOWED_CHARACTERS.items():
         sanitized = sanitized.replace(remove, replacement)
-    return sanitized
+    return mark_safe(sanitized)
 
 
 def sanitize_and_format_response_as_xml(form_data):
