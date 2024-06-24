@@ -1,4 +1,4 @@
-{% load static i18n waffle_tags %}
+{% load static i18n waffle_tags navigation_tags %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -27,8 +27,6 @@
     {% include "includes/gtm/gtm_head.html" %}
   </head>
   <body>
-    <script src="{% static 'js/src/nav_script.js' %}"></script>
-
     <script>
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
@@ -66,18 +64,18 @@
                       Menu
                     </button>
                     <ul id="navigation" class="govuk-header__navigation-list">
-                      <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-                        <a class="govuk-header__link" href="{% url 'home' %}">
+                      <li class="{% navigation_item_class 'home' %}">
+                        <a class="govuk-header__link" title="Home" href="{% url 'home' %}">
                           Home
                         </a>
                       </li>
-                      <li class="govuk-header__navigation-item">
-                        <a class="govuk-header__link" href="{% url 'about_this_service' %}">
+                      <li class="{% navigation_item_class 'about_this_service' %}">
+                        <a class="govuk-header__link" title="About" href="{% url 'about_this_service' %}">
                           About
                         </a>
                       </li>
-                      <li class="govuk-header__navigation-item">
-                        <a class="govuk-header__link" href="{% url 'how_to_use_this_service' %}">
+                      <li class="{% navigation_item_class 'how_to_use_this_service' %}">
+                        <a class="govuk-header__link" title="Help and guidance" href="{% url 'how_to_use_this_service' %}">
                           Help and guidance
                         </a>
                       </li>
