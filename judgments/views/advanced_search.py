@@ -172,6 +172,7 @@ def advanced_search(request):
             context = context | {
                 "query": query_text,
                 "requires_from_warning": requires_from_warning,
+                "earliest_record": get_minimum_valid_year(),
                 "court_facets": court_facets,
                 "tribunal_facets": tribunal_facets,
                 "year_facets": year_facets,

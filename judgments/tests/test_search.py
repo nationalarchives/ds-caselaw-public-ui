@@ -142,7 +142,7 @@ class TestSearchResults(TestCase):
                 <span class="advice-message__heading-icon">I</span>mportant information
             </h>
             <div class="advice-message__message">
-            This time range starts before our official start date, results may be limited.
+            This date range starts before our earliest record, which is from 2003, results may be limited.
             </div>
         </div>
 """
