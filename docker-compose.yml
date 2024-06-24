@@ -54,6 +54,14 @@ services:
       - "7000:7000"
     command: /start-docs
 
+  e2e_tests:
+    build:
+      context: ./e2e_tests
+      dockerfile: "../compose/local/e2e_tests/Dockerfile"
+    profiles: [e2e_tests]
+    volumes:
+      - "./e2e_tests:/app:z"
+
 networks:
   default:
     name: caselaw
