@@ -135,11 +135,11 @@ jobs:
         run: "pip install requests"
 
       - name: Run marklogic docker container
-        run: docker-compose up -d
+        run: docker compose up -d --wait
         working-directory: "./marklogic"
 
       - name: Deploy marklogic configuration
-        run: sleep 30 && gradle mlDeploy
+        run: gradle mlDeploy
         working-directory: "./marklogic"
 
       - name: Populate marklogic DB with test data
