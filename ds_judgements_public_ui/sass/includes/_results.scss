@@ -53,4 +53,10 @@
     padding: $spacer-unit calc($spacer-unit * 2);
     margin: $spacer-unit 0;
   }
+
+  &__list-layout-container {
+    .govuk-warning-text {
+      margin-bottom: 1.5rem;
+    }
+  }
 }

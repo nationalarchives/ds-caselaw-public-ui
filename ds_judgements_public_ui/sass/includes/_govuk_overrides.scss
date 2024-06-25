@@ -119,6 +119,12 @@
   margin-bottom: 0;
 }
 
+.govuk-warning-text--text-only {
+  .govuk-warning-text__text {
+    padding-left: 0;
+  }
+}
+
 .govuk-warning-text__icon {
   background-color: #fef8df;
   color: $color-black;
@@ -127,8 +133,14 @@
   transform: rotate(180deg);
 }
 .govuk-warning-text__text {
-  position: relative;
-  bottom: 7px;
+  h3 {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .govuk-warning-text {

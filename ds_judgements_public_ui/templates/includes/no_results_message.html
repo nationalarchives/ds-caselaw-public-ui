@@ -1,32 +1,34 @@
-<div class="no-results-message">
-  <h2>
-    {% if title %}
-      {{ title }}
-    {% else %}
-      No results have been found
-    {% endif %}
-  </h2>
-  <p>
-    If you're unable to find a particular judgment, you may wish to check
-    <a href="{% url 'about_this_service' %}#section-coverage">if we cover that court and date</a>.
-  </p>
-  <p>In particular, we have:</p>
-  <ul>
-    <li>
-      <strong>no</strong> court judgments before 2003
-    </li>
-    <li>
-      <strong>no</strong> Scottish, Northern Irish or Irish court judgments or tribunal decisions
-    </li>
-    <li>
-      <strong>no</strong> Crown Court, County Court or Magistrates' Court judgments
-    </li>
-    <li>only a limited selection of tribunal decisions</li>
-  </ul>
-  <p>
-    Ex tempore (verbal) judgments that are not routinely transcribed may not be sent to the archive, please contact the court or tribunal directly.
-  </p>
-  <p>
-    If you are looking for a judgment that has been recently handed down and it has been longer than two working days, it is likely that we have not received it, please contact the court or tribunal directly.
-  </p>
+<div class="govuk-warning-text govuk-warning-text--text-only">
+  <div class="govuk-warning-text__text">
+    <h3>
+      {% if title %}
+        {{ title }}
+      {% else %}
+        No results have been found
+      {% endif %}
+    </h3>
+    <p>
+      If you're unable to find a particular judgment, you may wish to check
+      <a href="{% url 'about_this_service' %}#section-coverage">if we cover that court and date</a>.
+    </p>
+    <p>In particular, we have:</p>
+    <ul>
+      <li>
+        <strong>no</strong> court judgments before 2003
+      </li>
+      <li>
+        <strong>no</strong> Scottish, Northern Irish or Irish court judgments or tribunal decisions
+      </li>
+      <li>
+        <strong>no</strong> Crown Court, County Court or Magistrates' Court judgments
+      </li>
+      <li>only a limited selection of tribunal decisions</li>
+    </ul>
+    <p>
+      Ex tempore (verbal) judgments that are not routinely transcribed may not be sent to the archive, please contact the court or tribunal directly.
+    </p>
+    <p>
+      If you are looking for a judgment that has been recently handed down and it has been longer than two working days, it is likely that we have not received it, please contact the court or tribunal directly.
+    </p>
+  </div>
 </div>
