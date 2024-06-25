@@ -83,12 +83,78 @@ jobs:
 
       - name: Run Django Tests with coverage
         run: docker-compose run django coverage run -m pytest -vvvv -rsa -m "not local"
-
       - name: Generate coverage XML
         run: docker-compose run django coverage xml
 
       - name: Run mypy
         run: docker-compose run django mypy ds_judgements_public_ui judgments
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+
+      - name: Upload coverage to CodeClimate
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+
+      - name: Tear down the Stack
+        run: docker-compose down
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Copy .env.example file
+        uses: canastro/copy-file-action@master
+        with:
+          source: ".env.example"
+          target: ".env"
+
+      - name: Create docker network as used in dev
+        run: docker network create caselaw
+
+      - name: Build the Stack
+        run: docker-compose build postgres django
+
+      - name: Checkout Marklogic repo
+        uses: actions/checkout@v4
+        with:
+          repository: "nationalarchives/ds-caselaw-marklogic"
+          path: "./marklogic"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+
+      - name: Install requests
+        run: "pip install requests"
+
+      - name: Run marklogic docker container
+        run: docker compose up -d --wait
+        working-directory: "./marklogic"
+
+      - name: Deploy marklogic configuration
+        run: gradle mlDeploy
+        working-directory: "./marklogic"
+
+      - name: Populate marklogic DB with test data
+        run: python ./development_scripts/populate_from_caselaw.py
+        working-directory: "./marklogic"
+
+      - name: Publish imported documents
+        run: gradle publishAllDocuments
+        working-directory: "./marklogic"
+
+      - name: Run DB Migrations
+        run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
+
+      - name: Run Django Translation Compiling
+        run: docker-compose run --rm django python manage.py compilemessages
 
       - name: Setup django server for e2e tests
         run: docker-compose up -d
@@ -110,13 +176,9 @@ jobs:
       - name: Run playwright e2e tests
         run: docker-compose run e2e_tests pytest --base-url http://django:3000
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-
-      - name: Upload coverage to CodeClimate
-        uses: paambaati/codeclimate-action@v5.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+      - name: Tear down marklogic
+        run: docker-compose down
+        working-directory: "./marklogic"
 
       - name: Tear down the Stack
         run: docker-compose down
