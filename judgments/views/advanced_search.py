@@ -34,10 +34,15 @@ def _do_dates_require_warnings(from_date, total_results):
     if it is, then we provide a warning letting them know.
     """
     from_warning = False
+    warning = None
     if from_date:
         if from_date.year < settings.MINIMUM_WARNING_YEAR or total_results < 1:
             from_warning = True
-    return from_warning
+            warning = f"""
+                    {from_date.year} is before {settings.MINIMUM_WARNING_YEAR},
+                    the date of the oldest record on the Find Case Law service.
+                    Showing results from {get_minimum_valid_year()}."""
+    return from_warning, warning
 
 
 @csrf_exempt
@@ -168,12 +173,14 @@ def advanced_search(request):
                 for key, value in params.items()
                 if value is not None and not key == "page"
             }
+            requires_warning, warning = _do_dates_require_warnings(
+                from_date, search_response.total
+            )
             # Populate context to provide feedback about filters etc. back to user
             context = context | {
                 "query": query_text,
-                "requires_from_warning": _do_dates_require_warnings(
-                    from_date, search_response.total
-                ),
+                "requires_from_warning": requires_warning,
+                "date_warning": warning,
                 "earliest_record": get_minimum_valid_year(),
                 "court_facets": court_facets,
                 "tribunal_facets": tribunal_facets,

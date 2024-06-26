@@ -2,5 +2,5 @@
   <h class="advice-message__heading">
     <span class="advice-message__heading-icon">I</span>mportant information
   </h>
-  <div class="advice-message__message">{{ message }}</div>
+  <div class="advice-message__message">{{ message }} {% if url_value and url_text %}<a href="{{ url_value }}{% if url_anchor %}{{ url_anchor }}{% endif %}">{{ url_text }}</a>{% endif %}</div>
 </div>

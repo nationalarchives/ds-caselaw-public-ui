@@ -15,9 +15,8 @@
           {% endwith %}
         {% endif %}
         {% if context.requires_from_warning %}
-          {% with message="This date range starts before our earliest record, which is from %s, results may be limited."|interpolate:context.earliest_record %}
-            {% include "includes/advice_message.html" with message=message %}
-          {% endwith %}
+          {% url "about_this_service" as url_value %}
+          {% include "includes/advice_message.html" with message=context.date_warning url_text="Read more" url_value=url_value url_anchor="#section-coverage" %}
         {% endif %}
         {% if context.search_results %}
           <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>

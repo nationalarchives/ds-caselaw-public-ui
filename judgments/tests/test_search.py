@@ -146,7 +146,9 @@ class TestSearchResults(TestCase):
                 <span class="advice-message__heading-icon">I</span>mportant information
             </h>
             <div class="advice-message__message">
-            This date range starts before our earliest record, which is from 2003, results may be limited.
+                1444 is before 2003, the date of the oldest record on the Find Case Law service.
+                Showing results from 2003.
+                <a href="/about-this-service#section-coverage">Read more</a>
             </div>
         </div>
 """
@@ -159,14 +161,14 @@ class TestSearchResults(TestCase):
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_judgment_advanced_search_not_warning_user_with_date_before_minimum_warning_year(
+    def test_judgment_advanced_search_not_warning_user_with_date_after_minimum_warning_year(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
         """
         GIVEN a client for making HTTP requests
         WHEN a GET request is made to "/judgments/search?query=waltham+forest"
         AND the from_date is after `settings.MINIMUM_WARNING_YEAR`
-        THEN the response not should contain the date range warning
+        THEN the response should contain the date range warning
 
         The expected applied filters HTML:
         - Includes a div with class `advice-message`
