@@ -5,7 +5,11 @@ from django.test import TestCase
 from ds_caselaw_utils import courts as all_courts
 
 from judgments.tests.factories import CourtDateFactory
-from judgments.tests.fixtures import FakeSearchResponse, FakeSearchResponseNoFacets
+from judgments.tests.fixtures import (
+    FakeSearchResponse,
+    FakeSearchResponseNoFacets,
+    FakeSearchResponseNoResults,
+)
 from judgments.tests.utils.assertions import assert_contains_html
 
 
@@ -155,6 +159,73 @@ class TestSearchResults(TestCase):
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_judgment_advanced_search_not_warning_user_with_date_before_minimum_warning_year(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest"
+        AND the from_date is after `settings.MINIMUM_WARNING_YEAR`
+        THEN the response not should contain the date range warning
+
+        The expected applied filters HTML:
+        - Includes a div with class `advice-message`
+        """
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        expected_html = """
+        <div class="advice-message">
+            <h class="advice-message__heading">
+                <span class="advice-message__heading-icon">I</span>mportant information
+            </h>
+            <div class="advice-message__message">
+            This date range starts before our earliest record, which is from 2003, results may be limited.
+            </div>
+        </div>
+"""
+
+        response = self.client.get(
+            "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=2011"
+        )
+
+        self.assertNotContains(response, expected_html)
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_judgment_advanced_search_not_warning_user_with_no_results(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/judgments/search?query=waltham+forest"
+        AND the from_date is before `settings.MINIMUM_WARNING_YEAR`
+        AND there are no results returned
+        THEN the response not should contain the date range warning
+
+        The expected applied filters HTML:
+        - Includes a div with class `advice-message`
+        """
+        mock_search_judgments_and_parse_response.return_value = (
+            FakeSearchResponseNoResults()
+        )
+        expected_html = """
+        <div class="advice-message">
+            <h class="advice-message__heading">
+                <span class="advice-message__heading-icon">I</span>mportant information
+            </h>
+            <div class="advice-message__message">
+            This date range starts before our earliest record, which is from 2003, results may be limited.
+            </div>
+        </div>
+"""
+
+        response = self.client.get(
+            "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444"
+        )
+
+        self.assertNotContains(response, expected_html)
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_court_filters(
         self,
         mock_search_judgments_and_parse_response,
@@ -246,6 +317,8 @@ class TestSearchResults(TestCase):
         - The second link represents the "Chancery Division of the High Court" filter
         - The third link represents the "Intellectual Property Enterprise Court" filter
         """
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
         response = self.client.get(
             "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=2011"
         )
