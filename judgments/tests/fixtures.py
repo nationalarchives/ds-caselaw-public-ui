@@ -28,8 +28,19 @@ class FakeSearchResponseBaseClass:
     modify attributes
     """
 
-    total = 2
-    results = [FakeSearchResult(), FakeSearchResult()]
+    total = 200
+    results = [
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+        FakeSearchResult(),
+    ]
     facets = {
         "EAT": "3",
         "EWHC-KBD-TCC": "1",
