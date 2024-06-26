@@ -56,7 +56,7 @@
 
   &__list-layout-container {
     .govuk-warning-text {
-      margin-bottom: 1.5rem;
+      margin-bottom: calc($spacer-unit * 2);
     }
   }
 }

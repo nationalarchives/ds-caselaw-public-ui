@@ -133,7 +133,8 @@
   transform: rotate(180deg);
 }
 .govuk-warning-text__text {
-  h3 {
+  h2 {
+    font-size: $typography-header-h3-size;
     font-weight: bold;
     margin: 0;
   }
