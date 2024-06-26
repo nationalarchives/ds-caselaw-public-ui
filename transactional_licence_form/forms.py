@@ -242,7 +242,7 @@ class NinePrinciplesStatementForm(FCLForm):
 
     principles_statement = fields.FCLCharField(
         label="29. Please describe how you will meet the 9 principles as terms.",
-        widget=forms.Textarea(attrs={"maxlength": 5000}),
+        widget=forms.Textarea(attrs={"maxlength": 500000}),
     )
 
 
