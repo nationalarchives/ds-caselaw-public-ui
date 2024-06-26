@@ -1,13 +1,13 @@
 {% load static i18n search_results_filters utilities waffle_tags %}
 <h2>Results listing</h2>
-<ul class="judgment-listing__list {% if not context.paginator.has_next_page %}judgment-listing__list--last-page{% endif %}">
-  {% for item in context.search_results %}
+<ul class="judgment-listing__list {% if not paginator.has_next_page %}judgment-listing__list--last-page{% endif %}">
+  {% for item in search_results %}
     <li>
-      {% if item|is_exact_match:context.query %}
+      {% if item|is_exact_match:query %}
         <span class="judgment-listing__exact-match-label">
-          {% if item|is_exact_title_match:context.query %}
+          {% if item|is_exact_title_match:query %}
             {% translate "results.exact_title_match" %}
-          {% elif item|is_exact_ncn_match:context.query %}
+          {% elif item|is_exact_ncn_match:query %}
             {% translate "results.exact_ncn_match" %}
           {% endif %}
         </span>
@@ -16,8 +16,8 @@
         <span>
           <span class="judgment-listing__title">
             {% flag "highlight_search_query" %}
-              {% if context.query %}
-                <a href="{% url 'detail' item.uri %}?query={{ context.query | urlencode }}">{{ item.name }}</a>
+              {% if query %}
+                <a href="{% url 'detail' item.uri %}?query={{ query | urlencode }}">{{ item.name }}</a>
               {% else %}
                 <a href="{% url 'detail' item.uri %}">{{ item.name }}</a>
               {% endif %}
@@ -32,7 +32,7 @@
           <time class="judgment-listing__date" datetime="{{ item.date }}">{{ item.date|date:"d M Y" }}</time>
         </span>
       </span>
-      {% if item|show_matches:context.query %}
+      {% if item|show_matches:query %}
         <span class="judgment-listing__result-term-matching">Matching text sample:</span>
         <span class="judgment-listing__matches">
           {% autoescape off %}

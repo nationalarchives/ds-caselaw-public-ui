@@ -4,7 +4,7 @@
   <meta name="robots" content="noindex,nofollow" />
 {% endblock robots %}
 {% block title %}
-  {% if context.page_title %}{{ context.page_title }} -{% endif %}
+  {% if page_title %}{{ page_title }} -{% endif %}
   Judgements and decisions by court or tribunal
 {% endblock title %}
 {% block content %}
@@ -22,13 +22,13 @@
       <div>
         <h2 class="courts-and-tribunals__header">Courts</h2>
       </div>
-      {% for group in context.courts %}
+      {% for group in courts %}
         {% include "includes/courts_and_tribunals_group.html" with group=group type="court" %}
       {% endfor %}
       <div>
         <h2 class="courts-and-tribunals__header">Tribunals</h2>
       </div>
-      {% for group in context.tribunals %}
+      {% for group in tribunals %}
         {% include "includes/courts_and_tribunals_group.html" with group=group type="tribunal" %}
       {% endfor %}
     </div>

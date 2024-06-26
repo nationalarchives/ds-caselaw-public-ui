@@ -101,7 +101,7 @@
   </p>
   <h3>Date ranges for judgments and decisions available on Find Case Law</h3>
   <ul class="court-listing">
-    {% for group in context.courts %}
+    {% for group in courts %}
       {% if group.display_heading %}
         <li>
           <span>{{ group.name }}</span>

@@ -1,3 +1,5 @@
+from typing import Any
+
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
@@ -12,7 +14,7 @@ from judgments.utils import api_client
 
 
 def index(request):
-    context = {}
+    context: dict[str, Any] = {}
     try:
         search_response = search_judgments_and_parse_response(
             api_client, SearchParameters(order="-date")
@@ -24,14 +26,14 @@ def index(request):
         raise Http404(
             "Search results not found"
         )  # TODO: This should be something else!
+
+    context["courts"] = all_courts.get_listable_courts()
+    context["tribunals"] = all_courts.get_listable_tribunals()
+    context["feedback_survey_type"] = "home"
+    context["form"] = AdvancedSearchForm()
+
     return TemplateResponse(
         request,
         "pages/home.html",
-        context={
-            "context": context,
-            "courts": all_courts.get_listable_courts(),
-            "tribunals": all_courts.get_listable_tribunals(),
-            "feedback_survey_type": "home",
-            "form": AdvancedSearchForm(),
-        },
+        context=context,
     )

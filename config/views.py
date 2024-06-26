@@ -19,11 +19,9 @@ class TemplateViewWithContext(TemplateView):
     page_title = None
 
     def get_context_data(self, **kwargs):
-        return {
-            "context": {
-                "page_title": gettext(self.page_title) if self.page_title else None
-            }
-        }
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = gettext(self.page_title) if self.page_title else None
+        return context
 
 
 class CourtsTribunalsListView(TemplateViewWithContext):
@@ -34,8 +32,8 @@ class CourtsTribunalsListView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["context"]["courts"] = courts.get_grouped_selectable_courts()
-        context["context"]["tribunals"] = courts.get_grouped_selectable_tribunals()
+        context["courts"] = courts.get_grouped_selectable_courts()
+        context["tribunals"] = courts.get_grouped_selectable_tribunals()
         context["feedback_survey_type"] = "courts_and_tribunals"
         return context
 
@@ -146,8 +144,8 @@ class StructuredSearchView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["context"]["courts"] = courts.get_grouped_selectable_courts()
-        context["context"]["tribunals"] = courts.get_grouped_selectable_tribunals()
+        context["courts"] = courts.get_grouped_selectable_courts()
+        context["tribunals"] = courts.get_grouped_selectable_tribunals()
         context["feedback_survey_type"] = "structured_search"
         context["form"] = AdvancedSearchForm()
         return context
@@ -163,7 +161,7 @@ class AboutThisServiceView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["context"]["courts"] = courts.get_listable_groups()
+        context["courts"] = courts.get_listable_groups()
         context["feedback_survey_type"] = "support"
         return context
 

@@ -2,9 +2,9 @@
   <h3>Results pagination</h3>
   <ul class="pagination__list">
     <li class="pagination__list-item">
-      {% if context.paginator.has_prev_page %}
+      {% if paginator.has_prev_page %}
         <a class="pagination__page-chevron-previous"
-           href="{{ request.path }}?{% if context.query_string %}{{ context.query_string }}&{% endif %}page={{ context.paginator.prev_page }}">
+           href="{{ request.path }}?{% if query_string %}{{ query_string }}&{% endif %}page={{ paginator.prev_page }}">
           <span>Previous page</span>
         </a>
       {% else %}
@@ -17,16 +17,16 @@
       <ol>
         <li class="pagination__list-item">
           <a class="pagination__page-link-current"
-             href="{{ request.path }}?{% if context.query_string %}{{ context.query_string }}&{% endif %}page={{ context.paginator.current_page }}"
-             aria-label="Current page, Page {{ context.paginator.current_page }}"
+             href="{{ request.path }}?{% if query_string %}{{ query_string }}&{% endif %}page={{ paginator.current_page }}"
+             aria-label="Current page, Page {{ paginator.current_page }}"
              aria-current="true">
-            <span>Current page</span>{{ context.paginator.current_page }}
+            <span>Current page</span>{{ paginator.current_page }}
           </a>
         </li>
-        {% for page in context.paginator.next_pages %}
+        {% for page in paginator.next_pages %}
           <li class="pagination__list-item">
             <a class="pagination__page-link"
-               href="{{ request.path }}?{% if context.query_string %}{{ context.query_string }}&{% endif %}page={{ page }}"
+               href="{{ request.path }}?{% if query_string %}{{ query_string }}&{% endif %}page={{ page }}"
                aria-label="Go to page {{ page }}">
               <span>Page</span>{{ page }}
             </a>
@@ -35,9 +35,9 @@
       </ol>
     </li>
     <li class="pagination__list-item">
-      {% if context.paginator.has_next_page %}
+      {% if paginator.has_next_page %}
         <a class="pagination__page-chevron-next"
-           href="{{ request.path }}?{% if context.query_string %}{{ context.query_string }}{% endif %}&page={{ context.paginator.next_page }}">
+           href="{{ request.path }}?{% if query_string %}{{ query_string }}{% endif %}&page={{ paginator.next_page }}">
           <span>Next page</span>
         </a>
       {% else %}

@@ -1,5 +1,6 @@
 import logging
 import os
+from typing import Any
 
 import requests
 from caselawclient.errors import DocumentNotFoundError, MarklogicNotPermittedError
@@ -104,7 +105,7 @@ def detail(request, document_uri):
         redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
         return HttpResponseRedirect(redirect_uri)
 
-    context = {}
+    context: dict[str, Any] = {}
     context["document_noun"] = document.document_noun
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)
@@ -146,18 +147,17 @@ def detail(request, document_uri):
             {"text": document.name},
         ]
 
-    return TemplateResponse(
-        request,
-        "judgment/detail.html",
-        context={
-            "context": context,
-            "breadcrumbs": breadcrumbs,
-            "feedback_survey_type": "judgment",  # TODO: update the survey to allow for generalisation to `document`
-            # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
-            "feedback_survey_document_uri": document.uri,
-            "search_context": search_context_from_url(request.META.get("HTTP_REFERER")),
-        },
+    context["breadcrumbs"] = breadcrumbs
+    context["feedback_survey_type"] = (
+        "judgment"  # TODO: update the survey to allow for generalisation to `document`
     )
+    # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
+    context["feedback_survey_document_uri"] = document.uri
+    context["search_context"] = search_context_from_url(
+        request.META.get("HTTP_REFERER")
+    )
+
+    return TemplateResponse(request, "judgment/detail.html", context=context)
 
 
 def detail_xml(_request, document_uri):
