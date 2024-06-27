@@ -46,13 +46,20 @@
     {{ content }}
   {% endif %}
   {% include "includes/judgment_end_document_marker.html" %}
-  <div id="js-document-navigation-links-end"
-       class="document-navigation-links {% if query %}with-query{% endif %}">
-    <span class="up-wrapper">
-      <a id="start-of-document-link"
-         class="up document-navigation-link"
-         href="#start-of-document">Back to start</a>
-    </span>
+  <div class="document-navigation" id="js-document-navigation">
+    <div class="document-navigation__summary">
+      <h2>{{ page_title }}</h2>
+      <p>{{ judgment_ncn }}</p>
+    </div>
+
+    <div id="js-document-navigation-links-end"
+         class="document-navigation-links {% if query %}with-query{% endif %}">
+      <span class="up-wrapper">
+        <a id="start-of-document-link"
+           class="up document-navigation-link"
+           href="#start-of-document">Back to start</a>
+      </span>
+    </div>
   </div>
 {% endblock content %}
 {% block postcontent %}
