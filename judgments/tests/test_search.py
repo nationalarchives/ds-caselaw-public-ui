@@ -180,7 +180,9 @@ class TestSearchResults(TestCase):
                 <span class="advice-message__heading-icon">I</span>mportant information
             </h>
             <div class="advice-message__message">
-            This date range starts before our earliest record, which is from 2003, results may be limited.
+                2011 is before 2003, the date of the oldest record on the Find Case Law service.
+                Showing results from 2003.
+                <a href="/about-this-service#section-coverage">Read more</a>
             </div>
         </div>
 """
@@ -215,7 +217,9 @@ class TestSearchResults(TestCase):
                 <span class="advice-message__heading-icon">I</span>mportant information
             </h>
             <div class="advice-message__message">
-            This date range starts before our earliest record, which is from 2003, results may be limited.
+                1444 is before 2003, the date of the oldest record on the Find Case Law service.
+                Showing results from 2003.
+                <a href="/about-this-service#section-coverage">Read more</a>
             </div>
         </div>
 """

@@ -11,5 +11,5 @@ def urlencode(string):
 
 
 @register.filter
-def interpolate(template, values):
-    return template % values
+def interpolate(template, value):
+    return template % value
