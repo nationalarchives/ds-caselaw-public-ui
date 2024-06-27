@@ -291,3 +291,6 @@ docker/*
 /ds_judgements_public_ui/static/js/dist/app.js
 /ds_judgements_public_ui/static/js/dist/transactional_licence_form/app.js
 .vscode
+
+# common location for custom versions of dependencies
+/addons-dev

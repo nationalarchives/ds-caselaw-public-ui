@@ -193,6 +193,25 @@ def test(c, test=None):
         subprocess.run(["docker", "compose", "exec", "django", "pytest", test])
 
 
+@task(optional=["baseUrl"])
+def e2etest(c, baseUrl="http://django:3000"):
+    """
+    Run end-to-end playwright tests against the given base url -
+    the default is the running local django web container.
+    """
+    subprocess.run(
+        [
+            "docker",
+            "compose",
+            "build",
+            "e2e_tests",
+        ]
+    )
+    subprocess.run(
+        ["docker", "compose", "run", "e2e_tests", "pytest", "--base-url", baseUrl]
+    )
+
+
 @task
 def coverage(c):
     # Run pytest with coverage

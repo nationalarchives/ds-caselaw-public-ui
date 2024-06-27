@@ -137,21 +137,19 @@ class TestSearchResults(TestCase):
         THEN the response should contain the expected warning
 
         The expected applied filters HTML:
-        - Includes a div with class `advice-message`
+        - Includes a div with class `govuk-warning-text`
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         expected_html = """
-        <div class="advice-message">
-            <h class="advice-message__heading">
-                <span class="advice-message__heading-icon">I</span>mportant information
-            </h>
-            <div class="advice-message__message">
+        <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+            <div class="govuk-warning-text__text">
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
                 <a href="/about-this-service#section-coverage">Read more</a>
             </div>
         </div>
-"""
+    """
 
         response = self.client.get(
             "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444"
@@ -175,11 +173,9 @@ class TestSearchResults(TestCase):
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         expected_html = """
-        <div class="advice-message">
-            <h class="advice-message__heading">
-                <span class="advice-message__heading-icon">I</span>mportant information
-            </h>
-            <div class="advice-message__message">
+        <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+            <div class="govuk-warning-text__text">
                 2011 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
                 <a href="/about-this-service#section-coverage">Read more</a>
@@ -212,11 +208,9 @@ class TestSearchResults(TestCase):
             FakeSearchResponseNoResults()
         )
         expected_html = """
-        <div class="advice-message">
-            <h class="advice-message__heading">
-                <span class="advice-message__heading-icon">I</span>mportant information
-            </h>
-            <div class="advice-message__message">
+        <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+            <div class="govuk-warning-text__text">
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
                 <a href="/about-this-service#section-coverage">Read more</a>

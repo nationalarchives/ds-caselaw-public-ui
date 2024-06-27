@@ -3,8 +3,8 @@ YES_NO_CHOICES = ["Yes", "No"]
 # NOTE: please see comment in transactional_lcence_form.js if
 # changing the wording / order of the options for the alternative contact.
 ALTERNATIVE_CONTACT_CHOICES = [
-    "This is the same person as the main contact",
-    "This is a different person (please enter their details below)",
+    ("No", "This is the same person as the main contact"),
+    ("Yes", "This is a different person (please enter their details below)"),
 ]
 
 TNA_CONTACTTYPE_CHOICES = [

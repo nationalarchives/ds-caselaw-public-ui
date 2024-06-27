@@ -191,9 +191,19 @@ python manage.py runserver_plus 0.0.0.0:3000
 
 #### Running the test suite
 
+Pytest unit tests can be run with:
+
 ```console
 fab test
 ```
+
+We also have a suite of end to end tests (in the `e2e_tests/` directory) written with [playwright-pytest](https://playwright.dev/python/docs/api/class-playwright), which can be run with:
+
+```console
+fab e2etest
+```
+
+These will run by default against the running `django` container. You can supply a `baseURL` argument to test against staging or production.
 
 #### Viewing code coverage
 
