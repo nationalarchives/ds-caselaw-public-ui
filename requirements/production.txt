@@ -2,5 +2,5 @@
 
 -r base.txt
 
-gunicorn==21.2.0  # https://github.com/benoitc/gunicorn
+gunicorn==22.0.0  # https://github.com/benoitc/gunicorn
 psycopg2==2.9.9  # https://github.com/psycopg/psycopg2
