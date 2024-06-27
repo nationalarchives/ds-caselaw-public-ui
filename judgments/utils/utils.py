@@ -1,6 +1,6 @@
 import math
 import re
-from typing import Any, Optional, TypedDict, Union
+from typing import Any, Optional, TypedDict
 from urllib.parse import parse_qs, urlparse
 
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
@@ -86,21 +86,22 @@ def solo_stop_word_regex(stops):
     return regex
 
 
+def sanitise_input_to_integer(input: Any, default: int) -> int:
+    try:
+        return int(input)
+    except (ValueError, TypeError):
+        return default
+
+
 def as_integer(
-    number: Union[int, None],
+    number: int,
     minimum: int,
     maximum: Optional[int] = None,
-    default: Optional[int] = None,
 ) -> int:
     """
     Return an integer for user input, making sure it's between the min and max,
     and if it's not a valid number, that it's the default (or minimum if not set).
     """
-
-    if default is None:
-        default = minimum
-    if number is None:
-        return default
 
     min_bounded = max(minimum, number)
     if maximum is not None:
@@ -109,10 +110,12 @@ def as_integer(
         return min_bounded
 
 
-def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
+def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
     current_page = as_integer(current_page, minimum=1)
     size_per_page = as_integer(
-        size_per_page, minimum=1, maximum=MAX_RESULTS_PER_PAGE, default=RESULTS_PER_PAGE
+        size_per_page,
+        minimum=1,
+        maximum=MAX_RESULTS_PER_PAGE,
     )
     number_of_pages = math.ceil(int(total) / size_per_page)
     next_pages = list(
@@ -253,10 +256,3 @@ def show_no_exact_ncn_warning(search_results, query_text, page):
         and bool(neutral_url(query_text))
         and page == "1"
     )
-
-
-def sanitise_input_to_integer(input: Any, default: int) -> int:
-    try:
-        return int(input)
-    except (ValueError, TypeError):
-        return default

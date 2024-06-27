@@ -83,10 +83,9 @@ def advanced_search(request):
                 sanitise_input_to_integer(params.get("page"), 1), minimum=1
             )
             per_page: int = as_integer(
-                sanitise_input_to_integer(params.get("per_page"), 10),
+                sanitise_input_to_integer(params.get("per_page"), RESULTS_PER_PAGE),
                 minimum=1,
                 maximum=MAX_RESULTS_PER_PAGE,
-                default=RESULTS_PER_PAGE,
             )
             order = params.get("order", None)
             # If there is no query, order by -date, else order by relevance
@@ -145,10 +144,9 @@ def advanced_search(request):
                 date_from=from_date_for_search.strftime("%Y-%m-%d"),
                 date_to=to_date_as_search_param,
                 page_size=as_integer(
-                    sanitise_input_to_integer(params.get("per_page"), 10),
+                    sanitise_input_to_integer(params.get("per_page"), RESULTS_PER_PAGE),
                     minimum=1,
                     maximum=MAX_RESULTS_PER_PAGE,
-                    default=RESULTS_PER_PAGE,
                 ),
             )
 

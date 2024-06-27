@@ -258,15 +258,10 @@ class TestBackLink(TestCase):
 def test_min_max():
     assert as_integer(0, minimum=1) == 1
     assert as_integer(0, minimum=1) == 1
-    assert as_integer(0, minimum=0, default=1) == 0
-    assert as_integer(-1, minimum=0, default=1) == 0
-    assert as_integer(0, minimum=1, default=10) == 1
     assert as_integer(2, 1, 3) == 2
     assert as_integer(2, 1) == 2
     assert as_integer(5, 1, 3) == 3
     assert as_integer(2, minimum=1, maximum=3) == 2
-    assert as_integer(None, minimum=1, default=4) == 4
-    assert as_integer(None, minimum=1) == 1
 
 
 def test_preprocess_query():

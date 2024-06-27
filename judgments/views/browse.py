@@ -36,7 +36,6 @@ class BrowseView(TemplateView):
             ),
             minimum=1,
             maximum=MAX_RESULTS_PER_PAGE,
-            default=RESULTS_PER_PAGE,
         )
 
         try:
