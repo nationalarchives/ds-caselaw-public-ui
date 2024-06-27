@@ -1,5 +1,5 @@
 import datetime
-from typing import Any, Dict
+from typing import Union
 
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
@@ -7,64 +7,68 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
-from django.template.response import TemplateResponse
 from django.utils.translation import gettext
+from django.views.generic.base import TemplateView
 from ds_caselaw_utils import courts as all_courts
 
 from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, as_integer, paginator
 
 
-def browse(request, court=None, subdivision=None, year=None):
-    court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
-    page = str(as_integer(request.GET.get("page"), minimum=1))
-    per_page = str(
-        as_integer(
-            request.GET.get("per_page"),
-            minimum=1,
-            maximum=MAX_RESULTS_PER_PAGE,
-            default=RESULTS_PER_PAGE,
-        )
-    )
+class BrowseView(TemplateView):
+    template_name = "judgment/results.html"
 
-    context: Dict[str, Any] = {}
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-    try:
-        search_parameters = SearchParameters(
-            court=court_query if court_query else None,
-            date_from=(
-                datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
-                if year
-                else None
-            ),
-            date_to=(
-                datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
-                if year
-                else None
-            ),
-            order="-date",
-            page=as_integer(page, minimum=1),
-            page_size=as_integer(per_page, minimum=1),
-        )
-        search_response = search_judgments_and_parse_response(
-            api_client, search_parameters
+        court: Union[str, None] = self.kwargs.get("court")
+        subdivision: Union[str, None] = self.kwargs.get("subdivision")
+        year: Union[int, None] = self.kwargs.get("year")
+
+        # All non-None values of court and subdivision should be truthy
+        court_query = "/".join(filter(None, [court, subdivision]))
+        page = str(as_integer(self.request.GET.get("page"), minimum=1))
+        per_page = str(
+            as_integer(
+                self.request.GET.get("per_page"),
+                minimum=1,
+                maximum=MAX_RESULTS_PER_PAGE,
+                default=RESULTS_PER_PAGE,
+            )
         )
 
-        context["search_results"] = search_response.results
-        context["total"] = search_response.total
-        context["per_page"] = per_page
-        context["paginator"] = paginator(page, search_response.total, per_page)
-        context["courts"] = all_courts.get_grouped_selectable_courts()
-        context["tribunals"] = all_courts.get_grouped_selectable_tribunals()
-        context["page_title"] = gettext("results.search.title")
+        try:
+            search_parameters = SearchParameters(
+                court=court_query if court_query else None,
+                date_from=(
+                    datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
+                    if year
+                    else None
+                ),
+                date_to=(
+                    datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
+                    if year
+                    else None
+                ),
+                order="-date",
+                page=as_integer(page, minimum=1),
+                page_size=as_integer(per_page, minimum=1),
+            )
+            search_response = search_judgments_and_parse_response(
+                api_client, search_parameters
+            )
 
-    except MarklogicResourceNotFoundError:
-        raise Http404("Search failed")  # TODO: This should be something else!
+            context["search_results"] = search_response.results
+            context["total"] = search_response.total
+            context["per_page"] = per_page
+            context["paginator"] = paginator(page, search_response.total, per_page)
+            context["courts"] = all_courts.get_grouped_selectable_courts()
+            context["tribunals"] = all_courts.get_grouped_selectable_tribunals()
+            context["page_title"] = gettext("results.search.title")
 
-    context["feedback_survey_type"] = "browse"
-    context["feedback_survey_court"] = court_query
+        except MarklogicResourceNotFoundError:
+            raise Http404("Search failed")  # TODO: This should be something else!
 
-    return TemplateResponse(
-        request,
-        "judgment/results.html",
-        context=context,
-    )
+        context["feedback_survey_type"] = "browse"
+        context["feedback_survey_court"] = court_query
+
+        return context
