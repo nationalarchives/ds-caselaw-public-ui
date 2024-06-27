@@ -7,14 +7,18 @@
   padding: $spacer-unit 0 0;
 
   &__summary {
+    padding: 0 $spacer-unit;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 
     h2 {
       @include header($typography-header-h3-size);
       margin: 0;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
 
       @media (max-width: $grid-breakpoint-medium) {
         font-size: $typography-base-text-size;
