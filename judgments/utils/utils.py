@@ -1,6 +1,6 @@
 import math
 import re
-from typing import Optional, TypedDict
+from typing import Any, Optional, TypedDict, Union
 from urllib.parse import parse_qs, urlparse
 
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
@@ -86,7 +86,12 @@ def solo_stop_word_regex(stops):
     return regex
 
 
-def as_integer(number_string, minimum, maximum=None, default=None):
+def as_integer(
+    number: Union[int, None],
+    minimum: int,
+    maximum: Optional[int] = None,
+    default: Optional[int] = None,
+) -> int:
     """
     Return an integer for user input, making sure it's between the min and max,
     and if it's not a valid number, that it's the default (or minimum if not set).
@@ -94,11 +99,7 @@ def as_integer(number_string, minimum, maximum=None, default=None):
 
     if default is None:
         default = minimum
-    if number_string is None:
-        return default
-    try:
-        number = int(number_string)
-    except ValueError:
+    if number is None:
         return default
 
     min_bounded = max(minimum, number)
@@ -252,3 +253,10 @@ def show_no_exact_ncn_warning(search_results, query_text, page):
         and bool(neutral_url(query_text))
         and page == "1"
     )
+
+
+def sanitise_input_to_integer(input: Any, default: int) -> int:
+    try:
+        return int(input)
+    except (ValueError, TypeError):
+        return default

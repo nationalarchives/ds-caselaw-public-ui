@@ -10,6 +10,7 @@ from ds_caselaw_utils import courts
 
 from judgments.forms import AdvancedSearchForm
 from judgments.utils import api_client, as_integer, paginator
+from judgments.utils.utils import sanitise_input_to_integer
 
 # where the schemas can be downloaded from. Slash-terminated.
 SCHEMA_ROOT = "https://raw.githubusercontent.com/nationalarchives/ds-caselaw-marklogic/main/src/main/ml-schemas/"
@@ -53,7 +54,9 @@ class CourtOrTribunalView(TemplateViewWithContext):
 
     @property
     def page(self):
-        return str(as_integer(self.request.GET.get("page"), minimum=1))
+        return as_integer(
+            sanitise_input_to_integer(self.request.GET.get("page"), 1), minimum=1
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

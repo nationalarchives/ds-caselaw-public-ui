@@ -256,7 +256,6 @@ class TestBackLink(TestCase):
 
 
 def test_min_max():
-    assert as_integer("cow", minimum=4) == 4
     assert as_integer(0, minimum=1) == 1
     assert as_integer(0, minimum=1) == 1
     assert as_integer(0, minimum=0, default=1) == 0
