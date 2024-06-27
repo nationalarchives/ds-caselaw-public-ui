@@ -2,11 +2,11 @@ from django.http import HttpResponseRedirect
 from django.urls import path, register_converter
 
 from judgments.views.browse import BrowseView
+from judgments.views.index import IndexView
 
 from . import converters, feeds
 from .resolvers.document_resolver_engine import DocumentResolverEngine
 from .views.advanced_search import advanced_search
-from .views.index import index
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -67,5 +67,5 @@ urlpatterns = [
     path("judgments/results", advanced_search),
     path("judgments/advanced_search", advanced_search),
     path("judgments/search", advanced_search, name="search"),
-    path("", index, name="home"),
+    path("", IndexView.as_view(), name="home"),
 ]
