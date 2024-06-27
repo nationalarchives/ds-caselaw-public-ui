@@ -49,3 +49,7 @@ class FakeSearchResponse(FakeSearchResponseBaseClass):
 
 class FakeSearchResponseNoFacets(FakeSearchResponseBaseClass):
     facets = {}
+
+
+class FakeSearchResponseNoResults(FakeSearchResponseBaseClass):
+    total = 0

@@ -1,4 +1,4 @@
 <div class="govuk-warning-text">
   <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
-  <div class="govuk-warning-text__text">{{ message }}</div>
+  <div class="govuk-warning-text__text">{{ message }} {% if url_value and url_text %}<a href="{{ url_value }}{% if url_anchor %}#{{ url_anchor }}{% endif %}">{{ url_text }}</a>{% endif %}</div>
 </div>

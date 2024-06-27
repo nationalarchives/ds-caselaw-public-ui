@@ -28,16 +28,21 @@ from judgments.utils import (
 )
 
 
-def _do_dates_require_warnings(from_date):
+def _do_dates_require_warnings(from_date, total_results):
     """
     Check if users have requested a year before what we technically handle,
     if it is, then we provide a warning letting them know.
     """
     from_warning = False
+    warning = None
     if from_date:
-        if from_date.year < settings.MINIMUM_WARNING_YEAR:
+        if from_date.year < settings.MINIMUM_WARNING_YEAR or total_results < 1:
             from_warning = True
-    return from_warning
+            warning = f"""
+                    {from_date.year} is before {settings.MINIMUM_WARNING_YEAR},
+                    the date of the oldest record on the Find Case Law service.
+                    Showing results from {get_minimum_valid_year()}."""
+    return from_warning, warning
 
 
 @csrf_exempt
@@ -90,13 +95,13 @@ def advanced_search(request):
                 order = "relevance"
 
             from_date: date = form.cleaned_data.get("from_date", None)
-            requires_from_warning: bool = _do_dates_require_warnings(from_date)
             to_date: Optional[date] = form.cleaned_data.get("to_date")
             # If a from_date is not specified, set it to the current min year
             # This allows the users to choose if they'd like to go beyond that range
             if not from_date:
-                from_date = date(get_minimum_valid_year(), 1, 1)
+                from_date_for_search = date(get_minimum_valid_year(), 1, 1)
             else:
+                from_date_for_search = from_date
                 # Only provide the param back to the user if they set it
                 query_params = query_params | {
                     "from_date_0": from_date.day,
@@ -136,7 +141,7 @@ def advanced_search(request):
                 party=form.cleaned_data.get("party"),
                 page=int(page),
                 order=order,
-                date_from=from_date.strftime("%Y-%m-%d"),
+                date_from=from_date_for_search.strftime("%Y-%m-%d"),
                 date_to=to_date_as_search_param,
                 page_size=as_integer(
                     params.get("per_page", "10"),
@@ -168,10 +173,14 @@ def advanced_search(request):
                 for key, value in params.items()
                 if value is not None and not key == "page"
             }
+            requires_warning, warning = _do_dates_require_warnings(
+                from_date, search_response.total
+            )
             # Populate context to provide feedback about filters etc. back to user
             context = context | {
                 "query": query_text,
-                "requires_from_warning": requires_from_warning,
+                "requires_from_warning": requires_warning,
+                "date_warning": warning,
                 "earliest_record": get_minimum_valid_year(),
                 "court_facets": court_facets,
                 "tribunal_facets": tribunal_facets,
