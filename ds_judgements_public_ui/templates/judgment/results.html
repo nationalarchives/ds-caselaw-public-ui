@@ -9,20 +9,20 @@
     {% include "includes/results_search_component.html" %}
     <div class="results__container">
       <div class="results__list-layout-container">
-        {% if context.show_no_exact_ncn_warning %}
-          {% with message="There is no judgment with the Neutral Citation of %s in our database."|interpolate:context.query %}
+        {% if show_no_exact_ncn_warning %}
+          {% with message="There is no judgment with the Neutral Citation of %s in our database."|interpolate:query %}
             {% include "includes/advice_message.html" with message=message %}
           {% endwith %}
         {% endif %}
-        {% if context.requires_from_warning %}
+        {% if requires_from_warning %}
           {% url "about_this_service" as url_value %}
-          {% include "includes/advice_message.html" with message=context.date_warning url_text="Read more" url_value=url_value url_anchor="section-coverage" %}
+          {% include "includes/advice_message.html" with message=date_warning url_text="Read more" url_value=url_value url_anchor="section-coverage" %}
         {% endif %}
-        {% if context.search_results %}
+        {% if search_results %}
           <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
           <div class="results__result-list-container">
             {% include "includes/results_list.html" %}
-            {% if not context.paginator.has_next_page %}
+            {% if not paginator.has_next_page %}
               {% include "includes/no_results_message.html" with title="End of results" %}
             {% endif %}
             {% include "includes/pagination.html" %}

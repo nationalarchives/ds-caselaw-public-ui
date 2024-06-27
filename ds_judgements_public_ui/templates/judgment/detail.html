@@ -4,7 +4,7 @@
   <meta name="robots" content="noindex,nofollow" />
 {% endblock robots %}
 {% block title %}
-  {% if context.page_title %}{{ context.page_title }} -{% endif %}
+  {% if page_title %}{{ page_title }} -{% endif %}
   Find case law
 {% endblock title %}
 {% block precontent %}
@@ -14,19 +14,19 @@
   <div id="js-document-navigation-links-start"
        class="document-navigation-links">
     {% flag "highlight_search_query" %}
-      {% if context.query %}
+      {% if query %}
         <span class="document-navigation-links__query-wrapper query-wrapper"
               id="js-document-navigation-links-query-container">
           <span class="document-navigation-links__search-query-text-container query"
                 id="js-document-navigation-links-query-text">
             Query:
-            <span class="document-navigation-links__query-text">{{ context.query }}</span>
+            <span class="document-navigation-links__query-text">{{ query }}</span>
           </span>&nbsp;
           <span class="document-navigation-links__match-count-wrapper matches">
-            (<span class="document-navigation-links__match-count count">{{ context.number_of_mentions }}</span> matches)
+            (<span class="document-navigation-links__match-count count">{{ number_of_mentions }}</span> matches)
             <a class="document-navigation-links__remove-query-link"
                title="Remove query highlights"
-               href="{% url 'detail' context.document_uri %}">Remove query highlights</a>
+               href="{% url 'detail' document_uri %}">Remove query highlights</a>
           </span>
         </span>
       {% endif %}
@@ -38,16 +38,16 @@
     </span>
   </div>
   <div id="start-of-document"></div>
-  {% if context.document %}
+  {% if document %}
     {% autoescape off %}
-      {{ context.document }}
+      {{ document }}
     {% endautoescape %}
   {% else %}
     {{ content }}
   {% endif %}
   {% include "includes/judgment_end_document_marker.html" %}
   <div id="js-document-navigation-links-end"
-       class="document-navigation-links {% if context.query %}with-query{% endif %}">
+       class="document-navigation-links {% if query %}with-query{% endif %}">
     <span class="up-wrapper">
       <a id="start-of-document-link"
          class="up document-navigation-link"

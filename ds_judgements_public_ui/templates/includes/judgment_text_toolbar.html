@@ -1,19 +1,19 @@
 {% load i18n document_utils utilities %}
 <div class="judgment-toolbar">
   <div class="judgment-toolbar__container">
-    {% if context.document_noun == "press summary" %}
+    {% if document_noun == "press summary" %}
       <p class="judgment-toolbar__press-summary-title">Press Summary</p>
     {% endif %}
-    <h1 class="judgment-toolbar__title">{{ context.page_title|get_title_to_display_in_html:context.document_noun }}</h1>
-    <p class="judgment-toolbar__reference">{{ context.judgment_ncn }}</p>
+    <h1 class="judgment-toolbar__title">{{ page_title|get_title_to_display_in_html:document_noun }}</h1>
+    <p class="judgment-toolbar__reference">{{ judgment_ncn }}</p>
     <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
-      {% if context.linked_document_uri %}
+      {% if linked_document_uri %}
         {% spaceless %}
           <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
              role="button"
              draggable="false"
-             href="{% url 'detail' document_uri=context.linked_document_uri %}{% if context.query %}?query={{ context.query | urlencode }}{% endif %}">
-            {% if context.document_noun == "judgment" %}
+             href="{% url 'detail' document_uri=linked_document_uri %}{% if query %}?query={{ query | urlencode }}{% endif %}">
+            {% if document_noun == "judgment" %}
               {% translate "judgment.view_press_summary" %}
             {% else %}
               {% translate "judgment.view_judgment" %}
@@ -25,9 +25,9 @@
       <a class="judgment-toolbar-buttons__option--pdf btn"
          role="button"
          draggable="false"
-         href="{{ context.pdf_uri }}"
-         aria-label="{{ context.page_title|get_title_to_display_in_html:context.document_noun }} - Download as PDF">{% translate "judgment.downloadaspdf" %}
-        <span style="font-weight:normal;font-size:0.9rem">{{ context.pdf_size }}</span></a>
+         href="{{ pdf_uri }}"
+         aria-label="{{ page_title|get_title_to_display_in_html:document_noun }} - Download as PDF">{% translate "judgment.downloadaspdf" %}
+        <span style="font-weight:normal;font-size:0.9rem">{{ pdf_size }}</span></a>
       <p class="judgment-toolbar-buttons__option--download-options"
          role="note">
         <a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a>

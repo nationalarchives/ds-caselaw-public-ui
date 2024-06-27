@@ -1,10 +1,10 @@
 {% load query_filters court_utils i18n %}
-{% if context.query_params.items %}
-  {% if context.filtered %}
+{% if query_params.items %}
+  {% if filtered %}
     <h2 class="results-search-component__sub-header">{% translate "results.current_filters" %}</h2>
   {% endif %}
   <ul class="results-search-component__removable-options js-results-facets-applied-filters">
-    {% for key, value in context.query_params.items %}
+    {% for key, value in query_params.items %}
       {% if value %}
         {% if key|removable_filter_param %}
           <li>
@@ -12,7 +12,7 @@
                tabindex="0"
                draggable="false"
                class="results-search-component__removable-options-link"
-               href="{% url 'search' %}?{{ context.query_params|remove_query:key }}">
+               href="{% url 'search' %}?{{ query_params|remove_query:key }}">
               <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
               <span class="results-search-component__removable-options-value">
                 <span class="results-search-component__removable-options-value-text">{{ value }}</span>
@@ -26,7 +26,7 @@
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="{% url 'search' %}?{{ context.query_params|remove_court:court }}"
+                 href="{% url 'search' %}?{{ query_params|remove_court:court }}"
                  title="{{ court|get_court_name }}">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">{{ court|get_court_name }}</span>
@@ -40,12 +40,12 @@
                tabindex="0"
                draggable="false"
                class="results-search-component__removable-options-link"
-               href="{% url 'search' %}?{{ context.query_params|remove_query:'from' }}">
+               href="{% url 'search' %}?{{ query_params|remove_query:'from' }}">
               <span class="results-search-component__removable-options-key">From:</span>
               <span class="results-search-component__removable-options-value">
                 <span class="results-search-component__removable-options-value-text">
-                  {{ context.query_params.from_date_0|replace_integer_with_day }}
-                  {{ context.query_params.from_date_1|replace_integer_with_month }}
+                  {{ query_params.from_date_0|replace_integer_with_day }}
+                  {{ query_params.from_date_1|replace_integer_with_month }}
                   {{ value }}
                 </span>
               </span>
@@ -57,12 +57,12 @@
                tabindex="0"
                draggable="false"
                class="results-search-component__removable-options-link"
-               href="{% url 'search' %}?{{ context.query_params|remove_query:'to' }}">
+               href="{% url 'search' %}?{{ query_params|remove_query:'to' }}">
               <span class="results-search-component__removable-options-key">To:</span>
               <span class="results-search-component__removable-options-value">
                 <span class="results-search-component__removable-options-value-text">
-                  {{ context.query_params.to_date_0|replace_integer_with_day }}
-                  {{ context.query_params.to_date_1|replace_integer_with_month }}
+                  {{ query_params.to_date_0|replace_integer_with_day }}
+                  {{ query_params.to_date_1|replace_integer_with_month }}
                   {{ value }}
                 </span>
               </span>

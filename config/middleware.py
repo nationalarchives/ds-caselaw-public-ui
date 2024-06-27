@@ -66,8 +66,8 @@ class FeedbackLinkMiddleware:
             "full_url": request.build_absolute_uri(),
         }
 
-        if "query" in response.context_data.get("context", {}):
-            params["search_term"] = response.context_data["context"]["query"]
+        if "query" in response.context_data:
+            params["search_term"] = response.context_data["query"]
 
         if "feedback_survey_type" in response.context_data:
             params["type"] = response.context_data["feedback_survey_type"]

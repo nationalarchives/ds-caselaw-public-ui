@@ -205,13 +205,13 @@ def advanced_search(request):
                 breadcrumbs = [{"text": f'Search results for "{query_text}"'}]
             else:
                 breadcrumbs = [{"text": "Search results"}]
+
+            context["form"] = form
+            context["breadcrumbs"] = breadcrumbs
+            context["feedback_survey_type"] = "structured_search"
+
             return TemplateResponse(
                 request,
                 "judgment/results.html",
-                context={
-                    "form": form,
-                    "context": context,
-                    "breadcrumbs": breadcrumbs,
-                    "feedback_survey_type": "structured_search",
-                },
+                context=context,
             )
