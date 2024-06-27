@@ -90,7 +90,7 @@ jobs:
         run: docker-compose run django mypy ds_judgements_public_ui judgments
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
 
       - name: Upload coverage to CodeClimate
         uses: paambaati/codeclimate-action@v5.0.0
