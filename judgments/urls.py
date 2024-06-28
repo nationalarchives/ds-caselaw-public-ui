@@ -1,11 +1,12 @@
 from django.http import HttpResponseRedirect
 from django.urls import path, register_converter
 
+from judgments.views.browse import BrowseView
+from judgments.views.index import IndexView
+
 from . import converters, feeds
 from .resolvers.document_resolver_engine import DocumentResolverEngine
 from .views.advanced_search import advanced_search
-from .views.browse import browse
-from .views.index import index
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -16,13 +17,15 @@ register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
 
 urlpatterns = [
-    path("<court:court>", browse, name="browse"),
-    path("<yyyy:year>", browse, name="browse"),
-    path("<court:court>/<yyyy:year>", browse, name="browse"),
-    path("<court:court>/<subdivision:subdivision>", browse, name="browse"),
+    path("<court:court>", BrowseView.as_view(), name="browse"),
+    path("<yyyy:year>", BrowseView.as_view(), name="browse"),
+    path("<court:court>/<yyyy:year>", BrowseView.as_view(), name="browse"),
+    path(
+        "<court:court>/<subdivision:subdivision>", BrowseView.as_view(), name="browse"
+    ),
     path(
         "<court:court>/<subdivision:subdivision>/<yyyy:year>",
-        browse,
+        BrowseView.as_view(),
         name="browse",
     ),
     path("atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
@@ -64,5 +67,5 @@ urlpatterns = [
     path("judgments/results", advanced_search),
     path("judgments/advanced_search", advanced_search),
     path("judgments/search", advanced_search, name="search"),
-    path("", index, name="home"),
+    path("", IndexView.as_view(), name="home"),
 ]
