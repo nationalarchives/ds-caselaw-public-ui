@@ -11,7 +11,7 @@ from django.utils.translation import gettext
 from django.views.generic.base import TemplateView
 from ds_caselaw_utils import courts as all_courts
 
-from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, as_integer, paginator
+from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, clamp, paginator
 from judgments.utils.utils import sanitise_input_to_integer
 
 
@@ -27,10 +27,10 @@ class BrowseView(TemplateView):
 
         # All non-None values of court and subdivision should be truthy
         court_query = "/".join(filter(None, [court, subdivision]))
-        page = as_integer(
+        page = clamp(
             sanitise_input_to_integer(self.request.GET.get("page"), 1), minimum=1
         )
-        per_page = as_integer(
+        per_page = clamp(
             sanitise_input_to_integer(
                 self.request.GET.get("per_page"), RESULTS_PER_PAGE
             ),

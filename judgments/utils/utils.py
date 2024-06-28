@@ -93,14 +93,13 @@ def sanitise_input_to_integer(input: Any, default: int) -> int:
         return default
 
 
-def as_integer(
+def clamp(
     number: int,
     minimum: int,
     maximum: Optional[int] = None,
 ) -> int:
     """
-    Return an integer for user input, making sure it's between the min and max,
-    and if it's not a valid number, that it's the default (or minimum if not set).
+    Clamp an integer, making sure it's between the min and max
     """
 
     min_bounded = max(minimum, number)
@@ -111,8 +110,8 @@ def as_integer(
 
 
 def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
-    current_page = as_integer(current_page, minimum=1)
-    size_per_page = as_integer(
+    current_page = clamp(current_page, minimum=1)
+    size_per_page = clamp(
         size_per_page,
         minimum=1,
         maximum=MAX_RESULTS_PER_PAGE,

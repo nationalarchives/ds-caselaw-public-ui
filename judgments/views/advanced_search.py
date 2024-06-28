@@ -18,7 +18,7 @@ from judgments.forms import AdvancedSearchForm
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
-    as_integer,
+    clamp,
     get_minimum_valid_year,
     has_filters,
     paginator,
@@ -79,10 +79,10 @@ def advanced_search(request):
             year_facets: dict = {}
             query_params: dict = {}
             query_text: str = form.cleaned_data.get("query", "")
-            page: int = as_integer(
+            page: int = clamp(
                 sanitise_input_to_integer(params.get("page"), 1), minimum=1
             )
-            per_page: int = as_integer(
+            per_page: int = clamp(
                 sanitise_input_to_integer(params.get("per_page"), RESULTS_PER_PAGE),
                 minimum=1,
                 maximum=MAX_RESULTS_PER_PAGE,
@@ -143,7 +143,7 @@ def advanced_search(request):
                 order=order,
                 date_from=from_date_for_search.strftime("%Y-%m-%d"),
                 date_to=to_date_as_search_param,
-                page_size=as_integer(
+                page_size=clamp(
                     sanitise_input_to_integer(params.get("per_page"), RESULTS_PER_PAGE),
                     minimum=1,
                     maximum=MAX_RESULTS_PER_PAGE,

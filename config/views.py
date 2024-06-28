@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 from ds_caselaw_utils import courts
 
 from judgments.forms import AdvancedSearchForm
-from judgments.utils import api_client, as_integer, paginator
+from judgments.utils import api_client, clamp, paginator
 from judgments.utils.utils import sanitise_input_to_integer
 
 # where the schemas can be downloaded from. Slash-terminated.
@@ -54,7 +54,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
 
     @property
     def page(self):
-        return as_integer(
+        return clamp(
             sanitise_input_to_integer(self.request.GET.get("page"), 1), minimum=1
         )
 

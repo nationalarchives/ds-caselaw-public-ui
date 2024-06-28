@@ -7,7 +7,7 @@ from factories import JudgmentFactory
 from judgments import converters, utils
 from judgments.models.court_dates import CourtDates
 from judgments.tests.fixtures import FakeSearchResponse
-from judgments.utils import as_integer, paginator, search_context_from_url
+from judgments.utils import clamp, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView
 
 
@@ -256,12 +256,12 @@ class TestBackLink(TestCase):
 
 
 def test_min_max():
-    assert as_integer(0, minimum=1) == 1
-    assert as_integer(0, minimum=1) == 1
-    assert as_integer(2, 1, 3) == 2
-    assert as_integer(2, 1) == 2
-    assert as_integer(5, 1, 3) == 3
-    assert as_integer(2, minimum=1, maximum=3) == 2
+    assert clamp(0, minimum=1) == 1
+    assert clamp(0, minimum=1) == 1
+    assert clamp(2, 1, 3) == 2
+    assert clamp(2, 1) == 2
+    assert clamp(5, 1, 3) == 3
+    assert clamp(2, minimum=1, maximum=3) == 2
 
 
 def test_preprocess_query():
