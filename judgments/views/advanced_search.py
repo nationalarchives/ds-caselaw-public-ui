@@ -29,7 +29,7 @@ from judgments.utils import (
 from judgments.utils.utils import sanitise_input_to_integer
 
 
-def _do_dates_require_warnings(from_date, total_results):
+def _do_dates_require_warnings(from_date: date, total_results: int):
     """
     Check if users have requested a year before what we technically handle,
     if it is, then we provide a warning letting them know.
@@ -37,7 +37,7 @@ def _do_dates_require_warnings(from_date, total_results):
     from_warning = False
     warning = None
     if from_date:
-        if from_date.year < settings.MINIMUM_WARNING_YEAR or total_results < 1:
+        if from_date.year < settings.MINIMUM_WARNING_YEAR and total_results > 0:
             from_warning = True
             warning = f"""
                     {from_date.year} is before {settings.MINIMUM_WARNING_YEAR},
@@ -173,7 +173,7 @@ def advanced_search(request):
                 if value is not None and not key == "page"
             }
             requires_warning, warning = _do_dates_require_warnings(
-                from_date, search_response.total
+                from_date, int(search_response.total)
             )
             # Populate context to provide feedback about filters etc. back to user
             context = context | {
@@ -185,7 +185,7 @@ def advanced_search(request):
                 "tribunal_facets": tribunal_facets,
                 "year_facets": year_facets,
                 "search_results": search_response.results,
-                "total": search_response.total,
+                "total": int(search_response.total),
                 "paginator": paginator(page, search_response.total, per_page),
                 "query_string": urllib.parse.urlencode(changed_queries, doseq=True),
                 "order": order,
