@@ -27,15 +27,15 @@ const createIntersectionObserver = (elements, handler, options) => {
 };
 
 const manageClass = (intersecting) => {
-    const backToTopLinkContainer = document.getElementById(
-        "js-document-navigation-links-end",
+    const documentNavigationContainer = document.getElementById(
+        "js-document-navigation",
     );
     const pageScrolls = $(".judgment-body").height() > $(window).height();
 
     if (intersecting && pageScrolls) {
-        backToTopLinkContainer.classList.remove("show");
+        documentNavigationContainer.classList.remove("show");
     } else if (pageScrolls) {
-        backToTopLinkContainer.classList.add("show");
+        documentNavigationContainer.classList.add("show");
     }
 };
 
@@ -86,6 +86,10 @@ const decrementCurrentMatch = () => {
 };
 
 $(() => {
+    const documentNavigationContainer = document.getElementById(
+        "js-document-navigation",
+    );
+
     const backToTopLinkContainer = document.getElementById(
         "js-document-navigation-links-end",
     );
@@ -102,8 +106,11 @@ $(() => {
         footerBackLink.classList.add("with-js");
     }
 
+    if (documentNavigationContainer) {
+        documentNavigationContainer.classList.add("autohide");
+    }
+
     if (backToTopLinkContainer) {
-        backToTopLinkContainer.classList.add("autohide");
         if (skipToEndLinkContainer) {
             skipToEndLinkContainer.classList.add("autohide");
             $(skipToEndLinkContainer)
