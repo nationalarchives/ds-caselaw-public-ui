@@ -34,15 +34,6 @@ class FormWizardView(NamedUrlSessionWizardView):
         return redirect(url)
 
     def post(self, *args, **kwargs):
-        # We override this to ensure that the form is saved when returning to the review page
-
-        wizard_goto_step = self.request.POST.get("wizard_goto_step", None)
-        if not self.in_review():
-            # If we are not reviewing, we follow the default behaviour: we do not validate or save the form
-            # and go directly to the step.
-            if wizard_goto_step and wizard_goto_step in self.get_form_list():
-                return self.render_goto_step(wizard_goto_step)
-
         management_form = ManagementForm(self.request.POST, prefix=self.prefix)
         if not management_form.is_valid():
             raise SuspiciousOperation(
@@ -58,22 +49,29 @@ class FormWizardView(NamedUrlSessionWizardView):
 
         form = self.get_form(data=self.request.POST, files=self.request.FILES)
 
-        if form.is_valid():
-            self.storage.set_step_data(self.steps.current, self.process_step(form))
-            self.storage.set_step_files(
-                self.steps.current, self.process_step_files(form)
-            )
+        wizard_goto_step = self.request.POST.get("wizard_goto_step", None)
 
-            if self.steps.current == self.steps.last:
-                return self.render_done(form, **kwargs)
-            else:
-                if wizard_goto_step and wizard_goto_step in self.get_form_list():
-                    # If we are reviewing, and there is a goto step, we go to that step.
-                    return self.render_goto_step(wizard_goto_step)
-                else:
-                    # Otherwise we follow the default behaviour.
-                    return self.render_next_step(form)
-        return self.render(form)
+        # If we're in review or pressing 'Next', we need to ensure the user fixes bad data
+        if not form.is_valid() and (self.in_review() or wizard_goto_step is None):
+            return self.render(form)
+
+        self.storage.set_step_data(self.steps.current, self.process_step(form))
+        self.storage.set_step_files(self.steps.current, self.process_step_files(form))
+
+        # Going to a step out of order takes priority
+        if wizard_goto_step and wizard_goto_step in self.get_form_list():
+            return self.render_goto_step(wizard_goto_step)
+
+        # If the form is invalid, re-render it with errors
+        if not form.is_valid():
+            return self.render(form)
+
+        # When moving forwards from the final review form, send the email
+        if self.steps.current == self.steps.last:
+            return self.render_done(form, **kwargs)
+
+        # If the user isn't jumping and their input is valid, move forwards
+        return self.render_next_step(form)
 
     def in_review(self):
         has_review_parameter = bool(
