@@ -134,6 +134,7 @@ class TestSearchResults(TestCase):
         GIVEN a client for making HTTP requests
         WHEN a GET request is made to "/judgments/search?query=waltham+forest"
         AND the from_date is before `settings.MINIMUM_WARNING_YEAR`
+        AND there's no search results
         THEN the response should contain the expected warning
 
         The expected applied filters HTML:
