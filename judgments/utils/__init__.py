@@ -7,7 +7,7 @@ from .search_utils import (
 from .utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
-    as_integer,
+    clamp,
     formatted_document_uri,
     get_document_by_uri,
     get_press_summaries_for_document_uri,
@@ -31,7 +31,7 @@ __all__ = [
     "test_date_and_dict",
     "ALL_COURT_CODES",
     "api_client",
-    "as_integer",
+    "clamp",
     "formatted_document_uri",
     "get_document_by_uri",
     "get_minimum_valid_year",

@@ -18,7 +18,7 @@ from judgments.forms import AdvancedSearchForm
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     api_client,
-    as_integer,
+    clamp,
     get_minimum_valid_year,
     has_filters,
     paginator,
@@ -26,6 +26,7 @@ from judgments.utils import (
     process_year_facets,
     show_no_exact_ncn_warning,
 )
+from judgments.utils.utils import sanitise_input_to_integer
 
 
 def _do_dates_require_warnings(from_date, total_results):
@@ -78,14 +79,13 @@ def advanced_search(request):
             year_facets: dict = {}
             query_params: dict = {}
             query_text: str = form.cleaned_data.get("query", "")
-            page: str = str(as_integer(params.get("page"), minimum=1))
-            per_page: str = str(
-                as_integer(
-                    params.get("per_page", "10"),
-                    minimum=1,
-                    maximum=MAX_RESULTS_PER_PAGE,
-                    default=RESULTS_PER_PAGE,
-                )
+            page: int = clamp(
+                sanitise_input_to_integer(params.get("page"), 1), minimum=1
+            )
+            per_page: int = clamp(
+                sanitise_input_to_integer(params.get("per_page"), RESULTS_PER_PAGE),
+                minimum=1,
+                maximum=MAX_RESULTS_PER_PAGE,
             )
             order = params.get("order", None)
             # If there is no query, order by -date, else order by relevance
@@ -143,11 +143,10 @@ def advanced_search(request):
                 order=order,
                 date_from=from_date_for_search.strftime("%Y-%m-%d"),
                 date_to=to_date_as_search_param,
-                page_size=as_integer(
-                    params.get("per_page", "10"),
+                page_size=clamp(
+                    sanitise_input_to_integer(params.get("per_page"), RESULTS_PER_PAGE),
                     minimum=1,
                     maximum=MAX_RESULTS_PER_PAGE,
-                    default=RESULTS_PER_PAGE,
                 ),
             )
 

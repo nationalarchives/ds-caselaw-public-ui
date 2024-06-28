@@ -1,6 +1,6 @@
 import math
 import re
-from typing import Optional, TypedDict
+from typing import Any, Optional, TypedDict
 from urllib.parse import parse_qs, urlparse
 
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
@@ -86,20 +86,21 @@ def solo_stop_word_regex(stops):
     return regex
 
 
-def as_integer(number_string, minimum, maximum=None, default=None):
-    """
-    Return an integer for user input, making sure it's between the min and max,
-    and if it's not a valid number, that it's the default (or minimum if not set).
-    """
-
-    if default is None:
-        default = minimum
-    if number_string is None:
-        return default
+def sanitise_input_to_integer(input: Any, default: int) -> int:
     try:
-        number = int(number_string)
-    except ValueError:
+        return int(input)
+    except (ValueError, TypeError):
         return default
+
+
+def clamp(
+    number: int,
+    minimum: int,
+    maximum: Optional[int] = None,
+) -> int:
+    """
+    Clamp an integer, making sure it's between the min and max
+    """
 
     min_bounded = max(minimum, number)
     if maximum is not None:
@@ -108,10 +109,12 @@ def as_integer(number_string, minimum, maximum=None, default=None):
         return min_bounded
 
 
-def paginator(current_page, total, size_per_page=RESULTS_PER_PAGE):
-    current_page = as_integer(current_page, minimum=1)
-    size_per_page = as_integer(
-        size_per_page, minimum=1, maximum=MAX_RESULTS_PER_PAGE, default=RESULTS_PER_PAGE
+def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
+    current_page = clamp(current_page, minimum=1)
+    size_per_page = clamp(
+        size_per_page,
+        minimum=1,
+        maximum=MAX_RESULTS_PER_PAGE,
     )
     number_of_pages = math.ceil(int(total) / size_per_page)
     next_pages = list(
