@@ -71,9 +71,7 @@ def remove_court(query_params, court):
     params = dict(query_params)
     params["page"] = None
     params["court"] = [court2 for court2 in params.get("court", []) if court != court2]
-    params["tribunal"] = [
-        court2 for court2 in params.get("tribunal", []) if court != court2
-    ]
+    params["tribunal"] = [court2 for court2 in params.get("tribunal", []) if court != court2]
     return make_query_string(params)
 
 

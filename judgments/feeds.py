@@ -31,9 +31,7 @@ class JudgmentAtomFeed(Atom1Feed):
         super().add_root_elements(handler)
         pagination = paginator(self.feed["page"], self.feed["total"])
 
-        handler.addQuickElement(
-            "link", "", {"rel": "first", "href": f'{self.feed["feed_url"]}?page=1'}
-        )
+        handler.addQuickElement("link", "", {"rel": "first", "href": f'{self.feed["feed_url"]}?page=1'})
         handler.addQuickElement(
             "link",
             "",
@@ -84,22 +82,12 @@ class LatestJudgmentsFeed(Feed):
 
         search_parameters = SearchParameters(
             court=court_query if court_query else None,
-            date_from=(
-                datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
-                if year
-                else None
-            ),
-            date_to=(
-                datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
-                if year
-                else None
-            ),
+            date_from=(datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d") if year else None),
+            date_to=(datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d") if year else None),
             order=order,
             page=int(page),
         )
-        search_response = search_judgments_and_parse_response(
-            api_client, search_parameters
-        )
+        search_response = search_judgments_and_parse_response(api_client, search_parameters)
 
         return {
             "slug": slug,

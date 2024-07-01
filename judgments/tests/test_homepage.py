@@ -12,7 +12,5 @@ class TestHomepage(TestCase):
     def test_homepage(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/")
-        mock_search_judgments_and_parse_response.assert_called_with(
-            mock_api_client, SearchParameters(order="-date")
-        )
+        mock_search_judgments_and_parse_response.assert_called_with(mock_api_client, SearchParameters(order="-date"))
         self.assertContains(response, "A SearchResult name!", html=True)

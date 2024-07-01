@@ -7,7 +7,6 @@ from .utils import countries_and_territories_choices, list_to_choices
 
 
 class FCLForm(forms.Form):
-
     display_in_review = True
 
     def __init__(self, *args, **kwargs):
@@ -55,7 +54,6 @@ class ContactForm(FCLForm):
 
 
 class OrganizationForm(FCLForm):
-
     def __init__(self, *args, **kwargs):
         super(OrganizationForm, self).__init__(*args, **kwargs)
         self.initial["agent_country"] = "country:GB"
@@ -133,7 +131,6 @@ class ProjectPurposeForm(FCLForm):
 
 
 class PublicStatementForm(FCLForm):
-
     title = "Step 5 - Public Statement"
 
     def layout(self):
@@ -147,7 +144,6 @@ class PublicStatementForm(FCLForm):
 
 
 class WorkingPractices1Form(FCLForm):
-
     title = "Step 6 - Working Practices"
 
     focus_on_specific = fields.FCLChoiceField(
@@ -174,7 +170,6 @@ class WorkingPractices1Form(FCLForm):
 
 
 class WorkingPractices2Form(FCLForm):
-
     title = "Step 7 - Working Practices"
 
     entire_record_available = fields.FCLChoiceField(

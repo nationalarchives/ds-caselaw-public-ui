@@ -39,14 +39,10 @@ class TestTLFUtils(unittest.TestCase):
         # Assert that the form data is sanitized
         mock_sanitize.assert_called_with(form_data)
         # Assert that the email sender is instantiated correctly.
-        mock_email_sender.assert_called_with(
-            utils.EmailSender, ses_server, ses_port, ses_username, ses_password
-        )
+        mock_email_sender.assert_called_with(utils.EmailSender, ses_server, ses_port, ses_username, ses_password)
         # Assert that the email is sent.
         mock_email_sender.__enter__.assert_called()
-        mock_email_sender.send_mail.assert_called_with(
-            from_email, delivery_email, email_subject, sanitized_text
-        )
+        mock_email_sender.send_mail.assert_called_with(from_email, delivery_email, email_subject, sanitized_text)
         # Assert that the sender is torn down correctly
         mock_email_sender.__exit__.assert_called()
 

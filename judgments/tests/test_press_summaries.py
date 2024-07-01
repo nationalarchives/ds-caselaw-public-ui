@@ -22,9 +22,7 @@ class TestPressSummaries(TestCase):
             press_summary_2,
         ]
 
-        mock_get_press_summaries_for_document_uri.return_value = (
-            excepted_press_summaries
-        )
+        mock_get_press_summaries_for_document_uri.return_value = excepted_press_summaries
 
         request = Mock()
         document_uri = "foo/bar/baz"
@@ -43,9 +41,7 @@ class TestPressSummaries(TestCase):
         )
 
     @patch("judgments.views.press_summaries.get_press_summaries_for_document_uri")
-    def test_redirects_to_press_summaries_when_one_present(
-        self, mock_get_press_summaries_for_document_uri
-    ):
+    def test_redirects_to_press_summaries_when_one_present(self, mock_get_press_summaries_for_document_uri):
         press_summary = PressSummaryFactory.build()
         mock_get_press_summaries_for_document_uri.return_value = [press_summary]
 
@@ -61,9 +57,7 @@ class TestPressSummaries(TestCase):
         )
 
     @patch("judgments.views.press_summaries.get_press_summaries_for_document_uri")
-    def test_shows_multiple_when_multiple_present(
-        self, mock_get_press_summaries_for_document_uri
-    ):
+    def test_shows_multiple_when_multiple_present(self, mock_get_press_summaries_for_document_uri):
         press_summary_1 = PressSummaryFactory.build()
         press_summary_2 = PressSummaryFactory.build()
 
@@ -89,9 +83,7 @@ class TestPressSummaries(TestCase):
         )
 
     @patch("judgments.views.press_summaries.get_press_summaries_for_document_uri")
-    def test_throws_404_when_no_summaries_present(
-        self, mock_get_press_summaries_for_document_uri
-    ):
+    def test_throws_404_when_no_summaries_present(self, mock_get_press_summaries_for_document_uri):
         mock_get_press_summaries_for_document_uri.return_value = []
 
         response = self.client.get("/uksc/2023/35/press-summary")

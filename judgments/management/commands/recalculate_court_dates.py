@@ -27,9 +27,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.NOTICE(f"{court.name}"))
 
             if not court.canonical_param:
-                self.stdout.write(
-                    self.style.ERROR(f"{court.name} has no canonical_param! Skipping.")
-                )
+                self.stdout.write(self.style.ERROR(f"{court.name} has no canonical_param! Skipping."))
                 continue
 
             start_year = self.get_start_year(court)
@@ -78,9 +76,7 @@ falling back to config value of {fallback_end_year}"
 
         return end_year
 
-    def _get_year_of_first_document_in_order(
-        self, canonical_court_param, order, document_reference, fallback
-    ):
+    def _get_year_of_first_document_in_order(self, canonical_court_param, order, document_reference, fallback):
         search_response = search_judgments_and_parse_response(
             api_client, SearchParameters(court=canonical_court_param, order=order)
         )

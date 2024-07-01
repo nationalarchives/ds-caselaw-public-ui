@@ -56,12 +56,6 @@ def format_value_for_review(value, key):
     elif isinstance(value, list):
         return ", ".join(value)
     elif isinstance(value, dict):
-        return ", ".join(
-            [
-                format_value_for_review(value2, key)
-                for value2 in value.values()
-                if len(value2) > 0
-            ]
-        )
+        return ", ".join([format_value_for_review(value2, key) for value2 in value.values() if len(value2) > 0])
     else:
         return f"{value}"

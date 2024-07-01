@@ -13,12 +13,8 @@ from judgments.views.detail import PdfDetailView
 
 class TestCourtDates(TestCase):
     def setUp(self):
-        CourtDates.objects.create(
-            param="earliest_starting_court", start_year=2001, end_year=2020
-        )
-        CourtDates.objects.create(
-            param="last_ending_court", start_year=2005, end_year=2023
-        )
+        CourtDates.objects.create(param="earliest_starting_court", start_year=2001, end_year=2020)
+        CourtDates.objects.create(param="last_ending_court", start_year=2005, end_year=2023)
 
     def test_min_year(self):
         self.assertEqual(CourtDates.min_year(), 2001)
@@ -125,9 +121,7 @@ class TestRobotsDirectives(TestCase):
         # The homepage should not have a robots meta tag with nofollow,noindex
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/")
-        self.assertNotContains(
-            response, '<meta name="robots" content="noindex,nofollow" />'
-        )
+        self.assertNotContains(response, '<meta name="robots" content="noindex,nofollow" />')
         self.assertNotEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
@@ -136,9 +130,7 @@ class TestRobotsDirectives(TestCase):
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/judgments/search?query=waltham+forest")
-        self.assertContains(
-            response, '<meta name="robots" content="noindex,nofollow" />', html=True
-        )
+        self.assertContains(response, '<meta name="robots" content="noindex,nofollow" />', html=True)
 
     @patch("judgments.views.detail.DocumentPdf")
     @patch("judgments.views.detail.requests.get")
@@ -239,17 +231,13 @@ class TestBackLink(TestCase):
     def test_referrer_is_search_page_with_query(self):
         # When there is a referrer, and it is a results page,
         # the back link is displayed:
-        assert search_context_from_url(
-            "https://example.com/judgments/search?query=test+query"
-        ) == {
+        assert search_context_from_url("https://example.com/judgments/search?query=test+query") == {
             "search_url": "https://example.com/judgments/search?query=test+query",
             "query": "test query",
         }
 
     def test_referrer_not_results_or_advanced_search_page(self):
-        self.assertIs(
-            search_context_from_url("https://example.com/any/other/path"), None
-        )
+        self.assertIs(search_context_from_url("https://example.com/any/other/path"), None)
 
     def test_no_referrer(self):
         self.assertIs(search_context_from_url(None), None)
@@ -268,9 +256,7 @@ def test_preprocess_query():
     # Stopwords are removed
     assert utils.preprocess_query("weight of evidence") == "weight evidence"
     # Quotes are normalised
-    assert (
-        utils.preprocess_query("“excessively difficult”") == '"excessively difficult"'
-    )
+    assert utils.preprocess_query("“excessively difficult”") == '"excessively difficult"'
     # Quote normalisation happens before stopwords are removed, so curly quoted # strings retain stopwords:
     assert utils.preprocess_query("“weight of evidence”") == '"weight of evidence"'
     # "vs", "- v -", etc are stopwords,
@@ -290,19 +276,14 @@ def test_preprocess_query():
 
 def test_normalise_quotes():
     # Curly double quotes are replaced by straight ones
-    assert (
-        utils.normalise_quotes("“excessively difficult”") == '"excessively difficult"'
-    )
+    assert utils.normalise_quotes("“excessively difficult”") == '"excessively difficult"'
 
 
 def test_remove_unquoted_stop_words():
     # Stopwords outside quoted strings are removed.
     assert utils.remove_unquoted_stop_words("weight of evidence") == "weight evidence"
     # Stopwords inside quoted strings are removed
-    assert (
-        utils.remove_unquoted_stop_words('"weight of evidence"')
-        == '"weight of evidence"'
-    )
+    assert utils.remove_unquoted_stop_words('"weight of evidence"') == '"weight of evidence"'
 
     assert utils.remove_unquoted_stop_words("the") == "the"
     assert utils.remove_unquoted_stop_words('"the"') == '"the"'

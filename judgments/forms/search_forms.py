@@ -24,15 +24,9 @@ def _get_choices_by_group(courts):
     options: dict = {}
     for group in courts:
         if group.display_heading:
-            option = {
-                group.name: {
-                    court.canonical_param: court.grouped_name for court in group.courts
-                }
-            }
+            option = {group.name: {court.canonical_param: court.grouped_name for court in group.courts}}
         else:
-            option = {
-                court.canonical_param: court.grouped_name for court in group.courts
-            }
+            option = {court.canonical_param: court.grouped_name for court in group.courts}
         options = options | option
     return options
 

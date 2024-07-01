@@ -30,11 +30,7 @@ class DocumentPdf:
 
     @cached_property
     def uri(self):
-        return (
-            self.generate_uri()
-            if self.size
-            else formatted_document_uri(self.document_uri, "pdf")
-        )
+        return self.generate_uri() if self.size else formatted_document_uri(self.document_uri, "pdf")
 
     def generate_uri(self):
         env = environ.Env()
