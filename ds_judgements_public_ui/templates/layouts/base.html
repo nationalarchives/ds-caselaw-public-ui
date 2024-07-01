@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n waffle_tags navigation_tags %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -34,39 +34,51 @@
     {% include "includes/cookie_consent/cookie_banner.html" %}
     <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
     {% include "includes/environment_banner.html" %}
-    {% include "includes/phase_banner.html" %}
+    {% flag beta_homepage %}
+      {% include "includes/phase_banner.html" %}
+    {% endflag %}
     <header class="page-header">
       {% block header %}
         <div class="page-header__flex-container container py-1">
-          <div class="page-header__nav">
-            <div class="page-header__site-logo">
-              <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
-            </div>
-            <div class="page-header__breadcrumb">
-              <nav class="page-header__breadcrumb-flex-container"
-                   aria-label="Breadcrumb">
-                <ol>
-                  <li>
-                    <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-                    <a href="{% url 'home' %}">Find case law</a>
-                  </li>
-                  {% block breadcrumbs %}
-                    {% for breadcrumb in breadcrumbs %}
-                      {% if breadcrumb.url %}
-                        <li>
-                          <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
-                        </li>
-                      {% else %}
-                        <li>{{ breadcrumb.text }}</li>
-                      {% endif %}
-                    {% endfor %}
-                  {% endblock breadcrumbs %}
-                </ol>
-              </nav>
-            </div>
+          <div class="page-header__breadcrumb">
+            <nav class="page-header__breadcrumb-flex-container"
+                 aria-label="Breadcrumb">
+              <ol>
+                <li>
+                  <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                  <a href="{% url 'home' %}">Find case law</a>
+                </li>
+                {% block breadcrumbs %}
+                  {% for breadcrumb in breadcrumbs %}
+                    {% if breadcrumb.url %}
+                      <li>
+                        <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
+                      </li>
+                    {% else %}
+                      <li>{{ breadcrumb.text }}</li>
+                    {% endif %}
+                  {% endfor %}
+                {% endblock breadcrumbs %}
+              </ol>
+            </nav>
+            {% include "includes/beta_logo.html" %}
           </div>
-          {% include "includes/logo.html" %}
+          {% include "includes/beta_header.html" %}
         </div>
+
+        {% flag 1_homepage %}
+          <div class="page-header__flex-container container py-1">
+            <div class="page-header__nav">
+              <div class="page-header__site-logo">
+                <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+              </div>
+
+            </div>
+            {% include "includes/logo.html" %}
+          </div>
+        {% else %}
+
+        {% endflag %}
       {% endblock header %}
     </header>
     {% include "includes/notifications.html" %}
