@@ -1,16 +1,35 @@
-{% load i18n %}
-<div class="search-component">
-  <div class="search-component__container">
-    <h2 class="search-component__header--sr-only">{% translate "basicsearchform.title" %}</h2>
-    <form action="{% url 'search' %}"
-          class="search-term-component"
-          role="search"
-          aria-label="Search by keyword or neutral citation"
-          id="analytics-basic-search">
-      {% include "includes/search_term_component.html" %}
-    </form>
-    <div class="search-component__more-options">
-      <a href="{% url 'structured_search' %}">{% translate "basicsearchform.structured_search" %}</a>
+{% load i18n waffle_tags %}
+{% flag v2_homepage %}
+  <div class="search-component">
+    <div class="search-component__container">
+      {% include "includes/search/search_header_text.html" %}
+      <h2 class="search-component__header--sr-only">{% translate "basicsearchform.title" %}</h2>
+      <form action="{% url 'search' %}"
+            class="search-term-component"
+            role="search"
+            aria-label="Search by keyword or neutral citation"
+            id="analytics-basic-search">
+        {% include "includes/search_term_component.html" %}
+      </form>
+      <div class="search-component__more-option-beta">
+        <a href="{% url 'structured_search' %}">Advanced search </a>
+      </div>
     </div>
   </div>
-</div>
+{% else %}
+  <div class="search-component">
+    <div class="search-component__container">
+      <h2 class="search-component__header--sr-only">{% translate "basicsearchform.title" %}</h2>
+      <form action="{% url 'search' %}"
+            class="search-term-component"
+            role="search"
+            aria-label="Search by keyword or neutral citation"
+            id="analytics-basic-search">
+        {% include "includes/search_term_component.html" %}
+      </form>
+      <div class="search-component__more-options">
+        <a href="{% url 'structured_search' %}">{% translate "basicsearchform.structured_search" %}</a>
+      </div>
+    </div>
+  </div>
+{% endflag %}

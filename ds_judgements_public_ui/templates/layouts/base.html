@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n waffle_tags %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -34,7 +34,11 @@
     {% include "includes/cookie_consent/cookie_banner.html" %}
     <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
     {% include "includes/environment_banner.html" %}
-    {% include "includes/phase_banner.html" %}
+    {% flag v2_homepage %}
+      { % include "includes/beta_phase_banner.html" %}
+    {% else %}
+      {% include "includes/phase_banner.html" %}
+    {% endflag %}
     <header class="page-header">
       {% block header %}
         <div class="page-header__flex-container container py-1">

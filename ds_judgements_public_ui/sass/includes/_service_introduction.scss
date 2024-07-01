@@ -13,6 +13,20 @@
     margin: 0;
   }
 
+  &__header-beta {
+    font-size: 2.5rem;
+    line-height: 3.8rem;
+    display: inline-block;
+    width: 100%;
+    font-family: $font-roboto;
+    font-weight: normal;
+    color: $color-white;
+    margin-top: 2rem;
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      margin-top: none;
+    }
+  }
+
   &__helper-text {
     display: inline-block;
     font-size: 1.2rem;

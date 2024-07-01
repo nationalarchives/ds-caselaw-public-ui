@@ -48,6 +48,33 @@
     }
   }
 
+  &__more-options-beta {
+    margin-top: calc($spacer-unit / 2);
+
+    a {
+      color: $color-dark-blue;
+      text-decoration: none;
+      border: 0;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0 0 calc($spacer-unit / 2);
+      border-bottom: 0.125rem solid $color-dark-blue;
+      display: inline-block;
+      background: transparent;
+      font-family: $font-roboto;
+      font-weight: bold;
+
+      &:visited {
+        color: $color-black;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-black;
+      }
+    }
+  }
+
   input[type="checkbox"] {
     &:focus {
       @include focus-default;
@@ -81,6 +108,34 @@
     }
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: calc($spacer-unit * 0.5);
+    }
+  }
+
+  &__header-text {
+    margin-left: 3rem;
+
+    @media (min-width: $grid-breakpoint-small) {
+      margin-left: 0.75rem;
+    }
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-left: 0rem;
+    }
+    @media (max-width: $grid-breakpoint-large) {
+      margin-left: 0rem;
+    }
+    @media (min-width: $grid-breakpoint-extra-large) {
+      margin-left: 3rem;
+    }
+  }
+
+  &__sub-header-text {
+    margin-right: 15rem;
+    text-align: left;
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-right: 1rem;
+    }
+    @media (max-width: $grid-breakpoint-large) {
+      margin-right: 3rem;
     }
   }
 
