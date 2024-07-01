@@ -4,7 +4,7 @@
   }
 
   &__steps {
-    margin-top: 0.5rem;
+    margin-top: $space-2;
     margin-bottom: 3rem;
   }
 
@@ -15,11 +15,12 @@
   }
 
   &__preamble {
-    margin-bottom: 3rem;
+    margin-bottom: $space-12;
   }
 
   &__pre-form-content {
-    margin-bottom: 3rem;
+    margin-bottom: $space-12;
+
     &:empty {
       margin-bottom: 0;
     }
@@ -34,6 +35,6 @@
   }
 
   .govuk-form-group {
-    margin-bottom: 3rem;
+    margin-bottom: $space-12;
   }
 }

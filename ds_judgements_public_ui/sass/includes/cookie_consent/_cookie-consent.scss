@@ -2,7 +2,7 @@
   .container {
     @include container;
 
-    padding: $spacer-unit calc($spacer-unit * 2);
+    padding: $space-4 $space-8;
 
     .cookie_head {
       font-family: $font-roboto;

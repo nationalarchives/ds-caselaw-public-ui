@@ -6,7 +6,7 @@
 
   li ul,
   li ol {
-    margin-top: calc(0.5 * $spacer-unit);
+    margin-top: $space-2;
   }
 
   ol > li > ul {

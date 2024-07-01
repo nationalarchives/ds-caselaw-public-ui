@@ -1,6 +1,6 @@
 .pagination {
   background-color: $color-almost-black;
-  margin-bottom: calc($spacer-unit * 2);
+  margin-bottom: $space-8;
 
   h3 {
     @include sr-only;
@@ -165,7 +165,7 @@
       @media only screen and (min-width: $grid-breakpoint-medium) {
         width: 2.5rem;
         height: 1.875rem;
-        margin-top: 0.5rem;
+        margin-top: $space-2;
       }
     }
 

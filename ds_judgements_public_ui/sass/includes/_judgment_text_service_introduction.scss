@@ -1,7 +1,7 @@
 .service-introduction-banner {
   background-color: $color-black;
   color: $color-white;
-  padding: calc($spacer-unit * 2);
+  padding: $space-8;
 
   p {
     margin: 0;
@@ -12,7 +12,7 @@
   }
 
   li {
-    margin-bottom: calc($spacer-unit / 2);
+    margin-bottom: $space-2;
   }
 
   &__container {

@@ -11,7 +11,7 @@
 
   &__result-header {
     @media (min-width: $grid-breakpoint-large) {
-      margin-bottom: $spacer-unit;
+      margin-bottom: $space-4;
     }
   }
 
@@ -36,7 +36,7 @@
   &__results-intro {
     font-family: $font-roboto;
     font-size: 1.8rem;
-    margin: calc($spacer-unit / 2) 0 0 0;
+    margin: $space-2 0 0 0;
   }
 
   &__filter-heading {
@@ -50,13 +50,13 @@
 
   &__container-extend-search-option {
     background-color: $color-light-grey;
-    padding: $spacer-unit calc($spacer-unit * 2);
-    margin: $spacer-unit 0;
+    padding: $space-4 $space-8;
+    margin: $space-4 0;
   }
 
   &__list-layout-container {
     .govuk-warning-text {
-      margin-bottom: calc($spacer-unit * 2);
+      margin-bottom: $space-8;
     }
   }
 }

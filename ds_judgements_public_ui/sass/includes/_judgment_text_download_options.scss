@@ -1,21 +1,21 @@
 .judgment-download-options {
   max-width: 90%;
-  margin: 0 auto calc($spacer-unit * 3) auto;
+  margin: 0 auto $space-12 auto;
 
   @media (min-width: $grid-breakpoint-medium) {
     max-width: 46rem;
   }
 
   &__header {
-    padding-bottom: calc($spacer-unit * 0.5);
-    margin-bottom: calc($spacer-unit * 2);
+    padding-bottom: $space-2;
+    margin-bottom: $space-8;
     display: inline-block;
   }
 
   &__options-list {
     display: flex;
     flex-direction: column;
-    gap: $spacer-unit;
+    gap: $space-4;
 
     @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
@@ -24,7 +24,7 @@
 
   &__download-option {
     border: 2px solid $color-yellow;
-    padding: $spacer-unit;
+    padding: $space-4;
   }
 
   h3 {

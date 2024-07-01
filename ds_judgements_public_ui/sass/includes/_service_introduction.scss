@@ -24,7 +24,7 @@
 
   &__further-information {
     display: inline-block;
-    margin-top: $spacer-unit;
+    margin-top: $space-4;
   }
 
   &__what-to-expect {
@@ -32,9 +32,9 @@
     background: transparent url($fa_chevron_right_white) 0 0.2rem no-repeat;
     background-size: 0.7rem;
     display: inline-block;
-    padding: 0 0 0 calc($spacer-unit / 1);
+    padding: 0 0 0 $space-4;
     color: $color-white;
-    margin: calc($spacer-unit * 1.6) 0 0;
+    margin: $space-6 0 0;
     font-weight: bold;
     font-size: 1.1rem;
     text-decoration: underline;

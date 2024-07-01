@@ -1,8 +1,8 @@
 .transactional-licence-form-content {
   &__example-responses {
     border: solid 1px $color-black;
-    padding: 1rem;
-    margin-top: calc(1 * $spacer-unit);
+    padding: $space-4;
+    margin-top: $space-4;
     font-style: italic;
   }
 
@@ -12,6 +12,6 @@
   }
 
   h4 {
-    margin-bottom: 1rem;
+    margin-bottom: $space-4;
   }
 }

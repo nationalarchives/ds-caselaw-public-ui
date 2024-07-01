@@ -21,8 +21,8 @@
     background-color: $color-white;
     color: $color-black;
     text-transform: uppercase;
-    padding: 0 calc($spacer-unit / 4);
-    margin-right: $spacer-unit;
+    padding: 0 $space-1;
+    margin-right: $space-4;
     font-weight: 700;
   }
 

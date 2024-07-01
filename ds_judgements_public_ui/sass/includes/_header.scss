@@ -32,7 +32,7 @@
   &__breadcrumb {
     display: flex;
     align-items: end;
-    padding-top: 1rem;
+    padding-top: $space-4;
 
     &-flex-container {
       @media only screen and (max-width: $grid-breakpoint-medium) {
@@ -56,14 +56,14 @@
     li {
       display: inline-block;
       position: relative;
-      margin-right: calc($spacer-unit / 2);
+      margin-right: $space-2;
       color: $color-white;
       break-inside: avoid;
       line-height: 1.3rem;
       letter-spacing: 0.3px;
 
       &:not(:nth-child(1)) {
-        padding-left: $spacer-unit;
+        padding-left: $space-4;
 
         &::before {
           content: "";
@@ -101,14 +101,14 @@
 
     &-you-are-in {
       color: $color-white;
-      margin-right: calc($spacer-unit / 2);
+      margin-right: $space-2;
     }
   }
 
   &__logo {
     width: 250px;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-top: $space-1;
+    margin-bottom: $space-1;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       max-width: 200px;
@@ -119,7 +119,7 @@
     font-size: 0.9rem;
     color: $color-white;
     text-align: right;
-    margin-top: calc($spacer-unit * 1.3);
+    margin-top: $space-5;
 
     a:focus {
       outline-color: $color-white;
@@ -128,7 +128,7 @@
     @media only screen and (max-width: $grid-breakpoint-medium) {
       text-align: center;
       padding-bottom: 0;
-      margin-top: calc($spacer-unit / 2);
+      margin-top: $space-2;
     }
   }
 

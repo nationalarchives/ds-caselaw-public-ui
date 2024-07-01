@@ -41,8 +41,8 @@
 
   h3 {
     @media (max-width: $grid-breakpoint-medium) {
-      padding-top: calc($spacer-unit / 2);
-      margin-bottom: calc($spacer-unit / 3);
+      padding-top: $space-2;
+      margin-bottom: $space-1;
     }
   }
 
@@ -52,10 +52,10 @@
 
   li {
     list-style: none;
-    margin-bottom: calc($spacer-unit * 1.6);
+    margin-bottom: $space-5;
 
     @media (min-width: $grid-breakpoint-medium) {
-      margin-bottom: calc($spacer-unit * 1.4);
+      margin-bottom: $space-6;
     }
   }
 
@@ -67,7 +67,7 @@
     text-align: left;
     font-size: 0.8rem;
     line-height: 1.2rem;
-    margin-top: $spacer-unit * 1.5;
+    margin-top: $space-6;
 
     @media (min-width: $grid-breakpoint-medium) {
       font-size: 0.9rem;

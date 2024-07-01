@@ -44,7 +44,7 @@
   display: grid;
   justify-content: space-between;
   border-bottom: 1px solid $color-dark-grey;
-  padding: $spacer-unit;
+  padding: $space-4;
   margin: auto;
   grid-template-columns: 1fr auto 1fr;
   grid-template-rows: 1fr;
@@ -155,12 +155,12 @@
 
   &__remove-query-link {
     display: inline-block;
-    width: 1rem;
-    height: 1rem;
+    width: $space-4;
+    height: $space-4;
     background: url($fa_circle_xmark_solid_link_blue) left no-repeat;
     background-size: contain;
     text-indent: 100%;
-    margin-left: calc(0.25 * $spacer-unit);
+    margin-left: $space-1;
     white-space: nowrap;
     overflow: hidden;
     position: relative;
@@ -178,10 +178,10 @@
         content: " ";
         background: url($fa_chevron_up_link_blue) left no-repeat;
         background-size: contain;
-        height: $spacer-unit;
-        width: $spacer-unit;
+        height: $space-4;
+        width: $space-4;
         display: inline-block;
-        margin: 0 0.5rem 0 0;
+        margin: 0 $space-2 0 0;
         position: relative;
         top: 3px;
       }
@@ -192,10 +192,10 @@
         content: " ";
         background: url($fa_chevron_down_link_blue) right no-repeat;
         background-size: contain;
-        height: $spacer-unit;
-        width: $spacer-unit;
+        height: $space-4;
+        width: $space-4;
         display: inline-block;
-        margin: 0 0 0 0.5rem;
+        margin: 0 0 0 $space-2;
         position: relative;
         top: 3px;
       }
@@ -209,8 +209,8 @@
         content: " ";
         background: url($fa_chevron_left_disabled) left no-repeat;
         background-size: contain;
-        height: $spacer-unit;
-        width: $spacer-unit;
+        height: $space-4;
+        width: $space-4;
         display: inline-block;
         margin: 0;
         position: relative;
@@ -225,8 +225,8 @@
         content: " ";
         background: url($fa_chevron_right_disabled) right no-repeat;
         background-size: contain;
-        height: $spacer-unit;
-        width: $spacer-unit;
+        height: $space-4;
+        width: $space-4;
         display: inline-block;
         margin: 0;
         position: relative;
@@ -285,7 +285,7 @@
   }
 
   &__search-query-label {
-    margin: 0 $spacer-unit;
+    margin: 0 $space-4;
   }
 
   &__query-text {

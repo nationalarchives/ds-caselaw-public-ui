@@ -1,7 +1,7 @@
 .results-search-component {
   background-color: $color-light-grey;
-  padding: calc($spacer-unit * 1.5) 0 calc($spacer-unit * 2);
-  margin: 0 0 calc($spacer-unit * 3);
+  padding: $space-6 0 $space-8;
+  margin: 0 0 $space-12;
 
   &__container {
     @include container;
@@ -15,7 +15,7 @@
     font-weight: bold;
     color: $color-almost-black;
     flex-shrink: 0;
-    margin: 0 0.25rem 0 0;
+    margin: 0 $space-1 0 0;
     padding: 0.1rem 0 0 0;
     display: inline-block;
 
@@ -25,7 +25,7 @@
   }
 
   &__full-text-panel {
-    margin: calc($spacer-unit / 2) 0 0 0;
+    margin: $space-2 0 0 0;
     text-align: left;
     display: flex;
     gap: 0;
@@ -33,8 +33,8 @@
     align-items: flex-start;
     justify-content: space-between;
     @media (min-width: $grid-breakpoint-medium) {
-      padding: calc($spacer-unit / 4) 0 0 0;
-      gap: $spacer-unit;
+      padding: $space-1 0 0 0;
+      gap: $space-4;
       flex-direction: row;
     }
   }
@@ -49,14 +49,14 @@
   &__filters-row {
     display: block;
     text-align: left;
-    padding-top: 0.5rem;
+    padding-top: $space-2;
 
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
       justify-content: space-between;
       flex-direction: row;
       align-items: stretch;
-      gap: $spacer-unit;
+      gap: $space-4;
       align-items: flex-start;
     }
   }
@@ -64,7 +64,7 @@
   &__full-text-input {
     @include text_field;
     width: 90%;
-    min-height: calc($spacer-unit * 3);
+    min-height: $space-12;
 
     @media (min-width: $grid-breakpoint-medium) {
       width: 27rem;
@@ -78,7 +78,7 @@
   &__mobile-submit-button {
     display: block;
     width: 100%;
-    padding-top: 1rem;
+    padding-top: $space-4;
     @media (min-width: $grid-breakpoint-medium) {
       display: none;
     }
@@ -92,26 +92,26 @@
 
   &__search-submit-button {
     @include call-to-action-button;
-    padding-left: calc($spacer-unit * 3);
-    padding-right: calc($spacer-unit * 3);
+    padding-left: $space-12;
+    padding-right: $space-12;
     width: 100%;
   }
 
   &__facet-outer-container {
-    margin: calc($spacer-unit * 2) 0;
-    padding: calc($spacer-unit * 1) calc($spacer-unit * 3);
+    margin: $space-8 0;
+    padding: $space-4 $space-12;
     text-align: center;
   }
 
   &__facet-inner-container {
-    margin: 0 0 calc($spacer-unit * 2);
+    margin: 0 0 $space-8;
     text-align: left;
 
     @media (min-width: $grid-breakpoint-medium) {
       display: grid;
       grid-auto-columns: 1fr;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: $space-4;
     }
 
     @media (min-width: $grid-breakpoint-extra-large) {
@@ -146,20 +146,20 @@
 
   &__fieldset {
     border: 0;
-    padding: calc($spacer-unit * 2);
-    margin: 0.25rem;
+    padding: $space-8;
+    margin: $space-1;
     background: $color-yellow;
     color: $color-black;
   }
 
   &__help-text {
-    margin: calc($spacer-unit / 4) 0 calc($spacer-unit / 2) 0;
+    margin: $space-1 0 $space-2 0;
     font-size: 0.8rem;
   }
 
   &__multi-fields-panel {
-    margin-top: $spacer-unit;
-    margin-bottom: $spacer-unit;
+    margin-top: $space-4;
+    margin-bottom: $space-4;
   }
 
   &__name-label {
@@ -189,7 +189,7 @@
   &__date-input {
     @include text_field;
     margin-top: 0;
-    padding: 0.375rem;
+    padding: $space-1;
   }
 
   &__filter-submit-button {
@@ -198,15 +198,15 @@
   }
 
   &__name-container {
-    border-left-width: 0.375rem;
-    padding: 0 $spacer-unit;
-    margin-bottom: $spacer-unit;
+    border-left-width: $space-1;
+    padding: 0 $space-4;
+    margin-bottom: $space-4;
   }
 
   &__limit-to-container {
-    border-left-width: 0.375rem;
-    padding: 0 $spacer-unit;
-    margin-bottom: $spacer-unit;
+    border-left-width: $space-1;
+    padding: 0 $space-4;
+    margin-bottom: $space-4;
   }
 
   &__removable-options {
@@ -217,7 +217,7 @@
     margin: 0;
 
     li {
-      margin: 0 0.25rem 0.5rem 0.25rem;
+      margin: 0 $space-1 $space-2 $space-1;
       display: inline-block;
 
       &:first-child {
@@ -238,10 +238,10 @@
       content: " ";
       background: url($fa_xmark_solid) left no-repeat;
       background-size: contain;
-      height: $spacer-unit;
-      width: $spacer-unit;
+      height: $space-4;
+      width: $space-4;
       display: inline-block;
-      margin: 0 0.5rem 0 0.5rem;
+      margin: 0 $space-2 0 $space-2;
       top: 2px;
       position: relative;
     }
@@ -255,8 +255,7 @@
     border: 0.188rem solid $color-yellow;
     color: $color-black;
     text-decoration: none;
-    padding: calc($spacer-unit / 2) calc($spacer-unit / 2)
-      calc($spacer-unit / 2) $spacer-unit;
+    padding: $space-2 $space-2 $space-2 $space-4;
 
     &:hover {
       background: $color-yellow;
@@ -268,7 +267,7 @@
     }
 
     &:focus {
-      outline-offset: calc($spacer-unit / 4);
+      outline-offset: $space-1;
     }
   }
 }
@@ -277,7 +276,7 @@
   &-search-component {
     &__control-container {
       display: inline-block;
-      padding-top: calc(2 * $spacer-unit);
+      padding-top: $space-8;
       padding-top: 0;
       flex-shrink: 0;
 
@@ -291,7 +290,7 @@
       background-color: transparent;
       font-size: 1rem;
       position: relative;
-      padding: 0 0 calc($spacer-unit / 2) 1.2rem;
+      padding: 0 0 $space-2 $space-6;
       border-bottom: 0.188rem solid $color-yellow;
       margin: 0 auto;
       font-weight: bold;

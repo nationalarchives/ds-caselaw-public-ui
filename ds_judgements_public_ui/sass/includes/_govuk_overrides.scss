@@ -4,7 +4,7 @@
 
 .component-wrapper {
   border: solid $color-grey;
-  padding: 1rem;
+  padding: $space-4;
 }
 
 .govuk-summary-card {
@@ -48,13 +48,13 @@
 .govuk-details {
   border: 3px solid $color-aqua-blue;
   background-color: $color-white;
-  padding: 0.5rem;
-  margin-top: calc(2 * $spacer-unit);
-  margin-bottom: calc(2 * $spacer-unit);
+  padding: $space-2;
+  margin-top: $space-8;
+  margin-bottom: $space-8;
 }
 
 .govuk-details__summary {
-  padding-left: 1.5rem;
+  padding-left: $space-6;
   color: $color-aqua-blue;
   &:focus {
     background-color: transparent;
@@ -73,12 +73,12 @@
 .govuk-details__text {
   border-left: none;
   font-size: 1rem;
-  padding: 1rem;
+  padding: $space-4;
 }
 
 .info-box {
   border: transparent;
-  padding: 2rem;
+  padding: $space-8;
   background-color: $color-light-grey;
 }
 
@@ -90,7 +90,7 @@
 
 .details-box {
   border: transparent;
-  padding: 2rem;
+  padding: $space-8;
 }
 
 .govuk-notification-banner_aquablue {
@@ -129,7 +129,7 @@
   background-color: #fef8df;
   color: $color-black;
   border: $color-black solid 3px;
-  margin-left: 1rem;
+  margin-left: $space-4;
   transform: rotate(180deg);
 }
 .govuk-warning-text__text {
@@ -148,7 +148,7 @@
   border: transparent;
   border-left: 0.5rem $color-yellow solid;
   background-color: #fef8df;
-  padding: calc($spacer-unit * 2) calc($spacer-unit * 2);
+  padding: $space-8;
 }
 
 .govuk-checkboxes__input {
@@ -167,7 +167,7 @@
 
 .govuk-date-input__label {
   font-size: 0.8rem;
-  margin-top: 0.25rem;
+  margin-top: $space-1;
 }
 
 .govuk-date-input__input {
@@ -175,7 +175,7 @@
 }
 
 .govuk-date-input__item {
-  margin-right: 0.5rem;
+  margin-right: $space-2;
 }
 
 .govuk-form-group {
