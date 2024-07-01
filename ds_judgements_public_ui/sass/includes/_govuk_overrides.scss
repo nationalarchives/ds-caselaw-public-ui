@@ -196,7 +196,7 @@
 
 .govuk-frontend-supported .govuk-header__menu-button {
   display: block;
-  right: -2rem;
+  right: 0rem;
   font-size: 1.2rem;
   padding-top: 1.25rem;
   &:focus {
@@ -219,7 +219,16 @@
   }
 }
 
+a.govuk-header__link--homepage {
+  border-bottom: none;
+}
+
+a.govuk-header__link--homepage:visited {
+  color: transparent;
+}
+
 .govuk-header__link {
+  border-bottom: 1px solid $color-white;
   color: $color-white;
   text-decoration: underline;
   &:focus {
@@ -253,7 +262,6 @@
   line-height: 1.142rem;
   font-weight: normal;
   white-space: nowrap;
-  border-bottom: 1px solid $color-white;
   text-decoration: none;
   display: inline-block;
 

@@ -1,7 +1,7 @@
 .beta-header {
   margin: 0.5rem 4rem;
   @media only screen and (max-width: $grid-breakpoint-medium) {
-    padding: 1rem;
+    padding: 0.25rem;
   }
 
   &__tna-logo {
@@ -9,9 +9,6 @@
     height: 100px;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
-    margin-left: -6rem;
-    margin-right: 6rem;
-
     @media only screen and (max-width: 980px) {
       max-width: 100px;
       margin-left: -5rem;
@@ -29,8 +26,8 @@
     @media only screen and (max-width: $grid-breakpoint-medium) {
       margin-top: 7rem;
       position: sticky;
-      padding: 1.25rem;
-      margin-left: -6rem;
+      padding: 0.25rem;
+      margin-left: -5rem;
     }
   }
 
@@ -42,12 +39,12 @@
     color: $color-white;
     white-space: nowrap;
     font-weight: bold;
+    margin-top: 2rem;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       font-size: 2rem;
-      line-height: 1.8rem;
-      padding-right: 8rem;
-      margin-top: -4rem;
+      line-height: 3.8rem;
+      margin-bottom: 1rem;
     }
   }
 
