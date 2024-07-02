@@ -48,6 +48,36 @@
     }
   }
 
+  &__more-options-beta {
+    margin-top: -0.75rem;
+
+    a {
+      color: $color-dark-blue;
+      text-decoration: none;
+      border: 0;
+      font-size: 1.1rem;
+      position: relative;
+      border-bottom: 1px solid $color-dark-blue;
+      display: inline-block;
+      background: transparent;
+      font-family: $font-roboto;
+      font-weight: bold;
+
+      &:visited {
+        color: $color-dark-blue;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-black;
+      }
+    }
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-top: 0.125rem;
+      text-align: center;
+    }
+  }
+
   input[type="checkbox"] {
     &:focus {
       @include focus-default;
