@@ -1,10 +1,10 @@
 .help-end-document-marker {
   width: 100%;
   border-top: 4px solid $color-yellow;
-  height: $spacer-unit;
+  height: $space-4;
   max-width: 90%;
   margin: auto;
-  margin-bottom: calc($spacer-unit * 8);
+  margin-bottom: 8rem;
   text-align: center;
   @media (min-width: $grid-breakpoint-medium) {
     max-width: 40rem;
@@ -17,21 +17,21 @@
   &__top-link {
     display: inline-block;
     background-color: white;
-    padding: calc($spacer-unit * 0.5);
-    padding-top: calc($spacer-unit * 0.3);
-    margin-top: 0.5rem;
+    padding: $space-2;
+    padding-top: $space-1;
+    margin-top: $space-2;
 
     a {
-      margin-top: 1.5rem;
+      margin-top: $space-6;
 
       &::before {
         content: " ";
         background: url($fa_chevron_up_link_blue) left no-repeat;
         background-size: contain;
-        height: $spacer-unit;
-        width: $spacer-unit;
+        height: $space-4;
+        width: $space-4;
         display: inline-block;
-        margin: 0 0.5rem 0 0;
+        margin: 0 $space-2 0 0;
         top: 2px;
         position: relative;
       }

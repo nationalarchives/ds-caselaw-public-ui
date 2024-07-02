@@ -1,24 +1,24 @@
 .judgment-browse-by-court {
   &__container {
     @include container;
-    padding: 0 0 calc($spacer-unit * 4);
+    padding: 0 0 $space-16;
   }
 
   &__header {
     font-family: $font-roboto;
     font-weight: normal;
-    font-size: 1.8rem;
-    margin: 0 0 calc($spacer-unit * 3);
+    font-size: $typography-xl-text-size;
+    margin: 0 0 $space-12;
   }
 
   &__list {
     padding: 0;
     list-style-type: none;
-    margin: 0 0 calc($spacer-unit * 3);
+    margin: 0 0 $space-12;
 
     @media (min-width: $grid-breakpoint-medium) {
       column-count: 2;
-      column-gap: $spacer-unit;
+      column-gap: $space-4;
     }
   }
 
@@ -27,20 +27,20 @@
   }
 
   &__court {
-    padding: calc($spacer-unit * 2) $spacer-unit;
+    padding: $space-8 $space-4;
     text-align: center;
     background-color: $color-yellow;
     font-family: $font-roboto;
 
     @media (max-width: $grid-breakpoint-medium) {
-      margin-bottom: $spacer-unit;
+      margin-bottom: $space-4;
     }
   }
 
   &__court-name {
     display: block;
-    font-size: 1.25rem;
-    margin-bottom: calc($spacer-unit / 3);
+    font-size: $typography-lg-text-size;
+    margin-bottom: $space-1;
   }
 
   &__court-link {

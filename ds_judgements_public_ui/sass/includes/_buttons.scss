@@ -54,9 +54,9 @@
   text-decoration: underline;
   cursor: pointer;
   @include link;
-  font-size: 1rem;
+  font-size: $typography-md-text-size;
 }
 
 .button-inline {
-  margin-right: 0.5rem;
+  margin-right: $space-2;
 }

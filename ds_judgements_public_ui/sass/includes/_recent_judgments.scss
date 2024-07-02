@@ -1,14 +1,14 @@
 .recent-judgments {
   &__container {
     @include container;
-    padding-top: calc($spacer-unit * 2);
-    padding-bottom: calc($spacer-unit * 2);
+    padding-top: $space-8;
+    padding-bottom: $space-8;
   }
 
   &__header {
     @include heading_text;
     font-size: 1.8rem;
-    padding-bottom: calc($spacer-unit * 1.5);
+    padding-bottom: $space-6;
     border-bottom: 5px solid $color-yellow;
   }
 
@@ -16,13 +16,13 @@
     border: 0;
     font-size: 1rem;
     position: relative;
-    padding: 0 0 calc($spacer-unit / 2);
+    padding: 0 0 $space-2;
     font-family: $font-roboto;
     font-weight: normal;
 
     a {
-      margin: calc($spacer-unit / 4) 0;
-      padding: calc($spacer-unit / 4) 0;
+      margin: $space-1 0;
+      padding: $space-1 0;
       display: inline-block;
       border-bottom: 0.125rem solid $color-black;
       text-decoration: none;

@@ -1,7 +1,7 @@
 .judgment-toolbar {
   background-color: $color-light-grey;
   color: $color-black;
-  padding: $spacer-unit;
+  padding: $space-4;
   border-bottom: 0.125rem solid $color-grey;
 
   &__container {
@@ -19,13 +19,13 @@
       @media (max-width: $grid-breakpoint-small) {
         text-align: center;
         display: block;
-        padding: 0.25rem $spacer-unit;
+        padding: $space-1 $space-4;
       }
     }
   }
 
   a {
-    padding: calc($spacer-unit / 2) calc($spacer-unit * 3);
+    padding: $space-2 $space-12;
     display: inline-block;
     text-decoration: none;
     outline-offset: 3px;
@@ -33,33 +33,33 @@
 
     &.btn {
       @include call-to-action-button;
-      margin-bottom: calc($spacer-unit / 3) !important;
+      margin-bottom: $space-1 !important;
     }
 
     &.btn-related-document {
       @include call-to-action-button-secondary;
-      margin-bottom: calc($spacer-unit / 3) !important;
-      margin-right: 1rem;
+      margin-bottom: $space-1 !important;
+      margin-right: $space-4;
     }
 
     @media (min-width: $grid-breakpoint-small) {
-      padding: calc($spacer-unit / 2) calc($spacer-unit * 1.5);
+      padding: $space-2 $space-6;
     }
   }
 
   &__press-summary-title {
     text-wrap: balance;
-    margin-top: -1 * $spacer-unit;
+    margin-top: -1 * $space-4;
     margin-bottom: 0;
     background-color: $color-yellow;
     color: $color-almost-black;
-    padding: calc($spacer-unit / 3) calc($spacer-unit / 2);
+    padding: $space-1 $space-2;
     text-align: center;
   }
 
   &__title {
     text-wrap: balance;
-    margin-top: $spacer-unit;
+    margin-top: $space-4;
     margin-bottom: 0;
     color: $color-almost-black;
     text-align: center;
@@ -67,9 +67,9 @@
 
   &__reference {
     text-wrap: balance;
-    margin-top: 0.5 * $spacer-unit;
-    margin-bottom: $spacer-unit;
-    font-size: 2rem;
+    margin-top: $space-2;
+    margin-bottom: $space-4;
+    font-size: $typography-xl-text-size;
     color: $color-almost-black;
     text-align: center;
   }
@@ -88,7 +88,7 @@
 
   &__option--download-options {
     color: $color-dark-grey;
-    font-size: 0.75rem;
+    font-size: $typography-md-text-size;
     text-align: center;
 
     a {
@@ -97,7 +97,7 @@
       padding: 1px;
       display: inline;
       text-decoration: underline;
-      font-size: 1rem;
+      font-size: $typography-md-text-size;
 
       &:hover {
         text-decoration: none;

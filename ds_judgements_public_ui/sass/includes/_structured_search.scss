@@ -5,22 +5,21 @@
 
   &__main-search {
     background-color: $color-light-grey;
-    padding: calc($spacer-unit * 1) 0 calc($spacer-unit * 1.5);
-    margin: 0 0 $spacer-unit;
+    padding: $space-4 0 $space-6;
+    margin: 0 0 $space-4;
     text-align: center;
   }
 
   &__main-search-header {
-    font-size: 2.4rem;
-    line-height: 2rem;
+    font-size: $typography-2xl-text-size;
+    line-height: $typography-xs-line-height;
     display: inline-block;
     font-family: $font-roboto;
     font-weight: normal;
     color: $color-almost-black;
-    margin: calc($spacer-unit * 1) 0 0 0;
+    margin: $space-4 0 0 0;
     @media (max-width: $grid-breakpoint-medium) {
-      margin: 1px $spacer-unit;
-      line-height: 2.6rem;
+      margin: $space-2 $space-4;
     }
   }
 
@@ -36,10 +35,10 @@
   }
 
   &__full-text-panel {
-    margin-top: $spacer-unit;
+    margin-top: $space-4;
     @media (max-width: $grid-breakpoint-medium) {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding-left: $space-4;
+      padding-right: $space-4;
       box-sizing: border-box;
     }
   }
@@ -47,20 +46,20 @@
   &__limit-to-input {
     @include text_field;
     width: 95%;
-    margin-top: calc(0.5 * $spacer-unit);
+    margin-top: $space-2;
     margin-bottom: 0;
   }
 
   &__limit-to-label {
     display: block;
-    margin-bottom: 0rem;
+    margin-bottom: 0;
     margin-left: 0;
-    font-size: 1rem;
+    font-size: $typography-md-text-size;
     font-weight: bold;
   }
 
   &__single-field-panel {
-    padding-top: $spacer-unit;
+    padding-top: $space-4;
 
     @media (max-width: $grid-breakpoint-medium) {
       padding-top: 0;
@@ -95,7 +94,7 @@
   }
 
   &__multi-fields-panel {
-    padding-top: $spacer-unit;
+    padding-top: $space-4;
     @media (max-width: $grid-breakpoint-medium) {
       padding-top: 0;
     }
@@ -110,7 +109,7 @@
 
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
       display: -ms-grid;
-      -ms-grid-columns: 1fr 1rem 1fr;
+      -ms-grid-columns: 1fr $space-4 1fr;
 
       div:nth-of-type(1) {
         -ms-grid-row: 1;
@@ -130,52 +129,52 @@
 
   &__specific-field-container {
     background-color: $color-light-grey;
-    padding: $spacer-unit;
+    padding: $space-4;
     display: flex;
     flex-direction: column;
     border-top: 4px solid $color-yellow;
     @media (max-width: $grid-breakpoint-medium) {
-      margin-bottom: 1rem;
+      margin-bottom: $space-4;
     }
   }
 
   &__limit-to-container {
     background-color: $color-light-grey;
-    padding: $spacer-unit;
+    padding: $space-4;
     display: flex;
     flex-direction: column;
     border-top: 4px solid $color-yellow;
     @media (max-width: $grid-breakpoint-medium) {
-      margin-bottom: 1rem;
+      margin-bottom: $space-4;
     }
   }
 
   &__submit-container {
-    margin-top: calc($spacer-unit / 2);
+    margin-top: $space-2;
     text-align: right;
 
     @media (max-width: $grid-breakpoint-medium) {
-      margin: 1rem;
+      margin: $space-4;
     }
   }
 
   &__help-text {
-    margin-top: calc($spacer-unit / 4);
-    font-size: 0.8rem;
+    margin-top: $space-1;
+    font-size: $typography-sm-text-size;
   }
 
   &__from-date-error-message {
     margin: 0;
     color: #d4351c;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: $typography-sm-text-size;
   }
 
   &__to-date-error-message {
     margin: 0;
     color: #d4351c;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: $typography-sm-text-size;
   }
 
   input:invalid {
@@ -197,7 +196,7 @@
 
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
-      gap: calc(2 * $spacer-unit);
+      gap: $space-8;
     }
   }
 
@@ -210,12 +209,12 @@
   }
 
   &__court-option {
-    margin-top: calc($spacer-unit * 0.5);
+    margin-top: $space-2;
 
     label {
       display: grid;
-      grid-template-columns: 1em auto;
-      gap: 0.5em;
+      grid-template-columns: $space-4 auto;
+      gap: $space-2;
 
       input[type="checkbox"] {
         -webkit-appearance: none;
@@ -224,8 +223,8 @@
         margin: 0;
         font: inherit;
         color: $color-dark-grey;
-        width: 1.5em;
-        height: 1.5em;
+        width: $space-6;
+        height: $space-6;
         border: 2px solid $color-dark-grey;
         transform: translateY(-0.075em);
         display: grid;
@@ -233,11 +232,11 @@
 
         &::before {
           content: "";
-          width: calc($spacer-unit * 0.75);
-          height: calc($spacer-unit * 0.75);
+          width: $space-3;
+          height: $space-3;
           transform: scale(0);
           transition: 120ms transform ease-in-out;
-          box-shadow: inset $spacer-unit $spacer-unit $color-black;
+          box-shadow: inset $space-4 $space-4 $color-black;
           transform-origin: bottom left;
           clip-path: polygon(
             14% 44%,
@@ -259,25 +258,25 @@
   }
 
   &__court-group-label {
-    margin-top: calc(0.5 * $spacer-unit);
-    line-height: calc(1.5 * $spacer-unit);
+    margin-top: $space-2;
+    line-height: $typography-xs-line-height;
     vertical-align: baseline;
-    margin-bottom: calc(0.5 * $spacer-unit);
+    margin-bottom: $space-2;
   }
 
   &__court-group {
-    margin-left: calc(2 * $spacer-unit);
+    margin-left: $space-8;
     break-inside: avoid;
   }
 
   &__court-option-label {
-    margin-left: calc(0.5 * $spacer-unit);
-    line-height: calc(1.5 * $spacer-unit);
+    margin-left: $space-2;
+    line-height: $typography-xs-line-height;
     vertical-align: baseline;
   }
   &__court-date-range {
     color: $color-dark-grey;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
   }
   &__date-input {
     @include text_field;
@@ -291,7 +290,7 @@
     margin-bottom: 0;
     width: 100% !important;
     box-sizing: border-box;
-    border-color: #d4351c;
+    border-color: #d4351c; // TODO: Move this to ds-caselaw-frontend
   }
 
   fieldset {
@@ -302,20 +301,20 @@
 
   &__multi-fields-panel {
     fieldset.with-errors {
-      padding-left: calc($spacer-unit * 1.5);
-      border-left: 4px solid #d4351c;
+      padding-left: $space-6;
+      border-left: 4px solid #d4351c; // TODO: Move this to ds-caselaw-frontend
       .structured-search__help-text {
-        margin-bottom: calc(0.5 * $spacer-unit);
+        margin-bottom: $space-2;
       }
     }
   }
 
   &__update-filters-button {
     @include call-to-action-button;
-    padding-right: calc($spacer-unit * 2.5);
-    padding-left: calc($spacer-unit * 2.5);
-    margin-top: calc($spacer-unit * 0.5);
-    margin-bottom: $spacer-unit;
+    padding-right: $space-10;
+    padding-left: $space-10;
+    margin-top: $space-2;
+    margin-bottom: $space-4;
     width: 50%;
     position: relative;
     @media (min-width: $grid-breakpoint-medium) {
@@ -346,8 +345,8 @@
   &__search-term-input {
     @include text_field;
     width: 80%;
-    min-height: calc($spacer-unit * 2);
-    font-size: 1.2rem;
+    min-height: $space-8;
+    font-size: $typography-lg-text-size;
 
     @media (min-width: $grid-breakpoint-small) {
       width: 20rem;
@@ -386,7 +385,7 @@
     box-sizing: border-box;
 
     @media (max-width: $grid-breakpoint-medium) {
-      margin-bottom: $spacer-unit;
+      margin-bottom: $space-4;
     }
   }
 }

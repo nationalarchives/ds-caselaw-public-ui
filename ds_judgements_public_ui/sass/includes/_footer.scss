@@ -7,7 +7,7 @@
     padding-top: 0;
     margin-bottom: 0;
     font-weight: normal;
-    font-size: 1.3rem;
+    font-size: $typography-lg-text-size;
   }
 
   &__cta-button {
@@ -22,10 +22,10 @@
   background-color: $color-almost-black;
   color: $color-white;
 
-  font-size: 0.9rem;
+  font-size: $typography-sm-text-size;
 
   @media (min-width: $grid-breakpoint-medium) {
-    font-size: 1rem;
+    font-size: $typography-md-text-size;
   }
 
   &__links-container {
@@ -41,8 +41,8 @@
 
   h3 {
     @media (max-width: $grid-breakpoint-medium) {
-      padding-top: calc($spacer-unit / 2);
-      margin-bottom: calc($spacer-unit / 3);
+      padding-top: $space-2;
+      margin-bottom: $space-1;
     }
   }
 
@@ -52,10 +52,10 @@
 
   li {
     list-style: none;
-    margin-bottom: calc($spacer-unit * 1.6);
+    margin-bottom: $space-5;
 
     @media (min-width: $grid-breakpoint-medium) {
-      margin-bottom: calc($spacer-unit * 1.4);
+      margin-bottom: $space-6;
     }
   }
 
@@ -65,12 +65,12 @@
 
   &__base-paragraph {
     text-align: left;
-    font-size: 0.8rem;
+    font-size: $typography-sm-text-size;
     line-height: 1.2rem;
-    margin-top: $spacer-unit * 1.5;
+    margin-top: $space-6;
 
     @media (min-width: $grid-breakpoint-medium) {
-      font-size: 0.9rem;
+      font-size: $typography-sm-text-size;
       line-height: 1.4rem;
     }
 

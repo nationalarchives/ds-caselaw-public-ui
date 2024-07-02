@@ -1,22 +1,22 @@
 @for $i from 1 through 3 {
   .my-#{$i} {
-    margin-top: $spacer-unit * $i;
-    margin-bottom: $spacer-unit * $i;
+    margin-top: $space-4 * $i;
+    margin-bottom: $space-4 * $i;
   }
   .mt-#{$i} {
-    margin-top: $spacer-unit * $i;
+    margin-top: $space-4 * $i;
   }
   .mb-#{$i} {
-    margin-top: $spacer-unit * $i;
+    margin-top: $space-4 * $i;
   }
   .py-#{$i} {
-    padding-top: $spacer-unit * $i;
-    padding-bottom: $spacer-unit * $i;
+    padding-top: $space-4 * $i;
+    padding-bottom: $space-4 * $i;
   }
   .pt-#{$i} {
-    padding-top: $spacer-unit * $i;
+    padding-top: $space-4 * $i;
   }
   .pb-#{$i} {
-    padding-bottom: $spacer-unit * $i;
+    padding-bottom: $space-4 * $i;
   }
 }

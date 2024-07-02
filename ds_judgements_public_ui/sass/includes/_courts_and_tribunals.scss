@@ -8,28 +8,28 @@
 
   &__header {
     @include heading_text;
-    margin-bottom: calc(2 * $spacer-unit);
-    padding-bottom: $spacer-unit;
+    margin-bottom: $space-8;
+    padding-bottom: $space-4;
     border-bottom: 1px solid $color-yellow;
   }
   h2 {
-    font-size: 2rem;
+    font-size: $typography-xl-text-size;
     line-height: 2.6rem;
-    margin-top: 1rem;
+    margin-top: $space-4;
   }
   h3 {
-    font-size: 1.5rem;
+    font-size: $typography-lg-text-size;
     line-height: 1.95rem;
-    margin-top: 1rem;
+    margin-top: $space-4;
   }
   h4 {
     font-weight: normal;
-    font-size: 1rem;
+    font-size: $typography-md-text-size;
     margin-top: 0;
     padding-top: 0;
   }
   p {
-    margin-top: $spacer-unit;
-    margin-bottom: calc(2 * $spacer-unit);
+    margin-top: $space-4;
+    margin-bottom: $space-8;
   }
 }

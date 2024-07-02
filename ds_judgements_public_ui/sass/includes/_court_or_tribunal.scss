@@ -1,6 +1,6 @@
 .court-or-tribunal {
   &__crest {
-    margin-top: calc(2 * $spacer-unit);
+    margin-top: $space-8;
 
     @media (min-width: $grid-breakpoint-medium) {
       width: 66%;
@@ -14,21 +14,21 @@
   }
   &__intro {
     h1 {
-      margin-top: $spacer-unit;
+      margin-top: $space-4;
     }
 
     @media (min-width: $grid-breakpoint-medium) {
       width: 66%;
     }
     text-wrap: balance;
-    margin-bottom: calc(4 * $spacer-unit);
+    margin-bottom: $space-16;
   }
 
   h2 {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: $typography-lg-text-size;
+    line-height: $typography-sm-line-height;
     font-weight: normal;
-    margin-bottom: calc(0.5 * $spacer-unit);
+    margin-bottom: $space-2;
     margin-top: 0;
   }
 
@@ -36,7 +36,7 @@
     @media (min-width: $grid-breakpoint-medium) {
       width: 66%;
     }
-    margin-bottom: calc(2 * $spacer-unit);
+    margin-bottom: $space-8;
   }
 
   &__judgment-meta {
@@ -45,15 +45,15 @@
   }
 
   &__pagination-links {
-    margin-top: 2rem;
+    margin-top: $space-8;
     display: inline-block;
-    margin-bottom: 4rem;
+    margin-bottom: $space-16;
   }
 
   &__pagination-link {
     a {
       background: url($arrow-left) left no-repeat;
-      padding-left: calc(1.5 * $spacer-unit);
+      padding-left: $space-6;
       font-weight: bold;
     }
 
@@ -64,12 +64,12 @@
     }
 
     span {
-      padding-left: calc(1.5 * $spacer-unit);
+      padding-left: $space-6;
     }
 
     &.prev {
-      padding-bottom: $spacer-unit;
-      margin-bottom: $spacer-unit;
+      padding-bottom: $space-4;
+      margin-bottom: $space-4;
       border-bottom: 1px solid $color-grey;
     }
   }

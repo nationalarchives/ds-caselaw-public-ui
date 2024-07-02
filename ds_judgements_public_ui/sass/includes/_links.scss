@@ -4,7 +4,7 @@
 
   &:focus {
     background-color: $color-white;
-    padding: calc($spacer-unit / 3);
+    padding: $space-1;
     color: $color-black;
     top: 0.313rem;
     left: 0.313rem;
@@ -16,26 +16,26 @@
 
 .anchor-links {
   border: 2px solid $color-yellow;
-  padding: 0 calc($spacer-unit * 4);
-  margin-bottom: calc($spacer-unit * 4);
+  padding: 0 $space-16;
+  margin-bottom: $space-16;
   position: relative;
   top: 15px;
 
   &__header {
     padding-bottom: 0;
     margin-bottom: 0;
-    line-height: $spacer-unit;
+    line-height: $space-4;
   }
 
   &__list {
     padding: 0;
     list-style: none;
-    margin-bottom: calc($spacer-unit / 2);
-    padding-block: $spacer-unit;
+    margin-bottom: $space-2;
+    padding-block: $space-4;
   }
 
   &__list-option {
     font-family: $font-roboto;
-    padding-block: 0 $spacer-unit;
+    padding-block: 0 $space-4;
   }
 }
