@@ -5,13 +5,13 @@
 
   &__steps {
     margin-top: $space-2;
-    margin-bottom: 3rem;
+    margin-bottom: $space-12;
   }
 
   .govuk-label,
   .govuk-fieldset__legend {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: $typography-lg-text-size;
   }
 
   &__preamble {
@@ -31,7 +31,7 @@
   // but django-forms/crispy-gds doesn't offer an obvious way to add a class to these.
   #div_id_contact-alternative_contact legend {
     font-weight: normal;
-    font-size: 1.1875rem;
+    font-size: $typography-md-text-size;
   }
 
   .govuk-form-group {

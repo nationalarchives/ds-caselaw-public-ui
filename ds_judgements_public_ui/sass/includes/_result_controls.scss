@@ -22,7 +22,7 @@
 
   &__label {
     font-family: $font-roboto;
-    font-size: 1rem;
+    font-size: $typography-md-text-size;
     margin-bottom: $space-2;
     display: block;
   }
@@ -38,7 +38,7 @@
   &__button {
     @include call-to-action-button;
     margin: $space-9 0 $space-4 0;
-    font-size: 0.85rem;
+    font-size: $typography-sm-text-size;
     outline-color: $color-dark-blue;
     padding: $space-2 $space-3;
     font-weight: normal;

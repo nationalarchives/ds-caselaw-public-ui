@@ -20,7 +20,7 @@
   }
 
   h3 {
-    font-size: 1rem;
+    font-size: $typography-md-text-size;
     margin: 0;
     text-decoration: underline;
   }
@@ -67,7 +67,7 @@
   padding: $space-4 $space-5;
   display: inline-block;
   margin-top: $space-4;
-  font-size: 1rem;
+  font-size: $typography-md-text-size;
 
   &:focus,
   &:hover {
@@ -133,7 +133,7 @@
   background-color: $color-white;
   width: 80%;
   font-family: $font-open-sans;
-  font-size: 1rem;
+  font-size: $typography-md-text-size;
 
   &:focus {
     @include focus-default;
@@ -141,9 +141,9 @@
 }
 
 @mixin select {
-  font-size: $typography-base-text-size;
+  font-size: $typography-md-text-size;
   color: #444;
-  line-height: 1.3;
+  line-height: $typography-lg-line-height;
   padding: $space-2;
   margin-top: $space-2;
   margin-bottom: $space-4;

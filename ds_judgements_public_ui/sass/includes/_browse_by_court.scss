@@ -7,7 +7,7 @@
   &__header {
     font-family: $font-roboto;
     font-weight: normal;
-    font-size: 1.8rem;
+    font-size: $typography-xl-text-size;
     margin: 0 0 $space-12;
   }
 
@@ -39,7 +39,7 @@
 
   &__court-name {
     display: block;
-    font-size: 1.25rem;
+    font-size: $typography-lg-text-size;
     margin-bottom: $space-1;
   }
 

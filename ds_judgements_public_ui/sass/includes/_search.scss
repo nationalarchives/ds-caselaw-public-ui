@@ -8,7 +8,7 @@
   }
 
   &__header {
-    font-size: 1rem;
+    font-size: $typography-md-text-size;
     line-height: 2.8rem;
     display: inline-block;
     font-family: $font-roboto;
@@ -28,7 +28,7 @@
       color: $color-black;
       text-decoration: none;
       border: 0;
-      font-size: 1.1rem;
+      font-size: $typography-md-text-size;
       position: relative;
       padding: 0 0 $space-2;
       border-bottom: 0.125rem solid $color-black;
@@ -99,7 +99,7 @@
     @include text_field;
     width: 100% !important;
     min-height: $space-12;
-    font-size: 1.2rem;
+    font-size: $typography-md-text-size;
     margin-bottom: 0;
     box-sizing: border-box;
   }
@@ -107,7 +107,7 @@
   &__help-text {
     text-align: left;
     margin: $space-1 0 $space-2 0;
-    font-size: 0.8rem;
+    font-size: $typography-sm-text-size;
   }
 
   &__main-label {

@@ -54,7 +54,7 @@
     display: block;
     margin-bottom: 0;
     margin-left: 0;
-    font-size: $typography-base-text-size;
+    font-size: $typography-md-text-size;
     font-weight: bold;
   }
 
@@ -259,7 +259,7 @@
 
   &__court-group-label {
     margin-top: $space-2;
-    line-height: $typography-lg-line-height;
+    line-height: $typography-xs-line-height;
     vertical-align: baseline;
     margin-bottom: $space-2;
   }
@@ -271,7 +271,7 @@
 
   &__court-option-label {
     margin-left: $space-2;
-    line-height: $typography-lg-line-height;
+    line-height: $typography-xs-line-height;
     vertical-align: baseline;
   }
   &__court-date-range {

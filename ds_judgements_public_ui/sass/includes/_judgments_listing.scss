@@ -19,7 +19,7 @@
 
   &__judgment {
     padding: 0 0 $space-4 0;
-    line-height: 2rem;
+    line-height: $typography-2xl-line-height;
 
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
@@ -34,7 +34,7 @@
   }
 
   &__matches {
-    line-height: 1.7em;
+    line-height: $typography-md-line-height;
     p {
       display: inline;
     }
@@ -50,19 +50,19 @@
   &__title {
     display: block;
     font-weight: normal;
-    font-size: 1.1rem;
+    font-size: $typography-md-text-size;
     font-family: $font-roboto;
     margin-bottom: $space-2;
-    line-height: 1.6rem;
+    line-height: $typography-lg-line-height;
   }
 
   &__court {
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
   }
 
   &__neutralcitation {
     display: block;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
     color: $color-dark-grey;
 
     @media (min-width: $grid-breakpoint-medium) {
@@ -76,7 +76,7 @@
 
   &__date {
     display: block;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
     color: $color-dark-grey;
 
     @media (min-width: $grid-breakpoint-medium) {
@@ -88,7 +88,7 @@
     display: block;
     margin-bottom: $space-2;
     color: $color-dark-grey;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-top: $space-2;
@@ -99,7 +99,7 @@
     background-color: $color-yellow;
     display: inline-block;
     padding: $space-1 $space-2;
-    font-size: 0.8rem;
+    font-size: $typography-sm-text-size;
     margin-bottom: $space-2;
   }
 }

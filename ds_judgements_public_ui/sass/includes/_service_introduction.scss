@@ -3,7 +3,7 @@
   flex-grow: 1;
 
   &__header {
-    font-size: 2.5rem;
+    font-size: $typography-2xl-text-size;
     line-height: 3.8rem;
     display: inline-block;
     width: 100%;
@@ -15,7 +15,7 @@
 
   &__helper-text {
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: $typography-lg-text-size;
     font-family: $font-roboto;
     color: $color-yellow;
     line-height: 1.6rem;
@@ -36,7 +36,7 @@
     color: $color-white;
     margin: $space-6 0 0;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: $typography-lg-text-size;
     text-decoration: underline;
 
     &:hover {

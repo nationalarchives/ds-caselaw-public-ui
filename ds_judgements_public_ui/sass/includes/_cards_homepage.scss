@@ -27,10 +27,10 @@
     margin-top: $space-2;
     margin-bottom: 0;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: $typography-xl-text-size;
     @media only screen and (max-width: $grid-breakpoint-medium) {
-      font-size: 1.6rem;
-      line-height: 1.95rem;
+      font-size: $typography-xl-text-size;
+      line-height: $typography-sm-line-height;
     }
 
     a {

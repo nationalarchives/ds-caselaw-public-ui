@@ -13,7 +13,7 @@
 
   &__site-logo a {
     color: $color-white;
-    font-size: 2rem;
+    font-size: $typography-xl-text-size;
     text-decoration: none;
 
     &:focus {
@@ -45,7 +45,7 @@
       padding: 0;
       font-family: $font-roboto;
       display: inline-block;
-      font-size: 0.9rem;
+      font-size: $typography-sm-text-size;
       margin: 0;
 
       a {
@@ -116,7 +116,7 @@
   }
 
   &__logo-block {
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
     color: $color-white;
     text-align: right;
     margin-top: $space-5;

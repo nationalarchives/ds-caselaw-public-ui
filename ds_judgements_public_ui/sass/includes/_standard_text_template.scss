@@ -1,8 +1,12 @@
 .standard-text-template {
-  font-size: 1.1rem;
+  font-size: $typography-md-text-size;
   line-height: 1.4em;
 
   min-height: 18rem;
+
+  small {
+    font-size: $typography-sm-text-size;
+  }
 
   li ul,
   li ol {

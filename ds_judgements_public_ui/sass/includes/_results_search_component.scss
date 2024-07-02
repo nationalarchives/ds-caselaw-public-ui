@@ -9,8 +9,8 @@
   }
 
   &__sub-header {
-    font-size: 1rem;
-    line-height: 2.65rem;
+    font-size: $typography-md-text-size;
+    line-height: $typography-3xl-line-height;
     font-family: $font-roboto;
     font-weight: bold;
     color: $color-almost-black;
@@ -154,7 +154,7 @@
 
   &__help-text {
     margin: $space-1 0 $space-2 0;
-    font-size: 0.8rem;
+    font-size: $typography-sm-text-size;
   }
 
   &__multi-fields-panel {
@@ -174,7 +174,7 @@
   &__limit-to-label {
     display: block;
     margin-bottom: 0rem;
-    font-size: 1rem;
+    font-size: $typography-md-text-size;
     font-weight: bold;
   }
 
@@ -288,7 +288,7 @@
     &__toggle-control {
       border: none;
       background-color: transparent;
-      font-size: 1rem;
+      font-size: $typography-md-text-size;
       position: relative;
       padding: 0 0 $space-2 $space-6;
       border-bottom: 0.188rem solid $color-yellow;

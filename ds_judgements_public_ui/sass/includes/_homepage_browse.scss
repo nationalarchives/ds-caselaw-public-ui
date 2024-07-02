@@ -6,7 +6,7 @@
 
   &__header {
     @include heading_text;
-    font-size: 1.8rem;
+    font-size: $typography-xl-text-size;
     margin-bottom: $space-4;
     padding-bottom: $space-6;
     border-bottom: 5px solid $color-yellow;
@@ -14,7 +14,7 @@
 
   &__sub-header {
     @include heading_text;
-    font-size: 1.4rem;
+    font-size: $typography-lg-text-size;
     margin: $space-10 0 $space-4;
   }
 
@@ -31,13 +31,13 @@
   &__list-item {
     padding: $space-2 0;
     font-family: $font-roboto;
-    font-size: 1.1rem;
+    font-size: $typography-md-text-size;
     break-inside: avoid;
   }
 
   &__year-range {
     margin-left: $space-2;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
     font-family: $font-open-sans;
   }
 
@@ -49,7 +49,7 @@
     margin-left: $space-2;
     vertical-align: 2px;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: $typography-sm-text-size;
   }
 
   &__information-box {
