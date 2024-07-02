@@ -1,11 +1,11 @@
 @mixin notification {
   color: $color-white;
-  padding: 0.5rem 1rem;
+  padding: $space-2 $space-4;
 }
 
 @mixin page-notification {
   @include notification;
-  margin: $spacer-unit 15% calc(0.5 * $spacer-unit) 15%;
+  margin: $space-4 15% $space-2 15%;
 
   @media (max-width: $grid-breakpoint-medium) {
     margin: auto 0;

@@ -1,14 +1,14 @@
 .cards-homepage {
   @include container;
   list-style-type: none;
-  margin: calc(1.5 * $spacer-unit) auto;
+  margin: $space-6 auto;
   @media (min-width: $grid-breakpoint-small) {
-    margin: calc(3 * $spacer-unit) auto;
+    margin: $space-12 auto;
   }
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: calc(3 * $spacer-unit);
+  gap: $space-12;
   @media (min-width: $grid-breakpoint-medium) {
     flex-direction: row;
     li {
@@ -18,19 +18,19 @@
 }
 
 .card-homepage {
-  margin: $spacer-unit calc(2 * $spacer-unit);
+  margin: $space-4 $space-8;
   @media (min-width: $grid-breakpoint-small) {
     margin: 0;
   }
 
   h3 {
-    margin-top: calc(0.5 * $spacer-unit);
+    margin-top: $space-2;
     margin-bottom: 0;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: $typography-xl-text-size;
     @media only screen and (max-width: $grid-breakpoint-medium) {
-      font-size: 1.6rem;
-      line-height: 1.95rem;
+      font-size: $typography-xl-text-size;
+      line-height: $typography-sm-line-height;
     }
 
     a {
@@ -39,7 +39,7 @@
   }
 
   p {
-    margin-top: calc(0.5 * $spacer-unit);
+    margin-top: $space-2;
   }
 
   img {

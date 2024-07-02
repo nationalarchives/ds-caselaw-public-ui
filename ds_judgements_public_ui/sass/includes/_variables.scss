@@ -1,6 +1,18 @@
 @import "../../../node_modules/@nationalarchives/ds-caselaw-frontend/src/includes/variables/colours";
 
-$spacer-unit: 1rem;
+// The values increase in 0.25rem increments. We have a static list to make the CSS more readable.
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-7: 1.75rem;
+$space-8: 2rem;
+$space-9: 2.25rem;
+$space-10: 2.5rem;
+$space-12: 3rem;
+$space-16: 4rem;
 
 $gutter_unit: 25px;
 
@@ -13,15 +25,32 @@ $font-roboto: "Roboto", sans-serif;
 $font-open-sans: "Open Sans", sans-serif;
 $font-serif: serif;
 
-$typography-base-text-size: 1rem;
+$typography-xs-text-size: 0.7rem;
+$typography-sm-text-size: 0.9rem;
+$typography-md-text-size: 1.1rem;
+$typography-lg-text-size: 1.3rem;
+$typography-xl-text-size: 2rem;
+$typography-2xl-text-size: 2.4rem;
 
+$typography-base-line-height: 1.2;
+$typography-xs-line-height: 0.8;
+$typography-sm-line-height: 1;
+$typography-md-line-height: 1.2;
+$typography-lg-line-height: 1.5;
+$typography-xl-line-height: 1.8;
+$typography-2xl-line-height: 2;
+$typography-3xl-line-height: 2.6;
+
+// TODO: Replace these with static values
 $typography-header-line-size-multiplier: 1.3;
 $typography-header-medium-breakpoint-multiplier: 0.8;
 
+// TODO: Replace these with spaces
 $typography-header-margin-top-multiplier: 1.3;
 $typography-header-margin-bottom-multiplier: 0.8;
 
-$typography-header-h1-size: 2.5 * $typography-base-text-size;
+// TODO: Replace these with text sizes
+$typography-header-h1-size: 2.5rem;
 $typography-header-h2-size: $typography-header-h1-size * 0.8;
 $typography-header-h3-size: $typography-header-h1-size * 0.6;
 

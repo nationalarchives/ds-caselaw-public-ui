@@ -35,15 +35,15 @@ h3 {
 }
 
 h4 {
-  font-size: 1.1rem;
+  font-size: $typography-md-text-size;
   font-weight: bold;
   margin: 0;
-  padding: calc($spacer-unit * 1.25) 0 0;
+  padding: $space-5 0 0;
 }
 
 .standard-text-template ol li {
-  padding-bottom: calc($spacer-unit / 1.5);
-  padding-left: calc($spacer-unit / 2);
+  padding-bottom: $space-2;
+  padding-left: $space-2;
 }
 
 code {

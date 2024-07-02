@@ -3,7 +3,7 @@
   flex-grow: 1;
 
   &__header {
-    font-size: 2.5rem;
+    font-size: $typography-2xl-text-size;
     line-height: 3.8rem;
     display: inline-block;
     width: 100%;
@@ -15,7 +15,7 @@
 
   &__helper-text {
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: $typography-lg-text-size;
     font-family: $font-roboto;
     color: $color-yellow;
     line-height: 1.6rem;
@@ -24,7 +24,7 @@
 
   &__further-information {
     display: inline-block;
-    margin-top: $spacer-unit;
+    margin-top: $space-4;
   }
 
   &__what-to-expect {
@@ -32,11 +32,11 @@
     background: transparent url($fa_chevron_right_white) 0 0.2rem no-repeat;
     background-size: 0.7rem;
     display: inline-block;
-    padding: 0 0 0 calc($spacer-unit / 1);
+    padding: 0 0 0 $space-4;
     color: $color-white;
-    margin: calc($spacer-unit * 1.6) 0 0;
+    margin: $space-6 0 0;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: $typography-lg-text-size;
     text-decoration: underline;
 
     &:hover {

@@ -8,8 +8,7 @@
     list-style-type: none;
 
     li {
-      padding: $spacer-unit calc($spacer-unit / 4) $spacer-unit
-        calc($spacer-unit / 4);
+      padding: $space-4 $space-1;
       border-bottom: 1px dotted $color-yellow;
 
       &:last-child {
@@ -19,8 +18,8 @@
   }
 
   &__judgment {
-    padding: 0 0 $spacer-unit 0;
-    line-height: 2rem;
+    padding: 0 0 $space-4 0;
+    line-height: $typography-2xl-line-height;
 
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
@@ -35,7 +34,7 @@
   }
 
   &__matches {
-    line-height: 1.7em;
+    line-height: $typography-md-line-height;
     p {
       display: inline;
     }
@@ -51,19 +50,19 @@
   &__title {
     display: block;
     font-weight: normal;
-    font-size: 1.1rem;
+    font-size: $typography-md-text-size;
     font-family: $font-roboto;
-    margin-bottom: 0.5rem;
-    line-height: 1.6rem;
+    margin-bottom: $space-2;
+    line-height: $typography-lg-line-height;
   }
 
   &__court {
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
   }
 
   &__neutralcitation {
     display: block;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
     color: $color-dark-grey;
 
     @media (min-width: $grid-breakpoint-medium) {
@@ -77,7 +76,7 @@
 
   &__date {
     display: block;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
     color: $color-dark-grey;
 
     @media (min-width: $grid-breakpoint-medium) {
@@ -87,20 +86,20 @@
 
   &__result-term-matching {
     display: block;
-    margin-bottom: calc($spacer-unit / 2);
+    margin-bottom: $space-2;
     color: $color-dark-grey;
-    font-size: 0.9rem;
+    font-size: $typography-sm-text-size;
 
     @media (max-width: $grid-breakpoint-medium) {
-      margin-top: calc($spacer-unit / 2);
+      margin-top: $space-2;
     }
   }
 
   &__exact-match-label {
     background-color: $color-yellow;
     display: inline-block;
-    padding: calc(0.25 * $spacer-unit) calc(0.5 * $spacer-unit);
-    font-size: 0.8rem;
-    margin-bottom: calc(0.5 * $spacer-unit);
+    padding: $space-1 $space-2;
+    font-size: $typography-sm-text-size;
+    margin-bottom: $space-2;
   }
 }
