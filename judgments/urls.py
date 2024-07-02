@@ -20,9 +20,7 @@ urlpatterns = [
     path("<court:court>", BrowseView.as_view(), name="browse"),
     path("<yyyy:year>", BrowseView.as_view(), name="browse"),
     path("<court:court>/<yyyy:year>", BrowseView.as_view(), name="browse"),
-    path(
-        "<court:court>/<subdivision:subdivision>", BrowseView.as_view(), name="browse"
-    ),
+    path("<court:court>/<subdivision:subdivision>", BrowseView.as_view(), name="browse"),
     path(
         "<court:court>/<subdivision:subdivision>/<yyyy:year>",
         BrowseView.as_view(),
@@ -31,9 +29,7 @@ urlpatterns = [
     path("atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
     path("<court:court>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
     path("<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
-    path(
-        "<court:court>/<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"
-    ),
+    path("<court:court>/<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
     path(
         "transactional-licence-form",
         lambda request: HttpResponseRedirect("/computational-licence-form"),

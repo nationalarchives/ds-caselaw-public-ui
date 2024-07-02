@@ -97,9 +97,7 @@ class TestUtils(unittest.TestCase):
 
         query_text = "[2014] EWHC 4122 (Fam)"
         page = "1"
-        search_results = [
-            mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2022] EWHC 54321 (Fam)"]
-        ]
+        search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2022] EWHC 54321 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertTrue(result)
 
@@ -113,9 +111,7 @@ class TestUtils(unittest.TestCase):
 
         query_text = "[2014] EWHC 4122 (Fam)"
         page = "2"
-        search_results = [
-            mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2022] EWHC 54321 (Fam)"]
-        ]
+        search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2022] EWHC 54321 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertFalse(result)
 
@@ -129,9 +125,7 @@ class TestUtils(unittest.TestCase):
 
         query_text = "[2014] EWHC 4122 (Fam)"
         page = "1"
-        search_results = [
-            mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2014] EWHC 4122 (Fam)"]
-        ]
+        search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2014] EWHC 4122 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertFalse(result)
 
@@ -143,9 +137,7 @@ class TestUtils(unittest.TestCase):
 
         query_text = "walrus"
         page = "1"
-        search_results = [
-            mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2014] EWHC 4122 (Fam)"]
-        ]
+        search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2014] EWHC 4122 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertFalse(result)
 
@@ -159,9 +151,7 @@ class TestSearchUtils(unittest.TestCase):
         court_code = all_courts.get_by_code("EWHC-KBD-TCC")
         tribunal_code = all_courts.get_by_code("EAT")
 
-        remaining_facets, court_facets, tribunal_facets = process_court_facets(
-            raw_facets
-        )
+        remaining_facets, court_facets, tribunal_facets = process_court_facets(raw_facets)
 
         self.assertEqual(remaining_facets, {"INVALID": "5", "": "1"})
         self.assertEqual(court_facets, {court_code: "20"})

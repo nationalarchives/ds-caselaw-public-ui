@@ -35,9 +35,7 @@ class FCLCheckboxWidgetWithOthers(forms.MultiWidget):
         super(FCLCheckboxWidgetWithOthers, self).__init__(widgets, attrs)
 
     def get_context(self, name, value, attrs):
-        context = super(FCLCheckboxWidgetWithOthers, self).get_context(
-            name, value, attrs
-        )
+        context = super(FCLCheckboxWidgetWithOthers, self).get_context(name, value, attrs)
         context["field"] = self.choices_field
         context["other_fields"] = self.other_fields
         context["other_field_subwidgets"] = {}
@@ -78,22 +76,16 @@ class FCLMultipleChoiceFieldWithOthers(FCLFieldMixin, forms.MultiValueField):
     def __init__(self, **kwargs):
         choices = kwargs.pop("choices")
         self.other_fields = {}
-        for field_index, (opt_index, name) in enumerate(
-            kwargs.pop("other_fields", {}).items()
-        ):
+        for field_index, (opt_index, name) in enumerate(kwargs.pop("other_fields", {}).items()):
             self.other_fields[opt_index] = {
                 "name": name,
                 "field": FCLCharField(max_length=50, required=False),
                 "field_index": field_index,
             }
-        self.choices_field = FCLMultipleChoiceField(
-            choices=choices, required=True, label=False
-        )
+        self.choices_field = FCLMultipleChoiceField(choices=choices, required=True, label=False)
         self.widget = FCLCheckboxWidgetWithOthers(self.choices_field, self.other_fields)
         fields = [self.choices_field] + [d["field"] for d in self.other_fields.values()]
-        super(FCLMultipleChoiceFieldWithOthers, self).__init__(
-            fields, **kwargs, require_all_fields=False
-        )
+        super(FCLMultipleChoiceFieldWithOthers, self).__init__(fields, **kwargs, require_all_fields=False)
 
     def compress(self, values=[[]]):
         if len(values) == 0:

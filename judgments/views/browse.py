@@ -27,13 +27,9 @@ class BrowseView(TemplateView):
 
         # All non-None values of court and subdivision should be truthy
         court_query = "/".join(filter(None, [court, subdivision]))
-        page = clamp(
-            sanitise_input_to_integer(self.request.GET.get("page"), 1), minimum=1
-        )
+        page = clamp(sanitise_input_to_integer(self.request.GET.get("page"), 1), minimum=1)
         per_page = clamp(
-            sanitise_input_to_integer(
-                self.request.GET.get("per_page"), RESULTS_PER_PAGE
-            ),
+            sanitise_input_to_integer(self.request.GET.get("per_page"), RESULTS_PER_PAGE),
             minimum=1,
             maximum=MAX_RESULTS_PER_PAGE,
         )
@@ -41,23 +37,13 @@ class BrowseView(TemplateView):
         try:
             search_parameters = SearchParameters(
                 court=court_query if court_query else None,
-                date_from=(
-                    datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d")
-                    if year
-                    else None
-                ),
-                date_to=(
-                    datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d")
-                    if year
-                    else None
-                ),
+                date_from=(datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d") if year else None),
+                date_to=(datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d") if year else None),
                 order="-date",
                 page=page,
                 page_size=per_page,
             )
-            search_response = search_judgments_and_parse_response(
-                api_client, search_parameters
-            )
+            search_response = search_judgments_and_parse_response(api_client, search_parameters)
 
             context["search_results"] = search_response.results
             context["total"] = search_response.total

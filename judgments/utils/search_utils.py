@@ -8,9 +8,7 @@ from judgments.models.court_dates import CourtDates
 ALL_COURT_CODES = [court.code for court in all_courts.get_all()]
 
 ALL_LISTABLE_COURT_NAMES = [court.name for court in all_courts.get_listable_courts()]
-ALL_LISTABLE_TRIBUNAL_NAMES = [
-    tribunal.name for tribunal in all_courts.get_listable_tribunals()
-]
+ALL_LISTABLE_TRIBUNAL_NAMES = [tribunal.name for tribunal in all_courts.get_listable_tribunals()]
 
 
 def _valid_years():
@@ -59,9 +57,7 @@ def process_court_facets(facets: dict, current_courts: dict = {}):
         and all_courts.get_by_code(facet_key).name in ALL_LISTABLE_TRIBUNAL_NAMES
     }
     unprocessed_facets = {
-        facet_key: facet_value
-        for facet_key, facet_value in facets.items()
-        if facet_key not in ALL_COURT_CODES
+        facet_key: facet_value for facet_key, facet_value in facets.items() if facet_key not in ALL_COURT_CODES
     }
 
     sorted_court_facets = _sort_by_number_in_value(court_facets)
@@ -75,15 +71,9 @@ def process_year_facets(facets: dict):
     Separates facets dict into non-year facets,
     and year facets
     """
-    year_facets = {
-        facet_key: facet_value
-        for facet_key, facet_value in facets.items()
-        if facet_key in _valid_years()
-    }
+    year_facets = {facet_key: facet_value for facet_key, facet_value in facets.items() if facet_key in _valid_years()}
     unprocessed_facets = {
-        facet_key: facet_value
-        for facet_key, facet_value in facets.items()
-        if facet_key not in _valid_years()
+        facet_key: facet_value for facet_key, facet_value in facets.items() if facet_key not in _valid_years()
     }
 
     return unprocessed_facets, year_facets

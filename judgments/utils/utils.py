@@ -67,9 +67,7 @@ def remove_unquoted_stop_words(query):
         and re.match(r"\"$|\'$", query) is None
         and re.match(solo_stop_word_regex(stop_words), query) is None
     ):
-        without_stop_words = re.sub(
-            without_stop_words_regex(stop_words), "", query, re.IGNORECASE
-        )
+        without_stop_words = re.sub(without_stop_words_regex(stop_words), "", query, re.IGNORECASE)
         return re.sub(r"\s+", " ", without_stop_words)
     return query
 
@@ -117,9 +115,7 @@ def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
         maximum=MAX_RESULTS_PER_PAGE,
     )
     number_of_pages = math.ceil(int(total) / size_per_page)
-    next_pages = list(
-        range(current_page + 1, min(current_page + 10, number_of_pages) + 1)
-    )
+    next_pages = list(range(current_page + 1, min(current_page + 10, number_of_pages) + 1))
 
     return {
         "current_page": current_page,
@@ -176,9 +172,7 @@ def get_document_by_uri(document_uri: str) -> Document:
 
 
 def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary]:
-    return api_client.get_press_summaries_for_document_uri(
-        DocumentURIString(document_uri)
-    )
+    return api_client.get_press_summaries_for_document_uri(DocumentURIString(document_uri))
 
 
 def formatted_document_uri(document_uri: str, format: Optional[str] = None) -> str:

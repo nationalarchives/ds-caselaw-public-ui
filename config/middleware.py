@@ -50,9 +50,7 @@ class CacheHeaderMiddleware:
 
 
 class FeedbackLinkMiddleware:
-    BASE_FEEDBACK_URL: str = (
-        "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
-    )
+    BASE_FEEDBACK_URL: str = "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -75,14 +73,10 @@ class FeedbackLinkMiddleware:
         if "feedback_survey_document_uri" in response.context_data:
             # TODO: update the survey to allow for generalisation to `document`
             # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
-            params["judgment_uri"] = response.context_data[
-                "feedback_survey_document_uri"
-            ]
+            params["judgment_uri"] = response.context_data["feedback_survey_document_uri"]
 
         if "feedback_survey_court" in response.context_data:
             params["court"] = response.context_data["feedback_survey_court"]
 
-        response.context_data["feedback_survey_link"] = (
-            self.BASE_FEEDBACK_URL + "?" + urlencode(params)
-        )
+        response.context_data["feedback_survey_link"] = self.BASE_FEEDBACK_URL + "?" + urlencode(params)
         return response

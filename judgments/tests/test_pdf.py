@@ -18,9 +18,7 @@ class TestDocumentPdf:
 
         assert document_pdf.size == 100
 
-        requests_mock.head.assert_called_once_with(
-            document_pdf.generate_uri(), headers={"Accept-Encoding": None}
-        )
+        requests_mock.head.assert_called_once_with(document_pdf.generate_uri(), headers={"Accept-Encoding": None})
 
     @patch("judgments.models.document_pdf.requests")
     def test_get_pdf_size_returns_blank_string_if_404(self, requests_mock):
@@ -73,7 +71,4 @@ class TestDocumentPdf:
     def test_generate_uri_generates_the_correct_uri_with_base_url(self):
         document_pdf = DocumentPdf("foo/bar/baz")
 
-        assert (
-            document_pdf.generate_uri()
-            == "https://bucket.s3.region.amazonaws.com/foo/bar/baz/foo_bar_baz.pdf"
-        )
+        assert document_pdf.generate_uri() == "https://bucket.s3.region.amazonaws.com/foo/bar/baz/foo_bar_baz.pdf"

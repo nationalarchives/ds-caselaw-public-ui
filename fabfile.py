@@ -24,9 +24,7 @@ LOCAL_DB_DUMP_DIR = "database_dumps"
 
 
 def container_exec(cmd, container_name="django", check_returncode=False):
-    result = subprocess.run(
-        ["docker", "compose", "exec", "-T", container_name, "bash", "-c", cmd]
-    )
+    result = subprocess.run(["docker", "compose", "exec", "-T", container_name, "bash", "-c", cmd])
     if check_returncode:
         result.check_returncode()
     return result
@@ -207,9 +205,7 @@ def e2etest(c, baseUrl="http://django:3000"):
             "e2e_tests",
         ]
     )
-    subprocess.run(
-        ["docker", "compose", "run", "e2e_tests", "pytest", "--base-url", baseUrl]
-    )
+    subprocess.run(["docker", "compose", "run", "e2e_tests", "pytest", "--base-url", baseUrl])
 
 
 @task
@@ -266,12 +262,8 @@ def psql(c, command=None):
 
 
 def delete_db(c):
-    postgres_exec(
-        f"dropdb --if-exists --host db --username={LOCAL_DATABASE_USERNAME} {LOCAL_DATABASE_NAME}"
-    )
-    postgres_exec(
-        f"createdb --host db --username={LOCAL_DATABASE_USERNAME} {LOCAL_DATABASE_NAME}"
-    )
+    postgres_exec(f"dropdb --if-exists --host db --username={LOCAL_DATABASE_USERNAME} {LOCAL_DATABASE_NAME}")
+    postgres_exec(f"createdb --host db --username={LOCAL_DATABASE_USERNAME} {LOCAL_DATABASE_NAME}")
 
 
 @task
@@ -279,9 +271,7 @@ def dump_db(c, filename):
     """Snapshot the database, files will be stored in the db container"""
     if not filename.endswith(".dmp"):
         filename += ".dmp"
-    postgres_exec(
-        f"pg_dump -d {LOCAL_DATABASE_NAME} -U {LOCAL_DATABASE_USERNAME} > {filename}"
-    )
+    postgres_exec(f"pg_dump -d {LOCAL_DATABASE_NAME} -U {LOCAL_DATABASE_USERNAME} > {filename}")
     print(f"Database dumped to: {filename}")
 
 
