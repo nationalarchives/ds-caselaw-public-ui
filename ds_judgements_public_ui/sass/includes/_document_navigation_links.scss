@@ -21,7 +21,7 @@
       -webkit-box-orient: vertical;
 
       @media (max-width: $grid-breakpoint-medium) {
-        font-size: $typography-base-text-size;
+        font-size: $typography-md-text-size;
         line-height: $typography-header-line-size-multiplier;
       }
     }
