@@ -35,7 +35,7 @@
     <a id="skip-to-main-content" href="#main-content">{% translate "skiplink" %}</a>
     {% include "includes/environment_banner.html" %}
     {% flag v2_homepage %}
-      { % include "includes/beta_phase_banner.html" %}
+      {% include "includes/beta_phase_banner.html" %}
     {% else %}
       {% include "includes/phase_banner.html" %}
     {% endflag %}

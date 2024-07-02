@@ -21,7 +21,7 @@
     font-family: $font-roboto;
     font-weight: normal;
     color: $color-white;
-    margin-top: 2rem;
+    margin: 2rem 0 0;
     @media only screen and (max-width: $grid-breakpoint-medium) {
       margin-top: none;
     }
