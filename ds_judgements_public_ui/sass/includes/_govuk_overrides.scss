@@ -193,35 +193,29 @@
 
 .govuk-header__link--homepage:hover,
 .govuk-header__link--homepage:active {
-  border-bottom: $space-1 solid $color-black;
+  border-bottom: 0.25rem solid $color-black;
 }
 
-.govuk-header__navigation-item--active a,
-.govuk-header__navigation-item--active a:hover,
-.govuk-header__navigation-item--active a:visited {
+.govuk-header__navigation-item--active .govuk-header__link,
+.govuk-header__navigation-item--active .govuk-header__link:hover,
+.govuk-header__navigation-item--active .govuk-header__link:visited {
   color: $color-yellow;
-  font-weight: bold !important;
-
+  font-weight: bold;
+  border-bottom: 0.25rem solid $color-yellow;
+  text-decoration: none;
   &:focus {
     background-color: transparent;
     box-shadow: none;
   }
 }
 
-.govuk-header__navigation-item--active .govuk-header__link,
-.govuk-header__navigation-item .govuk-header__link:hover {
-  color: $color-yellow;
-  font-weight: bold;
-  border-bottom: $space-1 solid $color-yellow;
-  text-decoration: none;
-}
-
 .govuk-header__navigation-item .govuk-header__link {
-  font-size: 0.875rem;
+  font-size: $typography-sm-text-size;
   line-height: $typography-md-line-height;
   font-weight: normal;
   white-space: nowrap;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
   display: inline-block;
 
   &:after {
@@ -232,32 +226,24 @@
     overflow: hidden;
     visibility: hidden;
   }
-}
-
-a.govuk-header__link {
-  border-bottom: 1px solid $color-white;
-  @media only screen and (max-width: $grid-breakpoint-medium) {
-    border-bottom: 1px solid $color-black;
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
   }
 }
 
 .govuk-header__menu-button:focus {
   outline: $space-1 solid transparent;
-  color: #ffffff;
-  background-color: transparent;
-  text-decoration: none;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
 .govuk-frontend-supported .govuk-header__menu-button {
-  right: $space-16;
+  right: $space-12;
   font-size: $typography-md-text-size;
   padding-top: $space-1;
 
   &:focus {
     outline: none;
-    background-color: $color-black;
+    background-color: transparent;
     box-shadow: none;
     color: $color-white;
   }
@@ -272,4 +258,20 @@ a.govuk-header__link {
   @media only screen and (max-width: $grid-breakpoint-medium) {
     margin-top: 0;
   }
+}
+
+.govuk-header__navigation-list {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-end;
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    display: block;
+  }
+}
+a.govuk-header__logo {
+  width: 100px;
+  height: 100px;
 }

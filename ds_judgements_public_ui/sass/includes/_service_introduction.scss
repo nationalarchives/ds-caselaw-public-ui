@@ -5,6 +5,10 @@
   margin-top: $space-10;
 
   &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
     font-size: $typography-2xl-text-size;
     line-height: $typography-md-line-height;
 
@@ -13,10 +17,6 @@
     font-weight: normal;
     color: $color-white;
     margin: 0 $space-1;
-    @media only screen and (max-width: $grid-breakpoint-medium) {
-      display: inline-block;
-      float: right;
-    }
   }
 
   &__helper-text {

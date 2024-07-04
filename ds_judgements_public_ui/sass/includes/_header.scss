@@ -14,12 +14,13 @@
   &__flex-container-beta {
     display: flex;
     justify-content: space-between;
-    gap: 5rem;
+    gap: $space-16;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       flex-direction: column;
-      text-align: center;
+      text-align: left;
       gap: 0;
+      padding-bottom: 0;
     }
   }
 
