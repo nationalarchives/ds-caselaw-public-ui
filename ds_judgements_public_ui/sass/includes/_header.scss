@@ -11,6 +11,28 @@
     }
   }
 
+  &__flex-container-beta {
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      flex-direction: column;
+      text-align: center;
+      gap: 0;
+    }
+  }
+
+  &__tna-logo {
+    width: 100px;
+    height: 100px;
+    margin-top: $space-1;
+    margin-bottom: $space-1;
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      margin-right: 11rem;
+    }
+  }
+
   &__site-logo a {
     color: $color-white;
     font-size: $typography-xl-text-size;

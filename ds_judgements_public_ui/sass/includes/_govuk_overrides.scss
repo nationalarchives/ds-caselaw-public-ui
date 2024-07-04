@@ -186,3 +186,90 @@
 .govuk-form-group {
   margin-bottom: 0;
 }
+
+.govuk-header {
+  border-bottom: none;
+}
+
+.govuk-header__link--homepage:hover,
+.govuk-header__link--homepage:active {
+  border-bottom: $space-1 solid $color-black;
+}
+
+.govuk-header__navigation-item--active a,
+.govuk-header__navigation-item--active a:hover,
+.govuk-header__navigation-item--active a:visited {
+  color: $color-yellow;
+  font-weight: bold !important;
+
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.govuk-header__navigation-item--active .govuk-header__link,
+.govuk-header__navigation-item .govuk-header__link:hover {
+  color: $color-yellow;
+  font-weight: bold;
+  border-bottom: $space-1 solid $color-yellow;
+  text-decoration: none;
+}
+
+.govuk-header__navigation-item .govuk-header__link {
+  font-size: 0.875rem;
+  line-height: $typography-md-line-height;
+  font-weight: normal;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+
+  &:after {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+a.govuk-header__link {
+  border-bottom: 1px solid $color-white;
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    border-bottom: 1px solid $color-black;
+  }
+}
+
+.govuk-header__menu-button:focus {
+  outline: $space-1 solid transparent;
+  color: #ffffff;
+  background-color: transparent;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.govuk-frontend-supported .govuk-header__menu-button {
+  right: $space-16;
+  font-size: $typography-md-text-size;
+  padding-top: $space-1;
+
+  &:focus {
+    outline: none;
+    background-color: $color-black;
+    box-shadow: none;
+    color: $color-white;
+  }
+}
+
+.govuk-header__menu-button:hover {
+  text-decoration: none;
+}
+
+.govuk-header__content {
+  margin-top: 5rem;
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    margin-top: 0;
+  }
+}
