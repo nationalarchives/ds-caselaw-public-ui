@@ -49,7 +49,7 @@
 
   &__title {
     display: block;
-    font-weight: normal;
+    font-weight: $typography-normal-font-weight;
     font-size: $typography-md-text-size;
     font-family: $font-roboto;
     margin-bottom: $space-2;

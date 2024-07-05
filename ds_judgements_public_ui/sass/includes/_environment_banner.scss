@@ -7,7 +7,7 @@
 
     a {
       color: $color-black;
-      font-weight: bold;
+      font-weight: $typography-bold-font-weight;
 
       &:focus {
         outline: 0.125rem solid $color-black;
@@ -23,7 +23,7 @@
     text-transform: uppercase;
     padding: 0 $space-1;
     margin-right: $space-4;
-    font-weight: 700;
+    font-weight: $typography-bold-font-weight;
   }
 
   &__message {

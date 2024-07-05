@@ -6,7 +6,7 @@ h1,
 h2,
 h3 {
   font-family: $font-roboto;
-  font-weight: normal;
+  font-weight: $typography-normal-font-weight;
 }
 
 @mixin header($base-size) {
@@ -36,7 +36,7 @@ h3 {
 
 h4 {
   font-size: $typography-md-text-size;
-  font-weight: bold;
+  font-weight: $typography-bold-font-weight;
   margin: 0;
   padding: $space-5 0 0;
 }
@@ -53,7 +53,7 @@ code {
 mark {
   border-bottom: 3px solid $color-yellow;
   background-color: transparent;
-  font-weight: bold;
+  font-weight: $typography-bold-font-weight;
   scroll-margin-top: 50vh;
 
   &.current {

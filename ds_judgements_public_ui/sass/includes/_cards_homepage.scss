@@ -26,7 +26,7 @@
   h3 {
     margin-top: $space-2;
     margin-bottom: 0;
-    font-weight: 600;
+    font-weight: $typography-bold-font-weight;
     font-size: $typography-xl-text-size;
     @media only screen and (max-width: $grid-breakpoint-medium) {
       font-size: $typography-xl-text-size;

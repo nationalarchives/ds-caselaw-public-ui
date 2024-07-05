@@ -61,7 +61,7 @@
 @mixin call-to-action-button {
   background-color: $color-cta-background;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: $typography-bold-font-weight;
   border: 0;
   color: $color-white;
   padding: $space-4 $space-5;
@@ -174,7 +174,7 @@
     @include focus-default;
   }
   option {
-    font-weight: normal;
+    font-weight: $typography-normal-font-weight;
   }
 }
 
@@ -186,5 +186,5 @@
 
 @mixin heading_text {
   font-family: $font-roboto;
-  font-weight: normal;
+  font-weight: $typography-normal-font-weight;
 }

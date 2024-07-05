@@ -8,7 +8,7 @@
     display: inline-block;
     width: 100%;
     font-family: $font-roboto;
-    font-weight: normal;
+    font-weight: $typography-normal-font-weight;
     color: $color-white;
     margin: 0;
   }
@@ -35,7 +35,7 @@
     padding: 0 0 0 $space-4;
     color: $color-white;
     margin: $space-6 0 0;
-    font-weight: bold;
+    font-weight: $typography-bold-font-weight;
     font-size: $typography-lg-text-size;
     text-decoration: underline;
 
