@@ -61,3 +61,55 @@ mark {
     background-color: $color-yellow;
   }
 }
+
+.xs-text-size {
+  font-size: $typography-xs-text-size;
+}
+
+.sm-text-size {
+  font-size: $typography-sm-text-size;
+}
+
+.md-text-size {
+  font-size: $typography-md-text-size;
+}
+
+.lg-text-size {
+  font-size: $typography-lg-text-size;
+}
+
+.xl-text-size {
+  font-size: $typography-xl-text-size;
+}
+
+.xl2-text-size {
+  font-size: $typography-2xl-text-size;
+}
+
+.xs-line-height {
+  line-height: $typography-xs-line-height;
+}
+
+.sm-line-height {
+  line-height: $typography-sm-line-height;
+}
+
+.md-line-height {
+  line-height: $typography-md-line-height;
+}
+
+.lg-line-height {
+  line-height: $typography-lg-line-height;
+}
+
+.xl-line-height {
+  line-height: $typography-xl-line-height;
+}
+
+.xl2-line-height {
+  line-height: $typography-2xl-line-height;
+}
+
+.xl3-line-height {
+  line-height: $typography-3xl-line-height;
+}

@@ -1,0 +1,11 @@
+.style-guide {
+  &__spacing-container {
+    background: $color-light-pink;
+    margin-bottom: $space-4;
+  }
+
+  &__spacing-item {
+    background: white;
+    text-align: center;
+  }
+}

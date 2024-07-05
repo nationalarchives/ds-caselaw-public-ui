@@ -28,4 +28,8 @@ body {
 
 #main-content {
   overflow-x: hidden;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    overflow-x: visible;
+  }
 }
