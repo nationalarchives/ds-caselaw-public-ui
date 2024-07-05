@@ -200,9 +200,24 @@
 .govuk-header__navigation-item--active .govuk-header__link:hover,
 .govuk-header__navigation-item--active .govuk-header__link:visited {
   color: $color-yellow;
-  font-weight: bold;
+  font-weight: bold !important;
   border-bottom: 0.25rem solid $color-yellow;
   text-decoration: none;
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    border-bottom: none;
+  }
+}
+
+.govuk-header__link {
+  &:hover {
+    color: $color-white;
+    border-bottom: none;
+    text-decoration: none !important;
+  }
   &:focus {
     background-color: transparent;
     box-shadow: none;
@@ -229,6 +244,9 @@
   &:focus {
     background-color: transparent;
     box-shadow: none;
+  }
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    text-decoration: none;
   }
 }
 
