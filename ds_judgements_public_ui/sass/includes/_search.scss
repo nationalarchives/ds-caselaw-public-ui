@@ -7,6 +7,21 @@
     padding: $space-8;
   }
 
+  &__container-beta {
+    @include container;
+    text-align: center;
+    padding: 0;
+    @media (max-width: $grid-breakpoint-medium) {
+      padding: $space-3;
+    }
+    @media (max-width: $grid-breakpoint-large) {
+      padding: $space-3;
+    }
+    @media (max-width: $grid-breakpoint-extra-large) {
+      padding: $space-3;
+    }
+  }
+
   &__header {
     font-size: $typography-md-text-size;
     line-height: 2.8rem;
@@ -49,7 +64,7 @@
   }
 
   &__more-options-beta {
-    margin-top: -0.75rem;
+    line-height: $typography-sm-line-height;
 
     a {
       color: $color-dark-blue;
@@ -62,6 +77,7 @@
       background: transparent;
       font-family: $font-roboto;
       font-weight: bold;
+      margin-bottom: $space-3;
 
       &:visited {
         color: $color-dark-blue;
@@ -138,6 +154,28 @@
     text-align: left;
     margin: $space-1 0 $space-2 0;
     font-size: $typography-sm-text-size;
+  }
+
+  &__header-beta {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 12.5rem;
+    @media (max-width: $grid-breakpoint-medium) {
+      display: block;
+      text-align: center;
+      margin: 0;
+    }
+    @media (max-width: $grid-breakpoint-large) {
+      display: block;
+      text-align: center;
+      margin: 0;
+    }
+    @media (max-width: $grid-breakpoint-extra-large) {
+      display: block;
+      text-align: center;
+      margin: 0;
+    }
   }
 
   &__main-label {

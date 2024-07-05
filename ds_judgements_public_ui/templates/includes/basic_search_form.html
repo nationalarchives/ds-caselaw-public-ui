@@ -1,7 +1,7 @@
 {% load i18n waffle_tags %}
 {% flag v2_homepage %}
   <div class="search-component">
-    <div class="search-component__container">
+    <div class="search-component__container-beta">
       {% include "includes/search/search_header_text.html" %}
       <h2 class="search-component__header--sr-only">{% translate "basicsearchform.title" %}</h2>
       <form action="{% url 'search' %}"
