@@ -60,9 +60,9 @@ class DocumentFactory:
             else:
                 setattr(judgment_mock.return_value, param, value)
 
-        judgment_mock.return_value.best_human_identifier = kwargs.get(
+        judgment_mock.return_value.best_human_identifier = kwargs.get("neutral_citation") or cls.PARAMS_MAP.get(
             "neutral_citation"
-        ) or cls.PARAMS_MAP.get("neutral_citation")
+        )
         return judgment_mock()
 
 

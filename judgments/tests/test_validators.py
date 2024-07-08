@@ -18,7 +18,5 @@ class TestValidators(TestCase):
 
         validator = ValidateYearRange("from")
 
-        with self.assertRaisesMessage(
-            ValidationError, f"Year must be after {settings.MINIMUM_ALLOWED_YEAR}"
-        ):
+        with self.assertRaisesMessage(ValidationError, f"Year must be after {settings.MINIMUM_ALLOWED_YEAR}"):
             validator(year)

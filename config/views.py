@@ -54,29 +54,21 @@ class CourtOrTribunalView(TemplateViewWithContext):
 
     @property
     def page(self):
-        return clamp(
-            sanitise_input_to_integer(self.request.GET.get("page"), 1), minimum=1
-        )
+        return clamp(sanitise_input_to_integer(self.request.GET.get("page"), 1), minimum=1)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         search_response = search_judgments_and_parse_response(
             api_client,
-            SearchParameters(
-                court=self.court.canonical_param, order="-date", page=self.page
-            ),
+            SearchParameters(court=self.court.canonical_param, order="-date", page=self.page),
         )
 
-        context["feedback_survey_type"] = (
-            "court_or_tribunal_%s" % self.court.canonical_param
-        )
+        context["feedback_survey_type"] = "court_or_tribunal_%s" % self.court.canonical_param
         context["request"] = self.request
         context["court"] = self.court
         context["judgments"] = search_response.results
-        context["paginator"] = paginator(
-            self.page, search_response.total, RESULTS_PER_PAGE
-        )
+        context["paginator"] = paginator(self.page, search_response.total, RESULTS_PER_PAGE)
 
         return context
 

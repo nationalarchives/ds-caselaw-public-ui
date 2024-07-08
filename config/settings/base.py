@@ -116,9 +116,7 @@ PASSWORD_HASHERS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -246,12 +244,7 @@ MANAGERS = ADMINS
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
-        }
-    },
+    "formatters": {"verbose": {"format": "%(levelname)s %(asctime)s %(module)s " "%(process)d %(thread)d %(message)s"}},
     "handlers": {
         "console": {
             "level": "DEBUG",
@@ -275,12 +268,8 @@ MARKLOGIC_USE_HTTPS = env("MARKLOGIC_USE_HTTPS", default=False)
 # SMTP credentials for transaacitonal licence form delivery
 
 TRANSACTIONAL_LICENCE_FROM_EMAIL = env("TRANSACTIONAL_LICENCE_FROM_EMAIL", default=None)
-TRANSACTIONAL_LICENCE_DELIVERY_EMAIL = env(
-    "TRANSACTIONAL_LICENCE_DELIVERY_EMAIL", default=None
-)
-TRANSACTIONAL_LICENCE_EMAIL_SUBJECT = env(
-    "TRANSACTIONAL_LICENCE_EMAIL_SUBJECT", default=None
-)
+TRANSACTIONAL_LICENCE_DELIVERY_EMAIL = env("TRANSACTIONAL_LICENCE_DELIVERY_EMAIL", default=None)
+TRANSACTIONAL_LICENCE_EMAIL_SUBJECT = env("TRANSACTIONAL_LICENCE_EMAIL_SUBJECT", default=None)
 SES_SMTP_USERNAME = env("SES_SMTP_USERNAME", default=None)
 SES_SMTP_PASSWORD = env("SES_SMTP_PASSWORD", default=None)
 SES_SMTP_SERVER = env("SES_SMTP_SERVER", default=None)

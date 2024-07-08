@@ -39,24 +39,18 @@ class TestGetPublishedDocument:
 
     @patch("judgments.views.detail.get_document_by_uri")
     def test_judgment_is_unpublished(self, mock_get_document_by_uri):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            is_published=False
-        )
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=False)
         with pytest.raises(Http404):
             get_published_document_by_uri("2099/eat/1")
 
-    @patch(
-        "judgments.views.detail.get_document_by_uri", side_effect=DocumentNotFoundError
-    )
+    @patch("judgments.views.detail.get_document_by_uri", side_effect=DocumentNotFoundError)
     def test_judgment_missing(self, mock_get_document_by_uri):
         with pytest.raises(Http404):
             get_published_document_by_uri("not-a-judgment")
 
     @patch("judgments.views.detail.get_document_by_uri")
     def test_press_summary_is_published(self, mock_get_document_by_uri):
-        judgment = JudgmentFactory.build(
-            is_published=True, uri="2022/eat/1/press-summary/1"
-        )
+        judgment = JudgmentFactory.build(is_published=True, uri="2022/eat/1/press-summary/1")
         mock_get_document_by_uri.return_value = judgment
         assert get_published_document_by_uri("2022/eat/1/press-summary/1") == judgment
 
@@ -74,9 +68,7 @@ class TestJudgment(TestCase):
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
         self.assertIn("<p>This is a judgment in HTML.</p>", decoded_response)
-        self.assertIn(
-            '<meta name="robots" content="noindex,nofollow" />', decoded_response
-        )
+        self.assertIn('<meta name="robots" content="noindex,nofollow" />', decoded_response)
 
         self.assertEqual(response.status_code, 200)
 
@@ -112,17 +104,13 @@ class TestJudgmentPdfLinkText(TestCase):
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
     def test_pdf_link_with_size(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
-        mock_pdf.return_value.uri = (
-            "https://example.com/test/2023/123/test_2023_123.pdf"
-        )
+        mock_pdf.return_value.uri = "https://example.com/test/2023/123/test_2023_123.pdf"
         mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
 
-        self.assertIn(
-            "https://example.com/test/2023/123/test_2023_123.pdf", decoded_response
-        )
+        self.assertIn("https://example.com/test/2023/123/test_2023_123.pdf", decoded_response)
         self.assertNotIn("data.pdf", decoded_response)
         self.assertIn(f"({filesizeformat(1234)})", decoded_response)
 
@@ -196,9 +184,7 @@ class TestDocumentDownloadOptions:
 class TestDocumentURIRedirects(TestCase):
     @patch("judgments.views.detail.get_document_by_uri")
     def test_non_canonical_uri_redirects(self, mock_get_document_by_uri):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri="test/1234/567", is_published=True
-        )
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(uri="test/1234/567", is_published=True)
         response = self.client.get("/test/1234/567/")
         assert isinstance(response, HttpResponseRedirect)
         assert response.status_code == 302
@@ -215,12 +201,8 @@ class TestPressSummaryLabel(TestCase):
         THEN response should contain the press summary label
         """
 
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            document_noun="press summary", is_published=True
-        )
-        response = self.client.get(
-            "/test/2023/123"
-        )  # has to match factory to avoid redirect.
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(document_noun="press summary", is_published=True)
+        response = self.client.get("/test/2023/123")  # has to match factory to avoid redirect.
         self.assertContains(
             response,
             '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
@@ -229,17 +211,13 @@ class TestPressSummaryLabel(TestCase):
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_no_press_summary_label_when_on_judgment(
-        self, mock_get_document_by_uri, mock_pdf
-    ):
+    def test_no_press_summary_label_when_on_judgment(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN judgment
         WHEN request is made with judgment uri
         THEN response should NOT contain the press summary label
         """
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri="eat/2023/1", is_published=True
-        )
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(uri="eat/2023/1", is_published=True)
         response = self.client.get("/eat/2023/1")
         self.assertNotContains(
             response,
@@ -285,13 +263,9 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
-                return JudgmentFactory.build(
-                    uri=uri, is_published=True, document_noun=document_noun
-                )
+                return JudgmentFactory.build(uri=uri, is_published=True, document_noun=document_noun)
             elif document_uri == expected_href:
-                return JudgmentFactory.build(
-                    uri=expected_href, is_published=True, document_noun=document_noun
-                )
+                return JudgmentFactory.build(uri=expected_href, is_published=True, document_noun=document_noun)
             else:
                 raise DocumentNotFoundError()
 
@@ -346,13 +320,9 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
-                return JudgmentFactory.build(
-                    uri=uri, is_published=True, document_noun=document_noun
-                )
+                return JudgmentFactory.build(uri=uri, is_published=True, document_noun=document_noun)
             elif document_uri == expected_href:
-                return JudgmentFactory.build(
-                    uri=expected_href, is_published=True, document_noun=document_noun
-                )
+                return JudgmentFactory.build(uri=expected_href, is_published=True, document_noun=document_noun)
             else:
                 raise DocumentNotFoundError()
 
@@ -396,9 +366,7 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri):
             if document_uri == uri:
-                return JudgmentFactory.build(
-                    uri=document_uri, is_published=True, document_noun="press summary"
-                )
+                return JudgmentFactory.build(uri=document_uri, is_published=True, document_noun="press summary")
             else:
                 raise DocumentNotFoundError()
 
@@ -541,9 +509,7 @@ class TestBreadcrumbs:
 class TestDocumentHeadings(TestCase):
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
-    def test_document_headings_when_press_summary(
-        self, mock_get_document_by_uri, mock_pdf
-    ):
+    def test_document_headings_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN that the document returned will be a press summary
         WHEN a request is made with to a document detail page

@@ -9,9 +9,7 @@ from judgments.tests.fixtures import FakeSearchResponse
 class TestAtomFeed(TestCase):
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")
-    def test_feed_exists(
-        self, mock_api_client, mock_search_judgments_and_parse_response
-    ):
+    def test_feed_exists(self, mock_api_client, mock_search_judgments_and_parse_response):
         search_response = FakeSearchResponse()
         mock_search_judgments_and_parse_response.return_value = search_response
 
@@ -33,9 +31,7 @@ class TestAtomFeed(TestCase):
         # that there is a successful response
         self.assertEqual(response.status_code, 200)
         # that it is an atom feed
-        self.assertEqual(
-            response["Content-Type"], "application/atom+xml; charset=utf-8"
-        )
+        self.assertEqual(response["Content-Type"], "application/atom+xml; charset=utf-8")
 
         # that it has the correct site name
         self.assertIn("<name>The National Archives</name>", decoded_response)

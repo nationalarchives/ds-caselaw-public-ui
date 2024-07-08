@@ -69,9 +69,7 @@ def advanced_search(request):
         """
         if not form.is_valid():
             # If the form has errors, return it for rendering!
-            return TemplateResponse(
-                request, "pages/structured_search.html", {"form": form}
-            )
+            return TemplateResponse(request, "pages/structured_search.html", {"form": form})
         else:
             context: dict = {}
             court_facets: dict = {}
@@ -79,9 +77,7 @@ def advanced_search(request):
             year_facets: dict = {}
             query_params: dict = {}
             query_text: str = form.cleaned_data.get("query", "")
-            page: int = clamp(
-                sanitise_input_to_integer(params.get("page"), 1), minimum=1
-            )
+            page: int = clamp(sanitise_input_to_integer(params.get("page"), 1), minimum=1)
             per_page: int = clamp(
                 sanitise_input_to_integer(params.get("per_page"), RESULTS_PER_PAGE),
                 minimum=1,
@@ -124,9 +120,7 @@ def advanced_search(request):
                 "page": page,
             }
             # Merge the courts and tribunals as they are treated as the same in MarkLogic.
-            courts_and_tribunals = form.cleaned_data.get(
-                "court", []
-            ) + form.cleaned_data.get("tribunal", [])
+            courts_and_tribunals = form.cleaned_data.get("court", []) + form.cleaned_data.get("tribunal", [])
             # `SearchParameters` takes an optional string for dates
             if not to_date:
                 to_date_as_search_param = None
@@ -152,29 +146,21 @@ def advanced_search(request):
 
             # Get the response from Marklogic
             try:
-                search_response: SearchResponse = search_judgments_and_parse_response(
-                    api_client, search_parameters
-                )
+                search_response: SearchResponse = search_judgments_and_parse_response(api_client, search_parameters)
             except MarklogicResourceNotFoundError:
                 return HttpResponseServerError("Search failed")
 
             # If a query was provided, get relevant search facets to display to the user
             if search_parameters.query:
-                unprocessed_facets, court_facets, tribunal_facets = (
-                    process_court_facets(search_response.facets, courts_and_tribunals)
-                )
-                unprocessed_facets, year_facets = process_year_facets(
-                    unprocessed_facets
-                )
+                (
+                    unprocessed_facets,
+                    court_facets,
+                    tribunal_facets,
+                ) = process_court_facets(search_response.facets, courts_and_tribunals)
+                unprocessed_facets, year_facets = process_year_facets(unprocessed_facets)
 
-            changed_queries = {
-                key: value
-                for key, value in params.items()
-                if value is not None and not key == "page"
-            }
-            requires_warning, warning = _do_dates_require_warnings(
-                from_date, int(search_response.total)
-            )
+            changed_queries = {key: value for key, value in params.items() if value is not None and not key == "page"}
+            requires_warning, warning = _do_dates_require_warnings(from_date, int(search_response.total))
             # Populate context to provide feedback about filters etc. back to user
             context = context | {
                 "query": query_text,
@@ -193,9 +179,7 @@ def advanced_search(request):
                 "page": page,
                 "filtered": has_filters(params),
                 "page_title": _("results.search.title"),
-                "show_no_exact_ncn_warning": show_no_exact_ncn_warning(
-                    search_response.results, query_text, page
-                ),
+                "show_no_exact_ncn_warning": show_no_exact_ncn_warning(search_response.results, query_text, page),
                 "query_params": query_params,
             }
 

@@ -10,9 +10,7 @@ from django.utils.safestring import mark_safe
 
 DISALLOWED_CHARACTERS = {"<": "&lt;", ">": "&gt;"}
 
-COUNTRIES_AND_TERRITORIES_JSON_PATH = (
-    "ds_judgements_public_ui/static/js/location-autocomplete-canonical-list.json"
-)
+COUNTRIES_AND_TERRITORIES_JSON_PATH = "ds_judgements_public_ui/static/js/location-autocomplete-canonical-list.json"
 
 EMAIL_TEMPLATE_PATH = "dynamics_email_template.txt"
 

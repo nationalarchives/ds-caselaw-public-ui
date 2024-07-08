@@ -92,9 +92,7 @@ urlpatterns = [
     ),
     path(
         "googleb0ce3f99fae65e7c.html",
-        TemplateView.as_view(
-            template_name="googleb0ce3f99fae65e7c.html", content_type="text/html"
-        ),
+        TemplateView.as_view(template_name="googleb0ce3f99fae65e7c.html", content_type="text/html"),
     ),
     path(
         "schema/<schemafile:schemafile>",

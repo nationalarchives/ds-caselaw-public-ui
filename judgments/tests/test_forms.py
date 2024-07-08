@@ -29,9 +29,7 @@ class TestAdvancedSearchForm(TestCase):
         self.assertFalse(form.is_valid())
         # Since this validation is done at a form level, rather than a field level,
         # the errors will be at the __all__ key.
-        self.assertEqual(
-            form.errors, {"__all__": ["Please enter a 'to' date after the 'from' date"]}
-        )
+        self.assertEqual(form.errors, {"__all__": ["Please enter a 'to' date after the 'from' date"]})
 
     def test_advanced_search_form_date_limit(self):
         """

@@ -82,9 +82,7 @@ def get_best_pdf(request, document_uri):
         return HttpResponse(response.content, content_type="application/pdf")
 
     if response.status_code != 404:
-        logging.warn(
-            f"Unexpected {response.status_code} error on {document_uri} whilst trying to get_best_pdf"
-        )
+        logging.warn(f"Unexpected {response.status_code} error on {document_uri} whilst trying to get_best_pdf")
     # fall back to weasy_pdf
 
     return redirect(
@@ -115,9 +113,7 @@ def detail(request, document_uri):
         context["query"] = query
 
     try:
-        context["linked_document_uri"] = get_published_document_by_uri(
-            linked_doc_url(document)
-        ).uri
+        context["linked_document_uri"] = get_published_document_by_uri(linked_doc_url(document)).uri
     except Http404:
         context["linked_document_uri"] = ""
 
@@ -127,9 +123,7 @@ def detail(request, document_uri):
     )  # "" is most recent version
     context["document_uri"] = document.uri
     context["page_title"] = document.name
-    context["pdf_size"] = (
-        f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
-    )
+    context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
     context["pdf_uri"] = pdf.uri
 
     if document.document_noun == "press summary":
@@ -148,14 +142,10 @@ def detail(request, document_uri):
         ]
 
     context["breadcrumbs"] = breadcrumbs
-    context["feedback_survey_type"] = (
-        "judgment"  # TODO: update the survey to allow for generalisation to `document`
-    )
+    context["feedback_survey_type"] = "judgment"  # TODO: update the survey to allow for generalisation to `document`
     # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
     context["feedback_survey_document_uri"] = document.uri
-    context["search_context"] = search_context_from_url(
-        request.META.get("HTTP_REFERER")
-    )
+    context["search_context"] = search_context_from_url(request.META.get("HTTP_REFERER"))
 
     return TemplateResponse(request, "judgment/detail.html", context=context)
 

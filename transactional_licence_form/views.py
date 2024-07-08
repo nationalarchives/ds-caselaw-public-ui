@@ -21,7 +21,6 @@ REVIEWING_SESSION_KEY = "transactional_licence_form_reviewing"
 
 
 class FormWizardView(NamedUrlSessionWizardView):
-
     def get_template_names(self):
         return [TEMPLATE_OVERRIDES.get(self.steps.current, "form.html")]
 
@@ -36,15 +35,10 @@ class FormWizardView(NamedUrlSessionWizardView):
     def post(self, *args, **kwargs):
         management_form = ManagementForm(self.request.POST, prefix=self.prefix)
         if not management_form.is_valid():
-            raise SuspiciousOperation(
-                "ManagementForm data is missing or has been tampered."
-            )
+            raise SuspiciousOperation("ManagementForm data is missing or has been tampered.")
 
         form_current_step = management_form.cleaned_data["current_step"]
-        if (
-            form_current_step != self.steps.current
-            and self.storage.current_step is not None
-        ):
+        if form_current_step != self.steps.current and self.storage.current_step is not None:
             self.storage.current_step = form_current_step
 
         form = self.get_form(data=self.request.POST, files=self.request.FILES)
@@ -75,8 +69,7 @@ class FormWizardView(NamedUrlSessionWizardView):
 
     def in_review(self):
         has_review_parameter = bool(
-            self.request.session.get(REVIEWING_SESSION_KEY, False)
-            or self.request.POST.get("reviewing", False)
+            self.request.session.get(REVIEWING_SESSION_KEY, False) or self.request.POST.get("reviewing", False)
         )
         return has_review_parameter and self.steps.current != "review"
 
@@ -93,9 +86,7 @@ class FormWizardView(NamedUrlSessionWizardView):
             cleaned_data[form_key] = {}
             form_obj = self.get_form_object(form_key)
             if form_obj.is_valid() and isinstance(form_obj.cleaned_data, (tuple, list)):
-                cleaned_data[form_key].update(
-                    {"formset-%s" % form_key: form_obj.cleaned_data}
-                )
+                cleaned_data[form_key].update({"formset-%s" % form_key: form_obj.cleaned_data})
             elif form_obj.is_valid():
                 cleaned_data[form_key].update(form_obj.cleaned_data)
         return cleaned_data

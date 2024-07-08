@@ -16,9 +16,7 @@ from judgments.tests.utils.assertions import assert_contains_html
 class TestBrowseResults(TestCase):
     @patch("judgments.views.browse.api_client")
     @patch("judgments.views.browse.search_judgments_and_parse_response")
-    def test_browse_results(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_browse_results(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/ewhc/ch/2022")
         mock_search_judgments_and_parse_response.assert_called_with(
@@ -57,9 +55,7 @@ class TestSearchResults(TestCase):
         CourtDateFactory()
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
-        response = self.client.get(
-            "/judgments/search?query=waltham+forest", {"query": "waltham forest"}
-        )
+        response = self.client.get("/judgments/search?query=waltham+forest", {"query": "waltham forest"})
 
         self.assertContains(
             response,
@@ -101,9 +97,7 @@ class TestSearchResults(TestCase):
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
-        response = self.client.get(
-            "/judgments/search?query=waltham+forest", {"query": "waltham forest"}
-        )
+        response = self.client.get("/judgments/search?query=waltham+forest", {"query": "waltham forest"})
 
         self.assertContains(
             response,
@@ -152,9 +146,7 @@ class TestSearchResults(TestCase):
         </div>
     """
 
-        response = self.client.get(
-            "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444"
-        )
+        response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444")
 
         assert_contains_html(response, expected_html)
 
@@ -184,9 +176,7 @@ class TestSearchResults(TestCase):
         </div>
 """
 
-        response = self.client.get(
-            "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=2011"
-        )
+        response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=2011")
 
         self.assertNotContains(response, expected_html)
 
@@ -205,9 +195,7 @@ class TestSearchResults(TestCase):
         The expected applied filters HTML:
         - Includes a div with class `advice-message`
         """
-        mock_search_judgments_and_parse_response.return_value = (
-            FakeSearchResponseNoResults()
-        )
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
         expected_html = """
         <div class="govuk-warning-text">
             <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
@@ -219,9 +207,7 @@ class TestSearchResults(TestCase):
         </div>
 """
 
-        response = self.client.get(
-            "/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444"
-        )
+        response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444")
 
         self.assertNotContains(response, expected_html)
 
@@ -390,32 +376,24 @@ class TestSearchResults(TestCase):
 class TestSearchBreadcrumbs(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_search_breadcrumbs_without_query_string(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_search_breadcrumbs_without_query_string(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/judgments/search")
         assert response.context["breadcrumbs"] == [{"text": "Search results"}]
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_search_breadcrumbs_with_query_string(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_search_breadcrumbs_with_query_string(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/judgments/search?query=waltham+forest")
 
-        assert response.context["breadcrumbs"] == [
-            {"text": 'Search results for "waltham forest"'}
-        ]
+        assert response.context["breadcrumbs"] == [{"text": 'Search results for "waltham forest"'}]
 
 
 class TestSearchFacets(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_populated_court_facets(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_populated_court_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         court_code = all_courts.get_by_code("EWHC-KBD-TCC")
         response = self.client.get("/judgments/search?query=example+query")
@@ -429,9 +407,7 @@ class TestSearchFacets(TestCase):
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_populated_tribunal_facets(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_populated_tribunal_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         tribunal_code = all_courts.get_by_code("EAT")
         response = self.client.get("/judgments/search?query=example+query")
@@ -445,15 +421,11 @@ class TestSearchFacets(TestCase):
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_unpopulated_court_facet_keys(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_unpopulated_court_facet_keys(self, mock_search_judgments_and_parse_response, mock_api_client):
         """
         Advanced search only populates court_facets if they are available
         """
-        mock_search_judgments_and_parse_response.return_value = (
-            FakeSearchResponseNoFacets()
-        )
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoFacets()
         response = self.client.get("/judgments/search?query=example+query")
 
         assert response.context["court_facets"] == {}
@@ -461,9 +433,7 @@ class TestSearchFacets(TestCase):
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_populated_year_facets(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_populated_year_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/judgments/search?query=example+query")
 
@@ -474,15 +444,11 @@ class TestSearchFacets(TestCase):
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
-    def test_unpopulated_year_facet_keys(
-        self, mock_search_judgments_and_parse_response, mock_api_client
-    ):
+    def test_unpopulated_year_facet_keys(self, mock_search_judgments_and_parse_response, mock_api_client):
         """
         Advanced search only populates year_facets if they are available
         """
-        mock_search_judgments_and_parse_response.return_value = (
-            FakeSearchResponseNoFacets()
-        )
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoFacets()
         response = self.client.get("/judgments/search?query=example+query")
 
         assert response.context["year_facets"] == {}

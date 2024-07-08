@@ -18,16 +18,12 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         try:
-            search_response = search_judgments_and_parse_response(
-                api_client, SearchParameters(order="-date")
-            )
+            search_response = search_judgments_and_parse_response(api_client, SearchParameters(order="-date"))
             search_results = search_response.results
             context["recent_judgments"] = search_results
 
         except MarklogicResourceNotFoundError:
-            raise Http404(
-                "Search results not found"
-            )  # TODO: This should be something else!
+            raise Http404("Search results not found")  # TODO: This should be something else!
 
         context["courts"] = all_courts.get_listable_courts()
         context["tribunals"] = all_courts.get_listable_tribunals()

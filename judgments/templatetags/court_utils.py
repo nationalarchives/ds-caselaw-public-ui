@@ -71,9 +71,7 @@ def get_court_date_range(court):
 
 @register.filter
 def get_court_judgments_count(court):
-    return search_judgments_and_parse_response(
-        api_client, SearchParameters(court=court.canonical_param)
-    ).total
+    return search_judgments_and_parse_response(api_client, SearchParameters(court=court.canonical_param)).total
 
 
 @register.filter
