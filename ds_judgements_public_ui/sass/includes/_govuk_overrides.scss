@@ -186,3 +186,110 @@
 .govuk-form-group {
   margin-bottom: 0;
 }
+
+.govuk-header {
+  border-bottom: none;
+}
+
+.govuk-header__link--homepage:hover,
+.govuk-header__link--homepage:active {
+  border-bottom: 0.25rem solid $color-black;
+}
+
+.govuk-header__navigation-item--active .govuk-header__link,
+.govuk-header__navigation-item--active .govuk-header__link:hover,
+.govuk-header__navigation-item--active .govuk-header__link:visited {
+  color: $color-yellow;
+  font-weight: bold !important;
+  border-bottom: 0.25rem solid $color-yellow;
+  text-decoration: none;
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    border-bottom: none;
+  }
+}
+
+.govuk-header__link {
+  &:hover {
+    color: $color-white;
+    border-bottom: none;
+    text-decoration: none !important;
+  }
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.govuk-header__navigation-item .govuk-header__link {
+  font-size: $typography-sm-text-size;
+  line-height: $typography-md-line-height;
+  font-weight: normal;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  display: inline-block;
+
+  &:after {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    text-decoration: none;
+  }
+}
+
+.govuk-header__menu-button:focus {
+  outline: $space-1 solid transparent;
+}
+
+.govuk-frontend-supported .govuk-header__menu-button {
+  right: $space-12;
+  font-size: $typography-md-text-size;
+  padding-top: $space-1;
+
+  &:focus {
+    outline: none;
+    background-color: transparent;
+    box-shadow: none;
+    color: $color-white;
+  }
+}
+
+.govuk-header__menu-button:hover {
+  text-decoration: none;
+}
+
+.govuk-header__content {
+  margin-top: 5rem;
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    margin-top: 0;
+  }
+}
+
+.govuk-header__navigation-list {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-end;
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    display: block;
+  }
+}
+a.govuk-header__logo {
+  width: 100px;
+  height: 100px;
+}

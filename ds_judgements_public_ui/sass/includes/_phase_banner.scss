@@ -26,6 +26,15 @@
     font-weight: 700;
   }
 
+  &__beta-phase {
+    background-color: $color-yellow;
+    color: $color-black;
+    text-transform: uppercase;
+    padding: $space-1;
+    font-weight: 700;
+    font-size: $typography-sm-text-size;
+  }
+
   &__message {
     margin: 0;
     display: inline;

@@ -68,11 +68,12 @@
                 </ol>
               </nav>
             </div>
+            </div>
+            {% include "includes/logo.html" %}
           </div>
-          {% include "includes/logo.html" %}
-        </div>
-      {% endblock header %}
-    </header>
+        {% endblock header %}
+      </header>
+    {% endflag %}
     {% include "includes/notifications.html" %}
     {% block precontent %}
     {% endblock precontent %}
