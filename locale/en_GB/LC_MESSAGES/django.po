@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:02+0000\n"
+"POT-Creation-Date: 2024-07-05 15:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,6 +201,11 @@ msgid "skiplink"
 msgstr "Skip to Main Content"
 
 #: ds_judgements_public_ui/templates/layouts/base.html
+#: ds_judgements_public_ui/templates/pages/home.html
+msgid "home.useservice"
+msgstr "Judgments and decisions from 2003 onwards"
+
+#: ds_judgements_public_ui/templates/layouts/base.html
 msgid "home"
 msgstr "Find case law"
 
@@ -216,10 +221,6 @@ msgstr "Publishing policy"
 #: ds_judgements_public_ui/templates/pages/computational_licence.html
 msgid "caselawlicence.email"
 msgstr "CaseLawLicence@nationalarchives.gov.uk"
-
-#: ds_judgements_public_ui/templates/pages/home.html
-msgid "home.useservice"
-msgstr "Judgments and decisions from 2003 onwards"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "howtousethisservice.title"

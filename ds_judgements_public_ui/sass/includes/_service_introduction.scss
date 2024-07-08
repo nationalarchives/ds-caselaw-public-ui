@@ -1,16 +1,22 @@
 .service-introduction {
   background-color: $color-almost-black;
   flex-grow: 1;
+  width: 100%;
+  margin-top: $space-10;
 
   &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
     font-size: $typography-2xl-text-size;
-    line-height: 3.8rem;
-    display: inline-block;
+    line-height: $typography-md-line-height;
+
     width: 100%;
     font-family: $font-roboto;
     font-weight: normal;
     color: $color-white;
-    margin: 0;
+    margin: 0 $space-1;
   }
 
   &__helper-text {
@@ -19,7 +25,12 @@
     font-family: $font-roboto;
     color: $color-yellow;
     line-height: 1.6rem;
-    margin: 0 auto;
+    margin: 0 $space-1;
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      font-size: $typography-sm-text-size;
+      font-weight: bold;
+      margin: 0 $space-1;
+    }
   }
 
   &__further-information {
