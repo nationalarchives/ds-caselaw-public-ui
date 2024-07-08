@@ -8,8 +8,12 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.responses.search_response import SearchResponse
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
-from django.conf import settings
-from django.http import HttpResponseBadRequest, HttpResponseServerError
+from django.http import (
+    HttpRequest,
+    HttpResponse,
+    HttpResponseBadRequest,
+    HttpResponseServerError,
+)
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
@@ -29,25 +33,26 @@ from judgments.utils import (
 from judgments.utils.utils import sanitise_input_to_integer
 
 
-def _do_dates_require_warnings(from_date: date, total_results: int):
+def _do_dates_require_warnings(from_date: date, total_results: int) -> tuple[bool, Optional[str]]:
     """
     Check if users have requested a year before what we technically handle,
     if it is, then we provide a warning letting them know.
     """
     from_warning = False
     warning = None
+    min_year = get_minimum_valid_year()
     if from_date:
-        if from_date.year < settings.MINIMUM_WARNING_YEAR and total_results > 0:
+        if from_date.year < min_year and total_results > 0:
             from_warning = True
             warning = f"""
-                    {from_date.year} is before {settings.MINIMUM_WARNING_YEAR},
+                    {from_date.year} is before {min_year},
                     the date of the oldest record on the Find Case Law service.
-                    Showing results from {get_minimum_valid_year()}."""
+                    Showing results from {min_year}."""
     return from_warning, warning
 
 
 @csrf_exempt
-def advanced_search(request):
+def advanced_search(request: HttpRequest) -> HttpResponse:
     """
     The advanced search view handles any searches made in the application
 
