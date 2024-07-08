@@ -90,7 +90,7 @@
 .info-box__heading {
   margin-top: 0;
   font-size: $typography-lg-text-size;
-  font-weight: bold;
+  font-weight: $typography-bold-font-weight;
 }
 
 .details-box {
@@ -140,7 +140,7 @@
 .govuk-warning-text__text {
   h2 {
     font-size: $typography-header-h3-size;
-    font-weight: bold;
+    font-weight: $typography-bold-font-weight;
     margin: 0;
   }
 

@@ -6,7 +6,7 @@
 
   &__header {
     font-family: $font-roboto;
-    font-weight: normal;
+    font-weight: $typography-normal-font-weight;
     font-size: $typography-xl-text-size;
     margin: 0 0 $space-12;
   }

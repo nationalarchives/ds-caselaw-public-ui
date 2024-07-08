@@ -27,7 +27,7 @@
   h2 {
     font-size: $typography-lg-text-size;
     line-height: $typography-sm-line-height;
-    font-weight: normal;
+    font-weight: $typography-normal-font-weight;
     margin-bottom: $space-2;
     margin-top: 0;
   }
@@ -54,7 +54,7 @@
     a {
       background: url($arrow-left) left no-repeat;
       padding-left: $space-6;
-      font-weight: bold;
+      font-weight: $typography-bold-font-weight;
     }
 
     &.next {

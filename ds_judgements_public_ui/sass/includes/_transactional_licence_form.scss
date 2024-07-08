@@ -10,7 +10,7 @@
 
   .govuk-label,
   .govuk-fieldset__legend {
-    font-weight: bold;
+    font-weight: $typography-bold-font-weight;
     font-size: $typography-lg-text-size;
   }
 
@@ -30,7 +30,7 @@
   // Include special-cased fields which should have a paragraph styled label here. This is a bit of a hack,
   // but django-forms/crispy-gds doesn't offer an obvious way to add a class to these.
   #div_id_contact-alternative_contact legend {
-    font-weight: normal;
+    font-weight: $typography-normal-font-weight;
     font-size: $typography-md-text-size;
   }
 

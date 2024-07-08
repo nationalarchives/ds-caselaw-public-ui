@@ -1,0 +1,200 @@
+.style-guide {
+  &__spacing-container {
+    background: $color-light-pink;
+    margin-bottom: $space-4;
+  }
+
+  &__spacing-item {
+    background: $color-white;
+    text-align: center;
+  }
+
+  &__colors li:before {
+    content: " ";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: $space-1;
+  }
+
+  &__color-almost-black {
+    color: $color-almost-black;
+
+    &:before {
+      background: $color-almost-black;
+    }
+  }
+  &__color-light-pink {
+    color: $color-light-pink;
+
+    &:before {
+      background: $color-light-pink;
+    }
+  }
+
+  &__color-white {
+    color: $color-white;
+    text-shadow: 0px 0px 1px $color-black;
+
+    &:before {
+      border: 1px solid $color-light-grey;
+      width: 14px;
+      height: 14px;
+      background: $color-white;
+    }
+  }
+  &__color-light-grey {
+    color: $color-light-grey;
+
+    &:before {
+      background: $color-light-grey;
+    }
+  }
+  &__color-dark-blue {
+    color: $color-dark-blue;
+
+    &:before {
+      background: $color-dark-blue;
+    }
+  }
+  &__color-grey {
+    color: $color-grey;
+
+    &:before {
+      background: $color-grey;
+    }
+  }
+  &__color-dark-grey {
+    color: $color-dark-grey;
+
+    &:before {
+      background: $color-dark-grey;
+    }
+  }
+  &__color-black {
+    color: $color-black;
+
+    &:before {
+      background: $color-black;
+    }
+  }
+  &__color-highlight-blue {
+    color: $color-highlight-blue;
+
+    &:before {
+      background: $color-highlight-blue;
+    }
+  }
+  &__color-yellow {
+    color: $color-yellow;
+
+    &:before {
+      background: $color-yellow;
+    }
+  }
+  &__color-aqua-blue {
+    color: $color-aqua-blue;
+
+    &:before {
+      background: $color-aqua-blue;
+    }
+  }
+  &__color-success {
+    color: $color-success;
+
+    &:before {
+      background: $color-success;
+    }
+  }
+  &__color-information {
+    color: $color-information;
+
+    &:before {
+      background: $color-information;
+    }
+  }
+  &__color-failure {
+    color: $color-failure;
+
+    &:before {
+      background: $color-failure;
+    }
+  }
+  &__color-green {
+    color: $color-green;
+
+    &:before {
+      background: $color-green;
+    }
+  }
+  &__color-red {
+    color: $color-red;
+
+    &:before {
+      background: $color-red;
+    }
+  }
+  &__color-link-blue {
+    color: $color-link-blue;
+
+    &:before {
+      background: $color-link-blue;
+    }
+  }
+  &__color-link-blue-hover {
+    color: $color-link-blue-hover;
+
+    &:before {
+      background: $color-link-blue-hover;
+    }
+  }
+  &__color-link-blue-focus {
+    color: $color-link-blue-focus;
+
+    &:before {
+      background: $color-link-blue-focus;
+    }
+  }
+  &__color-link-blue-visited {
+    color: $color-link-blue-visited;
+
+    &:before {
+      background: $color-link-blue-visited;
+    }
+  }
+  &__color-link-blue-active {
+    color: $color-link-blue-active;
+
+    &:before {
+      background: $color-link-blue-active;
+    }
+  }
+  &__color-link-disabled {
+    color: $color-link-disabled;
+
+    &:before {
+      background: $color-link-disabled;
+    }
+  }
+  &__color-focus-blue-outline {
+    color: $color-focus-blue-outline;
+
+    &:before {
+      background: $color-focus-blue-outline;
+    }
+  }
+  &__color-cta-background {
+    color: $color-cta-background;
+
+    &:before {
+      background: $color-cta-background;
+    }
+  }
+  &__color-cta-background-hover {
+    color: $color-cta-background-hover;
+
+    &:before {
+      background: $color-cta-background-hover;
+    }
+  }
+}

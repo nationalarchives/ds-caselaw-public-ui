@@ -12,7 +12,7 @@
     font-size: $typography-md-text-size;
     line-height: $typography-3xl-line-height;
     font-family: $font-roboto;
-    font-weight: bold;
+    font-weight: $typography-bold-font-weight;
     color: $color-almost-black;
     flex-shrink: 0;
     margin: 0 $space-1 0 0;
@@ -175,7 +175,7 @@
     display: block;
     margin-bottom: 0rem;
     font-size: $typography-md-text-size;
-    font-weight: bold;
+    font-weight: $typography-bold-font-weight;
   }
 
   &__limit-to-input {
@@ -231,7 +231,7 @@
   }
 
   &__removable-options-value {
-    font-weight: bold;
+    font-weight: $typography-bold-font-weight;
     display: inline-block;
 
     &::after {
@@ -293,7 +293,7 @@
       padding: 0 0 $space-2 $space-6;
       border-bottom: 0.188rem solid $color-yellow;
       margin: 0 auto;
-      font-weight: bold;
+      font-weight: $typography-bold-font-weight;
       flex-basis: content;
 
       &:focus {

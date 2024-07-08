@@ -1,0 +1,31 @@
+<h3 id="character-count">Character count</h3>
+<p>Help users know how much text they can enter when there is a limit on the number of characters.</p>
+<div class="component-wrapper">
+  <div class="govuk-character-count"
+       data-module="govuk-character-count"
+       data-maxlength="100">
+    <div class="govuk-form-group">
+      <h1 class="govuk-label-wrapper">
+        <label class="govuk-label govuk-label--s" for="with-hint">17a. Please Describe</label>
+      </h1>
+      <div id="with-hint-hint" class="govuk-hint">
+        <p>
+          a. the risks you have identified, and
+          <br />
+          b. how you will protect the ability of the courts and tribunals to function
+          <br />
+        </p>
+        <p>
+          You should consider anything that may undermine the ability for the justice system to operate impartially and ...
+        </p>
+        <p>Maximum 100 words</p>
+      </div>
+      <textarea class="govuk-textarea govuk-js-character-count"
+                id="with-hint"
+                name="withHint"
+                rows="5"
+                aria-describedby="with-hint-info with-hint-hint"></textarea>
+    </div>
+    <div id="with-hint-info" class="govuk-hint govuk-character-count__message">You can enter up to 100 characters</div>
+  </div>
+</div>

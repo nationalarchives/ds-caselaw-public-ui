@@ -1,0 +1,46 @@
+<h3 id="checkboxes">Checkboxes</h3>
+<p>They can contain multiple items which have an associated ‘further details’ checkbox.</p>
+<div class="component-wrapper">
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+      <legend class="govuk-fieldset__legend">
+        <strong>What type of organistation is it?</strong>
+      </legend>
+      <div id="organisation-hint" class="govuk-hint">Select all that apply.</div>
+      <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input"
+                 id="orginisation"
+                 name="orginistation"
+                 type="checkbox"
+                 value="carcasses">
+          <label class="govuk-label govuk-checkboxes__label" for="orginisation">Private Limited Company</label>
+        </div>
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input"
+                 id="waste-2"
+                 name="waste"
+                 type="checkbox"
+                 value="mines">
+          <label class="govuk-label govuk-checkboxes__label" for="waste-2">Public Limited Company</label>
+        </div>
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input"
+                 id="waste-3"
+                 name="waste"
+                 type="checkbox"
+                 value="farm">
+          <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            Other (please specify )
+            <input class="govuk-input govuk-!-width-full"
+                   id="contact-by-email"
+                   name="contactByEmail"
+                   type="email"
+                   spellcheck="false"
+                   autocomplete="email">
+          </label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

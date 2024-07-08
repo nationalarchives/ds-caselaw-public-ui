@@ -21,9 +21,12 @@ $grid-breakpoint-medium: 768px;
 $grid-breakpoint-large: 992px;
 $grid-breakpoint-extra-large: 1200px;
 
+// TODO: Rename these
 $font-roboto: "Roboto", sans-serif;
 $font-open-sans: "Open Sans", sans-serif;
 $font-serif: serif;
+$typography-display-font-family: $font-roboto;
+$typography-body-font-family: $font-open-sans;
 
 $typography-xs-text-size: 0.7rem;
 $typography-sm-text-size: 0.9rem;
@@ -40,6 +43,9 @@ $typography-lg-line-height: 1.5;
 $typography-xl-line-height: 1.8;
 $typography-2xl-line-height: 2;
 $typography-3xl-line-height: 2.6;
+
+$typography-normal-font-weight: 400;
+$typography-bold-font-weight: 700;
 
 // TODO: Replace these with static values
 $typography-header-line-size-multiplier: 1.3;

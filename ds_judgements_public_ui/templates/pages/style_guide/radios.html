@@ -1,0 +1,84 @@
+<h3 id="radios">Radios</h3>
+<p>
+  They may contain error messages also can progressively reveal subfields (eg ‘details of the person responsible for compliance’)
+</p>
+<div class="component-wrapper">
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+        <strong>Who is the person in your organistion who will be responsible for licence compliance?</strong>
+      </legend>
+      <div id="contact-hint" class="govuk-hint">Select the correct option below</div>
+      <div class="govuk-radios--small" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input"
+                 id="contact"
+                 name="contact"
+                 type="radio"
+                 value="email"
+                 data-aria-controls="conditional-contact">
+          <label class="govuk-label govuk-radios__label" for="contact">Not sure</label>
+        </div>
+        <div class="govuk-radios__conditional" id="conditional-contact">
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="contact-by-email">
+              Please put the email address of the person in your organistation who can tell us who is responsible
+            </label>
+            <p id="contact-by-email-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Email address cannot be blank
+            </p>
+            <input class="govuk-input govuk-!-width-one-half govuk-input--error"
+                   id="contact-by-email"
+                   name="contactByEmail"
+                   type="email"
+                   spellcheck="false"
+                   aria-describedby="contact-by-email-error"
+                   autocomplete="email">
+          </div>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input"
+                 id="contact-2"
+                 name="contact"
+                 type="radio"
+                 value="person">
+          <label class="govuk-label govuk-radios__label" for="contact-2">This is the same person as the main contact</label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input"
+                 id="contact-3"
+                 name="contact"
+                 type="radio"
+                 value="text"
+                 data-aria-controls="conditional-contact-3">
+          <label class="govuk-label govuk-radios__label" for="contact-3">
+            This is a different person (please enter the details below)
+          </label>
+        </div>
+        <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
+             id="conditional-contact-3">
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="contact-by-text">
+              2a. The full name of the person in your organistion who will be responsible for licence compliance
+            </label>
+            <input class="govuk-input govuk-!-width-one-third"
+                   id="contact-by-text"
+                   name="contactByText"
+                   type="tel"
+                   autocomplete="tel">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="contact-by-text">
+              3a. The email address of the person in your organistion who will be responsible for licence compliance
+            </label>
+            <input class="govuk-input govuk-!-width-one-third"
+                   id="contact-by-text"
+                   name="contactByText"
+                   type="tel"
+                   autocomplete="tel">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
