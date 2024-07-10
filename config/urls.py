@@ -12,6 +12,10 @@ from .converters import SchemaFileConverter
 
 register_converter(SchemaFileConverter, "schemafile")
 
+handler404 = views.NotFoundView.as_view()
+handler500 = views.ServerErrorView.as_view()
+handler403 = views.PermissionDeniedView.as_view()
+
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
