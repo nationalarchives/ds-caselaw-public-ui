@@ -28,6 +28,7 @@
     font-weight: $typography-normal-font-weight;
     color: $color-white;
     margin: $space-8 0 0;
+    text-wrap: balance;
     @media only screen and (max-width: $grid-breakpoint-medium) {
       margin-top: none;
     }
