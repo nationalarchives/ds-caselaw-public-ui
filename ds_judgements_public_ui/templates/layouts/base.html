@@ -84,28 +84,8 @@
                 <div class="page-header__site-logo">
                   <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
                 </div>
-                <div class="page-header__breadcrumb">
-                  <nav class="page-header__breadcrumb-flex-container"
-                       aria-label="Breadcrumb">
-                    <ol>
-                      <li>
-                        <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-                        <a href="{% url 'home' %}">Find case law</a>
-                      </li>
-                      {% block breadcrumbs_v2 %}
-                        {% for breadcrumb in breadcrumbs %}
-                          {% if breadcrumb.url %}
-                            <li>
-                              <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
-                            </li>
-                          {% else %}
-                            <li>{{ breadcrumb.text }}</li>
-                          {% endif %}
-                        {% endfor %}
-                      {% endblock breadcrumbs_v2 %}
-                    </ol>
-                  </nav>
-                </div>
+
+                {% include "includes/breadcrumbs.html" %}
               </div>
               {% include "includes/logo.html" %}
             </div>
@@ -120,28 +100,8 @@
               <div class="page-header__site-logo">
                 <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
               </div>
-              <div class="page-header__breadcrumb">
-                <nav class="page-header__breadcrumb-flex-container"
-                     aria-label="Breadcrumb">
-                  <ol>
-                    <li>
-                      <span class="page-header__breadcrumb-you-are-in">You are in:</span>
-                      <a href="{% url 'home' %}">Find case law</a>
-                    </li>
-                    {% block breadcrumbs %}
-                      {% for breadcrumb in breadcrumbs %}
-                        {% if breadcrumb.url %}
-                          <li>
-                            <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
-                          </li>
-                        {% else %}
-                          <li>{{ breadcrumb.text }}</li>
-                        {% endif %}
-                      {% endfor %}
-                    {% endblock breadcrumbs %}
-                  </ol>
-                </nav>
-              </div>
+
+              {% include "includes/breadcrumbs.html" %}
             </div>
             {% include "includes/logo.html" %}
           </div>

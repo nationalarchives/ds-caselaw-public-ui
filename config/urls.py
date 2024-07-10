@@ -12,6 +12,10 @@ from .converters import SchemaFileConverter
 
 register_converter(SchemaFileConverter, "schemafile")
 
+handler404 = views.NotFoundView.as_view()
+handler500 = views.ServerErrorView.as_view()
+handler403 = views.PermissionDeniedView.as_view()
+
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
@@ -115,15 +119,15 @@ if settings.DEBUG:
         ),
         path(
             "403/",
-            default_views.permission_denied,
+            views.PermissionDeniedView.as_view(),
             kwargs={"exception": Exception("Permission Denied")},
         ),
         path(
             "404/",
-            default_views.page_not_found,
+            views.NotFoundView.as_view(),
             kwargs={"exception": Exception("Page not Found")},
         ),
-        path("500/", default_views.server_error),
+        path("500/", views.ServerErrorView.as_view()),
     ]
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
