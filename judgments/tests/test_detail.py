@@ -419,15 +419,15 @@ class TestBreadcrumbs:
 
         response = self.client.get("/eat/2023/1/press-summary/1")
         breadcrumb_html = """
-        <div class="page-header__breadcrumb">
-            <nav class="page-header__breadcrumb-flex-container" aria-label="Breadcrumb">
+        <div class="breadcrumbs">
+            <nav class="breadcrumbs__flex-container" aria-label="Breadcrumb">
                 <ol>
                     <li>
-                        <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                        <span class="breadcrumbs__prefix">You are in:</span>
                         <a href="/">Find case law</a>
                     </li>
                     <li><a href="/eat/2023/1/the_judgment_uri">Judgment A</a></li>
-                <li>Press Summary</li>
+                    <li>Press Summary</li>
                 </ol>
             </nav>
         </div>
@@ -450,11 +450,11 @@ class TestBreadcrumbs:
         )
         response = self.client.get("/eat/2023/1")
         breadcrumb_html = """
-        <div class="page-header__breadcrumb">
-            <nav class="page-header__breadcrumb-flex-container" aria-label="Breadcrumb">
+        <div class="breadcrumbs">
+            <nav class="breadcrumbs__flex-container" aria-label="Breadcrumb">
             <ol>
                 <li>
-                    <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                    <span class="breadcrumbs__prefix">You are in:</span>
                     <a href="/">Find case law</a>
                 </li>
                 <li>Judgment A</li>
@@ -492,11 +492,11 @@ class TestBreadcrumbs:
 
         response = self.client.get("/eat/2023/1")
         breadcrumb_html = f"""
-        <div class="page-header__breadcrumb">
-            <nav class="page-header__breadcrumb-flex-container" aria-label="Breadcrumb">
+        <div class="breadcrumbs">
+            <nav class="breadcrumbs__flex-container" aria-label="Breadcrumb">
             <ol>
                 <li>
-                    <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+                    <span class="breadcrumbs__prefix">You are in:</span>
                     <a href="/">Find case law</a>
                 </li>
                 <li>{expected_breadcrumb}</li>

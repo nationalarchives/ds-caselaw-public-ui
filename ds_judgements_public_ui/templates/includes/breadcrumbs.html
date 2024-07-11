@@ -1,11 +1,11 @@
 {% load waffle_tags %}
 
-<div class="page-header__breadcrumb">
-  <nav class="page-header__breadcrumb-flex-container"
+<div class="breadcrumbs">
+  <nav class="breadcrumbs__flex-container"
        aria-label="Breadcrumb">
     <ol>
       <li>
-        <span class="page-header__breadcrumb-you-are-in">You are in:</span>
+        <span class="breadcrumbs__prefix">You are in:</span>
         <a href="{% url 'home' %}">Find case law</a>
       </li>
       {% for breadcrumb in breadcrumbs %}

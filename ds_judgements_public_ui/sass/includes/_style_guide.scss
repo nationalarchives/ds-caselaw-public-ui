@@ -1,4 +1,23 @@
 .style-guide {
+  &__code-block {
+    background: $color-grey;
+    padding: $space-4;
+    display: block;
+    margin-bottom: $space-4;
+    white-space: pre;
+    font-size: $typography-sm-text-size;
+    line-height: $typography-sm-line-height;
+  }
+
+  &__component-wrapper {
+    border: solid $color-grey;
+    padding: $space-4;
+  }
+
+  &__component-wrapper--dark {
+    background: $color-almost-black;
+  }
+
   &__spacing-container {
     background: $color-light-pink;
     margin-bottom: $space-4;
