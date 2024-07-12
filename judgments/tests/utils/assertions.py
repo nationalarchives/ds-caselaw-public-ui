@@ -42,6 +42,12 @@ def is_contained(container_tree, contained_tree):
     )
 
 
+def is_contained_by_xpath(container_tree, xpath_query, contained_text):
+    elements = container_tree.xpath(xpath_query)
+
+    return any(normalise_text(contained_text) in normalise_text(element.text_content()) for element in elements)
+
+
 def response_contains_html(response, contained_html):
     container_tree = parse_html(response.content.decode())
     contained_tree = parse_html_fragment_as_fragments(contained_html)
@@ -54,3 +60,15 @@ def assert_contains_html(response, contained_html):
 
 def assert_not_contains_html(response, contained_html):
     assert not response_contains_html(response, contained_html)
+
+
+def assert_response_contains_text(response, contained_text, xpath_query):
+    container_tree = parse_html(response.content.decode())
+
+    assert is_contained_by_xpath(container_tree, xpath_query, contained_text)
+
+
+def assert_response_not_contains_text(response, contained_text, xpath_query):
+    container_tree = parse_html(response.content.decode())
+
+    assert not is_contained_by_xpath(container_tree, xpath_query, contained_text)

@@ -1,6 +1,11 @@
 import pytest
 from django.test import TestCase
-from judgments.tests.utils.assertions import assert_contains_html, assert_not_contains_html
+from judgments.tests.utils.assertions import (
+    assert_contains_html,
+    assert_not_contains_html,
+    assert_response_contains_text,
+    assert_response_not_contains_text,
+)
 
 
 class MockResponse:
@@ -17,7 +22,7 @@ class TestAssertions(TestCase):
         try:
             assert_contains_html(self.response_contains, self.contained_html)
         except AssertionError:
-            pytest.fail("assert_contains_html raised an AssertionError")
+            pytest.fail("assert_contains_html raised an AssertionError - html not contained within response")
 
     def test_assert_not_contains_html(self):
         try:
@@ -52,3 +57,25 @@ class TestAssertions(TestCase):
             assert_not_contains_html(response, contained_html)
         except AssertionError:
             pytest.fail("assert_contains_html raised AssertionError with nested HTML")
+
+    def test_assert_response_contains_text(self):
+        contained_text = "Server Error"
+        xpath_query = "//div[@class='breadcrumbs']"
+
+        response = MockResponse("<html><div class='breadcrumbs'><ul><li>Server Error</li></ul></div></html>")
+
+        try:
+            assert_response_contains_text(response, contained_text, xpath_query)
+        except AssertionError:
+            pytest.fail("assert_response_contains_text raised AssertionError")
+
+    def test_assert_response_not_contains_text(self):
+        contained_text = "Not there"
+        xpath_query = "//div[@class='breadcrumbs']"
+
+        response = MockResponse("<html><div class='breadcrumbs'><ul><li>Server Error</li></ul></div></html>")
+
+        try:
+            assert_response_not_contains_text(response, contained_text, xpath_query)
+        except AssertionError:
+            pytest.fail("assert_response_not_contains_text raised AssertionError")

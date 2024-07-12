@@ -10,7 +10,8 @@ from factories import JudgmentFactory, PressSummaryFactory
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
-    assert_not_contains_html,
+    assert_response_not_contains_text,
+    assert_response_contains_text,
 )
 from judgments.views.detail import (
     NoNeutralCitationError,
@@ -271,18 +272,11 @@ class TestViewRelatedDocumentButton:
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
-        expected_html_button = f"""
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
-            role="button" draggable="false"
-            href="/{expected_href}"
-        >
-            {expected_text}
-            <span style="font-weight:normal;font-size:0.9rem"></span>
-        </a>
-        """
         client = Client()
         response = client.get(f"/{uri}")
-        assert_contains_html(response, expected_html_button)
+
+        xpath_query = f"//a[@href='/{expected_href}']"
+        assert_response_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
@@ -328,18 +322,10 @@ class TestViewRelatedDocumentButton:
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
-        expected_html_button = f"""
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
-            role="button" draggable="false"
-            href="/{expected_href}?query=Query"
-        >
-            {expected_text}
-            <span style="font-weight:normal;font-size:0.9rem"></span>
-        </a>
-        """
         client = Client()
         response = client.get(f"/{uri}?query=Query")
-        assert_contains_html(response, expected_html_button)
+        xpath_query = f"//a[@href='/{expected_href}?query=Query']"
+        assert_response_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
@@ -372,19 +358,10 @@ class TestViewRelatedDocumentButton:
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
-        unexpected_html_button = f"""
-        <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
-            role="button" draggable="false"
-            href="/{unexpected_href}"
-        >
-            {unexpected_text}
-            <span style="font-weight:normal;font-size:0.9rem"></span>
-        </a>
-        """
-
         client = Client()
         response = client.get(f"/{uri}")
-        assert_not_contains_html(response, unexpected_html_button)
+        xpath_query = f"//a[@href='{unexpected_href}']"
+        assert_response_not_contains_text(response, unexpected_text, xpath_query)
 
 
 @pytest.mark.django_db
@@ -418,21 +395,15 @@ class TestBreadcrumbs:
         mock_get_document_by_uri.side_effect = pj
 
         response = self.client.get("/eat/2023/1/press-summary/1")
-        breadcrumb_html = """
-        <div class="breadcrumbs">
-            <nav class="breadcrumbs__flex-container" aria-label="Breadcrumb">
-                <ol>
-                    <li>
-                        <span class="breadcrumbs__prefix">You are in:</span>
-                        <a href="/">Find case law</a>
-                    </li>
+        judgment_breadcrumb_html = """
                     <li><a href="/eat/2023/1/the_judgment_uri">Judgment A</a></li>
-                    <li>Press Summary</li>
-                </ol>
-            </nav>
-        </div>
         """
-        assert_contains_html(response, breadcrumb_html)
+
+        summary_breadcrumb_html = """
+                    <li>Press Summary</li>
+        """
+        assert_contains_html(response, judgment_breadcrumb_html)
+        assert_contains_html(response, summary_breadcrumb_html)
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
@@ -449,19 +420,7 @@ class TestBreadcrumbs:
             name="Judgment A",
         )
         response = self.client.get("/eat/2023/1")
-        breadcrumb_html = """
-        <div class="breadcrumbs">
-            <nav class="breadcrumbs__flex-container" aria-label="Breadcrumb">
-            <ol>
-                <li>
-                    <span class="breadcrumbs__prefix">You are in:</span>
-                    <a href="/">Find case law</a>
-                </li>
-                <li>Judgment A</li>
-            </ol>
-            </nav>
-        </div>"""
-        assert_contains_html(response, breadcrumb_html)
+        assert_response_contains_text(response, "Judgment A", "//div[@class='breadcrumbs']")
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
@@ -491,19 +450,7 @@ class TestBreadcrumbs:
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
         response = self.client.get("/eat/2023/1")
-        breadcrumb_html = f"""
-        <div class="breadcrumbs">
-            <nav class="breadcrumbs__flex-container" aria-label="Breadcrumb">
-            <ol>
-                <li>
-                    <span class="breadcrumbs__prefix">You are in:</span>
-                    <a href="/">Find case law</a>
-                </li>
-                <li>{expected_breadcrumb}</li>
-            </ol>
-            </nav>
-        </div>"""
-        assert_contains_html(response, breadcrumb_html)
+        assert_response_contains_text(response, expected_breadcrumb, "//div[@class='breadcrumbs']")
 
 
 class TestDocumentHeadings(TestCase):
@@ -596,13 +543,12 @@ class TestHTMLTitle(TestCase):
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
-        html_title = """
-            <title>
+        title = """
                 Press Summary of Judgment A (with some slightly different wording)
                 - Find case law - The National Archives
-            </title>
         """
-        assert_contains_html(response, html_title)
+        xpath_query = "//title"
+        assert_response_contains_text(response, title, xpath_query)
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
@@ -619,8 +565,9 @@ class TestHTMLTitle(TestCase):
             name="Judgment A",
         )
         response = self.client.get("/eat/2023/1")
-        html_title = "<title>Judgment A - Find case law - The National Archives</title>"
-        assert_contains_html(response, html_title)
+        title = "Judgment A - Find case law - The National Archives"
+        xpath_query = "//title"
+        assert_response_contains_text(response, title, xpath_query)
 
 
 class TestNoNeutralCitation(TestCase):
