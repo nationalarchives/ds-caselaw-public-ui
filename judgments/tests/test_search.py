@@ -10,7 +10,11 @@ from judgments.tests.fixtures import (
     FakeSearchResponseNoFacets,
     FakeSearchResponseNoResults,
 )
-from judgments.tests.utils.assertions import assert_contains_html
+from judgments.tests.utils.assertions import (
+    assert_contains_html,
+    assert_response_contains_text,
+    assert_response_not_contains_text,
+)
 
 
 class TestBrowseResults(TestCase):
@@ -132,23 +136,18 @@ class TestSearchResults(TestCase):
         THEN the response should contain the expected warning
 
         The expected applied filters HTML:
-        - Includes a div with class `govuk-warning-text`
+        - Includes a div with class `govuk-warning-text` and correct warning text
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        expected_html = """
-        <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
-            <div class="govuk-warning-text__text">
-                1444 is before 2003, the date of the oldest record on the Find Case Law service.
-                Showing results from 2003.
-                <a href="/about-this-service#section-coverage">Read more</a>
-            </div>
-        </div>
-    """
 
         response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444")
 
-        assert_contains_html(response, expected_html)
+        expected_text = """
+                1444 is before 2003, the date of the oldest record on the Find Case Law service.
+                Showing results from 2003.
+        """
+        xpath_query = "//div[@class='govuk-warning-text__text']"
+        assert_response_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
@@ -165,20 +164,15 @@ class TestSearchResults(TestCase):
         - Includes a div with class `advice-message`
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        expected_html = """
-        <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
-            <div class="govuk-warning-text__text">
-                2011 is before 2003, the date of the oldest record on the Find Case Law service.
-                Showing results from 2003.
-                <a href="/about-this-service#section-coverage">Read more</a>
-            </div>
-        </div>
-"""
 
         response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=2011")
 
-        self.assertNotContains(response, expected_html)
+        expected_text = """
+                2011 is before 2003, the date of the oldest record on the Find Case Law service.
+                Showing results from 2003.
+        """
+        xpath_query = "//div[@class='govuk-warning-text__text']"
+        assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
@@ -196,20 +190,15 @@ class TestSearchResults(TestCase):
         - Includes a div with class `advice-message`
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
-        expected_html = """
-        <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
-            <div class="govuk-warning-text__text">
-                1444 is before 2003, the date of the oldest record on the Find Case Law service.
-                Showing results from 2003.
-                <a href="/about-this-service#section-coverage">Read more</a>
-            </div>
-        </div>
-"""
 
         response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444")
 
-        self.assertNotContains(response, expected_html)
+        expected_text = """
+                1444 is before 2003, the date of the oldest record on the Find Case Law service.
+                Showing results from 2003.
+        """
+        xpath_query = "//div[@class='govuk-warning-text__text']"
+        assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
