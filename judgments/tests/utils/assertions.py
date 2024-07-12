@@ -9,7 +9,7 @@ def parse_html(html_string):
     return html.fromstring(html_string)
 
 
-def parse_html_fragment(html_string):
+def parse_html_fragment_as_fragments(html_string):
     return html.fragments_fromstring(html_string)
 
 
@@ -44,7 +44,7 @@ def is_contained(container_tree, contained_tree):
 
 def response_contains_html(response, contained_html):
     container_tree = parse_html(response.content.decode())
-    contained_tree = parse_html_fragment(contained_html)
+    contained_tree = parse_html_fragment_as_fragments(contained_html)
     return is_contained(container_tree, contained_tree)
 
 
