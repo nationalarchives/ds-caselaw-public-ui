@@ -96,7 +96,7 @@ class TestUtils(unittest.TestCase):
             return mock
 
         query_text = "[2014] EWHC 4122 (Fam)"
-        page = "1"
+        page = 1
         search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2022] EWHC 54321 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertTrue(result)
@@ -110,7 +110,7 @@ class TestUtils(unittest.TestCase):
             return mock
 
         query_text = "[2014] EWHC 4122 (Fam)"
-        page = "2"
+        page = 2
         search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2022] EWHC 54321 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertFalse(result)
@@ -124,7 +124,7 @@ class TestUtils(unittest.TestCase):
             return mock
 
         query_text = "[2014] EWHC 4122 (Fam)"
-        page = "1"
+        page = 1
         search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2014] EWHC 4122 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertFalse(result)
@@ -136,7 +136,7 @@ class TestUtils(unittest.TestCase):
             return mock
 
         query_text = "walrus"
-        page = "1"
+        page = 1
         search_results = [mock_judgment(ncn) for ncn in ["[2013] EWSC 123", "[2014] EWHC 4122 (Fam)"]]
         result = show_no_exact_ncn_warning(search_results, query_text, page)
         self.assertFalse(result)

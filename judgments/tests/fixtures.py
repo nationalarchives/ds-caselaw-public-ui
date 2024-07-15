@@ -64,3 +64,4 @@ class FakeSearchResponseNoFacets(FakeSearchResponseBaseClass):
 
 class FakeSearchResponseNoResults(FakeSearchResponseBaseClass):
     total = 0
+    results = []

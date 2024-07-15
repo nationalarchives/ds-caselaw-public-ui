@@ -38,6 +38,17 @@ class TestBrowseResults(TestCase):
         self.assertContains(response, "A SearchResult name!", html=True)
 
 
+class TestNoNCN(TestCase):
+    @patch("judgments.views.browse.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_browse_results(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
+        response = self.client.get(r"/judgments/search?query=[2024]%20EAT%209999")
+        self.assertContains(
+            response, "There is no judgment with the Neutral Citation of [2024] EAT 9999 in our database.", html=True
+        )
+
+
 class TestSearchResults(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
