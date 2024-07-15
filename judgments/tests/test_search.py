@@ -15,6 +15,7 @@ from judgments.tests.utils.assertions import (
     assert_response_contains_text,
     assert_response_not_contains_text,
 )
+import lxml
 
 
 class TestBrowseResults(TestCase):
@@ -430,6 +431,18 @@ class TestSearchFacets(TestCase):
         assert response.context["year_facets"] == {"2010": "103"}
         # Keys that don't match valid years are not present
         assert "1900" not in response.context["year_facets"].keys()
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_per_page_query_parameter_selected(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/judgments/search?query=example+query&per_page=50")
+        per_page_select_id = lxml.html.fromstring(response.content).xpath('//*[@id="per_page"]')[0]
+        option_10_selected = per_page_select_id.xpath("./option[@value=10]/@selected")
+        option_50_selected = per_page_select_id.xpath("./option[@value=50]/@selected")
+
+        assert option_50_selected
+        assert not option_10_selected
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
