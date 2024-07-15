@@ -243,9 +243,7 @@ def search_results_have_exact_ncn(search_results, query):
     return False
 
 
-def show_no_exact_ncn_warning(search_results, query_text, page):
+def show_no_exact_ncn_warning(search_results, query_text: str, page: int):
     return (
-        not (search_results_have_exact_ncn(search_results, query_text))
-        and bool(neutral_url(query_text))
-        and page == "1"
+        not (search_results_have_exact_ncn(search_results, query_text)) and bool(neutral_url(query_text)) and page == 1
     )
