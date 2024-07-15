@@ -204,11 +204,9 @@ class TestPressSummaryLabel(TestCase):
 
         mock_get_document_by_uri.return_value = JudgmentFactory.build(document_noun="press summary", is_published=True)
         response = self.client.get("/test/2023/123")  # has to match factory to avoid redirect.
-        self.assertContains(
-            response,
-            '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
-            html=True,
-        )
+
+        xpath_query = "//p[@class='judgment-toolbar__press-summary-title']"
+        assert_response_contains_text(response, "Press Summary", xpath_query)
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
@@ -220,10 +218,9 @@ class TestPressSummaryLabel(TestCase):
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(uri="eat/2023/1", is_published=True)
         response = self.client.get("/eat/2023/1")
-        self.assertNotContains(
-            response,
-            '<p class="judgment-toolbar__press-summary-title">Press Summary</p>',
-        )
+
+        xpath_query = "//p[@class='judgment-toolbar__press-summary-title']"
+        assert_response_not_contains_text(response, "Press Summary", xpath_query)
 
 
 @pytest.mark.django_db
@@ -485,11 +482,11 @@ class TestDocumentHeadings(TestCase):
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
-        headings_html = """
-        <h1 class="judgment-toolbar__title">Judgment A (with some slightly different wording)</h1>
-        <p class="judgment-toolbar__reference">Judgment_A_NCN</p>
-        """
-        assert_contains_html(response, headings_html)
+        h1_xpath_query = "//h1"
+        reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
+
+        assert_response_contains_text(response, "Judgment A (with some slightly different wording)", h1_xpath_query)
+        assert_response_contains_text(response, "Judgment_A_NCN", reference_xpath_query)
 
     @patch("judgments.views.detail.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.get_document_by_uri")
@@ -507,11 +504,11 @@ class TestDocumentHeadings(TestCase):
             neutral_citation="Judgment_A_NCN",
         )
         response = self.client.get("/eat/2023/1")
-        headings_html = """
-        <h1 class="judgment-toolbar__title">Judgment A</h1>
-        <p class="judgment-toolbar__reference">Judgment_A_NCN</p>
-        """
-        assert_contains_html(response, headings_html)
+        h1_xpath_query = "//h1"
+        reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
+
+        assert_response_contains_text(response, "Judgment A", h1_xpath_query)
+        assert_response_contains_text(response, "Judgment_A_NCN", reference_xpath_query)
 
 
 class TestHTMLTitle(TestCase):

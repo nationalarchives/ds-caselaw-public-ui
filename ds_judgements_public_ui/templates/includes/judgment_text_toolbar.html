@@ -1,4 +1,5 @@
 {% load i18n document_utils utilities %}
+
 <div class="judgment-toolbar">
   <div class="judgment-toolbar__container">
     {% if document_noun == "press summary" %}
@@ -18,7 +19,7 @@
             {% else %}
               {% translate "judgment.view_judgment" %}
             {% endif %}
-            <span style="font-weight:normal;font-size:0.9rem"></span>
+            <span class="judgment-toolbar-buttons__pdf-size"></span>
           </a>
         {% endspaceless %}
       {% endif %}
@@ -27,7 +28,7 @@
          draggable="false"
          href="{{ pdf_uri }}"
          aria-label="{{ page_title|get_title_to_display_in_html:document_noun }} - Download as PDF">{% translate "judgment.downloadaspdf" %}
-        <span style="font-weight:normal;font-size:0.9rem">{{ pdf_size }}</span></a>
+        <span class="judgment-toolbar-buttons__pdf-size">{{ pdf_size }}</span></a>
       <p class="judgment-toolbar-buttons__option--download-options"
          role="note">
         <a href="#download-options">{% translate "judgment.downloadoptions.shortcutlink" %}</a>
