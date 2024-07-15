@@ -7,14 +7,26 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
 
-from . import views
+from .views.style_guide import StyleGuideView
+from .views.errors import NotFoundView, ServerErrorView, PermissionDeniedView
+from .views.courts import CourtsTribunalsListView, CourtOrTribunalView
+from .views.about import AboutThisServiceView
+from .views.accessibility_statement import AccessibilityStatementView
+from .views.open_justice_license import OpenJusticeLicenceView
+from .views.terms_of_use import TermsOfUseView
+from .views.publishing_policy import PublishingPolicyView
+from .views.structured_search import StructuredSearchView
+from .views.check import CheckView
+from .views.how_to import HowToUseThisService
+from .views.privacy_notice import PrivacyNotice
+from .views.schema import schema
 from .converters import SchemaFileConverter
 
 register_converter(SchemaFileConverter, "schemafile")
 
-handler404 = views.NotFoundView.as_view()
-handler500 = views.ServerErrorView.as_view()
-handler403 = views.PermissionDeniedView.as_view()
+handler404 = NotFoundView.as_view()
+handler500 = ServerErrorView.as_view()
+handler403 = PermissionDeniedView.as_view()
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
@@ -22,12 +34,12 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path(
         "courts-and-tribunals/<path:param>",
-        views.CourtOrTribunalView.as_view(),
+        CourtOrTribunalView.as_view(),
         name="court_or_tribunal",
     ),
     path(
         "courts-and-tribunals",
-        views.CourtsTribunalsListView.as_view(),
+        CourtsTribunalsListView.as_view(),
         name="courts_and_tribunals",
     ),
     path(
@@ -42,52 +54,52 @@ urlpatterns = [
     ),
     path(
         "about-this-service",
-        views.AboutThisServiceView.as_view(),
+        AboutThisServiceView.as_view(),
         name="about_this_service",
     ),
     path(
         "how-to-use-this-service",
-        views.HowToUseThisService.as_view(),
+        HowToUseThisService.as_view(),
         name="how_to_use_this_service",
     ),
     path(
         "privacy-notice",
-        views.PrivacyNotice.as_view(),
+        PrivacyNotice.as_view(),
         name="privacy_notice",
     ),
     path(
         "accessibility-statement",
-        views.AccessibilityStatement.as_view(),
+        AccessibilityStatementView.as_view(),
         name="accessibility_statement",
     ),
     path(
         "style-guide",
-        views.StyleGuide.as_view(),
+        StyleGuideView.as_view(),
         name="style_guide",
     ),
     path(
         "open-justice-licence",
-        views.OpenJusticeLicenceView.as_view(),
+        OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",
     ),
     path(
         "terms-of-use",
-        views.TermsOfUseView.as_view(),
+        TermsOfUseView.as_view(),
         name="terms_of_use",
     ),
     path(
         "publishing-policy",
-        views.PublishingPolicyView.as_view(),
+        PublishingPolicyView.as_view(),
         name="publishing_policy",
     ),
     path(
         "structured_search",
-        views.StructuredSearchView.as_view(),
+        StructuredSearchView.as_view(),
         name="structured_search",
     ),
     path(
         "check",
-        views.CheckView.as_view(),
+        CheckView.as_view(),
         name="check",
     ),
     path(
@@ -100,7 +112,7 @@ urlpatterns = [
     ),
     path(
         "schema/<schemafile:schemafile>",
-        cache_page(60 * 60)(views.schema),
+        cache_page(60 * 60)(schema),
         name="schema",
     ),
     path("re-use-find-case-law-records", include("transactional_licence_form.urls")),
@@ -119,15 +131,15 @@ if settings.DEBUG:
         ),
         path(
             "403/",
-            views.PermissionDeniedView.as_view(),
+            PermissionDeniedView.as_view(),
             kwargs={"exception": Exception("Permission Denied")},
         ),
         path(
             "404/",
-            views.NotFoundView.as_view(),
+            NotFoundView.as_view(),
             kwargs={"exception": Exception("Page not Found")},
         ),
-        path("500/", views.ServerErrorView.as_view()),
+        path("500/", ServerErrorView.as_view()),
     ]
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar

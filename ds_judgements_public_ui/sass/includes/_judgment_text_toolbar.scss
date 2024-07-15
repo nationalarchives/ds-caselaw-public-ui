@@ -78,6 +78,11 @@
 .judgment-toolbar-buttons {
   margin: 0 auto;
 
+  &__pdf-size {
+    font-weight: $typography-normal-font-weight;
+    font-size: $typography-sm-text-size;
+  }
+
   &__option--related-document {
     text-align: center;
   }

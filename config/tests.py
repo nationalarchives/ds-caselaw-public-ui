@@ -4,7 +4,7 @@ import pytest
 from django.http import Http404
 from django.test import TestCase
 
-from config import views
+from config.views.schema import schema
 
 
 class TestCacheHeaders(TestCase):
@@ -20,7 +20,7 @@ class TestCacheHeaders(TestCase):
 
 
 class TestSchemas(TestCase):
-    @patch("config.views.requests.get")
+    @patch("config.views.schema.requests.get")
     def test_cached(self, get):
         # Tests caching behaviour; happy path
         "We return a 200 with the content but only call it once"
@@ -32,16 +32,16 @@ class TestSchemas(TestCase):
         response = self.client.get("/schema/akn-modified.xsd")
         get.assert_called_once()
 
-    @patch("config.views.requests.get")
+    @patch("config.views.schema.requests.get")
     def test_error_gives_404(self, get):
         # Does not test caching behaviour and needs to not use an old filename
         "We handle errors from Github correctly"
         get.return_value.status_code = 419
         get.return_value.content = b"content-b"
         with pytest.raises(Http404):
-            views.schema(None, "caselaw.xsd")
+            schema(None, "caselaw.xsd")
 
-    @patch("config.views.requests.get")
+    @patch("config.views.schema.requests.get")
     def test_bad_url(self, get):
         # Doesn't care either way about caching
         "Given a bad URL, we don't request anything"
@@ -49,16 +49,16 @@ class TestSchemas(TestCase):
         assert response.status_code == 404
         get.assert_not_called()
 
-    @patch("config.views.requests.get")
+    @patch("config.views.schema.requests.get")
     def test_no_cache_errors(self, get):
         # Tests caching behaviour -- uses different URI for that reason
         "Errors downloading the document aren't persistent"
-        with patch("config.views.requests.get") as get_bad:
+        with patch("config.views.schema.requests.get") as get_bad:
             get_bad.return_value.status_code = 419
             get_bad.return_value.content = b"content-c"
             response = self.client.get("/schema/xml.xsd")
             assert response.status_code == 404
-        with patch("config.views.requests.get") as get_good:
+        with patch("config.views.schema.requests.get") as get_good:
             get_good.return_value.status_code = 200
             get_good.return_value.content = b"content-d"
             response = self.client.get("/schema/xml.xsd")
