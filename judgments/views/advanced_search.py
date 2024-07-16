@@ -46,8 +46,7 @@ def _do_dates_require_warnings(from_date: date, total_results: int) -> tuple[boo
             from_warning = True
             warning = f"""
                     {from_date.year} is before {min_year},
-                    the date of the oldest record on the Find Case Law service.
-                    Showing results from {min_year}."""
+                    the date of the oldest record on the Find Case Law service."""
     return from_warning, warning
 
 

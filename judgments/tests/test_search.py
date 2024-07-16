@@ -156,7 +156,6 @@ class TestSearchResults(TestCase):
 
         expected_text = """
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
-                Showing results from 2003.
         """
         xpath_query = "//div[@class='govuk-warning-text__text']"
         assert_response_contains_text(response, expected_text, xpath_query)

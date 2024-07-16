@@ -16,7 +16,7 @@
         {% endif %}
         {% if requires_from_warning %}
           {% url "about_this_service" as url_value %}
-          {% include "includes/advice_message.html" with message=date_warning url_text="Read more" url_value=url_value url_anchor="section-coverage" %}
+          {% include "includes/advice_message.html" with message=date_warning url_text="Find out what records are available on this service." url_value=url_value url_anchor="section-coverage" %}
         {% endif %}
         {% if search_results %}
           <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
