@@ -44,3 +44,55 @@
     </fieldset>
   </div>
 </div>
+
+<p><strong>Usage:</strong></p>
+
+{# fmt:off #}
+<code class="style-guide__code-block">&lt;div class=&quot;govuk-form-group&quot;&gt;
+  &lt;fieldset class=&quot;govuk-fieldset&quot; aria-describedby=&quot;waste-hint&quot;&gt;
+    &lt;legend class=&quot;govuk-fieldset__legend&quot;&gt;
+      &lt;strong&gt;What type of organistation is it?&lt;/strong&gt;
+    &lt;/legend&gt;
+    &lt;div id=&quot;organisation-hint&quot; class=&quot;govuk-hint&quot;&gt;Select all that apply.&lt;/div&gt;
+    &lt;div class=&quot;govuk-checkboxes--small&quot; data-module=&quot;govuk-checkboxes&quot;&gt;
+      &lt;div class=&quot;govuk-checkboxes__item&quot;&gt;
+        &lt;input class=&quot;govuk-checkboxes__input&quot;
+                id=&quot;orginisation&quot;
+                name=&quot;orginistation&quot;
+                type=&quot;checkbox&quot;
+                value=&quot;carcasses&quot;&gt;
+        &lt;label class=&quot;govuk-label govuk-checkboxes__label&quot; for=&quot;orginisation&quot;&gt;
+          Private Limited Company
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;govuk-checkboxes__item&quot;&gt;
+        &lt;input class=&quot;govuk-checkboxes__input&quot;
+                id=&quot;waste-2&quot;
+                name=&quot;waste&quot;
+                type=&quot;checkbox&quot;
+                value=&quot;mines&quot;&gt;
+        &lt;label class=&quot;govuk-label govuk-checkboxes__label&quot; for=&quot;waste-2&quot;&gt;
+          Public Limited Company
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;govuk-checkboxes__item&quot;&gt;
+        &lt;input class=&quot;govuk-checkboxes__input&quot;
+                id=&quot;waste-3&quot;
+                name=&quot;waste&quot;
+                type=&quot;checkbox&quot;
+                value=&quot;farm&quot;&gt;
+        &lt;label class=&quot;govuk-label govuk-checkboxes__label&quot; for=&quot;waste-3&quot;&gt;
+          Other (please specify )
+          &lt;input class=&quot;govuk-input govuk-!-width-full&quot;
+                  id=&quot;contact-by-email&quot;
+                  name=&quot;contactByEmail&quot;
+                  type=&quot;email&quot;
+                  spellcheck=&quot;false&quot;
+                  autocomplete=&quot;email&quot;&gt;
+        &lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/div&gt;
+</code>
+{# fmt:on #}

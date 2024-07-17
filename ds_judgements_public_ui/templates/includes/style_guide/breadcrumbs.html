@@ -1,13 +1,21 @@
 <h3 id="breadcrumbs" >Breadcrumbs</h3>
 <p>This component can be used to show breadcrumbs by adding a breadcrumbs list containing dictionaries to the context. The context should look like this:</p>
+
+{# fmt:off #}
 <code class="style-guide__code-block">[
   {
   "url": "optional",
   "text": "required"
   }
-  ]
+]
 </code>
+{# fmt:on #}
 
 <div class="style-guide__component-wrapper style-guide__component-wrapper--dark">
   {% include "includes/breadcrumbs.html" %}
 </div>
+
+<p><strong>Usage:</strong></p>
+
+<code class="style-guide__code-block">{{ '{% include "includes/breadcrumbs.html" %}' }}
+</code>

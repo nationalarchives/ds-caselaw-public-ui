@@ -18,3 +18,28 @@
            aria-describedby="event-name-hint event-name-error">
   </div>
 </div>
+
+<p><strong>Usage:</strong></p>
+
+{# fmt:off #}
+<code class="style-guide__code-block">&lt;div class=&quot;govuk-form-group govuk-form-group--error&quot;&gt;
+  &lt;h1 class=&quot;govuk-label-wrapper&quot;&gt;
+    &lt;label class=&quot;govuk-label govuk-label--s&quot; for=&quot;event-name&quot;&gt;
+      5. If your organisation is known by any other names, please enter them here
+    &lt;/label&gt;
+  &lt;/h1&gt;
+  &lt;div id=&quot;event-name-hint&quot; class=&quot;govuk-hint&quot;&gt;
+    Enter any other names your organisation is known by
+  &lt;/div&gt;
+  &lt;p id=&quot;event-name-error&quot; class=&quot;govuk-error-message&quot;&gt;
+    &lt;span class=&quot;govuk-visually-hidden&quot;&gt;Error:&lt;/span&gt;
+    If your organisation is known by any other names, please type name
+  &lt;/p&gt;
+  &lt;input class=&quot;govuk-input govuk-input--error&quot;
+    id=&quot;event-name&quot;
+    name=&quot;eventName&quot;
+    type=&quot;text&quot;
+    aria-describedby=&quot;event-name-hint event-name-error&quot;&gt;
+&lt;/div&gt;
+</code>
+{# fmt:on #}
