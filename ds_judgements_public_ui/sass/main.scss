@@ -22,7 +22,6 @@ $govuk-focus-colour: $color-focus-blue-outline;
 
 // Vendor overrides
 @import "includes/govuk_overrides";
-// TODO: Merge this into govuk_overrides
 @import "includes/confirmation";
 
 // Base
