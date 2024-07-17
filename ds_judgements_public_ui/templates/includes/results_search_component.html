@@ -1,10 +1,13 @@
-{% load waffle_tags %}
+{% load waffle_tags i18n %}
 <div class="results-search-component">
   <form action="{% url 'search' %}" id="analytics-results-filters">
     {% if per_page is not None %}<input type="hidden" name="per_page" value="{{ per_page }}" />{% endif %}
     {% if order is not None %}<input type="hidden" name="order" value="{{ order }}" />{% endif %}
     <div class="results-search-component__container js-results-facets-wrapper">
-      {% include "includes/results_search_field.html" %}
+      <div class="results-search-component__full-text-panel search-term-component">
+        {% include "includes/search_term_component.html" %}
+      </div>
+
       {% flag faceted_search %}
         {% if court_facets and not query_params.court %}
           {% include "includes/facets/court_and_tribunal_search_facets.html" with type="court" facets=court_facets.items query_param=query_params.court %}
@@ -20,7 +23,7 @@
         {% include "includes/results_applied_filters.html" %}
         <div class="results-search-component__control-container js-results-control-container"></div>
       </div>
-      <div>{% include "includes/results_filters.html" %}</div>
+      {% include "includes/results_filters_inputs.html" %}
       <div class="results-search-component__mobile-submit-button">
         <input type="submit"
                value="Search"

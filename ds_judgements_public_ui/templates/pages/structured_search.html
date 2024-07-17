@@ -9,25 +9,16 @@
         id="analytics-structured-search"
         method="get">
     <div class="structured-search">
-      <div class="structured-search__main-search">
+
+      {% include "includes/search/structured_search_form.html" %}
+
+      {% if form.errors %}
         <div class="structured-search__container">
-          <h1 class="structured-search__main-search-header">Structured search</h1>
-          <div class="structured-search__full-text-panel search-term-component">
-            {{ form.query }}
-            <input type="submit" action="{% url 'search' %}">
-          </div>
-          {% include "includes/search/search_help_text.html" %}
+          <div class="page-notification--failure">{{ form.errors|error_messages }}</div>
         </div>
-      </div>
-      <div class="structured-search">
-        <div id="js-results-facets"
-             class="structured-search__filter-options js-results-facets">
-          <div class="structured-search__container">
-            {% if form.errors %}<div class="page-notification--failure">{{ form.errors|error_messages }}</div>{% endif %}
-            {% include "includes/results_filters_inputs.html" %}
-          </div>
-        </div>
-      </div>
+      {% endif %}
+
+      {% include "includes/results_filters_inputs.html" %}
     </div>
   </form>
 {% endblock content %}
