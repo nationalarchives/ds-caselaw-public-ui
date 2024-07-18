@@ -19,7 +19,12 @@
           {% include "includes/advice_message.html" with message=date_warning url_text="Find out what records are available on this service." url_value=url_value url_anchor="section-coverage" %}
         {% endif %}
         {% if search_results %}
-          <div class="results__result-controls-container">{% include "includes/result_controls.html" %}</div>
+          <div class="results__result-header-container">
+            {% include "includes/result_header.html" %}
+
+            {% include "includes/result_controls.html" %}
+          </div>
+
           <div class="results__result-list-container">
             {% include "includes/results_list.html" %}
             {% if not paginator.has_next_page %}

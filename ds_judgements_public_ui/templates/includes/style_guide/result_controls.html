@@ -1,0 +1,31 @@
+<h3 id="result-controls">Result controls</h3>
+<p>This is used to order search results and toggle how many results show on the page. It will do different things for query, order and per_page context values. It will also add hidden fields when query_params are in the context.</p>
+
+<p><strong>Without query value:</strong></p>
+
+<div class="style-guide__component-wrapper">
+  {% include "includes/result_controls.html" %}
+</div>
+
+<p><strong>With query value:</strong></p>
+
+<div class="style-guide__component-wrapper">
+  {% include "includes/result_controls.html" with query="Test" %}
+</div>
+
+<p><strong>With per_page value:</strong></p>
+
+<div class="style-guide__component-wrapper">
+  {% include "includes/result_controls.html" with per_page=50 %}
+</div>
+
+<p><strong>With order value:</strong></p>
+
+<div class="style-guide__component-wrapper">
+  {% include "includes/result_controls.html" with order="date" %}
+</div>
+
+<p><strong>Usage:</strong></p>
+
+<code class="style-guide__code-block">{{ '{% include "includes/result_controls.html" %}' }}
+</code>
