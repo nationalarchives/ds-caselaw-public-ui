@@ -1,82 +1,89 @@
 {% load court_utils errors search_results_filters crispy_forms_tags %}
-<div class="structured-search__multi-fields-panel">
-  <div class="structured-search__limit-to-container">
-    <fieldset class="{% if form.non_field_errors or form.from_date.errors %}with-errors{% endif %}">
-      <legend class="structured-search__limit-to-label">From date</legend>
-      <p class="structured-search__help-text" id="from_date-help-text">
-        For example <em>01 01 2003</em> or <em>2003</em>
-      </p>
-      {% if form.non_field_errors %}
-        <p class="structured-search__from-date-error-message"
-           id="from-date-error">{{ form.non_field_errors.0 }}</p>
-      {% endif %}
-      {% if form.from_date.errors %}
-        {% for error in form.from_date.errors %}
-          <p class="structured-search__from-date-error-message">{{ error }}</p>
-        {% endfor %}
-      {% endif %}
-      {% if form.from_date.errors.2 %}
-        <p class="structured-search__from-date-error-message">{{ form.from_date.errors.2 }}</p>
-      {% endif %}
-      <div class="structured-search__date-input-group js-date-input">{{ form.from_date }}</div>
-    </fieldset>
-  </div>
-  <div class="structured-search__limit-to-container">
-    <fieldset class="{% if form.non_field_errors or form.has_errors %}with-errors{% endif %}">
-      <legend class="structured-search__limit-to-label">To date</legend>
-      <p class="structured-search__help-text" id="to_date-help-text">
-        For example <em>30 04 2023</em> or <em>2023</em>
-      </p>
-      {% if form.non_field_errors %}
-        <p class="structured-search__from-date-error-message"
-           id="from-date-error">{{ form.non_field_errors.0 }}</p>
-      {% endif %}
-      {% if form.to_date.errors %}
-        {% for error in form.to_date.errors %}<p class="structured-search__to-date-error-message">{{ error }}</p>{% endfor %}
-      {% endif %}
-      {% if form.to_date.errors.2 %}
-        <p class="structured-search__to-date-error-message">{{ form.to_date.errors.2 }}</p>
-      {% endif %}
-      <div class="structured-search__date-input-group js-date-input">{{ form.to_date }}</div>
-    </fieldset>
-  </div>
-</div>
-<div class="structured-search__single-field-panel">
-  <div class="structured-search__limit-to-container">
-    <fieldset>
-      <div class="structured-search__court-options" id="court">
-        <div class="structured-search__court-options-column">
-          <legend class="structured-search__limit-to-label">From specific courts</legend>
-          {{ form.court }}
-        </div>
-        <div class="structured-search__court-options-column">
-          <legend class="structured-search__limit-to-label">From specific tribunals</legend>
-          {{ form.tribunal }}
-        </div>
+
+<div id="js-results-facets"
+     class="structured-search__filter-options js-results-facets">
+  <div class="structured-search__container">
+    <div class="structured-search__multi-fields-panel">
+      <div class="structured-search__limit-to-container">
+        <fieldset class="{% if form.non_field_errors or form.from_date.errors %}with-errors{% endif %}">
+          <legend class="structured-search__limit-to-label">From date</legend>
+          <p class="structured-search__help-text" id="from_date-help-text">
+            For example <em>01 01 2003</em> or <em>2003</em>
+          </p>
+          {% if form.non_field_errors %}
+            <p class="structured-search__from-date-error-message"
+               id="from-date-error">{{ form.non_field_errors.0 }}</p>
+          {% endif %}
+          {% if form.from_date.errors %}
+            {% for error in form.from_date.errors %}
+              <p class="structured-search__from-date-error-message">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+          {% if form.from_date.errors.2 %}
+            <p class="structured-search__from-date-error-message">{{ form.from_date.errors.2 }}</p>
+          {% endif %}
+          <div class="structured-search__date-input-group js-date-input">{{ form.from_date }}</div>
+        </fieldset>
       </div>
-    </fieldset>
+      <div class="structured-search__limit-to-container">
+        <fieldset class="{% if form.non_field_errors or form.has_errors %}with-errors{% endif %}">
+          <legend class="structured-search__limit-to-label">To date</legend>
+          <p class="structured-search__help-text" id="to_date-help-text">
+            For example <em>30 04 2023</em> or <em>2023</em>
+          </p>
+          {% if form.non_field_errors %}
+            <p class="structured-search__from-date-error-message"
+               id="from-date-error">{{ form.non_field_errors.0 }}</p>
+          {% endif %}
+          {% if form.to_date.errors %}
+            {% for error in form.to_date.errors %}<p class="structured-search__to-date-error-message">{{ error }}</p>{% endfor %}
+          {% endif %}
+          {% if form.to_date.errors.2 %}
+            <p class="structured-search__to-date-error-message">{{ form.to_date.errors.2 }}</p>
+          {% endif %}
+          <div class="structured-search__date-input-group js-date-input">{{ form.to_date }}</div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="structured-search__single-field-panel">
+      <div class="structured-search__limit-to-container">
+        <fieldset>
+          <div class="structured-search__court-options" id="court">
+            <div class="structured-search__court-options-column">
+              <legend class="structured-search__limit-to-label">From specific courts</legend>
+              {{ form.court }}
+            </div>
+            <div class="structured-search__court-options-column">
+              <legend class="structured-search__limit-to-label">From specific tribunals</legend>
+              {{ form.tribunal }}
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="structured-search__multi-fields-panel">
+      <div class="structured-search__specific-field-container">
+        <label for="party_name"
+               class="structured-search__limit-to-label"
+               aria-label="Search by party name">Party name</label>
+        <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
+        {{ form.party }}
+      </div>
+      <div class="structured-search__specific-field-container">
+        <label for="judge_name"
+               class="structured-search__limit-to-label"
+               aria-label="Search by judge name">Judge name</label>
+        <p class="structured-search__help-text" id="judge_name-help-text">
+          For example <em>Smith</em>, or multiple judges: <em>Smith, Jones</em>
+        </p>
+        {{ form.judge }}
+      </div>
+    </div>
+    <div class="structured-search__submit-container">
+      <input type="submit"
+             class="structured-search__update-filters-button"
+             value="Update filters" />
+    </div>
+
   </div>
-</div>
-<div class="structured-search__multi-fields-panel">
-  <div class="structured-search__specific-field-container">
-    <label for="party_name"
-           class="structured-search__limit-to-label"
-           aria-label="Search by party name">Party name</label>
-    <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
-    {{ form.party }}
-  </div>
-  <div class="structured-search__specific-field-container">
-    <label for="judge_name"
-           class="structured-search__limit-to-label"
-           aria-label="Search by judge name">Judge name</label>
-    <p class="structured-search__help-text" id="judge_name-help-text">
-      For example <em>Smith</em>, or multiple judges: <em>Smith, Jones</em>
-    </p>
-    {{ form.judge }}
-  </div>
-</div>
-<div class="structured-search__submit-container">
-  <input type="submit"
-         class="structured-search__update-filters-button"
-         value="Update filters" />
 </div>

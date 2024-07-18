@@ -288,3 +288,12 @@ a.govuk-header__logo {
   width: 100px;
   height: 100px;
 }
+
+.govuk-warning-text__confirmation {
+  background-color: #ffe5e4;
+  border-left: 0.5rem #d4351c solid;
+}
+
+.govuk-warning-text__icon-confirmation {
+  background-color: #ffe5e4;
+}

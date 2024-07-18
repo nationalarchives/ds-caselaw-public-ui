@@ -18,6 +18,14 @@
     background: $color-almost-black;
   }
 
+  &__component-wrapper--large {
+    overflow: scroll;
+
+    > div {
+      width: 1200px;
+    }
+  }
+
   &__spacing-container {
     background: $color-light-pink;
     margin-bottom: $space-4;

@@ -1,25 +1,11 @@
 <h3 id="character-count">Character count</h3>
 <p>Help users know how much text they can enter when there is a limit on the number of characters.</p>
+
 <div class="style-guide__component-wrapper">
   <div class="govuk-character-count"
        data-module="govuk-character-count"
        data-maxlength="100">
     <div class="govuk-form-group">
-      <h1 class="govuk-label-wrapper">
-        <label class="govuk-label govuk-label--s" for="with-hint">17a. Please Describe</label>
-      </h1>
-      <div id="with-hint-hint" class="govuk-hint">
-        <p>
-          a. the risks you have identified, and
-          <br />
-          b. how you will protect the ability of the courts and tribunals to function
-          <br />
-        </p>
-        <p>
-          You should consider anything that may undermine the ability for the justice system to operate impartially and ...
-        </p>
-        <p>Maximum 100 words</p>
-      </div>
       <textarea class="govuk-textarea govuk-js-character-count"
                 id="with-hint"
                 name="withHint"
@@ -29,3 +15,24 @@
     <div id="with-hint-info" class="govuk-hint govuk-character-count__message">You can enter up to 100 characters</div>
   </div>
 </div>
+
+<p><strong>Usage:</strong></p>
+
+{# fmt:off #}
+<code class="style-guide__code-block">&lt;div class=&quot;govuk-character-count&quot;
+  data-module=&quot;govuk-character-count&quot;
+  data-maxlength=&quot;100&quot;&gt;
+  &lt;div class=&quot;govuk-form-group&quot;&gt;
+    &lt;textarea class=&quot;govuk-textarea govuk-js-character-count&quot;
+      id=&quot;with-hint&quot;
+      name=&quot;withHint&quot;
+      rows=&quot;5&quot;
+      aria-describedby=&quot;with-hint-info with-hint-hint&quot;&gt;
+    &lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;with-hint-info&quot; class=&quot;govuk-hint govuk-character-count__message&quot;&gt;
+    You can enter up to 100 characters
+  &lt;/div&gt;
+&lt;/div&gt;
+</code>
+{# fmt:on #}

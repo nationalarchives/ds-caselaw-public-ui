@@ -3,60 +3,78 @@
 @import "includes/mixins";
 
 // Core
+@import "includes/animations";
+@import "includes/buttons";
+@import "includes/footer";
+@import "includes/forms";
+@import "includes/header";
+@import "includes/js_enabled";
 @import "includes/layout";
+@import "includes/links";
 @import "includes/spacing";
 @import "includes/typography";
-@import "includes/header";
-@import "includes/footer";
 
-// Shared
+// Vendor imports
 @import "../../node_modules/@nationalarchives/ds-caselaw-frontend/src/main";
 $govuk-font-family: $font-open-sans;
 $govuk-focus-colour: $color-focus-blue-outline;
 @import "../../node_modules/govuk-frontend/dist/govuk/all";
 
-// Components
-@import "includes/animations";
-@import "includes/browse_by_court";
-@import "includes/buttons";
+// Vendor overrides
+@import "includes/govuk_overrides";
+@import "includes/confirmation";
+
+// Base
+@import "includes/help_end_document_marker";
+@import "includes/phase_banner";
+@import "includes/notification_message";
+@import "includes/service_introduction";
+@import "includes/standard_text_template";
+
+// Cookies
+@import "includes/cookie_banner_overrides";
 @import "includes/cookie_consent/cookie-consent";
 @import "includes/cookie_consent/ds-cookie-consent";
-@import "includes/cookie_banner_overrides";
+
+// Navigation
+@import "includes/breadcrumbs";
 @import "includes/document_navigation_links";
-@import "includes/forms";
-@import "includes/help_end_document_marker";
-@import "includes/homepage_browse";
-@import "includes/js_enabled";
+@import "includes/pagination";
+@import "includes/sticky_menu";
+
+// Judgments
 @import "includes/judgment_text_download_options";
 @import "includes/judgment_text_end_document_marker";
 @import "includes/judgment_text_service_introduction";
 @import "includes/judgment_text_source";
 @import "includes/judgment_text_toolbar";
 @import "includes/judgments_listing";
-@import "includes/links";
-@import "includes/pagination";
-@import "includes/phase_banner";
-@import "includes/environment_banner";
 @import "includes/recent_judgments";
+
+// Homepage
+@import "includes/browse_by_court";
+@import "includes/cards_homepage";
+@import "includes/homepage_browse";
+
+// Pages
+@import "includes/court_or_tribunal";
+@import "includes/courts_and_tribunals";
+
+// About page
+@import "includes/what_to_expect";
+
+// Forms
+@import "includes/transactional_licence_form";
+@import "includes/transactional_licence_form_content";
+
+// Search
+@import "includes/basic_search_form";
 @import "includes/result_controls";
 @import "includes/results_search_component";
 @import "includes/results";
-@import "includes/search";
-@import "includes/service_introduction";
-@import "includes/standard_text_template";
+
 @import "includes/structured_search";
-@import "includes/what_to_expect";
-@import "includes/help_end_document_marker";
-@import "includes/js_enabled";
-@import "includes/buttons";
-@import "includes/notification_message";
-@import "includes/courts_and_tribunals";
-@import "includes/court_or_tribunal";
-@import "includes/cards_homepage";
-@import "includes/govuk_overrides";
-@import "includes/transactional_licence_form_content";
-@import "includes/confirmation";
-@import "includes/transactional_licence_form";
-@import "includes/sticky_menu";
+
+// Dev
+@import "includes/environment_banner";
 @import "includes/style_guide";
-@import "includes/breadcrumbs";
