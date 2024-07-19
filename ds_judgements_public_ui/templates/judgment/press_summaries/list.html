@@ -20,23 +20,7 @@
     <h1>{{ page_title }}</h1>
     <div class="results__container">
       <div class="results__list-layout-container">
-        <ul class="judgment-listing__list">
-          {% for press_summary in press_summaries %}
-            <li class="judgment-listing__judgment">
-              <span class="judgment-listing__judgment">
-                <span>
-                  <span class="judgment-listing__title">
-                    <a href="{% url 'detail' press_summary.uri %}">{{ press_summary.name }}</a>
-                  </span>
-                </span>
-                <span>
-                  <time class="judgment-listing__date"
-                        datetime="{{ press_summary.document_date_as_string }}">{{ press_summary.document_date_as_date|date }}</time>
-                </span>
-              </span>
-            </li>
-          {% endfor %}
-        </ul>
+        {% include "includes/judgment_listing.html" with judgments=press_summaries %}
       </div>
     </div>
   </div>

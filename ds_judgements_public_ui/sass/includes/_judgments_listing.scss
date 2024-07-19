@@ -11,6 +11,10 @@
       padding: $space-4 $space-1;
       border-bottom: 1px dotted $color-yellow;
 
+      display: flex;
+      flex-direction: column;
+      gap: $space-4;
+
       &:last-child {
         border-bottom: none;
       }
@@ -18,7 +22,6 @@
   }
 
   &__judgment {
-    padding: 0 0 $space-4 0;
     line-height: $typography-2xl-line-height;
 
     @media (min-width: $grid-breakpoint-medium) {
