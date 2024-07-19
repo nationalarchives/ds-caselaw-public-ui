@@ -1,5 +1,10 @@
 from .template_view_with_context import TemplateViewWithContext
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.search_parameters import SearchParameters
 
+from judgments.utils import api_client
 from judgments.forms import AdvancedSearchForm
 
 
@@ -9,6 +14,13 @@ class StyleGuideView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        query_text = "Nebahat Evyap Işbilen v Selman Turk & Ors"
+        search_response = search_judgments_and_parse_response(
+            api_client, SearchParameters(query=query_text, order="-date")
+        )
+        search_results = search_response.results
+        context["judgments_for_listing"] = search_results
+        context["query_text"] = query_text
         context["breadcrumbs"] = [{"url": "/style-guide", "text": "Style guide"}, {"text": "Example breadcrumbs"}]
         context["feedback_survey_type"] = "support"
         context["search_form"] = AdvancedSearchForm()
@@ -25,6 +37,7 @@ class StyleGuideView(TemplateViewWithContext):
                     {"label": "Important information box", "href": "#important-information-box"},
                     {"label": "Information text", "href": "#information-text"},
                     {"label": "Judgment header", "href": "#judgment-header"},
+                    {"label": "Judgment listing", "href": "#judgment-listing"},
                     {"label": "Notification banners", "href": "#notification-banners"},
                     {"label": "Radios", "href": "#radios"},
                     {"label": "Results filters inputs", "href": "#results-fitlers-inputs"},
