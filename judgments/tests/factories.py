@@ -21,6 +21,7 @@ class DocumentFactory:
         "court": "Court of Testing",
         "judgment_date_as_string": "2023-02-03",
         "document_date_as_string": "2023-02-03",
+        "date": "2023-02-03",
         "document_date_as_date": datetime.date.today(),
         "is_published": False,
         "is_sensitive": False,
