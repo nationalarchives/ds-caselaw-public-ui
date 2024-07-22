@@ -1,7 +1,5 @@
 {% load i18n humanize %}
-<div class="results__result-header">
-  <p class="results__results-intro">{{ total|intcomma }} documents found</p>
-</div>
+
 <div class="result-controls">
   <form method="get"
         action="{{ request.path }}"
