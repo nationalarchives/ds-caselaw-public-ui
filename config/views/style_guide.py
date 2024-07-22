@@ -14,7 +14,7 @@ class StyleGuideView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        query_text = "Nebahat Evyap Işbilen v Selman Turk & Ors"
+        query_text = "Iceland Foods Ltd v Aldi Stores Ltd"
         search_response = search_judgments_and_parse_response(
             api_client, SearchParameters(query=query_text, order="-date")
         )
