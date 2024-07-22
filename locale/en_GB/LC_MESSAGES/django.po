@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-09 15:31+0000\n"
+"POT-Creation-Date: 2024-07-22 12:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,21 +175,9 @@ msgstr "Download as PDF"
 msgid "judgment.downloadoptions.shortcutlink"
 msgstr "More download options"
 
-#: ds_judgements_public_ui/templates/includes/recent_judgments.html
-msgid "judgments.allrecent"
-msgstr "See all recent judgments"
-
 #: ds_judgements_public_ui/templates/includes/results_applied_filters.html
 msgid "results.current_filters"
 msgstr "Current filter(s)"
-
-#: ds_judgements_public_ui/templates/includes/results_list.html
-msgid "results.exact_title_match"
-msgstr "Title matches"
-
-#: ds_judgements_public_ui/templates/includes/results_list.html
-msgid "results.exact_ncn_match"
-msgstr "Neutral citation matches"
 
 #: ds_judgements_public_ui/templates/judgment/results.html
 #: judgments/views/advanced_search.py judgments/views/browse.py

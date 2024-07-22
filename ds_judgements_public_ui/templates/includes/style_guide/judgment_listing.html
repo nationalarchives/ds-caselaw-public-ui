@@ -1,0 +1,17 @@
+<h3 id="judgment-listing">Judgment listing</h3>
+<p>This is a list of judgments that appear in search and on general judgment listing pages. If there is search related context values, it will show the judgments in relation to the search</p>
+
+<p><strong>Without search:</strong></p>
+<div class="style-guide__component-wrapper">
+  {% include "includes/judgment_listing.html" with judgments=judgments_for_listing %}
+</div>
+
+<p><strong>With exact match search:</strong></p>
+<div class="style-guide__component-wrapper">
+  {% include "includes/judgment_listing.html" with judgments=judgments_for_listing query=query_text %}
+</div>
+
+<p><strong>Usage:</strong></p>
+
+<code class="style-guide__code-block">{{ '{% include "includes/judgment_listing.html" %}' }}
+</code>
