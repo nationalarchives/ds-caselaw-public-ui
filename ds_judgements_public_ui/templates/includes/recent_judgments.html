@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static %}
 <div class="recent-judgments">
   <div class="recent-judgments__container">
     <h2 id="recently-published-judgments" class="recent-judgments__header">
@@ -6,7 +6,7 @@
     </h2>
     {% include "includes/judgment_listing.html" with judgments=recent_judgments %}
     <p class="judgment-listing__more-info">
-      <a href="{% url 'search' %}">{% translate "judgments.allrecent" %}</a>
+      <a href="{% url 'search' %}">See all recent judgments</a>
     </p>
   </div>
 </div>

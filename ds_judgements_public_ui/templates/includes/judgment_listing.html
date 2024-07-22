@@ -1,13 +1,13 @@
-{% load static i18n search_results_filters utilities waffle_tags %}
+{% load static search_results_filters utilities waffle_tags %}
 <ul class="judgment-listing__list {% if not paginator.has_next_page %}judgment-listing__list--last-page{% endif %}">
   {% for item in judgments %}
     <li>
       {% if item|is_exact_match:query %}
         <span class="judgment-listing__exact-match-label">
           {% if item|is_exact_title_match:query %}
-            {% translate "results.exact_title_match" %}
+            Title matches
           {% elif item|is_exact_ncn_match:query %}
-            {% translate "results.exact_ncn_match" %}
+            Neutral citation matches
           {% endif %}
         </span>
       {% endif %}
