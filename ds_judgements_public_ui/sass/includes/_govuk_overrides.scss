@@ -297,3 +297,30 @@ a.govuk-header__logo {
 .govuk-warning-text__icon-confirmation {
   background-color: #ffe5e4;
 }
+
+.govuk-grid-row__beta_v3_homepage {
+  display: flex;
+
+  @media (max-width: $grid-breakpoint-medium) {
+    flex-direction: column-reverse;
+  }
+  @media only screen and (min-width: 530px) {
+    padding: 0 $space-17;
+  }
+}
+
+.govuk-main-wrapper {
+  padding-top: 0;
+}
+
+.govuk-grid-column-one-third {
+  @media (max-width: $grid-breakpoint-medium) {
+    width: 100%;
+  }
+}
+
+.govuk-grid-column-two-thirds {
+  @media (max-width: $grid-breakpoint-medium) {
+    width: 100%;
+  }
+}

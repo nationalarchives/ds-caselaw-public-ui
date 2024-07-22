@@ -38,6 +38,9 @@
     color: $color-white;
     font-size: $typography-xl-text-size;
     text-decoration: none;
+    &:visited {
+      color: $color-white;
+    }
 
     &:focus {
       outline: 5px solid $color-white;

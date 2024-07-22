@@ -5,11 +5,28 @@
     padding-bottom: $space-8;
   }
 
+  &__container-beta {
+    padding-top: $space-3;
+    padding-bottom: $space-8;
+    @media (max-width: $grid-breakpoint-medium) {
+      padding-top: 0;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+
   &__header {
     @include heading_text;
-    font-size: 1.8rem;
+    font-size: $typography-xl-text-size;
     padding-bottom: $space-6;
     border-bottom: 5px solid $color-yellow;
+  }
+
+  &__header-beta {
+    @include heading_text;
+    font-size: $typography-xl-text-size;
   }
 
   &__more-info {
@@ -27,6 +44,27 @@
       border-bottom: 0.125rem solid $color-black;
       text-decoration: none;
       color: $color-black;
+    }
+  }
+
+  &__more-info-beta {
+    border: 0;
+    font-size: $typography-lg-text-size;
+    position: relative;
+
+    font-family: $font-roboto;
+    font-weight: $typography-bold-font-weight;
+    background: url($beta-arrow-right) right no-repeat;
+    background-position: 11.5rem;
+
+    a {
+      margin: $space-1 0;
+      padding: $space-1 0;
+      display: inline-block;
+      text-decoration: none;
+      border-bottom: 1px solid $color-aqua-blue;
+      line-height: $typography-xs-line-height;
+      color: $color-aqua-blue;
     }
   }
 }

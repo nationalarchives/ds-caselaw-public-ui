@@ -1,50 +1,84 @@
 .cards-homepage {
   @include container;
   list-style-type: none;
-  margin: $space-6 auto;
-  @media (min-width: $grid-breakpoint-small) {
-    margin: $space-12 auto;
-  }
+  margin: $space-4 auto;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: $space-12;
-  @media (min-width: $grid-breakpoint-medium) {
-    flex-direction: row;
-    li {
-      width: 33%;
+  gap: 0;
+  @media (min-width: $grid-breakpoint-small) {
+    gap: 0;
+  }
+
+  li {
+    @media (max-width: $grid-breakpoint-medium) {
+      height: 115px;
+      margin: 0 auto;
     }
   }
 }
 
 .card-homepage {
   margin: $space-4 $space-8;
+  display: flex;
+  gap: $space-4;
+
+  @media (max-width: $grid-breakpoint-medium) {
+    background-color: $color-light-grey;
+    margin: 0;
+    gap: $space-4;
+  }
   @media (min-width: $grid-breakpoint-small) {
     margin: 0;
+    width: 100%;
+  }
+  @media only screen and (max-width: 530px) {
+    width: 100%;
   }
 
   h3 {
-    margin-top: $space-2;
+    margin-top: auto;
     margin-bottom: 0;
     font-weight: $typography-bold-font-weight;
-    font-size: $typography-xl-text-size;
     @media only screen and (max-width: $grid-breakpoint-medium) {
-      font-size: $typography-xl-text-size;
+      font-size: $typography-md-text-size;
       line-height: $typography-sm-line-height;
+      text-align: left;
+      margin-top: $space-2;
+      text-wrap: balance;
     }
 
     a {
-      color: $color-black;
+      color: $color-aqua-blue;
     }
   }
 
-  p {
+  &__legend-text {
     margin-top: $space-2;
+    text-wrap: balance;
+    margin-bottom: $space-8;
+    @media (max-width: $grid-breakpoint-medium) {
+      visibility: hidden;
+    }
   }
 
   img {
-    width: 100%;
-    height: auto;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
+    display: flex;
+  }
+
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (max-width: $grid-breakpoint-medium) {
+      background-color: $color-light-grey;
+      padding: 0;
+      text-wrap: balance;
+      margin-top: $space-8;
+      justify-content: flex-start;
+    }
   }
 }

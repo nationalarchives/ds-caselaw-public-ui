@@ -108,6 +108,22 @@
         </header>
       {% endflag %}
 
+      {% flag v3_homepage %}
+        {% include "includes/beta_phase_banner.html" %}
+        <header class="page-header">
+          <div class="page-header__flex-container container py-1">
+            <div class="page-header__nav">
+              <div class="page-header__site-logo">
+                <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+              </div>
+
+              {% include "includes/breadcrumbs.html" %}
+            </div>
+            {% include "includes/logo.html" %}
+          </div>
+        </header>
+      {% endflag %}
+
     {% endblock header %}
 
     {% include "includes/notifications.html" %}
