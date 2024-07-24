@@ -10,9 +10,6 @@
   }
 
   &__header {
-    align-items: center;
-    gap: 0.25rem;
-
     font-size: $typography-2xl-text-size;
     line-height: $typography-md-line-height;
 
@@ -25,7 +22,7 @@
 
   &__header-beta-v1 {
     align-items: center;
-    gap: 0.25rem;
+    gap: $space-2;
     display: flex;
     font-size: $typography-2xl-text-size;
     line-height: $typography-md-line-height;
