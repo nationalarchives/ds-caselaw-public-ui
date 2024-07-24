@@ -45,7 +45,7 @@
 
               <div class="service-introduction">
                 <span class="service-introduction__separator"></span>
-                <h1 class="service-introduction__header">Find case law<span class="phase-banner__beta-phase">Beta</span></h1>
+                <h1 class="service-introduction__header-beta-v1">Find case law<span class="phase-banner__beta-phase">Beta</span></h1>
                 <p class="service-introduction__helper-text">Judgments and decisions from 2001 onwards</p>
               </div>
               <div class="govuk-header__content">
@@ -94,6 +94,22 @@
 
       {% else %} {# original version #}
         {% include "includes/phase_banner.html" %}
+        <header class="page-header">
+          <div class="page-header__flex-container container py-1">
+            <div class="page-header__nav">
+              <div class="page-header__site-logo">
+                <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+              </div>
+
+              {% include "includes/breadcrumbs.html" %}
+            </div>
+            {% include "includes/logo.html" %}
+          </div>
+        </header>
+      {% endflag %}
+
+      {% flag v3_homepage %}
+        {% include "includes/beta_phase_banner.html" %}
         <header class="page-header">
           <div class="page-header__flex-container container py-1">
             <div class="page-header__nav">

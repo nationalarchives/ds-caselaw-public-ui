@@ -21,6 +21,24 @@
     }
   }
 
+  &__list-beta {
+    &--last-page {
+      margin-bottom: 0;
+    }
+
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      padding: $space-2 $space-1;
+      border-bottom: 1px dotted $color-yellow;
+
+      &:last-child {
+        border-bottom-color: $color-yellow;
+      }
+    }
+  }
+
   &__judgment {
     line-height: $typography-2xl-line-height;
 
@@ -59,6 +77,14 @@
     line-height: $typography-lg-line-height;
   }
 
+  &__title-beta {
+    display: block;
+    font-weight: $typography-normal-font-weight;
+    font-size: $typography-md-text-size;
+    font-family: $font-roboto;
+    line-height: $typography-lg-line-height;
+  }
+
   &__court {
     font-size: $typography-sm-text-size;
   }
@@ -67,6 +93,21 @@
     display: block;
     font-size: $typography-sm-text-size;
     color: $color-dark-grey;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      text-align: right;
+    }
+
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-top: 0;
+    }
+  }
+
+  &__neutralcitation-beta {
+    display: block;
+    font-size: $typography-sm-text-size;
+    color: $color-dark-grey;
+    text-wrap: nowrap;
 
     @media (min-width: $grid-breakpoint-medium) {
       text-align: right;
