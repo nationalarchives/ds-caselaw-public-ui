@@ -7,7 +7,7 @@ psycopg2==2.9.9  # https://github.com/psycopg/psycopg2
 # Testing
 # ------------------------------------------------------------------------------
 mypy==1.10.1  # https://github.com/python/mypy
-django-stubs==5.0.2  # https://github.com/typeddjango/django-stubs
+django-stubs==5.0.3  # https://github.com/typeddjango/django-stubs
 pytest==8.2.2  # https://github.com/pytest-dev/pytest
 pytest-sugar==1.0.0  # https://github.com/Frozenball/pytest-sugar
 pytest-socket==0.7.0 # https://github.com/miketheman/pytest-socket
@@ -31,4 +31,4 @@ pytest-timeout==2.3.1
 # type stubs
 types-python-dateutil==2.9.0.20240316
 types-requests==2.32.0.20240712
-django-stubs==5.0.2
+django-stubs==5.0.3
