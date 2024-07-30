@@ -66,7 +66,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
         return HttpResponseBadRequest("GET requests only")
     else:
         form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
-        params: dict = request.GET
+        params = request.GET
         """
         Form should be valid unless there is a critical issue
         with the submission (i.e. Month > 12)
@@ -163,8 +163,14 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
                 ) = process_court_facets(search_response.facets, courts_and_tribunals)
                 unprocessed_facets, year_facets = process_year_facets(unprocessed_facets)
 
-            changed_queries = {key: value for key, value in params.items() if value is not None and not key == "page"}
+            changed_queries = {}
+            for key in params:
+                if params.getlist(key) and key != "page":
+                    values = params.getlist(key)
+                    changed_queries[key] = values if len(values) > 1 else values[0]
+
             requires_warning, warning = _do_dates_require_warnings(from_date, int(search_response.total))
+
             # Populate context to provide feedback about filters etc. back to user
             context = context | {
                 "query": query_text,
