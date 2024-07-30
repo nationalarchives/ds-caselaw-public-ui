@@ -26,12 +26,16 @@ class TestCourtDates(TestCase):
 class TestPaginator(TestCase):
     def test_paginator_2500(self):
         expected_result = {
+            "show_first_page": True,
+            "show_first_page_divider": True,
+            "show_last_page": True,
+            "show_last_page_divider": True,
             "current_page": 10,
             "has_next_page": True,
             "has_prev_page": True,
             "next_page": 11,
             "prev_page": 9,
-            "page_range": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "page_range": [8, 9, 10, 11, 12],
             "number_of_pages": 250,
         }
         self.assertEqual(paginator(10, 2500), expected_result)
@@ -39,6 +43,10 @@ class TestPaginator(TestCase):
     def test_paginator_25(self):
         # 25 items has 5 items on page 3.
         expected_result = {
+            "show_first_page": False,
+            "show_first_page_divider": False,
+            "show_last_page": False,
+            "show_last_page_divider": False,
             "current_page": 1,
             "has_next_page": True,
             "has_prev_page": False,
@@ -51,6 +59,10 @@ class TestPaginator(TestCase):
 
     def test_paginator_5(self):
         expected_result = {
+            "show_first_page": False,
+            "show_first_page_divider": False,
+            "show_last_page": False,
+            "show_last_page_divider": False,
             "current_page": 1,
             "has_next_page": False,
             "has_prev_page": False,

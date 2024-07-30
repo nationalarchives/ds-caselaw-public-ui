@@ -108,7 +108,7 @@ def clamp(
 
 
 def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
-    number_of_pagination_links = 10
+    number_of_pagination_links = 5
     current_page = clamp(current_page, minimum=1)
     size_per_page = clamp(
         size_per_page,
@@ -128,7 +128,16 @@ def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
     else:
         page_range = list(range(current_page - half_range, current_page + half_range + 1))
 
+    show_first_page = 1 not in page_range
+    show_first_page_divider = number_of_pages > number_of_pagination_links and 2 not in page_range
+    show_last_page = number_of_pages not in page_range
+    show_last_page_divider = number_of_pages > number_of_pagination_links and number_of_pages - 1 not in page_range
+
     return {
+        "show_first_page": show_first_page,
+        "show_first_page_divider": show_first_page_divider,
+        "show_last_page": show_last_page,
+        "show_last_page_divider": show_last_page_divider,
         "current_page": current_page,
         "has_next_page": current_page < number_of_pages,
         "next_page": current_page + 1,

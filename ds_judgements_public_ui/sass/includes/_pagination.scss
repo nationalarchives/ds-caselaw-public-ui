@@ -25,6 +25,12 @@
       }
     }
 
+    &-divider {
+      display: inline-block;
+      color: $color-white;
+      width: 2rem;
+    }
+
     &-item {
       display: inline-block;
       min-height: 3.125rem;
