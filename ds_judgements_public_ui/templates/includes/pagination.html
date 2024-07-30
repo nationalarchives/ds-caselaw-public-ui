@@ -15,21 +15,24 @@
     </li>
     <li class="pagination__list-pages">
       <ol>
-        <li class="pagination__list-item">
-          <a class="pagination__page-link-current"
-             href="{{ request.path }}?{% if query_string %}{{ query_string }}&{% endif %}page={{ paginator.current_page }}"
-             aria-label="Current page, Page {{ paginator.current_page }}"
-             aria-current="true">
-            <span>Current page</span>{{ paginator.current_page }}
-          </a>
-        </li>
-        {% for page in paginator.next_pages %}
+        {% for page in paginator.page_range %}
           <li class="pagination__list-item">
-            <a class="pagination__page-link"
-               href="{{ request.path }}?{% if query_string %}{{ query_string }}&{% endif %}page={{ page }}"
-               aria-label="Go to page {{ page }}">
-              <span>Page</span>{{ page }}
-            </a>
+            {% if page == paginator.current_page %}
+              <a class="pagination__page-link-current"
+                 href="{{ request.path }}?{% if query_string %}{{ query_string }}&{% endif %}page={{ page }}"
+                 aria-label="Current page, Page {{ page }}"
+                 aria-current="true"
+              >
+                <span>Current page</span>{{ page }}
+              </a>
+            {% else %}
+              <a class="pagination__page-link"
+                 href="{{ request.path }}?{% if query_string %}{{ query_string }}&{% endif %}page={{ page }}"
+                 aria-label="Go to page {{ page }}"
+              >
+                <span>Page</span>{{ page }}
+              </a>
+            {% endif %}
           </li>
         {% endfor %}
       </ol>

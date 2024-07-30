@@ -31,7 +31,7 @@ class TestPaginator(TestCase):
             "has_prev_page": True,
             "next_page": 11,
             "prev_page": 9,
-            "next_pages": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+            "page_range": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
             "number_of_pages": 250,
         }
         self.assertEqual(paginator(10, 2500), expected_result)
@@ -44,7 +44,7 @@ class TestPaginator(TestCase):
             "has_prev_page": False,
             "next_page": 2,
             "prev_page": 0,
-            "next_pages": [2, 3],
+            "page_range": [1, 2, 3],
             "number_of_pages": 3,
         }
         self.assertEqual(paginator(1, 25), expected_result)
@@ -56,7 +56,7 @@ class TestPaginator(TestCase):
             "has_prev_page": False,
             "next_page": 2,  # Note: remember to check has_next_page
             "prev_page": 0,
-            "next_pages": [],
+            "page_range": [1],
             "number_of_pages": 1,
         }
         self.assertEqual(paginator(1, 5), expected_result)
