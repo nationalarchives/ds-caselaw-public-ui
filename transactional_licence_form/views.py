@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from formtools.wizard.forms import ManagementForm
 from formtools.wizard.views import NamedUrlSessionWizardView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
 from .forms import FORMS
 from .utils import send_form_response_to_dynamics
@@ -20,6 +22,7 @@ TEMPLATE_OVERRIDES = {
 REVIEWING_SESSION_KEY = "transactional_licence_form_reviewing"
 
 
+@method_decorator(never_cache, name="dispatch")
 class FormWizardView(NamedUrlSessionWizardView):
     def get_template_names(self):
         return [TEMPLATE_OVERRIDES.get(self.steps.current, "form.html")]
