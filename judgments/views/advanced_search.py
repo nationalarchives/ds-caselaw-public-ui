@@ -165,9 +165,9 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
 
             changed_queries = {}
             for key in params:
-                if params.getlist(key) and key != "page":
-                    values = params.getlist(key)
-                    changed_queries[key] = values if len(values) > 1 else values[0]
+                values = params.getlist(key)
+                if values and key != "page":
+                    changed_queries[key] = values
 
             requires_warning, warning = _do_dates_require_warnings(from_date, int(search_response.total))
 
