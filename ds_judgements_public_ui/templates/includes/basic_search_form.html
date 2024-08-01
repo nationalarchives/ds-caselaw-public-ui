@@ -1,5 +1,5 @@
 {% load i18n waffle_tags %}
-{% flag v2_homepage %}
+{% if v2_homepage %}
   <div class="search-component">
     <div class="search-component__container-beta">
       {% include "includes/search/search_header_text.html" %}
@@ -32,4 +32,4 @@
       </div>
     </div>
   </div>
-{% endflag %}
+{% endif %}
