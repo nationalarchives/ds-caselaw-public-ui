@@ -93,21 +93,20 @@
         {% endif %}
 
         {% if v3_homepage %}
-        {% include "includes/beta_phase_banner.html" %}
-        <header class="page-header">
-          <div class="page-header__flex-container container py-1">
-            <div class="page-header__nav">
-              <div class="page-header__site-logo">
-                <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+          {% include "includes/beta_phase_banner.html" %}
+          <header class="page-header">
+            <div class="page-header__flex-container container py-1">
+              <div class="page-header__nav">
+                <div class="page-header__site-logo">
+                  <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+                </div>
+
+                {% include "includes/breadcrumbs.html" %}
               </div>
-
-              {% include "includes/breadcrumbs.html" %}
+              {% include "includes/logo.html" %}
             </div>
-            {% include "includes/logo.html" %}
-          </div>
-        </header>
-      {% endif %}
-
+          </header>
+        {% endif %}
 
       {% else %} {# original version #}
         {% include "includes/phase_banner.html" with link_class="variant-0-survey-link" %}
