@@ -4,6 +4,24 @@ from urllib.parse import unquote
 from django.core.exceptions import SuspiciousOperation
 
 from config.settings.base import env
+from waffle import flag_is_active
+
+
+def waffle_flags(request):
+    """variant_homepage is the A/B flag, randomly generated.
+    v1/v2/v3 are the different treatment flags, toggled on or off.
+    We enforce that no more than one treatment may be active at a time,
+    and that variant_homepage is only true if a treatment is selected.
+    """
+    if not flag_is_active(request, "variant_homepage"):
+        context = {}
+    if flag_is_active(request, "v1_homepage"):
+        context = {"variant_homepage": True, "v1_homepage": True}
+    if flag_is_active(request, "v2_homepage"):
+        context = {"variant_homepage": True, "v2_homepage": True}
+    if flag_is_active(request, "v3_homepage"):
+        context = {"variant_homepage": True, "v3_homepage": True}
+    return context
 
 
 def cookie_consent(request):
