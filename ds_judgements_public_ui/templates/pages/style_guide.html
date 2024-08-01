@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load static i18n %}
+{% load static i18n waffle_tags %}
 {% block title %}
   Style Guide
 {% endblock title %}
@@ -8,6 +8,16 @@
     <h2>
       <b>Find case law UI style guide</b>
     </h2>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+      <span class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Information</span>
+        variant_homepage: {% if variant_homepage %}✅{% else %}❌{% endif %}<br>
+        v1_homepage:  {% if v1_homepage %}✅{% else %}❌{% endif %}<br>
+        v2_homepage:  {% if v2_homepage %}✅{% else %}❌{% endif %}<br>
+        v3_homepage:  {% if v3_homepage %}✅{% else %}❌{% endif %}
+      </span>
+    </div>
     <h3>
       This page is a repository of UI elements used on the site. Developers can copy the code to add these components to FCL projects.
     </h3>
