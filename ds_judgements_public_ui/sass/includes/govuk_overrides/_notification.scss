@@ -1,0 +1,21 @@
+.govuk-notification-banner_aquablue {
+  border: 5px solid $color-aqua-blue;
+  background-color: $color-aqua-blue;
+}
+
+.govuk-notification-banner__content > * {
+  max-width: fit-content;
+  font-size: $typography-lg-text-size;
+}
+
+.govuk-notification-banner_red {
+  border: 5px solid #d4351c;
+  background-color: #d4351c;
+}
+
+.govuk-notification-banner__link {
+  color: #037091;
+}
+.govuk-notification-banner__link:visited {
+  color: #4c2c92;
+}

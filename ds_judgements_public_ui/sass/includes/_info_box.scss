@@ -1,0 +1,11 @@
+.info-box {
+  border: transparent;
+  padding: $space-8;
+  background-color: $color-light-grey;
+}
+
+.info-box__heading {
+  margin-top: 0;
+  font-size: $typography-lg-text-size;
+  font-weight: $typography-bold-font-weight;
+}

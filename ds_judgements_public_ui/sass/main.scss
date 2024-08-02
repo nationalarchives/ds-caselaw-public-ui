@@ -21,10 +21,25 @@ $govuk-focus-colour: $color-focus-blue-outline;
 @import "../../node_modules/govuk-frontend/dist/govuk/all";
 
 // Vendor overrides
-@import "includes/govuk_overrides";
-@import "includes/confirmation";
+@import "includes/govuk_overrides/button";
+@import "includes/govuk_overrides/checkboxes";
+@import "includes/govuk_overrides/date_input";
+@import "includes/govuk_overrides/details";
+@import "includes/govuk_overrides/fieldset";
+@import "includes/govuk_overrides/form_group";
+@import "includes/govuk_overrides/grid";
+@import "includes/govuk_overrides/header";
+@import "includes/govuk_overrides/hint";
+@import "includes/govuk_overrides/input";
+@import "includes/govuk_overrides/label";
+@import "includes/govuk_overrides/main_wrapper";
+@import "includes/govuk_overrides/notification";
+@import "includes/govuk_overrides/summary_card";
+@import "includes/govuk_overrides/summary_list";
+@import "includes/govuk_overrides/warning_text";
 
 // Base
+@import "includes/confirmation";
 @import "includes/help_end_document_marker";
 @import "includes/phase_banner";
 @import "includes/notification_message";
