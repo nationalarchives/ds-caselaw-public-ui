@@ -41,7 +41,7 @@
         {% flag v1_homepage %}
           <header class="govuk-header" data-module="govuk-header">
             <div class="page-header__flex-container-beta container py-1">
-              {% include "includes/beta_logo.html" %}
+              {% include "includes/beta_logo.html" with link_class="variant-1-logo-link" %}
 
               <div class="service-introduction">
                 <span class="service-introduction__separator"></span>
@@ -55,17 +55,17 @@
                   </button>
                   <ul id="navigation" class="govuk-header__navigation-list">
                     <li class="{% navigation_item_class 'home' %}">
-                      <a class="govuk-header__link" title="Home" href="{% url 'home' %}">
+                      <a class="govuk-header__link variant-1-home-link" title="Home" href="{% url 'home' %}">
                         Home
                       </a>
                     </li>
                     <li class="{% navigation_item_class 'about_this_service' %}">
-                      <a class="govuk-header__link"  title="About" href="{% url 'about_this_service' %}">
+                      <a class="govuk-header__link variant-1-about-link"  title="About" href="{% url 'about_this_service' %}">
                         About
                       </a>
                     </li>
                     <li class="{% navigation_item_class 'how_to_use_this_service' %}">
-                      <a class="govuk-header__link" title="Help and guidance" href="{% url 'how_to_use_this_service' %}">
+                      <a class="govuk-header__link variant-1-help-link" title="Help and guidance" href="{% url 'how_to_use_this_service' %}">
                         Help and guidance
                       </a>
                     </li>
@@ -77,49 +77,49 @@
         {% endflag %}
 
         {% flag v2_homepage %}
-          {% include "includes/beta_phase_banner.html" %}
+          {% include "includes/beta_phase_banner.html" with link_class="variant-2-survey-link" %}
           <header class="page-header">
             <div class="page-header__flex-container container py-1">
               <div class="page-header__nav">
                 <div class="page-header__site-logo">
-                  <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+                  <a href="{% url "home" %}" id="home-link variant-2-home-link">{% translate "home" %}</a>
                 </div>
 
                 {% include "includes/breadcrumbs.html" %}
               </div>
-              {% include "includes/logo.html" %}
+              {% include "includes/logo.html" with link_class="variant-2-logo-link" %}
             </div>
           </header>
         {% endflag %}
 
       {% else %} {# original version #}
-        {% include "includes/phase_banner.html" %}
+        {% include "includes/phase_banner.html" with link_class="variant-0-survey-link" %}
         <header class="page-header">
           <div class="page-header__flex-container container py-1">
             <div class="page-header__nav">
               <div class="page-header__site-logo">
-                <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+                <a href="{% url "home" %}" id="home-link variant-0-home-link">{% translate "home" %}</a>
               </div>
 
               {% include "includes/breadcrumbs.html" %}
             </div>
-            {% include "includes/logo.html" %}
+            {% include "includes/logo.html" with link_class="variant-0-logo-link" %}
           </div>
         </header>
       {% endflag %}
 
       {% flag v3_homepage %}
-        {% include "includes/beta_phase_banner.html" %}
+        {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
         <header class="page-header">
           <div class="page-header__flex-container container py-1">
             <div class="page-header__nav">
               <div class="page-header__site-logo">
-                <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+                <a href="{% url "home" %}" id="home-link variant-3-home-link">{% translate "home" %}</a>
               </div>
 
               {% include "includes/breadcrumbs.html" %}
             </div>
-            {% include "includes/logo.html" %}
+            {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
           </div>
         </header>
       {% endflag %}
@@ -135,9 +135,25 @@
     </main>
     {% block postcontent %}
     {% endblock postcontent %}
+
     {% block feedback_cta %}
-      {% include "includes/help_improve_this_service.html" %}
+      {% flag variant_homepage %}
+        {% flag v1_homepage %}
+          {% include "includes/help_improve_this_service.html" with link_class="variant-1-survey-button" %}
+        {% endflag %}
+
+        {% flag v2_homepage %}
+          {% include "includes/help_improve_this_service.html" with link_class="variant-2-survey-button" %}
+        {% endflag %}
+
+        {% flag v3_homepage %}
+          {% include "includes/help_improve_this_service.html" with link_class="variant-3-survey-button" %}
+        {% endflag %}
+      {% else %}
+        {% include "includes/help_improve_this_service.html" with link_class="variant-0-survey-button" %}
+      {% endflag %}
     {% endblock feedback_cta %}
+
     {% include "includes/footer.html" %}
     {% block javascript %}
       <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>

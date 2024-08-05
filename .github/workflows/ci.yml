@@ -70,26 +70,26 @@ jobs:
         run: docker network create caselaw
 
       - name: Build the Stack
-        run: docker-compose build postgres django
+        run: docker compose build postgres django
 
       - name: Verify translations
         run: |
-          docker-compose run --rm django script/makemessages
+          docker compose run --rm django script/makemessages
           script/verify-translations
 
       - name: Run DB Migrations
-        run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
+        run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Translation Compiling
-        run: docker-compose run --rm django python manage.py compilemessages
+        run: docker compose run --rm django python manage.py compilemessages
 
       - name: Run Django Tests with coverage
-        run: docker-compose run django coverage run -m pytest -vvvv -rsa -m "not local"
+        run: docker compose run django coverage run -m pytest -vvvv -rsa -m "not local"
       - name: Generate coverage XML
-        run: docker-compose run django coverage xml
+        run: docker compose run django coverage xml
 
       - name: Run mypy
-        run: docker-compose run django mypy ds_judgements_public_ui judgments
+        run: docker compose run django mypy ds_judgements_public_ui judgments
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -100,7 +100,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
 
       - name: Tear down the Stack
-        run: docker-compose down
+        run: docker compose down
 
   e2e-tests:
     runs-on: ubuntu-latest
@@ -119,7 +119,7 @@ jobs:
         run: docker network create caselaw
 
       - name: Build the Stack
-        run: docker-compose build postgres django
+        run: docker compose build postgres django
 
       - name: Checkout Marklogic repo
         uses: actions/checkout@v4
@@ -153,16 +153,16 @@ jobs:
         working-directory: "./marklogic"
 
       - name: Run DB Migrations
-        run: docker-compose run --rm django python manage.py migrate --settings=config.settings.test
+        run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Translation Compiling
-        run: docker-compose run --rm django python manage.py compilemessages
+        run: docker compose run --rm django python manage.py compilemessages
 
       - name: Setup django server for e2e tests
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Set transactional licence form feature flag
-        run: docker-compose exec -T django python manage.py waffle_flag interactive_licence_form --everyone --create
+        run: docker compose exec -T django python manage.py waffle_flag interactive_licence_form --everyone --create
 
       - name: Install NPM deps
         run: npm install
@@ -171,16 +171,16 @@ jobs:
         run: npm run build
 
       - name: Kick off the django server itself
-        run: docker-compose exec -d django python manage.py runserver 0.0.0.0:3000
+        run: docker compose exec -d django python manage.py runserver 0.0.0.0:3000
       - name: Build playwright runner container
-        run: docker-compose build e2e_tests
+        run: docker compose build e2e_tests
 
       - name: Run playwright e2e tests
-        run: docker-compose run e2e_tests pytest --base-url http://django:3000
+        run: docker compose run e2e_tests pytest --base-url http://django:3000
 
       - name: Tear down marklogic
-        run: docker-compose down
+        run: docker compose down
         working-directory: "./marklogic"
 
       - name: Tear down the Stack
-        run: docker-compose down
+        run: docker compose down
