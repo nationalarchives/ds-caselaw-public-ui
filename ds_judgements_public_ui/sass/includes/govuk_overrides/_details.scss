@@ -1,0 +1,32 @@
+.govuk-details {
+  border: 3px solid $color-aqua-blue;
+  background-color: $color-white;
+  padding: $space-2;
+  margin-top: $space-8;
+  margin-bottom: $space-8;
+}
+
+.govuk-details__summary {
+  padding-left: $space-6;
+  color: $color-aqua-blue;
+
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+    @include focus-default;
+  }
+
+  &::before {
+    top: 2px;
+  }
+}
+
+.govuk-details__summary-text {
+  text-decoration: none;
+}
+
+.govuk-details__text {
+  border-left: none;
+  font-size: $typography-md-text-size;
+  padding: $space-4;
+}

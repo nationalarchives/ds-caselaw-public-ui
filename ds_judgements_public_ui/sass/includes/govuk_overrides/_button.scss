@@ -1,0 +1,14 @@
+.govuk-button {
+  @include call-to-action-button;
+  box-shadow: none;
+  margin-bottom: 0;
+
+  &:focus {
+    background-color: $color-dark-blue !important;
+    color: $color-white !important;
+    box-shadow: none !important;
+    @include focus-default;
+    outline-offset: 0.2rem !important;
+    outline-color: $color-dark-blue !important;
+  }
+}
