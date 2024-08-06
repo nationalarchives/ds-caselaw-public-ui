@@ -14,15 +14,11 @@
       <span class="judgment-listing__judgment">
         <span>
           <span class="judgment-listing__title">
-            {% flag "highlight_search_query" %}
-              {% if query %}
-                <a href="{% url 'detail' item.uri %}?query={{ query | urlencode }}">{{ item.name }}</a>
-              {% else %}
-                <a href="{% url 'detail' item.uri %}">{{ item.name }}</a>
-              {% endif %}
+            {% if query %}
+              <a href="{% url 'detail' item.uri %}?query={{ query | urlencode }}">{{ item.name }}</a>
             {% else %}
               <a href="{% url 'detail' item.uri %}">{{ item.name }}</a>
-            {% endflag %}
+            {% endif %}
           </span>
           <span class="judgment-listing__court">{{ item.court.name }}</span>
         </span>
