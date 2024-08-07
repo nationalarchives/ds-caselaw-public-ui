@@ -1,11 +1,11 @@
 ARG PYTHON_VERSION=3.12-slim-bullseye
 
 # define an alias for the specfic python version used in this file.
-FROM python:${PYTHON_VERSION} as python
+FROM python:${PYTHON_VERSION} AS python
 
 
 # Python build stage
-FROM python as python-build-stage
+FROM python AS python-build-stage
 
 ENV PYTHONDONTWRITEBYTECODE 1
 
@@ -28,7 +28,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels  \
 
 
 # Python 'run' stage
-FROM python as python-run-stage
+FROM python AS python-run-stage
 
 ARG BUILD_ENVIRONMENT
 ENV PYTHONUNBUFFERED 1
