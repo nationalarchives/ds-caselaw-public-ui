@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-07 11:40+0000\n"
+"POT-Creation-Date: 2024-08-08 11:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,10 +199,6 @@ msgstr "www.bailii.org"
 #: ds_judgements_public_ui/templates/pages/about_this_service.html
 msgid "publishing_policy.title"
 msgstr "Publishing policy"
-
-#: ds_judgements_public_ui/templates/pages/computational_licence.html
-msgid "caselawlicence.email"
-msgstr "CaseLawLicence@nationalarchives.gov.uk"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "howtousethisservice.title"
