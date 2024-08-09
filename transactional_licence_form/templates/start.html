@@ -165,13 +165,13 @@
           If you intend to do any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records
           you will need to apply to perform computational analysis. There are no application charges.
         </p>
-        <a role="button"
-           tabindex="0"
-           draggable="false"
-           class="govuk-button"
-           data-module="govuk-button"
-           value="I want to perform computational analysis"
-           href="{% url 'transactional-licence-form-page-2' %}">I want to perform computational analysis</a>
+        <p><a role="button"
+              tabindex="0"
+              draggable="false"
+              class="govuk-button"
+              data-module="govuk-button"
+              value="I want to perform computational analysis"
+              href="{% url 'transactional-licence-form-page-2' %}">I want to perform computational analysis</a></p>
       </div>
     </div>
     <h2 class="transactional-licence-form-content__heading">How to access records as data</h2>
@@ -186,5 +186,13 @@
     <p>
       If you have any questions about licensing, please email the Licensing Department: <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>.
     </p>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+      <span class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Information</span>
+        We want to understand how we can improve the experience for people applying for a licence.<br>We are conducting a round of research during August 2024.<br>
+        If you would like to take part in the research please register your interest by <a href='https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_5uym4sfZf32NsPA'>completing this short survey</a>.
+      </span>
+    </div>
   </div>
 {% endblock content %}
