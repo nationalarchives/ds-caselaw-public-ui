@@ -78,6 +78,11 @@ urlpatterns = [
         name="style_guide",
     ),
     path(
+        "test-page-please-ignore",
+        TemplateView.as_view(template_name="pages/test_page.html", content_type="text/html"),
+        name="test_page",
+    ),
+    path(
         "open-justice-licence",
         OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",

@@ -1,5 +1,5 @@
 {% load static search_results_filters waffle_tags %}
-{% flag v2_homepage %}
+{% if v2_homepage %}
   <div class="search-term-component__search-term-container">
     <label for="search_term" class="search-term-component__search-term-label">Search</label>
     {{ form.query }}
@@ -12,4 +12,4 @@
     {% include "includes/search/search_help_text.html" %}
   </div>
   <input type="submit" value="Search" />
-{% endflag %}
+{% endif %}
