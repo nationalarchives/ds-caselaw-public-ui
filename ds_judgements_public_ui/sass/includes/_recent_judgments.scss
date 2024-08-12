@@ -5,6 +5,15 @@
     padding-bottom: $space-8;
   }
 
+  &__container-beta-v3 {
+    padding-top: $space-3;
+    padding-bottom: $space-8;
+    margin-left: $space-12;
+    @media (max-width: $grid-breakpoint-medium) {
+      padding-top: 0;
+    }
+  }
+
   &__container-beta {
     padding-top: $space-3;
     padding-bottom: $space-8;
