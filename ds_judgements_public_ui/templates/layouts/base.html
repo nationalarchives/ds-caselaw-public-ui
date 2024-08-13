@@ -93,17 +93,17 @@
         {% endif %}
 
         {% if v3_homepage %}
-          {% include "includes/beta_phase_banner.html" %}
+          {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
           <header class="page-header">
             <div class="page-header__flex-container container py-1">
               <div class="page-header__nav">
                 <div class="page-header__site-logo">
-                  <a href="{% url "home" %}" id="home-link">{% translate "home" %}</a>
+                  <a href="{% url 'home' %}" id="home-link variant-3-home-link">{% translate "home" %}</a>
                 </div>
 
                 {% include "includes/breadcrumbs.html" %}
               </div>
-              {% include "includes/logo.html" %}
+              {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
             </div>
           </header>
         {% endif %}
@@ -114,28 +114,12 @@
           <div class="page-header__flex-container container py-1">
             <div class="page-header__nav">
               <div class="page-header__site-logo">
-                <a href="{% url "home" %}" id="home-link variant-0-home-link">{% translate "home" %}</a>
+                <a href="{% url 'home' %}" id="home-link variant-0-home-link">{% translate "home" %}</a>
               </div>
 
               {% include "includes/breadcrumbs.html" %}
             </div>
             {% include "includes/logo.html" with link_class="variant-0-logo-link" %}
-          </div>
-        </header>
-      {% endif %}
-
-      {% if v3_homepage %}
-        {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
-        <header class="page-header">
-          <div class="page-header__flex-container container py-1">
-            <div class="page-header__nav">
-              <div class="page-header__site-logo">
-                <a href="{% url "home" %}" id="home-link variant-3-home-link">{% translate "home" %}</a>
-              </div>
-
-              {% include "includes/breadcrumbs.html" %}
-            </div>
-            {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
           </div>
         </header>
       {% endif %}

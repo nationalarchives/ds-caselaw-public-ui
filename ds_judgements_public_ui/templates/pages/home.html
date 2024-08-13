@@ -95,13 +95,8 @@
 
 {% block content %}
   {% include "includes/basic_search_form.html" %}
-<<<<<<< HEAD
-  {% flag v3_homepage %}
-    <div class="recent-judgments__container-beta-v3">
-=======
   {% if v3_homepage %}
-    <div class="govuk-width-container">
->>>>>>> 3d44859 (Change flags to use items from context)
+    <div class="recent-judgments__container-beta-v3 govuk-width-container">
       <main class="govuk-main-wrapper">
         <div class="govuk-grid-row__beta_v3_homepage">
           <div class="govuk-grid-column-two-thirds">
