@@ -1,5 +1,5 @@
 {% load static waffle_tags %}
-{% flag v3_homepage %}
+{% if v3_homepage %}
   <div class="recent-judgments">
     <div class="recent-judgments__container-beta">
       <h2 id="recently-published-judgments" class="recent-judgments__header-beta">Recently published judgments</h2>
@@ -37,4 +37,4 @@
       </p>
     </div>
   </div>
-{% endflag %}
+{% endif %}

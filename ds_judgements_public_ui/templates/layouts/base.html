@@ -36,9 +36,9 @@
     {% include "includes/environment_banner.html" %}
 
     {% block header %}
-      {% flag variant_homepage %}
+      {% if variant_homepage %}
 
-        {% flag v1_homepage %}
+        {% if v1_homepage %}
           <header class="govuk-header" data-module="govuk-header">
             <div class="page-header__flex-container-beta container py-1">
               {% include "includes/beta_logo.html" with link_class="variant-1-logo-link" %}
@@ -74,9 +74,9 @@
               </div>
             </div>
           </header>
-        {% endflag %}
+        {% endif %}
 
-        {% flag v2_homepage %}
+        {% if v2_homepage %}
           {% include "includes/beta_phase_banner.html" with link_class="variant-2-survey-link" %}
           <header class="page-header">
             <div class="page-header__flex-container container py-1">
@@ -90,7 +90,23 @@
               {% include "includes/logo.html" with link_class="variant-2-logo-link" %}
             </div>
           </header>
-        {% endflag %}
+        {% endif %}
+
+        {% if v3_homepage %}
+          {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
+          <header class="page-header">
+            <div class="page-header__flex-container container py-1">
+              <div class="page-header__nav">
+                <div class="page-header__site-logo">
+                  <a href="{% url 'home' %}" id="home-link variant-3-home-link">{% translate "home" %}</a>
+                </div>
+
+                {% include "includes/breadcrumbs.html" %}
+              </div>
+              {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
+            </div>
+          </header>
+        {% endif %}
 
       {% else %} {# original version #}
         {% include "includes/phase_banner.html" with link_class="variant-0-survey-link" %}
@@ -98,7 +114,7 @@
           <div class="page-header__flex-container container py-1">
             <div class="page-header__nav">
               <div class="page-header__site-logo">
-                <a href="{% url "home" %}" id="home-link variant-0-home-link">{% translate "home" %}</a>
+                <a href="{% url 'home' %}" id="home-link variant-0-home-link">{% translate "home" %}</a>
               </div>
 
               {% include "includes/breadcrumbs.html" %}
@@ -106,23 +122,7 @@
             {% include "includes/logo.html" with link_class="variant-0-logo-link" %}
           </div>
         </header>
-      {% endflag %}
-
-      {% flag v3_homepage %}
-        {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
-        <header class="page-header">
-          <div class="page-header__flex-container container py-1">
-            <div class="page-header__nav">
-              <div class="page-header__site-logo">
-                <a href="{% url "home" %}" id="home-link variant-3-home-link">{% translate "home" %}</a>
-              </div>
-
-              {% include "includes/breadcrumbs.html" %}
-            </div>
-            {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
-          </div>
-        </header>
-      {% endflag %}
+      {% endif %}
 
     {% endblock header %}
 
@@ -137,21 +137,21 @@
     {% endblock postcontent %}
 
     {% block feedback_cta %}
-      {% flag variant_homepage %}
-        {% flag v1_homepage %}
+      {% if variant_homepage %}
+        {% if v1_homepage %}
           {% include "includes/help_improve_this_service.html" with link_class="variant-1-survey-button" %}
-        {% endflag %}
+        {% endif %}
 
-        {% flag v2_homepage %}
+        {% if v2_homepage %}
           {% include "includes/help_improve_this_service.html" with link_class="variant-2-survey-button" %}
-        {% endflag %}
+        {% endif %}
 
-        {% flag v3_homepage %}
+        {% if v3_homepage %}
           {% include "includes/help_improve_this_service.html" with link_class="variant-3-survey-button" %}
-        {% endflag %}
+        {% endif %}
       {% else %}
         {% include "includes/help_improve_this_service.html" with link_class="variant-0-survey-button" %}
-      {% endflag %}
+      {% endif %}
     {% endblock feedback_cta %}
 
     {% include "includes/footer.html" %}
