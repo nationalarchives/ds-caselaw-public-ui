@@ -9,7 +9,7 @@
           {% for court in courts %}
             <li class="judgment-browse__list-item">
               <a class="judgment-browse__link"
-                 href="{% url "search" %}?court={{ court.canonical_param }}">{{ court.name }}</a>
+                 href="{% url "search" %}?court={{ court.code }}">{{ court.name }}</a>
               <span class="judgment-browse__year-range">&mdash; {{ court.canonical_param|get_court_date_range }}</span>
             </li>
           {% endfor %}
@@ -24,7 +24,7 @@
           {% for tribunal in tribunals %}
             <li class="judgment-browse__list-item">
               <a class="judgment-browse__link"
-                 href="{% url "search" %}?tribunal={{ tribunal.canonical_param }}">{{ tribunal.name }}</a>
+                 href="{% url "search" %}?tribunal={{ tribunal.code }}">{{ tribunal.name }}</a>
               <span class="judgment-browse__year-range">&mdash; {{ tribunal.canonical_param|get_court_date_range }}</span>
             </li>
           {% endfor %}

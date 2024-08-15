@@ -46,7 +46,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
 
         search_response = search_judgments_and_parse_response(
             api_client,
-            SearchParameters(court=self.court.canonical_param, order="-date", page=self.page),
+            SearchParameters(court=self.court.code, order="-date", page=self.page),
         )
 
         context["feedback_survey_type"] = "court_or_tribunal_%s" % self.court.canonical_param
