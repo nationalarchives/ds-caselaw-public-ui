@@ -17,6 +17,12 @@ from judgments.tests.utils.assertions import (
     assert_response_not_contains_text,
 )
 
+# DRAGON -- all these tests with ewhc/ch etc aren't testing the right thing.
+# We also need to make sure that edge cases like the QB/KB work
+# We also need to make sure Marklogic is updated to have the correct behaviour
+# Should we support old search URLs too?
+# The search form raises an error for ewhc/ch now, but doesn't highlight where (because there is nowhere)
+
 
 class TestBrowseResults(TestCase):
     @patch("judgments.views.browse.api_client")
