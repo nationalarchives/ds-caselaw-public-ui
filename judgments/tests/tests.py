@@ -76,10 +76,10 @@ class TestPaginator(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_pagination_links(self, mock_search_judgments_and_parse_response):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?tribunal=ukut/iac&order=&page=3")
+        response = self.client.get("/judgments/search?tribunal=UKUT-IAC&order=&page=3")
         decoded_response = response.content.decode("utf-8")
         self.assertIn(
-            "/judgments/search?tribunal=ukut%2Fiac&amp;order=&page=4",
+            "/judgments/search?tribunal=UKUT-IAC&amp;order=&page=4",
             decoded_response,
         )
 
