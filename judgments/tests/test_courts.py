@@ -62,6 +62,9 @@ class TestCourtDatesHelper(TestCase):
         self.assertEqual(get_court_date_range(court), "2013&nbsp;to&nbsp;2015")
 
 
+# DRAGON -- this entire test file uses params throughout, for lookups
+
+
 class TestCourtContentHelpers(TestCase):
     def mock_court_param(self, param):
         mock = Mock()

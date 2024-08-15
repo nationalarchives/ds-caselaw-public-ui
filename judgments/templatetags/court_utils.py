@@ -16,7 +16,7 @@ from mdit_py_plugins.attrs import attrs_plugin
 
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
-from ds_caselaw_utils.courts import Court
+from ds_caselaw_utils.courts import Court, courts
 from typing import Optional
 
 register = template.Library()
@@ -58,6 +58,18 @@ def get_last_judgment_year() -> int:
 
 @register.filter
 def get_court_date_range(court_param: str) -> str:
+    # DRAGON
+    # Currently -- and this should be fixed -- the court_param can be a court code.
+    # Convert those cases. This code is not intended to be permanent.
+    try:
+        court = courts.get_court_by_code(court_param)
+    except CourtNotFoundException:
+        pass
+    else:
+        court_param = court.canonical_param
+
+    # END of impermanent code
+
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
         start_year = court_dates.start_year
@@ -88,11 +100,13 @@ def get_court_intro_text(court: Court) -> Optional[str]:
                 return md.render(file.read())
         return None
 
+    # DRAGON: check if this is acceptable in the future -- uses param as court proxy
     return read_markdown(court.canonical_param) or read_markdown("default")
 
 
 @register.filter
 def get_court_crest_path(court: Court) -> Optional[str]:
+    # DRAGON: check if acceptable in the future -- uses param as court proxy
     param = court.canonical_param
     filename = param.replace("/", "_")
     base_path = r"images/court_crests/{filename}.{extension}"
