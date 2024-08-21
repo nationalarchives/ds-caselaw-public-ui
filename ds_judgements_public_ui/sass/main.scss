@@ -57,6 +57,7 @@ $govuk-focus-colour: $color-focus-blue-outline;
 @import "includes/sticky_menu";
 
 // Judgments
+@import "includes/judgment_document_paragraph_anchors";
 @import "includes/judgment_text_download_options";
 @import "includes/judgment_text_end_document_marker";
 @import "includes/judgment_text_service_introduction";
