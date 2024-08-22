@@ -29,7 +29,7 @@ def waffle_flags(request):
     for flag in Flag.objects.all():
         flags[flag.name] = flag.is_active(request)
 
-    context["waffle_flags"] = flags
+    context.update({"waffles_flags": flags})
 
     return context
 
