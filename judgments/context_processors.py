@@ -5,6 +5,7 @@ from django.core.exceptions import SuspiciousOperation
 
 from config.settings.base import env
 from waffle import flag_is_active
+from waffle.models import Flag
 
 
 def waffle_flags(request):
@@ -23,6 +24,13 @@ def waffle_flags(request):
         context = {"variant_homepage": True, "v1_homepage": False, "v2_homepage": False, "v3_homepage": True}
     else:
         context = {"variant_homepage": False, "v1_homepage": False, "v2_homepage": False, "v3_homepage": False}
+
+    flags = {}
+    for flag in Flag.objects.all():
+        flags[flag.name] = flag.is_active(request)
+
+    context["waffle_flags"] = flags
+
     return context
 
 
