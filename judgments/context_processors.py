@@ -6,6 +6,7 @@ from django.core.exceptions import SuspiciousOperation
 from config.settings.base import env
 from waffle import flag_is_active
 from waffle.models import Flag
+from typing import Union
 
 
 def waffle_flags(request):
@@ -14,6 +15,9 @@ def waffle_flags(request):
     We enforce that no more than one treatment may be active at a time,
     and that variant_homepage is only true if a treatment is selected.
     """
+
+    context: dict[str, Union[bool, dict[str, bool]]] = {}
+
     if not flag_is_active(request, "variant_homepage"):
         context = {"variant_homepage": False, "v1_homepage": False, "v2_homepage": False, "v3_homepage": False}
     elif flag_is_active(request, "v1_homepage"):
