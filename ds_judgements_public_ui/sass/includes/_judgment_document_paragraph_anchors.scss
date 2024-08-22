@@ -47,6 +47,7 @@
     padding: 5px 10px;
     color: $color-black;
     background: $color-white;
+    transition: opacity ease 0.3s;
 
     &:after {
       content: "";
