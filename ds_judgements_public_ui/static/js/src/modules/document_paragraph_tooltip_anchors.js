@@ -63,7 +63,9 @@ const addDocumentParagraphAnchorLinkToSection = function (section) {
 const setupDocumentParagraphTooltipAnchors = function () {
     if (
         !window.waffleFlags ||
-        !window.waffleFlags.document_paragraph_tooltip_anchors
+        !window.waffleFlags.some(function (flag) {
+            return flag.document_paragraph_tooltip_anchors;
+        })
     )
         return;
 
