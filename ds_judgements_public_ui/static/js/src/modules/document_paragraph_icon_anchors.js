@@ -78,7 +78,9 @@ const addDocumentParagraphAnchorLinkToSection = function (section) {
 const setupDocumentParagraphIconAnchors = function () {
     if (
         !window.waffleFlags ||
-        !window.waffleFlags.document_paragraph_icon_anchors
+        !window.waffleFlags.some(function (flag) {
+            return flag.document_paragraph_icon_anchors;
+        })
     )
         return;
 
