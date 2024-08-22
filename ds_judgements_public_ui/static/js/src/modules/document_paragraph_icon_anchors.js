@@ -14,10 +14,10 @@ const createAnchorElement = function (id, content) {
     return element;
 };
 
-const createCopyTooltipElement = function () {
+const createCopyHelptextElement = function () {
     const element = document.createElement("span");
 
-    element.classList.add("judgment-body__copy-link-tooltip");
+    element.classList.add("judgment-body__copy-link-helptext");
     element.innerHTML = "Copy link to paragraph";
 
     return element;
@@ -25,20 +25,20 @@ const createCopyTooltipElement = function () {
 
 const createCopyElement = function (textToCopy) {
     const element = document.createElement("span");
-    const tooltip = createCopyTooltipElement();
+    const helptext = createCopyHelptextElement();
 
     element.classList.add("judgment-body__copy-link");
     element.innerHTML = linkSvg;
-    element.appendChild(tooltip);
+    element.appendChild(helptext);
 
     element.addEventListener("click", function (event) {
         event.preventDefault();
         event.stopPropagation();
         navigator.clipboard.writeText(textToCopy);
-        tooltip.innerHTML = "Copied!";
+        helptext.innerHTML = "Copied!";
 
         setTimeout(() => {
-            tooltip.innerHTML = "Copy link to paragraph";
+            helptext.innerHTML = "Copy link to paragraph";
         }, 3000);
     });
 
@@ -75,7 +75,13 @@ const addDocumentParagraphAnchorLinkToSection = function (section) {
     numberElement.appendChild(copyableAnchorElement);
 };
 
-const setupDocumentParagraphAnchors = function () {
+const setupDocumentParagraphIconAnchors = function () {
+    if (
+        !window.waffleFlags ||
+        !window.waffleFlags.document_paragraph_icon_anchors
+    )
+        return;
+
     const sections = document.querySelectorAll(".judgment-body__section");
 
     sections.forEach(function (section) {
@@ -83,4 +89,7 @@ const setupDocumentParagraphAnchors = function () {
     });
 };
 
-document.addEventListener("DOMContentLoaded", setupDocumentParagraphAnchors);
+document.addEventListener(
+    "DOMContentLoaded",
+    setupDocumentParagraphIconAnchors,
+);
