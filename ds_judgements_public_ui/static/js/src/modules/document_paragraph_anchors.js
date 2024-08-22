@@ -76,6 +76,9 @@ const addDocumentParagraphAnchorLinkToSection = function (section) {
 };
 
 const setupDocumentParagraphAnchors = function () {
+    if (!window.waffleFlags || !window.waffleFlags.document_paragraph_anchors)
+        return;
+
     const sections = document.querySelectorAll(".judgment-body__section");
 
     sections.forEach(function (section) {
