@@ -208,12 +208,10 @@ class TestRobotsDirectives(TestCase):
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/about-this-service")
-        self.assertNotContains(response, "noindex")
-        self.assertContains(
-            response,
-            "The Find Case Law service provides public access to court judgments and tribunal decisions.",
-            html=True,
-        )  # actual content of page
+        assert "noindex" not in response.content.decode("utf-8")
+        assert "Find Case Law is a service that provides public access to court judgments" in response.content.decode(
+            "utf-8"
+        )
 
     def test_static_pages(self):
         for url in [
