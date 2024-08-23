@@ -16,6 +16,9 @@ from .views.open_justice_license import OpenJusticeLicenceView
 from .views.terms_of_use import TermsOfUseView
 from .views.publishing_policy import PublishingPolicyView
 from .views.structured_search import StructuredSearchView
+from .views.terms_and_policies import TermsAndPoliciesView
+from .views.contact_us import ContactUsView
+from .views.courts_and_tribunals_in_fcl import CourtsAndTribunalsInFclView
 from .views.check import CheckView
 from .views.how_to import HowToUseThisService
 from .views.privacy_notice import PrivacyNotice
@@ -101,6 +104,21 @@ urlpatterns = [
         "structured_search",
         StructuredSearchView.as_view(),
         name="structured_search",
+    ),
+    path(
+        "terms-and-policies",
+        TermsAndPoliciesView.as_view(),
+        name="terms_and_policies",
+    ),
+    path(
+        "contact-us",
+        ContactUsView.as_view(),
+        name="contact_us",
+    ),
+    path(
+        "courts-and-tribunals-in-fcl",
+        CourtsAndTribunalsInFclView.as_view(),
+        name="courts_and_tribunals_in_fcl",
     ),
     path(
         "check",

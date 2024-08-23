@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 11:13+0000\n"
+"POT-Creation-Date: 2024-08-23 12:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,9 +71,9 @@ msgid "publishingpolicy.titleshort"
 msgstr "Publishing policy"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
+#: ds_judgements_public_ui/templates/pages/contact_us.html
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
+#: ds_judgements_public_ui/templates/pages/publishing_policy.html
 #: transactional_licence_form/templates/start.html
 #: transactional_licence_form/templates/start2.html
 #: transactional_licence_form/templates/start3.html
@@ -93,7 +93,6 @@ msgid "terms.title"
 msgstr "Terms of use"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-#: ds_judgements_public_ui/templates/pages/privacy_notice.html
 msgid "footer.cookies.link"
 msgstr "https://www.nationalarchives.gov.uk/legal/cookies/"
 
@@ -102,7 +101,6 @@ msgid "footer.cookies"
 msgstr "Cookies"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-#: ds_judgements_public_ui/templates/pages/accessibility_statement.html
 msgid "accessibilitystatement.title"
 msgstr "Accessibility statement"
 
@@ -191,15 +189,6 @@ msgstr "Skip to Main Content"
 msgid "home"
 msgstr "Find case law"
 
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
-msgid "bailii.link"
-msgstr "www.bailii.org"
-
-#: ds_judgements_public_ui/templates/pages/about_this_service.html
-msgid "publishing_policy.title"
-msgstr "Publishing policy"
-
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "howtousethisservice.title"
 msgstr "How to use the Find Case Law service"
@@ -219,16 +208,6 @@ msgid "licensingframework.link"
 msgstr ""
 "https://www.nationalarchives.gov.uk/information-management/re-using-public-"
 "sector-information/uk-government-licensing-framework"
-
-#: ds_judgements_public_ui/templates/pages/privacy_notice.html
-#: ds_judgements_public_ui/templates/pages/publishing_policy.html
-#: ds_judgements_public_ui/templates/pages/terms_of_use.html
-msgid "caselaw.url"
-msgstr "https://caselaw.nationalarchives.gov.uk"
-
-#: ds_judgements_public_ui/templates/pages/privacy_notice.html
-msgid "judiciary.email"
-msgstr "JODataPrivacyOfficer@judiciary.uk"
 
 #: ds_judgements_public_ui/templates/pages/structured_search.html
 msgid "structured_search.title"
