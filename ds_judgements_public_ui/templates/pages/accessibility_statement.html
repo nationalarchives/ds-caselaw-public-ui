@@ -1,105 +1,154 @@
 {% extends "layouts/static_content.html" %}
 {% load i18n %}
 {% block static_content %}
-  <h1>{% translate "accessibilitystatement.title" %}</h1>
-  <p>This accessibility statement applies to the Case Law service provided by The National Archives.</p>
-  <p>
-    Accessibility and inclusion are important to everyone at The National Archives and we want as many people
-    as possible to be able to use the Case Law service. The text should be
-    clear and easy to understand. You should be able to:
-  </p>
-  <ul>
-    <li>Change colours, contrast levels and fonts.</li>
-    <li>Zoom in up to 400% without the text spilling off the screen.</li>
-    <li>Navigate most of the website using just a keyboard.</li>
-    <li>Navigate most of the website using speech recognition software.</li>
-    <li>
-      Listen to most of the website using a screen reader (including the most recent versions of JAWS,
-      NVDA and VoiceOver).
-    </li>
-  </ul>
-  <p>
-    We are continually working to improve the accessibility of our digital services, and to develop our skills in relevant standards and techniques. See our current
-    <a href="https://github.com/nationalarchives/front-end-development-guide/blob/master/development-guide.md">development standards</a>.
-  </p>
-  <p>
-    As well as working with third-party accessibility specialists, most of our accessibility
-    testing is conducted in-house using automated tools and the best professional judgment of our digital
-    teams. We acknowledge that this approach is not perfect and recognise that we may get some things wrong,
-  </p>
-  <h2>How accessible is this website?</h2>
-  <p>Some parts of this website may not be fully accessible:</p>
-  <ul>
-    <li>Judgments contain images that do not have a text alternative that serves the equivalent purpose</li>
-    <li>
-      Information, structure, and relationships conveyed through a judgment presentation may not be programmatically determined or are available in text
-    </li>
-  </ul>
-  <p>
-    Specific non-compliances are listed <a href="#Non-Compliances">below</a>.
-  </p>
-  <h2>Feedback, contact information and reporting accessibility problems</h2>
-  <p>
-    If you need information on this website in a different format, for example accessible PDF, large print,
-    easy read, audio recording or Braille, email <a href="mailto:webmaster@nationalarchives.gov.uk">webmaster@nationalarchives.gov.uk</a>
-    or call 020 8876 3444. We will respond to your request within 10 working days.
-  </p>
-  <p>You can also use these contact details to report accessibility problems with this website.</p>
-  <p>
-    If you have an accessibility need and would like to participate in user testing as we make improvements
-    to our website, email <a href="mailto:uxresearch@nationalarchives.gov.uk">uxresearch@nationalarchives.gov.uk</a>.
-  </p>
-  <h2>Enforcement procedure</h2>
-  <p>
-    The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies
-    (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility
-    regulations'). If you are not happy with how we respond to your complaint,
-    <a href="https://www.equalityadvisoryservice.com/">contact the Equality Advisory and Support Service (EASS)</a>.
-  </p>
-  <h2>Contacting us or visiting in person</h2>
-  <p>
-    You can <a href="https://www.nationalarchives.gov.uk/contact-us/">contact us</a> by phone, email or Live
-    chat. We provide information about
-    <a href="https://www.nationalarchives.gov.uk/about/visit-us/">visiting in person</a>.
-    People with health conditions or impairments that may impact their visit can
-    <a href="https://www.nationalarchives.gov.uk/about/visit-us/information-for-disabled-visitors/">find out more</a>.
-  </p>
-  <h2>Technical information about this website's accessibility</h2>
-  <p>
-    The National Archives is committed to making its websites accessible, in accordance with the Public Sector
-    Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
-  </p>
-  <h2>Compliance status</h2>
-  <p>
-    This website is partially compliant with the
-    <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines version 2.1</a>
-    AA standard, due to the non-compliances and exemptions listed below:
-  </p>
-  <h3>Non-accessible content</h3>
-  <p>
-    Based on sample testing of pages selected by our user experience and metrics teams, we know that the
-    content listed below is non-compliant with the accessibility regulations for the following reasons:
-  </p>
-  <h3 id="Non-Compliances">Non-compliance with the accessibility regulations</h3>
-  <ol>
-    <li>Images within judgment text do not have a text alternative (Success Criterion 1.1.1 Non-text Content)</li>
-    <li>
-      Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text (Success Criterion 1.3.1 Info and Relationships)
-    </li>
-  </ol>
-  <h2>Disproportionate burden</h2>
-  <p>Not applicable.</p>
-  <h2>Content that's not within the scope of the accessibility regulations</h2>
-  <ul>
-    <li>PDFs or other documents published before 23 September 2018.</li>
-    <li>Live video.</li>
-  </ul>
-  <p>
-    While reproductions of items in heritage collections are
-    <a href="https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made">exempt from meeting the accessibility regulations</a>,
-    we are investigating ways to use emerging technology to improve the data
-    and accessibility of our heritage collections.
-  </p>
-  <h2>Preparation of this accessibility statement</h2>
-  <p>This statement was prepared on 12 April 2022. It was last reviewed on 15 November 2023.</p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-grid-column-one-third">
+        <h1 class="hidden-h1-mobile">Accessibility statement</h1>
+        <div class="anchor-links">
+          <h3 class="anchor-links__header">On this page</h3>
+          <ul class="anchor-links__list">
+            <li class="anchor-links__list-option">
+              <a href="#section-how">How accessible is this website?</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-feedback">Feedback, contact information and
+                reporting accessibility problems</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-enforcement">Enforcement procedure</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-contact">Contacting us or visiting in person</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-technical-information">Technical information about this website's accessibility</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-compliance">Compliance status</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-burden">Disproportionate burden</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-scope">Content that's not within the scope of the accessibility regulations</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-preparation">Preparation of this accessibility statement</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+        <p class="date-time-info-page">
+          <small>Last updated on
+            <time datetime="20-14-2024">20th August 2024</time>
+          </small>
+        </p>
+        <h1 class="hidden-h1-desktop">Accessibility statement</h1>
+        <section>
+          <p>This accessibility statement applies to the Case Law service provided by The National Archives.</p>
+          <p>
+            Accessibility and inclusion are important to everyone at The National Archives and we want as many people
+            as possible to be able to use the Case Law service. The text should be
+            clear and easy to understand. You should be able to:
+          </p>
+          <ul>
+            <li>Change colours, contrast levels and fonts.</li>
+            <li>Zoom in up to 400% without the text spilling off the screen.</li>
+            <li>Navigate most of the website using just a keyboard.</li>
+            <li>Navigate most of the website using speech recognition software.</li>
+            <li>
+              Listen to most of the website using a screen reader (including the most recent versions of JAWS,
+              NVDA and VoiceOver).
+            </li>
+          </ul>
+          <p>
+            We are continually working to improve the accessibility of our digital services, and to develop our skills in relevant standards and techniques. See our current
+            <a href="https://github.com/nationalarchives/front-end-development-guide/blob/master/development-guide.md">development standards</a>.
+          </p>
+          <p>
+            As well as working with third-party accessibility specialists, most of our accessibility
+            testing is conducted in-house using automated tools and the best professional judgment of our digital
+            teams. We acknowledge that this approach is not perfect and recognise that we may get some things wrong,
+          </p>
+          <h2 id="section-how">How accessible is this website?</h2>
+          <p>Some parts of this website may not be fully accessible:</p>
+          <ul>
+            <li>Judgments contain images that do not have a text alternative that serves the equivalent purpose</li>
+            <li>
+              Information, structure, and relationships conveyed through a judgment presentation may not be programmatically determined or are available in text
+            </li>
+          </ul>
+          <p>
+            Specific non-compliances are listed <a href="#Non-Compliances">below</a>.
+          </p>
+          <h2 id="section-feedback">Feedback, contact information and reporting accessibility problems</h2>
+          <p>
+            If you need information on this website in a different format, for example accessible PDF, large print,
+            easy read, audio recording or Braille, email <a href="mailto:webmaster@nationalarchives.gov.uk">webmaster@nationalarchives.gov.uk</a>
+            or call 020 8876 3444. We will respond to your request within 10 working days.
+          </p>
+          <p>You can also use these contact details to report accessibility problems with this website.</p>
+          <p>
+            If you have an accessibility need and would like to participate in user testing as we make improvements
+            to our website, email <a href="mailto:uxresearch@nationalarchives.gov.uk">uxresearch@nationalarchives.gov.uk</a>.
+          </p>
+          <h2 id="section-enforcement">Enforcement procedure</h2>
+          <p>
+            The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies
+            (Websites and Mobile ApplicatiContacting us or visiting in personhappy with how we respond to your complaint,
+            <a href="https://www.equalityadvisoryservice.com/">contact the Equality Advisory and Support Service (EASS)</a>.
+          </p>
+          <h2 id="section-contact">Contacting us or visiting in person</h2>
+          <p>
+            You can <a href="https://www.nationalarchives.gov.uk/contact-us/">contact us</a> by phone, email or Live
+            chat. We provide information about
+            <a href="https://www.nationalarchives.gov.uk/about/visit-us/">visiting in person</a>.
+            People with health conditions or impairments that may impact their visit can
+            <a href="https://www.nationalarchives.gov.uk/about/visit-us/information-for-disabled-visitors/">find out more</a>.
+          </p>
+          <h2 id="section-technical-information">Technical information about this website's accessibility</h2>
+          <p>
+            The National Archives is committed to making its websites accessible, in accordance with the Public Sector
+            Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+          </p>
+          <h2 id="section-compliance">Compliance status</h2>
+          <p>
+            This website is partially compliant with the
+            <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines version 2.1</a>
+            AA standard, due to the non-compliances and exemptions listed below:
+          </p>
+          <h3>Non-accessible content</h3>
+          <p>
+            Based on sample testing of pages selected by our user experience and metrics teams, we know that the
+            content listed below is non-compliant with the accessibility regulations for the following reasons:
+          </p>
+          <h3 id="Non-Compliances">Non-compliance with the accessibility regulations</h3>
+          <ol>
+            <li>Images within judgment text do not have a text alternative (Success Criterion 1.1.1 Non-text Content)</li>
+            <li>
+              Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text (Success Criterion 1.3.1 Info and Relationships)
+            </li>
+          </ol>
+          <h2 id="section-burden">Disproportionate burden</h2>
+          <p>Not applicable.</p>
+          <h2 id="section-scope">Content that's not within the scope of the accessibility regulations</h2>
+          <ul>
+            <li>PDFs or other documents published before 23 September 2018.</li>
+            <li>Live video.</li>
+          </ul>
+          <p>
+            While reproductions of items in heritage collections are
+            <a href="https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made">exempt from meeting the accessibility regulations</a>,
+            we are investigating ways to use emerging technology to improve the data
+            and accessibility of our heritage collections.
+          </p>
+          <h2 id="section-preparation">Preparation of this accessibility statement</h2>
+          <p>This statement was prepared on 12 April 2022. It was last reviewed on 15 November 2023.</p>
+        </section>
+      </div>
+    </div>
+
+  </div>
 {% endblock static_content %}

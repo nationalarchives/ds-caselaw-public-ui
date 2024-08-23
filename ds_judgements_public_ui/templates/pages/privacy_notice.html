@@ -1,108 +1,70 @@
 {% extends "layouts/static_content.html" %}
 {% load i18n %}
 {% block static_content %}
-  <h1>Find Case Law privacy notice</h1>
-  <div class="anchor-links">
-    <h3 class="anchor-links__header">Information on this page:</h3>
-    <ul class="anchor-links__list">
-      <li class="anchor-links__list-option">
-        <a href="#section-who">Who we are</a>
-      </li>
-      <li class="anchor-links__list-option">
-        <a href="#section-personal">Publication of your personal data</a>
-      </li>
-      <li class="anchor-links__list-option">
-        <a href="#section-contact-judiciary">Contact the Judicial Data Protection Panel</a>
-      </li>
-      <li class="anchor-links__list-option">
-        <a href="#section-cookies">Cookies</a>
-      </li>
-      <li class="anchor-links__list-option">
-        <a href="#section-contact-us">Contact us</a>
-      </li>
-    </ul>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-grid-column-one-third">
+        <h1 class="hidden-h1-mobile">Privacy notice</h1>
+        <div class="anchor-links">
+          <h3 class="anchor-links__header">On this page:</h3>
+          <ul class="anchor-links__list">
+            <li class="anchor-links__list-option">
+              <a href="#section-who">Who we are</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-personal">Publication of personal data</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-cookies">Cookies</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-interested-in">You may also be interested in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+        <p class="date-time-info-page">
+          <small>Last updated on
+            <time datetime="20-14-2024">20th August 2024</time>
+          </small>
+        </p>
+        <h1 class="hidden-h1-desktop">Privacy notice</h1>
+        <section>
+          <h2 id="section-who">Who we are</h2>
+          <p>
+            Find Case Law is managed by The National Archives, a non-ministerial government department that is the official archive and publisher for the UK Government and for England and Wales.
+          </p>
+          <p>
+            The National Archives is the data processor for the publication of judgments and decisions on Find Case Law. The court that decided the case is the data controller for the content of judgments.
+            In doing so, both parties are acting in a judicial capacity.
+          </p>
+          <p>
+            This notice relates only to Find Case Law. Please also see  <a href="https://www.nationalarchives.gov.uk/legal/privacy-policy/">The National Archives’ privacy policy.</a>.
+          </p>
+          <h2 id="section-personal">Publication of personal data</h2>
+          <p>Court judgments and tribunal decisions contain information about people. This typically includes the names of parties and other people mentioned in the case, as well as their representatives and the names of the judges hearing the case. The information about people varies and can be very extensive. It can include a variety of types of special category personal data, depending on the subject matter of the case.</p>
+          <p>
+            We must comply with reporting restrictions in law. A court or tribunal may decide to redact personal data within a judgment, such as an individual’s name or address. The court may also hold its proceedings in private and place restrictions on access to court and tribunal files. Such decisions are judicial decisions and can only be taken within the context of legal proceedings. Individuals wishing to request
+            anonymisation or withdrawal of a judgment from publication should seek legal advice.
+          </p>
+          <p>
+            The National Archives cannot and will not take down a judgment published in Find Case Law without explicit instruction from the court or tribunal. Revisions to judgments already published must also come directly from the court or tribunal. See also our <a href="{% url 'publishing_policy' %}">publishing policy.</a>
+          </p>
+          <p>
+            Court judgments are largely exempt from the requirements of <a href="https://www.legislation.gov.uk/ukpga/2018/12/schedule/2/paragraph/14/enacted">data protection law. </a> The <a href="https://www.legislation.gov.uk/ukpga/2018/12/section/117/enacted">Information Commissioner</a> has no regulatory function in relation to an individual acting in a judicial capacity, or a court or tribunal acting in its judicial capacity.
+          </p>
+          <p>
+            Concerns about processing of personal data in judgments should be addressed to the court or tribunal that delivered the judgment. To contact a specific court or tribunal please use the
+            <a href="https://www.gov.uk/find-court-tribunal">GOV.UK Find a court or tribunal service</a>.
+          </p>
+          <h2 id="section-cookies">Cookies</h2>
+          <p>Please see this information about <a href="https://www.nationalarchives.gov.uk/legal/cookies/">cookies used by The National Archives.</a></p>
+
+        </section>
+      </div>
+    </div>
   </div>
-  <h2 id="section-who">Who we are</h2>
-  <p>
-    The National Archives is a non-ministerial government department, and the official archive and publisher for the UK
-    Government, and for England and Wales.
-  </p>
-  <p>
-    We receive judgments into the archive from the Courts, for permanent preservation and publication through the Find
-    Case Law service. The Public Records Act 1958 (PRA) provides the legal basis for our work with judgments.
-  </p>
-  <p>
-    This privacy notice is specifically for the
-    <a href="{% translate "caselaw.url" %}">Find Case Law service</a>.
-    For The National Archive’s main privacy notice <a href="https://www.nationalarchives.gov.uk/legal/privacy-policy/">please view it on the main website.</a>.
-  </p>
-  <h2 id="section-personal">Publication of your personal data</h2>
-  <p>
-    Judgments contain information about people. This typically includes the names of parties and other people mentioned
-    in the judgment, as well as the representatives and the names of the judges hearing the case. The information about
-    people varies and can be very extensive.
-  </p>
-  <p>
-    Publication of judgments is part of the administration of justice. It is necessary for open justice and for
-    individuals to understand their rights and obligations. Publication of judgments supports the rule of law and
-    transparency of the courts. As such it is in the public interest.
-  </p>
-  <p>
-    There are reporting restrictions in law that we comply with. A court or tribunal may decide to redact personal data
-    within a judgment, such as an individual’s name or address. The court may also hold its proceedings in private and
-    place restrictions on access to court and tribunal files. Such decisions are judicial decisions and can only be
-    takennwithin the context of legal proceedings. Individuals wishing to request anonymisation or withdrawal of a judgment
-    from publication should seek legal advice.
-  </p>
-  <p>
-    The Court that decided the case is the Data Controller for the publication of judgments on the Find Case Law
-    service. The National Archives is a Data Processor. The National Archives cannot and will not takedown a published
-    judgment without explicit instruction from the court. Revisions to judgments
-    already published must also come directly from the court.
-    <a href="https://www.gov.uk/find-court-tribunal">Contact a specific court or tribunal</a>.
-  </p>
-  <h2 id="section-contact-judiciary">Contact the Judicial Data Protection Panel</h2>
-  <p>
-    Court judgments are largely exempt from the requirements of Data Protection Law; therefore, the Information
-    Commissioner has no regulatory function in relation to an individual acting in a judicial capacity, or a court or
-    tribunal acting in its judicial capacity.
-  </p>
-  <p>
-    Concerns about processing of personal data in judgments should be addressed to the Judicial Data Protection Panel
-    at <a href="mailto:{% translate "judiciary.email" %}">{% translate "judiciary.email" %}</a> as detailed here:
-    https://www.judiciary.uk/wp-content/uploads/2019/04/Judicial-
-    data-processing-complaints-handling-policy-June-2021.pdf .
-  </p>
-  <p>
-    Information on how the Judicial Office, on behalf of the Panel, processes personal data concerning your complaint
-    is contained in the Judicial Office’s Privacy Notice, which can also be obtained from
-    <a href="mailto:{% translate "judiciary.email" %}">{% translate "judiciary.email" %}</a>
-    or by writing to:
-  </p>
-  <p>
-    <address>
-      Judicial Data Protection Panel
-      <br />
-      C/O Judicial Office Data Privacy Officer Judicial Office
-      <br />
-      11th floor Thomas More Building Royal Courts of Justice
-      <br />
-      Strand London
-      <br />
-      WC2A 2LL
-      <br />
-    </address>
-  </p>
-  <h2 id="section-cookies">Cookies</h2>
-  <p>For information about cookies please see:</p>
-  <a href="https://{% translate "footer.cookies.link" %}">{% translate "footer.cookies.link" %}</a>
-  <h2 id="section-contact-us">Contact us</h2>
-  <p>We welcome comments or queries about this privacy notice and our information handling practices.</p>
-  <p>
-    Telephone: <a href="tel:+442088763444">+44 (0) 20 8876 3444</a>.
-  </p>
-  <p>
-    Postal address:
-    <address>The National Archives, Kew, Richmond, Surrey TW9 4DU.</address>
-  </p>
+  <h2 id="section-interested-in"></h2>
+  {% include "includes/info_cards_privacy_policy.html" %}
 {% endblock static_content %}

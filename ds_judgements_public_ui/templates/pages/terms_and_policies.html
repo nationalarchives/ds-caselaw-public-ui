@@ -1,0 +1,51 @@
+{% extends "layouts/static_content.html" %}
+{% load i18n static %}
+{% block meta_description %}
+  <meta name="description"
+        content="The Find Case Law service provides public access to court judgments and tribunal decisions." />
+{% endblock meta_description %}
+{% block static_content %}
+  {% include "includes/info_cards_terms_policies.html" %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2>Pages elsewhere on this site</h2>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds__info">
+      <a href="{% url 'about_this_service' %}" class="grid-background-link">
+        <div class="govuk-grid-column-one-third__info">
+          <h3 class="govuk-grid-column-one-third__grid_info_heading">About Find Case Law</h3>
+          <p class="govuk-grid-column-one-third__grid_info_text">Find out about Find Case Law</p>
+        </div>
+      </a>
+      <a href="{% url 'courts_and_tribunals_in_fcl' %}" class="grid-background-link">
+        <div class="govuk-grid-column-one-third__info">
+          <h3 class="govuk-grid-column-one-third__grid_info_heading">Courts and tribunals in Find Case Law</h3>
+          <p class="govuk-grid-column-one-third__grid_info_text">Learn which judgments and decisions this service provides.</p>
+        </div>
+      </a>
+      <a href="{% url 'contact_us' %}" class="grid-background-link">
+        <div class="govuk-grid-column-one-third__info">
+          <h3 class="govuk-grid-column-one-third__grid_info_heading">Contact us</h3>
+          <p class="govuk-grid-column-one-third__grid_info_text">Find out how you can contact the Find Case Law team.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2>Pages on other websites</h2>
+    </div>
+  </div>
+  <div class="govuk-grid-row__info">
+    <div class="govuk-grid-column-one-third__info-box">
+      <a href="https://www.nationalarchives.gov.uk" class="grid-background-link">
+        <h3 class="govuk-grid-column-one-third__grid_info_heading">Cookies</h3>
+        <p class="govuk-grid-column-one-third__grid_info_text">Learn which cookies Find Case Law uses, on The National Archives website.</p>
+      </div>
+    </a>
+
+  </div>
+{% endblock static_content %}
