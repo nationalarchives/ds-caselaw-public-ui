@@ -73,4 +73,27 @@
       border-right: 1px solid $color-grey;
     }
   }
+
+  &__copy-link-helptext--top {
+    right: auto;
+    left: -20px;
+    top: -40px;
+
+    &:after {
+      right: auto;
+      left: 18px;
+      top: auto;
+      bottom: -5px;
+      transform: rotate(135deg);
+    }
+  }
+
+  &__copy-link-helptext--show {
+    opacity: 1;
+  }
+
+  &__copy-link-helptext--left {
+    top: -8px;
+    right: 44px;
+  }
 }
