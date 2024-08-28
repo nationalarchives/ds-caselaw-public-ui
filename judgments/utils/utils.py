@@ -1,12 +1,13 @@
 import math
 import re
-from typing import Any, Optional, TypedDict
+from typing import Any, Optional, TypedDict, Literal, overload
 from urllib.parse import parse_qs, urlparse
 from functools import lru_cache
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
 from caselawclient.models.documents import Document, DocumentURIString
 from caselawclient.models.press_summaries import PressSummary
 from caselawclient.search_parameters import RESULTS_PER_PAGE
+from caselawclient.errors import DocumentNotFoundError
 from django.conf import settings
 from django.urls import reverse
 from ds_caselaw_utils.neutral import neutral_url
@@ -186,20 +187,41 @@ def has_filters(query_params, exclude=["order", "per_page"]):
     return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0
 
 
-def get_document_by_uri(document_uri: str, max_ttl: int = 900) -> Document:
+@overload
+def get_document_by_uri(
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: Literal[False] = False
+) -> Document: ...
+
+
+@overload
+def get_document_by_uri(
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False
+) -> Optional[Document]: ...
+
+
+def get_document_by_uri(document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False) -> Optional[Document]:
     """
     This is a wrapper for getting a document from the cache, with a maximum TTL. The `max_ttl` is a [workaround](https://stackoverflow.com/questions/31771286/python-in-memory-cache-with-time-to-live) for the fact `lru_cache` doesn't have any time-based expiry
     """
     ttl_hash = round(time() / max_ttl)
-    return get_document_by_uri_from_cache(DocumentURIString(document_uri), ttl_hash=ttl_hash)
+    return get_document_by_uri_from_cache(
+        DocumentURIString(document_uri), ttl_hash=ttl_hash, cache_if_not_found=cache_if_not_found
+    )
 
 
 @lru_cache(maxsize=256)
-def get_document_by_uri_from_cache(document_uri: DocumentURIString, ttl_hash: int = 0) -> Document:
+def get_document_by_uri_from_cache(
+    document_uri: DocumentURIString, ttl_hash: int = 0, cache_if_not_found: bool = False
+) -> Optional[Document]:
     del ttl_hash  # ttl_hash is used to fake cache expiry with time
 
-    # raises a DocumentNotFoundError if it doesn't exist
-    return api_client.get_document_by_uri(document_uri)
+    # Try to get the document. If it doesn't exist and `cache_if_not_found` is `True`, return a `None` response so it will be cached. Otherwise, bubble the exception up.
+    try:
+        return api_client.get_document_by_uri(document_uri)
+    except DocumentNotFoundError as e:
+        if cache_if_not_found:
+            return None
+        raise e
 
 
 def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary]:

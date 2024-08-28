@@ -35,9 +35,11 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
 
-def get_published_document_by_uri(document_uri: str) -> Document:
+def get_published_document_by_uri(document_uri: str, cache_if_not_found: bool = False) -> Document:
     try:
-        document = get_document_by_uri(document_uri)
+        document = get_document_by_uri(document_uri, cache_if_not_found=cache_if_not_found)
+        if not document:
+            raise Http404(f"Document {document_uri} was not found")
     except DocumentNotFoundError:
         raise Http404(f"Document {document_uri} was not found")
     except MarklogicNotPermittedError:
@@ -113,9 +115,10 @@ def detail(request, document_uri):
         context["query"] = query
 
     try:
-        context["linked_document_uri"] = get_published_document_by_uri(linked_doc_url(document)).uri
+        linked_document = get_published_document_by_uri(linked_doc_url(document), cache_if_not_found=True)
+        context["linked_document_uri"] = linked_document.uri
     except Http404:
-        context["linked_document_uri"] = ""
+        context["linked_document_uri"] = None
 
     context["document"] = document.content_as_html(
         MOST_RECENT_VERSION,
@@ -126,7 +129,7 @@ def detail(request, document_uri):
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
     context["pdf_uri"] = pdf.uri
 
-    if document.document_noun == "press summary":
+    if document.document_noun == "press summary" and context["linked_document_uri"]:
         breadcrumbs = [
             {
                 "url": "/" + context["linked_document_uri"],

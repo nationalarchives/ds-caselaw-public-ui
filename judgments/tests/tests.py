@@ -172,7 +172,7 @@ class TestRobotsDirectives(TestCase):
     def test_xml(self, mock_get_document_by_uri):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1")
+        mock_get_document_by_uri.assert_called_with("eat/2023/1", cache_if_not_found=False)
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
@@ -180,7 +180,7 @@ class TestRobotsDirectives(TestCase):
     def test_xml_press_summary(self, mock_get_document_by_uri):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
+        mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1", cache_if_not_found=False)
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
