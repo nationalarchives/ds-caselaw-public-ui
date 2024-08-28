@@ -18,6 +18,8 @@ from judgments.utils import (
     show_no_exact_ncn_warning,
 )
 
+from judgments.utils.utils import get_document_by_uri_from_cache
+
 
 class TestUtils(unittest.TestCase):
     @mock.patch("judgments.utils.utils.api_client")
@@ -32,6 +34,19 @@ class TestUtils(unittest.TestCase):
         mock_api_client.get_document_by_uri.side_effect = DocumentNotFoundError
         with self.assertRaises(DocumentNotFoundError):
             get_document_by_uri("nonexistent_uri")
+
+    @mock.patch("judgments.utils.utils.api_client")
+    def test_get_document_by_uri_from_cache_where_document_not_found_and_response_is_not_cachable(
+        self, mock_api_client
+    ):
+        mock_api_client.get_document_by_uri.side_effect = DocumentNotFoundError
+        with self.assertRaises(DocumentNotFoundError):
+            get_document_by_uri_from_cache("nonexistent_uri", cache_if_not_found=False)
+
+    @mock.patch("judgments.utils.utils.api_client")
+    def test_get_document_by_uri_from_cache_where_document_not_found_and_response_is_cachable(self, mock_api_client):
+        mock_api_client.get_document_by_uri.side_effect = DocumentNotFoundError
+        assert get_document_by_uri_from_cache("nonexistent_uri", cache_if_not_found=True) is None
 
     def test_formatted_document_uri(self):
         test_params = [
