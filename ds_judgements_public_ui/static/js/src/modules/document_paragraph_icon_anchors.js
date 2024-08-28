@@ -65,7 +65,7 @@ const createCopyElement = function (textToCopy) {
 const createCopyableAnchorElement = function (id, content) {
     const anchorElement = createAnchorElement(id, content);
 
-    if (isMobile) {
+    if (isMobile()) {
         const helptextElement = createCopyHelptextElement();
         anchorElement.appendChild(helptextElement);
 
