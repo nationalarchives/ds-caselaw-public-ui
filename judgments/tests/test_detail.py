@@ -259,7 +259,7 @@ class TestViewRelatedDocumentButton:
         THEN the response should contain a button linking to the related document
         """
 
-        def get_document_by_uri_side_effect(document_uri):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found):
             if document_uri == uri:
                 return JudgmentFactory.build(uri=uri, is_published=True, document_noun=document_noun)
             elif document_uri == expected_href:
@@ -309,7 +309,7 @@ class TestViewRelatedDocumentButton:
         THEN the response should contain a button linking to the related document
         """
 
-        def get_document_by_uri_side_effect(document_uri):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found):
             if document_uri == uri:
                 return JudgmentFactory.build(uri=uri, is_published=True, document_noun=document_noun)
             elif document_uri == expected_href:
@@ -347,7 +347,7 @@ class TestViewRelatedDocumentButton:
         THEN the response should not contain a button linking to the related judgment
         """
 
-        def get_document_by_uri_side_effect(document_uri):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found):
             if document_uri == uri:
                 return JudgmentFactory.build(uri=document_uri, is_published=True, document_noun="press summary")
             else:
@@ -375,7 +375,7 @@ class TestBreadcrumbs:
         AND an additional `Press Summary` breadcrumb
         """
 
-        def pj(uri):
+        def pj(uri, cache_if_not_found):
             if "press" in uri:
                 return PressSummaryFactory.build(
                     uri="eat/2023/1/press-summary/1",
@@ -441,7 +441,7 @@ class TestBreadcrumbs:
         THEN the response should contain breadcrumbs including the appropriate error reference
         """
 
-        def get_document_by_uri_side_effect(document_uri):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found):
             raise http_error()
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -462,7 +462,7 @@ class TestDocumentHeadings(TestCase):
         AND a p tag subheading with the related judgment's NCN
         """
 
-        def get_document_by_uri_side_effect(document_uri):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found):
             if document_uri == "eat/2023/1/press-summary/1":
                 return PressSummaryFactory.build(
                     uri="eat/2023/1/press-summary/1",
@@ -522,7 +522,7 @@ class TestHTMLTitle(TestCase):
         summary name and "- Find case law - The National Archives"
         """
 
-        def get_document_by_uri_side_effect(document_uri):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found):
             if document_uri == "eat/2023/1/press-summary/1":
                 return JudgmentFactory.build(
                     uri="eat/2023/1/press-summary/1",
