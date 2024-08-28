@@ -1,5 +1,3 @@
-from ds_caselaw_utils import courts
-from .template_view_with_context import TemplateViewWithContext
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -8,6 +6,8 @@ from ds_caselaw_utils import courts
 
 from judgments.utils import api_client, clamp, paginator
 from judgments.utils.utils import sanitise_input_to_integer
+
+from .template_view_with_context import TemplateViewWithContext
 
 
 class CourtsTribunalsListView(TemplateViewWithContext):

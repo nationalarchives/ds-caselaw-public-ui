@@ -1,7 +1,7 @@
 from django import forms
 
 
-class FCLFieldMixin(object):
+class FCLFieldMixin:
     def __init__(self, *args, **kwargs):
         self.send_to_dynamics = kwargs.pop("send_to_dynamics", True)
         super(FCLFieldMixin, self).__init__(*args, **kwargs)
@@ -31,7 +31,7 @@ class FCLCheckboxWidgetWithOthers(forms.MultiWidget):
             other_widgets[name] = widget
 
         self.choice_widget = forms.CheckboxSelectMultiple(attrs)
-        widgets = {**{"choices": self.choice_widget}, **other_widgets}
+        widgets = {"choices": self.choice_widget, **other_widgets}
         super(FCLCheckboxWidgetWithOthers, self).__init__(widgets, attrs)
 
     def get_context(self, name, value, attrs):

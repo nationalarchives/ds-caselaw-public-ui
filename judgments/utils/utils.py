@@ -1,18 +1,20 @@
 import math
 import re
-from typing import Any, Optional, TypedDict, Literal, overload
-from urllib.parse import parse_qs, urlparse
 from functools import lru_cache
+from time import time
+from typing import Any, Literal, Optional, TypedDict, overload
+from urllib.parse import parse_qs, urlparse
+
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
+from caselawclient.errors import DocumentNotFoundError
 from caselawclient.models.documents import Document, DocumentURIString
 from caselawclient.models.press_summaries import PressSummary
 from caselawclient.search_parameters import RESULTS_PER_PAGE
-from caselawclient.errors import DocumentNotFoundError
 from django.conf import settings
 from django.urls import reverse
 from ds_caselaw_utils.neutral import neutral_url
+
 from judgments.fixtures.stop_words import stop_words
-from time import time
 
 MAX_RESULTS_PER_PAGE = 50
 
@@ -62,7 +64,7 @@ def remove_unquoted_stop_words(query):
     'body of evidence', or are the only word, they are left alone.
     """
     if query is None:
-        return
+        return None
     if (
         re.match(r"^\"|^\'", query) is None
         and re.match(r"\"$|\'$", query) is None
@@ -189,13 +191,13 @@ def has_filters(query_params, exclude=["order", "per_page"]):
 
 @overload
 def get_document_by_uri(
-    document_uri: str, max_ttl: int = 900, cache_if_not_found: Literal[False] = False
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: Literal[False] = False,
 ) -> Document: ...
 
 
 @overload
 def get_document_by_uri(
-    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False,
 ) -> Optional[Document]: ...
 
 
@@ -205,13 +207,13 @@ def get_document_by_uri(document_uri: str, max_ttl: int = 900, cache_if_not_foun
     """
     ttl_hash = round(time() / max_ttl)
     return get_document_by_uri_from_cache(
-        DocumentURIString(document_uri), ttl_hash=ttl_hash, cache_if_not_found=cache_if_not_found
+        DocumentURIString(document_uri), ttl_hash=ttl_hash, cache_if_not_found=cache_if_not_found,
     )
 
 
 @lru_cache(maxsize=256)
 def get_document_by_uri_from_cache(
-    document_uri: DocumentURIString, ttl_hash: int = 0, cache_if_not_found: bool = False
+    document_uri: DocumentURIString, ttl_hash: int = 0, cache_if_not_found: bool = False,
 ) -> Optional[Document]:
     del ttl_hash  # ttl_hash is used to fake cache expiry with time
 

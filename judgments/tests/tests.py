@@ -210,7 +210,7 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/about-this-service")
         assert "noindex" not in response.content.decode("utf-8")
         assert "Find Case Law is a service that provides public access to court judgments" in response.content.decode(
-            "utf-8"
+            "utf-8",
         )
 
     def test_static_pages(self):

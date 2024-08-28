@@ -34,7 +34,7 @@ def test_transactional_licence_form(page: Page):
     page.get_by_label("Other (please specify)").click()
     page.locator("input[name='organization-tna_contacttype_other']").fill("Other organisation type")
     page.get_by_label(
-        "Please provide your organisation identifier (e.g. company number or charity registration number) "
+        "Please provide your organisation identifier (e.g. company number or charity registration number) ",
     ).fill("Organisation identifier")
     page.get_by_label("Please provide the name of any partners or organisations you are working with").fill("Partners")
     page.get_by_text("Next").click()
@@ -48,7 +48,7 @@ def test_transactional_licence_form(page: Page):
     page.get_by_label("Restricted access (e.g. only subscribers or research peers)").click()
     page.get_by_label("Public bodies").click()
     page.get_by_role("group", name="Which Individuals or communities will benefit").get_by_label(
-        "Other (please specify)"
+        "Other (please specify)",
     ).click()
     page.locator("input[name='project-purpose-benefit_other']").fill("Other benefit")
     page.get_by_text("Next").click()
@@ -63,7 +63,7 @@ def test_transactional_licence_form(page: Page):
         name="Will the computational analysis focus on specific individuals or specific groups of people?",
     ).get_by_label("No").click()
     page.get_by_role("group", name=" Will you anonymise individuals before you analyse records?").get_by_label(
-        "Yes"
+        "Yes",
     ).click()
     page.get_by_role("group", name="Will you regularly review algorithms for bias?").get_by_label("No").click()
     page.get_by_role("group", name="Will you abide by a code of ethics?").get_by_label("Yes").click()
@@ -76,10 +76,10 @@ def test_transactional_licence_form(page: Page):
     # Working practices - 2
     page.get_by_role("group", name="Will you make the entire record available online?").get_by_label("No").click()
     page.get_by_role("group", name="Will data extracted from these records be published online?").get_by_label(
-        "Yes"
+        "Yes",
     ).click()
     page.get_by_role("group", name="will you make your methodology available to others for scrutiny?").get_by_label(
-        "No"
+        "No",
     ).click()
     page.get_by_role("group", name="Will you analyse and publish findings online?").get_by_label("Yes").click()
     page.get_by_label("Directly inform or influence the decision of a third-party").click()
@@ -100,7 +100,7 @@ def test_transactional_licence_form(page: Page):
 
     # Additional comments
     page.get_by_label(
-        "Are there any additional comments you would like us to consider as part of your application?"
+        "Are there any additional comments you would like us to consider as part of your application?",
     ).fill("Additional comments")
     page.get_by_text("Next").click()
 
@@ -124,15 +124,15 @@ def test_transactional_licence_form(page: Page):
     expect(get_review_row(page, "Please provide the name of any partners or organisations")).to_have_text("Partners")
 
     expect(get_review_row(page, "Please give any project or product name associated with this work")).to_have_text(
-        "Project name"
+        "Project name",
     )
     expect(get_review_row(page, "Please share a link to the project or product site")).to_have_text(
-        "https://example.com"
+        "https://example.com",
     )
     expect(get_review_row(page, "What is the main purpose")).to_have_text(re.compile("Publish legal information"))
     expect(get_review_row(page, "What is the main purpose")).to_have_text(re.compile("Other purpose"))
     expect(get_review_row(page, "Which one best describes who will be able to access the outcomes")).to_have_text(
-        "Restricted access (e.g. only subscribers or research peers)"
+        "Restricted access (e.g. only subscribers or research peers)",
     )
     expect(get_review_row(page, "Which individuals or communities")).to_have_text(re.compile("Public bodies"))
     expect(get_review_row(page, "Which individuals or communities")).to_have_text(re.compile("Other benefit"))
@@ -143,7 +143,7 @@ def test_transactional_licence_form(page: Page):
         get_review_row(
             page,
             "Will the computational analysis focus on specific individuals or specific groups of people?",
-        )
+        ),
     ).to_have_text("No")
     expect(get_review_row(page, "Will you anonymise individuals before you analyse records?")).to_have_text("Yes")
     expect(get_review_row(page, "Will you regularly review algorithms for bias?")).to_have_text("No")
@@ -152,7 +152,7 @@ def test_transactional_licence_form(page: Page):
         get_review_row(
             page,
             "Will an impartial party review your work against an ethical framework?",
-        )
+        ),
     ).to_have_text("No")
 
     expect(get_review_row(page, "Will you make the entire record available online?")).to_have_text("No")
@@ -160,31 +160,31 @@ def test_transactional_licence_form(page: Page):
     expect(get_review_row(page, "will you make your methodology available to others for scrutiny?")).to_have_text("No")
     expect(get_review_row(page, "Will you analyse and publish findings online?")).to_have_text("Yes")
     expect(get_review_row(page, "Do you intend to use computational analysis")).to_have_text(
-        re.compile("Directly inform or influence the decision of a third-party")
+        re.compile("Directly inform or influence the decision of a third-party"),
     )
     expect(get_review_row(page, "Will you notify people when they are using generative AI")).to_have_text(
-        "Not using Generative AI"
+        "Not using Generative AI",
     )
     expect(
         get_review_row(
             page,
             "Will you explain how the limits of the Find Case Law collection",
-        )
+        ),
     ).to_have_text("No")
 
     expect(get_review_row(page, "Licence holders must acknowledge and abide by all the 9 principles.")).to_have_text(
-        "Yes"
+        "Yes",
     )
 
     expect(get_review_row(page, "Please describe how you will meet the 9 principles as terms.")).to_have_text(
-        "Nine principles statement"
+        "Nine principles statement",
     )
 
     expect(
         get_review_row(
             page,
             "Are there any additional comments you would like us to consider as part of your application?",
-        )
+        ),
     ).to_have_text("Additional comments")
 
     # Editing responses

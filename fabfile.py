@@ -6,7 +6,7 @@ from invoke.tasks import task
 
 # Process .env file
 if os.path.exists(".env"):
-    with open(".env", "r") as f:
+    with open(".env") as f:
         for line in f.readlines():
             if not line or line.startswith("#") or "=" not in line:
                 continue
@@ -155,7 +155,7 @@ def translate(c):
             "-c",
             "python manage.py makemessages --no-obsolete --add-location file -l en_GB "
             + "&& python manage.py compilemessages",
-        ]
+        ],
     )
 
 
@@ -175,7 +175,7 @@ def test(c, test=None):
                 "mypy",
                 "ds_judgements_public_ui",
                 "judgments",
-            ]
+            ],
         )
         # Pytest
         subprocess.run(
@@ -185,7 +185,7 @@ def test(c, test=None):
                 "exec",
                 "django",
                 "pytest",
-            ]
+            ],
         )
     else:
         subprocess.run(["docker", "compose", "exec", "django", "pytest", test])
@@ -203,7 +203,7 @@ def e2etest(c, baseUrl="http://django:3000"):
             "compose",
             "build",
             "e2e_tests",
-        ]
+        ],
     )
     subprocess.run(["docker", "compose", "run", "e2e_tests", "pytest", "--base-url", baseUrl])
 
@@ -221,7 +221,7 @@ def coverage(c):
             "run",
             "-m",
             "pytest",
-        ]
+        ],
     )
     # Generate html report
     subprocess.run(
@@ -232,7 +232,7 @@ def coverage(c):
             "django",
             "coverage",
             "html",
-        ]
+        ],
     )
 
 

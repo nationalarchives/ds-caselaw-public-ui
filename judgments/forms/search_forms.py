@@ -43,7 +43,7 @@ class AdvancedSearchForm(forms.Form):
                 "placeholder": "Search...",
                 "id": "search_form",
                 "class": "search-term-component__search-term-input",
-            }
+            },
         ),
     )
     # Validation for multi-field fields such as `DateInputField` is done on the sub fields
@@ -78,7 +78,7 @@ class AdvancedSearchForm(forms.Form):
         widget=forms.TextInput(
             {
                 "class": "structured-search__limit-to-input",
-            }
+            },
         ),
         required=False,
     )
@@ -86,7 +86,7 @@ class AdvancedSearchForm(forms.Form):
         widget=forms.TextInput(
             {
                 "class": "structured-search__limit-to-input",
-            }
+            },
         ),
         required=False,
     )

@@ -10,8 +10,8 @@ from factories import JudgmentFactory, PressSummaryFactory
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
-    assert_response_not_contains_text,
     assert_response_contains_text,
+    assert_response_not_contains_text,
 )
 from judgments.views.detail import (
     NoNeutralCitationError,
@@ -154,7 +154,7 @@ class TestDocumentDownloadOptions:
         AND the descriptions refer to the document's type
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri=uri, document_noun=document_noun, is_published=True
+            uri=uri, document_noun=document_noun, is_published=True,
         )
         mock_pdf.return_value.size = 112
         mock_pdf.return_value.uri = "http://example.com/test.pdf"

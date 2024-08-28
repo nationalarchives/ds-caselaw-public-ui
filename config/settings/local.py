@@ -16,7 +16,7 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         "LOCATION": "",
-    }
+    },
 }
 
 # EMAIL
@@ -35,7 +35,7 @@ SECRET_KEY = "not-secret-whatsoever"
 # django-extensions
 # ------------------------------------------------------------------------------
 # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
-INSTALLED_APPS += ["django_extensions"]  # noqa F405
+INSTALLED_APPS += ["django_extensions"]  # F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------

@@ -15,7 +15,7 @@ def press_summaries(request, document_uri):
 
     if len(press_summaries) == 0:
         raise Http404
-    elif len(press_summaries) == 1:
+    if len(press_summaries) == 1:
         return redirect(
             reverse("detail", kwargs={"document_uri": press_summaries[0].uri}),
             permanent=False,

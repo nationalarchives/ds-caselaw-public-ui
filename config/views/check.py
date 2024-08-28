@@ -15,5 +15,5 @@ def status(request):
                 "current_size": document_cache_info.currsize,
                 "max_size": document_cache_info.maxsize,
             },
-        }
+        },
     )

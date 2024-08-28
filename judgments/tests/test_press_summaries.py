@@ -12,7 +12,7 @@ class TestPressSummaries(TestCase):
     @patch("judgments.views.press_summaries.TemplateResponse", autospec=True)
     @patch("judgments.views.press_summaries.get_press_summaries_for_document_uri")
     def test_view_returns_template_response_for_multiple_press_summaries(
-        self, mock_get_press_summaries_for_document_uri, mock_template_response
+        self, mock_get_press_summaries_for_document_uri, mock_template_response,
     ):
         press_summary_1 = PressSummaryFactory.build()
         press_summary_2 = PressSummaryFactory.build()

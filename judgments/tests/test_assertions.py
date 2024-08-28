@@ -1,5 +1,6 @@
 import pytest
 from django.test import TestCase
+
 from judgments.tests.utils.assertions import (
     assert_contains_html,
     assert_not_contains_html,
@@ -41,7 +42,7 @@ class TestAssertions(TestCase):
     def test_assert_contains_nested_html(self):
         contained_html = "<li><span>Item 2</span></li>"
         response = MockResponse(
-            "<html><ul><li><span>Item 1</span></li>" + contained_html + "<li><span>Item 3</span></li></html>"
+            "<html><ul><li><span>Item 1</span></li>" + contained_html + "<li><span>Item 3</span></li></html>",
         )
 
         try:

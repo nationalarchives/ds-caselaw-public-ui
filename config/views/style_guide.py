@@ -1,11 +1,12 @@
-from .template_view_with_context import TemplateViewWithContext
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
 from caselawclient.search_parameters import SearchParameters
 
-from judgments.utils import api_client
 from judgments.forms import AdvancedSearchForm
+from judgments.utils import api_client
+
+from .template_view_with_context import TemplateViewWithContext
 
 
 class StyleGuideView(TemplateViewWithContext):
@@ -16,7 +17,7 @@ class StyleGuideView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         query_text = "Iceland Foods Ltd v Aldi Stores Ltd"
         search_response = search_judgments_and_parse_response(
-            api_client, SearchParameters(query=query_text, order="-date")
+            api_client, SearchParameters(query=query_text, order="-date"),
         )
         search_results = search_response.results
         context["judgments_for_listing"] = search_results

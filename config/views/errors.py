@@ -1,6 +1,6 @@
-from django.views.generic import TemplateView
-from django.views import defaults as default_views
 from django.shortcuts import render
+from django.views import defaults as default_views
+from django.views.generic import TemplateView
 
 
 class BaseErrorView(TemplateView):
@@ -23,7 +23,7 @@ class BaseErrorView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         exception = kwargs.get("exception")
         return render(
-            request, self.template_name, self.get_context_data(exception=exception), status=self.get_error_status()
+            request, self.template_name, self.get_context_data(exception=exception), status=self.get_error_status(),
         )
 
     def get_error_status(self):

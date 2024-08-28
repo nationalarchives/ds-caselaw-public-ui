@@ -61,7 +61,7 @@ class OrganizationForm(FCLForm):
     title = "Step 3 - About your organisastion"
 
     agent_companyname = fields.FCLCharField(
-        label="4. What is the full legal name of your organisation?", max_length=100
+        label="4. What is the full legal name of your organisation?", max_length=100,
     )
     agent_companyname_other = fields.FCLCharField(
         label="5. Please enter any other names your organisation is known by",
@@ -264,7 +264,6 @@ class ReviewForm(FCLForm):
     # and a custom template, as once the `done` callback of the form-tools
     # wizard is called, the form data has been scrubbed from the session,
     # making amendments impossible.
-    pass
 
 
 FORMS = (

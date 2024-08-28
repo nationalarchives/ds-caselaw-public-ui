@@ -45,15 +45,15 @@ class Command(BaseCommand):
     def get_start_year(self, court):
         fallback_start_year = court.start_year
         start_year = self._get_year_of_first_document_in_order(
-            court.canonical_param, "date", "oldest", fallback_start_year
+            court.canonical_param, "date", "oldest", fallback_start_year,
         )
 
         if start_year < 2000:
             self.stdout.write(
                 self.style.WARNING(
                     f"Calculated start year of {start_year} seems improbable, \
-falling back to config value of {fallback_start_year}"
-                )
+falling back to config value of {fallback_start_year}",
+                ),
             )
             start_year = fallback_start_year
 
@@ -62,15 +62,15 @@ falling back to config value of {fallback_start_year}"
     def get_end_year(self, court):
         fallback_end_year = court.end_year
         end_year = self._get_year_of_first_document_in_order(
-            court.canonical_param, "-date", "newest", fallback_end_year
+            court.canonical_param, "-date", "newest", fallback_end_year,
         )
 
         if end_year > datetime.date.today().year:
             self.stdout.write(
                 self.style.WARNING(
                     f"Calculated end year of {end_year} is impossible, \
-falling back to config value of {fallback_end_year}"
-                )
+falling back to config value of {fallback_end_year}",
+                ),
             )
             end_year = fallback_end_year
 
@@ -78,7 +78,7 @@ falling back to config value of {fallback_end_year}"
 
     def _get_year_of_first_document_in_order(self, canonical_court_param, order, document_reference, fallback):
         search_response = search_judgments_and_parse_response(
-            api_client, SearchParameters(court=canonical_court_param, order=order)
+            api_client, SearchParameters(court=canonical_court_param, order=order),
         )
 
         first_document = search_response.results[0]
@@ -87,15 +87,15 @@ falling back to config value of {fallback_end_year}"
             year = first_document.date.year
             self.stdout.write(
                 self.style.NOTICE(
-                    f"{document_reference.capitalize()} document: {first_document.uri} @ {first_document.date.year}"
-                )
+                    f"{document_reference.capitalize()} document: {first_document.uri} @ {first_document.date.year}",
+                ),
             )
         else:
             year = fallback
             self.stdout.write(
                 self.style.WARNING(
                     f"Couldn't find date of {document_reference} document {first_document.uri}, \
-falling back to config value of {fallback}"
-                )
+falling back to config value of {fallback}",
+                ),
             )
         return year

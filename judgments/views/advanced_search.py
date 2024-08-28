@@ -61,7 +61,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
     * Given anything except an HTTP GET request raise an error
     """
     # We should only be handling GET requests here since we aren't changing anything on the server
-    if not request.method == "GET":
+    if request.method != "GET":
         # Raise an error if the user has tried any non GET HTTP requests.
         return HttpResponseBadRequest("GET requests only")
     else:

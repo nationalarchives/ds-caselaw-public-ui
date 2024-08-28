@@ -1,6 +1,7 @@
 from unittest.mock import patch
-from django.test import TestCase
+
 import lxml.html
+from django.test import TestCase
 from waffle.testutils import override_flag
 
 

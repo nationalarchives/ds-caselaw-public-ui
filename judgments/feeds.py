@@ -37,7 +37,7 @@ class JudgmentAtomFeed(Atom1Feed):
             "",
             {
                 "rel": "last",
-                "href": f'{self.feed["feed_url"]}?page={str(pagination["number_of_pages"])}',
+                "href": f'{self.feed["feed_url"]}?page={pagination["number_of_pages"]!s}',
             },
         )
 
@@ -49,7 +49,7 @@ class JudgmentAtomFeed(Atom1Feed):
                 "",
                 {
                     "rel": "next",
-                    "href": f'{self.feed["feed_url"]}?page={str(pagination["next_page"])}',
+                    "href": f'{self.feed["feed_url"]}?page={pagination["next_page"]!s}',
                 },
             )
 
@@ -59,7 +59,7 @@ class JudgmentAtomFeed(Atom1Feed):
                 "",
                 {
                     "rel": "previous",
-                    "href": f'{self.feed["feed_url"]}?page={str(pagination["prev_page"])}',
+                    "href": f'{self.feed["feed_url"]}?page={pagination["prev_page"]!s}',
                 },
             )
 

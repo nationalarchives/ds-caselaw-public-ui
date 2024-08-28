@@ -98,7 +98,7 @@ class TestCourtContentHelpers(TestCase):
             [
                 call("markdown/court_descriptions/ewhc_mercantile.md"),
                 call("markdown/court_descriptions/default.md"),
-            ]
+            ],
         )
         open.assert_called_with(fs_path)
         self.assertEqual(result, "<h1>Title</h1>\n<p>The Content.</p>\n")
@@ -117,7 +117,7 @@ class TestCourtContentHelpers(TestCase):
                 call("images/court_crests/ewhc_mercantile.png"),
                 call("images/court_crests/ewhc_mercantile.jpg"),
                 call("images/court_crests/ewhc_mercantile.svg"),
-            ]
+            ],
         )
         static.assert_called_with("images/court_crests/ewhc_mercantile.svg")
         self.assertEqual(result, static_path)
@@ -132,6 +132,6 @@ class TestCourtContentHelpers(TestCase):
                 call("images/court_crests/ewhc_mercantile.png"),
                 call("images/court_crests/ewhc_mercantile.jpg"),
                 call("images/court_crests/ewhc_mercantile.svg"),
-            ]
+            ],
         )
         self.assertEqual(result, None)

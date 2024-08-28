@@ -1,12 +1,12 @@
 import json
+from typing import Union
 from urllib.parse import unquote
 
 from django.core.exceptions import SuspiciousOperation
-
-from config.settings.base import env
 from waffle import flag_is_active
 from waffle.models import Flag
-from typing import Union
+
+from config.settings.base import env
 
 
 def waffle_flags(request):

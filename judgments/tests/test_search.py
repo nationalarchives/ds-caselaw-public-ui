@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+import lxml
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 from ds_caselaw_utils import courts as all_courts
@@ -15,7 +16,6 @@ from judgments.tests.utils.assertions import (
     assert_response_contains_text,
     assert_response_not_contains_text,
 )
-import lxml
 
 
 class TestBrowseResults(TestCase):
@@ -45,7 +45,7 @@ class TestNoNCN(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
         response = self.client.get(r"/judgments/search?query=[2024]%20EAT%209999")
         self.assertContains(
-            response, "There is no judgment with the Neutral Citation of [2024] EAT 9999 in our database.", html=True
+            response, "There is no judgment with the Neutral Citation of [2024] EAT 9999 in our database.", html=True,
         )
 
 
@@ -53,7 +53,7 @@ class TestSearchResults(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_with_populated_court_dates(
-        self, mock_search_judgments_and_parse_response, mock_api_client
+        self, mock_search_judgments_and_parse_response, mock_api_client,
     ):
         """
         GIVEN a client for making HTTP requests
@@ -96,7 +96,7 @@ class TestSearchResults(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_without_populated_court_dates(
-        self, mock_search_judgments_and_parse_response, mock_api_client
+        self, mock_search_judgments_and_parse_response, mock_api_client,
     ):
         """
         GIVEN a client for making HTTP requests
@@ -138,7 +138,7 @@ class TestSearchResults(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_warns_user_with_date_before_minimum_warning_year(
-        self, mock_search_judgments_and_parse_response, mock_api_client
+        self, mock_search_judgments_and_parse_response, mock_api_client,
     ):
         """
         GIVEN a client for making HTTP requests
@@ -163,7 +163,7 @@ class TestSearchResults(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_not_warning_user_with_date_after_minimum_warning_year(
-        self, mock_search_judgments_and_parse_response, mock_api_client
+        self, mock_search_judgments_and_parse_response, mock_api_client,
     ):
         """
         GIVEN a client for making HTTP requests
@@ -188,7 +188,7 @@ class TestSearchResults(TestCase):
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_judgment_advanced_search_not_warning_user_with_no_results(
-        self, mock_search_judgments_and_parse_response, mock_api_client
+        self, mock_search_judgments_and_parse_response, mock_api_client,
     ):
         """
         GIVEN a client for making HTTP requests
@@ -307,7 +307,7 @@ class TestSearchResults(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
         response = self.client.get(
-            "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=2011"
+            "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=2011",
         )
 
         expected_applied_filters_html = """

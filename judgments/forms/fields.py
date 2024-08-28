@@ -73,7 +73,7 @@ class DateRangeInputField(DateInputField):
                 If any of the field are blank then None is returned.
 
         """
-        day, month, year = [int(value) if value else None for value in data_list]
+        day, month, year = (int(value) if value else None for value in data_list)
         if not year:
             return None
         if self.date_type == "from":
