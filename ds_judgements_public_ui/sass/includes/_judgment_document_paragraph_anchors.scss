@@ -74,7 +74,8 @@
     }
   }
 
-  &__copy-link-helptext--top {
+  &__copy-link-helptext--top,
+  &__copy-link-tooltip--top {
     right: auto;
     left: -20px;
     top: -40px;
@@ -88,7 +89,8 @@
     }
   }
 
-  &__copy-link-helptext--show {
+  &__copy-link-helptext--show,
+  &__copy-link-tooltip--show {
     opacity: 1;
   }
 
