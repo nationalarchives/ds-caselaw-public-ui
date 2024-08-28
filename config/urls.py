@@ -19,7 +19,7 @@ from .views.structured_search import StructuredSearchView
 from .views.terms_and_policies import TermsAndPoliciesView
 from .views.contact_us import ContactUsView
 from .views.courts_and_tribunals_in_fcl import CourtsAndTribunalsInFclView
-from .views.check import CheckView
+from .views.check import status
 from .views.how_to import HowToUseThisService
 from .views.privacy_notice import PrivacyNotice
 from .views.schema import schema
@@ -122,7 +122,7 @@ urlpatterns = [
     ),
     path(
         "check",
-        CheckView.as_view(),
+        status,
         name="check",
     ),
     path(
