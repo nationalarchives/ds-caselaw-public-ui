@@ -4,9 +4,6 @@
   @media (max-width: $grid-breakpoint-medium) {
     flex-direction: column-reverse;
   }
-  @media only screen and (min-width: 530px) {
-    padding: 0 $space-17;
-  }
 }
 
 .govuk-grid-column-one-third {
