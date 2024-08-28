@@ -7,3 +7,19 @@ custom_blocks="flag"
 
 [tool.ruff]
 line-length = 120
+
+[tool.ruff.lint]
+ignore = ["E501", "G004", "PLR2004", "RUF005", "RUF012", "UP040"] # long lines, fstrings in logs, magic values, consider not concat, mutable classbits, type instead of TypeAlias
+extend-select = ["W", "B", "Q", "C90", "I", "UP", "YTT", "ASYNC", "S", "BLE", "A", "COM", "C4", "DTZ", "T10", "DJ", "EM", "EXE", "FA",
+                 "ISC", "ICN", "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "PTH",
+                 "FIX", "PGH", "PL", "TRY", "FLY", "PERF", "RUF"]
+unfixable = ["ERA"]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"config/*" = ["PGH004", # vague NOQA
+              "FIX002"] # TODO: fix this"
+"*" = ["RET505"]  # disagree with if X: return Y else: return Z being wrong
+"manage.py" = ["B904"]
+"*/tests/*" = ["S101"]
+"fabfile.py" = ["S603", "S607", "PLW1510",  # TODO: should probably rework these
+               "T201"]  # OK to have prints here
