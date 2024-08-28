@@ -258,7 +258,7 @@ LOGGING = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 APPEND_SLASH = False
-WHITENOISE_MAX_AGE = 900  # set Cache-Control header on static-served images
+WHITENOISE_MAX_AGE = 3600  # set Cache-Control header on static-served images
 
 MARKLOGIC_HOST = env("MARKLOGIC_HOST", default=None)
 MARKLOGIC_USER = env("MARKLOGIC_USER", default=None)
