@@ -129,20 +129,25 @@ def detail(request, document_uri):
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
     context["pdf_uri"] = pdf.uri
 
+    breadcrumbs = []
+
+    if query:
+        breadcrumbs.append({"url": "/judgments/search?query=" + query, "text": f'Search results for "{query}"'})
+
     if document.document_noun == "press summary" and context["linked_document_uri"]:
-        breadcrumbs = [
+        breadcrumbs.append(
             {
                 "url": "/" + context["linked_document_uri"],
                 "text": linked_doc_title(document),
-            },
+            }
+        )
+        breadcrumbs.append(
             {
                 "text": "Press Summary",
-            },
-        ]
+            }
+        )
     else:
-        breadcrumbs = [
-            {"text": document.name},
-        ]
+        breadcrumbs.append({"text": document.name})
 
     context["breadcrumbs"] = breadcrumbs
     context["feedback_survey_type"] = "judgment"  # TODO: update the survey to allow for generalisation to `document`
