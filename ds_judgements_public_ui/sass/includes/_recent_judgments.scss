@@ -6,6 +6,7 @@
   }
 
   &__container-beta-v3 {
+    @include container;
     padding-top: $space-3;
     padding-bottom: $space-8;
     @media (max-width: $grid-breakpoint-medium) {
