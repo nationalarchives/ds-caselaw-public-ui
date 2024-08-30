@@ -22,7 +22,7 @@ repos:
       - id: ruff-format
 
   - repo: https://github.com/Riverside-Healthcare/djLint
-    rev: v1.34.2
+    rev: v1.34.5
     hooks:
       - id: djlint-django
         require_serial: true
