@@ -73,6 +73,7 @@
 
     a:focus {
       outline-color: $color-white;
+      outline-offset: 0;
     }
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
