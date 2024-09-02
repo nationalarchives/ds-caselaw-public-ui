@@ -298,3 +298,13 @@
     display: none;
   }
 }
+
+.govuk-grid-column-two-thirds__about_page {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px 15px;
+  @media (min-width: 40.0625em) {
+    width: 66.6666666667%;
+    float: left;
+  }
+}
