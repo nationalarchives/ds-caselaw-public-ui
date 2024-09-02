@@ -61,6 +61,10 @@
 
   a {
     @include link-on-dark-bg;
+
+    &:focus {
+      color: $color-white;
+    }
   }
 
   &__base-paragraph {
