@@ -1,5 +1,6 @@
 import logging
 import os
+import urllib
 from typing import Any
 
 import requests
@@ -14,6 +15,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
+from judgments.forms import AdvancedSearchForm
 from judgments.models.document_pdf import DocumentPdf
 from judgments.utils import (
     get_document_by_uri,
@@ -129,20 +131,29 @@ def detail(request, document_uri):
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
     context["pdf_uri"] = pdf.uri
 
+    form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
+
+    breadcrumbs = []
+
+    if query and form.is_valid():
+        query_param_string = urllib.parse.urlencode(form.cleaned_data, doseq=True)
+
+        breadcrumbs.append({"url": "/judgments/search?" + query_param_string, "text": f'Search results for "{query}"'})
+
     if document.document_noun == "press summary" and context["linked_document_uri"]:
-        breadcrumbs = [
+        breadcrumbs.append(
             {
                 "url": "/" + context["linked_document_uri"],
                 "text": linked_doc_title(document),
-            },
+            }
+        )
+        breadcrumbs.append(
             {
                 "text": "Press Summary",
-            },
-        ]
+            }
+        )
     else:
-        breadcrumbs = [
-            {"text": document.name},
-        ]
+        breadcrumbs.append({"text": document.name})
 
     context["breadcrumbs"] = breadcrumbs
     context["feedback_survey_type"] = "judgment"  # TODO: update the survey to allow for generalisation to `document`

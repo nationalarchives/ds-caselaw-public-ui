@@ -14,8 +14,8 @@
       <span class="judgment-listing__judgment">
         <span>
           <span class="judgment-listing__title">
-            {% if query %}
-              <a href="{% url 'detail' item.uri %}?query={{ query | urlencode }}">{{ item.name }}</a>
+            {% if query_param_string %}
+              <a href="{% url 'detail' item.uri %}?{{ query_param_string }}">{{ item.name }}</a>
             {% else %}
               <a href="{% url 'detail' item.uri %}">{{ item.name }}</a>
             {% endif %}

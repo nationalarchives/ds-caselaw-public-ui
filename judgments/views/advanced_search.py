@@ -191,6 +191,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
                 "page_title": _("results.search.title"),
                 "show_no_exact_ncn_warning": show_no_exact_ncn_warning(search_response.results, query_text, page),
                 "query_params": query_params,
+                "query_param_string": urllib.parse.urlencode(form.cleaned_data, doseq=True),
             }
 
             # If we have a search query, stick it in the breadcrumbs. Otherwise, don't bother.
