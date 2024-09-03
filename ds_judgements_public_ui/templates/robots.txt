@@ -5,4 +5,5 @@ Allow: /how-to-use-this-service
 Allow: /accessibility-statement
 Allow: /open-justice-licence
 Allow: /terms-of-use
+Allow: /$
 Disallow: /
