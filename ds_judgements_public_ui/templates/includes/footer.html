@@ -7,13 +7,13 @@
         <h3>{% translate "footer.websites" %}</h3>
         <ul>
           <li>
-            <a href="{% translate "footer.legislation.link" %}">{% translate "footer.legislation" %}</a>
+            <a class="{{ link_class_prefix }}-legislation-link" href="{% translate "footer.legislation.link" %}">{% translate "footer.legislation" %}</a>
           </li>
           <li>
-            <a href="{% translate "footer.gazette.link" %}">{% translate "footer.gazette" %}</a>
+            <a class="{{ link_class_prefix }}-gazette-link" href="{% translate "footer.gazette.link" %}">{% translate "footer.gazette" %}</a>
           </li>
           <li>
-            <a href="{% translate "footer.judiciary.link" %}">{% translate "footer.judiciary" %}</a>
+            <a class="{{ link_class_prefix }}-judicaiary-link" href="{% translate "footer.judiciary.link" %}">{% translate "footer.judiciary" %}</a>
           </li>
         </ul>
       </div>
@@ -21,16 +21,16 @@
         <h3>{% translate "footer.about" %}</h3>
         <ul>
           <li>
-            <a href="{% url "about_this_service" %}">{% translate "aboutthisservice.titleshort" %}</a>
+            <a class="{{ link_class_prefix }}-about-this-service-link" href="{% url "about_this_service" %}">{% translate "aboutthisservice.titleshort" %}</a>
           </li>
           <li>
-            <a href="{% url "how_to_use_this_service" %}">{% translate "howtousethisservice.titleshort" %}</a>
+            <a class="{{ link_class_prefix }}-how-to-use-this-service-link" href="{% url "how_to_use_this_service" %}">{% translate "howtousethisservice.titleshort" %}</a>
           </li>
           <li>
-            <a href="{% url "publishing_policy" %}">{% translate "publishingpolicy.titleshort" %}</a>
+            <a class="{{ link_class_prefix }}-publishing-policy-link" href="{% url "publishing_policy" %}">{% translate "publishingpolicy.titleshort" %}</a>
           </li>
           <li>
-            <a href="mailto:{% translate "caselaw.email" %}">{% translate "footer.contact" %}</a>
+            <a class="{{ link_class_prefix }}-contact-link" href="mailto:{% translate "caselaw.email" %}">{% translate "footer.contact" %}</a>
           </li>
         </ul>
       </div>
@@ -38,13 +38,13 @@
         <h3>{% translate "footer.legal" %}</h3>
         <ul>
           <li>
-            <a href="{% url "terms_of_use" %}">{% translate "terms.title" %}</a>
+            <a class="{{ link_class_prefix }}-terms-of-use-link" href="{% url "terms_of_use" %}">{% translate "terms.title" %}</a>
           </li>
           <li>
-            <a href="{% translate "footer.cookies.link" %}">{% translate "footer.cookies" %}</a>
+            <a class="{{ link_class_prefix }}-cookies-link" href="{% translate "footer.cookies.link" %}">{% translate "footer.cookies" %}</a>
           </li>
           <li>
-            <a href="{% url "accessibility_statement" %}">{% translate "accessibilitystatement.title" %}</a>
+            <a class="{{ link_class_prefix }}-accessibility-statement-link" href="{% url "accessibility_statement" %}">{% translate "accessibilitystatement.title" %}</a>
           </li>
         </ul>
       </div>

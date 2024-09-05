@@ -154,7 +154,21 @@
       {% endif %}
     {% endblock feedback_cta %}
 
-    {% include "includes/footer.html" %}
+    {% if variant_homepage %}
+      {% if v1_homepage %}
+        {% include "includes/footer.html" with link_class_prefix="variant-1" %}
+      {% endif %}
+
+      {% if v2_homepage %}
+        {% include "includes/footer.html" with link_class_prefix="variant-2" %}
+      {% endif %}
+
+      {% if v3_homepage %}
+        {% include "includes/footer.html" with link_class_prefix="variant-3" %}
+      {% endif %}
+    {% else %}
+      {% include "includes/footer.html" with link_class_prefix="variant-0" %}
+    {% endif %}
 
     {% block javascript %}
       <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>

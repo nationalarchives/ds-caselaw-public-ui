@@ -1,12 +1,12 @@
 {% load static %}
 <ul class="cards-homepage">
   <li>
-    {% include "includes/card_homepage.html" with title="Advanced search" body="Adjust your search by date, court or tribunal, party name or judge name." link_route="search" image_src="/images/advanced-search.jpg" %}
+    {% include "includes/card_homepage.html" with title="Advanced search" body="Adjust your search by date, court or tribunal, party name or judge name." link_route="search" image_src="/images/advanced-search.jpg" link_class="variant-3-advanced-search-link" %}
   </li>
   <li>
-    {% include "includes/card_homepage.html" with title="Browse by court or tribunal" body="View judgments and decisions from specific courts and tribunals." link_route="courts_and_tribunals" image_src="/images/court-crest.png" %}
+    {% include "includes/card_homepage.html" with title="Browse by court or tribunal" body="View judgments and decisions from specific courts and tribunals." link_route="courts_and_tribunals" image_src="/images/court-crest.png" link_class="variant-3-browse-link" %}
   </li>
   <li>
-    {% include "includes/card_homepage.html" with title="Help and Support" body="Learn how our search works or what specific courts and tribunals do." link_route="how_to_use_this_service" image_src="/images/support-and-guidance.png" %}
+    {% include "includes/card_homepage.html" with title="Help and Support" body="Learn how our search works or what specific courts and tribunals do." link_route="how_to_use_this_service" image_src="/images/support-and-guidance.png" link_class="variant-3-help-and-support-link" %}
   </li>
 </ul>
