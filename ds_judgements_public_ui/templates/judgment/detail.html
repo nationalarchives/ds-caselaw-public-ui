@@ -11,30 +11,6 @@
   {% include "includes/judgment_text_toolbar.html" %}
 {% endblock precontent %}
 {% block content %}
-  <div id="js-document-navigation-links-start"
-       class="document-navigation-links">
-    {% if query %}
-      <span class="document-navigation-links__query-wrapper query-wrapper"
-            id="js-document-navigation-links-query-container">
-        <span class="document-navigation-links__search-query-text-container query"
-              id="js-document-navigation-links-query-text">
-          Query:
-          <span class="document-navigation-links__query-text">{{ query }}</span>
-        </span>&nbsp;
-        <span class="document-navigation-links__match-count-wrapper matches">
-          (<span class="document-navigation-links__match-count count">{{ number_of_mentions }}</span> matches)
-          <a class="document-navigation-links__remove-query-link"
-             title="Remove query highlights"
-             href="{% url 'detail' document_uri %}">Remove query highlights</a>
-        </span>
-      </span>
-    {% endif %}
-    <span class="down-wrapper">
-      <a id="end-of-document-link"
-         class="down document-navigation-link"
-         href="#end-of-document">Skip to end</a>
-    </span>
-  </div>
   <div id="start-of-document"></div>
   {% if document %}
     {% autoescape off %}
@@ -44,21 +20,7 @@
     {{ content }}
   {% endif %}
   {% include "includes/judgment_end_document_marker.html" %}
-  <div class="document-navigation" id="js-document-navigation">
-    <div class="document-navigation__summary">
-      <h2>{{ page_title }}</h2>
-      <p>{{ judgment_ncn }}</p>
-    </div>
-
-    <div id="js-document-navigation-links-end"
-         class="document-navigation-links {% if query %}with-query{% endif %}">
-      <span class="up-wrapper">
-        <a id="start-of-document-link"
-           class="up document-navigation-link"
-           href="#start-of-document">Back to top</a>
-      </span>
-    </div>
-  </div>
+  {% include "includes/judgment_navigation.html" %}
 {% endblock content %}
 {% block postcontent %}
   {% include "includes/judgment_text_download_options.html" %}

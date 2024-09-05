@@ -1,0 +1,41 @@
+<div id="js-document-navigation-links-start"
+     class="document-navigation-links">
+  {% if query %}
+    <span class="document-navigation-links__query-wrapper"
+          id="js-document-navigation-links-query-container">
+      <span class="document-navigation-links__search-query-text-container document-navigation-links__query"
+            id="js-document-navigation-links-query-text">
+        Query:
+        <span class="document-navigation-links__query-text">{{ query }}</span>
+      </span>&nbsp;
+      <span class="document-navigation-links__match-count-wrapper document-navigation-links__matches">
+        (<span class="document-navigation-links__match-count document-navigation-links__link-count">{{ number_of_mentions }}</span> matches)
+        <a class="document-navigation-links__remove-query-link"
+           title="Remove query highlights"
+           href="{% url 'detail' document_uri %}">Remove query highlights</a>
+      </span>
+    </span>
+  {% endif %}
+
+  <span class="document-navigation-links__down-wrapper">
+    <a id="end-of-document-link"
+       class="document-navigation-links__link-down document-navigation-link"
+       href="#end-of-document">Skip to end</a>
+  </span>
+</div>
+
+<div class="document-navigation" id="js-document-navigation">
+  <div class="document-navigation__summary">
+    <h2>{{ page_title }}</h2>
+    <p>{{ judgment_ncn }}</p>
+  </div>
+
+  <div id="js-document-navigation-links-end"
+       class="document-navigation-links {% if query %}with-query{% endif %}">
+    <span class="document-navigation-links__up-wrapper">
+      <a id="start-of-document-link"
+         class="document-navigation-links__link-up document-navigation-link"
+         href="#start-of-document">Back to top</a>
+    </span>
+  </div>
+</div>

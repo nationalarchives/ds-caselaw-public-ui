@@ -126,14 +126,16 @@ $(() => {
     );
 
     if (queryContainer) {
-        const countContainer = $(queryContainer).find(".count");
+        const countContainer = $(queryContainer).find(
+            ".document-navigation-links__link-count",
+        );
         totalMatches = parseInt(countContainer.text());
 
         $(queryContainer).before(
-            `<span class="left-wrapper"><a class="left" title="Previous match" href="#">Previous</a></span>`,
+            `<span class="document-navigation-links__left-wrapper"><a class="document-navigation-links__link-left" title="Previous match" href="#">Previous</a></span>`,
         );
         $(queryContainer).after(
-            `<span class="right-wrapper"><a class="right" href="#" title="Next match">Next</a></span>`,
+            `<span class="document-navigation-links__right-wrapper"><a class="document-navigation-links__link-right" href="#" title="Next match">Next</a></span>`,
         );
         positionContainer = $(
             `<span class="document-navigation-links__match-position position">0</span>`,
@@ -142,7 +144,9 @@ $(() => {
         positionContainer.insertBefore(countContainer);
         $($.parseHTML(" of ")).insertBefore(countContainer);
 
-        leftLink = $(backToTopLinkContainer).find(".left");
+        leftLink = $(backToTopLinkContainer).find(
+            ".document-navigation-links__link-left",
+        );
 
         if (
             window.location.hash &&
@@ -158,7 +162,9 @@ $(() => {
             document.getElementById(`mark_${currentMatch}`).scrollIntoView();
         });
 
-        rightLink = $(backToTopLinkContainer).find(".right");
+        rightLink = $(backToTopLinkContainer).find(
+            ".document-navigation-links__right-wrapper",
+        );
 
         rightLink.on("click", function (event) {
             event.preventDefault();
