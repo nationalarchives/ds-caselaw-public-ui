@@ -21,6 +21,9 @@
         <a href="#section-understanding">Understanding a judgment or decision</a>
       </li>
       <li class="anchor-links__list-option">
+        <a href="#section-case-law-data">Case Law as data</a>
+      </li>
+      <li class="anchor-links__list-option">
         <a href="#section-contact">How to contact us</a>
       </li>
     </ul>
@@ -181,6 +184,21 @@
       You may find that some judgments and decisions have reporting restrictions. In these cases the relevant parts
       of the judgment will be obscured.
     </p>
+    <h2 id="section-case-law-data">Case Law as data</h2>
+    <p>The Find Case Law API allows you to access court judgments and tribunal decisions held by Find Case Law as data.</p>
+    <p>‘API’ stands for ‘Application Programming Interface’, meaning software that allows two computer applications to share information.</p>
+    <p>Our API provides access to judgments and decisions held by Find Case Law that have been converted from Microsoft Word documents into XML, a machine-readable file format. These have been automatically marked up according to <a href="https://groups.oasis-open.org/communities/tc-community-home2?CommunityKey=3425f20f-b704-4076-9fab-018dc7d3efbe">the international data standard, LegalDocML</a>, and validated by our legal editorial team. This data includes:</p>
+    <ol>
+      <li>Neutral Citation</li>
+      <li>Court / Chamber</li>
+      <li>Date</li>
+      <li>Case Name</li>
+      <li>Party Names</li>
+      <li>Judges Names</li>
+    </ol>
+    <p>The Find Case Law API makes this LegalDocML data accessible through <a href="https://en.wikipedia.org/wiki/Atom_(web_standard)">Atom feeds</a>, which allow you to keep track of recently published or updated judgments. You can find more details and guidelines in <a href="https://nationalarchives.github.io/ds-find-caselaw-docs/public">our API documentation on GitHub</a>.</p>
+    <p>In most cases ‘Neutral Citation’ is used to uniquely identify judgments and decisions.</p>
+
     <h2 id="section-contact">How to contact us</h2>
     <p>
       You can get in touch by emailing
