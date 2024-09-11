@@ -41,6 +41,8 @@ class TestAtomFeed(TestCase):
         self.assertIn("<entry>", decoded_response)
         # and it contains actual content - neither neutral citation or court appear in the feed to test.
         self.assertIn("A SearchResult name!", decoded_response)
+        # and that the author is listed as the court, not the submitter.
+        self.assertIn("<author><name>court</name></author>", decoded_response)
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
     def test_bad_page_404(self, mock_search_judgments_and_parse_response):
