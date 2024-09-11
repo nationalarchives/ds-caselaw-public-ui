@@ -190,10 +190,6 @@ msgid "home"
 msgstr "Find case law"
 
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
-msgid "howtousethisservice.title"
-msgstr "How to use the Find Case Law service"
-
-#: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 msgid "courtstructure.link"
 msgstr ""
 "https://www.judiciary.uk/about-the-judiciary/the-justice-system/court-"
