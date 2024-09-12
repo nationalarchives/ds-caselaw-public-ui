@@ -308,3 +308,32 @@
     float: left;
   }
 }
+
+.govuk-grid-column-one-third__info_cards_help {
+  max-width: 20rem;
+  background-color: $color-light-grey;
+  padding: $space-1 $space-4;
+  margin: $space-2;
+  border-top: 4px solid $color-yellow;
+  text-decoration: underline;
+  text-decoration-color: $color-aqua-blue;
+  &:hover {
+    background-color: hsl(210, 6%, 88%);
+    text-decoration: none;
+  }
+  @media (max-width: $grid-breakpoint-medium) {
+    height: 6rem;
+    min-width: 150%;
+  }
+
+  @media (min-width: 770px) {
+    height: 12rem;
+    padding-bottom: $space-10;
+  }
+
+  @media (min-width: $grid-breakpoint-large) {
+    height: 11rem;
+    max-width: 23rem;
+    padding-bottom: none;
+  }
+}

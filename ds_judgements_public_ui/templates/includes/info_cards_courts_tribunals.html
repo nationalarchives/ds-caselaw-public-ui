@@ -1,0 +1,29 @@
+{% load static i18n %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2>You may also be interested in</h2>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds__info_terms_use">
+    <a href="{% url 'publishing_policy' %}"  class="grid-background-link">
+      <div class="govuk-grid-column-one-third__info_terms_use">
+        <h3 class="govuk-grid-column-one-third__grid_info_heading">Publishing policy</h3>
+        <p class="govuk-grid-column-one-third__grid_info_card_text">Read how Find Case Law receives and publishes judgments and decisions.</p>
+      </div>
+    </a>
+    <a href="{% url 'how_to_search_find_case_law' %}" class="grid-background-link">
+      <div class="govuk-grid-column-one-third__info_terms_use">
+        <h3 class="govuk-grid-column-one-third__grid_info_heading">How to search Find Case Law</h3>
+        <p class="govuk-grid-column-one-third__grid_info_card_text">Find advice on exactly how to use this service’s search function.</p>
+      </div>
+    </a>
+    <a href="{% url 'contact_us' %}" class="grid-background-link">
+      <div class="govuk-grid-column-one-third__info_terms_use">
+        <h3 class="govuk-grid-column-one-third__grid_info_heading">Contact us</h3>
+        <p class="govuk-grid-column-one-third__grid_info_card_text">Find out how you can contact the Find Case Law team.</p>
+      </div>
+    </a>
+  </div>
+</div>

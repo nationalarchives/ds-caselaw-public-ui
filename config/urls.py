@@ -19,6 +19,12 @@ from .views.structured_search import StructuredSearchView
 from .views.terms_and_policies import TermsAndPoliciesView
 from .views.contact_us import ContactUsView
 from .views.courts_and_tribunals_in_fcl import CourtsAndTribunalsInFclView
+from .views.help_and_guidance import HelpAndGuidanceView
+from .views.how_to_search_find_case_law import HowToSearchFindCaseLawView
+from .views.understanding_judgements_and_decisions import UnderstandingJudgmentsAndDecisionsView
+from .views.the_find_case_law_api import TheFindCaseLawApiView
+
+
 from .views.check import status
 from .views.how_to import HowToUseThisService
 from .views.privacy_notice import PrivacyNotice
@@ -119,6 +125,26 @@ urlpatterns = [
         "courts-and-tribunals-in-fcl",
         CourtsAndTribunalsInFclView.as_view(),
         name="courts_and_tribunals_in_fcl",
+    ),
+    path(
+        "help-and-guidance",
+        HelpAndGuidanceView.as_view(),
+        name="help_and_guidance",
+    ),
+    path(
+        "how-to-search-find-case-law",
+        HowToSearchFindCaseLawView.as_view(),
+        name="how_to_search_find_case_law",
+    ),
+    path(
+        "understanding-judgments-and-decisions",
+        UnderstandingJudgmentsAndDecisionsView.as_view(),
+        name="understanding_judgments_and_decisions",
+    ),
+    path(
+        "the-find-case-law-api",
+        TheFindCaseLawApiView.as_view(),
+        name="the_find_case_law_api",
     ),
     path(
         "check",

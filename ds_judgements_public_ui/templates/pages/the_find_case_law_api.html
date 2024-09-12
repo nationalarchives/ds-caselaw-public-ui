@@ -1,0 +1,96 @@
+{% extends "layouts/static_content.html" %}
+{% load i18n %}
+{% block static_content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-grid-column-one-third">
+        <h1 class="hidden-h1-mobile">The Find Case Law API</h1>
+        <div class="anchor-links">
+          <h3 class="anchor-links__header">On this page</h3>
+          <ul class="anchor-links__list">
+            <li class="anchor-links__list-option">
+              <a href="#section-what">What the Find Case Law API does</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-specifications">API specifications</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-feedback">Give us your feedback</a>
+            </li>
+            <li class="anchor-links__list-option">
+              <a href="#section-interested-in">You may also be interested in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+        <p class="date-time-info-page">
+          <small>Last updated on
+            <time datetime="20-14-2024">16th September2024</time>
+          </small>
+        </p>
+        <h1 class="hidden-h1-desktop">The Find Case Law API</h1>
+        <section>
+          <h2 id="section-what">What the Find Case Law API does</h2>
+          <p>The Find Case Law API allows you to access court judgments and tribunal decisions held by Find Case Law as data.</p>
+          <p>‘API’ stands for ‘Application Programming Interface’, meaning software that allows two computer applications to share information.</p>
+          <p>
+            Our API provides access to judgments and decisions held by Find Case Law that have been converted from Microsoft Word documents into XML, a machine-readable file format. These have been automatically marked up according to
+            <a href="https://groups.oasis-open.org/communities/tc-community-home2?CommunityKey=3425f20f-b704-4076-9fab-018dc7d3efbe">the international data standard, LegalDocML</a>, and validated by our legal editorial team. This data includes:
+            <ol>
+              <li>Neutral citation</li>
+              <li>Court / Chamber</li>
+              <li>Date</li>
+              <li>Case Name</li>
+              <li>Party Names</li>
+              <li>Judges Names</li>
+            </ol>
+          </p>
+          <p>
+            The Find Case Law API makes this LegalDocML data accessible through <a href="https://en.wikipedia.org/wiki/Atom_(web_standard)">Atom feeds</a>, which allow you to keep track of recently published or updated judgments.
+            You can find more details and guidelines in <a href="https://github.com/nationalarchives/ds-find-caselaw-docs/blob/main/doc/openapi/public_api.yml">the OpenAPI specification available on GitHub</a> .
+          </p>
+          <p>In most cases ‘Neutral Citation’ is used to uniquely identify judgments and decisions.</p>
+          <h2 id="section-specifications">API specifications</h2>
+          <p>Example root feed URL
+            <ul>
+              <li>https://caselaw.nationalarchives.gov.uk/atom.xml</li>
+            </ul>
+          </p>
+          <p>URL structure for judgment data
+            <ul>
+              <li>https://caselaw.nationalarchives.gov.uk/year/court/subdivision/id/data.xml</li>
+            </ul>
+          </p>
+          <p>API parameters
+            <ul>
+              <li>order = updated: Sort by the last XML database update</li>
+              <li>order = date: Sort by date on the judgment</li>
+              <li>page = 3: Paginated response. Starting at page 1</li>
+            </ul>
+          </p>
+          <p>API example workflow
+            <ol>
+              <li>Poll the recently-published feed</li>
+              <li>Detect a new item using the timestamps in the feed</li>
+              <li>Retrieve the URI of the judgment from the id field of the item</li>
+            </ol>
+          </p>
+          <p>Detecting changes</p>
+          <p>
+            Whenever a judgment gets changed it appears in the recently published list. This includes minor updates such as when we enrich the
+            document with hyperlinks to other legal citations, as well as more significant changes such as revisions we have received from the courts.
+          </p>
+          <p>The atom feed and the judgment xml include a content hash so that you can check if the text of the document has changed.</p>
+          <h2 id="section-feedback">Give us your feedback</h2>
+          <p>We are still actively developing Find Case Law based on user feedback. This includes improving the experience of how data re-users can access the data.</p>
+          <p>You can provide feedback by using <a href="https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW?full_url=https%3A%2F%2Fcaselaw.nationalarchives.gov.uk%2Fabout-this-service&type=support">the feedback form</a> linked to at the bottom of every page of this website.</p>
+
+        </section>
+      </div>
+    </div>
+  </div>
+  <h2 id="section-interested-in"></h2>
+
+  {% include "includes/info_cards_find_case_law_api.html" %}
+{% endblock static_content %}

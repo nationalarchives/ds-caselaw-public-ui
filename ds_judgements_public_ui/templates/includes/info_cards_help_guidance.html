@@ -1,0 +1,30 @@
+
+{% load static i18n %}
+<h1 class="info-card-page-h2">Help and guidance</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="terms-policies-h2">Pages in this section</h2>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds__info_cards">
+    <a href="{% url 'how_to_search_find_case_law' %}" class="grid-background-link">
+      <div class="govuk-grid-column-one-third__info_cards_help">
+        <h3 class="govuk-grid-column-one-third__grid_info_card_heading">How to search Find Case Law</h3>
+        <p class="govuk-grid-column-one-third__grid_info_card_text">Learn how this website’s search box works and how to filter results.</p>
+      </div>
+    </a>
+    <a href="{% url 'understanding_judgments_and_decisions' %}" class="grid-background-link">
+      <div class="govuk-grid-column-one-third__info_cards_help">
+        <h3 class="govuk-grid-column-one-third__grid_info_card_heading">Understanding Judgments and decisions</h3>
+        <p class="govuk-grid-column-one-third__grid_info_card_text">Read an explanation of what judgments are and what they contain.</p>
+      </div>
+    </a>
+    <a href="{% url 'contact_us' %}" class="grid-background-link">
+      <div class="govuk-grid-column-one-third__info_cards_help">
+        <h3 class="govuk-grid-column-one-third__grid_info_heading">Contact us</h3>
+        <p class="govuk-grid-column-one-third__grid_info_card_text">Find out how you can contact the Find Case Law team.</p>
+      </div>
+    </a>
+  </div>
+</div>
