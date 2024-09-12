@@ -19,6 +19,7 @@
           {% include "includes/advice_message.html" with message=date_warning url_text="Find out what records are available on this service." url_value=url_value url_anchor="section-coverage" %}
         {% endif %}
         {% if search_results %}
+          <link rel="alternate" type="application/atom+xml" title="{{ breadcrumbs.0.text }}" href="{% url 'search-feed' %}?{{ query_param_string }}"/>
           <div class="results__result-header-container">
             {% include "includes/result_header.html" %}
 

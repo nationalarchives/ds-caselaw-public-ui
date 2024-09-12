@@ -26,7 +26,7 @@ urlpatterns = [
         BrowseView.as_view(),
         name="browse",
     ),
-    path("atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
+    path("atom.xml", feeds.SearchJudgmentsFeed(), name="search-feed"),
     path("<court:court>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
     path("<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),
     path("<court:court>/<yyyy:year>/atom.xml", feeds.LatestJudgmentsFeed(), name="feed"),

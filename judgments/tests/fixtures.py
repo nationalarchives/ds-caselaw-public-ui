@@ -58,6 +58,10 @@ class FakeSearchResponse(FakeSearchResponseBaseClass):
     pass
 
 
+class FakeSearchResponseManyPages(FakeSearchResponseBaseClass):
+    total = 999
+
+
 class FakeSearchResponseNoFacets(FakeSearchResponseBaseClass):
     facets = {}
 
