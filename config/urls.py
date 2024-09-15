@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.sitemaps.views import sitemap
 from django.http import HttpResponseRedirect
 from django.urls import include, path, register_converter
 from django.views import defaults as default_views
@@ -9,7 +8,6 @@ from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
 
 from .converters import SchemaFileConverter
-from .sitemaps import StaticViewSitemap
 from .views.about import AboutThisServiceView
 from .views.accessibility_statement import AccessibilityStatementView
 from .views.check import status
@@ -24,6 +22,7 @@ from .views.open_justice_license import OpenJusticeLicenceView
 from .views.privacy_notice import PrivacyNotice
 from .views.publishing_policy import PublishingPolicyView
 from .views.schema import schema
+from .views.sitemaps import SitemapCourtView, SitemapIndexView, SitemapStaticView
 from .views.structured_search import StructuredSearchView
 from .views.style_guide import StyleGuideView
 from .views.terms_and_policies import TermsAndPoliciesView
@@ -37,9 +36,6 @@ handler404 = NotFoundView.as_view()
 handler500 = ServerErrorView.as_view()
 handler403 = PermissionDeniedView.as_view()
 
-sitemaps = {
-    "static": StaticViewSitemap,
-}
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
@@ -161,9 +157,18 @@ urlpatterns = [
     ),
     path(
         "sitemap.xml",
-        sitemap,
-        {"sitemaps": sitemaps},
-        name="django.contrib.sitemaps.views.sitemap",
+        SitemapIndexView.as_view(),
+        name="sitemap_index",
+    ),
+    path(
+        "sitemap-static.xml",
+        SitemapStaticView.as_view(),
+        name="sitemap_static",
+    ),
+    path(
+        "sitemap-court-<path:code>-<int:year>.xml",
+        SitemapCourtView.as_view(),
+        name="sitemap_court",
     ),
     path(
         "googleb0ce3f99fae65e7c.html",
