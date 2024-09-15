@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.http import HttpResponseRedirect
 from django.urls import include, path, register_converter
 from django.views import defaults as default_views
@@ -8,6 +9,7 @@ from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
 
 from .converters import SchemaFileConverter
+from .sitemaps import StaticViewSitemap
 from .views.about import AboutThisServiceView
 from .views.accessibility_statement import AccessibilityStatementView
 from .views.check import status
@@ -34,6 +36,10 @@ register_converter(SchemaFileConverter, "schemafile")
 handler404 = NotFoundView.as_view()
 handler500 = ServerErrorView.as_view()
 handler403 = PermissionDeniedView.as_view()
+
+sitemaps = {
+    "static": StaticViewSitemap,
+}
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
@@ -152,6 +158,12 @@ urlpatterns = [
     path(
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
     ),
     path(
         "googleb0ce3f99fae65e7c.html",
