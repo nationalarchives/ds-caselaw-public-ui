@@ -1,5 +1,4 @@
 import unittest
-
 from unittest.mock import Mock
 
 from judgments.templatetags.navigation_tags import navigation_item_class

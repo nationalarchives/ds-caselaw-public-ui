@@ -1,6 +1,8 @@
-from .template_view_with_context import TemplateViewWithContext
 from ds_caselaw_utils import courts
+
 from judgments.forms import AdvancedSearchForm
+
+from .template_view_with_context import TemplateViewWithContext
 
 
 class StructuredSearchView(TemplateViewWithContext):

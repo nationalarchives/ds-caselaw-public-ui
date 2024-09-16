@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+import lxml
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 from ds_caselaw_utils import courts as all_courts
@@ -15,7 +16,6 @@ from judgments.tests.utils.assertions import (
     assert_response_contains_text,
     assert_response_not_contains_text,
 )
-import lxml
 
 
 class TestBrowseResults(TestCase):

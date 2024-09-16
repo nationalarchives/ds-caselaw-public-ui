@@ -1,5 +1,6 @@
 import pytest
 from django.test import TestCase
+
 from judgments.tests.utils.assertions import (
     assert_contains_html,
     assert_not_contains_html,

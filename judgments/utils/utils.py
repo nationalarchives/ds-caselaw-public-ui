@@ -1,18 +1,20 @@
 import math
 import re
-from typing import Any, Optional, TypedDict, Literal, overload
-from urllib.parse import parse_qs, urlparse
 from functools import lru_cache
+from time import time
+from typing import Any, Literal, Optional, TypedDict, overload
+from urllib.parse import parse_qs, urlparse
+
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
+from caselawclient.errors import DocumentNotFoundError
 from caselawclient.models.documents import Document, DocumentURIString
 from caselawclient.models.press_summaries import PressSummary
 from caselawclient.search_parameters import RESULTS_PER_PAGE
-from caselawclient.errors import DocumentNotFoundError
 from django.conf import settings
 from django.urls import reverse
 from ds_caselaw_utils.neutral import neutral_url
+
 from judgments.fixtures.stop_words import stop_words
-from time import time
 
 MAX_RESULTS_PER_PAGE = 50
 

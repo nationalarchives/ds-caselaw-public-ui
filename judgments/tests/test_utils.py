@@ -17,7 +17,6 @@ from judgments.utils import (
     process_year_facets,
     show_no_exact_ncn_warning,
 )
-
 from judgments.utils.utils import get_document_by_uri_from_cache
 
 
