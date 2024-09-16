@@ -1,2 +1,4 @@
 User-Agent: *
 Allow: /
+
+Sitemap: https://caselaw.nationalarchives.gov.uk/sitemap.xml
