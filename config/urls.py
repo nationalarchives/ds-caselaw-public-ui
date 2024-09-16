@@ -22,6 +22,7 @@ from .views.open_justice_license import OpenJusticeLicenceView
 from .views.privacy_notice import PrivacyNotice
 from .views.publishing_policy import PublishingPolicyView
 from .views.schema import schema
+from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
 from .views.structured_search import StructuredSearchView
 from .views.style_guide import StyleGuideView
 from .views.terms_and_policies import TermsAndPoliciesView
@@ -34,6 +35,7 @@ register_converter(SchemaFileConverter, "schemafile")
 handler404 = NotFoundView.as_view()
 handler500 = ServerErrorView.as_view()
 handler403 = PermissionDeniedView.as_view()
+
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
@@ -152,6 +154,26 @@ urlpatterns = [
     path(
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
+    path(
+        "sitemap.xml",
+        SitemapIndexView.as_view(),
+        name="sitemap_index",
+    ),
+    path(
+        "sitemap-static.xml",
+        SitemapStaticView.as_view(),
+        name="sitemap_static",
+    ),
+    path(
+        "sitemap-courts.xml",
+        SitemapCourtsView.as_view(),
+        name="sitemap_courts",
+    ),
+    path(
+        "sitemap-court-<path:code>-<int:year>.xml",
+        SitemapCourtView.as_view(),
+        name="sitemap_court",
     ),
     path(
         "googleb0ce3f99fae65e7c.html",
