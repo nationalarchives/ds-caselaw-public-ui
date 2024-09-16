@@ -21,8 +21,11 @@ class SitemapIndexView(TemplateView, TemplateResponseMixin):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
 
-        # This is a list of the names of URLs for other (non-dynamic) sitemaps to appear in the index
-        map_url_names = ["sitemap_static"]
+        # This is a list of the names of URLs for other sitemaps to appear in the index
+        map_url_names = [
+            "sitemap_static",
+            "sitemap_courts",
+        ]
 
         # Build full URLs for all of the above, and put them in the context variable
         context["maps"] = [self.request.build_absolute_uri(reverse(map)) for map in map_url_names]
@@ -69,6 +72,21 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
         ]
 
         context["urls"] = [self.request.build_absolute_uri(reverse(url)) for url in url_names]
+        return context
+
+
+class SitemapCourtsView(TemplateView, TemplateResponseMixin):
+    content_type = "application/xml"
+    template_name = "sitemaps/sitemap.xml"
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+
+        context["urls"] = [
+            self.request.build_absolute_uri(reverse("court_or_tribunal", kwargs={"param": court.canonical_param}))
+            for court in courts.get_listable_courts()
+        ]
+
         return context
 
 

@@ -22,7 +22,7 @@ from .views.open_justice_license import OpenJusticeLicenceView
 from .views.privacy_notice import PrivacyNotice
 from .views.publishing_policy import PublishingPolicyView
 from .views.schema import schema
-from .views.sitemaps import SitemapCourtView, SitemapIndexView, SitemapStaticView
+from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
 from .views.structured_search import StructuredSearchView
 from .views.style_guide import StyleGuideView
 from .views.terms_and_policies import TermsAndPoliciesView
@@ -164,6 +164,11 @@ urlpatterns = [
         "sitemap-static.xml",
         SitemapStaticView.as_view(),
         name="sitemap_static",
+    ),
+    path(
+        "sitemap-courts.xml",
+        SitemapCourtsView.as_view(),
+        name="sitemap_courts",
     ),
     path(
         "sitemap-court-<path:code>-<int:year>.xml",
