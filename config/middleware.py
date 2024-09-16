@@ -1,7 +1,6 @@
 from urllib.parse import urlencode
 
 from django.urls import resolve
-from django.utils.cache import patch_cache_control
 
 # these should match the names in config/urls.py
 INDEXABLE_VIEWS = [
