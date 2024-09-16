@@ -1,11 +1,12 @@
-from .template_view_with_context import TemplateViewWithContext
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
 from caselawclient.search_parameters import SearchParameters
 
-from judgments.utils import api_client
 from judgments.forms import AdvancedSearchForm
+from judgments.utils import api_client
+
+from .template_view_with_context import TemplateViewWithContext
 
 
 class StyleGuideView(TemplateViewWithContext):

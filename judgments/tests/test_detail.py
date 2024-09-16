@@ -10,8 +10,8 @@ from factories import JudgmentFactory, PressSummaryFactory
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
-    assert_response_not_contains_text,
     assert_response_contains_text,
+    assert_response_not_contains_text,
 )
 from judgments.views.detail import (
     NoNeutralCitationError,

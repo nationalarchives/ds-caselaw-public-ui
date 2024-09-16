@@ -1,6 +1,6 @@
-from django.views.generic import TemplateView
-from django.views import defaults as default_views
 from django.shortcuts import render
+from django.views import defaults as default_views
+from django.views.generic import TemplateView
 
 
 class BaseErrorView(TemplateView):

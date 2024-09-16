@@ -1,10 +1,10 @@
 from django.core.exceptions import SuspiciousOperation
 from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from formtools.wizard.forms import ManagementForm
 from formtools.wizard.views import NamedUrlSessionWizardView
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
 
 from .forms import FORMS
 from .utils import send_form_response_to_dynamics

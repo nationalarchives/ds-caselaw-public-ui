@@ -7,29 +7,27 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
 
-from .views.style_guide import StyleGuideView
-from .views.errors import NotFoundView, ServerErrorView, PermissionDeniedView
-from .views.courts import CourtsTribunalsListView, CourtOrTribunalView
+from .converters import SchemaFileConverter
 from .views.about import AboutThisServiceView
 from .views.accessibility_statement import AccessibilityStatementView
-from .views.open_justice_license import OpenJusticeLicenceView
-from .views.terms_of_use import TermsOfUseView
-from .views.publishing_policy import PublishingPolicyView
-from .views.structured_search import StructuredSearchView
-from .views.terms_and_policies import TermsAndPoliciesView
-from .views.contact_us import ContactUsView
-from .views.courts_and_tribunals_in_fcl import CourtsAndTribunalsInFclView
-from .views.help_and_guidance import HelpAndGuidanceView
-from .views.how_to_search_find_case_law import HowToSearchFindCaseLawView
-from .views.understanding_judgements_and_decisions import UnderstandingJudgmentsAndDecisionsView
-from .views.the_find_case_law_api import TheFindCaseLawApiView
-
-
 from .views.check import status
+from .views.contact_us import ContactUsView
+from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
+from .views.courts_and_tribunals_in_fcl import CourtsAndTribunalsInFclView
+from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
+from .views.help_and_guidance import HelpAndGuidanceView
 from .views.how_to import HowToUseThisService
+from .views.how_to_search_find_case_law import HowToSearchFindCaseLawView
+from .views.open_justice_license import OpenJusticeLicenceView
 from .views.privacy_notice import PrivacyNotice
+from .views.publishing_policy import PublishingPolicyView
 from .views.schema import schema
-from .converters import SchemaFileConverter
+from .views.structured_search import StructuredSearchView
+from .views.style_guide import StyleGuideView
+from .views.terms_and_policies import TermsAndPoliciesView
+from .views.terms_of_use import TermsOfUseView
+from .views.the_find_case_law_api import TheFindCaseLawApiView
+from .views.understanding_judgements_and_decisions import UnderstandingJudgmentsAndDecisionsView
 
 register_converter(SchemaFileConverter, "schemafile")
 
