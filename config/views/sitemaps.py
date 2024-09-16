@@ -71,7 +71,7 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
             "the_find_case_law_api",
         ]
 
-        context["urls"] = [self.request.build_absolute_uri(reverse(url)) for url in url_names]
+        context["items"] = [{"url": self.request.build_absolute_uri(reverse(url))} for url in url_names]
         return context
 
 
@@ -82,8 +82,12 @@ class SitemapCourtsView(TemplateView, TemplateResponseMixin):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
 
-        context["urls"] = [
-            self.request.build_absolute_uri(reverse("court_or_tribunal", kwargs={"param": court.canonical_param}))
+        context["items"] = [
+            {
+                "url": self.request.build_absolute_uri(
+                    reverse("court_or_tribunal", kwargs={"param": court.canonical_param})
+                )
+            }
             for court in courts.get_listable_courts()
         ]
 
@@ -111,7 +115,10 @@ class SitemapCourtView(TemplateView, TemplateResponseMixin):
             )
             search_response = search_judgments_and_parse_response(api_client, search_parameters)
 
-            context["urls"] = [self.request.build_absolute_uri(result.uri) for result in search_response.results]
+            context["items"] = [
+                {"url": self.request.build_absolute_uri(result.uri), "lastmod": result.transformation_date}
+                for result in search_response.results
+            ]
 
         except MarklogicResourceNotFoundError:
             raise Http404()
