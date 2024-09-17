@@ -116,7 +116,12 @@ class SitemapCourtView(TemplateView, TemplateResponseMixin):
             search_response = search_judgments_and_parse_response(api_client, search_parameters)
 
             context["items"] = [
-                {"url": self.request.build_absolute_uri(result.uri), "lastmod": result.transformation_date}
+                {
+                    "url": self.request.build_absolute_uri(result.uri),
+                    "lastmod": datetime.datetime.strptime(result.transformation_date, "%Y-%m-%dT%H:%M:%S")
+                    .date()
+                    .isoformat(),
+                }
                 for result in search_response.results
             ]
 
