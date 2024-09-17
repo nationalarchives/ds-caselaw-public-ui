@@ -3,6 +3,9 @@
 {% block robots %}
   <meta name="robots" content="noindex,nofollow" />
 {% endblock robots %}
+{% block extra_head_tags %}
+  <link rel="canonical" href="{{ document_canonical_url }}" />
+{% endblock extra_head_tags %}
 {% block title %}
   {% if page_title %}{{ page_title }} -{% endif %}
   Find case law

@@ -24,6 +24,7 @@
             rel="stylesheet" />
       <link href="{% static 'css/main.css' %}" rel="stylesheet" />
     {% endblock css %}
+    {% block extra_head_tags %}{% endblock extra_head_tags %}
     {% include "includes/gtm/gtm_head.html" %}
   </head>
   <body>
