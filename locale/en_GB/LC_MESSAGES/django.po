@@ -67,10 +67,6 @@ msgid "howtousethisservice.titleshort"
 msgstr "How to use this service"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-msgid "publishingpolicy.titleshort"
-msgstr "Publishing policy"
-
-#: ds_judgements_public_ui/templates/includes/footer.html
 #: ds_judgements_public_ui/templates/pages/contact_us.html
 #: ds_judgements_public_ui/templates/pages/how_to_use_this_service.html
 #: ds_judgements_public_ui/templates/pages/publishing_policy.html
@@ -89,20 +85,12 @@ msgid "footer.legal"
 msgstr "Legal"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
-msgid "terms.title"
-msgstr "Terms of use"
-
-#: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.cookies.link"
 msgstr "https://www.nationalarchives.gov.uk/legal/cookies/"
 
 #: ds_judgements_public_ui/templates/includes/footer.html
 msgid "footer.cookies"
 msgstr "Cookies"
-
-#: ds_judgements_public_ui/templates/includes/footer.html
-msgid "accessibilitystatement.title"
-msgstr "Accessibility statement"
 
 #: ds_judgements_public_ui/templates/includes/help_improve_this_service.html
 msgid "service.improved"
