@@ -1,6 +1,6 @@
-{% load i18n utilities document_utils %}
+{% load utilities document_utils %}
 <div id="download-options" class="judgment-download-options">
-  <h2 class="judgment-download-options__header">{% translate "judgment.downloadoptions.title" %}</h2>
+  <h2 class="judgment-download-options__header">Download options</h2>
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
       <h3>
@@ -8,18 +8,18 @@
            aria-label="Download this document as a PDF"
            download="">
           {% if document_noun == 'press summary' %}
-            {% translate "press_summary.downloadoptions.pdf.cta" %}
+            Download this press summary as a PDF
           {% else %}
-            {% translate "judgment.downloadoptions.pdf.cta" %}
+            Download this judgment as a PDF
           {% endif %}
           {{ pdf_size }}
         </a>
       </h3>
       <p>
         {% if document_noun == 'press summary' %}
-          {% translate "press_summary.downloadoptions.pdf.description" %}
+          The original format of the press summary as handed down by the court, for printing and downloading.
         {% else %}
-          {% translate "judgment.downloadoptions.pdf.description" %}
+          The original format of the judgment as handed down by the court, for printing and downloading.
         {% endif %}
       </p>
     </div>
@@ -28,17 +28,17 @@
         <a href="{% formatted_document_uri document_uri 'xml' %}"
            aria-label="Download this document as XML">
           {% if document_noun == 'press summary' %}
-            {% translate "press_summary.downloadoptions.xml.cta" %}
+            Download this press summary as XML
           {% else %}
-            {% translate "judgment.downloadoptions.xml.cta" %}
+            Download this judgment as XML
           {% endif %}
         </a>
       </h3>
       <p>
         {% if document_noun == 'press summary' %}
-          {% translate "press_summary.downloadoptions.xml.description" %}
+          The press summary in machine-readable LegalDocML format for developers, data scientists and researchers.
         {% else %}
-          {% translate "judgment.downloadoptions.xml.description" %}
+          The judgment in machine-readable LegalDocML format for developers, data scientists and researchers.
         {% endif %}
       </p>
     </div>

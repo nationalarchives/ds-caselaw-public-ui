@@ -7,7 +7,6 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
-from django.utils.translation import gettext
 from django.views.generic.base import TemplateView
 from ds_caselaw_utils import courts as all_courts
 
@@ -51,7 +50,7 @@ class BrowseView(TemplateView):
             context["paginator"] = paginator(page, search_response.total, per_page)
             context["courts"] = all_courts.get_grouped_selectable_courts()
             context["tribunals"] = all_courts.get_grouped_selectable_tribunals()
-            context["page_title"] = gettext("results.search.title")
+            context["page_title"] = "Search results"
 
         except MarklogicResourceNotFoundError:
             raise Http404("Search failed")  # TODO: This should be something else!

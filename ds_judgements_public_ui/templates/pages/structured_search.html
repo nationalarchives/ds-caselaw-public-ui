@@ -1,7 +1,7 @@
 {% extends "layouts/base.html" %}
-{% load i18n errors search_results_filters %}
+{% load errors search_results_filters %}
 {% block title %}
-  {% translate "structured_search.title" %} - Find case law
+  Structured search - Find case law
 {% endblock title %}
 {% block content %}
   <form action="{% url "search" %}"

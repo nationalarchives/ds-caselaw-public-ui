@@ -1,4 +1,4 @@
-{% load static search_results_filters utilities waffle_tags %}
+{% load search_results_filters utilities waffle_tags %}
 <ul class="{{ wrapper_class|default:"judgment-listing__list" }} {% if not paginator.has_next_page %}{{ wrapper_class|default:"judgment-listing__list" }}--last-page{% endif %}">
   {% for item in judgments %}
     <li>
