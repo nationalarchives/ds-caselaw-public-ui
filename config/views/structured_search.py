@@ -7,7 +7,7 @@ from .template_view_with_context import TemplateViewWithContext
 
 class StructuredSearchView(TemplateViewWithContext):
     template_name = "pages/structured_search.html"
-    page_title = "structured_search.title"
+    page_title = "Structured search"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

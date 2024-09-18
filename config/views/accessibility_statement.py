@@ -3,7 +3,7 @@ from .template_view_with_context import TemplateViewWithContext
 
 class AccessibilityStatementView(TemplateViewWithContext):
     template_name = "pages/accessibility_statement.html"
-    page_title = "accessibilitystatement.title"
+    page_title = "Accessibility statement"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

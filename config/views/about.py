@@ -5,7 +5,7 @@ from .template_view_with_context import TemplateViewWithContext
 
 class AboutThisServiceView(TemplateViewWithContext):
     template_name = "pages/about_this_service.html"
-    page_title = "aboutthisservice.titleshort"
+    page_title = "About this service"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -39,8 +39,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   make \
   # psycopg2 dependencies
   libpq-dev \
-  # Translations dependencies
-  gettext \
   # Uncomment below lines to enable Sphinx output to latex and pdf
   # texlive-latex-recommended \
   # texlive-fonts-recommended \
