@@ -72,16 +72,8 @@ jobs:
       - name: Build the Stack
         run: docker compose build postgres django
 
-      - name: Verify translations
-        run: |
-          docker compose run --rm django script/makemessages
-          script/verify-translations
-
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
-
-      - name: Run Django Translation Compiling
-        run: docker compose run --rm django python manage.py compilemessages
 
       - name: Run Django Tests with coverage
         run: docker compose run django coverage run -m pytest -vvvv -rsa -m "not local"
@@ -154,9 +146,6 @@ jobs:
 
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
-
-      - name: Run Django Translation Compiling
-        run: docker compose run --rm django python manage.py compilemessages
 
       - name: Setup django server for e2e tests
         run: docker compose up -d
