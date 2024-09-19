@@ -42,8 +42,6 @@ WORKDIR ${APP_HOME}
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
   libpq-dev \
-  # Translations dependencies
-  gettext \
   weasyprint \
   python3-cffi python3-brotli libpango-1.0-0 libpangoft2-1.0-0 fonts-liberation \
   # cleaning up unused files

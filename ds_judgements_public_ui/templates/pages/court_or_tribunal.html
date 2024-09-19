@@ -1,10 +1,12 @@
 {% extends "layouts/base.html" %}
-{% load i18n static court_utils %}
+{% load court_utils %}
 {% block robots %}
   <meta name="robots" content="noindex,nofollow" />
 {% endblock robots %}
 {% block title %}
-  {{ page_title }}
+  {% if page_title %}
+    {{ page_title }}
+  {% endif %}
 {% endblock title %}
 {% block content %}
   <div class="container court-or-tribunal">

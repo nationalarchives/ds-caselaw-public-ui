@@ -15,7 +15,6 @@ from django.http import (
     HttpResponseServerError,
 )
 from django.template.response import TemplateResponse
-from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
 
 from judgments.forms import AdvancedSearchForm
@@ -188,7 +187,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
                 "per_page": per_page,
                 "page": page,
                 "filtered": has_filters(params),
-                "page_title": _("results.search.title"),
+                "page_title": "Search results",
                 "show_no_exact_ncn_warning": show_no_exact_ncn_warning(search_response.results, query_text, page),
                 "query_params": query_params,
                 "query_param_string": urllib.parse.urlencode(form.cleaned_data, doseq=True),

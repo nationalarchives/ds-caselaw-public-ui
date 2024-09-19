@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load static i18n waffle_tags %}
+{% load waffle_tags %}
 {% block content %}
   <div class="standard-text-template container py-3">
     <h1>Licence application process</h1>
@@ -115,7 +115,7 @@
        href="{% url 'transactional-licence-form-page-3' %}">What you need to apply for a licence</a>
     <h2 class="transactional-licence-form-content__heading">Contact</h2>
     <p>
-      If you have any questions about licensing, please email the Licensing Department:  <a href="mailto:{% translate "caselaw.email" %}">caselawlicence@nationalarchives.gov.uk</a>.
+      If you have any questions about licensing, please email the Licensing Department:  <a href="mailto:caselawlicence@nationalarchives.gov.uk">caselawlicence@nationalarchives.gov.uk</a>.
     </p>
   </div>
 {% endblock content %}

@@ -1,9 +1,8 @@
 {% extends "layouts/base.html" %}
-{% load i18n %}
 {% block robots %}
 {% endblock robots %}
 {% block title %}
-  {{ page_title }} - Find case law
+  {% if page_title %}{{ page_title }} -{% endif %} Find case law
 {% endblock title %}
 {% block content %}
   <div class="standard-text-template container py-3">

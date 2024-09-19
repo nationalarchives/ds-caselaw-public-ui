@@ -140,25 +140,6 @@ def sh(c):
     subprocess.run(["docker", "compose", "exec", "django", "bash"])
 
 
-@task
-def translate(c):
-    """
-    Make messages for translations
-    """
-    subprocess.run(
-        [
-            "docker",
-            "compose",
-            "exec",
-            "django",
-            "bash",
-            "-c",
-            "python manage.py makemessages --no-obsolete --add-location file -l en_GB "
-            + "&& python manage.py compilemessages",
-        ]
-    )
-
-
 @task(optional=["test"])
 def test(c, test=None):
     """
