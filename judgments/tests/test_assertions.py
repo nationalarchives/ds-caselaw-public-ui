@@ -15,7 +15,7 @@ class MockResponse:
 
 
 class TestAssertions(TestCase):
-    contained_html = "<title>Judgment A - Find case law - The National Archives</title>"
+    contained_html = "<title>Judgment A - Find Case Law - The National Archives</title>"
     response_contains = MockResponse("<html>" + contained_html + "</html>")
     response_not_contains = MockResponse("<html>Something else</html>")
 
