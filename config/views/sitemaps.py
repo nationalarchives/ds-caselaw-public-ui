@@ -14,6 +14,14 @@ from ds_caselaw_utils import courts
 from judgments.utils import api_client
 
 
+def slashless(url: str) -> str:
+    return url.replace("/", "+")
+
+
+def plusless(url: str) -> str:
+    return url.replace("+", "/")
+
+
 class SitemapIndexView(TemplateView, TemplateResponseMixin):
     content_type = "application/xml"
     template_name = "sitemaps/index.xml"
@@ -35,7 +43,7 @@ class SitemapIndexView(TemplateView, TemplateResponseMixin):
             for year in range(court.start_year, court.end_year):
                 context["maps"].append(
                     self.request.build_absolute_uri(
-                        reverse("sitemap_court", kwargs={"code": court.canonical_param, "year": year})
+                        reverse("sitemap_court", kwargs={"code": slashless(court.canonical_param), "year": year})
                     )
                 )
 
@@ -106,7 +114,7 @@ class SitemapCourtView(TemplateView, TemplateResponseMixin):
 
         try:
             search_parameters = SearchParameters(
-                court=court_query if court_query else None,
+                court=plusless(court_query) if court_query else None,
                 date_from=(datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d") if year else None),
                 date_to=(datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d") if year else None),
                 order="-date",

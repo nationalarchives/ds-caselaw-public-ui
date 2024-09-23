@@ -5,6 +5,7 @@ from django.http import Http404
 from django.test import TestCase
 
 from config.views.schema import schema
+from judgments.tests.fixtures import FakeSearchResponse
 
 
 class TestCacheHeaders(TestCase):
@@ -61,3 +62,15 @@ class TestSchemas(TestCase):
         assert response.content == b"content-d"
         get_bad.assert_called_once()
         get_good.assert_called_once()
+
+    @patch("config.views.sitemaps.search_judgments_and_parse_response")
+    def test_sitemap(self, mock_results):
+        mock_results.return_value = FakeSearchResponse()
+        sitemap_index = self.client.get("/sitemap.xml").content
+        assert b"<loc>http://testserver/sitemap-court-ewhc+tcc-2019.xml</loc>" in sitemap_index
+        specific = self.client.get("/sitemap-court-ewhc+tcc-2019.xml").content
+        # This doesn't match because the search results are pre-canned
+        assert b"<loc>http://testserver/ewhc/ch/2022/1</loc>" in specific
+        first_call = mock_results.call_args[0]
+        second_arg = first_call[1]
+        assert second_arg.as_marklogic_payload()["court"] == ["ewhc/tcc"]
