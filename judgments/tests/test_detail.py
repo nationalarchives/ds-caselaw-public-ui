@@ -519,7 +519,7 @@ class TestHTMLTitle(TestCase):
         GIVEN a press summary
         WHEN a request is made with the press summary URI
         THEN the response should have an HTML title containing the press
-        summary name and "- Find case law - The National Archives"
+        summary name and "- Find Case Law - The National Archives"
         """
 
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found):
@@ -542,7 +542,7 @@ class TestHTMLTitle(TestCase):
         response = self.client.get("/eat/2023/1/press-summary/1")
         title = """
                 Press Summary of Judgment A (with some slightly different wording)
-                - Find case law - The National Archives
+                - Find Case Law - The National Archives
         """
         xpath_query = "//title"
         assert_response_contains_text(response, title, xpath_query)
@@ -554,7 +554,7 @@ class TestHTMLTitle(TestCase):
         GIVEN a judgment
         WHEN a request is made with the judgment URI
         THEN the response should have an HTML title containing the judgment
-        name and  "- Find case law - The National Archives"
+        name and  "- Find Case Law - The National Archives"
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             uri="eat/2023/1",
@@ -562,7 +562,7 @@ class TestHTMLTitle(TestCase):
             name="Judgment A",
         )
         response = self.client.get("/eat/2023/1")
-        title = "Judgment A - Find case law - The National Archives"
+        title = "Judgment A - Find Case Law - The National Archives"
         xpath_query = "//title"
         assert_response_contains_text(response, title, xpath_query)
 
