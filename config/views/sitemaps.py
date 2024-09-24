@@ -32,7 +32,7 @@ class SitemapIndexView(TemplateView, TemplateResponseMixin):
 
         # Dynamically append a sitemap for each court
         for court in CourtDates.objects.all():
-            for year in range(court.start_year, court.end_year):
+            for year in range(court.start_year, court.end_year + 1):
                 context["maps"].append(
                     self.request.build_absolute_uri(
                         reverse("sitemap_court", kwargs={"code": court.param, "year": year})
