@@ -152,8 +152,12 @@
 
   &__help-text {
     text-align: left;
-    margin: $space-1 0 $space-2 0;
+    margin: $space-2 $space-4 0 $space-4;
     font-size: $typography-sm-text-size;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      margin: $space-1 0 $space-2 0;
+    }
   }
 
   &__header-beta {

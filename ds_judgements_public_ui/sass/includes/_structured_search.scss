@@ -1,6 +1,11 @@
 .structured-search {
   legend {
     padding: 0;
+    margin-bottom: $space-4;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      margin-bottom: 0;
+    }
   }
 
   &__main-search {
@@ -18,6 +23,7 @@
     font-weight: $typography-normal-font-weight;
     line-height: $typography-xs-line-height;
     margin: $space-4 0 0;
+
     @media (max-width: $grid-breakpoint-medium) {
       margin: $space-2 $space-4;
     }
@@ -159,8 +165,12 @@
   }
 
   &__help-text {
-    margin-top: $space-1;
+    margin-top: 0;
     font-size: $typography-sm-text-size;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      margin-top: $space-1;
+    }
   }
 
   &__from-date-error-message {
@@ -191,11 +201,13 @@
   }
 
   &__court-options {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
     width: 100%;
 
     @media (min-width: $grid-breakpoint-medium) {
-      display: flex;
+      flex-direction: row;
       gap: $space-8;
     }
   }
@@ -258,10 +270,13 @@
   }
 
   &__court-group-label {
-    margin-top: $space-2;
+    margin: $space-4 0;
     line-height: $typography-xs-line-height;
     vertical-align: baseline;
-    margin-bottom: $space-2;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      margin: $space-2 0;
+    }
   }
 
   &__court-group {
@@ -271,7 +286,7 @@
 
   &__court-option-label {
     margin-left: $space-2;
-    line-height: $typography-xs-line-height;
+    line-height: $typography-md-line-height;
     vertical-align: baseline;
   }
   &__court-date-range {
