@@ -1,6 +1,6 @@
 import datetime
 from typing import Any, List, Optional
-from urllib.parse import parse_qs, urlencode, urlsplit, urlunsplit
+from urllib.parse import ParseResult, parse_qs, parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
@@ -11,6 +11,8 @@ from django.contrib.syndication.views import Feed
 from django.core.exceptions import BadRequest
 from django.http import Http404
 from django.http.request import HttpRequest
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
 
@@ -29,6 +31,26 @@ def _add_page_to_url(url: str, page: int = 1) -> str:
     return_value = urlunsplit((scheme, netloc, path, new_query, fragment))
     print(return_value)
     return return_value
+
+
+def redirect_atom_feed(
+    request: HttpRequest, court: Optional[str] = None, subdivision: Optional[str] = None, year: Optional[str] = None
+) -> HttpResponseRedirect:
+    new_parameters = {}
+    court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))  # type: ignore[arg-type]
+    if court_query:
+        new_parameters["court"] = court_query
+    if year:
+        new_parameters["from"] = f"{year}-01-01"
+        new_parameters["to"] = f"{year}-12-31"
+    new_url = modify_query_params(request.get_full_path(), new_parameters)
+    new_url = new_url._replace(path="/atom.xml")
+    return redirect(new_url.geturl())
+
+
+def modify_query_params(url: str, new_parameters: dict[str, str]) -> ParseResult:
+    # from https://stackoverflow.com/a/72773945
+    return urlparse(url)._replace(query=urlencode(dict(parse_qsl(urlparse(url).query), **new_parameters)))
 
 
 class JudgmentAtomFeed(Atom1Feed):
