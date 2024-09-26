@@ -81,6 +81,15 @@ falling back to config value of {fallback_end_year}"
             api_client, SearchParameters(court=canonical_court_param, order=order)
         )
 
+        if len(search_response.results) == 0:
+            self.stdout.write(
+                self.style.WARNING(
+                    f"Could not find document for court {canonical_court_param}, \
+falling back to config value of {fallback}"
+                )
+            )
+            return fallback
+
         first_document = search_response.results[0]
 
         if first_document.date:

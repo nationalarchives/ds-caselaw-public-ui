@@ -9,8 +9,8 @@ from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
 from django.urls import reverse
 from django.views.generic.base import TemplateResponseMixin, TemplateView
-from ds_caselaw_utils import courts
 
+from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
 
 
@@ -31,11 +31,11 @@ class SitemapIndexView(TemplateView, TemplateResponseMixin):
         context["maps"] = [self.request.build_absolute_uri(reverse(map)) for map in map_url_names]
 
         # Dynamically append a sitemap for each court
-        for court in courts.get_listable_courts():
-            for year in range(court.start_year, court.end_year):
+        for court in CourtDates.objects.all():
+            for year in range(court.start_year, court.end_year + 1):
                 context["maps"].append(
                     self.request.build_absolute_uri(
-                        reverse("sitemap_court", kwargs={"code": court.canonical_param, "year": year})
+                        reverse("sitemap_court", kwargs={"code": court.param, "year": year})
                     )
                 )
 
@@ -83,12 +83,8 @@ class SitemapCourtsView(TemplateView, TemplateResponseMixin):
         context = super().get_context_data(**kwargs)
 
         context["items"] = [
-            {
-                "url": self.request.build_absolute_uri(
-                    reverse("court_or_tribunal", kwargs={"param": court.canonical_param})
-                )
-            }
-            for court in courts.get_listable_courts()
+            {"url": self.request.build_absolute_uri(reverse("court_or_tribunal", kwargs={"param": court.param}))}
+            for court in CourtDates.objects.all()
         ]
 
         return context
