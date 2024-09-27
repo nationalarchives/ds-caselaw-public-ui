@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load utilities search_results_filters %}
+{% load utilities search_results_filters static %}
 {% block title %}
   Search results - Find Case Law
 {% endblock title %}
@@ -20,6 +20,7 @@
         {% endif %}
         {% if search_results %}
           <link rel="alternate" type="application/atom+xml" title="{{ breadcrumbs.0.text }}" href="{% url 'search-feed' %}?{{ query_param_string }}"/>
+          <a href="{% url 'search-feed' %}?{{ query_param_string }}"><img src="{% static "fontawesome-svgs/rss.svg" %}" width=10 height=10 alt=""/> Feed for {{ breadcrumbs.0.text }} </a>
           <div class="results__result-header-container">
             {% include "includes/result_header.html" %}
 
