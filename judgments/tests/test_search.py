@@ -4,6 +4,7 @@ import lxml
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.courts import CourtCode
 
 from judgments.tests.factories import CourtDateFactory
 from judgments.tests.fixtures import (
@@ -395,7 +396,7 @@ class TestSearchFacets(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_populated_court_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        court_code = all_courts.get_by_code("EWHC-KBD-TCC")
+        court_code = all_courts.get_by_code(CourtCode("EWHC-KBD-TCC"))
         response = self.client.get("/judgments/search?query=example+query")
 
         # Desired court_facet is present
@@ -409,7 +410,7 @@ class TestSearchFacets(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_populated_tribunal_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        tribunal_code = all_courts.get_by_code("EAT")
+        tribunal_code = all_courts.get_by_code(CourtCode("EAT"))
         response = self.client.get("/judgments/search?query=example+query")
 
         # Desired tribunal_facet is present

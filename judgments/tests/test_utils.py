@@ -4,6 +4,7 @@ from unittest.mock import Mock
 
 from caselawclient.errors import DocumentNotFoundError
 from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.courts import CourtCode
 
 from judgments.tests.factories import JudgmentFactory, PressSummaryFactory
 from judgments.utils import (
@@ -162,8 +163,8 @@ class TestSearchUtils(unittest.TestCase):
         process_court_facets returns court facets, and invalid facets.
         """
         raw_facets = {"EAT": "3", "EWHC-KBD-TCC": "20", "INVALID": "5", "": "1"}
-        court_code = all_courts.get_by_code("EWHC-KBD-TCC")
-        tribunal_code = all_courts.get_by_code("EAT")
+        court_code = all_courts.get_by_code(CourtCode("EWHC-KBD-TCC"))
+        tribunal_code = all_courts.get_by_code(CourtCode("EAT"))
 
         remaining_facets, court_facets, tribunal_facets = process_court_facets(raw_facets)
 
