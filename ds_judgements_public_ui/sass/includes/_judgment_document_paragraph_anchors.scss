@@ -92,6 +92,8 @@
   &__copy-link-helptext--show,
   &__copy-link-tooltip--show {
     opacity: 1;
+    text-decoration: none;
+    color: $color-black;
   }
 
   &__copy-link-helptext--left {

@@ -37,9 +37,11 @@ const createCopyElement = function (textToCopy) {
     element.addEventListener("click", function (event) {
         copyLinkToClipboard(event, textToCopy);
         element.innerHTML = "Copied!";
+        element.classList.add("judgment-body__copy-link-tooltip--show");
 
         setTimeout(() => {
             element.innerHTML = "Copy link to this paragraph";
+            element.classList.remove("judgment-body__copy-link-tooltip--show");
         }, 3000);
     });
 
