@@ -3,9 +3,10 @@ from unittest import mock
 from unittest.mock import Mock
 
 from caselawclient.errors import DocumentNotFoundError
+from caselawclient.models.documents import Document, DocumentBody
 from ds_caselaw_utils import courts as all_courts
 
-from judgments.tests.factories import JudgmentFactory, PressSummaryFactory
+from judgments.tests.factories import PressSummaryFactory
 from judgments.utils import (
     formatted_document_uri,
     get_document_by_uri,
@@ -62,22 +63,34 @@ class TestUtils(unittest.TestCase):
                     "/" + document_uri + suffix,
                 )
 
-    def test_linked_doc_url_returns_press_summary_for_a_judgement(self):
-        document = JudgmentFactory.build()
+    def test_linked_doc_url_returns_press_summary_for_a_judgment(self):
+        document = Mock(spec=Document, autospec=True)
+        document.document_noun = "judgment"
+        document.uri = "test/1234"
 
-        assert linked_doc_url(document) == document.uri + "/press-summary/1"
+        assert linked_doc_url(document) == "test/1234/press-summary/1"
 
-    def test_linked_doc_url_returns_judgement_for_a_press_summary(self):
-        document = PressSummaryFactory.build(uri="/foo/bar/press-summary/1")
+    def test_linked_doc_url_returns_judgment_for_a_press_summary(self):
+        document = Mock(spec=Document, autospec=True)
+        document.document_noun = "press summary"
+        document.uri = "test/1234/press-summary/1"
 
-        assert linked_doc_url(document) == "/foo/bar"
+        assert linked_doc_url(document) == "test/1234"
 
     def test_linked_doc_title_removes_prefix_for_press_summary(self):
-        document = PressSummaryFactory.build(name="Press Summary of Arkell v Pressdram")
+        document = Mock(spec=Document, autospec=True)
+        document.document_noun = "press summary"
+        document.body = Mock(spec=DocumentBody, autospec=True)
+        document.body.name = "Press Summary of Arkell v Pressdram"
+
         assert linked_doc_title(document) == "Arkell v Pressdram"
 
     def test_linked_doc_title_adds_prefix_for_judgment(self):
-        document = JudgmentFactory.build(name="Arkell v Pressdram")
+        document = Mock(spec=Document, autospec=True)
+        document.document_noun = "judgment"
+        document.body = Mock(spec=DocumentBody, autospec=True)
+        document.body.name = "Arkell v Pressdram"
+
         assert linked_doc_title(document) == "Press Summary of Arkell v Pressdram"
 
     def test_press_summary_list_breadcrumbs(self):

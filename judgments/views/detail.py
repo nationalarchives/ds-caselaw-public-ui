@@ -128,7 +128,7 @@ def detail(request, document_uri):
     )  # "" is most recent version
     context["document_uri"] = document.uri
     context["document_canonical_url"] = request.build_absolute_uri("/" + document.uri)
-    context["page_title"] = document.name
+    context["page_title"] = document.body.name
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
     context["pdf_uri"] = pdf.uri
 
@@ -154,7 +154,7 @@ def detail(request, document_uri):
             }
         )
     else:
-        breadcrumbs.append({"text": document.name})
+        breadcrumbs.append({"text": document.body.name})
 
     context["breadcrumbs"] = breadcrumbs
     context["feedback_survey_type"] = "judgment"  # TODO: update the survey to allow for generalisation to `document`
