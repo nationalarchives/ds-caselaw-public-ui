@@ -9,7 +9,6 @@ from caselawclient.responses.search_result import SearchResult
 from caselawclient.search_parameters import SearchParameters
 from django.contrib.syndication.views import Feed
 from django.core.exceptions import BadRequest
-from django.http import Http404
 from django.http.request import HttpRequest
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -137,46 +136,6 @@ class JudgmentsFeed(Feed):
         extra_kwargs["total"] = int(obj["search_response"].total)
         extra_kwargs["page"] = obj["page"]
         return extra_kwargs
-
-
-class LatestJudgmentsFeed(JudgmentsFeed):
-    def link(self, obj):
-        page = obj.get("page", 1)
-        return f"/{obj['slug']}/atom.xml?page={page}&order={obj.get('order')}"
-
-    def title(self, obj):
-        if not obj["slug"]:
-            return "Latest judgments"
-
-        return f'Latest judgments for {obj.get("slug", "/")}'
-
-    def get_object(self, request, court=None, subdivision=None, year=None):
-        try:
-            page = int(request.GET.get("page", 1))
-        except ValueError:
-            # e.g. the user provided ?page= or ?page=jam
-            raise Http404
-
-        court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))
-        slugs = filter(lambda x: x is not None, [court, subdivision, year])
-        slug = "/".join([str(s) for s in slugs])
-        order = request.GET.get("order", "-date")
-
-        search_parameters = SearchParameters(
-            court=court_query if court_query else None,
-            date_from=(datetime.date(year=year, month=1, day=1).strftime("%Y-%m-%d") if year else None),
-            date_to=(datetime.date(year=year, month=12, day=31).strftime("%Y-%m-%d") if year else None),
-            order=order,
-            page=int(page),
-        )
-        search_response = search_judgments_and_parse_response(api_client, search_parameters)
-
-        return {
-            "slug": slug,
-            "search_response": search_response,
-            "page": page,
-            "order": order,
-        }
 
 
 class SearchJudgmentsFeed(JudgmentsFeed):
