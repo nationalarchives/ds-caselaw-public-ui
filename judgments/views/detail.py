@@ -127,7 +127,7 @@ def detail(request, document_uri):
         query=preprocess_query(query) if query is not None else None,
     )  # "" is most recent version
     context["document_uri"] = document.uri
-    context["document_canonical_url"] = document.public_uri
+    context["page_canonical_url"] = document.public_uri
     context["page_title"] = document.name
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
     context["pdf_uri"] = pdf.uri
