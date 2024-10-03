@@ -2,33 +2,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from django.urls import include, path, register_converter
+from django.urls import include, path, register_converter, reverse
 from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
 
 from .converters import SchemaFileConverter
-from .views.about import AboutThisServiceView
-from .views.accessibility_statement import AccessibilityStatementView
+from .views import static as static_views
 from .views.check import status
-from .views.contact_us import ContactUsView
 from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
-from .views.courts_and_tribunals_in_fcl import CourtsAndTribunalsInFclView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
-from .views.help_and_guidance import HelpAndGuidanceView
-from .views.how_to import HowToUseThisService
-from .views.how_to_search_find_case_law import HowToSearchFindCaseLawView
-from .views.open_justice_license import OpenJusticeLicenceView
-from .views.privacy_notice import PrivacyNotice
-from .views.publishing_policy import PublishingPolicyView
 from .views.schema import schema
 from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
 from .views.structured_search import StructuredSearchView
 from .views.style_guide import StyleGuideView
-from .views.terms_and_policies import TermsAndPoliciesView
-from .views.terms_of_use import TermsOfUseView
-from .views.the_find_case_law_api import TheFindCaseLawApiView
-from .views.understanding_judgements_and_decisions import UnderstandingJudgmentsAndDecisionsView
 
 register_converter(SchemaFileConverter, "schemafile")
 
@@ -58,27 +45,27 @@ urlpatterns = [
     ),
     path(
         "what-to-expect",
-        lambda request: HttpResponseRedirect("/about-this-service"),
+        lambda request: HttpResponseRedirect(reverse("about_this_service")),
         name="what_to_expect",
     ),
     path(
         "about-this-service",
-        AboutThisServiceView.as_view(),
+        static_views.AboutThisServiceView.as_view(),
         name="about_this_service",
     ),
     path(
         "how-to-use-this-service",
-        HowToUseThisService.as_view(),
+        static_views.HowToUseThisService.as_view(),
         name="how_to_use_this_service",
     ),
     path(
         "privacy-notice",
-        PrivacyNotice.as_view(),
+        static_views.PrivacyNotice.as_view(),
         name="privacy_notice",
     ),
     path(
         "accessibility-statement",
-        AccessibilityStatementView.as_view(),
+        static_views.AccessibilityStatementView.as_view(),
         name="accessibility_statement",
     ),
     path(
@@ -93,17 +80,17 @@ urlpatterns = [
     ),
     path(
         "open-justice-licence",
-        OpenJusticeLicenceView.as_view(),
+        static_views.OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",
     ),
     path(
         "terms-of-use",
-        TermsOfUseView.as_view(),
+        static_views.TermsOfUseView.as_view(),
         name="terms_of_use",
     ),
     path(
         "publishing-policy",
-        PublishingPolicyView.as_view(),
+        static_views.PublishingPolicyView.as_view(),
         name="publishing_policy",
     ),
     path(
@@ -113,37 +100,37 @@ urlpatterns = [
     ),
     path(
         "terms-and-policies",
-        TermsAndPoliciesView.as_view(),
+        static_views.TermsAndPoliciesView.as_view(),
         name="terms_and_policies",
     ),
     path(
         "contact-us",
-        ContactUsView.as_view(),
+        static_views.ContactUsView.as_view(),
         name="contact_us",
     ),
     path(
         "courts-and-tribunals-in-fcl",
-        CourtsAndTribunalsInFclView.as_view(),
+        static_views.CourtsAndTribunalsInFclView.as_view(),
         name="courts_and_tribunals_in_fcl",
     ),
     path(
         "help-and-guidance",
-        HelpAndGuidanceView.as_view(),
+        static_views.HelpAndGuidanceView.as_view(),
         name="help_and_guidance",
     ),
     path(
         "how-to-search-find-case-law",
-        HowToSearchFindCaseLawView.as_view(),
+        static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
     ),
     path(
         "understanding-judgments-and-decisions",
-        UnderstandingJudgmentsAndDecisionsView.as_view(),
+        static_views.UnderstandingJudgmentsAndDecisionsView.as_view(),
         name="understanding_judgments_and_decisions",
     ),
     path(
         "the-find-case-law-api",
-        TheFindCaseLawApiView.as_view(),
+        static_views.FindCaseLawApiView.as_view(),
         name="the_find_case_law_api",
     ),
     path(
