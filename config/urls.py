@@ -27,7 +27,7 @@ handler403 = PermissionDeniedView.as_view()
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # Your stuff: custom urls includes go here
+    # Pages for viewing court details
     path(
         "courts-and-tribunals/<path:param>",
         CourtOrTribunalView.as_view(),
@@ -38,70 +38,22 @@ urlpatterns = [
         CourtsTribunalsListView.as_view(),
         name="courts_and_tribunals",
     ),
+    # Search
     path(
-        "computational-licence-form",
-        lambda request: HttpResponseRedirect("/re-use-find-case-law-records"),
-        name="computational_licence_form",
+        "structured_search",
+        StructuredSearchView.as_view(),
+        name="structured_search",
     ),
-    path(
-        "what-to-expect",
-        lambda request: HttpResponseRedirect(reverse("about_this_service")),
-        name="what_to_expect",
-    ),
+    # Static pages
     path(
         "about-this-service",
         static_views.AboutThisServiceView.as_view(),
         name="about_this_service",
     ),
     path(
-        "how-to-use-this-service",
-        static_views.HowToUseThisService.as_view(),
-        name="how_to_use_this_service",
-    ),
-    path(
-        "privacy-notice",
-        static_views.PrivacyNotice.as_view(),
-        name="privacy_notice",
-    ),
-    path(
         "accessibility-statement",
         static_views.AccessibilityStatementView.as_view(),
         name="accessibility_statement",
-    ),
-    path(
-        "style-guide",
-        StyleGuideView.as_view(),
-        name="style_guide",
-    ),
-    path(
-        "test-page-please-ignore",
-        TemplateView.as_view(template_name="pages/test_page.html", content_type="text/html"),
-        name="test_page",
-    ),
-    path(
-        "open-justice-licence",
-        static_views.OpenJusticeLicenceView.as_view(),
-        name="open_justice_licence",
-    ),
-    path(
-        "terms-of-use",
-        static_views.TermsOfUseView.as_view(),
-        name="terms_of_use",
-    ),
-    path(
-        "publishing-policy",
-        static_views.PublishingPolicyView.as_view(),
-        name="publishing_policy",
-    ),
-    path(
-        "structured_search",
-        StructuredSearchView.as_view(),
-        name="structured_search",
-    ),
-    path(
-        "terms-and-policies",
-        static_views.TermsAndPoliciesView.as_view(),
-        name="terms_and_policies",
     ),
     path(
         "contact-us",
@@ -124,9 +76,34 @@ urlpatterns = [
         name="how_to_search_find_case_law",
     ),
     path(
-        "understanding-judgments-and-decisions",
-        static_views.UnderstandingJudgmentsAndDecisionsView.as_view(),
-        name="understanding_judgments_and_decisions",
+        "how-to-use-this-service",
+        static_views.HowToUseThisService.as_view(),
+        name="how_to_use_this_service",
+    ),
+    path(
+        "open-justice-licence",
+        static_views.OpenJusticeLicenceView.as_view(),
+        name="open_justice_licence",
+    ),
+    path(
+        "privacy-notice",
+        static_views.PrivacyNotice.as_view(),
+        name="privacy_notice",
+    ),
+    path(
+        "publishing-policy",
+        static_views.PublishingPolicyView.as_view(),
+        name="publishing_policy",
+    ),
+    path(
+        "terms-and-policies",
+        static_views.TermsAndPoliciesView.as_view(),
+        name="terms_and_policies",
+    ),
+    path(
+        "terms-of-use",
+        static_views.TermsOfUseView.as_view(),
+        name="terms_of_use",
     ),
     path(
         "the-find-case-law-api",
@@ -134,14 +111,28 @@ urlpatterns = [
         name="the_find_case_law_api",
     ),
     path(
-        "check",
-        status,
-        name="check",
+        "understanding-judgments-and-decisions",
+        static_views.UnderstandingJudgmentsAndDecisionsView.as_view(),
+        name="understanding_judgments_and_decisions",
     ),
     path(
-        "robots.txt",
-        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+        "what-to-expect",
+        lambda request: HttpResponseRedirect(reverse("about_this_service")),
+        name="what_to_expect",
     ),
+    # Styleguide
+    path(
+        "style-guide",
+        StyleGuideView.as_view(),
+        name="style_guide",
+    ),
+    # Test page
+    path(
+        "test-page-please-ignore",
+        TemplateView.as_view(template_name="pages/test_page.html", content_type="text/html"),
+        name="test_page",
+    ),
+    # Sitemap
     path(
         "sitemap.xml",
         SitemapIndexView.as_view(),
@@ -162,6 +153,17 @@ urlpatterns = [
         SitemapCourtView.as_view(),
         name="sitemap_court",
     ),
+    # Site status
+    path(
+        "check",
+        status,
+        name="check",
+    ),
+    # Files for non-humans
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
     path(
         "googleb0ce3f99fae65e7c.html",
         TemplateView.as_view(template_name="googleb0ce3f99fae65e7c.html", content_type="text/html"),
@@ -171,7 +173,14 @@ urlpatterns = [
         cache_page(60 * 60)(schema),
         name="schema",
     ),
+    # License application
+    path(
+        "computational-licence-form",
+        lambda request: HttpResponseRedirect("/re-use-find-case-law-records"),
+        name="computational_licence_form",
+    ),
     path("re-use-find-case-law-records", include("transactional_licence_form.urls")),
+    # Judgment resolution
     path("", include("judgments.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
