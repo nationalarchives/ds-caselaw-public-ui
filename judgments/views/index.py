@@ -32,6 +32,7 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context["page_canonical_url"] = self.request.build_absolute_uri(reverse("home"))
+        context["page_allow_index"] = True
 
         try:
             search_response = cached_recent_judgments(ttl_hash=round(time() / 900))  # Expire cache in 15 mins
