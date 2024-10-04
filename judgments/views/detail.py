@@ -37,7 +37,9 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
 
-def get_published_document_by_uri(document_uri: str, cache_if_not_found: bool = False) -> Document:
+def get_published_document_by_uri(document_uri: str | None, cache_if_not_found: bool = False) -> Document:
+    if not document_uri:
+        raise Http404("Missing document uri")
     try:
         document = get_document_by_uri(document_uri, cache_if_not_found=cache_if_not_found)
         if not document:
