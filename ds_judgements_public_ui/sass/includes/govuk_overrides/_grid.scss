@@ -140,10 +140,10 @@
 .govuk-grid-column-two-thirds__info_terms_use {
   display: flex;
   flex-direction: row;
-  gap: $space-8;
+  gap: 0;
   text-decoration: none;
   margin-top: -22px;
-  margin-left: $space-6;
+  margin-left: $space-2;
   @media (max-width: $grid-breakpoint-medium) {
     flex-direction: column;
     width: 75%;
@@ -155,9 +155,7 @@
   max-width: 23rem;
   height: 16rem;
   padding: $space-1 $space-5;
-  margin-top: -15px;
-  margin-top: 20px;
-  margin-left: -9px;
+  margin: $space-2;
   border-top: 4px solid $color-yellow;
   background-color: $color-light-grey;
   text-decoration: underline;
@@ -180,10 +178,10 @@
 .govuk-grid-column-two-thirds__info_about_fcl {
   display: flex;
   flex-direction: row;
-  gap: $space-8;
+  gap: 0;
   text-decoration: none;
   margin-top: -22px;
-  margin-left: $space-6;
+  margin-left: $space-2;
   @media (max-width: $grid-breakpoint-medium) {
     flex-direction: column;
     width: 75%;
@@ -195,9 +193,7 @@
   max-width: 23rem;
   height: 16rem;
   padding: $space-1 $space-5;
-  margin-top: -15px;
-  margin-top: 20px;
-  margin-left: -9px;
+  margin: $space-2;
   border-top: 4px solid $color-yellow;
   background-color: $color-light-grey;
   text-decoration: underline;
