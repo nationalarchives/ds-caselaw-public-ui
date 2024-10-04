@@ -60,8 +60,24 @@ class JudgmentAtomFeed(Atom1Feed):
 
     def add_item_elements(self, handler, item) -> None:
         super().add_item_elements(handler, item)
-        handler.addQuickElement("tna:uri", item.get("uri", ""))
         handler.addQuickElement("tna:contenthash", item.get("content_hash", ""))
+        path = item.get("uri", "")
+        handler.addQuickElement("tna:uri", path)
+        if path:
+            path_underscore = path.replace("/", "_")
+
+            handler.addQuickElement(
+                "link", "", {"rel": "alternate", "type": "application/akn+xml", "href": f"/{path}/data.xml"}
+            )
+            handler.addQuickElement(
+                "link",
+                "",
+                {
+                    "rel": "alternate",
+                    "type": "application/pdf",
+                    "href": f"https://assets.caselaw.nationalarchives.gov.uk/{path}/{path_underscore}.pdf",
+                },
+            )
 
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
