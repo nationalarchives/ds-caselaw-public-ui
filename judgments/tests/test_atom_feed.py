@@ -28,6 +28,7 @@ class TestAtomFeed(TestCase):
                 date_to=None,
                 order="-date",
                 page=1,
+                page_size=50,
             ),
         )
 

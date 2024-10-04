@@ -186,10 +186,17 @@ class SearchJudgmentsFeed(JudgmentsFeed):
         if order not in [None, "-date", "date", "-transform", "transform", "updated", "-updated"]:
             raise BadRequest("Sort order should be one of date, transform or updated, or -date, -transform or -updated")
 
+        per_page = request.GET.get("per_page", default="50")
+        try:
+            per_page_integer: int = int(per_page)
+        except (TypeError, ValueError):
+            per_page_integer = 50
+
         search_parameters: SearchParameters = search_request_to_parameters(request)
         # set a sensible default, since the order could default to relevance if there's a text search term.
         if order is None:
             search_parameters.order = "-date"
+            search_parameters.page_size = per_page_integer
 
         search_response = search_judgments_and_parse_response(api_client, search_parameters)
         return {
