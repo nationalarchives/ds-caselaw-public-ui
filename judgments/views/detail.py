@@ -55,8 +55,8 @@ def get_published_document_by_uri(document_uri: str | None, cache_if_not_found: 
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
-    template_name = "pdf/judgment.html"
-    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "judgmentpdf.css")]
+    template_name = "pdf/document.html"
+    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "documentpdf.css")]
     pdf_attachment = True
 
     def get_context_data(self, document_uri=None, **kwargs) -> dict[str, Any]:
