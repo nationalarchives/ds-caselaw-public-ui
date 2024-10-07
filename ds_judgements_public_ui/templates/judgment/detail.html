@@ -12,9 +12,9 @@
 {% endblock precontent %}
 {% block content %}
   <div id="start-of-document"></div>
-  {% if document %}
+  {% if document_html %}
     {% autoescape off %}
-      {{ document }}
+      {{ document_html }}
     {% endautoescape %}
   {% else %}
     {{ content }}

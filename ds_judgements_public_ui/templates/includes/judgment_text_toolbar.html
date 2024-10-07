@@ -2,10 +2,10 @@
 
 <div class="judgment-toolbar">
   <div class="judgment-toolbar__container">
-    {% if document_noun == "press summary" %}
+    {% if document.document_noun == "press summary" %}
       <p class="judgment-toolbar__press-summary-title">Press Summary</p>
     {% endif %}
-    <h1 class="judgment-toolbar__title">{{ page_title|get_title_to_display_in_html:document_noun }}</h1>
+    <h1 class="judgment-toolbar__title">{{ document|get_title_to_display_in_html }}</h1>
     <p class="judgment-toolbar__reference">{{ judgment_ncn }}</p>
     <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
       {% if linked_document_uri %}
@@ -14,7 +14,7 @@
              role="button"
              draggable="false"
              href="{% url 'detail' document_uri=linked_document_uri %}{% if query %}?query={{ query | urlencode }}{% endif %}">
-            {% if document_noun == "judgment" %}
+            {% if document.document_noun == "judgment" %}
               View Press Summary
             {% else %}
               View Judgment
@@ -27,7 +27,7 @@
          role="button"
          draggable="false"
          href="{{ pdf_uri }}"
-         aria-label="{{ page_title|get_title_to_display_in_html:document_noun }} - Download as PDF">Download as PDF
+         aria-label="{{ document|get_title_to_display_in_html }} - Download as PDF">Download as PDF
         <span class="judgment-toolbar-buttons__pdf-size">{{ pdf_size }}</span></a>
       <p class="judgment-toolbar-buttons__option--download-options"
          role="note">
