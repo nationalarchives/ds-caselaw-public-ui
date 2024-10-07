@@ -7,7 +7,7 @@
         <a href="{{ pdf_uri }}"
            aria-label="Download this document as a PDF"
            download="">
-          {% if document_noun == 'press summary' %}
+          {% if document.document_noun == 'press summary' %}
             Download this press summary as a PDF
           {% else %}
             Download this judgment as a PDF
@@ -16,7 +16,7 @@
         </a>
       </h3>
       <p>
-        {% if document_noun == 'press summary' %}
+        {% if document.document_noun == 'press summary' %}
           The original format of the press summary as handed down by the court, for printing and downloading.
         {% else %}
           The original format of the judgment as handed down by the court, for printing and downloading.
@@ -27,7 +27,7 @@
       <h3>
         <a href="{% formatted_document_uri document_uri 'xml' %}"
            aria-label="Download this document as XML">
-          {% if document_noun == 'press summary' %}
+          {% if document.document_noun == 'press summary' %}
             Download this press summary as XML
           {% else %}
             Download this judgment as XML
@@ -35,7 +35,7 @@
         </a>
       </h3>
       <p>
-        {% if document_noun == 'press summary' %}
+        {% if document.document_noun == 'press summary' %}
           The press summary in machine-readable LegalDocML format for developers, data scientists and researchers.
         {% else %}
           The judgment in machine-readable LegalDocML format for developers, data scientists and researchers.
