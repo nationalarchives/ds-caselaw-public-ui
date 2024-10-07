@@ -113,10 +113,9 @@ def detail(request, document_uri):
 
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)
-    context["judgment_ncn"] = document.best_human_identifier
+
     if query:
         context["number_of_mentions"] = str(document.number_of_mentions(query))
-        context["query"] = query
 
     try:
         linked_document = get_published_document_by_uri(linked_doc_url(document), cache_if_not_found=True)
@@ -124,16 +123,11 @@ def detail(request, document_uri):
     except Http404:
         context["linked_document_uri"] = None
 
-    context["document"] = document
     context["document_html"] = document.content_as_html(
         MOST_RECENT_VERSION,
         query=preprocess_query(query) if query is not None else None,
     )  # "" is most recent version
-    context["document_uri"] = document.uri
-    context["page_canonical_url"] = document.public_uri
-    context["page_title"] = document.name
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
-    context["pdf_uri"] = pdf.uri
 
     form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
 
@@ -160,10 +154,17 @@ def detail(request, document_uri):
         breadcrumbs.append({"text": document.name})
 
     context["breadcrumbs"] = breadcrumbs
+    context["query"] = query
     context["feedback_survey_type"] = "judgment"  # TODO: update the survey to allow for generalisation to `document`
     # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
-    context["feedback_survey_document_uri"] = document.uri
     context["search_context"] = search_context_from_url(request.META.get("HTTP_REFERER"))
+    context["document"] = document
+    context["page_canonical_url"] = document.public_uri
+    context["document_canonical_url"] = request.build_absolute_uri("/" + document.uri)
+    context["feedback_survey_document_uri"] = document.uri  # TODO: Remove this from context
+    context["document_uri"] = document.uri  # TODO: Remove this from context
+    context["page_title"] = document.name  # TODO: Remove this from context
+    context["pdf_uri"] = pdf.uri  # TODO: Remove this from context
 
     return TemplateResponse(request, "judgment/detail.html", context=context)
 
