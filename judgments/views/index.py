@@ -8,6 +8,7 @@ from caselawclient.client_helpers.search_helpers import (
 from caselawclient.responses.search_response import SearchResponse
 from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
+from django.urls import reverse
 from django.views.generic import TemplateView
 from ds_caselaw_utils import courts as all_courts
 
@@ -29,6 +30,8 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context["page_canonical_url"] = self.request.build_absolute_uri(reverse("home"))
 
         try:
             search_response = cached_recent_judgments(ttl_hash=round(time() / 900))  # Expire cache in 15 mins

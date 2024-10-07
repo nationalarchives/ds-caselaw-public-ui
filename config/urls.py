@@ -2,33 +2,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from django.urls import include, path, register_converter
+from django.urls import include, path, register_converter, reverse
 from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import TemplateView
 
 from .converters import SchemaFileConverter
-from .views.about import AboutThisServiceView
-from .views.accessibility_statement import AccessibilityStatementView
+from .views import static as static_views
 from .views.check import status
-from .views.contact_us import ContactUsView
 from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
-from .views.courts_and_tribunals_in_fcl import CourtsAndTribunalsInFclView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
-from .views.help_and_guidance import HelpAndGuidanceView
-from .views.how_to import HowToUseThisService
-from .views.how_to_search_find_case_law import HowToSearchFindCaseLawView
-from .views.open_justice_license import OpenJusticeLicenceView
-from .views.privacy_notice import PrivacyNotice
-from .views.publishing_policy import PublishingPolicyView
 from .views.schema import schema
 from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
 from .views.structured_search import StructuredSearchView
 from .views.style_guide import StyleGuideView
-from .views.terms_and_policies import TermsAndPoliciesView
-from .views.terms_of_use import TermsOfUseView
-from .views.the_find_case_law_api import TheFindCaseLawApiView
-from .views.understanding_judgements_and_decisions import UnderstandingJudgmentsAndDecisionsView
 
 register_converter(SchemaFileConverter, "schemafile")
 
@@ -40,7 +27,7 @@ handler403 = PermissionDeniedView.as_view()
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # Your stuff: custom urls includes go here
+    # Pages for viewing court details
     path(
         "courts-and-tribunals/<path:param>",
         CourtOrTribunalView.as_view(),
@@ -51,110 +38,101 @@ urlpatterns = [
         CourtsTribunalsListView.as_view(),
         name="courts_and_tribunals",
     ),
-    path(
-        "computational-licence-form",
-        lambda request: HttpResponseRedirect("/re-use-find-case-law-records"),
-        name="computational_licence_form",
-    ),
-    path(
-        "what-to-expect",
-        lambda request: HttpResponseRedirect("/about-this-service"),
-        name="what_to_expect",
-    ),
-    path(
-        "about-this-service",
-        AboutThisServiceView.as_view(),
-        name="about_this_service",
-    ),
-    path(
-        "how-to-use-this-service",
-        HowToUseThisService.as_view(),
-        name="how_to_use_this_service",
-    ),
-    path(
-        "privacy-notice",
-        PrivacyNotice.as_view(),
-        name="privacy_notice",
-    ),
-    path(
-        "accessibility-statement",
-        AccessibilityStatementView.as_view(),
-        name="accessibility_statement",
-    ),
-    path(
-        "style-guide",
-        StyleGuideView.as_view(),
-        name="style_guide",
-    ),
-    path(
-        "test-page-please-ignore",
-        TemplateView.as_view(template_name="pages/test_page.html", content_type="text/html"),
-        name="test_page",
-    ),
-    path(
-        "open-justice-licence",
-        OpenJusticeLicenceView.as_view(),
-        name="open_justice_licence",
-    ),
-    path(
-        "terms-of-use",
-        TermsOfUseView.as_view(),
-        name="terms_of_use",
-    ),
-    path(
-        "publishing-policy",
-        PublishingPolicyView.as_view(),
-        name="publishing_policy",
-    ),
+    # Search
     path(
         "structured_search",
         StructuredSearchView.as_view(),
         name="structured_search",
     ),
+    # Static pages
     path(
-        "terms-and-policies",
-        TermsAndPoliciesView.as_view(),
-        name="terms_and_policies",
+        "about-this-service",
+        static_views.AboutThisServiceView.as_view(),
+        name="about_this_service",
+    ),
+    path(
+        "accessibility-statement",
+        static_views.AccessibilityStatementView.as_view(),
+        name="accessibility_statement",
     ),
     path(
         "contact-us",
-        ContactUsView.as_view(),
+        static_views.ContactUsView.as_view(),
         name="contact_us",
     ),
     path(
         "courts-and-tribunals-in-fcl",
-        CourtsAndTribunalsInFclView.as_view(),
+        static_views.CourtsAndTribunalsInFclView.as_view(),
         name="courts_and_tribunals_in_fcl",
     ),
     path(
         "help-and-guidance",
-        HelpAndGuidanceView.as_view(),
+        static_views.HelpAndGuidanceView.as_view(),
         name="help_and_guidance",
     ),
     path(
         "how-to-search-find-case-law",
-        HowToSearchFindCaseLawView.as_view(),
+        static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
     ),
     path(
-        "understanding-judgments-and-decisions",
-        UnderstandingJudgmentsAndDecisionsView.as_view(),
-        name="understanding_judgments_and_decisions",
+        "how-to-use-this-service",
+        static_views.HowToUseThisService.as_view(),
+        name="how_to_use_this_service",
+    ),
+    path(
+        "open-justice-licence",
+        static_views.OpenJusticeLicenceView.as_view(),
+        name="open_justice_licence",
+    ),
+    path(
+        "privacy-notice",
+        static_views.PrivacyNotice.as_view(),
+        name="privacy_notice",
+    ),
+    path(
+        "publishing-policy",
+        static_views.PublishingPolicyView.as_view(),
+        name="publishing_policy",
+    ),
+    path(
+        "terms-and-policies",
+        static_views.TermsAndPoliciesView.as_view(),
+        name="terms_and_policies",
+    ),
+    path(
+        "terms-of-use",
+        static_views.TermsOfUseView.as_view(),
+        name="terms_of_use",
     ),
     path(
         "the-find-case-law-api",
-        TheFindCaseLawApiView.as_view(),
+        static_views.FindCaseLawApiView.as_view(),
         name="the_find_case_law_api",
     ),
     path(
-        "check",
-        status,
-        name="check",
+        "understanding-judgments-and-decisions",
+        static_views.UnderstandingJudgmentsAndDecisionsView.as_view(),
+        name="understanding_judgments_and_decisions",
     ),
     path(
-        "robots.txt",
-        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+        "what-to-expect",
+        lambda request: HttpResponseRedirect(reverse("about_this_service")),
+        name="what_to_expect",
     ),
+    # Styleguide
+    path(
+        "style-guide",
+        StyleGuideView.as_view(),
+        name="style_guide",
+    ),
+    # Test page
+    path(
+        "test-page-please-ignore",
+        TemplateView.as_view(template_name="pages/test_page.html", content_type="text/html"),
+        name="test_page",
+    ),
+    # Sitemap
     path(
         "sitemap.xml",
         SitemapIndexView.as_view(),
@@ -175,6 +153,17 @@ urlpatterns = [
         SitemapCourtView.as_view(),
         name="sitemap_court",
     ),
+    # Site status
+    path(
+        "check",
+        status,
+        name="check",
+    ),
+    # Files for non-humans
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
     path(
         "googleb0ce3f99fae65e7c.html",
         TemplateView.as_view(template_name="googleb0ce3f99fae65e7c.html", content_type="text/html"),
@@ -184,7 +173,14 @@ urlpatterns = [
         cache_page(60 * 60)(schema),
         name="schema",
     ),
+    # License application
+    path(
+        "computational-licence-form",
+        lambda request: HttpResponseRedirect("/re-use-find-case-law-records"),
+        name="computational_licence_form",
+    ),
     path("re-use-find-case-law-records", include("transactional_licence_form.urls")),
+    # Judgment resolution
     path("", include("judgments.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
