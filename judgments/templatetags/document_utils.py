@@ -8,14 +8,14 @@ register = template.Library()
 
 
 @register.filter
-def get_title_to_display_in_html(document_title, document_noun):
-    if not document_title:
+def get_title_to_display_in_html(document):
+    if not document.name:
         return
 
-    if document_noun == "press summary":
-        return document_title.removeprefix("Press Summary of ")
+    if document.document_noun == "press summary":
+        return document.name.removeprefix("Press Summary of ")
 
-    return document_title
+    return document.name
 
 
 @register.simple_tag

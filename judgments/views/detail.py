@@ -1,7 +1,7 @@
 import logging
 import os
 import urllib
-from typing import Any
+from typing import Any, Union
 
 import requests
 from caselawclient.errors import DocumentNotFoundError, MarklogicNotPermittedError
@@ -37,7 +37,7 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
 
-def get_published_document_by_uri(document_uri: str | None, cache_if_not_found: bool = False) -> Document:
+def get_published_document_by_uri(document_uri: Union[str, None], cache_if_not_found: bool = False) -> Document:
     if not document_uri:
         raise Http404("Missing document uri")
     try:
@@ -110,7 +110,7 @@ def detail(request, document_uri):
         return HttpResponseRedirect(redirect_uri)
 
     context: dict[str, Any] = {}
-    context["document_noun"] = document.document_noun
+
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)
     context["judgment_ncn"] = document.best_human_identifier
@@ -124,7 +124,8 @@ def detail(request, document_uri):
     except Http404:
         context["linked_document_uri"] = None
 
-    context["document"] = document.content_as_html(
+    context["document"] = document
+    context["document_html"] = document.content_as_html(
         MOST_RECENT_VERSION,
         query=preprocess_query(query) if query is not None else None,
     )  # "" is most recent version
