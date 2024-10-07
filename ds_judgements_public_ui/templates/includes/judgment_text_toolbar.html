@@ -6,7 +6,7 @@
       <p class="judgment-toolbar__press-summary-title">Press Summary</p>
     {% endif %}
     <h1 class="judgment-toolbar__title">{{ document|get_title_to_display_in_html }}</h1>
-    <p class="judgment-toolbar__reference">{{ judgment_ncn }}</p>
+    <p class="judgment-toolbar__reference">{{ document.best_human_identifier }}</p>
     <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
       {% if linked_document_uri %}
         {% spaceless %}
