@@ -1,17 +1,6 @@
 from urllib.parse import urlencode
 
-from django.urls import resolve
-
-# these should match the names in config/urls.py
-INDEXABLE_VIEWS = [
-    "home",
-    "computational_licence_form",
-    "what_to_expect",
-    "how_to_use_this_service",
-    "accessibility_statement",
-    "open_justice_licence",
-    "terms_of_use",
-]
+from django.template.response import TemplateResponse
 
 
 class RobotsTagMiddleware:
@@ -23,8 +12,10 @@ class RobotsTagMiddleware:
         # Code to be executed for each request before
         # the view (and later middleware) are called.
         response = self.get_response(request)
-        if resolve(request.path).view_name not in INDEXABLE_VIEWS:
-            response.headers["X-Robots-Tag"] = "noindex,nofollow"
+        # If page_allow_index is True, short-circuit adding the X-Robots-Tag
+        if isinstance(response, TemplateResponse) and response.context_data.get("page_allow_index", False):
+            return response
+        response.headers["X-Robots-Tag"] = "noindex,nofollow"
         return response
 
 

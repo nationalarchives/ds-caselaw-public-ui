@@ -6,7 +6,9 @@
     {% block meta_description %}
     {% endblock meta_description %}
     {% block robots %}
-      <meta name="robots" content="noindex,nofollow" />
+      {% if not page_allow_index %}
+        <meta name="robots" content="noindex,nofollow" />
+      {% endif %}
     {% endblock robots %}
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     {% if page_canonical_url %}
