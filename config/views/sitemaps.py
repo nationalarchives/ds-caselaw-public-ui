@@ -68,7 +68,6 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
             "help_and_guidance",
             "how_to_search_find_case_law",
             "understanding_judgments_and_decisions",
-            "the_find_case_law_api",
         ]
 
         context["items"] = [{"url": self.request.build_absolute_uri(reverse(url))} for url in url_names]

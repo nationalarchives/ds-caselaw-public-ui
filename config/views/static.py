@@ -53,18 +53,6 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
         return context
 
 
-class FindCaseLawApiView(TemplateViewWithContext):
-    template_name = "pages/the_find_case_law_api.html"
-    page_title = "The Find Case Law API"
-    page_canonical_url_name = "the_find_case_law_api"
-    page_allow_index = True
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "the_find_case_law_api"
-        return context
-
-
 class HelpAndGuidanceView(TemplateViewWithContext):
     template_name = "pages/help_and_guidance.html"
     page_title = "Help and guidance"
