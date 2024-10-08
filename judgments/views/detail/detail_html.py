@@ -50,7 +50,8 @@ def detail_html(request, document_uri):
         context["number_of_mentions"] = str(document.number_of_mentions(query))
 
     try:
-        linked_document = get_published_document_by_uri(linked_doc_url(document), cache_if_not_found=True)
+        linked_document_uri = linked_doc_url(document)
+        linked_document = get_published_document_by_uri(linked_document_uri, cache_if_not_found=True)
         context["linked_document_uri"] = linked_document.uri
     except Http404:
         context["linked_document_uri"] = None

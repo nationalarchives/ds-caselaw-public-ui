@@ -244,12 +244,12 @@ def formatted_document_uri(document_uri: str, format: Optional[str] = None) -> s
     return url
 
 
-def linked_doc_url(document: Document):
+def linked_doc_url(document: Document) -> DocumentURIString:
     press_summary_suffix = "/press-summary/1"
     if document.document_noun == "press summary":
-        return document.uri.removesuffix(press_summary_suffix)
+        return DocumentURIString(document.uri.removesuffix(press_summary_suffix))
     else:
-        return document.uri + press_summary_suffix
+        return DocumentURIString(document.uri + press_summary_suffix)
 
 
 def linked_doc_title(document: Document):
