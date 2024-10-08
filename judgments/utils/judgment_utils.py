@@ -1,13 +1,11 @@
-from typing import Union
-
 from caselawclient.errors import DocumentNotFoundError, MarklogicNotPermittedError
-from caselawclient.models.documents import Document
+from caselawclient.models.documents import Document, DocumentURIString
 from django.http import Http404
 
 from .utils import get_document_by_uri
 
 
-def get_published_document_by_uri(document_uri: Union[str, None], cache_if_not_found: bool = False) -> Document:
+def get_published_document_by_uri(document_uri: DocumentURIString, cache_if_not_found: bool = False) -> Document:
     if not document_uri:
         raise Http404("Missing document uri")
     try:
