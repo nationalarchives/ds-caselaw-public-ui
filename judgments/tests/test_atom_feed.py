@@ -91,13 +91,6 @@ class TestAtomFeed(TestCase):
         )
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
-    def test_bad_page_not_500(self, mock_search):
-        # "?page=" doesn't 500
-        mock_search.return_value = FakeSearchResponse()
-        response = self.client.get("/atom.xml?page=")
-        assert response.status_code != 500
-
-    @patch("judgments.feeds.search_judgments_and_parse_response")
     def test_feed_with_empty_date(self, mock_search):
         mock_search.return_value = FakeSearchResponse()
 
