@@ -94,9 +94,10 @@ class AdvancedSearchForm(forms.Form):
     def clean(self):
         cleaned_data = super().clean()
         # Validate that from is before to now that we have access to both fields
-        # Cleaned data can never be `None`, so supress warning
-        to_date = cleaned_data.get("to_date")  # type: ignore
-        from_date = cleaned_data.get("from_date")  # type: ignore
+        if cleaned_data is None:  # make the type checker happier
+            raise RuntimeError("Cleaned data can never be None, this should never occur")
+        to_date = cleaned_data.get("to_date")
+        from_date = cleaned_data.get("from_date")
         if from_date and to_date:
             if from_date > to_date:
                 raise ValidationError(
@@ -105,6 +106,9 @@ class AdvancedSearchForm(forms.Form):
                 )
         # Run the pre-process query step
         # Ignore warnings related to MyPy not understanding what cleaned_data is
-        if cleaned_data.get("query"):  # type: ignore
-            cleaned_data["query"] = preprocess_query(cleaned_data.get("query"))  # type: ignore
+        if cleaned_data.get("query"):
+            cleaned_data["query"] = preprocess_query(cleaned_data.get("query", ""))
+        for parameter in ["query", "from_date", "to_date", "court", "tribunal", "party", "judge"]:
+            if cleaned_data.get(parameter, "Non-nilsy placeholder") in (None, "", []):
+                del cleaned_data[parameter]
         return cleaned_data

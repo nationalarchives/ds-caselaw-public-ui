@@ -3,7 +3,7 @@ from unittest.mock import patch
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 
-from judgments.tests.fixtures import FakeSearchResponse
+from judgments.tests.fixtures import FakeSearchResponse, FakeSearchResponseManyPages
 
 
 class TestAtomFeed(TestCase):
@@ -20,11 +20,15 @@ class TestAtomFeed(TestCase):
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
             SearchParameters(
-                court=None,
-                date_from=None,
+                query="",
+                court="",
+                judge=None,
+                party=None,
+                date_from="2003-01-01",
                 date_to=None,
                 order="-date",
                 page=1,
+                page_size=50,
             ),
         )
 
@@ -45,17 +49,69 @@ class TestAtomFeed(TestCase):
         self.assertIn("<author><name>court</name></author>", decoded_response)
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
-    def test_bad_page_404(self, mock_search_judgments_and_parse_response):
-        # "?page=" 404s, not 500
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/atom.xml?page=")
-        self.assertEqual(response.status_code, 404)
+    @patch("judgments.feeds.api_client")
+    def test_search_query_in_URL(self, mock_api_client, mock_search):
+        search_response = FakeSearchResponseManyPages()
+        mock_search.return_value = search_response
+
+        response = self.client.get("/atom.xml?query=obscure-search-query&page=5&order=date")
+        decoded_response = response.content.decode("utf-8")
+
+        # that search_judgments_and_parse_response is called with the appropriate parameters
+        mock_search.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="obscure-search-query",
+                court="",
+                judge=None,
+                party=None,
+                date_from="2003-01-01",
+                date_to=None,
+                order="date",
+                page=5,
+            ),
+        )
+
+        self.assertIn("Search results for obscure-search-query", decoded_response)
+
+        self.assertIn(
+            '"https://caselaw.nationalarchives.gov.uk/atom.xml?query=obscure-search-query&amp;order=date"',
+            decoded_response,
+        )
+        self.assertIn(
+            '"https://caselaw.nationalarchives.gov.uk/atom.xml?query=obscure-search-query&amp;order=date&amp;page=4"',
+            decoded_response,
+        )
+        self.assertIn(
+            '"https://caselaw.nationalarchives.gov.uk/atom.xml?query=obscure-search-query&amp;order=date&amp;page=6"',
+            decoded_response,
+        )
+        self.assertIn(
+            '"https://caselaw.nationalarchives.gov.uk/atom.xml?query=obscure-search-query&amp;order=date&amp;page=100"',
+            decoded_response,
+        )
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
-    def test_feed_with_empty_date(self, mock_search_judgments_and_parse_response):
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+    def test_feed_with_empty_date(self, mock_search):
+        mock_search.return_value = FakeSearchResponse()
 
         response = self.client.get("/atom.xml")
         decoded_response = response.content.decode("utf-8")
         self.assertEqual(response.status_code, 200)
         self.assertIn("A SearchResult name!", decoded_response)
+
+    def test_redirect_full(self):
+        response = self.client.get("/ewhc/ch/2024/atom.xml")
+        assert response.url == "/atom.xml?court=ewhc%2Fch&from=2024-01-01&to=2024-12-31"  # type: ignore[attr-defined]
+
+    def test_redirect_full_with_params(self):
+        response = self.client.get("/ewhc/ch/2024/atom.xml?page=4&order=modified")
+        assert response.url == "/atom.xml?page=4&order=modified&court=ewhc%2Fch&from=2024-01-01&to=2024-12-31"  # type: ignore[attr-defined]
+
+    def test_redirect_short_court(self):
+        response = self.client.get("/ewhc/atom.xml")
+        assert response.url == "/atom.xml?court=ewhc"  # type: ignore[attr-defined]
+
+    def test_redirect_year_only(self):
+        response = self.client.get("/2024/atom.xml")
+        assert response.url == "/atom.xml?from=2024-01-01&to=2024-12-31"  # type: ignore[attr-defined]

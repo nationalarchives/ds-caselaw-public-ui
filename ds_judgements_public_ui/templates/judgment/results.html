@@ -3,6 +3,9 @@
 {% block title %}
   Search results - Find Case Law
 {% endblock title %}
+{% block extra_head_tags %}
+  <link rel="alternate" type="application/atom+xml" title="{{ breadcrumbs.0.text }}" href="{% url 'search-feed' %}?{{ query_param_string }}"/>
+{% endblock extra_head_tags %}
 {% block content %}
   <div class="results">
     <h1>Search results</h1>
@@ -21,7 +24,6 @@
         {% if search_results %}
           <div class="results__result-header-container">
             {% include "includes/result_header.html" %}
-
             {% include "includes/result_controls.html" %}
           </div>
 
