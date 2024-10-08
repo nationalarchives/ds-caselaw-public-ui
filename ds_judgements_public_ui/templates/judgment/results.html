@@ -1,8 +1,11 @@
 {% extends "layouts/base.html" %}
-{% load utilities search_results_filters static %}
+{% load utilities search_results_filters %}
 {% block title %}
   Search results - Find Case Law
 {% endblock title %}
+{% block extra_head_tags %}
+  <link rel="alternate" type="application/atom+xml" title="{{ breadcrumbs.0.text }}" href="{% url 'search-feed' %}?{{ query_param_string }}"/>
+{% endblock extra_head_tags %}
 {% block content %}
   <div class="results">
     <h1>Search results</h1>
@@ -19,11 +22,8 @@
           {% include "includes/advice_message.html" with message=date_warning url_text="Find out what records are available on this service." url_value=url_value url_anchor="section-coverage" %}
         {% endif %}
         {% if search_results %}
-          <link rel="alternate" type="application/atom+xml" title="{{ breadcrumbs.0.text }}" href="{% url 'search-feed' %}?{{ query_param_string }}"/>
-          <a href="{% url 'search-feed' %}?{{ query_param_string }}"><img src="{% static "fontawesome-svgs/rss.svg" %}" width=10 height=10 alt=""/> Feed for {{ breadcrumbs.0.text }} </a>
           <div class="results__result-header-container">
             {% include "includes/result_header.html" %}
-
             {% include "includes/result_controls.html" %}
           </div>
 
