@@ -6,8 +6,6 @@ from .utils import get_document_by_uri
 
 
 def get_published_document_by_uri(document_uri: DocumentURIString, cache_if_not_found: bool = False) -> Document:
-    if not document_uri:
-        raise Http404("Missing document uri")
     try:
         document = get_document_by_uri(document_uri, cache_if_not_found=cache_if_not_found)
         if not document:
