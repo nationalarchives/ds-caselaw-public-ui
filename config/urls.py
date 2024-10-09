@@ -107,7 +107,7 @@ urlpatterns = [
     ),
     path(
         "the-find-case-law-api",
-        static_views.FindCaseLawApiView.as_view(),
+        lambda request: HttpResponseRedirect("https://nationalarchives.github.io/ds-find-caselaw-docs/public"),
         name="the_find_case_law_api",
     ),
     path(
