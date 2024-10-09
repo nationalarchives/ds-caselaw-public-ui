@@ -21,10 +21,10 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     template_name = "pdf/document.html"
-    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "documentpdf.css")]
+    pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "document_pdf.css")]
     pdf_attachment = True
 
-    def get_context_data(self, document_uri=None, **kwargs) -> dict[str, Any]:
+    def get_context_data(self, document_uri, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
 
         document = get_published_document_by_uri(document_uri)
