@@ -4,9 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>{{ document_uri }}</title>
+    <title>{{ document.uri }}</title>
     {% block css %}
-      <link href="{% static 'css/judgmentpdf.css' %}" rel="stylesheet" />
+      <link href="{% static 'css/document_pdf.css' %}" rel="stylesheet" />
     {% endblock css %}
   </head>
   <body>
