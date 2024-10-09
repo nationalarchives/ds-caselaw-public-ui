@@ -144,8 +144,8 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/judgments/search?query=waltham+forest")
         self.assertContains(response, '<meta name="robots" content="noindex,nofollow" />', html=True)
 
-    @patch("judgments.views.detail.DocumentPdf")
-    @patch("judgments.views.detail.requests.get")
+    @patch("judgments.views.detail.best_pdf.DocumentPdf")
+    @patch("judgments.views.detail.best_pdf.requests.get")
     def test_aws_pdf(self, mock_get, mock_pdf):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
@@ -156,8 +156,8 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.detail.DocumentPdf")
-    @patch("judgments.views.detail.requests.get")
+    @patch("judgments.views.detail.best_pdf.DocumentPdf")
+    @patch("judgments.views.detail.best_pdf.requests.get")
     def test_aws_pdf_press_summary(self, mock_get, mock_pdf):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
@@ -168,24 +168,24 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.detail.get_document_by_uri")
+    @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
     def test_xml(self, mock_get_document_by_uri):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1", cache_if_not_found=False)
+        mock_get_document_by_uri.assert_called_with("eat/2023/1")
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.detail.get_document_by_uri")
+    @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
     def test_xml_press_summary(self, mock_get_document_by_uri):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1", cache_if_not_found=False)
+        mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a judgment in XML.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
-    @patch("judgments.views.detail.PdfDetailView.get_context_data")
+    @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
     def test_weasy_pdf(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/generated.pdf")
@@ -194,7 +194,7 @@ class TestRobotsDirectives(TestCase):
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
-    @patch("judgments.views.detail.PdfDetailView.get_context_data")
+    @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
     def test_weasy_pdf_press_summary(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/press-summary/1/generated.pdf")
