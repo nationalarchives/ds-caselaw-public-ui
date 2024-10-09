@@ -24,8 +24,10 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
     pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "document_pdf.css")]
     pdf_attachment = True
 
-    def get_context_data(self, document_uri, **kwargs) -> dict[str, Any]:
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
+
+        document_uri = DocumentURIString(kwargs.get("document_uri", ""))
 
         document = get_published_document_by_uri(document_uri)
 
