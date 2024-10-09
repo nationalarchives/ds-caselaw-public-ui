@@ -12,7 +12,7 @@
         (<span class="document-navigation-links__match-count document-navigation-links__link-count">{{ number_of_mentions }}</span> matches)
         <a class="document-navigation-links__remove-query-link"
            title="Remove query highlights"
-           href="{% url 'detail' document_uri %}">Remove query highlights</a>
+           href="{% url 'detail' document.uri %}">Remove query highlights</a>
       </span>
     </span>
   {% endif %}
@@ -29,7 +29,7 @@
     {% if page_title %}
       <h2>{{ page_title }}</h2>
     {% endif %}
-    <p>{{ judgment_ncn }}</p>
+    <p>{{ document.best_human_identifier }}</p>
   </div>
 
   <div id="js-document-navigation-links-end"
