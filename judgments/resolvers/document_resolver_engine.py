@@ -3,7 +3,7 @@ from typing import Optional
 from django.http.request import HttpRequest
 from django.views.generic import View
 
-from judgments.views.detail import detail, detail_xml, get_best_pdf, get_generated_pdf
+from judgments.views.detail import best_pdf, detail_html, detail_xml, generated_pdf
 from judgments.views.press_summaries import press_summaries
 
 
@@ -16,10 +16,10 @@ class DocumentResolverEngine(View):
         component: Optional[str] = None,
     ):
         fileformat_lookup = {
-            "data.pdf": get_best_pdf,
-            "generated.pdf": get_generated_pdf,
+            "data.pdf": best_pdf,
+            "generated.pdf": generated_pdf,
             "data.xml": detail_xml,
-            "data.html": detail,
+            "data.html": detail_html,
         }
         component_lookup = {
             "press-summary": press_summaries,
@@ -30,4 +30,4 @@ class DocumentResolverEngine(View):
         if component:
             return component_lookup[component](request, document_uri)
 
-        return detail(request, document_uri)
+        return detail_html(request, document_uri)
