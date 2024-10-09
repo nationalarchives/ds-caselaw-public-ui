@@ -183,8 +183,10 @@ class SearchJudgmentsFeed(JudgmentsFeed):
     def get_object(self, request: HttpRequest) -> dict[str, Any]:
         # Taken verbatim from judgments/views/advanced_search advanced_search()
         order = request.GET.get("order", default=None)
-        if order not in [None, "-date", "date", "-transform", "transform", "updated", "-updated"]:
-            raise BadRequest("Sort order should be one of date, transform or updated, or -date, -transform or -updated")
+        if order not in [None, "-date", "date", "-transformation", "transformation", "updated", "-updated"]:
+            raise BadRequest(
+                "Sort order should be one of date, transformation or updated, or -date, -transformation or -updated"
+            )
 
         per_page = request.GET.get("per_page", default="50")
         try:
