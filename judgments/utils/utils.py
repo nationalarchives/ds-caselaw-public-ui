@@ -13,6 +13,7 @@ from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.urls import reverse
 from ds_caselaw_utils.neutral import neutral_url
+from ds_caselaw_utils.types import NeutralCitationString
 
 from judgments.fixtures.stop_words import stop_words
 
@@ -230,7 +231,7 @@ def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary
     return api_client.get_press_summaries_for_document_uri(DocumentURIString(document_uri))
 
 
-def formatted_document_uri(document_uri: str, format: Optional[str] = None) -> str:
+def formatted_document_uri(document_uri: DocumentURIString, format: Optional[str] = None) -> str:
     url = reverse("detail", args=[document_uri])
     if format == "pdf":
         url = url + "/data.pdf"
@@ -255,9 +256,9 @@ def linked_doc_url(document: Document) -> DocumentURIString:
 def linked_doc_title(document: Document):
     press_summary_title_prefix = "Press Summary of "
     if document.document_noun == "press summary":
-        return document.name.removeprefix(press_summary_title_prefix)
+        return document.body.name.removeprefix(press_summary_title_prefix)
     else:
-        return press_summary_title_prefix + document.name
+        return press_summary_title_prefix + document.body.name
 
 
 def press_summary_list_breadcrumbs(press_summary: Document):
@@ -275,30 +276,34 @@ def press_summary_list_breadcrumbs(press_summary: Document):
 not_alphanumeric = re.compile("[^a-zA-Z0-9]")
 
 
-def replace_parens(string):
+def replace_parens(string: str) -> str:
     return normalise_spaces(re.sub("\\(.+\\)", "", string))
 
 
-def preprocess_title(string):
+def preprocess_title(string: str) -> str:
     return preprocess_query(replace_parens(string)).lower().strip()
 
 
-def preprocess_ncn(string):
+def preprocess_ncn(string: str) -> str:
     return re.sub(not_alphanumeric, "", preprocess_query(string).lower()).strip()
 
 
-def is_exact_ncn_match(result, query):
+def is_exact_ncn_match(result, query: str) -> bool:
     return preprocess_ncn(query) == preprocess_ncn(result.neutral_citation)
 
 
-def search_results_have_exact_ncn(search_results, query):
+def search_results_have_exact_ncn(search_results, query: str) -> bool:
     for search_result in search_results:
         if is_exact_ncn_match(search_result, query):
             return True
     return False
 
 
-def show_no_exact_ncn_warning(search_results, query_text: str, page: int):
+def show_no_exact_ncn_warning(search_results, query_text: str, page: int) -> bool:
     return (
-        not (search_results_have_exact_ncn(search_results, query_text)) and bool(neutral_url(query_text)) and page == 1
+        not (search_results_have_exact_ncn(search_results, query_text))
+        and bool(
+            neutral_url(NeutralCitationString(query_text))
+        )  ## TODO: This is horrible, because we don't know query_text is a valid NCN at this point
+        and page == 1
     )

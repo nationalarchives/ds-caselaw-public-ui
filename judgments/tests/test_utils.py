@@ -3,6 +3,7 @@ from unittest import mock
 from unittest.mock import Mock
 
 from caselawclient.errors import DocumentNotFoundError
+from caselawclient.models.documents import DocumentURIString
 from ds_caselaw_utils import courts as all_courts
 from ds_caselaw_utils.courts import CourtCode
 
@@ -55,7 +56,7 @@ class TestUtils(unittest.TestCase):
             ("xml", "/data.xml"),
             ("html", "/data.html"),
         ]
-        document_uri = "ewhc/comm/2024/253"
+        document_uri = DocumentURIString("ewhc/comm/2024/253")
         for format, suffix in test_params:
             with self.subTest(format=format, suffix=suffix):
                 self.assertEqual(
