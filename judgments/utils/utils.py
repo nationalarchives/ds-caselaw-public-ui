@@ -13,6 +13,7 @@ from caselawclient.search_parameters import RESULTS_PER_PAGE
 from django.conf import settings
 from django.urls import reverse
 from ds_caselaw_utils.neutral import neutral_url
+from ds_caselaw_utils.types import NeutralCitationString
 
 from judgments.fixtures.stop_words import stop_words
 
@@ -300,5 +301,9 @@ def search_results_have_exact_ncn(search_results, query: str) -> bool:
 
 def show_no_exact_ncn_warning(search_results, query_text: str, page: int) -> bool:
     return (
-        not (search_results_have_exact_ncn(search_results, query_text)) and bool(neutral_url(query_text)) and page == 1
+        not (search_results_have_exact_ncn(search_results, query_text))
+        and bool(
+            neutral_url(NeutralCitationString(query_text))
+        )  ## TODO: This is horrible, because we don't know query_text is a valid NCN at this point
+        and page == 1
     )
