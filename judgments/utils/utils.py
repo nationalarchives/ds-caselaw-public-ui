@@ -275,30 +275,30 @@ def press_summary_list_breadcrumbs(press_summary: Document):
 not_alphanumeric = re.compile("[^a-zA-Z0-9]")
 
 
-def replace_parens(string):
+def replace_parens(string: str) -> str:
     return normalise_spaces(re.sub("\\(.+\\)", "", string))
 
 
-def preprocess_title(string):
+def preprocess_title(string: str) -> str:
     return preprocess_query(replace_parens(string)).lower().strip()
 
 
-def preprocess_ncn(string):
+def preprocess_ncn(string: str) -> str:
     return re.sub(not_alphanumeric, "", preprocess_query(string).lower()).strip()
 
 
-def is_exact_ncn_match(result, query):
+def is_exact_ncn_match(result, query: str) -> bool:
     return preprocess_ncn(query) == preprocess_ncn(result.neutral_citation)
 
 
-def search_results_have_exact_ncn(search_results, query):
+def search_results_have_exact_ncn(search_results, query: str) -> bool:
     for search_result in search_results:
         if is_exact_ncn_match(search_result, query):
             return True
     return False
 
 
-def show_no_exact_ncn_warning(search_results, query_text: str, page: int):
+def show_no_exact_ncn_warning(search_results, query_text: str, page: int) -> bool:
     return (
         not (search_results_have_exact_ncn(search_results, query_text)) and bool(neutral_url(query_text)) and page == 1
     )
