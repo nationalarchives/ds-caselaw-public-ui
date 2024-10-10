@@ -230,7 +230,7 @@ def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary
     return api_client.get_press_summaries_for_document_uri(DocumentURIString(document_uri))
 
 
-def formatted_document_uri(document_uri: str, format: Optional[str] = None) -> str:
+def formatted_document_uri(document_uri: DocumentURIString, format: Optional[str] = None) -> str:
     url = reverse("detail", args=[document_uri])
     if format == "pdf":
         url = url + "/data.pdf"
@@ -255,9 +255,9 @@ def linked_doc_url(document: Document) -> DocumentURIString:
 def linked_doc_title(document: Document):
     press_summary_title_prefix = "Press Summary of "
     if document.document_noun == "press summary":
-        return document.name.removeprefix(press_summary_title_prefix)
+        return document.body.name.removeprefix(press_summary_title_prefix)
     else:
-        return press_summary_title_prefix + document.name
+        return press_summary_title_prefix + document.body.name
 
 
 def press_summary_list_breadcrumbs(press_summary: Document):
