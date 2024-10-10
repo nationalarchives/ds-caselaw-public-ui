@@ -84,7 +84,7 @@ def detail_html(request, document_uri):
             }
         )
     else:
-        breadcrumbs.append({"text": document.name})
+        breadcrumbs.append({"text": document.body.name})
 
     context["breadcrumbs"] = breadcrumbs
     context["query"] = query
@@ -95,7 +95,7 @@ def detail_html(request, document_uri):
     context["page_canonical_url"] = document.public_uri
     context["document_canonical_url"] = request.build_absolute_uri("/" + document.uri)
     context["feedback_survey_document_uri"] = document.uri  # TODO: Remove this from context
-    context["page_title"] = document.name  # TODO: Remove this from context
+    context["page_title"] = document.body.name  # TODO: Remove this from context
     context["pdf_uri"] = pdf.uri  # TODO: Remove this from context
 
     return TemplateResponse(request, "judgment/detail.html", context=context)

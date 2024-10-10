@@ -2,9 +2,9 @@ from unittest.mock import patch
 
 import pytest
 from caselawclient.errors import DocumentNotFoundError
+from caselawclient.factories import JudgmentFactory
 from caselawclient.models.documents import DocumentURIString
 from django.http import Http404
-from factories import JudgmentFactory
 
 from judgments.utils import (
     get_published_document_by_uri,

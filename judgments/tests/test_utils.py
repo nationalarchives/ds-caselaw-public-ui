@@ -3,10 +3,11 @@ from unittest import mock
 from unittest.mock import Mock
 
 from caselawclient.errors import DocumentNotFoundError
+from caselawclient.factories import DocumentBodyFactory, JudgmentFactory, PressSummaryFactory
+from caselawclient.models.documents import DocumentURIString
 from ds_caselaw_utils import courts as all_courts
 from ds_caselaw_utils.courts import CourtCode
 
-from judgments.tests.factories import JudgmentFactory, PressSummaryFactory
 from judgments.utils import (
     formatted_document_uri,
     get_document_by_uri,
@@ -55,7 +56,7 @@ class TestUtils(unittest.TestCase):
             ("xml", "/data.xml"),
             ("html", "/data.html"),
         ]
-        document_uri = "ewhc/comm/2024/253"
+        document_uri = DocumentURIString("ewhc/comm/2024/253")
         for format, suffix in test_params:
             with self.subTest(format=format, suffix=suffix):
                 self.assertEqual(
@@ -71,14 +72,14 @@ class TestUtils(unittest.TestCase):
     def test_linked_doc_url_returns_judgement_for_a_press_summary(self):
         document = PressSummaryFactory.build(uri="/foo/bar/press-summary/1")
 
-        assert linked_doc_url(document) == "/foo/bar"
+        assert linked_doc_url(document) == "foo/bar"
 
     def test_linked_doc_title_removes_prefix_for_press_summary(self):
-        document = PressSummaryFactory.build(name="Press Summary of Arkell v Pressdram")
+        document = PressSummaryFactory.build(body=DocumentBodyFactory.build(name="Press Summary of Arkell v Pressdram"))
         assert linked_doc_title(document) == "Arkell v Pressdram"
 
     def test_linked_doc_title_adds_prefix_for_judgment(self):
-        document = JudgmentFactory.build(name="Arkell v Pressdram")
+        document = JudgmentFactory.build(body=DocumentBodyFactory.build(name="Arkell v Pressdram"))
         assert linked_doc_title(document) == "Press Summary of Arkell v Pressdram"
 
     def test_press_summary_list_breadcrumbs(self):

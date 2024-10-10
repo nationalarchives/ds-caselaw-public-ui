@@ -21,13 +21,13 @@ def press_summaries(request, document_uri):
             permanent=False,
         )
 
-    judgement_name = linked_doc_title(press_summaries[0])
+    judgment_name = linked_doc_title(press_summaries[0])
     return TemplateResponse(
         request,
         "judgment/press_summaries/list.html",
         context={
-            "page_title": f"{judgement_name} - Press Summaries",
-            "judgement_name": judgement_name,
+            "page_title": f"{judgment_name} - Press Summaries",
+            "judgment_name": judgment_name,
             "breadcrumbs": press_summary_list_breadcrumbs(press_summaries[0]),
             "press_summaries": press_summaries,
         },
