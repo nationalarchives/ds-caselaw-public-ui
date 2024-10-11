@@ -1,3 +1,4 @@
+from django.urls import reverse
 from ds_caselaw_utils import courts
 
 from .template_view_with_context import TemplateViewWithContext
@@ -25,6 +26,10 @@ class AccessibilityStatementView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
+        context["breadcrumbs"] = [
+            {"url": (reverse("terms_and_policies")), "text": "Terms and policies"},
+            {"text": "Accessibility statement"},
+        ]
         return context
 
 
@@ -37,6 +42,10 @@ class ContactUsView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "contact_us"
+        context["breadcrumbs"] = [
+            {"url": (reverse("help_and_guidance")), "text": "Help and guidance"},
+            {"text": "Contact us"},
+        ]
         return context
 
 
@@ -74,6 +83,10 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "how_to_search_find_case_law"
+        context["breadcrumbs"] = [
+            {"url": (reverse("help_and_guidance")), "text": "Help and guidance"},
+            {"text": "How to search Find Case Law"},
+        ]
         return context
 
 
@@ -121,7 +134,11 @@ class PublishingPolicyView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "publishing_policy"
+        context["feedback_survey_type"] = "publishing_policy"  #
+        context["breadcrumbs"] = [
+            {"url": (reverse("terms_and_policies")), "text": "Terms and policies"},
+            {"text": "Publishing policy"},
+        ]
         return context
 
 
@@ -139,13 +156,17 @@ class TermsAndPoliciesView(TemplateViewWithContext):
 
 class TermsOfUseView(TemplateViewWithContext):
     template_name = "pages/terms_of_use.html"
-    page_title = "Terms of Use"
+    page_title = "Terms of use"
     page_canonical_url_name = "terms_of_use"
     page_allow_index = True
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
+        context["breadcrumbs"] = [
+            {"url": (reverse("terms_and_policies")), "text": "Terms and policies"},
+            {"text": "Terms of Use"},
+        ]
         return context
 
 
@@ -158,4 +179,8 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "understanding_judgments_and_decisions"
+        context["breadcrumbs"] = [
+            {"url": (reverse("help_and_guidance")), "text": "Help and guidance"},
+            {"text": "Understanding judgments and decisions"},
+        ]
         return context
