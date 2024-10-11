@@ -1,3 +1,4 @@
+from django.urls import reverse
 from ds_caselaw_utils import courts
 
 from .template_view_with_context import TemplateViewWithContext
@@ -26,7 +27,7 @@ class AccessibilityStatementView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
         context["breadcrumbs"] = [
-            {"url": "/terms-and-policies", "text": "Terms and policies"},
+            {"url": self.request.build_absolute_uri(reverse("terms_and_policies")), "text": "Terms and policies"},
             {"text": "Accessibility statement"},
         ]
         return context
@@ -41,7 +42,10 @@ class ContactUsView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "contact_us"
-        context["breadcrumbs"] = [{"url": "/help-and-guidance", "text": "Help and guidance"}, {"text": "Contact us"}]
+        context["breadcrumbs"] = [
+            {"url": self.request.build_absolute_uri(reverse("help_and_guidance")), "text": "Help and guidance"},
+            {"text": "Contact us"},
+        ]
         return context
 
 
@@ -80,7 +84,7 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "how_to_search_find_case_law"
         context["breadcrumbs"] = [
-            {"url": "/help-and-guidance", "text": "Help and guidance"},
+            {"url": self.request.build_absolute_uri(reverse("help_and_guidance")), "text": "Help and guidance"},
             {"text": "How to search Find Case Law"},
         ]
         return context
@@ -132,7 +136,7 @@ class PublishingPolicyView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "publishing_policy"  #
         context["breadcrumbs"] = [
-            {"url": "/terms-and-policies", "text": "Terms and policies"},
+            {"url": self.request.build_absolute_uri(reverse("terms_and_policies")), "text": "Terms and policies"},
             {"text": "Publishing policy"},
         ]
         return context
@@ -160,7 +164,7 @@ class TermsOfUseView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
         context["breadcrumbs"] = [
-            {"url": "/terms-and-policies", "text": "Terms and policies"},
+            {"url": self.request.build_absolute_uri(reverse("terms_and_policies")), "text": "Terms and policies"},
             {"text": "Terms of Use"},
         ]
         return context
@@ -176,7 +180,7 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "understanding_judgments_and_decisions"
         context["breadcrumbs"] = [
-            {"url": "/help-and-guidance", "text": "Help and guidance"},
+            {"url": self.request.build_absolute_uri(reverse("help_and_guidance")), "text": "Help and guidance"},
             {"text": "Understanding judgments and decisions"},
         ]
         return context
