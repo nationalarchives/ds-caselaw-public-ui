@@ -152,7 +152,7 @@ class TermsAndPoliciesView(TemplateViewWithContext):
 
 class TermsOfUseView(TemplateViewWithContext):
     template_name = "pages/terms_of_use.html"
-    page_title = "Terms of Use"
+    page_title = "Terms of use"
     page_canonical_url_name = "terms_of_use"
     page_allow_index = True
 
