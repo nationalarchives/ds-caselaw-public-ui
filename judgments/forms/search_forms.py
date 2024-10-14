@@ -35,6 +35,24 @@ COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_courts()
 TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_tribunals())
 
 
+def get_short_identifiers(top_level_choices):
+    all_shorts = set()
+    for key, value in top_level_choices:
+        if isinstance(value, list):
+            all_shorts = all_shorts | set(x[0].partition("/")[0] for x in value)
+    return all_shorts
+
+
+class CourtTribunalField(forms.MultipleChoiceField):
+    def validate(self, *args, **kwargs):
+        short_identifiers = get_short_identifiers(self.choices)
+        try:
+            return super().validate(*args, **kwargs)
+        except ValidationError as e:
+            if e.params.get("value") in short_identifiers:
+                return  # acceptable value
+
+
 class AdvancedSearchForm(forms.Form):
     query = forms.CharField(
         required=False,
@@ -63,17 +81,19 @@ class AdvancedSearchForm(forms.Form):
     )
     # Courts and tribunals are split here because it's easier to render
     # them and then recombine in the view for querying MarkLogic
-    court = forms.MultipleChoiceField(
+    court = CourtTribunalField(
         choices=COURT_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         label="From specific courts or tribunals",
         required=False,
     )
-    tribunal = forms.MultipleChoiceField(
+
+    tribunal = CourtTribunalField(
         choices=TRIBUNAL_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         required=False,
     )
+
     party = forms.CharField(
         widget=forms.TextInput(
             {
