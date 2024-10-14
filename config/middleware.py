@@ -1,6 +1,7 @@
 from urllib.parse import urlencode
 
 from django.template.response import TemplateResponse
+from django.urls import reverse
 
 
 class RobotsTagMiddleware:
@@ -49,4 +50,24 @@ class FeedbackLinkMiddleware:
             params["court"] = response.context_data["feedback_survey_court"]
 
         response.context_data["feedback_survey_link"] = self.BASE_FEEDBACK_URL + "?" + urlencode(params)
+        return response
+
+
+class StructuredBreadcrumbsMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.get_response(request)
+
+    def process_template_response(self, request, response):
+        if "breadcrumbs" in response.context_data:
+            response.context_data["structured_breadcrumbs"] = [
+                {"text": "Find Case Law", "url": request.build_absolute_uri(reverse("home"))}
+            ]
+            for breadcrumb in response.context_data["breadcrumbs"]:
+                response.context_data["structured_breadcrumbs"].append(
+                    {"text": breadcrumb["text"], "url": breadcrumb.get("url")}
+                )
+
         return response
