@@ -15,7 +15,7 @@ pytest-socket==0.7.0 # https://github.com/miketheman/pytest-socket
 # Code quality
 # ------------------------------------------------------------------------------
 coverage==7.6.2  # https://github.com/nedbat/coveragepy
-pylint-django==2.5.5  # https://github.com/PyCQA/pylint-django
+pylint-django==2.6.1  # https://github.com/PyCQA/pylint-django
 pre-commit==4.0.1  # https://github.com/pre-commit/pre-commit
 
 # Django
