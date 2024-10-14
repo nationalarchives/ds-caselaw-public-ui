@@ -1,5 +1,22 @@
 {% load waffle_tags %}
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {% for breadcrumb in structured_breadcrumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.counter }},
+          "name": "{{ breadcrumb.text }}"{% if breadcrumb.url %},
+            "item": "{{ breadcrumb.url }}"{% endif %}
+        }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+</script>
+
 <div class="breadcrumbs">
   <nav class="breadcrumbs__flex-container"
        aria-label="Breadcrumb">
