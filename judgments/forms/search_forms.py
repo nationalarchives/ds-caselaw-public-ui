@@ -1,6 +1,9 @@
+from typing import Optional, Union
+
 from django import forms
 from django.forms import ValidationError
 from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.courts import CourtGroup, CourtParam
 
 from judgments.utils import preprocess_query
 
@@ -8,7 +11,7 @@ from .fields import DateRangeInputField
 from .widgets import CheckBoxSelectCourtWithYearRange
 
 
-def _get_choices_by_group(courts):
+def _get_choices_by_group(courts: list[CourtGroup]):
     """
     Given a list of court objects, construct a dictionary containing
     {"key1": "value1"} for non-grouped courts, and {"court_group": {"key1": "value1"}}
@@ -21,18 +24,44 @@ def _get_choices_by_group(courts):
         "key2": "value2"
     }
     """
-    options: dict = {}
+    options: dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]] = {}
     for group in courts:
         if group.display_heading:
-            option = {group.name: {court.canonical_param: court.grouped_name for court in group.courts}}
+            option_a: dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]] = {
+                group.name: {
+                    court.canonical_param: court.grouped_name for court in group.courts if court.canonical_param
+                }
+            }
+            options = options | option_a
         else:
-            option = {court.canonical_param: court.grouped_name for court in group.courts}
-        options = options | option
+            option_b: dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]] = {
+                court.canonical_param: court.grouped_name for court in group.courts if court.canonical_param
+            }
+            options = options | option_b
     return options
 
 
 COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_courts())
 TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_tribunals())
+
+
+class CourtTribunalField(forms.MultipleChoiceField):
+    def _get_short_identifiers(self) -> set[str]:
+        all_shorts: set[str] = set()
+        for key, value in self.choices:
+            if isinstance(value, list):
+                all_shorts = all_shorts | set(x[0].partition("/")[0] for x in value)
+        return all_shorts
+
+    def validate(self, *args, **kwargs):
+        short_identifiers = self._get_short_identifiers()
+        try:
+            return super().validate(*args, **kwargs)
+        except ValidationError as e:
+            if e.params and e.params.get("value") in short_identifiers:
+                return None  # signal that this is an acceptable value
+            else:
+                raise
 
 
 class AdvancedSearchForm(forms.Form):
@@ -63,17 +92,19 @@ class AdvancedSearchForm(forms.Form):
     )
     # Courts and tribunals are split here because it's easier to render
     # them and then recombine in the view for querying MarkLogic
-    court = forms.MultipleChoiceField(
+    court = CourtTribunalField(
         choices=COURT_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         label="From specific courts or tribunals",
         required=False,
     )
-    tribunal = forms.MultipleChoiceField(
+
+    tribunal = CourtTribunalField(
         choices=TRIBUNAL_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         required=False,
     )
+
     party = forms.CharField(
         widget=forms.TextInput(
             {
