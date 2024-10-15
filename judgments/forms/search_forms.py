@@ -45,7 +45,7 @@ COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_courts()
 TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_tribunals())
 
 
-class CourtTribunalField(forms.MultipleChoiceField):
+class CourtOrTribunalField(forms.MultipleChoiceField):
     def _get_short_identifiers(self) -> set[str]:
         all_shorts: set[str] = set()
         for key, value in self.choices:
@@ -92,14 +92,14 @@ class AdvancedSearchForm(forms.Form):
     )
     # Courts and tribunals are split here because it's easier to render
     # them and then recombine in the view for querying MarkLogic
-    court = CourtTribunalField(
+    court = CourtOrTribunalField(
         choices=COURT_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         label="From specific courts or tribunals",
         required=False,
     )
 
-    tribunal = CourtTribunalField(
+    tribunal = CourtOrTribunalField(
         choices=TRIBUNAL_CHOICES,
         widget=CheckBoxSelectCourtWithYearRange(),
         required=False,
