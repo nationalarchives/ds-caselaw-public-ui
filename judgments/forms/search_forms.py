@@ -10,6 +10,8 @@ from judgments.utils import preprocess_query
 from .fields import DateRangeInputField
 from .widgets import CheckBoxSelectCourtWithYearRange
 
+court_choices_dict = dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]]
+
 
 def _get_choices_by_group(courts: list[CourtGroup]):
     """
@@ -24,20 +26,20 @@ def _get_choices_by_group(courts: list[CourtGroup]):
         "key2": "value2"
     }
     """
-    options: dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]] = {}
+    options: court_choices_dict = {}
     for group in courts:
         if group.display_heading:
-            option_a: dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]] = {
+            court_group: court_choices_dict = {
                 group.name: {
                     court.canonical_param: court.grouped_name for court in group.courts if court.canonical_param
                 }
             }
-            options = options | option_a
+            options = options | court_group
         else:
-            option_b: dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]] = {
+            isolated_court: court_choices_dict = {
                 court.canonical_param: court.grouped_name for court in group.courts if court.canonical_param
             }
-            options = options | option_b
+            options = options | isolated_court
     return options
 
 
