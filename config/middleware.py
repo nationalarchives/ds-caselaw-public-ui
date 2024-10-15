@@ -67,7 +67,10 @@ class StructuredBreadcrumbsMiddleware:
             ]
             for breadcrumb in response.context_data["breadcrumbs"]:
                 response.context_data["structured_breadcrumbs"].append(
-                    {"text": breadcrumb["text"], "url": breadcrumb.get("url")}
+                    {
+                        "text": breadcrumb["text"],
+                        "url": request.build_absolute_uri(breadcrumb["url"]) if "url" in breadcrumb else None,
+                    }
                 )
 
         return response
