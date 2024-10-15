@@ -1,4 +1,19 @@
 {% load waffle_tags %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://caselaw.nationalarchives.gov.uk/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://caselaw.nationalarchives.gov.uk/judgments/search?query={search_term}"
+      },
+      "query-input": "required name=search_term"
+    }
+  }
+</script>
 {% if v2_homepage %}
   <div class="search-component">
     <div class="search-component__container-beta">
