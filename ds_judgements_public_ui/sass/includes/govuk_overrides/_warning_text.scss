@@ -24,6 +24,7 @@
 }
 
 .govuk-warning-text {
+  font-weight: $typography-normal-font-weight;
   margin-bottom: 0;
   border: transparent;
   border-left: 0.5rem $color-yellow solid;
