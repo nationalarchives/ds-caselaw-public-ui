@@ -14,9 +14,6 @@ class AboutThisServiceView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["courts"] = courts.get_listable_groups()
         context["feedback_survey_type"] = "support"
-        context["page_description"] = (
-            "The Find Case Law service provides free access to judgments and decisions made in England and Wales from 2001 onwards."
-        )
         return context
 
 

@@ -4,6 +4,10 @@
   <head>
     <meta charset="utf-8" />
     {% block meta_description %}
+      {% if page_description %}
+        <meta name="description"
+              content="{{ page_description }}" />
+      {% endif %}
     {% endblock meta_description %}
     {% block robots %}
       {% if not page_allow_index %}
