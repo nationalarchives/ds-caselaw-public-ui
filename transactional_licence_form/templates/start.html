@@ -1,4 +1,9 @@
 {% extends "layouts/base.html" %}
+{% block meta_description %}
+  <meta name="description"
+        content="{% if page_description %}{{ page_description }}{% endif %}" />
+{% endblock meta_description %}
+
 {% block content %}
   <div class="standard-text-template container py-3">
     <div class="govuk-grid-row">
