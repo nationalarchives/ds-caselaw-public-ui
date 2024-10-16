@@ -1,4 +1,8 @@
 {% extends "layouts/base.html" %}
+{% block meta_description %}
+  <meta name="description"
+        content="{% if page_description %}{{ page_description }}{% endif %}" />
+{% endblock meta_description %}
 {% block title %}
   {% if page_title %}{{ page_title }} -{% endif %} Find Case Law
 {% endblock title %}
