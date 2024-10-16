@@ -11,7 +11,18 @@
 
   &__result-header {
     @media (min-width: $grid-breakpoint-large) {
+      flex: 1;
       margin-bottom: $space-4;
+    }
+  }
+
+  &__result-atom-feed-button {
+    display: flex;
+    gap: $space-3;
+    align-items: center;
+
+    @media (min-width: $grid-breakpoint-large) {
+      margin-bottom: $space-6;
     }
   }
 
@@ -26,10 +37,14 @@
   &__result-header-container {
     border-bottom: 1px solid $color-yellow;
 
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
     @media (min-width: $grid-breakpoint-extra-large) {
-      display: flex;
       align-items: flex-end;
-      justify-content: space-between;
+      flex-direction: row;
+      gap: $space-6;
     }
   }
 

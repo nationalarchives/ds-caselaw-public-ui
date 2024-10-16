@@ -10,8 +10,12 @@
 
   form {
     display: flex;
-    flex-direction: row;
-    gap: $space-4;
+    flex-direction: column;
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      flex-direction: row;
+      gap: $space-4;
+    }
 
     > div {
       display: flex;
@@ -37,11 +41,15 @@
 
   &__button {
     @include call-to-action-button;
-    margin: $space-9 0 $space-4 0;
     font-size: $typography-sm-text-size;
     outline-color: $color-dark-blue;
     padding: $space-2 $space-3;
     font-weight: $typography-normal-font-weight;
     vertical-align: 1px;
+    margin: 0;
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      margin: $space-9 0 $space-4 0;
+    }
   }
 }
