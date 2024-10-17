@@ -26,8 +26,11 @@ class AccessibilityStatementView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
+        context["page_description"] = (
+            "Find out how accessible the Find Case Law service is by reading our accessibility statement. It is important that everyone can use this service."
+        )
         context["breadcrumbs"] = [
-            {"url": (reverse("terms_and_policies")), "text": "Terms and policies"},
+            {"url": reverse("terms_and_policies"), "text": "Terms and policies"},
             {"text": "Accessibility statement"},
         ]
         return context
@@ -42,8 +45,11 @@ class ContactUsView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "contact_us"
+        context["page_description"] = (
+            "Find out how to get in touch with us to ask a question or report a problem to the Find Case Law service team."
+        )
         context["breadcrumbs"] = [
-            {"url": (reverse("help_and_guidance")), "text": "Help and guidance"},
+            {"url": reverse("help_and_guidance"), "text": "Help and guidance"},
             {"text": "Contact us"},
         ]
         return context
@@ -59,6 +65,9 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["courts"] = courts.get_listable_groups()
         context["feedback_survey_type"] = "courts_and_tribunals_in_fcl"
+        context["page_description"] = (
+            "Find out which courts and tribunals publish judgments and decisions on the Find Case Law service."
+        )
         return context
 
 
@@ -71,6 +80,9 @@ class HelpAndGuidanceView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "help_and_guidance"
+        context["page_description"] = (
+            "A list of help and guidance available on the Find Case Law service. We do not offer legal advice or research services."
+        )
         return context
 
 
@@ -83,8 +95,11 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "how_to_search_find_case_law"
+        context["page_description"] = (
+            "Help and guidance on how to search judgments and decisions on the Find Case Law service using the search box and filters."
+        )
         context["breadcrumbs"] = [
-            {"url": (reverse("help_and_guidance")), "text": "Help and guidance"},
+            {"url": reverse("help_and_guidance"), "text": "Help and guidance"},
             {"text": "How to search Find Case Law"},
         ]
         return context
@@ -123,6 +138,9 @@ class PrivacyNotice(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "privacy_notice"
+        context["page_description"] = (
+            "Read our privacy notice to understand more about personal data in judgments and decisions on the Find Case Law service."
+        )
         return context
 
 
@@ -134,9 +152,12 @@ class PublishingPolicyView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "publishing_policy"  #
+        context["feedback_survey_type"] = "publishing_policy"
+        context["page_description"] = (
+            "Read our policy to find out how we receive and publish judgments and decisions on the Find Case Law service."
+        )
         context["breadcrumbs"] = [
-            {"url": (reverse("terms_and_policies")), "text": "Terms and policies"},
+            {"url": reverse("terms_and_policies"), "text": "Terms and policies"},
             {"text": "Publishing policy"},
         ]
         return context
@@ -151,6 +172,9 @@ class TermsAndPoliciesView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "terms_and_policies"
+        context["page_description"] = (
+            "A list of the Find Case Law service’s terms and policies including the accessibility statement, publishing policy and terms of use."
+        )
         return context
 
 
@@ -163,8 +187,11 @@ class TermsOfUseView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
+        context["page_description"] = (
+            "The terms of use page and pages it links to explains how you can use information from the Find Case Law service."
+        )
         context["breadcrumbs"] = [
-            {"url": (reverse("terms_and_policies")), "text": "Terms and policies"},
+            {"url": reverse("terms_and_policies"), "text": "Terms and policies"},
             {"text": "Terms of Use"},
         ]
         return context
@@ -179,8 +206,11 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "understanding_judgments_and_decisions"
+        context["page_description"] = (
+            "A basic overview of what a judgment is and how they are commonly structured to help people reading a judgment for the first time."
+        )
         context["breadcrumbs"] = [
-            {"url": (reverse("help_and_guidance")), "text": "Help and guidance"},
+            {"url": reverse("help_and_guidance"), "text": "Help and guidance"},
             {"text": "Understanding judgments and decisions"},
         ]
         return context
