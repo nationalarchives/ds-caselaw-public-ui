@@ -465,3 +465,32 @@ class TestSearchFacets(TestCase):
         response = self.client.get("/judgments/search?query=example+query")
 
         assert response.context["year_facets"] == {}
+
+
+class TestSearchValidation(TestCase):
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_real_short_code_court(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/judgments/search?court=ewhc")
+        root = lxml.html.fromstring(response.content)
+        failure = root.xpath('//*[@class="page-notification--failure"]')
+        assert not failure
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_fake_short_code_court(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/judgments/search?court=kitten")
+        root = lxml.html.fromstring(response.content)
+        failure = root.xpath('//*[@class="page-notification--failure"]')
+        assert failure[0].text == "Errors in 'court' - see below for details"
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_real_short_code_tribunal(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/judgments/search?tribunal=ukut")
+        root = lxml.html.fromstring(response.content)
+        failure = root.xpath('//*[@class="page-notification--failure"]')
+        assert not failure
