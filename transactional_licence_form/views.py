@@ -1,5 +1,6 @@
 from django.core.exceptions import SuspiciousOperation
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
@@ -111,10 +112,19 @@ class FormWizardView(NamedUrlSessionWizardView):
 
     def get_context_data(self, form, **kwargs):
         context = super(FormWizardView, self).get_context_data(form)
+
+        context["page_title"] = "Apply for a licence"
+        context["breadcrumbs"] = [
+            {"url": reverse("about_this_service"), "text": "About Find Case Law"},
+            {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
+            {"text": "Apply for a licence"},
+        ]
+
         context["all_data"] = self.get_all_cleaned_data_by_form()
         context["all_field_names"] = self.get_all_field_names()
         context["all_forms"] = self.get_all_forms()
         context["reviewing"] = self.in_review()
+
         return context
 
     def done(self, form_list, **kwargs):
@@ -129,22 +139,60 @@ class StartView1(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["page_title"] = "Re-use Find Case Law records"
         context["page_description"] = (
             "Find out about the Open Justice licensing framework and how to apply for a license to do computational analysis across judgments and decisions on the Find Case Law service."
         )
+        context["page_allow_index"] = True
+        context["breadcrumbs"] = [
+            {"url": reverse("about_this_service"), "text": "About Find Case Law"},
+            {"text": "Re-use Find Case Law records"},
+        ]
         return context
 
 
 class StartView2(TemplateView):
     template_name = "start2.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = "Licence application process"
+        context["page_allow_index"] = True
+        context["breadcrumbs"] = [
+            {"url": reverse("about_this_service"), "text": "About Find Case Law"},
+            {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
+            {"text": "Licence application process"},
+        ]
+        return context
+
 
 class StartView3(TemplateView):
     template_name = "start3.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = "What you need to apply for a licence"
+        context["page_allow_index"] = True
+        context["breadcrumbs"] = [
+            {"url": reverse("about_this_service"), "text": "About Find Case Law"},
+            {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
+            {"text": "What you need to apply for a licence"},
+        ]
+        return context
+
 
 class ConfirmationView(TemplateView):
     template_name = "confirmation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = "Apply for a licence"
+        context["breadcrumbs"] = [
+            {"url": reverse("about_this_service"), "text": "About Find Case Law"},
+            {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
+            {"text": "Apply for a licence"},
+        ]
+        return context
 
 
 def wizard_view(url_name):

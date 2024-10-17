@@ -6,7 +6,7 @@ from .template_view_with_context import TemplateViewWithContext
 
 class AboutThisServiceView(TemplateViewWithContext):
     template_name = "pages/about_this_service.html"
-    page_title = "About this service"
+    page_title = "About Find Case Law"
     page_canonical_url_name = "about_this_service"
     page_allow_index = True
 
@@ -14,6 +14,9 @@ class AboutThisServiceView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["courts"] = courts.get_listable_groups()
         context["feedback_survey_type"] = "support"
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
         return context
 
 
@@ -31,7 +34,7 @@ class AccessibilityStatementView(TemplateViewWithContext):
         )
         context["breadcrumbs"] = [
             {"url": reverse("terms_and_policies"), "text": "Terms and policies"},
-            {"text": "Accessibility statement"},
+            {"text": self.page_title},
         ]
         return context
 
@@ -68,6 +71,10 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
         context["page_description"] = (
             "Find out which courts and tribunals publish judgments and decisions on the Find Case Law service."
         )
+        context["breadcrumbs"] = [
+            {"url": reverse("about_this_service"), "text": "About Find Case Law"},
+            {"text": "Courts and tribunals in Find Case Law"},
+        ]
         return context
 
 
@@ -83,6 +90,9 @@ class HelpAndGuidanceView(TemplateViewWithContext):
         context["page_description"] = (
             "A list of help and guidance available on the Find Case Law service. We do not offer legal advice or research services."
         )
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
         return context
 
 
@@ -114,6 +124,9 @@ class HowToUseThisService(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "support"
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
         return context
 
 
@@ -126,6 +139,9 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "license"
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
         return context
 
 
@@ -141,6 +157,9 @@ class PrivacyNotice(TemplateViewWithContext):
         context["page_description"] = (
             "Read our privacy notice to understand more about personal data in judgments and decisions on the Find Case Law service."
         )
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
         return context
 
 
@@ -175,6 +194,9 @@ class TermsAndPoliciesView(TemplateViewWithContext):
         context["page_description"] = (
             "A list of the Find Case Law service’s terms and policies including the accessibility statement, publishing policy and terms of use."
         )
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
         return context
 
 
