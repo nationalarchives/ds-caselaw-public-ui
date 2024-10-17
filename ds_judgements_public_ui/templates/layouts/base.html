@@ -19,9 +19,7 @@
       <link rel="canonical" href="{{ page_canonical_url }}" />
     {% endif %}
     <title>
-      {% block title %}
-      {% endblock title %}
-      - The National Archives
+      {% block title %}{% if page_title %}{{ page_title }} - {% endif %}Find Case Law{% endblock title %} - The National Archives
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{% static 'images/favicons/favicon.png' %}" />

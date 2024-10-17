@@ -129,6 +129,7 @@ class StartView1(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["page_title"] = "Re-use Find Case Law records"
         context["page_description"] = (
             "Find out about the Open Justice licensing framework and how to apply for a license to do computational analysis across judgments and decisions on the Find Case Law service."
         )
