@@ -10,7 +10,8 @@
     "start-sass": "npx sass --watch node_modules/@nationalarchives/ds-caselaw-frontend/src/main.scss:/dev/null ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css",
     "start-scripts": "npx webpack --watch",
     "build": "npx webpack && npx sass ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css",
-    "watch": "npx nodemon --watch './ds_judgements_public_ui/sass/*' --watch './ds_judgements_public_ui/static/js/*' --exec 'npm run start-sass && npm run start-scripts'"
+    "watch": "npx nodemon --watch './ds_judgements_public_ui/sass/*' --watch './ds_judgements_public_ui/static/js/*' --exec 'npm run start-sass && npm run start-scripts'",
+    "lint:scss": "npx stylelint '**/*.scss'"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,9 @@
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^9.0.0",
     "jquery": "^3.6.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-clean-order": "^6.1.0",
+    "stylelint-config-standard-scss": "^13.1.0",
     "webpack": "^5.76.0",
     "webpack-cli": "^5.1.4"
   },

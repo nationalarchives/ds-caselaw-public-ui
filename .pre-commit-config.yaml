@@ -39,3 +39,12 @@ repos:
     hooks:
       - id: prettier
         types_or: [yaml, json, xml, markdown, scss, javascript]
+
+  - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+    rev: v16.10.0
+    hooks:
+      - id: stylelint
+        additional_dependencies:
+          - stylelint@16.10.0
+          - stylelint-config-standard-scss@13.1.0
+          - stylelint-config-clean-order@6.1.0
