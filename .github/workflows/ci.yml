@@ -46,11 +46,15 @@ jobs:
           cache-dependency-path: |
             requirements/base.txt
             requirements/local.txt
-
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+        with:
+          prNumber: ${{ github.event.number }}
+          output: "space"
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
         with:
-          extra_args: --color=always --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }}
+          extra_args: --files ${{ steps.file_changes.outputs.files}}
         env:
           SKIP: no-commit-to-branch
 
