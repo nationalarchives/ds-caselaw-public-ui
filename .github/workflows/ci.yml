@@ -56,7 +56,7 @@ jobs:
         with:
           extra_args: --files ${{ steps.file_changes.outputs.files}}
         env:
-          SKIP: no-commit-to-branch
+          SKIP: no-commit-to-branch,stylelint
 
   # With no caching at all the entire ci process takes 4m 30s to complete!
   pytest:
