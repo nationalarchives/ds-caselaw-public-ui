@@ -62,7 +62,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
     form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
     if not form.is_valid():
         # If the form has errors, return it for rendering!
-        return TemplateResponse(request, "pages/structured_search.html", {"form": form})
+        return TemplateResponse(request, "pages/advanced_search.html", {"form": form})
     search_parameters: SearchParameters = search_request_to_parameters(request)
     # Get the response from Marklogic
     try:
@@ -152,7 +152,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
 
     context["form"] = form
     context["breadcrumbs"] = breadcrumbs
-    context["feedback_survey_type"] = "structured_search"
+    context["feedback_survey_type"] = "advanced_search"
 
     return TemplateResponse(
         request,
