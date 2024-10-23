@@ -1,5 +1,7 @@
 from playwright.sync_api import Page, expect
 
+from .utils.assertions import assert_accessible
+
 
 def test_about_page(page: Page):
     """
@@ -10,3 +12,5 @@ def test_about_page(page: Page):
     page.goto("/about-this-service")
 
     expect(page).to_have_title("About Find Case Law - Find Case Law - The National Archives")
+
+    assert_accessible(page)
