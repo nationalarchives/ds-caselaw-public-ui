@@ -5,17 +5,21 @@
 }
 
 .govuk-warning-text__icon {
-  background-color: #fef8df;
-  color: $color-black;
-  border: $color-black solid 3px;
-  margin-left: $space-4;
   transform: rotate(180deg);
+
+  margin-left: $space-4;
+
+  color: $color-black;
+
+  background-color: #fef8df;
+  border: $color-black solid 3px;
 }
+
 .govuk-warning-text__text {
   h2 {
+    margin: 0;
     font-size: $typography-header-h3-size;
     font-weight: $typography-bold-font-weight;
-    margin: 0;
   }
 
   p:last-child {
@@ -24,12 +28,14 @@
 }
 
 .govuk-warning-text {
-  font-weight: $typography-normal-font-weight;
   margin-bottom: 0;
+  padding: $space-8;
+
+  font-weight: $typography-normal-font-weight;
+
+  background-color: #fef8df;
   border: transparent;
   border-left: 0.5rem $color-yellow solid;
-  background-color: #fef8df;
-  padding: $space-8;
 }
 
 .govuk-warning-text__confirmation {
