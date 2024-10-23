@@ -52,6 +52,7 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
         # This is a list of the names of URLs to reverse and include in the map
         url_names = [
             "home",
+            "advanced_search",
             "about_this_service",
             "what_to_expect",
             "how_to_use_this_service",

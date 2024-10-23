@@ -9,12 +9,12 @@ from django.views.generic.base import TemplateView
 
 from .converters import SchemaFileConverter
 from .views import static as static_views
+from .views.advanced_search import StructuredSearchView
 from .views.check import status
 from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
 from .views.schema import schema
 from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
-from .views.structured_search import StructuredSearchView
 from .views.style_guide import StyleGuideView
 
 register_converter(SchemaFileConverter, "schemafile")
@@ -40,8 +40,13 @@ urlpatterns = [
     ),
     # Search
     path(
-        "structured_search",
+        "advanced_search",
         StructuredSearchView.as_view(),
+        name="advanced_search",
+    ),
+    path(
+        "structured_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search")),
         name="structured_search",
     ),
     # Static pages
