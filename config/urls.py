@@ -44,6 +44,11 @@ urlpatterns = [
         StructuredSearchView.as_view(),
         name="advanced_search",
     ),
+    path(
+        "structured_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search")),
+        name="structured_search",
+    ),
     # Static pages
     path(
         "about-this-service",
