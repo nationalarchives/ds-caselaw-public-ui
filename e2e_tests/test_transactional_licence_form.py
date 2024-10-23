@@ -13,8 +13,8 @@ def test_transactional_licence_form(page: Page):
     in isolation with a mocked email service."""
 
     # Preamble pages
-    assert_accessible(page)
     page.goto("/re-use-find-case-law-records/")
+    assert_accessible(page)
     page.get_by_text("I want to perform computational analysis").click()
     page.get_by_text("What you need to apply for a licence").click()
     page.get_by_role("button", name="Apply for a licence").click()
