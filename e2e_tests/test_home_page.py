@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 
-from .utils.assertions import assert_accessible
+from .utils.assertions import assert_is_accessible
 
 
 def test_home_page(page: Page):
@@ -8,4 +8,4 @@ def test_home_page(page: Page):
 
     expect(page).to_have_title("Find Case Law - The National Archives")
 
-    assert_accessible(page)
+    assert_is_accessible(page)

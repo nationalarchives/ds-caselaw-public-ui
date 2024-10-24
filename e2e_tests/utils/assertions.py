@@ -9,31 +9,46 @@ class AccessibilityWarning(UserWarning):
     pass
 
 
-def assert_accessible(page):
+def generate_accessibility_report(violations):
+    return "\n".join(format_violation(v) for v in violations)
+
+
+def assert_critical_violations(violations, page_url):
+    critical_or_serious_violations = []
+
+    for violation in violations:
+        if violation["impact"] in ["critical", "serious"]:
+            critical_or_serious_violations.append(violation)
+
+    if critical_or_serious_violations:
+        report = generate_accessibility_report(critical_or_serious_violations)
+        # TODO: Once we have fixed all our critical/serious accessibility violations, make this fail the test
+        warnings.warn(
+            f"\nCritical/Serious Accessibility Violations Detected ({page_url}):\n{report}", AccessibilityWarning
+        )
+
+
+def assert_other_violations(violations, page_url):
+    other_violations = []
+
+    for violation in violations:
+        if violation["impact"] not in ["critical", "serious"]:
+            other_violations.append(violation)
+
+    if other_violations:
+        report = generate_accessibility_report(other_violations)
+        warnings.warn(f"\nAccessibility Violations (Minor/Moderate) ({page_url}):\n{report}", AccessibilityWarning)
+
+
+def assert_is_accessible(page):
     results = axe.run(page)
     violations = results.response.get("violations", [])
 
     if not violations:
         return
 
-    critical_or_serious_violations = []
-    other_violations = []
-
-    for violation in violations:
-        if violation["impact"] in ["critical", "serious"]:
-            critical_or_serious_violations.append(violation)
-        else:
-            other_violations.append(violation)
-
-    if critical_or_serious_violations:
-        critical_report = "\n".join(format_violation(v) for v in critical_or_serious_violations)
-        # TODO: Once we have fixed all our critical/serious accessibility violations, let's put this back
-        # pytest.fail(f"\nCritical/Serious Accessibility Violations Detected:\n{critical_report}")
-        warnings.warn(f"\nCritical/Serious Accessibility Violations Detected:\n{critical_report}", AccessibilityWarning)
-
-    if other_violations:
-        other_report = "\n".join(format_violation(v) for v in other_violations)
-        warnings.warn(f"\nAccessibility Violations (Minor/Moderate):\n{other_report}", AccessibilityWarning)
+    assert_critical_violations(violations, page.url)
+    assert_other_violations(violations, page.url)
 
 
 def format_violation(violation):

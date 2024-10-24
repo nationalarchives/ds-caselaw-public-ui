@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import Page, expect
 
-from .utils.assertions import assert_accessible
+from .utils.assertions import assert_is_accessible
 
 static_pages = [
     {"url": "/about-this-service", "title": "About Find Case Law", "heading": "About Find Case Law"},
@@ -48,4 +48,4 @@ def test_static_pages(page: Page, static_page):
 
     expect(page.locator("h1:visible")).to_have_text(heading)
 
-    assert_accessible(page)
+    assert_is_accessible(page)

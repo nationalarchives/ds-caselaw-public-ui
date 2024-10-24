@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 
-from .utils.assertions import assert_accessible
+from .utils.assertions import assert_is_accessible
 
 
 def test_advanced_search_page(page: Page):
@@ -10,4 +10,4 @@ def test_advanced_search_page(page: Page):
 
     expect(page.locator("h1")).to_have_text("Advanced search")
 
-    assert_accessible(page)
+    assert_is_accessible(page)
