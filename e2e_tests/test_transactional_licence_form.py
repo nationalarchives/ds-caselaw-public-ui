@@ -2,6 +2,8 @@ import re
 
 from playwright.sync_api import Page, expect
 
+from .utils.assertions import assert_is_accessible
+
 
 def test_transactional_licence_form(page: Page):
     """
@@ -12,12 +14,14 @@ def test_transactional_licence_form(page: Page):
 
     # Preamble pages
     page.goto("/re-use-find-case-law-records/")
+    assert_is_accessible(page)
     page.get_by_text("I want to perform computational analysis").click()
     page.get_by_text("What you need to apply for a licence").click()
     page.get_by_role("button", name="Apply for a licence").click()
     page.get_by_text("Apply now").click()
 
     # Contact details
+    assert_is_accessible(page)
     page.get_by_label("Contact Full Name").fill("Full Name")
     page.get_by_label("Contact Email address").fill("contact@example.com")
     page.get_by_label("This is a different person (please enter their details below)").click()
@@ -26,6 +30,7 @@ def test_transactional_licence_form(page: Page):
     page.get_by_text("Next").click()
 
     # Organization details
+    assert_is_accessible(page)
     page.get_by_label("What is the full legal name of your organisation?").fill("Organisation name")
     page.get_by_label("Please enter any other names your organisation is known by").fill("Organisation alias")
     page.get_by_label("Which country is your organisation registered in?").fill("Chi")
@@ -40,6 +45,7 @@ def test_transactional_licence_form(page: Page):
     page.get_by_text("Next").click()
 
     # Purpose and Activities
+    assert_is_accessible(page)
     page.get_by_label("Please give any project or product name associated with this work").fill("Project name")
     page.get_by_label("Please share a link to the project or product site").fill("https://example.com")
     page.get_by_label("Publish legal information").click()
@@ -54,10 +60,12 @@ def test_transactional_licence_form(page: Page):
     page.get_by_text("Next").click()
 
     # Public Sttatement
+    assert_is_accessible(page)
     page.get_by_label("Please provide a public statement").fill("Public statement")
     page.get_by_text("Next").click()
 
     # Working practices
+    assert_is_accessible(page)
     page.get_by_role(
         "group",
         name="Will the computational analysis focus on specific individuals or specific groups of people?",
@@ -74,6 +82,7 @@ def test_transactional_licence_form(page: Page):
     page.get_by_text("Next").click()
 
     # Working practices - 2
+    assert_is_accessible(page)
     page.get_by_role("group", name="Will you make the entire record available online?").get_by_label("No").click()
     page.get_by_role("group", name="Will data extracted from these records be published online?").get_by_label(
         "Yes"
@@ -91,20 +100,25 @@ def test_transactional_licence_form(page: Page):
     page.get_by_text("Next").click()
 
     # Nine principles - 1
+    assert_is_accessible(page)
     page.get_by_label("Yes").click()
     page.get_by_text("Next").click()
 
     # Nine principles - 2
+    assert_is_accessible(page)
     page.get_by_label("Please describe how you will meet the 9 principles as terms.").fill("Nine principles statement")
     page.get_by_text("Next").click()
 
     # Additional comments
+    assert_is_accessible(page)
     page.get_by_label(
         "Are there any additional comments you would like us to consider as part of your application?"
     ).fill("Additional comments")
     page.get_by_text("Next").click()
 
     # Review
+    assert_is_accessible(page)
+
     def get_review_row(page, label):
         return page.locator("dt", has_text=label).locator("..").locator("dd.govuk-summary-list__value")
 
@@ -188,6 +202,7 @@ def test_transactional_licence_form(page: Page):
     ).to_have_text("Additional comments")
 
     # Editing responses
+    assert_is_accessible(page)
     page.locator("dt", has_text="Contact Full Name").locator("..").get_by_text("Change").click()
     page.get_by_label("Contact Full Name").fill("New Full Name")
     page.get_by_text("Next").click()
