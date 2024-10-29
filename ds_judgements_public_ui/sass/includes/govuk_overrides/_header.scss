@@ -81,6 +81,7 @@
   flex-direction: row;
   margin: 0;
   padding: 0;
+  gap: $space-1;
   list-style: none;
   justify-content: flex-end;
   @media only screen and (max-width: $grid-breakpoint-medium) {

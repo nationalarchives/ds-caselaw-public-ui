@@ -14,7 +14,23 @@
     }
   }
 </script>
-{% if v2_homepage %}
+{% flag v2_homepage %}
+<div class="search-component">
+  <div class="search-component__container">
+    <h2 class="search-component__header--sr-only">Search by keyword or neutral citation</h2>
+    <form action="{% url 'search' %}"
+          class="search-term-component"
+          role="search"
+          aria-label="Search by keyword or neutral citation"
+          id="analytics-basic-search">
+      {% include "includes/search_term_component.html" %}
+    </form>
+    <div class="search-component__more-options">
+      <a href="{% url 'advanced_search' %}">Filter by court, date or person</a>
+    </div>
+  </div>
+</div>
+{% endflag %}
   <div class="search-component">
     <div class="search-component__container-beta">
       {% include "includes/search/search_header_text.html" %}
@@ -31,20 +47,4 @@
       </div>
     </div>
   </div>
-{% else %}
-  <div class="search-component">
-    <div class="search-component__container">
-      <h2 class="search-component__header--sr-only">Search by keyword or neutral citation</h2>
-      <form action="{% url 'search' %}"
-            class="search-term-component"
-            role="search"
-            aria-label="Search by keyword or neutral citation"
-            id="analytics-basic-search">
-        {% include "includes/search_term_component.html" %}
-      </form>
-      <div class="search-component__more-options">
-        <a href="{% url 'advanced_search' %}">Filter by court, date or person</a>
-      </div>
-    </div>
-  </div>
-{% endif %}
+
