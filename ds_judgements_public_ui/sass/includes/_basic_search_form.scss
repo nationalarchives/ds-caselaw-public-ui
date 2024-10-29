@@ -3,33 +3,40 @@
 
   &__container {
     @include container;
-    text-align: center;
+
     padding: $space-8;
+    text-align: center;
   }
 
   &__container-beta {
     @include container;
-    text-align: center;
+
     padding: $space-8;
+    text-align: center;
+
     @media (max-width: $grid-breakpoint-medium) {
       padding: $space-3;
     }
+
     @media (max-width: $grid-breakpoint-large) {
       padding: $space-3;
     }
+
     @media (max-width: $grid-breakpoint-extra-large) {
       padding: $space-3;
     }
   }
 
   &__header {
-    font-size: $typography-md-text-size;
-    line-height: 2.8rem;
     display: inline-block;
-    font-family: $font-roboto;
-    font-weight: $typography-normal-font-weight;
-    color: $color-almost-black;
+
     margin: 0 $space-6;
+
+    font-family: $font-roboto;
+    font-size: $typography-md-text-size;
+    font-weight: $typography-normal-font-weight;
+    line-height: 2.8rem;
+    color: $color-almost-black;
 
     &--sr-only {
       @include sr-only;
@@ -40,25 +47,29 @@
     margin-top: $space-2;
 
     a {
+      position: relative;
+
+      display: inline-block;
+
+      padding: 0 0 $space-2;
+
+      font-family: $font-roboto;
+      font-size: $typography-md-text-size;
+      font-weight: $typography-bold-font-weight;
       color: $color-black;
       text-decoration: none;
-      border: 0;
-      font-size: $typography-md-text-size;
-      position: relative;
-      padding: 0 0 $space-2;
-      border-bottom: 0.125rem solid $color-black;
-      display: inline-block;
+
       background: transparent;
-      font-family: $font-roboto;
-      font-weight: $typography-bold-font-weight;
+      border: 0;
+      border-bottom: 0.125rem solid $color-black;
 
       &:visited {
         color: $color-black;
       }
 
       &:hover {
-        text-decoration: underline;
         color: $color-black;
+        text-decoration: underline;
       }
     }
   }
@@ -67,27 +78,32 @@
     line-height: $typography-sm-line-height;
 
     a {
+      position: relative;
+
+      display: inline-block;
+
+      margin-bottom: $space-3;
+
+      font-family: $font-roboto;
+      font-size: $typography-md-text-size;
+      font-weight: bold;
       color: $color-dark-blue;
       text-decoration: none;
-      border: 0;
-      font-size: $typography-md-text-size;
-      position: relative;
-      border-bottom: 1px solid $color-dark-blue;
-      display: inline-block;
+
       background: transparent;
-      font-family: $font-roboto;
-      font-weight: bold;
-      margin-bottom: $space-3;
+      border: 0;
+      border-bottom: 1px solid $color-dark-blue;
 
       &:visited {
         color: $color-dark-blue;
       }
 
       &:hover {
-        text-decoration: underline;
         color: $color-black;
+        text-decoration: underline;
       }
     }
+
     @media (max-width: $grid-breakpoint-medium) {
       margin-top: 0.125rem;
       text-align: center;
@@ -111,17 +127,14 @@
   width: 100%;
   margin: 0 auto;
 
-  @media (max-width: $grid-breakpoint-medium) {
-    flex-direction: column;
-    width: 100%;
-  }
-
   input[type="submit"] {
     @include call-to-action-button;
-    // The 1px is the border offset of the input this is next to
-    padding: calc($space-3 + 1px) $space-12;
+
     margin-top: $space-2;
     margin-bottom: $space-8;
+
+    // The 1px is the border offset of the input this is next to
+    padding: calc($space-3 + 1px) $space-12;
     border: 2px solid transparent;
 
     .structured-search__container & {
@@ -143,17 +156,19 @@
 
   &__search-term-input {
     @include text_field;
+
+    box-sizing: border-box;
     width: 100% !important;
     min-height: $space-12;
-    font-size: $typography-md-text-size;
     margin-bottom: 0;
-    box-sizing: border-box;
+
+    font-size: $typography-md-text-size;
   }
 
   &__help-text {
-    text-align: left;
     margin: $space-2 $space-4 0 $space-4;
     font-size: $typography-sm-text-size;
+    text-align: left;
 
     @media (min-width: $grid-breakpoint-medium) {
       margin: $space-1 0 $space-2 0;
@@ -163,27 +178,35 @@
   &__header-beta {
     display: flex;
     flex-direction: column;
-    text-align: left;
     margin-left: 12.5rem;
+    text-align: left;
+
     @media (max-width: $grid-breakpoint-medium) {
       display: block;
-      text-align: center;
       margin: 0;
+      text-align: center;
     }
+
     @media (max-width: $grid-breakpoint-large) {
       display: block;
-      text-align: center;
       margin: 0;
+      text-align: center;
     }
+
     @media (max-width: $grid-breakpoint-extra-large) {
       display: block;
-      text-align: center;
       margin: 0;
+      text-align: center;
     }
   }
 
   &__main-label {
-    text-align: left;
     margin: $space-1 0 $space-2 0;
+    text-align: left;
+  }
+
+  @media (max-width: $grid-breakpoint-medium) {
+    flex-direction: column;
+    width: 100%;
   }
 }
