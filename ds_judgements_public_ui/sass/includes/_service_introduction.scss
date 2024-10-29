@@ -1,49 +1,52 @@
 .service-introduction {
-  background-color: $color-almost-black;
-  flex-grow: 1;
-  width: 150%;
-  margin-top: $space-10;
   display: flex;
   flex-direction: column;
-  @media only screen and (max-width: $grid-breakpoint-medium) {
-    margin-top: $space-1;
-  }
+  flex-grow: 1;
+
+  width: 150%;
+  margin-top: $space-10;
+
+  background-color: $color-almost-black;
 
   &__header {
-    font-size: $typography-2xl-text-size;
-    line-height: $typography-md-line-height;
-
     width: 100%;
-    font-family: $font-roboto;
-    font-weight: normal;
-    color: $color-white;
     margin: 0 $space-1;
+
+    font-family: $font-roboto;
+    font-size: $typography-2xl-text-size;
+    font-weight: normal;
+    line-height: $typography-md-line-height;
+    color: $color-white;
   }
 
   &__header-beta-v1 {
-    align-items: center;
-    gap: $space-2;
     display: flex;
-    font-size: $typography-2xl-text-size;
-    line-height: $typography-md-line-height;
+    gap: $space-2;
+    align-items: center;
 
     width: 100%;
-    font-family: $font-roboto;
-    font-weight: normal;
-    color: $color-white;
     margin: 0 $space-1;
+
+    font-family: $font-roboto;
+    font-size: $typography-2xl-text-size;
+    font-weight: normal;
+    line-height: $typography-md-line-height;
+    color: $color-white;
   }
 
   &__header-beta-v2 {
-    font-size: 2.5rem;
-    line-height: 3.8rem;
     display: inline-block;
+
     width: 100%;
-    font-family: $font-roboto;
-    font-weight: $typography-normal-font-weight;
-    color: $color-white;
     margin: $space-8 0 0;
+
+    font-family: $font-roboto;
+    font-size: 2.5rem;
+    font-weight: $typography-normal-font-weight;
+    line-height: 3.8rem;
+    color: $color-white;
     text-wrap: balance;
+
     @media only screen and (max-width: $grid-breakpoint-medium) {
       margin-top: none;
     }
@@ -51,11 +54,14 @@
 
   &__helper-text {
     display: inline-block;
-    font-size: $typography-lg-text-size;
-    font-family: $font-roboto;
-    color: $color-yellow;
-    line-height: 1.6rem;
+
     margin: 0 $space-1;
+
+    font-family: $font-roboto;
+    font-size: $typography-lg-text-size;
+    line-height: 1.6rem;
+    color: $color-yellow;
+
     @media only screen and (max-width: $grid-breakpoint-medium) {
       font-size: $typography-sm-text-size;
       font-weight: bold;
@@ -69,15 +75,19 @@
 
   &__what-to-expect {
     @include link-on-dark-bg;
+
+    display: inline-block;
+
+    margin: $space-6 0 0;
+    padding: 0 0 0 $space-4;
+
+    font-size: $typography-lg-text-size;
+    font-weight: $typography-bold-font-weight;
+    color: $color-white;
+    text-decoration: underline;
+
     background: transparent url($fa_chevron_right_white) 0 0.2rem no-repeat;
     background-size: 0.7rem;
-    display: inline-block;
-    padding: 0 0 0 $space-4;
-    color: $color-white;
-    margin: $space-6 0 0;
-    font-weight: $typography-bold-font-weight;
-    font-size: $typography-lg-text-size;
-    text-decoration: underline;
 
     &:hover {
       text-decoration: none;
@@ -90,5 +100,9 @@
     &:focus {
       border-bottom-color: transparent;
     }
+  }
+
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    margin-top: $space-1;
   }
 }
