@@ -76,6 +76,7 @@
       {% endflag %}
 
       <header class="govuk-header" data-module="govuk-header">
+        <div class="page-header__beta">
         <div class="page-header__flex-container-beta container py-1">
           {% include "includes/beta_logo.html" with link_class="variant-1-logo-link" %}
 
@@ -109,6 +110,10 @@
             </nav>
           </div>
         </div>
+        <div class="page-header__breadcrumbs-block">
+          {% include "includes/breadcrumbs.html" %}
+        </div>
+      </div>
       </header>
     {% endblock header %}
 

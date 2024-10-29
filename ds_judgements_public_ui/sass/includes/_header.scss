@@ -13,7 +13,7 @@
 
   &__flex-container-beta {
     display: flex;
-    gap: $space-18;
+    gap: 10rem;
     justify-content: space-between;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
@@ -49,6 +49,19 @@
       outline: 5px solid $color-white;
       outline-offset: 5px;
     }
+  }
+
+  &__breadcrumbs-block {
+     padding: $space-2;
+     margin-left: $space-4;
+    }
+  
+
+  &__beta{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
   }
 
   &__nav {
