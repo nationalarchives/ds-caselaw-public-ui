@@ -52,16 +52,14 @@
   }
 
   &__breadcrumbs-block {
-     padding: $space-2;
-     margin-left: $space-4;
-    }
-  
+    margin-left: $space-4;
+    padding: $space-2;
+  }
 
-  &__beta{
+  &__beta {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     align-content: center;
-    flex-wrap: wrap;
   }
 
   &__nav {
