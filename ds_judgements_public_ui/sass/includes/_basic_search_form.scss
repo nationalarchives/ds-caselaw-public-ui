@@ -10,7 +10,7 @@
   &__container-beta {
     @include container;
     text-align: center;
-    padding: 0;
+    padding: $space-8;
     @media (max-width: $grid-breakpoint-medium) {
       padding: $space-3;
     }

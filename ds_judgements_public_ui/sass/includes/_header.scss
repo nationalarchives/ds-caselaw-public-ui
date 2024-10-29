@@ -14,7 +14,7 @@
   &__flex-container-beta {
     display: flex;
     justify-content: space-between;
-    gap: $space-16;
+    gap: $space-18;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       flex-direction: column;
