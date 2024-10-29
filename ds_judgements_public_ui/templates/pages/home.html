@@ -9,32 +9,32 @@
 {% endblock robots %}
 {% block header %}
 
-    {% flag v2_homepage %}
-      {% include "includes/beta_phase_banner.html" with link_class="variant-2-survey-link" %}
-      <header class="page-header">
-        <div class="page-header__flex-container container py-1">
-          <div class="service-introduction">
-            <span class="service-introduction__separator"></span>
-            <h1 class="service-introduction__header-beta-v2">Find Case Law</h1>
-          </div>
-          {% include "includes/logo.html" with link_class="variant-2-logo-link" %}
+  {% flag v2_homepage %}
+    {% include "includes/beta_phase_banner.html" with link_class="variant-2-survey-link" %}
+    <header class="page-header">
+      <div class="page-header__flex-container container py-1">
+        <div class="service-introduction">
+          <span class="service-introduction__separator"></span>
+          <h1 class="service-introduction__header-beta-v2">Find Case Law</h1>
         </div>
-      </header>
-    {% endflag %}
+        {% include "includes/logo.html" with link_class="variant-2-logo-link" %}
+      </div>
+    </header>
+  {% endflag %}
 
-    {% flag v3_homepage %}
-      {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
-      <header class="page-header">
-        <div class="page-header__flex-container container py-1">
-          <div class="service-introduction">
-            <span class="service-introduction__separator"></span>
-            <h1 class="service-introduction__header">Find Case Law</h1>
-            <p class="service-introduction__helper-text">Judgments and decisions from 2001 onwards</p>
-          </div>
-          {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
+  {% flag v3_homepage %}
+    {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
+    <header class="page-header">
+      <div class="page-header__flex-container container py-1">
+        <div class="service-introduction">
+          <span class="service-introduction__separator"></span>
+          <h1 class="service-introduction__header">Find Case Law</h1>
+          <p class="service-introduction__helper-text">Judgments and decisions from 2001 onwards</p>
         </div>
-      </header>
-    {% endflag %}
+        {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
+      </div>
+    </header>
+  {% endflag %}
 
   <header class="govuk-header" data-module="govuk-header">
     <div class="page-header__flex-container-beta container py-1">

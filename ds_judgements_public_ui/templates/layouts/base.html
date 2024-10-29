@@ -43,73 +43,73 @@
     {% include "includes/environment_banner.html" %}
 
     {% block header %}
-          {% flag v2_homepage %}
-          {% include "includes/beta_phase_banner.html" with link_class="variant-2-survey-link" %}
-          <header class="page-header">
-            <div class="page-header__flex-container container py-1">
-              <div class="page-header__nav">
-                <div class="page-header__site-logo">
-                  <a href="{% url "home" %}" id="home-link variant-2-home-link">Find Case Law</a>
-                </div>
-
-                {% include "includes/breadcrumbs.html" %}
+      {% flag v2_homepage %}
+        {% include "includes/beta_phase_banner.html" with link_class="variant-2-survey-link" %}
+        <header class="page-header">
+          <div class="page-header__flex-container container py-1">
+            <div class="page-header__nav">
+              <div class="page-header__site-logo">
+                <a href="{% url "home" %}" id="home-link variant-2-home-link">Find Case Law</a>
               </div>
-              {% include "includes/logo.html" with link_class="variant-2-logo-link" %}
-            </div>
-          </header>
-        {% endflag %}
 
-        {% flag v3_homepage %}
-          {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
-          <header class="page-header">
-            <div class="page-header__flex-container container py-1">
-              <div class="page-header__nav">
-                <div class="page-header__site-logo">
-                  <a href="{% url 'home' %}" id="home-link variant-3-home-link">Find Case Law</a>
-                </div>
-
-                {% include "includes/breadcrumbs.html" %}
-              </div>
-              {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
+              {% include "includes/breadcrumbs.html" %}
             </div>
-          </header>
-        {% endflag %}
-   
-        <header class="govuk-header" data-module="govuk-header">
-          <div class="page-header__flex-container-beta container py-1">
-            {% include "includes/beta_logo.html" with link_class="variant-1-logo-link" %}
-
-            <div class="service-introduction">
-              <span class="service-introduction__separator"></span>
-              <h1 class="service-introduction__header-beta-v1">Find Case Law<span class="phase-banner__beta-phase">Beta</span></h1>
-              <p class="service-introduction__helper-text">Judgments and decisions from 2001 onwards</p>
-            </div>
-            <div class="govuk-header__content">
-              <nav aria-label="Menu" class="govuk-header__navigation">
-                <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>
-                  Menu
-                </button>
-                <ul id="navigation" class="govuk-header__navigation-list">
-                  <li class="{% navigation_item_class 'home' %}">
-                    <a class="govuk-header__link variant-1-home-link" title="Home" href="{% url 'home' %}">
-                      Home
-                    </a>
-                  </li>
-                  <li class="{% navigation_item_class 'about_this_service' %}">
-                    <a class="govuk-header__link variant-1-about-link"  title="About" href="{% url 'about_this_service' %}">
-                      About
-                    </a>
-                  </li>
-                  <li class="{% navigation_item_class 'help_and_guidance' %}">
-                    <a class="govuk-header__link variant-1-help-link" title="Help and guidance" href="{% url 'help_and_guidance' %}">
-                      Help and guidance
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            {% include "includes/logo.html" with link_class="variant-2-logo-link" %}
           </div>
         </header>
+      {% endflag %}
+
+      {% flag v3_homepage %}
+        {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
+        <header class="page-header">
+          <div class="page-header__flex-container container py-1">
+            <div class="page-header__nav">
+              <div class="page-header__site-logo">
+                <a href="{% url 'home' %}" id="home-link variant-3-home-link">Find Case Law</a>
+              </div>
+
+              {% include "includes/breadcrumbs.html" %}
+            </div>
+            {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
+          </div>
+        </header>
+      {% endflag %}
+
+      <header class="govuk-header" data-module="govuk-header">
+        <div class="page-header__flex-container-beta container py-1">
+          {% include "includes/beta_logo.html" with link_class="variant-1-logo-link" %}
+
+          <div class="service-introduction">
+            <span class="service-introduction__separator"></span>
+            <h1 class="service-introduction__header-beta-v1">Find Case Law<span class="phase-banner__beta-phase">Beta</span></h1>
+            <p class="service-introduction__helper-text">Judgments and decisions from 2001 onwards</p>
+          </div>
+          <div class="govuk-header__content">
+            <nav aria-label="Menu" class="govuk-header__navigation">
+              <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>
+                Menu
+              </button>
+              <ul id="navigation" class="govuk-header__navigation-list">
+                <li class="{% navigation_item_class 'home' %}">
+                  <a class="govuk-header__link variant-1-home-link" title="Home" href="{% url 'home' %}">
+                    Home
+                  </a>
+                </li>
+                <li class="{% navigation_item_class 'about_this_service' %}">
+                  <a class="govuk-header__link variant-1-about-link"  title="About" href="{% url 'about_this_service' %}">
+                    About
+                  </a>
+                </li>
+                <li class="{% navigation_item_class 'help_and_guidance' %}">
+                  <a class="govuk-header__link variant-1-help-link" title="Help and guidance" href="{% url 'help_and_guidance' %}">
+                    Help and guidance
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
     {% endblock header %}
 
     {% include "includes/notifications.html" %}
