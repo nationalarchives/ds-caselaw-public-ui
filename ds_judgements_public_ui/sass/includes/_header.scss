@@ -51,6 +51,19 @@
     }
   }
 
+  &__breadcrumbs-block {
+     padding: $space-2;
+     margin-left: $space-4;
+    }
+  
+
+  &__beta{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+
   &__nav {
     display: flex;
     flex-direction: column;
