@@ -1,8 +1,10 @@
 from os import environ
 from unittest.mock import Mock, patch
 
+from caselawclient.factories import JudgmentFactory
+from caselawclient.models.documents import DocumentURIString
+
 from judgments.models.document_pdf import DocumentPdf
-from judgments.tests.factories import JudgmentFactory
 from judgments.utils import formatted_document_uri
 
 
@@ -56,7 +58,7 @@ class TestDocumentPdf:
 
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.org"})
     def generate_uri_generates_the_correct_uri_with_base_url(self):
-        document_pdf = DocumentPdf("foo/bar/baz")
+        document_pdf = DocumentPdf(DocumentURIString("foo/bar/baz"))
 
         assert document_pdf.generate_uri() == "https://example.org/foo_bar_baz.pdf"
 
@@ -69,6 +71,6 @@ class TestDocumentPdf:
         },
     )
     def test_generate_uri_generates_the_correct_uri_with_base_url(self):
-        document_pdf = DocumentPdf("foo/bar/baz")
+        document_pdf = DocumentPdf(DocumentURIString("foo/bar/baz"))
 
         assert document_pdf.generate_uri() == "https://bucket.s3.region.amazonaws.com/foo/bar/baz/foo_bar_baz.pdf"

@@ -1,8 +1,8 @@
 from unittest.mock import Mock, patch
 
+from caselawclient.factories import PressSummaryFactory
 from django.test import TestCase
 from django.urls import reverse
-from factories import PressSummaryFactory
 
 from judgments.utils import linked_doc_title, press_summary_list_breadcrumbs
 from judgments.views.press_summaries import press_summaries
@@ -34,7 +34,7 @@ class TestPressSummaries(TestCase):
             "judgment/press_summaries/list.html",
             context={
                 "page_title": f"{linked_doc_title(press_summary_1)} - Press Summaries",
-                "judgement_name": linked_doc_title(press_summary_1),
+                "judgment_name": linked_doc_title(press_summary_1),
                 "breadcrumbs": press_summary_list_breadcrumbs(press_summary_1),
                 "press_summaries": excepted_press_summaries,
             },
@@ -74,11 +74,11 @@ class TestPressSummaries(TestCase):
             decoded_response,
         )
         self.assertIn(
-            press_summary_1.name,
+            press_summary_1.body.name,
             decoded_response,
         )
         self.assertIn(
-            press_summary_2.name,
+            press_summary_2.body.name,
             decoded_response,
         )
 

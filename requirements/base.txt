@@ -9,8 +9,8 @@ django-environ==0.11.2 # https://github.com/joke2k/django-environ
 django-model-utils==5.0.0  # https://github.com/jazzband/django-model-utils
 requests~=2.32.2
 wsgi-basic-auth~=1.1.0
-ds-caselaw-marklogic-api-client~=25.0.0
-ds-caselaw-utils==1.7.0
+ds-caselaw-marklogic-api-client~=27.1.0
+ds-caselaw-utils==2.0.0
 rollbar
 django-weasyprint==2.3.0
 django-waffle==4.1.0  # https://github.com/django-waffle/django-waffle

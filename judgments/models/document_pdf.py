@@ -3,13 +3,14 @@ from functools import cached_property
 
 import environ
 import requests
+from caselawclient.models.documents import DocumentURIString
 
 from judgments.utils import formatted_document_uri
 
 
 class DocumentPdf:
-    def __init__(self, document_uri: str):
-        self.document_uri = document_uri
+    def __init__(self, document_uri: DocumentURIString):
+        self.document_uri: DocumentURIString = document_uri
 
     @cached_property
     def size(self):
@@ -29,7 +30,7 @@ class DocumentPdf:
             return None
 
     @cached_property
-    def uri(self):
+    def uri(self) -> str:
         return self.generate_uri() if self.size else formatted_document_uri(self.document_uri, "pdf")
 
     def generate_uri(self):

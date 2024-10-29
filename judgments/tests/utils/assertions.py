@@ -64,7 +64,6 @@ def assert_not_contains_html(response, contained_html):
 
 def assert_response_contains_text(response, contained_text, xpath_query):
     container_tree = parse_html(response.content.decode())
-
     assert is_contained_by_xpath(container_tree, xpath_query, contained_text)
 
 
