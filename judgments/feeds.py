@@ -15,6 +15,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
 
+from .forms.search_forms import TRIBUNAL_CHOICES
 from .utils import api_client, paginator
 from .utils.search_request_to_parameters import search_request_to_parameters
 
@@ -38,7 +39,10 @@ def redirect_atom_feed(
     new_parameters = {}
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))  # type: ignore[arg-type]
     if court_query:
-        new_parameters["court"] = court_query
+        if court_query in TRIBUNAL_CHOICES.keys():
+            new_parameters["tribunal"] = court_query
+        else:
+            new_parameters["court"] = court_query
     if year:
         new_parameters["from"] = f"{year}-01-01"
         new_parameters["to"] = f"{year}-12-31"
