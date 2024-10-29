@@ -28,7 +28,7 @@ def assert_critical_violations(violations, page_url):
         )
 
 
-def assert_other_violations(violations, page_url):
+def check_other_violations(violations, page_url):
     other_violations = []
 
     for violation in violations:
@@ -48,7 +48,7 @@ def assert_is_accessible(page):
         return
 
     assert_critical_violations(violations, page.url)
-    assert_other_violations(violations, page.url)
+    check_other_violations(violations, page.url)
 
 
 def format_violation(violation):
