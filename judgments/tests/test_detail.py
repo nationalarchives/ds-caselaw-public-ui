@@ -1,6 +1,6 @@
 from os import environ
 from typing import Optional
-from unittest.mock import Mock, patch
+from unittest.mock import call, patch
 
 import pytest
 from caselawclient.errors import DocumentNotFoundError
@@ -51,15 +51,15 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_query_passed_to_api_client(self, mock_get_document_by_uri, mock_pdf):
-        judgment = Mock()
-        judgment.is_published = True
-        judgment.uri = "test/2023/123"
+        judgment = JudgmentFactory.build()
 
         mock_get_document_by_uri.return_value = judgment
-        mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123?query=Query")
-        judgment.content_as_html.assert_called_with("", query="Query")
+
+        assert mock_get_document_by_uri.mock_calls[0] == call(
+            "test/2023/123", search_query="Query"
+        )  # We do make subsequent calls as part of getting related documents, but they're not relevant here
 
         self.assertEqual(response.status_code, 200)
 

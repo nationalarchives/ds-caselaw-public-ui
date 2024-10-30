@@ -8,6 +8,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
 from django.urls import reverse
+from lxml import html as html_parser
 
 from judgments.forms import AdvancedSearchForm
 from judgments.models.document_pdf import DocumentPdf
@@ -31,12 +32,24 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
 
 
+def number_of_mentions(content: str, query: str) -> int:
+    tree = html_parser.fromstring(content.encode("utf-8"))
+    return len(tree.findall(".//mark"))
+
+
 def detail_html(request, document_uri):
     query = request.GET.get("query")
 
-    cleaned_search_query = preprocess_query(query) if query is not None else None
+    context: dict[str, Any] = {}
 
-    document = get_published_document_by_uri(document_uri, search_query=cleaned_search_query)
+    if query:
+        cleaned_search_query = preprocess_query(query)
+        document = get_published_document_by_uri(document_uri, search_query=cleaned_search_query)
+        context["query"] = query
+        context["number_of_mentions"] = number_of_mentions(document.body.content_as_html(), cleaned_search_query)
+    else:
+        document = get_published_document_by_uri(document_uri)
+
     pdf = DocumentPdf(document_uri)
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
@@ -44,13 +57,8 @@ def detail_html(request, document_uri):
         redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
         return HttpResponseRedirect(redirect_uri)
 
-    context: dict[str, Any] = {}
-
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)
-
-    if query:
-        context["number_of_mentions"] = str(document.number_of_mentions(query))
 
     try:
         linked_document_uri = linked_doc_url(document)
@@ -90,7 +98,6 @@ def detail_html(request, document_uri):
         breadcrumbs.append({"text": document.body.name})
 
     context["breadcrumbs"] = breadcrumbs
-    context["query"] = query
     context["feedback_survey_type"] = "judgment"  # TODO: update the survey to allow for generalisation to `document`
     # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
     context["search_context"] = search_context_from_url(request.META.get("HTTP_REFERER"))
