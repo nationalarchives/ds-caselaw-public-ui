@@ -14,6 +14,8 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
+from ds_caselaw_utils.courts import courts as all_courts
+from ds_caselaw_utils.types import CourtParam
 
 from .forms.search_forms import TRIBUNAL_CHOICES
 from .utils import api_client, paginator
@@ -31,6 +33,14 @@ def _add_page_to_url(url: str, page: int = 1) -> str:
     return_value = urlunsplit((scheme, netloc, path, new_query, fragment))
     print(return_value)
     return return_value
+
+
+def readable_list(seq: List[Any]) -> str:
+    # Ref: https://stackoverflow.com/a/53981846/
+    seq = [str(s) for s in seq]
+    if len(seq) < 3:
+        return " and ".join(seq)
+    return ", ".join(seq[:-1]) + " and " + seq[-1]
 
 
 def redirect_atom_feed(
@@ -57,6 +67,8 @@ def modify_query_params(url: str, new_parameters: dict[str, str]) -> ParseResult
 
 
 class JudgmentAtomFeed(Atom1Feed):
+    content_type = "application/xml; charset=utf-8"  # This allows our XSLT to work
+
     def root_attributes(self):
         attrs = super().root_attributes()
         attrs["xmlns:tna"] = "https://caselaw.nationalarchives.gov.uk"
@@ -157,16 +169,55 @@ class JudgmentsFeed(Feed):
         extra_kwargs["page"] = obj["page"]
         return extra_kwargs
 
+    def __call__(self, request, *args, **kwargs):
+        response = super().__call__(request, *args, **kwargs)
+
+        # Inject our stylesheet at the top of the feed
+        css = b'<?xml-stylesheet href="/static/atom.xsl" type="text/xsl" ?>\n'
+        start = b"<feed"
+        response.content = response.content.replace(start, css + start)
+
+        return response
+
+
+def _courts_string_for_title(courts: list[str]) -> str:
+    court_names = [all_courts.get_by_param(param=CourtParam(court)).name for court in courts]
+    return f" from {readable_list(court_names)}"
+
+
+def _order_string_for_title(order: str) -> str:
+    if order[0] == "-":
+        direction = "newest first"
+        order = order[1:]
+    else:
+        direction = "oldest first"
+
+    search_order_strings = {
+        "date": "date the document was first published by the court",
+        "transformation": "date the body of the document was last modified",
+        "updated": "date the document was last updated in the Find Case Law system",
+    }
+
+    return f", sorted by {search_order_strings[order]} ({direction})"
+
 
 class SearchJudgmentsFeed(JudgmentsFeed):
     def link(self, obj):
         return obj["self_uri"]
 
     def title(self, obj):
-        if not obj["query_string"]:
-            return "Search results"
+        title_string = "Latest documents"
 
-        return f'Search results for {obj.get("query_string")}'
+        if obj["query_string"]:
+            title_string += f' for "{obj["query_string"]}"'
+
+        if obj["courts"]:
+            title_string += _courts_string_for_title(obj["courts"])
+
+        if obj["order"]:
+            title_string += _order_string_for_title(obj["order"])
+
+        return title_string
 
     def feed_url(self, obj):
         return obj["self_uri"]
@@ -207,6 +258,7 @@ class SearchJudgmentsFeed(JudgmentsFeed):
         search_response = search_judgments_and_parse_response(api_client, search_parameters)
         return {
             "query_string": request.GET.get("query", default=""),
+            "courts": request.GET.getlist("court") + request.GET.getlist("tribunal"),
             "self_uri": self._base_feed_uri(request),
             "search_response": search_response,
             "page": search_parameters.page,
