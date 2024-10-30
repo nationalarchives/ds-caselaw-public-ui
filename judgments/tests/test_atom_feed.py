@@ -35,7 +35,7 @@ class TestAtomFeed(TestCase):
         # that there is a successful response
         self.assertEqual(response.status_code, 200)
         # that it is an atom feed
-        self.assertEqual(response["Content-Type"], "application/atom+xml; charset=utf-8")
+        self.assertEqual(response["Content-Type"], "application/xml; charset=utf-8")
 
         # that it has the correct site name
         self.assertIn("<name>The National Archives</name>", decoded_response)
@@ -72,7 +72,7 @@ class TestAtomFeed(TestCase):
             ),
         )
 
-        self.assertIn("Search results for obscure-search-query", decoded_response)
+        self.assertIn('Latest documents for "obscure-search-query"', decoded_response)
 
         self.assertIn(
             '"https://caselaw.nationalarchives.gov.uk/atom.xml?query=obscure-search-query&amp;order=date"',
