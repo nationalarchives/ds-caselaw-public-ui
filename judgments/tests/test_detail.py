@@ -1,5 +1,6 @@
 from os import environ
-from unittest.mock import Mock, patch
+from typing import Optional
+from unittest.mock import call, patch
 
 import pytest
 from caselawclient.errors import DocumentNotFoundError
@@ -50,15 +51,15 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_query_passed_to_api_client(self, mock_get_document_by_uri, mock_pdf):
-        judgment = Mock()
-        judgment.is_published = True
-        judgment.uri = "test/2023/123"
+        judgment = JudgmentFactory.build()
 
         mock_get_document_by_uri.return_value = judgment
-        mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123?query=Query")
-        judgment.content_as_html.assert_called_with("", query="Query")
+
+        assert mock_get_document_by_uri.mock_calls[0] == call(
+            "test/2023/123", search_query="Query"
+        )  # We do make subsequent calls as part of getting related documents, but they're not relevant here
 
         self.assertEqual(response.status_code, 200)
 
@@ -236,7 +237,7 @@ class TestViewRelatedDocumentButton:
         THEN the response should contain a button linking to the related document
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri not in [uri, expected_href]:
                 raise DocumentNotFoundError()
             return document_class_factory.build(uri=document_uri, is_published=True)
@@ -283,7 +284,7 @@ class TestViewRelatedDocumentButton:
         THEN the response should contain a button linking to the related document
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri not in [uri, expected_href]:
                 raise DocumentNotFoundError()
             return document_class_factory.build(uri=document_uri, is_published=True)
@@ -318,7 +319,7 @@ class TestViewRelatedDocumentButton:
         THEN the response should not contain a button linking to the related judgment
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             return JudgmentFactory.build(uri=document_uri, is_published=True, document_noun="press summary")
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -343,7 +344,7 @@ class TestBreadcrumbs:
         AND an additional `Press Summary` breadcrumb
         """
 
-        def pj(uri, cache_if_not_found=False):
+        def get_document_by_uri_side_effect(uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if "press" in uri:
                 return PressSummaryFactory.build(
                     uri="eat/2023/1/press-summary/1",
@@ -361,7 +362,7 @@ class TestBreadcrumbs:
                     ),
                 )
 
-        mock_get_document_by_uri.side_effect = pj
+        mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
         response = self.client.get("/eat/2023/1/press-summary/1")
         judgment_breadcrumb_html = """
@@ -415,7 +416,7 @@ class TestBreadcrumbs:
         THEN the response should contain breadcrumbs including the appropriate error reference
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             raise http_error()
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -437,7 +438,7 @@ class TestDocumentHeadings(TestCase):
         AND a p tag subheading with the related judgment's NCN
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri == "eat/2023/1/press-summary/1":
                 return PressSummaryFactory.build(
                     uri="eat/2023/1/press-summary/1",
@@ -501,7 +502,7 @@ class TestHTMLTitle(TestCase):
         summary name and "- Find Case Law - The National Archives"
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri == "eat/2023/1/press-summary/1":
                 return JudgmentFactory.build(
                     uri="eat/2023/1/press-summary/1",

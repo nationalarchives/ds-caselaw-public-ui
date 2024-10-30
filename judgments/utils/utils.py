@@ -192,35 +192,46 @@ def has_filters(query_params, exclude=["order", "per_page"]):
 
 @overload
 def get_document_by_uri(
-    document_uri: str, max_ttl: int = 900, cache_if_not_found: Literal[False] = False
+    document_uri: str,
+    max_ttl: int = 900,
+    cache_if_not_found: Literal[False] = False,
+    search_query: Optional[str] = None,
 ) -> Document: ...
 
 
 @overload
 def get_document_by_uri(
-    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False, search_query: Optional[str] = None
 ) -> Optional[Document]: ...
 
 
-def get_document_by_uri(document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False) -> Optional[Document]:
+def get_document_by_uri(
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False, search_query: Optional[str] = None
+) -> Optional[Document]:
     """
     This is a wrapper for getting a document from the cache, with a maximum TTL. The `max_ttl` is a [workaround](https://stackoverflow.com/questions/31771286/python-in-memory-cache-with-time-to-live) for the fact `lru_cache` doesn't have any time-based expiry
     """
     ttl_hash = round(time() / max_ttl)
     return get_document_by_uri_from_cache(
-        DocumentURIString(document_uri), ttl_hash=ttl_hash, cache_if_not_found=cache_if_not_found
+        DocumentURIString(document_uri),
+        ttl_hash=ttl_hash,
+        cache_if_not_found=cache_if_not_found,
+        search_query=search_query,
     )
 
 
 @lru_cache(maxsize=256)
 def get_document_by_uri_from_cache(
-    document_uri: DocumentURIString, ttl_hash: int = 0, cache_if_not_found: bool = False
+    document_uri: DocumentURIString,
+    ttl_hash: int = 0,
+    cache_if_not_found: bool = False,
+    search_query: Optional[str] = None,
 ) -> Optional[Document]:
     del ttl_hash  # ttl_hash is used to fake cache expiry with time
 
     # Try to get the document. If it doesn't exist and `cache_if_not_found` is `True`, return a `None` response so it will be cached. Otherwise, bubble the exception up.
     try:
-        return api_client.get_document_by_uri(document_uri)
+        return api_client.get_document_by_uri(document_uri, search_query=search_query)
     except DocumentNotFoundError as e:
         if cache_if_not_found:
             return None
