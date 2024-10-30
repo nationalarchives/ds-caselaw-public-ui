@@ -33,7 +33,10 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
 
 def detail_html(request, document_uri):
     query = request.GET.get("query")
-    document = get_published_document_by_uri(document_uri)
+
+    cleaned_search_query = preprocess_query(query) if query is not None else None
+
+    document = get_published_document_by_uri(document_uri, search_query=cleaned_search_query)
     pdf = DocumentPdf(document_uri)
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
