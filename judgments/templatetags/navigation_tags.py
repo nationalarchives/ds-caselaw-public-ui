@@ -6,9 +6,9 @@ register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def navigation_item_class(context, path):
-    request = context["request"]
+    request = context.get("request")
 
-    if resolve(request.path_info).url_name == path:
+    if request and resolve(request.path_info).url_name == path:
         return "govuk-header__navigation-item govuk-header__navigation-item--active"
 
     return "govuk-header__navigation-item"
