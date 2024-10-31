@@ -282,17 +282,11 @@ ds_judgements_public_ui/media/
 
 docker/*
 
-/ds_judgements_public_ui/static/css/main.css
-/ds_judgements_public_ui/static/css/main.css.map
-/ds_judgements_public_ui/static/css/judgmentpdf.css
-/ds_judgements_public_ui/static/css/judgmentpdf.css.map
-/ds_judgements_public_ui/static/css/transactional_licence_form/main.css
-/ds_judgements_public_ui/static/css/transactional_licence_form/main.css.map
-/ds_judgements_public_ui/static/js/dist/app.js
-/ds_judgements_public_ui/static/js/dist/transactional_licence_form/app.js
-/ds_judgements_public_ui/static/css/document_pdf.css
-/ds_judgements_public_ui/static/css/document_pdf.css.map
-/ds_judgements_public_ui/static/css/includes/cookie_consent/ds-cookie-consent.css.map
+/ds_judgements_public_ui/static/css/**/*.css
+/ds_judgements_public_ui/static/css/**/*.css.map
+/ds_judgements_public_ui/static/js/**/*.js
+
+!/ds_judgements_public_ui/static/css/includes/govuk-country-and-territory-autocomplete/location-autocomplete.min.css
 
 .vscode
 
