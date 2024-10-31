@@ -13,14 +13,14 @@
 
   &__flex-container-beta {
     display: flex;
-    justify-content: space-between;
     gap: $space-16;
+    justify-content: space-between;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       flex-direction: column;
-      text-align: left;
       gap: 0;
       padding-bottom: 0;
+      text-align: left;
     }
   }
 
@@ -29,23 +29,25 @@
     height: 100px;
     margin-top: $space-1;
     margin-bottom: $space-1;
+
     @media only screen and (max-width: $grid-breakpoint-medium) {
       margin-right: 11rem;
     }
   }
 
   &__site-logo a {
-    color: $color-white;
     font-size: $typography-xl-text-size;
+    color: $color-white;
     text-decoration: none;
+
     &:visited {
       color: $color-white;
     }
 
     &:focus {
+      z-index: 999;
       outline: 5px solid $color-white;
       outline-offset: 5px;
-      z-index: 999;
     }
   }
 
@@ -66,10 +68,10 @@
   }
 
   &__logo-block {
+    margin-top: $space-16;
     font-size: $typography-sm-text-size;
     color: $color-white;
     text-align: right;
-    margin-top: $space-16;
 
     a:focus {
       outline-color: $color-white;
@@ -77,9 +79,9 @@
     }
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
-      text-align: center;
-      padding-bottom: 0;
       margin-top: $space-2;
+      padding-bottom: 0;
+      text-align: center;
     }
   }
 

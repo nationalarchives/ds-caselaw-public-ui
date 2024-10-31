@@ -1,6 +1,7 @@
 .govuk-checkboxes__input {
   &:focus {
     @include focus-default;
+
     outline-color: $color-focus-blue-outline;
   }
 }

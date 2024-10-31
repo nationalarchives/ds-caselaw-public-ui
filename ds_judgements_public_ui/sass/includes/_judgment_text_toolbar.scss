@@ -1,45 +1,49 @@
 .judgment-toolbar {
-  background-color: $color-light-grey;
-  color: $color-black;
   padding: $space-4;
+  color: $color-black;
+  background-color: $color-light-grey;
   border-bottom: 0.125rem solid $color-grey;
 
   &__container {
-    margin: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-flow: column wrap;
+    place-content: center center;
     align-items: center;
-    flex-wrap: wrap;
-    align-content: center;
+
+    margin: auto;
 
     @include container;
 
     > div {
       @media (max-width: $grid-breakpoint-small) {
-        text-align: center;
         display: block;
         padding: $space-1 $space-4;
+        text-align: center;
       }
     }
   }
 
   a {
-    padding: $space-2 $space-12;
     display: inline-block;
-    text-decoration: none;
-    outline-offset: 3px;
+
     margin: 0;
+    padding: $space-2 $space-12;
+
+    text-decoration: none;
+
+    outline-offset: 3px;
 
     &.btn {
       @include call-to-action-button;
+
       margin-bottom: $space-1 !important;
     }
 
     &.btn-related-document {
       @include call-to-action-button-secondary;
-      margin-bottom: $space-1 !important;
+
       margin-right: $space-4;
+      margin-bottom: $space-1 !important;
     }
 
     @media (min-width: $grid-breakpoint-small) {
@@ -48,30 +52,34 @@
   }
 
   &__press-summary-title {
-    text-wrap: balance;
     margin-top: -1 * $space-4;
     margin-bottom: 0;
-    background-color: $color-yellow;
-    color: $color-almost-black;
     padding: $space-1 $space-2;
+
+    color: $color-almost-black;
     text-align: center;
+    text-wrap: balance;
+
+    background-color: $color-yellow;
   }
 
   &__title {
-    text-wrap: balance;
     margin-top: $space-4;
     margin-bottom: 0;
+
     color: $color-almost-black;
     text-align: center;
+    text-wrap: balance;
   }
 
   &__reference {
-    text-wrap: balance;
     margin-top: $space-2;
     margin-bottom: $space-4;
+
     font-size: $typography-xl-text-size;
     color: $color-almost-black;
     text-align: center;
+    text-wrap: balance;
   }
 }
 
@@ -79,8 +87,8 @@
   margin: 0 auto;
 
   &__pdf-size {
-    font-weight: $typography-normal-font-weight;
     font-size: $typography-sm-text-size;
+    font-weight: $typography-normal-font-weight;
   }
 
   &__option--related-document {
@@ -92,17 +100,20 @@
   }
 
   &__option--download-options {
-    color: $color-dark-grey;
     font-size: $typography-md-text-size;
+    color: $color-dark-grey;
     text-align: center;
 
     a {
-      background-color: transparent;
-      color: $color-aqua-blue;
-      padding: 1px;
       display: inline;
-      text-decoration: underline;
+
+      padding: 1px;
+
       font-size: $typography-md-text-size;
+      color: $color-aqua-blue;
+      text-decoration: underline;
+
+      background-color: transparent;
 
       &:hover {
         text-decoration: none;

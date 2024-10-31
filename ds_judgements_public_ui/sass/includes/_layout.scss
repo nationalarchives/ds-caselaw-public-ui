@@ -1,8 +1,7 @@
 @mixin container {
-  padding: 0 $gutter_unit;
-  margin: auto;
-
   max-width: $grid-breakpoint-small - ($gutter_unit * 1);
+  margin: auto;
+  padding: 0 $gutter_unit;
 
   @media (min-width: $grid-breakpoint-medium) {
     max-width: $grid-breakpoint-medium - ($gutter_unit * 1.5);

@@ -1,33 +1,35 @@
 .environment-banner {
-  background-color: $color-information;
   color: $color-black;
+  background-color: $color-information;
 
   &__notice {
     padding: 0;
 
     a {
-      color: $color-black;
       font-weight: $typography-bold-font-weight;
+      color: $color-black;
 
       &:focus {
-        outline: 0.125rem solid $color-black;
-        background-color: $color-white;
         color: $color-black;
+        background-color: $color-white;
+        outline: 0.125rem solid $color-black;
       }
     }
   }
 
   &__environment {
-    background-color: $color-white;
+    margin-right: $space-4;
+    padding: 0 $space-1;
+
+    font-weight: $typography-bold-font-weight;
     color: $color-black;
     text-transform: uppercase;
-    padding: 0 $space-1;
-    margin-right: $space-4;
-    font-weight: $typography-bold-font-weight;
+
+    background-color: $color-white;
   }
 
   &__message {
-    margin: 0;
     display: inline;
+    margin: 0;
   }
 }

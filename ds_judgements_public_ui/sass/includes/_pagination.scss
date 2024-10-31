@@ -1,20 +1,21 @@
 .pagination {
-  background-color: $color-almost-black;
   margin-bottom: $space-8;
+  background-color: $color-almost-black;
 
   h3 {
     @include sr-only;
   }
 
   &__list {
-    text-align: center;
-    list-style-type: none;
-    padding-left: 0;
-    min-height: 3.125rem;
-
     display: flex;
     justify-content: start;
+
+    min-height: 3.125rem;
     margin-bottom: 0;
+    padding-left: 0;
+
+    text-align: center;
+    list-style-type: none;
 
     &-pages {
       padding: 0;
@@ -27,8 +28,8 @@
 
     &-divider {
       display: inline-block;
-      color: $color-white;
       width: 2rem;
+      color: $color-white;
     }
 
     &-item {
@@ -36,13 +37,13 @@
       min-height: 3.125rem;
 
       &:first-child {
-        margin-left: 0;
         margin-right: auto;
+        margin-left: 0;
       }
 
       &:last-child {
-        margin-left: auto;
         margin-right: 0;
+        margin-left: auto;
       }
     }
   }
@@ -53,11 +54,13 @@
     &-link,
     &-link-current {
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-decoration: none;
+      justify-content: center;
+
       width: 3.125rem;
       height: 3.125rem;
+
+      text-decoration: none;
 
       > span {
         @include sr-only;
@@ -72,16 +75,16 @@
     &-chevron-next,
     &-chevron-previous {
       background-color: $color-grey;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 40%;
 
       &:hover,
       &:focus {
         @include focus-default;
+
         background-color: $color-dark-grey;
       }
-
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 40%;
     }
 
     &-chevron-next {
@@ -99,15 +102,17 @@
       }
 
       &--disabled {
+        display: flex;
+        justify-content: center;
+
+        width: 3.125rem;
+        height: 100%;
+
         background-color: $color-grey;
         background-image: url($fa_chevron_right_disabled);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 40%;
-        width: 3.125rem;
-        height: 100%;
-        display: flex;
-        justify-content: center;
 
         &:hover,
         &:focus {
@@ -137,15 +142,17 @@
       }
 
       &--disabled {
+        display: flex;
+        justify-content: center;
+
+        width: 3.125rem;
+        height: 100%;
+
         background-color: $color-grey;
         background-image: url($fa_chevron_left_disabled);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 40%;
-        width: 3.125rem;
-        height: 100%;
-        display: flex;
-        justify-content: center;
 
         &:hover,
         &:focus {
@@ -185,9 +192,9 @@
     &-link-current:visited,
     &-link:hover,
     &-link:focus {
-      background-color: $color-white;
-      color: $color-black;
       font-weight: $typography-bold-font-weight;
+      color: $color-black;
+      background-color: $color-white;
       outline-color: $color-highlight-blue;
     }
   }

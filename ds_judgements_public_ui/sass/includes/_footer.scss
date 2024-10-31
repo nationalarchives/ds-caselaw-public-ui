@@ -1,32 +1,27 @@
 .pre-footer {
+  text-align: center;
   background-color: $color-light-grey;
 
-  text-align: center;
-
   h2 {
-    padding-top: 0;
     margin-bottom: 0;
-    font-weight: $typography-normal-font-weight;
+    padding-top: 0;
     font-size: $typography-lg-text-size;
+    font-weight: $typography-normal-font-weight;
   }
 
   &__cta-button {
     @include call-to-action-button-secondary;
+
     &:visited {
-      color: #ffffff;
+      color: #fff;
     }
   }
 }
 
 .judgments-footer {
-  background-color: $color-almost-black;
-  color: $color-white;
-
   font-size: $typography-sm-text-size;
-
-  @media (min-width: $grid-breakpoint-medium) {
-    font-size: $typography-md-text-size;
-  }
+  color: $color-white;
+  background-color: $color-almost-black;
 
   &__links-container {
     @media (min-width: $grid-breakpoint-medium) {
@@ -41,8 +36,8 @@
 
   h3 {
     @media (max-width: $grid-breakpoint-medium) {
-      padding-top: $space-2;
       margin-bottom: $space-1;
+      padding-top: $space-2;
     }
   }
 
@@ -51,8 +46,8 @@
   }
 
   li {
-    list-style: none;
     margin-bottom: $space-5;
+    list-style: none;
 
     @media (min-width: $grid-breakpoint-medium) {
       margin-bottom: $space-6;
@@ -68,10 +63,10 @@
   }
 
   &__base-paragraph {
-    text-align: left;
+    margin-top: $space-6;
     font-size: $typography-sm-text-size;
     line-height: 1.2rem;
-    margin-top: $space-6;
+    text-align: left;
 
     @media (min-width: $grid-breakpoint-medium) {
       font-size: $typography-sm-text-size;
@@ -81,5 +76,9 @@
     @media (min-width: $grid-breakpoint-extra-large) {
       text-align: center;
     }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    font-size: $typography-md-text-size;
   }
 }

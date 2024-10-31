@@ -1,15 +1,11 @@
 .judgment-download-options {
   max-width: 90%;
-  margin: 0 auto $space-12 auto;
-
-  @media (min-width: $grid-breakpoint-medium) {
-    max-width: 46rem;
-  }
+  margin: 0 auto $space-12;
 
   &__header {
-    padding-bottom: $space-2;
-    margin-bottom: $space-8;
     display: inline-block;
+    margin-bottom: $space-8;
+    padding-bottom: $space-2;
   }
 
   &__options-list {
@@ -23,8 +19,8 @@
   }
 
   &__download-option {
-    border: 2px solid $color-yellow;
     padding: $space-4;
+    border: 2px solid $color-yellow;
   }
 
   h3 {
@@ -33,5 +29,9 @@
 
   p {
     margin-bottom: 0;
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    max-width: 46rem;
   }
 }

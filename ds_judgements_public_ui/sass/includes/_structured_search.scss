@@ -1,7 +1,7 @@
 .structured-search {
   legend {
-    padding: 0;
     margin-bottom: $space-4;
+    padding: 0;
 
     @media (min-width: $grid-breakpoint-medium) {
       margin-bottom: 0;
@@ -9,20 +9,22 @@
   }
 
   &__main-search {
-    background-color: $color-light-grey;
     margin: 0 0 $space-4;
     padding: $space-4 0 $space-6;
     text-align: center;
+    background-color: $color-light-grey;
   }
 
   &__main-search-header {
-    color: $color-almost-black;
     display: inline-block;
+
+    margin: $space-4 0 0;
+
     font-family: $font-roboto;
     font-size: $typography-2xl-text-size;
     font-weight: $typography-normal-font-weight;
     line-height: $typography-xs-line-height;
-    margin: $space-4 0 0;
+    color: $color-almost-black;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin: $space-2 $space-4;
@@ -31,6 +33,7 @@
 
   &__container {
     @include container;
+
     max-width: 100%;
     padding: 0;
     text-align: left;
@@ -42,26 +45,30 @@
 
   &__full-text-panel {
     margin-top: $space-4;
+
     @media (max-width: $grid-breakpoint-medium) {
       box-sizing: border-box;
-      padding-left: $space-4;
       padding-right: $space-4;
+      padding-left: $space-4;
     }
   }
 
   &__limit-to-input {
     @include text_field;
-    margin-bottom: 0;
-    margin-top: $space-2;
+
     width: 95%;
+    margin-top: $space-2;
+    margin-bottom: 0;
   }
 
   &__limit-to-label {
     display: block;
-    font-size: $typography-md-text-size;
-    font-weight: $typography-bold-font-weight;
+
     margin-bottom: 0;
     margin-left: 0;
+
+    font-size: $typography-md-text-size;
+    font-weight: $typography-bold-font-weight;
   }
 
   &__single-field-panel {
@@ -80,17 +87,18 @@
     // Fix display in IE11
 
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      display: -ms-grid;
+      display: grid;
+
       -ms-grid-columns: 1fr 1rem 1fr;
 
       div:nth-of-type(1) {
-        -ms-grid-column: 1;
-        -ms-grid-row: 1;
+        grid-column: 1;
+        grid-row: 1;
       }
 
       div:nth-of-type(2) {
-        -ms-grid-column: 3;
-        -ms-grid-row: 1;
+        grid-column: 3;
+        grid-row: 1;
       }
 
       legend {
@@ -101,6 +109,7 @@
 
   &__multi-fields-panel {
     padding-top: $space-4;
+
     @media (max-width: $grid-breakpoint-medium) {
       padding-top: 0;
     }
@@ -114,17 +123,18 @@
     // Fix display in IE11
 
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      display: -ms-grid;
+      display: grid;
+
       -ms-grid-columns: 1fr $space-4 1fr;
 
       div:nth-of-type(1) {
-        -ms-grid-column: 1;
-        -ms-grid-row: 1;
+        grid-column: 1;
+        grid-row: 1;
       }
 
       div:nth-of-type(2) {
-        -ms-grid-column: 3;
-        -ms-grid-row: 1;
+        grid-column: 3;
+        grid-row: 1;
       }
 
       legend {
@@ -134,22 +144,28 @@
   }
 
   &__specific-field-container {
-    background-color: $color-light-grey;
-    border-top: 4px solid $color-yellow;
     display: flex;
     flex-direction: column;
+
     padding: $space-4;
+
+    background-color: $color-light-grey;
+    border-top: 4px solid $color-yellow;
+
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: $space-4;
     }
   }
 
   &__limit-to-container {
-    background-color: $color-light-grey;
-    padding: $space-4;
     display: flex;
     flex-direction: column;
+
+    padding: $space-4;
+
+    background-color: $color-light-grey;
     border-top: 4px solid $color-yellow;
+
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: $space-4;
     }
@@ -175,16 +191,16 @@
 
   &__from-date-error-message {
     margin: 0;
-    color: #d4351c;
-    font-weight: $typography-bold-font-weight;
     font-size: $typography-sm-text-size;
+    font-weight: $typography-bold-font-weight;
+    color: #d4351c;
   }
 
   &__to-date-error-message {
     margin: 0;
-    color: #d4351c;
-    font-weight: $typography-bold-font-weight;
     font-size: $typography-sm-text-size;
+    font-weight: $typography-bold-font-weight;
+    color: #d4351c;
   }
 
   input:invalid {
@@ -197,6 +213,7 @@
 
   &__select {
     @include select;
+
     width: 100%;
   }
 
@@ -213,8 +230,9 @@
   }
 
   &__court-options-column {
-    width: 100%;
     break-inside: avoid;
+    width: 100%;
+
     @media (min-width: $grid-breakpoint-medium) {
       width: 50%;
     }
@@ -229,27 +247,33 @@
       gap: $space-2;
 
       input[type="checkbox"] {
-        -webkit-appearance: none;
-        appearance: none;
-        background-color: $color-white;
-        margin: 0;
-        font: inherit;
-        color: $color-dark-grey;
-        width: $space-6;
-        height: $space-6;
-        border: 2px solid $color-dark-grey;
         transform: translateY(-0.075em);
+
         display: grid;
         place-content: center;
 
+        width: $space-6;
+        height: $space-6;
+        margin: 0;
+
+        font: inherit;
+        color: $color-dark-grey;
+
+        appearance: none;
+        background-color: $color-white;
+        border: 2px solid $color-dark-grey;
+
         &::before {
           content: "";
+
+          transform-origin: bottom left;
+          transform: scale(0);
+
           width: $space-3;
           height: $space-3;
-          transform: scale(0);
-          transition: 120ms transform ease-in-out;
-          box-shadow: inset $space-4 $space-4 $color-black;
-          transform-origin: bottom left;
+
+          // For compatibility in Windows High Contrast Mode:
+          background-color: CanvasText;
           clip-path: polygon(
             14% 44%,
             0 65%,
@@ -258,8 +282,9 @@
             80% 0%,
             43% 62%
           );
-          // For compatibility in Windows High Contrast Mode:
-          background-color: CanvasText;
+          box-shadow: inset $space-4 $space-4 $color-black;
+
+          transition: 120ms transform ease-in-out;
         }
 
         &:checked::before {
@@ -280,8 +305,8 @@
   }
 
   &__court-group {
-    margin-left: $space-8;
     break-inside: avoid;
+    margin-left: $space-8;
   }
 
   &__court-option-label {
@@ -289,29 +314,33 @@
     line-height: $typography-md-line-height;
     vertical-align: baseline;
   }
+
   &__court-date-range {
-    color: $color-dark-grey;
     font-size: $typography-sm-text-size;
+    color: $color-dark-grey;
   }
+
   &__date-input {
     @include text_field;
-    margin-bottom: 0;
-    width: 100% !important;
+
     box-sizing: border-box;
+    width: 100% !important;
+    margin-bottom: 0;
   }
 
   &__date-input--error {
     @include text_field;
-    margin-bottom: 0;
-    width: 100% !important;
+
     box-sizing: border-box;
+    width: 100% !important;
+    margin-bottom: 0;
     border-color: #d4351c; // TODO: Move this to ds-caselaw-frontend
   }
 
   fieldset {
-    border: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    border: none;
   }
 
   &__multi-fields-panel {
@@ -326,18 +355,22 @@
 
   &__update-filters-button {
     @include call-to-action-button;
-    padding-right: $space-10;
-    padding-left: $space-10;
+
+    position: relative;
+
+    width: 50%;
     margin-top: $space-2;
     margin-bottom: $space-4;
-    width: 50%;
-    position: relative;
+    padding-right: $space-10;
+    padding-left: $space-10;
+
     @media (min-width: $grid-breakpoint-medium) {
       width: auto;
     }
+
     @media (max-width: $grid-breakpoint-medium) {
-      margin: 0;
       width: 100%;
+      margin: 0;
     }
   }
 
@@ -345,6 +378,7 @@
     @media (max-width: $grid-breakpoint-medium) {
       display: none;
     }
+
     @include sr-only;
   }
 
@@ -352,16 +386,32 @@
     @media (min-width: $grid-breakpoint-medium) {
       display: none;
     }
+
     @media (max-width: $grid-breakpoint-medium) {
       margin: auto 1px;
     }
   }
 
   &__search-term-input {
-    @include text_field;
     width: 80%;
     min-height: $space-8;
     font-size: $typography-lg-text-size;
+
+    &.mobile {
+      @media (min-width: $grid-breakpoint-medium) {
+        display: none;
+      }
+
+      @media (max-width: $grid-breakpoint-medium) {
+        margin: auto 1px;
+      }
+    }
+
+    &.desktop {
+      @media (max-width: $grid-breakpoint-medium) {
+        display: none;
+      }
+    }
 
     @media (min-width: $grid-breakpoint-small) {
       width: 20rem;
@@ -375,20 +425,7 @@
       width: 35rem;
     }
 
-    &.mobile {
-      @media (min-width: $grid-breakpoint-medium) {
-        display: none;
-      }
-      @media (max-width: $grid-breakpoint-medium) {
-        margin: auto 1px;
-      }
-    }
-
-    &.desktop {
-      @media (max-width: $grid-breakpoint-medium) {
-        display: none;
-      }
-    }
+    @include text_field;
   }
 
   input[type="checkbox"] {
@@ -396,8 +433,8 @@
   }
 
   .page-notification--failure {
-    margin: 0 auto;
     box-sizing: border-box;
+    margin: 0 auto;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: $space-4;
