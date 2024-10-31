@@ -1,5 +1,4 @@
 import json
-from typing import Union
 from urllib.parse import unquote
 
 from django.core.exceptions import SuspiciousOperation
