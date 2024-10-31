@@ -290,6 +290,10 @@ docker/*
 /ds_judgements_public_ui/static/css/transactional_licence_form/main.css.map
 /ds_judgements_public_ui/static/js/dist/app.js
 /ds_judgements_public_ui/static/js/dist/transactional_licence_form/app.js
+/ds_judgements_public_ui/static/css/document_pdf.css
+/ds_judgements_public_ui/static/css/document_pdf.css.map
+/ds_judgements_public_ui/static/css/includes/cookie_consent/ds-cookie-consent.css.map
+
 .vscode
 
 # common location for custom versions of dependencies
