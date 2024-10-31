@@ -10,21 +10,26 @@
   }
 
   ol {
-    list-style-type: none;
-    padding: 0;
-    font-family: $font-roboto;
     display: inline-block;
-    font-size: $typography-sm-text-size;
+
     margin: 0;
+    padding: 0;
+
+    font-family: $font-roboto;
+    font-size: $typography-sm-text-size;
+    list-style-type: none;
 
     li {
-      padding: 0;
-      display: inline-block;
       position: relative;
-      margin-right: $space-2;
-      color: $color-white;
+
+      display: inline-block;
       break-inside: avoid;
+
+      margin-right: $space-2;
+      padding: 0;
+
       line-height: 1.3rem;
+      color: $color-white;
       letter-spacing: 0.3px;
 
       &:not(:nth-child(1)) {
@@ -32,20 +37,22 @@
 
         &::before {
           content: "";
-          display: inline-block;
+
           position: absolute;
           top: 0;
           bottom: 0;
           left: -3.31px;
+          transform: rotate(45deg);
+
+          display: inline-block;
+
           width: 7px;
           height: 7px;
           margin: auto 0;
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+
           border: solid;
-          border-width: 0.125rem 0.125rem 0 0;
           border-color: $color-white;
+          border-width: 0.125rem 0.125rem 0 0;
         }
       }
     }
@@ -55,11 +62,17 @@
     }
   }
 
+  &__prefix {
+    margin-right: $space-2;
+    color: $color-white;
+  }
+
   @media only screen and (max-width: $grid-breakpoint-medium) {
     ol,
     li {
       display: block;
     }
+
     li {
       &:not(:nth-child(1)) {
         &::before {
@@ -67,10 +80,5 @@
         }
       }
     }
-  }
-
-  &__prefix {
-    color: $color-white;
-    margin-right: $space-2;
   }
 }

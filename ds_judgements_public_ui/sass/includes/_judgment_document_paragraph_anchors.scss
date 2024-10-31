@@ -18,10 +18,13 @@
     position: absolute;
     top: 0;
     left: -30px;
-    opacity: 0;
+
     width: 22px;
     height: 22px;
     padding-right: 8px;
+
+    opacity: 0;
+
     transition: opacity ease 0.3s;
 
     svg {
@@ -50,24 +53,31 @@
   &__copy-link-tooltip,
   &__copy-link-helptext {
     position: absolute;
-    opacity: 0;
-    font-size: 14px;
     top: -8px;
-    font-family: Roboto, sans-serif;
-    white-space: nowrap;
-    border: 1px solid $color-grey;
+
     padding: 5px 10px;
+
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    white-space: nowrap;
+
+    opacity: 0;
     background: $color-white;
+    border: 1px solid $color-grey;
+
     transition: opacity ease 0.3s;
 
-    &:after {
+    &::after {
       content: "";
+
       position: absolute;
       top: 11px;
       right: -5px;
       transform: rotate(45deg);
+
       width: 8px;
       height: 8px;
+
       background: $color-white;
       border-top: 1px solid $color-grey;
       border-right: 1px solid $color-grey;
@@ -76,24 +86,21 @@
 
   &__copy-link-helptext--top,
   &__copy-link-tooltip--top {
+    top: -40px;
     right: auto;
     left: -20px;
-    top: -40px;
 
-    &:after {
-      right: auto;
-      left: 18px;
-      top: auto;
-      bottom: -5px;
+    &::after {
+      inset: auto auto -5px 18px;
       transform: rotate(135deg);
     }
   }
 
   &__copy-link-helptext--show,
   &__copy-link-tooltip--show {
-    opacity: 1;
-    text-decoration: none;
     color: $color-black;
+    text-decoration: none;
+    opacity: 1;
   }
 
   &__copy-link-helptext--left {

@@ -1,8 +1,9 @@
 .court-listing {
   padding: 0;
+
   > li {
-    list-style: none;
     margin-bottom: $space-4;
+    list-style: none;
   }
 
   ul {

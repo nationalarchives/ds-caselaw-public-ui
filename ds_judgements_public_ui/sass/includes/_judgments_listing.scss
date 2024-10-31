@@ -1,19 +1,20 @@
 .judgment-listing {
   &__list {
+    padding: 0;
+    list-style-type: none;
+
     &--last-page {
       margin-bottom: 0;
     }
 
-    padding: 0;
-    list-style-type: none;
-
     li {
-      padding: $space-4 $space-1;
-      border-bottom: 1px dotted $color-yellow;
-
       display: flex;
       flex-direction: column;
       gap: $space-4;
+
+      padding: $space-4 $space-1;
+
+      border-bottom: 1px dotted $color-yellow;
 
       &:last-child {
         border-bottom: none;
@@ -22,12 +23,12 @@
   }
 
   &__list-beta {
+    padding: 0;
+    list-style-type: none;
+
     &--last-page {
       margin-bottom: 0;
     }
-
-    padding: 0;
-    list-style-type: none;
 
     li {
       padding: $space-2 $space-1;
@@ -42,46 +43,50 @@
   &__judgment {
     line-height: $typography-2xl-line-height;
 
-    @media (min-width: $grid-breakpoint-medium) {
-      display: flex;
-      justify-content: space-between;
-    }
-
     > span:first-child {
       @media (min-width: $grid-breakpoint-medium) {
         flex-basis: 75%;
       }
     }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__matches {
     line-height: $typography-md-line-height;
+
     p {
       display: inline;
     }
   }
 
   &__matches {
-    p:not(:last-child):after {
+    p:not(:last-child)::after {
       content: " | ";
-      color: #888888;
+      color: #888;
     }
   }
 
   &__title {
     display: block;
-    font-weight: $typography-normal-font-weight;
-    font-size: $typography-md-text-size;
-    font-family: $font-roboto;
+
     margin-bottom: $space-2;
+
+    font-family: $font-roboto;
+    font-size: $typography-md-text-size;
+    font-weight: $typography-normal-font-weight;
     line-height: $typography-lg-line-height;
   }
 
   &__title-beta {
     display: block;
-    font-weight: $typography-normal-font-weight;
-    font-size: $typography-md-text-size;
+
     font-family: $font-roboto;
+    font-size: $typography-md-text-size;
+    font-weight: $typography-normal-font-weight;
     line-height: $typography-lg-line-height;
   }
 
@@ -131,8 +136,8 @@
   &__result-term-matching {
     display: block;
     margin-bottom: $space-2;
-    color: $color-dark-grey;
     font-size: $typography-sm-text-size;
+    color: $color-dark-grey;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-top: $space-2;
@@ -140,10 +145,13 @@
   }
 
   &__exact-match-label {
-    background-color: $color-yellow;
     display: inline-block;
-    padding: $space-1 $space-2;
-    font-size: $typography-sm-text-size;
+
     margin-bottom: $space-2;
+    padding: $space-1 $space-2;
+
+    font-size: $typography-sm-text-size;
+
+    background-color: $color-yellow;
   }
 }

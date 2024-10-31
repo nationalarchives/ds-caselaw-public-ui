@@ -8,6 +8,7 @@
 
 .govuk-grid-column-one-third {
   padding: 0;
+
   @media (max-width: $grid-breakpoint-medium) {
     width: 100%;
   }
@@ -24,38 +25,43 @@
   flex-direction: row;
   gap: $space-1;
   margin-left: $space-2;
+
   @media (max-width: $grid-breakpoint-medium) {
+    float: left;
     flex-direction: column;
     width: 50%;
-    float: left;
   }
 }
 
 .govuk-grid-column-one-third__info_cards {
   max-width: 20rem;
-  background-color: $color-light-grey;
-  padding: $space-1 $space-7;
   margin: $space-2;
-  border-top: 4px solid $color-yellow;
+  padding: $space-1 $space-7;
+
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
+
+  background-color: $color-light-grey;
+  border-top: 4px solid $color-yellow;
+
   &:hover {
-    background-color: hsl(210, 6%, 88%);
     text-decoration: none;
-  }
-  @media (max-width: $grid-breakpoint-medium) {
-    height: 6rem;
-    min-width: 150%;
+    background-color: hsl(210deg 6% 88%);
   }
 
-  @media (min-width: 770px) {
+  @media (max-width: $grid-breakpoint-medium) {
+    min-width: 150%;
+    height: 6rem;
+  }
+
+  @media (width >= 770px) {
     height: 12rem;
     padding-bottom: $space-10;
   }
 
   @media (min-width: $grid-breakpoint-large) {
-    height: 12rem;
     max-width: 23rem;
+    height: 12rem;
     padding-bottom: 0;
   }
 }
@@ -67,14 +73,15 @@
 
 .govuk-grid-column-one-third__grid_info_card_heading {
   color: $color-aqua-blue;
-  text-decoration-line: none;
   text-decoration-color: $color-aqua-blue;
+  text-decoration-line: none;
   text-wrap: wrap;
 }
+
 .govuk-grid-column-one-third__grid_info_card_heading:visited {
   color: $color-dark-blue;
-  text-decoration-line: underline;
   text-decoration-color: $color-dark-blue;
+  text-decoration-line: underline;
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading:hover {
@@ -84,14 +91,16 @@
 
 .govuk-grid-column-one-third__grid_info_card_text {
   color: $color-black;
-  text-decoration-line: underline;
   text-decoration-color: $color-light-grey;
+  text-decoration-line: underline;
+
   &:hover {
     text-decoration: none;
   }
+
   @media (max-width: $grid-breakpoint-medium) {
-    visibility: hidden;
     margin: -1rem;
+    visibility: hidden;
   }
 }
 
@@ -101,7 +110,8 @@
 
 .govuk-grid-column-full {
   margin-bottom: -15px;
-  @media (min-width: 40.0625em) {
+
+  @media (width >= 40.0625em) {
     float: none;
   }
 }
@@ -110,30 +120,35 @@
   display: flex;
   flex-direction: row;
   gap: 7.5rem;
-  text-decoration: none;
+
   margin-top: -22px;
+
+  text-decoration: none;
+
   @media (max-width: $grid-breakpoint-medium) {
+    float: left;
     flex-direction: column;
     gap: 0;
-    float: left;
   }
 }
 
 .govuk-grid-column-one-third__info {
   max-width: 16rem;
-  padding: $space-1 $space-5;
-  margin-top: -15px;
   margin-top: -22px;
   margin-left: -3px;
+  padding: $space-1 $space-5;
+
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
+
   &:hover {
     text-decoration: none;
   }
+
   @media (max-width: $grid-breakpoint-medium) {
-    line-height: $space-4;
     max-width: none;
-    padding: 1rem 1rem;
+    padding: 1rem;
+    line-height: $space-4;
   }
 }
 
@@ -141,37 +156,44 @@
   display: flex;
   flex-direction: row;
   gap: 0;
-  text-decoration: none;
+
   margin-top: -22px;
   margin-left: $space-2;
+
+  text-decoration: none;
+
   @media (max-width: $grid-breakpoint-medium) {
+    float: left;
     flex-direction: column;
     width: 75%;
-    float: left;
   }
 }
 
 .govuk-grid-column-one-third__info_terms_use {
   max-width: 23rem;
   height: 16rem;
-  padding: $space-1 $space-5;
   margin: $space-2;
-  border-top: 4px solid $color-yellow;
-  background-color: $color-light-grey;
+  padding: $space-1 $space-5;
+
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
+
+  background-color: $color-light-grey;
+  border-top: 4px solid $color-yellow;
+
   &:hover {
-    background-color: #dee0e2;
     text-decoration: none;
+    background-color: #dee0e2;
   }
+
   @media (max-width: $grid-breakpoint-medium) {
-    height: 6rem;
     width: 100%;
+    height: 6rem;
   }
 
   @media (min-width: $grid-breakpoint-large) {
-    height: 12rem;
     max-width: 23rem;
+    height: 12rem;
   }
 }
 
@@ -179,50 +201,58 @@
   display: flex;
   flex-direction: row;
   gap: 0;
-  text-decoration: none;
+
   margin-top: -22px;
   margin-left: $space-2;
+
+  text-decoration: none;
+
   @media (max-width: $grid-breakpoint-medium) {
+    float: left;
     flex-direction: column;
     width: 75%;
-    float: left;
   }
 }
 
 .govuk-grid-column-one-third__info_about_fcl {
   max-width: 23rem;
   height: 16rem;
-  padding: $space-1 $space-5;
   margin: $space-2;
-  border-top: 4px solid $color-yellow;
-  background-color: $color-light-grey;
+  padding: $space-1 $space-5;
+
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
+
+  background-color: $color-light-grey;
+  border-top: 4px solid $color-yellow;
+
   &:hover {
-    background-color: #dee0e2;
     text-decoration: none;
+    background-color: #dee0e2;
   }
+
   @media (max-width: $grid-breakpoint-medium) {
-    height: 6rem;
     width: 100%;
+    height: 6rem;
   }
 
   @media (min-width: $grid-breakpoint-large) {
-    height: 12rem;
     max-width: 23rem;
+    height: 12rem;
   }
 }
 
 .govuk-grid-column-one-third__grid_info_heading {
   color: $color-aqua-blue;
-  text-decoration-line: none;
   text-decoration-color: $color-aqua-blue;
+  text-decoration-line: none;
   text-wrap: balance;
 }
+
 .govuk-grid-column-one-third__grid_info_heading:visited {
   color: $color-dark-blue;
-  text-decoration-line: underline;
   text-decoration-color: $color-dark-blue;
+  text-decoration-line: underline;
 }
 
 .govuk-grid-column-one-third__grid_info_heading:hover {
@@ -232,12 +262,13 @@
 
 .govuk-grid-column-one-third__grid_info_text {
   color: $color-black;
-  text-wrap: pretty;
-  text-decoration-line: underline;
   text-decoration-color: $color-white;
+  text-decoration-line: underline;
+  text-wrap: pretty;
+
   @media (max-width: $grid-breakpoint-medium) {
-    visibility: hidden;
     margin: -2rem;
+    visibility: hidden;
   }
 }
 
@@ -245,6 +276,7 @@
   width: 20rem;
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
+
   &:hover {
     text-decoration: none;
   }
@@ -253,21 +285,25 @@
 .hidden-h1-mobile {
   display: none;
   margin-top: 0;
+
   @media (max-width: $grid-breakpoint-medium) {
     display: block;
-    margin-bottom: 0rem;
+    margin-bottom: 0;
   }
+
   @media (max-width: $grid-breakpoint-small) {
     display: block;
-    margin-bottom: 0rem;
+    margin-bottom: 0;
   }
 }
 
 .hidden-h1-desktop {
   margin-top: 0;
+
   @media (max-width: $grid-breakpoint-medium) {
     display: none;
   }
+
   @media (max-width: $grid-breakpoint-small) {
     display: none;
   }
@@ -277,6 +313,7 @@
   @media (max-width: $grid-breakpoint-medium) {
     display: none;
   }
+
   @media (max-width: $grid-breakpoint-small) {
     display: none;
   }
@@ -290,6 +327,7 @@
   @media (max-width: $grid-breakpoint-medium) {
     display: none;
   }
+
   @media (max-width: $grid-breakpoint-small) {
     display: none;
   }
@@ -299,37 +337,42 @@
   box-sizing: border-box;
   width: 100%;
   padding: 6px 15px;
-  @media (min-width: 40.0625em) {
-    width: 66.6666666667%;
+
+  @media (width >= 40.0625em) {
     float: left;
+    width: 66.6666666667%;
   }
 }
 
 .govuk-grid-column-one-third__info_cards_help {
   max-width: 20rem;
-  background-color: $color-light-grey;
-  padding: $space-1 $space-4;
   margin: $space-2;
-  border-top: 4px solid $color-yellow;
+  padding: $space-1 $space-4;
+
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
+
+  background-color: $color-light-grey;
+  border-top: 4px solid $color-yellow;
+
   &:hover {
-    background-color: hsl(210, 6%, 88%);
     text-decoration: none;
-  }
-  @media (max-width: $grid-breakpoint-medium) {
-    height: 6rem;
-    min-width: 150%;
+    background-color: hsl(210deg 6% 88%);
   }
 
-  @media (min-width: 770px) {
+  @media (max-width: $grid-breakpoint-medium) {
+    min-width: 150%;
+    height: 6rem;
+  }
+
+  @media (width >= 770px) {
     height: 12rem;
     padding-bottom: $space-10;
   }
 
   @media (min-width: $grid-breakpoint-large) {
-    height: 11rem;
     max-width: 23rem;
+    height: 11rem;
     padding-bottom: none;
   }
 }

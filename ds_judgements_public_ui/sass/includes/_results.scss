@@ -35,23 +35,22 @@
   }
 
   &__result-header-container {
-    border-bottom: 1px solid $color-yellow;
-
     display: flex;
     flex-direction: column;
     gap: $space-4;
+    border-bottom: 1px solid $color-yellow;
 
     @media (min-width: $grid-breakpoint-extra-large) {
-      align-items: flex-end;
       flex-direction: row;
       gap: $space-6;
+      align-items: flex-end;
     }
   }
 
   &__results-intro {
+    margin: $space-2 0 0 0;
     font-family: $font-roboto;
     font-size: $typography-xl-text-size;
-    margin: $space-2 0 0 0;
   }
 
   &__filter-heading {
@@ -59,14 +58,14 @@
   }
 
   fieldset {
-    border: none;
     padding: 0;
+    border: none;
   }
 
   &__container-extend-search-option {
-    background-color: $color-light-grey;
-    padding: $space-4 $space-8;
     margin: $space-4 0;
+    padding: $space-4 $space-8;
+    background-color: $color-light-grey;
   }
 
   &__list-layout-container {

@@ -1,55 +1,59 @@
 .result-controls {
-  text-align: left;
   display: inline-block;
   margin: $space-4 0 0;
-
-  @media (min-width: $grid-breakpoint-extra-large) {
-    text-align: right;
-    margin: 0;
-  }
+  text-align: left;
 
   form {
     display: flex;
     flex-direction: column;
-
-    @media (min-width: $grid-breakpoint-extra-large) {
-      flex-direction: row;
-      gap: $space-4;
-    }
 
     > div {
       display: flex;
       flex-direction: column;
       align-items: stretch;
     }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      flex-direction: row;
+      gap: $space-4;
+    }
   }
 
   &__label {
+    display: block;
+    margin-bottom: $space-2;
     font-family: $font-roboto;
     font-size: $typography-md-text-size;
-    margin-bottom: $space-2;
-    display: block;
   }
 
   &__select {
     @include select;
-    min-width: auto;
-    width: auto;
-    padding-right: $space-6;
+
     display: inline-block;
+    width: auto;
+    min-width: auto;
+    padding-right: $space-6;
   }
 
   &__button {
     @include call-to-action-button;
-    font-size: $typography-sm-text-size;
-    outline-color: $color-dark-blue;
+
+    margin: 0;
     padding: $space-2 $space-3;
+
+    font-size: $typography-sm-text-size;
     font-weight: $typography-normal-font-weight;
     vertical-align: 1px;
-    margin: 0;
+
+    outline-color: $color-dark-blue;
 
     @media (min-width: $grid-breakpoint-extra-large) {
       margin: $space-9 0 $space-4 0;
     }
+  }
+
+  @media (min-width: $grid-breakpoint-extra-large) {
+    margin: 0;
+    text-align: right;
   }
 }
