@@ -1,5 +1,6 @@
 module.exports = {
     extends: ["@nationalarchives/ds-caselaw-frontend/stylelint.config.js"],
+    ignoreFiles: ["ds_judgements_public_ui/static/css/includes/**/*"],
     rules: {
         "selector-id-pattern": null,
         "no-duplicate-selectors": null,
@@ -14,6 +15,5 @@ module.exports = {
         "scss/operator-no-newline-after": null,
         "scss/double-slash-comment-whitespace-inside": null,
         "scss/dollar-variable-pattern": null,
-        "declaration-block-single-line-max-declarations": null,
     },
 };
