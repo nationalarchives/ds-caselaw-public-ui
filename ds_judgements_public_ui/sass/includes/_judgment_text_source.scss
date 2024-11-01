@@ -1,23 +1,24 @@
 .judgment-text-source {
-  background-color: $color-light-grey;
   padding: $space-2;
+  background-color: $color-light-grey;
   border-bottom: 0.125rem solid $color-grey;
 
   &__container {
     margin: auto;
     text-align: center;
 
-    @media (min-width: $grid-breakpoint-medium) {
-      max-width: 46rem;
-    }
-
     p {
+      font-family: $font-roboto;
       font-size: $typography-lg-text-size;
       line-height: 2.4rem;
-      font-family: $font-roboto;
     }
+
     a {
       color: $color-black;
+    }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      max-width: 46rem;
     }
   }
 }

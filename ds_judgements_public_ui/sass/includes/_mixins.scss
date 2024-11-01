@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   grid-template-rows: 1fr;
-  gap: 6px 6px;
+  gap: 6px;
 
   div {
     padding: calc($unit / 4);
@@ -20,19 +20,21 @@
   }
 
   h3 {
-    font-size: $typography-md-text-size;
     margin: 0;
+    font-size: $typography-md-text-size;
     text-decoration: underline;
   }
 }
 
 @mixin sr-only {
   position: absolute;
-  left: -10000px;
   top: auto;
+  left: -10000px;
+
+  overflow: hidden;
+
   width: 0.125rem;
   height: 0.125rem;
-  overflow: hidden;
 }
 
 @mixin link {
@@ -54,52 +56,58 @@
 
   &:focus {
     @include focus-default;
+
     color: $color-link-blue-focus;
   }
 }
 
 @mixin call-to-action-button {
-  background-color: $color-cta-background;
-  text-decoration: none;
-  font-weight: $typography-bold-font-weight;
-  border: 0;
-  color: $color-white;
-  padding: $space-4 $space-5;
   display: inline-block;
+
   margin-top: $space-4;
+  padding: $space-4 $space-5;
+
   font-size: $typography-md-text-size;
+  font-weight: $typography-bold-font-weight;
+  color: $color-white;
+  text-decoration: none;
+
+  background-color: $color-cta-background;
+  border: 0;
 
   &:focus,
   &:hover {
     @include focus-default;
+
     color: $color-white !important;
-    background-color: $color-cta-background-hover;
-    outline-color: $color-cta-background-hover;
-    border-color: $color-cta-background-hover;
     text-decoration: underline;
+
+    background-color: $color-cta-background-hover;
+    border-color: $color-cta-background-hover;
+    outline-color: $color-cta-background-hover;
     outline-offset: 0.2rem;
   }
 }
 
 @mixin call-to-action-button-secondary {
   @include call-to-action-button;
-  background-color: transparent;
+
   padding: $space-3 $space-5;
   color: $color-cta-background !important;
+  background-color: transparent;
   border: 2px solid $color-cta-background;
 }
 
 @mixin emphasised-block {
   padding: $space-4;
-
   background-color: $color-light-grey;
   border-left: 0.5rem solid $color-highlight-blue;
 }
 
 @mixin focus-default {
+  z-index: 999;
   outline: 5px solid $color-focus-blue-outline;
   outline-offset: 2px;
-  z-index: 999;
 }
 
 @mixin link-on-dark-bg {
@@ -107,8 +115,8 @@
   text-decoration: underline;
 
   &:hover {
-    text-decoration: none;
     color: $color-white;
+    text-decoration: none;
   }
 
   &:visited {
@@ -121,19 +129,22 @@
 
   &:focus {
     @include focus-default;
+
     outline-color: $color-white;
   }
 }
 
 @mixin text_field {
-  border: 2px solid $color-dark-grey;
-  padding: $space-2;
-  margin-bottom: $space-4;
-  margin-top: $space-2;
-  background-color: $color-white;
   width: 80%;
+  margin-top: $space-2;
+  margin-bottom: $space-4;
+  padding: $space-2;
+
   font-family: $font-open-sans;
   font-size: $typography-md-text-size;
+
+  background-color: $color-white;
+  border: 2px solid $color-dark-grey;
 
   &:focus {
     @include focus-default;
@@ -141,18 +152,16 @@
 }
 
 @mixin select {
-  font-size: $typography-md-text-size;
-  color: #444;
-  line-height: $typography-lg-line-height;
-  padding: $space-2;
+  box-sizing: border-box;
+  width: 80%;
   margin-top: $space-2;
   margin-bottom: $space-4;
-  width: 80%;
-  box-sizing: border-box;
-  border: 2px solid $color-dark-grey;
-  border-radius: 0;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  padding: $space-2;
+
+  font-size: $typography-md-text-size;
+  line-height: $typography-lg-line-height;
+  color: #444;
+
   appearance: none;
   background-color: $color-white;
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
@@ -163,16 +172,21 @@
   background-size:
     0.65rem auto,
     100%;
+  border: 2px solid $color-dark-grey;
+  border-radius: 0;
 
   &::-ms-expand {
     display: none;
   }
+
   &:hover {
     border-color: #888;
   }
+
   &:focus {
     @include focus-default;
   }
+
   option {
     font-weight: $typography-normal-font-weight;
   }

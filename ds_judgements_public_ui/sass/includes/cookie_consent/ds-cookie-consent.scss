@@ -1,17 +1,19 @@
 #ds-cookie-consent-form {
   input[type="radio"] {
     margin-right: 7px;
+
     + label {
       cursor: pointer;
-      @media only screen and (max-width: 818px) {
+
+      @media only screen and (width <= 818px) {
         display: inline;
       }
     }
   }
 
   #form_submit:focus {
-    background-color: #fff;
     color: #26262a;
+    background-color: #fff;
   }
 
   .form-group {
@@ -26,115 +28,141 @@
 
 #ds-cookie-consent-banner {
   z-index: 999;
-  padding: 10px 10px 20px 10px;
+  bottom: 0;
+
   display: block;
-  bottom: 0px;
-  font-size: 14px;
+
   width: 100%;
+  padding: 10px 10px 20px;
+
+  font-size: 14px;
   color: #fff;
+
   .container {
-    background: #134571;
-    padding: 10px 25px 25px 40px;
     box-sizing: border-box;
+    padding: 10px 25px 25px 40px;
+    background: #134571;
     border-radius: 5px;
+
     .cookie_head {
-      font-family: "Roboto Mono";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20.8px;
-      line-height: inherit;
-      color: #ffffff;
       margin-top: 10px;
       margin-bottom: 0;
+
+      font-family: "Roboto Mono";
+      font-size: 20.8px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: inherit;
+      color: #fff;
     }
+
     .cookie-p {
+      margin-top: 10px;
+      margin-bottom: 15px;
+
       font-family: "Open Sans";
       font-size: 16px;
       line-height: inherit;
-      color: #ffffff;
-      margin-bottom: 15px;
-      margin-top: 10px;
+      color: #fff;
+
       br {
         content: "";
         display: block;
-        font-size: 100%;
         height: 0.25em;
-        display: block;
+        font-size: 100%;
       }
+
       a {
         color: #fff;
         text-decoration: underline;
+
         &:hover {
-          color: #000;
-          outline-offset: 0;
           z-index: 999;
+
+          color: #000;
+
           background-color: #fff;
           outline: 5px solid #1d70b8;
+          outline-offset: 0;
         }
+
         &:focus {
           color: #000;
         }
       }
     }
+
     #hide_this_message,
     #reject_optional_cookies,
     #accept_optional_cookies {
-      background: #eee;
-      color: #000;
-      border: #eee;
-      text-decoration: none;
-      margin-right: 20px;
-      border: 2px solid #fff;
-      font-family: "Roboto Mono", monospace;
-      padding: 0.5em 0.9em;
       display: inline-block;
+
       min-width: 24px;
+      margin-right: 20px;
+      padding: 0.5em 0.9em;
+
+      font-family: "Roboto Mono", monospace;
+      color: #000;
       text-align: center;
+      text-decoration: none;
+
+      background: #eee;
+      border: #eee;
+      border: 2px solid #fff;
+
       &:hover,
       &:focus {
-        background: #000;
         color: #fff;
+        background: #000;
         border: 2px solid #fff;
       }
+
       &:focus {
         outline: 5px solid #fff;
       }
-      @media (max-width: 560px) {
+
+      @media (width <= 560px) {
         display: block;
-        margin-bottom: 15px;
         width: 100%;
+        margin-bottom: 15px;
       }
     }
+
     #btn_preferences {
+      text-decoration: underline;
       background: none;
       border: none;
       border: 2px solid transparent;
-      text-decoration: underline;
+
       &:hover,
       &:focus {
-        background: #000;
         color: #fff;
         text-decoration: none;
+        background: #000;
         border: 2px solid #fff;
       }
+
       &:focus {
         outline: 5px solid #fff;
       }
-      @media (max-width: 675px) {
+
+      @media (width <= 675px) {
         margin-top: 5px;
       }
-      @media (max-width: 560px) {
+
+      @media (width <= 560px) {
         display: block;
       }
     }
-    @media (max-width: 560px) {
-      padding: 10px 30px 25px 30px;
+
+    @media (width <= 560px) {
+      padding: 10px 30px 25px;
     }
   }
 }
 
 .cookie-consent-table {
-  @media only screen and (max-width: 768px) {
+  @media only screen and (width <= 768px) {
     tr {
       td:first-of-type {
         word-break: break-all;
@@ -147,6 +175,7 @@
   .jsON {
     display: none;
   }
+
   .jsOFF {
     display: block;
   }

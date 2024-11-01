@@ -1,6 +1,6 @@
 .transactional-licence-form {
   &__step-title {
-    margin-bottom: 0rem;
+    margin-bottom: 0;
   }
 
   &__steps {
@@ -10,8 +10,8 @@
 
   .govuk-label,
   .govuk-fieldset__legend {
-    font-weight: $typography-bold-font-weight;
     font-size: $typography-lg-text-size;
+    font-weight: $typography-bold-font-weight;
   }
 
   &__preamble {
@@ -30,8 +30,8 @@
   // Include special-cased fields which should have a paragraph styled label here. This is a bit of a hack,
   // but django-forms/crispy-gds doesn't offer an obvious way to add a class to these.
   #div_id_contact-alternative_contact legend {
-    font-weight: $typography-normal-font-weight;
     font-size: $typography-md-text-size;
+    font-weight: $typography-normal-font-weight;
   }
 
   .govuk-form-group {

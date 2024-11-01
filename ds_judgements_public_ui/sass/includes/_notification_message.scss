@@ -1,10 +1,11 @@
 @mixin notification {
-  color: $color-white;
   padding: $space-2 $space-4;
+  color: $color-white;
 }
 
 @mixin page-notification {
   @include notification;
+
   margin: $space-4 15% $space-2 15%;
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -15,28 +16,33 @@
 .page-notification {
   &--success {
     @include page-notification;
+
     background-color: $color-success;
   }
 
   &--failure {
     @include page-notification;
+
     background-color: $color-failure;
   }
 }
 
 @mixin context-notification {
   @include notification;
+
   display: inline-block;
 }
 
 .context-notification {
   &--success {
     @include context-notification;
+
     background-color: $color-success;
   }
 
   &--failure {
     @include context-notification;
+
     background-color: $color-failure;
   }
 }

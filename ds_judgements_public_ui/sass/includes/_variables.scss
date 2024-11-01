@@ -14,9 +14,7 @@ $space-10: 2.5rem;
 $space-12: 3rem;
 $space-16: 4rem;
 $space-17: 5rem;
-
 $gutter_unit: 25px;
-
 $grid-breakpoint-small: 576px;
 $grid-breakpoint-medium: 768px;
 $grid-breakpoint-large: 992px;
@@ -28,14 +26,12 @@ $font-open-sans: "Open Sans", sans-serif;
 $font-serif: serif;
 $typography-display-font-family: $font-roboto;
 $typography-body-font-family: $font-open-sans;
-
 $typography-xs-text-size: 0.7rem;
 $typography-sm-text-size: 0.9rem;
 $typography-md-text-size: 1.1rem;
 $typography-lg-text-size: 1.3rem;
 $typography-xl-text-size: 2rem;
 $typography-2xl-text-size: 2.4rem;
-
 $typography-base-line-height: 1.2;
 $typography-xs-line-height: 0.8;
 $typography-sm-line-height: 1;
@@ -44,7 +40,6 @@ $typography-lg-line-height: 1.5;
 $typography-xl-line-height: 1.8;
 $typography-2xl-line-height: 2;
 $typography-3xl-line-height: 2.6;
-
 $typography-normal-font-weight: 400;
 $typography-bold-font-weight: 700;
 
@@ -89,7 +84,6 @@ $fa_circle_xmark_solid_link_hover_blue: "#{$fa_path}circle-xmark-solid-link-hove
 $fa_circle_xmark_light: "#{$fa_path}circle-xmark-light.svg";
 $fa_xmark_solid: "#{$fa_path}xmark-solid.svg";
 $fa_magnifying_glass_solid_white: "#{$fa_path}magnifying-glass-solid-white.svg";
-
 $fa_download: "#{$fa_path}download.svg";
 $arrow-left: "/static/images/arrow-left.svg";
 $arrow-right: "/static/images/arrow-right.svg";

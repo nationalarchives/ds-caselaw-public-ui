@@ -3,40 +3,45 @@
   top: -3rem;
 
   &:focus {
-    background-color: $color-white;
-    padding: $space-1;
-    color: $color-black;
+    z-index: 999;
     top: 0.313rem;
     left: 0.313rem;
-    outline: 0.313rem solid $color-white;
+
+    padding: $space-1;
+
+    color: $color-black;
+
+    background-color: $color-white;
     border: 0.19rem solid $color-black;
-    z-index: 999;
+    outline: 0.313rem solid $color-white;
   }
 }
 
 .anchor-links {
-  border: 2px solid $color-yellow;
-  padding: 0 $space-8;
-  margin-bottom: $space-16;
-  margin-right: $space-4;
   position: relative;
   top: 15px;
 
+  margin-right: $space-4;
+  margin-bottom: $space-16;
+  padding: 0 $space-8;
+
+  border: 2px solid $color-yellow;
+
   &__header {
-    padding-bottom: 0;
     margin-bottom: 0;
+    padding-bottom: 0;
     line-height: $space-4;
   }
 
   &__list {
-    padding: 0;
-    list-style: none;
     margin-bottom: $space-2;
+    padding: 0;
     padding-block: $space-4;
+    list-style: none;
   }
 
   &__list-option {
-    font-family: $font-roboto;
     padding-block: 0 $space-4;
+    font-family: $font-roboto;
   }
 }

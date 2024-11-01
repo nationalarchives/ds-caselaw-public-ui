@@ -1,23 +1,26 @@
 .results-search-component {
-  background-color: $color-light-grey;
-  padding: $space-6 0 $space-8;
   margin: 0 0 $space-12;
+  padding: $space-6 0 $space-8;
+  background-color: $color-light-grey;
 
   &__container {
     @include container;
+
     text-align: center;
   }
 
   &__sub-header {
-    font-size: $typography-md-text-size;
-    line-height: $typography-3xl-line-height;
-    font-family: $font-roboto;
-    font-weight: $typography-bold-font-weight;
-    color: $color-almost-black;
-    flex-shrink: 0;
-    margin: 0 $space-1 0 0;
-    padding: 0.1rem 0 0 0;
     display: inline-block;
+    flex-shrink: 0;
+
+    margin: 0 $space-1 0 0;
+    padding: 0.1rem 0 0;
+
+    font-family: $font-roboto;
+    font-size: $typography-md-text-size;
+    font-weight: $typography-bold-font-weight;
+    line-height: $typography-3xl-line-height;
+    color: $color-almost-black;
 
     &--sr-only {
       @include sr-only;
@@ -25,22 +28,26 @@
   }
 
   &__full-text-panel {
-    margin: $space-2 0 0 0;
-    text-align: left;
     display: flex;
-    gap: 0;
     flex-direction: column;
+    gap: 0;
     align-items: flex-start;
     justify-content: space-between;
+
+    margin: $space-2 0 0 0;
+
+    text-align: left;
+
     @media (min-width: $grid-breakpoint-medium) {
-      padding: $space-1 0 0 0;
-      gap: $space-4;
       flex-direction: row;
+      gap: $space-4;
+      padding: $space-1 0 0 0;
     }
   }
 
   .structured-search__submit-container {
     display: none;
+
     @media (min-width: $grid-breakpoint-medium) {
       display: block;
     }
@@ -48,21 +55,22 @@
 
   &__filters-row {
     display: block;
-    text-align: left;
     padding-top: $space-2;
+    text-align: left;
 
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
-      justify-content: space-between;
       flex-direction: row;
-      align-items: stretch;
       gap: $space-4;
+      align-items: stretch;
       align-items: flex-start;
+      justify-content: space-between;
     }
   }
 
   &__full-text-input {
     @include text_field;
+
     width: 90%;
     min-height: $space-12;
 
@@ -79,6 +87,7 @@
     display: block;
     width: 100%;
     padding-top: $space-4;
+
     @media (min-width: $grid-breakpoint-medium) {
       display: none;
     }
@@ -92,9 +101,10 @@
 
   &__search-submit-button {
     @include call-to-action-button;
-    padding-left: $space-12;
-    padding-right: $space-12;
+
     width: 100%;
+    padding-right: $space-12;
+    padding-left: $space-12;
   }
 
   &__facet-outer-container {
@@ -120,22 +130,23 @@
 
     // Fix display in IE11
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      display: -ms-grid;
+      display: grid;
+
       -ms-grid-columns: 1fr 1fr 1fr;
 
       fieldset:nth-of-type(1) {
-        -ms-grid-row: 1;
-        -ms-grid-column: 1;
+        grid-column: 1;
+        grid-row: 1;
       }
 
       fieldset:nth-of-type(2) {
-        -ms-grid-row: 1;
-        -ms-grid-column: 2;
+        grid-column: 2;
+        grid-row: 1;
       }
 
       fieldset:nth-of-type(3) {
-        -ms-grid-row: 1;
-        -ms-grid-column: 3;
+        grid-column: 3;
+        grid-row: 1;
       }
 
       legend {
@@ -145,11 +156,13 @@
   }
 
   &__fieldset {
-    border: 0;
-    padding: $space-8;
     margin: $space-1;
-    background: $color-yellow;
+    padding: $space-8;
+
     color: $color-black;
+
+    background: $color-yellow;
+    border: 0;
   }
 
   &__help-text {
@@ -168,12 +181,13 @@
 
   &__name-input {
     @include text_field;
+
     width: 18rem;
   }
 
   &__limit-to-label {
     display: block;
-    margin-bottom: 0rem;
+    margin-bottom: 0;
     font-size: $typography-md-text-size;
     font-weight: $typography-bold-font-weight;
   }
@@ -188,37 +202,41 @@
 
   &__date-input {
     @include text_field;
+
     margin-top: 0;
     padding: $space-1;
   }
 
   &__filter-submit-button {
     @include call-to-action-button;
+
     margin: 0 auto;
   }
 
   &__name-container {
-    border-left-width: $space-1;
-    padding: 0 $space-4;
     margin-bottom: $space-4;
+    padding: 0 $space-4;
+    border-left-width: $space-1;
   }
 
   &__limit-to-container {
-    border-left-width: $space-1;
-    padding: 0 $space-4;
     margin-bottom: $space-4;
+    padding: 0 $space-4;
+    border-left-width: $space-1;
   }
 
   &__removable-options {
     display: inline;
-    padding: 0;
-    list-style-type: none;
     flex-grow: 1;
+
     margin: 0;
+    padding: 0;
+
+    list-style-type: none;
 
     li {
-      margin: 0 $space-1 $space-2 $space-1;
       display: inline-block;
+      margin: 0 $space-1 $space-2;
 
       &:first-child {
         margin-left: 0;
@@ -231,19 +249,23 @@
   }
 
   &__removable-options-value {
-    font-weight: $typography-bold-font-weight;
     display: inline-block;
+    font-weight: $typography-bold-font-weight;
 
     &::after {
       content: " ";
+
+      position: relative;
+      top: 2px;
+
+      display: inline-block;
+
+      width: $space-4;
+      height: $space-4;
+      margin: 0 $space-2;
+
       background: url($fa_xmark_solid) left no-repeat;
       background-size: contain;
-      height: $space-4;
-      width: $space-4;
-      display: inline-block;
-      margin: 0 $space-2 0 $space-2;
-      top: 2px;
-      position: relative;
     }
   }
 
@@ -252,14 +274,17 @@
 
   &__removable-options-link {
     display: inline-block;
-    border: 0.188rem solid $color-yellow;
-    color: $color-black;
-    text-decoration: none;
+
     padding: $space-2 $space-2 $space-2 $space-4;
 
+    color: $color-black;
+    text-decoration: none;
+
+    border: 0.188rem solid $color-yellow;
+
     &:hover {
-      background: $color-yellow;
       color: $color-black;
+      background: $color-yellow;
     }
 
     &:visited {
@@ -276,9 +301,9 @@
   &-search-component {
     &__control-container {
       display: inline-block;
+      flex-shrink: 0;
       padding-top: $space-8;
       padding-top: 0;
-      flex-shrink: 0;
 
       @media (min-width: $grid-breakpoint-medium) {
         text-align: left;
@@ -286,20 +311,44 @@
     }
 
     &__toggle-control {
-      border: none;
-      background-color: transparent;
-      font-size: $typography-md-text-size;
       position: relative;
-      padding: 0 0 $space-2 $space-6;
-      border-bottom: 0.188rem solid $color-yellow;
-      margin: 0 auto;
-      font-weight: $typography-bold-font-weight;
+
       flex-basis: content;
+
+      margin: 0 auto;
+      padding: 0 0 $space-2 $space-6;
+
+      font-size: $typography-md-text-size;
+      font-weight: $typography-bold-font-weight;
+
+      background-color: transparent;
+      border: none;
+      border-bottom: 0.188rem solid $color-yellow;
+
+      &::after {
+        content: "";
+
+        position: absolute;
+        bottom: 0.7rem;
+        left: 0.3rem;
+        transform: rotate(313deg);
+
+        display: block;
+
+        width: 0.438rem;
+        height: 0.438rem;
+        margin: auto 0;
+
+        border: solid;
+        border-color: $color-dark-grey;
+        border-width: 0.125rem 0.125rem 0 0;
+      }
 
       &:focus {
         @include focus-default;
-        outline-offset: 3px;
+
         text-decoration: underline;
+        outline-offset: 3px;
       }
 
       &:visited {
@@ -307,33 +356,14 @@
       }
 
       &:hover {
-        text-decoration: underline;
         cursor: pointer;
-      }
-
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        bottom: 0.7rem;
-        width: 0.438rem;
-        height: 0.438rem;
-        left: 0.3rem;
-        margin: auto 0;
-        -webkit-transform: rotate(313deg);
-        -ms-transform: rotate(313deg);
-        transform: rotate(313deg);
-        border: solid;
-        border-width: 0.125rem 0.125rem 0 0;
-        border-color: $color-dark-grey;
+        text-decoration: underline;
       }
 
       &.collapsed {
         &::after {
-          -webkit-transform: rotate(135deg);
-          -ms-transform: rotate(135deg);
-          transform: rotate(135deg);
           bottom: 0.9rem;
+          transform: rotate(135deg);
         }
       }
     }

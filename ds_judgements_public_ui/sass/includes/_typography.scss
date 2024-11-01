@@ -10,10 +10,10 @@ h3 {
 }
 
 @mixin header($base-size) {
-  font-size: $base-size;
-  line-height: $base-size * $typography-header-line-size-multiplier;
   margin-top: $base-size * $typography-header-margin-top-multiplier;
   margin-bottom: $base-size * $typography-header-margin-bottom-multiplier;
+  font-size: $base-size;
+  line-height: $base-size * $typography-header-line-size-multiplier;
 
   @media only screen and (max-width: $grid-breakpoint-medium) {
     font-size: $base-size * $typography-header-medium-breakpoint-multiplier;
@@ -35,10 +35,10 @@ h3 {
 }
 
 h4 {
-  font-size: $typography-md-text-size;
-  font-weight: $typography-bold-font-weight;
   margin: 0;
   padding: $space-5 0 0;
+  font-size: $typography-md-text-size;
+  font-weight: $typography-bold-font-weight;
 }
 
 .standard-text-template ol li {
@@ -51,14 +51,14 @@ code {
 }
 
 mark {
-  border-bottom: 3px solid $color-yellow;
-  background-color: transparent;
-  font-weight: $typography-bold-font-weight;
   scroll-margin-top: 50vh;
+  font-weight: $typography-bold-font-weight;
+  background-color: transparent;
+  border-bottom: 3px solid $color-yellow;
 
   &.current {
-    border-top: 3px solid $color-yellow;
     background-color: $color-yellow;
+    border-top: 3px solid $color-yellow;
   }
 }
 

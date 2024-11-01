@@ -1,25 +1,30 @@
 .button-cta {
   @include call-to-action-button;
+
   border: 2px solid $color-cta-background;
 
   &:disabled,
   &[aria-disabled="true"] {
     background-color: $color-dark-grey;
+
     &:focus,
     &:hover {
-      outline: none;
-      background-color: $color-dark-grey;
+      cursor: not-allowed;
+
       color: $color-white;
       text-decoration: none;
-      cursor: not-allowed;
+
+      background-color: $color-dark-grey;
+      outline: none;
     }
   }
 }
 
 .button-secondary {
   @include call-to-action-button;
-  background-color: $color-white;
+
   color: $color-cta-background;
+  background-color: $color-white;
   border: 2px solid $color-cta-background;
 
   &:visited {
@@ -36,25 +41,32 @@
     color: $color-dark-grey;
     background-color: transparent;
     border-color: $color-grey;
+
     &:focus,
     &:hover {
-      outline: none;
-      background-color: transparent;
+      cursor: not-allowed;
+
       color: $color-dark-grey;
       text-decoration: none;
-      cursor: not-allowed;
+
+      background-color: transparent;
+      outline: none;
     }
   }
 }
 
 .button-link {
+  cursor: pointer;
+
+  padding: 0 !important;
+
+  font-size: $typography-md-text-size;
+  text-decoration: underline;
+
   background: none !important;
   border: none;
-  padding: 0 !important;
-  text-decoration: underline;
-  cursor: pointer;
+
   @include link;
-  font-size: $typography-md-text-size;
 }
 
 .button-inline {

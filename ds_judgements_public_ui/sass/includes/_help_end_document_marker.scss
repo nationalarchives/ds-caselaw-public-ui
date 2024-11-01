@@ -1,38 +1,38 @@
 .help-end-document-marker {
   width: 100%;
-  height: $space-4;
   max-width: 90%;
+  height: $space-4;
   margin: auto;
   margin-bottom: 8rem;
-  text-align: center;
-  @media (min-width: $grid-breakpoint-medium) {
-    max-width: 40rem;
-  }
 
-  @media (min-width: $grid-breakpoint-medium) {
-    max-width: 46rem;
-  }
+  text-align: center;
 
   &__top-link {
     display: inline-block;
-    background-color: white;
+
+    margin-top: $space-2;
     padding: $space-2;
     padding-top: $space-1;
-    margin-top: $space-2;
+
+    background-color: white;
 
     a {
       margin-top: $space-6;
 
       &::before {
         content: " ";
+
+        position: relative;
+        top: 2px;
+
+        display: inline-block;
+
+        width: $space-4;
+        height: $space-4;
+        margin: 0 $space-2 0 0;
+
         background: url($fa_chevron_up_link_blue) left no-repeat;
         background-size: contain;
-        height: $space-4;
-        width: $space-4;
-        display: inline-block;
-        margin: 0 $space-2 0 0;
-        top: 2px;
-        position: relative;
       }
 
       &:visited {
@@ -41,6 +41,7 @@
 
       &:hover {
         color: $color-link-blue-hover;
+
         &::before {
           background-image: url($fa_chevron_up_link_hover_blue);
         }
@@ -50,5 +51,13 @@
         display: inline-block;
       }
     }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    max-width: 40rem;
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    max-width: 46rem;
   }
 }

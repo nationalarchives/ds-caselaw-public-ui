@@ -21,13 +21,13 @@ $red: #b94a48;
 // debug, info, success, warning, error
 
 .alert-debug {
+  color: $black;
   background-color: $white;
   border-color: $mint-green;
-  color: $black;
 }
 
 .alert-error {
+  color: $red;
   background-color: $pink;
   border-color: $dark-pink;
-  color: $red;
 }

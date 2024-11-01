@@ -1,14 +1,12 @@
 .cards-homepage {
-  @include container;
-  list-style-type: none;
-  margin: $space-4 auto;
-  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
-  @media (min-width: $grid-breakpoint-small) {
-    gap: 0;
-  }
+
+  margin: $space-4 auto;
+  padding: 0;
+
+  list-style-type: none;
 
   li {
     @media (max-width: $grid-breakpoint-medium) {
@@ -16,69 +14,84 @@
       margin: 0 auto;
     }
   }
+
+  @media (min-width: $grid-breakpoint-small) {
+    gap: 0;
+  }
+
+  @include container;
 }
 
 .card-homepage {
-  margin: $space-4 $space-8;
   display: flex;
   gap: $space-4;
-
-  @media (max-width: $grid-breakpoint-medium) {
-    background-color: $color-light-grey;
-    margin: 0;
-    gap: $space-4;
-  }
-  @media (min-width: $grid-breakpoint-small) {
-    margin: 0;
-    width: 100%;
-  }
-  @media only screen and (max-width: 530px) {
-    width: 100%;
-  }
+  margin: $space-4 $space-8;
 
   h3 {
     margin-top: auto;
     margin-bottom: 0;
     font-weight: $typography-bold-font-weight;
-    @media only screen and (max-width: $grid-breakpoint-medium) {
-      font-size: $typography-md-text-size;
-      line-height: $typography-sm-line-height;
-      text-align: left;
-      margin-top: $space-2;
-      text-wrap: balance;
-    }
 
     a {
       color: $color-aqua-blue;
+    }
+
+    @media only screen and (max-width: $grid-breakpoint-medium) {
+      margin-top: $space-2;
+
+      font-size: $typography-md-text-size;
+      line-height: $typography-sm-line-height;
+      text-align: left;
+      text-wrap: balance;
     }
   }
 
   &__legend-text {
     margin-top: $space-2;
-    text-wrap: balance;
     margin-bottom: $space-8;
+    text-wrap: balance;
+
     @media (max-width: $grid-breakpoint-medium) {
       visibility: hidden;
     }
   }
 
   img {
+    display: flex;
     width: 100px;
     height: 100px;
     object-fit: contain;
-    display: flex;
   }
 
   &__legend {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     @media (max-width: $grid-breakpoint-medium) {
-      background-color: $color-light-grey;
-      padding: 0;
-      text-wrap: balance;
-      margin-top: $space-8;
       justify-content: flex-start;
+
+      margin-top: $space-8;
+      padding: 0;
+
+      text-wrap: balance;
+
+      background-color: $color-light-grey;
     }
+  }
+
+  @media (max-width: $grid-breakpoint-medium) {
+    gap: $space-4;
+    margin: 0;
+    background-color: $color-light-grey;
+  }
+
+  @media (min-width: $grid-breakpoint-small) {
+    width: 100%;
+    margin: 0;
+  }
+
+  @media only screen and (width <= 530px) {
+    width: 100%;
   }
 }
