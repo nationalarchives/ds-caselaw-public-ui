@@ -30,11 +30,13 @@
 
           <div class="results__result-list-container">
             {% include "includes/results_list.html" %}
-            {% if not paginator.has_next_page %}
-              {% include "includes/no_results_message.html" with title="End of results" %}
-            {% endif %}
-            {% include "includes/pagination.html" %}
           </div>
+
+          {% if not paginator.has_next_page %}
+            {% include "includes/no_results_message.html" with title="End of results" %}
+          {% endif %}
+
+          {% include "includes/pagination.html" %}
         {% else %}
           {% include "includes/no_results_message.html" %}
         {% endif %}
