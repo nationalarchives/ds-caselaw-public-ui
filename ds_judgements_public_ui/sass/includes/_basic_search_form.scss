@@ -178,8 +178,11 @@
   &__header-beta {
     display: flex;
     flex-direction: column;
+
     margin-left: 12.5rem;
+
     text-align: left;
+    text-wrap: balance;
 
     @media (max-width: $grid-breakpoint-medium) {
       display: block;
