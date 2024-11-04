@@ -11,7 +11,7 @@
   &__container-beta {
     @include container;
 
-    padding: 0;
+    padding: $space-8 0;
     text-align: center;
 
     @media (max-width: $grid-breakpoint-medium) {
