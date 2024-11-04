@@ -9,17 +9,6 @@
   background-color: $color-almost-black;
 
   &__header {
-    width: 100%;
-    margin: 0 $space-1;
-
-    font-family: $font-roboto;
-    font-size: $typography-2xl-text-size;
-    font-weight: normal;
-    line-height: $typography-md-line-height;
-    color: $color-white;
-  }
-
-  &__header-beta-v1 {
     display: flex;
     gap: $space-2;
     align-items: center;
@@ -32,24 +21,6 @@
     font-weight: normal;
     line-height: $typography-md-line-height;
     color: $color-white;
-  }
-
-  &__header-beta-v2 {
-    display: inline-block;
-
-    width: 100%;
-    margin: $space-8 0 0;
-
-    font-family: $font-roboto;
-    font-size: 2.5rem;
-    font-weight: $typography-normal-font-weight;
-    line-height: 3.8rem;
-    color: $color-white;
-    text-wrap: balance;
-
-    @media only screen and (max-width: $grid-breakpoint-medium) {
-      margin-top: none;
-    }
   }
 
   &__helper-text {
