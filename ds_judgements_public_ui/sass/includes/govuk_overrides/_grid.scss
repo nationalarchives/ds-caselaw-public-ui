@@ -1,11 +1,3 @@
-.govuk-grid-row__beta_v3_homepage {
-  display: flex;
-
-  @media (max-width: $grid-breakpoint-medium) {
-    flex-direction: column-reverse;
-  }
-}
-
 .govuk-grid-column-one-third {
   padding: 0;
 

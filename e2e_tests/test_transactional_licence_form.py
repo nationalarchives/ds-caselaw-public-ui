@@ -36,7 +36,8 @@ def test_transactional_licence_form(page: Page):
     page.get_by_label("Which country is your organisation registered in?").fill("Chi")
     page.get_by_role("option", name="Chile").click()
     page.get_by_label("Private limited company").click()
-    page.get_by_label("Other (please specify)").click()
+    page.get_by_role("checkbox", name="Other (please specify)")
+
     page.locator("input[name='organization-tna_contacttype_other']").fill("Other organisation type")
     page.get_by_label(
         "Please provide your organisation identifier (e.g. company number or charity registration number) "
@@ -49,13 +50,19 @@ def test_transactional_licence_form(page: Page):
     page.get_by_label("Please give any project or product name associated with this work").fill("Project name")
     page.get_by_label("Please share a link to the project or product site").fill("https://example.com")
     page.get_by_label("Publish legal information").click()
-    page.get_by_role("group", name="What is the main purpose").get_by_label("Other (please specify)").click()
+
+    page.get_by_role("group", name="What is the main purpose").get_by_role(
+        "checkbox", name="Other (please specify)"
+    ).click()
+
     page.locator("input[name='project-purpose-project_purpose_other']").fill("Other purpose")
     page.get_by_label("Restricted access (e.g. only subscribers or research peers)").click()
     page.get_by_label("Public bodies").click()
-    page.get_by_role("group", name="Which Individuals or communities will benefit").get_by_label(
-        "Other (please specify)"
+
+    page.get_by_role("group", name="Which Individuals or communities will benefit").get_by_role(
+        "checkbox", name="Other (please specify)"
     ).click()
+
     page.locator("input[name='project-purpose-benefit_other']").fill("Other benefit")
     page.get_by_text("Next").click()
 

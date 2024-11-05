@@ -1,4 +1,4 @@
-{% load static waffle_tags navigation_tags %}
+{% load static navigation_tags %}
 <!DOCTYPE html>
 <html lang="en-gb">
   <head>
@@ -43,94 +43,44 @@
     {% include "includes/environment_banner.html" %}
 
     {% block header %}
-      {% if variant_homepage %}
+      <header class="govuk-header" data-module="govuk-header">
+        <div class="container">
+          <div class="page-header__flex-container-beta py-1">
+            {% include "includes/beta_logo.html" %}
 
-        {% if v1_homepage %}
-          <header class="govuk-header" data-module="govuk-header">
-            <div class="page-header__flex-container-beta container py-1">
-              {% include "includes/beta_logo.html" with link_class="variant-1-logo-link" %}
-
-              <div class="service-introduction">
-                <span class="service-introduction__separator"></span>
-                <h1 class="service-introduction__header-beta-v1">Find Case Law<span class="phase-banner__beta-phase">Beta</span></h1>
-                <p class="service-introduction__helper-text">Judgments and decisions from 2001 onwards</p>
-              </div>
-              <div class="govuk-header__content">
-                <nav aria-label="Menu" class="govuk-header__navigation">
-                  <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>
-                    Menu
-                  </button>
-                  <ul id="navigation" class="govuk-header__navigation-list">
-                    <li class="{% navigation_item_class 'home' %}">
-                      <a class="govuk-header__link variant-1-home-link" title="Home" href="{% url 'home' %}">
-                        Home
-                      </a>
-                    </li>
-                    <li class="{% navigation_item_class 'about_this_service' %}">
-                      <a class="govuk-header__link variant-1-about-link"  title="About" href="{% url 'about_this_service' %}">
-                        About
-                      </a>
-                    </li>
-                    <li class="{% navigation_item_class 'help_and_guidance' %}">
-                      <a class="govuk-header__link variant-1-help-link" title="Help and guidance" href="{% url 'help_and_guidance' %}">
-                        Help and guidance
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
+            <div class="service-introduction">
+              <span class="service-introduction__separator"></span>
+              <p class="service-introduction__header">Find Case Law<span class="phase-banner__beta-phase">Beta</span></p>
+              <p class="service-introduction__helper-text">Judgments and decisions from 2001 onwards</p>
             </div>
-          </header>
-        {% endif %}
-
-        {% if v2_homepage %}
-          {% include "includes/beta_phase_banner.html" with link_class="variant-2-survey-link" %}
-          <header class="page-header">
-            <div class="page-header__flex-container container py-1">
-              <div class="page-header__nav">
-                <div class="page-header__site-logo">
-                  <a href="{% url "home" %}" id="home-link variant-2-home-link">Find Case Law</a>
-                </div>
-
-                {% include "includes/breadcrumbs.html" %}
-              </div>
-              {% include "includes/logo.html" with link_class="variant-2-logo-link" %}
+            <div class="govuk-header__content">
+              <nav aria-label="Menu" class="govuk-header__navigation">
+                <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" hidden>
+                  Menu
+                </button>
+                <ul id="navigation" class="govuk-header__navigation-list">
+                  <li class="{% navigation_item_class 'home' %}">
+                    <a class="govuk-header__link" title="Home" href="{% url 'home' %}">
+                      Home
+                    </a>
+                  </li>
+                  <li class="{% navigation_item_class 'about_this_service' %}">
+                    <a class="govuk-header__link"  title="About" href="{% url 'about_this_service' %}">
+                      About
+                    </a>
+                  </li>
+                  <li class="{% navigation_item_class 'help_and_guidance' %}">
+                    <a class="govuk-header__link" title="Help and guidance" href="{% url 'help_and_guidance' %}">
+                      Help and guidance
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
-          </header>
-        {% endif %}
-
-        {% if v3_homepage %}
-          {% include "includes/beta_phase_banner.html" with link_class="variant-3-survey-link" %}
-          <header class="page-header">
-            <div class="page-header__flex-container container py-1">
-              <div class="page-header__nav">
-                <div class="page-header__site-logo">
-                  <a href="{% url 'home' %}" id="home-link variant-3-home-link">Find Case Law</a>
-                </div>
-
-                {% include "includes/breadcrumbs.html" %}
-              </div>
-              {% include "includes/logo.html" with link_class="variant-3-logo-link" %}
-            </div>
-          </header>
-        {% endif %}
-
-      {% else %} {# original version #}
-        {% include "includes/phase_banner.html" with link_class="variant-0-survey-link" %}
-        <header class="page-header">
-          <div class="page-header__flex-container container py-1">
-            <div class="page-header__nav">
-              <div class="page-header__site-logo">
-                <a href="{% url 'home' %}" id="home-link variant-0-home-link">Find Case Law</a>
-              </div>
-
-              {% include "includes/breadcrumbs.html" %}
-            </div>
-            {% include "includes/logo.html" with link_class="variant-0-logo-link" %}
           </div>
-        </header>
-      {% endif %}
-
+          {% include "includes/breadcrumbs.html" %}
+        </div>
+      </header>
     {% endblock header %}
 
     {% include "includes/notifications.html" %}
@@ -144,43 +94,12 @@
     {% endblock postcontent %}
 
     {% block feedback_cta %}
-      {% if variant_homepage %}
-        {% if v1_homepage %}
-          {% include "includes/help_improve_this_service.html" with link_class="variant-1-survey-button" %}
-        {% endif %}
-
-        {% if v2_homepage %}
-          {% include "includes/help_improve_this_service.html" with link_class="variant-2-survey-button" %}
-        {% endif %}
-
-        {% if v3_homepage %}
-          {% include "includes/help_improve_this_service.html" with link_class="variant-3-survey-button" %}
-        {% endif %}
-      {% else %}
-        {% include "includes/help_improve_this_service.html" with link_class="variant-0-survey-button" %}
-      {% endif %}
+      {% include "includes/help_improve_this_service.html" %}
     {% endblock feedback_cta %}
-
-    {% if variant_homepage %}
-      {% if v1_homepage %}
-        {% include "includes/footer.html" with link_class_prefix="variant-1" %}
-      {% endif %}
-
-      {% if v2_homepage %}
-        {% include "includes/footer.html" with link_class_prefix="variant-2" %}
-      {% endif %}
-
-      {% if v3_homepage %}
-        {% include "includes/footer.html" with link_class_prefix="variant-3" %}
-      {% endif %}
-    {% else %}
-      {% include "includes/footer.html" with link_class_prefix="variant-0" %}
-    {% endif %}
-
+    {% include "includes/footer.html" %}
     {% block javascript %}
       <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>
       <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>
-      {% include "includes/waffle_flags_javascript.html" %}
     {% endblock javascript %}
   </body>
 </html>

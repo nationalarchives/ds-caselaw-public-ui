@@ -1,7 +1,7 @@
 .breadcrumbs {
   display: flex;
   align-items: end;
-  padding-top: $space-4;
+  padding: $space-4 0 $space-2 0;
 
   &__flex-container {
     @media only screen and (max-width: $grid-breakpoint-medium) {

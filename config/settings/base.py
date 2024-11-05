@@ -181,7 +181,6 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "judgments.context_processors.cookie_consent",
                 "judgments.context_processors.environment",
-                "judgments.context_processors.waffle_flags",
             ],
         },
     }
