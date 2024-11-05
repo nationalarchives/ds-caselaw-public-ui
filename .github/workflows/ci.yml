@@ -149,9 +149,6 @@ jobs:
       - name: Setup django server for e2e tests
         run: docker compose up -d
 
-      - name: Set transactional licence form feature flag
-        run: docker compose exec -T django python manage.py waffle_flag interactive_licence_form --everyone --create
-
       - name: Install NPM deps
         run: npm install
 
