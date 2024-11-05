@@ -4,7 +4,10 @@ from caselawclient.client_helpers.search_helpers import (
 from caselawclient.search_parameters import SearchParameters
 
 from judgments.forms import AdvancedSearchForm
-from judgments.utils import api_client
+from judgments.utils import (
+    api_client,
+    get_published_document_by_uri,
+)
 
 from .template_view_with_context import TemplateViewWithContext
 
@@ -16,10 +19,14 @@ class StyleGuideView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         query_text = "Iceland Foods Ltd v Aldi Stores Ltd"
+        # document_uri =
         search_response = search_judgments_and_parse_response(
             api_client, SearchParameters(query=query_text, order="-date")
         )
         search_results = search_response.results
+        first_result = search_results[0]
+        document = get_published_document_by_uri(first_result.uri)
+        context["document"] = document
         context["judgments_for_listing"] = search_results
         context["query_text"] = query_text
         context["breadcrumbs"] = [{"url": "/style-guide", "text": "Style guide"}, {"text": "Example breadcrumbs"}]
