@@ -17,7 +17,7 @@
     > div {
       @media (max-width: $grid-breakpoint-small) {
         display: block;
-        padding: $space-1 $space-4;
+        padding: 0;
         text-align: center;
       }
     }
@@ -76,10 +76,15 @@
     margin-top: $space-2;
     margin-bottom: $space-4;
 
-    font-size: $typography-xl-text-size;
+    font-size: 1.8rem;
     color: $color-almost-black;
     text-align: center;
     text-wrap: balance;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-top: $space-4;
+      font-size: 1.6rem;
+    }
   }
 }
 
@@ -105,18 +110,27 @@
     text-align: center;
 
     a {
-      display: inline;
+      position: relative;
 
-      padding: 1px;
+      display: inline-block;
+
+      margin: 0 0 0 $space-2;
+      padding: $space-7;
 
       font-size: $typography-md-text-size;
       color: $color-aqua-blue;
       text-decoration: underline;
 
+      background: url($fa_chevron_down_link_blue) right no-repeat;
       background-color: transparent;
+      background-size: $space-5;
 
       &:hover {
         text-decoration: none;
+      }
+
+      @media (max-width: $grid-breakpoint-medium) {
+        padding: $space-6;
       }
     }
   }
