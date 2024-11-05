@@ -21,7 +21,7 @@
           {% url "about_this_service" as url_value %}
           {% include "includes/advice_message.html" with message=date_warning url_text="Find out what records are available on this service." url_value=url_value url_anchor="section-coverage" %}
         {% endif %}
-        {% if search_results %}
+        {% if total > 0 %}
           <div class="results__result-header-container">
             {% include "includes/result_header.html" %}
             {% include "includes/result_atom_feed_button.html" %}
@@ -30,11 +30,13 @@
 
           <div class="results__result-list-container">
             {% include "includes/results_list.html" %}
-            {% if not paginator.has_next_page %}
-              {% include "includes/no_results_message.html" with title="End of results" %}
-            {% endif %}
-            {% include "includes/pagination.html" %}
           </div>
+
+          {% if not paginator.has_next_page %}
+            {% include "includes/no_results_message.html" with title="End of results" %}
+          {% endif %}
+
+          {% include "includes/pagination.html" %}
         {% else %}
           {% include "includes/no_results_message.html" %}
         {% endif %}
