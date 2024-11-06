@@ -6,31 +6,12 @@
     padding-bottom: $space-8;
   }
 
-  &__container-beta {
-    padding-top: $space-3;
-    padding-bottom: $space-8;
-
-    h2 {
-      margin-top: 0;
-    }
-
-    @media (max-width: $grid-breakpoint-medium) {
-      padding-top: 0;
-    }
-  }
-
   &__header {
     @include heading_text;
 
     padding-bottom: $space-6;
     font-size: $typography-xl-text-size;
     border-bottom: 5px solid $color-yellow;
-  }
-
-  &__header-beta {
-    @include heading_text;
-
-    font-size: $typography-xl-text-size;
   }
 
   &__more-info {
@@ -54,31 +35,6 @@
       text-decoration: none;
 
       border-bottom: 0.125rem solid $color-black;
-    }
-  }
-
-  &__more-info-beta {
-    position: relative;
-
-    font-family: $font-roboto;
-    font-size: $typography-lg-text-size;
-    font-weight: $typography-bold-font-weight;
-
-    background: url($beta-arrow-right) right no-repeat;
-    background-position: 11.5rem;
-    border: 0;
-
-    a {
-      display: inline-block;
-
-      margin: $space-1 0;
-      padding: $space-1 0;
-
-      line-height: $typography-xs-line-height;
-      color: $color-aqua-blue;
-      text-decoration: none;
-
-      border-bottom: 1px solid $color-aqua-blue;
     }
   }
 }
