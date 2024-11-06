@@ -134,14 +134,6 @@ const resetDocumentParagraphTooltipAnchors =
     debounceResetDocumentParagraphTooltipAnchors();
 
 const setupDocumentParagraphTooltipAnchors = function () {
-    if (
-        !window.waffleFlags ||
-        !window.waffleFlags.some(function (flag) {
-            return flag.document_paragraph_tooltip_anchors;
-        })
-    )
-        return;
-
     const sections = document.querySelectorAll(".judgment-body__section");
 
     sections.forEach(function (section) {
