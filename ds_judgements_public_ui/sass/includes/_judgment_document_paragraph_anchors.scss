@@ -7,7 +7,6 @@
     }
 
     &:hover {
-      .judgment-body__copy-link,
       .judgment-body__copy-link-tooltip {
         opacity: 1;
       }
@@ -26,39 +25,19 @@
     opacity: 0;
 
     transition: opacity ease 0.3s;
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    &:hover {
-      .judgment-body__copy-link-helptext {
-        opacity: 1;
-      }
-    }
   }
 
   &__copy-link-tooltip {
-    right: 30px;
-    color: $color-link-blue;
-    text-decoration: underline;
-  }
-
-  &__copy-link-helptext {
-    right: 44px;
-    color: $color-black;
-  }
-
-  &__copy-link-tooltip,
-  &__copy-link-helptext {
     position: absolute;
     top: -8px;
+    right: 30px;
 
     padding: 5px 10px;
 
     font-family: Roboto, sans-serif;
     font-size: 14px;
+    color: $color-link-blue;
+    text-decoration: underline;
     white-space: nowrap;
 
     opacity: 0;
@@ -84,7 +63,6 @@
     }
   }
 
-  &__copy-link-helptext--top,
   &__copy-link-tooltip--top {
     top: -40px;
     right: auto;
@@ -96,15 +74,9 @@
     }
   }
 
-  &__copy-link-helptext--show,
   &__copy-link-tooltip--show {
     color: $color-black;
     text-decoration: none;
     opacity: 1;
-  }
-
-  &__copy-link-helptext--left {
-    top: -8px;
-    right: 44px;
   }
 }
