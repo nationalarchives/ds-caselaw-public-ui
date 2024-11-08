@@ -29,22 +29,30 @@ from judgments.utils import (
 from judgments.utils.search_request_to_parameters import search_request_to_parameters
 
 
-def _do_dates_require_warnings(iso_date: Optional[str], total_results: int) -> tuple[bool, Optional[str]]:
+def _do_dates_require_warnings(
+    iso_date: Optional[str], total_results: int, min_actual_year: Optional[int]
+) -> tuple[bool, Optional[str]]:
     """
     Check if users have requested a year before what we technically handle,
     if it is, then we provide a warning letting them know.
     """
-    from_warning = False
-    warning = None
     min_year = get_minimum_valid_year()
-    if iso_date:
-        from_date = date.fromisoformat(iso_date)
-        if from_date.year:
-            if from_date.year < min_year and total_results > 0:
-                from_warning = True
-                warning = f"""
-                        {from_date.year} is before {min_year},
-                        the date of the oldest record on the Find Case Law service."""
+
+    if not iso_date:
+        return False, None
+    from_date = date.fromisoformat(iso_date)
+    if not from_date.year or total_results == 0 or from_date.year >= min_year:
+        return False, None
+
+    from_warning = True
+    warning = f"""
+            {from_date.year} is before {min_year},
+            the date of the oldest record on the Find Case Law service.
+            """
+
+    if min_actual_year:
+        warning += f"Showing matching results from {min_actual_year}. "
+
     return from_warning, warning
 
 
@@ -117,7 +125,10 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
         if values and key != "page":
             changed_queries[key] = values
 
-    requires_warning, warning = _do_dates_require_warnings(search_parameters.date_from, int(search_response.total))
+    min_actual_year = min([int(x) for x in year_facets.keys()]) if year_facets else None
+    requires_warning, warning = _do_dates_require_warnings(
+        search_parameters.date_from, int(search_response.total), min_actual_year
+    )
 
     # Populate context to provide feedback about filters etc. back to user
     context = {
