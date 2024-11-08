@@ -88,27 +88,10 @@
   }
 }
 
-.judgment-toolbar-buttons {
+.judgment-toolbar-options {
   margin: 0 auto;
 
-  &__pdf-size {
-    font-size: $typography-sm-text-size;
-    font-weight: $typography-normal-font-weight;
-  }
-
-  &__option--related-document {
-    text-align: center;
-  }
-
-  &__option--pdf {
-    text-align: center;
-  }
-
-  &__option--download-options {
-    font-size: $typography-md-text-size;
-    color: $color-dark-grey;
-    text-align: center;
-
+  &__download-options {
     a {
       position: relative;
 
