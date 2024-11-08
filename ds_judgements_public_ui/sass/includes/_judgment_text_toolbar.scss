@@ -76,14 +76,14 @@
     margin-top: $space-2;
     margin-bottom: $space-1;
 
-    font-size: 1.8rem;
+    font-size: $typography-xl-text-size;
     color: $color-almost-black;
     text-align: center;
     text-wrap: balance;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-top: $space-4;
-      font-size: 1.6rem;
+      font-size: $typography-lg-text-size;
     }
   }
 }

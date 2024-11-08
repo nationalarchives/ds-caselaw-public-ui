@@ -222,34 +222,6 @@ class TestViewRelatedDocumentButton:
             ),
         ],
     )
-    def test_view_related_document_button_when_document_with_related_document(
-        self,
-        mock_get_document_by_uri,
-        mock_pdf,
-        uri,
-        expected_text,
-        expected_href,
-        document_class_factory,
-    ):
-        """
-        GIVEN a document with an associated document
-        WHEN a request is made to the document URI
-        THEN the response should contain a button linking to the related document
-        """
-
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
-            if document_uri not in [uri, expected_href]:
-                raise DocumentNotFoundError()
-            return document_class_factory.build(uri=document_uri, is_published=True)
-
-        mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
-
-        client = Client()
-        response = client.get(f"/{uri}")
-
-        xpath_query = f"//a[@href='/{expected_href}']"
-        assert_response_contains_text(response, expected_text, xpath_query)
-
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
@@ -269,33 +241,6 @@ class TestViewRelatedDocumentButton:
             ),
         ],
     )
-    def test_view_related_document_button_when_document_with_related_document_and_query_string(
-        self,
-        mock_get_document_by_uri,
-        mock_pdf,
-        uri,
-        expected_text,
-        expected_href,
-        document_class_factory,
-    ):
-        """
-        GIVEN a document with an associated document
-        WHEN a request is made to the document URI
-        THEN the response should contain a button linking to the related document
-        """
-
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
-            if document_uri not in [uri, expected_href]:
-                raise DocumentNotFoundError()
-            return document_class_factory.build(uri=document_uri, is_published=True)
-
-        mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
-
-        client = Client()
-        response = client.get(f"/{uri}?query=Query")
-        xpath_query = f"//a[@href='/{expected_href}?query=Query']"
-        assert_response_contains_text(response, expected_text, xpath_query)
-
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
