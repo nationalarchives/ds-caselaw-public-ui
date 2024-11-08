@@ -21,6 +21,10 @@ body {
   font-family: $font-open-sans;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .container {
   @include container;
 }
