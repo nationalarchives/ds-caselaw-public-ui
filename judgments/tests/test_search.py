@@ -11,6 +11,7 @@ from judgments.tests.fixtures import (
     FakeSearchResponse,
     FakeSearchResponseNoFacets,
     FakeSearchResponseNoResults,
+    FakeSearchResponseWithFacets,
 )
 from judgments.tests.utils.assertions import (
     assert_contains_html,
@@ -147,18 +148,21 @@ class TestSearchResults(TestCase):
         AND the from_date is before `settings.MINIMUM_WARNING_YEAR`
         AND there's no search results
         THEN the response should contain the expected warning
+        AND it should contain facet info
 
         The expected applied filters HTML:
         - Includes a div with class `govuk-warning-text` and correct warning text
         """
-        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponseWithFacets()
 
-        response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444")
+        response = self.client.get("/judgments/search?query=cat&from_date_0=1&from_date_1=1&from_date_2=1444")
 
         expected_text = """
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
+                Showing matching results from 2010.  Find out what records are available on this service.
         """
         xpath_query = "//div[@class='govuk-warning-text__text']"
+
         assert_response_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.advanced_search.api_client")

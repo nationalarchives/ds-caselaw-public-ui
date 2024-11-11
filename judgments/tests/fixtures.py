@@ -66,6 +66,11 @@ class FakeSearchResponseNoFacets(FakeSearchResponseBaseClass):
     facets = {}
 
 
+class FakeSearchResponseWithFacets(FakeSearchResponseBaseClass):
+    total = 9999
+    facets = {"2010": "9", "2011": "99", "EWCOP": "999", "": "1"}
+
+
 class FakeSearchResponseNoResults(FakeSearchResponseBaseClass):
     total = 0
     results = []

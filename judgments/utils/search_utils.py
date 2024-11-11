@@ -16,7 +16,7 @@ def _valid_years():
     Generate a list of valid years as strings.
     """
     today = datetime.date.today()
-    valid_years = range(2003, today.year)
+    valid_years = range(2003, today.year + 1)
     return [f"{year}" for year in valid_years]
 
 
