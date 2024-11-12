@@ -22,7 +22,7 @@ def get_download_pdf_url(document_uri):
 
 
 def assert_download_options_link(page):
-    download_options_link = page.locator("a", has_text="More download options")
+    download_options_link = page.locator("a", has_text="View download options")
 
     expect(download_options_link).to_be_visible()
     expect(download_options_link).to_have_attribute("href", "#download-options")
