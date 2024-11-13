@@ -1,11 +1,11 @@
 {% load document_utils utilities %}
 
-<div class="judgment-toolbar">
+<section class="judgment-toolbar" aria-labelledby="judgment-toolbar-title">
   <div class="judgment-toolbar__container">
     {% if document.document_noun == "press summary" %}
       <p class="judgment-toolbar__press-summary-title">Press Summary</p>
     {% endif %}
-    <h1 class="judgment-toolbar__title">{{ document|get_title_to_display_in_html }}</h1>
+    <h1 id="judgment-toolbar-title" class="judgment-toolbar__title">{{ document|get_title_to_display_in_html }}</h1>
     <p class="judgment-toolbar__reference">{{ document.best_human_identifier }}</p>
     <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
       {% if linked_document_uri %}
@@ -35,4 +35,4 @@
       </p>
     </div>
   </div>
-</div>
+</section>

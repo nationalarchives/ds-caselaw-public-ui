@@ -139,8 +139,8 @@ class TestDocumentDownloadOptions:
         client = Client()
         response = client.get(f"/{uri}")
         download_options_html = f"""
-        <div id="download-options" class="judgment-download-options">
-        <h2 class="judgment-download-options__header">Download options</h2>
+        <section id="download-options" class="judgment-download-options" aria-labelledby="judgment-download-options-header">
+        <h2 id="judgment-download-options-header" class="judgment-download-options__header">Download options</h2>
         <div class="judgment-download-options__options-list">
             <div class="judgment-download-options__download-option">
             <h3><a href="http://example.com/test.pdf" aria-label="Download this document as a PDF" download="">
