@@ -1,0 +1,17 @@
+.catalogue-card {
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: $space-4 0;
+
+    th,
+    td {
+      padding: $space-2;
+      border: 1px solid $color-dark-grey;
+    }
+
+    th {
+      text-align: left;
+    }
+  }
+}
