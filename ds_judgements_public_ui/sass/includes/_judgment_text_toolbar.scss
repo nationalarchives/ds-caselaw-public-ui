@@ -98,6 +98,10 @@
       font-size: $typography-lg-text-size;
     }
   }
+
+  @media (max-width: $grid-breakpoint-medium) {
+    padding: 0;
+  }
 }
 
 .judgment-toolbar-options {
@@ -122,7 +126,7 @@
       }
 
       @media (max-width: $grid-breakpoint-medium) {
-        margin-left: $space-4;
+        margin-left: 0;
         padding-right: $space-6;
         background-position: right $space-2;
       }
