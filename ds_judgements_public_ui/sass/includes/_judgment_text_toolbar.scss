@@ -42,13 +42,25 @@
       @include call-to-action-button-secondary;
 
       margin-right: $space-4;
-      margin-bottom: $space-1 !important;
+      margin-bottom: $space-3 !important;
+
+      @media (max-width: $grid-breakpoint-medium) {
+        margin-left: $space-4;
+        padding-right: $space-6;
+      }
     }
 
     @media (min-width: $grid-breakpoint-small) {
       margin-right: $space-4;
       padding-right: $space-8;
     }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: $space-12;
+    align-items: center;
   }
 
   &__press-summary-title {

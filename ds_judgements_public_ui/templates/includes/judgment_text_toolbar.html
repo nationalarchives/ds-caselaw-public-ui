@@ -7,9 +7,25 @@
     {% endif %}
     <h1 class="judgment-toolbar__title">{{ document|get_title_to_display_in_html }}</h1>
     <p class="judgment-toolbar__reference">{{ document.best_human_identifier }}</p>
-    <p class="judgment-toolbar-options__download-options">
-      <a href="#download-options"  aria-label="View download options">View download options</a>
-    </p>
-
+    <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
+      {% if linked_document_uri %}
+        {% spaceless %}
+          <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+             role="button"
+             draggable="false"
+             href="{% url 'detail' document_uri=linked_document_uri %}{% if query %}?query={{ query | urlencode }}{% endif %}">
+            {% if document.document_noun == "judgment" %}
+              View Press Summary
+            {% else %}
+              View Judgment
+            {% endif %}
+            <span class="judgment-toolbar-buttons__pdf-size"></span>
+          </a>
+        {% endspaceless %}
+      {% endif %}
+      <p class="judgment-toolbar-options__download-options">
+        <a href="#download-options"  aria-label="View download options">View download options</a>
+      </p>
+    </div>
   </div>
 </div>
