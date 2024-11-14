@@ -8,6 +8,7 @@
 
   &__header {
     @include heading_text;
+    @include header($typography-header-h2-size);
 
     padding-bottom: $space-6;
     font-size: $typography-xl-text-size;
