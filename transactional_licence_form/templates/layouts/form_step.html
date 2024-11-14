@@ -11,9 +11,9 @@
       <h1 class="transactional-licence-form__step-title">{{ wizard.form.title }}</h1>
     {% endblock step_title %}
     {% block step_number %}
-      <h3 class="transactional-licence-form__steps">
+      <h2 class="transactional-licence-form__steps">
         Step <b>{{ wizard.steps.step1|add:"1" }}</b> of {{ wizard.steps.count|add:"1" }}
-      </h3>
+      </h2>
     {% endblock step_number %}
     <div class="transactional-licence-form__pre-form-content">
       {% block pre_form %}
