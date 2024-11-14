@@ -3,7 +3,6 @@ import os
 import urllib
 from typing import Any
 
-from caselawclient.models.documents import DocumentURIString
 from django.http import Http404, HttpResponseRedirect
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
@@ -19,8 +18,6 @@ from judgments.utils import (
     preprocess_query,
     search_context_from_url,
 )
-
-MOST_RECENT_VERSION = DocumentURIString("")
 
 
 class NoNeutralCitationError(Exception):
@@ -67,10 +64,7 @@ def detail_html(request, document_uri):
     except Http404:
         context["linked_document_uri"] = None
 
-    context["document_html"] = document.content_as_html(
-        MOST_RECENT_VERSION,
-        query=preprocess_query(query) if query is not None else None,
-    )  # "" is most recent version
+    context["document_html"] = document.body.content_as_html()
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
 
     form: AdvancedSearchForm = AdvancedSearchForm(request.GET)

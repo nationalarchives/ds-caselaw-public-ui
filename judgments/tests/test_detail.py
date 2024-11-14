@@ -35,7 +35,10 @@ class TestJudgment(TestCase):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_published_judgment_response(self, mock_get_document_by_uri, mock_pdf):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(
+            is_published=True,
+            body=DocumentBodyFactory.build(xml_string="<akomantoso>This is a judgment.</akomantoso>"),
+        )
         mock_pdf.return_value.size = 1234
 
         response = self.client.get("/test/2023/123")
@@ -43,7 +46,7 @@ class TestJudgment(TestCase):
 
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-        self.assertIn("<p>This is a judgment.</p>", decoded_response)
+        self.assertIn("This is a judgment.", decoded_response)
         self.assertIn('<meta name="robots" content="noindex,nofollow" />', decoded_response)
 
         self.assertEqual(response.status_code, 200)
