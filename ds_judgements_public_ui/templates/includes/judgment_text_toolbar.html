@@ -23,15 +23,8 @@
           </a>
         {% endspaceless %}
       {% endif %}
-      <a class="judgment-toolbar-buttons__option--pdf btn"
-         role="button"
-         draggable="false"
-         href="{{ pdf_uri }}"
-         aria-label="{{ document|get_title_to_display_in_html }} - Download as PDF">Download as PDF
-        <span class="judgment-toolbar-buttons__pdf-size">{{ pdf_size }}</span></a>
-      <p class="judgment-toolbar-buttons__option--download-options"
-         role="note">
-        <a href="#download-options">More download options</a>
+      <p class="judgment-toolbar-options__download-options">
+        <a href="#download-options"  aria-label="View download options">View download options</a>
       </p>
     </div>
   </div>
