@@ -1,5 +1,6 @@
 import warnings
 
+import pytest
 from axe_playwright_python.sync_playwright import Axe
 
 axe = Axe()
@@ -22,10 +23,7 @@ def assert_critical_violations(violations, page_url):
 
     if critical_or_serious_violations:
         report = generate_accessibility_report(critical_or_serious_violations)
-        # TODO: Once we have fixed all our critical/serious accessibility violations, make this fail the test
-        warnings.warn(
-            f"\nCritical/Serious Accessibility Violations Detected ({page_url}):\n{report}", AccessibilityWarning
-        )
+        pytest.fail(f"\nCritical/Serious Accessibility Violations Detected ({page_url}):\n{report}")
 
 
 def check_other_violations(violations, page_url):
