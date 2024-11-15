@@ -1,6 +1,6 @@
 @keyframes emphasis {
   from {
-    background-color: lighten($color-highlight-blue, 40);
+    background-color: $color-emphasis-background;
   }
 
   to {

@@ -11,7 +11,7 @@
 
   color: $color-black;
 
-  background-color: #fef8df;
+  background-color: $color-warning-text-background;
   border: $color-black solid 3px;
 }
 
@@ -33,16 +33,16 @@
 
   font-weight: $typography-normal-font-weight;
 
-  background-color: #fef8df;
+  background-color: $color-warning-text-background;
   border: transparent;
   border-left: 0.5rem $color-yellow solid;
 }
 
 .govuk-warning-text__confirmation {
-  background-color: #ffe5e4;
-  border-left: 0.5rem #d4351c solid;
+  background-color: $color-warning-text-confirmation-background;
+  border-left: 0.5rem $color-structured-search-date-error-message-text solid;
 }
 
 .govuk-warning-text__icon-confirmation {
-  background-color: #ffe5e4;
+  background-color: $color-warning-text-confirmation-background;
 }

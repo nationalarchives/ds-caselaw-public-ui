@@ -12,8 +12,8 @@
   }
 
   #form_submit:focus {
-    color: #26262a;
-    background-color: #fff;
+    color: $color-cookie-consent-form-submit-focus-text;
+    background-color: $color-white;
   }
 
   .form-group {
@@ -36,12 +36,12 @@
   padding: 10px 10px 20px;
 
   font-size: 14px;
-  color: #fff;
+  color: $color-white;
 
   .container {
     box-sizing: border-box;
     padding: 10px 25px 25px 40px;
-    background: #134571;
+    background: $color-dark-blue;
     border-radius: 5px;
 
     .cookie_head {
@@ -53,7 +53,7 @@
       font-weight: 400;
       font-style: normal;
       line-height: inherit;
-      color: #fff;
+      color: $color-white;
     }
 
     .cookie-p {
@@ -63,7 +63,7 @@
       font-family: "Open Sans";
       font-size: 16px;
       line-height: inherit;
-      color: #fff;
+      color: $color-white;
 
       br {
         content: "";
@@ -73,21 +73,21 @@
       }
 
       a {
-        color: #fff;
+        color: $color-white;
         text-decoration: underline;
 
         &:hover {
           z-index: 999;
 
-          color: #000;
+          color: $color-black;
 
-          background-color: #fff;
-          outline: 5px solid #1d70b8;
+          background-color: $color-white;
+          outline: 5px solid $color-focus-blue-outline;
           outline-offset: 0;
         }
 
         &:focus {
-          color: #000;
+          color: $color-black;
         }
       }
     }
@@ -102,23 +102,23 @@
       padding: 0.5em 0.9em;
 
       font-family: "Roboto Mono", monospace;
-      color: #000;
+      color: $color-black;
       text-align: center;
       text-decoration: none;
 
-      background: #eee;
-      border: #eee;
-      border: 2px solid #fff;
+      background: $color-light-grey;
+      border: $color-light-grey;
+      border: 2px solid $color-white;
 
       &:hover,
       &:focus {
-        color: #fff;
-        background: #000;
-        border: 2px solid #fff;
+        color: $color-white;
+        background: $color-black;
+        border: 2px solid $color-white;
       }
 
       &:focus {
-        outline: 5px solid #fff;
+        outline: 5px solid $color-white;
       }
 
       @media (width <= 560px) {
@@ -136,14 +136,14 @@
 
       &:hover,
       &:focus {
-        color: #fff;
+        color: $color-white;
         text-decoration: none;
-        background: #000;
-        border: 2px solid #fff;
+        background: $color-black;
+        border: 2px solid $color-white;
       }
 
       &:focus {
-        outline: 5px solid #fff;
+        outline: 5px solid $color-white;
       }
 
       @media (width <= 675px) {
