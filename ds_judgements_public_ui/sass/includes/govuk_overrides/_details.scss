@@ -7,6 +7,10 @@
   border: 3px solid $color-aqua-blue;
 }
 
+.govuk-details:not([open]) > div {
+  display: none;
+}
+
 .govuk-details__summary {
   padding-left: $space-6;
   color: $color-aqua-blue;

@@ -22,13 +22,11 @@ let setupTogglableFields = function () {
     };
 
     let showFields = function () {
-        $(licenceHolderControlSelector).attr("aria-expanded", true);
         $(`#${licenceHolderNameId}`).show();
         $(`#${licenceHolderEmailId}`).show();
     };
 
     let hideFields = function () {
-        $(licenceHolderControlSelector).attr("aria-expanded", false);
         $(`#${licenceHolderNameId}`).hide();
         $(`#${licenceHolderEmailId}`).hide();
     };
