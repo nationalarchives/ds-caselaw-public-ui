@@ -252,4 +252,100 @@
       background: $color-cta-background-hover;
     }
   }
+
+  &__color-info-terms-use-hover-background {
+    color: $color-info-terms-use-hover-background;
+
+    &::before {
+      background: $color-info-terms-use-hover-background;
+    }
+  }
+
+  &__color-info-card-hover-background {
+    color: $color-info-card-hover-background;
+
+    &::before {
+      background: $color-info-card-hover-background;
+    }
+  }
+
+  &__color-warning-text-background {
+    color: $color-warning-text-background;
+
+    &::before {
+      background: $color-warning-text-background;
+    }
+  }
+
+  &__color-judgment-listing-matches-pipe {
+    color: $color-judgment-listing-matches-pipe;
+
+    &::before {
+      background: $color-judgment-listing-matches-pipe;
+    }
+  }
+
+  &__color-select-text {
+    color: $color-select-text;
+
+    &::before {
+      background: $color-select-text;
+    }
+  }
+
+  &__color-select-hover-border {
+    color: $color-select-hover-border;
+
+    &::before {
+      background: $color-select-hover-border;
+    }
+  }
+
+  &__color-structured-search-date-error-message-text {
+    color: $color-structured-search-date-error-message-text;
+
+    &::before {
+      background: $color-structured-search-date-error-message-text;
+    }
+  }
+
+  &__color-warning-text-confirmation-background {
+    color: $color-warning-text-confirmation-background;
+
+    &::before {
+      background: $color-warning-text-confirmation-background;
+    }
+  }
+
+  &__color-banner-link-visited {
+    color: $color-banner-link-visited;
+
+    &::before {
+      background: $color-banner-link-visited;
+    }
+  }
+
+  &__color-cookie-consent-form-submit-focus-text {
+    color: $color-cookie-consent-form-submit-focus-text;
+
+    &::before {
+      background: $color-cookie-consent-form-submit-focus-text;
+    }
+  }
+
+  &__color-emphasis-background {
+    color: $color-emphasis-background;
+
+    &::before {
+      background: $color-emphasis-background;
+    }
+  }
+
+  &__color-banner-link {
+    color: $color-banner-link;
+
+    &::before {
+      background: $color-banner-link;
+    }
+  }
 }

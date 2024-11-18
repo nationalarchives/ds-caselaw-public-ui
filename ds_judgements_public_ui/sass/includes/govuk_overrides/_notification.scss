@@ -9,14 +9,14 @@
 }
 
 .govuk-notification-banner_red {
-  background-color: #d4351c;
-  border: 5px solid #d4351c;
+  background-color: $color-structured-search-date-error-message-text;
+  border: 5px solid $color-structured-search-date-error-message-text;
 }
 
 .govuk-notification-banner__link {
-  color: #037091;
+  color: $color-banner-link;
 }
 
 .govuk-notification-banner__link:visited {
-  color: #4c2c92;
+  color: $color-banner-link-visited;
 }

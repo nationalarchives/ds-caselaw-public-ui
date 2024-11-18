@@ -48,7 +48,7 @@
   &__matches {
     p:not(:last-child)::after {
       content: " | ";
-      color: #888;
+      color: $color-judgment-listing-matches-pipe;
     }
   }
 

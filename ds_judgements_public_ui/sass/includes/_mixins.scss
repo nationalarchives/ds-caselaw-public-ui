@@ -160,7 +160,7 @@
 
   font-size: $typography-md-text-size;
   line-height: $typography-lg-line-height;
-  color: #444;
+  color: $color-select-text;
 
   appearance: none;
   background-color: $color-white;
@@ -180,7 +180,7 @@
   }
 
   &:hover {
-    border-color: #888;
+    border-color: $color-select-hover-border;
   }
 
   &:focus {

@@ -38,7 +38,7 @@
 
   &:hover {
     text-decoration: none;
-    background-color: hsl(210deg 6% 88%);
+    background-color: $color-info-card-hover-background;
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -175,7 +175,7 @@
 
   &:hover {
     text-decoration: none;
-    background-color: #dee0e2;
+    background-color: $color-info-terms-use-hover-background;
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -220,7 +220,7 @@
 
   &:hover {
     text-decoration: none;
-    background-color: #dee0e2;
+    background-color: $color-info-terms-use-hover-background;
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -349,7 +349,7 @@
 
   &:hover {
     text-decoration: none;
-    background-color: hsl(210deg 6% 88%);
+    background-color: $color-info-card-hover-background;
   }
 
   @media (max-width: $grid-breakpoint-medium) {
