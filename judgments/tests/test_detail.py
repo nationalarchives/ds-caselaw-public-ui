@@ -5,6 +5,7 @@ from unittest.mock import call, patch
 import pytest
 from caselawclient.errors import DocumentNotFoundError
 from caselawclient.factories import DocumentBodyFactory, JudgmentFactory, PressSummaryFactory
+from caselawclient.models.documents import DocumentURIString
 from django.http import Http404, HttpResponseRedirect
 from django.template.defaultfilters import filesizeformat
 from django.test import Client, TestCase
@@ -166,7 +167,9 @@ class TestDocumentDownloadOptions:
 class TestDocumentURIRedirects(TestCase):
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_non_canonical_uri_redirects(self, mock_get_document_by_uri):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(uri="test/1234/567", is_published=True)
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(
+            uri=DocumentURIString("test/1234/567"), is_published=True
+        )
         response = self.client.get("/test/1234/567/")
         assert isinstance(response, HttpResponseRedirect)
         assert response.status_code == 302
@@ -197,7 +200,9 @@ class TestPressSummaryLabel(TestCase):
         WHEN request is made with judgment uri
         THEN response should NOT contain the press summary label
         """
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(uri="eat/2023/1", is_published=True)
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(
+            uri=DocumentURIString("eat/2023/1"), is_published=True
+        )
         response = self.client.get("/eat/2023/1")
 
         xpath_query = "//p[@class='judgment-toolbar__press-summary-title']"
@@ -350,7 +355,7 @@ class TestBreadcrumbs:
         def get_document_by_uri_side_effect(uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if "press" in uri:
                 return PressSummaryFactory.build(
-                    uri="eat/2023/1/press-summary/1",
+                    uri=DocumentURIString("eat/2023/1/press-summary/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A",
@@ -358,7 +363,7 @@ class TestBreadcrumbs:
                 )
             else:
                 return JudgmentFactory.build(
-                    uri="eat/2023/1/the_judgment_uri",
+                    uri=DocumentURIString("eat/2023/1/the_judgment_uri"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="The Title of Judgment A",
@@ -388,7 +393,7 @@ class TestBreadcrumbs:
         AND NOT contain an additional `Press Summary` breadcrumb
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri="eat/2023/1",
+            uri=DocumentURIString("eat/2023/1"),
             is_published=True,
             body=DocumentBodyFactory.build(
                 name="Judgment A",
@@ -444,7 +449,7 @@ class TestDocumentHeadings(TestCase):
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri == "eat/2023/1/press-summary/1":
                 return PressSummaryFactory.build(
-                    uri="eat/2023/1/press-summary/1",
+                    uri=DocumentURIString("eat/2023/1/press-summary/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A (with some slightly different wording)",
@@ -453,7 +458,7 @@ class TestDocumentHeadings(TestCase):
                 )
             elif document_uri == "eat/2023/1":
                 return JudgmentFactory.build(
-                    uri="eat/2023/1",
+                    uri=DocumentURIString("eat/2023/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Judgment A",
@@ -481,7 +486,7 @@ class TestDocumentHeadings(TestCase):
         AND a p tag subheading with the judgment's NCN
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri="eat/2023/1",
+            uri=DocumentURIString("eat/2023/1"),
             is_published=True,
             body=DocumentBodyFactory.build(name="Judgment A"),
             neutral_citation="Judgment_A_NCN",
@@ -508,7 +513,7 @@ class TestHTMLTitle(TestCase):
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri == "eat/2023/1/press-summary/1":
                 return JudgmentFactory.build(
-                    uri="eat/2023/1/press-summary/1",
+                    uri=DocumentURIString("eat/2023/1/press-summary/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A (with some slightly different wording)"
@@ -516,7 +521,7 @@ class TestHTMLTitle(TestCase):
                 )
             else:
                 return JudgmentFactory.build(
-                    uri="eat/2023/1",
+                    uri=DocumentURIString("eat/2023/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(name="Judgment A"),
                 )
@@ -540,7 +545,7 @@ class TestHTMLTitle(TestCase):
         name and  "- Find Case Law - The National Archives"
         """
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri="eat/2023/1",
+            uri=DocumentURIString("eat/2023/1"),
             is_published=True,
             body=DocumentBodyFactory.build(name="Judgment A"),
         )
@@ -554,7 +559,7 @@ class TestNoNeutralCitation(TestCase):
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_document_baseclass_raises_error(self, get_document):
         doc = JudgmentFactory.build(
-            uri="eat/2023/1",
+            uri=DocumentURIString("eat/2023/1"),
             is_published=True,
             name="Judgment A",
             neutral_citation=None,

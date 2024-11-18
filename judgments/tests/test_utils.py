@@ -70,7 +70,7 @@ class TestUtils(unittest.TestCase):
         assert linked_doc_url(document) == document.uri + "/press-summary/1"
 
     def test_linked_doc_url_returns_judgement_for_a_press_summary(self):
-        document = PressSummaryFactory.build(uri="/foo/bar/press-summary/1")
+        document = PressSummaryFactory.build(uri=DocumentURIString("foo/bar/press-summary/1"))
 
         assert linked_doc_url(document) == "foo/bar"
 

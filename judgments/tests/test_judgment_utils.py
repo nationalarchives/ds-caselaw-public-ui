@@ -34,7 +34,7 @@ class TestGetPublishedDocument:
 
     @patch("judgments.utils.judgment_utils.get_document_by_uri")
     def test_press_summary_is_published(self, mock_get_document_by_uri):
-        judgment = JudgmentFactory.build(is_published=True, uri="2022/eat/1/press-summary/1")
+        judgment = JudgmentFactory.build(is_published=True, uri=DocumentURIString("2022/eat/1/press-summary/1"))
         mock_get_document_by_uri.return_value = judgment
         document_uri = DocumentURIString("2022/eat/1/press-summary/1")
         assert get_published_document_by_uri(document_uri) == judgment
