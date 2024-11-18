@@ -13,7 +13,7 @@ ds-caselaw-marklogic-api-client~=27.4.0
 ds-caselaw-utils==2.0.0
 rollbar
 django-weasyprint==2.3.0
-django-waffle==4.1.0  # https://github.com/django-waffle/django-waffle
+django-waffle==4.2.0  # https://github.com/django-waffle/django-waffle
 django-formtools~=2.5.1
 crispy-forms-gds==0.3.1
 markdown-it-py~=3.0.0
