@@ -1,5 +1,8 @@
 from typing import Optional
 
+from caselawclient.models.documents import DocumentURIString
+from caselawclient.models.documents.exceptions import InvalidDocumentURIException
+from django.http import Http404
 from django.http.request import HttpRequest
 from django.views.generic import View
 
@@ -24,6 +27,12 @@ class DocumentResolverEngine(View):
         component_lookup = {
             "press-summary": press_summaries,
         }
+
+        try:
+            document_uri = DocumentURIString(document_uri)
+        except InvalidDocumentURIException:
+            raise Http404("Document Resolver recieved an invalid DocumentURIString")
+
         if file_format:
             return fileformat_lookup[file_format](request, document_uri)
 

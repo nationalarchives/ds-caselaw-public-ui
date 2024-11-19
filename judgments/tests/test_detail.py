@@ -6,7 +6,7 @@ import pytest
 from caselawclient.errors import DocumentNotFoundError
 from caselawclient.factories import DocumentBodyFactory, JudgmentFactory, PressSummaryFactory
 from caselawclient.models.documents import DocumentURIString
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.test import Client, TestCase
 
@@ -162,18 +162,6 @@ class TestDocumentDownloadOptions:
         </div>
         """
         assert_contains_html(response, download_options_html)
-
-
-class TestDocumentURIRedirects(TestCase):
-    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    def test_non_canonical_uri_redirects(self, mock_get_document_by_uri):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(
-            uri=DocumentURIString("test/1234/567"), is_published=True
-        )
-        response = self.client.get("/test/1234/567/")
-        assert isinstance(response, HttpResponseRedirect)
-        assert response.status_code == 302
-        assert response.url == "/test/1234/567"
 
 
 class TestPressSummaryLabel(TestCase):
