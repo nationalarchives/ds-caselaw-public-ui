@@ -1,16 +1,20 @@
 .result-controls {
   display: inline-block;
-  margin: $space-4 0 0;
   text-align: left;
 
   form {
     display: flex;
     flex-direction: column;
+    gap: $space-4;
 
     > div {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      gap: $space-3;
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      gap: 0;
     }
 
     @media (min-width: $grid-breakpoint-extra-large) {
@@ -21,7 +25,6 @@
 
   &__label {
     display: block;
-    margin-bottom: $space-2;
     font-family: $font-roboto;
     font-size: $typography-md-text-size;
   }
@@ -30,14 +33,17 @@
     @include select;
 
     display: inline-block;
+
     width: auto;
     min-width: auto;
+    margin: 0;
     padding-right: $space-6;
   }
 
   &__button {
     @include call-to-action-button;
 
+    max-height: 34px;
     margin: 0;
     padding: $space-2 $space-3;
 
@@ -48,7 +54,7 @@
     outline-color: $color-dark-blue;
 
     @media (min-width: $grid-breakpoint-extra-large) {
-      margin: $space-9 0 $space-4 0;
+      margin-top: auto;
     }
   }
 
