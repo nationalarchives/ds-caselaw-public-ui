@@ -193,7 +193,7 @@
     &-link:hover,
     &-link:focus {
       font-weight: $typography-bold-font-weight;
-      color: $color-black;
+      color: colour-var("accent-link");
       background-color: $color-white;
       outline-color: $color-highlight-blue;
     }

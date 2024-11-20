@@ -56,19 +56,19 @@
       font-family: $font-roboto;
       font-size: $typography-md-text-size;
       font-weight: $typography-bold-font-weight;
-      color: $color-black;
+      color: colour-var("accent-link");
       text-decoration: none;
 
       background: transparent;
       border: 0;
-      border-bottom: 0.125rem solid $color-black;
+      border-bottom: 0.125rem solid colour-var("accent-link");
 
       &:visited {
-        color: $color-black;
+        color: colour-var("accent-link");
       }
 
       &:hover {
-        color: $color-black;
+        color: colour-var("accent-link");
         text-decoration: underline;
       }
     }
@@ -99,7 +99,7 @@
       }
 
       &:hover {
-        color: $color-black;
+        color: colour-var("accent-link");
         text-decoration: underline;
       }
     }

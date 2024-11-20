@@ -37,7 +37,6 @@ class StyleGuideView(TemplateViewWithContext):
         context["feedback_survey_type"] = "support"
         context["search_form"] = AdvancedSearchForm()
         context["menu_items"] = [
-            {"label": "Colours", "href": "#colours"},
             {
                 "label": "Components",
                 "href": "#components",

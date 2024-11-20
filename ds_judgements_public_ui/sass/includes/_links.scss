@@ -9,10 +9,10 @@
 
     padding: $space-1;
 
-    color: $color-black;
+    color: colour-var("accent-link");
 
     background-color: $color-white;
-    border: 0.19rem solid $color-black;
+    border: 0.19rem solid colour-var("accent-link");
     outline: 0.313rem solid $color-white;
   }
 }

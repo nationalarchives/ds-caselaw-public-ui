@@ -75,7 +75,7 @@
   }
 
   &__copy-link-tooltip--show {
-    color: $color-black;
+    color: colour-var("font-dark");
     text-decoration: none;
     opacity: 1;
   }

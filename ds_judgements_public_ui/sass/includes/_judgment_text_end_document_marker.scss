@@ -7,7 +7,7 @@
 
   text-align: center;
 
-  border: 1px dashed $color-black;
+  border: 1px dashed colour-var("black");
   border-top: none;
 
   &__top-link {

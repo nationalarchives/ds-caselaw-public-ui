@@ -82,7 +82,7 @@
 }
 
 .govuk-grid-column-one-third__grid_info_card_text {
-  color: $color-black;
+  color: colour-var("font-dark");
   text-decoration-color: $color-light-grey;
   text-decoration-line: underline;
 
@@ -253,7 +253,7 @@
 }
 
 .govuk-grid-column-one-third__grid_info_text {
-  color: $color-black;
+  color: colour-var("font-dark");
   text-decoration-color: $color-white;
   text-decoration-line: underline;
   text-wrap: pretty;

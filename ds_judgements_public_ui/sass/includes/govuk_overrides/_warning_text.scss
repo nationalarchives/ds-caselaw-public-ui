@@ -9,10 +9,10 @@
 
   margin-left: $space-4;
 
-  color: $color-black;
+  color: colour-var("font-dark");
 
   background-color: $color-warning-text-background;
-  border: $color-black solid 3px;
+  border: colour-var("font-dark") solid 3px;
 }
 
 .govuk-warning-text__text {

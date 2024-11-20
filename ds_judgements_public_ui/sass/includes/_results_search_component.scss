@@ -159,7 +159,7 @@
     margin: $space-1;
     padding: $space-8;
 
-    color: $color-black;
+    color: colour-var("font-base");
 
     background: $color-yellow;
     border: 0;
@@ -277,18 +277,18 @@
 
     padding: $space-2 $space-2 $space-2 $space-4;
 
-    color: $color-black;
+    color: colour-var("accent-link");
     text-decoration: none;
 
     border: 0.188rem solid $color-yellow;
 
     &:hover {
-      color: $color-black;
+      color: colour-var("accent-link");
       background: $color-yellow;
     }
 
     &:visited {
-      color: $color-black;
+      color: colour-var("accent-link-visited");
     }
 
     &:focus {
@@ -352,7 +352,7 @@
       }
 
       &:visited {
-        color: $color-black;
+        color: colour-var("accent-link-visited");
       }
 
       &:hover {

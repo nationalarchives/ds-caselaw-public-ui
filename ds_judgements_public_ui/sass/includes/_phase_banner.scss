@@ -1,5 +1,5 @@
 .phase-banner {
-  color: $color-black;
+  color: colour-var("font-base");
   background-color: $color-yellow;
 
   &__notice {
@@ -7,12 +7,12 @@
 
     a {
       font-weight: $typography-bold-font-weight;
-      color: $color-black;
+      color: colour-var("accent-link");
 
       &:focus {
-        color: $color-black;
+        color: colour-var("accent-link");
         background-color: $color-white;
-        outline: 0.125rem solid $color-black;
+        outline: 0.125rem solid colour-var("accent-link");
       }
     }
   }
@@ -22,7 +22,7 @@
     padding: 0 $space-1;
 
     font-weight: $typography-bold-font-weight;
-    color: $color-black;
+    color: colour-var("font-base");
     text-transform: uppercase;
 
     background-color: $color-white;
@@ -33,7 +33,7 @@
 
     font-size: $typography-sm-text-size;
     font-weight: 700;
-    color: $color-black;
+    color: colour-var("font-base");
     text-transform: uppercase;
 
     background-color: $color-yellow;

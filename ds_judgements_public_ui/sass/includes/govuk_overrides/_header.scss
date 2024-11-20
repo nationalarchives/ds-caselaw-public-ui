@@ -5,7 +5,7 @@
 
 .govuk-header__link--homepage:hover,
 .govuk-header__link--homepage:active {
-  border-bottom: 0.25rem solid $color-black;
+  border-bottom: 0.25rem solid colour-var("black");
 }
 
 .govuk-header__navigation-item--active .govuk-header__link,

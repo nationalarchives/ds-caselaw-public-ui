@@ -81,7 +81,7 @@
         &:hover {
           z-index: 999;
 
-          color: $color-black;
+          color: colour-var("accent-link");
 
           background-color: $color-white;
           outline: 5px solid $color-focus-blue-outline;
@@ -89,7 +89,7 @@
         }
 
         &:focus {
-          color: $color-black;
+          color: colour-var("accent-link");
         }
       }
     }
@@ -104,7 +104,7 @@
       padding: 0.5em 0.9em;
 
       font-family: "Roboto Mono", monospace;
-      color: $color-black;
+      color: colour-var("font-dark");
       text-align: center;
       text-decoration: none;
 
@@ -115,7 +115,7 @@
       &:hover,
       &:focus {
         color: $color-white;
-        background: $color-black;
+        background: colour-var("accent-link");
         border: 2px solid $color-white;
       }
 
@@ -140,7 +140,7 @@
       &:focus {
         color: $color-white;
         text-decoration: none;
-        background: $color-black;
+        background: colour-var("accent-link");
         border: 2px solid $color-white;
       }
 

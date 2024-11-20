@@ -45,11 +45,11 @@
   }
 
   &__court-link {
-    color: $color-black;
+    color: colour-var("accent-link");
     text-decoration: none;
 
     &:hover {
-      color: $color-black;
+      color: colour-var("accent-link");
       text-decoration: underline;
     }
   }

@@ -1,14 +1,14 @@
 .service-introduction-banner {
   padding: $space-8;
-  color: $color-white;
-  background-color: $color-black;
+  color: color-var("contrast-font-base");
+  background-color: colour-var("contrast-background");
 
   p {
     margin: 0;
   }
 
   a {
-    color: $color-white;
+    color: color-var("contrast-font-base");
   }
 
   li {

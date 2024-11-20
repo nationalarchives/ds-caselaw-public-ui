@@ -282,7 +282,7 @@
             80% 0%,
             43% 62%
           );
-          box-shadow: inset $space-4 $space-4 $color-black;
+          box-shadow: inset $space-4 $space-4 colour-var("black");
 
           transition: 120ms transform ease-in-out;
         }

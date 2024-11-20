@@ -19,6 +19,8 @@
 body {
   margin: 0;
   font-family: $font-open-sans;
+  color: colour-var("font-base");
+  background: colour-var("background");
 }
 
 html {
