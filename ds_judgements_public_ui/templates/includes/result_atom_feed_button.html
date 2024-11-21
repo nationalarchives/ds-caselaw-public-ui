@@ -1,5 +1,8 @@
 {% load static %}
 <div class="results__result-atom-feed-button">
-  <span>Subscribe to these results</span>
-  <a href="{% url 'search-feed' %}?{{ query_param_string }}" ><img src="{% static "fontawesome-svgs/rss.svg" %}" width="20" height="20" alt=""/> Atom feed</a>
+  <label>Subscribe to these results</label>
+  <a href="{% url 'search-feed' %}?{{ query_param_string }}" data-copy-link-tooltip="Copy link and paste into your Atom feed app" class="copy-to-clipboard-link">
+    <img src="{% static "fontawesome-svgs/rss.svg" %}" width="20" height="20" alt=""/>
+    Atom feed
+  </a>
 </div>

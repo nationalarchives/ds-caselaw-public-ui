@@ -284,7 +284,7 @@ docker/*
 
 /ds_judgements_public_ui/static/css/**/*.css
 /ds_judgements_public_ui/static/css/**/*.css.map
-/ds_judgements_public_ui/static/js/**/*.js
+/ds_judgements_public_ui/static/js/dist/**/*.js
 
 !/ds_judgements_public_ui/static/css/includes/govuk-country-and-territory-autocomplete/location-autocomplete.min.css
 

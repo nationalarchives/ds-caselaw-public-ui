@@ -24,7 +24,7 @@
     @media (min-width: $grid-breakpoint-large) {
     }
 
-    span {
+    label {
       font-family: $font-roboto;
       font-size: $typography-md-text-size;
     }
@@ -33,7 +33,9 @@
       display: flex;
       gap: $space-1;
       align-items: center;
+
       height: 33px;
+      margin-right: auto;
     }
   }
 
