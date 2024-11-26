@@ -179,23 +179,24 @@ class JudgmentsFeed(Feed):
 
         search = self.get_object(request)
 
-        search_response: SearchResponse = search.get("search_response", {})
+        if search:
+            search_response: SearchResponse = search.get("search_response", {})
 
-        context["search_results"] = search_response.results
+            context["search_results"] = search_response.results
 
-        if query and form.is_valid():
-            cleaned_data = form.cleaned_data
-            query_param_string = urlencode(cleaned_data, doseq=True)
+            if query and form.is_valid():
+                cleaned_data = form.cleaned_data
+                query_param_string = urlencode(cleaned_data, doseq=True)
 
-            context["filters"] = cleaned_data.items()
-            context["query"] = query
-            context["query_param_string"] = query_param_string
+                context["filters"] = cleaned_data.items()
+                context["query"] = query
+                context["query_param_string"] = query_param_string
 
-            breadcrumbs = [
-                {"text": f'Search results for "{query}"', "url": "/judgments/search?" + query_param_string},
-                {"text": "Atom feed"},
-            ]
-            context["breadcrumbs"] = breadcrumbs
+                breadcrumbs = [
+                    {"text": f'Search results for "{query}"', "url": "/judgments/search?" + query_param_string},
+                    {"text": "Atom feed"},
+                ]
+                context["breadcrumbs"] = breadcrumbs
 
         return render(request, "pages/atom_feed.html", context)
 
