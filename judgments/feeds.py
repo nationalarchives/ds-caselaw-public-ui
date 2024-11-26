@@ -5,6 +5,7 @@ from urllib.parse import ParseResult, parse_qs, parse_qsl, urlencode, urlparse, 
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
+from caselawclient.responses.search_response import SearchResponse
 from caselawclient.responses.search_result import SearchResult
 from caselawclient.search_parameters import SearchParameters
 from django.contrib.syndication.views import Feed
@@ -178,7 +179,7 @@ class JudgmentsFeed(Feed):
 
         search = self.get_object(request)
 
-        search_response = search.get("search_response")
+        search_response: SearchResponse = search.get("search_response", {})
 
         context["search_results"] = search_response.results
 
