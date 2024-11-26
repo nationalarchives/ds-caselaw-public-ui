@@ -91,6 +91,7 @@
 .govuk-header__navigation-list {
   display: flex;
   flex-direction: row;
+  gap: $space-4;
   justify-content: flex-end;
 
   margin: 0;

@@ -11,7 +11,7 @@
 
   &__flex-container-beta {
     display: flex;
-    gap: $space-16;
+    gap: $space-18;
     justify-content: space-between;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
@@ -29,6 +29,8 @@
     margin-bottom: $space-1;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
+      width: 70px;
+      height: 70px;
       margin-right: 11rem;
     }
   }
