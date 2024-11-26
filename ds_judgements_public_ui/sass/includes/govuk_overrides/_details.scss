@@ -1,10 +1,16 @@
-.govuk-details {
+.govuk-details,
+.govuk-details--compact {
   margin-top: $space-8;
   margin-bottom: $space-8;
   padding: $space-2;
 
   background-color: $color-white;
   border: 3px solid $color-aqua-blue;
+}
+
+.govuk-details--compact {
+  margin: $space-2 0;
+  border: 0;
 }
 
 .govuk-details:not([open]) > div {
