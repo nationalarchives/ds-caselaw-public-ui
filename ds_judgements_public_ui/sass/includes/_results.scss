@@ -18,11 +18,7 @@
   &__result-atom-feed-button {
     display: flex;
     flex-direction: column;
-    gap: $space-3;
     padding-right: $space-6;
-
-    @media (min-width: $grid-breakpoint-large) {
-    }
 
     label {
       font-family: $font-roboto;
@@ -36,6 +32,10 @@
 
       height: 33px;
       margin-right: auto;
+    }
+
+    @media (min-width: $grid-breakpoint-large) {
+      gap: $space-3;
     }
   }
 

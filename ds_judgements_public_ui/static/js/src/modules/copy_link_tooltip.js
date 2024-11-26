@@ -25,9 +25,11 @@ const addCopyLinkTooltip = function (link) {
     link.addEventListener("click", function (event) {
         copyLinkToClipboard(event, link.href);
         tooltip.innerHTML = "Copied!";
+        tooltip.classList.add("copy-to-clipboard-link__tooltip--copied");
 
         setTimeout(() => {
             tooltip.innerHTML = tooltipText;
+            tooltip.classList.remove("copy-to-clipboard-link__tooltip--copied");
         }, 3000);
     });
 };

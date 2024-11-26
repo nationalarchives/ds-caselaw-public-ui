@@ -17,6 +17,7 @@
 
     font-size: $typography-sm-text-size;
     text-align: center;
+    text-decoration: underline;
 
     opacity: 0;
     background: $color-white;
@@ -40,6 +41,13 @@
       background: $color-white;
       border-top: 1px solid $color-grey;
       border-right: 1px solid $color-grey;
+    }
+
+    &--copied {
+      left: 27px;
+      width: auto;
+      color: $color-dark-grey;
+      text-decoration: none;
     }
   }
 }
