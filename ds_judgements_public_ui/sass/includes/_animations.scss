@@ -1,5 +1,3 @@
-@use "sass:color";
-
 @keyframes emphasis {
   from {
     background-color: $color-emphasis-background;
@@ -12,7 +10,7 @@
 
 @keyframes emphasis-border {
   from {
-    background-color: color.adjust($color-light-grey, 30);
+    background-color: ($color-light-grey, 30);
   }
 
   to {
