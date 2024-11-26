@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @keyframes emphasis {
   from {
     background-color: $color-emphasis-background;
