@@ -5,17 +5,20 @@ from urllib.parse import ParseResult, parse_qs, parse_qsl, urlencode, urlparse, 
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
+from caselawclient.responses.search_response import SearchResponse
 from caselawclient.responses.search_result import SearchResult
 from caselawclient.search_parameters import SearchParameters
 from django.contrib.syndication.views import Feed
 from django.core.exceptions import BadRequest
 from django.http.request import HttpRequest
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
 from ds_caselaw_utils.courts import courts as all_courts
 from ds_caselaw_utils.types import CourtParam
+
+from judgments.forms import AdvancedSearchForm
 
 from .forms.search_forms import TRIBUNAL_CHOICES
 from .utils import api_client, paginator
@@ -169,7 +172,38 @@ class JudgmentsFeed(Feed):
         extra_kwargs["page"] = obj["page"]
         return extra_kwargs
 
+    def render_html(self, request):
+        context = self.get_context_data()
+        query = request.GET.get("query")
+        form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
+
+        search = self.get_object(request)
+
+        if search:
+            search_response: SearchResponse = search.get("search_response", {})
+
+            context["search_results"] = search_response.results
+
+            if query and form.is_valid():
+                cleaned_data = form.cleaned_data
+                query_param_string = urlencode(cleaned_data, doseq=True)
+
+                context["filters"] = cleaned_data.items()
+                context["query"] = query
+                context["query_param_string"] = query_param_string
+
+                breadcrumbs = [
+                    {"text": f'Search results for "{query}"', "url": "/judgments/search?" + query_param_string},
+                    {"text": "Atom feed"},
+                ]
+                context["breadcrumbs"] = breadcrumbs
+
+        return render(request, "pages/atom_feed.html", context)
+
     def __call__(self, request, *args, **kwargs):
+        if "text/html" in request.headers.get("Accept", ""):
+            return self.render_html(request)
+
         response = super().__call__(request, *args, **kwargs)
 
         # Inject our stylesheet at the top of the feed

@@ -12,17 +12,30 @@
   &__result-header {
     @media (min-width: $grid-breakpoint-large) {
       flex: 1;
-      margin-bottom: $space-4;
     }
   }
 
   &__result-atom-feed-button {
     display: flex;
-    gap: $space-3;
-    align-items: center;
+    flex-direction: column;
+    padding-right: $space-6;
+
+    label {
+      font-family: $font-roboto;
+      font-size: $typography-md-text-size;
+    }
+
+    a {
+      display: flex;
+      gap: $space-1;
+      align-items: center;
+
+      height: 33px;
+      margin-right: auto;
+    }
 
     @media (min-width: $grid-breakpoint-large) {
-      margin-bottom: $space-6;
+      gap: $space-3;
     }
   }
 
@@ -38,6 +51,9 @@
     display: flex;
     flex-direction: column;
     gap: $space-4;
+
+    padding-bottom: $space-4;
+
     border-bottom: 1px solid $color-yellow;
 
     @media (min-width: $grid-breakpoint-extra-large) {
