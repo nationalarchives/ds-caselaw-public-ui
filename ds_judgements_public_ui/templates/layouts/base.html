@@ -78,7 +78,9 @@
               </nav>
             </div>
           </div>
-          {% include "includes/breadcrumbs.html" %}
+          {% block breadcrumbs %}
+            {% include "includes/breadcrumbs.html" %}
+          {% endblock breadcrumbs %}
         </div>
       </header>
     {% endblock header %}
