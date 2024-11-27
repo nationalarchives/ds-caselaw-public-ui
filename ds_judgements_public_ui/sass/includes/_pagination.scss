@@ -1,6 +1,6 @@
 .pagination {
   margin-bottom: $space-8;
-  background-color: $color-almost-black;
+  background-color: colour-var("contrast-background");
 
   h3 {
     @include sr-only;
@@ -29,7 +29,7 @@
     &-divider {
       display: inline-block;
       width: 2rem;
-      color: $color-white;
+      color: colour-var("contrast-link");
     }
 
     &-item {
@@ -74,7 +74,7 @@
 
     &-chevron-next,
     &-chevron-previous {
-      background-color: $color-grey;
+      background-color: colour-var("accent-background");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 40%;
@@ -83,7 +83,7 @@
       &:focus {
         @include focus-default;
 
-        background-color: $color-dark-grey;
+        background-color: colour-var("accent-background");
       }
     }
 
@@ -98,7 +98,7 @@
       }
 
       &:focus {
-        box-shadow: -0.6rem 0 $color-white;
+        box-shadow: -0.6rem 0 colour-var("contrast-link");
       }
 
       &--disabled {
@@ -108,15 +108,15 @@
         width: 3.125rem;
         height: 100%;
 
-        background-color: $color-grey;
-        background-image: url($fa_chevron_right_disabled);
+        background-color: colour-var("accent-background");
+        background-image: url($fa_chevron_right);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 40%;
 
         &:hover,
         &:focus {
-          background-image: url($fa_chevron_right_disabled);
+          background-image: url($fa_chevron_right);
           outline-color: transparent;
           outline-offset: 0;
         }
@@ -138,7 +138,7 @@
       }
 
       &:focus {
-        box-shadow: 0.6rem 0 $color-white;
+        box-shadow: 0.6rem 0 colour-var("contrast-link");
       }
 
       &--disabled {
@@ -148,15 +148,16 @@
         width: 3.125rem;
         height: 100%;
 
-        background-color: $color-grey;
-        background-image: url($fa_chevron_left_disabled);
+        opacity: 0.5;
+        background-color: colour-var("accent-background");
+        background-image: url($fa_chevron_left);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 40%;
 
         &:hover,
         &:focus {
-          background-image: url($fa_chevron_left_disabled);
+          background-image: url($fa_chevron_left);
           outline-color: transparent;
           outline-offset: 0;
         }
@@ -184,7 +185,7 @@
 
     &-link,
     &-link:visited {
-      color: $color-white;
+      color: colour-var("contrast-link");
     }
 
     &-link-current,
@@ -194,7 +195,7 @@
     &-link:focus {
       font-weight: $typography-bold-font-weight;
       color: colour-var("accent-link");
-      background-color: $color-white;
+      background-color: colour-var("accent-background");
       outline-color: $color-highlight-blue;
     }
   }

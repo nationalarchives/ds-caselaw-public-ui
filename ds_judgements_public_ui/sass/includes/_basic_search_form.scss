@@ -1,5 +1,5 @@
 .search-component {
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
 
   &__container {
     @include container;

@@ -1,5 +1,5 @@
 #ds-cookie-consent-banner a {
-  color: $color-white;
+  color: colour-var("contrast-link");
 }
 
 #ds-cookie-consent-banner .container #btn_preferences:hover,

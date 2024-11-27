@@ -11,7 +11,7 @@
 
       &:focus {
         color: colour-var("accent-link");
-        background-color: $color-white;
+        background-color: colour-var("accent-background");
         outline: 0.125rem solid colour-var("accent-link");
       }
     }
@@ -25,7 +25,7 @@
     color: colour-var("font-dark");
     text-transform: uppercase;
 
-    background-color: $color-white;
+    background-color: colour-var("background");
   }
 
   &__message {

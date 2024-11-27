@@ -260,7 +260,7 @@
         color: $color-dark-grey;
 
         appearance: none;
-        background-color: $color-white;
+        background-color: colour-var("input-background");
         border: 2px solid $color-dark-grey;
 
         &::before {

@@ -18,7 +18,7 @@
     font-size: $typography-2xl-text-size;
     font-weight: normal;
     line-height: $typography-md-line-height;
-    color: $color-white;
+    color: colour-var("contrast-font-base");
   }
 
   &__helper-text {
@@ -35,40 +35,6 @@
     @media only screen and (max-width: $grid-breakpoint-medium) {
       font-size: $typography-sm-text-size;
       font-weight: bold;
-    }
-  }
-
-  &__further-information {
-    display: inline-block;
-    margin-top: $space-4;
-  }
-
-  &__what-to-expect {
-    @include link-on-dark-bg;
-
-    display: inline-block;
-
-    margin: $space-6 0 0;
-    padding: 0 0 0 $space-4;
-
-    font-size: $typography-lg-text-size;
-    font-weight: $typography-bold-font-weight;
-    color: $color-white;
-    text-decoration: underline;
-
-    background: transparent url($fa_chevron_right_white) 0 0.2rem no-repeat;
-    background-size: 0.7rem;
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:active {
-      border-bottom-color: transparent;
-    }
-
-    &:focus {
-      border-bottom-color: transparent;
     }
   }
 

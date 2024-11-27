@@ -1,6 +1,6 @@
 @mixin notification {
   padding: $space-2 $space-4;
-  color: $color-white;
+  border: 2px solid;
 }
 
 @mixin page-notification {
@@ -17,13 +17,15 @@
   &--success {
     @include page-notification;
 
-    background-color: $color-success;
+    color: colour-var("green");
+    border-color: colour-var("green");
   }
 
   &--failure {
     @include page-notification;
 
-    background-color: $color-failure;
+    color: colour-var("form-error-text");
+    border-color: colour-var("form-error-border");
   }
 }
 
@@ -37,12 +39,14 @@
   &--success {
     @include context-notification;
 
-    background-color: $color-success;
+    color: colour-var("green");
+    border-color: colour-var("green");
   }
 
   &--failure {
     @include context-notification;
 
-    background-color: $color-failure;
+    color: colour-var("form-error-text");
+    border-color: colour-var("form-error-border");
   }
 }

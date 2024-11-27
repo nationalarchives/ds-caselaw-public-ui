@@ -5,16 +5,16 @@
 
   &:disabled,
   &[aria-disabled="true"] {
-    background-color: $color-dark-grey;
+    background-color: colour-var("button-background");
 
     &:focus,
     &:hover {
       cursor: not-allowed;
 
-      color: $color-white;
+      color: colour-var("kutton-text");
       text-decoration: none;
 
-      background-color: $color-dark-grey;
+      background-color: colour-var("button-background");
       outline: none;
     }
   }
@@ -24,7 +24,7 @@
   @include call-to-action-button;
 
   color: $color-cta-background;
-  background-color: $color-white;
+  background-color: colour-var("contrast-button-background");
   border: 2px solid $color-cta-background;
 
   &:visited {

@@ -254,7 +254,7 @@
 
 .govuk-grid-column-one-third__grid_info_text {
   color: colour-var("font-dark");
-  text-decoration-color: $color-white;
+  text-decoration-color: colour-var("background");
   text-decoration-line: underline;
   text-wrap: pretty;
 

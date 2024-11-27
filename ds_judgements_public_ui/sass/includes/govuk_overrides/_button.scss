@@ -5,7 +5,7 @@
   box-shadow: none;
 
   &:focus {
-    color: $color-white !important;
+    color: colour-var("button-text") !important;
 
     background-color: $color-dark-blue !important;
     outline-color: $color-dark-blue !important;

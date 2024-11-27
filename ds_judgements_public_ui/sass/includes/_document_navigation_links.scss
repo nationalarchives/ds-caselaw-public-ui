@@ -5,7 +5,7 @@
   width: 100vw;
   padding: $spacer-unit 0 0;
 
-  background-color: $color-white;
+  background-color: colour-var("background");
   box-shadow: $color-dark-grey 1px 1px 6px;
 
   &__summary {

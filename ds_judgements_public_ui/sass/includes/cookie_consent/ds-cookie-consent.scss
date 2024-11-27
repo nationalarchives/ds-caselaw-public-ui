@@ -1,33 +1,5 @@
 @import "../variables";
 
-#ds-cookie-consent-form {
-  input[type="radio"] {
-    margin-right: 7px;
-
-    + label {
-      cursor: pointer;
-
-      @media only screen and (width <= 818px) {
-        display: inline;
-      }
-    }
-  }
-
-  #form_submit:focus {
-    color: $color-cookie-consent-form-submit-focus-text;
-    background-color: $color-white;
-  }
-
-  .form-group {
-    margin-bottom: 10px;
-  }
-
-  .reduced-margin {
-    // TODO: Replace this
-    margin-bottom: 1rem;
-  }
-}
-
 #ds-cookie-consent-banner {
   z-index: 999;
   bottom: 0;
@@ -38,7 +10,7 @@
   padding: 10px 10px 20px;
 
   font-size: 14px;
-  color: $color-white;
+  color: colour-var("contrast-font-base");
 
   .container {
     box-sizing: border-box;
@@ -55,7 +27,7 @@
       font-weight: 400;
       font-style: normal;
       line-height: inherit;
-      color: $color-white;
+      color: colour-var("contrast-font-base");
     }
 
     .cookie-p {
@@ -65,7 +37,7 @@
       font-family: "Open Sans";
       font-size: 16px;
       line-height: inherit;
-      color: $color-white;
+      color: colour-var("contrast-font-base");
 
       br {
         content: "";
@@ -75,21 +47,21 @@
       }
 
       a {
-        color: $color-white;
+        color: colour-var("contrast-link");
         text-decoration: underline;
 
         &:hover {
           z-index: 999;
 
-          color: colour-var("accent-link");
+          color: colour-var("contrast-button-text");
 
-          background-color: $color-white;
+          background-color: colour-var("contrast-button-background");
           outline: 5px solid $color-focus-blue-outline;
           outline-offset: 0;
         }
 
         &:focus {
-          color: colour-var("accent-link");
+          color: colour-var("contrast-button-text");
         }
       }
     }
@@ -104,23 +76,22 @@
       padding: 0.5em 0.9em;
 
       font-family: "Roboto Mono", monospace;
-      color: colour-var("font-dark");
+      color: colour-var("contrast-button-text");
       text-align: center;
       text-decoration: none;
 
-      background: $color-light-grey;
-      border: $color-light-grey;
-      border: 2px solid $color-white;
+      background: colour-var("contrast-button-background");
+      border: 2px solid colour-var("contrast-button-background");
 
       &:hover,
       &:focus {
-        color: $color-white;
-        background: colour-var("accent-link");
-        border: 2px solid $color-white;
+        color: colour-var("contrast-button-hover-text");
+        background: colour-var("contrast-button-hover-background");
+        border: 2px solid colour-var("contrast-button-hover-background");
       }
 
       &:focus {
-        outline: 5px solid $color-white;
+        outline: 5px solid colour-var("contrast-button-hover-background");
       }
 
       @media (width <= 560px) {
@@ -138,14 +109,14 @@
 
       &:hover,
       &:focus {
-        color: $color-white;
+        color: colour-var("contrast-button-hover-text");
         text-decoration: none;
-        background: colour-var("accent-link");
-        border: 2px solid $color-white;
+        background: colour-var("contrast-button-hover-background");
+        border: 2px solid colour-var("contrast-button-hover-background");
       }
 
       &:focus {
-        outline: 5px solid $color-white;
+        outline: 5px solid colour-var("contrast-button-hover-background");
       }
 
       @media (width <= 675px) {
