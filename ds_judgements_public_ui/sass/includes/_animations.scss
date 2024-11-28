@@ -10,7 +10,7 @@
 
 @keyframes emphasis-border {
   from {
-    background-color: ($color-light-grey, 30);
+    background-color: lighten(colour-var("accent-background-light"), 30);
   }
 
   to {

@@ -36,7 +36,7 @@
     font-size: $typography-md-text-size;
     font-weight: $typography-normal-font-weight;
     line-height: 2.8rem;
-    color: $color-almost-black;
+    color: colour-var("font-dark");
 
     &--sr-only {
       @include sr-only;

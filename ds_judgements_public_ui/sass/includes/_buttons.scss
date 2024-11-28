@@ -1,7 +1,7 @@
 .button-cta {
   @include call-to-action-button;
 
-  border: 2px solid $color-cta-background;
+  border: 2px solid colour-var("blue");
 
   &:disabled,
   &[aria-disabled="true"] {
@@ -11,7 +11,7 @@
     &:hover {
       cursor: not-allowed;
 
-      color: colour-var("kutton-text");
+      color: colour-var("button-text");
       text-decoration: none;
 
       background-color: colour-var("button-background");
@@ -23,30 +23,30 @@
 .button-secondary {
   @include call-to-action-button;
 
-  color: $color-cta-background;
+  color: colour-var("blue");
   background-color: colour-var("contrast-button-background");
-  border: 2px solid $color-cta-background;
+  border: 2px solid colour-var("blue");
 
   &:visited {
-    color: $color-cta-background;
+    color: colour-var("blue");
   }
 
   &:focus,
   &:hover {
-    color: white;
+    color: colour-var("contrast-font-base");
   }
 
   &:disabled,
   &[aria-disabled="true"] {
-    color: $color-dark-grey;
+    color: colour-var("font-base");
     background-color: transparent;
-    border-color: $color-grey;
+    border-color: colour-var("accent-border");
 
     &:focus,
     &:hover {
       cursor: not-allowed;
 
-      color: $color-dark-grey;
+      color: colour-var("font-base");
       text-decoration: none;
 
       background-color: transparent;

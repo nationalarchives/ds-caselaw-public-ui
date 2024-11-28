@@ -1,7 +1,7 @@
 .results-search-component {
   margin: 0 0 $space-12;
   padding: $space-6 0 $space-8;
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
 
   &__container {
     @include container;
@@ -20,7 +20,7 @@
     font-size: $typography-md-text-size;
     font-weight: $typography-bold-font-weight;
     line-height: $typography-3xl-line-height;
-    color: $color-almost-black;
+    color: colour-var("accent-font-base");
 
     &--sr-only {
       @include sr-only;
@@ -159,7 +159,7 @@
     margin: $space-1;
     padding: $space-8;
 
-    color: colour-var("font-base");
+    color: colour-var("accent-font-base");
 
     background: $color-yellow;
     border: 0;
@@ -340,7 +340,7 @@
         margin: auto 0;
 
         border: solid;
-        border-color: $color-dark-grey;
+        border-color: colour-var("font-base");
         border-width: 0.125rem 0.125rem 0 0;
       }
 

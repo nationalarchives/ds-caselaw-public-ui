@@ -33,12 +33,12 @@
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-card-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -82,8 +82,8 @@
 }
 
 .govuk-grid-column-one-third__grid_info_card_text {
-  color: colour-var("font-dark");
-  text-decoration-color: $color-light-grey;
+  color: colour-var("accent-font-base");
+  text-decoration-color: colour-var("accent-background-light");
   text-decoration-line: underline;
 
   &:hover {
@@ -170,12 +170,12 @@
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-terms-use-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -215,12 +215,12 @@
   text-decoration: underline;
   text-decoration-color: $color-aqua-blue;
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-terms-use-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -342,14 +342,14 @@
   padding: $space-1 $space-4;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("blue");
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-card-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {

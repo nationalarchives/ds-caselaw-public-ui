@@ -100,7 +100,7 @@
 
 @mixin emphasised-block {
   padding: $space-4;
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-left: 0.5rem solid $color-highlight-blue;
 }
 

@@ -48,7 +48,7 @@
   &__matches {
     p:not(:last-child)::after {
       content: " | ";
-      color: $color-judgment-listing-matches-pipe;
+      color: colour-var("font-base");
     }
   }
 
@@ -70,7 +70,7 @@
   &__neutralcitation {
     display: block;
     font-size: $typography-sm-text-size;
-    color: $color-dark-grey;
+    color: colour-var("font-base");
 
     @media (min-width: $grid-breakpoint-medium) {
       text-align: right;
@@ -84,7 +84,7 @@
   &__date {
     display: block;
     font-size: $typography-sm-text-size;
-    color: $color-dark-grey;
+    color: colour-var("font-base");
 
     @media (min-width: $grid-breakpoint-medium) {
       text-align: right;
@@ -95,7 +95,7 @@
     display: block;
     margin-bottom: $space-2;
     font-size: $typography-sm-text-size;
-    color: $color-dark-grey;
+    color: colour-var("font-base");
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-top: $space-2;

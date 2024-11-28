@@ -12,7 +12,7 @@
     margin: 0 0 $space-4;
     padding: $space-4 0 $space-6;
     text-align: center;
-    background-color: $color-light-grey;
+    background-color: colour-var("accent-background-light");
   }
 
   &__main-search-header {
@@ -24,7 +24,7 @@
     font-size: $typography-2xl-text-size;
     font-weight: $typography-normal-font-weight;
     line-height: $typography-xs-line-height;
-    color: $color-almost-black;
+    color: colour-var("font-dark");
 
     @media (max-width: $grid-breakpoint-medium) {
       margin: $space-2 $space-4;
@@ -149,7 +149,7 @@
 
     padding: $space-4;
 
-    background-color: $color-light-grey;
+    background-color: colour-var("accent-background-light");
     border-top: 4px solid $color-yellow;
 
     @media (max-width: $grid-breakpoint-medium) {
@@ -163,7 +163,7 @@
 
     padding: $space-4;
 
-    background-color: $color-light-grey;
+    background-color: colour-var("accent-background-light");
     border-top: 4px solid $color-yellow;
 
     @media (max-width: $grid-breakpoint-medium) {
@@ -257,11 +257,11 @@
         margin: 0;
 
         font: inherit;
-        color: $color-dark-grey;
+        color: colour-var("input-foreground");
 
         appearance: none;
         background-color: colour-var("input-background");
-        border: 2px solid $color-dark-grey;
+        border: 2px solid colour-var("input-border");
 
         &::before {
           content: "";
@@ -317,7 +317,7 @@
 
   &__court-date-range {
     font-size: $typography-sm-text-size;
-    color: $color-dark-grey;
+    color: colour-var("font-base");
   }
 
   &__date-input {
@@ -334,7 +334,7 @@
     box-sizing: border-box;
     width: 100% !important;
     margin-bottom: 0;
-    border-color: $color-structured-search-date-error-message-text; // TODO: Move this to ds-caselaw-frontend
+    border-color: colour-var("red");
   }
 
   fieldset {
@@ -346,7 +346,8 @@
   &__multi-fields-panel {
     fieldset.with-errors {
       padding-left: $space-6;
-      border-left: 4px solid $color-structured-search-date-error-message-text; // TODO: Move this to ds-caselaw-frontend
+      border-left: 4px solid colour-var("red");
+
       .structured-search__help-text {
         margin-bottom: $space-2;
       }

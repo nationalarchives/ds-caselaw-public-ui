@@ -9,16 +9,16 @@
     line-height: $typography-sm-line-height;
     white-space: pre;
 
-    background: $color-grey;
+    background: colour-var("accent-background-light");
   }
 
   &__component-wrapper {
     padding: $space-4;
-    border: solid $color-grey;
+    border: solid colour-var("accent-border");
   }
 
   &__component-wrapper--dark {
-    background: $color-almost-black;
+    background: colour-var("contrast-background");
   }
 
   &__component-wrapper--large {
@@ -31,7 +31,7 @@
 
   &__spacing-container {
     margin-bottom: $space-4;
-    background: $color-light-pink;
+    background: brand-colour("pastel-pink");
   }
 
   &__spacing-item {

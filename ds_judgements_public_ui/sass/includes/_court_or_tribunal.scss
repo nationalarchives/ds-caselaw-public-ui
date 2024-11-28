@@ -45,7 +45,7 @@
 
   &__judgment-meta {
     margin-top: 0;
-    color: $color-dark-grey;
+    color: colour-var("font-base");
   }
 
   &__pagination-links {
@@ -74,7 +74,7 @@
     &.prev {
       margin-bottom: $space-4;
       padding-bottom: $space-4;
-      border-bottom: 1px solid $color-grey;
+      border-bottom: 1px solid colour-var("accent-border");
     }
   }
 }
