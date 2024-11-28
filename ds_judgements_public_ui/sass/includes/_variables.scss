@@ -1,27 +1,5 @@
-@import "@nationalarchives/ds-caselaw-frontend/src/includes/variables/colours";
 @import "@nationalarchives/ds-caselaw-frontend/src/includes/variables/variables";
 
-// Reds
-$color-structured-search-date-error-message-text: #d4351c;
-$color-warning-text-confirmation-background: #ffe5e4;
-
-// Greys
-$color-info-terms-use-hover-background: #dee0e2;
-$color-info-card-hover-background: hsl(210deg 6% 88%);
-$color-warning-text-background: #fef8df;
-$color-judgment-listing-matches-pipe: #888;
-$color-select-text: #444;
-$color-select-hover-border: #888;
-
-// Blues
-$color-emphasis-background: lighten($color-highlight-blue, 40);
-$color-banner-link: #037091;
-$color-information-text-background: #dfeef8;
-$color-information-text-border: #498abf;
-
-// Purples
-$color-banner-link-visited: #4c2c92;
-$color-cookie-consent-form-submit-focus-text: #26262a;
 $gutter_unit: 25px;
 $grid-breakpoint-small: 576px;
 $grid-breakpoint-medium: 768px;
