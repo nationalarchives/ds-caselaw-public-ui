@@ -72,19 +72,19 @@
   color: colour-var("accent-button-text");
   text-decoration: none;
 
-  background-color: colour-var("navy");
+  background-color: brand-colour("navy");
   border: 0;
 
   &:focus,
   &:hover {
     @include focus-default;
 
-    color: colour-var("accent-button-text") !important;
+    color: colour-var("accent-button-text");
     text-decoration: underline;
 
-    background-color: transparent;
-    border-color: colour-var("navy");
-    outline-color: colour-var("navy");
+    background-color: brand-colour("navy");
+    border-color: brand-colour("navy");
+    outline-color: brand-colour("navy");
     outline-offset: 0.2rem;
   }
 }
@@ -93,20 +93,26 @@
   @include call-to-action-button;
 
   padding: $space-3 $space-5;
-  color: colour-var("blue") !important;
+  color: brand-colour("navy");
   background-color: transparent;
-  border: 2px solid colour-var("navy");
+  border: 2px solid brand-colour("navy");
+
+  &:hover,
+  &:focus {
+    color: brand-colour("navy");
+    background-color: transparent;
+  }
 }
 
 @mixin emphasised-block {
   padding: $space-4;
   background-color: colour-var("accent-background-light");
-  border-left: 0.5rem solid $color-highlight-blue;
+  border-left: 0.5rem solid brand-colour("navy");
 }
 
 @mixin focus-default {
   z-index: 999;
-  outline: 5px solid colour-var("focus-outline");
+  outline: 5px solid brand-colour("navy");
   outline-offset: 2px;
 }
 

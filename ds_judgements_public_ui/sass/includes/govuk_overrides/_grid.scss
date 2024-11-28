@@ -83,8 +83,7 @@
 
 .govuk-grid-column-one-third__grid_info_card_text {
   color: colour-var("accent-font-base");
-  text-decoration-color: colour-var("accent-background-light");
-  text-decoration-line: underline;
+  text-decoration: underline;
 
   &:hover {
     text-decoration: none;

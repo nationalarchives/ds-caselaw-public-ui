@@ -88,19 +88,18 @@
       font-size: $typography-md-text-size;
       font-weight: bold;
       color: colour-var("link");
-      text-decoration: none;
+      text-decoration: underline;
 
       background: transparent;
       border: 0;
-      border-bottom: 1px solid $color-dark-blue;
 
       &:visited {
-        color: $color-dark-blue;
+        color: colour-var("link");
       }
 
       &:hover {
-        color: colour-var("accent-link");
-        text-decoration: underline;
+        color: colour-var("link");
+        text-decoration: none;
       }
     }
 

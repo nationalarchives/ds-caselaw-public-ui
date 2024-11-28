@@ -17,8 +17,8 @@
   &--success {
     @include page-notification;
 
-    color: colour-var("green");
-    border-color: colour-var("green");
+    color: brand-colour("green");
+    border-color: brand-colour("green");
   }
 
   &--failure {
@@ -39,8 +39,8 @@
   &--success {
     @include context-notification;
 
-    color: colour-var("green");
-    border-color: colour-var("green");
+    color: brand-colour("green");
+    border-color: brand-colour("green");
   }
 
   &--failure {

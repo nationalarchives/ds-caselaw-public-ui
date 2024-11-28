@@ -1,7 +1,7 @@
 .button-cta {
   @include call-to-action-button;
 
-  border: 2px solid colour-var("blue");
+  border: 2px solid brand-colour("navy");
 
   &:disabled,
   &[aria-disabled="true"] {
@@ -23,12 +23,12 @@
 .button-secondary {
   @include call-to-action-button;
 
-  color: colour-var("blue");
+  color: brand-colour("navy");
   background-color: colour-var("contrast-button-background");
-  border: 2px solid colour-var("blue");
+  border: 2px solid brand-colour("navy");
 
   &:visited {
-    color: colour-var("blue");
+    color: brand-colour("navy");
   }
 
   &:focus,

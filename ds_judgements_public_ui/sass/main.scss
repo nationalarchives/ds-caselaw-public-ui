@@ -1,5 +1,8 @@
 @use "@nationalarchives/frontend/nationalarchives/tools/colour" as *;
 
+// Vendor imports
+@import "@nationalarchives/ds-caselaw-frontend/src/main";
+
 // Setup
 @import "includes/variables";
 @import "includes/mixins";
@@ -15,9 +18,6 @@
 @import "includes/links";
 @import "includes/spacing";
 @import "includes/typography";
-
-// Vendor imports
-@import "@nationalarchives/ds-caselaw-frontend/src/main";
 
 $govuk-font-family: $font-open-sans;
 $govuk-focus-colour: colour-var("focus-outline");

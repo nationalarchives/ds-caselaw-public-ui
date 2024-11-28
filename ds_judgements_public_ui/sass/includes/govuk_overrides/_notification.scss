@@ -4,8 +4,8 @@
 }
 
 .govuk-notification-banner_red {
-  background-color: colour-var("red");
-  border: 5px solid colour-var("red");
+  background-color: brand-colour("pastel-pink");
+  border: 5px solid brand-colour("pastel-pink");
 }
 
 .govuk-notification-banner__link {
