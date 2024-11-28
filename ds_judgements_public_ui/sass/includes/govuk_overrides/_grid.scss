@@ -31,7 +31,7 @@
   padding: $space-1 $space-7;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
   background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
@@ -64,20 +64,20 @@
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading {
-  color: $color-aqua-blue;
-  text-decoration-color: $color-aqua-blue;
+  color: colour-var("link");
+  text-decoration-color: colour-var("link");
   text-decoration-line: none;
   text-wrap: wrap;
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading:visited {
-  color: $color-dark-blue;
-  text-decoration-color: $color-dark-blue;
+  color: colour-var("link-visited");
+  text-decoration-color: colour-var("link-visited");
   text-decoration-line: underline;
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading:hover {
-  color: $color-dark-blue;
+  color: colour-var("link");
   text-decoration: none;
 }
 
@@ -131,7 +131,7 @@
   padding: $space-1 $space-5;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
   &:hover {
     text-decoration: none;
@@ -168,7 +168,7 @@
   padding: $space-1 $space-5;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
   background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
@@ -213,7 +213,7 @@
   padding: $space-1 $space-5;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
   background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
@@ -235,20 +235,20 @@
 }
 
 .govuk-grid-column-one-third__grid_info_heading {
-  color: $color-aqua-blue;
-  text-decoration-color: $color-aqua-blue;
+  color: colour-var("link");
+  text-decoration-color: colour-var("link");
   text-decoration-line: none;
   text-wrap: balance;
 }
 
 .govuk-grid-column-one-third__grid_info_heading:visited {
-  color: $color-dark-blue;
-  text-decoration-color: $color-dark-blue;
+  color: colour-var("link-visited");
+  text-decoration-color: colour-var("link-visited");
   text-decoration-line: underline;
 }
 
 .govuk-grid-column-one-third__grid_info_heading:hover {
-  color: $color-dark-blue;
+  color: colour-var("link");
   text-decoration: none;
 }
 
@@ -267,7 +267,7 @@
 .govuk-grid-column-one-third__info-box {
   width: 20rem;
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
   &:hover {
     text-decoration: none;
@@ -342,7 +342,7 @@
   padding: $space-1 $space-4;
 
   text-decoration: underline;
-  text-decoration-color: colour-var("blue");
+  text-decoration-color: colour-var("link");
 
   background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;

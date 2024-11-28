@@ -87,7 +87,7 @@
       font-family: $font-roboto;
       font-size: $typography-md-text-size;
       font-weight: bold;
-      color: $color-dark-blue;
+      color: colour-var("link");
       text-decoration: none;
 
       background: transparent;

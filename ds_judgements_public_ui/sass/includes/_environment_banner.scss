@@ -1,6 +1,6 @@
 .environment-banner {
   color: colour-var("font-dark");
-  background-color: $color-information;
+  background-color: brand-colour("pastel-blue");
 
   &__notice {
     padding: 0;

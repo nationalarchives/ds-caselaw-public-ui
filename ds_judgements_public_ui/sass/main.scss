@@ -20,7 +20,7 @@
 @import "@nationalarchives/ds-caselaw-frontend/src/main";
 
 $govuk-font-family: $font-open-sans;
-$govuk-focus-colour: $color-focus-blue-outline;
+$govuk-focus-colour: colour-var("focus-outline");
 
 @import "govuk-frontend/dist/govuk/all";
 

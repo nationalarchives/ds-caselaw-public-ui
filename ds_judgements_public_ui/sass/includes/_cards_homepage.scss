@@ -33,7 +33,7 @@
     font-weight: $typography-bold-font-weight;
 
     a {
-      color: $color-aqua-blue;
+      color: colour-var("link");
     }
 
     @media only screen and (max-width: $grid-breakpoint-medium) {

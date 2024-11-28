@@ -266,7 +266,7 @@
 
     &:visited,
     &:link {
-      color: $color-link-blue;
+      color: colour-var("link");
       text-decoration: underline;
 
       &.document-navigation-links__link-left {
@@ -284,7 +284,7 @@
 
     &:hover {
       &.document-navigation-links__link-up {
-        color: $color-link-blue-hover;
+        color: colour-var("link");
 
         &::before {
           background-image: url($fa_chevron_up_link_hover_blue);
@@ -292,7 +292,7 @@
       }
 
       &.document-navigation-links__link-down {
-        color: $color-link-blue-hover;
+        color: colour-var("link");
 
         &::after {
           background-image: url($fa_chevron_down_link_hover_blue);
@@ -301,7 +301,7 @@
     }
 
     &:link:hover {
-      color: $color-link-blue-hover;
+      color: colour-var("link");
 
       &.document-navigation-links__link-left {
         &::before {

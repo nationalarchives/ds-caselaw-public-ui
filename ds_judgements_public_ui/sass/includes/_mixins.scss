@@ -38,26 +38,26 @@
 }
 
 @mixin link {
-  color: $color-link-blue;
+  color: colour-var("link");
   text-decoration: underline;
 
   &:hover {
-    color: $color-link-blue-hover;
+    color: colour-var("link");
     text-decoration: none;
   }
 
   &:visited {
-    color: $color-link-blue-visited;
+    color: colour-var("link-visited");
   }
 
   &:active {
-    color: $color-link-blue-active;
+    color: colour-var("link");
   }
 
   &:focus {
     @include focus-default;
 
-    color: $color-link-blue-focus;
+    color: colour-var("link");
   }
 }
 
@@ -93,9 +93,9 @@
   @include call-to-action-button;
 
   padding: $space-3 $space-5;
-  color: $color-cta-background !important;
+  color: colour-var("blue") !important;
   background-color: transparent;
-  border: 2px solid $color-cta-background;
+  border: 2px solid colour-var("navy");
 }
 
 @mixin emphasised-block {
@@ -106,7 +106,7 @@
 
 @mixin focus-default {
   z-index: 999;
-  outline: 5px solid $color-focus-blue-outline;
+  outline: 5px solid colour-var("focus-outline");
   outline-offset: 2px;
 }
 

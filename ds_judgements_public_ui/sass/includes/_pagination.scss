@@ -93,7 +93,7 @@
       &:hover,
       &:focus {
         background-image: url($fa_chevron_right_white);
-        outline-color: $color-highlight-blue;
+        outline-color: colour-var("focus-outline");
         outline-offset: 0.125rem;
       }
 
@@ -133,7 +133,7 @@
       &:hover,
       &:focus {
         background-image: url($fa_chevron_left_white);
-        outline-color: $color-highlight-blue;
+        outline-color: colour-var("focus-outline");
         outline-offset: 0.125rem;
       }
 
@@ -196,7 +196,7 @@
       font-weight: $typography-bold-font-weight;
       color: colour-var("accent-link");
       background-color: colour-var("accent-background");
-      outline-color: $color-highlight-blue;
+      outline-color: colour-var("focus-outline");
     }
   }
 }

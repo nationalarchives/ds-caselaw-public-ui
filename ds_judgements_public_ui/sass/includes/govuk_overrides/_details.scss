@@ -5,7 +5,7 @@
   padding: $space-2;
 
   background-color: colour-var("background");
-  border: 3px solid $color-aqua-blue;
+  border: 3px solid colour-var("blue");
 }
 
 .govuk-details--compact {
@@ -19,7 +19,7 @@
 
 .govuk-details__summary {
   padding-left: $space-6;
-  color: $color-aqua-blue;
+  color: colour-var("link");
 
   &::before {
     top: 2px;

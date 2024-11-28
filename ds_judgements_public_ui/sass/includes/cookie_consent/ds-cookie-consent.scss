@@ -56,7 +56,7 @@
           color: colour-var("contrast-button-text");
 
           background-color: colour-var("contrast-button-background");
-          outline: 5px solid $color-focus-blue-outline;
+          outline: 5px solid colour-var("focus-outline");
           outline-offset: 0;
         }
 
