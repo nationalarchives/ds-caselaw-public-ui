@@ -193,18 +193,18 @@
     margin: 0;
     font-size: $typography-sm-text-size;
     font-weight: $typography-bold-font-weight;
-    color: $color-structured-search-date-error-message-text;
+    color: colour-var("red");
   }
 
   &__to-date-error-message {
     margin: 0;
     font-size: $typography-sm-text-size;
     font-weight: $typography-bold-font-weight;
-    color: $color-structured-search-date-error-message-text;
+    color: colour-var("red");
   }
 
   input:invalid {
-    border-color: $color-structured-search-date-error-message-text;
+    border-color: colour-var("red");
   }
 
   input:focus:invalid {

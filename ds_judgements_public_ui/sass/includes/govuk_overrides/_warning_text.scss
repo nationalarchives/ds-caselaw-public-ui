@@ -11,7 +11,7 @@
 
   color: colour-var("font-dark");
 
-  background-color: $color-warning-text-background;
+  background-color: brand-colour("pastel-orange");
   border: colour-var("font-dark") solid 3px;
 }
 
@@ -33,21 +33,12 @@
 
   font-weight: $typography-normal-font-weight;
 
-  background-color: $color-warning-text-background;
+  background-color: brand-colour("pastel-orange");
   border: transparent;
   border-left: 0.5rem $color-yellow solid;
 }
 
 .govuk-warning-text.govuk-warning-text--information {
-  background-color: $color-information-text-background;
-  border-left: 0.5rem $color-information-text-border solid;
-}
-
-.govuk-warning-text__confirmation {
-  background-color: $color-warning-text-confirmation-background;
-  border-left: 0.5rem $color-structured-search-date-error-message-text solid;
-}
-
-.govuk-warning-text__icon-confirmation {
-  background-color: $color-warning-text-confirmation-background;
+  background-color: brand-colour("pastel-blue");
+  border-left: 0.5rem brand-colour("blue") solid;
 }
