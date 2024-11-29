@@ -205,6 +205,20 @@ fab e2etest
 
 These will run by default against the running `django` container. You can supply a `baseURL` argument to test against staging or production.
 
+#### Accessibility testing with E2E tests
+
+We use axe playwright to automatically check for accessibility issues on our pages. When adding a new page, you should also add a test to ensure it is accessible and stays accessible.
+
+To add an automatic accessibility check you can add the `assert_is_accessible` check to your tests, for example:
+
+```python
+def test_my_page(page: Page):
+    page.goto("/my_page")
+    assert_is_accessible(page)
+```
+
+If the page is accessible, the console won't output anything other than the usual test output. If there are accessibility issues, there will be output that explains what the issues are and also helpful links explaining how to fix them.
+
 #### Viewing code coverage
 
 ```console
