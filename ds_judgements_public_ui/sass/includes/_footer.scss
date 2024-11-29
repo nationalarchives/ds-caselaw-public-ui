@@ -1,6 +1,6 @@
 .pre-footer {
   text-align: center;
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
 
   h2 {
     margin-bottom: 0;
@@ -13,15 +13,15 @@
     @include call-to-action-button-secondary;
 
     &:visited {
-      color: $color-white;
+      color: colour-var("accent-button-text");
     }
   }
 }
 
 .judgments-footer {
   font-size: $typography-sm-text-size;
-  color: $color-white;
-  background-color: $color-almost-black;
+  color: colour-var("contrast-font-base");
+  background-color: colour-var("contrast-background");
 
   &__links-container {
     @media (min-width: $grid-breakpoint-medium) {
@@ -58,7 +58,7 @@
     @include link-on-dark-bg;
 
     &:focus {
-      color: $color-white;
+      color: colour-var("accent-button-text");
     }
   }
 

@@ -31,14 +31,14 @@
   padding: $space-1 $space-7;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-card-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -64,27 +64,26 @@
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading {
-  color: $color-aqua-blue;
-  text-decoration-color: $color-aqua-blue;
+  color: colour-var("link");
+  text-decoration-color: colour-var("link");
   text-decoration-line: none;
   text-wrap: wrap;
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading:visited {
-  color: $color-dark-blue;
-  text-decoration-color: $color-dark-blue;
+  color: colour-var("link-visited");
+  text-decoration-color: colour-var("link-visited");
   text-decoration-line: underline;
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading:hover {
-  color: $color-dark-blue;
+  color: colour-var("link");
   text-decoration: none;
 }
 
 .govuk-grid-column-one-third__grid_info_card_text {
-  color: $color-black;
-  text-decoration-color: $color-light-grey;
-  text-decoration-line: underline;
+  color: colour-var("accent-font-base");
+  text-decoration: underline;
 
   &:hover {
     text-decoration: none;
@@ -131,7 +130,7 @@
   padding: $space-1 $space-5;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
   &:hover {
     text-decoration: none;
@@ -168,14 +167,14 @@
   padding: $space-1 $space-5;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-terms-use-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -213,14 +212,14 @@
   padding: $space-1 $space-5;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-terms-use-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {
@@ -235,26 +234,26 @@
 }
 
 .govuk-grid-column-one-third__grid_info_heading {
-  color: $color-aqua-blue;
-  text-decoration-color: $color-aqua-blue;
+  color: colour-var("link");
+  text-decoration-color: colour-var("link");
   text-decoration-line: none;
   text-wrap: balance;
 }
 
 .govuk-grid-column-one-third__grid_info_heading:visited {
-  color: $color-dark-blue;
-  text-decoration-color: $color-dark-blue;
+  color: colour-var("link-visited");
+  text-decoration-color: colour-var("link-visited");
   text-decoration-line: underline;
 }
 
 .govuk-grid-column-one-third__grid_info_heading:hover {
-  color: $color-dark-blue;
+  color: colour-var("link");
   text-decoration: none;
 }
 
 .govuk-grid-column-one-third__grid_info_text {
-  color: $color-black;
-  text-decoration-color: $color-white;
+  color: colour-var("font-dark");
+  text-decoration-color: colour-var("background");
   text-decoration-line: underline;
   text-wrap: pretty;
 
@@ -267,7 +266,7 @@
 .govuk-grid-column-one-third__info-box {
   width: 20rem;
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
   &:hover {
     text-decoration: none;
@@ -342,14 +341,14 @@
   padding: $space-1 $space-4;
 
   text-decoration: underline;
-  text-decoration-color: $color-aqua-blue;
+  text-decoration-color: colour-var("link");
 
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
   border-top: 4px solid $color-yellow;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-info-card-hover-background;
+    background-color: colour-var("accent-background");
   }
 
   @media (max-width: $grid-breakpoint-medium) {

@@ -9,6 +9,6 @@ input::-webkit-inner-spin-button {
 }
 
 input::placeholder {
-  color: $color-dark-grey;
+  color: colour-var("input-foreground");
   opacity: 1;
 }

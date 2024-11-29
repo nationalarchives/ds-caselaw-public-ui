@@ -29,7 +29,7 @@
       padding: 0;
 
       line-height: 1.3rem;
-      color: $color-white;
+      color: colour-var("contrast-link");
       letter-spacing: 0.3px;
 
       &:not(:nth-child(1)) {
@@ -51,7 +51,7 @@
           margin: auto 0;
 
           border: solid;
-          border-color: $color-white;
+          border-color: colour-var("contrast-link");
           border-width: 0.125rem 0.125rem 0 0;
         }
       }
@@ -64,7 +64,7 @@
 
   &__prefix {
     margin-right: $space-2;
-    color: $color-white;
+    color: colour-var("contrast-link");
   }
 
   @media only screen and (max-width: $grid-breakpoint-medium) {

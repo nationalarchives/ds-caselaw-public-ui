@@ -36,13 +36,13 @@
 
     font-family: Roboto, sans-serif;
     font-size: 14px;
-    color: $color-link-blue;
+    color: colour-var("link");
     text-decoration: underline;
     white-space: nowrap;
 
     opacity: 0;
-    background: $color-white;
-    border: 1px solid $color-grey;
+    background: colour-var("background");
+    border: 1px solid colour-var("input-border");
 
     transition: opacity ease 0.3s;
 
@@ -57,9 +57,9 @@
       width: 8px;
       height: 8px;
 
-      background: $color-white;
-      border-top: 1px solid $color-grey;
-      border-right: 1px solid $color-grey;
+      background: colour-var("background");
+      border-top: 1px solid colour-var("input-border");
+      border-right: 1px solid colour-var("input-border");
     }
   }
 
@@ -75,7 +75,7 @@
   }
 
   &__copy-link-tooltip--show {
-    color: $color-black;
+    color: colour-var("font-dark");
     text-decoration: none;
     opacity: 1;
   }

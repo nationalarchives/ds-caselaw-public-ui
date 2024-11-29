@@ -38,26 +38,26 @@
 }
 
 @mixin link {
-  color: $color-link-blue;
+  color: colour-var("link");
   text-decoration: underline;
 
   &:hover {
-    color: $color-link-blue-hover;
+    color: colour-var("link");
     text-decoration: none;
   }
 
   &:visited {
-    color: $color-link-blue-visited;
+    color: colour-var("link-visited");
   }
 
   &:active {
-    color: $color-link-blue-active;
+    color: colour-var("link");
   }
 
   &:focus {
     @include focus-default;
 
-    color: $color-link-blue-focus;
+    color: colour-var("link");
   }
 }
 
@@ -69,22 +69,22 @@
 
   font-size: $typography-md-text-size;
   font-weight: $typography-bold-font-weight;
-  color: $color-white;
+  color: colour-var("accent-button-text");
   text-decoration: none;
 
-  background-color: $color-cta-background;
+  background-color: brand-colour("navy");
   border: 0;
 
   &:focus,
   &:hover {
     @include focus-default;
 
-    color: $color-white !important;
+    color: colour-var("accent-button-text");
     text-decoration: underline;
 
-    background-color: $color-cta-background-hover;
-    border-color: $color-cta-background-hover;
-    outline-color: $color-cta-background-hover;
+    background-color: brand-colour("navy");
+    border-color: brand-colour("navy");
+    outline-color: brand-colour("navy");
     outline-offset: 0.2rem;
   }
 }
@@ -93,44 +93,50 @@
   @include call-to-action-button;
 
   padding: $space-3 $space-5;
-  color: $color-cta-background !important;
+  color: brand-colour("navy");
   background-color: transparent;
-  border: 2px solid $color-cta-background;
+  border: 2px solid brand-colour("navy");
+
+  &:hover,
+  &:focus {
+    color: brand-colour("navy");
+    background-color: transparent;
+  }
 }
 
 @mixin emphasised-block {
   padding: $space-4;
-  background-color: $color-light-grey;
-  border-left: 0.5rem solid $color-highlight-blue;
+  background-color: colour-var("accent-background-light");
+  border-left: 0.5rem solid brand-colour("navy");
 }
 
 @mixin focus-default {
   z-index: 999;
-  outline: 5px solid $color-focus-blue-outline;
+  outline: 5px solid brand-colour("navy");
   outline-offset: 2px;
 }
 
 @mixin link-on-dark-bg {
-  color: $color-white;
+  color: colour-var("contrast-link");
   text-decoration: underline;
 
   &:hover {
-    color: $color-white;
+    color: colour-var("contrast-link");
     text-decoration: none;
   }
 
   &:visited {
-    color: $color-white;
+    color: colour-var("contrast-link-visited");
   }
 
   &:active {
-    color: $color-white;
+    color: colour-var("contrast-link");
   }
 
   &:focus {
     @include focus-default;
 
-    outline-color: $color-white;
+    outline-color: colour-var("contrast-link");
   }
 }
 
@@ -143,8 +149,8 @@
   font-family: $font-open-sans;
   font-size: $typography-md-text-size;
 
-  background-color: $color-white;
-  border: 2px solid $color-dark-grey;
+  background-color: colour-var("input-background");
+  border: 2px solid colour-var("input-border");
 
   &:focus {
     @include focus-default;
@@ -160,10 +166,10 @@
 
   font-size: $typography-md-text-size;
   line-height: $typography-lg-line-height;
-  color: $color-select-text;
+  color: colour-var("input-foreground");
 
   appearance: none;
-  background-color: $color-white;
+  background-color: colour-var("input-background");
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat, repeat;
   background-position:
@@ -172,15 +178,11 @@
   background-size:
     0.65rem auto,
     100%;
-  border: 2px solid $color-dark-grey;
+  border: 2px solid colour-var("input-border");
   border-radius: 0;
 
   &::-ms-expand {
     display: none;
-  }
-
-  &:hover {
-    border-color: $color-select-hover-border;
   }
 
   &:focus {

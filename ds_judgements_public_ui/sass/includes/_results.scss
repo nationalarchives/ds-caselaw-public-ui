@@ -40,7 +40,7 @@
   }
 
   &__result-list-container {
-    background-color: $color-white;
+    background-color: colour-var("background");
 
     h2 {
       @include sr-only;
@@ -81,7 +81,7 @@
   &__container-extend-search-option {
     margin: $space-4 0;
     padding: $space-4 $space-8;
-    background-color: $color-light-grey;
+    background-color: colour-var("accent-background-light");
   }
 
   &__list-layout-container {

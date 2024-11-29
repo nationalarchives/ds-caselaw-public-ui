@@ -1,6 +1,6 @@
 @keyframes emphasis {
   from {
-    background-color: $color-emphasis-background;
+    background-color: brand-colour("pastel-blue");
   }
 
   to {
@@ -10,7 +10,7 @@
 
 @keyframes emphasis-border {
   from {
-    background-color: ($color-light-grey, 30);
+    background-color: colour-var("accent-background-light");
   }
 
   to {

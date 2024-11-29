@@ -5,8 +5,8 @@
   width: 100vw;
   padding: $spacer-unit 0 0;
 
-  background-color: $color-white;
-  box-shadow: $color-dark-grey 1px 1px 6px;
+  background-color: colour-var("background");
+  box-shadow: colour-var("font-base") 1px 1px 6px;
 
   &__summary {
     display: flex;
@@ -61,7 +61,7 @@
   padding: $space-4;
   padding: $spacer-unit;
 
-  border-bottom: 1px solid $color-dark-grey;
+  border-bottom: 1px solid colour-var("font-base");
   border-bottom: none;
 
   &__query-wrapper {
@@ -223,7 +223,7 @@
     }
 
     &.document-navigation-links__link-left {
-      color: $color-link-disabled;
+      color: colour-var("grey");
       text-decoration: none;
 
       &::before {
@@ -244,7 +244,7 @@
     }
 
     &.document-navigation-links__link-right {
-      color: $color-link-disabled;
+      color: colour-var("grey");
       text-decoration: none;
 
       &::after {
@@ -266,7 +266,7 @@
 
     &:visited,
     &:link {
-      color: $color-link-blue;
+      color: colour-var("link");
       text-decoration: underline;
 
       &.document-navigation-links__link-left {
@@ -284,7 +284,7 @@
 
     &:hover {
       &.document-navigation-links__link-up {
-        color: $color-link-blue-hover;
+        color: colour-var("link");
 
         &::before {
           background-image: url($fa_chevron_up_link_hover_blue);
@@ -292,7 +292,7 @@
       }
 
       &.document-navigation-links__link-down {
-        color: $color-link-blue-hover;
+        color: colour-var("link");
 
         &::after {
           background-image: url($fa_chevron_down_link_hover_blue);
@@ -301,7 +301,7 @@
     }
 
     &:link:hover {
-      color: $color-link-blue-hover;
+      color: colour-var("link");
 
       &.document-navigation-links__link-left {
         &::before {

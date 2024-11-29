@@ -33,7 +33,7 @@
     font-weight: $typography-bold-font-weight;
 
     a {
-      color: $color-aqua-blue;
+      color: colour-var("link");
     }
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
@@ -76,14 +76,14 @@
 
       text-wrap: balance;
 
-      background-color: $color-light-grey;
+      background-color: colour-var("accent-background-light");
     }
   }
 
   @media (max-width: $grid-breakpoint-medium) {
     gap: $space-4;
     margin: 0;
-    background-color: $color-light-grey;
+    background-color: colour-var("accent-background-light");
   }
 
   @media (min-width: $grid-breakpoint-small) {

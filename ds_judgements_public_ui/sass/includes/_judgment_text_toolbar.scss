@@ -1,11 +1,11 @@
 .judgment-toolbar {
   padding: $space-4;
 
-  color: $color-black;
+  color: colour-var("accent-font-base");
   text-align: center;
 
-  background-color: $color-light-grey;
-  border-bottom: 0.125rem solid $color-grey;
+  background-color: colour-var("accent-background-light");
+  border-bottom: 0.125rem solid colour-var("accent-border");
 
   &__container {
     display: flex;
@@ -67,7 +67,7 @@
     margin-bottom: 0;
     padding: $space-1 $space-2;
 
-    color: $color-almost-black;
+    color: colour-var("accent-font-base");
     text-align: center;
     text-wrap: balance;
 
@@ -78,7 +78,7 @@
     margin-top: $space-4;
     margin-bottom: 0;
 
-    color: $color-almost-black;
+    color: colour-var("accent-font-base");
     text-align: center;
     text-wrap: balance;
   }
@@ -88,7 +88,7 @@
     margin-bottom: $space-1;
 
     font-size: $typography-xl-text-size;
-    color: $color-almost-black;
+    color: colour-var("accent-font-base");
     text-align: center;
     text-wrap: balance;
 
@@ -113,7 +113,7 @@
       display: inline-block;
 
       font-size: $typography-md-text-size;
-      color: $color-aqua-blue;
+      color: colour-var("link");
       text-decoration: underline;
 
       background: url($fa_chevron_down_link_blue) right no-repeat;

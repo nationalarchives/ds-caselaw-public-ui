@@ -3,7 +3,7 @@
     margin-top: $space-4;
     padding: $space-4;
     font-style: italic;
-    border: solid 1px $color-black;
+    border: solid 1px colour-var("black");
   }
 
   h3.transactional-licence-form-content__heading {

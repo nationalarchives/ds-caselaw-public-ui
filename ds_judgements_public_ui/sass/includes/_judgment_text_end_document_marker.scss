@@ -7,14 +7,14 @@
 
   text-align: center;
 
-  border: 1px dashed $color-black;
+  border: 1px dashed colour-var("black");
   border-top: none;
 
   &__top-link {
     display: inline-block;
     padding: $space-2;
     padding-top: $space-1;
-    background-color: white;
+    background-color: colour-var("background");
 
     a {
       display: none;
@@ -37,11 +37,11 @@
       }
 
       &:visited {
-        color: $color-link-blue;
+        color: colour-var("link-visited");
       }
 
       &:hover {
-        color: $color-link-blue-hover;
+        color: colour-var("link");
 
         &::before {
           background-image: url($fa_chevron_up_link_hover_blue);

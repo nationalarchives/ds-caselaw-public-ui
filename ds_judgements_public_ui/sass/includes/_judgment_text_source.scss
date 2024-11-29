@@ -1,7 +1,7 @@
 .judgment-text-source {
   padding: $space-2;
-  background-color: $color-light-grey;
-  border-bottom: 0.125rem solid $color-grey;
+  background-color: colour-var("accent-background-light");
+  border-bottom: 0.125rem solid colour-var("accent-border");
 
   &__container {
     margin: auto;
@@ -14,7 +14,7 @@
     }
 
     a {
-      color: $color-black;
+      color: colour-var("font-base");
     }
 
     @media (min-width: $grid-breakpoint-medium) {

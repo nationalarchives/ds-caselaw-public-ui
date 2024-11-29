@@ -1,5 +1,5 @@
 .search-component {
-  background-color: $color-light-grey;
+  background-color: colour-var("accent-background-light");
 
   &__container {
     @include container;
@@ -36,7 +36,7 @@
     font-size: $typography-md-text-size;
     font-weight: $typography-normal-font-weight;
     line-height: 2.8rem;
-    color: $color-almost-black;
+    color: colour-var("font-dark");
 
     &--sr-only {
       @include sr-only;
@@ -56,19 +56,19 @@
       font-family: $font-roboto;
       font-size: $typography-md-text-size;
       font-weight: $typography-bold-font-weight;
-      color: $color-black;
+      color: colour-var("accent-link");
       text-decoration: none;
 
       background: transparent;
       border: 0;
-      border-bottom: 0.125rem solid $color-black;
+      border-bottom: 0.125rem solid colour-var("accent-link");
 
       &:visited {
-        color: $color-black;
+        color: colour-var("accent-link");
       }
 
       &:hover {
-        color: $color-black;
+        color: colour-var("accent-link");
         text-decoration: underline;
       }
     }
@@ -87,20 +87,19 @@
       font-family: $font-roboto;
       font-size: $typography-md-text-size;
       font-weight: bold;
-      color: $color-dark-blue;
-      text-decoration: none;
+      color: colour-var("link");
+      text-decoration: underline;
 
       background: transparent;
       border: 0;
-      border-bottom: 1px solid $color-dark-blue;
 
       &:visited {
-        color: $color-dark-blue;
+        color: colour-var("link");
       }
 
       &:hover {
-        color: $color-black;
-        text-decoration: underline;
+        color: colour-var("link");
+        text-decoration: none;
       }
     }
 

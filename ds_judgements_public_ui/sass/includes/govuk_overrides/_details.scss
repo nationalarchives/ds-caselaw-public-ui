@@ -4,8 +4,8 @@
   margin-bottom: $space-8;
   padding: $space-2;
 
-  background-color: $color-white;
-  border: 3px solid $color-aqua-blue;
+  background-color: colour-var("background");
+  border: 3px solid brand-colour("navy");
 }
 
 .govuk-details--compact {
@@ -19,7 +19,7 @@
 
 .govuk-details__summary {
   padding-left: $space-6;
-  color: $color-aqua-blue;
+  color: colour-var("link");
 
   &::before {
     top: 2px;

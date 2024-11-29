@@ -1,46 +1,12 @@
 .phase-banner {
-  color: $color-black;
-  background-color: $color-yellow;
-
-  &__notice {
-    padding: 0;
-
-    a {
-      font-weight: $typography-bold-font-weight;
-      color: $color-black;
-
-      &:focus {
-        color: $color-black;
-        background-color: $color-white;
-        outline: 0.125rem solid $color-black;
-      }
-    }
-  }
-
-  &__phase {
-    margin-right: $space-4;
-    padding: 0 $space-1;
-
-    font-weight: $typography-bold-font-weight;
-    color: $color-black;
-    text-transform: uppercase;
-
-    background-color: $color-white;
-  }
-
   &__beta-phase {
     padding: $space-1 $space-2;
 
     font-size: $typography-sm-text-size;
     font-weight: 700;
-    color: $color-black;
+    color: colour-var("font-base");
     text-transform: uppercase;
 
     background-color: $color-yellow;
-  }
-
-  &__message {
-    display: inline;
-    margin: 0;
   }
 }
