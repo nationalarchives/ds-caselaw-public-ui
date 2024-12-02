@@ -33,7 +33,7 @@
     {% block extra_head_tags %}{% endblock extra_head_tags %}
     {% include "includes/gtm/gtm_head.html" %}
   </head>
-  <body>
+  <body class="{% block body_class %}{% endblock body_class %}">
     <script>
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
