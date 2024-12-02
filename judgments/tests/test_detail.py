@@ -138,7 +138,9 @@ class TestDocumentDownloadOptions:
         mock_get_document_by_uri.return_value = document_factory_class.build(uri=uri, is_published=True)
         mock_pdf.return_value.size = 112
         mock_pdf.return_value.uri = "http://example.com/test.pdf"
-        document_noun = mock_get_document_by_uri().document_noun
+        document = mock_get_document_by_uri()
+        document_title = document.body.name
+        document_noun = document.document_noun
         assert document_noun in ["press summary", "judgment"]
         client = Client()
         response = client.get(f"/{uri}")
@@ -147,12 +149,12 @@ class TestDocumentDownloadOptions:
         <h2 id="judgment-download-options-header" class="judgment-download-options__header">Download options</h2>
         <div class="judgment-download-options__options-list">
             <div class="judgment-download-options__download-option">
-            <h3><a href="http://example.com/test.pdf" aria-label="Download this document as a PDF" download="">
+            <h3><a href="http://example.com/test.pdf" aria-label="Download {document_title} as a PDF  ({filesizeformat(112)})" download="">
             Download this {document_noun} as a PDF ({filesizeformat(112)})</a></h3>
             <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
             </div>
             <div class="judgment-download-options__download-option">
-            <h3><a href="/{uri}/data.xml" aria-label="Download this document as XML">
+            <h3><a href="/{uri}/data.xml" aria-label="Download {document_title} as XML">
             Download this {document_noun} as XML</a></h3>
             <p>
             The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
