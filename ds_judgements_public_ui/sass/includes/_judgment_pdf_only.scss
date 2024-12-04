@@ -1,0 +1,38 @@
+.judgment-pdf-only {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+  align-items: center;
+
+  max-width: 46rem;
+  margin: auto;
+  padding: $space-8 0 $space-12;
+
+  p {
+    margin: 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    align-items: center;
+  }
+
+  &__footer {
+    text-align: center;
+  }
+
+  a {
+    &.btn {
+      @include call-to-action-button;
+
+      margin: 0;
+    }
+
+    .btn__label {
+      font-size: $typography-sm-text-size;
+      font-weight: $typography-normal-font-weight;
+    }
+  }
+}
