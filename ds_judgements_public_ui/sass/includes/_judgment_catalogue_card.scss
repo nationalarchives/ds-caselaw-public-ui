@@ -18,6 +18,10 @@
       border: 2px solid $color-yellow;
     }
 
+    td {
+      word-break: break-word;
+    }
+
     th {
       text-align: left;
     }
