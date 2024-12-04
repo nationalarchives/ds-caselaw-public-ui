@@ -16,18 +16,24 @@
 {% endblock precontent %}
 {% block body_class %}document-detail{% endblock body_class %}
 {% block content %}
-  <div id="start-of-document"></div>
-  {% if document_html %}
-    {% autoescape off %}
-      {{ document_html }}
-    {% endautoescape %}
+  {% if document.best_human_identifier %}
+    <div id="start-of-document"></div>
+    {% if document_html %}
+      {% autoescape off %}
+        {{ document_html }}
+      {% endautoescape %}
+    {% else %}
+      {{ content }}
+    {% endif %}
+    {% include "includes/judgment_end_document_marker.html" %}
+    {% include "includes/judgment_navigation.html" %}
   {% else %}
-    {{ content }}
+    {% include "includes/judgment_pdf_only.html" %}
   {% endif %}
-  {% include "includes/judgment_end_document_marker.html" %}
-  {% include "includes/judgment_navigation.html" %}
 {% endblock content %}
 {% block postcontent %}
-  {% include "includes/judgment_text_download_options.html" %}
+  {% if document.best_human_identifier %}
+    {% include "includes/judgment_text_download_options.html" %}
+  {% endif %}
   {% flag "document_catalogue_card" %}{% include "includes/judgment_catalogue_card.html" %}{% endflag %}
 {% endblock postcontent %}

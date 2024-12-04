@@ -1,0 +1,34 @@
+{% load utilities document_utils %}
+<div class="judgment-pdf-only">
+  <div class="govuk-warning-text govuk-warning-text--text-only govuk-warning-text--information">
+    <span class="govuk-warning-text__text">
+      <span class="govuk-visually-hidden">Information</span>
+      <h2>Document status</h2>
+      This document is only available to download and view as a PDF.
+    </span>
+  </div>
+
+  <div class="judgment-pdf-only__content">
+    <p>
+      The original format of this document as handed down by the court, for printing and downloading.
+    </p>
+
+    <a href="{{ pdf_uri }}"
+       class="btn"
+       aria-label="Download {{ document|get_title_to_display_in_html }} as a PDF {{ pdf_size }}"
+       download="">
+      Download PDF
+      <span class="btn__label">
+        {{ pdf_size }}
+      </span>
+    </a>
+
+  </div>
+  {% include "includes/judgment_catalogue_card.html" %}
+
+  {% if document.web_archive_url %}
+    <div class="judgment-pdf-only__footer">
+      <p>The original website containing <a href="">this document has been archived by the UK Government Web Archive</a>.</p>
+    </div>
+  {% endif %}
+</div>

@@ -6,9 +6,10 @@
 
 .govuk-warning-text__text {
   h2 {
-    margin: 0;
+    margin: 0 0 $space-4;
     font-size: $typography-header-h3-size;
     font-weight: $typography-bold-font-weight;
+    line-height: $typography-md-line-height;
   }
 
   p:last-child {
@@ -18,16 +19,17 @@
 
 .govuk-warning-text {
   margin-bottom: 0;
-  padding: $space-8;
+  padding: $space-4;
   border: transparent;
-  border-left: 0.5rem $color-aqua-blue solid;
+  border-left: 10px $color-aqua-blue solid;
 
   font-weight: $typography-normal-font-weight;
 
   background-color: brand-colour("pastel-blue");
+  border: transparent;
 }
 
 .govuk-warning-text.govuk-warning-text--information {
-  border-left: 0.5rem brand-colour("blue") solid;
+  border-left: 10px brand-colour("navy") solid;
   background-color: brand-colour("pastel-blue");
 }

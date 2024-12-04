@@ -99,6 +99,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "includes/judgment_text_toolbar";
 @import "includes/judgments_listing";
 @import "includes/recent_judgments";
+@import "includes/judgment_pdf_only";
 
 // Homepage
 @import "includes/browse_by_court";
