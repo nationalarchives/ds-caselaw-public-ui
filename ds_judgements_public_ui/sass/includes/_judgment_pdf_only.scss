@@ -1,12 +1,12 @@
 .judgment-pdf-only {
   display: flex;
   flex-direction: column;
-  gap: $space-12;
+  gap: $space-8;
   align-items: center;
 
   max-width: 46rem;
   margin: auto;
-  padding: $space-8 0 $space-12;
+  padding: $space-4 $space-4 $space-8;
 
   p {
     margin: 0;
@@ -34,5 +34,10 @@
       font-size: $typography-sm-text-size;
       font-weight: $typography-normal-font-weight;
     }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    gap: $space-12;
+    padding: $space-8 0 $space-12;
   }
 }
