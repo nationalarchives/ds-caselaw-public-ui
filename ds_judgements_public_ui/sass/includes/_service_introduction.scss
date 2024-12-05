@@ -19,6 +19,11 @@
     font-weight: normal;
     line-height: $typography-md-line-height;
     color: colour-var("contrast-font-base");
+    text-wrap: nowrap;
+
+    @media only screen and (max-width: $grid-breakpoint-small) {
+      font-size: $typography-xl-text-size;
+    }
   }
 
   &__helper-text {
