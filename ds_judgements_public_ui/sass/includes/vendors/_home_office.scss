@@ -6,7 +6,6 @@
   $home-office-alert-success-background-colour: #c6ece9;
   $home-office-alert-success-border-colour: #28a197;
 
-  width: 100%;
   margin-top: $space-5;
   margin-bottom: $space-5;
   padding: $space-4;
@@ -49,5 +48,9 @@
 
   a {
     font-weight: $typography-bold-font-weight;
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    width: 100%;
   }
 }
