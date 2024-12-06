@@ -8,4 +8,4 @@ set -o nounset
 npm run build
 python /app/manage.py collectstatic --noinput
 cd /app
-/usr/local/bin/gunicorn config.wsgi --bind 0.0.0.0:5000 --chdir=/app --access-logfile - -w 5
+/usr/local/bin/gunicorn config.wsgi --bind 0.0.0.0:5000 --chdir=/app --access-logfile - -w 5 --access-logformat '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(L)s "%({x-forwarded-for}i)s" "%({cloudfront-viewer-address}i)s" "%({x-amz-cf-id}i)s" "%({x-amzn-trace-id}i)s"'
