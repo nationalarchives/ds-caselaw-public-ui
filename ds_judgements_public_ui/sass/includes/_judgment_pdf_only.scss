@@ -17,10 +17,14 @@
     flex-direction: column;
     gap: $space-6;
     align-items: center;
+
+    text-align: center;
+    text-wrap: balance;
   }
 
   &__footer {
     text-align: center;
+    text-wrap: balance;
   }
 
   a {

@@ -42,6 +42,10 @@
   background-color: brand-colour("pastel-orange");
   border: transparent;
   border-left: 10px $color-yellow solid;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    width: 100%;
+  }
 }
 
 .govuk-warning-text.govuk-warning-text--information {
