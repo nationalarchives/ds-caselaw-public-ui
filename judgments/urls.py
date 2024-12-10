@@ -5,7 +5,8 @@ from judgments.views.browse import BrowseView
 from judgments.views.index import IndexView
 
 from . import converters, feeds
-from .resolvers.document_resolver_engine import DocumentResolverEngine
+from .resolvers.document_resolver_engine import DocumentResolverEngine, IdentifierResolverEngine
+from .views.advanced_search import advanced_search
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -16,6 +17,7 @@ register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
 
 urlpatterns = [
+    path("demo/<document_uri:document_uri>", IdentifierResolverEngine.as_view(), name="resolve-ncn"),
     path("<court:court>", BrowseView.as_view(), name="browse"),
     path("<yyyy:year>", BrowseView.as_view(), name="browse"),
     path("<court:court>/<yyyy:year>", BrowseView.as_view(), name="browse"),
