@@ -25,7 +25,7 @@
     </div>
     <div class="judgment-download-options__download-option">
       <h3>
-        <a href="{% formatted_document_uri document.uri 'xml' %}"
+        <a href="{% formatted_document_uri request.path 'xml' %}"
            aria-label="Download {{ document|get_title_to_display_in_html }} as XML">
           {% if document.document_noun == 'press summary' %}
             Download this press summary as XML
