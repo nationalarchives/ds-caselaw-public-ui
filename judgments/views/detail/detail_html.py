@@ -29,7 +29,7 @@ def number_of_mentions(content: str, query: str) -> int:
     return len(tree.findall(".//mark"))
 
 
-def detail_html(request, document_uri: str):
+def detail_html(request, document_uri):
     query = request.GET.get("query")
 
     context: dict[str, Any] = {}
