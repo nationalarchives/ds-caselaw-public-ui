@@ -242,17 +242,19 @@ def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary
 
 
 def formatted_document_uri(document_uri: DocumentURIString, format: Optional[str] = None) -> str:
-    url = reverse("detail", args=[document_uri])
+    url = reverse("detail", args=[document_uri.strip("/")])
     if format == "pdf":
-        url = url + "/data.pdf"
+        return f"{url}/data.pdf"
     elif format == "generated_pdf":
-        url = url + "/generated.pdf"
+        return f"{url}/generated.pdf"
     elif format == "xml":
-        url = url + "/data.xml"
+        return f"{url}/data.xml"
     elif format == "html":
-        url = url + "/data.html"
-
-    return url
+        return f"{url}/data.html"
+    elif not format:
+        return url
+    msg = f"Unexpected format to formatted_document_uri, {format!r}"
+    raise RuntimeError(msg)
 
 
 def linked_doc_url(document: Document) -> DocumentURIString:
