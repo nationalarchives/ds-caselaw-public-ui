@@ -16,20 +16,18 @@
 {% endblock precontent %}
 {% block body_class %}document-detail{% endblock body_class %}
 {% block content %}
-  {% if document.best_human_identifier %}
+  {% if document_html %}
     <div id="start-of-document"></div>
-    {% if document_html %}
-      {% autoescape off %}
-        {{ document_html }}
-      {% endautoescape %}
-    {% else %}
-      {{ content }}
-    {% endif %}
+    {% autoescape off %}
+      {{ document_html }}
+    {% endautoescape %}
+
     {% include "includes/judgment_end_document_marker.html" %}
     {% include "includes/judgment_navigation.html" %}
   {% else %}
     {% include "includes/judgment_pdf_only.html" %}
   {% endif %}
+
 {% endblock content %}
 {% block postcontent %}
   {% if document.best_human_identifier %}
