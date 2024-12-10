@@ -23,9 +23,11 @@
           </a>
         {% endspaceless %}
       {% endif %}
-      <p class="judgment-toolbar-options__download-options">
-        <a href="#download-options"  aria-label="View download options">View download options</a>
-      </p>
+      {% if document.best_human_identifier %}
+        <p class="judgment-toolbar-options__download-options">
+          <a href="#download-options"  aria-label="View download options">View download options</a>
+        </p>
+      {% endif %}
     </div>
   </div>
 </section>

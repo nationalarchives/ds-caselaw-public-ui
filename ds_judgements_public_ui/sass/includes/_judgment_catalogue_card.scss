@@ -1,13 +1,25 @@
 .catalogue-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  width: 100%;
+
+  h2 {
+    margin: 0;
+  }
+
   &__table {
     border-collapse: collapse;
     width: 100%;
-    margin: $space-4 0;
 
     th,
     td {
       padding: $space-2;
-      border: 1px solid colour-var("font-base");
+      border: 2px solid $color-yellow;
+    }
+
+    td {
+      word-break: break-word;
     }
 
     th {

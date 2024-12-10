@@ -13,7 +13,7 @@
     @include call-to-action-button-secondary;
 
     &:visited {
-      color: colour-var("accent-button-text");
+      color: brand-colour("navy");
     }
   }
 }
