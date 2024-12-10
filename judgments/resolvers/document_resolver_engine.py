@@ -11,7 +11,7 @@ from judgments.views.detail import best_pdf, detail_html, detail_xml, generated_
 from judgments.views.press_summaries import press_summaries
 
 
-class MarklogicInDocumentClothing(str):
+class MarklogicInDocumentClothing(DocumentURIString):
     def __new__(self, value):
         return value.strip("/").replace(".xml", "")
 

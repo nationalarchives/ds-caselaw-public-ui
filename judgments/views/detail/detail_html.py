@@ -3,6 +3,7 @@ import os
 import urllib
 from typing import Any
 
+from caselawclient.models.documents import DocumentURIString
 from django.http import Http404, HttpResponseRedirect
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
@@ -29,7 +30,7 @@ def number_of_mentions(content: str, query: str) -> int:
     return len(tree.findall(".//mark"))
 
 
-def detail_html(request, document_uri):
+def detail_html(request, document_uri: DocumentURIString):
     query = request.GET.get("query")
 
     context: dict[str, Any] = {}
