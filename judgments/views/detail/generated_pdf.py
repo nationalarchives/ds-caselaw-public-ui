@@ -28,7 +28,7 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
 
         document = get_published_document_by_uri(document_uri)
 
-        self.pdf_filename = f"{document.uri}.pdf"
+        self.pdf_filename = f"placeholder_{document.uri}.pdf"
 
         context["document"] = document.body.content_as_html()
 
