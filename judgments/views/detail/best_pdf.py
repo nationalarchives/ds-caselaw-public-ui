@@ -21,7 +21,7 @@ def best_pdf(request, document_uri):
         return HttpResponse(response.content, content_type="application/pdf")
 
     if response.status_code != 404:
-        logging.warn(f"Unexpected {response.status_code} error on {document_uri} whilst trying to get_best_pdf")
+        logging.warning(f"Unexpected {response.status_code} error on {document_uri} whilst trying to get_best_pdf")
     # fall back to weasy_pdf
 
     return redirect(
