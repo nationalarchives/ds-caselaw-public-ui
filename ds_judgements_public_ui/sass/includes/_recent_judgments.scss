@@ -2,7 +2,6 @@
   &__container {
     @include container;
 
-    padding-top: $space-8;
     padding-bottom: $space-8;
   }
 
@@ -15,27 +14,38 @@
     border-bottom: 5px solid $color-yellow;
   }
 
-  &__more-info {
-    position: relative;
+  &__cta-button {
+    @include call-to-action-button;
 
-    padding: 0 0 $space-2;
+    position: absolute;
+    right: 43%;
 
-    font-family: $font-roboto;
-    font-size: 1rem;
-    font-weight: $typography-normal-font-weight;
+    margin: 0;
+    padding: $space-3 $space-5;
 
-    border: 0;
+    color: brand-colour("navy");
 
-    a {
-      display: inline-block;
+    background-color: transparent;
+    border: 2px solid brand-colour("navy");
 
-      margin: $space-1 0;
-      padding: $space-1 0;
+    &:hover,
+    &:focus {
+      color: brand-colour("navy");
+      background-color: transparent;
+    }
 
-      color: colour-var("accent-link");
-      text-decoration: none;
+    &:visited {
+      color: brand-colour("navy") !important;
+    }
 
-      border-bottom: 0.125rem solid colour-var("accent-link");
+    @media (max-width: $grid-breakpoint-medium) {
+      position: absolute;
+      right: 30%;
+    }
+
+    @media (max-width: $grid-breakpoint-small) {
+      position: absolute;
+      padding: $space-1;
     }
   }
 }

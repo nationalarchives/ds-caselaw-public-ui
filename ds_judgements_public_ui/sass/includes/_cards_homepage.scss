@@ -1,17 +1,68 @@
 .cards-homepage {
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  flex-direction: row;
+  gap: $space-4 !important;
 
-  margin: $space-4 auto;
+  margin: 0;
+  margin-top: $space-10;
   padding: 0;
 
   list-style-type: none;
 
+  &:hover {
+    text-decoration: none;
+  }
+
   li {
-    @media (max-width: $grid-breakpoint-medium) {
-      height: 115px;
-      margin: 0 auto;
+    @media (width <= 1199px) {
+      height: $space-8;
+      margin: 0;
+      margin-bottom: $space-5;
+    }
+  }
+
+  &__container {
+    @include container;
+
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    padding-top: $space-8;
+
+    h2 {
+      display: none;
+
+      @media (width <= 1199px) {
+        @include heading_text;
+        @include header($typography-header-h2-size);
+
+        display: contents;
+      }
+
+      @media (max-width: $grid-breakpoint-small) {
+        display: contents;
+        margin-top: 0;
+      }
+    }
+
+    @media (width <= 1199px) {
+      gap: 0;
+      align-items: flex-start;
+
+      margin-top: $space-5;
+      margin-right: $space-5;
+      margin-left: $space-5;
+      padding: $space-2 $space-4 $space-8 !important;
+
+      border: 3px solid $color-yellow;
+    }
+
+    @media (max-width: $grid-breakpoint-large) {
+      padding: $space-3;
+    }
+
+    @media (max-width: $grid-breakpoint-extra-large) {
+      padding: $space-7;
     }
   }
 
@@ -19,56 +70,98 @@
     gap: 0;
   }
 
-  @include container;
+  @media (width <= 1199px) {
+    float: left;
+    flex-direction: column;
+    gap: 0 !important;
+  }
 }
 
 .card-homepage {
   display: flex;
-  gap: $space-4;
+  gap: $space-2;
+
   margin: $space-4 $space-8;
+  padding: 0;
+
+  text-decoration: underline;
+  text-decoration-color: colour-var("accent-background-light");
+
+  background-color: colour-var("accent-background-light");
+  border-top: 4px solid $color-yellow;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: colour-var("accent-background");
+    background-color: colour-var("accent-background");
+  }
 
   h3 {
     margin-top: auto;
     margin-bottom: 0;
-    font-weight: $typography-bold-font-weight;
+
+    color: colour-var("link");
+    text-align: left;
+    text-decoration: underline !important;
+    text-decoration-color: colour-var("accent-background-light");
+    text-wrap: wrap;
 
     a {
       color: colour-var("link");
+      text-decoration: none;
     }
 
-    @media only screen and (max-width: $grid-breakpoint-medium) {
+    @media only screen and (width <= 1199px) {
       margin-top: $space-2;
 
-      font-size: $typography-md-text-size;
+      font-size: $typography-lg-text-size;
       line-height: $typography-sm-line-height;
       text-align: left;
+      text-decoration: underline;
+      text-decoration-color: colour-var("link");
       text-wrap: balance;
     }
+  }
+
+  h3:visited {
+    color: colour-var("link");
+    text-decoration: underline;
+    text-decoration-color: colour-var("accent-background-light");
+  }
+
+  h3:hover {
+    color: colour-var("link");
+    text-decoration: none !important;
   }
 
   &__legend-text {
     margin-top: $space-2;
     margin-bottom: $space-8;
-    text-wrap: balance;
+    color: colour-var("accent-font-base") !important;
+    text-align: left;
 
-    @media (max-width: $grid-breakpoint-medium) {
+    @media (width <= 1199px) {
       visibility: hidden;
     }
   }
 
   img {
     display: flex;
-    width: 100px;
-    height: 100px;
+    width: 122px;
+    height: 161px;
     object-fit: contain;
+
+    @media (width <= 1199px) {
+      display: none;
+    }
   }
 
   &__legend {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin-top: $space-3;
+    padding-right: $space-4;
+    padding-left: $space-4;
 
-    @media (max-width: $grid-breakpoint-medium) {
+    @media (width <= 1199px) {
       justify-content: flex-start;
 
       margin-top: $space-8;
@@ -76,14 +169,40 @@
 
       text-wrap: balance;
 
-      background-color: colour-var("accent-background-light");
+      background-color: transparent;
     }
   }
 
-  @media (max-width: $grid-breakpoint-medium) {
+  @media (width <= 1199px) {
     gap: $space-4;
+
+    min-width: 150%;
+    height: 6rem;
     margin: 0;
-    background-color: colour-var("accent-background-light");
+    padding: $space-1;
+
+    background-color: transparent;
+    border-top: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  @media (width >= 770px) {
+    height: 21rem;
+    padding-bottom: $space-4;
+  }
+
+  @media (width >= 992px) and (width <= 1184px) {
+    height: 13rem !important;
+    padding-bottom: $space-1 !important;
+  }
+
+  @media (min-width: $grid-breakpoint-large) {
+    max-width: 23rem;
+    height: 9.8rem;
+    padding-bottom: $space-1;
   }
 
   @media (min-width: $grid-breakpoint-small) {
@@ -93,5 +212,6 @@
 
   @media only screen and (width <= 530px) {
     width: 100%;
+    padding-bottom: $space-6;
   }
 }

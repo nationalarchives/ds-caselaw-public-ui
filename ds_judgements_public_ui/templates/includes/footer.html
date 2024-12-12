@@ -1,3 +1,4 @@
+{% load static %}
 <footer class="judgments-footer">
   <div class="container pt-2 pb-1">
     <h2 class="judgments-footer__heading">Footer</h2>
@@ -48,10 +49,18 @@
         </ul>
       </div>
     </div>
-    <p class="judgments-footer__base-paragraph">
-      All content is available under the <a class="judgments-footer__link"
-                                            href="{% url "open_justice_licence" %}">Open Justice Licence</a>.
-      For re-use that is not covered by the Open Justice Licence, please <a href="{% url "computational_licence_form" %}">apply for licence to do computational analysis.</a>.
-    </p>
+    <div class="judgments-footer__ojl-paragraph">
+      <p class="judgments-footer__base-paragraph">
+        <img class="judgments-footer__ojl-logo"
+             src="{% static 'images/Open-Justice-Licence-logo.svg' %}"
+             alt="Open Justice Licence logo"
+             height="50"
+             width="32" />
+        All content is available under the <a class="judgments-footer__link" href="{% url "open_justice_licence" %}">Open Justice Licence</a>.
+      </p>
+      <p class="judgments-footer__base-paragraph-second">
+        For re-use that is not covered by the Open Justice Licence, please <a href="{% url "computational_licence_form" %}">apply for licence to do computational analysis.</a>.
+      </p>
+    </div>
   </div>
 </footer>
