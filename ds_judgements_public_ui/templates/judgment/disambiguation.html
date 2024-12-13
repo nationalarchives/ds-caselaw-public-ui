@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+{% block title %}
+  Multiple matches - Find Case Law
+{% endblock title %}
+{% block content %}
+  <h1>Multiple matches</h1>
+  <p>There were multiple results for an identifier of {{ uri }}.</p>
+  <h3>Choices</h3>
+  (This should all be SQID)
+  <ul>
+    {% for resolution in resolutions %}
+      <li><a href="{{ resolution.identifier_uuid }}{{ file_format }}">{{ resolution.identifier_uuid }}</a></li>
+    {% endfor %}
+  </ul>
+  <p>{{ resolutions }}</p>
+{% endblock content %}
