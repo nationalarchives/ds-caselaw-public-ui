@@ -8,6 +8,7 @@ from django.views.generic import View
 
 from judgments.utils.utils import api_client
 from judgments.views.detail import best_pdf, detail_html, detail_xml, generated_pdf
+from judgments.views.disambiguation import DisambiguationView
 from judgments.views.press_summaries import press_summaries
 
 
@@ -37,12 +38,13 @@ class IdentifierResolverEngine(View):
         }
 
         resolutions = api_client.resolve_from_identifier(document_uri)
-        if len(resolutions) == 0:
+        if not resolutions:
             msg = f"No resolutions for {document_uri}"
             raise Http404(msg)
         if len(resolutions) > 1:
-            msg = f"Too many resolutions for {document_uri}"
-            raise Http404(msg)
+            return DisambiguationView.as_view()(
+                request, uri=document_uri, resolutions=resolutions, file_format=file_format
+            )
 
         resolution_uri = MarklogicInDocumentClothing(resolutions[0].document_uri)
 
