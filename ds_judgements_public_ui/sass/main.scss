@@ -47,6 +47,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "govuk-frontend/dist/govuk/components/date-input";
 @import "govuk-frontend/dist/govuk/core/lists";
 @import "govuk-frontend/dist/govuk/core/section-break";
+@import "govuk-frontend/dist/govuk/core/govuk-frontend-properties";
 
 // Vendor overrides
 @import "includes/govuk_overrides/button";

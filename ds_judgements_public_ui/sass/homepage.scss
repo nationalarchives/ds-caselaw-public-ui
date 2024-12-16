@@ -8,6 +8,7 @@
 @import "govuk-frontend/dist/govuk/tools";
 @import "govuk-frontend/dist/govuk/utilities/visually-hidden";
 @import "govuk-frontend/dist/govuk/components/header";
+@import "govuk-frontend/dist/govuk/core/govuk-frontend-properties";
 
 @import "includes/variables";
 @import "includes/mixins";
@@ -23,6 +24,10 @@
 @import "includes/spacing";
 
 @import "includes/govuk_overrides/header";
+
+@import "includes/cookie_banner_overrides";
+@import "includes/cookie_consent/cookie-consent";
+@import "includes/cookie_consent/ds-cookie-consent";
 
 @import "includes/basic_search_form";
 @import "includes/browse_by_court";
