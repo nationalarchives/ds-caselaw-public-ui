@@ -1,5 +1,10 @@
 {% extends "layouts/base.html" %}
-{% load waffle_tags %}
+{% load waffle_tags static %}
+
+{% block page_css %}
+  <link href="{% static 'css/transactional_licence_form.css' %}" rel="stylesheet" />
+{% endblock page_css %}
+
 {% block content %}
   <div class="standard-text-template container py-3">
     <div class="govuk-grid-row">

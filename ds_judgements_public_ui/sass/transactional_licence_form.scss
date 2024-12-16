@@ -1,0 +1,7 @@
+@use "includes/tna_colour_overrides";
+@use "@nationalarchives/frontend/nationalarchives/tools/colour" as *;
+
+@import "main";
+@import "includes/transactional_licence_form";
+@import "includes/transactional_licence_form_content";
+@import "includes/standard_text_template";

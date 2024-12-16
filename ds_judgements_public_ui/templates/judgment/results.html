@@ -1,11 +1,16 @@
 {% extends "layouts/base.html" %}
-{% load utilities search_results_filters %}
+{% load utilities search_results_filters static %}
 {% block title %}
   Search results - Find Case Law
 {% endblock title %}
 {% block extra_head_tags %}
   <link rel="alternate" type="application/atom+xml" title="{{ breadcrumbs.0.text }}" href="{% url 'search-feed' %}?{{ query_param_string }}"/>
 {% endblock extra_head_tags %}
+
+{% block page_css %}
+  <link href="{% static 'css/search.css' %}" rel="stylesheet" />
+{% endblock page_css %}
+
 {% block content %}
   <div class="results">
     <h1>Search results</h1>

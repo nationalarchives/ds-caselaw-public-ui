@@ -1,7 +1,13 @@
 {% extends "layouts/base.html" %}
+{% load static %}
 {% block title %}
   Style Guide
 {% endblock title %}
+
+{% block page_css %}
+  <link href="{% static 'css/style_guide.css' %}" rel="stylesheet" />
+{% endblock page_css %}
+
 {% block content %}
   <div class="standard-text-template container py-3">
     <h1>
@@ -16,7 +22,7 @@
           {% for menu_item in menu_items %}
             <li>
               <h2>
-                <a class="govuk-link govuk-heading-s govuk-link--no-visited-state" href="{{ menu_item.href }}">{{ menu_item.label }}</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="{{ menu_item.href }}">{{ menu_item.label }}</a>
               </h2>
               {% if menu_item.children %}
                 <ul class="govuk-list">

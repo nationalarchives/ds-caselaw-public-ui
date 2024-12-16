@@ -28,8 +28,10 @@
             rel="stylesheet" />
       <link href="{% static 'css/includes/govuk-country-and-territory-autocomplete/location-autocomplete.min.css' %}"
             rel="stylesheet" />
-      <link href="{% static 'css/main.css' %}" rel="stylesheet" />
     {% endblock css %}
+    {% block page_css %}
+      <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+    {% endblock page_css %}
     {% block extra_head_tags %}{% endblock extra_head_tags %}
     {% include "includes/gtm/gtm_head.html" %}
   </head>
@@ -101,7 +103,6 @@
     {% include "includes/footer.html" %}
     {% block javascript %}
       <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>
-      <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>
       {% include "includes/waffle_flags_javascript.html" %}
     {% endblock javascript %}
   </body>

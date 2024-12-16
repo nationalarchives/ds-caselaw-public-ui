@@ -1,0 +1,12 @@
+@use "includes/tna_colour_overrides";
+@use "@nationalarchives/frontend/nationalarchives/tools/colour" as *;
+
+@import "main";
+@import "includes/judgment_document_paragraph_anchors";
+@import "includes/judgment_text_download_options";
+@import "includes/judgment_catalogue_card";
+@import "includes/judgment_text_end_document_marker";
+@import "includes/judgment_text_service_introduction";
+@import "includes/judgment_text_source";
+@import "includes/judgment_text_toolbar";
+@import "includes/document_navigation_links";

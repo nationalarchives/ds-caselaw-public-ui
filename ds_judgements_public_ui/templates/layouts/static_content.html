@@ -1,4 +1,10 @@
 {% extends "layouts/base.html" %}
+{% load static %}
+
+{% block page_css %}
+  <link href="{% static 'css/static_content.css' %}" rel="stylesheet" />
+{% endblock page_css %}
+
 {% block content %}
   <div class="standard-text-template container py-3">
     <div id="start-of-document" class="entry-content clearfix">
