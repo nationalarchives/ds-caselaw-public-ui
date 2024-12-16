@@ -7,9 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "start-sass": "npx sass --watch  --load-path=node_modules ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css",
+    "start-sass": "npx sass --watch  --load-path=node_modules ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css --style=compressed",
     "start-scripts": "npx webpack --watch",
-    "build": "npx webpack && npx sass --load-path=node_modules ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css",
+    "build": "npx webpack && npx sass --load-path=node_modules ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css --style=compressed",
     "watch": "npx nodemon --watch './ds_judgements_public_ui/sass/*' --watch './ds_judgements_public_ui/static/js/*' --exec 'npm run start-sass && npm run start-scripts'",
     "lint:scss": "npx stylelint '**/*.scss'"
   },
