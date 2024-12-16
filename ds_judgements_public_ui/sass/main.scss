@@ -23,7 +23,29 @@
 $govuk-font-family: $font-open-sans;
 $govuk-focus-colour: colour-var("focus-outline");
 
-@import "govuk-frontend/dist/govuk/all";
+@import "govuk-frontend/dist/govuk/settings";
+@import "govuk-frontend/dist/govuk/helpers";
+@import "govuk-frontend/dist/govuk/tools";
+@import "govuk-frontend/dist/govuk/utilities/visually-hidden";
+@import "govuk-frontend/dist/govuk/components/summary-list";
+@import "govuk-frontend/dist/govuk/components/warning-text";
+@import "govuk-frontend/dist/govuk/components/details";
+@import "govuk-frontend/dist/govuk/components/button";
+@import "govuk-frontend/dist/govuk/objects/grid";
+@import "govuk-frontend/dist/govuk/components/input";
+@import "govuk-frontend/dist/govuk/components/notification-banner";
+@import "govuk-frontend/dist/govuk/objects/form-group";
+@import "govuk-frontend/dist/govuk/objects/main-wrapper";
+@import "govuk-frontend/dist/govuk/components/fieldset";
+@import "govuk-frontend/dist/govuk/components/checkboxes";
+@import "govuk-frontend/dist/govuk/components/label";
+@import "govuk-frontend/dist/govuk/components/hint";
+@import "govuk-frontend/dist/govuk/components/header";
+@import "govuk-frontend/dist/govuk/components/character-count";
+@import "govuk-frontend/dist/govuk/components/textarea";
+@import "govuk-frontend/dist/govuk/components/radios";
+@import "govuk-frontend/dist/govuk/core/lists";
+@import "govuk-frontend/dist/govuk/core/section-break";
 
 // Vendor overrides
 @import "includes/govuk_overrides/button";
