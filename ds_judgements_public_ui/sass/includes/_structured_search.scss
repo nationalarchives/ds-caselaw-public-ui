@@ -39,10 +39,6 @@
     text-align: left;
   }
 
-  &__full-text-label {
-    @include sr-only;
-  }
-
   &__full-text-panel {
     margin-top: $space-4;
 
@@ -209,12 +205,6 @@
 
   input:focus:invalid {
     outline: none;
-  }
-
-  &__select {
-    @include select;
-
-    width: 100%;
   }
 
   &__court-options {

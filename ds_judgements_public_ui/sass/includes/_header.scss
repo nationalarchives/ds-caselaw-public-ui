@@ -1,14 +1,4 @@
 .page-header {
-  &__flex-container {
-    display: flex;
-    justify-content: space-between;
-
-    @media only screen and (max-width: $grid-breakpoint-medium) {
-      flex-direction: column-reverse;
-      text-align: center;
-    }
-  }
-
   &__flex-container-beta {
     display: flex;
     gap: $space-18;

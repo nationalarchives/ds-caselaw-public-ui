@@ -1,13 +1,6 @@
 .search-component {
   background-color: colour-var("accent-background-light");
 
-  &__container {
-    @include container;
-
-    padding: $space-8;
-    text-align: center;
-  }
-
   &__container-beta {
     @include container;
 
@@ -28,49 +21,8 @@
   }
 
   &__header {
-    display: inline-block;
-
-    margin: 0 $space-6;
-
-    font-family: $font-roboto;
-    font-size: $typography-md-text-size;
-    font-weight: $typography-normal-font-weight;
-    line-height: 2.8rem;
-    color: colour-var("font-dark");
-
     &--sr-only {
       @include sr-only;
-    }
-  }
-
-  &__more-options {
-    margin-top: $space-2;
-
-    a {
-      position: relative;
-
-      display: inline-block;
-
-      padding: 0 0 $space-2;
-
-      font-family: $font-roboto;
-      font-size: $typography-md-text-size;
-      font-weight: $typography-bold-font-weight;
-      color: colour-var("accent-link");
-      text-decoration: none;
-
-      background: transparent;
-      border: 0;
-      border-bottom: 0.125rem solid colour-var("accent-link");
-
-      &:visited {
-        color: colour-var("accent-link");
-      }
-
-      &:hover {
-        color: colour-var("accent-link");
-        text-decoration: underline;
-      }
     }
   }
 
@@ -200,11 +152,6 @@
       margin: 0;
       text-align: center;
     }
-  }
-
-  &__main-label {
-    margin: $space-1 0 $space-2 0;
-    text-align: left;
   }
 
   @media (max-width: $grid-breakpoint-medium) {
