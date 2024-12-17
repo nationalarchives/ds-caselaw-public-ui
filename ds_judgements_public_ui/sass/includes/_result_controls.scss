@@ -36,14 +36,17 @@
 
     width: auto;
     min-width: auto;
+    max-height: 32px;
     margin: 0;
-    padding-right: $space-6;
+    padding: $space-1 $space-6 $space-1 $space-2;
+
+    font-size: $typography-sm-text-size;
   }
 
   &__button {
     @include call-to-action-button;
 
-    max-height: 34px;
+    max-height: 32px;
     margin: 0;
     padding: $space-2 $space-3;
 
