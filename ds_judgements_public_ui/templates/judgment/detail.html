@@ -1,8 +1,12 @@
 {% extends "layouts/base.html" %}
-{% load document_utils waffle_tags %}
+{% load document_utils waffle_tags static %}
 {% block extra_head_tags %}
   <link rel="canonical" href="{{ document_canonical_url }}" />
 {% endblock extra_head_tags %}
+{% block javascript %}
+  <script type="module" defer src="{% static 'js/dist/document_navigation_links.js' %}"></script>
+  <script type="module" defer src="{% static 'js/dist/document_paragraph_tooltip_anchors.js' %}"></script>
+{% endblock javascript %}
 {% block title %}
   {% if page_title %}{{ page_title }} -{% endif %}
   Find Case Law

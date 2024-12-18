@@ -99,10 +99,10 @@
       {% include "includes/help_improve_this_service.html" %}
     {% endblock feedback_cta %}
     {% include "includes/footer.html" %}
+    <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>
+    <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>
+    {% include "includes/waffle_flags_javascript.html" %}
     {% block javascript %}
-      <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>
-      <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>
-      {% include "includes/waffle_flags_javascript.html" %}
     {% endblock javascript %}
   </body>
 </html>
