@@ -6,6 +6,7 @@ from django.test import TestCase
 
 from judgments import converters, utils
 from judgments.models.court_dates import CourtDates
+from judgments.tests.factories import IdentifierResolutionsFactory
 from judgments.tests.fixtures import FakeSearchResponse
 from judgments.utils import clamp, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView
@@ -144,10 +145,14 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/judgments/search?query=waltham+forest")
         self.assertContains(response, '<meta name="robots" content="noindex,nofollow" />', html=True)
 
+    @patch("judgments.resolvers.document_resolver_engine.api_client")
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
-    def test_aws_pdf(self, mock_get, mock_pdf):
-        url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
+    def test_aws_pdf(self, mock_get, mock_pdf, mock_api_client):
+        url = "https://assets.caselaw.nationalarchives.gov.uk/ml.pdf"
+        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
+            slug="eat/2023/1", uri="/ml.xml"
+        )
         mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
@@ -156,10 +161,14 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
+    @patch("judgments.resolvers.document_resolver_engine.api_client")
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
-    def test_aws_pdf_press_summary(self, mock_get, mock_pdf):
-        url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
+    def test_aws_pdf_press_summary(self, mock_get, mock_pdf, mock_api_client):
+        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
+            slug="eat/2023/1", uri="/ml/ml.xml"
+        )
+        url = "https://assets.caselaw.nationalarchives.gov.uk/ml/ml/press-summary/1/ml_ml_press-summary_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
@@ -168,37 +177,53 @@ class TestRobotsDirectives(TestCase):
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
+    @patch("judgments.resolvers.document_resolver_engine.api_client")
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
-    def test_xml(self, mock_get_document_by_uri):
+    def test_xml(self, mock_get_document_by_uri, mock_api_client):
+        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
+            slug="eat/2023/1", uri="/ml.xml"
+        )
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1")
+        mock_get_document_by_uri.assert_called_with("ml")
         self.assertContains(response, "This is some XML of a judgment")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
+    @patch("judgments.resolvers.document_resolver_engine.api_client")
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
-    def test_xml_press_summary(self, mock_get_document_by_uri):
+    def test_xml_press_summary(self, mock_get_document_by_uri, mock_api_client):
+        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
+            slug="eat/2023/1/press-summary/1", uri="/ml.xml"
+        )
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
+        mock_get_document_by_uri.assert_called_with("ml")
         self.assertContains(response, "This is some XML of a judgment")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
+    @patch("judgments.resolvers.document_resolver_engine.api_client")
     @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
-    def test_weasy_pdf(self, mock_context):
+    def test_weasy_pdf(self, mock_context, mock_api_client):
+        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
+            slug="eat/2023/1", uri="/ml.xml"
+        )
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/generated.pdf")
-        mock_context.assert_called_with(document_uri="eat/2023/1")
+        mock_context.assert_called_with(document_uri="ml")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
+    @patch("judgments.resolvers.document_resolver_engine.api_client")
     @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
-    def test_weasy_pdf_press_summary(self, mock_context):
+    def test_weasy_pdf_press_summary(self, mock_context, mock_api_client):
+        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
+            slug="eat/2023/1/press-summary/1", uri="/ml.xml"
+        )
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/press-summary/1/generated.pdf")
-        mock_context.assert_called_with(document_uri="eat/2023/1/press-summary/1")
+        mock_context.assert_called_with(document_uri="ml")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
