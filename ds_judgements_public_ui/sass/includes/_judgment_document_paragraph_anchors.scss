@@ -2,10 +2,6 @@
   &__anchor-link {
     position: relative;
 
-    &:focus {
-      outline: none;
-    }
-
     &:hover {
       .judgment-body__copy-link-tooltip {
         opacity: 1;
