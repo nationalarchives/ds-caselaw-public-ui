@@ -69,19 +69,9 @@
     font-size: $typography-xl-text-size;
   }
 
-  &__filter-heading {
-    @include sr-only;
-  }
-
   fieldset {
     padding: 0;
     border: none;
-  }
-
-  &__container-extend-search-option {
-    margin: $space-4 0;
-    padding: $space-4 $space-8;
-    background-color: colour-var("accent-background-light");
   }
 
   &__list-layout-container {
