@@ -1,0 +1,46 @@
+
+{% load static %}
+<div class="govuk-grid-row homepage-cards--container">
+  <div class="govuk-grid-column-two-thirds__info_cards_home">
+    <h2>Learn more about Find Case Law</h2>
+    <a href="{% url 'courts_and_tribunals' %}" class="grid-background-link" aria-label="Browse by court or tribunal">
+      <div class="govuk-grid-column-one-third__info_cards_home">
+        <img class="govuk-grid-column-one-third__info_cards_home_image"
+             src="{% static 'images/HM-courts-and-tribunal-service-building-sign.jpg' %}"
+             alt="Browse by court or tribunal"
+             width="111px"
+             height="175px"/>
+        <div class="govuk-grid-column-one-third__info_cards_home_body">
+          <h3 class="govuk-grid-column-one-third__grid_info_card_home_heading">Browse by court or tribunal</h3>
+          <p class="govuk-grid-column-one-third__grid_info_card_home_body_text">View judgments and decisions from specific courts and tribunals.</p>
+        </div>
+      </div>
+    </a>
+    <a href="{% url 'how_to_search_find_case_law' %}" class="grid-background-link" aria-label="How to search Find Case Law">
+      <div class="govuk-grid-column-one-third__info_cards_home">
+        <img class="govuk-grid-column-one-third__info_cards_home_image"
+             src="{% static 'images/modern-magnifying-glass.jpg' %}"
+             alt="How to search Find Case Law"
+             width="111px"
+             height="175px"/>
+        <div class="govuk-grid-column-one-third__info_cards_home_body">
+          <h3 class="govuk-grid-column-one-third__grid_info_card_home_heading">How to search</h3>
+          <p class="govuk-grid-column-one-third__grid_info_card_home_body_text">Learn how to search the full text of every judgment and decision available on Find Case Law.</p>
+        </div>
+      </div>
+    </a>
+    <a href="{% url 'computational_licence_form' %}" class="grid-background-link" aria-label="Re-use Find Case Law records">
+      <div class="govuk-grid-column-one-third__info_cards_home">
+        <img class="govuk-grid-column-one-third__info_cards_home_image"
+             src="{% static 'images/person-working-on-a-laptop.jpg' %}"
+             alt="Re-use Find Case Law records"
+             width="111px"
+             height="175px"/>
+        <div class="govuk-grid-column-one-third__info_cards_home_body">
+          <h3 class="govuk-grid-column-one-third__grid_info_card_home_heading">Re-use Find Case Law records</h3>
+          <p class="govuk-grid-column-one-third__grid_info_card_home_body_text">Find out how to gain free access to and re-use of judgments and decisions.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

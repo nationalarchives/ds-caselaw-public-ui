@@ -13,6 +13,10 @@
     padding-bottom: $space-6;
     font-size: $typography-xl-text-size;
     border-bottom: 5px solid $color-yellow;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-top: 0;
+    }
   }
 
   &__more-info {
