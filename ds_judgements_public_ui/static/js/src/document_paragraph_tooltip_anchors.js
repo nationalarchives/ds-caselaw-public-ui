@@ -1,14 +1,14 @@
-const isMobile = function () {
+export const isMobile = function () {
     return window.innerWidth < 1135;
 };
 
-const getTooltipPositionClass = function () {
+export const getTooltipPositionClass = function () {
     if (isMobile()) return "judgment-body__copy-link-tooltip--top";
 
     return "judgment-body__copy-link-tooltip--left";
 };
 
-const createAnchorElement = function (id, content) {
+export const createAnchorElement = function (id, content) {
     const element = document.createElement("a");
     const text = document.createTextNode(content);
 
@@ -20,13 +20,13 @@ const createAnchorElement = function (id, content) {
     return element;
 };
 
-const copyLinkToClipboard = function (event, textToCopy) {
+export const copyLinkToClipboard = function (event, textToCopy) {
     event.preventDefault();
     event.stopPropagation();
     navigator.clipboard.writeText(textToCopy);
 };
 
-const createCopyElement = function (textToCopy) {
+export const createCopyElement = function (textToCopy) {
     const element = document.createElement("span");
 
     const tooltipClass = getTooltipPositionClass();
@@ -48,7 +48,7 @@ const createCopyElement = function (textToCopy) {
     return element;
 };
 
-const createCopyableAnchorElement = function (id, content) {
+export const createCopyableAnchorElement = function (id, content) {
     const anchorElement = createAnchorElement(id, content);
 
     const copyElement = createCopyElement(anchorElement.href);
@@ -73,7 +73,7 @@ const createCopyableAnchorElement = function (id, content) {
     return anchorElement;
 };
 
-const addDocumentParagraphAnchorLinkToSection = function (section) {
+export const addDocumentParagraphAnchorLinkToSection = function (section) {
     if (!section || !(section instanceof HTMLElement)) return;
     if (!section.hasAttribute("id")) return;
 
@@ -95,7 +95,7 @@ const addDocumentParagraphAnchorLinkToSection = function (section) {
     numberElement.appendChild(copyableAnchorElement);
 };
 
-const removeDocumentParagraphAnchorLinkFromSection = function (section) {
+export const removeDocumentParagraphAnchorLinkFromSection = function (section) {
     if (!section || !(section instanceof HTMLElement)) return;
     if (!section.hasAttribute("id")) return;
 
@@ -106,7 +106,7 @@ const removeDocumentParagraphAnchorLinkFromSection = function (section) {
     numberElement.innerHTML = numberContent;
 };
 
-const removeDocumentParagraphTooltipAnchors = function () {
+export const removeDocumentParagraphTooltipAnchors = function () {
     const sections = document.querySelectorAll(".judgment-body__section");
 
     sections.forEach(function (section) {
@@ -114,7 +114,7 @@ const removeDocumentParagraphTooltipAnchors = function () {
     });
 };
 
-const debounceResetDocumentParagraphTooltipAnchors = function () {
+export const debounceResetDocumentParagraphTooltipAnchors = function () {
     let timeout;
 
     return function () {
@@ -133,7 +133,7 @@ const debounceResetDocumentParagraphTooltipAnchors = function () {
 const resetDocumentParagraphTooltipAnchors =
     debounceResetDocumentParagraphTooltipAnchors();
 
-const setupDocumentParagraphTooltipAnchors = function () {
+export const setupDocumentParagraphTooltipAnchors = function () {
     const sections = document.querySelectorAll(".judgment-body__section");
 
     sections.forEach(function (section) {
