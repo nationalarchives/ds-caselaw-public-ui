@@ -96,7 +96,7 @@
 .govuk-grid-column-one-third__grid_info_card_heading {
   color: colour-var("link");
   text-decoration-color: colour-var("link");
-  text-decoration-line: none;
+  text-decoration-line: underline;
   text-wrap: wrap;
 }
 
@@ -469,7 +469,7 @@
   color: colour-var("link");
   text-decoration: underline;
   text-decoration-color: colour-var("link");
-  text-decoration-line: none;
+  text-decoration-line: underline;
   text-wrap: wrap;
 
   @media (max-width: $grid-breakpoint-medium) {
