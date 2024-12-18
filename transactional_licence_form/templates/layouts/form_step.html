@@ -1,10 +1,4 @@
 {% extends "layouts/base.html" %}
-{% load static %}
-
-{% block page_css %}
-  <link href="{% static 'css/transactional_licence_form.css' %}" rel="stylesheet" />
-{% endblock page_css %}
-
 {% load crispy_forms_tags crispy_forms_gds transactional_licence_utils %}
 {% block head %}
   {{ wizard.form.media }}

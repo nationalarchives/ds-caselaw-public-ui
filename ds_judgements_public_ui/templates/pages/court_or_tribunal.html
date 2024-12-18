@@ -1,10 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load court_utils static %}
-
-{% block page_css %}
-  <link href="{% static 'css/court_or_tribunal.css' %}" rel="stylesheet" />
-{% endblock page_css %}
-
+{% load court_utils %}
 {% block content %}
   <div class="container court-or-tribunal">
     <div class="court-or-tribunal__crest">

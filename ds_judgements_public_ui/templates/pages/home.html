@@ -1,5 +1,4 @@
 {% extends "layouts/base.html" %}
-{% load static %}
 {% block breadcrumbs %}
 {% endblock breadcrumbs %}
 
@@ -11,10 +10,6 @@
 {% block robots %}
   <meta name="robots" content="nosnippet" />
 {% endblock robots %}
-
-{% block page_css %}
-  <link href="{% static 'css/homepage.css' %}" rel="stylesheet" />
-{% endblock page_css %}
 
 {% block content %}
   {% include "includes/basic_search_form.html" %}

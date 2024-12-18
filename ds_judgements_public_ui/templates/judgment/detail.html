@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load document_utils waffle_tags static %}
+{% load document_utils waffle_tags %}
 {% block extra_head_tags %}
   <link rel="canonical" href="{{ document_canonical_url }}" />
 {% endblock extra_head_tags %}
@@ -11,11 +11,6 @@
   {% include "includes/judgment_text_toolbar.html" %}
 {% endblock precontent %}
 {% block body_class %}document-detail{% endblock body_class %}
-
-{% block page_css %}
-  <link href="{% static 'css/judgment.css' %}" rel="stylesheet" />
-{% endblock page_css %}
-
 {% block content %}
   <div id="start-of-document"></div>
   {% if document_html %}

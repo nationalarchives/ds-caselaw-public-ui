@@ -1,10 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load document_utils waffle_tags static %}
-
-{% block page_css %}
-  <link href="{% static 'css/judgments.css' %}" rel="stylesheet" />
-{% endblock page_css %}
-
+{% load document_utils waffle_tags %}
 {% block precontent %}
   <div class="judgment-toolbar">
     <div class="judgment-toolbar__container">

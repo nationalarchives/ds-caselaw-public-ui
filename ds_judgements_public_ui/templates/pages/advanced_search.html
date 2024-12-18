@@ -1,13 +1,8 @@
 {% extends "layouts/base.html" %}
-{% load errors search_results_filters static %}
+{% load errors search_results_filters %}
 {% block title %}
   Advanced search - Find Case Law
 {% endblock title %}
-
-{% block page_css %}
-  <link href="{% static 'css/search.css' %}" rel="stylesheet" />
-{% endblock page_css %}
-
 {% block content %}
   <form action="{% url "search" %}"
         role="search"
