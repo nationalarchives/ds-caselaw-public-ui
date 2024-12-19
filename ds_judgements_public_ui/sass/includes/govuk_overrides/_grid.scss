@@ -17,12 +17,6 @@
   flex-direction: row;
   gap: $space-1;
   margin-left: $space-2;
-
-  @media (max-width: $grid-breakpoint-medium) {
-    float: left;
-    flex-direction: column;
-    width: 50%;
-  }
 }
 
 .govuk-grid-column-one-third__info_cards {
@@ -45,17 +39,6 @@
     min-width: 150%;
     height: 6rem;
   }
-
-  @media (width >= 770px) {
-    height: 12rem;
-    padding-bottom: $space-10;
-  }
-
-  @media (min-width: $grid-breakpoint-large) {
-    max-width: 23rem;
-    height: 12rem;
-    padding-bottom: 0;
-  }
 }
 
 .govuk-grid-column-one-third__grid_info_card_heading:hover {
@@ -66,7 +49,7 @@
 .govuk-grid-column-one-third__grid_info_card_heading {
   color: colour-var("link");
   text-decoration-color: colour-var("link");
-  text-decoration-line: none;
+  text-decoration-line: underline;
   text-wrap: wrap;
 }
 
@@ -97,6 +80,7 @@
 
 .grid-background-link {
   text-decoration: none;
+  text-decoration-line: none;
 }
 
 .govuk-grid-column-full {

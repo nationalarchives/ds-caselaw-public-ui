@@ -2,7 +2,7 @@
   &__container {
     @include container;
 
-    padding-top: $space-8;
+    padding-top: 0;
     padding-bottom: $space-8;
   }
 
@@ -13,6 +13,12 @@
     padding-bottom: $space-6;
     font-size: $typography-xl-text-size;
     border-bottom: 5px solid $color-yellow;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-top: 0;
+      margin-bottom: 0;
+      border-bottom: 1px dotted $color-yellow;
+    }
   }
 
   &__more-info {
