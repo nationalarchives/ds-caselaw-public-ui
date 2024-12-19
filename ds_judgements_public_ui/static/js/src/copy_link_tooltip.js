@@ -1,10 +1,10 @@
-const copyLinkToClipboard = function (event, textToCopy) {
+export const copyLinkToClipboard = function (event, textToCopy) {
     event.preventDefault();
     event.stopPropagation();
     navigator.clipboard.writeText(textToCopy);
 };
 
-const createTooltipElement = function (text) {
+export const createTooltipElement = function (text) {
     const element = document.createElement("span");
 
     element.classList.add("copy-to-clipboard-link__tooltip");
@@ -13,7 +13,7 @@ const createTooltipElement = function (text) {
     return element;
 };
 
-const addCopyLinkTooltip = function (link) {
+export const addCopyLinkTooltip = function (link) {
     if (!link || !(link instanceof HTMLElement)) return;
 
     const tooltipText = link.dataset.copyLinkTooltip;
@@ -34,7 +34,7 @@ const addCopyLinkTooltip = function (link) {
     });
 };
 
-const setupCopyLinkTooltips = function () {
+export const setupCopyLinkTooltips = function () {
     const links = document.querySelectorAll("[data-copy-link-tooltip]");
 
     links.forEach(function (link) {

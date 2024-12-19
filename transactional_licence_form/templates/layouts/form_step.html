@@ -1,5 +1,9 @@
 {% extends "layouts/base.html" %}
-{% load crispy_forms_tags crispy_forms_gds transactional_licence_utils %}
+{% load crispy_forms_tags crispy_forms_gds transactional_licence_utils static %}
+{% block javascript %}
+  <script type="module" defer src="{% static 'js/dist/transactional_licence_form.js' %}"></script>
+  <script type="module" defer src="{% static 'js/dist/location_picker.js' %}"></script>
+{% endblock javascript %}
 {% block head %}
   {{ wizard.form.media }}
 {% endblock head %}

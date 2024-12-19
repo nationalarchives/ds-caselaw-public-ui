@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-let setupTogglableFields = function () {
+export const setupTogglableFields = function () {
     /*  CAUTION: This is quite a specific and brittle way of addressing these
         particular form fields, but Django-forms doesn't give us many
         other options: I haven't found a way to simply add an id or
@@ -43,7 +43,7 @@ let setupTogglableFields = function () {
     });
 };
 
-let setupPreviousButton = function () {
+export const setupPreviousButton = function () {
     /*
         This is handled with javascript for a couple of intersecting reasons.
         For accesibility compliance, pressing enter while on a form field should take you
