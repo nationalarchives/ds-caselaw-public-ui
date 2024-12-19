@@ -1,5 +1,5 @@
 .homepage-cards {
-  &__container {
+  &__outer-container {
     padding-top: $space-8;
     padding-bottom: 0;
 
@@ -28,7 +28,7 @@
     @include container;
   }
 
-  &__two_thirds_info_cards_home {
+  &__inner-container {
     display: flex;
     flex-direction: row;
     gap: $space-1;
@@ -46,7 +46,7 @@
     }
   }
 
-  &__one_third_info_cards_home {
+  &__info-cards-home {
     display: flex;
     flex-direction: row;
     gap: $space-4;
@@ -63,7 +63,7 @@
     }
 
     @media (max-width: $grid-breakpoint-medium) {
-      height: $space-6;
+      height: 1.5rem;
       margin-left: 0;
       background-color: transparent;
       border-top: none;
@@ -74,7 +74,7 @@
     }
   }
 
-  &__one_third_info_cards_home_image {
+  &__image {
     width: 111px;
     height: 175px;
 
@@ -87,7 +87,7 @@
     }
   }
 
-  &__one_third_info_cards_home_body {
+  &__body {
     display: flex;
     flex-direction: column;
 
@@ -102,12 +102,12 @@
     }
   }
 
-  &__one_third_grid_info_card_home_heading:hover {
+  &__heading:hover {
     color: $color-dark-blue;
     text-decoration: none;
   }
 
-  &__one_third_grid_info_card_home_heading {
+  &__heading {
     margin-top: $space-1;
     margin-bottom: 0;
 
@@ -122,18 +122,18 @@
     }
   }
 
-  &__one_third_grid_info_card_home_heading:visited {
+  &__heading:visited {
     color: colour-var("link-visited");
     text-decoration-color: colour-var("link-visited");
     text-decoration-line: underline;
   }
 
-  &__one_third_grid_info_card_home_heading:hover {
+  &__heading:hover {
     color: colour-var("link");
     text-decoration: none;
   }
 
-  &__one_third_grid_info_card_home_body_text {
+  &__body-text {
     color: colour-var("accent-font-base");
     text-decoration: underline;
     text-decoration-color: colour-var("accent-background-light");
