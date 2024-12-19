@@ -65,7 +65,9 @@
   }
 
   &__base-paragraph {
-    margin-top: $space-6;
+    margin-top: 0;
+    margin-bottom: auto;
+
     font-size: $typography-sm-text-size;
     line-height: 1.2rem;
     text-align: left;
@@ -76,8 +78,33 @@
     }
 
     @media (min-width: $grid-breakpoint-extra-large) {
-      text-align: center;
+      text-align: left;
     }
+  }
+
+  &__base-paragraph-container {
+    display: flex;
+    flex-direction: row;
+    gap: $space-4;
+    margin-top: $space-4;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      flex-direction: column;
+      gap: 0;
+      margin-top: $space-12;
+    }
+
+    @media only screen and (width >= 769px) and (width <= 991px) {
+      flex-direction: column;
+      gap: 0;
+      margin-top: $space-12;
+    }
+  }
+
+  &__ojl-logo {
+    width: 54px;
+    height: 45px;
+    margin-top: auto;
   }
 
   @media (min-width: $grid-breakpoint-medium) {
