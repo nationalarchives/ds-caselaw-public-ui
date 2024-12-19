@@ -44,4 +44,18 @@
       border-bottom: 0.125rem solid colour-var("accent-link");
     }
   }
+
+  &__more-info-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__cta-button {
+    @include call-to-action-button-secondary;
+
+    &:visited {
+      color: brand-colour("navy");
+    }
+  }
 }

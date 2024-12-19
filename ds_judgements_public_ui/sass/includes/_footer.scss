@@ -1,5 +1,7 @@
 .pre-footer {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: colour-var("accent-background-light");
 
   h2 {

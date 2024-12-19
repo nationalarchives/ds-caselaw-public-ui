@@ -2,8 +2,14 @@
   <div class="recent-judgments__container">
     <h1 id="recently-published-judgments" class="recent-judgments__header">Recently published judgments</h1>
     {% include "includes/judgment_listing.html" with judgments=recent_judgments %}
-    <p class="judgment-listing__more-info">
-      <a href="{% url 'search' %}">See all recent judgments</a>
-    </p>
+    <section class="recent-judgments__more-info-footer">
+      <div class="container py-2">
+        <a role="button"
+           draggable="false"
+           rel="noreferrer noopener"
+           class="recent-judgments__cta-button"
+           href="{% url 'search' %}">View all recent judgments</a>
+      </div>
+    </section>
   </div>
 </div>
