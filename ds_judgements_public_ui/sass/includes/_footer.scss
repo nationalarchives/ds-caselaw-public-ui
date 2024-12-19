@@ -82,3 +82,16 @@
     font-size: $typography-md-text-size;
   }
 }
+
+.more-info-footer {
+  text-align: center;
+  background-color: brand-colour("white");
+
+  &__cta-button {
+    @include call-to-action-button-secondary;
+
+    &:visited {
+      color: brand-colour("navy");
+    }
+  }
+}
