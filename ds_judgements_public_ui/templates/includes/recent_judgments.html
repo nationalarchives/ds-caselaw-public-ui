@@ -2,14 +2,13 @@
   <div class="recent-judgments__container">
     <h1 id="recently-published-judgments" class="recent-judgments__header">Recently published judgments</h1>
     {% include "includes/judgment_listing.html" with judgments=recent_judgments %}
-    <section class="more-info-footer" aria-labelledby="more-info-footer">
+    <section class="recent-judgments__more-info-footer">
       <div class="container py-2">
         <a role="button"
-           aria-label="See all recent judgments"
            draggable="false"
            rel="noreferrer noopener"
-           class="more-info-footer__cta-button"
-           href="{% url 'search' %}">See all recent judgments</a>
+           class="recent-judgments__cta-button"
+           href="{% url 'search' %}">View all recent judgments</a>
       </div>
     </section>
   </div>

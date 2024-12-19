@@ -1,5 +1,7 @@
 .pre-footer {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: colour-var("accent-background-light");
 
   h2 {
@@ -80,18 +82,5 @@
 
   @media (min-width: $grid-breakpoint-medium) {
     font-size: $typography-md-text-size;
-  }
-}
-
-.more-info-footer {
-  text-align: center;
-  background-color: brand-colour("white");
-
-  &__cta-button {
-    @include call-to-action-button-secondary;
-
-    &:visited {
-      color: brand-colour("navy");
-    }
   }
 }
