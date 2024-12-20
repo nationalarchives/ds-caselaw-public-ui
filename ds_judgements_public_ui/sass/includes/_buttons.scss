@@ -24,6 +24,10 @@
     outline-color: brand-colour("navy");
     outline-offset: 0.2rem;
   }
+
+  &:visited {
+    color: colour-var("accent-button-text");
+  }
 }
 
 @mixin button-secondary {
