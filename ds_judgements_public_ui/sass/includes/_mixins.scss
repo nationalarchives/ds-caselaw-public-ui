@@ -98,7 +98,8 @@
   border: 2px solid brand-colour("navy");
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:visited {
     color: brand-colour("navy");
     background-color: transparent;
   }
