@@ -81,8 +81,6 @@
   }
 
   &__search-submit-button {
-    @include button-primary;
-
     width: 100%;
     padding-right: $space-12;
     padding-left: $space-12;
@@ -138,12 +136,6 @@
 
     margin-top: 0;
     padding: $space-1;
-  }
-
-  &__filter-submit-button {
-    @include button-primary;
-
-    margin: 0 auto;
   }
 
   &__name-container {

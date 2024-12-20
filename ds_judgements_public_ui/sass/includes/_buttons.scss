@@ -41,6 +41,17 @@
   }
 }
 
+@mixin button-small {
+  @include button-primary;
+
+  max-height: 32px;
+  margin: 0;
+  padding: $space-2 $space-3;
+
+  font-size: $typography-sm-text-size;
+  font-weight: $typography-normal-font-weight;
+}
+
 .button-primary {
   @include button-primary;
 
@@ -65,6 +76,10 @@
 
 .button-secondary {
   @include button-secondary;
+}
+
+.button-small {
+  @include button-small;
 }
 
 .button-link {
