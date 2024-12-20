@@ -10,10 +10,6 @@
     font-size: $typography-lg-text-size;
     font-weight: $typography-normal-font-weight;
   }
-
-  &__cta-button {
-    @include secondary-button;
-  }
 }
 
 .judgments-footer {

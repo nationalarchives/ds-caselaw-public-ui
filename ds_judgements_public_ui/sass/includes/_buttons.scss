@@ -1,4 +1,4 @@
-@mixin primary-button {
+@mixin button-primary {
   display: inline-block;
 
   margin-top: $space-4;
@@ -26,8 +26,8 @@
   }
 }
 
-@mixin secondary-button {
-  @include primary-button;
+@mixin button-secondary {
+  @include button-primary;
 
   color: brand-colour("navy");
   background-color: transparent;
@@ -41,8 +41,8 @@
   }
 }
 
-.button-cta {
-  @include primary-button;
+.button-primary {
+  @include button-primary;
 
   border: 2px solid brand-colour("navy");
 
@@ -64,7 +64,7 @@
 }
 
 .button-secondary {
-  @include secondary-button;
+  @include button-secondary;
 }
 
 .button-link {
