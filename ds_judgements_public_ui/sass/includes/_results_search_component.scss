@@ -81,7 +81,7 @@
   }
 
   &__search-submit-button {
-    @include call-to-action-button;
+    @include primary-button;
 
     width: 100%;
     padding-right: $space-12;
@@ -141,7 +141,7 @@
   }
 
   &__filter-submit-button {
-    @include call-to-action-button;
+    @include primary-button;
 
     margin: 0 auto;
   }

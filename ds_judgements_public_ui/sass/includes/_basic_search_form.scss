@@ -79,7 +79,7 @@
   margin: 0 auto;
 
   input[type="submit"] {
-    @include call-to-action-button;
+    @include primary-button;
 
     margin-top: $space-2;
     margin-bottom: $space-8;

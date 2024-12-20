@@ -33,13 +33,13 @@
     outline-offset: 3px;
 
     &.btn {
-      @include call-to-action-button;
+      @include primary-button;
 
       margin-bottom: $space-1 !important;
     }
 
     &.btn-related-document {
-      @include call-to-action-button-secondary;
+      @include secondary-button;
 
       margin-right: $space-4;
       margin-bottom: $space-3 !important;
