@@ -44,21 +44,7 @@
   }
 
   &__button {
-    @include button-primary;
-
-    max-height: 32px;
-    margin: 0;
-    padding: $space-2 $space-3;
-
-    font-size: $typography-sm-text-size;
-    font-weight: $typography-normal-font-weight;
-    vertical-align: 1px;
-
-    outline-color: $color-dark-blue;
-
-    @media (min-width: $grid-breakpoint-extra-large) {
-      margin-top: auto;
-    }
+    margin-top: auto;
   }
 
   @media (min-width: $grid-breakpoint-extra-large) {

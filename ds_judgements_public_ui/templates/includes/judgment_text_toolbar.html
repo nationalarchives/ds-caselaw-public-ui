@@ -7,10 +7,10 @@
     {% endif %}
     <h1 id="judgment-toolbar-title" class="judgment-toolbar__title">{{ document|get_title_to_display_in_html }}</h1>
     <p class="judgment-toolbar__reference">{{ document.best_human_identifier }}</p>
-    <div class="judgment-toolbar__buttons judgment-toolbar-buttons">
+    <div class="judgment-toolbar__actions">
       {% if linked_document_uri %}
         {% spaceless %}
-          <a class="judgment-toolbar-buttons__option--related-document btn-related-document"
+          <a class="button-secondary judgment-toolbar__related-document-button"
              role="button"
              draggable="false"
              href="{% url 'detail' document_uri=linked_document_uri %}{% if query %}?query={{ query | urlencode }}{% endif %}">
@@ -19,13 +19,10 @@
             {% else %}
               View Judgment
             {% endif %}
-            <span class="judgment-toolbar-buttons__pdf-size"></span>
           </a>
         {% endspaceless %}
       {% endif %}
-      <p class="judgment-toolbar-options__download-options">
-        <a href="#download-options"  aria-label="View download options">View download options</a>
-      </p>
+      <a href="#download-options" class="judgment-toolbar__download-options-link"  aria-label="View download options">View download options</a>
     </div>
   </div>
 </section>
