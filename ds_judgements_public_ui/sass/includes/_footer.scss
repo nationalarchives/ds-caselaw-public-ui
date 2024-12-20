@@ -12,7 +12,7 @@
   }
 
   &__cta-button {
-    @include call-to-action-button-secondary;
+    @include secondary-button;
   }
 }
 

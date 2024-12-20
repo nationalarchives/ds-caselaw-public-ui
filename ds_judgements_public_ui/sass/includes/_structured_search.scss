@@ -345,7 +345,7 @@
   }
 
   &__update-filters-button {
-    @include call-to-action-button;
+    @include primary-button;
 
     position: relative;
 

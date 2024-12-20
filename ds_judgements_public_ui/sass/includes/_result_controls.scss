@@ -44,7 +44,7 @@
   }
 
   &__button {
-    @include call-to-action-button;
+    @include primary-button;
 
     max-height: 32px;
     margin: 0;

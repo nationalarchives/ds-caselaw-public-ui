@@ -1,5 +1,48 @@
+@mixin primary-button {
+  display: inline-block;
+
+  margin-top: $space-4;
+  padding: $space-4 $space-5;
+
+  font-size: $typography-md-text-size;
+  font-weight: $typography-bold-font-weight;
+  color: colour-var("accent-button-text");
+  text-decoration: none;
+
+  background-color: brand-colour("navy");
+  border: 0;
+
+  &:focus,
+  &:hover {
+    @include focus-default;
+
+    color: colour-var("accent-button-text");
+    text-decoration: underline;
+
+    background-color: brand-colour("navy");
+    border-color: brand-colour("navy");
+    outline-color: brand-colour("navy");
+    outline-offset: 0.2rem;
+  }
+}
+
+@mixin secondary-button {
+  @include primary-button;
+
+  color: brand-colour("navy");
+  background-color: transparent;
+  border: 2px solid brand-colour("navy");
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: brand-colour("navy");
+    background-color: transparent;
+  }
+}
+
 .button-cta {
-  @include call-to-action-button;
+  @include primary-button;
 
   border: 2px solid brand-colour("navy");
 
@@ -21,38 +64,7 @@
 }
 
 .button-secondary {
-  @include call-to-action-button;
-
-  color: brand-colour("navy");
-  background-color: colour-var("contrast-button-background");
-  border: 2px solid brand-colour("navy");
-
-  &:visited {
-    color: brand-colour("navy");
-  }
-
-  &:focus,
-  &:hover {
-    color: colour-var("contrast-font-base");
-  }
-
-  &:disabled,
-  &[aria-disabled="true"] {
-    color: colour-var("font-base");
-    background-color: transparent;
-    border-color: colour-var("accent-border");
-
-    &:focus,
-    &:hover {
-      cursor: not-allowed;
-
-      color: colour-var("font-base");
-      text-decoration: none;
-
-      background-color: transparent;
-      outline: none;
-    }
-  }
+  @include secondary-button;
 }
 
 .button-link {
@@ -67,8 +79,4 @@
   border: none;
 
   @include link;
-}
-
-.button-inline {
-  margin-right: $space-2;
 }
