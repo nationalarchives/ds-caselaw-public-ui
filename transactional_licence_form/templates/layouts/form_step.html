@@ -40,22 +40,22 @@
           <div>{% crispy wizard.form %}</div>
         {% endif %}
       {% endblock form_inner %}
-      <div>
+      <div class="transactional-licence-form__actions">
         {% if wizard.steps.prev %}
           <button name="wizard_goto_step"
                   type="button"
                   id="transactional-licence-form-previous-button"
-                  class="button-secondary button-inline"
+                  class="button-secondary"
                   value="{{ wizard.steps.prev }}"
                   style="display:none">Previous</button>
         {% endif %}
         <input type="submit"
-               class="button-inline {% if reviewing %}button-secondary{% else %}button-cta{% endif %}"
+               class="{% if reviewing %}button-secondary{% else %}button-primary{% endif %}"
                value="{{ wizard.steps.current|submit_label_for_step }}" />
         {% if reviewing %}
           <button name="wizard_goto_step"
                   type="submit"
-                  class="button-cta button-inline"
+                  class="button-primary"
                   value="review">
             {% if reviewing %}
               Save and review

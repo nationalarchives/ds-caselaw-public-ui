@@ -61,49 +61,6 @@
   }
 }
 
-@mixin call-to-action-button {
-  display: inline-block;
-
-  margin-top: $space-4;
-  padding: $space-4 $space-5;
-
-  font-size: $typography-md-text-size;
-  font-weight: $typography-bold-font-weight;
-  color: colour-var("accent-button-text");
-  text-decoration: none;
-
-  background-color: brand-colour("navy");
-  border: 0;
-
-  &:focus,
-  &:hover {
-    @include focus-default;
-
-    color: colour-var("accent-button-text");
-    text-decoration: underline;
-
-    background-color: brand-colour("navy");
-    border-color: brand-colour("navy");
-    outline-color: brand-colour("navy");
-    outline-offset: 0.2rem;
-  }
-}
-
-@mixin call-to-action-button-secondary {
-  @include call-to-action-button;
-
-  padding: $space-3 $space-5;
-  color: brand-colour("navy");
-  background-color: transparent;
-  border: 2px solid brand-colour("navy");
-
-  &:hover,
-  &:focus {
-    color: brand-colour("navy");
-    background-color: transparent;
-  }
-}
-
 @mixin emphasised-block {
   padding: $space-4;
   background-color: colour-var("accent-background-light");
