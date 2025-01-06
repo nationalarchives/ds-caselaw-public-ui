@@ -488,7 +488,7 @@ class TestDocumentHeadings(TestCase):
                 judgment.identifiers.add(judgment_ncn)
                 return judgment
             else:
-                raise DocumentNotFoundError()
+                raise DocumentNotFoundError(document_uri)
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
