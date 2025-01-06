@@ -50,7 +50,7 @@ class TestWeasyWithoutCSS(TestCaseWithMockAPI):
         assert b"%PDF-1.7" in response.content
 
 
-class TestJudgment(TestCase):
+class TestJudgment(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @patch("judgments.resolvers.document_resolver_engine.api_client")
@@ -83,13 +83,13 @@ class TestJudgment(TestCase):
         response = self.client.get("/test/2023/123?query=Query")
 
         assert mock_get_document_by_uri.mock_calls[0] == call(
-            "test/2023/123", search_query="Query"
+            "ml", search_query="Query"
         )  # We do make subsequent calls as part of getting related documents, but they're not relevant here
 
         self.assertEqual(response.status_code, 200)
 
 
-class TestJudgmentBackToSearchLink(TestCase):
+class TestJudgmentBackToSearchLink(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_no_link_if_no_context(self, mock_get_document_by_uri, mock_pdf):
@@ -102,7 +102,7 @@ class TestJudgmentBackToSearchLink(TestCase):
         assert "Back to search results" not in decoded_response
 
 
-class TestJudgmentPdfLinkText(TestCase):
+class TestJudgmentPdfLinkText(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
@@ -192,7 +192,7 @@ class TestDocumentDownloadOptions:
         assert_contains_html(response, download_options_html)
 
 
-class TestPressSummaryLabel(TestCase):
+class TestPressSummaryLabel(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_label_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
@@ -612,3 +612,15 @@ class TestHTMLTitle(TestCase):
         title = "Judgment A - Find Case Law - The National Archives"
         xpath_query = "//title"
         assert_response_contains_text(response, title, xpath_query)
+class TestNoNeutralCitation(TestCase):
+    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    def test_document_baseclass_raises_error(self, get_document):
+        doc = JudgmentFactory.build(
+            uri=DocumentURIString("eat/2023/1"),
+            is_published=True,
+            name="Judgment A",
+            neutral_citation=None,
+        )
+        get_document.return_value = doc
+        with pytest.raises(NoNeutralCitationError):
+            self.client.get("/eat/2023/1")
