@@ -20,4 +20,8 @@ class StructuredSearchView(TemplateViewWithContext):
         context["tribunals"] = courts.get_grouped_selectable_tribunals()
         context["feedback_survey_type"] = "advanced_search"
         context["form"] = AdvancedSearchForm()
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
+
         return context

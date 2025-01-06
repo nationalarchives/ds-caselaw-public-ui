@@ -22,6 +22,10 @@ class CourtsTribunalsListView(TemplateViewWithContext):
         context["courts"] = courts.get_grouped_selectable_courts()
         context["tribunals"] = courts.get_grouped_selectable_tribunals()
         context["feedback_survey_type"] = "courts_and_tribunals"
+        context["breadcrumbs"] = [
+            {"text": self.page_title},
+        ]
+
         return context
 
 
