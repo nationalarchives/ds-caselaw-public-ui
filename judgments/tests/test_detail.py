@@ -12,6 +12,7 @@ from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.test import Client, TestCase
 
+from judgments.resolvers.document_resolver_engine import api_client
 from judgments.tests.factories import IdentifierResolutionsFactory
 from judgments.tests.utils.assertions import (
     assert_contains_html,
@@ -23,7 +24,22 @@ from judgments.views.detail import (
 )
 
 
-class TestWeasyWithoutCSS(TestCase):
+def echo_resolution(url):
+    return IdentifierResolutionsFactory.build(slug=url, uri=f"ml-{url}.xml")
+
+
+class TestCaseWithMockAPI(TestCase):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup(self):
+        with patch.object(
+            api_client,
+            "resolve_from_identifier",
+            side_effect=echo_resolution,
+        ):
+            yield
+
+
+class TestWeasyWithoutCSS(TestCaseWithMockAPI):
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.get_published_document_by_uri")
     def test_weasy_without_css_runs_in_ci(self, mock_get_document_by_uri):
