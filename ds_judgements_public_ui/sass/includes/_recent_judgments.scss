@@ -52,8 +52,6 @@
   }
 
   &__cta-button {
-    @include call-to-action-button-secondary;
-
     &:visited {
       color: brand-colour("navy");
     }
