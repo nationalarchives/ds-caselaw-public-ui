@@ -25,7 +25,7 @@ class IdentifierResolutionsFactory:
         return IdentifierResolutions(
             [
                 IdentifierResolution(
-                    identifier_uuid=f"id-{uuid}",
+                    identifier_uuid=f"id-{identifier_uuid}",
                     document_uri=MarkLogicDocumentURIString(uri),
                     identifier_slug=DocumentURIString(slug),
                     document_published=True,
