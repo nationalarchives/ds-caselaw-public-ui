@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
 
+from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 
@@ -13,9 +14,16 @@ class RobotsTagMiddleware:
         # Code to be executed for each request before
         # the view (and later middleware) are called.
         response = self.get_response(request)
+
+        # If the response is a redirect, short-circuit adding the X-Robots-Tag
+        if isinstance(response, HttpResponseRedirect):
+            return response
+
         # If page_allow_index is True, short-circuit adding the X-Robots-Tag
         if isinstance(response, TemplateResponse) and response.context_data.get("page_allow_index", False):
             return response
+
+        # In all other cases, assume we don't want it indexing and add the noindex X-Robots-Tag.
         response.headers["X-Robots-Tag"] = "noindex,nofollow"
         return response
 
