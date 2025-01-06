@@ -230,6 +230,13 @@ class TestRobotsDirectives(TestCase):
             response = self.client.get(f"/{url}", follow=True)
             assert response.status_code == 200
 
+    def test_redirect_has_no_noindex(self):
+        """Make sure that redirection responses can be indexed."""
+
+        response = self.client.get("/what-to-expect")
+        assert response.status_code == 302
+        assert response.headers.get("X-Robots-Tag") is None
+
 
 class TestBackLink(TestCase):
     def test_referrer_is_search_page_without_query(self):
