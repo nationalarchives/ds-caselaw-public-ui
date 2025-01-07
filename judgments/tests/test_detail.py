@@ -25,6 +25,7 @@ from judgments.views.detail import (
 
 
 def echo_resolution(url):
+    assert "ml-" not in url
     return IdentifierResolutionsFactory.build(slug=url, uri=f"ml-{url}.xml")
 
 
@@ -53,15 +54,11 @@ class TestWeasyWithoutCSS(TestCaseWithMockAPI):
 class TestJudgment(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    @patch("judgments.resolvers.document_resolver_engine.api_client")
-    def test_published_judgment_response(self, mock_api_client, mock_get_document_by_uri, mock_pdf):
+    def test_published_judgment_response(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             is_published=True,
         )
         mock_pdf.return_value.size = 1234
-        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
-            slug="uksc/2023/1", uri="ml.xml"
-        )
 
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
@@ -83,7 +80,7 @@ class TestJudgment(TestCaseWithMockAPI):
         response = self.client.get("/test/2023/123?query=Query")
 
         assert mock_get_document_by_uri.mock_calls[0] == call(
-            "ml", search_query="Query"
+            "ml-test/2023/123", search_query="Query"
         )  # We do make subsequent calls as part of getting related documents, but they're not relevant here
 
         self.assertEqual(response.status_code, 200)
@@ -139,7 +136,7 @@ class TestDocumentDownloadOptions:
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @patch("judgments.resolvers.document_resolver_engine.api_client")
     @pytest.mark.parametrize(
-        "uri,document_factory_class",
+        "doc_uri,document_factory_class",
         [("eat/2023/1/press-summary/1", PressSummaryFactory), ("eat/2023/1", JudgmentFactory)],
     )
     def test_download_options(
@@ -147,7 +144,7 @@ class TestDocumentDownloadOptions:
         mock_api_client,
         mock_get_document_by_uri,
         mock_pdf,
-        uri,
+        doc_uri,
         document_factory_class,
     ):
         """
@@ -158,12 +155,13 @@ class TestDocumentDownloadOptions:
         AND this contains the Download XML button
         AND the descriptions refer to the document's type
         """
-        mock_get_document_by_uri.return_value = document_factory_class.build(uri=uri, is_published=True)
-        mock_pdf.return_value.size = 112
-        mock_pdf.return_value.uri = "http://example.com/test.pdf"
+        uri = doc_uri
         mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
             slug=uri, uri="ml.xml"
         )
+        mock_get_document_by_uri.return_value = document_factory_class.build(uri=uri, is_published=True)
+        mock_pdf.return_value.size = 112
+        mock_pdf.return_value.uri = "http://example.com/test.pdf"
         document = mock_get_document_by_uri()
         document_title = document.body.name
         document_noun = document.document_noun
@@ -450,7 +448,7 @@ class TestBreadcrumbs:
         assert_response_contains_text(response, expected_breadcrumb, "//div[@class='breadcrumbs']")
 
 
-class TestDocumentHeadings(TestCase):
+class TestDocumentHeadings(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_document_headings_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
@@ -500,13 +498,21 @@ class TestDocumentHeadings(TestCase):
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+<<<<<<< HEAD
     @patch("judgments.resolvers.document_resolver_engine.api_client")
     def test_document_heading_contains_document_title(self, mock_api_client, mock_get_document_by_uri, mock_pdf):
+||||||| parent of 524f23a8 (Refactor test_detail tests to use MockAPI)
+    @patch("judgments.resolvers.document_resolver_engine.api_client")
+    def test_document_headings_when_judgment(self, mock_api_client, mock_get_document_by_uri, mock_pdf):
+=======
+    def test_document_headings_when_judgment(self, mock_get_document_by_uri, mock_pdf):
+>>>>>>> 524f23a8 (Refactor test_detail tests to use MockAPI)
         """
         GIVEN a judgment exists with URI "eat/2023/1"
         WHEN a request is made with the judgment URI "/eat/2023/1"
         THEN the response should contain the heading HTML with the judgment name
         """
+<<<<<<< HEAD
         document = JudgmentFactory.build(
             uri=DocumentURIString("eat/2023/1"),
             is_published=True,
@@ -516,6 +522,12 @@ class TestDocumentHeadings(TestCase):
         mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
             slug="uksc/2023/1", uri="ml.xml"
         )
+||||||| parent of 524f23a8 (Refactor test_detail tests to use MockAPI)
+        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
+            slug="uksc/2023/1", uri="ml.xml"
+        )
+=======
+>>>>>>> 524f23a8 (Refactor test_detail tests to use MockAPI)
 
         response = self.client.get("/eat/2023/1")
         h1_xpath_query = "//h1"
@@ -548,11 +560,10 @@ class TestDocumentHeadings(TestCase):
         assert_response_contains_text(response, "Judgment_A_NCN", reference_xpath_query)
 
 
-class TestHTMLTitle(TestCase):
+class TestHTMLTitle(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    @patch("judgments.resolvers.document_resolver_engine.api_client")
-    def test_html_title_when_press_summary(self, mock_api_client, mock_get_document_by_uri, mock_pdf):
+    def test_html_title_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN a press summary
         WHEN a request is made with the press summary URI
@@ -576,10 +587,6 @@ class TestHTMLTitle(TestCase):
                     body=DocumentBodyFactory.build(name="Judgment A"),
                 )
 
-        def resolve_from_identifier(public_uri):
-            return IdentifierResolutionsFactory.build(slug=public_uri, uri=f"ml-{public_uri}.xml")
-
-        mock_api_client.resolve_from_identifier = resolve_from_identifier
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
         title = """
@@ -591,8 +598,7 @@ class TestHTMLTitle(TestCase):
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    @patch("judgments.resolvers.document_resolver_engine.api_client")
-    def test_html_title_when_judgment(self, mock_api_client, mock_get_document_by_uri, mock_pdf):
+    def test_html_title_when_judgment(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN a judgment
         WHEN a request is made with the judgment URI
@@ -603,9 +609,6 @@ class TestHTMLTitle(TestCase):
             uri=DocumentURIString("eat/2023/1"),
             is_published=True,
             body=DocumentBodyFactory.build(name="Judgment A"),
-        )
-        mock_api_client.resolve_from_identifier.return_value = IdentifierResolutionsFactory.build(
-            slug="eat/2023/1", uri="/ml.xml"
         )
 
         response = self.client.get("/eat/2023/1")
