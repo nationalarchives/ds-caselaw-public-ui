@@ -227,6 +227,9 @@ class TestPressSummaryLabel(TestCaseWithMockAPI):
 class TestViewRelatedDocumentButton:
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    @patch(
+        "judgments.resolvers.document_resolver_engine.api_client.resolve_from_identifier", side_effect=echo_resolution
+    )
     @pytest.mark.parametrize(
         "uri,expected_text,expected_href,document_class_factory",
         [
@@ -246,6 +249,7 @@ class TestViewRelatedDocumentButton:
     )
     def test_view_related_document_button_when_document_with_related_document(
         self,
+        mock_api_client,
         mock_get_document_by_uri,
         mock_pdf,
         uri,
@@ -261,7 +265,7 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri not in [uri, expected_href]:
-                raise DocumentNotFoundError()
+                raise DocumentNotFoundError(document_uri)
             return document_class_factory.build(uri=document_uri, is_published=True)
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -274,6 +278,9 @@ class TestViewRelatedDocumentButton:
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    @patch(
+        "judgments.resolvers.document_resolver_engine.api_client.resolve_from_identifier", side_effect=echo_resolution
+    )
     @pytest.mark.parametrize(
         "uri,expected_text,expected_href,document_class_factory",
         [
@@ -293,6 +300,7 @@ class TestViewRelatedDocumentButton:
     )
     def test_view_related_document_button_when_document_with_related_document_and_query_string(
         self,
+        mock_api_client,
         mock_get_document_by_uri,
         mock_pdf,
         uri,
@@ -308,7 +316,7 @@ class TestViewRelatedDocumentButton:
 
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri not in [uri, expected_href]:
-                raise DocumentNotFoundError()
+                raise DocumentNotFoundError(document_uri)
             return document_class_factory.build(uri=document_uri, is_published=True)
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -320,6 +328,9 @@ class TestViewRelatedDocumentButton:
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    @patch(
+        "judgments.resolvers.document_resolver_engine.api_client.resolve_from_identifier", side_effect=echo_resolution
+    )
     @pytest.mark.parametrize(
         "uri,unexpected_text,unexpected_href",
         [
@@ -329,6 +340,7 @@ class TestViewRelatedDocumentButton:
     )
     def test_no_view_related_document_button_when_document_without_related_document(
         self,
+        mock_api_client,
         mock_get_document_by_uri,
         mock_pdf,
         uri,
@@ -345,7 +357,6 @@ class TestViewRelatedDocumentButton:
             return JudgmentFactory.build(uri=document_uri, is_published=True, document_noun="press summary")
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
-
         client = Client()
         response = client.get(f"/{uri}")
         xpath_query = f"//a[@href='{unexpected_href}']"
