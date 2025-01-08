@@ -3,10 +3,10 @@ import os
 import urllib
 from typing import Any
 
-from django.http import Http404, HttpResponseRedirect
+from caselawclient.models.documents import DocumentURIString
+from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
-from django.urls import reverse
 from lxml import html as html_parser
 
 from judgments.forms import AdvancedSearchForm
@@ -34,7 +34,7 @@ def number_of_mentions(content: str, query: str) -> int:
     return len(tree.findall(".//mark"))
 
 
-def detail_html(request, document_uri):
+def detail_html(request, document_uri: DocumentURIString):
     query = request.GET.get("query")
 
     context: dict[str, Any] = {}
@@ -50,9 +50,12 @@ def detail_html(request, document_uri):
     pdf = DocumentPdf(document_uri)
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
-    if document_uri != document.uri:
-        redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
-        return HttpResponseRedirect(redirect_uri)
+    # Except that the DocumentURIString is actually a shortened version of the MarkLogic name, now -- so this code is irrelevant.
+
+    # if document_uri != document.uri:
+    #     raise RuntimeError(f"doc_uri != doc.uri: {document_uri}, {document.uri}")
+    #     redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
+    #     return HttpResponseRedirect(redirect_uri)
 
     if document.best_human_identifier is None:
         raise NoNeutralCitationError(document.uri)

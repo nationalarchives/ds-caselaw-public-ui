@@ -1,14 +1,32 @@
 from unittest.mock import Mock, patch
 
+import pytest
 from caselawclient.factories import PressSummaryFactory
 from django.test import TestCase
 from django.urls import reverse
 
+from judgments.resolvers.document_resolver_engine import api_client
+from judgments.tests.factories import IdentifierResolutionsFactory
 from judgments.utils import linked_doc_title, press_summary_list_breadcrumbs
 from judgments.views.press_summaries import press_summaries
 
 
-class TestPressSummaries(TestCase):
+def echo_resolution(url):
+    return IdentifierResolutionsFactory.build(slug=url, uri=f"ml-{url}.xml")
+
+
+class TestCaseWithMockAPI(TestCase):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup(self):
+        with patch.object(
+            api_client,
+            "resolve_from_identifier",
+            side_effect=echo_resolution,
+        ):
+            yield
+
+
+class TestPressSummaries(TestCaseWithMockAPI):
     @patch("judgments.views.press_summaries.TemplateResponse", autospec=True)
     @patch("judgments.views.press_summaries.get_press_summaries_for_document_uri")
     def test_view_returns_template_response_for_multiple_press_summaries(
