@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
   width: 100%;
-  margin-top: $space-10;
 
   &__header {
     display: flex;
@@ -46,6 +44,7 @@
   }
 
   @media only screen and (max-width: $grid-breakpoint-medium) {
-    margin-top: $space-3;
+    margin-top: $space-4;
+    margin-bottom: $space-2;
   }
 }
