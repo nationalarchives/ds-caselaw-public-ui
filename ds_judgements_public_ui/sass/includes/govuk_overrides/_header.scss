@@ -10,7 +10,8 @@
 
 .govuk-header__navigation-item--active .govuk-header__link,
 .govuk-header__navigation-item--active .govuk-header__link:hover,
-.govuk-header__navigation-item--active .govuk-header__link:visited {
+.govuk-header__navigation-item--active .govuk-header__link:visited,
+.govuk-header__navigation-item--active a:link {
   font-weight: bold !important;
   color: $color-yellow;
   text-decoration: none;
@@ -34,7 +35,11 @@
   }
 
   &:focus {
+    @include focus-default;
+
+    color: colour-var("contrast-link");
     background-color: transparent;
+    outline-color: colour-var("contrast-link");
     box-shadow: none;
   }
 }
@@ -81,9 +86,12 @@
 }
 
 .govuk-header__content {
-  margin-top: 5rem;
+  float: none;
+  width: auto;
+  padding: 0;
 
   @media only screen and (max-width: $grid-breakpoint-medium) {
+    width: 100%;
     margin-top: 0;
   }
 }
@@ -120,4 +128,8 @@ a.govuk-header__logo {
     outline: none;
     box-shadow: none;
   }
+}
+
+.govuk-header__navigation {
+  margin-bottom: 0;
 }

@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
   width: 100%;
-  margin-top: $space-10;
 
   &__header {
     display: flex;
@@ -22,6 +20,7 @@
     text-wrap: nowrap;
 
     @media only screen and (max-width: $grid-breakpoint-small) {
+      margin: 0;
       font-size: $typography-xl-text-size;
     }
   }
@@ -38,12 +37,14 @@
     text-wrap: balance;
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
+      margin: 0;
       font-size: $typography-sm-text-size;
       font-weight: bold;
     }
   }
 
   @media only screen and (max-width: $grid-breakpoint-medium) {
-    margin-top: $space-1;
+    margin-top: $space-4;
+    margin-bottom: $space-2;
   }
 }
