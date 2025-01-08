@@ -34,7 +34,11 @@
   }
 
   &:focus {
+    @include focus-default;
+
+    color: colour-var("contrast-link");
     background-color: transparent;
+    outline-color: colour-var("contrast-link");
     box-shadow: none;
   }
 }
