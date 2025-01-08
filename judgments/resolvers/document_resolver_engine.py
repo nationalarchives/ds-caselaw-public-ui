@@ -37,6 +37,8 @@ class IdentifierResolverEngine(View):
             "press-summary": press_summaries,
         }
 
+        if document_uri[-1] == "/":
+            raise Http404("Paths cannot end with a slash")
         resolutions = api_client.resolve_from_identifier(document_uri)
         if not resolutions:
             msg = f"No resolutions for {document_uri}"
