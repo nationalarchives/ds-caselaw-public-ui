@@ -1,11 +1,21 @@
 .page-header {
-  &__flex-container-beta {
+  &__container {
     display: flex;
-    gap: $space-18;
     align-items: flex-end;
     justify-content: space-between;
-
     padding: $space-6 0;
+
+    @media only screen and (min-width: $grid-breakpoint-medium) {
+      gap: $space-8;
+    }
+
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      gap: $space-10;
+    }
+
+    @media only screen and (min-width: $grid-breakpoint-extra-large) {
+      gap: $space-18;
+    }
 
     @media only screen and (max-width: $grid-breakpoint-medium) {
       flex-direction: column;
@@ -19,19 +29,19 @@
   }
 
   &__tna-logo {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
 
-    @media only screen and (max-width: $grid-breakpoint-medium) {
-      width: 70px;
-      height: 70px;
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      width: 100px;
+      height: 100px;
     }
   }
 
   &__tna-logo-link {
     display: inline-block;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
 
     &:focus {
       @include focus-default;
@@ -39,9 +49,9 @@
       outline-color: colour-var("contrast-link");
     }
 
-    @media only screen and (max-width: $grid-breakpoint-medium) {
-      width: 70px;
-      height: 70px;
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      width: 100px;
+      height: 100px;
     }
   }
 }

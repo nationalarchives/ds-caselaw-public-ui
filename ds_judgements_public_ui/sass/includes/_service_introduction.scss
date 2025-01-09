@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+
   width: 100%;
+  margin-top: $space-4;
+  margin-bottom: $space-2;
 
   &__header {
     display: flex;
@@ -10,41 +13,41 @@
     align-items: center;
 
     width: 100%;
-    margin: 0 $space-1;
+    margin: 0;
 
     font-family: $font-roboto;
-    font-size: $typography-2xl-text-size;
+    font-size: $typography-xl-text-size;
     font-weight: normal;
     line-height: $typography-md-line-height;
     color: colour-var("contrast-font-base");
     text-wrap: nowrap;
 
-    @media only screen and (max-width: $grid-breakpoint-small) {
-      margin: 0;
-      font-size: $typography-xl-text-size;
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      margin: 0 $space-1;
+      font-size: $typography-2xl-text-size;
     }
   }
 
   &__helper-text {
     display: inline-block;
 
-    margin: 0 $space-1;
+    margin: 0;
 
     font-family: $font-roboto;
-    font-size: $typography-lg-text-size;
+    font-size: $typography-sm-text-size;
+    font-weight: bold;
     line-height: 1.6rem;
     color: $color-yellow;
     text-wrap: balance;
 
-    @media only screen and (max-width: $grid-breakpoint-medium) {
-      margin: 0;
-      font-size: $typography-sm-text-size;
-      font-weight: bold;
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      margin: 0 $space-1;
+      font-size: $typography-lg-text-size;
+      font-weight: normal;
     }
   }
 
-  @media only screen and (max-width: $grid-breakpoint-medium) {
-    margin-top: $space-4;
-    margin-bottom: $space-2;
+  @media only screen and (min-width: $grid-breakpoint-medium) {
+    margin: 0;
   }
 }
