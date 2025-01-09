@@ -12,7 +12,7 @@ wsgi-basic-auth~=1.1.0
 ds-caselaw-marklogic-api-client~=28.2.0
 ds-caselaw-utils==2.0.1
 rollbar
-django-weasyprint==2.3.0
+django-weasyprint==2.3.1
 django-waffle==4.2.0  # https://github.com/django-waffle/django-waffle
 django-formtools~=2.5.1
 crispy-forms-gds==0.3.1
