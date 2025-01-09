@@ -8,7 +8,58 @@
   }
 }
 
+.info-cards-landing {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: $space-4 !important;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    flex-direction: row !important;
+  }
+}
+
 .info-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  padding: $space-8 $space-4;
+
+  text-decoration: none;
+
+  background-color: colour-var("accent-background-light");
+  border-top: 4px solid $color-yellow;
+
+  &:focus {
+    outline-offset: $space-2;
+  }
+
+  &:hover {
+    background-color: colour-var("accent-background");
+
+    h3 {
+      text-decoration: none;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    color: colour-var("link");
+    text-decoration: underline;
+    text-decoration-color: colour-var("link");
+
+    &:hover {
+      color: colour-var("link-hover");
+    }
+  }
+
+  p {
+    margin: 0;
+    color: colour-var("accent-font-base");
+  }
+}
+
+.info-card-landing {
   display: flex;
   flex-direction: column;
   gap: $space-4;
