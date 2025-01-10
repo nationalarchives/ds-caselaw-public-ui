@@ -48,7 +48,7 @@
     "govuk-country-and-territory-autocomplete": "^1.0.2",
     "govuk-frontend": "^5.7.1",
     "nodemon": "^3.0.3",
-    "npm": "^11.0.0",
+    "npm": "^10.7.0",
     "sass": "^1.58.3"
   }
 }
