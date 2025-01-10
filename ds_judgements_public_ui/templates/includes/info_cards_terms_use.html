@@ -1,28 +1,20 @@
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <h2 id="section-interested-in">You may also be interested in</h2>
-  </div>
+    <div class="govuk-grid-column-full">
+        <h2 id="section-interested-in">You may also be interested in</h2>
+    </div>
 </div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds__info_terms_use">
-    <a href="{% url 'contact_us' %}" class="grid-background-link" aria-label="Contact us">
-      <div class="govuk-grid-column-one-third__info_terms_use">
-        <h3 class="govuk-grid-column-one-third__grid_info_heading">Contact us</h3>
-        <p class="govuk-grid-column-one-third__grid_info_card_text">Find out how you can contact the Find Case Law team.</p>
-      </div>
+<div class="info-cards">
+    <a class="info-card" href="{% url 'contact_us' %}" aria-label="Contact us">
+        <h3>Contact us</h3>
+        <p>Find out how you can contact the Find Case Law team.</p>
     </a>
-    <a href="{% url 'courts_and_tribunals_in_fcl' %}" class="grid-background-link" aria-label="Courts and tribunals in Find Case Law">
-      <div class="govuk-grid-column-one-third__info_terms_use">
-        <h3 class="govuk-grid-column-one-third__grid_info_heading">Courts and tribunals in Find Case Law</h3>
-        <p class="govuk-grid-column-one-third__grid_info_card_text">Learn which judgments and decisions this service provides.</p>
-      </div>
+    <a href="{% url 'courts_and_tribunals_in_fcl' %}" class="info-card" aria-label="Courts and tribunals in Find Case Law">
+        <h3>Courts and tribunals in Find Case Law</h3>
+        <p>Learn which judgments and decisions this service provides.</p>
     </a>
-    <a href="{% url 'publishing_policy' %}"  class="grid-background-link" aria-label="Publishing policy">
-      <div class="govuk-grid-column-one-third__info_terms_use">
-        <h3 class="govuk-grid-column-one-third__grid_info_heading">Publishing policy</h3>
-        <p class="govuk-grid-column-one-third__grid_info_card_text">Read how Find Case Law receives and publishes judgments and decisions.</p>
-      </div>
+    <a href="{% url 'publishing_policy' %}"  class="info-card" aria-label="Publishing policy">
+        <h3>Publishing policy</h3>
+        <p>Read how Find Case Law receives and publishes judgments and decisions.</p>
     </a>
-  </div>
 </div>

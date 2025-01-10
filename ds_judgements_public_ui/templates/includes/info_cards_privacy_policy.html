@@ -1,27 +1,19 @@
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <h2 id="section-interested-in">You may also be interested in</h2>
-  </div>
+    <div class="govuk-grid-column-full">
+        <h2 id="section-interested-in">You may also be interested in</h2>
+    </div>
 </div>
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds__info_terms_use">
-    <a href="{% url 'contact_us' %}" class="grid-background-link" aria-label="Contact us">
-      <div class="govuk-grid-column-one-third__info_terms_use">
-        <h3 class="govuk-grid-column-one-third__grid_info_heading">Contact us</h3>
-        <p class="govuk-grid-column-one-third__grid_info_card_text">Find out how you can contact the Find Case Law team.</p>
-      </div>
+<div class="info-cards">
+    <a class="info-card" href="{% url 'contact_us' %}" aria-label="Contact us">
+        <h3>Contact us</h3>
+        <p>Find out how you can contact the Find Case Law team.</p>
     </a>
-    <a href="{% url 'terms_of_use' %}"  class="grid-background-link" aria-label="Terms of use">
-      <div class="govuk-grid-column-one-third__info_terms_use">
-        <h3 class="govuk-grid-column-one-third__grid_info_heading">Terms of use</h3>
-        <p class="govuk-grid-column-one-third__grid_info_card_text">Learn what you may do with material from this service.</p>
-      </div>
+    <a class="info-card" href="{% url 'terms_of_use' %}" aria-label="Terms of use">
+        <h3>Terms of use</h3>
+        <p>Learn what you may do with material from this service.</p>
     </a>
-    <a href="{% url 'publishing_policy' %}"  class="grid-background-link" aria-label="Publishing policy">
-      <div class="govuk-grid-column-one-third__info_terms_use">
-        <h3 class="govuk-grid-column-one-third__grid_info_heading">Publishing policy</h3>
-        <p class="govuk-grid-column-one-third__grid_info_card_text">Read how Find Case Law receives and publishes judgments and decisions.</p>
-      </div>
+    <a class="info-card" href="{% url 'publishing_policy' %}" aria-label="Publishing policy">
+        <h3>Publishing policy</h3>
+        <p>Read how Find Case Law receives and publishes judgments and decisions.</p>
     </a>
-  </div>
 </div>
