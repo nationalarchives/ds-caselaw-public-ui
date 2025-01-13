@@ -115,7 +115,9 @@
 
   &__body-text {
     margin: 0;
+
     font-size: $typography-sm-text-size;
+    line-height: $space-5;
     color: colour-var("accent-font-base");
     text-decoration: none;
 
