@@ -44,10 +44,11 @@
     flex: 1;
     flex-direction: row;
 
+    border-top: 4px solid $color-yellow;
+
     text-decoration: none;
 
     background-color: colour-var("accent-background-light");
-    border-top: 4px solid $color-yellow;
 
     &:hover {
       background-color: colour-var("accent-background");
@@ -56,8 +57,8 @@
     @media (max-width: $grid-breakpoint-medium) {
       height: 1.5rem;
       margin-left: 0;
-      background-color: transparent;
       border-top: none;
+      background-color: transparent;
 
       &:hover {
         background-color: transparent;
@@ -117,7 +118,7 @@
     margin: 0;
 
     font-size: $typography-sm-text-size;
-    line-height: $space-5;
+    line-height: $typography-md-line-height;
     color: colour-var("accent-font-base");
     text-decoration: none;
 
