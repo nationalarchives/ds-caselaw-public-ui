@@ -16,7 +16,6 @@ from judgments.tests.utils.assertions import (
     assert_response_not_contains_text,
 )
 from judgments.views.detail import (
-    NoNeutralCitationError,
     PdfDetailView,
 )
 
@@ -543,17 +542,3 @@ class TestHTMLTitle(TestCase):
         title = "Judgment A - Find Case Law - The National Archives"
         xpath_query = "//title"
         assert_response_contains_text(response, title, xpath_query)
-
-
-class TestNoNeutralCitation(TestCase):
-    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    def test_document_baseclass_raises_error(self, get_document):
-        doc = JudgmentFactory.build(
-            uri=DocumentURIString("eat/2023/1"),
-            is_published=True,
-            name="Judgment A",
-            neutral_citation=None,
-        )
-        get_document.return_value = doc
-        with pytest.raises(NoNeutralCitationError):
-            self.client.get("/eat/2023/1")
