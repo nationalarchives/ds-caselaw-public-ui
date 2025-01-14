@@ -184,8 +184,7 @@ class WorkingPractices2Form(FCLForm):
     data_extracted_available = fields.FCLChoiceField(
         label="22. Will data extracted from these records be published online?",
         help_text=(
-            "For example, any statistical analysis, for example: "
-            "lists of citations or entities from within the records"
+            "For example, any statistical analysis, for example: lists of citations or entities from within the records"
         ),
         choices=list_to_choices(choices.YES_NO_CHOICES),
     )

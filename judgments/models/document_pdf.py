@@ -36,9 +36,9 @@ class DocumentPdf:
     def generate_uri(self):
         env = environ.Env()
         """Create a string saying where the S3 PDF will be for a judgment uri"""
-        pdf_path = f'{self.document_uri}/{self.document_uri.replace("/", "_")}.pdf'
+        pdf_path = f"{self.document_uri}/{self.document_uri.replace('/', '_')}.pdf"
         assets = env("ASSETS_CDN_BASE_URL", default=None)
         if assets:
             return f"{assets}/{pdf_path}"
         else:
-            return f'https://{env("PUBLIC_ASSET_BUCKET")}.s3.{env("S3_REGION")}.amazonaws.com/{pdf_path}'
+            return f"https://{env('PUBLIC_ASSET_BUCKET')}.s3.{env('S3_REGION')}.amazonaws.com/{pdf_path}"
