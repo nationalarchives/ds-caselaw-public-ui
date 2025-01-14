@@ -52,13 +52,13 @@ code {
 
 mark {
   scroll-margin-top: 50vh;
+  border-bottom: 3px solid $color-yellow;
   font-weight: $typography-bold-font-weight;
   background-color: transparent;
-  border-bottom: 3px solid $color-yellow;
 
   &.current {
-    background-color: $color-yellow;
     border-top: 3px solid $color-yellow;
+    background-color: $color-yellow;
   }
 }
 
@@ -76,6 +76,10 @@ mark {
 
 .lg-text-size {
   font-size: $typography-lg-text-size;
+}
+
+.lg2-text-size {
+  font-size: $typography-2lg-text-size;
 }
 
 .xl-text-size {
