@@ -3,7 +3,7 @@
     <h1 class="structured-search__main-search-header">Advanced search</h1>
     <div class="structured-search__full-text-panel search-term-component">
       {{ form.query }}
-      <input type="submit" action="{% url 'search' %}">
+      <input type="submit" action="{% url 'search' %}" class="button-primary">
     </div>
     {% include "includes/search/search_help_text.html" %}
   </div>
