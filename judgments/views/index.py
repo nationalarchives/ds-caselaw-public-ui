@@ -22,7 +22,7 @@ def cached_recent_judgments(ttl_hash: int) -> SearchResponse:
     This is a wrapper for caching homepage search results in memory with a maximum TTL. https://stackoverflow.com/questions/31771286/python-in-memory-cache-with-time-to-live
     """
     del ttl_hash  # ttl_hash is used to fake cache expiry with time
-    return search_judgments_and_parse_response(api_client, SearchParameters(order="-date"))
+    return search_judgments_and_parse_response(api_client, SearchParameters(order="-date", page_size=6))
 
 
 class IndexView(TemplateView):
