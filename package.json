@@ -43,7 +43,7 @@
     "IE 11"
   ],
   "dependencies": {
-    "@nationalarchives/ds-caselaw-frontend": "github:nationalarchives/ds-caselaw-frontend#v2.0.9",
+    "@nationalarchives/ds-caselaw-frontend": "github:nationalarchives/ds-caselaw-frontend#v2.0.10",
     "@nationalarchives/frontend": "^0.6.0",
     "govuk-country-and-territory-autocomplete": "^1.0.2",
     "govuk-frontend": "^5.7.1",
