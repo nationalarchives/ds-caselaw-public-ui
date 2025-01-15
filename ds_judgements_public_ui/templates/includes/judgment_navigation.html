@@ -29,7 +29,9 @@
     {% if page_title %}
       <h2>{{ page_title }}</h2>
     {% endif %}
-    <p>{{ document.best_human_identifier }}</p>
+    {% if document.best_human_identifier %}
+      <p>{{ document.best_human_identifier.value }}</p>
+    {% endif %}
   </div>
 
   <div id="js-document-navigation-links-end"

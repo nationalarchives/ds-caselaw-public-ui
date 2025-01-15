@@ -19,11 +19,6 @@ from judgments.utils import (
     search_context_from_url,
 )
 
-
-class NoNeutralCitationError(Exception):
-    pass
-
-
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
@@ -53,9 +48,6 @@ def detail_html(request, document_uri):
     if document_uri != document.uri:
         redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
         return HttpResponseRedirect(redirect_uri)
-
-    if document.best_human_identifier is None:
-        raise NoNeutralCitationError(document.uri)
 
     try:
         linked_document_uri = linked_doc_url(document)

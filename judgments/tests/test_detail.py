@@ -6,6 +6,8 @@ import pytest
 from caselawclient.errors import DocumentNotFoundError
 from caselawclient.factories import DocumentBodyFactory, JudgmentFactory, PressSummaryFactory
 from caselawclient.models.documents import DocumentURIString
+from caselawclient.models.identifiers.neutral_citation import NeutralCitationNumber
+from caselawclient.models.identifiers.press_summary_ncn import PressSummaryRelatedNCNIdentifier
 from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.test import Client, TestCase
@@ -16,7 +18,6 @@ from judgments.tests.utils.assertions import (
     assert_response_not_contains_text,
 )
 from judgments.views.detail import (
-    NoNeutralCitationError,
     PdfDetailView,
 )
 
@@ -438,7 +439,7 @@ class TestDocumentHeadings(TestCase):
 
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if document_uri == "eat/2023/1/press-summary/1":
-                return PressSummaryFactory.build(
+                press_summary = PressSummaryFactory.build(
                     uri=DocumentURIString("eat/2023/1/press-summary/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
@@ -446,8 +447,11 @@ class TestDocumentHeadings(TestCase):
                     ),
                     neutral_citation="Judgment_A_NCN",
                 )
+                press_summary_ncn = PressSummaryRelatedNCNIdentifier(value="Judgment_A_NCN")
+                press_summary.identifiers.add(press_summary_ncn)
+                return press_summary
             elif document_uri == "eat/2023/1":
-                return JudgmentFactory.build(
+                judgment = JudgmentFactory.build(
                     uri=DocumentURIString("eat/2023/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
@@ -455,6 +459,9 @@ class TestDocumentHeadings(TestCase):
                     ),
                     neutral_citation="Judgment_A_NCN",
                 )
+                judgment_ncn = NeutralCitationNumber(value="Judgment_A_NCN")
+                judgment.identifiers.add(judgment_ncn)
+                return judgment
             else:
                 raise DocumentNotFoundError()
 
@@ -468,24 +475,48 @@ class TestDocumentHeadings(TestCase):
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    def test_document_headings_when_judgment(self, mock_get_document_by_uri, mock_pdf):
+    def test_document_heading_contains_document_title(self, mock_get_document_by_uri, mock_pdf):
         """
         GIVEN a judgment exists with URI "eat/2023/1"
         WHEN a request is made with the judgment URI "/eat/2023/1"
         THEN the response should contain the heading HTML with the judgment name
-        AND a p tag subheading with the judgment's NCN
         """
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(
+
+        document = JudgmentFactory.build(
             uri=DocumentURIString("eat/2023/1"),
             is_published=True,
             body=DocumentBodyFactory.build(name="Judgment A"),
-            neutral_citation="Judgment_A_NCN",
         )
+        mock_get_document_by_uri.return_value = document
+
         response = self.client.get("/eat/2023/1")
         h1_xpath_query = "//h1"
-        reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
 
         assert_response_contains_text(response, "Judgment A", h1_xpath_query)
+
+    @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
+    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    def test_document_heading_contains_preferred_human_identifier(self, mock_get_document_by_uri, mock_pdf):
+        """
+        GIVEN a judgment exists with URI "eat/2023/1"
+        WHEN a request is made with the judgment URI "/eat/2023/1"
+        THEN a p tag subheading with the judgment's NCN
+        """
+
+        document = JudgmentFactory.build(
+            uri=DocumentURIString("eat/2023/1"),
+            is_published=True,
+            body=DocumentBodyFactory.build(name="Judgment A"),
+        )
+
+        document_ncn = NeutralCitationNumber(value="Judgment_A_NCN")
+        document.identifiers.add(document_ncn)
+
+        mock_get_document_by_uri.return_value = document
+
+        response = self.client.get("/eat/2023/1")
+        reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
+
         assert_response_contains_text(response, "Judgment_A_NCN", reference_xpath_query)
 
 
@@ -543,17 +574,3 @@ class TestHTMLTitle(TestCase):
         title = "Judgment A - Find Case Law - The National Archives"
         xpath_query = "//title"
         assert_response_contains_text(response, title, xpath_query)
-
-
-class TestNoNeutralCitation(TestCase):
-    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    def test_document_baseclass_raises_error(self, get_document):
-        doc = JudgmentFactory.build(
-            uri=DocumentURIString("eat/2023/1"),
-            is_published=True,
-            name="Judgment A",
-            neutral_citation=None,
-        )
-        get_document.return_value = doc
-        with pytest.raises(NoNeutralCitationError):
-            self.client.get("/eat/2023/1")
