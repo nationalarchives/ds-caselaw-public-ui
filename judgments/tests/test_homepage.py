@@ -20,5 +20,5 @@ class TestHomepage(TestCase):
     def test_cached_recent_judgments(self, mock_search_judgments_and_parse_response, mock_api_client):
         cached_recent_judgments(123)
         mock_search_judgments_and_parse_response.assert_called_once_with(
-            mock_api_client, SearchParameters(order="-date")
+            mock_api_client, SearchParameters(order="-date", page_size=6)
         )
