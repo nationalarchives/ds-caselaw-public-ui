@@ -33,6 +33,7 @@
     float: left;
     flex-direction: column;
     gap: 0;
+    margin-top: 0;
   }
 }
 
@@ -51,8 +52,6 @@
 
   @media (max-width: $grid-breakpoint-medium) {
     max-width: none;
-    padding: 1rem;
-    line-height: $space-4;
   }
 }
 
@@ -81,8 +80,7 @@
   text-wrap: pretty;
 
   @media (max-width: $grid-breakpoint-medium) {
-    margin: -2rem;
-    visibility: hidden;
+    display: none;
   }
 }
 
