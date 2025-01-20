@@ -1,0 +1,31 @@
+.hidden-mobile {
+  display: none;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    display: block;
+  }
+}
+
+.hidden-desktop {
+  display: block;
+
+  @media (min-width: $grid-breakpoint-large) {
+    display: none;
+  }
+}
+
+.desktop-only {
+  display: none;
+
+  @media (min-width: $grid-breakpoint-large) {
+    display: block;
+  }
+}
+
+.mobile-only {
+  display: block;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    display: none;
+  }
+}

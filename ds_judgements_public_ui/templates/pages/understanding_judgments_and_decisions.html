@@ -1,50 +1,55 @@
-{% extends "layouts/static_content.html" %}
-{% block static_content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-grid-column-one-third">
-        <h1 class="hidden-h1-mobile">Understanding judgments and decisions</h1>
-        <div class="anchor-links">
-          <h3 class="anchor-links__header">On this page</h3>
-          <ul class="anchor-links__list">
-            <li class="anchor-links__list-option">
-              <a href="#section-what">What judgments and decisions are</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-interested-in">You may also be interested in</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="govuk-grid-column-two-thirds">
-        <p class="date-time-info-page">
-          <small>Last updated on
-            <time datetime="20-14-2024">16 September2024</time>
-          </small>
-        </p>
-        <h1 class="hidden-h1-desktop">Understanding judgments and decisions</h1>
-        <section>
-          <h2 id="section-what">What judgments and decisions are</h2>
-          <p>A judgment is the decision a court has made after hearing a case. Written judgments are also known as handed down judgments. They can be very long.</p>
-          <p>Find Case Law does not provide summaries, interpretation or advice on any judgments or decisions.</p>
-          <p>
-            Every judgment or decision will start with a 'header' or title page which contains the important information about the judgment or decision, such as:
-            <ul>
-              <li>Neutral citation</li>
-              <li>Case number</li>
-              <li>Court or chamber</li>
-              <li>Judge name(s)</li>
-              <li>Party names</li>
-            </ul>
-          </p>
-          <p>
-            The way the text of each judgment or decision is written is up to the judge. Typically, judgments will summarise 'the facts' of the case,
-            the law that applies to those facts, the arguments presented in court, the decision the court has given and the reasons for the decision. The decision made by the judge normally appears towards the end of the judgment or decision.
-          </p>
-          <p>You may find that some judgments and decisions have reporting restrictions. In these cases the relevant parts of the judgment will have been redacted by the court.</p>
-        </section>
-      </div>
-    </div>
-  </div>
+{% extends "layouts/standard_content.html" %}
+
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">16 September2024</time>
+  </small>
+  <h1>Understanding judgments and decisions</h1>
+{% endblock mobile_article_title %}
+
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">16 September2024</time>
+  </small>
+  <h1>Understanding judgments and decisions</h1>
+{% endblock desktop_article_title %}
+
+{% block article_navigation %}
+  <h3 class="anchor-links__header">On this page</h3>
+  <ul class="anchor-links__list">
+    <li class="anchor-links__list-option">
+      <a href="#section-what">What judgments and decisions are</a>
+    </li>
+    <li class="anchor-links__list-option">
+      <a href="#section-interested-in">You may also be interested in</a>
+    </li>
+  </ul>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <section>
+    <h2 id="section-what">What judgments and decisions are</h2>
+    <p>A judgment is the decision a court has made after hearing a case. Written judgments are also known as handed down judgments. They can be very long.</p>
+    <p>Find Case Law does not provide summaries, interpretation or advice on any judgments or decisions.</p>
+    <p>
+      Every judgment or decision will start with a 'header' or title page which contains the important information about the judgment or decision, such as:
+      <ul>
+        <li>Neutral citation</li>
+        <li>Case number</li>
+        <li>Court or chamber</li>
+        <li>Judge name(s)</li>
+        <li>Party names</li>
+      </ul>
+    </p>
+    <p>
+      The way the text of each judgment or decision is written is up to the judge. Typically, judgments will summarise 'the facts' of the case,
+      the law that applies to those facts, the arguments presented in court, the decision the court has given and the reasons for the decision. The decision made by the judge normally appears towards the end of the judgment or decision.
+    </p>
+    <p>You may find that some judgments and decisions have reporting restrictions. In these cases the relevant parts of the judgment will have been redacted by the court.</p>
+  </section>
+{% endblock article_content %}
+
+{% block article_footer %}
   {% include "includes/info_cards_judgments_decisions.html" %}
-{% endblock static_content %}
+  {% include "includes/help_end_document_marker.html" %}
+{% endblock article_footer %}

@@ -1,52 +1,52 @@
-{% extends "layouts/static_content.html" %}
-{% block static_content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-grid-column-one-third">
-        <h1 class="hidden-h1-mobile">Contact us</h1>
-        <div class="anchor-links">
-          <h3 class="anchor-links__header">On this page</h3>
-          <ul class="anchor-links__list">
-            <li class="anchor-links__list-option">
-              <a href="#section-general">General enquiries</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-licensing">Licensing queries</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-who">Who we are</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-privacy">Personal information and privacy</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="govuk-grid-column-two-thirds">
-        <p class="date-time-info-page">
-          <small>Last updated on
-            <time datetime="20-14-2024">20th August 2024</time>
-          </small>
-        </p>
-        <h1 class="hidden-h1-desktop">Contact us</h1>
-        <section>
-          <h2 id="section-general">General enquiries</h2>
-          <p>To contact the Find Case Law team, please email <a href="mailto:caselaw@nationalarchives.gov.uk">caselaw@nationalarchives.gov.uk</a>.</p>
-          <p>If your online access is limited and you need to speak to someone, you can call us during office hours on 020 8876 3444.
-            Please leave your number and message and we will call you back.
-          </p>
-          <h2 id="section-licensing">Licensing queries</h2>
-          <p>This website explains <a href="{% url "transactional-licence-form" %}">how you can use and re-use Find Case Law records</a>.</p>
-          <p>If you have any questions about licensing, please email our Licensing Department at <a href="mailto:caselawlicence@nationalarchives.gov.uk">caselawlicence@nationalarchives.gov.uk</a>.</p>
-          <h2 id="section-who">Who we are</h2>
-          <p>Find Case Law is provided by <a href="https://www.nationalarchives.gov.uk/">The National Archives</a>, working in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.</p>
-          <p>The National Archives is a non-ministerial government department, and the official archive and publisher for the UK Government, and for England and Wales.</p>
-          <h2 id="section-privacy">Personal information and privacy</h2>
-          <p>Any personal information you email us will be handled in accordance with our <a href="{% url 'privacy_notice' %}">Privacy notice</a>.</p>
-          <p>Concerns about processing of personal data in judgments should be addressed to the court or tribunal that delivered the judgment. To contact a specific court or tribunal please use the <a href="https://www.gov.uk/find-court-tribunalGOV.UK Find a court or tribunal service.">GOV.UK Find a court or tribunal service</a>.</p>
-        </section>
-      </div>
-    </div>
+{% extends "layouts/standard_content.html" %}
 
-  </div>
-{% endblock static_content %}
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">20th August 2024</time>
+  </small>
+  <h1>Contact us</h1>
+{% endblock mobile_article_title %}
+
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">20th August 2024</time>
+  </small>
+  <h1>Contact us</h1>
+{% endblock desktop_article_title %}
+
+{% block article_navigation %}
+  <h3>On this page</h3>
+  <ul>
+    <li>
+      <a href="#section-general">General enquiries</a>
+    </li>
+    <li>
+      <a href="#section-licensing">Licensing queries</a>
+    </li>
+    <li>
+      <a href="#section-who">Who we are</a>
+    </li>
+    <li>
+      <a href="#section-privacy">Personal information and privacy</a>
+    </li>
+  </ul>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <section>
+    <h2 id="section-general">General enquiries</h2>
+    <p>To contact the Find Case Law team, please email <a href="mailto:caselaw@nationalarchives.gov.uk">caselaw@nationalarchives.gov.uk</a>.</p>
+    <p>If your online access is limited and you need to speak to someone, you can call us during office hours on 020 8876 3444.
+      Please leave your number and message and we will call you back.
+    </p>
+    <h2 id="section-licensing">Licensing queries</h2>
+    <p>This website explains <a href="{% url "transactional-licence-form" %}">how you can use and re-use Find Case Law records</a>.</p>
+    <p>If you have any questions about licensing, please email our Licensing Department at <a href="mailto:caselawlicence@nationalarchives.gov.uk">caselawlicence@nationalarchives.gov.uk</a>.</p>
+    <h2 id="section-who">Who we are</h2>
+    <p>Find Case Law is provided by <a href="https://www.nationalarchives.gov.uk/">The National Archives</a>, working in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.</p>
+    <p>The National Archives is a non-ministerial government department, and the official archive and publisher for the UK Government, and for England and Wales.</p>
+    <h2 id="section-privacy">Personal information and privacy</h2>
+    <p>Any personal information you email us will be handled in accordance with our <a href="{% url 'privacy_notice' %}">Privacy notice</a>.</p>
+    <p>Concerns about processing of personal data in judgments should be addressed to the court or tribunal that delivered the judgment. To contact a specific court or tribunal please use the <a href="https://www.gov.uk/find-court-tribunalGOV.UK Find a court or tribunal service.">GOV.UK Find a court or tribunal service</a>.</p>
+  </section>
+{% endblock article_content %}

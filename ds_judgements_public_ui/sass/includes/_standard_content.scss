@@ -1,0 +1,81 @@
+.standard-content {
+  @include container;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+
+    padding-top: $space-10;
+
+    font-size: $typography-md-text-size;
+    line-height: $typography-lg-line-height;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      flex-direction: row;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
+    small {
+      display: block;
+      margin-bottom: $space-4;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      min-width: 33%;
+      max-width: 33%;
+    }
+  }
+
+  &__navigation-links {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+
+    padding: $space-6 $space-6 $space-10;
+    border: 2px solid $color-yellow;
+
+    h3 {
+      margin: 0;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: $space-4;
+
+      margin: 0;
+      padding: 0;
+
+      list-style-type: none;
+    }
+  }
+
+  &__article {
+    small {
+      display: block;
+      margin-bottom: $space-4;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 $space-8;
+    }
+
+    .govuk-warning-text {
+      margin-bottom: $space-8;
+    }
+  }
+}

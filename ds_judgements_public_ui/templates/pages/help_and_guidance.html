@@ -1,11 +1,14 @@
 {% extends "layouts/static_content.html" %}
+
 {% block static_content %}
   {% include "includes/info_cards_help_guidance.html" %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <h2>Pages elsewhere on this site</h2>
     </div>
   </div>
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds__info">
       <a href="{% url 'courts_and_tribunals_in_fcl' %}" class="grid-background-link" aria-label="Courts and tribunals in Find Case Law">

@@ -1,49 +1,51 @@
-{% extends "layouts/static_content.html" %}
+{% extends "layouts/standard_content.html" %}
 {% load court_utils %}
 
-{% block static_content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-grid-column-one-third">
-        <h1 class="hidden-h1-mobile">About Find Case Law</h1>
-        <div class="anchor-links">
-          <h3 class="anchor-links__header">On this page:</h3>
-          <ul class="anchor-links__list">
-            <li class="anchor-links__list-option">
-              <a href="#section-what">What Find Case Law does</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-pages">Pages in this section</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="govuk-grid-column-two-thirds__about_page">
-        <h1 class="hidden-h1-desktop">About Find Case Law</h1>
-        <section>
-          <h2 id="section-what">What Find Case Law does</h2>
-          <p>Find Case Law is a service that provides public access to court judgments and tribunal decisions made in England and Wales from 2001 onwards.</p>
-          <p>It publishes selected judgments and decisions on this website, in a range of formats.</p>
-          <p>It is provided by <a href="https://www.nationalarchives.gov.uk/">The National Archives,</a>  working in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.</p>
-          <p>
-            Please note that:
-            <ul>
-              <li>Find Case Law is currently in beta, meaning it is being actively developed and may change in order to test and introduce new features</li>
-              <li>Find Case Law is not a complete record of judgments and decisions (see our <a href="{% url 'publishing_policy' %}">Publishing policy</a>)</li>
-              <li>Find Case Law does not provide legal advice, interpretation or support. Sources of these include:
-                <ul>
-                  <li><a href="https://www.citizensadvice.org.uk/">Citizens Advice</a></li>
-                  <li><a href="https://www.lawcentres.org.uk/">The Law Centres Network</a></li>
-                  <li><a href="https://www.supportthroughcourt.org/">Support Through Court</a></li>
-                  <li><a href="https://www.weareadvocate.org.uk/">Advocate</a></li>
-                </ul>
-              </li>
-            </ul>
-          </p>
-        </section>
-      </div>
-    </div>
-  </div>
+{% block mobile_article_title %}
+  <h1>About Find Case Law</h1>
+{% endblock mobile_article_title %}
 
+{% block desktop_article_title %}
+  <h1>About Find Case Law</h1>
+{% endblock desktop_article_title %}
+
+{% block article_navigation %}
+  <h3>On this page:</h3>
+  <ul>
+    <li>
+      <a href="#section-what">What Find Case Law does</a>
+    </li>
+    <li>
+      <a href="#section-pages">Pages in this section</a>
+    </li>
+  </ul>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <section>
+    <h2 id="section-what">What Find Case Law does</h2>
+    <p>Find Case Law is a service that provides public access to court judgments and tribunal decisions made in England and Wales from 2001 onwards.</p>
+    <p>It publishes selected judgments and decisions on this website, in a range of formats.</p>
+    <p>It is provided by <a href="https://www.nationalarchives.gov.uk/">The National Archives,</a>  working in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.</p>
+    <p>
+      Please note that:
+      <ul>
+        <li>Find Case Law is currently in beta, meaning it is being actively developed and may change in order to test and introduce new features</li>
+        <li>Find Case Law is not a complete record of judgments and decisions (see our <a href="{% url 'publishing_policy' %}">Publishing policy</a>)</li>
+        <li>Find Case Law does not provide legal advice, interpretation or support. Sources of these include:
+          <ul>
+            <li><a href="https://www.citizensadvice.org.uk/">Citizens Advice</a></li>
+            <li><a href="https://www.lawcentres.org.uk/">The Law Centres Network</a></li>
+            <li><a href="https://www.supportthroughcourt.org/">Support Through Court</a></li>
+            <li><a href="https://www.weareadvocate.org.uk/">Advocate</a></li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+  </section>
+{% endblock article_content %}
+
+{% block article_footer %}
   {% include "includes/info_cards_about_find_case_law.html" %}
-{% endblock static_content %}
+  {% include "includes/help_end_document_marker.html" %}
+{% endblock article_footer %}
