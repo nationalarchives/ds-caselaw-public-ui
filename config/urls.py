@@ -8,9 +8,10 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView, TemplateView
 
+from judgments.views.advanced_search import StructuredSearchView, advanced_search
+
 from .converters import SchemaFileConverter
 from .views import static as static_views
-from .views.advanced_search import StructuredSearchView
 from .views.check import status
 from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
@@ -40,6 +41,9 @@ urlpatterns = [
         name="courts_and_tribunals",
     ),
     # Search
+    path("judgments/results", advanced_search),
+    path("judgments/advanced_search", advanced_search),
+    path("judgments/search", advanced_search, name="search"),
     path(
         "advanced_search",
         StructuredSearchView.as_view(),

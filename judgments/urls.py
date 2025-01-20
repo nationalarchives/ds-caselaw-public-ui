@@ -6,7 +6,6 @@ from judgments.views.index import IndexView
 
 from . import converters, feeds
 from .resolvers.document_resolver_engine import DocumentResolverEngine
-from .views.advanced_search import advanced_search
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -61,8 +60,5 @@ urlpatterns = [
         DocumentResolverEngine.as_view(),
         name="detail",
     ),
-    path("judgments/results", advanced_search),
-    path("judgments/advanced_search", advanced_search),
-    path("judgments/search", advanced_search, name="search"),
     path("", IndexView.as_view(), name="home"),
 ]
