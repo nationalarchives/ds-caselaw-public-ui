@@ -57,7 +57,7 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
             "what_to_expect",
             "how_to_use_this_service",
             "courts_and_tribunals",
-            "computational_licence_form",
+            "transactional-licence-form",
             "privacy_notice",
             "accessibility_statement",
             "open_justice_licence",
