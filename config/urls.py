@@ -41,18 +41,35 @@ urlpatterns = [
         name="courts_and_tribunals",
     ),
     # Search
-    path("judgments/results", advanced_search),
-    path("judgments/advanced_search", advanced_search),
-    path("judgments/search", advanced_search, name="search"),
     path(
-        "advanced_search",
+        "search",
+        advanced_search,
+        name="search",
+    ),
+    path(
+        "search/advanced",
         StructuredSearchView.as_view(),
         name="advanced_search",
     ),
     path(
+        "judgments/results",
+        lambda request: HttpResponseRedirect(reverse("search") + "?" + request.GET.urlencode()),
+    ),
+    path(
+        "judgments/search",
+        lambda request: HttpResponseRedirect(reverse("search") + "?" + request.GET.urlencode()),
+    ),
+    path(
+        "judgments/advanced_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search") + "?" + request.GET.urlencode()),
+    ),
+    path(
+        "advanced_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search") + "?" + request.GET.urlencode()),
+    ),
+    path(
         "structured_search",
-        lambda request: HttpResponseRedirect(reverse("advanced_search")),
-        name="structured_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search") + "?" + request.GET.urlencode()),
     ),
     # Static pages
     path(

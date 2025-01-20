@@ -193,7 +193,7 @@ class JudgmentsFeed(Feed):
                 context["query_param_string"] = query_param_string
 
                 breadcrumbs = [
-                    {"text": f'Search results for "{query}"', "url": "/judgments/search?" + query_param_string},
+                    {"text": f'Search results for "{query}"', "url": "/search?" + query_param_string},
                     {"text": "Atom feed"},
                 ]
                 context["breadcrumbs"] = breadcrumbs

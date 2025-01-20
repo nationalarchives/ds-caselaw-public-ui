@@ -43,7 +43,7 @@ court_filters = [
 
 @pytest.mark.parametrize("filter", court_filters)
 def test_advanced_search_court_filters(page: Page, filter):
-    page.goto("/advanced_search")
+    page.goto("/search/advanced")
 
     page.locator("label", has_text=f"{filter}")
 
@@ -56,7 +56,7 @@ def test_advanced_search_court_filters(page: Page, filter):
 
 
 def test_advanced_search_before_2003(page: Page):
-    page.goto("/advanced_search")
+    page.goto("/search/advanced")
 
     page.locator("#id_from_date_0").fill("01")
     page.locator("#id_from_date_1").fill("01")
@@ -72,7 +72,7 @@ def test_advanced_search_before_2003(page: Page):
 def test_advanced_search_no_results_page(page: Page):
     query = "thisshouldnotgiveanyresults"
 
-    page.goto("/advanced_search")
+    page.goto("/search/advanced")
 
     query_input(page).fill(query)
     submit_button(page).click()
@@ -83,7 +83,7 @@ def test_advanced_search_no_results_page(page: Page):
 
 def test_advanced_search_basic_query_page(page: Page):
     query = "Imperial"
-    page.goto("/advanced_search")
+    page.goto("/search/advanced")
 
     expect(page).to_have_title("Advanced search - Find Case Law - The National Archives")
 
@@ -100,7 +100,7 @@ def test_advanced_search_basic_query_page(page: Page):
 
 
 def test_advanced_search_sorting(page: Page):
-    page.goto("/advanced_search")
+    page.goto("/search/advanced")
 
     query_input(page).fill("Imperial")
     submit_button(page).click()
@@ -118,12 +118,12 @@ def test_advanced_search_sorting(page: Page):
 
 
 def test_advanced_search_page_is_accessible(page: Page):
-    page.goto("/advanced_search")
+    page.goto("/search/advanced")
     assert_is_accessible(page)
 
 
 def test_advanced_search_results_page_is_accessible(page: Page):
-    page.goto("/advanced_search")
+    page.goto("/search/advanced")
 
     query_input(page).fill("Imperial")
     submit_button(page).click()
