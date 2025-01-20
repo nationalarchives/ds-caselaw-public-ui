@@ -166,9 +166,8 @@ def search_context_from_url(url) -> Optional[dict]:
     if url:
         parsed_url = urlparse(url)
         is_search_link = parsed_url.path in [
-            "/judgments/results",
-            "/judgments/advanced_search",
-            "/judgments/search",
+            "/search",
+            "/search/advanced",
         ]
 
         if is_search_link:

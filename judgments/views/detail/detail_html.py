@@ -66,7 +66,7 @@ def detail_html(request, document_uri):
     if query and form.is_valid():
         query_param_string = urllib.parse.urlencode(form.cleaned_data, doseq=True)
 
-        breadcrumbs.append({"url": "/judgments/search?" + query_param_string, "text": f'Search results for "{query}"'})
+        breadcrumbs.append({"url": "/search?" + query_param_string, "text": f'Search results for "{query}"'})
 
     if document.document_noun == "press summary" and context["linked_document_uri"]:
         breadcrumbs.append(

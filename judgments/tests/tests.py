@@ -76,10 +76,10 @@ class TestPaginator(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_pagination_links(self, mock_search_judgments_and_parse_response):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?tribunal=ukut/iac&order=&page=3")
+        response = self.client.get("/search?tribunal=ukut/iac&order=&page=3")
         decoded_response = response.content.decode("utf-8")
         self.assertIn(
-            "/judgments/search?tribunal=ukut%2Fiac&amp;order=&page=4",
+            "/search?tribunal=ukut%2Fiac&amp;order=&page=4",
             decoded_response,
         )
 
@@ -141,7 +141,7 @@ class TestRobotsDirectives(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
-        response = self.client.get("/judgments/search?query=waltham+forest")
+        response = self.client.get("/search?query=waltham+forest")
         self.assertContains(response, '<meta name="robots" content="noindex,nofollow" />', html=True)
 
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
@@ -240,16 +240,16 @@ class TestRobotsDirectives(TestCase):
 
 class TestBackLink(TestCase):
     def test_referrer_is_search_page_without_query(self):
-        assert search_context_from_url("https://example.com/judgments/search") == {
-            "search_url": "https://example.com/judgments/search",
+        assert search_context_from_url("https://example.com/search") == {
+            "search_url": "https://example.com/search",
             "query": None,
         }
 
     def test_referrer_is_search_page_with_query(self):
         # When there is a referrer, and it is a results page,
         # the back link is displayed:
-        assert search_context_from_url("https://example.com/judgments/search?query=test+query") == {
-            "search_url": "https://example.com/judgments/search?query=test+query",
+        assert search_context_from_url("https://example.com/search?query=test+query") == {
+            "search_url": "https://example.com/search?query=test+query",
             "query": "test query",
         }
 

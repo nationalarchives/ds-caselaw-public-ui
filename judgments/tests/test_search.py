@@ -45,7 +45,7 @@ class TestNoNCN(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_browse_results(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
-        response = self.client.get(r"/judgments/search?query=[2024]%20EAT%209999")
+        response = self.client.get(r"/search?query=[2024]%20EAT%209999")
         self.assertContains(
             response, "There is no judgment with the Neutral Citation of [2024] EAT 9999 in our database.", html=True
         )
@@ -59,7 +59,7 @@ class TestSearchResults(TestCase):
     ):
         """
         GIVEN a client for making HTTP requests
-        WHEN a GET request is made to "/judgments/search?query=waltham+forest" and the `CourtDates` model has a row
+        WHEN a GET request is made to "/search?query=waltham+forest" and the `CourtDates` model has a row
         THEN the response should contain the expected applied filters HTML excluding the implicitly set minimum date
         AND the `search_judgments_and_parse_response` function should be called with the correct query string and the
         minimum date from CourtDates
@@ -73,7 +73,7 @@ class TestSearchResults(TestCase):
         CourtDateFactory()
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
-        response = self.client.get("/judgments/search?query=waltham+forest", {"query": "waltham forest"})
+        response = self.client.get("/search?query=waltham+forest", {"query": "waltham forest"})
 
         self.assertContains(
             response,
@@ -102,7 +102,7 @@ class TestSearchResults(TestCase):
     ):
         """
         GIVEN a client for making HTTP requests
-        WHEN a GET request is made to "/judgments/search?query=waltham+forest" and the `CourtDates` model is empty
+        WHEN a GET request is made to "/search?query=waltham+forest" and the `CourtDates` model is empty
         THEN the response should contain the expected applied filters HTML excluding the implicitly set minimum date
         AND the `search_judgments_and_parse_response` function should be called with the correct query string and the
         minimum date from `settings.MINIMUM_WARNING_YEAR`
@@ -115,7 +115,7 @@ class TestSearchResults(TestCase):
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
-        response = self.client.get("/judgments/search?query=waltham+forest", {"query": "waltham forest"})
+        response = self.client.get("/search?query=waltham+forest", {"query": "waltham forest"})
 
         self.assertContains(
             response,
@@ -144,7 +144,7 @@ class TestSearchResults(TestCase):
     ):
         """
         GIVEN a client for making HTTP requests
-        WHEN a GET request is made to "/judgments/search?query=waltham+forest"
+        WHEN a GET request is made to "/search?query=waltham+forest"
         AND the from_date is before `settings.MINIMUM_WARNING_YEAR`
         AND there's no search results
         THEN the response should contain the expected warning
@@ -155,7 +155,7 @@ class TestSearchResults(TestCase):
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseWithFacets()
 
-        response = self.client.get("/judgments/search?query=cat&from_date_0=1&from_date_1=1&from_date_2=1444")
+        response = self.client.get("/search?query=cat&from_date_0=1&from_date_1=1&from_date_2=1444")
 
         expected_text = """
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
@@ -172,7 +172,7 @@ class TestSearchResults(TestCase):
     ):
         """
         GIVEN a client for making HTTP requests
-        WHEN a GET request is made to "/judgments/search?query=waltham+forest"
+        WHEN a GET request is made to "/search?query=waltham+forest"
         AND the from_date is after `settings.MINIMUM_WARNING_YEAR`
         THEN the response should contain the date range warning
 
@@ -181,7 +181,7 @@ class TestSearchResults(TestCase):
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
-        response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=2011")
+        response = self.client.get("/search?from_date_0=1&from_date_1=1&from_date_2=2011")
 
         expected_text = """
                 2011 is before 2003, the date of the oldest record on the Find Case Law service.
@@ -197,7 +197,7 @@ class TestSearchResults(TestCase):
     ):
         """
         GIVEN a client for making HTTP requests
-        WHEN a GET request is made to "/judgments/search?query=waltham+forest"
+        WHEN a GET request is made to "/search?query=waltham+forest"
         AND the from_date is before `settings.MINIMUM_WARNING_YEAR`
         AND there are no results returned
         THEN the response not should contain the date range warning
@@ -207,7 +207,7 @@ class TestSearchResults(TestCase):
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
 
-        response = self.client.get("/judgments/search?from_date_0=1&from_date_1=1&from_date_2=1444")
+        response = self.client.get("/search?from_date_0=1&from_date_1=1&from_date_2=1444")
 
         expected_text = """
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
@@ -225,7 +225,7 @@ class TestSearchResults(TestCase):
     ):
         """
         GIVEN a client for making HTTP requests
-        WHEN a GET request is made to "/judgments/search?court=ewhc/ch&court=ewhc/ipec"
+        WHEN a GET request is made to "/search?court=ewhc/ch&court=ewhc/ipec"
         THEN the response should contain the expected applied filters HTML
         AND the `search_judgments_and_parse_response` function should be called with the correct court string.
 
@@ -244,7 +244,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -259,7 +259,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -270,7 +270,7 @@ class TestSearchResults(TestCase):
             </li>
         </ul>
 """
-        response = self.client.get("/judgments/search?court=ewhc/ch&court=ewhc/ipec")
+        response = self.client.get("/search?court=ewhc/ch&court=ewhc/ipec")
 
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
@@ -298,7 +298,7 @@ class TestSearchResults(TestCase):
         """
         GIVEN a client for making HTTP requests
         WHEN a GET request is made to:
-            "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=1970"
+            "/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=1970"
         THEN the response should contain the expected applied filters HTML including explicitly set date
         AND the `search_judgments_and_parse_response` function should be called with the correct court string.
 
@@ -311,9 +311,7 @@ class TestSearchResults(TestCase):
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
-        response = self.client.get(
-            "/judgments/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=2011"
-        )
+        response = self.client.get("/search?court=ewhc/ch&court=ewhc/ipec&from_date_0=1&from_date_1=1&from_date_2=2011")
 
         expected_applied_filters_html = """
         <ul class="results-search-component__removable-options js-results-facets-applied-filters">
@@ -322,7 +320,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?query=&amp;court=ewhc/ch&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page=">
+                 href="/search?query=&amp;court=ewhc/ch&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page=">
                  <span class="results-search-component__removable-options-key">From:</span>
                  <span class="results-search-component__removable-options-value">
                    <span class="results-search-component__removable-options-value-text"> 01 Jan 2011</span>
@@ -334,7 +332,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -348,7 +346,7 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="/judgments/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -383,14 +381,14 @@ class TestSearchBreadcrumbs(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_search_breadcrumbs_without_query_string(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search")
+        response = self.client.get("/search")
         assert response.context["breadcrumbs"] == [{"text": "Search results"}]
 
     @patch("judgments.views.advanced_search.api_client")
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_search_breadcrumbs_with_query_string(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?query=waltham+forest")
+        response = self.client.get("/search?query=waltham+forest")
 
         assert response.context["breadcrumbs"] == [{"text": 'Search results for "waltham forest"'}]
 
@@ -401,7 +399,7 @@ class TestSearchFacets(TestCase):
     def test_populated_court_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         court_code = all_courts.get_by_code(CourtCode("EWHC-KBD-TCC"))
-        response = self.client.get("/judgments/search?query=example+query")
+        response = self.client.get("/search?query=example+query")
 
         # Desired court_facet is present
         assert response.context["court_facets"] == {court_code: "1"}
@@ -415,7 +413,7 @@ class TestSearchFacets(TestCase):
     def test_populated_tribunal_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         tribunal_code = all_courts.get_by_code(CourtCode("EAT"))
-        response = self.client.get("/judgments/search?query=example+query")
+        response = self.client.get("/search?query=example+query")
 
         # Desired tribunal_facet is present
         assert response.context["tribunal_facets"] == {tribunal_code: "3"}
@@ -431,7 +429,7 @@ class TestSearchFacets(TestCase):
         Advanced search only populates court_facets if they are available
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoFacets()
-        response = self.client.get("/judgments/search?query=example+query")
+        response = self.client.get("/search?query=example+query")
 
         assert response.context["court_facets"] == {}
         assert response.context["tribunal_facets"] == {}
@@ -440,7 +438,7 @@ class TestSearchFacets(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_populated_year_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?query=example+query")
+        response = self.client.get("/search?query=example+query")
 
         # Desired year_facet is present
         assert response.context["year_facets"] == {"2010": "103"}
@@ -451,7 +449,7 @@ class TestSearchFacets(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_per_page_query_parameter_selected(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?query=example+query&per_page=50")
+        response = self.client.get("/search?query=example+query&per_page=50")
         per_page_select_id = lxml.html.fromstring(response.content).xpath('//*[@id="per_page"]')[0]
         option_10_selected = per_page_select_id.xpath("./option[@value=10]/@selected")
         option_50_selected = per_page_select_id.xpath("./option[@value=50]/@selected")
@@ -466,7 +464,7 @@ class TestSearchFacets(TestCase):
         Advanced search only populates year_facets if they are available
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoFacets()
-        response = self.client.get("/judgments/search?query=example+query")
+        response = self.client.get("/search?query=example+query")
 
         assert response.context["year_facets"] == {}
 
@@ -476,7 +474,7 @@ class TestSearchValidation(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_real_short_code_court(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?court=ewhc")
+        response = self.client.get("/search?court=ewhc")
         root = lxml.html.fromstring(response.content)
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert not failure
@@ -485,7 +483,7 @@ class TestSearchValidation(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_fake_short_code_court(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?court=kitten")
+        response = self.client.get("/search?court=kitten")
         root = lxml.html.fromstring(response.content)
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert failure[0].text == "Errors in 'court' - see below for details"
@@ -494,7 +492,7 @@ class TestSearchValidation(TestCase):
     @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
     def test_real_short_code_tribunal(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
-        response = self.client.get("/judgments/search?tribunal=ukut")
+        response = self.client.get("/search?tribunal=ukut")
         root = lxml.html.fromstring(response.content)
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert not failure

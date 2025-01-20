@@ -8,9 +8,10 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView, TemplateView
 
+from judgments.views.advanced_search import StructuredSearchView, advanced_search
+
 from .converters import SchemaFileConverter
 from .views import static as static_views
-from .views.advanced_search import StructuredSearchView
 from .views.check import status
 from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
@@ -41,14 +42,34 @@ urlpatterns = [
     ),
     # Search
     path(
-        "advanced_search",
+        "search",
+        advanced_search,
+        name="search",
+    ),
+    path(
+        "search/advanced",
         StructuredSearchView.as_view(),
         name="advanced_search",
     ),
     path(
+        "judgments/results",
+        lambda request: HttpResponseRedirect(reverse("search") + "?" + request.GET.urlencode()),
+    ),
+    path(
+        "judgments/search",
+        lambda request: HttpResponseRedirect(reverse("search") + "?" + request.GET.urlencode()),
+    ),
+    path(
+        "judgments/advanced_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search") + "?" + request.GET.urlencode()),
+    ),
+    path(
+        "advanced_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search") + "?" + request.GET.urlencode()),
+    ),
+    path(
         "structured_search",
-        lambda request: HttpResponseRedirect(reverse("advanced_search")),
-        name="structured_search",
+        lambda request: HttpResponseRedirect(reverse("advanced_search") + "?" + request.GET.urlencode()),
     ),
     # Static pages
     path(
