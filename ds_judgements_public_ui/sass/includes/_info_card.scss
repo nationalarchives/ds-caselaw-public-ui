@@ -1,24 +1,15 @@
-.info-cards {
+@mixin info-card {
   display: flex;
-  flex-direction: column;
-  gap: $space-4;
-
-  @media (min-width: $grid-breakpoint-medium) {
-    flex-direction: row;
-  }
-}
-
-.info-card {
-  display: flex;
+  flex: 33%;
   flex-direction: column;
   gap: $space-4;
 
   padding: $space-8 $space-4;
+  border-top: 4px solid $color-yellow;
 
   text-decoration: none;
 
   background-color: colour-var("accent-background-light");
-  border-top: 4px solid $color-yellow;
 
   &:focus {
     outline-offset: $space-2;
@@ -46,5 +37,45 @@
   p {
     margin: 0;
     color: colour-var("accent-font-base");
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    max-width: 30%;
+  }
+}
+
+@mixin info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    flex-direction: row;
+  }
+}
+
+.info-cards {
+  @include info-cards;
+}
+
+.info-cards--light {
+  @include info-cards;
+
+  gap: $space-12;
+}
+
+.info-card {
+  @include info-card;
+}
+
+.info-card--light {
+  @include info-card;
+
+  padding: 0;
+  border: 0;
+  background: colour-var("background");
+
+  &:hover {
+    background: colour-var("background");
   }
 }
