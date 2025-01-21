@@ -1,97 +1,100 @@
-{% extends "layouts/static_content.html" %}
+{% extends "layouts/standard_content.html" %}
 {% load court_utils %}
 
-{% block static_content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-grid-column-one-third">
-        <h1 class="hidden-h1-mobile">Courts and tribunals in Find Case Law</h1>
-        <div class="anchor-links">
-          <h3 class="anchor-links__header">On this page</h3>
-          <ul class="anchor-links__list">
-            <li class="anchor-links__list-option">
-              <a href="#section-judgments">Judgments and decisions Find Case Law provides</a>
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">20 August 2024</time>
+  </small>
+  <h1>Courts and tribunals in Find Case Law</h1>
+{% endblock mobile_article_title %}
+
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">20 August 2024</time>
+  </small>
+  <h1>Courts and tribunals in Find Case Law</h1>
+{% endblock desktop_article_title %}
+
+{% block article_navigation %}
+  <h3>On this page:</h3>
+  <ul>
+    <li>
+      <a href="#section-judgments">Judgments and decisions Find Case Law provides</a>
+    </li>
+    <li>
+      <a href="#section-date-ranges">Date ranges of judgments and decisions available in Find Case Law</a>
+    </li>
+    <li>
+      <a href="#section-not-available">Judgments and decisions not available in Find Case Law</a>
+    </li>
+    <li>
+      <a href="#section-historical">Historical judgments and decisions</a>
+    </li>
+    <li>
+      <a href="#section-interested-in"> You may also be interested in</a>
+    </li>
+  </ul>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <section>
+    <h2 id="section-judgments">Judgments and decisions Find Case Law provides</h2>
+    <p>
+      Courts in England and Wales select judgments and tribunal decisions to send to The National Archives for permanent preservation and publication on Find Case Law.
+      Currently Find Case Law regularly receives and publishes judgments from the Privy Council, the UK Supreme Court, the Court of Appeal, the High Court, the Upper Tribunals, the Investigatory Powers Tribunal and The Employment Appeal Tribunal.
+    </p>
+    <p>
+      The service also receives decisions from some first-tier tribunal chambers and some judgments from the Family Court, Court of Protection, County Court and Crown Court.
+      Judgments given from 19 April 2022 onwards have been transferred to The National Archives directly by the courts and tribunals. Judgments given prior to 19 April 2022 have been sourced by The National Archives from a variety of different sources, including <a href="https://www.bailii.org/"> BAILII</a>.
+      The National Archives, the Ministry of Justice and the Judiciary have the ambition to grow Find Case Law to become a comprehensive and authoritative repository for case law in England and Wales.
+    </p>
+    <h2 class="section-date-ranges">Date ranges of judgments and decisions available in Find Case Law</h2>
+    <p>
+      <ul class="court-listing">
+        {% for group in courts %}
+          {% if group.display_heading %}
+            <li>
+              <span>{{ group.name }}</span>
+              <ul>
+                {% for court in group.courts %}
+                  <li>{{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}</li>
+                {% endfor %}
+              </ul>
             </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-date-ranges">Date ranges of judgments and decisions available in Find Case Law</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-not-available">Judgments and decisions not available in Find Case Law</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-historical">Historical judgments and decisions</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-interested-in"> You may also be interested in</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="govuk-grid-column-two-thirds">
-        <p class="date-time-info-page">
-          <small>Last updated on
-            <time datetime="20-14-2024">20 August 2024</time>
-          </small>
-        </p>
-        <h1 class="hidden-h1-desktop">Courts and tribunals in Find Case Law</h1>
-        <section>
-          <h2 id="section-judgments">Judgments and decisions Find Case Law provides</h2>
-          <p>
-            Courts in England and Wales select judgments and tribunal decisions to send to The National Archives for permanent preservation and publication on Find Case Law.
-            Currently Find Case Law regularly receives and publishes judgments from the Privy Council, the UK Supreme Court, the Court of Appeal, the High Court, the Upper Tribunals, the Investigatory Powers Tribunal and The Employment Appeal Tribunal.
-          </p>
-          <p>
-            The service also receives decisions from some first-tier tribunal chambers and some judgments from the Family Court, Court of Protection, County Court and Crown Court.
-            Judgments given from 19 April 2022 onwards have been transferred to The National Archives directly by the courts and tribunals. Judgments given prior to 19 April 2022 have been sourced by The National Archives from a variety of different sources, including <a href="https://www.bailii.org/"> BAILII</a>.
-            The National Archives, the Ministry of Justice and the Judiciary have the ambition to grow Find Case Law to become a comprehensive and authoritative repository for case law in England and Wales.
-          </p>
-          <h2 class="section-date-ranges">Date ranges of judgments and decisions available in Find Case Law</h2>
-          <p>
-            <ul class="court-listing">
-              {% for group in courts %}
-                {% if group.display_heading %}
-                  <li>
-                    <span>{{ group.name }}</span>
-                    <ul>
-                      {% for court in group.courts %}
-                        <li>{{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}</li>
-                      {% endfor %}
-                    </ul>
-                  </li>
-                {% else %}
-                  {% for court in group.courts %}
-                    <li>{{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}</li>
-                  {% endfor %}
-                {% endif %}
-              {% endfor %}
-            </ul>
-          </p>
-          <h2 id="section-not-available">Judgments and decisions not available in Find Case Law</h2>
-          <p>
-            Find Case Law is not a complete record of judgments and decisions for the courts or tribunals.
-            The service only contains judgments and decisions that have been handed down and made public. Ex tempore (verbal) judgments that are not routinely transcribed may not be sent to the archive. For these, please contact the court or tribunal directly.
-            See <a href="{% url 'understanding_judgments_and_decisions' %}"> What judgments and decisions are</a>.
-          </p>
-          <p>
-            Find Case Law does not routinely receive  judgments from:
-            <ul>
-              <li>Crown Courts</li>
-              <li>County Courts</li>
-              <li>Magistrates' Courts</li>
-            </ul>
-            Some selected Crown Court and County Court judgments may be published on the site at the discretion of the judiciary. The service does not contain judgments or decisions from Scottish, Northern Irish or Irish courts or tribunals.
-          </p>
-          <p>
-            Some judgments may subsequently have been appealed and the judgments on appeal may not be included in the Find Case Law service. You should satisfy yourself that a judgment has not been the subject of an appeal before relying on it as an authority.
-          </p>
-          <h2 id="section-historical">Historical judgments and decisions</h2>
-          <p>
-            Older legal records that have been transferred to The National Archives on paper can be found in Discovery, The National Archives’ main catalogue. Discovery includes searchable descriptions of records.
-            <a href="https://www.nationalarchives.gov.uk/help-with-your-research/">Research guides</a>  provide help with using <a href="https://discovery.nationalarchives.gov.uk/">Discovery to find particular records</a>.
-          </p>
-        </section>
-      </div>
-    </div>
-  </div>
+          {% else %}
+            {% for court in group.courts %}
+              <li>{{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}</li>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </p>
+    <h2 id="section-not-available">Judgments and decisions not available in Find Case Law</h2>
+    <p>
+      Find Case Law is not a complete record of judgments and decisions for the courts or tribunals.
+      The service only contains judgments and decisions that have been handed down and made public. Ex tempore (verbal) judgments that are not routinely transcribed may not be sent to the archive. For these, please contact the court or tribunal directly.
+      See <a href="{% url 'understanding_judgments_and_decisions' %}"> What judgments and decisions are</a>.
+    </p>
+    <p>
+      Find Case Law does not routinely receive  judgments from:
+      <ul>
+        <li>Crown Courts</li>
+        <li>County Courts</li>
+        <li>Magistrates' Courts</li>
+      </ul>
+      Some selected Crown Court and County Court judgments may be published on the site at the discretion of the judiciary. The service does not contain judgments or decisions from Scottish, Northern Irish or Irish courts or tribunals.
+    </p>
+    <p>
+      Some judgments may subsequently have been appealed and the judgments on appeal may not be included in the Find Case Law service. You should satisfy yourself that a judgment has not been the subject of an appeal before relying on it as an authority.
+    </p>
+    <h2 id="section-historical">Historical judgments and decisions</h2>
+    <p>
+      Older legal records that have been transferred to The National Archives on paper can be found in Discovery, The National Archives’ main catalogue. Discovery includes searchable descriptions of records.
+      <a href="https://www.nationalarchives.gov.uk/help-with-your-research/">Research guides</a>  provide help with using <a href="https://discovery.nationalarchives.gov.uk/">Discovery to find particular records</a>.
+    </p>
+  </section>
+{% endblock article_content %}
+
+{% block article_footer %}
   {% include "includes/info_cards_courts_tribunals.html" %}
-{% endblock static_content %}
+{% endblock article_footer %}

@@ -1,128 +1,131 @@
-{% extends "layouts/static_content.html" %}
-{% block static_content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-grid-column-one-third">
-        <h1 class="hidden-h1-mobile">How to search Find Case Law</h1>
-        <div class="anchor-links">
-          <h3 class="anchor-links__header">On this page</h3>
-          <ul class="anchor-links__list">
-            <li class="anchor-links__list-option">
-              <a href="#section-use-search-box">Use the search box</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-sort-results">Sort search results</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-filter-results">Filter search results</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-search-ncn">Search by neutral citation</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-interested-in">You may also be interested in</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="govuk-grid-column-two-thirds">
-        <p class="date-time-info-page">
-          <small>Last updated on
-            <time datetime="20-14-2024">16 September2024</time>
-          </small>
-        </p>
-        <h1 class="hidden-h1-desktop">How to search Find Case Law</h1>
-        <section>
-          <p>Search court judgments and tribunal decisions in Find Case Law using the search box on the  <a href="{% url 'home' %}" >homepage</a> of this website.</p>
-          <p>Use <a href="{% url 'advanced_search' %}" >advanced search</a> to filter search results by specific dates, courts or tribunals, party names or judge names.</p>
-          <h2 id="section-use-search-box">Use the search box</h2>
-          <p>
-            The search box on the  <a href="{% url 'home' %}" >homepage</a> allows you to search:
-            <ul>
-              <li>The full text of every judgment or decision on Find Case Law</li>
-              <li>Details such as court name and neutral citation for each of these.</li>
-            </ul>
-          </p>
-          <p>
-            It shows the judgments and decisions that include all of your search terms. You should also note that:
-            <ul>
-              <li>It allows you to search for specific phrases if you put them in double quote marks “like this”.</li>
-              <li>It does not recognise Boolean operators such as ‘AND’ and ‘OR’.</li>
-              <li>It is not a smart search, meaning it does not match similar words and concepts to your search terms.</li>
-              <li>It is not able to correct spelling mistakes.</li>
-            </ul>
-          </p>
-          <p>For example, if you search for:</p>
-          <p><em>environmental matters</em></p>
-          <p>Your search will return any judgments or decisions that contain the word ‘environmental’ and the word ‘matters’, even if they don't appear next to one another.</p>
-          <p>If you search for:</p>
-          <p><em>“environmental matters”</em></p>
-          <p>Your search will return any judgments or decisions that contain the phrase ‘environmental matters’, where the words appear together and in that order.</p>
-          <p>If you search for:</p>
-          <p><em>"environmental matters" subsidiary</em></p>
-          <p>Your search will return judgments or decisions that contain both the phrase ‘environmental matters’ and the word ‘subsidiary’.</p>
-          <h2 id="section-sort-results">Sort search results</h2>
-          <p>Once you have made your search, you can choose what you ‘Order results by’ and the number of ‘Results per page’.</p>
-          <p>By default, search results will be ordered by ‘Most relevant’. If you have multiple search terms, results in which those terms appear closer together will be listed higher up on the page.</p>
-          <p>You can also order search results by ‘Newest’ and ‘Oldest’, based on the date on which the judgment or decision was handed down.</p>
-          <h2 id="section-filter-results">Filter search results</h2>
-          <p>
-            You can apply filters to narrow down the results returned by the search box by selecting ‘Add another filter’ to an existing search,
-            or beginning your search on the <a href="{% url 'advanced_search' %}" >advanced search</a> page.
-          </p>
-          <p>What each filter does is explained below.</p>
-          <h3>‘From date’ and ‘to date’</h3>
-          <p>At the top each judgment or decision is the date on which it was handed down. You can set a date range to filter your results by this.
-            <ul>
-              <li>‘From date’ only shows results from after (and including) that date</li>
-              <li>‘To date’ only shows results up until (and including) that date</li>
-            </ul>You can use a part of the name, the whole name, or the whole name and judicial titles.
-            You can set one of these or both together. If no end date is selected, the current date will be used.
-          </p>
-          <h3>From specific courts or tribunals</h3>
-          <p>Also at the top each judgment or decision is the court or chamber where the case was decided. You can filter your search to only show results from specific courts and chambers. See also Courts and tribunals in <a href="{% url 'courts_and_tribunals_in_fcl' %}">Find Case Law</a>.</p>
-          <h3>Party name</h3>
-          <p>This is the name of someone involved in the case, such as the claimant or defendant. There are often multiple party names listed at the top of the judgment or decision.</p>
-          <p>If a name has been struck through on a judgment, this means that the person withdrew from the case before it was decided.</p>
-          <p>You can search using multiple party names at once.</p>
-          <p>This allows you to search by case name, since the case name is made from some (or all) of the parties listed as the appellant and defendant.</p>
-          <p>For example, you can enter ‘Cape Intermediate Holdings Ltd v Dring’ under ‘Party name’ and bring up all cases with that name. In some instances the case name has been edited and the parties will not match what is on the document.
-            See our <a href="{% url 'publishing_policy' %}" >Publishing policy - Due diligence checks</a>.
-          </p>
-          <h3>Judge name</h3>
-          <p>The name of the judge(s) who decided a case appears at the top of every judgment or decision.</p>
-          <p>This filter only shows search results for judges that have given a judgment or decision on a case, instead of searching every reference to the name of the judge within the full text of cases.</p>
-          <p>You can use a part of the name, the whole name, or the whole name and judicial titles.</p>
-          <h2 id="section-search-ncn">Search by neutral citation</h2>
-          <p>The courts give a unique identifier to every judgment and decision, called a ‘neutral citation’. This appears at the top of the judgment or decision, and is the official way to cite it.</p>
-          <p>Examples of neutral citations include:
-            <ul>
-              <li>[2021] EWCA Civ 1847</li>
-              <li>[2009] EWHC 2500 (Mercantile)</li>
-              <li>[2021] EWCOP 18</li>
-              <li>[2019] UKSC 38</li>
-            </ul>
-            They typically include:
-            <ul>
-              <li>The year the judgment or decision was handed down. For example: [2009]</li>
-              <li>The standard court acronym. For example: EWCA is England and Wales Court of Appeal</li>
-              <li>The standard acronym for the division of court. For example: Civ is Civil Division</li>
-              <li>A unique number allocated by the individual court within a given year. For example: '1847' will be the unique number for the Court of Appeal Civil Division in 2021</li>
-            </ul>
-            If you are struggling to find a judgment or decision using a neutral citation, first check:
-            <ul>
-              <li>You have written the neutral citation in full</li>
-              <li>It contains no typing errors</li>
-              <li>The spaces are in the appropriate places</li>
-              <li>It is the neutral citation allocated by the court rather than a case or reference number issued by a publisher</li>
-            </ul>
-          </p>
-          <p>You can also use neutral citations allocated by the British and Irish Legal Information Institute (BAILII) for judgments and decisions that do not have neutral citations allocated by the courts.</p>
-          <p>If you are confident that the neutral citation is correct but are struggling to find it, it may be that that judgment is not within our collection.</p>
-        </section>
-      </div>
-    </div>
-  </div>
+{% extends "layouts/standard_content.html" %}
 
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">16 September2024</time>
+  </small>
+  <h1>How to search Find Case Law</h1>
+{% endblock mobile_article_title %}
+
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">16 September2024</time>
+  </small>
+  <h1>How to search Find Case Law</h1>
+{% endblock desktop_article_title %}
+
+{% block article_navigation %}
+  <h3>On this page</h3>
+  <ul>
+    <li>
+      <a href="#section-use-search-box">Use the search box</a>
+    </li>
+    <li>
+      <a href="#section-sort-results">Sort search results</a>
+    </li>
+    <li>
+      <a href="#section-filter-results">Filter search results</a>
+    </li>
+    <li>
+      <a href="#section-search-ncn">Search by neutral citation</a>
+    </li>
+    <li>
+      <a href="#section-interested-in">You may also be interested in</a>
+    </li>
+  </ul>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <section>
+    <p>Search court judgments and tribunal decisions in Find Case Law using the search box on the  <a href="{% url 'home' %}" >homepage</a> of this website.</p>
+    <p>Use <a href="{% url 'advanced_search' %}" >advanced search</a> to filter search results by specific dates, courts or tribunals, party names or judge names.</p>
+    <h2 id="section-use-search-box">Use the search box</h2>
+    <p>
+      The search box on the  <a href="{% url 'home' %}" >homepage</a> allows you to search:
+      <ul>
+        <li>The full text of every judgment or decision on Find Case Law</li>
+        <li>Details such as court name and neutral citation for each of these.</li>
+      </ul>
+    </p>
+    <p>
+      It shows the judgments and decisions that include all of your search terms. You should also note that:
+      <ul>
+        <li>It allows you to search for specific phrases if you put them in double quote marks “like this”.</li>
+        <li>It does not recognise Boolean operators such as ‘AND’ and ‘OR’.</li>
+        <li>It is not a smart search, meaning it does not match similar words and concepts to your search terms.</li>
+        <li>It is not able to correct spelling mistakes.</li>
+      </ul>
+    </p>
+    <p>For example, if you search for:</p>
+    <p><em>environmental matters</em></p>
+    <p>Your search will return any judgments or decisions that contain the word ‘environmental’ and the word ‘matters’, even if they don't appear next to one another.</p>
+    <p>If you search for:</p>
+    <p><em>“environmental matters”</em></p>
+    <p>Your search will return any judgments or decisions that contain the phrase ‘environmental matters’, where the words appear together and in that order.</p>
+    <p>If you search for:</p>
+    <p><em>"environmental matters" subsidiary</em></p>
+    <p>Your search will return judgments or decisions that contain both the phrase ‘environmental matters’ and the word ‘subsidiary’.</p>
+    <h2 id="section-sort-results">Sort search results</h2>
+    <p>Once you have made your search, you can choose what you ‘Order results by’ and the number of ‘Results per page’.</p>
+    <p>By default, search results will be ordered by ‘Most relevant’. If you have multiple search terms, results in which those terms appear closer together will be listed higher up on the page.</p>
+    <p>You can also order search results by ‘Newest’ and ‘Oldest’, based on the date on which the judgment or decision was handed down.</p>
+    <h2 id="section-filter-results">Filter search results</h2>
+    <p>
+      You can apply filters to narrow down the results returned by the search box by selecting ‘Add another filter’ to an existing search,
+      or beginning your search on the <a href="{% url 'advanced_search' %}" >advanced search</a> page.
+    </p>
+    <p>What each filter does is explained below.</p>
+    <h3>‘From date’ and ‘to date’</h3>
+    <p>At the top each judgment or decision is the date on which it was handed down. You can set a date range to filter your results by this.
+      <ul>
+        <li>‘From date’ only shows results from after (and including) that date</li>
+        <li>‘To date’ only shows results up until (and including) that date</li>
+      </ul>You can use a part of the name, the whole name, or the whole name and judicial titles.
+      You can set one of these or both together. If no end date is selected, the current date will be used.
+    </p>
+    <h3>From specific courts or tribunals</h3>
+    <p>Also at the top each judgment or decision is the court or chamber where the case was decided. You can filter your search to only show results from specific courts and chambers. See also Courts and tribunals in <a href="{% url 'courts_and_tribunals_in_fcl' %}">Find Case Law</a>.</p>
+    <h3>Party name</h3>
+    <p>This is the name of someone involved in the case, such as the claimant or defendant. There are often multiple party names listed at the top of the judgment or decision.</p>
+    <p>If a name has been struck through on a judgment, this means that the person withdrew from the case before it was decided.</p>
+    <p>You can search using multiple party names at once.</p>
+    <p>This allows you to search by case name, since the case name is made from some (or all) of the parties listed as the appellant and defendant.</p>
+    <p>For example, you can enter ‘Cape Intermediate Holdings Ltd v Dring’ under ‘Party name’ and bring up all cases with that name. In some instances the case name has been edited and the parties will not match what is on the document.
+      See our <a href="{% url 'publishing_policy' %}" >Publishing policy - Due diligence checks</a>.
+    </p>
+    <h3>Judge name</h3>
+    <p>The name of the judge(s) who decided a case appears at the top of every judgment or decision.</p>
+    <p>This filter only shows search results for judges that have given a judgment or decision on a case, instead of searching every reference to the name of the judge within the full text of cases.</p>
+    <p>You can use a part of the name, the whole name, or the whole name and judicial titles.</p>
+    <h2 id="section-search-ncn">Search by neutral citation</h2>
+    <p>The courts give a unique identifier to every judgment and decision, called a ‘neutral citation’. This appears at the top of the judgment or decision, and is the official way to cite it.</p>
+    <p>Examples of neutral citations include:
+      <ul>
+        <li>[2021] EWCA Civ 1847</li>
+        <li>[2009] EWHC 2500 (Mercantile)</li>
+        <li>[2021] EWCOP 18</li>
+        <li>[2019] UKSC 38</li>
+      </ul>
+      They typically include:
+      <ul>
+        <li>The year the judgment or decision was handed down. For example: [2009]</li>
+        <li>The standard court acronym. For example: EWCA is England and Wales Court of Appeal</li>
+        <li>The standard acronym for the division of court. For example: Civ is Civil Division</li>
+        <li>A unique number allocated by the individual court within a given year. For example: '1847' will be the unique number for the Court of Appeal Civil Division in 2021</li>
+      </ul>
+      If you are struggling to find a judgment or decision using a neutral citation, first check:
+      <ul>
+        <li>You have written the neutral citation in full</li>
+        <li>It contains no typing errors</li>
+        <li>The spaces are in the appropriate places</li>
+        <li>It is the neutral citation allocated by the court rather than a case or reference number issued by a publisher</li>
+      </ul>
+    </p>
+    <p>You can also use neutral citations allocated by the British and Irish Legal Information Institute (BAILII) for judgments and decisions that do not have neutral citations allocated by the courts.</p>
+    <p>If you are confident that the neutral citation is correct but are struggling to find it, it may be that that judgment is not within our collection.</p>
+  </section>
+{% endblock article_content %}
+
+{% block article_footer %}
   {% include "includes/info_cards_terms_use.html" %}
-{% endblock static_content %}
+{% endblock article_footer %}

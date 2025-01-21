@@ -1,4 +1,6 @@
 .standard-text-template {
+  @include container;
+
   min-height: 18rem;
   font-size: $typography-md-text-size;
   line-height: 1.4em;

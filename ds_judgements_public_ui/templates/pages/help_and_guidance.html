@@ -1,40 +1,31 @@
 {% extends "layouts/static_content.html" %}
-{% block static_content %}
-  {% include "includes/info_cards_help_guidance.html" %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <h2>Pages elsewhere on this site</h2>
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds__info">
-      <a href="{% url 'courts_and_tribunals_in_fcl' %}" class="grid-background-link" aria-label="Courts and tribunals in Find Case Law">
-        <div class="govuk-grid-column-one-third__info">
-          <h3 class="govuk-grid-column-one-third__grid_info_heading">Courts and tribunals in Find Case Law</h3>
-          <p class="govuk-grid-column-one-third__grid_info_text">Learn which judgments and decisions this service provides.</p>
-        </div>
-      </a>
-      <a href="{% url "transactional-licence-form" %}" class="grid-background-link" aria-label="Re-use information from Find Case Law">
-        <div class="govuk-grid-column-one-third__info">
-          <h3 class="govuk-grid-column-one-third__grid_info_heading">Re-use information from Find Case Law</h3>
-          <p class="govuk-grid-column-one-third__grid_info_text">Read what you can and can’t do with material from this service.</p>
-        </div>
-      </a>
-    </div>
-  </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <h2>Pages on other websites</h2>
-    </div>
-  </div>
-  <div class="govuk-grid-row__info">
-    <div class="govuk-grid-column-one-third__info-box">
-      <a href="https://www.nationalarchives.gov.uk/legal/cookies/" class="grid-background-link" aria-label="Cookies">
-        <h3 class="govuk-grid-column-one-third__grid_info_heading">Cookies</h3>
-        <p class="govuk-grid-column-one-third__grid_info_text">Learn which cookies Find Case Law uses, on The National Archives website.</p>
-      </div>
+{% block static_content %}
+  <h1>Help and guidance</h1>
+  <h2>Pages in this section</h2>
+
+  {% include "includes/info_cards_help_guidance.html" %}
+
+  <h2>Pages elsewhere on this site</h2>
+
+  <div class="info-cards--light">
+    <a class="info-card--light" href="{% url 'courts_and_tribunals_in_fcl' %}" aria-label="Courts and tribunals in Find Case Law">
+      <h3>Courts and tribunals in Find Case Law</h3>
+      <p>Learn which judgments and decisions this service provides.</p>
     </a>
 
+    <a class="info-card--light" href="{% url 'transactional-licence-form' %}" aria-label="Re-use information from Find Case Law">
+      <h3>Re-use information from Find Case Law</h3>
+      <p>Read what you can and can’t do with material from this service.</p>
+    </a>
+  </div>
+
+  <h2>Pages on other websites</h2>
+
+  <div class="info-cards--light">
+    <a class="info-card--light" href="https://www.nationalarchives.gov.uk/legal/cookies/" aria-label="Cookies">
+      <h3>Cookies</h3>
+      <p>Learn which cookies Find Case Law uses, on The National Archives website.</p>
+    </a>
   </div>
 {% endblock static_content %}

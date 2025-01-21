@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  <div class="standard-content" id="start-of-document">
+    <div class="standard-content__body">
+      {% block is_full_screen %}
+        <nav class="standard-content__navigation">
+          <div class="mobile-only">
+            {% block mobile_article_title %}
+            {% endblock mobile_article_title %}
+          </div>
+
+          <div class="standard-content__navigation-links">
+            {% block article_navigation %}
+            {% endblock article_navigation %}
+          </div>
+        </nav>
+      {% endblock is_full_screen %}
+
+      <article class="standard-content__article">
+        <div class="desktop-only">
+          {% block desktop_article_title %}
+          {% endblock desktop_article_title %}
+        </div>
+
+        {% block article_content %}
+        {% endblock article_content %}
+      </article>
+    </div>
+
+    <div class="standard-content__footer">
+      {% block article_footer %}
+      {% endblock article_footer %}
+    </div>
+  </div>
+
+  {% block end_of_document_marker %}
+    {% include "includes/help_end_document_marker.html" %}
+  {% endblock end_of_document_marker %}
+{% endblock content %}

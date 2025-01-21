@@ -1,14 +1,21 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/standard_content.html" %}
+
 {% load crispy_forms_tags crispy_forms_gds transactional_licence_utils static %}
+
 {% block javascript %}
   <script type="module" defer src="{% static 'js/dist/transactional_licence_form.js' %}"></script>
   <script type="module" defer src="{% static 'js/dist/location_picker.js' %}"></script>
 {% endblock javascript %}
+
 {% block head %}
   {{ wizard.form.media }}
 {% endblock head %}
-{% block content %}
-  <div class="standard-text-template container py-3 transactional-licence-form">
+
+{% block is_full_screen %}
+{% endblock is_full_screen %}
+
+{% block article_content %}
+  <div class="transactional-licence-form">
     {% block pre_title %}
     {% endblock pre_title %}
     {% block step_title %}
@@ -69,10 +76,14 @@
     {% block post_form %}
     {% endblock post_form %}
   </div>
-{% endblock content %}
+{% endblock article_content %}
+
 {% block feedback_cta %}
   {% comment %}
 This block left intentionally blank (we don't want
 the feedback survey showing on form steps)
   {% endcomment %}
 {% endblock feedback_cta %}
+
+{% block end_of_document_marker %}
+{% endblock end_of_document_marker %}

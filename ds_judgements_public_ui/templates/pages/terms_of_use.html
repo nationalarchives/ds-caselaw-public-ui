@@ -1,71 +1,75 @@
-{% extends "layouts/static_content.html" %}
+{% extends "layouts/standard_content.html" %}
+
 {% block meta_description %}
   <meta name="description"
         content="These terms tell you the rules for using the Find Case Law service.  The Find Case Law service is provided by The National Archives." />
 {% endblock meta_description %}
-{% block static_content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-grid-column-one-third">
-        <h1 class="hidden-h1-mobile">Terms of Use</h1>
-        <div class="anchor-links">
-          <h3 class="anchor-links__header">On this page</h3>
-          <ul class="anchor-links__list">
-            <li class="anchor-links__list-option">
-              <a href="#section-reasonable-use">Fair and reasonable use</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-crawling">Crawling and indexing</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-reuse">Reusing information from Find Case Law</a>
-            </li>
-            <li class="anchor-links__list-option">
-              <a href="#section-interested-in">You may also be interested in</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="govuk-grid-column-two-thirds">
-        <p class="date-time-info-page">
-          <small>Last updated on
-            <time datetime="20-14-2024">20 August 2024</time>
-          </small>
-        </p>
-        <h1 class="hidden-h1-desktop">Terms of use</h1>
-        <section>
-          <p>You may access Find Case Law through this website or the Find Case Law API.</p>
-          <p>By using Find Case Law, you confirm that you accept these terms of use and that you agree to comply with them.</p>
-          <h2 id="section-reasonable-use">Fair and reasonable use</h2>
-          <p>
-            You must use Find Case Law responsibly. This includes making a reasonable number of requests. In order to
-            maintain the integrity of the service for everyone, we may block or disable use of the service from specific IP addresses if they make an excessive number of requests.
-          </p>
-          <h2 id="section-crawling">Crawling and indexing</h2>
-          <p>You may access the Find Case Law service through the website, or access the data through <a href="https://nationalarchives.github.io/ds-find-caselaw-docs/public">the API</a>.</p>
-          <p>
-            We do not allow external indexing of documents. You must follow both the instructions in this website’s
-            <a href="https://caselaw.nationalarchives.gov.uk/robots.txt">robots.txt</a>
-            and any directives provided in HTML <code>&lt;meta&gt;</code> tags or <code>X-Robots-Tag</code> HTTP headers for all documents and their related assets.
-          </p>
-          <p>
-            We may block or disable the service for any users who appear to be compiling an index in violation of these terms.
-          </p>
-          <h2 id="section-reuse">Reusing information from Find Case Law</h2>
-          <p>
-            You may use and re-use the contents of the Find Case Law service under the terms of the
-            <a href='{% url "open_justice_licence" %}'>Open Justice Licence</a>.
-          </p>
-          <p>
-            You must apply for a licence to do computational analysis if you wish to conduct computational analysis of the information provided by Find Case Law.
-          </p>
-          <p>
-            For more detailed information, see our instructions on how to  <a href="{% url "transactional-licence-form" %}" >Reuse information from Find Case Law</a>.
-          </p>
-        </section>
-      </div>
-    </div>
-  </div>
 
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">20 August 2024</time>
+  </small>
+  <h1>Terms of use</h1>
+{% endblock mobile_article_title %}
+
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="20-14-2024">20 August 2024</time>
+  </small>
+  <h1>Terms of use</h1>
+{% endblock desktop_article_title %}
+
+{% block article_navigation %}
+  <h3>On this page</h3>
+  <ul>
+    <li>
+      <a href="#section-reasonable-use">Fair and reasonable use</a>
+    </li>
+    <li>
+      <a href="#section-crawling">Crawling and indexing</a>
+    </li>
+    <li>
+      <a href="#section-reuse">Reusing information from Find Case Law</a>
+    </li>
+    <li>
+      <a href="#section-interested-in">You may also be interested in</a>
+    </li>
+  </ul>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <section>
+    <p>You may access Find Case Law through this website or the Find Case Law API.</p>
+    <p>By using Find Case Law, you confirm that you accept these terms of use and that you agree to comply with them.</p>
+    <h2 id="section-reasonable-use">Fair and reasonable use</h2>
+    <p>
+      You must use Find Case Law responsibly. This includes making a reasonable number of requests. In order to
+      maintain the integrity of the service for everyone, we may block or disable use of the service from specific IP addresses if they make an excessive number of requests.
+    </p>
+    <h2 id="section-crawling">Crawling and indexing</h2>
+    <p>You may access the Find Case Law service through the website, or access the data through <a href="https://nationalarchives.github.io/ds-find-caselaw-docs/public">the API</a>.</p>
+    <p>
+      We do not allow external indexing of documents. You must follow both the instructions in this website’s
+      <a href="https://caselaw.nationalarchives.gov.uk/robots.txt">robots.txt</a>
+      and any directives provided in HTML <code>&lt;meta&gt;</code> tags or <code>X-Robots-Tag</code> HTTP headers for all documents and their related assets.
+    </p>
+    <p>
+      We may block or disable the service for any users who appear to be compiling an index in violation of these terms.
+    </p>
+    <h2 id="section-reuse">Reusing information from Find Case Law</h2>
+    <p>
+      You may use and re-use the contents of the Find Case Law service under the terms of the
+      <a href='{% url "open_justice_licence" %}'>Open Justice Licence</a>.
+    </p>
+    <p>
+      You must apply for a licence to do computational analysis if you wish to conduct computational analysis of the information provided by Find Case Law.
+    </p>
+    <p>
+      For more detailed information, see our instructions on how to  <a href="{% url "transactional-licence-form" %}" >Reuse information from Find Case Law</a>.
+    </p>
+  </section>
+{% endblock article_content %}
+
+{% block article_footer %}
   {% include "includes/info_cards_terms_use.html" %}
-{% endblock static_content %}
+{% endblock article_footer %}

@@ -1,99 +1,91 @@
-{% extends "layouts/static_content.html" %}
+{% extends "layouts/standard_content.html" %}
 {% load query_filters court_utils %}
 
-{% block static_content %}
-  <div class="atom-feed">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-third">
-        <div class="anchor-links">
-          <details class="govuk-details--compact">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">What is an Atom feed?</span>
-            </summary>
-            <div class="govuk-details__text">
-              <p>An Atom feed is a data format that contains the latest content from a website, blog, or podcast. You can use feeds to <strong>subscribe</strong> to websites and get the <strong>latest content in one place</strong>.</p>
+{% block article_navigation %}
+  <details class="govuk-details--compact">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">What is an Atom feed?</span>
+    </summary>
+    <div class="govuk-details__text">
+      <p>An Atom feed is a data format that contains the latest content from a website, blog, or podcast. You can use feeds to <strong>subscribe</strong> to websites and get the <strong>latest content in one place</strong>.</p>
 
-              <p>
-                <strong>Feeds put you in control</strong>
-                <br/>
+      <p>
+        <strong>Feeds put you in control</strong>
+        <br/>
 
-                Unlike social media apps, there is no algorithm deciding what you see or read. You always get the latest content.
-              </p>
+        Unlike social media apps, there is no algorithm deciding what you see or read. You always get the latest content.
+      </p>
 
-              <p>
-                <strong>Feed are private by design</strong>
-                <br/>
+      <p>
+        <strong>Feed are private by design</strong>
+        <br/>
 
-                No one owns web feeds, so no one is harvesting your personal information and profiting by selling it to advertisers.
-              </p>
+        No one owns web feeds, so no one is harvesting your personal information and profiting by selling it to advertisers.
+      </p>
 
-              <p>
-                <strong>Feeds are spam-proof</strong>
-                <br/>
+      <p>
+        <strong>Feeds are spam-proof</strong>
+        <br/>
 
-                Had enough? Easy, just unsubscribe from the feed.
-              </p>
+        Had enough? Easy, just unsubscribe from the feed.
+      </p>
 
-              <p>
-                All you need to do to get started is to add the URL (web address) for this feed to a special app called a newsreader. Visit <a href="">About Feeds</a> to get started with newsreaders and subscribing. It’s free.
-              </p>
+      <p>
+        All you need to do to get started is to add the URL (web address) for this feed to a special app called a newsreader. Visit <a href="">About Feeds</a> to get started with newsreaders and subscribing. It’s free.
+      </p>
 
-              <p>
-                For more information on customising this feed, check our <a href="">API documentation</a>.
-              </p>
-            </div>
-          </details>
-
-        </div>
-
-      </div>
-      <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-warning-text govuk-warning-text--text-only govuk-warning-text--information">
-          <span class="govuk-warning-text__text">
-            <span class="govuk-visually-hidden">Information</span>
-            <strong>Find Case Law Atom feed</strong><br/><br/>
-            This is an Atom feed of documents in the Find Case Law service, sometimes also known as an RSS feed. Subscribe by copying the URL from the address bar into your newsreader app.
-          </span>
-        </div>
-        <h1>Subscribe to your search results</h1>
-        <h2>
-          {% if query %}
-            For "{{ query }}"
-          {% endif %}
-
-          {% for key, value in filters %}
-            {% if key == 'court' or key == 'tribunal' %}
-              {% for item in value %}
-                <br/>
-                From "{{ item|get_court_name }}"
-              {% endfor %}
-            {% elif key != 'query' %}
-              <br/>
-              From "{{ value }}"
-            {% endif %}
-          {% endfor %}
-        </h2>
-
-        <p>Sorted by date the document was first published by the court (newest first)</p>
-
-        <p>This Atom feed will provide the latest updates from the Find Case Law service, operated by The National Archives.</p>
-
-        <h3>Atom feed for your search results</h3>
-
-        <p>This will dynamically update when the link has been added to your Atom feed app.</p>
-
-        <ul class="atom-feed__list">
-          {% for result in search_results %}
-            <li>
-              <a href="{% url 'detail' result.uri %}?{{ query_param_string }}">
-                {{ result.name }}
-              </a>
-              <br/>
-              {{ result.date|date:"d M Y" }}
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
+      <p>
+        For more information on customising this feed, check our <a href="">API documentation</a>.
+      </p>
     </div>
+  </details>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <div class="govuk-warning-text govuk-warning-text--text-only govuk-warning-text--information">
+    <span class="govuk-warning-text__text">
+      <span class="govuk-visually-hidden">Information</span>
+      <strong>Find Case Law Atom feed</strong><br/><br/>
+      This is an Atom feed of documents in the Find Case Law service, sometimes also known as an RSS feed. Subscribe by copying the URL from the address bar into your newsreader app.
+    </span>
   </div>
-{% endblock static_content %}
+
+  <h1>Subscribe to your search results</h1>
+  <h2>
+    {% if query %}
+      For "{{ query }}"
+    {% endif %}
+
+    {% for key, value in filters %}
+      {% if key == 'court' or key == 'tribunal' %}
+        {% for item in value %}
+          <br/>
+          From "{{ item|get_court_name }}"
+        {% endfor %}
+      {% elif key != 'query' %}
+        <br/>
+        From "{{ value }}"
+      {% endif %}
+    {% endfor %}
+  </h2>
+
+  <p>Sorted by date the document was first published by the court (newest first)</p>
+
+  <p>This Atom feed will provide the latest updates from the Find Case Law service, operated by The National Archives.</p>
+
+  <h3>Atom feed for your search results</h3>
+
+  <p>This will dynamically update when the link has been added to your Atom feed app.</p>
+
+  <ul class="atom-feed__list">
+    {% for result in search_results %}
+      <li>
+        <a href="{% url 'detail' result.uri %}?{{ query_param_string }}">
+          {{ result.name }}
+        </a>
+        <br/>
+        {{ result.date|date:"d M Y" }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock article_content %}

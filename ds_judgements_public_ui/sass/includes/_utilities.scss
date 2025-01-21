@@ -1,0 +1,68 @@
+.hidden-mobile {
+  display: none;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    display: block;
+  }
+}
+
+.hidden-desktop {
+  display: block;
+
+  @media (min-width: $grid-breakpoint-large) {
+    display: none;
+  }
+}
+
+.desktop-only {
+  display: none;
+
+  @media (min-width: $grid-breakpoint-large) {
+    display: block;
+  }
+}
+
+.mobile-only {
+  display: block;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    display: none;
+  }
+}
+
+.hidden-h1-mobile {
+  display: none;
+  margin-top: 0;
+
+  @media (max-width: $grid-breakpoint-medium) {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: $grid-breakpoint-small) {
+    display: block;
+    margin-bottom: 0;
+  }
+}
+
+.hidden-h1-desktop {
+  margin-top: 0;
+
+  @media (max-width: $grid-breakpoint-medium) {
+    display: none;
+  }
+
+  @media (max-width: $grid-breakpoint-small) {
+    display: none;
+  }
+}
+
+.date-time-info-page {
+  @media (max-width: $grid-breakpoint-medium) {
+    display: none;
+  }
+
+  @media (max-width: $grid-breakpoint-small) {
+    display: none;
+  }
+}
