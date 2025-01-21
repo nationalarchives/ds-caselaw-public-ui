@@ -115,10 +115,28 @@ LOGGING = {
     },
 }
 
+# https://docs.rollbar.com/docs/python-configuration-reference, search for 'scrub_fields'
+scrub_fields = [
+    "pw",
+    "passwd",
+    "password",
+    "secret",
+    "confirm_password",
+    "confirmPassword",
+    "password_confirmation",
+    "passwordConfirmation",
+    "access_token",
+    "accessToken",
+    "auth",
+    "authentication",
+    "authorization",
+]
+scrub_fields.extend(["X-Cloudfront-Secret"])
 ROLLBAR = {
     "access_token": env("ROLLBAR_ACCESS_TOKEN"),
     "environment": env("ROLLBAR_ENV"),
     "root": str(ROOT_DIR),
+    "scrub_fields": scrub_fields,
 }
 
 rollbar.init(**ROLLBAR)
