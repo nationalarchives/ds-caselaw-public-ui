@@ -30,8 +30,10 @@
 
     h1,
     h2,
-    h3 {
+    h3,
+    h4 {
       margin: 0;
+      padding: 0;
     }
 
     @media (min-width: $grid-breakpoint-medium) {
@@ -50,6 +52,13 @@
 
     h3 {
       margin: 0;
+
+      a {
+        @media (min-width: $grid-breakpoint-medium) {
+          color: colour-var("font-base");
+          text-decoration: none;
+        }
+      }
     }
 
     ul {

@@ -1,8 +1,20 @@
 {% load court_utils %}
-<div>
-  <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court.grouped_name }}</a>
+<div class="courts-and-tribunals__sub-item">
+  {% if group.display_heading %}
+    <h3 id="{{ court.name|slugify }}" class="courts-and-tribunals__subheader">{{ court.grouped_name }}</h3>
+  {% else %}
+    <h2 id="{{ court.name|slugify }}" class="courts-and-tribunals__header">{{ court.grouped_name }}</h2>
+  {% endif %}
+  <details class="govuk-details--compact">
+    <summary class="govuk-details__summary">
+      About the {{ court.grouped_name }}
+    </summary>
+    <div class="govuk-details__text">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nulla purus, imperdiet eget malesuada ac, mattis ac velit. Sed at urna eget nunc ultrices iaculis. Maecenas ex quam, mollis et egestas vel, sagittis non dui. Proin quis aliquam nisl. Proin vel varius nisi. Sed quis mauris nec sem rutrum hendrerit. Sed molestie pellentesque iaculis.</p>
+    </div>
+  </details>
   <p>
-    {{ court | get_court_judgments_count }} documents from
-    {{ court.canonical_param | get_court_date_range }}
+    We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court | get_court_judgments_count }} documents from
+      {{ court.canonical_param | get_court_date_range }}</a>
   </p>
 </div>
