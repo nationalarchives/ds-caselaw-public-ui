@@ -20,6 +20,8 @@ module.exports = {
         cookie_consent:
             "./ds_judgements_public_ui/static/js/cookie_consent/src/ds-cookie-consent.js",
         gtm_script: "./ds_judgements_public_ui/static/js/src/gtm_script.js",
+        govuk_tabs_extended:
+            "./ds_judgements_public_ui/static/js/src/govuk_tabs_extended.js",
     },
     output: {
         filename: "[name].js",

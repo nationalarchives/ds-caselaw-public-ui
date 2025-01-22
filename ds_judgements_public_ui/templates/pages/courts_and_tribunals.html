@@ -1,4 +1,9 @@
 {% extends "layouts/standard_content.html" %}
+{% load static %}
+
+{% block javascript %}
+  <script type="module" defer src="{% static 'js/dist/govuk_tabs_extended.js' %}"></script>
+{% endblock javascript %}
 
 {% block mobile_article_title %}
   <h1>Types of courts in England and Wales</h1>
