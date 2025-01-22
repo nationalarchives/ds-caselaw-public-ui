@@ -32,7 +32,7 @@
     flex-direction: column;
     gap: $space-2;
 
-    p {
+    > p {
       margin: 0;
     }
   }

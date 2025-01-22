@@ -11,6 +11,10 @@
 .govuk-details--compact {
   margin: 0;
   border: 0;
+
+  .govuk-details__text {
+    padding: $space-4 0;
+  }
 }
 
 .govuk-details:not([open]) > div {

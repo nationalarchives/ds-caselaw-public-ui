@@ -5,16 +5,32 @@
   {% else %}
     <h2 id="{{ court.name|slugify }}" class="courts-and-tribunals__header">{{ court.grouped_name }}</h2>
   {% endif %}
-  <details class="govuk-details--compact">
-    <summary class="govuk-details__summary">
-      About the {{ court.grouped_name }}
-    </summary>
-    <div class="govuk-details__text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nulla purus, imperdiet eget malesuada ac, mattis ac velit. Sed at urna eget nunc ultrices iaculis. Maecenas ex quam, mollis et egestas vel, sagittis non dui. Proin quis aliquam nisl. Proin vel varius nisi. Sed quis mauris nec sem rutrum hendrerit. Sed molestie pellentesque iaculis.</p>
-    </div>
-  </details>
+  {% if court.description_text_as_html %}
+    <details class="govuk-details--compact">
+      <summary class="govuk-details__summary">
+        About the {{ court.grouped_name }}
+      </summary>
+      <div class="govuk-details__text">
+        {% autoescape off %}
+          {{ court.description_text_as_html }}
+        {% endautoescape %}
+      </div>
+    </details>
+  {% endif %}
   <p>
     We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court | get_court_judgments_count }} documents from
       {{ court.canonical_param | get_court_date_range }}</a>
   </p>
+  {% if court.historic_docs_support_text_as_html %}
+    <details class="govuk-details--compact">
+      <summary class="govuk-details__summary">
+        Looking for older
+      </summary>
+      <div class="govuk-details__text">
+        {% autoescape off %}
+          {{ court.historic_docs_support_text_as_html }}
+        {% endautoescape %}
+      </div>
+    </details>
+  {% endif %}
 </div>
