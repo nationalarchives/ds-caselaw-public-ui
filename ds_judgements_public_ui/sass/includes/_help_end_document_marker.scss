@@ -9,11 +9,8 @@
 
   &__top-link {
     display: inline-block;
-
     margin-top: $space-2;
-    padding: $space-2;
-    padding-top: $space-12;
-
+    padding: $space-12;
     background-color: colour-var("background");
 
     a {
