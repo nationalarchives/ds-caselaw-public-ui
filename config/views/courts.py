@@ -14,7 +14,7 @@ class CourtsTribunalsListView(TemplateViewWithContext):
     """List view for all courts and tribunals in the Find Case Law database."""
 
     template_name = "pages/courts_and_tribunals.html"
-    page_title = "Judgments and decisions by court or tribunal"
+    page_title = "Types of courts in England and Wales"
     page_allow_index = True
 
     def get_context_data(self, **kwargs):
