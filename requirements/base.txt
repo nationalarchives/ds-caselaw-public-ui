@@ -10,7 +10,7 @@ django-model-utils==5.0.0  # https://github.com/jazzband/django-model-utils
 requests~=2.32.2
 wsgi-basic-auth~=1.1.0
 ds-caselaw-marklogic-api-client~=29.1.1
-ds-caselaw-utils==2.0.1
+ds-caselaw-utils==2.2.0
 rollbar
 django-weasyprint==2.3.1
 django-waffle==4.2.0  # https://github.com/django-waffle/django-waffle
