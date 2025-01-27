@@ -37,7 +37,7 @@
     "stylelint-config-clean-order": "^7.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
     "webpack": "^5.76.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^6.0.0"
   },
   "browserslist": [
     "IE 11"
