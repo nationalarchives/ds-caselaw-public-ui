@@ -9,8 +9,8 @@ static_pages = [
     {"url": "/contact-us", "title": "Contact Us", "heading": "Contact us"},
     {
         "url": "/courts-and-tribunals",
-        "title": "Judgments and decisions by court or tribunal",
-        "heading": "Judgments and decisions by court or tribunal",
+        "title": "Types of court in England and Wales",
+        "heading": "Types of court in England and Wales",
     },
     {"url": "/help-and-guidance", "title": "Help and guidance", "heading": "Help and guidance"},
     {
