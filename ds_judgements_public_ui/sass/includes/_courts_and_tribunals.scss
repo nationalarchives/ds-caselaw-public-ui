@@ -32,6 +32,13 @@
     flex-direction: column;
     gap: $space-2;
 
+    padding-bottom: $space-2;
+    border-bottom: 1px solid colour-var("accent-background");
+
+    &:last-of-type {
+      border: 0;
+    }
+
     > p {
       margin: 0;
     }
