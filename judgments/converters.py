@@ -55,7 +55,7 @@ class FileFormatConverter:
 
 
 class DocumentUriConverter:
-    regex = r".*/\d{4}/\d+.*"
+    regex = r"[a-z0-9./-]+"
 
     def to_python(self, value):
         return value
