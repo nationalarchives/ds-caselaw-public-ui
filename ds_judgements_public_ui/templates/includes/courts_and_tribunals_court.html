@@ -18,8 +18,12 @@
     </details>
   {% endif %}
   <p>
-    We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court | get_court_judgments_count }} documents from
-      {{ court.canonical_param | get_court_date_range }}</a>
+    {% if court|get_court_judgments_count == 0 %}
+      We don't currently hold any documents
+    {% else %}
+      We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court|get_court_judgments_count }} documents from
+        {{ court.canonical_param | get_court_date_range }}</a>
+    {% endif %}
   </p>
   {% if court.historic_documents_support_text_as_html %}
     <details class="govuk-details--compact">
