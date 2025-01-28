@@ -3,14 +3,18 @@
   margin-top: $space-8;
   margin-bottom: $space-8;
   padding: $space-2;
+  border: 3px solid brand-colour("navy");
 
   background-color: colour-var("background");
-  border: 3px solid brand-colour("navy");
 }
 
 .govuk-details--compact {
-  margin: $space-2 0;
+  margin: 0;
   border: 0;
+
+  .govuk-details__text {
+    padding: $space-4 0;
+  }
 }
 
 .govuk-details:not([open]) > div {
@@ -39,6 +43,6 @@
 
 .govuk-details__text {
   padding: $space-4;
-  font-size: $typography-md-text-size;
   border-left: none;
+  font-size: $typography-md-text-size;
 }

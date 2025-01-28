@@ -1,0 +1,36 @@
+.govuk-frontend-supported {
+  .govuk-tabs {
+    font-size: $typography-md-text-size;
+
+    &__list {
+    }
+
+    &__list-item {
+      padding: 8px 10px;
+
+      &--selected {
+        @media (min-width: $grid-breakpoint-small) {
+          padding: 10px 14px 13px;
+          border-top: 4px solid $color-yellow;
+        }
+      }
+    }
+
+    &__tab {
+      &:focus {
+        text-decoration: underline;
+        text-decoration-thickness: 3px;
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+
+    &__panel {
+      > h1:first-child,
+      > h2:first-child,
+      > h3:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}

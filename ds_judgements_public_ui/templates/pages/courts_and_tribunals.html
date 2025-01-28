@@ -1,28 +1,98 @@
-{% extends "layouts/base.html" %}
-{% block content %}
-  <div class="courts-and-tribunals container">
-    <div>
-      <div class="courts-and-tribunals__intro">
-        <h1>Judgments and decisions by court or tribunal</h1>
-        <p>
-          The UK courts and tribunal system is like a legal hierarchy.  The Supreme Court is at the top, dealing with the final appeals.
-          Below that, there are different courts for various legal issues, such as the Court of Appeal and the Crown Court.  Specialised
-          tribunals handle specific problems like employment or immigration.  Overall, these courts and tribunals are essential for making
-          fair legal decisions and resolving different types of issues.
-        </p>
+{% extends "layouts/standard_content.html" %}
+{% load static %}
+
+{% block javascript %}
+  <script type="module" defer src="{% static 'js/dist/govuk_tabs_extended.js' %}"></script>
+{% endblock javascript %}
+
+{% block mobile_article_title %}
+  <h1>Types of courts in England and Wales</h1>
+{% endblock mobile_article_title %}
+
+{% block desktop_article_title %}
+  <h1>Types of courts in England and Wales</h1>
+{% endblock desktop_article_title %}
+
+{% block article_navigation %}
+  <h3>On this page</h3>
+  <h3><a href="#courts"><strong>Courts</strong></a></h3>
+  <ul>
+    {% for court in courts %}
+
+      {% if court.display_heading %}
+        <li>
+          <a href="#{{ court.name|slugify }}">{{ court.name }} ({{ court.courts|length }})</a>
+        </li>
+      {% else %}
+        {% for subcourt in court.courts %}
+          <li>
+            <a href="#{{ subcourt.name|slugify }}">{{ subcourt.name }}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+
+  </ul>
+  <h3><a href="#tribunals"><strong>Tribunals</strong></a></h3>
+  <ul>
+    {% for tribunal in tribunals %}
+
+      {% if tribunal.display_heading %}
+        <li>
+          <a href="#{{ tribunal.name|slugify }}">{{ tribunal.name }} ({{ court.courts|length }})</a>
+        </li>
+      {% else %}
+        {% for subcourt in tribunal.courts %}
+          <li>
+            <a href="#{{ subcourt.name|slugify }}">{{ subcourt.name }}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+
+  </ul>
+{% endblock article_navigation %}
+
+{% block article_content %}
+  <section>
+    <p>Courts and tribunals in England and Wales handle different types of legal cases. There are the civil courts, which deal with disputes between individuals or organisations, and the criminal courts, which deal with criminal offences defined by law.</p>
+
+    <p>Decisions made by a court or tribunal may be appealed. The Court of Appeal and the UK Supreme Court are the most senior courts for appeals.</p>
+
+    <p>
+      You can find more information about the justice system in England and Wales on the <a href="https://www.judiciary.uk/structure-of-courts-and-tribunals-system/" target="_blank">judiciary website</a>. Older records held by The National Archives can be found on our website using the <a href="https://discovery.nationalarchives.gov.uk/browse/r/h/C162" target="_blank">Discovery catalogue</a>. Government policy around what records to keep and where to keep them has changed over time. To find out more you can look at the Ministry of Justice’s policy on what to archive in their <a href="https://www.gov.uk/government/publications/record-retention-and-disposition-schedules">Record Retention and Disposition Schedules</a>.</p>
+
+    <h2>What each court and tribunal does</h2>
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#courts">
+            Courts
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#tribunals">
+            Tribunals
+          </a>
+        </li>
+      </ul>
+      <div class="govuk-tabs__panel" id="courts">
+        <h2><strong>Courts</strong></h2>
+        {% for group in courts %}
+          {% include "includes/courts_and_tribunals_group.html" with group=group type="court" %}
+        {% endfor %}
       </div>
-      <div>
-        <h2 class="courts-and-tribunals__header">Courts</h2>
+
+      <div class="govuk-tabs__panel" id="tribunals">
+        <h2><strong>Tribunals</strong></h2>
+        {% for group in tribunals %}
+          {% include "includes/courts_and_tribunals_group.html" with group=group type="tribunal" %}
+        {% endfor %}
       </div>
-      {% for group in courts %}
-        {% include "includes/courts_and_tribunals_group.html" with group=group type="court" %}
-      {% endfor %}
-      <div>
-        <h2 class="courts-and-tribunals__header">Tribunals</h2>
-      </div>
-      {% for group in tribunals %}
-        {% include "includes/courts_and_tribunals_group.html" with group=group type="tribunal" %}
-      {% endfor %}
     </div>
-  </div>
-{% endblock content %}
+
+  </section>
+{% endblock article_content %}

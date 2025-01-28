@@ -1,8 +1,40 @@
 {% load court_utils %}
-<div>
-  <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court.grouped_name }}</a>
+<div class="courts-and-tribunals__sub-item">
+  {% if group.display_heading %}
+    <h3 id="{{ court.name|slugify }}" class="courts-and-tribunals__subheader">{{ court.grouped_name }}</h3>
+  {% else %}
+    <h2 id="{{ court.name|slugify }}" class="courts-and-tribunals__header">{{ court.grouped_name }}</h2>
+  {% endif %}
+  {% if court.description_text_as_html %}
+    <details class="govuk-details--compact">
+      <summary class="govuk-details__summary">
+        About the {{ court.grouped_name }}
+      </summary>
+      <div class="govuk-details__text">
+        {% autoescape off %}
+          {{ court.description_text_as_html }}
+        {% endautoescape %}
+      </div>
+    </details>
+  {% endif %}
   <p>
-    {{ court | get_court_judgments_count }} documents from
-    {{ court.canonical_param | get_court_date_range }}
+    {% if court|get_court_judgments_count == 0 %}
+      We don't currently hold any documents
+    {% else %}
+      We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court|get_court_judgments_count }} documents from
+        {{ court.canonical_param | get_court_date_range }}</a>
+    {% endif %}
   </p>
+  {% if court.historic_documents_support_text_as_html %}
+    <details class="govuk-details--compact">
+      <summary class="govuk-details__summary">
+        Looking for older documents
+      </summary>
+      <div class="govuk-details__text">
+        {% autoescape off %}
+          {{ court.historic_documents_support_text_as_html }}
+        {% endautoescape %}
+      </div>
+    </details>
+  {% endif %}
 </div>

@@ -7,28 +7,55 @@
     }
   }
 
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    margin-bottom: $space-8;
+
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    &:first-of-type {
+      .courts-and-tribunals__header {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+      }
+    }
+  }
+
+  &__sub-item {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    padding-bottom: $space-2;
+    border-bottom: 1px solid colour-var("accent-background");
+
+    &:last-of-type {
+      border: 0;
+    }
+
+    > p {
+      margin: 0;
+    }
+  }
+
   &__header {
-    @include heading_text;
-
-    margin-bottom: $space-8;
-    padding-bottom: $space-4;
-    border-bottom: 1px solid $color-yellow;
-  }
-
-  h2 {
-    margin-top: $space-4;
+    padding-top: $space-6;
+    border-top: 4px solid $color-yellow;
     font-size: $typography-xl-text-size;
-    line-height: 2.6rem;
   }
 
-  h3 {
-    margin-top: $space-4;
+  &__subheader {
     font-size: $typography-lg-text-size;
-    line-height: 1.95rem;
+    font-weight: $typography-bold-font-weight;
   }
 
-  p {
-    margin-top: $space-4;
-    margin-bottom: $space-8;
+  &__description {
+    margin: 0 0 $space-4;
   }
 }

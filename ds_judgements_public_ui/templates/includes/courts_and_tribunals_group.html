@@ -1,9 +1,17 @@
-{% if group.display_heading %}
-  <div>
-    <h3 class="courts-and-tribunals__header">{{ group.name }}</h3>
-  </div>
-{% endif %}
+<div class="courts-and-tribunals__item">
+  {% if group.display_heading %}
+    <h2 id="{{ group.name|slugify }}" class="courts-and-tribunals__header">{{ group.name }}</h2>
+    {% if group.description_text_as_html %}
+      <div class="courts-and-tribunals__description">
+        {% autoescape off %}
+          {{ group.description_text_as_html }}
+        {% endautoescape %}
+      </div>
+    {% endif %}
+  {% endif %}
+
 {# these 'courts' could instead be tribunals #}
-{% for court in group.courts %}
-  {% include "includes/courts_and_tribunals_court.html" with court=court type=type %}
-{% endfor %}
+  {% for court in group.courts %}
+    {% include "includes/courts_and_tribunals_court.html" with court=court type=type group=group %}
+  {% endfor %}
+</div>

@@ -46,6 +46,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "govuk-frontend/dist/govuk/components/character-count";
 @import "govuk-frontend/dist/govuk/components/textarea";
 @import "govuk-frontend/dist/govuk/components/radios";
+@import "govuk-frontend/dist/govuk/components/tabs";
 @import "govuk-frontend/dist/govuk/core/lists";
 @import "govuk-frontend/dist/govuk/core/section-break";
 @import "govuk-frontend/dist/govuk/core/govuk-frontend-properties";
@@ -64,6 +65,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "includes/govuk_overrides/notification";
 @import "includes/govuk_overrides/summary_card";
 @import "includes/govuk_overrides/summary_list";
+@import "includes/govuk_overrides/tabs";
 @import "includes/govuk_overrides/warning_text";
 
 // Base
