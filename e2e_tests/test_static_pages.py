@@ -9,8 +9,8 @@ static_pages = [
     {"url": "/contact-us", "title": "Contact Us", "heading": "Contact us"},
     {
         "url": "/courts-and-tribunals",
-        "title": "Types of court in England and Wales",
-        "heading": "Types of court in England and Wales",
+        "title": "Types of courts in England and Wales",
+        "heading": "Types of courts in England and Wales",
     },
     {"url": "/help-and-guidance", "title": "Help and guidance", "heading": "Help and guidance"},
     {
