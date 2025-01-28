@@ -1,47 +1,28 @@
 {% extends "layouts/base.html" %}
 {% load court_utils %}
 {% block content %}
-  <div class="container court-or-tribunal">
-    <div class="court-or-tribunal__crest">
-      {% with court_crest_path=court|get_court_crest_path %}
-        {% if court_crest_path %}<img src="{{ court_crest_path }}" alt="" width="150" height="150" />{% endif %}
-      {% endwith %}
-    </div>
-    <div class="court-or-tribunal__intro">
-      <h1 class="listing">{{ court.name }}</h1>
+  <div class="container">
+    <h1 class="listing">{{ court.name }}</h1>
+    {% autoescape off %}
+      {{ court.description_text_as_html }}
+    {% endautoescape %}
+
+    <h2>Documents on Find Case Law</h2>
+
+    {% if court|get_court_judgments_count > 0 %}
+      <p>
+        We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court | get_court_judgments_count }} documents from
+          the {{ court.name }}</a>, from {{ court.canonical_param | get_court_date_range }}.
+      </p>
+    {% else %}
+      <p>We do not currently hold any documents from the {{ court.name }}.</p>
+    {% endif %}
+
+    {% if court.historic_documents_support_text_as_html %}
+      <h2>Finding older documents</h2>
       {% autoescape off %}
-        {{ court | get_court_intro_text }}
+        {{ court.historic_documents_support_text_as_html }}
       {% endautoescape %}
-    </div>
-    <div>
-      {% for judgment in judgments %}
-        <div class="court-or-tribunal__judgment">
-          <h2>
-            <a href="{% url 'detail' judgment.uri %}">{{ judgment.name }}</a>
-          </h2>
-          <p class="court-or-tribunal__judgment-meta">
-            {{ judgment.neutral_citation }}
-            <br />
-            {{ judgment.date|date }}
-          </p>
-        </div>
-      {% endfor %}
-    </div>
-    <div class="court-or-tribunal__pagination-links">
-      {% if paginator.has_prev_page %}
-        <div class="court-or-tribunal__pagination-link prev">
-          <a href="{{ request.path }}?page={{ paginator.prev_page }}">Previous</a>
-          <br />
-          <span>{{ paginator.prev_page }} of {{ paginator.number_of_pages }}</span>
-        </div>
-      {% endif %}
-      {% if paginator.has_next_page %}
-        <div class="court-or-tribunal__pagination-link next">
-          <a href="{{ request.path }}?page={{ paginator.next_page }}">Next</a>
-          <br />
-          <span>{{ paginator.next_page }} of {{ paginator.number_of_pages }}</span>
-        </div>
-      {% endif %}
-    </div>
+    {% endif %}
   </div>
 {% endblock content %}
