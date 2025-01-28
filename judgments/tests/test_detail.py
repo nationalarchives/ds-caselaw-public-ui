@@ -354,7 +354,7 @@ class TestBreadcrumbs:
                 )
             else:
                 return JudgmentFactory.build(
-                    uri=DocumentURIString("eat/2023/1/the_judgment_uri"),
+                    uri=DocumentURIString("eat/2023/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="The Title of Judgment A",
@@ -365,7 +365,7 @@ class TestBreadcrumbs:
 
         response = self.client.get("/eat/2023/1/press-summary/1")
         judgment_breadcrumb_html = """
-                    <li><a href="/eat/2023/1/the_judgment_uri">Judgment A</a></li>
+                    <li><a href="/eat/2023/1">Judgment A</a></li>
         """
 
         summary_breadcrumb_html = """
