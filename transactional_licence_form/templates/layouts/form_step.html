@@ -55,8 +55,8 @@
                   class="button-secondary"
                   value="{{ wizard.steps.prev }}"
                   style="display:none">Previous</button>
+          &nbsp;
         {% endif %}
-        &nbsp;
         <input type="submit"
                class="{% if reviewing %}button-secondary{% else %}button-primary{% endif %}"
                value="{{ wizard.steps.current|submit_label_for_step }}" />
