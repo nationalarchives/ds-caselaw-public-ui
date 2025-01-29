@@ -17,12 +17,12 @@ class TestPressSummaries(TestCase):
         press_summary_1 = PressSummaryFactory.build()
         press_summary_2 = PressSummaryFactory.build()
 
-        excepted_press_summaries = [
+        expected_press_summaries = [
             press_summary_1,
             press_summary_2,
         ]
 
-        mock_get_press_summaries_for_document_uri.return_value = excepted_press_summaries
+        mock_get_press_summaries_for_document_uri.return_value = expected_press_summaries
 
         request = Mock()
         document_uri = "foo/bar/baz"
@@ -36,7 +36,7 @@ class TestPressSummaries(TestCase):
                 "page_title": f"{linked_doc_title(press_summary_1)} - Press Summaries",
                 "judgment_name": linked_doc_title(press_summary_1),
                 "breadcrumbs": press_summary_list_breadcrumbs(press_summary_1),
-                "press_summaries": excepted_press_summaries,
+                "press_summaries": expected_press_summaries,
             },
         )
 
