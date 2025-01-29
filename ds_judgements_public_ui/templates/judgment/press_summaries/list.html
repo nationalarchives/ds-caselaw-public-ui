@@ -13,10 +13,10 @@
     {% if page_title %}
       <h1>{{ page_title }}</h1>
     {% endif %}
-    <div class="results__container">
-      <div class="results__list-layout-container">
-        {% include "includes/judgment_listing.html" with judgments=press_summaries %}
-      </div>
-    </div>
+    <ul>
+      {% for press_summary in press_summaries %}
+        <li><a href="{% url 'detail' press_summary.uri %}">{{ press_summary.body.name }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
 {% endblock content %}
