@@ -4,11 +4,10 @@
   height: $space-4;
   margin: auto;
   margin-bottom: $space-17;
-
-  text-align: center;
-
   border: 1px dashed colour-var("black");
   border-top: none;
+
+  text-align: center;
 
   &__top-link {
     display: inline-block;

@@ -9,11 +9,11 @@
   margin-top: $space-5;
   margin-bottom: $space-5;
   padding: $space-4;
+  border-left: 10px solid $home-office-alert-border-colour;
 
   font-size: $typography-md-text-size;
 
   background-color: $home-office-alert-background-colour;
-  border-left: 10px solid $home-office-alert-border-colour;
 
   > *:first-child,
   &:first-child {
@@ -27,13 +27,13 @@
   }
 
   &--error {
-    background-color: $home-office-alert-error-background-colour;
     border-color: $home-office-alert-error-border-colour;
+    background-color: $home-office-alert-error-background-colour;
   }
 
   &--success {
-    background-color: $home-office-alert-success-background-colour;
     border-color: $home-office-alert-success-border-colour;
+    background-color: $home-office-alert-success-background-colour;
   }
 
   &__heading {

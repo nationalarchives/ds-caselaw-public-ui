@@ -1,6 +1,6 @@
 .govuk-header {
-  background-color: colour-var("contrast-background");
   border-bottom: none;
+  background-color: colour-var("contrast-background");
 }
 
 .govuk-header__link--homepage:hover,
@@ -12,10 +12,10 @@
 .govuk-header__navigation-item--active .govuk-header__link:hover,
 .govuk-header__navigation-item--active .govuk-header__link:visited,
 .govuk-header__navigation-item--active a:link {
+  border-bottom: 0.25rem solid $color-yellow;
   font-weight: bold !important;
   color: $color-yellow;
   text-decoration: none;
-  border-bottom: 0.25rem solid $color-yellow;
 
   &:focus {
     background-color: transparent;
@@ -29,9 +29,9 @@
 
 .govuk-header__link {
   &:hover {
+    border-bottom: none;
     color: colour-var("contrast-link");
     text-decoration: none !important;
-    border-bottom: none;
   }
 
   &:focus {

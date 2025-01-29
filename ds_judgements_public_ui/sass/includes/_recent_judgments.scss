@@ -11,8 +11,8 @@
     @include header($typography-header-h2-size);
 
     padding-bottom: $space-6;
-    font-size: $typography-xl-text-size;
     border-bottom: 5px solid $color-yellow;
+    font-size: $typography-xl-text-size;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-top: 0;
@@ -25,23 +25,21 @@
     position: relative;
 
     padding: 0 0 $space-2;
+    border: 0;
 
     font-family: $font-roboto;
     font-size: 1rem;
     font-weight: $typography-normal-font-weight;
-
-    border: 0;
 
     a {
       display: inline-block;
 
       margin: $space-1 0;
       padding: $space-1 0;
+      border-bottom: 0.125rem solid colour-var("accent-link");
 
       color: colour-var("accent-link");
       text-decoration: none;
-
-      border-bottom: 0.125rem solid colour-var("accent-link");
     }
   }
 

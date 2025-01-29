@@ -3,6 +3,7 @@
 
   margin-top: $space-4;
   padding: $space-4 $space-5;
+  border: 0;
 
   font-size: $typography-md-text-size;
   font-weight: $typography-bold-font-weight;
@@ -10,17 +11,17 @@
   text-decoration: none;
 
   background-color: brand-colour("navy");
-  border: 0;
 
   &:focus,
   &:hover {
     @include focus-default;
 
+    border-color: brand-colour("navy");
+
     color: colour-var("accent-button-text");
     text-decoration: underline;
 
     background-color: brand-colour("navy");
-    border-color: brand-colour("navy");
     outline-color: brand-colour("navy");
     outline-offset: 0.2rem;
   }
@@ -33,9 +34,9 @@
 @mixin button-secondary {
   @include button-primary;
 
+  border: 2px solid brand-colour("navy");
   color: brand-colour("navy");
   background-color: transparent;
-  border: 2px solid brand-colour("navy");
 
   &:hover,
   &:focus,
@@ -90,12 +91,12 @@
   cursor: pointer;
 
   padding: 0 !important;
+  border: none;
 
   font-size: $typography-md-text-size;
   text-decoration: underline;
 
   background: none !important;
-  border: none;
 
   @include link;
 }

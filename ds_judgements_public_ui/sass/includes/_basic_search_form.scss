@@ -35,6 +35,7 @@
       display: inline-block;
 
       margin-bottom: $space-3;
+      border: 0;
 
       font-family: $font-roboto;
       font-size: $typography-md-text-size;
@@ -43,7 +44,6 @@
       text-decoration: underline;
 
       background: transparent;
-      border: 0;
 
       &:visited {
         color: colour-var("link");

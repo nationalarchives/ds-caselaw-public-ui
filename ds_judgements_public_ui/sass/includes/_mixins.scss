@@ -63,8 +63,8 @@
 
 @mixin emphasised-block {
   padding: $space-4;
-  background-color: colour-var("accent-background-light");
   border-left: 0.5rem solid brand-colour("navy");
+  background-color: colour-var("accent-background-light");
 }
 
 @mixin focus-default {
@@ -102,12 +102,12 @@
   margin-top: $space-2;
   margin-bottom: $space-4;
   padding: $space-2;
+  border: 2px solid colour-var("input-border");
 
   font-family: $font-open-sans;
   font-size: $typography-md-text-size;
 
   background-color: colour-var("input-background");
-  border: 2px solid colour-var("input-border");
 
   &:focus {
     @include focus-default;
@@ -120,6 +120,8 @@
   margin-top: $space-2;
   margin-bottom: $space-4;
   padding: $space-2;
+  border: 2px solid colour-var("input-border");
+  border-radius: 0;
 
   font-size: $typography-md-text-size;
   line-height: $typography-lg-line-height;
@@ -135,8 +137,6 @@
   background-size:
     0.65rem auto,
     100%;
-  border: 2px solid colour-var("input-border");
-  border-radius: 0;
 
   &::-ms-expand {
     display: none;
