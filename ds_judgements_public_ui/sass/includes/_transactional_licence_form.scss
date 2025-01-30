@@ -1,7 +1,6 @@
 .transactional-licence-form {
   &__actions {
-    display: flex;
-    gap: $space-3;
+    display: inline-block;
   }
 
   &__step-title {
