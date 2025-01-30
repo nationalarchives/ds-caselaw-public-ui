@@ -21,7 +21,7 @@ from config.views.template_view_with_context import TemplateViewWithContext
 from judgments.forms import AdvancedSearchForm
 from judgments.utils import (
     api_client,
-    get_minimum_valid_year,
+    get_minimum_warning_year,
     has_filters,
     paginator,
     process_court_facets,
@@ -60,7 +60,7 @@ def _do_dates_require_warnings(
     Check if users have requested a year before what we technically handle,
     if it is, then we provide a warning letting them know.
     """
-    min_year = get_minimum_valid_year()
+    min_year = get_minimum_warning_year()
 
     if not iso_date:
         return False, None
@@ -159,7 +159,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
         "query": search_parameters.query,
         "requires_from_warning": requires_warning,
         "date_warning": warning,
-        "earliest_record": get_minimum_valid_year(),
+        "earliest_record": get_minimum_warning_year(),
         "court_facets": court_facets,
         "tribunal_facets": tribunal_facets,
         "year_facets": year_facets,

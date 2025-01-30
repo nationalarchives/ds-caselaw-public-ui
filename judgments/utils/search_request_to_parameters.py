@@ -2,6 +2,7 @@ from datetime import date
 from typing import Optional
 
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
+from django.conf import settings
 from django.core.exceptions import BadRequest
 from django.http import (
     HttpRequest,
@@ -11,7 +12,6 @@ from judgments.forms import AdvancedSearchForm
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     clamp,
-    get_minimum_valid_year,
 )
 from judgments.utils.utils import sanitise_input_to_integer
 
@@ -51,10 +51,10 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
 
     from_date: date = form.cleaned_data.get("from_date", None)
     to_date: Optional[date] = form.cleaned_data.get("to_date")
-    # If a from_date is not specified, set it to the current min year
-    # This allows the users to choose if they'd like to go beyond that range
+    # If a from_date is not specified, ensure it is set to a year
+    # which encompasses all possible records
     if not from_date:
-        from_date_for_search = date(get_minimum_valid_year(), 1, 1)
+        from_date_for_search = date(settings.MINIMUM_ALLOWED_YEAR, 1, 1)
     else:
         from_date_for_search = from_date
         # Only provide the param back to the user if they set it
