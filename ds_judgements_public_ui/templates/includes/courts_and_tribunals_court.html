@@ -6,7 +6,7 @@
     <h2 id="{{ court.name|slugify }}" class="courts-and-tribunals__header">{{ court.grouped_name }}</h2>
   {% endif %}
   {% if court.description_text_as_html %}
-    <details class="govuk-details--compact">
+    <details class="govuk-details govuk-details--compact">
       <summary class="govuk-details__summary">
         About the {{ court.grouped_name }}
       </summary>
@@ -26,7 +26,7 @@
     {% endif %}
   </p>
   {% if court.historic_documents_support_text_as_html %}
-    <details class="govuk-details--compact">
+    <details class="govuk-details govuk-details--compact">
       <summary class="govuk-details__summary">
         Looking for older documents
       </summary>
