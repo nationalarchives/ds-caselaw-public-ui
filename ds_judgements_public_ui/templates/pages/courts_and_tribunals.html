@@ -39,7 +39,7 @@
 
       {% if tribunal.display_heading %}
         <li>
-          <a href="#{{ tribunal.name|slugify }}">{{ tribunal.name }} ({{ court.courts|length }})</a>
+          <a href="#{{ tribunal.name|slugify }}">{{ tribunal.name }} ({{ tribunal.courts|length }})</a>
         </li>
       {% else %}
         {% for subcourt in tribunal.courts %}
