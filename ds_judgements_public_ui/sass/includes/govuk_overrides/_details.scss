@@ -24,6 +24,7 @@
 .govuk-details__summary {
   padding-left: $space-6;
   color: colour-var("link");
+  text-decoration: underline;
 
   &::before {
     top: 2px;
