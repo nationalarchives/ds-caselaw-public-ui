@@ -1,7 +1,7 @@
 from typing import Optional
 
 from caselawclient.models.documents import DocumentURIString
-from caselawclient.models.documents.exceptions import InvalidDocumentURIException
+from caselawclient.types import InvalidDocumentURIException
 from django.http import Http404
 from django.http.request import HttpRequest
 from django.views.generic import View
