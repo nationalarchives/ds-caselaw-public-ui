@@ -299,7 +299,10 @@ def preprocess_ncn(string: str) -> str:
 
 
 def is_exact_ncn_match(result, query: str) -> bool:
-    return preprocess_ncn(query) == preprocess_ncn(result.neutral_citation)
+    if result.neutral_citation:
+        return preprocess_ncn(query) == preprocess_ncn(result.neutral_citation)
+
+    return False
 
 
 def search_results_have_exact_ncn(search_results, query: str) -> bool:

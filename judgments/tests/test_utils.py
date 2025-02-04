@@ -12,6 +12,7 @@ from judgments.utils import (
     formatted_document_uri,
     get_document_by_uri,
     get_press_summaries_for_document_uri,
+    is_exact_ncn_match,
     linked_doc_title,
     linked_doc_url,
     press_summary_list_breadcrumbs,
@@ -94,6 +95,21 @@ class TestUtils(unittest.TestCase):
                 "text": "Press Summaries",
             },
         ]
+
+    def test_is_exact_ncn_match_empty_ncn(self):
+        document = JudgmentFactory.build(neutral_citation=None)
+
+        assert is_exact_ncn_match(document, "foo") is False
+
+    def test_is_exact_ncn_match_with_matching_ncn(self):
+        document = JudgmentFactory.build()
+
+        assert is_exact_ncn_match(document, document.neutral_citation) is True
+
+    def test_is_exact_ncn_match_with_unmatched_ncn(self):
+        document = JudgmentFactory.build()
+
+        assert is_exact_ncn_match(document, "foo") is False
 
     @mock.patch("judgments.utils.utils.api_client")
     def test_get_press_summaries_for_document_uri(self, mock_api_client):
