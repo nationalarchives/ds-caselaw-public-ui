@@ -29,7 +29,7 @@ def assert_download_options_link(page):
 
 
 def assert_download_pdf_link(page, uri):
-    download_pdf_link = page.locator("a", has_text="Download this judgment as a PDF")
+    download_pdf_link = page.locator("a", has_text="Download PDF")
 
     expect(download_pdf_link).to_be_visible()
 
@@ -37,7 +37,7 @@ def assert_download_pdf_link(page, uri):
 
 
 def assert_download_xml_link(page, uri):
-    download_as_xml_link = page.locator("a", has_text="Download this judgment as XML")
+    download_as_xml_link = page.locator("a", has_text="Download XML")
 
     expect(download_as_xml_link).to_be_visible()
 
