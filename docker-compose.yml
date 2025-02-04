@@ -8,6 +8,7 @@ services:
       - postgres
     volumes:
       - .:/app:z
+      - ../ds-caselaw-custom-api-client:/apiclient
     init: true
     environment:
       DATABASE_URL: "postgres://postgres:admin@postgres:5432/ds_judgements_public_ui"

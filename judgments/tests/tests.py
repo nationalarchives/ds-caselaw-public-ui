@@ -173,7 +173,7 @@ class TestRobotsDirectives(TestCase):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
         mock_get_document_by_uri.assert_called_with("eat/2023/1")
-        self.assertContains(response, "This is some XML of a judgment")
+        self.assertContains(response, "This is a document.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
@@ -181,7 +181,7 @@ class TestRobotsDirectives(TestCase):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
         mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
-        self.assertContains(response, "This is some XML of a judgment")
+        self.assertContains(response, "This is a document.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])

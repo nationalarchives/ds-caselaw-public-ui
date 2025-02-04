@@ -38,7 +38,10 @@ def detail_html(request, document_uri):
         cleaned_search_query = preprocess_query(query)
         document = get_published_document_by_uri(document_uri, search_query=cleaned_search_query)
         context["query"] = query
-        context["number_of_mentions"] = number_of_mentions(document.body.content_as_html(), cleaned_search_query)
+        if document.body.has_content:
+            document_content = document.body.content_as_html()
+            if document_content:
+                context["number_of_mentions"] = number_of_mentions(document_content, cleaned_search_query)
     else:
         document = get_published_document_by_uri(document_uri)
 
