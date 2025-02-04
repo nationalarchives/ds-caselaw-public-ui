@@ -89,7 +89,7 @@ class TestSearchResults(TestCase):
                 party=None,
                 page=1,
                 order="relevance",
-                date_from="2001-01-01",
+                date_from="1085-01-01",
                 date_to=None,
                 page_size=10,
             ),
@@ -131,7 +131,7 @@ class TestSearchResults(TestCase):
                 party=None,
                 page=1,
                 order="relevance",
-                date_from="2003-01-01",
+                date_from="1085-01-01",
                 date_to=None,
                 page_size=10,
             ),
@@ -186,6 +186,30 @@ class TestSearchResults(TestCase):
         expected_text = """
                 2011 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
+        """
+        xpath_query = "//div[@class='govuk-warning-text__text']"
+        assert_response_not_contains_text(response, expected_text, xpath_query)
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_judgment_advanced_search_not_warning_user_with_no_date(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        """
+        GIVEN a client for making HTTP requests
+        WHEN a GET request is made to "/search?query=waltham+forest"
+        AND the from_date is after `settings.MINIMUM_WARNING_YEAR`
+        THEN the response should contain the date range warning
+
+        The expected applied filters HTML:
+        - Includes a div with class `advice-message`
+        """
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        response = self.client.get("/search")
+
+        expected_text = """
+                the date of the oldest record
         """
         xpath_query = "//div[@class='govuk-warning-text__text']"
         assert_response_not_contains_text(response, expected_text, xpath_query)
@@ -280,7 +304,7 @@ class TestSearchResults(TestCase):
                 order="-date",
                 judge=None,
                 party=None,
-                date_from="2001-01-01",
+                date_from="1085-01-01",
                 date_to=None,
                 page=1,
                 page_size=10,

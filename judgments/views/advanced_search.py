@@ -8,6 +8,7 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.responses.search_response import SearchResponse
 from caselawclient.search_parameters import SearchParameters
+from django.conf import settings
 from django.http import (
     HttpRequest,
     HttpResponse,
@@ -21,7 +22,7 @@ from config.views.template_view_with_context import TemplateViewWithContext
 from judgments.forms import AdvancedSearchForm
 from judgments.utils import (
     api_client,
-    get_minimum_valid_year,
+    get_minimum_warning_year,
     has_filters,
     paginator,
     process_court_facets,
@@ -57,14 +58,18 @@ def _do_dates_require_warnings(
     iso_date: Optional[str], total_results: int, min_actual_year: Optional[int]
 ) -> tuple[bool, Optional[str]]:
     """
-    Check if users have requested a year before what we technically handle,
+    Check if users have requested a year before what we have available,
     if it is, then we provide a warning letting them know.
     """
-    min_year = get_minimum_valid_year()
+    min_year = get_minimum_warning_year()
 
     if not iso_date:
         return False, None
     from_date = date.fromisoformat(iso_date)
+    # If the date is 1085, then that's the default, the user hasn't typed in
+    # a non-sensical answer, don't warn about it.
+    if from_date.year == settings.MINIMUM_ALLOWED_YEAR:
+        return False, None
     if not from_date.year or total_results == 0 or from_date.year >= min_year:
         return False, None
 
@@ -159,7 +164,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
         "query": search_parameters.query,
         "requires_from_warning": requires_warning,
         "date_warning": warning,
-        "earliest_record": get_minimum_valid_year(),
+        "earliest_record": get_minimum_warning_year(),
         "court_facets": court_facets,
         "tribunal_facets": tribunal_facets,
         "year_facets": year_facets,

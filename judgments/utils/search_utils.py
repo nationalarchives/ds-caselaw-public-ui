@@ -79,7 +79,7 @@ def process_year_facets(facets: dict):
     return unprocessed_facets, year_facets
 
 
-def get_minimum_valid_year():
+def get_minimum_warning_year():
     """
     As `CourtDates.min_year()` would return None if the model is not populated,
     return a sensible default instead.
