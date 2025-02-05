@@ -21,11 +21,15 @@ def get_download_pdf_url(document_uri):
     return f"{document_uri}/{file_name}.pdf"
 
 
-def assert_download_options_link(page):
-    download_options_link = page.locator("a", has_text="View download options")
+# def assert_download_options_link(page):
+#     download_options_link = page.locator("a", has_text="View download options")
 
-    expect(download_options_link).to_be_visible()
-    expect(download_options_link).to_have_attribute("href", "#download-options")
+#     expect(download_options_link).to_be_visible()
+#     expect(download_options_link).to_have_attribute("href", "#download-options")
+
+
+def assert_download_options_title(page):
+    expect(page.get_by_role("heading", name="Document download options")).to_be_visible()
 
 
 def assert_download_pdf_link(page, uri):
@@ -75,7 +79,8 @@ def test_judgment_page(page: Page, document):
 
     expect(page).to_have_title(re.compile(title, re.IGNORECASE))
     expect(page.locator("h1")).to_have_text(re.compile(heading, re.IGNORECASE))
-    assert_download_options_link(page)
+    # assert_download_options_link(page)
+    assert_download_options_title(page)
     assert_download_pdf_link(page, uri)
     assert_download_xml_link(page, uri)
     assert_has_default_breadcrumbs(page, heading)
