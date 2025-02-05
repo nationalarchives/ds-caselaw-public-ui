@@ -1,14 +1,32 @@
 import re
 from unittest.mock import patch
 
+import pytest
 from caselawclient.factories import JudgmentFactory
 from django.test import TestCase
 
 from judgments import converters, utils
 from judgments.models.court_dates import CourtDates
+from judgments.resolvers.document_resolver_engine import api_client
+from judgments.tests.factories import IdentifierResolutionsFactory
 from judgments.tests.fixtures import FakeSearchResponse
 from judgments.utils import clamp, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView
+
+
+def echo_resolution(url):
+    return IdentifierResolutionsFactory.build(slug=url, uri=f"ml-{url}.xml")
+
+
+class TestCaseWithMockAPI(TestCase):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup(self):
+        with patch.object(
+            api_client,
+            "resolve_from_identifier",
+            side_effect=echo_resolution,
+        ):
+            yield
 
 
 class TestCourtDates(TestCase):
@@ -127,7 +145,7 @@ class TestConverters(TestCase):
         self.assertIsNone(re.match(converter.regex, "notasubdivision"))
 
 
-class TestRobotsDirectives(TestCase):
+class TestRobotsDirectives(TestCaseWithMockAPI):
     @patch("judgments.views.index.search_judgments_and_parse_response")
     def test_homepage(self, mock_search_judgments_and_parse_response):
         # The homepage should not have a robots meta tag with nofollow,noindex
@@ -147,7 +165,7 @@ class TestRobotsDirectives(TestCase):
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
     def test_aws_pdf(self, mock_get, mock_pdf):
-        url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
+        url = "https://assets.caselaw.nationalarchives.gov.uk/ml.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
@@ -159,7 +177,7 @@ class TestRobotsDirectives(TestCase):
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
     def test_aws_pdf_press_summary(self, mock_get, mock_pdf):
-        url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
+        url = "https://assets.caselaw.nationalarchives.gov.uk/ml/ml/press-summary/1/ml_ml_press-summary_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
@@ -172,7 +190,7 @@ class TestRobotsDirectives(TestCase):
     def test_xml(self, mock_get_document_by_uri):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1")
+        mock_get_document_by_uri.assert_called_with("ml-eat/2023/1")
         self.assertContains(response, "This is a document.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
@@ -180,7 +198,7 @@ class TestRobotsDirectives(TestCase):
     def test_xml_press_summary(self, mock_get_document_by_uri):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
-        mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
+        mock_get_document_by_uri.assert_called_with("ml-eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a document.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
@@ -189,7 +207,7 @@ class TestRobotsDirectives(TestCase):
     def test_weasy_pdf(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/generated.pdf")
-        mock_context.assert_called_with(document_uri="eat/2023/1")
+        mock_context.assert_called_with(document_uri="ml-eat/2023/1")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
@@ -198,7 +216,7 @@ class TestRobotsDirectives(TestCase):
     def test_weasy_pdf_press_summary(self, mock_context):
         mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/press-summary/1/generated.pdf")
-        mock_context.assert_called_with(document_uri="eat/2023/1/press-summary/1")
+        mock_context.assert_called_with(document_uri="ml-eat/2023/1/press-summary/1")
         self.assertContains(response, b"%PDF-1.7")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
