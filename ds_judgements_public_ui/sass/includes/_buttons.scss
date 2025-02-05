@@ -83,6 +83,16 @@
   @include button-secondary;
 }
 
+@mixin survey-button {
+  @include button-secondary;
+
+  padding: $space-4 $space-8;
+}
+
+.survey-button {
+  @include survey-button;
+}
+
 .button-small {
   @include button-small;
 }

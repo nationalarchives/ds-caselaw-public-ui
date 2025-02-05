@@ -29,7 +29,7 @@ class RobotsTagMiddleware:
 
 
 class FeedbackLinkMiddleware:
-    BASE_FEEDBACK_URL: str = "https://corexmsnp4n42lf2kht3.qualtrics.com/jfe/form/SV_0lyyYAzfv9bGcyW"
+    BASE_FEEDBACK_URL: str = "https://www.smartsurvey.co.uk/s/findcaselaw-feedback/"
 
     def __init__(self, get_response):
         self.get_response = get_response
