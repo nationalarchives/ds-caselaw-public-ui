@@ -75,7 +75,7 @@ def test_judgment_page(page: Page, document):
 
     expect(page).to_have_title(re.compile(title, re.IGNORECASE))
     expect(page.locator("h1")).to_have_text(re.compile(heading, re.IGNORECASE))
-    # assert_download_options_link(page)
+    assert_download_options_link(page)
     assert_download_pdf_link(page, uri)
     assert_download_xml_link(page, uri)
     assert_has_default_breadcrumbs(page, heading)
