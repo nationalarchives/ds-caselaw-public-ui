@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from caselawclient.models.documents import DocumentURIString
+from caselawclient.types import DocumentURIString
 
 from judgments.templatetags.document_utils import formatted_document_uri
 
