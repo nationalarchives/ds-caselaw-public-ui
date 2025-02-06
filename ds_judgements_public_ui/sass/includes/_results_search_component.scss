@@ -89,11 +89,11 @@
   &__fieldset {
     margin: $space-1;
     padding: $space-8;
+    border: 0;
 
     color: colour-var("accent-font-base");
 
     background: $color-yellow;
-    border: 0;
   }
 
   &__help-text {
@@ -201,11 +201,10 @@
     display: inline-block;
 
     padding: $space-2 $space-2 $space-2 $space-4;
+    border: 0.188rem solid $color-yellow;
 
     color: colour-var("accent-link");
     text-decoration: none;
-
-    border: 0.188rem solid $color-yellow;
 
     &:hover {
       color: colour-var("accent-link");
@@ -242,13 +241,13 @@
 
       margin: 0 auto;
       padding: 0 0 $space-2 $space-6;
+      border: none;
+      border-bottom: 0.188rem solid $color-yellow;
 
       font-size: $typography-md-text-size;
       font-weight: $typography-bold-font-weight;
 
       background-color: transparent;
-      border: none;
-      border-bottom: 0.188rem solid $color-yellow;
 
       &::after {
         content: "";
@@ -263,7 +262,6 @@
         width: 0.438rem;
         height: 0.438rem;
         margin: auto 0;
-
         border: solid;
         border-color: colour-var("font-base");
         border-width: 0.125rem 0.125rem 0 0;

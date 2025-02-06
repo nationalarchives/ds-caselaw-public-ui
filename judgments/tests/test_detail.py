@@ -39,6 +39,7 @@ class TestJudgment(TestCase):
     def test_published_judgment_response(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             is_published=True,
+            body=DocumentBodyFactory.build(),
         )
         mock_pdf.return_value.size = 1234
 
@@ -135,7 +136,9 @@ class TestDocumentDownloadOptions:
         AND this contains the Download XML button
         AND the descriptions refer to the document's type
         """
-        mock_get_document_by_uri.return_value = document_factory_class.build(uri=uri, is_published=True)
+        mock_get_document_by_uri.return_value = document_factory_class.build(
+            uri=uri, is_published=True, body=DocumentBodyFactory.build()
+        )
         mock_pdf.return_value.size = 112
         mock_pdf.return_value.uri = "http://example.com/test.pdf"
         document = mock_get_document_by_uri()
@@ -144,24 +147,27 @@ class TestDocumentDownloadOptions:
         assert document_noun in ["press summary", "judgment"]
         client = Client()
         response = client.get(f"/{uri}")
+
         download_options_html = f"""
         <section id="download-options" class="judgment-download-options" aria-labelledby="judgment-download-options-header">
-        <h2 id="judgment-download-options-header" class="judgment-download-options__header">Download options</h2>
-        <div class="judgment-download-options__options-list">
-            <div class="judgment-download-options__download-option">
-            <h3><a href="http://example.com/test.pdf" aria-label="Download {document_title} as a PDF  ({filesizeformat(112)})" download="">
-            Download this {document_noun} as a PDF ({filesizeformat(112)})</a></h3>
-            <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
+            <h2 id="judgment-download-options-header" class="judgment-download-options__header">Document download options</h2>
+            <div class="judgment-download-options__options-list">
+                <div class="judgment-download-options__download-option">
+                    <a href="http://example.com/test.pdf" class="btn" aria-label="Download {document_title} as a PDF  ({filesizeformat(112)})" download="">
+                        Download PDF <span class="btn__label">({filesizeformat(112)})</span>
+                    </a>
+                    <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
+                </div>
+                <div class="judgment-download-options__download-option">
+                    <a href="/{uri}/data.xml" class="btn" aria-label="Download {document_title} as XML">
+                        Download XML
+                    </a>
+                    <p>
+                        The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
+                    </p>
+                </div>
             </div>
-            <div class="judgment-download-options__download-option">
-            <h3><a href="/{uri}/data.xml" aria-label="Download {document_title} as XML">
-            Download this {document_noun} as XML</a></h3>
-            <p>
-            The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
-            </p>
-            </div>
-        </div>
-        </div>
+        </section>
         """
         assert_contains_html(response, download_options_html)
 

@@ -3,18 +3,17 @@
   max-width: 90%;
   height: $space-4;
   margin: auto;
-  margin-bottom: 7rem;
-
-  text-align: center;
-
+  margin-bottom: $space-17;
   border: 1px dashed colour-var("black");
   border-top: none;
+
+  text-align: center;
 
   &__top-link {
     display: inline-block;
     padding: $space-2;
     padding-top: $space-1;
-    background-color: colour-var("background");
+    background-color: brand-colour("white");
 
     a {
       display: none;

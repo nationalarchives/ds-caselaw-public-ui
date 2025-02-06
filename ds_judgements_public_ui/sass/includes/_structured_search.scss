@@ -144,9 +144,9 @@
     flex-direction: column;
 
     padding: $space-4;
+    border-top: 4px solid $color-yellow;
 
     background-color: colour-var("accent-background-light");
-    border-top: 4px solid $color-yellow;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: $space-4;
@@ -158,9 +158,9 @@
     flex-direction: column;
 
     padding: $space-4;
+    border-top: 4px solid $color-yellow;
 
     background-color: colour-var("accent-background-light");
-    border-top: 4px solid $color-yellow;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: $space-4;
@@ -245,13 +245,13 @@
         width: $space-6;
         height: $space-6;
         margin: 0;
+        border: 2px solid colour-var("input-border");
 
         font: inherit;
         color: colour-var("input-foreground");
 
         appearance: none;
         background-color: colour-var("input-background");
-        border: 2px solid colour-var("input-border");
 
         &::before {
           content: "";

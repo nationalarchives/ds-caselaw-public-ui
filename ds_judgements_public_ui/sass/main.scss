@@ -3,6 +3,7 @@
 
 // Vendor imports
 @import "@nationalarchives/ds-caselaw-frontend/src/main";
+@import "includes/vendors/home_office";
 
 // Setup
 @import "includes/variables";
@@ -99,6 +100,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "includes/judgment_text_toolbar";
 @import "includes/judgments_listing";
 @import "includes/recent_judgments";
+@import "includes/judgment_pdf_only";
 
 // Homepage
 @import "includes/browse_by_court";

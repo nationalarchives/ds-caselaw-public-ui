@@ -4,8 +4,7 @@
 
   &__header {
     display: inline-block;
-    margin-bottom: $space-8;
-    padding-bottom: $space-2;
+    margin: 0 0 $space-4;
   }
 
   &__options-list {
@@ -19,8 +18,24 @@
   }
 
   &__download-option {
-    padding: $space-4;
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    align-items: center;
+
+    padding: $space-6;
     border: 2px solid $color-yellow;
+
+    .btn {
+      @include call-to-action-button;
+
+      margin: 0;
+    }
+
+    .btn__label {
+      font-size: $typography-sm-text-size;
+      font-weight: $typography-normal-font-weight;
+    }
   }
 
   h3 {
@@ -28,7 +43,8 @@
   }
 
   p {
-    margin-bottom: 0;
+    margin: 0;
+    text-align: center;
   }
 
   @media (min-width: $grid-breakpoint-medium) {
