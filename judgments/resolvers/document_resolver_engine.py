@@ -1,5 +1,6 @@
 from typing import Optional
 
+from caselawclient.types import DocumentIdentifierSlug
 from django.http import Http404
 from django.http.request import HttpRequest
 from django.views.generic import View
@@ -22,7 +23,7 @@ class DocumentResolverEngine(View):
             "data.html": detail_html,
         }
 
-        resolved_documents = api_client.resolve_from_identifier_slug(document_uri)
+        resolved_documents = api_client.resolve_from_identifier_slug(DocumentIdentifierSlug(document_uri))
 
         if not resolved_documents:
             msg = f"Unable to find a matching document at {document_uri}"
