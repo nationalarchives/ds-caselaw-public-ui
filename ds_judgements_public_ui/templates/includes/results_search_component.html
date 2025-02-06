@@ -1,6 +1,6 @@
 {% load waffle_tags %}
 <div class="results-search-component">
-  <form action="{% url 'search' %}" id="analytics-results-filters">
+  <form id="analytics-results-filters">
     {% if per_page is not None %}<input type="hidden" name="per_page" value="{{ per_page }}" />{% endif %}
     {% if order is not None %}<input type="hidden" name="order" value="{{ order }}" />{% endif %}
     <div class="results-search-component__container js-results-facets-wrapper">
