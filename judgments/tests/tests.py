@@ -3,6 +3,7 @@ from unittest.mock import patch
 
 from caselawclient.factories import JudgmentFactory
 from django.test import TestCase
+from fixtures import TestCaseWithMockAPI
 
 from judgments import converters, utils
 from judgments.models.court_dates import CourtDates
@@ -127,7 +128,7 @@ class TestConverters(TestCase):
         self.assertIsNone(re.match(converter.regex, "notasubdivision"))
 
 
-class TestRobotsDirectives(TestCase):
+class TestRobotsDirectives(TestCaseWithMockAPI):
     @patch("judgments.views.index.search_judgments_and_parse_response")
     def test_homepage(self, mock_search_judgments_and_parse_response):
         # The homepage should not have a robots meta tag with nofollow,noindex

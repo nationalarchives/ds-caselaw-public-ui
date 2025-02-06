@@ -1,5 +1,30 @@
 from dataclasses import dataclass
 from datetime import datetime
+from unittest.mock import patch
+
+import pytest
+from caselawclient.factories import IdentifierResolutionFactory, IdentifierResolutionsFactory
+from django.test import TestCase
+
+from judgments.resolvers.document_resolver_engine import api_client
+
+
+def _echo_resolution(url):
+    assert "ml-" not in url
+    return IdentifierResolutionsFactory.build(
+        [IdentifierResolutionFactory.build(identifier_slug=url, document_uri=f"/ml-{url}.xml")]
+    )
+
+
+class TestCaseWithMockAPI(TestCase):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup(self):
+        with patch.object(
+            api_client,
+            "resolve_from_identifier_slug",
+            side_effect=_echo_resolution,
+        ):
+            yield
 
 
 @dataclass

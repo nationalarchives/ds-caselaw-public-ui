@@ -11,6 +11,7 @@ from caselawclient.models.identifiers.press_summary_ncn import PressSummaryRelat
 from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.test import Client, TestCase
+from fixtures import TestCaseWithMockAPI
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
@@ -22,7 +23,7 @@ from judgments.views.detail import (
 )
 
 
-class TestWeasyWithoutCSS(TestCase):
+class TestWeasyWithoutCSS(TestCaseWithMockAPI):
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.get_published_document_by_uri")
     def test_weasy_without_css_runs_in_ci(self, mock_get_document_by_uri):
@@ -33,7 +34,7 @@ class TestWeasyWithoutCSS(TestCase):
         assert b"%PDF-1.7" in response.content
 
 
-class TestJudgment(TestCase):
+class TestJudgment(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_published_judgment_response(self, mock_get_document_by_uri, mock_pdf):
@@ -63,7 +64,7 @@ class TestJudgment(TestCase):
         response = self.client.get("/test/2023/123?query=Query")
 
         assert mock_get_document_by_uri.mock_calls[0] == call(
-            "test/2023/123", search_query="Query"
+            "ml-test/2023/123", search_query="Query"
         )  # We do make subsequent calls as part of getting related documents, but they're not relevant here
 
         self.assertEqual(response.status_code, 200)
@@ -82,7 +83,7 @@ class TestJudgmentBackToSearchLink(TestCase):
         assert "Back to search results" not in decoded_response
 
 
-class TestJudgmentPdfLinkText(TestCase):
+class TestJudgmentPdfLinkText(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
@@ -172,7 +173,7 @@ class TestDocumentDownloadOptions:
         assert_contains_html(response, download_options_html)
 
 
-class TestPressSummaryLabel(TestCase):
+class TestPressSummaryLabel(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_label_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
