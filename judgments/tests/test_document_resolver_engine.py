@@ -1,11 +1,12 @@
 from unittest.mock import patch
 
-from django.test import RequestFactory, TestCase
+from django.test import RequestFactory
+from fixtures import TestCaseWithMockAPI
 
 from judgments.resolvers.document_resolver_engine import DocumentResolverEngine
 
 
-class TestDocumentResolverEngine(TestCase):
+class TestDocumentResolverEngine(TestCaseWithMockAPI):
     @patch("judgments.resolvers.document_resolver_engine.best_pdf")
     @patch("judgments.resolvers.document_resolver_engine.generated_pdf")
     @patch("judgments.resolvers.document_resolver_engine.detail_xml")
