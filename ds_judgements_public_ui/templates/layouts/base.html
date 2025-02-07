@@ -63,6 +63,10 @@
     {% block postcontent %}
     {% endblock postcontent %}
 
+    {% block feedback_cta %}
+      {% include "includes/help_improve_this_service.html" %}
+    {% endblock feedback_cta %}
+
     {% include "includes/footer.html" %}
     <script type="module" defer src="{% static 'js/dist/app.js' %}"></script>
     <script defer src="{% static 'js/dist/cookie_consent.js' %}"></script>

@@ -10,6 +10,13 @@
     font-size: $typography-lg-text-size;
     font-weight: $typography-normal-font-weight;
   }
+
+  &__container {
+    @include container;
+
+    margin-top: 0;
+    padding: $space-1 0 $space-8 $space-8;
+  }
 }
 
 .judgments-footer {
