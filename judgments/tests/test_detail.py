@@ -444,9 +444,9 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
         """
 
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
-            if document_uri == "eat/2023/1/press-summary/1":
+            if document_uri == "ml-eat/2023/1/press-summary/1":
                 press_summary = PressSummaryFactory.build(
-                    uri=DocumentURIString("eat/2023/1/press-summary/1"),
+                    uri=DocumentURIString("ml-eat/2023/1/press-summary/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A (with some slightly different wording)",
@@ -456,9 +456,9 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
                 press_summary_ncn = PressSummaryRelatedNCNIdentifier(value="Judgment_A_NCN")
                 press_summary.identifiers.add(press_summary_ncn)
                 return press_summary
-            elif document_uri == "eat/2023/1":
+            elif document_uri == "ml-eat/2023/1":
                 judgment = JudgmentFactory.build(
-                    uri=DocumentURIString("eat/2023/1"),
+                    uri=DocumentURIString("ml-eat/2023/1"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Judgment A",
@@ -469,7 +469,7 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
                 judgment.identifiers.add(judgment_ncn)
                 return judgment
             else:
-                raise DocumentNotFoundError()
+                raise DocumentNotFoundError(f"didn't recognise {document_uri}")
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary/1")
