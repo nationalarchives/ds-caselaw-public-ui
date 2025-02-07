@@ -10,8 +10,8 @@ from caselawclient.models.identifiers.neutral_citation import NeutralCitationNum
 from caselawclient.models.identifiers.press_summary_ncn import PressSummaryRelatedNCNIdentifier
 from django.http import Http404
 from django.template.defaultfilters import filesizeformat
-from django.test import Client, TestCase
-from fixtures import TestCaseWithMockAPI
+from django.test import Client
+from fixtures import MockAPI, TestCaseWithMockAPI
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
@@ -70,7 +70,7 @@ class TestJudgment(TestCaseWithMockAPI):
         self.assertEqual(response.status_code, 200)
 
 
-class TestJudgmentBackToSearchLink(TestCase):
+class TestJudgmentBackToSearchLink(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_no_link_if_no_context(self, mock_get_document_by_uri, mock_pdf):
@@ -114,8 +114,7 @@ class TestJudgmentPdfLinkText(TestCaseWithMockAPI):
         self.assertIn("/test/2023/123/data.pdf", decoded_response)
 
 
-@pytest.mark.django_db
-class TestDocumentDownloadOptions:
+class TestDocumentDownloadOptions(MockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
@@ -206,8 +205,7 @@ class TestPressSummaryLabel(TestCaseWithMockAPI):
         assert_response_not_contains_text(response, "Press Summary", xpath_query)
 
 
-@pytest.mark.django_db
-class TestViewRelatedDocumentButton:
+class TestViewRelatedDocumentButton(MockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
@@ -336,7 +334,7 @@ class TestViewRelatedDocumentButton:
 
 
 @pytest.mark.django_db
-class TestBreadcrumbs:
+class TestBreadcrumbs(MockAPI):
     client = Client(raise_request_exception=False)
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)

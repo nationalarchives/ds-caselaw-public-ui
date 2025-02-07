@@ -27,6 +27,18 @@ class TestCaseWithMockAPI(TestCase):
             yield
 
 
+@pytest.mark.django_db
+class MockAPI:
+    @pytest.fixture(scope="class", autouse=True)
+    def setup(self):
+        with patch.object(
+            api_client,
+            "resolve_from_identifier_slug",
+            side_effect=_echo_resolution,
+        ):
+            yield
+
+
 @dataclass
 class FakeMetadata:
     author = "author"
