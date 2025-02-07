@@ -3,10 +3,9 @@ import os
 import urllib
 from typing import Any
 
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
-from django.urls import reverse
 from lxml import html as html_parser
 
 from judgments.forms import AdvancedSearchForm
@@ -47,10 +46,10 @@ def detail_html(request, document_uri):
 
     pdf = DocumentPdf(document_uri)
 
-    # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
-    if document_uri != document.uri:
-        redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
-        return HttpResponseRedirect(redirect_uri)
+    # # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
+    # if document_uri != document.uri:
+    #     redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
+    #     return HttpResponseRedirect(redirect_uri)
 
     try:
         linked_document_uri = linked_doc_url(document)
