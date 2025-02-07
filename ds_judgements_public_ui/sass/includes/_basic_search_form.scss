@@ -29,7 +29,7 @@
   &__more-options-beta {
     line-height: $typography-sm-line-height;
 
-    a {
+    input[type="submit"] {
       position: relative;
 
       display: inline-block;
@@ -67,7 +67,7 @@
     }
   }
 
-  form {
+  .search-term-component {
     max-width: 47rem;
   }
 }

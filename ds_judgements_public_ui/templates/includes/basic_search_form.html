@@ -16,16 +16,25 @@
 <div class="search-component">
   <div class="search-component__container-beta">
     {% include "includes/search/search_header_text.html" %}
-    <h2 class="search-component__header--sr-only">Search by keyword or neutral citation</h2>
-    <form action="{% url 'search' %}"
-          class="search-term-component"
-          role="search"
-          aria-label="Search by keyword or neutral citation"
-          id="analytics-basic-search">
-      {% include "includes/search_term_component.html" %}
+    <h2 class="search-component__header--sr-only">
+      Search by keyword or neutral citation
+    </h2>
+    <form
+      role="search"
+      aria-label="Search by keyword or neutral citation"
+      id="analytics-basic-search"
+    >
+      <div class="search-term-component">
+        {% include "includes/search_term_component.html" %}
+      </div>
+      <div class="search-component__more-options-beta">
+        <input
+          type="submit"
+          class="advanced-search-link button-link"
+          formaction="{% url 'advanced_search' %}"
+          value="Advanced search"
+        />
+      </div>
     </form>
-    <div class="search-component__more-options-beta">
-      <a class="advanced-search-link" href="{% url 'advanced_search' %}">Advanced search </a>
-    </div>
   </div>
 </div>
