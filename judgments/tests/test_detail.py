@@ -526,7 +526,7 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
         assert_response_contains_text(response, "Judgment_A_NCN", reference_xpath_query)
 
 
-class TestHTMLTitle(TestCase):
+class TestHTMLTitle(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_html_title_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
@@ -564,7 +564,11 @@ class TestHTMLTitle(TestCase):
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
-    def test_html_title_when_judgment(self, mock_get_document_by_uri, mock_pdf):
+    def test_html_title_when_judgment(
+        self,
+        mock_get_document_by_uri,
+        mock_pdf,
+    ):
         """
         GIVEN a judgment
         WHEN a request is made with the judgment URI
