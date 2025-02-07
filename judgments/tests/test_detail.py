@@ -431,7 +431,7 @@ class TestBreadcrumbs:
         assert_response_contains_text(response, expected_breadcrumb, "//div[@class='breadcrumbs']")
 
 
-class TestDocumentHeadings(TestCase):
+class TestDocumentHeadings(TestCaseWithMockAPI):
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_document_headings_when_press_summary(self, mock_get_document_by_uri, mock_pdf):
