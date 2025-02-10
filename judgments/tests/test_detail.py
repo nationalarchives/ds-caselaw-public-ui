@@ -206,7 +206,7 @@ class TestPressSummaryLabel(TestCaseWithMockAPI):
 
 
 class TestViewRelatedDocumentButton(MockAPI):
-    @pytest.mark.xfail
+    # @pytest.mark.xfail
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
@@ -216,14 +216,14 @@ class TestViewRelatedDocumentButton(MockAPI):
                 "eat/2023/1/press-summary/1",
                 "View Judgment",
                 # XFAIL: the ml URI should not be present in the HTML
-                "ml-eat/2023/1",
+                "eat/2023/1",
                 PressSummaryFactory,
             ),
             (
                 "eat/2023/1",
                 "View Press Summary",
                 # XFAIL: the ml URI should not be present in the HTML
-                "ml-eat/2023/1/press-summary/1",
+                "eat/2023/1/press-summary/1",
                 JudgmentFactory,
             ),
         ],
@@ -250,11 +250,10 @@ class TestViewRelatedDocumentButton(MockAPI):
 
         client = Client()
         response = client.get(f"/{uri}")
-
         xpath_query = f"//a[@href='/{expected_href}']"
         assert_response_contains_text(response, expected_text, xpath_query)
 
-    @pytest.mark.xfail
+    # @pytest.mark.xfail
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
@@ -264,14 +263,14 @@ class TestViewRelatedDocumentButton(MockAPI):
                 "eat/2023/1/press-summary/1",
                 "View Judgment",
                 # XFAIL: the ml URI should not be present in the HTML
-                "ml-eat/2023/1",
+                "eat/2023/1",
                 PressSummaryFactory,
             ),
             (
                 "eat/2023/1",
                 "View Press Summary",
                 # XFAIL: the ml URI should not be present in the HTML
-                "ml-eat/2023/1/press-summary/1",
+                "eat/2023/1/press-summary/1",
                 JudgmentFactory,
             ),
         ],
