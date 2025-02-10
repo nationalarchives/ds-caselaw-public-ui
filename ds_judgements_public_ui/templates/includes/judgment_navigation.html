@@ -12,7 +12,7 @@
         (<span class="document-navigation-links__match-count document-navigation-links__link-count">{{ number_of_mentions }}</span> matches)
         <a class="document-navigation-links__remove-query-link"
            title="Remove query highlights"
-           href="{% url 'detail' document.uri %}">Remove query highlights</a>
+           href="{% url 'detail' document.slug %}">Remove query highlights</a>
       </span>
     </span>
   {% endif %}
