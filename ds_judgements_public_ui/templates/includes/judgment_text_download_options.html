@@ -11,15 +11,11 @@
         <span class="btn__label">{{ pdf_size }}</span>
       </a>
       <p>
-        {% if document.document_noun == 'press summary' %}
-          The original format of the press summary as handed down by the court, for printing and downloading.
-        {% else %}
-          The original format of the judgment as handed down by the court, for printing and downloading.
-        {% endif %}
+        The original format of the {{ document.document_noun }} as handed down by the court, for printing and downloading.
       </p>
     </div>
     <div class="judgment-download-options__download-option">
-      <a href="{% formatted_document_uri document.uri 'xml' %}"
+      <a href="{% formatted_document_uri document.identifiers.preferred.url_slug 'xml' %}"
          class="btn"
          aria-label="Download {{ document|get_title_to_display_in_html }} as XML">
         Download XML
