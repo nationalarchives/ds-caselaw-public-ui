@@ -159,7 +159,7 @@ class TestDocumentDownloadOptions(MockAPI):
                     <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
                 </div>
                 <div class="judgment-download-options__download-option">
-                    <a href="/{uri}/data.xml" class="btn" aria-label="Download {document_title} as XML">
+                    <a href="/{document.identifiers.preferred().url_slug}/data.xml" class="btn" aria-label="Download {document_title} as XML">
                         Download XML
                     </a>
                     <p>
