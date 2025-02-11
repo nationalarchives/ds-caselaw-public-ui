@@ -216,14 +216,14 @@ class TestViewRelatedDocumentButton(MockAPI):
                 "eat/2023/1/press-summary/1",
                 "View Judgment",
                 # XFAIL: the ml URI should not be present in the HTML
-                "eat/2023/1",
+                "/tna.a1b2c3",
                 PressSummaryFactory,
             ),
             (
                 "eat/2023/1",
                 "View Press Summary",
                 # XFAIL: the ml URI should not be present in the HTML
-                "eat/2023/1/press-summary/1",
+                "/tna.a1b2c3",
                 JudgmentFactory,
             ),
         ],
@@ -250,10 +250,9 @@ class TestViewRelatedDocumentButton(MockAPI):
 
         client = Client()
         response = client.get(f"/{uri}")
-        xpath_query = f"//a[@href='/{expected_href}']"
+        xpath_query = f"//a[@href='{expected_href}']"
         assert_response_contains_text(response, expected_text, xpath_query)
 
-    # @pytest.mark.xfail
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
@@ -262,15 +261,13 @@ class TestViewRelatedDocumentButton(MockAPI):
             (
                 "eat/2023/1/press-summary/1",
                 "View Judgment",
-                # XFAIL: the ml URI should not be present in the HTML
-                "eat/2023/1",
+                "/tna.a1b2c3",
                 PressSummaryFactory,
             ),
             (
                 "eat/2023/1",
                 "View Press Summary",
-                # XFAIL: the ml URI should not be present in the HTML
-                "eat/2023/1/press-summary/1",
+                "/tna.a1b2c3",
                 JudgmentFactory,
             ),
         ],
@@ -297,8 +294,9 @@ class TestViewRelatedDocumentButton(MockAPI):
 
         client = Client()
         response = client.get(f"/{uri}?query=Query")
-        xpath_query = f"//a[@href='/{expected_href}?query=Query']"
+        xpath_query = f"//a[@href='{expected_href}?query=Query']"
         assert_response_contains_text(response, expected_text, xpath_query)
+        assert "ml-" not in response.content.decode("utf-8")
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
@@ -370,7 +368,7 @@ class TestBreadcrumbs(MockAPI):
 
         response = self.client.get("/eat/2023/1/press-summary/1")
         judgment_breadcrumb_html = """
-                    <li><a href="/eat/2023/1">Judgment A</a></li>
+                    <li><a href="/tna.a1b2c3">Judgment A</a></li>
         """
 
         summary_breadcrumb_html = """
