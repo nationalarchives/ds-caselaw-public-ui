@@ -3,7 +3,6 @@ import os
 import urllib
 from typing import Any
 
-from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
 from lxml import html as html_parser
@@ -13,7 +12,6 @@ from judgments.models.document_pdf import DocumentPdf
 from judgments.utils import (
     get_published_document_by_uri,
     linked_doc_title,
-    linked_doc_url,
     preprocess_query,
     search_context_from_url,
 )
@@ -46,16 +44,14 @@ def detail_html(request, document_uri):
 
     pdf = DocumentPdf(document_uri)
 
-    # # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
-    # if document_uri != document.uri:
-    #     redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
-    #     return HttpResponseRedirect(redirect_uri)
+    # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
 
-    try:
-        linked_document_uri = linked_doc_url(document)
-        linked_document = get_published_document_by_uri(linked_document_uri, cache_if_not_found=True)
-        context["linked_document_uri"] = linked_document.uri
-    except Http404:
+    related_documents = document.linked_documents(namespaces=["ukncn", "uksummaryofncn"])
+    # TODO: handle multiple documents
+
+    if related_documents:
+        context["linked_document_uri"] = related_documents[0].identifiers.preferred().url_slug
+    else:
         context["linked_document_uri"] = None
 
     context["document_html"] = document.body.content_as_html()
