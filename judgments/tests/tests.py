@@ -142,7 +142,7 @@ class TestRobotsDirectives(TestCase):
         # The judgment search results page should have a robots meta tag
         # with nofollow,noindex
         response = self.client.get("/search?query=waltham+forest")
-        self.assertContains(response, '<meta name="robots" content="noindex,nofollow" />', html=True)
+        self.assertContains(response, '<meta name="robots" content="noindex,nofollow,noai" />', html=True)
 
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
@@ -154,7 +154,7 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/eat/2023/1/data.pdf")
         mock_get.assert_called_with(url)
         self.assertContains(response, "CAT")
-        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
@@ -166,7 +166,7 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/eat/2023/1/press-summary/1/data.pdf")
         mock_get.assert_called_with(url)
         self.assertContains(response, "CAT")
-        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
     def test_xml(self, mock_get_document_by_uri):
@@ -174,7 +174,7 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/eat/2023/1/data.xml")
         mock_get_document_by_uri.assert_called_with("eat/2023/1")
         self.assertContains(response, "This is a document.")
-        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
     def test_xml_press_summary(self, mock_get_document_by_uri):
@@ -182,7 +182,7 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
         mock_get_document_by_uri.assert_called_with("eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a document.")
-        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
@@ -191,7 +191,7 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/eat/2023/1/generated.pdf")
         mock_context.assert_called_with(document_uri="eat/2023/1")
         self.assertContains(response, b"%PDF-1.7")
-        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
@@ -200,7 +200,7 @@ class TestRobotsDirectives(TestCase):
         response = self.client.get("/eat/2023/1/press-summary/1/generated.pdf")
         mock_context.assert_called_with(document_uri="eat/2023/1/press-summary/1")
         self.assertContains(response, b"%PDF-1.7")
-        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
     def test_static_page(self, mock_search_judgments_and_parse_response):

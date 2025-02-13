@@ -25,7 +25,7 @@ class RobotsTagMiddleware:
             return response
 
         # In all other cases, assume we don't want it indexing and add the noindex X-Robots-Tag.
-        response.headers["X-Robots-Tag"] = "noindex,nofollow"
+        response.headers["X-Robots-Tag"] = "noindex,nofollow,noai"
         return response
 
 
