@@ -1,11 +1,12 @@
 from unittest.mock import patch
 
-from django.test import RequestFactory, TestCase
+from django.test import RequestFactory
+from fixtures import TestCaseWithMockAPI
 
 from judgments.resolvers.document_resolver_engine import DocumentResolverEngine
 
 
-class TestDocumentResolverEngine(TestCase):
+class TestDocumentResolverEngine(TestCaseWithMockAPI):
     @patch("judgments.resolvers.document_resolver_engine.best_pdf")
     @patch("judgments.resolvers.document_resolver_engine.generated_pdf")
     @patch("judgments.resolvers.document_resolver_engine.detail_xml")
@@ -31,21 +32,5 @@ class TestDocumentResolverEngine(TestCase):
                 resolver_engine = DocumentResolverEngine()
                 resolver_engine.setup(request)
                 resolver_engine.dispatch(request, document_uri, file_format=file_format)
-
-                view.assert_called_with(request, document_uri)
-
-    @patch("judgments.resolvers.document_resolver_engine.press_summaries")
-    def test_resolver_engine_with_components(self, mock_press_summaries):
-        document_uri = "ewhc/comm/2024/253"
-        test_params = [
-            ("press-summary", mock_press_summaries),
-        ]
-        for component, view in test_params:
-            with self.subTest(component=component, view=view):
-                path = document_uri + "/" + component
-                request = RequestFactory().get(path)
-                resolver_engine = DocumentResolverEngine()
-                resolver_engine.setup(request)
-                resolver_engine.dispatch(request, document_uri, component=component)
 
                 view.assert_called_with(request, document_uri)

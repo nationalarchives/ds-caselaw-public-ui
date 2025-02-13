@@ -51,11 +51,6 @@ urlpatterns = [
         name="detail",
     ),
     path(
-        "<document_uri:document_uri>/<component:component>",
-        DocumentResolverEngine.as_view(),
-        name="detail",
-    ),
-    path(
         "<document_uri:document_uri>",
         DocumentResolverEngine.as_view(),
         name="detail",
