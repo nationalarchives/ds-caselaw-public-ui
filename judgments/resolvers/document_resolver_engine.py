@@ -9,6 +9,10 @@ from judgments.utils import api_client
 from judgments.views.detail import best_pdf, detail_html, detail_xml, generated_pdf
 
 
+class MultipleResolutionsError(Exception):
+    """Multiple pages claim to live at this URL, and we do not yet have a disambiguation mechanic."""
+
+
 class DocumentResolverEngine(View):
     def dispatch(
         self,
@@ -30,7 +34,8 @@ class DocumentResolverEngine(View):
             raise Http404(msg)
 
         if len(resolved_documents) > 1:
-            raise Exception("There's more than one document here! Uh-oh!")
+            msg = f"Multiple resolutions found for {document_uri}"
+            raise MultipleResolutionsError(msg)
 
         if file_format:
             return fileformat_lookup[file_format](request, document_uri)
