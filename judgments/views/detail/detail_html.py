@@ -49,11 +49,7 @@ def detail_html(request, document_uri):
     related_documents = document.linked_documents(namespaces=["ukncn", "uksummaryofncn"])
     # TODO: handle multiple documents
 
-    if related_documents:
-        context["linked_document_uri"] = related_documents[0].identifiers.preferred().url_slug
-    else:
-        context["linked_document_uri"] = None
-
+    context["linked_document_uri"] = related_documents[0].slug if related_documents else None
     context["document_html"] = document.body.content_as_html()
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
 

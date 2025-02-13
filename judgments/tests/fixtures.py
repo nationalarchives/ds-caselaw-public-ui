@@ -27,6 +27,31 @@ class TestCaseWithMockAPI(TestCase):
             yield
 
 
+class TestCaseWithNoResolutions(TestCase):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup(self):
+        with patch.object(
+            api_client, "resolve_from_identifier_slug", return_value=IdentifierResolutionsFactory.build([])
+        ):
+            yield
+
+
+class TestCaseWithMultipleResolutions(TestCase):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup(self):
+        with patch.object(
+            api_client,
+            "resolve_from_identifier_slug",
+            return_value=IdentifierResolutionsFactory.build(
+                [
+                    IdentifierResolutionFactory.build(identifier_slug="x", document_uri="/ml-x-1.xml"),
+                    IdentifierResolutionFactory.build(identifier_slug="x", document_uri="/ml-x-2.xml"),
+                ]
+            ),
+        ):
+            yield
+
+
 @pytest.mark.django_db
 class MockAPI:
     @pytest.fixture(scope="class", autouse=True)

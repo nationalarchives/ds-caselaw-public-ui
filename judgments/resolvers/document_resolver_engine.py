@@ -37,7 +37,9 @@ class DocumentResolverEngine(View):
             msg = f"Multiple resolutions found for {document_uri}"
             raise MultipleResolutionsError(msg)
 
-        if file_format:
-            return fileformat_lookup[file_format](request, document_uri)
+        database_uri = resolved_documents[0].document_uri.as_document_uri()
 
-        return detail_html(request, resolved_documents[0].document_uri.as_document_uri())
+        if file_format:
+            return fileformat_lookup[file_format](request, database_uri)
+
+        return detail_html(request, database_uri)
