@@ -191,6 +191,14 @@ urlpatterns = [
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
+    path(
+        "trust.txt",
+        TemplateView.as_view(template_name="trust.txt", content_type="text/plain"),
+    ),
+    path(
+        ".well-known/trust.txt",
+        RedirectView.as_view(url="/trust.txt"),
+    ),
     path("favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("images/favicons/favicon.ico"))),
     path(
         "googleb0ce3f99fae65e7c.html",

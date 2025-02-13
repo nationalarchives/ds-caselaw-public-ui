@@ -226,6 +226,8 @@ class TestRobotsDirectives(TestCase):
             "terms-of-use",
             "publishing-policy",
             "robots.txt",
+            "trust.txt",
+            ".well-known/trust.txt",
         ]:
             response = self.client.get(f"/{url}", follow=True)
             assert response.status_code == 200

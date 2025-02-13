@@ -1,0 +1,4 @@
+# Find Case Law trust.txt file from The National Archives
+contact=caselaw@nationalarchives.gov.uk
+disclosure=https://caselaw.nationalarchives.gov.uk/publishing-policy
+datatrainingallowed=no
