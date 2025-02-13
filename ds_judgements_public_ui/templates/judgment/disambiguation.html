@@ -6,13 +6,9 @@
   <h1>Multiple matches</h1>
   <p>There were multiple results for an identifier of {{ uri }}.</p>
   <h3>Choices</h3>
-  (This should all be SQID)
-  <ul>
+  <ol>
     {% for resolution in resolutions %}
-      {{ resolution.identifier_uuid }}<br>
-      {{ resolution.document_uri }}
-      <li><a href="/{{ resolution.identifier_slug }}{{ file_format }}">{{ resolution.identifier_uuid }} xy</a></li>
+      <li><a href="/{{ resolution.identifier_slug }}{{ file_format }}">{{ resolution.identifier_uuid }}</a></li>
     {% endfor %}
-  </ul>
-  <p>{{ resolutions }}</p>
+  </ol>
 {% endblock content %}

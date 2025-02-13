@@ -14,7 +14,6 @@ class DisambiguationView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["uri"] = uri
         context["resolutions"] = resolutions
-        breakpoint()
         context["file_format"] = f"/{file_format}" or ""
 
         return context

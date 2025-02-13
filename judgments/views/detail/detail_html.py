@@ -46,7 +46,7 @@ def detail_html(request, document_uri):
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
 
-    related_documents = document.linked_documents(namespaces=["ukncn", "uksummaryofncn"])
+    related_documents = document.linked_document(namespaces=["ukncn", "uksummaryofncn"])
     # TODO: handle multiple documents
 
     if related_documents:
