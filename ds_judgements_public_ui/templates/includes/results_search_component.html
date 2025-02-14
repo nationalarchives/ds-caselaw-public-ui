@@ -7,6 +7,7 @@
       <div class="results-search-component__full-text-panel search-term-component">
         {% include "includes/search_term_component.html" %}
       </div>
+      {% include "includes/search/search_help_text.html" %}
 
       {% flag faceted_search %}
         {% if court_facets and not query_params.court %}
