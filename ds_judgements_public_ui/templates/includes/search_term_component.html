@@ -2,6 +2,5 @@
 <div class="search-term-component__search-term-container">
   <label for="search_term" class="search-term-component__search-term-label">Search</label>
   {{ form.query }}
-  {% include "includes/search/search_help_text.html" %}
 </div>
 <input type="submit" value="Search" class="button-primary" formaction="{% url 'search' %}"  />

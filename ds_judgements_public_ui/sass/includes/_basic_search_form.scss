@@ -80,7 +80,7 @@
 
   input[type="submit"] {
     margin-top: $space-2;
-    margin-bottom: $space-8;
+    margin-bottom: 0;
 
     // The 1px is the border offset of the input this is next to
     padding: calc($space-3 + 1px) $space-12;
@@ -122,6 +122,13 @@
     @media (min-width: $grid-breakpoint-medium) {
       margin: $space-1 0 $space-2 0;
     }
+  }
+
+  &__more-options-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 47rem;
+    margin: 0 auto;
   }
 
   &__header-beta {

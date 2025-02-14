@@ -27,13 +27,16 @@
       <div class="search-term-component">
         {% include "includes/search_term_component.html" %}
       </div>
-      <div class="search-component__more-options-beta">
-        <input
-          type="submit"
-          class="advanced-search-link button-link"
-          formaction="{% url 'advanced_search' %}"
-          value="Advanced search"
-        />
+      <div class="search-term-component__more-options-container">
+        {% include "includes/search/search_help_text.html" %}
+        <div class="search-component__more-options-beta">
+          <input
+            type="submit"
+            class="advanced-search-link button-link"
+            formaction="{% url 'advanced_search' %}"
+            value="Advanced search"
+          />
+        </div>
       </div>
     </form>
   </div>
