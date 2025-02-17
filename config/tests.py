@@ -5,6 +5,7 @@ from django.http import Http404
 from django.test import TestCase
 
 from config.views.schema import schema
+from judgments.tests.fixtures import TestCaseWithMockAPI
 
 
 class TestCacheHeaders(TestCase):
@@ -14,7 +15,7 @@ class TestCacheHeaders(TestCase):
         assert response.headers["Cache-Control"] == "max-age=0, no-cache, no-store, must-revalidate, private"
 
 
-class TestSchemas(TestCase):
+class TestSchemas(TestCaseWithMockAPI):
     @patch("config.views.schema.requests.get")
     def test_cached(self, get):
         # Tests caching behaviour; happy path

@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponseRedirect
-from django.urls import include, path, register_converter, reverse
+from django.urls import include, path, re_path, register_converter, reverse
 from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView, TemplateView
@@ -201,6 +201,7 @@ urlpatterns = [
         cache_page(60 * 60)(schema),
         name="schema",
     ),
+    re_path("schema/.*", NotFoundView.as_view(), kwargs={"exception": Exception("Schema not found")}),
     # License application
     path(
         "computational-licence-form",
