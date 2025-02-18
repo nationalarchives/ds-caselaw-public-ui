@@ -3,6 +3,7 @@ from urllib.parse import urlencode
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
+from django.utils.cache import patch_cache_control
 
 
 class RobotsTagMiddleware:
@@ -25,6 +26,27 @@ class RobotsTagMiddleware:
 
         # In all other cases, assume we don't want it indexing and add the noindex X-Robots-Tag.
         response.headers["X-Robots-Tag"] = "noindex,nofollow"
+        return response
+
+
+class CacheHeaderMiddleware:
+    # via https://docs.djangoproject.com/en/4.1/topics/http/middleware/
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+        # One-time configuration and initialization.
+
+    def __call__(self, request):
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+
+        response = self.get_response(request)
+
+        patch_cache_control(response, max_age=15 * 60, public=True)
+
+        # Code to be executed for each request/response after
+        # the view is called.
+
         return response
 
 
