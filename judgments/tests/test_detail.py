@@ -450,9 +450,9 @@ class TestDocumentHeadings(TestCase):
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A (with some slightly different wording)",
                     ),
-                    neutral_citation="Judgment_A_NCN",
+                    neutral_citation="[2023] EAT 1",
                 )
-                press_summary_ncn = PressSummaryRelatedNCNIdentifier(value="Judgment_A_NCN")
+                press_summary_ncn = PressSummaryRelatedNCNIdentifier(value="[2023] EAT 1")
                 press_summary.identifiers.add(press_summary_ncn)
                 return press_summary
             elif document_uri == "eat/2023/1":
@@ -462,9 +462,9 @@ class TestDocumentHeadings(TestCase):
                     body=DocumentBodyFactory.build(
                         name="Judgment A",
                     ),
-                    neutral_citation="Judgment_A_NCN",
+                    neutral_citation="[2023] EAT 1",
                 )
-                judgment_ncn = NeutralCitationNumber(value="Judgment_A_NCN")
+                judgment_ncn = NeutralCitationNumber(value="[2023] EAT 1")
                 judgment.identifiers.add(judgment_ncn)
                 return judgment
             else:
@@ -476,7 +476,7 @@ class TestDocumentHeadings(TestCase):
         reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
 
         assert_response_contains_text(response, "Judgment A (with some slightly different wording)", h1_xpath_query)
-        assert_response_contains_text(response, "Judgment_A_NCN", reference_xpath_query)
+        assert_response_contains_text(response, "[2023] EAT 1", reference_xpath_query)
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
@@ -514,7 +514,7 @@ class TestDocumentHeadings(TestCase):
             body=DocumentBodyFactory.build(name="Judgment A"),
         )
 
-        document_ncn = NeutralCitationNumber(value="Judgment_A_NCN")
+        document_ncn = NeutralCitationNumber(value="[1234] UKSC 1")
         document.identifiers.add(document_ncn)
 
         mock_get_document_by_uri.return_value = document
@@ -522,7 +522,7 @@ class TestDocumentHeadings(TestCase):
         response = self.client.get("/eat/2023/1")
         reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
 
-        assert_response_contains_text(response, "Judgment_A_NCN", reference_xpath_query)
+        assert_response_contains_text(response, "[1234] UKSC 1", reference_xpath_query)
 
 
 class TestHTMLTitle(TestCase):
