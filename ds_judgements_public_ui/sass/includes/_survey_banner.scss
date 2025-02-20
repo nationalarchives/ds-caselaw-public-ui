@@ -1,0 +1,29 @@
+.survey-banner {
+  font-family: $font-roboto;
+  font-size: $typography-lg-text-size;
+  background-color: $color-information;
+
+  &__container {
+    @include container;
+  }
+
+  &__notice {
+    padding: $space-3;
+    text-align: center;
+
+    a {
+      font-weight: $typography-bold-font-weight;
+      color: colour-var("link");
+
+      &:focus {
+        color: colour-var("link");
+        background-color: none;
+      }
+    }
+  }
+
+  &__message {
+    display: inline;
+    margin: 0;
+  }
+}
