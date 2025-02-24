@@ -46,10 +46,10 @@ class TestJudgment(TestCase):
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
 
-        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
+        self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
         self.assertIn("This is a document.", decoded_response)
-        self.assertIn('<meta name="robots" content="noindex,nofollow" />', decoded_response)
+        self.assertIn('<meta name="robots" content="noindex,nofollow,noai" />', decoded_response)
 
         self.assertEqual(response.status_code, 200)
 
