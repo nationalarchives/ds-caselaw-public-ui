@@ -132,6 +132,7 @@ jobs:
         with:
           repository: "nationalarchives/ds-caselaw-marklogic"
           path: "./marklogic"
+          ref: "v3.18.0"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
