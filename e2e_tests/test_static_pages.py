@@ -18,11 +18,6 @@ static_pages = [
         "title": "How to search Find Case Law",
         "heading": "How to search Find Case Law",
     },
-    {
-        "url": "/how-to-use-this-service",
-        "title": "How to use the Find Case Law service",
-        "heading": "How to use the Find Case Law service",
-    },
     {"url": "/open-justice-licence", "title": "Open Justice Licence", "heading": "Open Justice Licence"},
     {"url": "/privacy-notice", "title": "Privacy Notice", "heading": "Privacy notice"},
     {"url": "/publishing-policy", "title": "Publishing policy", "heading": "Publishing policy"},

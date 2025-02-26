@@ -54,7 +54,6 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
             "home",
             "advanced_search",
             "about_this_service",
-            "how_to_use_this_service",
             "courts_and_tribunals",
             "transactional-licence-form",
             "privacy_notice",

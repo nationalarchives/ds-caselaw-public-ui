@@ -104,7 +104,7 @@ urlpatterns = [
     ),
     path(
         "how-to-use-this-service",
-        static_views.HowToUseThisService.as_view(),
+        lambda request: HttpResponseRedirect(reverse("how_to_search_find_case_law")),
         name="how_to_use_this_service",
     ),
     path(
