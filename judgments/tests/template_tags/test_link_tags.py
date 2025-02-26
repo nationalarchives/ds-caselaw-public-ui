@@ -54,11 +54,11 @@ def test_trackable_link_tag_with_special_characters():
 @pytest.mark.django_db
 def test_trackable_link_tag_with_anchor():
     template = Template(
-        "{% load link_tags %}{% url 'how_to_use_this_service' as my_url %}{% trackable_link 'Click me' href=my_url|add:'#anchor' %}"
+        "{% load link_tags %}{% url 'how_to_search_find_case_law' as my_url %}{% trackable_link 'Click me' href=my_url|add:'#anchor' %}"
     )
     context = Context()
     rendered = template.render(context)
 
     assert "<a " in rendered
-    assert 'href="/how-to-use-this-service#anchor"' in rendered
+    assert 'href="/how-to-search-find-case-law#anchor"' in rendered
     assert "Click me" in rendered

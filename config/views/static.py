@@ -118,21 +118,6 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
         return context
 
 
-class HowToUseThisService(TemplateViewWithContext):
-    template_name = "pages/how_to_use_this_service.html"
-    page_title = "How to use the Find Case Law service"
-    page_canonical_url_name = "how_to_use_this_service"
-    page_allow_index = True
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "support"
-        context["breadcrumbs"] = [
-            {"text": self.page_title},
-        ]
-        return context
-
-
 class OpenJusticeLicenceView(TemplateViewWithContext):
     template_name = "pages/open_justice_licence.html"
     page_title = "Open Justice Licence"
