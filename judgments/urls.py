@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.urls import path, register_converter
+from django.urls import path, register_converter, reverse
 
 from judgments.views.browse import BrowseView
 from judgments.views.index import IndexView
@@ -42,8 +42,7 @@ urlpatterns = [
     ),
     path(
         "transactional-licence-form",
-        lambda request: HttpResponseRedirect("/computational-licence-form"),
-        name="transactional-licence-form",
+        lambda request: HttpResponseRedirect(reverse("transactional-licence-form")),
     ),
     path(
         "<document_uri:document_uri>/<file_format:file_format>",

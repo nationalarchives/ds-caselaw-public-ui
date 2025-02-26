@@ -212,8 +212,7 @@ urlpatterns = [
     # License application
     path(
         "computational-licence-form",
-        lambda request: HttpResponseRedirect("/re-use-find-case-law-records"),
-        name="computational_licence_form",
+        lambda request: HttpResponseRedirect(reverse("transactional-licence-form")),
     ),
     path("re-use-find-case-law-records", include("transactional_licence_form.urls")),
     # Judgment resolution
