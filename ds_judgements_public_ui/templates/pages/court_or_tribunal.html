@@ -11,9 +11,12 @@
 
     {% if court|get_court_judgments_count > 0 %}
       <p>
-        We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court | get_court_judgments_count }} documents from
-          the {{ court.name }}</a>, from {{ court.canonical_param | get_court_date_range }}.
+        We currently hold <b>{{ court | get_court_judgments_count }} documents</b> from
+        the {{ court.name }}, from {{ court.canonical_param | get_court_date_range }}.
       </p>
+      <p><a
+        class="button-primary"
+        href="{% url "search" %}?{{ court.type.value }}={{ court.canonical_param }}">See all documents from the {{ court.name }}</a></p>
     {% else %}
       <p>We do not currently hold any documents from the {{ court.name }}.</p>
     {% endif %}
