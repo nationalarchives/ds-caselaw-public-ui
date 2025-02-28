@@ -15,9 +15,9 @@
         <span>
           <span class="judgment-listing__title">
             {% if query_param_string %}
-              <a href="{% url 'detail' item.uri %}?{{ query_param_string }}">{{ item.name }}</a>
+              <a href="{% url 'detail' item.slug %}?{{ query_param_string }}">{{ item.name }} </a>
             {% else %}
-              <a href="{% url 'detail' item.uri %}">{{ item.name }}</a>
+              <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
             {% endif %}
           </span>
           <span class="judgment-listing__court">{{ item.court.name }}</span>
