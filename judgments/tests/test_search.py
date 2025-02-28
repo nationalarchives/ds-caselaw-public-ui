@@ -38,6 +38,9 @@ class TestBrowseResults(TestCase):
             ),
         )
         self.assertContains(response, "A SearchResult name!", html=True)
+        # search results reference the slug not the uri
+        self.assertContains(response, "/fcl.x1y2z3")
+        self.assertNotContains(response, "d-123456789abcdef")
 
 
 class TestNoNCN(TestCase):

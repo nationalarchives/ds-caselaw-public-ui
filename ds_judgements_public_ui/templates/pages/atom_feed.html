@@ -77,7 +77,7 @@
   <ul class="atom-feed__list">
     {% for result in search_results %}
       <li>
-        <a href="{% url 'detail' result.uri %}?{{ query_param_string }}">
+        <a href="{% url 'detail' result.slug %}?{{ query_param_string }}">
           {{ result.name }}
         </a>
         <br/>

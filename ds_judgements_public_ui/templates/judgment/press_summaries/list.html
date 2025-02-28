@@ -15,7 +15,7 @@
     {% endif %}
     <ul>
       {% for press_summary in press_summaries %}
-        <li><a href="{% url 'detail' press_summary.uri %}">{{ press_summary.body.name }}</a></li>
+        <li><a href="{% url 'detail' press_summary.slug %}">{{ press_summary.body.name }}</a></li>
       {% endfor %}
     </ul>
   </div>
