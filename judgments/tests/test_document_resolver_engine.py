@@ -1,11 +1,14 @@
 from unittest.mock import patch
 
-from django.test import RequestFactory, TestCase
+import pytest
+from django.http.response import Http404
+from django.test import RequestFactory
+from fixtures import TestCaseWithMockAPI, TestCaseWithMultipleResolutions, TestCaseWithNoResolutions
 
-from judgments.resolvers.document_resolver_engine import DocumentResolverEngine
+from judgments.resolvers.document_resolver_engine import DocumentResolverEngine, MultipleResolutionsError
 
 
-class TestDocumentResolverEngine(TestCase):
+class TestDocumentResolverEngine(TestCaseWithMockAPI):
     @patch("judgments.resolvers.document_resolver_engine.best_pdf")
     @patch("judgments.resolvers.document_resolver_engine.generated_pdf")
     @patch("judgments.resolvers.document_resolver_engine.detail_xml")
@@ -32,20 +35,29 @@ class TestDocumentResolverEngine(TestCase):
                 resolver_engine.setup(request)
                 resolver_engine.dispatch(request, document_uri, file_format=file_format)
 
-                view.assert_called_with(request, document_uri)
+                view.assert_called_with(request, "ml-" + document_uri)
 
-    @patch("judgments.resolvers.document_resolver_engine.press_summaries")
-    def test_resolver_engine_with_components(self, mock_press_summaries):
+
+class TestDocumentResolverEngineWithNoResolutions(TestCaseWithNoResolutions):
+    def test_resolver_engine_with_no_resolutions(
+        self,
+    ):
         document_uri = "ewhc/comm/2024/253"
-        test_params = [
-            ("press-summary", mock_press_summaries),
-        ]
-        for component, view in test_params:
-            with self.subTest(component=component, view=view):
-                path = document_uri + "/" + component
-                request = RequestFactory().get(path)
-                resolver_engine = DocumentResolverEngine()
-                resolver_engine.setup(request)
-                resolver_engine.dispatch(request, document_uri, component=component)
+        request = RequestFactory().get(document_uri)
+        resolver_engine = DocumentResolverEngine()
+        resolver_engine.setup(request)
+        with pytest.raises(Http404):
+            resolver_engine.dispatch(request, document_uri)
 
-                view.assert_called_with(request, document_uri)
+
+class TestDocumentResolverEngineWithMultipleResolutions(TestCaseWithMultipleResolutions):
+    def test_resolver_engine_with_multiple_resolutions(
+        self,
+    ):
+        """We will remove this test when we have a disambiguation system"""
+        document_uri = "ewhc/comm/2024/253"
+        request = RequestFactory().get(document_uri)
+        resolver_engine = DocumentResolverEngine()
+        resolver_engine.setup(request)
+        with pytest.raises(MultipleResolutionsError):
+            resolver_engine.dispatch(request, document_uri)
