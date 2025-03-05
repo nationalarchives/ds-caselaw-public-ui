@@ -71,7 +71,7 @@ class FakeMetadata:
 
 @dataclass
 class FakeSearchResult:
-    uri = "ewhc/ch/2022/1"
+    uri = "d-123456789abcdef"
     neutral_citation = "neutral_citation"
     name = "A SearchResult name!"
     matches = None
@@ -82,6 +82,7 @@ class FakeSearchResult:
     content_hash = "content_hash"
     transformation_date = "2023-04-09T18:05:45"
     metadata = FakeMetadata()
+    slug = "fcl.x1y2z3"
 
 
 class FakeSearchResponseBaseClass:
