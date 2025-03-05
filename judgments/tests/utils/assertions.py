@@ -61,7 +61,7 @@ def response_contains_html(response, contained_html):
 
 
 def assert_contains_html(response, contained_html):
-    assert response_contains_html(response, contained_html)
+    assert response_contains_html(response, contained_html), f"{contained_html} not in HTML\n{response.content}"
 
 
 def assert_not_contains_html(response, contained_html):

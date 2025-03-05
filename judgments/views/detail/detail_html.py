@@ -3,10 +3,8 @@ import os
 import urllib
 from typing import Any
 
-from django.http import Http404, HttpResponseRedirect
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
-from django.urls import reverse
 from lxml import html as html_parser
 
 from judgments.forms import AdvancedSearchForm
@@ -14,7 +12,6 @@ from judgments.models.document_pdf import DocumentPdf
 from judgments.utils import (
     get_published_document_by_uri,
     linked_doc_title,
-    linked_doc_url,
     preprocess_query,
     search_context_from_url,
 )
@@ -48,17 +45,11 @@ def detail_html(request, document_uri):
     pdf = DocumentPdf(document_uri)
 
     # If the document_uri which was requested isn't the canonical URI of the document, redirect the user
-    if document_uri != document.uri:
-        redirect_uri = reverse("detail", kwargs={"document_uri": document.uri})
-        return HttpResponseRedirect(redirect_uri)
 
-    try:
-        linked_document_uri = linked_doc_url(document)
-        linked_document = get_published_document_by_uri(linked_document_uri, cache_if_not_found=True)
-        context["linked_document_uri"] = linked_document.uri
-    except Http404:
-        context["linked_document_uri"] = None
+    related_documents = document.linked_documents(namespaces=["ukncn", "uksummaryofncn"])
+    # TODO: handle multiple documents
 
+    context["linked_document_uri"] = related_documents[0].slug if related_documents else None
     context["document_html"] = document.body.content_as_html()
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
 
@@ -92,8 +83,8 @@ def detail_html(request, document_uri):
     context["search_context"] = search_context_from_url(request.META.get("HTTP_REFERER"))
     context["document"] = document
     context["page_canonical_url"] = document.public_uri
-    context["document_canonical_url"] = request.build_absolute_uri("/" + document.uri)
-    context["feedback_survey_document_uri"] = document.uri  # TODO: Remove this from context
+    context["document_canonical_url"] = document.public_uri
+    context["feedback_survey_document_uri"] = document.slug  # TODO: Remove this from context
     context["page_title"] = document.body.name  # TODO: Remove this from context
     context["pdf_uri"] = pdf.uri  # TODO: Remove this from context
 
