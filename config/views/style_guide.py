@@ -5,12 +5,8 @@ from caselawclient.factories import JudgmentFactory
 from caselawclient.search_parameters import SearchParameters
 
 from judgments.forms import AdvancedSearchForm
-from judgments.tests.fixtures import (
-    FakeSearchResponse,
-)
-from judgments.utils import (
-    api_client,
-)
+from judgments.tests.fixture_data import FakeSearchResponse
+from judgments.utils import api_client
 
 from .template_view_with_context import TemplateViewWithContext
 

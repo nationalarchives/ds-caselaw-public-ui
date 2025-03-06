@@ -7,7 +7,7 @@ from ds_caselaw_utils import courts as all_courts
 from ds_caselaw_utils.courts import CourtCode
 
 from judgments.tests.factories import CourtDateFactory
-from judgments.tests.fixtures import (
+from judgments.tests.fixture_data import (
     FakeSearchResponse,
     FakeSearchResponseNoFacets,
     FakeSearchResponseNoResults,

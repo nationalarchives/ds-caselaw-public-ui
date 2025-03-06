@@ -7,7 +7,7 @@ from fixtures import TestCaseWithMockAPI
 
 from judgments import converters, utils
 from judgments.models.court_dates import CourtDates
-from judgments.tests.fixtures import FakeSearchResponse
+from judgments.tests.fixture_data import FakeSearchResponse
 from judgments.utils import clamp, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView
 
