@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from judgments.tests.fixtures import FakeSearchResponse
+from judgments.tests.fixture_data import FakeSearchResponse
 
 
 class TestBadCookie(TestCase):

@@ -3,7 +3,7 @@ from unittest.mock import patch
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 
-from judgments.tests.fixtures import FakeSearchResponse
+from judgments.tests.fixture_data import FakeSearchResponse
 from judgments.views.index import cached_recent_judgments
 
 
