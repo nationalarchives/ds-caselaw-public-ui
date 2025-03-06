@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
+    image: nationalarchives-pui-django
     depends_on:
       - postgres
     volumes:
