@@ -176,7 +176,14 @@ jobs:
         run: docker compose build e2e_tests
 
       - name: Run playwright e2e tests
-        run: docker compose run e2e_tests pytest --base-url http://django:3000
+        run: docker compose run e2e_tests pytest --base-url http://django:3000 --tracing retain-on-failure
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 
       - name: Tear down marklogic
         run: docker compose down
