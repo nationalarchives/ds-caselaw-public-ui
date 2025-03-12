@@ -1,10 +1,8 @@
-FROM python:3.12
+FROM mcr.microsoft.com/playwright/python:v1.50.0-noble
 
 WORKDIR /app
 
-RUN pip install pytest pytest-playwright axe-playwright-python
-RUN playwright install-deps
-RUN playwright install
+RUN pip install pytest-playwright axe-playwright-python
 COPY . .
 
 EXPOSE 9222
