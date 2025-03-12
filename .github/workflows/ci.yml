@@ -77,17 +77,27 @@ jobs:
           source: ".env.example"
           target: ".env"
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
       - name: Build the Stack
-        run: docker compose build postgres django
+        uses: docker/bake-action@v6
+        with:
+          targets: django
+          load: true
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
 
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Tests with coverage
         run: docker compose run django coverage run -m pytest -vvvv -rsa -m "not local"
+
       - name: Generate coverage XML
         run: docker compose run django coverage xml
 
@@ -122,11 +132,20 @@ jobs:
           source: ".env.example"
           target: ".env"
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
       - name: Build the Stack
-        run: docker compose build postgres django
+        uses: docker/bake-action@v6
+        with:
+          targets: django
+          load: true
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
 
       - name: Checkout Marklogic repo
         uses: actions/checkout@v4
