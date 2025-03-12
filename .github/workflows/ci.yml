@@ -112,7 +112,10 @@ jobs:
         run: docker compose down
 
   e2e-tests:
-    needs: linter
+    needs:
+      - linter
+      - build-scss
+      - js-tests
     runs-on: ubuntu-latest
 
     steps:
