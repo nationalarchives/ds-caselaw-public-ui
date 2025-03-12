@@ -178,8 +178,8 @@ jobs:
 
       - name: Copy trace files from container
         if: ${{ always() }}
-
         run: docker compose cp e2e_tests:/app/test-results artifacts
+        continue-on-error: true
 
       - name: Upload trace files as github artifacts
         uses: actions/upload-artifact@v4
