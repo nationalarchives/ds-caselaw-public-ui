@@ -63,8 +63,42 @@ jobs:
       - name: Run tests
         run: npm test
 
-  pytest:
+  build-django:
     needs: linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Copy .env.example file
+        uses: canastro/copy-file-action@master
+        with:
+          source: ".env.example"
+          target: ".env"
+
+      - name: Build the Stack
+        uses: docker/bake-action@v6
+        with:
+          targets: django
+          load: true
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
+            *.tags=ds_judgments_public_ui_django:latest
+            *.output=type=docker,dest=/tmp/django-image.tar
+
+      - name: Upload Django image
+        uses: actions/upload-artifact@v4
+        with:
+          name: django-image
+          path: /tmp/django-image.tar
+
+  pytest:
+    needs: build-django
     runs-on: ubuntu-latest
 
     steps:
@@ -77,20 +111,17 @@ jobs:
           source: ".env.example"
           target: ".env"
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
-      - name: Build the Stack
-        uses: docker/bake-action@v6
+      - name: Download Django image
+        uses: actions/download-artifact@v4
         with:
-          targets: django
-          load: true
-          set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+          name: django-image
+          path: /tmp
+
+      - name: Load Django image
+        run: docker load --input /tmp/django-image.tar
 
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
@@ -120,6 +151,7 @@ jobs:
       - linter
       - build-scss
       - js-tests
+      - build-django
       - pytest
     runs-on: ubuntu-latest
 
@@ -133,20 +165,17 @@ jobs:
           source: ".env.example"
           target: ".env"
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
-      - name: Build the Stack
-        uses: docker/bake-action@v6
+      - name: Download Django image
+        uses: actions/download-artifact@v4
         with:
-          targets: django
-          load: true
-          set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+          name: django-image
+          path: /tmp
+
+      - name: Load Django image
+        run: docker load --input /tmp/django-image.tar
 
       - name: Checkout Marklogic repo
         uses: actions/checkout@v4

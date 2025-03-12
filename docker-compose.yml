@@ -1,5 +1,6 @@
 services:
   django:
+    image: ds_judgments_public_ui_django
     platform: linux/amd64
     build:
       context: .
