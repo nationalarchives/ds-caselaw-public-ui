@@ -64,7 +64,7 @@ services:
     profiles: [e2e_tests]
     volumes:
       - "./e2e_tests:/app:z"
-    command: tail -f /dev/null
+    tty: true
 
 networks:
   default:

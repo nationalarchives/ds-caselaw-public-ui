@@ -172,22 +172,21 @@ jobs:
 
       - name: Kick off the django server itself
         run: docker compose exec -d django python manage.py runserver 0.0.0.0:3000
+
       - name: Build playwright runner container
         run: docker compose build e2e_tests
+      - run: docker compose up -d e2e_tests
 
       - name: Run playwright e2e tests
-        run: docker compose run e2e_tests pytest --base-url http://django:3000 --tracing retain-on-failure
+        run: docker compose exec e2e_tests pytest --base-url http://django:3000 --tracing retain-on-failure
 
-      - uses: actions/upload-artifact@v4
+      - name: Copy trace files from container
+        run: docker compose cp e2e_tests:/app/test-results artifacts
+
+      - name: Upload trace files as github artifacts
+        uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
-          path: ./e2e_tests/test-results/ (in docker)
-          retention-days: 30
-
-      - name: Tear down marklogic
-        run: docker compose down
-        working-directory: "./marklogic"
-
-      - name: Tear down the Stack
-        run: docker compose down
+          path: artifacts
+          retention-days: 7
