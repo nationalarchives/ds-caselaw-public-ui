@@ -1,10 +1,5 @@
 name: CI
 
-# Enable Buildkit and let compose use it to speed up image building
-env:
-  DOCKER_BUILDKIT: 1
-  COMPOSE_DOCKER_CLI_BUILD: 1
-
 on:
   pull_request:
     branches: ["master", "main"]
@@ -17,36 +12,6 @@ on:
   merge_group:
 
 jobs:
-  build-scss:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
-
-      - name: Set up node
-        uses: actions/setup-node@v4.2.0
-
-      - name: Install node dependencies
-        run: npm ci
-
-      - name: Build scss
-        run: npm run build
-
-  js-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
-
-      - name: Set up node
-        uses: actions/setup-node@v4.2.0
-
-      - name: Install node dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
-
   linter:
     runs-on: ubuntu-latest
     steps:
@@ -66,8 +31,74 @@ jobs:
         env:
           SKIP: no-commit-to-branch,stylelint
 
-  # With no caching at all the entire ci process takes 4m 30s to complete!
+  build-scss:
+    needs: linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up node
+        uses: actions/setup-node@v4.2.0
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Build scss
+        run: npm run build
+
+  js-tests:
+    needs: linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up node
+        uses: actions/setup-node@v4.2.0
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+  build-django:
+    needs: linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Copy .env.example file
+        uses: canastro/copy-file-action@master
+        with:
+          source: ".env.example"
+          target: ".env"
+
+      - name: Build the Stack
+        uses: docker/bake-action@v6
+        with:
+          targets: django
+          load: true
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
+            *.tags=ds_judgments_public_ui_django:latest
+            *.output=type=docker,dest=/tmp/django-image.tar
+
+      - name: Upload Django image
+        uses: actions/upload-artifact@v4
+        with:
+          name: django-image
+          path: /tmp/django-image.tar
+
   pytest:
+    needs: build-django
     runs-on: ubuntu-latest
 
     steps:
@@ -83,14 +114,21 @@ jobs:
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
-      - name: Build the Stack
-        run: docker compose build postgres django
+      - name: Download Django image
+        uses: actions/download-artifact@v4
+        with:
+          name: django-image
+          path: /tmp
+
+      - name: Load Django image
+        run: docker load --input /tmp/django-image.tar
 
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Tests with coverage
         run: docker compose run django coverage run -m pytest -vvvv -rsa -m "not local"
+
       - name: Generate coverage XML
         run: docker compose run django coverage xml
 
@@ -109,6 +147,12 @@ jobs:
         run: docker compose down
 
   e2e-tests:
+    needs:
+      - linter
+      - build-scss
+      - js-tests
+      - build-django
+      - pytest
     runs-on: ubuntu-latest
 
     steps:
@@ -124,8 +168,14 @@ jobs:
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
-      - name: Build the Stack
-        run: docker compose build postgres django
+      - name: Download Django image
+        uses: actions/download-artifact@v4
+        with:
+          name: django-image
+          path: /tmp
+
+      - name: Load Django image
+        run: docker load --input /tmp/django-image.tar
 
       - name: Checkout Marklogic repo
         uses: actions/checkout@v4
@@ -158,7 +208,7 @@ jobs:
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Setup django server for e2e tests
-        run: docker compose up -d
+        run: docker compose up -d django
 
       - name: Install NPM deps
         run: npm install
