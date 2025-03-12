@@ -208,7 +208,7 @@ jobs:
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Setup django server for e2e tests
-        run: docker compose up -d
+        run: docker compose up -d django
 
       - name: Install NPM deps
         run: npm install
