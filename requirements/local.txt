@@ -30,5 +30,5 @@ pytest-timeout==2.3.1
 
 # type stubs
 types-python-dateutil==2.9.0.20241206
-types-requests==2.32.0.20250301
+types-requests==2.32.0.20250306
 django-stubs==5.1.3
