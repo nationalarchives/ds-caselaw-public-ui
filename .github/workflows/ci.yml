@@ -154,10 +154,6 @@ jobs:
         run: python ./development_scripts/populate_from_caselaw.py
         working-directory: "./marklogic"
 
-      - name: Publish imported documents
-        run: gradle publishAllDocuments
-        working-directory: "./marklogic"
-
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
