@@ -7,4 +7,4 @@ COPY . .
 
 EXPOSE 9222
 
-CMD ["true"]
+CMD ["tail", "-f", "/dev/null"]

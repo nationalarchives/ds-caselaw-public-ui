@@ -56,12 +56,15 @@ services:
     command: /start-docs
 
   e2e_tests:
+    container_name: e2e_tests_container
     build:
       context: ./e2e_tests
       dockerfile: "../compose/local/e2e_tests/Dockerfile"
+
     profiles: [e2e_tests]
     volumes:
       - "./e2e_tests:/app:z"
+    command: tail -f /dev/null
 
 networks:
   default:
