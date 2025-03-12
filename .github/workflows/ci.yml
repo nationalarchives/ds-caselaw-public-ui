@@ -120,6 +120,7 @@ jobs:
       - linter
       - build-scss
       - js-tests
+      - pytest
     runs-on: ubuntu-latest
 
     steps:
