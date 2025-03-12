@@ -63,7 +63,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-  # With no caching at all the entire ci process takes 4m 30s to complete!
   pytest:
     needs: linter
     runs-on: ubuntu-latest
