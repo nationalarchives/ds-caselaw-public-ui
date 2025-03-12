@@ -148,13 +148,13 @@ It's because the editor UI project is still running, you'll need to reopen that 
 Now go back to the Public UI project and use the same command `fab stop`.
 Now you can restart the project up again with `fab run`.
 
-### 8. Other development tips
+## Other development tips
 
 For day to day development, running `fab run` should provide you with all you need.
 
 Other useful commands are:
 
-#### Start Docker containers (in the background)
+### Start Docker containers (in the background)
 
 Note that running this command will fail if you have already started the application with
 `fab run`
@@ -163,19 +163,19 @@ Note that running this command will fail if you have already started the applica
 fab start
 ```
 
-#### To stop any running containers
+### To stop any running containers
 
 ```console
 fab stop
 ```
 
-#### Start a shell session with the 'django' container
+### Start a shell session with the 'django' container
 
 ```console
 fab sh
 ```
 
-#### Apply database migrations
+### Apply database migrations
 
 Run the following inside the `django` container
 
@@ -183,13 +183,13 @@ Run the following inside the `django` container
 python manage.py migrate
 ```
 
-#### Run a 'development' web server
+### Run a 'development' web server
 
 ```console
 python manage.py runserver_plus 0.0.0.0:3000
 ```
 
-#### Running the test suite
+### Running the test suite
 
 Pytest unit tests can be run with:
 
@@ -205,7 +205,7 @@ fab e2etest
 
 These will run by default against the running `django` container. You can supply a `baseURL` argument to test against staging or production.
 
-#### Accessibility testing with E2E tests
+### Accessibility testing with E2E tests
 
 We use axe playwright to automatically check for accessibility issues on our pages. When adding a new page, you should also add a test to ensure it is accessible and stays accessible.
 
@@ -219,7 +219,11 @@ def test_my_page(page: Page):
 
 If the page is accessible, the console won't output anything other than the usual test output. If there are accessibility issues, there will be output that explains what the issues are and also helpful links explaining how to fix them.
 
-#### Viewing code coverage
+#### Test traces in CI
+
+If there are failing tests in the end to end tests, there will be test traces available as artifacts in Github. Download the zipfile, extract a failing test file from inside (also a zip) and drag it onto the [Playwright Trace Viewer](https://trace.playwright.dev/)
+
+### Viewing code coverage
 
 ```console
 fab coverage
@@ -243,7 +247,7 @@ cannot load library 'gobject-2.0-0'
 
 Then it means the dependencies for WeasyPrint have not been installed correctly. Try rebuilding the docker image using the command `docker-compose build django` and then running `fab run`.
 
-## Setting up the pre-commit hooks (strongly advised)
+### Setting up the pre-commit hooks (strongly advised)
 
 To use this, you will need to install [pre-commit](https://pre-commit.com/) on your development machine, typically using `pip install pre-commit`. If you prefer Homebrew, you can use `brew install pre-commit`.
 
@@ -253,7 +257,7 @@ Install the git hooks configured in `.pre-commit-config.yaml` with:
 
 This will set up various checks including Python linting and style checks when you commit and push to the repo and alert you to any linting issues that will cause CI to fail.
 
-## Setting up commit signing
+### Setting up commit signing
 
 Any commit that's merged to `main` needs to be [signed](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits), to ensure the identity of the author is who they say they are.
 
