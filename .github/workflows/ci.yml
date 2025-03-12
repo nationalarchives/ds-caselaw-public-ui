@@ -17,36 +17,6 @@ on:
   merge_group:
 
 jobs:
-  build-scss:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
-
-      - name: Set up node
-        uses: actions/setup-node@v4.2.0
-
-      - name: Install node dependencies
-        run: npm ci
-
-      - name: Build scss
-        run: npm run build
-
-  js-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
-
-      - name: Set up node
-        uses: actions/setup-node@v4.2.0
-
-      - name: Install node dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
-
   linter:
     runs-on: ubuntu-latest
     steps:
@@ -66,8 +36,41 @@ jobs:
         env:
           SKIP: no-commit-to-branch,stylelint
 
+  build-scss:
+    needs: linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up node
+        uses: actions/setup-node@v4.2.0
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Build scss
+        run: npm run build
+
+  js-tests:
+    needs: linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up node
+        uses: actions/setup-node@v4.2.0
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
   # With no caching at all the entire ci process takes 4m 30s to complete!
   pytest:
+    needs: linter
     runs-on: ubuntu-latest
 
     steps:
@@ -109,6 +112,7 @@ jobs:
         run: docker compose down
 
   e2e-tests:
+    needs: linter
     runs-on: ubuntu-latest
 
     steps:
