@@ -192,3 +192,10 @@ jobs:
           name: playwright-report
           path: artifacts
           retention-days: 7
+
+      - name: Tear down marklogic
+        run: docker compose down
+        working-directory: "./marklogic"
+
+      - name: Tear down the Stack
+        run: docker compose down
