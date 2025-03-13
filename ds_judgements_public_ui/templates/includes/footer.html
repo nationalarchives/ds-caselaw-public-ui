@@ -1,67 +1,97 @@
-{% load static %}
+{% load static link_tags %}
+
 <footer class="judgments-footer">
-  <div class="container pt-2 pb-1">
+  <div class="judgments-footer__container">
     <h2 class="judgments-footer__heading">Footer</h2>
     <div class="judgments-footer__links-container">
       <div>
-        <h3>Websites</h3>
+        <h3>Find Case Law</h3>
+        <p>Delivered by</p>
+        {% include "includes/footer_logo.html" %}
+      </div>
+      <div class="judgments-footer__about-links">
+        <h3 class="judgments-footer__h3-link">
+          {% url 'about_this_service' as search_url %}
+          {% trackable_link "About" href=search_url %}
+        </h3>
         <ul>
           <li>
-            <a class="{{ link_class_prefix }}-legislation-link" href="https://www.legislation.gov.uk/">Legislation</a>
+            {% url 'courts_and_tribunals' as search_url %}
+            {% trackable_link "Courts and tribunals in Find Case Law" href=search_url %}
           </li>
           <li>
-            <a class="{{ link_class_prefix }}-gazette-link" href="https://www.thegazette.co.uk/">The Gazette</a>
+            {% url 'terms_and_policies' as search_url %}
+            {% trackable_link "Terms and policies" href=search_url %}
           </li>
           <li>
-            <a class="{{ link_class_prefix }}-judicaiary-link" href="https://www.judiciary.uk">Judiciary</a>
+            {% url 'publishing_policy' as search_url %}
+            {% trackable_link "Publishing policy" href=search_url %}
           </li>
         </ul>
       </div>
-      <div>
-        <h3>About</h3>
+      <div class="judgments-footer__help-links">
+        <h3 class="judgments-footer__h3-link">
+          {% url 'help_and_guidance' as search_url %}
+          {% trackable_link "Help and guidance" href=search_url %}
+        </h3>
         <ul>
           <li>
-            <a class="{{ link_class_prefix }}-about-this-service-link" href="{% url "about_this_service" %}">About this service</a>
+            {% url 'how_to_search_find_case_law' as search_url %}
+            {% trackable_link "How to search" href=search_url %}
           </li>
           <li>
-            <a class="{{ link_class_prefix }}-how-to-use-this-service-link" href="{% url "how_to_search_find_case_law" %}">How to search</a>
+            {% url 'understanding_judgments_and_decisioms' as search_url %}
+            {% trackable_link "Understanding judgments and decisions" href=search_url %}
           </li>
           <li>
-            <a class="{{ link_class_prefix }}-help-and-guidance-link" href="{% url "help_and_guidance" %}">Help and guidance</a>
-          </li>
-          <li>
-            <a class="{{ link_class_prefix }}-contact-link" href="mailto:caselaw@nationalarchives.gov.uk">Contact us by email</a>
+            {% url 'contact_us' as search_url %}
+            {% trackable_link "Contact us" href=search_url %}
           </li>
         </ul>
       </div>
-      <div>
-        <h3>Legal</h3>
-        <ul>
-          <li>
-            <a class="{{ link_class_prefix }}-terms-and-policies-link" href="{% url "terms_and_policies" %}">Terms and policies</a>
-          </li>
-          <li>
-            <a class="{{ link_class_prefix }}-cookies-link" href="https://www.nationalarchives.gov.uk/legal/cookies/">Cookies</a>
-          </li>
-          <li>
-            <a class="{{ link_class_prefix }}-privacy-notice-link" href="{% url "privacy_notice" %}">Privacy notice</a>
-          </li>
-        </ul>
+      <div class="judgments-footer__reuse-links">
+        <h3 class="judgments-footer__ojl-h3">Open Justice Licence</h3>
+        <h3 class="judgments-footer__reuse-h3">Re-use Find Case Law records </h3>
+        <div class="judgments-footer__ojl-links">
+          <div>
+            <img class="judgments-footer__ojl-logo"
+                 src="{% static 'images/Open-Justice-Licence-logo.svg' %}"
+                 alt="Open Justice Licence logo"
+                 height="50"
+                 width="32" />
+          </div>
+          <div>
+            All content is available under the <a class="judgments-footer__link"
+                                                  href="{% url 'open_justice_licence' %}"
+                                                  rel="license">Open Justice Licence</a>.          </div>
+        </div>
+        <br/>
+        For computational analysis, which is not allowed under the OJL <a href="{% url "transactional-licence-form" %}">apply for a license</a>.
       </div>
     </div>
     <div class="judgments-footer__base-paragraph-container">
-      <img class="judgments-footer__ojl-logo"
-           src="{% static 'images/Open-Justice-Licence-logo.svg' %}"
-           alt="Open Justice Licence logo"
-           height="50"
-           width="32" />
-      <p class="judgments-footer__base-paragraph">
-        All content is available under the <a class="judgments-footer__link"
-                                              href="{% url 'open_justice_licence' %}"
-                                              rel="license">Open Justice Licence</a>.
-        <br/>
-        For re-use that is not covered by the Open Justice Licence, please <a href="{% url "transactional-licence-form" %}">apply for licence to do computational analysis.</a>.
-      </p>
+      <div class="judgments-footer__legal-links">
+        <h3>Legal</h3>
+        <ul>
+          <li>
+            {% url 'accessibility_statement' as search_url %}
+            {% trackable_link "Accessibility statement" href=search_url %}
+          </li>
+          <li>
+            {% url 'privacy_notice' as search_url %}
+            {% trackable_link "Privacy notice" href=search_url %}
+          </li>
+          <li><a href="https://www.nationalarchives.gov.uk/legal/cookies/">Cookies</a></li>
+        </ul>
+      </div>
+      <div class="judgments-footer__website-links">
+        <h3>Other websites</h3>
+        <ul>
+          <li><a href="https://www.legislation.gov.uk/">Legislation.gov.uk</a></li>
+          <li><a href="https://www.judiciary.uk/">The Judiciary</a></li>
+          <li><a href="https://www.nationalarchives.gov.uk/webarchive/">UK Government Web Archive</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>
