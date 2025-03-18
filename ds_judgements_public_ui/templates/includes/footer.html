@@ -9,7 +9,7 @@
         <p>Delivered by</p>
         {% include "includes/footer_logo.html" %}
       </div>
-      <div class="judgments-footer__about-links">
+      <div>
         <h3 class="judgments-footer__h3-link">
           {% url 'about_this_service' as search_url %}
           {% trackable_link "About" href=search_url %}
@@ -29,7 +29,7 @@
           </li>
         </ul>
       </div>
-      <div class="judgments-footer__help-links">
+      <div>
         <h3 class="judgments-footer__h3-link">
           {% url 'help_and_guidance' as search_url %}
           {% trackable_link "Help and guidance" href=search_url %}
@@ -49,7 +49,7 @@
           </li>
         </ul>
       </div>
-      <div class="judgments-footer__reuse-links">
+      <div>
         <h3 class="judgments-footer__ojl-h3">Open Justice Licence</h3>
         <h3 class="judgments-footer__reuse-h3">Re-use Find Case Law records </h3>
         <div class="judgments-footer__ojl-links">
