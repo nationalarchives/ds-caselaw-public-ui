@@ -1,9 +1,9 @@
 {% load static link_tags %}
 
-<footer class="judgments-footer">
-  <div class="judgments-footer__container">
-    <h2 class="judgments-footer__heading">Footer</h2>
-    <div class="judgments-footer__row">
+<footer class="site-footer">
+  <div class="site-footer__container">
+    <h2 class="site-footer__heading">Footer</h2>
+    <div class="site-footer__row">
       <div>
         <h3>Find Case Law</h3>
         <p>Delivered by</p>
@@ -50,17 +50,17 @@
         </ul>
       </div>
       <div>
-        <h3 class="judgments-footer__show-below-medium">Open Justice Licence</h3>
-        <h3 class="judgments-footer__hide-below-medium">Re-use Find Case Law records </h3>
+        <h3 class="site-footer__show-below-medium">Open Justice Licence</h3>
+        <h3 class="site-footer__hide-below-medium">Re-use Find Case Law records </h3>
         <div>
-          <img class="judgments-footer__ojl-logo"
+          <img class="site-footer__ojl-logo"
                src="{% static 'images/Open-Justice-Licence-logo.svg' %}"
                alt="Open Justice Licence logo"
                height="50"
                width="32" />
         </div>
         <div>
-          All content is available under the <a class="judgments-footer__link"
+          All content is available under the <a class="site-footer__link"
                                                 href="{% url 'open_justice_licence' %}"
                                                 rel="license">Open Justice Licence</a>.
         </div>
@@ -68,10 +68,10 @@
         For computational analysis, which is not allowed under the OJL <a href="{% url "transactional-licence-form" %}">apply for a license</a>.
       </div>
     </div>
-    <div class="judgments-footer__row">
+    <div class="site-footer__row">
       <div>
         <h3>Legal</h3>
-        <ul class="judgments-footer__horizontal-links">
+        <ul class="site-footer__horizontal-links">
           <li>
             {% url 'accessibility_statement' as search_url %}
             {% trackable_link "Accessibility statement" href=search_url %}
@@ -85,7 +85,7 @@
       </div>
       <div>
         <h3>Other websites</h3>
-        <ul class="judgments-footer__horizontal-links">
+        <ul class="site-footer__horizontal-links">
           <li><a href="https://www.legislation.gov.uk/">Legislation.gov.uk</a></li>
           <li><a href="https://www.judiciary.uk/">The Judiciary</a></li>
           <li><a href="https://www.nationalarchives.gov.uk/webarchive/">UK Government Web Archive</a></li>

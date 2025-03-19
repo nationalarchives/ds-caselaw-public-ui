@@ -202,7 +202,7 @@ $(() => {
         document.getElementById(targetId).scrollIntoView();
     });
 
-    let judgmentsFooter = document.querySelector(".judgments-footer");
+    let judgmentsFooter = document.querySelector(".site-footer");
     let judgmentsToolbarContainer = document.querySelector(
         ".judgment-toolbar__container",
     );
