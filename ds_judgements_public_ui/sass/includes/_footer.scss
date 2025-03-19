@@ -28,7 +28,7 @@
     @include container;
   }
 
-  &__links-container {
+  &__row {
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
       gap: $space-12;
@@ -37,9 +37,9 @@
     }
   }
 
-  &__links-container > * {
+  &__row > * {
     @media (min-width: $grid-breakpoint-medium) {
-      flex-basis: 100%;
+      flex: 1;
       padding-bottom: $space-4;
     }
   }
@@ -75,26 +75,17 @@
     }
   }
 
-  &__ojl-h3 {
+  &__show-below-medium {
     display: none;
-    font-weight: bold;
 
     @media (max-width: $grid-breakpoint-medium) {
-      display: contents;
-      margin-bottom: $space-1;
-      padding-top: $space-4;
-      font-size: $space-6;
+      display: inherit;
     }
   }
 
-  &__reuse-h3 {
-    font-weight: bold;
-
+  &__hide-below-medium {
     @media (max-width: $grid-breakpoint-medium) {
       display: none;
-      margin-bottom: $space-1;
-      padding-top: $space-4;
-      font-size: $space-6;
     }
   }
 
@@ -129,27 +120,8 @@
     }
   }
 
-  &__h3-link {
-    font-weight: bold;
-  }
-
-  &__ojl-links {
-    display: flex;
-    flex-direction: row;
-    gap: $space-3;
-
-    @media (max-width: $grid-breakpoint-medium) {
-      flex-direction: column;
-      padding-top: $space-4;
-    }
-  }
-
-  &__legal-links {
-    width: 71%;
-
-    ul {
-      list-style: none;
-    }
+  &__horizontal-links {
+    list-style: none;
 
     li {
       display: inline-block;
@@ -167,79 +139,17 @@
 
     @media (max-width: $grid-breakpoint-medium) {
       width: 90%;
-    }
-  }
-
-  &__website-links {
-    width: 66%;
-
-    ul {
-      list-style: none;
-    }
-
-    li {
-      display: inline-block;
-      margin-right: $space-4;
-      margin-bottom: $space-5;
-
-      @media (min-width: $grid-breakpoint-medium) {
-        margin-bottom: $space-6;
-      }
-
-      @media (max-width: $grid-breakpoint-medium) {
-        display: list-item;
-      }
-    }
-
-    @media (max-width: $grid-breakpoint-medium) {
-      width: 90%;
-    }
-  }
-
-  &__base-paragraph {
-    margin-top: 0;
-    margin-bottom: auto;
-
-    font-size: $typography-sm-text-size;
-    line-height: 1.2rem;
-    text-align: left;
-
-    @media (min-width: $grid-breakpoint-medium) {
-      font-size: $typography-sm-text-size;
-      line-height: 1.4rem;
-    }
-
-    @media (min-width: $grid-breakpoint-extra-large) {
-      text-align: left;
-    }
-  }
-
-  &__base-paragraph-container {
-    display: flex;
-    flex-direction: row;
-    gap: $space-4;
-
-    margin-top: $space-4;
-    border-top: thin solid colour-var("background");
-
-    @media (max-width: $grid-breakpoint-medium) {
-      flex-direction: column;
-      gap: 0;
-      margin-top: 0;
-      border-top-style: none;
-    }
-
-    @media only screen and (width >= 769px) and (width <= 991px) {
-      flex-direction: column;
-      gap: 0;
-      margin-top: $space-12;
     }
   }
 
   &__ojl-logo {
+    float: left;
+
     width: 62px;
     height: 54px;
     margin-top: auto;
+    margin-right: $space-3;
+    margin-bottom: $space-3;
   }
 
   @media (min-width: $grid-breakpoint-medium) {

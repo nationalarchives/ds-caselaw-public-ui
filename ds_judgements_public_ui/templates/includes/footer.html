@@ -3,14 +3,14 @@
 <footer class="judgments-footer">
   <div class="judgments-footer__container">
     <h2 class="judgments-footer__heading">Footer</h2>
-    <div class="judgments-footer__links-container">
+    <div class="judgments-footer__row">
       <div>
         <h3>Find Case Law</h3>
         <p>Delivered by</p>
         {% include "includes/footer_logo.html" %}
       </div>
       <div>
-        <h3 class="judgments-footer__h3-link">
+        <h3>
           {% url 'about_this_service' as search_url %}
           {% trackable_link "About" href=search_url %}
         </h3>
@@ -30,7 +30,7 @@
         </ul>
       </div>
       <div>
-        <h3 class="judgments-footer__h3-link">
+        <h3>
           {% url 'help_and_guidance' as search_url %}
           {% trackable_link "Help and guidance" href=search_url %}
         </h3>
@@ -50,29 +50,28 @@
         </ul>
       </div>
       <div>
-        <h3 class="judgments-footer__ojl-h3">Open Justice Licence</h3>
-        <h3 class="judgments-footer__reuse-h3">Re-use Find Case Law records </h3>
-        <div class="judgments-footer__ojl-links">
-          <div>
-            <img class="judgments-footer__ojl-logo"
-                 src="{% static 'images/Open-Justice-Licence-logo.svg' %}"
-                 alt="Open Justice Licence logo"
-                 height="50"
-                 width="32" />
-          </div>
-          <div>
-            All content is available under the <a class="judgments-footer__link"
-                                                  href="{% url 'open_justice_licence' %}"
-                                                  rel="license">Open Justice Licence</a>.          </div>
+        <h3 class="judgments-footer__show-below-medium">Open Justice Licence</h3>
+        <h3 class="judgments-footer__hide-below-medium">Re-use Find Case Law records </h3>
+        <div>
+          <img class="judgments-footer__ojl-logo"
+               src="{% static 'images/Open-Justice-Licence-logo.svg' %}"
+               alt="Open Justice Licence logo"
+               height="50"
+               width="32" />
+        </div>
+        <div>
+          All content is available under the <a class="judgments-footer__link"
+                                                href="{% url 'open_justice_licence' %}"
+                                                rel="license">Open Justice Licence</a>.
         </div>
         <br/>
         For computational analysis, which is not allowed under the OJL <a href="{% url "transactional-licence-form" %}">apply for a license</a>.
       </div>
     </div>
-    <div class="judgments-footer__base-paragraph-container">
-      <div class="judgments-footer__legal-links">
+    <div class="judgments-footer__row">
+      <div>
         <h3>Legal</h3>
-        <ul>
+        <ul class="judgments-footer__horizontal-links">
           <li>
             {% url 'accessibility_statement' as search_url %}
             {% trackable_link "Accessibility statement" href=search_url %}
@@ -84,9 +83,9 @@
           <li><a href="https://www.nationalarchives.gov.uk/legal/cookies/">Cookies</a></li>
         </ul>
       </div>
-      <div class="judgments-footer__website-links">
+      <div>
         <h3>Other websites</h3>
-        <ul>
+        <ul class="judgments-footer__horizontal-links">
           <li><a href="https://www.legislation.gov.uk/">Legislation.gov.uk</a></li>
           <li><a href="https://www.judiciary.uk/">The Judiciary</a></li>
           <li><a href="https://www.nationalarchives.gov.uk/webarchive/">UK Government Web Archive</a></li>
