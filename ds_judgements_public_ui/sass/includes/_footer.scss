@@ -19,15 +19,28 @@
   }
 }
 
-.judgments-footer {
-  font-size: $typography-sm-text-size;
+.site-footer {
+  font-size: $typography-md-text-size;
   color: colour-var("contrast-font-base");
   background-color: colour-var("contrast-background");
 
-  &__links-container {
+  &__container {
+    @include container;
+  }
+
+  &__row {
     @media (min-width: $grid-breakpoint-medium) {
       display: flex;
+      gap: $space-12;
       justify-content: space-between;
+      text-wrap: balance;
+    }
+  }
+
+  &__row > * {
+    @media (min-width: $grid-breakpoint-medium) {
+      flex: 1;
+      padding-bottom: $space-4;
     }
   }
 
@@ -35,10 +48,54 @@
     @include sr-only;
   }
 
+  &__tna-logo {
+    width: 100px;
+    height: 100px;
+
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  &__tna-logo-link {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+
+    &:focus {
+      @include focus-default;
+
+      outline-color: colour-var("contrast-link");
+    }
+
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  &__show-below-medium {
+    display: none;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      display: inherit;
+    }
+  }
+
+  &__hide-below-medium {
+    @media (max-width: $grid-breakpoint-medium) {
+      display: none;
+    }
+  }
+
   h3 {
+    font-weight: bold;
+
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: $space-1;
-      padding-top: $space-2;
+      padding-top: $space-4;
+      font-size: $space-6;
     }
   }
 
@@ -63,47 +120,36 @@
     }
   }
 
-  &__base-paragraph {
-    margin-top: 0;
-    margin-bottom: auto;
+  &__horizontal-links {
+    list-style: none;
 
-    font-size: $typography-sm-text-size;
-    line-height: 1.2rem;
-    text-align: left;
+    li {
+      display: inline-block;
+      margin-right: $space-4;
+      margin-bottom: $space-5;
 
-    @media (min-width: $grid-breakpoint-medium) {
-      font-size: $typography-sm-text-size;
-      line-height: 1.4rem;
+      @media (min-width: $grid-breakpoint-medium) {
+        margin-bottom: $space-6;
+      }
+
+      @media (max-width: $grid-breakpoint-medium) {
+        display: list-item;
+      }
     }
-
-    @media (min-width: $grid-breakpoint-extra-large) {
-      text-align: left;
-    }
-  }
-
-  &__base-paragraph-container {
-    display: flex;
-    flex-direction: row;
-    gap: $space-4;
-    margin-top: $space-4;
 
     @media (max-width: $grid-breakpoint-medium) {
-      flex-direction: column;
-      gap: 0;
-      margin-top: $space-12;
-    }
-
-    @media only screen and (width >= 769px) and (width <= 991px) {
-      flex-direction: column;
-      gap: 0;
-      margin-top: $space-12;
+      width: 90%;
     }
   }
 
   &__ojl-logo {
-    width: 54px;
-    height: 45px;
+    float: left;
+
+    width: 62px;
+    height: 54px;
     margin-top: auto;
+    margin-right: $space-3;
+    margin-bottom: $space-3;
   }
 
   @media (min-width: $grid-breakpoint-medium) {
