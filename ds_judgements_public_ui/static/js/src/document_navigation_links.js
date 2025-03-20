@@ -191,7 +191,7 @@ $(() => {
             },
         );
 
-        $("#start-of-document-link").text("Start");
+        $("#start-of-document-link").text("Top");
         $("#end-of-document-link").text("End");
     }
 
