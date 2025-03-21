@@ -28,6 +28,7 @@
       @media (max-width: $grid-breakpoint-small) {
         display: block;
         padding: 0;
+        padding-bottom: $space-6;
         text-align: center;
       }
     }
