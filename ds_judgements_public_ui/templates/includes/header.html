@@ -14,17 +14,17 @@
       </button>
       <ul id="navigation" class="govuk-header__navigation-list">
         <li class="{% navigation_item_class 'home' %}">
-          <a class="govuk-header__link" title="Home" href="{% url 'home' %}">
+          <a class="govuk-header__link" title="Home" href="{% url 'home' %}"{% if request.resolver_match.view_name == "home" %} aria-current="true"{% endif %}>
             Home
           </a>
         </li>
         <li class="{% navigation_item_class 'about_this_service' %}">
-          <a class="govuk-header__link"  title="About" href="{% url 'about_this_service' %}">
+          <a class="govuk-header__link"  title="About" href="{% url 'about_this_service' %}"{% if request.resolver_match.view_name == "about_this_service" %} aria-current="true"{% endif %}>
             About
           </a>
         </li>
         <li class="{% navigation_item_class 'help_and_guidance' %}">
-          <a class="govuk-header__link" title="Help and guidance" href="{% url 'help_and_guidance' %}">
+          <a class="govuk-header__link" title="Help and guidance" href="{% url 'help_and_guidance' %}"{% if request.resolver_match.view_name == "help_and_guidance" %} aria-current="true"{% endif %}>
             Help and guidance
           </a>
         </li>
