@@ -448,7 +448,6 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A (with some slightly different wording)",
                     ),
-                    neutral_citation="[2023] EAT 1",
                 )
                 press_summary_ncn = PressSummaryRelatedNCNIdentifier(value="[2023] EAT 1")
                 press_summary.identifiers.add(press_summary_ncn)
@@ -460,7 +459,6 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
                     body=DocumentBodyFactory.build(
                         name="Judgment A",
                     ),
-                    neutral_citation="[2023] EAT 1",
                 )
                 judgment_ncn = NeutralCitationNumber(value="[2023] EAT 1")
                 judgment.identifiers.add(judgment_ncn)
