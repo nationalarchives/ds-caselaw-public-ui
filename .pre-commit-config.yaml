@@ -49,3 +49,8 @@ repos:
           - stylelint@16.10.0
           - stylelint-config-standard-scss@13.1.0
           - stylelint-config-clean-order@6.1.0
+
+  - repo: https://github.com/woodruffw/zizmor-pre-commit
+    rev: v1.5.1
+    hooks:
+      - id: zizmor
