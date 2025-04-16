@@ -75,7 +75,20 @@ export const setupPreviousButton = function () {
     }
 };
 
+export const firstErrorField = function () {
+    $("html, body").animate(
+        {
+            scrollTop: $(".govuk-error-message").offset().top - 80,
+        },
+        500,
+        function () {
+            $(".govuk-error-message").focus();
+        },
+    );
+};
+
 $(function () {
     setupTogglableFields();
     setupPreviousButton();
+    firstErrorField();
 });

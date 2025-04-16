@@ -4,6 +4,7 @@ import $ from "jquery";
 import {
     setupTogglableFields,
     setupPreviousButton,
+    firstErrorField,
 } from "../src/transactional_licence_form";
 
 describe("setupTogglableFields", () => {
@@ -85,5 +86,37 @@ describe("setupPreviousButton", () => {
             "transactional-licence-form-previous-button",
         );
         expect(button.style.display).toBe("inline");
+    });
+});
+
+describe("firstErrorField", () => {
+    beforeEach(() => {
+        document.body.innerHTML = `
+          <div style="margin-top: 500px;" class="govuk-error-message" tabindex="-1">This is an error</div>
+    `;
+        $.fn.animate = function (props, duration, callback) {
+            callback();
+            return this;
+        };
+
+        $.fn.focus = jest.fn();
+    });
+
+    it("scrolls to the error-message and focuses it", () => {
+        const firstErrorField = function () {
+            $("html, body").animate(
+                {
+                    scrollTop: $(".govuk-error-message").offset().top - 80,
+                },
+                500,
+                function () {
+                    $(".govuk-error-message").focus();
+                },
+            );
+        };
+
+        firstErrorField();
+
+        expect($.fn.focus).toHaveBeenCalled();
     });
 });
