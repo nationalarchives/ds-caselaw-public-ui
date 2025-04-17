@@ -4,7 +4,7 @@ import $ from "jquery";
 import {
     setupTogglableFields,
     setupPreviousButton,
-    firstErrorField,
+    goToFirstErrorField,
 } from "../src/transactional_licence_form";
 
 describe("setupTogglableFields", () => {
@@ -89,7 +89,7 @@ describe("setupPreviousButton", () => {
     });
 });
 
-describe("firstErrorField", () => {
+describe("goToFirstErrorField", () => {
     beforeEach(() => {
         document.body.innerHTML = `
           <div style="margin-top: 500px;" class="govuk-error-message" tabindex="-1">This is an error</div>
@@ -103,19 +103,7 @@ describe("firstErrorField", () => {
     });
 
     it("scrolls to the error-message and focuses it", () => {
-        const firstErrorField = function () {
-            $("html, body").animate(
-                {
-                    scrollTop: $(".govuk-error-message").offset().top - 80,
-                },
-                500,
-                function () {
-                    $(".govuk-error-message").focus();
-                },
-            );
-        };
-
-        firstErrorField();
+        goToFirstErrorField();
 
         expect($.fn.focus).toHaveBeenCalled();
     });
