@@ -10,7 +10,6 @@ from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
 from django.urls import reverse
 from django.views.generic import TemplateView
-from ds_caselaw_utils import courts as all_courts
 
 from judgments.forms import AdvancedSearchForm
 from judgments.utils import api_client
@@ -42,8 +41,6 @@ class IndexView(TemplateView):
         except MarklogicResourceNotFoundError:
             raise Http404("Search results not found")  # TODO: This should be something else!
 
-        context["courts"] = all_courts.get_listable_courts()
-        context["tribunals"] = all_courts.get_listable_tribunals()
         context["feedback_survey_type"] = "home"
         context["form"] = AdvancedSearchForm()
 
