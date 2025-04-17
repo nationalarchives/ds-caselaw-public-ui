@@ -8,13 +8,15 @@ jobs:
   run:
     name: Run local action
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          persist-credentials: false
+          persist-credentials: true
       - name: Run latest-tag
-        uses: dxw/latest-tag@force-branch
+        uses: EndBug/latest-tag@latest
         with:
-          tag-name: production
+          ref: production
           force-branch: true
