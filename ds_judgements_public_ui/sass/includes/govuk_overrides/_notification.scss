@@ -3,9 +3,9 @@
   font-size: $typography-lg-text-size;
 }
 
-.govuk-notification-banner_red {
-  background-color: brand-colour("pastel-pink");
-  border: 5px solid brand-colour("pastel-pink");
+.govuk-notification-banner_blue {
+  border: 5px solid $color-aqua-blue;
+  background-color: $color-aqua-blue;
 }
 
 .govuk-notification-banner__link {
