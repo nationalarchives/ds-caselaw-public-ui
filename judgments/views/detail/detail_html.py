@@ -83,7 +83,6 @@ def detail_html(request, document_uri):
     context["search_context"] = search_context_from_url(request.META.get("HTTP_REFERER"))
     context["document"] = document
     context["page_canonical_url"] = document.public_uri
-    context["document_canonical_url"] = document.public_uri
     context["feedback_survey_document_uri"] = document.slug  # TODO: Remove this from context
     context["page_title"] = document.body.name  # TODO: Remove this from context
     context["pdf_uri"] = pdf.uri  # TODO: Remove this from context
