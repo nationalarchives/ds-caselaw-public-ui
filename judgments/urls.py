@@ -1,5 +1,8 @@
+from django.core.exceptions import SuspiciousOperation
 from django.http import HttpResponseRedirect
-from django.urls import path, register_converter, reverse
+from django.shortcuts import redirect
+from django.urls import path, re_path, register_converter, reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from judgments.views.browse import BrowseView
 from judgments.views.index import IndexView
@@ -14,6 +17,14 @@ register_converter(converters.SubdivisionConverter, "subdivision")
 register_converter(converters.DocumentUriConverter, "document_uri")
 register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
+
+
+def safer_redirect(target):
+    if url_has_allowed_host_and_scheme(target, None):
+        return redirect(to=target, permanent=True)
+    msg = f"Dodgy redirect to {target}"
+    raise SuspiciousOperation(msg)
+
 
 urlpatterns = [
     path("<court:court>", BrowseView.as_view(), name="browse"),
@@ -43,6 +54,11 @@ urlpatterns = [
     path(
         "transactional-licence-form",
         lambda request: HttpResponseRedirect(reverse("transactional-licence-form")),
+    ),
+    re_path(
+        r"(?P<prefix>.*)/press-summary/1$",
+        lambda request, prefix: safer_redirect(f"/{prefix}/press-summary"),
+        name="press_summary_1",
     ),
     path(
         "<document_uri:document_uri>/<file_format:file_format>",
