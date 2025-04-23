@@ -119,7 +119,7 @@ class TestDocumentDownloadOptions(MockAPI):
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
         "uri,document_factory_class",
-        [("eat/2023/1/press-summary/1", PressSummaryFactory), ("eat/2023/1", JudgmentFactory)],
+        [("eat/2023/1/press-summary", PressSummaryFactory), ("eat/2023/1", JudgmentFactory)],
     )
     def test_download_options(
         self,
@@ -213,7 +213,7 @@ class TestViewRelatedDocumentButton(MockAPI):
         "uri,expected_text,expected_href,document_class_factory",
         [
             (
-                "eat/2023/1/press-summary/1",
+                "eat/2023/1/press-summary",
                 "View Judgment",
                 # XFAIL: the ml URI should not be present in the HTML
                 "/tna.a1b2c3",
@@ -259,7 +259,7 @@ class TestViewRelatedDocumentButton(MockAPI):
         "uri,expected_text,expected_href,document_class_factory",
         [
             (
-                "eat/2023/1/press-summary/1",
+                "eat/2023/1/press-summary",
                 "View Judgment",
                 "/tna.a1b2c3",
                 PressSummaryFactory,
@@ -303,8 +303,8 @@ class TestViewRelatedDocumentButton(MockAPI):
     @pytest.mark.parametrize(
         "uri,unexpected_text,unexpected_href",
         [
-            ("eat/2023/1/press-summary/1", "View Judgment", "eat/2023/1"),
-            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary/1"),
+            ("eat/2023/1/press-summary", "View Judgment", "eat/2023/1"),
+            ("eat/2023/1", "View Press Summary", "eat/2023/1/press-summary"),
         ],
     )
     def test_no_view_related_document_button_when_document_without_related_document(
@@ -349,7 +349,7 @@ class TestBreadcrumbs(MockAPI):
         def get_document_by_uri_side_effect(uri, cache_if_not_found=False, search_query: Optional[str] = None):
             if "press" in uri:
                 return PressSummaryFactory.build(
-                    uri=DocumentURIString("eat/2023/1/press-summary/1"),
+                    uri=DocumentURIString("eat/2023/1/press-summary"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A",
@@ -366,7 +366,7 @@ class TestBreadcrumbs(MockAPI):
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
 
-        response = self.client.get("/eat/2023/1/press-summary/1")
+        response = self.client.get("/eat/2023/1/press-summary")
         judgment_breadcrumb_html = """
                     <li><a href="/tna.a1b2c3">Judgment A</a></li>
         """
@@ -441,9 +441,9 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
         """
 
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
-            if document_uri == "ml-eat/2023/1/press-summary/1":
+            if document_uri == "ml-eat/2023/1/press-summary":
                 press_summary = PressSummaryFactory.build(
-                    uri=DocumentURIString("ml-eat/2023/1/press-summary/1"),
+                    uri=DocumentURIString("ml-eat/2023/1/press-summary"),
                     is_published=True,
                     body=DocumentBodyFactory.build(
                         name="Press Summary of Judgment A (with some slightly different wording)",
@@ -467,7 +467,7 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
                 raise DocumentNotFoundError(f"didn't recognise {document_uri}")
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
-        response = self.client.get("/eat/2023/1/press-summary/1")
+        response = self.client.get("/eat/2023/1/press-summary")
         h1_xpath_query = "//h1"
         reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
 
@@ -533,9 +533,9 @@ class TestHTMLTitle(TestCaseWithMockAPI):
         """
 
         def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
-            if document_uri == "ml-eat/2023/1/press-summary/1":
+            if document_uri == "ml-eat/2023/1/press-summary":
                 return JudgmentFactory.build(
-                    uri=DocumentURIString("ml-eat/2023/1/press-summary/1"),
+                    uri=DocumentURIString("ml-eat/2023/1/press-summary"),
                     is_published=True,
                     body=DocumentBodyFactory.build(name="Press Summary of Judgment A"),
                 )
@@ -547,7 +547,7 @@ class TestHTMLTitle(TestCaseWithMockAPI):
                 )
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
-        response = self.client.get("/eat/2023/1/press-summary/1")
+        response = self.client.get("/eat/2023/1/press-summary")
         title = """
                 Press Summary of Judgment A
                 - Find Case Law - The National Archives
