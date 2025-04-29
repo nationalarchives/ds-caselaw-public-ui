@@ -263,6 +263,13 @@ class TestBackLink(TestCase):
         self.assertIs(search_context_from_url(None), None)
 
 
+class TestPressSummaryRedirect(TestCase):
+    def test_press_summary_redirect(self):
+        response = self.client.get("/eat/2023/1/press-summary/1")
+        assert response.url == "/eat/2023/1/press-summary"  # type: ignore[attr-defined]
+        assert response.status_code == 301
+
+
 def test_min_max():
     assert clamp(0, minimum=1) == 1
     assert clamp(0, minimum=1) == 1
