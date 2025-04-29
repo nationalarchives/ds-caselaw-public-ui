@@ -206,7 +206,6 @@ class TestPressSummaryLabel(TestCaseWithMockAPI):
 
 
 class TestViewRelatedDocumentButton(MockAPI):
-    # @pytest.mark.xfail
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
@@ -215,15 +214,13 @@ class TestViewRelatedDocumentButton(MockAPI):
             (
                 "eat/2023/1/press-summary",
                 "View Judgment",
-                # XFAIL: the ml URI should not be present in the HTML
-                "/tna.a1b2c3",
+                "/tna.tn4t35ts",
                 PressSummaryFactory,
             ),
             (
                 "eat/2023/1",
                 "View Press Summary",
-                # XFAIL: the ml URI should not be present in the HTML
-                "/tna.a1b2c3",
+                "/tna.tn4t35ts",
                 JudgmentFactory,
             ),
         ],
@@ -261,13 +258,13 @@ class TestViewRelatedDocumentButton(MockAPI):
             (
                 "eat/2023/1/press-summary",
                 "View Judgment",
-                "/tna.a1b2c3",
+                "/tna.tn4t35ts",
                 PressSummaryFactory,
             ),
             (
                 "eat/2023/1",
                 "View Press Summary",
-                "/tna.a1b2c3",
+                "/tna.tn4t35ts",
                 JudgmentFactory,
             ),
         ],
@@ -368,7 +365,7 @@ class TestBreadcrumbs(MockAPI):
 
         response = self.client.get("/eat/2023/1/press-summary")
         judgment_breadcrumb_html = """
-                    <li><a href="/tna.a1b2c3">Judgment A</a></li>
+                    <li><a href="/tna.tn4t35ts">Judgment A</a></li>
         """
 
         summary_breadcrumb_html = """
