@@ -106,8 +106,41 @@ jobs:
           name: django-image
           path: /tmp/django-image.tar
 
+  download-postgres:
+    needs: linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Docker
+        uses: docker/setup-docker-action@b60f85385d03ac8acfca6d9996982511d8620a19 # v4.3.0
+
+      - name: Copy .env.example file
+        uses: canastro/copy-file-action@ae66602ce7d214dbd2e298c1db67a81388755a0a
+        with:
+          source: ".env.example"
+          target: ".env"
+
+      - name: Download Postgres image
+        run: docker compose pull postgres
+
+      - name: Save Postgres image
+        run: docker save -o /tmp/postgres-image.tar postgres
+
+      - name: Upload Postgres image
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: postgres-image
+          path: /tmp/postgres-image.tar
+
   static-analysis:
-    needs: build-django
+    needs:
+      - build-django
+      - download-postgres
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code Repository
@@ -127,8 +160,17 @@ jobs:
           name: django-image
           path: /tmp
 
+      - name: Download Postgres image
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: postgres-image
+          path: /tmp
+
       - name: Load Django image
         run: docker load --input /tmp/django-image.tar
+
+      - name: Load Postgres image
+        run: docker load --input /tmp/postgres-image.tar
 
       - name: Create docker network as used in dev
         run: docker network create caselaw
@@ -137,7 +179,9 @@ jobs:
         run: docker compose run django mypy ds_judgements_public_ui judgments
 
   pytest:
-    needs: build-django
+    needs:
+      - build-django
+      - download-postgres
     runs-on: ubuntu-latest
 
     steps:
@@ -161,8 +205,17 @@ jobs:
           name: django-image
           path: /tmp
 
+      - name: Download Postgres image
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: postgres-image
+          path: /tmp
+
       - name: Load Django image
         run: docker load --input /tmp/django-image.tar
+
+      - name: Load Postgres image
+        run: docker load --input /tmp/postgres-image.tar
 
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
@@ -186,6 +239,7 @@ jobs:
       - build-scss
       - js-tests
       - build-django
+      - download-postgres
       - pytest
       - static-analysis
     runs-on: ubuntu-latest
@@ -211,8 +265,17 @@ jobs:
           name: django-image
           path: /tmp
 
+      - name: Download Postgres image
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: postgres-image
+          path: /tmp
+
       - name: Load Django image
         run: docker load --input /tmp/django-image.tar
+
+      - name: Load Postgres image
+        run: docker load --input /tmp/postgres-image.tar
 
       - name: Checkout Marklogic repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
