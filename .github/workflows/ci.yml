@@ -106,6 +106,36 @@ jobs:
           name: django-image
           path: /tmp/django-image.tar
 
+  static-analysis:
+    needs: build-django
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+
+      - name: Copy .env.example file
+        uses: canastro/copy-file-action@ae66602ce7d214dbd2e298c1db67a81388755a0a
+        with:
+          source: ".env.example"
+          target: ".env"
+
+      - name: Download Django image
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: django-image
+          path: /tmp
+
+      - name: Load Django image
+        run: docker load --input /tmp/django-image.tar
+
+      - name: Create docker network as used in dev
+        run: docker network create caselaw
+
+      - name: Run mypy
+        run: docker compose run django mypy ds_judgements_public_ui judgments
+
   pytest:
     needs: build-django
     runs-on: ubuntu-latest
@@ -143,9 +173,6 @@ jobs:
       - name: Generate coverage XML
         run: docker compose run django coverage xml
 
-      - name: Run mypy
-        run: docker compose run django mypy ds_judgements_public_ui judgments
-
       - name: Upload coverage to CodeClimate
         uses: paambaati/codeclimate-action@f429536ee076d758a24705203199548125a28ca7 # v9.0.0
         env:
@@ -156,11 +183,11 @@ jobs:
 
   e2e-tests:
     needs:
-      - linter
       - build-scss
       - js-tests
       - build-django
       - pytest
+      - static-analysis
     runs-on: ubuntu-latest
 
     steps:
