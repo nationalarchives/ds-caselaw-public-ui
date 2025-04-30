@@ -13,7 +13,7 @@ class TestHomepage(TestCase):
         mock_cached_recent_judgments.return_value = FakeSearchResponse()
         response = self.client.get("/")
         mock_cached_recent_judgments.assert_called_once()
-        self.assertContains(response, "A SearchResult name!", html=True)
+        self.assertContains(response, "Judgment v Judgement", html=True)
 
     @patch("judgments.views.index.api_client")
     @patch("judgments.views.index.search_judgments_and_parse_response")

@@ -44,9 +44,9 @@ class TestAtomFeed(TestCase):
         # that it has an entry
         self.assertIn("<entry>", decoded_response)
         # and it contains actual content - neither neutral citation or court appear in the feed to test.
-        self.assertIn("A SearchResult name!", decoded_response)
+        self.assertIn("<title>Judgment v Judgement</title>", decoded_response)
         # and that the author is listed as the court, not the submitter.
-        self.assertIn("<author><name>court</name></author>", decoded_response)
+        self.assertIn("<author><name>Court of Testing</name></author>", decoded_response)
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")
@@ -98,7 +98,7 @@ class TestAtomFeed(TestCase):
         response = self.client.get("/atom.xml")
         decoded_response = response.content.decode("utf-8")
         self.assertEqual(response.status_code, 200)
-        self.assertIn("A SearchResult name!", decoded_response)
+        self.assertIn("<title>Judgment v Judgement</title>", decoded_response)
 
     def test_redirect_full(self):
         response = self.client.get("/ewhc/ch/2024/atom.xml")

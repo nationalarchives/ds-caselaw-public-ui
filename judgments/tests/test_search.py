@@ -37,9 +37,9 @@ class TestBrowseResults(TestCase):
                 page_size=10,
             ),
         )
-        self.assertContains(response, "A SearchResult name!", html=True)
+        self.assertContains(response, "Judgment v Judgement", html=True)
         # search results reference the slug not the uri
-        self.assertContains(response, "/fcl.x1y2z3")
+        self.assertContains(response, "/uksc/2025/1")
         self.assertNotContains(response, "d-123456789abcdef")
 
 
