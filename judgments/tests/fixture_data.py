@@ -1,26 +1,4 @@
-from dataclasses import dataclass
-from datetime import datetime
-
-
-@dataclass
-class FakeMetadata:
-    author = "author"
-
-
-@dataclass
-class FakeSearchResult:
-    uri = "d-123456789abcdef"
-    neutral_citation = "neutral_citation"
-    name = "A SearchResult name!"
-    matches = None
-    court = "court"
-    date = datetime(2017, 8, 8, 0, 0)
-    author = "author"
-    last_modified = "last_modified"
-    content_hash = "content_hash"
-    transformation_date = "2023-04-09T18:05:45"
-    metadata = FakeMetadata()
-    slug = "fcl.x1y2z3"
+from caselawclient.factories import SearchResultFactory
 
 
 class FakeSearchResponseBaseClass:
@@ -31,16 +9,16 @@ class FakeSearchResponseBaseClass:
 
     total = 200
     results = [
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
-        FakeSearchResult(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
+        SearchResultFactory.build(),
     ]
     facets = {
         "EAT": "3",

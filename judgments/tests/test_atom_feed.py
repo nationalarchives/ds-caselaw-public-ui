@@ -1,3 +1,4 @@
+import xml.etree.ElementTree as ET
 from unittest.mock import patch
 
 from caselawclient.search_parameters import SearchParameters
@@ -7,16 +8,34 @@ from judgments.tests.fixture_data import FakeSearchResponse, FakeSearchResponseM
 
 
 class TestAtomFeed(TestCase):
+    namespaces = {
+        "": "http://www.w3.org/2005/Atom",
+        "tna": "https://caselaw.nationalarchives.gov.uk",
+    }
+
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")
     def test_feed_exists(self, mock_api_client, mock_search_judgments_and_parse_response):
-        search_response = FakeSearchResponse()
-        mock_search_judgments_and_parse_response.return_value = search_response
+        """Check that the feed actually returns something."""
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
         response = self.client.get("/atom.xml")
-        decoded_response = response.content.decode("utf-8")
 
-        # that search_judgments_and_parse_response is called with the appropriate parameters
+        # that there is a successful response
+        self.assertEqual(response.status_code, 200)
+
+        # that it has the expected Content-Type
+        self.assertEqual(response["Content-Type"], "application/xml; charset=utf-8")
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_feed_query_handling(self, mock_api_client, mock_search_judgments_and_parse_response):
+        """Check that the feed is performing the expected searches behind the scenes."""
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        self.client.get("/atom.xml")
+
+        # that search_judgments_and_parse_response is called with the expected parameters
         mock_search_judgments_and_parse_response.assert_called_with(
             mock_api_client,
             SearchParameters(
@@ -32,21 +51,68 @@ class TestAtomFeed(TestCase):
             ),
         )
 
-        # that there is a successful response
-        self.assertEqual(response.status_code, 200)
-        # that it is an atom feed
-        self.assertEqual(response["Content-Type"], "application/xml; charset=utf-8")
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_feed_metadata(self, mock_api_client, mock_search_judgments_and_parse_response):
+        """Check that the basic feed metadata is intact."""
+        search_response = FakeSearchResponse()
+        mock_search_judgments_and_parse_response.return_value = search_response
 
-        # that it has the correct site name
-        self.assertIn("<name>The National Archives</name>", decoded_response)
-        # that it is like an Atom XML document
-        self.assertIn("http://www.w3.org/2005/Atom", decoded_response)
-        # that it has an entry
-        self.assertIn("<entry>", decoded_response)
-        # and it contains actual content - neither neutral citation or court appear in the feed to test.
-        self.assertIn("A SearchResult name!", decoded_response)
-        # and that the author is listed as the court, not the submitter.
-        self.assertIn("<author><name>court</name></author>", decoded_response)
+        response = self.client.get("/atom.xml")
+
+        feed_xml_tree = ET.fromstring(response.content.decode("utf-8"))
+
+        # We implicitly test that this is an Atom feed in the process of these assertions, since otherwise it won't parse and resolve the namespace.
+        assert feed_xml_tree.find("id", self.namespaces).text == "https://caselaw.nationalarchives.gov.uk/atom.xml"
+        assert feed_xml_tree.find("author/name", self.namespaces).text == "The National Archives"
+        assert (
+            feed_xml_tree.find("rights", self.namespaces).text
+            == "https://caselaw.nationalarchives.gov.uk/open-justice-licence"
+        )
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_feed_entry(self, mock_api_client, mock_search_judgments_and_parse_response):
+        """Check that a feed has the expected entry format."""
+        search_response = FakeSearchResponse()
+        mock_search_judgments_and_parse_response.return_value = search_response
+
+        response = self.client.get("/atom.xml")
+        feed_xml_tree = ET.fromstring(response.content.decode("utf-8"))
+
+        entry = feed_xml_tree.find("entry", self.namespaces)
+
+        assert entry.find("title", self.namespaces).text == "Judgment v Judgement"
+        assert entry.find("id", self.namespaces).text == "https://caselaw.nationalarchives.gov.uk/id/d-a1b2c3"
+        assert entry.find("published", self.namespaces).text == "2023-02-03T00:00:00+00:00"
+        assert entry.find("updated", self.namespaces).text == "2023-02-03T12:34:00+00:00"
+        assert entry.find("author/name", self.namespaces).text == "Court of Testing"
+
+        assert (
+            entry.find("tna:contenthash", self.namespaces).text
+            == "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73"
+        )
+        assert entry.find("tna:uri", self.namespaces).text == "d-a1b2c3"
+
+        self.assertCountEqual(
+            [e.attrib for e in entry.findall("link", self.namespaces)],
+            [
+                {
+                    "href": "http://testserver/uksc/2025/1",
+                    "rel": "alternate",
+                },
+                {
+                    "href": "http://testserver/uksc/2025/1/data.xml",
+                    "rel": "alternate",
+                    "type": "application/akn+xml",
+                },
+                {
+                    "href": "https://assets.caselaw.nationalarchives.gov.uk/d-a1b2c3/d-a1b2c3.pdf",
+                    "rel": "alternate",
+                    "type": "application/pdf",
+                },
+            ],
+        )
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")
@@ -98,7 +164,7 @@ class TestAtomFeed(TestCase):
         response = self.client.get("/atom.xml")
         decoded_response = response.content.decode("utf-8")
         self.assertEqual(response.status_code, 200)
-        self.assertIn("A SearchResult name!", decoded_response)
+        self.assertIn("<title>Judgment v Judgement</title>", decoded_response)
 
     def test_redirect_full(self):
         response = self.client.get("/ewhc/ch/2024/atom.xml")
