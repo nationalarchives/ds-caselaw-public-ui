@@ -80,13 +80,13 @@ class JudgmentAtomFeed(Atom1Feed):
     def add_item_elements(self, handler, item) -> None:
         super().add_item_elements(handler, item)
         handler.addQuickElement("tna:contenthash", item.get("content_hash", ""))
-        path = item.get("uri", "")
-        handler.addQuickElement("tna:uri", path)
-        if path:
-            path_underscore = path.replace("/", "_")
-
+        link = item.get("link", "")
+        uri = item.get("uri", "")
+        handler.addQuickElement("tna:uri", uri)
+        if uri:
+            path_underscore = uri.replace("/", "_")
             handler.addQuickElement(
-                "link", "", {"rel": "alternate", "type": "application/akn+xml", "href": f"/{path}/data.xml"}
+                "link", "", {"rel": "alternate", "type": "application/akn+xml", "href": f"{link}/data.xml"}
             )
             handler.addQuickElement(
                 "link",
@@ -94,7 +94,7 @@ class JudgmentAtomFeed(Atom1Feed):
                 {
                     "rel": "alternate",
                     "type": "application/pdf",
-                    "href": f"https://assets.caselaw.nationalarchives.gov.uk/{path}/{path_underscore}.pdf",
+                    "href": f"https://assets.caselaw.nationalarchives.gov.uk/{uri}/{path_underscore}.pdf",
                 },
             )
 
@@ -147,8 +147,11 @@ class JudgmentsFeed(Feed):
     def item_title(self, item):
         return item.name
 
+    def item_guid(self, item) -> str:
+        return "https://caselaw.nationalarchives.gov.uk/id/" + item.uri
+
     def item_link(self, item) -> str:
-        return reverse("detail", kwargs={"document_uri": item.uri})
+        return reverse("detail", args=[item.slug])
 
     def item_author_name(self, item) -> Optional[str]:
         return item.court
