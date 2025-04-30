@@ -65,6 +65,10 @@ class TestAtomFeed(TestCase):
         # We implicitly test that this is an Atom feed in the process of these assertions, since otherwise it won't parse and resolve the namespace.
         assert feed_xml_tree.find("id", self.namespaces).text == "https://caselaw.nationalarchives.gov.uk/atom.xml"
         assert feed_xml_tree.find("author/name", self.namespaces).text == "The National Archives"
+        assert (
+            feed_xml_tree.find("rights", self.namespaces).text
+            == "https://caselaw.nationalarchives.gov.uk/open-justice-licence"
+        )
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")

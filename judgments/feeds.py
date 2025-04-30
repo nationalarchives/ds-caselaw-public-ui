@@ -140,6 +140,7 @@ class JudgmentAtomFeed(Atom1Feed):
 class JudgmentsFeed(Feed):
     feed_type = JudgmentAtomFeed
     author_name = "The National Archives"
+    feed_copyright = "https://caselaw.nationalarchives.gov.uk/open-justice-licence"
 
     def items(self, obj) -> List[SearchResult]:
         return obj["search_response"].results
