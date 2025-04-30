@@ -71,6 +71,10 @@ class TestAtomFeed(TestCase):
         assert feed_author_name is not None
         assert feed_author_name.text == "The National Archives"
 
+        feed_rights = feed_xml_tree.find("rights", self.namespaces)
+        assert feed_rights is not None
+        assert feed_rights.text == "https://caselaw.nationalarchives.gov.uk/open-justice-licence"
+
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")
     def test_feed_entry(self, mock_api_client, mock_search_judgments_and_parse_response):
