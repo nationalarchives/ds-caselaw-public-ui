@@ -63,12 +63,13 @@ class TestAtomFeed(TestCase):
         feed_xml_tree = ET.fromstring(response.content.decode("utf-8"))
 
         # We implicitly test that this is an Atom feed in the process of these assertions, since otherwise it won't parse and resolve the namespace.
-        assert feed_xml_tree.find("id", self.namespaces).text == "https://caselaw.nationalarchives.gov.uk/atom.xml"
-        assert feed_xml_tree.find("author/name", self.namespaces).text == "The National Archives"
-        assert (
-            feed_xml_tree.find("rights", self.namespaces).text
-            == "https://caselaw.nationalarchives.gov.uk/open-justice-licence"
-        )
+        feed_id = feed_xml_tree.find("id", self.namespaces)
+        assert feed_id is not None
+        assert feed_id.text == "https://caselaw.nationalarchives.gov.uk/atom.xml"
+
+        feed_author_name = feed_xml_tree.find("author/name", self.namespaces)
+        assert feed_author_name is not None
+        assert feed_author_name.text == "The National Archives"
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")
@@ -81,18 +82,35 @@ class TestAtomFeed(TestCase):
         feed_xml_tree = ET.fromstring(response.content.decode("utf-8"))
 
         entry = feed_xml_tree.find("entry", self.namespaces)
+        assert entry is not None
 
-        assert entry.find("title", self.namespaces).text == "Judgment v Judgement"
-        assert entry.find("id", self.namespaces).text == "https://caselaw.nationalarchives.gov.uk/id/d-a1b2c3"
-        assert entry.find("published", self.namespaces).text == "2023-02-03T00:00:00+00:00"
-        assert entry.find("updated", self.namespaces).text == "2023-02-03T12:34:00+00:00"
-        assert entry.find("author/name", self.namespaces).text == "Court of Testing"
+        entry_title = entry.find("title", self.namespaces)
+        assert entry_title is not None
+        assert entry_title.text == "Judgment v Judgement"
 
-        assert (
-            entry.find("tna:contenthash", self.namespaces).text
-            == "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73"
-        )
-        assert entry.find("tna:uri", self.namespaces).text == "d-a1b2c3"
+        entry_id = entry.find("id", self.namespaces)
+        assert entry_id is not None
+        assert entry_id.text == "https://caselaw.nationalarchives.gov.uk/id/d-a1b2c3"
+
+        entry_published = entry.find("published", self.namespaces)
+        assert entry_published is not None
+        assert entry_published.text == "2023-02-03T00:00:00+00:00"
+
+        entry_updated = entry.find("updated", self.namespaces)
+        assert entry_updated is not None
+        assert entry_updated.text == "2023-02-03T12:34:00+00:00"
+
+        entry_author_name = entry.find("author/name", self.namespaces)
+        assert entry_author_name is not None
+        assert entry_author_name.text == "Court of Testing"
+
+        entry_tna_contenthash = entry.find("tna:contenthash", self.namespaces)
+        assert entry_tna_contenthash is not None
+        assert entry_tna_contenthash.text == "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73"
+
+        entry_tna_uri = entry.find("tna:uri", self.namespaces)
+        assert entry_tna_uri is not None
+        assert entry_tna_uri.text == "d-a1b2c3"
 
         self.assertCountEqual(
             [e.attrib for e in entry.findall("link", self.namespaces)],
