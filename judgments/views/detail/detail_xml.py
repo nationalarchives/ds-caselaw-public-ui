@@ -12,5 +12,6 @@ def detail_xml(_request, document_uri: DocumentURIString) -> HttpResponse:
     document_xml = document.body.content_as_xml
 
     response = HttpResponse(document_xml, content_type="application/xml")
-    response["Content-Disposition"] = f"attachment; filename={document.uri}.xml"
+    slug_filename = document.slug.replace("/", "_")
+    response["Content-Disposition"] = f"attachment; filename={slug_filename}.xml"
     return response
