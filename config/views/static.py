@@ -69,7 +69,7 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["courts"] = courts.get_listable_groups()
+        context["courts"] = courts.get_grouped_selectable_courts()
         context["feedback_survey_type"] = "courts_and_tribunals_in_fcl"
         context["page_description"] = (
             "Find out which courts and tribunals publish judgments and decisions on the Find Case Law service."
