@@ -1,19 +1,25 @@
 #skip-to-main-content {
   position: absolute;
-  top: -3rem;
+  z-index: 999;
+
+  padding: $space-1;
+  border: 0.19rem solid colour-var("accent-link");
+
+  color: colour-var("accent-link");
+
+  opacity: 0;
+  background-color: colour-var("accent-background");
+  outline: 0.313rem solid colour-var("accent-background");
 
   &:focus {
-    z-index: 999;
-    top: 0.313rem;
-    left: 0.313rem;
+    left: 5%;
+    transform: translateX(-50%);
+    opacity: 1;
 
-    padding: $space-1;
-
-    color: colour-var("accent-link");
-
-    background-color: colour-var("accent-background");
-    border: 0.19rem solid colour-var("accent-link");
-    outline: 0.313rem solid colour-var("accent-background");
+    @media only screen and (max-width: $grid-breakpoint-small) {
+      left: 30%;
+      padding: 0;
+    }
   }
 }
 
@@ -24,7 +30,6 @@
   margin-right: $space-4;
   margin-bottom: $space-16;
   padding: 0 $space-8;
-
   border: 2px solid $color-yellow;
 
   &__header {
