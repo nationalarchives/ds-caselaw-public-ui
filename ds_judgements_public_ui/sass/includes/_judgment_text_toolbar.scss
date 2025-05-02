@@ -1,10 +1,7 @@
 .judgment-toolbar {
   padding: $space-4;
-  border-bottom: 0.125rem solid colour-var("accent-border");
-
   color: colour-var("accent-font-base");
   text-align: center;
-
   background-color: colour-var("accent-background-light");
 
   &__related-document-button {
