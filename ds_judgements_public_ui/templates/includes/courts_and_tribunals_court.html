@@ -1,4 +1,4 @@
-{% load court_utils %}
+{% load court_utils humanize %}
 <div class="courts-and-tribunals__sub-item">
   {% if group.display_heading %}
     <h3 id="{{ court.name|slugify }}" class="courts-and-tribunals__subheader">{{ court.grouped_name }}</h3>
@@ -21,7 +21,7 @@
     {% if court|get_court_judgments_count == 0 %}
       We don't currently hold any documents
     {% else %}
-      We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court|get_court_judgments_count }} documents from
+      We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court|get_court_judgments_count|intcomma }} documents from
         {{ court.canonical_param | get_court_date_range }}</a>
     {% endif %}
   </p>
