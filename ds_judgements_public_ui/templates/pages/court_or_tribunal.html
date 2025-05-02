@@ -1,5 +1,5 @@
 {% extends "layouts/base.html" %}
-{% load court_utils %}
+{% load court_utils humanize %}
 {% block content %}
   <div class="container">
     <h1 class="listing">{{ court.name }}</h1>
@@ -11,7 +11,7 @@
 
     {% if court|get_court_judgments_count > 0 %}
       <p>
-        We currently hold <b>{{ court | get_court_judgments_count }} documents</b> from
+        We currently hold <b>{{ court | get_court_judgments_count | intcomma }} documents</b> from
         the {{ court.name }}, from {{ court.canonical_param | get_court_date_range }}.
       </p>
       <p><a
