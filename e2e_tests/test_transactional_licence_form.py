@@ -24,7 +24,7 @@ def test_transactional_licence_form(page: Page):
     assert_is_accessible(page)
     page.get_by_label("Contact Full Name").fill("Full Name")
     page.get_by_label("Contact Email address").fill("contact@example.com")
-    page.get_by_label("This is a different person (please enter their details below)").click()
+    page.get_by_label("This is a different person (please enter their details on the next section)").click()
     page.get_by_label("Licence holder Full Name").fill("Licence Holder")
     page.get_by_label("Licence holder Email").fill("licenceholder@example.com")
     page.get_by_text("Next").click()
@@ -240,7 +240,7 @@ def test_data_saved_when_going_back(page: Page):
     page.goto("/re-use-find-case-law-records/steps/contact")
     page.get_by_label("Contact Full Name").fill("Full Name")
     page.get_by_label("Contact Email address").fill("contact@example.com")
-    page.get_by_label("This is a different person (please enter their details below)").click()
+    page.get_by_label("This is a different person (please enter their details on the next section)").click()
     page.get_by_label("Licence holder Full Name").fill("Licence Holder")
     page.get_by_label("Licence holder Email").fill("licenceholder@example.com")
 
