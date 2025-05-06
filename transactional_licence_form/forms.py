@@ -138,7 +138,7 @@ class PublicStatementForm(FCLForm):
 
     public_statement = fields.FCLCharField(
         label="15. Please provide a public statement",
-        help_text="Please aim for 150 words",
+        help_text="Please aim for 50-150 words",
         widget=forms.Textarea(),
         validators=[lambda v: validate_max_words(v, max_words=150)],
     )
