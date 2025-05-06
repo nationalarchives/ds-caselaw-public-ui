@@ -36,7 +36,7 @@ def detail_html(request, document_uri):
         document = get_published_document_by_uri(document_uri, search_query=cleaned_search_query)
         context["query"] = query
         if document.body.has_content:
-            document_content = document.body.content_as_html()
+            document_content = document.content_as_html()
             if document_content:
                 context["number_of_mentions"] = number_of_mentions(document_content, cleaned_search_query)
     else:
@@ -50,7 +50,7 @@ def detail_html(request, document_uri):
     # TODO: handle multiple documents
 
     context["linked_document_uri"] = related_documents[0].slug if related_documents else None
-    context["document_html"] = document.body.content_as_html()
+    context["document_html"] = document.content_as_html()
     context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
 
     form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
