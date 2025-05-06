@@ -70,12 +70,14 @@ THIRD_PARTY_APPS = [
     "waffle",
     "crispy_forms",
     "crispy_forms_gds",
+    "rest_framework",
 ]
 
 LOCAL_APPS = [
     # Your stuff: custom apps go here
     "judgments.apps.JudgmentsConfig",
     "transactional_licence_form.apps.TransactionalLicenceFormConfig",
+    "fcl_api.apps.FCLAPIConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
