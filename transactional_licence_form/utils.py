@@ -90,7 +90,7 @@ def sanitize_and_format_response_as_xml(form_data):
     return render_to_string(EMAIL_TEMPLATE_PATH, sanitized_fields)
 
 
-def validate_max_words(value, max_words=150):
+def validate_max_words(value: str, max_words: int = 150):
     word_count = len(value.split())
     if word_count > max_words:
         raise ValidationError(f"Maximum {max_words} words allowed.")
