@@ -3,7 +3,7 @@ from crispy_forms_gds.layout import Field, Layout
 from django import forms
 
 from . import choices, fields
-from .utils import countries_and_territories_choices, list_to_choices
+from .utils import countries_and_territories_choices, list_to_choices, validate_max_words
 
 
 class FCLForm(forms.Form):
@@ -138,8 +138,9 @@ class PublicStatementForm(FCLForm):
 
     public_statement = fields.FCLCharField(
         label="15. Please provide a public statement",
-        help_text="Please aim for 150 words",
-        widget=forms.Textarea(attrs={"maxlength": 1500}),
+        help_text="Please aim for 50-150 words",
+        widget=forms.Textarea(),
+        validators=[lambda v: validate_max_words(v, max_words=150)],
     )
 
 

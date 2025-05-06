@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
@@ -87,3 +88,9 @@ def sanitize_and_format_response_as_xml(form_data):
         else:
             sanitized_fields[key] = sanitize_value(value)
     return render_to_string(EMAIL_TEMPLATE_PATH, sanitized_fields)
+
+
+def validate_max_words(value: str, max_words: int = 150):
+    word_count = len(value.split())
+    if word_count > max_words:
+        raise ValidationError(f"Maximum {max_words} words allowed.")
