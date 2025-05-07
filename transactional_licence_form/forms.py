@@ -71,6 +71,9 @@ class OrganizationForm(FCLForm):
                 Field("agent_country"),
                 legend="6. Please enter your organisation address",
             ),
+            Field("tna_contacttype"),
+            Field("agent_companyid"),
+            Field("partners"),
         )
 
     title = "Step 3 - About your organisastion"
