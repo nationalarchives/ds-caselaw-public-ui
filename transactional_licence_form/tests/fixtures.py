@@ -6,6 +6,11 @@ FORM_DATA = {
     "licence_holder_email": "",
     "agent_companyname": "The <malicious company>",
     "agent_companyname_other": "A completely benign company",
+    "agent_address_1": "123 Benign Road",
+    "agent_address_2": "Benign Street",
+    "agent_town": "Benignville",
+    "agent_county": "Benignshire",
+    "agent_postcode": "BE1 NI2",
     "agent_country": "country:GB",
     "tna_contacttype": {
         "choices": ["Private limited company"],
@@ -52,6 +57,11 @@ EXPECTED_SANITIZED_RESULT = """
 <licence_holder_email>contact@example.com</licence_holder_email>
 <agent_companyname>The &lt;malicious company&gt;</agent_companyname>
 <agent_companyname_other>A completely benign company</agent_companyname_other>
+<agent_address_line_1>123 Benign Road</agent_address_line_1>
+<agent_address_line_2>Benign Street</agent_address_line_2>
+<agent_town>Benignville</agent_town>
+<agent_county>Benignshire</agent_county>
+<agent_postcode>BE1 NI2</agent_postcode>
 <agent_country>United Kingdom</agent_country>
 <tna_contacttype>Private limited company</tna_contacttype>
 <tna_contacttype_other>Other company type</tna_contacttype_other>

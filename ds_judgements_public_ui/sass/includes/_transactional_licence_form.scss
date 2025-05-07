@@ -20,6 +20,20 @@
     font-weight: $typography-bold-font-weight;
   }
 
+  .govuk-fieldset {
+    .govuk-fieldset__legend {
+      margin-bottom: $space-8;
+    }
+
+    label {
+      font-weight: $typography-normal-font-weight;
+    }
+
+    .govuk-form-group {
+      margin-bottom: $space-8;
+    }
+  }
+
   &__preamble {
     margin-bottom: $space-12;
   }

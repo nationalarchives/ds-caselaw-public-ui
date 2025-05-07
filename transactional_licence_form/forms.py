@@ -1,5 +1,5 @@
 from crispy_forms_gds.helper import FormHelper
-from crispy_forms_gds.layout import Field, Layout
+from crispy_forms_gds.layout import Field, Fieldset, Layout
 from django import forms
 
 from . import choices, fields
@@ -58,6 +58,21 @@ class OrganizationForm(FCLForm):
         super(OrganizationForm, self).__init__(*args, **kwargs)
         self.initial["agent_country"] = "country:GB"
 
+    def layout(self):
+        return Layout(
+            Field("agent_companyname"),
+            Field("agent_companyname_other"),
+            Fieldset(
+                Field("agent_address_line_1"),
+                Field("agent_address_line_2"),
+                Field("agent_town"),
+                Field("agent_county"),
+                Field("agent_postcode"),
+                Field("agent_country"),
+                legend="6. Please enter your organisation address",
+            ),
+        )
+
     title = "Step 3 - About your organisastion"
 
     agent_companyname = fields.FCLCharField(
@@ -68,8 +83,19 @@ class OrganizationForm(FCLForm):
         max_length=50,
         help_text="If your organisation is not known by any other names, please type <strong>none</strong>.",
     )
+
+    agent_address_line_1 = fields.FCLCharField(label="Address line 1")
+
+    agent_address_line_2 = fields.FCLCharField(label="Address line 2 (optional)", required=False)
+
+    agent_town = fields.FCLCharField(label="Town or city")
+
+    agent_county = fields.FCLCharField(label="County (optional)", required=False)
+
+    agent_postcode = fields.FCLCharField(label="Postcode")
+
     agent_country = fields.FCLChoiceField(
-        label="6. Which country is your organisation registered in?",
+        label="Country",
         choices=countries_and_territories_choices,
         widget=forms.Select(attrs={"class": "location-autocomplete"}),
     )
