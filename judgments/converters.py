@@ -45,7 +45,7 @@ class SubdivisionConverter:
 
 
 class FileFormatConverter:
-    regex = "data.pdf|generated.pdf|data.xml|data.html"
+    regex = "data.pdf|generated.pdf|data.xml|data.html|data.docx"
 
     def to_python(self, value):
         return value

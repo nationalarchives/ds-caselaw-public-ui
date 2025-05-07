@@ -4,12 +4,12 @@ from unittest.mock import Mock, patch
 from caselawclient.factories import JudgmentFactory
 from caselawclient.models.documents import DocumentURIString
 
-from judgments.models.document_pdf import DocumentPdf
+from judgments.models.document_file import DocumentPdf
 from judgments.utils import formatted_document_uri
 
 
 class TestDocumentPdf:
-    @patch("judgments.models.document_pdf.requests")
+    @patch("judgments.models.document_file.requests")
     def test_get_pdf_size_returns_pdf_size_if_it_exists(self, requests_mock):
         content_length = "100"
         head_mock = Mock(headers={"Content-Length": content_length}, status_code=200)
@@ -22,7 +22,7 @@ class TestDocumentPdf:
 
         requests_mock.head.assert_called_once_with(document_pdf.generate_uri(), headers={"Accept-Encoding": None})
 
-    @patch("judgments.models.document_pdf.requests")
+    @patch("judgments.models.document_file.requests")
     def test_get_pdf_size_returns_blank_string_if_404(self, requests_mock):
         head_mock = Mock(status_code=404)
         requests_mock.head.return_value = head_mock
@@ -32,7 +32,7 @@ class TestDocumentPdf:
 
         assert document_pdf.size is None
 
-    @patch("judgments.models.document_pdf.requests")
+    @patch("judgments.models.document_file.requests")
     def test_get_pdf_size_returns_unknown_when_no_content_size(self, requests_mock):
         head_mock = Mock(headers={}, status_code=200)
         requests_mock.head.return_value = head_mock
