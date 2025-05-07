@@ -13,8 +13,6 @@ def detail_docx(request, document_uri):
     If there's a DOCX-derived PDF in the S3 bucket, return that.
     Otherwise fall back and redirect to the weasyprint version."""
 
-    breakpoint()
-
     docx = DocumentDocx(document_uri)
     response = requests.get(docx.generate_uri())
     logging.debug("Response %s", response.status_code)
