@@ -8,7 +8,7 @@ from django.template.response import TemplateResponse
 from lxml import html as html_parser
 
 from judgments.forms import AdvancedSearchForm
-from judgments.models.document_pdf import DocumentPdf
+from judgments.models.document_file import DocumentPdf
 from judgments.utils import (
     get_published_document_by_uri,
     linked_doc_title,

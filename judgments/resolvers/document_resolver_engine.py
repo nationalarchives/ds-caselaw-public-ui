@@ -6,7 +6,7 @@ from django.http.request import HttpRequest
 from django.views.generic import View
 
 from judgments.utils import api_client
-from judgments.views.detail import best_pdf, detail_html, detail_xml, generated_pdf
+from judgments.views.detail import best_pdf, detail_docx, detail_html, detail_xml, generated_pdf
 
 
 class MultipleResolutionsError(Exception):
@@ -25,6 +25,7 @@ class DocumentResolverEngine(View):
             "generated.pdf": generated_pdf,
             "data.xml": detail_xml,
             "data.html": detail_html,
+            "data.docx": detail_docx,
         }
 
         resolved_documents = api_client.resolve_from_identifier_slug(DocumentIdentifierSlug(document_uri))
