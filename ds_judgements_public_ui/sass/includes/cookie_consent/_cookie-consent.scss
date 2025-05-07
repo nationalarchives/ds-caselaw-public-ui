@@ -1,4 +1,6 @@
 #ds-cookie-consent-banner {
+  box-sizing: border-box;
+
   .container {
     @include container;
 
