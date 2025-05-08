@@ -6,6 +6,11 @@
 <licence_holder_email>{{licence_holder_email|default_if_empty:contact_email}}</licence_holder_email>
 <agent_companyname>{{agent_companyname}}</agent_companyname>
 <agent_companyname_other>{{agent_companyname_other}}</agent_companyname_other>
+<agent_address_line_1>{{agent_address_line_1}}</agent_address_line_1>
+<agent_address_line_2>{{agent_address_line_2}}</agent_address_line_2>
+<agent_town>{{agent_town}}</agent_town>
+<agent_county>{{agent_county}}</agent_county>
+<agent_postcode>{{agent_postcode}}</agent_postcode>
 <agent_country>{{agent_country|get_country_name}}</agent_country>
 <tna_contacttype>{{tna_contacttype_choices}}</tna_contacttype>
 <tna_contacttype_other>{{tna_contacttype_other}}</tna_contacttype_other>
