@@ -176,6 +176,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
         mock_get_document_by_uri.assert_called_with("ml-eat/2023/1")
         self.assertContains(response, "This is a document.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
+        self.assertEqual(response.headers.get("Content-Disposition"), "attachment; filename=tna.tn4t35ts.xml")
 
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
     def test_xml_press_summary(self, mock_get_document_by_uri):
@@ -184,6 +185,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
         mock_get_document_by_uri.assert_called_with("ml-eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a document.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
+        self.assertEqual(response.headers.get("Content-Disposition"), "attachment; filename=tna.tn4t35ts.xml")
 
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
