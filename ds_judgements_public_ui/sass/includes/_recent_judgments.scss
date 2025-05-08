@@ -48,10 +48,4 @@
     flex-direction: column;
     justify-content: center;
   }
-
-  &__cta-button {
-    &:visited {
-      color: brand-colour("navy");
-    }
-  }
 }
