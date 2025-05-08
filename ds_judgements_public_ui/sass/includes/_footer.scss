@@ -5,7 +5,7 @@
   background-color: colour-var("accent-background-light");
 
   h2 {
-    margin-bottom: 0;
+    margin: 0;
     padding-top: 0;
     font-size: $typography-lg-text-size;
     font-weight: $typography-normal-font-weight;
@@ -14,8 +14,12 @@
   &__container {
     @include container;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     margin-top: 0;
-    padding: $space-1 0 $space-8 $space-8;
+    padding: $space-8 0;
   }
 }
 
@@ -93,6 +97,7 @@
     font-weight: bold;
 
     @media (max-width: $grid-breakpoint-medium) {
+      margin-top: 0;
       margin-bottom: $space-1;
       padding-top: $space-4;
       font-size: $space-6;
