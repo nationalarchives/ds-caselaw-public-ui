@@ -46,12 +46,13 @@
       <header class="govuk-header" data-module="govuk-header">
         <div class="container">
           {% include "includes/header.html" %}
-          {% block breadcrumbs %}
-            {% include "includes/breadcrumbs.html" %}
-          {% endblock breadcrumbs %}
         </div>
       </header>
     {% endblock header %}
+
+    {% block breadcrumbs %}
+      {% include "includes/breadcrumbs.html" %}
+    {% endblock breadcrumbs %}
 
     {% include "includes/notifications.html" %}
     {% block precontent %}
