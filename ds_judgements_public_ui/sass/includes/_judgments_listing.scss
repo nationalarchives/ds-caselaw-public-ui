@@ -18,7 +18,7 @@
   }
 
   &__judgment {
-    line-height: $typography-2xl-line-height;
+    line-height: $typography-3xl-line-height;
 
     > span:first-child {
       @media (min-width: $grid-breakpoint-medium) {
@@ -55,7 +55,7 @@
     font-family: $font-roboto;
     font-size: $typography-md-text-size;
     font-weight: $typography-normal-font-weight;
-    line-height: $typography-lg-line-height;
+    line-height: $typography-xl-line-height;
   }
 
   &__court {

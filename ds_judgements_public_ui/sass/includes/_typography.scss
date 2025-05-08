@@ -52,13 +52,13 @@ code {
 
 mark {
   scroll-margin-top: 50vh;
+  border-bottom: 3px solid $color-yellow;
   font-weight: $typography-bold-font-weight;
   background-color: transparent;
-  border-bottom: 3px solid $color-yellow;
 
   &.current {
-    background-color: $color-yellow;
     border-top: 3px solid $color-yellow;
+    background-color: $color-yellow;
   }
 }
 
@@ -112,4 +112,8 @@ mark {
 
 .xl3-line-height {
   line-height: $typography-3xl-line-height;
+}
+
+.xl4-line-height {
+  line-height: $typography-4xl-line-height;
 }
