@@ -1,0 +1,33 @@
+<div class="judgments-table">
+  <h1>Recently published judgments</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Recently published judgments</th>
+        <th>Neutral citation</th>
+        <th>Handed down</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for item in judgments %}
+        <tr>
+          <td>
+            <div class="judgments-table__title">
+              <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
+            </div>
+            <div class="judgments-table__subtitle">
+              {{ item.court.name }}
+            </div>
+          </td>
+          <td>
+            {{ item.neutral_citation }}
+          </td>
+          <td>
+            {{ item.date|date:"d M Y" }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

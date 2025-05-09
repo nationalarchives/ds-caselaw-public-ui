@@ -1,0 +1,109 @@
+.judgments-table {
+  padding-top: $space-8;
+
+  h1 {
+    display: none;
+    margin: 0 0 $space-4;
+    font-size: $typography-lg-text-size;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      display: block;
+    }
+  }
+
+  &__title {
+    margin-bottom: $space-2;
+    font-size: $typography-md-text-size;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: $typography-sm-text-size;
+
+    thead {
+      th {
+        padding: $space-2 0;
+        border-bottom: 1px solid colour-var("input-border");
+
+        font-family: $typography-display-font-family;
+        font-weight: $typography-bold-font-weight;
+        text-align: left;
+        white-space: nowrap;
+
+        &:first-child {
+          font-size: $typography-xl-text-size;
+          font-weight: $typography-normal-font-weight;
+
+          @media (max-width: $grid-breakpoint-large) {
+            font-size: $typography-lg-text-size;
+          }
+        }
+
+        &:last-child {
+          text-align: right;
+        }
+
+        @media (max-width: $grid-breakpoint-medium) {
+          display: none;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &:last-child {
+          td {
+            border-bottom: 1px solid colour-var("input-border");
+          }
+        }
+      }
+
+      td {
+        padding: $space-4 0;
+        border-bottom: 1px solid colour-var("accent-background-light");
+        text-align: left;
+        vertical-align: top;
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+
+      @media (max-width: $grid-breakpoint-medium) {
+        display: flex;
+        flex-direction: column;
+        gap: $space-4;
+
+        tr {
+          display: flex;
+          flex-direction: column;
+          gap: $space-2;
+
+          padding-bottom: $space-4;
+          border-bottom: 1px solid colour-var("accent-background-light");
+
+          &:last-child {
+            td {
+              border: none;
+            }
+          }
+
+          td {
+            display: block;
+            padding: 0;
+            border: none;
+
+            &:last-child {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $grid-breakpoint-medium) {
+    padding-top: $space-2;
+  }
+}
