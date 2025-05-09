@@ -2,12 +2,12 @@
   padding-top: $space-8;
 
   h1 {
-    display: none;
-    margin: 0 0 $space-4;
-    font-size: $typography-lg-text-size;
+    margin: 0;
+    font-size: $typography-xl-text-size;
+    font-weight: $typography-normal-font-weight;
 
-    @media (max-width: $grid-breakpoint-medium) {
-      display: block;
+    @media (max-width: $grid-breakpoint-large) {
+      font-size: $typography-lg-text-size;
     }
   }
 
@@ -31,21 +31,17 @@
         text-align: left;
         white-space: nowrap;
 
-        &:first-child {
-          font-size: $typography-xl-text-size;
-          font-weight: $typography-normal-font-weight;
-
-          @media (max-width: $grid-breakpoint-large) {
-            font-size: $typography-lg-text-size;
-          }
-        }
-
         &:last-child {
           text-align: right;
         }
 
         @media (max-width: $grid-breakpoint-medium) {
           display: none;
+          border-bottom: 0;
+
+          &:first-child {
+            display: block;
+          }
         }
       }
     }
