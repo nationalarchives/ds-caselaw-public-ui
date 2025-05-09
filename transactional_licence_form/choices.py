@@ -4,7 +4,7 @@ YES_NO_CHOICES = ["Yes", "No"]
 # changing the wording / order of the options for the alternative contact.
 ALTERNATIVE_CONTACT_CHOICES = [
     ("No", "This is the same person as the main contact"),
-    ("Yes", "This is a different person (please enter their details below)"),
+    ("Yes", "This is a different person (please enter their details on the next section)"),
 ]
 
 TNA_CONTACTTYPE_CHOICES = [

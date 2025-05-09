@@ -24,10 +24,10 @@ def test_transactional_licence_form(page: Page):
     assert_is_accessible(page)
     page.get_by_label("Contact Full Name").fill("Full Name")
     page.get_by_label("Contact Email address").fill("contact@example.com")
-    page.get_by_label("This is a different person (please enter their details below)").click()
+    page.get_by_label("This is a different person (please enter their details on the next section)").click()
     page.get_by_label("Licence holder Full Name").fill("Licence Holder")
     page.get_by_label("Licence holder Email").fill("licenceholder@example.com")
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Organization details
     assert_is_accessible(page)
@@ -48,7 +48,7 @@ def test_transactional_licence_form(page: Page):
         "Please provide your organisation identifier (e.g. company number or charity registration number) "
     ).fill("Organisation identifier")
     page.get_by_label("Please provide the name of any partners or organisations you are working with").fill("Partners")
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Purpose and Activities
     assert_is_accessible(page)
@@ -69,12 +69,12 @@ def test_transactional_licence_form(page: Page):
     ).click()
 
     page.locator("input[name='project-purpose-benefit_other']").fill("Other benefit")
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Public Sttatement
     assert_is_accessible(page)
     page.get_by_label("Please provide a public statement").fill("Public statement")
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Working practices
     assert_is_accessible(page)
@@ -91,7 +91,7 @@ def test_transactional_licence_form(page: Page):
         "group",
         name="Will an impartial party review your work against an ethical framework?",
     ).get_by_label("No").click()
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Working practices - 2
     assert_is_accessible(page)
@@ -109,24 +109,24 @@ def test_transactional_licence_form(page: Page):
         "group",
         name="Will you explain how the limits of the Find Case Law collection",
     ).get_by_label("No").click()
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Nine principles - 1
     assert_is_accessible(page)
     page.get_by_label("Yes").click()
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Nine principles - 2
     assert_is_accessible(page)
     page.get_by_label("Please describe how you will meet the 9 principles as terms.").fill("Nine principles statement")
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Additional comments
     assert_is_accessible(page)
     page.get_by_label(
         "Are there any additional comments you would like us to consider as part of your application?"
     ).fill("Additional comments")
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
 
     # Review
     assert_is_accessible(page)
@@ -221,7 +221,7 @@ def test_transactional_licence_form(page: Page):
     assert_is_accessible(page)
     page.locator("dt", has_text="Contact Full Name").locator("..").get_by_text("Change").click()
     page.get_by_label("Contact Full Name").fill("New Full Name")
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
     page.get_by_label("What is the full legal name of your organisation?").fill("New Organisation name")
     page.get_by_text("Save and review").click()
 
@@ -240,12 +240,12 @@ def test_data_saved_when_going_back(page: Page):
     page.goto("/re-use-find-case-law-records/steps/contact")
     page.get_by_label("Contact Full Name").fill("Full Name")
     page.get_by_label("Contact Email address").fill("contact@example.com")
-    page.get_by_label("This is a different person (please enter their details below)").click()
+    page.get_by_label("This is a different person (please enter their details on the next section)").click()
     page.get_by_label("Licence holder Full Name").fill("Licence Holder")
     page.get_by_label("Licence holder Email").fill("licenceholder@example.com")
 
     # On the next page, fill only 1 field, leaving others blank
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
     page.get_by_label("What is the full legal name of your organisation?").fill("Organisation name")
 
     # Check previous page has information
@@ -253,5 +253,5 @@ def test_data_saved_when_going_back(page: Page):
     expect(page.get_by_label("Contact Full Name")).to_have_value("Full Name")
 
     # Check incomplete next page has information
-    page.get_by_text("Next").click()
+    page.get_by_text("Next", exact=True).click()
     expect(page.get_by_label("What is the full legal name of your organisation?")).to_have_value("Organisation name")
