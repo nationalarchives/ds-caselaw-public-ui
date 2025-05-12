@@ -97,6 +97,8 @@ class JudgmentAtomFeed(Atom1Feed):
                     "href": f"https://assets.caselaw.nationalarchives.gov.uk/{uri}/{path_underscore}.pdf",
                 },
             )
+        if neutral_citation := item.get("neutral_citation"):
+            handler.addQuickElement("tna:neutral-citation", neutral_citation)
 
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
@@ -161,6 +163,7 @@ class JudgmentsFeed(Feed):
         extra_kwargs = super().item_extra_kwargs(item)
         extra_kwargs["uri"] = item.uri
         extra_kwargs["content_hash"] = item.content_hash
+        extra_kwargs["neutral_citation"] = item.neutral_citation
         return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:
