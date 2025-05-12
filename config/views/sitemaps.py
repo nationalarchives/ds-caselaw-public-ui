@@ -111,7 +111,7 @@ class SitemapCourtView(TemplateView, TemplateResponseMixin):
 
             context["items"] = [
                 {
-                    "url": self.request.build_absolute_uri("/" + result.uri),
+                    "url": self.request.build_absolute_uri("/" + result.slug),
                     "lastmod": datetime.datetime.strptime(result.transformation_date, "%Y-%m-%dT%H:%M:%S")
                     .date()
                     .isoformat(),
