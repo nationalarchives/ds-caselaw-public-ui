@@ -24,27 +24,69 @@
 }
 
 .site-footer {
+  padding: $space-8 0;
   font-size: $typography-md-text-size;
   color: colour-var("contrast-font-base");
   background-color: colour-var("contrast-background");
 
   &__container {
     @include container;
+
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
   }
 
   &__row {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+    text-wrap: balance;
+
     @media (min-width: $grid-breakpoint-medium) {
-      display: flex;
+      flex-direction: row;
       gap: $space-12;
-      justify-content: space-between;
-      text-wrap: balance;
     }
   }
 
-  &__row > * {
+  &__item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $space-4;
+
+    h3,
+    p {
+      margin: 0;
+    }
+
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: $space-4;
+
+      &.site-footer__horizontal-links {
+        flex-direction: column;
+
+        @media (min-width: $grid-breakpoint-medium) {
+          flex-direction: row;
+        }
+      }
+
+      @media (min-width: $grid-breakpoint-medium) {
+        gap: $space-6;
+      }
+    }
+
     @media (min-width: $grid-breakpoint-medium) {
-      flex: 1;
-      padding-bottom: $space-4;
+      gap: $space-6;
     }
   }
 
@@ -94,27 +136,8 @@
   }
 
   h3 {
-    font-weight: bold;
-
-    @media (max-width: $grid-breakpoint-medium) {
-      margin-top: 0;
-      margin-bottom: $space-1;
-      padding-top: $space-4;
-      font-size: $space-6;
-    }
-  }
-
-  ul {
-    padding: 0;
-  }
-
-  li {
-    margin-bottom: $space-5;
-    list-style: none;
-
-    @media (min-width: $grid-breakpoint-medium) {
-      margin-bottom: $space-6;
-    }
+    font-size: $typography-lg-text-size;
+    font-weight: $typography-bold-font-weight;
   }
 
   a {
@@ -125,36 +148,18 @@
     }
   }
 
-  &__horizontal-links {
-    list-style: none;
+  &__ojl {
+    display: flex;
+    gap: $space-4;
 
-    li {
-      display: inline-block;
-      margin-right: $space-4;
-      margin-bottom: $space-5;
-
-      @media (min-width: $grid-breakpoint-medium) {
-        margin-bottom: $space-6;
-      }
-
-      @media (max-width: $grid-breakpoint-medium) {
-        display: list-item;
-      }
+    img {
+      width: 62px;
+      height: 54px;
     }
 
-    @media (max-width: $grid-breakpoint-medium) {
-      width: 90%;
+    a {
+      white-space: nowrap;
     }
-  }
-
-  &__ojl-logo {
-    float: left;
-
-    width: 62px;
-    height: 54px;
-    margin-top: auto;
-    margin-right: $space-3;
-    margin-bottom: $space-3;
   }
 
   @media (min-width: $grid-breakpoint-medium) {
