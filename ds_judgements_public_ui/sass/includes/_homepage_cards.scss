@@ -94,7 +94,7 @@
     text-decoration-color: colour-var("link");
 
     &:hover {
-      color: $color-dark-blue;
+      color: brand-colour("navy");
       text-decoration: none;
     }
 

@@ -4,8 +4,8 @@
 }
 
 .govuk-notification-banner_blue {
-  border: 5px solid $color-aqua-blue;
-  background-color: $color-aqua-blue;
+  border: 5px solid colour-var("link");
+  background-color: colour-var("link");
 }
 
 .govuk-notification-banner__link {
