@@ -59,5 +59,8 @@ class TestDocumentResolverEngineWithMultipleResolutions(TestCaseWithMultipleReso
         request = RequestFactory().get(document_uri)
         resolver_engine = DocumentResolverEngine()
         resolver_engine.setup(request)
-        with pytest.raises(MultipleResolutionsError):
+        with pytest.raises(MultipleResolutionsError) as exception_info:
             resolver_engine.dispatch(request, document_uri)
+        assert (
+            str(exception_info.value) == "Multiple resolutions found for ewhc/comm/2024/253: /ml-x-1.xml, /ml-x-2.xml"
+        )

@@ -34,7 +34,8 @@ class DocumentResolverEngine(View):
             raise Http404(msg)
 
         if len(resolved_documents) > 1:
-            msg = f"Multiple resolutions found for {document_uri}"
+            slugs = [resolution.document_uri for resolution in resolved_documents]
+            msg = f"Multiple resolutions found for {document_uri}: {', '.join(slugs)}"
             raise MultipleResolutionsError(msg)
 
         database_uri = resolved_documents[0].document_uri.as_document_uri()
