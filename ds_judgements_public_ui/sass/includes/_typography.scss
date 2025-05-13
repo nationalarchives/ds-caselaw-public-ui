@@ -52,13 +52,13 @@ code {
 
 mark {
   scroll-margin-top: 50vh;
-  border-bottom: 3px solid $color-yellow;
+  border-bottom: 3px solid colour-var("accent-brand");
   font-weight: $typography-bold-font-weight;
   background-color: transparent;
 
   &.current {
-    border-top: 3px solid $color-yellow;
-    background-color: $color-yellow;
+    border-top: 3px solid colour-var("accent-brand");
+    background-color: colour-var("accent-brand");
   }
 }
 

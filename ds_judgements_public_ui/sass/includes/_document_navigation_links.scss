@@ -317,7 +317,7 @@
   }
 
   &__query-text {
-    border-bottom: 3px solid $color-yellow;
+    border-bottom: 3px solid colour-var("accent-brand");
     font-weight: $typography-bold-font-weight;
     background-color: transparent;
   }

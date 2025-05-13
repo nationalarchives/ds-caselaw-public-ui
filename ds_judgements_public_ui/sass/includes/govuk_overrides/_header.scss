@@ -13,9 +13,9 @@
 .govuk-header__navigation-item--active .govuk-header__link:hover,
 .govuk-header__navigation-item--active .govuk-header__link:visited,
 .govuk-header__navigation-item--active a:link {
-  border-bottom: 0.25rem solid $color-yellow;
+  border-bottom: 0.25rem solid colour-var("accent-brand");
   font-weight: bold !important;
-  color: $color-yellow;
+  color: colour-var("accent-brand");
   text-decoration: none;
 
   &:focus {

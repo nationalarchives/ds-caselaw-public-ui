@@ -81,7 +81,7 @@
     text-align: center;
     text-wrap: balance;
 
-    background-color: $color-yellow;
+    background-color: colour-var("accent-brand");
   }
 
   &__title {
