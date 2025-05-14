@@ -11,13 +11,13 @@
     @include header($typography-header-h2-size);
 
     padding-bottom: $space-6;
-    border-bottom: 5px solid $color-yellow;
+    border-bottom: 5px solid colour-var("accent-brand");
     font-size: $typography-xl-text-size;
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-top: 0;
       margin-bottom: 0;
-      border-bottom: 1px dotted $color-yellow;
+      border-bottom: 1px dotted colour-var("accent-brand");
     }
   }
 

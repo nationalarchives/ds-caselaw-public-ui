@@ -48,7 +48,7 @@
     gap: $space-6;
 
     padding: $space-6 $space-6 $space-10;
-    border: 2px solid $color-yellow;
+    border: 2px solid colour-var("accent-brand");
 
     h3 {
       margin: 0;

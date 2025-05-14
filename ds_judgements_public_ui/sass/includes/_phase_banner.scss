@@ -7,6 +7,6 @@
     color: colour-var("font-base");
     text-transform: uppercase;
 
-    background-color: $color-yellow;
+    background-color: colour-var("accent-brand");
   }
 }

@@ -93,7 +93,7 @@
 
     color: colour-var("accent-font-base");
 
-    background: $color-yellow;
+    background: colour-var("accent-brand");
   }
 
   &__help-text {
@@ -194,21 +194,18 @@
     }
   }
 
-  &__removable-options-value-text {
-  }
-
   &__removable-options-link {
     display: inline-block;
 
     padding: $space-2 $space-2 $space-2 $space-4;
-    border: 0.188rem solid $color-yellow;
+    border: 0.188rem colour-var("accent-brand");
 
     color: colour-var("accent-link");
     text-decoration: none;
 
     &:hover {
       color: colour-var("accent-link");
-      background: $color-yellow;
+      background: colour-var("accent-brand");
     }
 
     &:visited {
@@ -242,7 +239,7 @@
       margin: 0 auto;
       padding: 0 0 $space-2 $space-6;
       border: none;
-      border-bottom: 0.188rem solid $color-yellow;
+      border-bottom: 0.188rem solid colour-var("accent-brand");
 
       font-size: $typography-md-text-size;
       font-weight: $typography-bold-font-weight;

@@ -35,7 +35,7 @@
       flex-direction: column;
       margin: $space-4;
       padding: $space-4;
-      border: 3px solid $color-yellow;
+      border: 3px solid colour-var("accent-brand");
     }
   }
 
@@ -44,7 +44,7 @@
     flex: 1;
     flex-direction: row;
 
-    border-top: 4px solid $color-yellow;
+    border-top: 4px solid colour-var("accent-brand");
 
     text-decoration: none;
 
@@ -94,7 +94,7 @@
     text-decoration-color: colour-var("link");
 
     &:hover {
-      color: $color-dark-blue;
+      color: brand-colour("navy");
       text-decoration: none;
     }
 

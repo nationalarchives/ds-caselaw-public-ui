@@ -14,15 +14,15 @@
 
     width: 165px;
     padding: $space-1 $space-2;
+    border: 1px solid colour-var("accent-background");
+    border-radius: 5px;
 
     font-size: $typography-sm-text-size;
     text-align: center;
     text-decoration: underline;
 
     opacity: 0;
-    background: $color-white;
-    border: 1px solid $color-grey;
-    border-radius: 5px;
+    background: colour-var("background");
 
     transition: opacity 0.3s ease;
 
@@ -37,16 +37,16 @@
       width: 8px;
       height: 8px;
       margin-right: -5px;
+      border-top: 1px solid colour-var("accent-background");
+      border-right: 1px solid colour-var("accent-background");
 
-      background: $color-white;
-      border-top: 1px solid $color-grey;
-      border-right: 1px solid $color-grey;
+      background: colour-var("background");
     }
 
     &--copied {
       left: 27px;
       width: auto;
-      color: $color-dark-grey;
+      color: colour-var("font-base");
       text-decoration: none;
     }
   }

@@ -11,7 +11,7 @@
       &--selected {
         @media (min-width: $grid-breakpoint-small) {
           padding: 10px 14px 13px;
-          border-top: 4px solid $color-yellow;
+          border-top: 4px solid colour-var("accent-brand");
         }
       }
     }

@@ -10,8 +10,8 @@
 
     margin-bottom: $space-4;
     padding-bottom: $space-6;
+    border-bottom: 5px solid colour-var("accent-brand");
     font-size: $typography-xl-text-size;
-    border-bottom: 5px solid $color-yellow;
   }
 
   &__sub-header {
@@ -54,6 +54,6 @@
     text-transform: uppercase;
     vertical-align: 2px;
 
-    background-color: $color-yellow;
+    background-color: colour-var("accent-brand");
   }
 }

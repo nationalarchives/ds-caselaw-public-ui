@@ -24,7 +24,7 @@
     align-items: center;
 
     padding: $space-6;
-    border: 2px solid $color-yellow;
+    border: 2px solid colour-var("accent-brand");
 
     .btn {
       @include call-to-action-button;

@@ -31,7 +31,7 @@
     padding: $space-8 $space-4;
     font-family: $font-roboto;
     text-align: center;
-    background-color: $color-yellow;
+    background-color: colour-var("accent-brand");
 
     @media (max-width: $grid-breakpoint-medium) {
       margin-bottom: $space-4;

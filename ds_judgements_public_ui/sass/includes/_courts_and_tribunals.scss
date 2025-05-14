@@ -46,7 +46,7 @@
 
   &__header {
     padding-top: $space-6;
-    border-top: 4px solid $color-yellow;
+    border-top: 4px solid colour-var("accent-brand");
     font-size: $typography-xl-text-size;
   }
 

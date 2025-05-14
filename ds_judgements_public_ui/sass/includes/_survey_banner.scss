@@ -1,7 +1,7 @@
 .survey-banner {
   font-family: $font-roboto;
   font-size: $typography-lg-text-size;
-  background-color: $color-information;
+  background-color: colour-var("pastel-blue");
 
   &__container {
     @include container;

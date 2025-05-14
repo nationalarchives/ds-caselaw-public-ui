@@ -144,7 +144,7 @@
     flex-direction: column;
 
     padding: $space-4;
-    border-top: 4px solid $color-yellow;
+    border-top: 4px solid colour-var("accent-brand");
 
     background-color: colour-var("accent-background-light");
 
@@ -158,7 +158,7 @@
     flex-direction: column;
 
     padding: $space-4;
-    border-top: 4px solid $color-yellow;
+    border-top: 4px solid colour-var("accent-brand");
 
     background-color: colour-var("accent-background-light");
 

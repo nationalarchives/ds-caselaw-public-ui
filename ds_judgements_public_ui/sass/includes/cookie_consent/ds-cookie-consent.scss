@@ -15,8 +15,8 @@
   .container {
     box-sizing: border-box;
     padding: 10px 25px 25px 40px;
-    background: $color-dark-blue;
     border-radius: 5px;
+    background: brand-colour("navy");
 
     .cookie_head {
       margin-top: 10px;
@@ -74,6 +74,7 @@
       min-width: 24px;
       margin-right: 20px;
       padding: 0.5em 0.9em;
+      border: 2px solid colour-var("contrast-button-background");
 
       font-family: "Roboto Mono", monospace;
       color: colour-var("contrast-button-text");
@@ -81,13 +82,12 @@
       text-decoration: none;
 
       background: colour-var("contrast-button-background");
-      border: 2px solid colour-var("contrast-button-background");
 
       &:hover,
       &:focus {
+        border: 2px solid colour-var("contrast-button-hover-background");
         color: colour-var("contrast-button-hover-text");
         background: colour-var("contrast-button-hover-background");
-        border: 2px solid colour-var("contrast-button-hover-background");
       }
 
       &:focus {
@@ -102,17 +102,17 @@
     }
 
     #btn_preferences {
-      text-decoration: underline;
-      background: none;
       border: none;
       border: 2px solid transparent;
+      text-decoration: underline;
+      background: none;
 
       &:hover,
       &:focus {
+        border: 2px solid colour-var("contrast-button-hover-background");
         color: colour-var("contrast-button-hover-text");
         text-decoration: none;
         background: colour-var("contrast-button-hover-background");
-        border: 2px solid colour-var("contrast-button-hover-background");
       }
 
       &:focus {

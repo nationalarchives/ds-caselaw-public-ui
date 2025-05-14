@@ -14,7 +14,7 @@
     th,
     td {
       padding: $space-2;
-      border: 2px solid $color-yellow;
+      border: 2px solid colour-var("accent-brand");
     }
 
     td {
