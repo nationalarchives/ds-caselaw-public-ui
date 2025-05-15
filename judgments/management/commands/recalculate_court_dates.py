@@ -37,10 +37,11 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.NOTICE("Skipping write…"))
                 continue
 
-            CourtDates.objects.update_or_create(
-                param=court.canonical_param,
-                defaults={"start_year": start_year, "end_year": end_year},
-            )
+            if start_year and end_year:
+                CourtDates.objects.update_or_create(
+                    param=court.canonical_param,
+                    defaults={"start_year": start_year, "end_year": end_year},
+                )
 
     def get_start_year(self, court):
         fallback_start_year = court.start_year
@@ -48,7 +49,7 @@ class Command(BaseCommand):
             court.canonical_param, "date", "oldest", fallback_start_year
         )
 
-        if start_year < 2000:
+        if start_year and start_year < 2000:
             self.stdout.write(
                 self.style.WARNING(
                     f"Calculated start year of {start_year} seems improbable, \
@@ -65,7 +66,7 @@ falling back to config value of {fallback_start_year}"
             court.canonical_param, "-date", "newest", fallback_end_year
         )
 
-        if end_year > datetime.date.today().year:
+        if end_year and end_year > datetime.date.today().year:
             self.stdout.write(
                 self.style.WARNING(
                     f"Calculated end year of {end_year} is impossible, \
