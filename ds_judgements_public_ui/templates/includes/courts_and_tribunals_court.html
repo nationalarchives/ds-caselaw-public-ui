@@ -22,7 +22,7 @@
       We don't currently hold any documents
     {% else %}
       We currently hold <a href="{% url "search" %}?{{ type }}={{ court.canonical_param }}">{{ court|get_court_judgments_count|intcomma }} documents from
-        {{ court.canonical_param | get_court_date_range }}</a>
+        {{ court.start_year }}&nbsp;to&nbsp;{{ court.end_year }}</a>
     {% endif %}
   </p>
   {% if court.historic_documents_support_text_as_html %}
