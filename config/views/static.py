@@ -25,7 +25,7 @@ class AboutThisServiceView(TemplateViewWithContext):
 
 class AccessibilityStatementView(TemplateViewWithContext):
     template_name = "pages/accessibility_statement.html"
-    page_title = "Accessibility statement"
+    page_title = "Accessibility statement for Find Case Law"
     page_canonical_url_name = "accessibility_statement"
     page_allow_index = True
 
