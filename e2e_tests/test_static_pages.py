@@ -5,7 +5,11 @@ from .utils.assertions import assert_is_accessible
 
 static_pages = [
     {"url": "/about-this-service", "title": "About Find Case Law", "heading": "About Find Case Law"},
-    {"url": "/accessibility-statement", "title": "Accessibility statement", "heading": "Accessibility statement"},
+    {
+        "url": "/accessibility-statement",
+        "title": "Accessibility statement for Find Case Law",
+        "heading": "Accessibility statement for Find Case Law",
+    },
     {"url": "/contact-us", "title": "Contact Us", "heading": "Contact us"},
     {
         "url": "/courts-and-tribunals",
