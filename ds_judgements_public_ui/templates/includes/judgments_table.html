@@ -20,9 +20,11 @@
             </div>
           </td>
           <td>
+            <span class="judgments-table__heading">Neutral citation</span>
             {{ item.neutral_citation|default_if_none:"" }}
           </td>
           <td>
+            <span class="judgments-table__heading">Handed down</span>
             {{ item.date|date:"d M Y" }}
           </td>
         </tr>
