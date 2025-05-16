@@ -20,7 +20,7 @@
             </div>
           </td>
           <td>
-            {{ item.neutral_citation }}
+            {{ item.neutral_citation|default_if_none:"" }}
           </td>
           <td>
             {{ item.date|date:"d M Y" }}
