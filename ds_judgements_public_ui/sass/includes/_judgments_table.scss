@@ -1,6 +1,16 @@
 .judgments-table {
   padding-top: $space-8;
 
+  &__heading {
+    display: none;
+    min-width: 125px;
+    font-weight: $typography-bold-font-weight;
+
+    @media (max-width: $grid-breakpoint-large) {
+      display: inline-block;
+    }
+  }
+
   h1 {
     margin: 0;
     font-size: $typography-xl-text-size;
