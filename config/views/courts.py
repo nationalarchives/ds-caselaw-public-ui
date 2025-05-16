@@ -14,6 +14,11 @@ class CourtsTribunalsListView(TemplateViewWithContext):
     page_allow_index = True
 
     def decorate_court_group(self, group):
+        """
+        Updates the start_year and end_year with data from CourtDates if available.
+        Updates the description_text_as_html with the updated dates if they are available..
+        """
+
         date_map = {
             date.pk: date
             for date in CourtDates.objects.filter(pk__in=[court.canonical_param for court in group.courts])
