@@ -1,4 +1,5 @@
 import datetime
+from typing import Optional
 
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
@@ -6,6 +7,7 @@ from caselawclient.client_helpers.search_helpers import (
 from caselawclient.search_parameters import SearchParameters
 from django.core.management.base import BaseCommand
 from ds_caselaw_utils import courts
+from ds_caselaw_utils.courts import Court, CourtWithJurisdiction
 
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
@@ -43,7 +45,7 @@ class Command(BaseCommand):
                     defaults={"start_year": start_year, "end_year": end_year},
                 )
 
-    def get_start_year(self, court):
+    def get_start_year(self, court: CourtWithJurisdiction | Court) -> Optional[int]:
         fallback_start_year = court.start_year
         start_year = self._get_year_of_first_document_in_order(
             court.canonical_param, "date", "oldest", fallback_start_year
@@ -60,7 +62,7 @@ falling back to config value of {fallback_start_year}"
 
         return start_year
 
-    def get_end_year(self, court):
+    def get_end_year(self, court: CourtWithJurisdiction | Court) -> Optional[int]:
         fallback_end_year = court.end_year
         end_year = self._get_year_of_first_document_in_order(
             court.canonical_param, "-date", "newest", fallback_end_year
@@ -77,7 +79,9 @@ falling back to config value of {fallback_end_year}"
 
         return end_year
 
-    def _get_year_of_first_document_in_order(self, canonical_court_param, order, document_reference, fallback):
+    def _get_year_of_first_document_in_order(
+        self, canonical_court_param: str, order: str, document_reference: str, fallback: int
+    ) -> int:
         search_response = search_judgments_and_parse_response(
             api_client, SearchParameters(court=canonical_court_param, order=order)
         )
