@@ -139,6 +139,21 @@ def sh(c):
     subprocess.run(["docker", "compose", "exec", "django", "bash"])
 
 
+@task
+def checktypes(c):
+    subprocess.run(
+        [
+            "docker",
+            "compose",
+            "exec",
+            "django",
+            "mypy",
+            "ds_judgements_public_ui",
+            "judgments",
+        ]
+    )
+
+
 @task(optional=["test"])
 def test(c, test=None):
     """
