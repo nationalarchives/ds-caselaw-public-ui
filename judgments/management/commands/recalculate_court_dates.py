@@ -98,7 +98,7 @@ falling back to config value of {fallback}"
         first_document = search_response.results[0]
 
         if first_document.date:
-            year = first_document.date.year
+            year: Optional[int] = first_document.date.year
             self.stdout.write(
                 self.style.NOTICE(
                     f"{document_reference.capitalize()} document: {first_document.uri} @ {first_document.date.year}"
