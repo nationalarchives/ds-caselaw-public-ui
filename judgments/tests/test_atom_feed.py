@@ -112,6 +112,12 @@ class TestAtomFeed(TestCase):
         assert entry_tna_contenthash is not None
         assert entry_tna_contenthash.text == "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73"
 
+        entry_tna_neutral_citation = entry.find("tna:identifier", self.namespaces)
+        assert entry_tna_neutral_citation is not None
+        assert entry_tna_neutral_citation.text == "[2025] UKSC 123"
+        assert entry_tna_neutral_citation.attrib["type"] == "ukncn"
+        assert entry_tna_neutral_citation.attrib["slug"] == "uksc/2025/123"
+
         entry_tna_uri = entry.find("tna:uri", self.namespaces)
         assert entry_tna_uri is not None
         assert entry_tna_uri.text == "d-a1b2c3"

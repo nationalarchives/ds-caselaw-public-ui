@@ -5,6 +5,7 @@ from urllib.parse import ParseResult, parse_qs, parse_qsl, urlencode, urlparse, 
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
+from caselawclient.models.identifiers import Identifier
 from caselawclient.responses.search_result import SearchResult
 from caselawclient.search_parameters import SearchParameters
 from django.contrib.syndication.views import Feed
@@ -85,6 +86,14 @@ class JudgmentAtomFeed(Atom1Feed):
                 "link", "", {"rel": "alternate", "type": "application/akn+xml", "href": f"{link}/data.xml"}
             )
 
+        if identifiers := item.get("identifiers"):
+            for identifier in identifiers:
+                handler.addQuickElement(
+                    "tna:identifier",
+                    identifier.value,
+                    {"type": identifier.schema.namespace, "slug": identifier.url_slug},
+                )
+
         if uri := item.get("uri"):
             handler.addQuickElement("tna:uri", uri)
             path_underscore = uri.replace("/", "_")
@@ -161,6 +170,8 @@ class JudgmentsFeed(Feed):
         extra_kwargs = super().item_extra_kwargs(item)
         extra_kwargs["uri"] = item.uri
         extra_kwargs["content_hash"] = item.content_hash
+        identifier_dict: dict[str, Identifier] = item.identifiers
+        extra_kwargs["identifiers"] = list(identifier_dict.values())
         return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:
