@@ -9,6 +9,7 @@ from judgments.views.index import IndexView
 
 from . import converters, feeds
 from .resolvers.document_resolver_engine import DocumentResolverEngine
+from .resolvers.id_dispatch import IdDispatchEngine
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -27,6 +28,11 @@ def safer_redirect(target):
 
 
 urlpatterns = [
+    path(
+        "id/<document_uri:document_uri>",
+        IdDispatchEngine.as_view(),
+        name="id-dispatch",
+    ),
     path("<court:court>", BrowseView.as_view(), name="browse"),
     path("<yyyy:year>", BrowseView.as_view(), name="browse"),
     path("<court:court>/<yyyy:year>", BrowseView.as_view(), name="browse"),
