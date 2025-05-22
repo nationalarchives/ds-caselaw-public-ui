@@ -273,6 +273,10 @@ class SearchJudgmentsFeed(JudgmentsFeed):
             search_parameters.order = "-date"
             search_parameters.page_size = per_page_integer
 
+        # for now we will filter out any records that don't have an HTML representation
+        # as we don't want to bloat the feed with records that don't have a HTML representation
+        search_parameters.only_with_html_representation = True
+
         search_response = search_judgments_and_parse_response(api_client, search_parameters)
         return {
             "query_string": request.GET.get("query", default=""),
