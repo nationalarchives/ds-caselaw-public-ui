@@ -6,6 +6,7 @@ from pathlib import Path
 
 import django
 import environ
+from rest_framework.throttling import UserRateThrottle
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # ds_judgements_public_ui/
@@ -71,6 +72,7 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_forms_gds",
     "rest_framework",
+    "rest_framework.authtoken",
     "drf_spectacular",
 ]
 
@@ -272,13 +274,33 @@ SES_SMTP_PASSWORD = env("SES_SMTP_PASSWORD", default=None)
 SES_SMTP_SERVER = env("SES_SMTP_SERVER", default=None)
 SES_SMTP_PORT = env("SES_SMTP_PORT", default=None)
 
+
+class BurstRateThrottle(UserRateThrottle):
+    scope = "burst"
+
+
+class SustainedRateThrottle(UserRateThrottle):
+    scope = "sustained"
+
+
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework.authentication.TokenAuthentication",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
         "rest_framework_xml.renderers.XMLRenderer",
     ],
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "BurstRateThrottle",
+        "SustainedRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "100/day",
+        "burst": "60/min",
+        "sustained": "1000/day",
+    },
 }
 
 # This is the minimum year the site currently says it handles
