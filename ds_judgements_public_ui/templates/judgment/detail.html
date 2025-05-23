@@ -14,6 +14,7 @@
 {% endblock precontent %}
 {% block body_class %}document-detail{% endblock body_class %}
 {% block content %}
+  {% include "includes/judgment_navigation.html" %}
   {% if document_html %}
     <div id="start-of-document"></div>
     {% autoescape off %}
@@ -21,7 +22,6 @@
     {% endautoescape %}
 
     {% include "includes/judgment_end_document_marker.html" %}
-    {% include "includes/judgment_navigation.html" %}
   {% else %}
     {% include "includes/judgment_pdf_only.html" %}
   {% endif %}
