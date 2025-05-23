@@ -48,6 +48,7 @@ class TestAtomFeed(TestCase):
                 order="-date",
                 page=1,
                 page_size=50,
+                only_with_html_representation=True,
             ),
         )
 
@@ -163,6 +164,7 @@ class TestAtomFeed(TestCase):
                 date_to=None,
                 order="date",
                 page=5,
+                only_with_html_representation=True,
             ),
         )
 
