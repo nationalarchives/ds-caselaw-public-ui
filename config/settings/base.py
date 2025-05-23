@@ -6,7 +6,6 @@ from pathlib import Path
 
 import django
 import environ
-from rest_framework.throttling import UserRateThrottle
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # ds_judgements_public_ui/
@@ -275,14 +274,6 @@ SES_SMTP_SERVER = env("SES_SMTP_SERVER", default=None)
 SES_SMTP_PORT = env("SES_SMTP_PORT", default=None)
 
 
-class BurstRateThrottle(UserRateThrottle):
-    scope = "burst"
-
-
-class SustainedRateThrottle(UserRateThrottle):
-    scope = "sustained"
-
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework.authentication.TokenAuthentication",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
@@ -293,13 +284,11 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_THROTTLE_CLASSES": [
         "rest_framework.throttling.AnonRateThrottle",
-        "BurstRateThrottle",
-        "SustainedRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {
         "anon": "100/day",
-        "burst": "60/min",
-        "sustained": "1000/day",
+        "user": "1000/day",
     },
 }
 
