@@ -70,12 +70,16 @@ THIRD_PARTY_APPS = [
     "waffle",
     "crispy_forms",
     "crispy_forms_gds",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "drf_spectacular",
 ]
 
 LOCAL_APPS = [
     # Your stuff: custom apps go here
     "judgments.apps.JudgmentsConfig",
     "transactional_licence_form.apps.TransactionalLicenceFormConfig",
+    "api.apps.APIConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -268,6 +272,25 @@ SES_SMTP_USERNAME = env("SES_SMTP_USERNAME", default=None)
 SES_SMTP_PASSWORD = env("SES_SMTP_PASSWORD", default=None)
 SES_SMTP_SERVER = env("SES_SMTP_SERVER", default=None)
 SES_SMTP_PORT = env("SES_SMTP_PORT", default=None)
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework.authentication.TokenAuthentication",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+        "rest_framework_xml.renderers.XMLRenderer",
+    ],
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "100/day",
+        "user": "1000/day",
+    },
+}
 
 # This is the minimum year the site currently says it handles
 MINIMUM_WARNING_YEAR = 2003
