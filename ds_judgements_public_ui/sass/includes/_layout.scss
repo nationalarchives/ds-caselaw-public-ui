@@ -21,10 +21,6 @@ body {
   font-family: $font-open-sans;
   color: colour-var("font-base");
   background: colour-var("background");
-
-  &.document-detail {
-    background: brand-colour("white");
-  }
 }
 
 html {
