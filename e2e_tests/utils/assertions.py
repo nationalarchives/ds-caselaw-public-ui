@@ -1,7 +1,10 @@
+import os
 import warnings
 
+import numpy as np
 import pytest
 from axe_playwright_python.sync_playwright import Axe
+from PIL import Image, ImageChops
 
 axe = Axe()
 
@@ -64,3 +67,34 @@ def format_violation(violation):
         violation_str += "\n"
 
     return violation_str
+
+
+def compare_snapshot(actual_path, expected_path):
+    actual_image = Image.open(actual_path).convert("RGB")
+    expected_image = Image.open(expected_path).convert("RGB")
+
+    diff = ImageChops.difference(actual_image, expected_image)
+    diff_np = np.array(diff)
+    num_diff_pixels = np.sum(np.any(diff_np != 0, axis=-1))
+
+    return num_diff_pixels <= 0
+
+
+def assert_matches_snapshot(page, page_name):
+    actual_path = f"snapshots/{page_name}_actual.png"
+    expected_path = f"snapshots/{page_name}_expected.png"
+
+    page.screenshot(path=actual_path, full_page=True)
+
+    if not os.path.exists(expected_path):
+        warnings.warn("Expected snapshot not found — generating from current page.")
+        os.replace(actual_path, expected_path)
+        return
+
+    page.screenshot(path=actual_path, full_page=True)
+    result = compare_snapshot(actual_path, expected_path)
+
+    if not result:
+        pytest.fail(
+            f"\n{page_name} has changed. Please check screenshots/actual_{page_name}.png and update screenshots/expected_{page_name}.png if happy."
+        )

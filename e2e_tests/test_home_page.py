@@ -1,6 +1,6 @@
 from playwright.sync_api import Page, expect
 
-from .utils.assertions import assert_is_accessible
+from .utils.assertions import assert_is_accessible, assert_matches_snapshot
 
 
 def test_home_page(page: Page):
@@ -13,3 +13,4 @@ def test_home_page(page: Page):
     assert page.locator(".recent-judgments tbody tr").count() > 1
 
     assert_is_accessible(page)
+    assert_matches_snapshot(page, "home_page")
