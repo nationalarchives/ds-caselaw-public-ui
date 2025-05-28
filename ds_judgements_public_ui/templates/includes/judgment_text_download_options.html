@@ -5,10 +5,10 @@
     <div class="judgment-download-options__download-option">
       <a href="{{ pdf_uri }}"
          class="btn"
-         aria-label="Download {{ document|get_title_to_display_in_html }} as a PDF {{ pdf_size }}"
+         aria-label="Download {{ document|get_title_to_display_in_html }} as a PDF{% if pdf_size %} ({{ pdf_size }}){% endif %}"
          download="">
         Download PDF
-        <span class="btn__label">{{ pdf_size }}</span>
+        {% if pdf_size %}<span class="btn__label">({{ pdf_size }})</span>{% endif %}
       </a>
       <p>
         The original format of the {{ document.document_noun }} as handed down by the court, for printing and downloading.
