@@ -1,5 +1,6 @@
 .judgment-download-options {
-  max-width: 90%;
+  @include judgment-width-container;
+
   margin: 0 auto $space-12;
 
   &__header {
@@ -45,9 +46,5 @@
   p {
     margin: 0;
     text-align: center;
-  }
-
-  @media (min-width: $grid-breakpoint-medium) {
-    max-width: 46rem;
   }
 }

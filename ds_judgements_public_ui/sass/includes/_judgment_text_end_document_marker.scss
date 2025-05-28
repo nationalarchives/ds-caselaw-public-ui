@@ -1,8 +1,7 @@
 .judgment-end-document-marker {
-  width: 100%;
-  max-width: 90%;
+  @include judgment-width-container;
+
   height: $space-4;
-  margin: auto;
   margin-bottom: $space-20;
   border: 1px dashed colour-var("black");
   border-top: none;
@@ -51,13 +50,5 @@
         display: inline-block;
       }
     }
-  }
-
-  @media (min-width: $grid-breakpoint-medium) {
-    max-width: 40rem;
-  }
-
-  @media (min-width: $grid-breakpoint-medium) {
-    max-width: 46rem;
   }
 }
