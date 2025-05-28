@@ -51,7 +51,7 @@ def detail_html(request, document_uri):
 
     context["linked_document_uri"] = related_documents[0].slug if related_documents else None
     context["document_html"] = document.content_as_html()
-    context["pdf_size"] = f" ({filesizeformat(pdf.size)})" if pdf.size else " (unknown size)"
+    context["pdf_size"] = filesizeformat(pdf.size) if pdf.size else None
 
     form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
 

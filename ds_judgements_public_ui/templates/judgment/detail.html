@@ -20,17 +20,19 @@
     {% autoescape off %}
       {{ document_html }}
     {% endautoescape %}
-
     {% include "includes/judgment_end_document_marker.html" %}
   {% else %}
-    {% include "includes/judgment_pdf_only.html" %}
+    <div class="container judgment-pdf-only">
+      <div class="home-office-alert">
+        <h2 class="home-office-alert__heading">Document status</h2>
+        <p>This document is only available to download and view as a PDF.</p>
+      </div>
+    </div>
   {% endif %}
 
 {% endblock content %}
 
 {% block postcontent %}
-  {% if document_html %}
-    {% include "includes/judgment_text_download_options.html" %}
-  {% endif %}
+  {% include "includes/judgment_text_download_options.html" %}
   {% flag "document_catalogue_card" %}{% include "includes/judgment_catalogue_card.html" %}{% endflag %}
 {% endblock postcontent %}

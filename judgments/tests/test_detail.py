@@ -153,7 +153,7 @@ class TestDocumentDownloadOptions(MockAPI):
             <h2 id="judgment-download-options-header" class="judgment-download-options__header">Document download options</h2>
             <div class="judgment-download-options__options-list">
                 <div class="judgment-download-options__download-option">
-                    <a href="http://example.com/test.pdf" class="btn" aria-label="Download {document_title} as a PDF  ({filesizeformat(112)})" download="">
+                    <a href="http://example.com/test.pdf" class="btn" aria-label="Download {document_title} as a PDF ({filesizeformat(112)})" download="">
                         Download PDF <span class="btn__label">({filesizeformat(112)})</span>
                     </a>
                     <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>

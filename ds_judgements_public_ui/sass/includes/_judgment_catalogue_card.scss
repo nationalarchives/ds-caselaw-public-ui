@@ -1,7 +1,7 @@
 .catalogue-card {
-  @include container;
+  @include judgment-width-container;
 
-  margin: 0 auto $space-12;
+  margin-bottom: $space-12;
 
   h2 {
     margin: 0 0 $space-4;
@@ -18,7 +18,8 @@
     }
 
     td {
-      word-break: break-word;
+      word-break: normal;
+      overflow-wrap: anywhere;
     }
 
     th {
