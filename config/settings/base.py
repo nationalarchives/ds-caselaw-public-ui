@@ -292,6 +292,102 @@ REST_FRAMEWORK = {
     },
 }
 
+SPECTACULAR_SETTINGS = {
+    "OAS_VERSION": "3.1.0",
+    "TITLE": "National Archives Find Case Law: Public API",
+    "VERSION": "1.0.0",
+    "DESCRIPTION": """
+Our API provides access to judgments and other documents held by The National Archives and published via the Find Case Law service.
+
+## Open Justice Licence
+
+The National Archives has worked in collaboration with The Ministry of Justice and the Judicial Executive Board to design a new licensing framework for the reuse of case law as data. The [Open Justice licence](https://caselaw.nationalarchives.gov.uk/open-justice-licence) is designed to protect the personal data within the records while supporting the principles of Open Justice.
+
+The Open Justice licence allows you to copy, publish, distribute and transmit case law data. It permits you to use the data commercially, for example, by combining it with other information, or by including it in your own product or application. There are certain conditions that apply under this licence.
+
+You do not need to apply to re-use Find Case Law records if your re-use complies with the terms and conditions of the Open Justice Licence.
+
+**The Open Justice licence does not permit computational analysis.** If you intend to do any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records you will need to [apply to perform computational analysis](https://caselaw.nationalarchives.gov.uk/re-use-find-case-law-records/licence-application-process). There are no application charges.
+
+## Document formats
+
+Documents within Find Case Law are predominantly available as XML (and by extension HTML), although some are only available as PDFs.
+
+### XML
+
+Where documents exist as XML, these have been submitted for publication by the courts as a Microsoft Word document. This has then been automatically converted to XML, marked up according to the [international data standard (LegalDocML)](https://groups.oasis-open.org/communities/tc-community-home2?CommunityKey=3425f20f-b704-4076-9fab-018dc7d3efbe). This data includes:
+
+- Neutral Citation
+- Court / Chamber
+- Date
+- Case Name
+- Party Names
+- Judges' Names
+
+XML documents are then automatically converted to HTML for publication on the Find Case Law website.
+
+For documents which have been submitted directly to the National Archives our legal editorial team have checked data for consistency and accuracy. However, older documents have not always been checked in this way and you may discover inconsistencies in the metadata If you do, you can report data errors to [caselaw@nationalarchives.gov.uk](mailto:caselaw@nationalarchives.gov.uk).
+
+### PDF
+
+Some documents, particularly historic documents, may only exist as PDFs. In these cases we will provide as much metadata regarding the document as we are able, although this may not be as complete as in an XML document.
+
+## Identifying documents
+
+Documents in Find Case Law are identified in two different ways, one which is better for machines and one which is better for humans:
+
+### Document URI
+
+Every document in Find Case Law has a unique machine-readable identifier which is not designed to be human-facing. You should prefer using this identifier internally when referencing Find Case Law documents, as it is stable and globally unique. Document URIs can contain the characters `a-z`, `0-9`, `/` and `-`.
+
+#### Documents prior to April 2025
+
+Documents which were submitted to the National Archives prior to April 2025 will have a URI in the form `court/year/sequence`, for example `uksc/2024/123`. Although this looks like it contains many attributes from a Neutral Citation Number, you should _not_ treat it as such and attempt to extract information from it.
+
+#### New-style URIs
+
+Documents submitted to the National Archives from April 2025 onwards will usually have a URI which looks something like `d-f11e093f-8a53-4e43-8dd8-1531b5d8f018`. These will always begin with a `d-`.
+
+### Document identifiers
+
+In addition to the Document URI, all documents will also have one or more "identifiers" which exist under different schemes. This currently includes Find Case Law Identifiers (for all documents) and Neutral Citation Numbers (for judgments which have them), but may be extended in future.
+
+Each identifier will have – as a minimum – a `type`, a `value` and a `slug` which can be turned into a human-facing URL by appending it to `https://caselaw.nationalarchives.gov.uk`.
+
+Identifiers are _not_ guaranteed to be unique to a single document.
+
+#### Examples
+
+| Type                     | `type`   | Example `value`   | Example `slug`  |
+| ------------------------ | -------- | ----------------- | ----------------|
+| Find Case Law Identifier | `fclid`  | `cw7s3kws`        | `tna.cw7s3kws`  |
+| Neutral Citation Number  | `ukncn`  | `[2024] UKSC 123` | `uksc/2024/123` |
+
+#### Preferred identifier
+
+Each document will have exactly one preferred identifier, determined by the Find Case Law system, which it will prefer for displaying to users and generating public-facing URLs. You must _not_ make any assumptions about the type of this preferred identifier, as it may change.
+
+## Give us your feedback
+
+We are still actively developing Find Case Law based on user feedback. This includes improving the experience of how data re-users can access the data.
+
+You can provide feedback by using our [feedback form](https://www.smartsurvey.co.uk/s/CaseLaw-research/).
+""",
+    "TOS": "https://caselaw.nationalarchives.gov.uk/terms-of-use",
+    "CONTACT": {
+        "name": "Find Case Law",
+        "url": "https://caselaw.nationalarchives.gov.uk/",
+        "email": "caselaw@nationalarchives.gov.uk",
+    },
+    "LICENSE": {
+        "name": "Open Justice Licence",
+        "url": "https://caselaw.nationalarchives.gov.uk/open-justice-licence",
+    },
+    "SERVERS": [
+        {"url": "https://caselaw.nationalarchives.gov.uk/"},
+    ],
+}
+
 # This is the minimum year the site currently says it handles
 MINIMUM_WARNING_YEAR = 2003
 # Constant enforcing the minimum possible year a user can search for

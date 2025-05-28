@@ -13,6 +13,8 @@ class BodySerializer(serializers.Serializer):
 
 
 class RichBodySerializer(BodySerializer):
+    """Let the bodies hit the floor"""
+
     link = serializers.CharField(read_only=True)
     description_html = serializers.CharField(source="description_text_as_html", read_only=True)
 
