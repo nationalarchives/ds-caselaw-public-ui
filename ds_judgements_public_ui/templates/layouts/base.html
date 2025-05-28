@@ -1,4 +1,4 @@
-{% load static navigation_tags %}
+{% load static navigation_tags waffle_tags %}
 <!DOCTYPE html>
 <html lang="en-gb">
   <head>
@@ -26,6 +26,9 @@
     {% block css %}
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Roboto:wght@400;600;700&amp;family=Roboto+Mono:wght@400;600;700&amp;display=swap"
             rel="stylesheet" />
+      {% flag document_detail_v2 %}
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet" />
+      {% endflag %}
       <link href="{% static 'css/includes/govuk-country-and-territory-autocomplete/location-autocomplete.min.css' %}"
             rel="stylesheet" />
       <link href="{% static 'css/main.css' %}" rel="stylesheet" />
