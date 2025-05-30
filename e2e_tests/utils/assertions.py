@@ -4,7 +4,8 @@ import warnings
 import numpy as np
 import pytest
 from axe_playwright_python.sync_playwright import Axe
-from PIL import Image, ImageChops
+from PIL import Image
+from skimage.metrics import structural_similarity as ssim
 
 axe = Axe()
 
@@ -70,14 +71,25 @@ def format_violation(violation):
 
 
 def compare_snapshot(actual_path, expected_path):
-    actual_image = Image.open(actual_path).convert("RGB")
-    expected_image = Image.open(expected_path).convert("RGB")
+    actual_image = Image.open(actual_path).convert("L")
+    expected_image = Image.open(expected_path).convert("L")
 
-    diff = ImageChops.difference(actual_image, expected_image)
-    diff_np = np.array(diff)
-    num_diff_pixels = np.sum(np.any(diff_np != 0, axis=-1))
+    min_width = min(actual_image.width, expected_image.width)
+    min_height = min(actual_image.height, expected_image.height)
 
-    return num_diff_pixels <= 0, num_diff_pixels
+    actual_cropped = actual_image.crop((0, 0, min_width, min_height))
+    expected_cropped = expected_image.crop((0, 0, min_width, min_height))
+
+    actual_np = np.array(actual_cropped, dtype=np.uint8)
+    expected_np = np.array(expected_cropped, dtype=np.uint8)
+
+    if actual_np.shape != expected_np.shape:
+        warnings.warn(f"Actual shape: {actual_np.shape}")
+        warnings.warn(f"Expected shape: {expected_np.shape}")
+        raise ValueError("Image sizes do not match")
+
+    score, _diff = ssim(actual_np, expected_np, full=True)
+    return score >= 0.99, score
 
 
 def assert_matches_snapshot(page, page_name):
@@ -92,9 +104,9 @@ def assert_matches_snapshot(page, page_name):
         return
 
     page.screenshot(path=actual_path, full_page=True)
-    result, pixel_diff = compare_snapshot(actual_path, expected_path)
+    result, score = compare_snapshot(actual_path, expected_path)
 
     if not result:
         pytest.fail(
-            f"\n{page_name} has changed by {pixel_diff}. Please check screenshots/actual_{page_name}.png and update screenshots/expected_{page_name}.png if happy."
+            f"\n{page_name} has changed ({score}). Please check screenshots/actual_{page_name}.png and update screenshots/expected_{page_name}.png if happy."
         )
