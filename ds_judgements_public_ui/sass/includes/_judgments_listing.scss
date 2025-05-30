@@ -59,12 +59,12 @@
   }
 
   &__court {
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
   }
 
   &__neutralcitation {
     display: block;
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
     color: colour-var("font-base");
 
     @media (min-width: $grid-breakpoint-medium) {
@@ -78,7 +78,7 @@
 
   &__date {
     display: block;
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
     color: colour-var("font-base");
 
     @media (min-width: $grid-breakpoint-medium) {
@@ -89,7 +89,7 @@
   &__result-term-matching {
     display: block;
     margin-bottom: $space-2;
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
     color: colour-var("font-base");
 
     @media (max-width: $grid-breakpoint-medium) {
@@ -103,7 +103,7 @@
     margin-bottom: $space-2;
     padding: $space-1 $space-2;
 
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
 
     background-color: colour-var("accent-brand");
   }
