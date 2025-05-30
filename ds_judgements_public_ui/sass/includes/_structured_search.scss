@@ -178,7 +178,7 @@
 
   &__help-text {
     margin-top: 0;
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
 
     @media (min-width: $grid-breakpoint-medium) {
       margin-top: $space-1;
@@ -187,14 +187,14 @@
 
   &__from-date-error-message {
     margin: 0;
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
     font-weight: $typography-bold-font-weight;
     color: colour-var("form-error-text");
   }
 
   &__to-date-error-message {
     margin: 0;
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
     font-weight: $typography-bold-font-weight;
     color: colour-var("form-error-text");
   }
@@ -307,7 +307,7 @@
   }
 
   &__court-date-range {
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
     color: colour-var("font-base");
   }
 

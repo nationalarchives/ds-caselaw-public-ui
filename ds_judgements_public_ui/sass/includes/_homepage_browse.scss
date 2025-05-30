@@ -41,14 +41,14 @@
   &__year-range {
     margin-left: $space-2;
     font-family: $font-open-sans;
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
   }
 
   &__alpha-label {
     margin-left: $space-2;
     padding: $space-1 $space-2;
 
-    font-size: $typography-sm-text-size;
+    font-size: $typography-xs-text-size;
     font-weight: $typography-bold-font-weight;
     color: colour-var("font-dark");
     text-transform: uppercase;
