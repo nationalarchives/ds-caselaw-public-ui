@@ -110,8 +110,11 @@
     width: 100% !important;
     min-height: $space-12;
     margin-bottom: 0;
+    border-radius: 0;
 
     font-size: $typography-md-text-size;
+
+    appearance: none;
   }
 
   &__help-text {
