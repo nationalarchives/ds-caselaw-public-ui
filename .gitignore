@@ -46,6 +46,12 @@ coverage.xml
 *.cover
 .hypothesis/
 
+
+# Visual regression testing
+
+e2e_tests/snapshots/*_actual.png
+
+
 # Translations
 *.mo
 *.pot
