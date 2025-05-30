@@ -96,6 +96,7 @@ def assert_matches_snapshot(page, page_name):
     actual_path = f"snapshots/{page_name}_actual.png"
     expected_path = f"snapshots/{page_name}_expected.png"
 
+    page.set_viewport_size({"width": 1280, "height": 720})
     page.screenshot(path=actual_path, full_page=True)
 
     if not os.path.exists(expected_path):
