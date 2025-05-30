@@ -6,12 +6,11 @@ body {
   &.document-detail-v2 {
     .judgment {
       font-family: $font-pt-serif;
-      font-size: $typography-md-text-size;
-      line-height: $typography-xl-line-height;
+      font-size: $typography-sm-text-size;
+      line-height: $typography-lg-line-height;
 
       @media (min-width: $grid-breakpoint-medium) {
-        max-width: 44rem;
-        font-size: $typography-lg-text-size;
+        max-width: 50rem;
       }
     }
   }
