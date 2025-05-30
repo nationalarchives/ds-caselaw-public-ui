@@ -77,7 +77,7 @@ def compare_snapshot(actual_path, expected_path):
     diff_np = np.array(diff)
     num_diff_pixels = np.sum(np.any(diff_np != 0, axis=-1))
 
-    return num_diff_pixels <= 0
+    return num_diff_pixels <= 0, num_diff_pixels
 
 
 def assert_matches_snapshot(page, page_name):
@@ -92,9 +92,9 @@ def assert_matches_snapshot(page, page_name):
         return
 
     page.screenshot(path=actual_path, full_page=True)
-    result = compare_snapshot(actual_path, expected_path)
+    result, pixel_diff = compare_snapshot(actual_path, expected_path)
 
     if not result:
         pytest.fail(
-            f"\n{page_name} has changed. Please check screenshots/actual_{page_name}.png and update screenshots/expected_{page_name}.png if happy."
+            f"\n{page_name} has changed by {pixel_diff}. Please check screenshots/actual_{page_name}.png and update screenshots/expected_{page_name}.png if happy."
         )
