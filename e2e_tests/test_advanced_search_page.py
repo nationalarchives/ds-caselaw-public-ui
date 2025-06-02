@@ -126,7 +126,7 @@ def test_advanced_search_page_is_accessible(page: Page):
 def test_advanced_search_results_page_is_accessible(page: Page):
     page.goto("/search/advanced")
 
-    query_input(page).fill("Imperial")
+    query_input(page).fill("IMPERIAL COLLEGE HEALTHCARE NHS TRUST v MR N MATAR")
     submit_button(page).click()
 
     assert_is_accessible(page)
