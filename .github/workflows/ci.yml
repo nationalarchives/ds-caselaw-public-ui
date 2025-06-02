@@ -340,6 +340,14 @@ jobs:
           path: artifacts
           retention-days: 7
 
+      - name: Upload snapshots as GitHub artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: ${{ always() }}
+        with:
+          name: playwright-snapshots
+          path: e2e_tests/snapshots
+          retention-days: 7
+
       - name: Tear down marklogic
         run: docker compose down
         working-directory: "./marklogic"

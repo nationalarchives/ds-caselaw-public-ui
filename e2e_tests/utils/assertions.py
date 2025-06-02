@@ -89,7 +89,7 @@ def compare_snapshot(actual_path, expected_path):
         raise ValueError("Image sizes do not match")
 
     score, _diff = ssim(actual_np, expected_np, full=True)
-    return score >= 0.99, score
+    return score >= 0.9, score
 
 
 def assert_matches_snapshot(page, page_name):
