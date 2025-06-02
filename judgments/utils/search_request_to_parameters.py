@@ -49,7 +49,7 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     elif not order:
         order = "relevance"
 
-    from_date: date = form.cleaned_data.get("from_date", None)
+    from_date: Optional[date] = form.cleaned_data.get("from_date")
     to_date: Optional[date] = form.cleaned_data.get("to_date")
     # If a from_date is not specified, ensure it is set to a year
     # which encompasses all possible records

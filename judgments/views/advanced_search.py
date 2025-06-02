@@ -107,7 +107,7 @@ def advanced_search(request: HttpRequest) -> HttpResponse:
     except MarklogicResourceNotFoundError:
         return HttpResponseServerError("Search failed")
 
-    from_date: date = form.cleaned_data.get("from_date", None)
+    from_date: Optional[date] = form.cleaned_data.get("from_date")
     to_date: Optional[date] = form.cleaned_data.get("to_date")
     query_params: dict[str, Any] = {}
     # If a from_date is not specified, set it to the current min year
