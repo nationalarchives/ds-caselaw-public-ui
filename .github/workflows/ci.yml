@@ -317,6 +317,9 @@ jobs:
       - name: Build the JS and SASS
         run: npm run build
 
+      - name: Update court dates
+        run: docker compose run --rm django python manage.py recalculate_court_dates
+
       - name: Kick off the django server itself
         run: docker compose exec -d django python manage.py runserver 0.0.0.0:3000
 
