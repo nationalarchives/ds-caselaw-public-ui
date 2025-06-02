@@ -1,15 +1,15 @@
 from caselawclient.client_helpers.search_helpers import search_judgments_and_parse_response
 from caselawclient.search_parameters import SearchParameters
-from rest_framework import serializers, viewsets
+from rest_framework import filters, serializers, viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter,OpenApiTypes
 from judgments.converters import DOCUMENT_URI_REGEX_PATTERN
 from judgments.utils import api_client, get_published_document_by_uri
 
 
 class DocumentSearchResultSerialiser(serializers.Serializer):
-    url = serializers.HyperlinkedIdentityField(view_name="api:document-detail", lookup_field="uri")
+    self = serializers.HyperlinkedIdentityField(view_name="api:document-detail", lookup_field="uri")
     uri = serializers.CharField(read_only=True)
     name = serializers.CharField(read_only=True)
 
@@ -31,6 +31,9 @@ class SearchAsQuerysetFacade:
 
         return search_judgments_and_parse_response(api_client, self.search_params).results
 
+    def set_search_param(self, param, value):
+        self.search_params.__setattr__(param, value)
+
 
 class DocumentsViewPagination(PageNumberPagination):
     page_size = 50
@@ -38,16 +41,27 @@ class DocumentsViewPagination(PageNumberPagination):
     max_page_size = 100
 
 
+class DocumentSearchFilterBackend(filters.BaseFilterBackend):
+    """Filter to apply a MarkLogic search query."""
+
+    def filter_queryset(self, request, queryset, view):
+        queryset.set_search_param("query", request.query_params.get("query"))
+        return queryset
+
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+          OpenApiParameter("query", OpenApiTypes.STR, OpenApiParameter.QUERY, description="The search term."),
+        ]
+    )
+)
 class DocumentsViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = DocumentsViewPagination
     serializer_class = DocumentSearchResultSerialiser
+    filter_backends = [DocumentSearchFilterBackend]
     lookup_field = "uri"
     lookup_value_regex = DOCUMENT_URI_REGEX_PATTERN
-
-    def get_queryset(self):
-        search_params = SearchParameters(query=self.request.query_params.get("query"))
-
-        return SearchAsQuerysetFacade(search_params)
+    queryset = SearchAsQuerysetFacade(SearchParameters())
 
     def retrieve(self, request, uri=None):
         serializer = DocumentSearchResultSerialiser(get_published_document_by_uri(uri), context={"request": request})

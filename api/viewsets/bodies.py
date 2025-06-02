@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 
 class BodySerializer(serializers.Serializer):
-    url = serializers.HyperlinkedIdentityField(view_name="api:body-detail", lookup_field="code")
+    self = serializers.HyperlinkedIdentityField(view_name="api:body-detail", lookup_field="code")
     name = serializers.CharField(read_only=True)
     type = serializers.CharField(source="type.value", read_only=True)
     code = serializers.CharField(read_only=True)

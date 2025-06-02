@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 
 class IdentifierTypeSerializer(serializers.Serializer):
-    url = serializers.HyperlinkedIdentityField(view_name="api:identifier_type-detail", lookup_field="namespace")
+    self = serializers.HyperlinkedIdentityField(view_name="api:identifier_type-detail", lookup_field="namespace")
     name = serializers.CharField(read_only=True)
     namespace = serializers.CharField(read_only=True)
 
