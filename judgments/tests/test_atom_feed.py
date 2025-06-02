@@ -215,3 +215,11 @@ class TestAtomFeed(TestCase):
     def test_redirect_year_only(self):
         response = self.client.get("/2024/atom.xml")
         assert response.url == "/atom.xml?from=2024-01-01&to=2024-12-31"  # type: ignore[attr-defined]
+
+    def test_bad_court(self):
+        response = self.client.get("/atom.xml?court=tennis")
+        assert response.status_code == 400
+
+    def test_bad_tribunal(self):
+        response = self.client.get("/atom.xml?tribunal=tennis")
+        assert response.status_code == 400
