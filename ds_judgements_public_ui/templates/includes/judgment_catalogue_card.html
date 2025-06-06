@@ -1,18 +1,36 @@
 {% load court_utils %}
 <div class="container">
-    <div class="catalogue-card">
-        <h2>Document summary information</h2>
+  <div class="catalogue-card">
+    <h2>Document summary information</h2>
 
-        <table class="catalogue-card__table">
-            <tr><th>Title</th><td>{{ document.body.name }}</td></tr>
-            <tr><th>Document type</th><td>{{ document.document_noun|capfirst }}</td></tr>
-            <tr><th>Court</th><td>{{ document.body.court|get_court_name }}</td></tr>
-            <tr><th>Handed down</th><td>{{ document.body.document_date_as_date|date:"j F Y" }}</td></tr>
-            <tr><th>Link to this {{ document.document_noun }}</th><td>{{ document.public_uri }}</td></tr>
-            {% for identifier in document.identifiers.by_score %}
-                <tr><th>{{ identifier.schema.name }}</th><td>{{ identifier.value }}</td></tr>
-            {% endfor %}
-        </table>
+    <table class="catalogue-card__table">
+      <tr><th>Title</th><td>{{ document.body.name }}</td></tr>
+      <tr><th>Document type</th><td>{{ document.document_noun|capfirst }}</td></tr>
+      <tr><th>Court</th><td>{{ document.body.court|get_court_name }}</td></tr>
+      <tr><th>Handed down</th><td>{{ document.body.document_date_as_date|date:"j F Y" }}</td></tr>
+      {% if document.body.case_number %}
+        <tr><th>Case number</th><td>{{ document.body.case_number }}</td></tr>
+      {% endif %}
+      {% if document.body.claimant %}
+        <tr><th>Claimant</th><td>{{ document.body.claimant }}</td></tr>
+      {% endif %}
+      {% if document.body.respondent %}
+        <tr><th>Respondent</th><td>{{ document.body.respondent }}</td></tr>
+      {% endif %}
+      {% if document.body.category %}
+        <tr><th>Category</th><td>{{ document.body.category }}</td></tr>
+      {% endif %}
+      {% if document.body.subcategory %}
+        <tr><th>Subcategory</th><td>{{ document.body.subcategory }}</td></tr>
+      {% endif %}
+      {% if document.body.secondary_subcategory %}
+        <tr><th>Secondary subcategory</th><td>{{ document.body.secondary_subcategory }}</td></tr>
+      {% endif %}
+      <tr><th>Link to this {{ document.document_noun }}</th><td>{{ document.public_uri }}</td></tr>
+      {% for identifier in document.identifiers.by_score %}
+        <tr><th>{{ identifier.schema.name }}</th><td>{{ identifier.value }}</td></tr>
+      {% endfor %}
+    </table>
 
-    </div>
+  </div>
 </div>
