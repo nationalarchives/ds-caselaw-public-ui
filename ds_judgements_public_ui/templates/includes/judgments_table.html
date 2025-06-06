@@ -1,8 +1,9 @@
+{% load search_results_filters utilities %}
 <div class="judgments-table">
   <table>
     <thead>
       <tr>
-        <th><h1>Recently published judgments</h1></th>
+        <th>{% if table_title %}<h1>{{ table_title }}</h1>{% endif %}</th>
         <th>Neutral citation</th>
         <th>Handed down</th>
       </tr>
@@ -12,11 +13,34 @@
       {% for item in judgments %}
         <tr>
           <td>
-            <div class="judgments-table__title">
-              <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
-            </div>
-            <div class="judgments-table__subtitle">
-              {{ item.court.name }}
+            <div  class="judgments-table__detail">
+              {% if item|is_exact_match:query %}
+                <div class="judgments-table__highlight">
+                  {% if item|is_exact_title_match:query %}
+                    Title matches
+                  {% elif item|is_exact_ncn_match:query %}
+                    Neutral citation matches
+                  {% endif %}
+                </div>
+              {% endif %}
+              <div class="judgments-table__title">
+                {% if query_param_string %}
+                  <a href="{% url 'detail' item.slug %}?{{ query_param_string }}">{{ item.name }} </a>
+                {% else %}
+                  <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
+                {% endif %}
+              </div>
+              <div class="judgments-table__subtitle">
+                {{ item.court.name }}
+              </div>
+
+              {% if item|show_matches:query %}
+                <div class="judgments-table__matches">
+                  {% autoescape off %}
+                    {{ item.matches }}
+                  {% endautoescape %}
+                </div>
+              {% endif %}
             </div>
           </td>
           <td>
