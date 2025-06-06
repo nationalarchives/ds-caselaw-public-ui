@@ -51,9 +51,7 @@
     display: flex;
     flex-direction: column;
     gap: $space-4;
-
     padding-bottom: $space-4;
-    border-bottom: 1px solid colour-var("accent-brand");
 
     @media (min-width: $grid-breakpoint-extra-large) {
       flex-direction: row;

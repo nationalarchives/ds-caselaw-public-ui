@@ -1,6 +1,33 @@
 .judgments-table {
   padding-top: $space-8;
 
+  &__highlight {
+    margin-bottom: $space-2;
+    padding: $space-1 $space-2;
+
+    font-size: $typography-xs-text-size;
+    font-weight: $typography-bold-font-weight;
+
+    background-color: colour-var("accent-brand");
+  }
+
+  &__matches {
+    p {
+      display: inline;
+
+      &:not(:last-child)::after {
+        content: " | ";
+        color: colour-var("font-base");
+      }
+    }
+  }
+
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+
   &__heading {
     display: none;
     min-width: 125px;
@@ -22,7 +49,6 @@
   }
 
   &__title {
-    margin-bottom: $space-2;
     font-size: $typography-md-text-size;
   }
 
@@ -33,6 +59,7 @@
 
     thead {
       th {
+        min-width: 138px;
         padding: $space-2 0;
         border-bottom: 1px solid colour-var("input-border");
 

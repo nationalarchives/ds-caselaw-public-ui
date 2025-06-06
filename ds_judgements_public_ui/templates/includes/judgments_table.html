@@ -1,3 +1,4 @@
+{% load search_results_filters utilities %}
 <div class="judgments-table">
   <table>
     <thead>
@@ -12,11 +13,30 @@
       {% for item in judgments %}
         <tr>
           <td>
-            <div class="judgments-table__title">
-              <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
-            </div>
-            <div class="judgments-table__subtitle">
-              {{ item.court.name }}
+            <div  class="judgments-table__detail">
+              {% if item|is_exact_match:query %}
+                <div class="judgments-table__highlight">
+                  {% if item|is_exact_title_match:query %}
+                    Title matches
+                  {% elif item|is_exact_ncn_match:query %}
+                    Neutral citation matches
+                  {% endif %}
+                </div>
+              {% endif %}
+              <div class="judgments-table__title">
+                <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
+              </div>
+              <div class="judgments-table__subtitle">
+                {{ item.court.name }}
+              </div>
+
+              {% if item|show_matches:query %}
+                <div class="judgments-table__matches">
+                  {% autoescape off %}
+                    {{ item.matches }}
+                  {% endautoescape %}
+                </div>
+              {% endif %}
             </div>
           </td>
           <td>
