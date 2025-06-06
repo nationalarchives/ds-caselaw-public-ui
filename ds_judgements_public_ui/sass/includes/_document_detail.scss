@@ -1,9 +1,7 @@
 body {
   &.document-detail {
     background: brand-colour("white");
-  }
 
-  &.document-detail-v2 {
     .judgment {
       font-family: $font-pt-serif;
       font-size: $typography-sm-text-size;

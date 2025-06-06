@@ -1,0 +1,6 @@
+.govuk-textarea {
+  &:focus {
+    border-radius: 0;
+    appearance: none;
+  }
+}
