@@ -24,7 +24,11 @@
                 </div>
               {% endif %}
               <div class="judgments-table__title">
-                <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
+                {% if query_param_string %}
+                  <a href="{% url 'detail' item.slug %}?{{ query_param_string }}">{{ item.name }} </a>
+                {% else %}
+                  <a href="{% url 'detail' item.slug %}">{{ item.name }}</a>
+                {% endif %}
               </div>
               <div class="judgments-table__subtitle">
                 {{ item.court.name }}
