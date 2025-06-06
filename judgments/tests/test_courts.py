@@ -59,6 +59,11 @@ class TestCourtDatesHelper(TestCase):
         court = self.mock_court_dates(2011, 2012)
         self.assertEqual(get_court_date_range(court), "2013&nbsp;to&nbsp;2015")
 
+    def test_when_court_with_param_exists_and_end_year_but_no_start_year(self, get):
+        get.return_value = self.mock_court_dates(None, 2009)
+        court = self.mock_court_dates(None, 2009)
+        self.assertEqual(get_court_date_range(court), "2009&nbsp;to&nbsp;2010")
+
 
 class TestCourtContentHelpers(TestCase):
     def mock_court_param(self, param):

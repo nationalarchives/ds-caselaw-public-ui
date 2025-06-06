@@ -60,10 +60,15 @@ def get_court_date_range(court_param: CourtParam) -> str:
         court_dates = CourtDates.objects.get(pk=court_param)
         start_year = court_dates.start_year
         end_year = court_dates.end_year
+
     except CourtDates.DoesNotExist:
         court = all_courts.get_by_param(court_param)
         start_year = court.start_year
         end_year = court.end_year
+
+    if not start_year and end_year:
+        return mark_safe("%s&nbsp;to&nbsp;%s" % (end_year, end_year + 1))
+
     if start_year == end_year:
         return str(start_year)
     else:
