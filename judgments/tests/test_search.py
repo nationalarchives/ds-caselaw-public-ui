@@ -523,3 +523,21 @@ class TestSearchValidation(TestCase):
         root = lxml.html.fromstring(response.content)
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert not failure
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_real_short_code_tribunal_as_court(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?court=ukut")
+        root = lxml.html.fromstring(response.content)
+        failure = root.xpath('//*[@class="page-notification--failure"]')
+        assert not failure
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_real_short_code_court_as_tribunal(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?tribunal=uksc")
+        root = lxml.html.fromstring(response.content)
+        failure = root.xpath('//*[@class="page-notification--failure"]')
+        assert not failure
