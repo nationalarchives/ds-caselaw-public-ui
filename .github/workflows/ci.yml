@@ -317,6 +317,9 @@ jobs:
       - name: Build the JS and SASS
         run: npm run build
 
+      - name: Update court dates
+        run: docker compose run --rm django python manage.py recalculate_court_dates
+
       - name: Kick off the django server itself
         run: docker compose exec -d django python manage.py runserver 0.0.0.0:3000
 
@@ -338,6 +341,14 @@ jobs:
         with:
           name: playwright-report
           path: artifacts
+          retention-days: 7
+
+      - name: Upload snapshots as GitHub artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: failure()
+        with:
+          name: playwright-snapshots
+          path: e2e_tests/snapshots
           retention-days: 7
 
       - name: Tear down marklogic

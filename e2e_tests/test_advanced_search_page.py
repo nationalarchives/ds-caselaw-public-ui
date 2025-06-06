@@ -3,7 +3,7 @@ import re
 import pytest
 from playwright.sync_api import Page, expect
 
-from .utils.assertions import assert_is_accessible
+from .utils.assertions import assert_is_accessible, assert_matches_snapshot
 
 
 def query_input(page: Page):
@@ -120,6 +120,7 @@ def test_advanced_search_sorting(page: Page):
 def test_advanced_search_page_is_accessible(page: Page):
     page.goto("/search/advanced")
     assert_is_accessible(page)
+    assert_matches_snapshot(page, "advanced_search_page")
 
 
 def test_advanced_search_results_page_is_accessible(page: Page):
@@ -129,3 +130,5 @@ def test_advanced_search_results_page_is_accessible(page: Page):
     submit_button(page).click()
 
     assert_is_accessible(page)
+    # TODO: Add this back in when the data from the seed matches staging
+    # assert_matches_snapshot(page, "search_results_page")

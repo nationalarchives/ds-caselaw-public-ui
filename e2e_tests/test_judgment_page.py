@@ -89,3 +89,6 @@ def test_judgment_page(page: Page, document):
 
     assert_has_search_query_breadcrumb(page, query)
     assert_is_accessible(page)
+
+    # TODO: Add this back in when the data from the seed matches staging
+    # assert_matches_snapshot(page, "judgment_page")
