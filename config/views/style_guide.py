@@ -44,7 +44,6 @@ class StyleGuideView(TemplateViewWithContext):
                     {"label": "Important information box", "href": "#important-information-box"},
                     {"label": "Information text", "href": "#information-text"},
                     {"label": "Judgment header", "href": "#judgment-header"},
-                    {"label": "Judgment listing", "href": "#judgment-listing"},
                     {"label": "Notification banners", "href": "#notification-banners"},
                     {"label": "Radios", "href": "#radios"},
                     {"label": "Result controls", "href": "#result-controls"},
