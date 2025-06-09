@@ -52,13 +52,11 @@ code {
 
 mark {
   scroll-margin-top: 50vh;
-  border-bottom: 3px solid colour-var("accent-brand");
   font-weight: $typography-bold-font-weight;
-  background-color: transparent;
+  background: color-mix(in srgb, colour-var("accent-brand") 50%, transparent);
 
   &.current {
     border-top: 3px solid colour-var("accent-brand");
-    background-color: colour-var("accent-brand");
   }
 }
 
