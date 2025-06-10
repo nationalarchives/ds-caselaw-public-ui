@@ -107,7 +107,7 @@ def test_advanced_search_sorting(page: Page):
 
     sort_input = page.locator("#order_by")
     per_page_input = page.locator("#per_page")
-    sort_button = page.get_by_role("button", name="Sort")
+    sort_button = page.get_by_role("button", name="Apply")
 
     sort_input.select_option("Newest")
     per_page_input.select_option("25")
