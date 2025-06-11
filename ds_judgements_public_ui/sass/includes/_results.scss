@@ -42,6 +42,15 @@
     gap: $space-2;
     align-items: center;
     margin-right: auto;
+
+    &:has(.results__result-atom-feed-info:hover),
+    &:has(.results__result-atom-feed-info:focus) {
+      margin-bottom: 70px;
+    }
+
+    @media (min-width: $grid-breakpoint-large) {
+      margin-bottom: 0;
+    }
   }
 
   &__result-atom-feed-info {
