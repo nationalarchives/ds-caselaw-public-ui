@@ -12,6 +12,7 @@
   border-left: 10px solid $home-office-alert-border-colour;
 
   font-size: $typography-md-text-size;
+  color: colour-var("font-base");
 
   background-color: $home-office-alert-background-colour;
 
@@ -34,6 +35,12 @@
   &--success {
     border-color: $home-office-alert-success-border-colour;
     background-color: $home-office-alert-success-background-colour;
+  }
+
+  &--sm {
+    padding: $space-2;
+    border-width: 5px;
+    font-size: $typography-xs-text-size;
   }
 
   &__heading {
