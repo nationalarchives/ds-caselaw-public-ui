@@ -48,8 +48,11 @@
       margin-bottom: 70px;
     }
 
-    @media (min-width: $grid-breakpoint-large) {
-      margin-bottom: 0;
+    @media (min-width: $grid-breakpoint-extra-large) {
+      &:has(.results__result-atom-feed-info:hover),
+      &:has(.results__result-atom-feed-info:focus) {
+        margin-bottom: 0;
+      }
     }
   }
 
