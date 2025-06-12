@@ -10,8 +10,10 @@ def trackable_class_name(text):
     return f"{BASE_TRACKING_CLASS}-{slugify(text)}"
 
 
-@register.inclusion_tag("analytics/trackable_link.html")
-def trackable_link(text, **attrs):
+@register.inclusion_tag("analytics/trackable_link.html", takes_context=True)
+def trackable_link(context, text, **attrs):
+    request = context.get("request")
+
     class_name = trackable_class_name(text)
 
-    return {"text": text, "attrs": attrs, "class_name": class_name}
+    return {"text": text, "attrs": attrs, "class_name": class_name, "current_path": request.path}
