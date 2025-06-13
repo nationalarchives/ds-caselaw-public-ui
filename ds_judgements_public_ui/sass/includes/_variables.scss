@@ -48,6 +48,7 @@ $typography-header-h3-size: $typography-header-h1-size * 0.6;
 $fa_path: "/static/fontawesome-svgs/";
 
 // Images
+$fa_download: "#{$fa_path}download.svg";
 $fa_chevron_right: "#{$fa_path}chevron-right.svg";
 $fa_chevron_right_white: "#{$fa_path}chevron-right-white.svg";
 $fa_chevron_right_aqua_blue: "#{$fa_path}chevron-right-aqua-blue.svg";
@@ -70,9 +71,10 @@ $fa_circle_xmark_solid_white: "#{$fa_path}circle-xmark-solid-white.svg";
 $fa_circle_xmark_solid_link_blue: "#{$fa_path}circle-xmark-solid-link-blue.svg";
 $fa_circle_xmark_solid_link_hover_blue: "#{$fa_path}circle-xmark-solid-link-hover-blue.svg";
 $fa_circle_xmark_light: "#{$fa_path}circle-xmark-light.svg";
-$fa_xmark_solid: "#{$fa_path}xmark-solid.svg";
+$fa_info: "#{$fa_path}info.svg";
+$fa_info_solid: "#{$fa_path}info-solid.svg";
 $fa_magnifying_glass_solid_white: "#{$fa_path}magnifying-glass-solid-white.svg";
-$fa_download: "#{$fa_path}download.svg";
+$fa_xmark_solid: "#{$fa_path}xmark-solid.svg";
 $arrow-left: "/static/images/arrow-left.svg";
 $arrow-right: "/static/images/arrow-right.svg";
 $beta-arrow-right: "/static/images/beta-arrow-right.svg";
