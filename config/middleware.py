@@ -65,21 +65,22 @@ class FeedbackLinkMiddleware:
             "full_url": request.build_absolute_uri(),
         }
 
-        if "query" in response.context_data:
-            params["search_term"] = response.context_data["query"]
+        if response.context_data:
+            if "query" in response.context_data:
+                params["search_term"] = response.context_data["query"]
 
-        if "feedback_survey_type" in response.context_data:
-            params["type"] = response.context_data["feedback_survey_type"]
+            if "feedback_survey_type" in response.context_data:
+                params["type"] = response.context_data["feedback_survey_type"]
 
-        if "feedback_survey_document_uri" in response.context_data:
-            # TODO: update the survey to allow for generalisation to `document`
-            # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
-            params["judgment_uri"] = response.context_data["feedback_survey_document_uri"]
+            if "feedback_survey_document_uri" in response.context_data:
+                # TODO: update the survey to allow for generalisation to `document`
+                # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
+                params["judgment_uri"] = response.context_data["feedback_survey_document_uri"]
 
-        if "feedback_survey_court" in response.context_data:
-            params["court"] = response.context_data["feedback_survey_court"]
+            if "feedback_survey_court" in response.context_data:
+                params["court"] = response.context_data["feedback_survey_court"]
 
-        response.context_data["feedback_survey_link"] = self.BASE_FEEDBACK_URL + "?" + urlencode(params)
+            response.context_data["feedback_survey_link"] = self.BASE_FEEDBACK_URL + "?" + urlencode(params)
         return response
 
 
@@ -91,7 +92,7 @@ class StructuredBreadcrumbsMiddleware:
         return self.get_response(request)
 
     def process_template_response(self, request, response):
-        if "breadcrumbs" in response.context_data:
+        if response.context_data and "breadcrumbs" in response.context_data:
             response.context_data["structured_breadcrumbs"] = [
                 {"text": "Find Case Law", "url": request.build_absolute_uri(reverse("home"))}
             ]

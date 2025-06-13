@@ -8,6 +8,7 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView, TemplateView
 
+from api import urls as api_urls
 from judgments.views.advanced_search import StructuredSearchView, advanced_search
 
 from .converters import SchemaFileConverter
@@ -25,10 +26,10 @@ handler404 = NotFoundView.as_view()
 handler500 = ServerErrorView.as_view()
 handler403 = PermissionDeniedView.as_view()
 
-
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+    path("api/v1/", include((api_urls, "api"), namespace="api")),
     # Pages for viewing court details
     path(
         "courts-and-tribunals/<path:param>",
