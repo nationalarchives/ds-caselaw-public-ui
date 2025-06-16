@@ -211,6 +211,32 @@ We use axe playwright to automatically check for accessibility issues on our pag
 
 To add an automatic accessibility check you can add the `assert_is_accessible` check to your tests, for example:
 
+### Visual Regression Tests
+
+We use `skimage` to perform visual regression testing by comparing screenshots using the Structural Similarity Index (SSIM). Each test compares a newly generated screenshot with a previously stored snapshot in the codebase.
+
+If the structural similarity score drops below an acceptable threshold, the test will fail.
+
+#### What to do when a test fails
+
+1. Check the screenshots located in `e2e_tests/snapshots`:
+
+   - Expected snapshots are prefixed with `_expected`
+   - Actual (newly generated) screenshots are prefixed with `_actual`
+
+2. If the visual changes are intentional and acceptable:
+
+   - Delete the corresponding `_expected` snapshot
+   - Re-run the test to generate a new baseline snapshot
+   - Commit the the changed files
+
+#### Adding visual regression tests for a new page
+
+To add a visual regression test for a new page:
+
+- Use the `assert_matches_snapshot` helper function
+- Run the test once to generate the initial snapshot
+
 ```python
 def test_my_page(page: Page):
     page.goto("/my_page")
