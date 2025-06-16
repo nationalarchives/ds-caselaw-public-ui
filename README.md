@@ -228,6 +228,7 @@ If the structural similarity score drops below an acceptable threshold, the test
 
    - Delete the corresponding `_expected` snapshot
    - Re-run the test to generate a new baseline snapshot
+   - Commit the the changed files
 
 #### Adding visual regression tests for a new page
 
