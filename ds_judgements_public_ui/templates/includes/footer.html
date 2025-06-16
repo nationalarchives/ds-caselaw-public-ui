@@ -6,7 +6,10 @@
     <div class="site-footer__row">
 
       <div class="site-footer__item">
-        <h3>Find Case Law</h3>
+        <h3>
+          {% url 'home' as home_url %}
+          {% trackable_link "Find Case Law" href=home_url %}
+        </h3>
         <p>Delivered by</p>
         {% include "includes/footer_logo.html" %}
       </div>
