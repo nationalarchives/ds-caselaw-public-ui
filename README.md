@@ -401,4 +401,4 @@ The production app is at [https://caselaw.nationalarchives.gov.uk/](https://case
    the IP address if DNS isn't working for you.
 4. If it was working, and you `git pull`ed, and now it isn't, re-run `fab build`.
 5. If it's saying environment variables aren't set (especially after a `git pull`), you might need
-   to add lines to `.env` -- take them from `.env.example`
+   to add lines to `.env` -- take them from `.env.example`.

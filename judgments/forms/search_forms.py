@@ -47,20 +47,34 @@ COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_courts()
 TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_tribunals())
 
 
-class CourtOrTribunalField(forms.MultipleChoiceField):
-    def _get_short_identifiers(self) -> set[str]:
-        all_shorts: set[str] = set()
-        for key, value in self.choices:
-            if isinstance(value, list):
-                all_shorts = all_shorts | set(x[0].partition("/")[0] for x in value)
-        return all_shorts
+def all_valid_courts_and_tribunals() -> set[str]:
+    ALL_CHOICES = COURT_CHOICES | TRIBUNAL_CHOICES
+    ids: set[str] = set()
+    for key, value in ALL_CHOICES.items():
+        # Items in the dictionary are either `"uksc": "Supreme Court"` or
+        # `"Court of Appeal": {"ewca/civ": "Civil"}`. Extract the identifiers.
+        # They may not be nested.
+        if isinstance(value, dict):
+            ids.update(value.keys())
+        elif isinstance(value, str):
+            ids.add(key)
+        else:
+            raise RuntimeError("_get_choices_by_group unexpected shape")
 
+    # Add all short forms of court identifiers (before the `/`)
+    ids.update(set(_id.partition("/")[0] for _id in ids))
+    return ids
+
+
+VALID_COURT_AND_TRIBUNAL_CODES = all_valid_courts_and_tribunals()
+
+
+class CourtOrTribunalField(forms.MultipleChoiceField):
     def validate(self, *args, **kwargs):
-        short_identifiers = self._get_short_identifiers()
         try:
             return super().validate(*args, **kwargs)
         except ValidationError as e:
-            if e.params and e.params.get("value") in short_identifiers:
+            if e.params and e.params.get("value") in VALID_COURT_AND_TRIBUNAL_CODES:
                 return None  # signal that this is an acceptable value
             else:
                 raise
