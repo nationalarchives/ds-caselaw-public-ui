@@ -81,11 +81,11 @@
     width: 100%;
     max-width: 47rem;
     margin: 0 auto;
-  }
 
-  .search-term-component input[type="submit"] {
-    @media (max-width: $grid-breakpoint-medium) {
-      display: none !important;
+    input[type="submit"] {
+      @media (max-width: $grid-breakpoint-medium) {
+        display: none !important;
+      }
     }
   }
 
