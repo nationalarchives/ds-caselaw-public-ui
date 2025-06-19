@@ -9,13 +9,16 @@
         id="analytics-structured-search"
         method="get">
     <div class="structured-search">
-
-      {% include "includes/search/structured_search_form.html" %}
-
+      <div class="structured-search-advanced">
+        <div class="structured-search__container-advanced">
+          {% include "includes/search/structured_search_form.html" %}
+        </div>
+      </div>
       {% if form.errors %}
         <div class="structured-search__container">
           <div class="page-notification--failure">{{ form.errors|error_messages }}</div>
         </div>
+
       {% endif %}
 
       {% include "includes/results_filters_inputs.html" %}
