@@ -16,17 +16,20 @@ def best_pdf(request, document_uri):
     Otherwise fall back and redirect to the weasyprint version."""
     pdf = DocumentPdf(document_uri)
 
-    response = requests.get(pdf.generate_uri())
-    logging.debug("Response %s", response.status_code)
-    if response.status_code == 200:
-        response = HttpResponse(response.content, content_type="application/pdf")
+    external_response = requests.get(pdf.generate_uri())
+    logging.debug("Response %s", external_response.status_code)
+
+    if external_response.status_code == 200:
+        response = HttpResponse(external_response.content, content_type="application/pdf")
 
         response["Content-Disposition"] = f"attachment; filename={document_uri}.pdf"
 
         return response
 
-    if response.status_code != 404:
-        logging.warn(f"Unexpected {response.status_code} error on {document_uri} whilst trying to get_best_pdf")
+    if external_response.status_code != 404:
+        logging.warn(
+            f"Unexpected {external_response.status_code} error on {document_uri} whilst trying to get_best_pdf"
+        )
     # fall back to weasy_pdf
 
     return redirect(
