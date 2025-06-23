@@ -179,6 +179,8 @@
   }
 
   a {
+    @include link;
+
     position: relative;
 
     &.document-navigation-links__link-up {
@@ -262,7 +264,6 @@
     &:visited,
     &:link {
       color: colour-var("link");
-      text-decoration: underline;
 
       &.document-navigation-links__link-left {
         &::before {
@@ -279,8 +280,6 @@
 
     &:hover {
       &.document-navigation-links__link-up {
-        color: colour-var("link");
-
         &::before {
           background-image: url($fa_chevron_up_link_hover_blue);
         }
@@ -296,8 +295,6 @@
     }
 
     &:link:hover {
-      color: colour-var("link");
-
       &.document-navigation-links__link-left {
         &::before {
           background-image: url($fa_chevron_left_link_hover_blue);
