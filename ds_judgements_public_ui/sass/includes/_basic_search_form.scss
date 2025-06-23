@@ -30,6 +30,8 @@
     line-height: $typography-sm-line-height;
 
     input[type="submit"] {
+      @include link;
+
       position: relative;
 
       display: inline-block;
@@ -40,18 +42,11 @@
       font-family: $font-roboto;
       font-size: $typography-md-text-size;
       font-weight: bold;
-      color: colour-var("link");
-      text-decoration: underline;
 
       background: transparent;
 
       &:visited {
         color: colour-var("link");
-      }
-
-      &:hover {
-        color: colour-var("link");
-        text-decoration: none;
       }
     }
 
@@ -121,6 +116,12 @@
     margin: $space-2 $space-4 0 $space-4;
     font-size: $typography-xs-text-size;
     text-align: left;
+
+    a {
+      &:visited {
+        color: colour-var("link");
+      }
+    }
 
     @media (min-width: $grid-breakpoint-medium) {
       margin: $space-1 0 $space-2 0;

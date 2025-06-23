@@ -4,19 +4,12 @@
   background-color: colour-var("contrast-background");
 }
 
-.govuk-header__link--homepage:hover,
-.govuk-header__link--homepage:active {
-  border-bottom: 0.25rem solid colour-var("black");
-}
-
 .govuk-header__navigation-item--active .govuk-header__link,
 .govuk-header__navigation-item--active .govuk-header__link:hover,
 .govuk-header__navigation-item--active .govuk-header__link:visited,
 .govuk-header__navigation-item--active a:link {
-  border-bottom: 0.25rem solid colour-var("accent-brand");
   font-weight: bold !important;
   color: colour-var("accent-brand");
-  text-decoration: none;
 
   &:focus {
     background-color: transparent;
@@ -29,11 +22,7 @@
 }
 
 .govuk-header__link {
-  &:hover {
-    border-bottom: none;
-    color: colour-var("contrast-link");
-    text-decoration: none !important;
-  }
+  @include link;
 
   &:focus {
     @include focus-default;
@@ -46,11 +35,14 @@
 }
 
 .govuk-header__navigation-item .govuk-header__link {
+  @include link;
+
   display: inline-block;
 
   font-size: $typography-xs-text-size;
   font-weight: normal;
   line-height: $typography-md-line-height;
+  color: colour-var("contrast-link");
   text-decoration: underline;
   text-underline-offset: 0.25rem;
   white-space: nowrap;
@@ -73,6 +65,10 @@
     box-shadow: none;
   }
 
+  &:visited {
+    color: colour-var("contrast-link");
+  }
+
   @media only screen and (max-width: $grid-breakpoint-medium) {
     text-decoration: none;
   }
@@ -80,10 +76,6 @@
 
 .govuk-header__menu-button:focus {
   outline: $space-1 solid transparent;
-}
-
-.govuk-header__menu-button:hover {
-  text-decoration: none;
 }
 
 .govuk-header__content {

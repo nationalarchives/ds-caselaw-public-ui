@@ -43,7 +43,7 @@
 
   &:hover {
     color: colour-var("link");
-    text-decoration: none;
+    text-decoration-thickness: 0.1875rem;
   }
 
   &:visited {
@@ -73,13 +73,13 @@
   outline-offset: 2px;
 }
 
-@mixin link-on-dark-bg {
+@mixin contrast-link {
   color: colour-var("contrast-link");
   text-decoration: underline;
 
   &:hover {
     color: colour-var("contrast-link");
-    text-decoration: none;
+    text-decoration-thickness: 0.1875rem;
   }
 
   &:visited {
