@@ -95,7 +95,7 @@ class TestAtomFeed(TestCase):
 
         entry_id = entry.find("id", self.namespaces)
         assert entry_id is not None
-        assert entry_id.text == "https://caselaw.nationalarchives.gov.uk/id/d-a1b2c3"
+        assert entry_id.text == "https://caselaw.nationalarchives.gov.uk/id/tna.bcdfghjk"
 
         entry_published = entry.find("published", self.namespaces)
         assert entry_published is not None

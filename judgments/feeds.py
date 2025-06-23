@@ -6,6 +6,7 @@ from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
 from caselawclient.models.identifiers import Identifier
+from caselawclient.models.identifiers.fclid import FindCaseLawIdentifier
 from caselawclient.responses.search_result import SearchResult
 from caselawclient.search_parameters import SearchParameters
 from django.contrib.syndication.views import Feed
@@ -158,7 +159,17 @@ class JudgmentsFeed(Feed):
         return item.name
 
     def item_guid(self, item) -> str:
-        return "https://caselaw.nationalarchives.gov.uk/id/" + item.uri
+        fclid = item.identifiers.of_type(FindCaseLawIdentifier)
+
+        if not fclid:
+            msg = f"No FindCaseLawIdentifier for search result {item}"
+            raise RuntimeError(msg)
+
+        if len(fclid) > 1:
+            msg = f"Multiple FindCaseLawIdentifiers for search result {item}"
+            raise RuntimeError(msg)
+
+        return "https://caselaw.nationalarchives.gov.uk/id/" + fclid[0].url_slug
 
     def item_link(self, item) -> str:
         return reverse("detail", args=[item.slug])
