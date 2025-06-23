@@ -43,7 +43,7 @@
 
   &:hover {
     color: colour-var("link");
-    text-decoration-thickness: 0.1875rem;
+    text-decoration-thickness: $link-hover-thickness;
   }
 
   &:visited {
@@ -79,7 +79,7 @@
 
   &:hover {
     color: colour-var("contrast-link");
-    text-decoration-thickness: 0.1875rem;
+    text-decoration-thickness: $link-hover-thickness;
   }
 
   &:visited {

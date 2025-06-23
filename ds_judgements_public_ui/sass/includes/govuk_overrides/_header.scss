@@ -9,7 +9,8 @@
 .govuk-header__navigation-item--active .govuk-header__link:visited,
 .govuk-header__navigation-item--active a:link {
   font-weight: bold !important;
-  color: colour-var("accent-brand");
+  color: colour-var("accent-brand") !important;
+  text-decoration-thickness: $link-hover-thickness;
 
   &:focus {
     background-color: transparent;
