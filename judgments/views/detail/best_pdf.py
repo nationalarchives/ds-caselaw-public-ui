@@ -10,7 +10,7 @@ from judgments.models.document_pdf import DocumentPdf
 
 def best_pdf(request, document_uri):
     """
-    Response for the legacy data.pdf endpoint, used by data reusers
+    Response for the data.pdf endpoint, used by data reusers
 
     If there's a DOCX-derived PDF in the S3 bucket, return that.
     Otherwise fall back and redirect to the weasyprint version."""
