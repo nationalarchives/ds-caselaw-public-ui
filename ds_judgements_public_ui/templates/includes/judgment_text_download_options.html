@@ -3,7 +3,7 @@
   <h2 id="judgment-download-options-header" class="judgment-download-options__header">Document download options</h2>
   <div class="judgment-download-options__options-list">
     <div class="judgment-download-options__download-option">
-      <a href="{{ pdf_uri }}"
+      <a href="{% formatted_document_uri document.slug 'pdf' %}"
          class="btn"
          aria-label="Download {{ document|get_title_to_display_in_html }} as a PDF{% if pdf_size %} ({{ pdf_size }}){% endif %}"
          download="">
