@@ -24,12 +24,13 @@
   }
 
   &__heading {
-    display: none;
+    @include visually_hidden;
+
     min-width: 125px;
     font-weight: $typography-bold-font-weight;
 
     @media (max-width: $grid-breakpoint-large) {
-      display: inline-block;
+      @include reset_visually_hidden;
     }
   }
 
