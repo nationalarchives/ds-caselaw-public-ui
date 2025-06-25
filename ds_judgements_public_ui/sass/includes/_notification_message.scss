@@ -17,15 +17,15 @@
   &--success {
     @include page-notification;
 
-    color: brand-colour("green");
     border-color: brand-colour("green");
+    color: brand-colour("green");
   }
 
   &--failure {
     @include page-notification;
 
-    color: colour-var("form-error-text");
     border-color: colour-var("form-error-border");
+    color: colour-var("form-error-text");
   }
 }
 
@@ -39,14 +39,14 @@
   &--success {
     @include context-notification;
 
-    color: brand-colour("green");
     border-color: brand-colour("green");
+    color: brand-colour("green");
   }
 
   &--failure {
     @include context-notification;
 
-    color: colour-var("form-error-text");
     border-color: colour-var("form-error-border");
+    color: colour-var("form-error-text");
   }
 }

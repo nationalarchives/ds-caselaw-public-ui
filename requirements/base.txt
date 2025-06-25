@@ -18,6 +18,9 @@ django-formtools~=2.5.1
 crispy-forms-gds==2.0.1
 markdown-it-py~=3.0.0
 mdit-py-plugins~=0.4.0
+djangorestframework~=3.16.0
+djangorestframework-xml~=2.0.0
+drf-spectacular~=0.28.0
 
 # Type stubs
 mypy-boto3-s3==1.38.39
