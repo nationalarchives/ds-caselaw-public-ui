@@ -60,9 +60,7 @@
     }
 
     a {
-      @include link;
-
-      color: colour-var("contrast-link");
+      @include contrast-link;
 
       &:visited {
         color: colour-var("contrast-link");
