@@ -220,9 +220,6 @@
     }
 
     &.document-navigation-links__link-left {
-      color: colour-var("grey");
-      text-decoration: none;
-
       &::before {
         content: " ";
 
@@ -241,9 +238,6 @@
     }
 
     &.document-navigation-links__link-right {
-      color: colour-var("grey");
-      text-decoration: none;
-
       &::after {
         content: " ";
 

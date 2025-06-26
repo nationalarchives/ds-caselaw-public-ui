@@ -52,13 +52,6 @@
 
     h3 {
       margin: 0;
-
-      a {
-        @media (min-width: $grid-breakpoint-medium) {
-          color: colour-var("font-base");
-          text-decoration: none;
-        }
-      }
     }
 
     ul {

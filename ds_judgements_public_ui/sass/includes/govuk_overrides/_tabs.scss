@@ -19,7 +19,7 @@
     &__tab {
       &:focus {
         text-decoration: underline;
-        text-decoration-thickness: 3px;
+        text-decoration-thickness: $link-hover-thickness;
         background-color: transparent;
         box-shadow: none;
       }

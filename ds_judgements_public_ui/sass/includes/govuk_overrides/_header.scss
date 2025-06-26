@@ -36,14 +36,13 @@
 }
 
 .govuk-header__navigation-item .govuk-header__link {
-  @include link;
+  @include contrast-link;
 
   display: inline-block;
 
   font-size: $typography-xs-text-size;
   font-weight: normal;
   line-height: $typography-md-line-height;
-  color: colour-var("contrast-link");
   text-decoration: underline;
   text-underline-offset: 0.25rem;
   white-space: nowrap;
@@ -68,10 +67,6 @@
 
   &:visited {
     color: colour-var("contrast-link");
-  }
-
-  @media only screen and (max-width: $grid-breakpoint-medium) {
-    text-decoration: none;
   }
 }
 
@@ -112,6 +107,8 @@ a.govuk-header__logo {
 }
 
 .govuk-frontend-supported .govuk-header__menu-button {
+  @include contrast-link;
+
   right: $space-12;
   padding-top: $space-1;
   font-size: $typography-md-text-size;
