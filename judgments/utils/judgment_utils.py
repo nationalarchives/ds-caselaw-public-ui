@@ -1,4 +1,5 @@
 from typing import Optional
+from urllib.parse import quote
 
 from caselawclient.errors import DocumentNotFoundError, MarklogicNotPermittedError
 from caselawclient.models.documents import Document, DocumentURIString
@@ -22,3 +23,8 @@ def get_published_document_by_uri(
     if not document.is_published:
         raise Http404(f"Document {document_uri} is not available")
     return document
+
+
+def get_document_download_filename(document_uri: DocumentURIString) -> str:
+    document = get_published_document_by_uri(document_uri)
+    return quote(f"{document.body.name}-{document.best_human_identifier.value}")

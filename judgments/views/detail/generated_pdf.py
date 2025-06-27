@@ -7,9 +7,7 @@ from django.conf import settings
 from django.views.generic import TemplateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
-from judgments.utils import (
-    get_published_document_by_uri,
-)
+from judgments.utils import get_document_download_filename, get_published_document_by_uri
 
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
@@ -25,10 +23,10 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         document_uri = DocumentURIString(kwargs["document_uri"])
-
+        filename = get_document_download_filename(document_uri)
         document = get_published_document_by_uri(document_uri)
 
-        self.pdf_filename = f"{document.uri}.pdf"
+        self.pdf_filename = f"{filename}.pdf"
 
         context["document"] = document.content_as_html()
 
