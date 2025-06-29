@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 
-from judgments.models.document_pdf import DocumentPdf
+from judgments.models.document_file import DocumentPdf
 
 
 def best_pdf(request, document_uri):
