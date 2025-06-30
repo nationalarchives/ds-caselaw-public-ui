@@ -56,7 +56,7 @@ mark {
   background: color-mix(in srgb, colour-var("accent-brand") 50%, transparent);
 
   &.current {
-    border-top: 3px solid colour-var("accent-brand");
+    background: colour-var("accent-brand");
   }
 }
 
