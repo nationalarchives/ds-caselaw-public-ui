@@ -1,5 +1,6 @@
 .results {
   min-height: 60rem;
+  margin-bottom: $space-8;
 
   h1 {
     @include sr-only;
