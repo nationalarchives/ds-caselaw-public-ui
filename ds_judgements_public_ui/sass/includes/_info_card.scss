@@ -17,21 +17,12 @@
 
   &:hover {
     background-color: colour-var("accent-background");
-
-    h3 {
-      text-decoration: none;
-    }
   }
 
   h3 {
-    margin: 0;
-    color: colour-var("link");
-    text-decoration: underline;
-    text-decoration-color: colour-var("link");
+    @include link;
 
-    &:hover {
-      color: colour-var("link-hover");
-    }
+    margin: 0;
   }
 
   p {
