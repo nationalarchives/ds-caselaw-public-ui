@@ -1,5 +1,6 @@
 .results {
   min-height: 60rem;
+  margin-bottom: $space-8;
 
   h1 {
     @include sr-only;
@@ -15,27 +16,86 @@
     }
   }
 
-  &__result-atom-feed-button {
+  &__result-atom-feed-button-container {
     display: flex;
     flex-direction: column;
-    padding-right: $space-6;
 
-    label {
+    span {
       font-family: $font-roboto;
-      font-size: $typography-md-text-size;
+      font-size: $typography-sm-text-size;
     }
 
     a {
       display: flex;
       gap: $space-1;
       align-items: center;
-
       height: 33px;
-      margin-right: auto;
     }
 
-    @media (min-width: $grid-breakpoint-large) {
+    @media (min-width: $grid-breakpoint-extra-large) {
       gap: $space-3;
+      padding-right: $space-6;
+    }
+  }
+
+  &__result-atom-feed-button {
+    position: relative;
+    display: flex;
+    gap: $space-2;
+    align-items: center;
+
+    &:has(.results__result-atom-feed-info:hover),
+    &:has(.results__result-atom-feed-info:focus) {
+      margin-bottom: 70px;
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      margin-right: auto;
+
+      &:has(.results__result-atom-feed-info:hover),
+      &:has(.results__result-atom-feed-info:focus) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__result-atom-feed-info {
+    &:hover,
+    &:focus {
+      .results__result-atom-feed-info-text {
+        display: block;
+      }
+
+      .results__result-atom-feed-info-icon {
+        background-image: url($fa_info_solid);
+      }
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      position: relative;
+    }
+  }
+
+  &__result-atom-feed-info-icon {
+    width: 24px;
+    height: 24px;
+    background-image: url($fa_info);
+    background-repeat: no-repeat;
+  }
+
+  &__result-atom-feed-info-text {
+    position: absolute;
+    top: 40px;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      top: 30px;
+      left: -107px;
+      width: 164px;
     }
   }
 
@@ -69,11 +129,5 @@
   fieldset {
     padding: 0;
     border: none;
-  }
-
-  &__list-layout-container {
-    .govuk-warning-text {
-      margin-bottom: $space-8;
-    }
   }
 }

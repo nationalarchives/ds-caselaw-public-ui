@@ -141,7 +141,7 @@
   }
 
   a {
-    @include link-on-dark-bg;
+    @include contrast-link;
 
     &:focus {
       color: colour-var("accent-button-text");

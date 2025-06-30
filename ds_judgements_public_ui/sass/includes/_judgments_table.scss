@@ -13,12 +13,7 @@
 
   &__matches {
     p {
-      display: inline;
-
-      &:not(:last-child)::after {
-        content: " | ";
-        color: colour-var("font-base");
-      }
+      line-height: $typography-lg-line-height;
     }
   }
 

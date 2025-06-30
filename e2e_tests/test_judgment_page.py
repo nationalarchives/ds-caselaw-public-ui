@@ -16,9 +16,7 @@ documents = [
 
 
 def get_download_pdf_url(document_uri):
-    file_name = document_uri.strip("/").replace("/", "_")
-
-    return f"{document_uri}/{file_name}.pdf"
+    return f"{document_uri}/data.pdf"
 
 
 # def assert_download_options_link(page):

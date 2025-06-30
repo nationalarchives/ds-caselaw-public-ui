@@ -142,6 +142,7 @@ def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
         "show_first_page_divider": show_first_page_divider,
         "show_last_page": show_last_page,
         "show_last_page_divider": show_last_page_divider,
+        "show_pagination": number_of_pages > 1,
         "current_page": current_page,
         "has_next_page": current_page < number_of_pages,
         "next_page": current_page + 1,

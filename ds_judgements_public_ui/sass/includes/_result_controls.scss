@@ -1,6 +1,5 @@
 .result-controls {
   display: inline-block;
-  min-width: 338px;
   text-align: left;
 
   form {
@@ -27,7 +26,7 @@
   &__label {
     display: block;
     font-family: $font-roboto;
-    font-size: $typography-md-text-size;
+    font-size: $typography-sm-text-size;
   }
 
   &__select {
@@ -39,9 +38,10 @@
     min-width: auto;
     max-height: 32px;
     margin: 0;
-    padding: $space-1 $space-6 $space-1 $space-2;
+    padding: 0 $space-6 $space-1 $space-2;
 
-    font-size: $typography-xs-text-size;
+    font-family: $font-roboto;
+    font-size: $typography-sm-text-size;
   }
 
   &__button {

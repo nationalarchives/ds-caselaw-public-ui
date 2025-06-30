@@ -1,8 +1,19 @@
 {% load static %}
-<div class="results__result-atom-feed-button">
-  <label>Subscribe to these results</label>
-  <a href="{% url 'search-feed' %}?{{ query_param_string }}" data-copy-link-tooltip="Copy link and paste into your Atom feed app" class="copy-to-clipboard-link">
-    <img src="{% static "fontawesome-svgs/rss.svg" %}" width="20" height="20" alt=""/>
-    Atom feed
-  </a>
+<div class="results__result-atom-feed-button-container">
+  <span>Subscribe to these results</span>
+  <div class="results__result-atom-feed-button">
+    <a href="{% url 'search-feed' %}?{{ query_param_string }}">
+      <img src="{% static "fontawesome-svgs/rss.svg" %}" width="20" height="20" alt=""/>
+      Atom feed
+    </a>
+
+    <div class="results__result-atom-feed-info" tabindex="0">
+      <div class="results__result-atom-feed-info-icon"></div>
+      <div class="results__result-atom-feed-info-text">
+        <div class="home-office-alert home-office-alert--sm">
+          This Atom feed is a data format that provides the latest results for this search query.
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

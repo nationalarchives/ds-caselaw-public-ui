@@ -95,8 +95,7 @@ class TestJudgmentPdfLinkText(TestCaseWithMockAPI):
         response = self.client.get("/test/2023/123")
         decoded_response = response.content.decode("utf-8")
 
-        self.assertIn("https://example.com/test/2023/123/test_2023_123.pdf", decoded_response)
-        self.assertNotIn("data.pdf", decoded_response)
+        self.assertIn("/tna.tn4t35ts/data.pdf", decoded_response)
         self.assertIn(f"({filesizeformat(1234)})", decoded_response)
 
     @patch("judgments.views.detail.detail_html.DocumentPdf")
@@ -111,7 +110,7 @@ class TestJudgmentPdfLinkText(TestCaseWithMockAPI):
         decoded_response = response.content.decode("utf-8")
 
         self.assertNotIn("test_2023_123.pdf", decoded_response)
-        self.assertIn("/test/2023/123/data.pdf", decoded_response)
+        self.assertIn("/tna.tn4t35ts/data.pdf", decoded_response)
 
 
 class TestDocumentDownloadOptions(MockAPI):
@@ -153,7 +152,7 @@ class TestDocumentDownloadOptions(MockAPI):
             <h2 id="judgment-download-options-header" class="judgment-download-options__header">Document download options</h2>
             <div class="judgment-download-options__options-list">
                 <div class="judgment-download-options__download-option">
-                    <a href="http://example.com/test.pdf" class="btn" aria-label="Download {document_title} as a PDF ({filesizeformat(112)})" download="">
+                    <a href="/tna.tn4t35ts/data.pdf" class="btn" aria-label="Download {document_title} as a PDF ({filesizeformat(112)})" download="">
                         Download PDF <span class="btn__label">({filesizeformat(112)})</span>
                     </a>
                     <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>

@@ -154,7 +154,7 @@ class TestSearchResults(TestCase):
         AND it should contain facet info
 
         The expected applied filters HTML:
-        - Includes a div with class `govuk-warning-text` and correct warning text
+        - Includes a div with class `home-office-alert` and correct warning text
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseWithFacets()
 
@@ -164,7 +164,7 @@ class TestSearchResults(TestCase):
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing matching results from 2010.  Find out what records are available on this service.
         """
-        xpath_query = "//div[@class='govuk-warning-text__text']"
+        xpath_query = "//div[@class='home-office-alert']"
 
         assert_response_contains_text(response, expected_text, xpath_query)
 
@@ -190,7 +190,7 @@ class TestSearchResults(TestCase):
                 2011 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
         """
-        xpath_query = "//div[@class='govuk-warning-text__text']"
+        xpath_query = "//div[@class='home-office-alert']"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.advanced_search.api_client")
@@ -214,7 +214,7 @@ class TestSearchResults(TestCase):
         expected_text = """
                 the date of the oldest record
         """
-        xpath_query = "//div[@class='govuk-warning-text__text']"
+        xpath_query = "//div[@class='home-office-alert']"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.advanced_search.api_client")
@@ -240,7 +240,7 @@ class TestSearchResults(TestCase):
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
         """
-        xpath_query = "//div[@class='govuk-warning-text__text']"
+        xpath_query = "//div[@class='home-office-alert']"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.advanced_search.api_client")
@@ -520,6 +520,24 @@ class TestSearchValidation(TestCase):
     def test_real_short_code_tribunal(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?tribunal=ukut")
+        root = lxml.html.fromstring(response.content)
+        failure = root.xpath('//*[@class="page-notification--failure"]')
+        assert not failure
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_real_short_code_tribunal_as_court(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?court=ukut")
+        root = lxml.html.fromstring(response.content)
+        failure = root.xpath('//*[@class="page-notification--failure"]')
+        assert not failure
+
+    @patch("judgments.views.advanced_search.api_client")
+    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    def test_real_short_code_court_as_tribunal(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?tribunal=uksc")
         root = lxml.html.fromstring(response.content)
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert not failure

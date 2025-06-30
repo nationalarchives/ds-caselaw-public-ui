@@ -88,15 +88,9 @@
   }
 
   &__heading {
-    margin: 0;
-    color: colour-var("link");
-    text-decoration: underline;
-    text-decoration-color: colour-var("link");
+    @include link;
 
-    &:hover {
-      color: brand-colour("navy");
-      text-decoration: none;
-    }
+    margin: 0;
 
     @media (max-width: $grid-breakpoint-medium) {
       text-wrap: nowrap;
@@ -107,11 +101,6 @@
     color: colour-var("link-visited");
     text-decoration-color: colour-var("link-visited");
     text-decoration-line: underline;
-  }
-
-  &__heading:hover {
-    color: colour-var("link");
-    text-decoration: none;
   }
 
   &__body-text {

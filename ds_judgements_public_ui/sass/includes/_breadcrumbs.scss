@@ -60,7 +60,13 @@
     }
 
     a {
-      @include link-on-dark-bg;
+      @include link;
+
+      color: colour-var("contrast-link");
+
+      &:visited {
+        color: colour-var("contrast-link");
+      }
     }
   }
 

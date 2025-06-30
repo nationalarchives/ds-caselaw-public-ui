@@ -6,12 +6,15 @@
   $home-office-alert-success-background-colour: #c6ece9;
   $home-office-alert-success-border-colour: #28a197;
 
+  box-sizing: border-box;
   margin-top: $space-5;
   margin-bottom: $space-5;
   padding: $space-4;
   border-left: 10px solid $home-office-alert-border-colour;
 
   font-size: $typography-md-text-size;
+  line-height: $typography-lg-line-height;
+  color: colour-var("font-base");
 
   background-color: $home-office-alert-background-colour;
 
@@ -34,6 +37,12 @@
   &--success {
     border-color: $home-office-alert-success-border-colour;
     background-color: $home-office-alert-success-background-colour;
+  }
+
+  &--sm {
+    padding: $space-2;
+    border-width: 5px;
+    font-size: $typography-xs-text-size;
   }
 
   &__heading {

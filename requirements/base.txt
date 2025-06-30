@@ -4,13 +4,13 @@ whitenoise==6.9.0  # https://github.com/evansd/whitenoise
 
 # Django
 # ------------------------------------------------------------------------------
-django==5.2.2  # https://www.djangoproject.com/
+django==5.2.3  # https://www.djangoproject.com/
 django-environ==0.12.0 # https://github.com/joke2k/django-environ
 django-model-utils==5.0.0  # https://github.com/jazzband/django-model-utils
 requests~=2.32.2
 wsgi-basic-auth~=1.1.0
 ds-caselaw-marklogic-api-client==37.4.0
-ds-caselaw-utils==2.4.6
+ds-caselaw-utils==2.4.7
 rollbar
 django-weasyprint==2.4.0
 django-waffle==4.2.0  # https://github.com/django-waffle/django-waffle
@@ -20,5 +20,5 @@ markdown-it-py~=3.0.0
 mdit-py-plugins~=0.4.0
 
 # Type stubs
-mypy-boto3-s3==1.38.26
+mypy-boto3-s3==1.38.44
 mypy-boto3-sns==1.38.0
