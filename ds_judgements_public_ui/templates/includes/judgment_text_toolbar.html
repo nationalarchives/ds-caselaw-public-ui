@@ -7,7 +7,7 @@
     {% endif %}
     <h1 id="judgment-toolbar-title" class="judgment-toolbar__title">{{ document|get_title_to_display_in_html }}</h1>
     {% if document.best_human_identifier %}
-      <p class="judgment-toolbar__reference"><span class="visually-hidden">Neutral citation: </span>{{ document.best_human_identifier.value }}</p>
+      <p class="judgment-toolbar__reference"><span class="visually-hidden">{{ document.best_human_identifier.schema.name }}: </span>{{ document.best_human_identifier.value }}</p>
     {% endif %}
     <div class="judgment-toolbar__actions">
       {% if linked_document_uri %}
