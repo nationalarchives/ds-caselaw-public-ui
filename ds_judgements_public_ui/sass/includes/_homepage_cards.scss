@@ -97,12 +97,6 @@
     }
   }
 
-  &__heading:visited {
-    color: colour-var("link-visited");
-    text-decoration-color: colour-var("link-visited");
-    text-decoration-line: underline;
-  }
-
   &__body-text {
     margin: 0;
 

@@ -21,31 +21,10 @@
     }
   }
 
-  &__more-info {
-    position: relative;
-
-    padding: 0 0 $space-2;
-    border: 0;
-
-    font-family: $font-roboto;
-    font-size: 1rem;
-    font-weight: $typography-normal-font-weight;
-
-    a {
-      display: inline-block;
-
-      margin: $space-1 0;
-      padding: $space-1 0;
-      border-bottom: 0.125rem solid colour-var("accent-link");
-
-      color: colour-var("accent-link");
-      text-decoration: none;
-    }
-  }
-
   &__more-info-footer {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    padding: $space-8 0;
   }
 }
