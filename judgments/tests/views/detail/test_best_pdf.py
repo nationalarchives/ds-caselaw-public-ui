@@ -14,18 +14,23 @@ class BestPdfViewTest(TestCase):
         self.document_uri = "test/2025/123"
         self.mock_pdf_uri = "http://mock-s3-url.com/example-document.pdf"
 
+    @patch("judgments.views.detail.best_pdf.get_document_download_filename")
     @patch.object(DocumentPdf, "generate_uri")
     @patch("requests.get")
-    def test_returns_pdf_when_found(self, mock_get, mock_generate_uri):
+    def test_returns_pdf_when_found(self, mock_get, mock_generate_uri, mock_get_filename):
         mock_generate_uri.return_value = self.mock_pdf_uri
         mock_get.return_value = Mock(status_code=200, content=b"%PDF-1.4 binary data")
+        mock_get_filename.return_value = "some_download_filename"
 
         request = self.factory.get(f"/data/{self.document_uri}.pdf")
         response = best_pdf(request, self.document_uri)
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "application/pdf")
-        self.assertEqual(response["Content-Disposition"], f"attachment; filename={self.document_uri}.pdf")
+        self.assertEqual(
+            response["Content-Disposition"],
+            "attachment; filename=\"some_download_filename.pdf\"; filename*=UTF-8''some_download_filename.pdf",
+        )
         self.assertIn(b"%PDF-1.4", response.content)
 
     @patch.object(DocumentPdf, "generate_uri")

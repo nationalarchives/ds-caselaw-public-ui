@@ -20,6 +20,7 @@ def best_pdf(request, document_uri):
     pdf = DocumentPdf(document_uri)
 
     external_response = requests.get(pdf.generate_uri())
+
     logging.debug("Response %s", external_response.status_code)
 
     if external_response.status_code == 200:
