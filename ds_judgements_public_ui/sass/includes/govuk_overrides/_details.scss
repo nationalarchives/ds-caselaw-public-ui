@@ -25,6 +25,7 @@
   @include link;
 
   padding-left: $space-6;
+  font-size: $typography-sm-text-size;
 
   &::before {
     top: 2px;
@@ -36,6 +37,10 @@
 
     @include focus-default;
   }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    font-size: $typography-md-text-size;
+  }
 }
 
 .govuk-details__summary-text {
@@ -46,5 +51,9 @@
 .govuk-details__text {
   padding: $space-4;
   border-left: none;
-  font-size: $typography-md-text-size;
+  font-size: $typography-sm-text-size;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    font-size: $typography-md-text-size;
+  }
 }
