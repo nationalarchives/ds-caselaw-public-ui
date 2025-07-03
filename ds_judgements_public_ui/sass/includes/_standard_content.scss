@@ -12,6 +12,7 @@
 
     font-size: $typography-md-text-size;
     line-height: $typography-xl-line-height;
+    word-wrap: break-word;
 
     @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
