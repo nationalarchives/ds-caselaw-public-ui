@@ -22,6 +22,12 @@
   }
 }
 
+.govuk-header__navigation-item {
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    border-top: 1px solid colour-var("accent-background-light");
+  }
+}
+
 .govuk-header__link {
   @include link;
 
@@ -40,7 +46,7 @@
 
   display: inline-block;
 
-  font-size: $typography-xs-text-size;
+  font-size: $typography-sm-text-size;
   font-weight: normal;
   line-height: $typography-md-line-height;
   text-decoration: underline;
@@ -81,7 +87,7 @@
 
   @media only screen and (max-width: $grid-breakpoint-medium) {
     width: 100%;
-    margin-top: 0;
+    margin-top: $space-6;
   }
 }
 
@@ -107,8 +113,6 @@ a.govuk-header__logo {
 }
 
 .govuk-frontend-supported .govuk-header__menu-button {
-  @include contrast-link;
-
   right: $space-12;
   padding-top: $space-1;
   font-size: $typography-md-text-size;
@@ -119,6 +123,16 @@ a.govuk-header__logo {
     outline: none;
     box-shadow: none;
   }
+
+  &:hover {
+    text-decoration: solid underline 3px;
+  }
+
+  @media only screen and (max-width: $grid-breakpoint-small) {
+    right: $space-6;
+  }
+
+  @include contrast-link;
 }
 
 .govuk-header__navigation {
