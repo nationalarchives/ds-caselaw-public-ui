@@ -224,3 +224,18 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
             {"text": "Understanding judgments and decisions"},
         ]
         return context
+
+
+class UserResearchView(TemplateViewWithContext):
+    template_name = "pages/user_research.html"
+    page_title = "User research"
+    page_canonical_url_name = "user_research"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_description"] = ""
+        context["breadcrumbs"] = [
+            {"text": "User research"},
+        ]
+        return context
