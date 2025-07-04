@@ -11,9 +11,16 @@ export const getTooltipPositionClass = function () {
 export const createAnchorElement = function (id, content) {
     const element = document.createElement("a");
     const text = document.createTextNode(content);
+    const label = document.createElement("span");
+
+    label.textContent = "Paragraph ";
+
+    label.classList.add("visually-hidden");
 
     element.href = "#" + id;
     element.classList.add("judgment-body__anchor-link");
+
+    element.appendChild(label);
 
     element.appendChild(text);
 
