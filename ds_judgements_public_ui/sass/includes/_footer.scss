@@ -7,8 +7,18 @@
   h2 {
     margin: 0;
     padding-top: 0;
-    font-size: $typography-lg-text-size;
+
+    font-size: $typography-xl-text-size;
     font-weight: $typography-normal-font-weight;
+    text-align: center;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      font-size: $typography-lg-text-size;
+    }
+  }
+
+  .button-secondary {
+    margin: 0;
   }
 
   &__container {
@@ -16,10 +26,11 @@
 
     display: flex;
     flex-direction: column;
+    gap: $space-6;
     align-items: center;
 
     margin-top: 0;
-    padding: $space-8 0;
+    padding: $space-10 0;
   }
 }
 
