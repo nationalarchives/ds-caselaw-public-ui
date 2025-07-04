@@ -1,4 +1,4 @@
-from .judgment_utils import get_published_document_by_uri
+from .judgment_utils import get_document_download_filename, get_published_document_by_uri
 from .search_utils import (
     ALL_COURT_CODES,
     get_minimum_warning_year,
@@ -36,6 +36,7 @@ __all__ = [
     "formatted_document_uri",
     "get_document_by_uri",
     "get_published_document_by_uri",
+    "get_document_download_filename",
     "get_minimum_warning_year",
     "get_press_summaries_for_document_uri",
     "has_filters",

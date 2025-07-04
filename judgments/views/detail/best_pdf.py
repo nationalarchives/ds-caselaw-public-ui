@@ -6,6 +6,9 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 from judgments.models.document_pdf import DocumentPdf
+from judgments.utils import (
+    get_document_download_filename,
+)
 
 
 def best_pdf(request, document_uri):
@@ -17,12 +20,15 @@ def best_pdf(request, document_uri):
     pdf = DocumentPdf(document_uri)
 
     external_response = requests.get(pdf.generate_uri())
+
     logging.debug("Response %s", external_response.status_code)
 
     if external_response.status_code == 200:
         response = HttpResponse(external_response.content, content_type="application/pdf")
 
-        response["Content-Disposition"] = f"attachment; filename={document_uri}.pdf"
+        filename = get_document_download_filename(document_uri)
+
+        response["Content-Disposition"] = f"attachment; filename=\"{filename}.pdf\"; filename*=UTF-8''{filename}.pdf"
 
         return response
 

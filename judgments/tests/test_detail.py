@@ -24,9 +24,11 @@ from judgments.views.detail import (
 
 
 class TestWeasyWithoutCSS(TestCaseWithMockAPI):
+    @patch("judgments.views.detail.generated_pdf.get_document_download_filename")
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.get_published_document_by_uri")
-    def test_weasy_without_css_runs_in_ci(self, mock_get_document_by_uri):
+    def test_weasy_without_css_runs_in_ci(self, mock_get_document_by_uri, mock_get_filename):
+        mock_get_filename.return_value = "some_download_filename"
         judgment = JudgmentFactory.build(is_published=True)
         mock_get_document_by_uri.return_value = judgment
         response = self.client.get("/eat/2023/1/generated.pdf")
