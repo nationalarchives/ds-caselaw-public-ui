@@ -39,7 +39,8 @@
 }
 
 .govuk-details__summary-text {
-  text-decoration: none;
+  text-decoration-thickness: unset;
+  text-underline-offset: unset;
 }
 
 .govuk-details__text {

@@ -16,42 +16,46 @@
 
       <div class="site-footer__item">
         <h3>
-          {% url 'about_this_service' as search_url %}
-          {% trackable_link "About" href=search_url %}
+          {% url 'about_this_service' as about_this_service_url %}
+          {% trackable_link "About" href=about_this_service_url %}
         </h3>
         <ul>
           <li>
-            {% url 'courts_and_tribunals' as search_url %}
-            {% trackable_link "Courts and tribunals in Find Case Law" href=search_url %}
+            {% url 'courts_and_tribunals' as courts_and_tribunals_url %}
+            {% trackable_link "Courts and tribunals in Find Case Law" href=courts_and_tribunals_url %}
           </li>
           <li>
-            {% url 'terms_and_policies' as search_url %}
-            {% trackable_link "Terms and policies" href=search_url %}
+            {% url 'terms_and_policies' as terms_and_policies_url %}
+            {% trackable_link "Terms and policies" href=terms_and_policies_url %}
           </li>
           <li>
-            {% url 'publishing_policy' as search_url %}
-            {% trackable_link "Publishing policy" href=search_url %}
+            {% url 'publishing_policy' as publishing_policy_url %}
+            {% trackable_link "Publishing policy" href=publishing_policy_url %}
+          </li>
+          <li>
+            {% url 'user_research' as user_research_url %}
+            {% trackable_link "Help us improve this service" href=user_research_url %}
           </li>
         </ul>
       </div>
 
       <div class="site-footer__item">
         <h3>
-          {% url 'help_and_guidance' as search_url %}
-          {% trackable_link "Help and guidance" href=search_url %}
+          {% url 'help_and_guidance' as help_and_guidance_url %}
+          {% trackable_link "Help and guidance" href=help_and_guidance_url %}
         </h3>
         <ul>
           <li>
-            {% url 'how_to_search_find_case_law' as search_url %}
-            {% trackable_link "How to search" href=search_url %}
+            {% url 'how_to_search_find_case_law' as how_to_search_find_case_law_url %}
+            {% trackable_link "How to search" href=how_to_search_find_case_law_url %}
           </li>
           <li>
-            {% url 'understanding_judgments_and_decisions' as search_url %}
-            {% trackable_link "Understanding judgments and decisions" href=search_url %}
+            {% url 'understanding_judgments_and_decisions' as understanding_judgments_and_decisions_url %}
+            {% trackable_link "Understanding judgments and decisions" href=understanding_judgments_and_decisions_url %}
           </li>
           <li>
-            {% url 'contact_us' as search_url %}
-            {% trackable_link "Contact us" href=search_url %}
+            {% url 'contact_us' as contact_us_url %}
+            {% trackable_link "Contact us" href=contact_us_url %}
           </li>
         </ul>
       </div>
@@ -72,7 +76,8 @@
           </p>
         </div>
         <p>
-          For computational analysis, which is not allowed under the OJL <a href="{% url "transactional-licence-form" %}">apply for a license</a>.</p>
+          {% url 'transactional-licence-form' as transactional_licence_form_url %}
+          For computational analysis, which is not allowed under the OJL {% trackable_link "apply for a license" href=transactional_licence_form_url %}.</p>
       </div>
 
     </div>
@@ -82,12 +87,12 @@
         <h3>Legal</h3>
         <ul class="site-footer__horizontal-links">
           <li>
-            {% url 'accessibility_statement' as search_url %}
-            {% trackable_link "Accessibility statement" href=search_url %}
+            {% url 'accessibility_statement' as accessibility_statement_url %}
+            {% trackable_link "Accessibility statement" href=accessibility_statement_url %}
           </li>
           <li>
-            {% url 'privacy_notice' as search_url %}
-            {% trackable_link "Privacy notice" href=search_url %}
+            {% url 'privacy_notice' as privacy_notice_url %}
+            {% trackable_link "Privacy notice" href=privacy_notice_url %}
           </li>
           <li><a href="https://www.nationalarchives.gov.uk/legal/cookies/">Cookies</a></li>
         </ul>

@@ -1,15 +1,11 @@
-{% load waffle_tags %}
-
-{% switch pre_footer %}
-  <section class="pre-footer" aria-labelledby="pre-footer-heading">
-    <div class="pre-footer__container">
-      <h2 id="pre-footer-heading">Help us improve this service</h2>
-      <a target="_blank"
-         role="button"
-         draggable="false"
-         rel="noreferrer noopener"
-         class="button-secondary"
-         href="{{ feedback_survey_link }}">Complete short survey</a>
-    </div>
-  </section>
-{% endswitch %}
+<section class="pre-footer" aria-labelledby="pre-footer-heading">
+  <div class="pre-footer__container">
+    <h2 id="pre-footer-heading">Take part in user research to improve Find Case Law</h2>
+    <a target="_blank"
+       role="button"
+       draggable="false"
+       rel="noreferrer noopener"
+       class="button-secondary"
+       href="{{ feedback_survey_link }}">Complete short survey</a>
+  </div>
+</section>

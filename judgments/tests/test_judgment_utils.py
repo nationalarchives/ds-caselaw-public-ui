@@ -1,74 +1,29 @@
 from unittest.mock import Mock, patch
+from urllib.parse import quote
 
-import pytest
-from caselawclient.errors import DocumentNotFoundError, MarklogicNotPermittedError
-from caselawclient.factories import JudgmentFactory
 from caselawclient.models.documents import DocumentURIString
-from django.http import Http404
 from django.test import TestCase
 
-from judgments.utils import (
-    get_published_document_by_uri,
-)
+from judgments.utils import get_document_download_filename
 
 
-class TestGetPublishedDocument(TestCase):
-    @patch("judgments.utils.judgment_utils.get_document_by_uri")
-    def test_judgment_is_published(self, mock_get_document_by_uri):
-        judgment = JudgmentFactory.build(is_published=True)
-        mock_get_document_by_uri.return_value = judgment
-        document_uri = DocumentURIString("2022/eat/1")
-        assert get_published_document_by_uri(document_uri) == judgment
+class TestGetDocumentDownloadFilename(TestCase):
+    example_uri = DocumentURIString("case/2025/1234")
 
-    @patch("judgments.utils.judgment_utils.get_document_by_uri")
-    def test_judgment_is_unpublished(self, mock_get_document_by_uri):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=False)
-        with pytest.raises(Http404):
-            document_uri = DocumentURIString("2099/eat/1")
-            get_published_document_by_uri(document_uri)
+    @patch("judgments.utils.judgment_utils.get_published_document_by_uri")
+    def test_returns_combined_filename_if_all_present(self, mock_get_document_by_uri):
+        mock_document = Mock()
+        mock_document.body.name = "Smith-v-Jones"
+        mock_document.best_human_identifier.value = "2025-EWHC-12"
+        mock_get_document_by_uri.return_value = mock_document
 
-    @patch("judgments.utils.judgment_utils.get_document_by_uri", side_effect=DocumentNotFoundError)
-    def test_judgment_missing(self, mock_get_document_by_uri):
-        with pytest.raises(Http404):
-            document_uri = DocumentURIString("not-a-judgment")
-            get_published_document_by_uri(document_uri)
+        result = get_document_download_filename(self.example_uri)
+        expected = quote("Smith-v-Jones-2025-EWHC-12")
+        assert result == expected
 
-    @patch("judgments.utils.judgment_utils.get_document_by_uri")
-    def test_press_summary_is_published(self, mock_get_document_by_uri):
-        judgment = JudgmentFactory.build(is_published=True, uri=DocumentURIString("2022/eat/1/press-summary/1"))
-        mock_get_document_by_uri.return_value = judgment
-        document_uri = DocumentURIString("2022/eat/1/press-summary/1")
-        assert get_published_document_by_uri(document_uri) == judgment
+    @patch("judgments.utils.judgment_utils.get_published_document_by_uri")
+    def test_returns_quoted_uri_if_document_is_none(self, mock_get_document_by_uri):
+        mock_get_document_by_uri.return_value = None
 
-    @patch("judgments.utils.judgment_utils.get_document_by_uri", return_value=None)
-    def test_raises_404_if_document_is_none(self, mock_get):
-        document_uri = DocumentURIString("2022/eat/1")
-
-        with self.assertRaises(Http404) as ctx:
-            get_published_document_by_uri(document_uri)
-        assert "was not found" in str(ctx.exception)
-
-    @patch("judgments.utils.judgment_utils.get_document_by_uri", side_effect=DocumentNotFoundError)
-    def test_raises_404_on_document_not_found_error(self, mock_get):
-        document_uri = DocumentURIString("2022/eat/1")
-        with self.assertRaises(Http404) as ctx:
-            get_published_document_by_uri(document_uri)
-        assert "was not found" in str(ctx.exception)
-
-    @patch("judgments.utils.judgment_utils.get_document_by_uri", side_effect=MarklogicNotPermittedError)
-    def test_raises_404_on_marklogic_not_permitted_error(self, mock_get):
-        document_uri = DocumentURIString("2022/eat/1")
-        with self.assertRaises(Http404) as ctx:
-            get_published_document_by_uri(document_uri)
-        assert "is not available" in str(ctx.exception)
-
-    @patch("judgments.utils.judgment_utils.get_document_by_uri")
-    def test_raises_404_if_document_not_published(self, mock_get):
-        mock_doc = Mock()
-        mock_doc.is_published = False
-        mock_get.return_value = mock_doc
-
-        document_uri = DocumentURIString("2022/eat/1")
-        with self.assertRaises(Http404) as ctx:
-            get_published_document_by_uri(document_uri)
-        assert "is not available" in str(ctx.exception)
+        result = get_document_download_filename(self.example_uri)
+        assert result == quote(self.example_uri)

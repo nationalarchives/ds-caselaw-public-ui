@@ -143,6 +143,11 @@ urlpatterns = [
         name="understanding_judgments_and_decisions",
     ),
     path(
+        "user-research",
+        static_views.UserResearchView.as_view(),
+        name="user_research",
+    ),
+    path(
         "what-to-expect",
         lambda request: HttpResponseRedirect(reverse("about_this_service")),
         name="what_to_expect",

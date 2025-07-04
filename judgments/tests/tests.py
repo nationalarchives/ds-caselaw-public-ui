@@ -148,41 +148,49 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
         response = self.client.get("/search?query=waltham+forest")
         self.assertContains(response, '<meta name="robots" content="noindex,nofollow,noai" />', html=True)
 
+    @patch("judgments.views.detail.best_pdf.get_document_download_filename")
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
-    def test_aws_pdf(self, mock_get, mock_pdf):
+    def test_aws_pdf(self, mock_get, mock_pdf, mock_get_filename):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
+        mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/data.pdf")
         mock_get.assert_called_with(url)
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
+    @patch("judgments.views.detail.best_pdf.get_document_download_filename")
     @patch("judgments.views.detail.best_pdf.DocumentPdf")
     @patch("judgments.views.detail.best_pdf.requests.get")
-    def test_aws_pdf_press_summary(self, mock_get, mock_pdf):
+    def test_aws_pdf_press_summary(self, mock_get, mock_pdf, mock_get_filename):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
         mock_get.return_value.content = b"CAT"
         mock_get.return_value.status_code = 200
+        mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/press-summary/1/data.pdf")
         mock_get.assert_called_with(url)
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
+    @patch("judgments.views.detail.detail_xml.get_document_download_filename")
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
-    def test_xml(self, mock_get_document_by_uri):
+    def test_xml(self, mock_get_document_by_uri, mock_get_filename):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+        mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/data.xml")
         mock_get_document_by_uri.assert_called_with("ml-eat/2023/1")
         self.assertContains(response, "This is a document.")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
+    @patch("judgments.views.detail.detail_xml.get_document_download_filename")
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
-    def test_xml_press_summary(self, mock_get_document_by_uri):
+    def test_xml_press_summary(self, mock_get_document_by_uri, mock_get_filename):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+        mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/press-summary/1/data.xml")
         mock_get_document_by_uri.assert_called_with("ml-eat/2023/1/press-summary/1")
         self.assertContains(response, "This is a document.")

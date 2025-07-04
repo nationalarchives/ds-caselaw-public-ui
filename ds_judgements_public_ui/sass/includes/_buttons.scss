@@ -38,13 +38,13 @@
 
   border: 2px solid brand-colour("navy");
   color: brand-colour("navy");
-  background-color: transparent;
+  background-color: colour-var("background");
 
   &:hover,
   &:focus,
   &:visited {
     color: brand-colour("navy");
-    background-color: transparent;
+    background-color: colour-var("background");
   }
 }
 

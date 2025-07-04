@@ -29,6 +29,8 @@ class ContactForm(FCLForm):
     contact_email = fields.FCLEmailField(
         label="2. Contact Email address",
         max_length=50,
+        # NOTE: this is a temporary workaround as there is a bug in crispy-forms-gds where they forgot to apply error styling to email inputs
+        widget=forms.TextInput(attrs={"type": "email"}),
     )
     # NOTE: please see comment in transactional_lcence_form.js if changing the wording / order of the options here.
     alternative_contact = fields.FCLChoiceField(
