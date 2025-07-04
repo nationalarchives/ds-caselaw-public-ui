@@ -44,6 +44,8 @@
     flex: 1;
     flex-direction: row;
 
+    // NOTE: This is the height of the images contained inside
+    max-height: 146px;
     border-top: 4px solid colour-var("accent-brand");
 
     text-decoration: none;
