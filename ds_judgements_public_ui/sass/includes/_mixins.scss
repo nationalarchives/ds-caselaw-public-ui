@@ -166,3 +166,35 @@
   font-family: $font-roboto;
   font-weight: $typography-normal-font-weight;
 }
+
+@mixin visually_hidden {
+  position: absolute;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  white-space: nowrap;
+
+  clip: rect(0 0 0 0);
+}
+
+@mixin reset_visually_hidden {
+  position: static;
+
+  overflow: visible;
+
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  white-space: normal;
+
+  clip: auto;
+}

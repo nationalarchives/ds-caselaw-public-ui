@@ -30,7 +30,7 @@
       <h2>{{ page_title }}</h2>
     {% endif %}
     {% if document.best_human_identifier %}
-      <p>{{ document.best_human_identifier.value }}</p>
+      <p><span class="visually-hidden">{{ document.best_human_identifier.schema.name }} </span>{{ document.best_human_identifier.value }}</p>
     {% endif %}
   </div>
 
