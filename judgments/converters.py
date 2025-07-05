@@ -1,5 +1,7 @@
 import datetime
 
+DOCUMENT_URI_REGEX_PATTERN = r"[a-z0-9./-]+"
+
 
 class YearConverter:
     regex = "[0-9]{4}"
@@ -55,7 +57,7 @@ class FileFormatConverter:
 
 
 class DocumentUriConverter:
-    regex = r"[a-z0-9./-]+"
+    regex = DOCUMENT_URI_REGEX_PATTERN
 
     def to_python(self, value):
         return value
