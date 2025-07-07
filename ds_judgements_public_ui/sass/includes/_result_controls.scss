@@ -5,7 +5,7 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: $space-4;
+    gap: $space-3;
 
     > div {
       display: flex;
@@ -19,7 +19,7 @@
 
     @media (min-width: $grid-breakpoint-extra-large) {
       flex-direction: row;
-      gap: $space-4;
+      gap: $space-3;
     }
   }
 

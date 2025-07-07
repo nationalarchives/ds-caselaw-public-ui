@@ -28,7 +28,7 @@
     min-width: 125px;
     font-weight: $typography-bold-font-weight;
 
-    @media (max-width: $grid-breakpoint-large) {
+    @media (max-width: $grid-breakpoint-medium) {
       display: inline-block;
     }
   }
@@ -84,15 +84,35 @@
       }
 
       td {
-        min-width: 200px;
         padding: $space-4 0;
         border-bottom: 1px solid colour-var("keyline-dark");
-
         text-align: left;
         vertical-align: top;
 
+        &:first-child {
+          padding-right: $space-8;
+        }
+
         &:last-child {
           min-width: 115px;
+        }
+
+        @media (min-width: $grid-breakpoint-medium) {
+          min-width: 170px;
+        }
+
+        @media (min-width: $grid-breakpoint-large) {
+          &:first-child {
+            min-width: 606px;
+          }
+        }
+
+        @media (min-width: $grid-breakpoint-extra-large) {
+          min-width: 200px;
+
+          &:first-child {
+            min-width: 673px;
+          }
         }
       }
 
