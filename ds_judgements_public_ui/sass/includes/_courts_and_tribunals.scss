@@ -41,6 +41,11 @@
 
     > p {
       margin: 0;
+      font-size: $typography-sm-text-size;
+
+      @media (min-width: $grid-breakpoint-medium) {
+        font-size: $typography-md-text-size;
+      }
     }
   }
 
