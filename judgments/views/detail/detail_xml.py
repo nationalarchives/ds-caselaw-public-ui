@@ -7,7 +7,7 @@ from judgments.utils import get_document_download_filename, get_published_docume
 def detail_xml(_request, document_uri: DocumentURIString) -> HttpResponse:
     document = get_published_document_by_uri(document_uri)
 
-    document_xml = document.body.content_as_xml
+    document_xml: bytes = document.xml_with_correct_frbr()
 
     filename = get_document_download_filename(document_uri)
 

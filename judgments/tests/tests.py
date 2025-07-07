@@ -1,7 +1,7 @@
 import re
 from unittest.mock import patch
 
-from caselawclient.factories import JudgmentFactory
+from caselawclient.factories import DEFAULT_DOCUMENT_BODY_XML, DocumentBodyFactory, JudgmentFactory
 from django.test import TestCase
 from fixtures import TestCaseWithMockAPI
 
@@ -10,6 +10,27 @@ from judgments.models.court_dates import CourtDates
 from judgments.tests.fixture_data import FakeSearchResponse
 from judgments.utils import clamp, paginator, search_context_from_url
 from judgments.views.detail import PdfDetailView
+
+BODY_XML_WITH_META = DEFAULT_DOCUMENT_BODY_XML.replace(
+    "<meta/>",
+    """
+    <meta>
+    <identification source="#tna">
+	<FRBRWork>
+	  <FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/ewhc/tcc/2025/1710"/>
+	  <FRBRuri value="https://caselaw.nationalarchives.gov.uk/id/ewhc/tcc/2025/1710"/>
+	</FRBRWork>
+	<FRBRExpression>
+	  <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/tcc/2025/1710"/>
+	  <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/tcc/2025/1710"/>
+	</FRBRExpression>
+	<FRBRManifestation>
+	  <FRBRthis value="https://caselaw.nationalarchives.gov.uk/ewhc/tcc/2025/1710/data.xml"/>
+	  <FRBRuri value="https://caselaw.nationalarchives.gov.uk/ewhc/tcc/2025/1710/data.xml"/>
+	</FRBRManifestation>
+    </identification>
+    </meta>""",
+)
 
 
 class TestCourtDates(TestCase):
@@ -178,8 +199,10 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
 
     @patch("judgments.views.detail.detail_xml.get_document_download_filename")
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
-    def test_xml(self, mock_get_document_by_uri, mock_get_filename):
-        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+    def test_xml_judgment(self, mock_get_document_by_uri, mock_get_filename):
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(
+            is_published=True, body=DocumentBodyFactory.build(xml_string=BODY_XML_WITH_META)
+        )
         mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/data.xml")
         mock_get_document_by_uri.assert_called_with("ml-eat/2023/1")
@@ -189,6 +212,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
             response.headers.get("Content-Disposition"),
             "attachment; filename=\"some_download_filename.xml\"; filename*=UTF-8''some_download_filename.xml",
         )
+        self.assertContains(response, '<FRBRthis value="https://caselaw.nationalarchives.gov.uk/id/tna.tn4t35ts">')
 
     @patch("judgments.views.detail.detail_xml.get_document_download_filename")
     @patch("judgments.views.detail.detail_xml.get_published_document_by_uri")
