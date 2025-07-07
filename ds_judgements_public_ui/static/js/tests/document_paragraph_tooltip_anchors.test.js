@@ -56,7 +56,7 @@ describe("createAnchorElement", () => {
         expect(element.classList.contains("judgment-body__anchor-link")).toBe(
             true,
         );
-        expect(element.textContent).toBe("Test content");
+        expect(element.textContent).toBe("Paragraph Test content");
     });
 });
 
