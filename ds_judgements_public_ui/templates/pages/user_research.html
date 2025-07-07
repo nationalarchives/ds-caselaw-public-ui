@@ -2,10 +2,16 @@
 {% load court_utils %}
 
 {% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="2025-07-03">3 July 2025</time>
+  </small>
   <h1>User research for Find Case Law</h1>
 {% endblock mobile_article_title %}
 
 {% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="2025-07-03">3 July 2025</time>
+  </small>
   <h1>User research for Find Case Law</h1>
 {% endblock desktop_article_title %}
 
@@ -78,7 +84,7 @@
 
     <p>All responses are confidential and reported anonymously.</p>
 
-    <p>For full details, see our <a href="">privacy policy</a>.</p>
+    <p>For full details, see our <a href="{% url 'privacy_notice' %}">privacy policy</a>.</p>
 
     <h2 id="what-if-i-opt-out-of-user-research">What if I opt out of user research?</h2>
 
@@ -87,5 +93,7 @@
     <p>If you have signed up but wish to opt out, email us at <a href="mailto:caselawresearch@nationalarchives.gov.uk">caselawresearch@nationalarchives.gov.uk</a> and we will remove you from our list. Your data will also be deleted.</p>
 
     <p>If you have any questions before signing up, email us at <a href="mailto:caselawresearch@nationalarchives.gov.uk">caselawresearch@nationalarchives.gov.uk</a>.</p>
+
+    <a class="button-primary" role="button" target="_blank" rel="noreferrer noopener" href="{{ feedback_survey_link }}">Participate in research</a>
   </section>
 {% endblock article_content %}
