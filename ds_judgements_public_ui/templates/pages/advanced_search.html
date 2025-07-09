@@ -4,24 +4,34 @@
   Advanced search - Find Case Law
 {% endblock title %}
 {% block content %}
-  <form action="{% url "search" %}"
-        role="search"
-        id="analytics-structured-search"
-        method="get">
-    <div class="structured-search">
-      <div class="structured-search-advanced">
-        <div class="structured-search__container-advanced">
-          {% include "includes/search/structured_search_form.html" %}
+  <div class="search-component">
+    <div class="search-component__container-beta">
+      <form action="{% url "search" %}"
+            role="search"
+            id="analytics-structured-search"
+            method="get">
+        <div class="structured-search__main-search">
+          <div class="structured-search__container">
+            <h1 class="structured-search__main-search-header">Advanced search</h1>
+            <div class="structured-search__full-text-panel search-term-component">
+              {% include "includes/search_term_component.html" %}
+
+            </div>
+            <div class="structured-search__help-text">
+              {% include "includes/search/search_help_text.html" %}
+            </div>
+          </div>
         </div>
       </div>
-      {% if form.errors %}
-        <div class="structured-search__container">
-          <div class="page-notification--failure">{{ form.errors|error_messages }}</div>
-        </div>
-
-      {% endif %}
-
-      {% include "includes/results_filters_inputs.html" %}
     </div>
+    {% if form.errors %}
+      <div class="structured-search__container">
+        <div class="page-notification--failure">{{ form.errors|error_messages }}</div>
+      </div>
+
+    {% endif %}
+
+    {% include "includes/results_filters_inputs.html" %}
+
   </form>
 {% endblock content %}
