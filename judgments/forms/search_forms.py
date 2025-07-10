@@ -85,7 +85,7 @@ class AdvancedSearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             {
-                "placeholder": "Search...",
+                "placeholder": "Input your search term...",
                 "id": "search_form",
                 "class": "search-term-component__search-term-input",
             }
