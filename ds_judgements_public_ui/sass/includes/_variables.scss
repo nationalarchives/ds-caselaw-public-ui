@@ -1,11 +1,16 @@
 @import "@nationalarchives/ds-caselaw-frontend/src/includes/variables/variables";
 
+// GOVUK Variables
+@import "govuk-frontend/dist/govuk/settings";
+
 $gutter_unit: 25px;
 $grid-breakpoint-small: 576px;
 $grid-breakpoint-medium: 768px;
 $grid-breakpoint-large: 992px;
 $grid-breakpoint-extra-large: 1200px;
-$link-hover-thickness: 0.1875rem;
+$link-underline-thickness: $govuk-link-underline-thickness;
+$link-hover-underline-thickness: $govuk-link-hover-underline-thickness;
+$link-underline-offset: $govuk-link-underline-offset;
 
 // TODO: Rename these
 $font-roboto: "Roboto", sans-serif;

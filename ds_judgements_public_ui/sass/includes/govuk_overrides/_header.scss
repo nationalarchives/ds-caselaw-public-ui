@@ -10,7 +10,7 @@
 .govuk-header__navigation-item--active a:link {
   font-weight: bold !important;
   color: colour-var("accent-brand") !important;
-  text-decoration-thickness: $link-hover-thickness;
+  text-decoration-thickness: $link-hover-underline-thickness;
 
   &:focus {
     background-color: transparent;
