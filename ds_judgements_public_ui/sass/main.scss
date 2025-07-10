@@ -25,7 +25,6 @@
 $govuk-font-family: $font-open-sans;
 $govuk-focus-colour: colour-var("focus-outline");
 
-@import "govuk-frontend/dist/govuk/settings";
 @import "govuk-frontend/dist/govuk/helpers";
 @import "govuk-frontend/dist/govuk/tools";
 @import "govuk-frontend/dist/govuk/utilities/visually-hidden";

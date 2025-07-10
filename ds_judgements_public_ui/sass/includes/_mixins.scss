@@ -40,10 +40,12 @@
 @mixin link {
   color: colour-var("link");
   text-decoration: underline;
+  text-decoration-thickness: $link-underline-thickness;
+  text-underline-offset: $link-underline-offset;
 
   &:hover {
     color: colour-var("link");
-    text-decoration-thickness: $link-hover-thickness;
+    text-decoration-thickness: $link-hover-underline-thickness;
   }
 
   &:visited {
@@ -74,12 +76,12 @@
 }
 
 @mixin contrast-link {
+  @include link;
+
   color: colour-var("contrast-link");
-  text-decoration: underline;
 
   &:hover {
     color: colour-var("contrast-link");
-    text-decoration-thickness: $link-hover-thickness;
   }
 
   &:visited {
@@ -91,8 +93,6 @@
   }
 
   &:focus {
-    @include focus-default;
-
     outline-color: colour-var("contrast-link");
   }
 }
