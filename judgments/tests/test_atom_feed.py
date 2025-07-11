@@ -123,6 +123,10 @@ class TestAtomFeed(TestCase):
         assert entry_tna_uri is not None
         assert entry_tna_uri.text == "d-a1b2c3"
 
+        assets_tna_uri = entry.find("tna:assets_base", self.namespaces)
+        assert assets_tna_uri is not None
+        assert assets_tna_uri.attrib["href"] == "https://assets.caselaw.nationalarchives.gov.uk/d-a1b2c3/"
+
         self.assertCountEqual(
             [e.attrib for e in entry.findall("link", self.namespaces)],
             [
