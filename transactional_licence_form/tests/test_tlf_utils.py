@@ -15,7 +15,7 @@ class TestTLFUtils(unittest.TestCase):
         delivery_email = "delivery@example.com"
         email_subject = "email subject"
         ses_username = "smtp_username"
-        ses_password = "smtp_password"
+        ses_password = "smtp_password"  # noqa: S105 hardcoded password
         ses_server = "smtp_server"
         ses_port = 1234
         sanitized_text = "sanitized text"

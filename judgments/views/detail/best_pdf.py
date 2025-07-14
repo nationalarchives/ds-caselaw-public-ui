@@ -19,7 +19,7 @@ def best_pdf(request, document_uri):
     Otherwise fall back and redirect to the weasyprint version."""
     pdf = DocumentPdf(document_uri)
 
-    external_response = requests.get(pdf.generate_uri())
+    external_response = requests.get(pdf.generate_uri(), timeout=10)
 
     logging.debug("Response %s", external_response.status_code)
 
