@@ -7,9 +7,7 @@ from email.mime.text import MIMEText
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.template.loader import render_to_string
-from django.utils.safestring import mark_safe
-
-DISALLOWED_CHARACTERS = {"<": "&lt;", ">": "&gt;"}
+from django.utils.html import escape as escape_for_html
 
 COUNTRIES_AND_TERRITORIES_JSON_PATH = "ds_judgements_public_ui/static/js/location-autocomplete-canonical-list.json"
 
@@ -71,12 +69,11 @@ def send_form_response_to_dynamics(form_data):
 
 
 def sanitize_value(value):
-    sanitized = value
-    if isinstance(sanitized, list):
-        sanitized = ", ".join(sanitized)
-    for remove, replacement in DISALLOWED_CHARACTERS.items():
-        sanitized = sanitized.replace(remove, replacement)
-    return mark_safe(sanitized)
+    if isinstance(value, list):
+        value_string = ", ".join(value)
+    else:
+        value_string = str(value)
+    return escape_for_html(value_string)
 
 
 def sanitize_and_format_response_as_xml(form_data):

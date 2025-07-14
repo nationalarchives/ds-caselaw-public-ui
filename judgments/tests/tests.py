@@ -1,5 +1,5 @@
 import re
-from unittest.mock import patch
+from unittest.mock import ANY, patch
 
 from caselawclient.factories import JudgmentFactory
 from django.test import TestCase
@@ -158,7 +158,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
         mock_get.return_value.status_code = 200
         mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/data.pdf")
-        mock_get.assert_called_with(url)
+        mock_get.assert_called_with(url, timeout=ANY)
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
@@ -172,7 +172,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
         mock_get.return_value.status_code = 200
         mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/press-summary/1/data.pdf")
-        mock_get.assert_called_with(url)
+        mock_get.assert_called_with(url, timeout=ANY)
         self.assertContains(response, "CAT")
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 

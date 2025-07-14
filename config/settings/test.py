@@ -6,7 +6,7 @@ from .base import *  # noqa
 
 # GENERAL
 # ------------------------------------------------------------------------------
-SECRET_KEY = "not-secret-whatsoever"
+SECRET_KEY = "not-secret-whatsoever"  # noqa: S105 hardcoded password
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#test-runner
 TEST_RUNNER = "django.test.runner.DiscoverRunner"

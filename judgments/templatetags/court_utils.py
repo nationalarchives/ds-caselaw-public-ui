@@ -68,7 +68,7 @@ def get_court_date_range(court_param: CourtParam) -> str:
     if start_year == end_year:
         return str(start_year)
     else:
-        return mark_safe("%s&nbsp;to&nbsp;%s" % (start_year, end_year))
+        return mark_safe("%s&nbsp;to&nbsp;%s" % (start_year, end_year))  # noqa: S308 XSS [safe because years are numbers or None]
 
 
 @register.filter
