@@ -1,12 +1,14 @@
 <div class="recent-judgments">
   <div class="recent-judgments__container">
-    {% include "includes/judgments_table.html" with judgments=recent_judgments table_title="Recently published judgments" %}
-    <section class="recent-judgments__more-info-footer">
-      <a role="button"
-         draggable="false"
-         rel="noreferrer noopener"
-         class="recent-judgments__cta-button button-primary"
-         href="{% url 'search' %}">View all judgments</a>
-    </section>
+    {% if recent_judgments %}
+      {% include "includes/judgments_table.html" with judgments=recent_judgments table_title="Recently published judgments" %}
+      <section class="recent-judgments__more-info-footer">
+        <a role="button"
+           draggable="false"
+           rel="noreferrer noopener"
+           class="recent-judgments__cta-button button-primary"
+           href="{% url 'search' %}">View all judgments</a>
+      </section>
+    {% endif %}
   </div>
 </div>

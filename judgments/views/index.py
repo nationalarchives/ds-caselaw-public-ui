@@ -10,6 +10,7 @@ from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
 from django.urls import reverse
 from django.views.generic import TemplateView
+from requests.exceptions import RequestException
 
 from judgments.forms import AdvancedSearchForm
 from judgments.utils import api_client
@@ -32,6 +33,8 @@ class IndexView(TemplateView):
 
         context["page_canonical_url"] = self.request.build_absolute_uri(reverse("home"))
         context["page_allow_index"] = True
+        context["feedback_survey_type"] = "home"
+        context["form"] = AdvancedSearchForm()
 
         try:
             search_response = cached_recent_judgments(ttl_hash=round(time() / 900))  # Expire cache in 15 mins
@@ -40,8 +43,8 @@ class IndexView(TemplateView):
 
         except MarklogicResourceNotFoundError:
             raise Http404("Search results not found")  # TODO: This should be something else!
-
-        context["feedback_survey_type"] = "home"
-        context["form"] = AdvancedSearchForm()
+        except RequestException:
+            context["recent_judgments"] = []
+            return context
 
         return context
