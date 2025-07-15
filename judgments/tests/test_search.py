@@ -45,7 +45,7 @@ class TestBrowseResults(TestCase):
 
 class TestNoNCN(TestCase):
     @patch("judgments.views.browse.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_browse_results(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
         response = self.client.get(r"/search?query=[2024]%20EAT%209999")
@@ -55,8 +55,8 @@ class TestNoNCN(TestCase):
 
 
 class TestSearchResults(TestCase):
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_with_populated_court_dates(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
@@ -98,8 +98,8 @@ class TestSearchResults(TestCase):
             ),
         )
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_without_populated_court_dates(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
@@ -140,8 +140,8 @@ class TestSearchResults(TestCase):
             ),
         )
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_warns_user_with_date_before_minimum_warning_year(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
@@ -168,8 +168,8 @@ class TestSearchResults(TestCase):
 
         assert_response_contains_text(response, expected_text, xpath_query)
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_not_warning_user_with_date_after_minimum_warning_year(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
@@ -193,8 +193,8 @@ class TestSearchResults(TestCase):
         xpath_query = "//div[@class='home-office-alert']"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_not_warning_user_with_no_date(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
@@ -217,8 +217,8 @@ class TestSearchResults(TestCase):
         xpath_query = "//div[@class='home-office-alert']"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_not_warning_user_with_no_results(
         self, mock_search_judgments_and_parse_response, mock_api_client
     ):
@@ -243,8 +243,8 @@ class TestSearchResults(TestCase):
         xpath_query = "//div[@class='home-office-alert']"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_court_filters(
         self,
         mock_search_judgments_and_parse_response,
@@ -317,8 +317,8 @@ class TestSearchResults(TestCase):
         )
         assert_contains_html(response, expected_applied_filters_html)
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_court_filters_with_from_date(
         self,
         mock_search_judgments_and_parse_response,
@@ -409,15 +409,15 @@ class TestSearchResults(TestCase):
 
 
 class TestSearchBreadcrumbs(TestCase):
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_search_breadcrumbs_without_query_string(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search")
         assert response.context["breadcrumbs"] == [{"text": "Search results"}]
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_search_breadcrumbs_with_query_string(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?query=waltham+forest")
@@ -426,8 +426,8 @@ class TestSearchBreadcrumbs(TestCase):
 
 
 class TestSearchFacets(TestCase):
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_populated_court_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         court_code = all_courts.get_by_code(CourtCode("EWHC-KBD-TCC"))
@@ -440,8 +440,8 @@ class TestSearchFacets(TestCase):
         # Keys that don't match existing courts are not present
         assert "invalid_court" not in response.context["court_facets"].keys()
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_populated_tribunal_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         tribunal_code = all_courts.get_by_code(CourtCode("EAT"))
@@ -454,8 +454,8 @@ class TestSearchFacets(TestCase):
         # Keys that don't match existing tribunals are not present
         assert "invalid_court" not in response.context["tribunal_facets"].keys()
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_unpopulated_court_facet_keys(self, mock_search_judgments_and_parse_response, mock_api_client):
         """
         Advanced search only populates court_facets if they are available
@@ -466,8 +466,8 @@ class TestSearchFacets(TestCase):
         assert response.context["court_facets"] == {}
         assert response.context["tribunal_facets"] == {}
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_populated_year_facets(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?query=example+query")
@@ -477,8 +477,8 @@ class TestSearchFacets(TestCase):
         # Keys that don't match valid years are not present
         assert "1900" not in response.context["year_facets"].keys()
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_per_page_query_parameter_selected(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?query=example+query&per_page=50")
@@ -489,8 +489,8 @@ class TestSearchFacets(TestCase):
         assert option_50_selected
         assert not option_10_selected
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_unpopulated_year_facet_keys(self, mock_search_judgments_and_parse_response, mock_api_client):
         """
         Advanced search only populates year_facets if they are available
@@ -502,8 +502,8 @@ class TestSearchFacets(TestCase):
 
 
 class TestSearchValidation(TestCase):
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_real_short_code_court(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?court=ewhc")
@@ -511,8 +511,8 @@ class TestSearchValidation(TestCase):
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert not failure
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_fake_short_code_court(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?court=kitten")
@@ -520,8 +520,8 @@ class TestSearchValidation(TestCase):
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert failure[0].text == "Errors in 'court' - see below for details"
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_real_short_code_tribunal(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?tribunal=ukut")
@@ -529,8 +529,8 @@ class TestSearchValidation(TestCase):
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert not failure
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_real_short_code_tribunal_as_court(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?court=ukut")
@@ -538,8 +538,8 @@ class TestSearchValidation(TestCase):
         failure = root.xpath('//*[@class="page-notification--failure"]')
         assert not failure
 
-    @patch("judgments.views.advanced_search.api_client")
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_real_short_code_court_as_tribunal(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?tribunal=uksc")
