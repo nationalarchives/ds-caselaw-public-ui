@@ -1,0 +1,531 @@
+openapi: 3.1.0
+info:
+  title: 'National Archives Find Case Law: Public API'
+  version: 1.0.0
+  description: |2
+
+    Our API provides access to judgments and other documents held by The National Archives and published via the Find Case Law service.
+
+    ## Open Justice Licence
+
+    The National Archives has worked in collaboration with The Ministry of Justice and the Judicial Executive Board to design a new licensing framework for the reuse of case law as data. The [Open Justice licence](https://caselaw.nationalarchives.gov.uk/open-justice-licence) is designed to protect the personal data within the records while supporting the principles of Open Justice.
+
+    The Open Justice licence allows you to copy, publish, distribute and transmit case law data. It permits you to use the data commercially, for example, by combining it with other information, or by including it in your own product or application. There are certain conditions that apply under this licence.
+
+    You do not need to apply to re-use Find Case Law records if your re-use complies with the terms and conditions of the Open Justice Licence.
+
+    **The Open Justice licence does not permit computational analysis.** If you intend to do any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records you will need to [apply to perform computational analysis](https://caselaw.nationalarchives.gov.uk/re-use-find-case-law-records/licence-application-process). There are no application charges.
+
+    ## Document formats
+
+    Documents within Find Case Law are predominantly available as XML (and by extension HTML), although some are only available as PDFs.
+
+    ### XML
+
+    Where documents exist as XML, these have been submitted for publication by the courts as a Microsoft Word document. This has then been automatically converted to XML, marked up according to the [international data standard (LegalDocML)](https://groups.oasis-open.org/communities/tc-community-home2?CommunityKey=3425f20f-b704-4076-9fab-018dc7d3efbe). This data includes:
+
+    - Neutral Citation
+    - Court / Chamber
+    - Date
+    - Case Name
+    - Party Names
+    - Judges' Names
+
+    XML documents are then automatically converted to HTML for publication on the Find Case Law website.
+
+    For documents which have been submitted directly to the National Archives our legal editorial team have checked data for consistency and accuracy. However, older documents have not always been checked in this way and you may discover inconsistencies in the metadata If you do, you can report data errors to [caselaw@nationalarchives.gov.uk](mailto:caselaw@nationalarchives.gov.uk).
+
+    ### PDF
+
+    Some documents, particularly historic documents, may only exist as PDFs. In these cases we will provide as much metadata regarding the document as we are able, although this may not be as complete as in an XML document.
+
+    ## Identifying documents
+
+    Documents in Find Case Law are identified in two different ways, one which is better for machines and one which is better for humans:
+
+    ### Document URI
+
+    Every document in Find Case Law has a unique machine-readable identifier which is not designed to be human-facing. You should prefer using this identifier internally when referencing Find Case Law documents, as it is stable and globally unique. Document URIs can contain the characters `a-z`, `0-9`, `/` and `-`.
+
+    #### Documents prior to April 2025
+
+    Documents which were submitted to the National Archives prior to April 2025 will have a URI in the form `court/year/sequence`, for example `uksc/2024/123`. Although this looks like it contains many attributes from a Neutral Citation Number, you should _not_ treat it as such and attempt to extract information from it.
+
+    #### New-style URIs
+
+    Documents submitted to the National Archives from April 2025 onwards will usually have a URI which looks something like `d-f11e093f-8a53-4e43-8dd8-1531b5d8f018`. These will always begin with a `d-`.
+
+    ### Document identifiers
+
+    In addition to the Document URI, all documents will also have one or more "identifiers" which exist under different schemes. This currently includes Find Case Law Identifiers (for all documents) and Neutral Citation Numbers (for judgments which have them), but may be extended in future.
+
+    Each identifier will have – as a minimum – a `type`, a `value` and a `slug` which can be turned into a human-facing URL by appending it to `https://caselaw.nationalarchives.gov.uk`.
+
+    Identifiers are _not_ guaranteed to be unique to a single document.
+
+    #### Examples
+
+    | Type                     | `type`   | Example `value`   | Example `slug`  |
+    | ------------------------ | -------- | ----------------- | ----------------|
+    | Find Case Law Identifier | `fclid`  | `cw7s3kws`        | `tna.cw7s3kws`  |
+    | Neutral Citation Number  | `ukncn`  | `[2024] UKSC 123` | `uksc/2024/123` |
+
+    #### Preferred identifier
+
+    Each document will have exactly one preferred identifier, determined by the Find Case Law system, which it will prefer for displaying to users and generating public-facing URLs. You must _not_ make any assumptions about the type of this preferred identifier, as it may change.
+
+    ## Give us your feedback
+
+    We are still actively developing Find Case Law based on user feedback. This includes improving the experience of how data re-users can access the data.
+
+    You can provide feedback by using our [feedback form](https://www.smartsurvey.co.uk/s/CaseLaw-research/).
+  termsOfService: https://caselaw.nationalarchives.gov.uk/terms-of-use
+  contact:
+    name: Find Case Law
+    url: https://caselaw.nationalarchives.gov.uk/
+    email: caselaw@nationalarchives.gov.uk
+  license:
+    name: Open Justice Licence
+    url: https://caselaw.nationalarchives.gov.uk/open-justice-licence
+paths:
+  /api/v1/bodies:
+    get:
+      operationId: bodies_list
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      tags:
+      - bodies
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Body'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Body'
+          description: ''
+  /api/v1/bodies/{code}:
+    get:
+      operationId: bodies_retrieve
+      parameters:
+      - in: path
+        name: code
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      tags:
+      - bodies
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Body'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Body'
+          description: ''
+  /api/v1/documents:
+    get:
+      operationId: documents_list
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: query
+        schema:
+          type: string
+        description: The search term.
+      tags:
+      - documents
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocumentSearchResultSerialiserList'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocumentSearchResultSerialiserList'
+          description: ''
+  /api/v1/documents/{uri}:
+    get:
+      operationId: documents_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - in: path
+        name: uri
+        schema:
+          type: string
+          pattern: ^[a-z0-9./-]+$
+        required: true
+      tags:
+      - documents
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentSearchResultSerialiser'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DocumentSearchResultSerialiser'
+          description: ''
+  /api/v1/identifier-types:
+    get:
+      operationId: identifier_types_list
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      tags:
+      - identifier-types
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdentifierType'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdentifierType'
+          description: ''
+  /api/v1/identifier-types/{namespace}:
+    get:
+      operationId: identifier_types_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - in: path
+        name: namespace
+        schema:
+          type: string
+        required: true
+      tags:
+      - identifier-types
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierType'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/IdentifierType'
+          description: ''
+  /api/v1/schema:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+components:
+  schemas:
+    Body:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        code:
+          type: string
+          readOnly: true
+        canonical_param:
+          type: string
+          readOnly: true
+        params:
+          type: array
+          items:
+            type: string
+            readOnly: true
+          readOnly: true
+      required:
+      - canonical_param
+      - code
+      - name
+      - params
+      - type
+      - url
+    DocumentSearchResultSerialiser:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        uri:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+      required:
+      - name
+      - uri
+      - url
+    IdentifierType:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        namespace:
+          type: string
+          readOnly: true
+      required:
+      - name
+      - namespace
+      - url
+    PaginatedDocumentSearchResultSerialiserList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentSearchResultSerialiser'
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
+servers:
+- url: https://caselaw.nationalarchives.gov.uk/
