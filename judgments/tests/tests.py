@@ -77,7 +77,7 @@ class TestPaginator(TestCase):
         }
         self.assertEqual(paginator(1, 5), expected_result)
 
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_pagination_links(self, mock_search_judgments_and_parse_response):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?tribunal=ukut/iac&order=&page=3")
@@ -140,7 +140,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
         self.assertNotContains(response, '<meta name="robots" content="noindex,nofollow" />')
         self.assertNotEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow")
 
-    @patch("judgments.views.advanced_search.search_judgments_and_parse_response")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_search_results(self, mock_search_judgments_and_parse_response):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         # The judgment search results page should have a robots meta tag
