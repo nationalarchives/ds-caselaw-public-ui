@@ -106,6 +106,9 @@ class JudgmentAtomFeed(Atom1Feed):
                     "href": f"https://assets.caselaw.nationalarchives.gov.uk/{uri}/{path_underscore}.pdf",
                 },
             )
+            handler.addQuickElement(
+                "tna:assets_base", "", {"href": f"https://assets.caselaw.nationalarchives.gov.uk/{uri}/"}
+            )
 
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
