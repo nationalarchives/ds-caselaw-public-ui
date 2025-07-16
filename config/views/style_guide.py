@@ -50,7 +50,6 @@ class StyleGuideView(TemplateViewWithContext):
                     {"label": "Results filters inputs", "href": "#results-filters-inputs"},
                     {"label": "Search form", "href": "#search-form"},
                     {"label": "Search term", "href": "#search-term"},
-                    {"label": "Advanced search", "href": "#advanced-search"},
                     {"label": "Summary card", "href": "#summary-card"},
                     {"label": "Text input", "href": "#text-input"},
                 ],

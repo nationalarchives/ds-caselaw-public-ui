@@ -9,8 +9,6 @@
   }
 
   &__main-search {
-    margin: 0 0 $space-4;
-    padding: $space-4 0 $space-6;
     text-align: center;
     background-color: colour-var("accent-background-light");
   }
@@ -18,7 +16,8 @@
   &__main-search-header {
     display: inline-block;
 
-    margin: $space-4 0 0;
+    margin-bottom: 0;
+    margin-left: 12.5rem;
 
     font-family: $font-roboto;
     font-size: $typography-2xl-text-size;
@@ -37,19 +36,6 @@
     max-width: 100%;
     padding: 0;
     text-align: left;
-  }
-
-  &__container-advanced {
-    max-width: 66%;
-    padding: 0;
-    text-align: left;
-    background-color: colour-var("accent-background-light");
-
-    @include container;
-
-    @media (min-width: $grid-breakpoint-medium) {
-      max-width: 53%;
-    }
   }
 
   &__full-text-panel {
@@ -194,6 +180,7 @@
 
     @media (min-width: $grid-breakpoint-medium) {
       margin-top: $space-1;
+      margin-left: 12.5rem;
     }
   }
 
@@ -445,8 +432,4 @@
       margin-bottom: $space-4;
     }
   }
-}
-
-.structured-search-advanced {
-  background-color: colour-var("accent-background-light");
 }
