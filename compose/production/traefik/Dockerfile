@@ -1,4 +1,4 @@
-FROM traefik:v3.4.4@sha256:82d2e26705a570b6d6778879d471cb3324687e77a6fd6883745a76c04563397a
+FROM traefik:v3.4.4@sha256:628f1c5c9c2bcb9ee185566f9df673ca7fcda8930d39c21473523a7687020f89
 RUN mkdir -p /etc/traefik/acme \
   && touch /etc/traefik/acme/acme.json \
   && chmod 600 /etc/traefik/acme/acme.json
