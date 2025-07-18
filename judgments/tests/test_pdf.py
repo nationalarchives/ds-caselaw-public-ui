@@ -1,5 +1,5 @@
 from os import environ
-from unittest.mock import Mock, patch
+from unittest.mock import ANY, Mock, patch
 
 from caselawclient.factories import JudgmentFactory
 from caselawclient.models.documents import DocumentURIString
@@ -20,7 +20,9 @@ class TestDocumentPdf:
 
         assert document_pdf.size == 100
 
-        requests_mock.head.assert_called_once_with(document_pdf.generate_uri(), headers={"Accept-Encoding": None})
+        requests_mock.head.assert_called_once_with(
+            document_pdf.generate_uri(), headers={"Accept-Encoding": None}, timeout=ANY
+        )
 
     @patch("judgments.models.document_pdf.requests")
     def test_get_pdf_size_returns_blank_string_if_404(self, requests_mock):
