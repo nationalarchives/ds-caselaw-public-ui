@@ -1,49 +1,32 @@
-{% extends "layouts/base.html" %}
-{% load utilities search_results_filters static %}
-{% block title %}
-  Search results - Find Case Law
-{% endblock title %}
-{% block extra_head_tags %}
-  <link rel="alternate" type="application/atom+xml" title="{{ breadcrumbs.0.text }}" href="{% url 'search-feed' %}?{{ query_param_string }}"/>
-{% endblock extra_head_tags %}
-{% block javascript %}
-  <script type="module" defer src="{% static 'js/dist/manage_filters.js' %}"></script>
-{% endblock javascript %}
-{% block content %}
-  <div class="results">
-    <h1>Search results</h1>
-    {% include "includes/results_search_component.html" %}
-    <div class="results__container">
-      <div class="results__list-layout-container">
-        {% if show_no_exact_ncn_warning %}
-          {% with message="There is no judgment with the Neutral Citation of %s in our database."|interpolate:query %}
-            {% include "includes/advice_message.html" with message=message %}
-          {% endwith %}
-        {% endif %}
-        {% if requires_from_warning %}
-          {% url "about_this_service" as url_value %}
-          {% include "includes/advice_message.html" with message=date_warning url_text="Find out what records are available on this service." url_value=url_value url_anchor="section-coverage" %}
-        {% endif %}
-        {% if total > 0 %}
-          <div class="results__result-header-container">
-            {% include "includes/result_header.html" %}
-            {% include "includes/result_atom_feed_button.html" %}
-            {% include "includes/result_controls.html" %}
-          </div>
-
-          <div class="results__result-list-container">
-            {% include "includes/results_list.html" %}
-          </div>
-
-          {% if not paginator.has_next_page %}
-            {% include "includes/no_results_message.html" with title="End of results" %}
-          {% endif %}
-
-          {% include "includes/pagination.html" %}
-        {% else %}
-          {% include "includes/no_results_message.html" %}
-        {% endif %}
-      </div>
+{% extends "layouts/search_results.html" %}
+{% load utilities %}
+{% block content_body %}
+  {% if show_no_exact_ncn_warning %}
+    {% with message="There is no judgment with the Neutral Citation of %s in our database."|interpolate:query %}
+      {% include "includes/advice_message.html" with message=message %}
+    {% endwith %}
+  {% endif %}
+  {% if requires_from_warning %}
+    {% url "about_this_service" as url_value %}
+    {% include "includes/advice_message.html" with message=date_warning url_text="Find out what records are available on this service." url_value=url_value url_anchor="section-coverage" %}
+  {% endif %}
+  {% if total > 0 %}
+    <div class="results__result-header-container">
+      {% include "includes/result_header.html" %}
+      {% include "includes/result_atom_feed_button.html" %}
+      {% include "includes/result_controls.html" %}
     </div>
-  </div>
-{% endblock content %}
+
+    <div class="results__result-list-container">
+      {% include "includes/results_list.html" %}
+    </div>
+
+    {% if not paginator.has_next_page %}
+      {% include "includes/no_results_message.html" with title="End of results" %}
+    {% endif %}
+
+    {% include "includes/pagination.html" %}
+  {% else %}
+    {% include "includes/no_results_message.html" %}
+  {% endif %}
+{% endblock content_body %}

@@ -10,6 +10,7 @@ from django import template
 from django.utils.safestring import mark_safe
 from ds_caselaw_utils.courts import Court, CourtNotFoundException, CourtParam
 from ds_caselaw_utils.courts import courts as all_courts
+from requests.exceptions import RequestException
 
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
@@ -72,6 +73,9 @@ def get_court_date_range(court_param: CourtParam) -> str:
 
 @register.filter
 def get_court_judgments_count(court: Court) -> int:
-    return int(
-        search_judgments_and_parse_response(api_client, SearchParameters(court=court.canonical_param)).total
-    )  # TODO: This should really be an integer coming from the API Client
+    try:
+        return int(
+            search_judgments_and_parse_response(api_client, SearchParameters(court=court.canonical_param)).total
+        )  # TODO: This should really be an integer coming from the API Client
+    except RequestException:
+        return 0
