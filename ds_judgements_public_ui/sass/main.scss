@@ -117,6 +117,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 
 // Search
 @import "includes/basic_search_form";
+@import "includes/search_term_component";
 @import "includes/result_controls";
 @import "includes/results_search_component";
 @import "includes/results";

@@ -23,24 +23,6 @@
     color: colour-var("accent-font-base");
   }
 
-  &__full-text-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    margin: $space-2 0 0 0;
-
-    text-align: left;
-
-    @media (min-width: $grid-breakpoint-medium) {
-      flex-direction: row;
-      gap: $space-4;
-      padding: $space-1 0 0 0;
-    }
-  }
-
   .structured-search__submit-container {
     display: none;
 
@@ -51,6 +33,7 @@
 
   &__filters-row {
     display: block;
+    padding: 0 $space-3;
     padding-top: $space-2;
     text-align: left;
 
@@ -66,26 +49,10 @@
 
   &__mobile-submit-button {
     display: block;
-    width: 100%;
-    padding-top: $space-4;
+    padding: $space-4 $space-3 0;
 
     @media (min-width: $grid-breakpoint-medium) {
       display: none;
-    }
-  }
-
-  .search-term-component {
-    display: flex;
-    gap: $space-4;
-
-    width: 100%;
-    max-width: 47rem;
-    margin: 0 auto;
-
-    input[type="submit"] {
-      @media (max-width: $grid-breakpoint-medium) {
-        display: none !important;
-      }
     }
   }
 
@@ -105,13 +72,12 @@
     background: colour-var("accent-brand");
   }
 
-  &__help-text-container {
-    display: flex;
-    flex-direction: row;
-
-    max-width: 47rem;
-    margin: 0 auto;
-    margin-top: -$space-5;
+  .search-term-component {
+    input[type="submit"] {
+      @media (max-width: $grid-breakpoint-medium) {
+        display: none !important;
+      }
+    }
   }
 
   &__help-text {

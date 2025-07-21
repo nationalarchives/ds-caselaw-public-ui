@@ -15,41 +15,12 @@
     background-color: colour-var("accent-background-light");
   }
 
-  &__main-search-header {
-    display: inline-block;
-
-    margin: $space-4 0 0;
-
-    font-family: $font-roboto;
-    font-size: $typography-2xl-text-size;
-    font-weight: $typography-normal-font-weight;
-    line-height: $typography-xs-line-height;
-    color: colour-var("font-dark");
-
-    @media (max-width: $grid-breakpoint-medium) {
-      margin: $space-2 $space-4;
-    }
-  }
-
   &__container {
     @include container;
 
     max-width: 100%;
     padding: 0;
     text-align: left;
-  }
-
-  &__container-advanced {
-    max-width: 66%;
-    padding: 0;
-    text-align: left;
-    background-color: colour-var("accent-background-light");
-
-    @include container;
-
-    @media (min-width: $grid-breakpoint-medium) {
-      max-width: 53%;
-    }
   }
 
   &__full-text-panel {
