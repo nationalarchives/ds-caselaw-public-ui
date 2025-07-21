@@ -11,11 +11,11 @@ from django.conf import settings
 from django.http import (
     HttpRequest,
     HttpResponse,
-    HttpResponseServerError,
 )
 from django.template.response import TemplateResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from requests.exceptions import RequestException
 
 from config.views.template_view_with_context import TemplateViewWithContext
 from judgments.forms import AdvancedSearchForm
@@ -105,8 +105,9 @@ class SearchResultsView(TemplateViewWithContext):
     def _get_search_response(self, request, search_parameters, context):
         try:
             return search_judgments_and_parse_response(api_client, search_parameters)
-        except MarklogicResourceNotFoundError:
-            return HttpResponseServerError("Search failed")
+        except (MarklogicResourceNotFoundError, RequestException):
+            context["breadcrumbs"] = self._build_breadcrumbs(search_parameters)
+            return TemplateResponse(request, "judgment/results_error.html", context)
 
     def _build_query_params(self, form, search_parameters):
         from_date: Optional[date] = form.cleaned_data.get("from_date")
