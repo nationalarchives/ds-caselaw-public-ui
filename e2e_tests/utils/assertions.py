@@ -93,21 +93,27 @@ def compare_snapshot(actual_path, expected_path):
 
 
 def assert_matches_snapshot(page, page_name):
-    actual_path = f"snapshots/{page_name}_actual.png"
-    expected_path = f"snapshots/{page_name}_expected.png"
+    viewports = [
+        ("desktop", {"width": 1280, "height": 720}),
+        ("mobile", {"width": 375, "height": 667}),
+    ]
 
-    page.set_viewport_size({"width": 1280, "height": 720})
-    page.screenshot(path=actual_path, full_page=True)
+    for label, viewport in viewports:
+        actual_path = f"snapshots/{page_name}_{label}_actual.png"
+        expected_path = f"snapshots/{page_name}_{label}_expected.png"
 
-    if not os.path.exists(expected_path):
-        warnings.warn("Expected snapshot not found — generating from current page.")
-        os.replace(actual_path, expected_path)
-        return
+        page.set_viewport_size(viewport)
+        page.screenshot(path=actual_path, full_page=True)
 
-    page.screenshot(path=actual_path, full_page=True)
-    result, score = compare_snapshot(actual_path, expected_path)
+        if not os.path.exists(expected_path):
+            warnings.warn(f"Expected {label} snapshot for {page_name} not found — generating from current page.")
+            os.replace(actual_path, expected_path)
+            return
 
-    if not result:
-        pytest.fail(
-            f"\n{page_name} has changed ({score}). Please check screenshots/actual_{page_name}.png and update screenshots/expected_{page_name}.png if happy."
-        )
+        page.screenshot(path=actual_path, full_page=True)
+        result, score = compare_snapshot(actual_path, expected_path)
+
+        if not result:
+            pytest.fail(
+                f"\n{page_name} on {label} has changed ({score}). Please check screenshots/{page_name}_{label}_actual.png and update screenshots/{page_name}_{label}_expected.png if happy."
+            )
