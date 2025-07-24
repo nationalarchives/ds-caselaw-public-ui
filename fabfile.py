@@ -124,6 +124,22 @@ def memray(c):
 
 
 @task
+def flamegraph(c):
+    start(c, "django")
+    background_exec("npm run watch", "assets")
+    collectstatic(c)
+    try:
+        os.remove("memray.out")
+    except FileNotFoundError:
+        pass
+    try:
+        django_exec("memray run -o memray.out manage.py runserver 0.0.0.0:3000")
+    except KeyboardInterrupt:
+        pass
+    stop(c, "django")
+
+
+@task
 def stop(c, container_name=None):
     """
     Stop the local development environment.
