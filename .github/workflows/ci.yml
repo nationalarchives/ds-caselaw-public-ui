@@ -228,11 +228,6 @@ jobs:
       - name: Generate coverage XML
         run: docker compose run django coverage xml
 
-      - name: Upload coverage to CodeClimate
-        uses: paambaati/codeclimate-action@f429536ee076d758a24705203199548125a28ca7 # v9.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-
       - name: Tear down the Stack
         run: docker compose down
 
