@@ -1,0 +1,1 @@
+`fab memray`, then `fab sh`, then in that shell `memray live 8002`
