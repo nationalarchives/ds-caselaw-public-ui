@@ -11,7 +11,7 @@ def query_input(page: Page):
 
 
 def submit_button(page: Page):
-    return page.get_by_role("button", name="Submit")
+    return page.get_by_role("button", name="Search")
 
 
 def update_filters_button(page: Page):

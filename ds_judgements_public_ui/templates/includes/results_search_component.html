@@ -5,13 +5,9 @@
     {% if order is not None %}<input type="hidden" name="order" value="{{ order }}" />{% endif %}
     <div class="results-search-component__container js-results-facets-wrapper">
       <div class="search-component__container-beta">
-        {% include "includes/search/search_header_text.html" %}
-        <div class="results-search-component__full-text-panel search-term-component">
-          {% include "includes/search_term_component.html" %}
-        </div>.
-        <div class="results-search-component__help-text-container">
-          {% include "includes/search/search_help_text.html" %}
-        </div>
+
+        {% include "includes/search_term_component.html" with label="Use any search term including neutral citation, names and keywords" %}
+
         {% flag faceted_search %}
           {% if court_facets and not query_params.court %}
             {% include "includes/facets/court_and_tribunal_search_facets.html" with type="court" facets=court_facets.items query_param=query_params.court %}

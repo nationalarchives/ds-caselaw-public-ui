@@ -1,0 +1,105 @@
+.search-term-component {
+  display: flex;
+  flex-direction: column;
+  width: 47rem;
+  margin: 0 auto;
+
+  h1 {
+    margin: $space-4 0 0;
+
+    font-family: $font-roboto;
+    font-size: $typography-2xl-text-size;
+    font-weight: $typography-normal-font-weight;
+    line-height: $typography-xs-line-height;
+    color: colour-var("font-dark");
+  }
+
+  &__container {
+    display: flex;
+    gap: $space-4;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      flex-direction: column;
+    }
+  }
+
+  input[type="submit"] {
+    margin-top: $space-2;
+    margin-bottom: 0;
+
+    // The 1px is the border offset of the input this is next to
+    padding: calc($space-3 + 1px) $space-12;
+    border: 2px solid transparent;
+
+    .structured-search__container & {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: $grid-breakpoint-medium) {
+      margin-bottom: $space-2;
+    }
+  }
+
+  &__search-term-container {
+    width: 100%;
+  }
+
+  &__search-term-label {
+    @include sr-only;
+  }
+
+  &__search-term-input {
+    @include text_field;
+
+    box-sizing: border-box;
+    width: 100% !important;
+    min-height: $space-12;
+    margin-bottom: 0;
+    border-radius: 0;
+
+    font-size: $typography-md-text-size;
+
+    appearance: none;
+  }
+
+  &__help-text {
+    margin: $space-1 0 $space-2 0;
+    font-size: $typography-xs-text-size;
+    text-align: left;
+
+    a {
+      &:visited {
+        color: colour-var("link");
+      }
+    }
+  }
+
+  &__more-options-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 47rem;
+    margin: 0 auto;
+  }
+
+  &__header-beta {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    text-wrap: balance;
+
+    @media (max-width: $grid-breakpoint-medium) {
+      display: block;
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: $grid-breakpoint-medium) {
+    flex-direction: column;
+    padding: $space-3;
+  }
+
+  @media (max-width: $grid-breakpoint-large) {
+    width: auto;
+  }
+}
