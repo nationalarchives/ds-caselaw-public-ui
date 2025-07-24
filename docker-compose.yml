@@ -1,7 +1,5 @@
 services:
   django:
-    cap_add:
-      - SYS_PTRACE
     image: ds_judgments_public_ui_django
     platform: linux/amd64
     build:
