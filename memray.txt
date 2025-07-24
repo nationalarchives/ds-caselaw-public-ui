@@ -1,0 +1,3 @@
+`fab memray`, then `fab sh`, then in that shell `memray live 8002`
+
+you might need to run `python manage.py migrate` in the shell, maybe.

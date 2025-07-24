@@ -298,3 +298,8 @@ docker/*
 
 # common location for custom versions of dependencies
 /addons-dev
+
+# memray
+memray.out
+memray-flamegraph*
+memray-manage*
