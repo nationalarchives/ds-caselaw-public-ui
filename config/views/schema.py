@@ -5,7 +5,7 @@ SCHEMA_ROOT = "https://raw.githubusercontent.com/nationalarchives/ds-caselaw-mar
 
 
 def schema(request, schemafile: str):
-    response = requests.get(f"{SCHEMA_ROOT}{schemafile}")
+    response = requests.get(f"{SCHEMA_ROOT}{schemafile}", timeout=5)
     if response.status_code != 200:
         raise Http404("Could not get schema")
 

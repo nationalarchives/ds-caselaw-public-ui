@@ -19,6 +19,7 @@ class DocumentPdf:
             # it is possible that "" is a better value than None, but that is untested
             self.generate_uri(),
             headers={"Accept-Encoding": None},
+            timeout=5,
         )
         content_length = response.headers.get("Content-Length", None)
         if response.status_code >= 400:
