@@ -35,46 +35,25 @@ The database service built from the official [postgres](https://hub.docker.com/_
 
 **NOTE**: For any of the following commands to work, you must first [install Fabric](https://www.fabfile.org/installing.html). (Homebrew is also an option: `brew install fabric`.) Once installed, you can type `fab -l` to see a list of available commands.
 
-### 1. Get access to Marklogic
-
-This app is intended to edit Judgments in the Marklogic database defined in [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic).
-
-Unless you are intending to do any database/Marklogic development work, it is simpler to access a
-shared Marklogic database running on the `staging` environment than to build your own.
-
-If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic).
-
-The **recommended** alternative is to access the shared staging Marklogic database. The way you do this
-depends on where you work:
-
-#### dxw developers
-
-You will need to be using the dxw VPN. Retrieve the staging Marklogic credentials from dalmatian (or ask
-one of the other developers/ops). Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
-in your `.env` file (see step 2).
-
-The MARKLOGIC_HOST should likely begin with `caselaw`
-
-#### TNA/other developers
-
-You will need VPN credentials from the dxw ops team, and the staging Marklogic credentials from one of the
-dxw development team. Use these to fill MARKLOGIC_HOST, MARKLOGIC_USER and MARKLOGIC_PASSWORD
-in your `.env` file (see step 2).
-
-The MARKLOGIC_HOST should most likely begin with `internal`. Some people have experienced difficulties using
-the domain name to connect to the server -- IP addresses may work better.
-
-In both cases, when you run the application, you will be viewing data on staging Marklogic. This
-data is also used for testing and occasionally user research, so please exercise caution when creating/
-editing content!
-
-### 2. Create `.env`
+### 1. Create `.env`
 
 ```console
 cp .env.example .env
 ```
 
 If new environment variables are required, you might need to update .env to reflect that. Check .env.example for suitable default values
+
+### 2. Get access to Marklogic
+
+This app is intended to edit Judgments in the Marklogic database defined in [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
+
+If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at
+[ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
+
+For TNA/dxw developers, it is simpler to access the shared staging Marklogic database via VPN,
+and then set the `MARKLOGIC_HOST`, `MARKLOGIC_USER`, and `MARKLOGIC_PASSWORD` variables in your `.env` file.
+
+The defaults in `.env.example` are correct for a local Marklogic instance.
 
 ### 3. Compile frontend assets
 
@@ -395,8 +374,8 @@ The production app is at [https://caselaw.nationalarchives.gov.uk/](https://case
 
 1. Remember to `git pull` the freshest files
 2. If `fab build` fails early, check that Docker is running? (Click the blue whale)
-3. If the public-ui takes forever to load, check that the VPN is running -- you might need to change
-   the IP address if DNS isn't working for you.
+3. If the public-ui takes forever to load, that usually means it can't connect to MarkLogic.
+   Check that MarkLogic or the VPN is running.
 4. If it was working, and you `git pull`ed, and now it isn't, re-run `fab build`.
 5. If it's saying environment variables aren't set (especially after a `git pull`), you might need
    to add lines to `.env` -- take them from `.env.example`.
