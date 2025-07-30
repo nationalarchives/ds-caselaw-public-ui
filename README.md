@@ -50,7 +50,7 @@ This app is intended to edit Judgments in the Marklogic database defined in [ds-
 If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at
 [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
 
-For TNA/dxw developers, it is simpler to access the shared staging Marklogic database via VPN,
+For TNA/dxw developers, it is simpler to access the shared [staging Marklogic database](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1152974873/MarkLogic+database+location) via VPN,
 and then set the `MARKLOGIC_HOST`, `MARKLOGIC_USER`, and `MARKLOGIC_PASSWORD` variables in your `.env` file.
 
 The defaults in `.env.example` are correct for a local Marklogic instance.
