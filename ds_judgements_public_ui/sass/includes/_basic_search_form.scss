@@ -36,10 +36,6 @@
       &:visited {
         color: colour-var("link");
       }
-
-      &:hover {
-        text-underline-offset: auto;
-      }
     }
 
     @media (max-width: $grid-breakpoint-medium) {
