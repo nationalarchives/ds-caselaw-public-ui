@@ -41,7 +41,7 @@
   color: colour-var("link");
   text-decoration: underline;
   text-decoration-thickness: $link-underline-thickness;
-  text-underline-offset: $link-underline-offset;
+  text-underline-offset: auto;
 
   &:hover {
     color: colour-var("link");
