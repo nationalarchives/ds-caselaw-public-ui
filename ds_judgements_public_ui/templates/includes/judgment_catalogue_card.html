@@ -28,7 +28,7 @@
       {% endif %}
       <tr><th>Link to this {{ document.document_noun }}</th><td>{{ document.public_uri }}</td></tr>
       {% for identifier in document.identifiers.by_score %}
-        <tr><th>{{ identifier.schema.name }}</th><td>{{ identifier.value }}</td></tr>
+        <tr><th>{{ identifier.schema.name }}</th><td>{% if identifier.deprecated %}<small>Previously known as</small><br>{% endif %}{{ identifier.value }}</td></tr>
       {% endfor %}
     </table>
 
