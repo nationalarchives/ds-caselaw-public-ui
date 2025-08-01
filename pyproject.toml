@@ -9,11 +9,16 @@ line-length = 120
 
 [tool.ruff.lint]
 ignore = ["E501", "G004", "PLR2004", "RUF005", "RUF012", "UP040"] # long lines, fstrings in logs, magic values, consider not concat, mutable classbits, type instead of TypeAlias
-extend-select = ["W", "I", "C90"]
-# extend-select = [ "B", "Q", "I", "UP", "YTT", "ASYNC", "S", "BLE", "A", "COM", "C4", "DTZ", "T10", "DJ", "EM", "EXE", "FA",
+extend-select = ["W", "I", "C90", "S"]
+# extend-select = [ "B", "Q", "I", "UP", "YTT", "ASYNC", "BLE", "A", "COM", "C4", "DTZ", "T10", "DJ", "EM", "EXE", "FA",
 #                  "ISC", "ICN", "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "PTH",
 #                  "FIX", "PGH", "PL", "TRY", "FLY", "PERF", "RUF"]
 unfixable = ["ERA"]
 
 [tool.ruff.lint.extend-per-file-ignores]
 "tests/*" = ["S101"]  # `assert` is fine in tests
+"judgments/tests/*" = ["S101"]  # `assert` is fine in tests
+"config/tests/*" = ["S101"] # `assert` is fine in tests
+"e2e_tests/*" = ["S101"]  # `assert` is fine in tests
+"fabfile.py" = ["S607",  # starting a process (docker) with an executable defined by PATH
+                "S603", ] # untrusted input to subprocess (docker commands)

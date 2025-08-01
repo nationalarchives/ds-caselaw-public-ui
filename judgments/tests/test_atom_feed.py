@@ -1,6 +1,6 @@
-import xml.etree.ElementTree as ET
 from unittest.mock import patch
 
+import defusedxml.ElementTree as ET
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 
