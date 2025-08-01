@@ -112,6 +112,58 @@ def run(c): ...
 
 
 @task
+def memray(c):
+    """Launch the server with memray tracking for live connections with `live`"""
+    start(c, "django")
+    background_exec("npm run watch", "assets")
+    collectstatic(c)
+    try:
+        django_exec("memray run --live-remote --live-port 8002 manage.py runserver 0.0.0.0:3000")
+    except KeyboardInterrupt:
+        pass
+    stop(c, "django")
+
+
+@task
+def live(c):
+    """Display a running memray instance"""
+    try:
+        django_exec("memray live 8002")
+    except KeyboardInterrupt:
+        pass
+
+
+@task
+def flamegraph(c):
+    """Take a memray log whilst running the server, then generate a flamegraph from it and show that flamegraph in the browser"""
+    start(c, "django")
+    background_exec("npm run watch", "assets")
+    collectstatic(c)
+    try:
+        os.remove("memray.out")
+    except FileNotFoundError:
+        pass
+
+    try:
+        django_exec("memray run -o memray.out manage.py runserver 0.0.0.0:3000")
+    except KeyboardInterrupt:
+        pass
+
+    try:
+        os.remove("memray-flamegraph-memray.html")
+    except FileNotFoundError:
+        pass
+
+    try:
+        django_exec("memray flamegraph memray.out")
+    except KeyboardInterrupt:
+        pass
+
+    subprocess.run(["open", "memray-flamegraph-memray.html"])
+    stop(c, "django")
+
+
+@task
 def stop(c, container_name=None):
     """
     Stop the local development environment.
