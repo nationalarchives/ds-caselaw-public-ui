@@ -5,6 +5,7 @@ This repository is part of the [Find Case Law](https://caselaw.nationalarchives.
 # Public Interface
 
 ![Tests](https://img.shields.io/github/actions/workflow/status/nationalarchives/ds-caselaw-public-ui/ci.yml?branch=main&label=tests)
+![Code Coverage](https://img.shields.io/codecov/c/github/nationalarchives/ds-caselaw-public-ui)
 
 A public interface to the service, allowing users to search archived items of case law.
 

@@ -223,10 +223,12 @@ jobs:
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Tests with coverage
-        run: docker compose run django coverage run -m pytest -vvvv -rsa -m "not local"
+        run: docker compose run django pytest --cov --cov-branch --cov-report=xml -vvvv -rsa -m "not local"
 
-      - name: Generate coverage XML
-        run: docker compose run django coverage xml
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Tear down the Stack
         run: docker compose down
