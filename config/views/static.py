@@ -1,11 +1,12 @@
 from django.urls import reverse
+from django.views.generic import TemplateView
 from ds_caselaw_utils import courts
 
 from .template_view_with_context import TemplateViewWithContext
 
 
-class AboutThisServiceView(TemplateViewWithContext):
-    template_name = "pages/about_this_service.html"
+class AboutThisServiceView(TemplateView):
+    template_name = "pages/about_this_service.jinja"
     page_title = "About Find Case Law"
     page_canonical_url_name = "about_this_service"
     page_allow_index = True

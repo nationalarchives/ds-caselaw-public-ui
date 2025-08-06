@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <meta charset="utf-8" />
+    {% block meta_description %}
+      {% if page_description %}
+        <meta name="description" content="{{ page_description }}" />
+      {% endif %}
+    {% endblock meta_description %}
+
+    {% block robots %}
+      {% if not page_allow_index %}
+        <meta name="robots" content="noindex,nofollow,noai" />
+      {% endif %}
+    {% endblock robots %}
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    {% if page_canonical_url %}
+      <link rel="canonical" href="{{ page_canonical_url }}" />
+    {% endif %}
+
+    <title>
+      {% block title %}{% if page_title %}{{ page_title }} - {% endif %}Find Case Law{% endblock title %} - The National Archives
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ static('images/favicons/favicon.png') }}" />
+
+    {% block css %}
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Roboto:wght@400;600;700&amp;family=Roboto+Mono:wght@400;600;700&amp;display=swap"
+            rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap"
+            rel="stylesheet" />
+      <link href="{{ static('css/includes/govuk-country-and-territory-autocomplete/location-autocomplete.min.css') }}"
+            rel="stylesheet" />
+      <link href="{{ static('css/main.css') }}" rel="stylesheet" />
+    {% endblock css %}
+
+    {% block extra_head_tags %}{% endblock extra_head_tags %}
+    {% include "snippets/gtm_head.jinja" %}
+  </head>
+  <body class="{% block body_class %}{% endblock body_class %}">
+    <a id="skip-to-main-content" href="#main-content">Skip to Main Content</a>
+    <script>
+      document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
+    </script>
+
+    {% include "snippets/gtm_body.jinja" %}
+    {% include "snippets/cookie_banner.jinja" %}
+    {% include "snippets/environment_banner.jinja" %}
+
+    {% block header %}
+      <header class="govuk-header" data-module="govuk-header">
+        <div class="container">
+          {% include "components/header.jinja" %}
+        </div>
+      </header>
+    {% endblock header %}
+
+    {% block breadcrumbs %}
+      {% include "components/breadcrumbs.jinja" %}
+    {% endblock breadcrumbs %}
+
+    {% include "components/notifications.jinja" %}
+
+    {% block precontent %}{% endblock precontent %}
+
+    <main id="main-content">
+      {% block content %}{% endblock content %}
+    </main>
+
+    {% block postcontent %}{% endblock postcontent %}
+
+    {% block feedback_cta %}
+      {% include "components/pre_footer.jinja" %}
+    {% endblock feedback_cta %}
+
+    {% include "components/footer.jinja" %}
+
+    <script type="module" defer src="{{ static('js/dist/app.js') }}"></script>
+    <script defer src="{{ static('js/dist/cookie_consent.js') }}"></script>
+    {% include "snippets/waffle_flags_javascript.jinja" %}
+
+    {% block javascript %}{% endblock javascript %}
+  </body>
+</html>

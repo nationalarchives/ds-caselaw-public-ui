@@ -1,0 +1,113 @@
+<footer class="site-footer">
+  <div class="site-footer__container">
+    <h2 class="site-footer__heading">Footer</h2>
+    <div class="site-footer__row">
+
+      <div class="site-footer__item">
+        <h3>
+          {% set home_url = url('home') %}
+          {{ trackable_link(request, "Find Case Law", href=home_url) }}
+        </h3>
+        <p>Delivered by</p>
+        {% include "components/footer_logo.jinja" %}
+      </div>
+
+      <div class="site-footer__item">
+        <h3>
+          {% set about_this_service_url = url('about_this_service') %}
+          {{ trackable_link(request, "About", href=about_this_service_url) }}
+        </h3>
+        <ul>
+          <li>
+            {% set courts_and_tribunals_url = url('courts_and_tribunals') %}
+            {{ trackable_link(request, "Courts and tribunals in Find Case Law", href=courts_and_tribunals_url) }}
+          </li>
+          <li>
+            {% set terms_and_policies_url = url('terms_and_policies') %}
+            {{ trackable_link(request, "Terms and policies", href=terms_and_policies_url) }}
+          </li>
+          <li>
+            {% set publishing_policy_url = url('publishing_policy') %}
+            {{ trackable_link(request, "Publishing policy", href=publishing_policy_url) }}
+          </li>
+          <li>
+            {% set user_research_url = url('user_research') %}
+            {{ trackable_link(request, "Help us improve this service", href=user_research_url) }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="site-footer__item">
+        <h3>
+          {% set help_and_guidance_url = url('help_and_guidance') %}
+          {{ trackable_link(request, "Help and guidance", href=help_and_guidance_url) }}
+        </h3>
+        <ul>
+          <li>
+            {% set how_to_search_find_case_law_url = url('how_to_search_find_case_law') %}
+            {{ trackable_link(request, "How to search", href=how_to_search_find_case_law_url) }}
+          </li>
+          <li>
+            {% set understanding_judgments_and_decisions_url = url('understanding_judgments_and_decisions') %}
+            {{ trackable_link(request, "Understanding judgments and decisions", href=understanding_judgments_and_decisions_url) }}
+          </li>
+          <li>
+            {% set contact_us_url = url('contact_us') %}
+            {{ trackable_link(request, "Contact us", href=contact_us_url) }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="site-footer__item">
+        <h3 class="site-footer__show-below-medium">Open Justice Licence</h3>
+        <h3 class="site-footer__hide-below-medium">Re-use Find Case Law records</h3>
+        <div class="site-footer__ojl">
+          <img
+            src="{{ static('images/Open-Justice-Licence-logo.svg') }}"
+            alt="Open Justice Licence logo"
+            height="50"
+            width="32" />
+          <p>
+            {% set open_justice_licence_url = url('open_justice_licence') %}
+            All content is available under the
+            <a class="site-footer__link"
+               href="{{ open_justice_licence_url }}"
+               rel="license">Open Justice Licence</a>.
+          </p>
+        </div>
+        <p>
+          {% set transactional_licence_form_url = url('transactional-licence-form') %}
+          For computational analysis, which is not allowed under the OJL
+          {{ trackable_link(request, "apply for a license", href=transactional_licence_form_url) }}.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="site-footer__row">
+      <div class="site-footer__item">
+        <h3>Legal</h3>
+        <ul class="site-footer__horizontal-links">
+          <li>
+            {% set accessibility_statement_url = url('accessibility_statement') %}
+            {{ trackable_link(request, "Accessibility statement", href=accessibility_statement_url) }}
+          </li>
+          <li>
+            {% set privacy_notice_url = url('privacy_notice') %}
+            {{ trackable_link(request, "Privacy notice", href=privacy_notice_url) }}
+          </li>
+          <li><a href="https://www.nationalarchives.gov.uk/legal/cookies/">Cookies</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__item">
+        <h3>Other websites</h3>
+        <ul class="site-footer__horizontal-links">
+          <li><a href="https://www.legislation.gov.uk/">Legislation.gov.uk</a></li>
+          <li><a href="https://www.judiciary.uk/">The Judiciary</a></li>
+          <li><a href="https://www.nationalarchives.gov.uk/webarchive/">UK Government Web Archive</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
