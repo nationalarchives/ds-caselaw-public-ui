@@ -46,7 +46,7 @@
 
     &:has(.results__result-atom-feed-info:hover),
     &:has(.results__result-atom-feed-info:focus) {
-      margin-bottom: 70px;
+      margin-bottom: 85px;
     }
 
     @media (min-width: $grid-breakpoint-extra-large) {
@@ -95,7 +95,7 @@
     @media (min-width: $grid-breakpoint-extra-large) {
       top: 30px;
       left: -107px;
-      width: 164px;
+      width: 185px;
     }
   }
 

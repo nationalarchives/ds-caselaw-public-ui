@@ -42,7 +42,11 @@
   &--sm {
     padding: $space-2;
     border-width: 5px;
-    font-size: $typography-xs-text-size;
+    font-size: $typography-sm-text-size;
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      font-size: $typography-xs-text-size;
+    }
   }
 
   &__heading {
