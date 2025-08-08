@@ -1,0 +1,39 @@
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {% for breadcrumb in structured_breadcrumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.counter }},
+          "name": "{{ breadcrumb.text }}"{% if breadcrumb.url %},
+            "item": "{{ breadcrumb.url }}"{% endif %}
+        }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+</script>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <nav class="breadcrumbs__flex-container"
+         aria-label="Breadcrumb">
+      <ol>
+        <li>
+          <span class="breadcrumbs__prefix">You are in</span>
+          <a href="{{ url('home') }}">Find Case Law</a>
+        </li>
+        {% for breadcrumb in breadcrumbs %}
+          {% if breadcrumb.url %}
+            <li>
+              <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
+            </li>
+          {% else %}
+            <li>{{ breadcrumb.text }}</li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+</div>
