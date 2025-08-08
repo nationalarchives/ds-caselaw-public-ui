@@ -79,6 +79,9 @@ class FeedbackLinkMiddleware:
         if "feedback_survey_court" in response.context_data:
             params["court"] = response.context_data["feedback_survey_court"]
 
+        if "feedback_survey_tribunal" in response.context_data:
+            params["tribunal"] = response.context_data["feedback_survey_tribunal"]
+
         response.context_data["feedback_survey_link"] = self.BASE_FEEDBACK_URL + "?" + urlencode(params)
         return response
 
