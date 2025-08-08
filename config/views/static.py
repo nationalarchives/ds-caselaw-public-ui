@@ -13,7 +13,7 @@ class AboutThisServiceView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["courts"] = courts.get_listable_groups()
-        context["feedback_survey_type"] = "support"
+        context["feedback_survey_type"] = "about_this_service"
         context["page_description"] = (
             "The Find Case Law service provides free access to judgments and decisions made in England and Wales from 2001 onwards."
         )
@@ -31,7 +31,7 @@ class AccessibilityStatementView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "support"
+        context["feedback_survey_type"] = "accessibility_statement"
         context["page_description"] = (
             "Find out how accessible the Find Case Law service is by reading our accessibility statement. It is important that everyone can use this service."
         )
@@ -196,7 +196,7 @@ class TermsOfUseView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "support"
+        context["feedback_survey_type"] = "terms_of_use"
         context["page_description"] = (
             "The terms of use page and pages it links to explains how you can use information from the Find Case Law service."
         )
