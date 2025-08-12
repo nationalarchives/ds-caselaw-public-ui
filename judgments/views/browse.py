@@ -55,6 +55,7 @@ class BrowseView(TemplateView):
         except MarklogicResourceNotFoundError:
             raise Http404("Search failed")  # TODO: This should be something else!
 
+        context["feedback_survey_tribunal"] = self.kwargs.get("tribunal")
         context["feedback_survey_type"] = "browse"
         context["feedback_survey_court"] = court_query
 

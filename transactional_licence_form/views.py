@@ -113,6 +113,7 @@ class FormWizardView(NamedUrlSessionWizardView):
     def get_context_data(self, form, **kwargs):
         context = super(FormWizardView, self).get_context_data(form)
 
+        context["feedback_survey_type"] = f"license_form_{self.steps.current}"
         context["page_title"] = "Apply for a licence"
         context["breadcrumbs"] = [
             {"url": reverse("about_this_service"), "text": "About Find Case Law"},
@@ -139,6 +140,7 @@ class StartView1(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "re_use_find_case_law_records"
         context["page_title"] = "Re-use Find Case Law records"
         context["page_description"] = (
             "Find out about the Open Justice licensing framework and how to apply for a license to do computational analysis across judgments and decisions on the Find Case Law service."
@@ -156,6 +158,7 @@ class StartView2(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "licence_application_process"
         context["page_title"] = "Licence application process"
         context["page_allow_index"] = True
         context["breadcrumbs"] = [
@@ -171,6 +174,7 @@ class StartView3(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "what_you_need_to_apply_for_a_licence"
         context["page_title"] = "What you need to apply for a licence"
         context["page_allow_index"] = True
         context["breadcrumbs"] = [
@@ -186,6 +190,7 @@ class ConfirmationView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "apply_for_a_license"
         context["page_title"] = "Apply for a licence"
         context["breadcrumbs"] = [
             {"url": reverse("about_this_service"), "text": "About Find Case Law"},
