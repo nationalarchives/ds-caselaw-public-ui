@@ -29,7 +29,7 @@ repos:
         require_serial: true
 
   - repo: https://github.com/rtts/djhtml
-    rev: 3.0.8
+    rev: 3.0.9
     hooks:
       - id: djhtml
 
