@@ -1,0 +1,12 @@
+{% if environment == "staging" %}
+  <div class="environment-banner">
+    <div class="container py-1">
+      <div class="environment-banner__notice">
+        <strong class="environment-banner__environment">Staging</strong>
+        <p class="environment-banner__message">
+          This environment may have features which are not yet available on production.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endif %}

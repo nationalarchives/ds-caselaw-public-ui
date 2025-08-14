@@ -184,7 +184,18 @@ TEMPLATES = [
                 "judgments.context_processors.environment",
             ],
         },
-    }
+    },
+    {
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
+        "DIRS": [str(APPS_DIR / "jinja_templates")],
+        "APP_DIRS": False,
+        "OPTIONS": {
+            "environment": "judgments.jinja2.environment",
+            "context_processors": [
+                "django.template.context_processors.request",
+            ],
+        },
+    },
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ["gds"]
