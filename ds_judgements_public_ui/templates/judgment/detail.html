@@ -8,6 +8,9 @@
   {% if page_title %}{{ page_title }} -{% endif %}
   Find Case Law
 {% endblock title %}
+{% block extra_head_tags %}
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet" />
+{% endblock extra_head_tags %}
 {% block precontent %}
   {% include "includes/judgment_text_toolbar.html" %}
 {% endblock precontent %}
