@@ -6,6 +6,7 @@ from typing import Any
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
 from lxml import html as html_parser
+from waffle import flag_is_active
 
 from judgments.forms import AdvancedSearchForm
 from judgments.models.document_pdf import DocumentPdf
@@ -31,7 +32,7 @@ def detail_html(request, document_uri):
 
     context: dict[str, Any] = {}
 
-    if query:
+    if query and flag_is_active(request, "document_search_query_highlighting"):
         cleaned_search_query = preprocess_query(query)
         document = get_published_document_by_uri(document_uri, search_query=cleaned_search_query)
         context["query"] = query
