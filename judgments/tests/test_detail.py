@@ -12,6 +12,7 @@ from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.test import Client
 from fixtures import MockAPI, TestCaseWithMockAPI
+from waffle.testutils import override_flag
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
@@ -56,6 +57,7 @@ class TestJudgment(TestCaseWithMockAPI):
 
         self.assertEqual(response.status_code, 200)
 
+    @override_flag("document_search_query_highlighting", active=True)
     @patch("judgments.views.detail.detail_html.DocumentPdf")
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     def test_query_passed_to_api_client(self, mock_get_document_by_uri, mock_pdf):
@@ -251,6 +253,7 @@ class TestViewRelatedDocumentButton(MockAPI):
         xpath_query = f"//a[@href='{expected_href}']"
         assert_response_contains_text(response, expected_text, xpath_query)
 
+    @override_flag("document_search_query_highlighting", active=True)
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
     @pytest.mark.parametrize(
