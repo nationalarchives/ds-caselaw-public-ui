@@ -99,7 +99,7 @@ class SearchResultsView(TemplateViewWithContext):
     def _initialize_context(self, form):
         context = {}
         context["form"] = form
-        context["feedback_survey_type"] = "advanced_search"
+        context["feedback_survey_type"] = "advanced_search_filters_applied"
         return context
 
     def _get_search_response(self, request, search_parameters, context):
