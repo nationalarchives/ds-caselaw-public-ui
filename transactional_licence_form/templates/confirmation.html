@@ -1,6 +1,34 @@
 {% extends "layouts/standard_content.html" %}
 
+{% load crispy_forms_tags crispy_forms_gds transactional_licence_utils static %}
+
 {% block is_full_screen %}
+  <nav class="standard-content__navigation">
+    <div class="mobile-only">
+      {% block mobile_article_title %}
+      {% endblock mobile_article_title %}
+    </div>
+
+    <div class="standard-content__navigation-links">
+      {% block article_navigation %}
+        <h3>Licence application steps</h3>
+        <ul>
+          <li><b>1 &ndash; Are you ready to apply</b></li>
+          <li>2 &ndash; Contact details</li>
+          <li>3 &ndash; About your organisation</li>
+          <li>4 &ndash; Purpose and activities</li>
+          <li>5 &ndash; Public statement</li>
+          <li>6 &ndash; Working practices</li>
+          <li>7 &ndash; Working practices</li>
+          <li>8 &ndash; Nine principles</li>
+          <li>9 &ndash; Nine principles statement</li>
+          <li>10 &ndash; Additional comments</li>
+          <li>11 &ndash; Review your answers</li>
+        </ul>
+      {% endblock article_navigation %}
+    </div>
+  </nav>
+
 {% endblock is_full_screen %}
 
 {% block article_content %}
@@ -13,10 +41,7 @@
     </p>
   </div>
 
-  <h1 class="transactional-licence-form__step-title">Step 1 - Are you ready to apply?</h1>
-  <h3 class="transactional-licence-form__steps">
-    Step <b>1</b> of 11
-  </h3>
+  <h1 class="transactional-licence-form__step-title">Step 1 &ndash; Are you ready to apply?</h1>
   <p>
     You only need to apply for a licence if you intend to use computational analysis in your re-use of Find Case Law records in ways
     that are not already permitted under the Open Justice Licence.
