@@ -19,10 +19,10 @@ class FCLForm(forms.Form):
         pass
 
 
-class ContactForm(FCLForm):
-    navigation_done = ("1 – Are you ready to apply",)
-    navigation_current = "2 – Contact details"
-    navigation_todo = (
+class LicenseApplicationForm(FCLForm):
+    NAVIGATION_STEPS = [
+        "1 – Are you ready to apply",
+        "2 – Contact details",
         "3 – About your organisation",
         "4 – Purpose and activities",
         "5 – Public statement",
@@ -32,7 +32,23 @@ class ContactForm(FCLForm):
         "9 – Nine principles statement",
         "10 – Additional comments",
         "11 – Review your answers",
-    )
+    ]
+
+    @property
+    def navigation_done(self):
+        return tuple(self.NAVIGATION_STEPS[: self.step_index])
+
+    @property
+    def navigation_current(self):
+        return self.NAVIGATION_STEPS[self.step_index]
+
+    @property
+    def navigation_todo(self):
+        return tuple(self.NAVIGATION_STEPS[self.step_index + 1 :])
+
+
+class ContactForm(LicenseApplicationForm):
+    step_index = 1
 
     title = "Step 2 – Contact details"
 
@@ -69,7 +85,7 @@ class ContactForm(FCLForm):
     )
 
 
-class OrganizationForm(FCLForm):
+class OrganizationForm(LicenseApplicationForm):
     def __init__(self, *args, **kwargs):
         super(OrganizationForm, self).__init__(*args, **kwargs)
         self.initial["agent_country"] = "country:GB"
@@ -92,18 +108,8 @@ class OrganizationForm(FCLForm):
             Field("partners"),
         )
 
-    navigation_done = ("1 – Are you ready to apply", "2 – Contact details")
-    navigation_current = "3 – About your organisation"
-    navigation_todo = (
-        "4 – Purpose and activities",
-        "5 – Public statement",
-        "6 – Working practices",
-        "7 – Working practices",
-        "8 – Nine principles",
-        "9 – Nine principles statement",
-        "10 – Additional comments",
-        "11 – Review your answers",
-    )
+    step_index = 2
+
     title = "Step 3 – About your organisation"
 
     agent_companyname = fields.FCLCharField(
@@ -153,18 +159,8 @@ class OrganizationForm(FCLForm):
     )
 
 
-class ProjectPurposeForm(FCLForm):
-    navigation_done = ("1 – Are you ready to apply", "2 – Contact details", "3 – About your organisation")
-    navigation_current = "4 – Purpose and activities"
-    navigation_todo = (
-        "5 – Public statement",
-        "6 – Working practices",
-        "7 – Working practices",
-        "8 – Nine principles",
-        "9 – Nine principles statement",
-        "10 – Additional comments",
-        "11 – Review your answers",
-    )
+class ProjectPurposeForm(LicenseApplicationForm):
+    step_index = 3
 
     title = "Step 4 – Purpose and activities"
 
@@ -199,22 +195,8 @@ class ProjectPurposeForm(FCLForm):
     )
 
 
-class PublicStatementForm(FCLForm):
-    navigation_done = (
-        "1 – Are you ready to apply",
-        "2 – Contact details",
-        "3 – About your organisation",
-        "4 – Purpose and activities",
-    )
-    navigation_current = "5 – Public statement"
-    navigation_todo = (
-        "6 – Working practices",
-        "7 – Working practices",
-        "8 – Nine principles",
-        "9 – Nine principles statement",
-        "10 – Additional comments",
-        "11 – Review your answers",
-    )
+class PublicStatementForm(LicenseApplicationForm):
+    step_index = 4
 
     title = "Step 5 – Public statement"
 
@@ -229,22 +211,8 @@ class PublicStatementForm(FCLForm):
     )
 
 
-class WorkingPractices1Form(FCLForm):
-    navigation_done = (
-        "1 – Are you ready to apply",
-        "2 – Contact details",
-        "3 – About your organisation",
-        "4 – Purpose and activities",
-        "5 – Public statement",
-    )
-    navigation_current = "6 – Working practices"
-    navigation_todo = (
-        "7 – Working practices",
-        "8 – Nine principles",
-        "9 – Nine principles statement",
-        "10 – Additional comments",
-        "11 – Review your answers",
-    )
+class WorkingPractices1Form(LicenseApplicationForm):
+    step_index = 5
 
     title = "Step 6 – Working practices"
 
@@ -271,22 +239,8 @@ class WorkingPractices1Form(FCLForm):
     )
 
 
-class WorkingPractices2Form(FCLForm):
-    navigation_done = (
-        "1 – Are you ready to apply",
-        "2 – Contact details",
-        "3 – About your organisation",
-        "4 – Purpose and activities",
-        "5 – Public statement",
-        "6 – Working practices",
-    )
-    navigation_current = "7 – Working practices"
-    navigation_todo = (
-        "8 – Nine principles",
-        "9 – Nine principles statement",
-        "10 – Additional comments",
-        "11 – Review your answers",
-    )
+class WorkingPractices2Form(LicenseApplicationForm):
+    step_index = 6
 
     title = "Step 7 – Working practices"
 
@@ -332,18 +286,8 @@ class WorkingPractices2Form(FCLForm):
     )
 
 
-class NinePrinciplesAgreementForm(FCLForm):
-    navigation_done = (
-        "1 – Are you ready to apply",
-        "2 – Contact details",
-        "3 – About your organisation",
-        "4 – Purpose and activities",
-        "5 – Public statement",
-        "6 – Working practices",
-        "7 – Working practices",
-    )
-    navigation_current = "8 – Nine principles"
-    navigation_todo = ("9 – Nine principles statement", "10 – Additional comments", "11 – Review your answers")
+class NinePrinciplesAgreementForm(LicenseApplicationForm):
+    step_index = 7
 
     title = "Step 8 – Nine principles"
 
@@ -356,19 +300,8 @@ class NinePrinciplesAgreementForm(FCLForm):
     )
 
 
-class NinePrinciplesStatementForm(FCLForm):
-    navigation_done = (
-        "1 – Are you ready to apply",
-        "2 – Contact details",
-        "3 – About your organisation",
-        "4 – Purpose and activities",
-        "5 – Public statement",
-        "6 – Working practices",
-        "7 – Working practices",
-        "8 – Nine principles",
-    )
-    navigation_current = "9 – Nine principles statement"
-    navigation_todo = ("10 – Additional comments", "11 – Review your answers")
+class NinePrinciplesStatementForm(LicenseApplicationForm):
+    step_index = 8
 
     title = "Step 9 – Nine principles statement"
 
@@ -383,20 +316,8 @@ class NinePrinciplesStatementForm(FCLForm):
     )
 
 
-class AdditionalCommentsForm(FCLForm):
-    navigation_done = (
-        "1 – Are you ready to apply",
-        "2 – Contact details",
-        "3 – About your organisation",
-        "4 – Purpose and activities",
-        "5 – Public atatement",
-        "6 – Working practices",
-        "7 – Working practices",
-        "8 – Nine principles",
-        "9 – Nine principles statement",
-    )
-    navigation_current = "10 – Additional comments"
-    navigation_todo = ("11 – Review your answers",)
+class AdditionalCommentsForm(LicenseApplicationForm):
+    step_index = 9
 
     title = "Step 10 – Additional comments"
 
@@ -413,20 +334,8 @@ class AdditionalCommentsForm(FCLForm):
     )
 
 
-class ReviewForm(FCLForm):
-    navigation_done = (
-        "1 – Are you ready to apply",
-        "2 – Contact details",
-        "3 – About your organisation",
-        "4 – Purpose and activities",
-        "5 – Public statement",
-        "6 – Working practices",
-        "7 – Working practices",
-        "8 – Nine principles",
-        "9 – Nine principles statement",
-        "10 – Additional comments",
-    )
-    navigation_current = "11 – Review your answers"
+class ReviewForm(LicenseApplicationForm):
+    step_index = 10
 
     title = "Step 11 – Review your Answers"
     display_in_review = False
