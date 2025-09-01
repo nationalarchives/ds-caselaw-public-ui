@@ -2,6 +2,9 @@ FROM mcr.microsoft.com/playwright/python:v1.54.0-noble@sha256:9e85bdc9c6980dc230
 
 WORKDIR /app
 
+RUN pip install playwright==1.54.0 && \
+    playwright install --with-deps
+
 RUN pip install pytest-playwright axe-playwright-python pillow numpy scikit-image
 COPY . .
 
