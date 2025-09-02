@@ -19,8 +19,38 @@ class FCLForm(forms.Form):
         pass
 
 
-class ContactForm(FCLForm):
-    title = "Step 2 - Contact"
+class LicenseApplicationForm(FCLForm):
+    NAVIGATION_STEPS = [
+        "1 – Are you ready to apply",
+        "2 – Contact details",
+        "3 – About your organisation",
+        "4 – Purpose and activities",
+        "5 – Public statement",
+        "6 – Working practices",
+        "7 – Working practices",
+        "8 – Nine principles",
+        "9 – Nine principles statement",
+        "10 – Additional comments",
+        "11 – Review your answers",
+    ]
+
+    @property
+    def navigation_done(self):
+        return tuple(self.NAVIGATION_STEPS[: self.step_index])
+
+    @property
+    def navigation_current(self):
+        return self.NAVIGATION_STEPS[self.step_index]
+
+    @property
+    def navigation_todo(self):
+        return tuple(self.NAVIGATION_STEPS[self.step_index + 1 :])
+
+
+class ContactForm(LicenseApplicationForm):
+    step_index = 1
+
+    title = "Step 2 – Contact details"
 
     contact_lastname = fields.FCLCharField(
         label="1. Contact Full Name",
@@ -55,7 +85,7 @@ class ContactForm(FCLForm):
     )
 
 
-class OrganizationForm(FCLForm):
+class OrganizationForm(LicenseApplicationForm):
     def __init__(self, *args, **kwargs):
         super(OrganizationForm, self).__init__(*args, **kwargs)
         self.initial["agent_country"] = "country:GB"
@@ -78,7 +108,9 @@ class OrganizationForm(FCLForm):
             Field("partners"),
         )
 
-    title = "Step 3 - About your organisastion"
+    step_index = 2
+
+    title = "Step 3 – About your organisation"
 
     agent_companyname = fields.FCLCharField(
         label="4. What is the full legal name of your organisation?", max_length=100
@@ -127,8 +159,10 @@ class OrganizationForm(FCLForm):
     )
 
 
-class ProjectPurposeForm(FCLForm):
-    title = "Step 4 - Purpose and Activities"
+class ProjectPurposeForm(LicenseApplicationForm):
+    step_index = 3
+
+    title = "Step 4 – Purpose and activities"
 
     project_name = fields.FCLCharField(
         label="10. Please give any project or product name associated with this work",
@@ -161,8 +195,10 @@ class ProjectPurposeForm(FCLForm):
     )
 
 
-class PublicStatementForm(FCLForm):
-    title = "Step 5 - Public Statement"
+class PublicStatementForm(LicenseApplicationForm):
+    step_index = 4
+
+    title = "Step 5 – Public statement"
 
     def layout(self):
         return Layout(Field.textarea("public_statement", max_words=150))
@@ -175,8 +211,10 @@ class PublicStatementForm(FCLForm):
     )
 
 
-class WorkingPractices1Form(FCLForm):
-    title = "Step 6 - Working Practices"
+class WorkingPractices1Form(LicenseApplicationForm):
+    step_index = 5
+
+    title = "Step 6 – Working practices"
 
     focus_on_specific = fields.FCLChoiceField(
         label="16. Will the computational analysis focus on specific individuals or specific groups of people?",
@@ -201,8 +239,10 @@ class WorkingPractices1Form(FCLForm):
     )
 
 
-class WorkingPractices2Form(FCLForm):
-    title = "Step 7 - Working Practices"
+class WorkingPractices2Form(LicenseApplicationForm):
+    step_index = 6
+
+    title = "Step 7 – Working practices"
 
     entire_record_available = fields.FCLChoiceField(
         label="21. Will you make the entire record available online?",
@@ -246,20 +286,24 @@ class WorkingPractices2Form(FCLForm):
     )
 
 
-class NinePrinciplesAgreementForm(FCLForm):
-    title = "Step 8 - 9 Principles"
+class NinePrinciplesAgreementForm(LicenseApplicationForm):
+    step_index = 7
+
+    title = "Step 8 – Nine principles"
 
     accept_principles = fields.FCLChoiceField(
         label=(
-            "28. Licence holders must acknowledge and abide by all the 9 principles."
-            "Do you accept all 9 principles as licence terms?"
+            "28. Licence holders must acknowledge and abide by all the nine principles."
+            "Do you accept all nine principles as licence terms?"
         ),
         choices=list_to_choices(choices.YES_NO_CHOICES),
     )
 
 
-class NinePrinciplesStatementForm(FCLForm):
-    title = "Step 9 - 9 Principles Statement"
+class NinePrinciplesStatementForm(LicenseApplicationForm):
+    step_index = 8
+
+    title = "Step 9 – Nine principles statement"
 
     def layout(self):
         return Layout(
@@ -267,13 +311,15 @@ class NinePrinciplesStatementForm(FCLForm):
         )
 
     principles_statement = fields.FCLCharField(
-        label="29. Please describe how you will meet the 9 principles as terms.",
+        label="29. Please describe how you will meet the nine principles as terms.",
         widget=forms.Textarea(attrs={"maxlength": 500000}),
     )
 
 
-class AdditionalCommentsForm(FCLForm):
-    title = "Step 10 - Additional comments"
+class AdditionalCommentsForm(LicenseApplicationForm):
+    step_index = 9
+
+    title = "Step 10 – Additional comments"
 
     def layout(self):
         return Layout(
@@ -288,8 +334,10 @@ class AdditionalCommentsForm(FCLForm):
     )
 
 
-class ReviewForm(FCLForm):
-    title = "Step 11 - Review your Answers"
+class ReviewForm(LicenseApplicationForm):
+    step_index = 10
+
+    title = "Step 11 – Review your Answers"
     display_in_review = False
     # The Review screen has to be a form 'step' with none of its own inputs
     # and a custom template, as once the `done` callback of the form-tools

@@ -17,8 +17,18 @@ def test_transactional_licence_form(page: Page):
     assert_is_accessible(page)
     assert_matches_snapshot(page, "re_use_find_case_law_records_page")
     page.get_by_text("I want to perform computational analysis").click()
+
+    assert_is_accessible(page)
+    assert_matches_snapshot(page, "re_use_find_case_law_records_process_page")
     page.get_by_text("What you need to apply for a licence").click()
+
+    assert_is_accessible(page)
+    assert_matches_snapshot(page, "re_use_find_case_law_records_to_apply_page")
     page.get_by_role("button", name="Apply for a licence").click()
+
+    assert_is_accessible(page)
+    assert_matches_snapshot(page, "re_use_find_case_law_records_confirmation_page")
+    page.get_by_label("Read the terms of the Open Justice Licence")
     page.get_by_text("Apply now").click()
 
     # Contact details
@@ -127,7 +137,9 @@ def test_transactional_licence_form(page: Page):
     # Nine principles - 2
     assert_is_accessible(page)
     assert_matches_snapshot(page, "transactional_license_nine_principles_2_page")
-    page.get_by_label("Please describe how you will meet the 9 principles as terms.").fill("Nine principles statement")
+    page.get_by_label("Please describe how you will meet the nine principles as terms.").fill(
+        "Nine principles statement"
+    )
     page.get_by_text("Next", exact=True).click()
 
     # Additional comments
@@ -212,11 +224,11 @@ def test_transactional_licence_form(page: Page):
         )
     ).to_have_text("No")
 
-    expect(get_review_row(page, "Licence holders must acknowledge and abide by all the 9 principles.")).to_have_text(
+    expect(get_review_row(page, "Licence holders must acknowledge and abide by all the nine principles.")).to_have_text(
         "Yes"
     )
 
-    expect(get_review_row(page, "Please describe how you will meet the 9 principles as terms.")).to_have_text(
+    expect(get_review_row(page, "Please describe how you will meet the nine principles as terms.")).to_have_text(
         "Nine principles statement"
     )
 
