@@ -30,7 +30,7 @@
     align-items: center;
 
     margin-top: 0;
-    padding: $space-10 0;
+    padding: $space-9 0;
   }
 }
 
@@ -56,7 +56,7 @@
 
     @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
-      gap: $space-12;
+      gap: $space-9;
     }
   }
 

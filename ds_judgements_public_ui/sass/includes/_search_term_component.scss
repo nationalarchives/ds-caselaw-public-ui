@@ -28,7 +28,7 @@
     margin-bottom: 0;
 
     // The 1px is the border offset of the input this is next to
-    padding: calc($space-3 + 1px) $space-12;
+    padding: calc($space-3 + 1px) $space-9;
     border: 2px solid transparent;
 
     .structured-search__container & {
@@ -53,7 +53,7 @@
 
     box-sizing: border-box;
     width: 100% !important;
-    min-height: $space-12;
+    min-height: $space-9;
     margin-bottom: 0;
     border-radius: 0;
 

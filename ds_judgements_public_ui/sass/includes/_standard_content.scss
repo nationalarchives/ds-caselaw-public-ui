@@ -8,7 +8,7 @@
     flex-direction: column;
     gap: $space-8;
 
-    padding-top: $space-10;
+    padding-top: $space-9;
 
     font-size: $typography-md-text-size;
     line-height: $typography-xl-line-height;
@@ -48,7 +48,7 @@
     flex-direction: column;
     gap: $space-6;
 
-    padding: $space-6 $space-6 $space-10;
+    padding: $space-6 $space-6 $space-9;
     border: 2px solid colour-var("accent-brand");
 
     h3 {
