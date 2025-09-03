@@ -44,7 +44,8 @@
     	<li><strong>Feeds are spam-proof.</strong> Had enough? Easy, just unsubscribe from the feed.</li>
     </ul>
     <p>All you need to do to get started is to add the URL (web address) for this feed to a special app called a newsreader. Visit <a href="https://aboutfeeds.com/">About Feeds</a> to get started with newsreaders and subscribing. It’s free. </p>
-    <p>For more information on customising this feed, check our <a href="https://nationalarchives.github.io/ds-find-caselaw-docs/public#tag/Reading-documents/operation/atomFeed">API documentation</a>.</p>
+    <p>For more information on customising this feed, check our <a
+        href="https://nationalarchives.github.io/ds-find-caselaw-docs/public#tag/Document-metadata/operation/atomFeed">API documentation</a>.</p>
   </xsl:template>
 
   <xsl:template match="atom:entry">

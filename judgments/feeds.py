@@ -113,6 +113,25 @@ class JudgmentAtomFeed(Atom1Feed):
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
         pagination = paginator(self.feed["page"], self.feed["total"])
+        # documentation links
+        handler.addQuickElement(
+            "link",
+            "",
+            {
+                "rel": "service-doc",
+                "href": "https://nationalarchives.github.io/ds-find-caselaw-docs/public#tag/Document-metadata/operation/atomFeed",
+            },
+        )
+        handler.addQuickElement(
+            "link",
+            "",
+            {
+                "rel": "service-desc",
+                "href": "https://raw.githubusercontent.com/nationalarchives/ds-find-caselaw-docs/refs/heads/main/doc/openapi/public_api.yml",
+            },
+        )
+
+        # first/last page links
         handler.addQuickElement("link", "", {"rel": "first", "href": _add_page_to_url(self.feed["feed_url"], page=1)})
         handler.addQuickElement(
             "link",
