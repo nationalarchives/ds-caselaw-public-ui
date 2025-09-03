@@ -1,5 +1,5 @@
 .results-search-component {
-  margin: 0 0 $space-12;
+  margin: 0 0 $space-9;
   background-color: colour-var("accent-background-light");
 
   &__container {
@@ -58,8 +58,8 @@
 
   &__search-submit-button {
     width: 100%;
-    padding-right: $space-12;
-    padding-left: $space-12;
+    padding-right: $space-9;
+    padding-left: $space-9;
   }
 
   &__fieldset {

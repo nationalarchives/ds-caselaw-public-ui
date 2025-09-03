@@ -11,7 +11,7 @@
     @include header($typography-header-h3-size);
 
     margin-top: $space-2;
-    margin-bottom: $space-12;
+    margin-bottom: $space-9;
   }
 
   .govuk-label,
@@ -35,11 +35,11 @@
   }
 
   &__preamble {
-    margin-bottom: $space-12;
+    margin-bottom: $space-9;
   }
 
   &__pre-form-content {
-    margin-bottom: $space-12;
+    margin-bottom: $space-9;
 
     &:empty {
       margin-bottom: 0;
@@ -55,6 +55,6 @@
   }
 
   .govuk-form-group {
-    margin-bottom: $space-12;
+    margin-bottom: $space-9;
   }
 }

@@ -1,16 +1,13 @@
 .help-end-document-marker {
   width: 100%;
   max-width: 90%;
-  height: $space-4;
   margin: auto;
-  margin-bottom: 8rem;
-
   text-align: center;
 
   &__top-link {
     display: inline-block;
     margin-top: $space-2;
-    padding: $space-12;
+    padding: $space-9;
     background-color: brand-colour("white");
 
     a {
