@@ -17,6 +17,7 @@ django-waffle==5.0.0  # https://github.com/django-waffle/django-waffle
 django-formtools~=2.5.1
 crispy-forms-gds==2.0.1
 defusedxml==0.7.1
+Jinja2>=3.0
 
 # Type stubs
 mypy-boto3-s3==1.40.0
