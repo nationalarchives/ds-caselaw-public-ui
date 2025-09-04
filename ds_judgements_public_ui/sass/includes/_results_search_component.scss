@@ -227,7 +227,9 @@
 
       font-size: $typography-md-text-size;
       font-weight: $typography-bold-font-weight;
+      color: colour-var("accent-font-base");
 
+      appearance: none;
       background-color: transparent;
 
       &::after {
