@@ -83,7 +83,7 @@ class JudgmentAtomFeed(Atom1Feed):
 
         if link := item.get("link"):
             handler.addQuickElement(
-                "link", "", {"rel": "alternate", "type": "application/akn+xml", "href": f"{link}/data.xml"}
+                "link", None, {"rel": "alternate", "type": "application/akn+xml", "href": f"{link}/data.xml"}
             )
 
         if identifiers := item.get("identifiers"):
@@ -99,7 +99,7 @@ class JudgmentAtomFeed(Atom1Feed):
             path_underscore = uri.replace("/", "_")
             handler.addQuickElement(
                 "link",
-                "",
+                None,
                 {
                     "rel": "alternate",
                     "type": "application/pdf",
@@ -107,16 +107,35 @@ class JudgmentAtomFeed(Atom1Feed):
                 },
             )
             handler.addQuickElement(
-                "tna:assets_base", "", {"href": f"https://assets.caselaw.nationalarchives.gov.uk/{uri}/"}
+                "tna:assets_base", None, {"href": f"https://assets.caselaw.nationalarchives.gov.uk/{uri}/"}
             )
 
     def add_root_elements(self, handler):
         super().add_root_elements(handler)
         pagination = paginator(self.feed["page"], self.feed["total"])
-        handler.addQuickElement("link", "", {"rel": "first", "href": _add_page_to_url(self.feed["feed_url"], page=1)})
+        # documentation links
         handler.addQuickElement(
             "link",
-            "",
+            None,
+            {
+                "rel": "service-doc",
+                "href": "https://nationalarchives.github.io/ds-find-caselaw-docs/public#tag/Document-metadata/operation/atomFeed",
+            },
+        )
+        handler.addQuickElement(
+            "link",
+            None,
+            {
+                "rel": "service-desc",
+                "href": "https://raw.githubusercontent.com/nationalarchives/ds-find-caselaw-docs/refs/heads/main/doc/openapi/public_api.yml",
+            },
+        )
+
+        # first/last page links
+        handler.addQuickElement("link", None, {"rel": "first", "href": _add_page_to_url(self.feed["feed_url"], page=1)})
+        handler.addQuickElement(
+            "link",
+            None,
             {
                 "rel": "last",
                 "href": _add_page_to_url(self.feed["feed_url"], page=pagination["number_of_pages"]),
@@ -128,7 +147,7 @@ class JudgmentAtomFeed(Atom1Feed):
         if pagination["has_next_page"]:
             handler.addQuickElement(
                 "link",
-                "",
+                None,
                 {
                     "rel": "next",
                     "href": _add_page_to_url(self.feed["feed_url"], page=pagination["next_page"]),
@@ -138,7 +157,7 @@ class JudgmentAtomFeed(Atom1Feed):
         if pagination["has_prev_page"]:
             handler.addQuickElement(
                 "link",
-                "",
+                None,
                 {
                     "rel": "previous",
                     "href": _add_page_to_url(self.feed["feed_url"], page=pagination["prev_page"]),
