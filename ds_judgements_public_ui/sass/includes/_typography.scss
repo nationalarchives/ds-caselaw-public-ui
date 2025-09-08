@@ -12,7 +12,9 @@ h3 {
 @mixin header($base-size) {
   margin-top: $base-size * $typography-header-margin-top-multiplier;
   margin-bottom: $base-size * $typography-header-margin-bottom-multiplier;
+
   font-size: $base-size;
+  font-weight: $typography-header-font-weight;
   line-height: $base-size * $typography-header-line-size-multiplier;
 
   @media only screen and (max-width: $grid-breakpoint-medium) {
