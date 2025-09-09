@@ -1,4 +1,4 @@
-FROM postgres:15.14@sha256:7927ca2ca15f9107cd2ee2004fcad3054674776a4009a63fc061cc58d0210c26
+FROM postgres:15.14@sha256:31e60cbedcb3baa718f758db049e9111494f5ef8e9c18f52a95db746a68ef049
 
 COPY ./compose/production/postgres/maintenance /usr/local/bin/maintenance
 RUN chmod +x /usr/local/bin/maintenance/*
