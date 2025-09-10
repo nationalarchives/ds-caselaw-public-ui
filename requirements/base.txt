@@ -20,5 +20,5 @@ defusedxml==0.7.1
 Jinja2>=3.0
 
 # Type stubs
-mypy-boto3-s3==1.40.0
+mypy-boto3-s3==1.40.26
 mypy-boto3-sns==1.40.1
