@@ -1,4 +1,20 @@
 import datetime
+import itertools
+
+from ds_caselaw_utils import courts
+
+
+def converter_regexes(court_repo) -> tuple[str, str]:
+    """Return regex like "uksc|ukftt" (court) and "crim|civ" (subdivision) suitable for URL parsing"""
+    params = tuple(itertools.chain.from_iterable([court.param_aliases for court in court_repo.get_all()]))
+    court_set = set([court for param in params if (court := param.partition("/")[0])])
+    subdivision_set = set([subdivision for param in params if (subdivision := param.partition("/")[2])])
+    court_regex = "|".join(sorted(court_set))
+    subdivision_regex = "|".join(sorted(subdivision_set))
+    return (court_regex, subdivision_regex)
+
+
+court_regex, subdivision_regex = converter_regexes(courts)
 
 
 class YearConverter:
@@ -25,7 +41,7 @@ class DateConverter:
 
 
 class CourtConverter:
-    regex = "ewhc|uksc|ukpc|ewca|ewcop|ewfc|ukut|eat|ukftt|ukait|ukiptrib|ewcc|ewcr"
+    regex = court_regex
 
     def to_python(self, value):
         return value
@@ -35,9 +51,7 @@ class CourtConverter:
 
 
 class SubdivisionConverter:
-    regex = (
-        "civ|crim|admin|admlty|ch|comm|costs|fam|ipec|mercantile|pat|qb|kb|iac|lc|tcc|aac|scco|tc|grc|b|t1|t2|t3|hesc"
-    )
+    regex = subdivision_regex
 
     def to_python(self, value):
         return value
