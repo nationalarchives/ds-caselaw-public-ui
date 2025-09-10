@@ -165,6 +165,7 @@ TEMPLATES = [
     {
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "NAME": "django",
         # https://docs.djangoproject.com/en/dev/ref/settings/#dirs
         "DIRS": [str(APPS_DIR / "templates"), django.__path__[0] + "/forms/templates"],
         # https://docs.djangoproject.com/en/dev/ref/settings/#app-dirs
@@ -184,7 +185,19 @@ TEMPLATES = [
                 "judgments.context_processors.environment",
             ],
         },
-    }
+    },
+    {
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
+        "NAME": "jinja",
+        "DIRS": [str(APPS_DIR / "templates")],
+        "APP_DIRS": False,
+        "OPTIONS": {
+            "environment": "judgments.jinja.environment",
+            "context_processors": [
+                "django.template.context_processors.request",
+            ],
+        },
+    },
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ["gds"]
