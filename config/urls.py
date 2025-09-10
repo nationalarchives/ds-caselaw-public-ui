@@ -13,6 +13,7 @@ from judgments.views.search import AdvancedSearchView, SearchResultsView
 from .converters import SchemaFileConverter
 from .views import static as static_views
 from .views.check import status
+from .views.components import ComponentsView
 from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
 from .views.schema import schema
@@ -157,6 +158,12 @@ urlpatterns = [
         "style-guide",
         StyleGuideView.as_view(),
         name="style_guide",
+    ),
+    # Components
+    path(
+        "components",
+        ComponentsView.as_view(),
+        name="components",
     ),
     # Test page
     path(
