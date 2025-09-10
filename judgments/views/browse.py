@@ -10,6 +10,7 @@ from django.http import Http404
 from django.views.generic.base import TemplateView
 from ds_caselaw_utils import courts as all_courts
 
+from judgments.forms import AdvancedSearchForm
 from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, clamp, paginator
 from judgments.utils.utils import sanitise_input_to_integer
 
@@ -32,6 +33,8 @@ class BrowseView(TemplateView):
             minimum=1,
             maximum=MAX_RESULTS_PER_PAGE,
         )
+
+        context["form"] = AdvancedSearchForm(self.request.GET)
 
         try:
             search_parameters = SearchParameters(
