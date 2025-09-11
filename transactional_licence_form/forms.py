@@ -55,12 +55,14 @@ class ContactForm(LicenseApplicationForm):
     contact_lastname = fields.FCLCharField(
         label="1. Contact Full Name",
         max_length=50,
+        error_messages={"required": "Enter the person's full name"},
     )
     contact_email = fields.FCLEmailField(
         label="2. Contact Email address",
         max_length=50,
         # NOTE: this is a temporary workaround as there is a bug in crispy-forms-gds where they forgot to apply error styling to email inputs
         widget=forms.TextInput(attrs={"type": "email"}),
+        error_messages={"required": "Enter an email address"},
     )
     # NOTE: please see comment in transactional_lcence_form.js if changing the wording / order of the options here.
     alternative_contact = fields.FCLChoiceField(
@@ -113,23 +115,35 @@ class OrganizationForm(LicenseApplicationForm):
     title = "Step 3 – About your organisation"
 
     agent_companyname = fields.FCLCharField(
-        label="4. What is the full legal name of your organisation?", max_length=100
+        label="4. What is the full legal name of your organisation?",
+        max_length=100,
+        error_messages={"required": "Enter the organisation's full legal name"},
     )
     agent_companyname_other = fields.FCLCharField(
         label="5. Please enter any other names your organisation is known by",
         max_length=50,
         help_text="If your organisation is not known by any other names, please type <strong>none</strong>.",
+        error_messages={"required": "Enter other names your organisation is known by, or 'none'"},
     )
 
-    agent_address_line_1 = fields.FCLCharField(label="Address line 1")
+    agent_address_line_1 = fields.FCLCharField(
+        label="Address line 1",
+        error_messages={"required": "Enter building and street"},
+    )
 
     agent_address_line_2 = fields.FCLCharField(label="Address line 2 (optional)", required=False)
 
-    agent_town = fields.FCLCharField(label="Town or city")
+    agent_town = fields.FCLCharField(
+        label="Town or city",
+        error_messages={"required": "Enter town or city"},
+    )
 
     agent_county = fields.FCLCharField(label="County (optional)", required=False)
 
-    agent_postcode = fields.FCLCharField(label="Postcode")
+    agent_postcode = fields.FCLCharField(
+        label="Postcode",
+        error_messages={"required": "Enter postcode"},
+    )
 
     agent_country = fields.FCLChoiceField(
         label="Country",
@@ -142,12 +156,14 @@ class OrganizationForm(LicenseApplicationForm):
         help_text="Select all that apply.",
         choices=list_to_choices(choices.TNA_CONTACTTYPE_CHOICES),
         other_fields={9: "other"},
+        error_messages={"required": "Select your organisation type"},
     )
 
     agent_companyid = fields.FCLCharField(
         max_length=100,
         label="8. Please provide your organisation identifier (e.g. company number or charity registration number)",
         help_text="If your organisation does not have an identifier, please type <strong>none</strong>.",
+        error_messages={"required": "Enter your organisation identifier"},
     )
     partners = fields.FCLCharField(
         max_length=100,
@@ -156,6 +172,7 @@ class OrganizationForm(LicenseApplicationForm):
             "you are working with to do the computational analysis"
         ),
         help_text="If you are not working with any partners or organisations, please type <strong>none</strong>.",
+        error_messages={"required": "Enter partner organisations, or 'none'"},
     )
 
 
@@ -167,11 +184,13 @@ class ProjectPurposeForm(LicenseApplicationForm):
     project_name = fields.FCLCharField(
         label="10. Please give any project or product name associated with this work",
         max_length=250,
+        error_messages={"required": "Enter your project or product name"},
     )
     project_url = fields.FCLCharField(
         label="11. Please share a link to the project or product site",
         help_text="If you cannot share a link, please type <strong>none</strong>.",
         max_length=250,
+        error_messages={"required": "Enter a link to your project or product"},
     )
 
     project_purpose = fields.FCLMultipleChoiceFieldWithOthers(
@@ -179,12 +198,14 @@ class ProjectPurposeForm(LicenseApplicationForm):
         help_text="Select all that apply.",
         choices=list_to_choices(choices.PROJECT_PURPOSE_CHOICES),
         other_fields={5: "other"},
+        error_messages={"required": "Select the main purpose of your project"},
     )
 
     user = fields.FCLChoiceField(
         label="13. Which one best describes who will be able to access the outcomes of your computational analysis?",
         help_text="Please select one.",
         choices=list_to_choices(choices.USER_CHOICES),
+        error_messages={"required": "Select who will be able to access your results"},
     )
 
     benefit = fields.FCLMultipleChoiceFieldWithOthers(
@@ -192,6 +213,7 @@ class ProjectPurposeForm(LicenseApplicationForm):
         help_text="Select all that apply.",
         choices=list_to_choices(choices.BENEFIT_CHOICES),
         other_fields={6: "community_other", 7: "profession_other", 8: "other"},
+        error_messages={"required": "Select who will benefit from your work"},
     )
 
 
@@ -208,6 +230,7 @@ class PublicStatementForm(LicenseApplicationForm):
         help_text="Please aim for 50-150 words",
         widget=forms.Textarea(),
         validators=[lambda v: validate_max_words(v, max_words=150)],
+        error_messages={"required": "Enter your public statement"},
     )
 
 
@@ -219,23 +242,28 @@ class WorkingPractices1Form(LicenseApplicationForm):
     focus_on_specific = fields.FCLChoiceField(
         label="16. Will the computational analysis focus on specific individuals or specific groups of people?",
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if your analysis will focus on specific people or groups"},
     )
     anonymise_individuals = fields.FCLChoiceField(
         label="17. Will you anonymise individuals before you analyse records?",
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will anonymise individuals before analysis"},
     )
     algorithm_review = fields.FCLChoiceField(
         label="18. Will you regularly review algorithms for bias?",
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will regularly review algorithms for bias"},
     )
     code_of_ethics = fields.FCLChoiceField(
         label="19. Will you abide by a code of ethics?",
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will follow a code of ethics"},
     )
     third_party_ethics_review = fields.FCLChoiceField(
         label="20. Will an impartial party review your work against an ethical framework?",
         help_text="For example, an Ethics Advisory Board (EAB) or Research Ethics Committee (REC).",
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if an independent party will review your work"},
     )
 
 
@@ -252,6 +280,7 @@ class WorkingPractices2Form(LicenseApplicationForm):
             "of a judgment."
         ),
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will publish the complete records online"},
     )
     data_extracted_available = fields.FCLChoiceField(
         label="22. Will data extracted from these records be published online?",
@@ -259,23 +288,28 @@ class WorkingPractices2Form(LicenseApplicationForm):
             "For example, any statistical analysis, for example: lists of citations or entities from within the records"
         ),
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will publish data extracted from the records"},
     )
     methodology_available = fields.FCLChoiceField(
         label="23. For transparency, will you make your methodology available to others for scrutiny?",
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will share your methodology publicly"},
     )
     publish_findings = fields.FCLChoiceField(
         label="24. Will you analyse and publish findings online?",
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will publish your findings online"},
     )
     computational_analysis_type = fields.FCLMultipleChoiceField(
         label="25. Do you intend to use computational analysis to do any of the following?",
         help_text="Select all that apply.",
         choices=list_to_choices(choices.COMPUTATIONAL_ANALYSIS_TYPE_CHOICES),
+        error_messages={"required": "Select if you intend to do any of the following"},
     )
     generative_ai_use = fields.FCLChoiceField(
         label="26. Will you notify people when they are using generative AI services or content?",
         choices=list_to_choices(choices.GENERATIVE_AI_USE_CHOICES),
+        error_messages={"required": "Select if you will tell users when they're using AI-generated content"},
     )
     explain_limitations = fields.FCLChoiceField(
         label=(
@@ -283,6 +317,7 @@ class WorkingPractices2Form(LicenseApplicationForm):
             "collection impacts the outcomes of your computational analysis?"
         ),
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you will explain how gaps in the data might affect your results"},
     )
 
 
@@ -297,6 +332,7 @@ class NinePrinciplesAgreementForm(LicenseApplicationForm):
             "Do you accept all nine principles as licence terms?"
         ),
         choices=list_to_choices(choices.YES_NO_CHOICES),
+        error_messages={"required": "Select if you accept all nine principles as licence conditions"},
     )
 
 
@@ -313,6 +349,7 @@ class NinePrinciplesStatementForm(LicenseApplicationForm):
     principles_statement = fields.FCLCharField(
         label="29. Please describe how you will meet the nine principles as terms.",
         widget=forms.Textarea(attrs={"maxlength": 500000}),
+        error_messages={"required": "Describe how you will meet each of the nine principles"},
     )
 
 
