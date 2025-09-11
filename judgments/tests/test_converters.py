@@ -1,7 +1,10 @@
 import datetime
+import inspect
 import re
 
+import ds_caselaw_utils
 from django.test import TestCase
+from ds_caselaw_utils import factory
 
 from judgments.converters import (
     ComponentConverter,
@@ -11,6 +14,7 @@ from judgments.converters import (
     FileFormatConverter,
     SubdivisionConverter,
     YearConverter,
+    converter_regexes,
 )
 
 
@@ -218,3 +222,35 @@ class TestComponentConverter(TestCase):
 
     def test_to_url_returns_value_unchanged(self):
         self.assertEqual(self.converter.to_url("press-summary"), "press-summary")
+
+
+class TestConverterRegexes:
+    def test_converter_regex(self):
+        data = [
+            {
+                "name": "court_group1",
+                "is_tribunal": False,
+                "courts": [{"param": "court1/jam", "name": "Court 1 Jam"}],
+            },
+            {
+                "name": "court_group2",
+                "is_tribunal": False,
+                "courts": [{"param": "court2/jam", "name": "Court 2 Jam"}],
+            },
+            {
+                "name": "court_group3",
+                "is_tribunal": False,
+                "courts": [{"param": "court2/eggs", "name": "Court 2 Eggs", "extra_params": ["court3/bacon"]}],
+            },
+            {
+                "name": "court_group4",
+                "is_tribunal": False,
+                "courts": [{"name": "Has no params"}],
+            },
+        ]
+        valid_data = factory.make_court_repo_valid(data)
+        # this next bit is a mess because ds_caselaw_utils' courts.py is shadowed by the list of courts :(
+        module = inspect.getmodule(ds_caselaw_utils.courts)
+        assert module
+        repo = module.CourtsRepository(valid_data)
+        assert converter_regexes(repo) == ("court1|court2|court3", "bacon|eggs|jam")
