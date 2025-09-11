@@ -1,0 +1,26 @@
+.tna-logo {
+  width: 70px;
+  height: 70px;
+
+  @media only screen and (min-width: $grid-breakpoint-large) {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.tna-logo-link {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+
+  &:focus {
+    @include focus-default;
+
+    outline-color: colour-var("contrast-link");
+  }
+
+  @media only screen and (min-width: $grid-breakpoint-large) {
+    width: 100px;
+    height: 100px;
+  }
+}
