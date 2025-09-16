@@ -1,0 +1,10 @@
+.components {
+  &__grid {
+    display: grid;
+    gap: $space-4;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
