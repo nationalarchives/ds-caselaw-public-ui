@@ -65,6 +65,11 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "includes/govuk_overrides/tabs";
 @import "includes/govuk_overrides/text_area";
 
+// Components
+
+@import "pages/components";
+@import "components/card";
+
 // Base
 @import "includes/confirmation";
 @import "includes/help_end_document_marker";
