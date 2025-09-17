@@ -1,20 +1,48 @@
 {% extends "layouts/base.jinja" %}
-
+{% from "components/card.jinja" import card %}
 
 {% block content %}
-  <div class="container">
+  <div class="components container">
     <h1>Components</h1>
     <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
+
+    <h2>TNA logo Component</h2>
+    {% include "components/tna_logo.jinja" %}
+
+    <h2>Cards</h2>
+
+  <div class="components__grid">
+
+      {% call card(title="Default") %}
+        <p>This is the default card style</p>
+      {% endcall %}
+
+      {% call card(title="Default - with link", url=url("components")) %}
+        <p>This is a default card with a link</p>
+      {% endcall %}
+
+      {% call card(title="Light", variant="light") %}
+        <p>This is the light card style</p>
+      {% endcall %}
+
+      {% call card(variant="light") %}
+        <button class="button-primary">Button</button>
+
+        <p>Just a light example with a button</p>
+      {% endcall %}
+
+      {% call card(title="Image", variant="image", image_url=static("images/modern-magnifying-glass.jpg")) %}
+        <p>This is the image card style</p>
+      {% endcall %}
+
+      {% call card(title="Ghost", variant="ghost") %}
+        <p>This is the ghost card style</p>
+      {% endcall %}
+
+      {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
+        <p>This is a ghost card with a link</p>
+      {% endcall %}
+
     </div>
-
-  <div class="container">
-  <h2>TNA logo Component</h2>
-      {% include "components/tna_logo.jinja" %}
   </div>
-
-  <div class="container">
-  <h2>FCL logo Component</h2>
-      {% include "components/fcl_logo.jinja" %}
-  </div>
-
 {% endblock content %}
