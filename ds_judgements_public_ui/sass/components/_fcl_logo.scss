@@ -3,9 +3,8 @@
   flex-direction: column;
   flex-grow: 1;
 
-  width: 50%;
   margin-top: $space-4;
-  margin-bottom: $space-2;
+  padding: $space-4 $space-4 $space-2;
 
   background-color: colour-var("contrast-background");
 
@@ -19,13 +18,12 @@
 
     font-family: $font-roboto;
     font-size: $typography-xl-text-size;
-    font-weight: normal;
+    font-weight: $typography-normal-font-weight;
     line-height: $typography-md-line-height;
     color: colour-var("contrast-font-base");
     text-wrap: nowrap;
 
     @media only screen and (min-width: $grid-breakpoint-large) {
-      margin: 0 $space-1;
       font-size: $typography-2xl-text-size;
     }
   }
@@ -38,17 +36,12 @@
     font-family: $font-open-sans;
     font-size: $typography-sm-text-size;
     font-weight: bold;
-    line-height: 1.6rem;
+    line-height: $typography-lg-line-height;
     color: colour-var("accent-brand");
     text-wrap: balance;
 
     @media only screen and (min-width: $grid-breakpoint-large) {
-      margin: 0 $space-1;
       font-size: $typography-lg-text-size;
     }
-  }
-
-  @media only screen and (min-width: $grid-breakpoint-medium) {
-    margin: 0;
   }
 }

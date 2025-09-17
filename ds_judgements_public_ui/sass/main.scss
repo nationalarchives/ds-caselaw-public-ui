@@ -69,6 +69,8 @@ $govuk-focus-colour: colour-var("focus-outline");
 
 @import "pages/components";
 @import "components/card";
+@import "components/tna_logo";
+@import "components/fcl_logo";
 
 // Base
 @import "includes/confirmation";
@@ -132,7 +134,3 @@ $govuk-focus-colour: colour-var("focus-outline");
 // Dev
 @import "includes/environment_banner";
 @import "includes/style_guide";
-
-// Components
-@import "components/tna_logo";
-@import "components/fcl_logo";
