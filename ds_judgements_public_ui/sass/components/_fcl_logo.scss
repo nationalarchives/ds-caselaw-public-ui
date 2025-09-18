@@ -35,7 +35,7 @@
 
     font-family: $font-open-sans;
     font-size: $typography-sm-text-size;
-    font-weight: bold;
+    font-weight: $typography-bold-font-weight;
     line-height: $typography-lg-line-height;
     color: colour-var("accent-brand");
     text-wrap: balance;
