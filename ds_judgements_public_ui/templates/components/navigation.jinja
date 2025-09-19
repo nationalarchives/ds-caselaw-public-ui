@@ -1,0 +1,15 @@
+{% macro navigation(items) %}
+        <nav class="navigation">
+          <div class="navigation__links">
+             <h3>On this page:</h3>
+  <ul>
+  {% for item in items %}
+    <li>
+        <a href="#{{item.id}}">{{item.text}}</a>
+    </li>
+  {% endfor %}
+  </ul>
+          </div>
+        </nav>
+
+{% endmacro %}
