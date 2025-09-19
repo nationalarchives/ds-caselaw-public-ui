@@ -1,16 +1,18 @@
 {% extends "layouts/base.jinja" %}
 {% from "components/card.jinja" import card %}
+{% from "components/navigation.jinja" import navigation %}
 
 {% block content %}
   <div class="components container">
     <h1>Components</h1>
     <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
 
-    <h2>TNA logo Component</h2>
+    <h2>TNA logo component</h2>
     {% include "components/tna_logo.jinja" %}
 
-    <h2>FCL logo Component</h2>
+    <h2>FCL logo component</h2>
     {% include "components/fcl_logo.jinja" %}
+
 
 
     <h2>Cards</h2>
@@ -48,5 +50,18 @@
       {% endcall %}
 
     </div>
+
+         <h2>Static navigation component</h2>
+
+
+     {% set nav_items = [
+      {"text" : "What Find Case Law does", "id" : "section-what"},
+      {"text" : "Pages in this section", "id" : "section-pages"},
+    ] %}
+
+        {{ navigation(nav_items) }}
+
+
+
   </div>
 {% endblock content %}
