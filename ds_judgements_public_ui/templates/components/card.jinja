@@ -1,33 +1,24 @@
 {% macro card(title=None, image_url=None, url=None, variant=None) %}
   {% set variant_classes = {
-    'default': 'card card--default',
-    'ghost' : 'card card--ghost',
-    'light' : 'card card--light',
-    'image' : 'card card--image',
+    "default": "card card--default",
+    "ghost": "card card--ghost",
+    "light": "card card--light",
+    "image": "card card--image"
   } %}
-
-    {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
-    {% if url %}
-      <a class="{{variant_class}}" href="{{ url }}">
+  {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
+  {% if url %}
+    <a class="{{ variant_class }}" href="{{ url }}">
     {% else %}
-      <div class="{{variant_class}}">
-    {% endif %}
-
-    {% if image_url %}
-      <img src="{{ image_url }}" alt="" />
-    {% endif %}
-
-    <div class="card__body">
-      {% if title %}
-        <h3>{{title}}</h3>
+      <div class="{{ variant_class }}">
       {% endif %}
-
-      {{ caller() }}
-    </div>
-
-    {% if url %}
+      {% if image_url %}<img src="{{ image_url }}" alt="" />{% endif %}
+      <div class="card__body">
+        {% if title %}<h3>{{ title }}</h3>{% endif %}
+        {{ caller() }}
+      </div>
+      {% if url %}
       </a>
     {% else %}
-      </div>
-    {% endif %}
+    </div>
+  {% endif %}
 {% endmacro %}
