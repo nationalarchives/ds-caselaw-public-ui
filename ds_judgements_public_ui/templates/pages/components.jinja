@@ -1,52 +1,89 @@
 {% extends "layouts/base.jinja" %}
 {% from "components/card.jinja" import card %}
-
+{% from "components/button.jinja" import button %}
+{% from "components/tna_logo.jinja" import tna_logo %}
+{% from "components/fcl_logo.jinja" import fcl_logo %}
 {% block content %}
   <div class="components container">
     <h1>Components</h1>
     <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
-
     <h2>TNA logo Component</h2>
-    {% include "components/tna_logo.jinja" %}
-
+    {{ tna_logo() }}
     <h2>FCL logo Component</h2>
-    {% include "components/fcl_logo.jinja" %}
-
-
+    {{ fcl_logo() }}
     <h2>Cards</h2>
-
-  <div class="components__grid">
-
+    <div class="components__grid">
       {% call card(title="Default") %}
         <p>This is the default card style</p>
       {% endcall %}
-
       {% call card(title="Default - with link", url=url("components")) %}
         <p>This is a default card with a link</p>
       {% endcall %}
-
       {% call card(title="Light", variant="light") %}
         <p>This is the light card style</p>
       {% endcall %}
-
       {% call card(variant="light") %}
         <button class="button-primary">Button</button>
-
         <p>Just a light example with a button</p>
       {% endcall %}
-
       {% call card(title="Image", variant="image", image_url=static("images/modern-magnifying-glass.jpg")) %}
         <p>This is the image card style</p>
       {% endcall %}
-
       {% call card(title="Ghost", variant="ghost") %}
         <p>This is the ghost card style</p>
       {% endcall %}
-
       {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
         <p>This is a ghost card with a link</p>
       {% endcall %}
-
+    </div>
+    <h2>Buttons</h2>
+    <h3>Variants</h3>
+    <div class="components__grid">
+      {% call button() %}
+        Primary button
+      {% endcall %}
+      {% call button(variant="secondary") %}
+        Secondary button
+      {% endcall %}
+      {% call button(variant="underline") %}
+        Underline button
+      {% endcall %}
+      {% call button(variant="link") %}
+        Link button
+      {% endcall %}
+    </div>
+    <h3>Sizes</h3>
+    <div class="components__grid">
+      {% call button(size="small") %}
+        Small primary button
+      {% endcall %}
+      {% call button(variant="secondary", size="small") %}
+        Small secondary button
+      {% endcall %}
+      {% call button(variant="underline", size="small") %}
+        Small underline button
+      {% endcall %}
+      {% call button(variant="link", size="small") %}
+        Small link button
+      {% endcall %}
+    </div>
+    <h3>With contrast</h3>
+    <div class="components__grid components--contrast">
+      {% call button(contrast=True) %}
+        Primary button
+      {% endcall %}
+      {% call button(variant="secondary", contrast=True) %}
+        Secondary button
+      {% endcall %}
+      {% call button(variant="underline", contrast=True) %}
+        Underline button
+      {% endcall %}
+    </div>
+    <h3>With href</h3>
+    <div class="components__grid">
+      {% call button(href=url("components")) %}
+        Primary
+      {% endcall %}
     </div>
   </div>
 {% endblock content %}

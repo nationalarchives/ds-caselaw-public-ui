@@ -1,0 +1,27 @@
+{% macro button(href=None, variant=None, size=None, contrast=None) %}
+  {% set variant_classes = {"default": "", "secondary": "button--secondary", "underline": "button--underline", "link": "button--link"} %}
+  {% set size_classes = {"default": "", "small": "button--small"} %}
+  {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
+  {% set size_class = size_classes.get(size, size_classes['default']) %}
+  {% if contrast %}
+    {% if variant and variant_class %}
+      {% set contrast_class = variant_class ~ '-contrast' %}
+    {% else %}
+      {% set contrast_class = "button--contrast" %}
+    {% endif %}
+  {% else %}
+    {% set contrast_class = variant_class %}
+  {% endif %}
+  {% set button_class = ('button ' ~ contrast_class ~ ' ' ~ size_class).strip() %}
+  {% if href %}
+    <a href="{{ href }}" class="{{ button_class }}">
+    {% else %}
+      <button class="{{ button_class }}">
+      {% endif %}
+      {{ caller() }}
+      {% if href %}
+      </a>
+    {% else %}
+    </button>
+  {% endif %}
+{% endmacro %}

@@ -1,4 +1,6 @@
 @mixin button-primary {
+  cursor: pointer;
+
   display: inline-block;
 
   margin-top: $space-4;
@@ -9,6 +11,7 @@
   font-size: $typography-md-text-size;
   font-weight: $typography-bold-font-weight;
   color: colour-var("accent-button-text");
+  text-align: center;
   text-decoration: none;
 
   appearance: none;
@@ -101,4 +104,134 @@
   background: none !important;
 
   @include link;
+}
+
+// TODO: remove the deprecated classes after migrating to jinja components
+.button {
+  @include button-primary;
+
+  margin: 0;
+  border: 2px solid brand-colour("navy");
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    background-color: colour-var("button-background");
+
+    &:focus,
+    &:hover {
+      cursor: not-allowed;
+
+      color: colour-var("button-text");
+      text-decoration: none;
+
+      background-color: colour-var("button-background");
+      outline: none;
+    }
+  }
+
+  &--secondary {
+    @include button-secondary;
+
+    margin: 0;
+  }
+
+  &--underline {
+    padding: $space-2 0 $space-2 $space-6;
+    border: 0;
+    border-bottom: 3px solid colour-var("accent-brand");
+
+    font-size: $typography-md-text-size;
+    font-weight: $typography-bold-font-weight;
+    color: colour-var("accent-font-base");
+
+    background: transparent;
+
+    &:focus,
+    &:hover {
+      border-bottom: 3px solid colour-var("accent-brand");
+
+      color: colour-var("accent-font-base");
+      text-decoration: underline;
+
+      background: transparent;
+      outline: none;
+    }
+  }
+
+  &--link {
+    cursor: pointer;
+
+    padding: 0 !important;
+    border: none;
+
+    font-size: $typography-md-text-size;
+    text-decoration: underline;
+
+    background: none !important;
+
+    @include link;
+  }
+
+  &--contrast {
+    border-color: colour-var("contrast-button-background");
+    color: colour-var("contrast-button-text");
+    background: colour-var("contrast-button-background");
+
+    &:focus,
+    &:hover {
+      border-color: colour-var("contrast-button-background");
+      color: colour-var("contrast-button-text");
+      background: colour-var("contrast-button-background");
+      outline-color: colour-var("contrast-button-background");
+    }
+  }
+
+  &--secondary-contrast {
+    @include button-secondary;
+
+    margin: 0;
+    border-color: colour-var("contrast-button-background");
+    color: colour-var("contrast-button-background");
+    background: colour-var("contrast-button-text");
+
+    &:focus,
+    &:hover {
+      border-color: colour-var("contrast-button-background");
+      color: colour-var("contrast-button-background");
+      background: colour-var("contrast-button-text");
+      outline-color: colour-var("contrast-button-background");
+    }
+  }
+
+  &--underline-contrast {
+    padding: $space-2 0 $space-2 $space-6;
+    border: 0;
+    border-bottom: 3px solid colour-var("accent-brand");
+
+    font-size: $typography-md-text-size;
+    font-weight: $typography-bold-font-weight;
+    color: colour-var("contrast-button-background");
+
+    background: transparent;
+
+    &:focus,
+    &:hover {
+      border-bottom: 3px solid colour-var("accent-brand");
+
+      color: colour-var("contrast-button-background");
+      text-decoration: underline;
+
+      background: transparent;
+      outline: none;
+    }
+  }
+
+  &--small {
+    max-height: 35px;
+    margin: 0;
+    padding: $space-2 $space-3;
+
+    font-size: $typography-xs-text-size;
+    font-weight: $typography-normal-font-weight;
+  }
 }
