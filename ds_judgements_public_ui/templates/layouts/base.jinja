@@ -3,30 +3,22 @@
   <head>
     <meta charset="utf-8" />
     {% block meta_description %}
-      {% if page_description %}
-        <meta name="description" content="{{ page_description }}" />
-      {% endif %}
+      {% if page_description %}<meta name="description" content="{{ page_description }}" />{% endif %}
     {% endblock meta_description %}
-
     {% block robots %}
-      {% if not page_allow_index %}
-        <meta name="robots" content="noindex,nofollow,noai" />
-      {% endif %}
+      {% if not page_allow_index %}<meta name="robots" content="noindex,nofollow,noai" />{% endif %}
     {% endblock robots %}
-
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-
-    {% if page_canonical_url %}
-      <link rel="canonical" href="{{ page_canonical_url }}" />
-    {% endif %}
-
+    {% if page_canonical_url %}<link rel="canonical" href="{{ page_canonical_url }}" />{% endif %}
     <title>
-      {% block title %}{% if page_title %}{{ page_title }} - {% endif %}Find Case Law{% endblock title %} - The National Archives
+      {% block title %}
+        {% if page_title %}{{ page_title }} -{% endif %}
+        Find Case Law
+      {% endblock title %}
+      - The National Archives
     </title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{{ static('images/favicons/favicon.png') }}" />
-
     {% block css %}
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Roboto:wght@400;600;700&amp;family=Roboto+Mono:wght@400;600;700&amp;display=swap"
             rel="stylesheet" />
@@ -36,11 +28,11 @@
             rel="stylesheet" />
       <link href="{{ static('css/main.css') }}" rel="stylesheet" />
     {% endblock css %}
-
   </head>
   <body class="{% block body_class %}{% endblock body_class %}">
     <main id="main-content">
-      {% block content %}{% endblock content %}
+      {% block content %}
+      {% endblock content %}
     </main>
   </body>
 </html>

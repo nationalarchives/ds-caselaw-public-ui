@@ -1,7 +1,17 @@
 .components {
+  padding: $space-8 0;
+
+  &--contrast {
+    background: colour-var("contrast-background");
+  }
+
   &__grid {
     display: grid;
     gap: $space-4;
+    align-items: center;
+    justify-content: center;
+
+    padding: $space-4;
 
     @media (min-width: $grid-breakpoint-medium) {
       grid-template-columns: repeat(3, 1fr);
