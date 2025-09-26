@@ -1,0 +1,8 @@
+{% macro contents(title=None) %}
+  <nav class="contents">
+    <div class="contents__links">
+      {% if title %}<h3>{{ title }}</h3>{% endif %}
+      {{ caller() }}
+    </div>
+  </nav>
+{% endmacro %}
