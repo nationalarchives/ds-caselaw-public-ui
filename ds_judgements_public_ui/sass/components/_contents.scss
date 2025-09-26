@@ -1,0 +1,51 @@
+.contents {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  small {
+    display: block;
+    margin-bottom: $space-4;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+
+    padding: $space-6 $space-6 $space-10;
+    border: 2px solid colour-var("accent-brand");
+
+    h3 {
+      margin: 0;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: $space-4;
+
+      margin: 0;
+      padding: 0;
+
+      list-style-type: none;
+
+      a {
+        display: block;
+      }
+    }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    min-width: 33%;
+    max-width: 33%;
+  }
+}

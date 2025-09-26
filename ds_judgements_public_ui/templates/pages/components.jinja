@@ -3,6 +3,7 @@
 {% from "components/button.jinja" import button %}
 {% from "components/tna_logo.jinja" import tna_logo %}
 {% from "components/fcl_logo.jinja" import fcl_logo %}
+{% from "components/contents.jinja" import contents %}
 {% block content %}
   <div class="components container">
     <h1>Components</h1>
@@ -85,5 +86,16 @@
         Primary
       {% endcall %}
     </div>
+    <h2>Contents static page navigation</h2>
+    {% call contents(title="On this page") %}
+      <ul>
+        <li>
+          <a href="#section-what">What Find Case Law does</a>
+        </li>
+        <li>
+          <a href="#section-pages">Pages in this section</a>
+        </li>
+      </ul>
+    {% endcall %}
   </div>
 {% endblock content %}
