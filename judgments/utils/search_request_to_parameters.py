@@ -23,12 +23,7 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     * Given a valid search form, query Marklogic and return the results
     * Given an invalid search form, render it again with the errors
     * Given GET request without form submission return an empty form
-    * Given anything except an HTTP GET request raise an error
     """
-    # We should only be handling GET requests here since we aren't changing anything on the server
-    if request.method != "GET":
-        # Raise an error if the user has tried any non GET HTTP requests.
-        raise BadRequest("GET requests only to search_request_to_results")
 
     form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
     params = request.GET

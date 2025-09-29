@@ -29,6 +29,20 @@ class TestAtomFeed(TestCase):
 
     @patch("judgments.feeds.search_judgments_and_parse_response")
     @patch("judgments.feeds.api_client")
+    def test_feed_exists_head(self, mock_api_client, mock_search_judgments_and_parse_response):
+        """Check that the feed actually returns something."""
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        response = self.client.head("/atom.xml")
+
+        # that there is a successful response
+        self.assertEqual(response.status_code, 200)
+
+        # that it has the expected Content-Type
+        self.assertEqual(response["Content-Type"], "application/xml; charset=utf-8")
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
     def test_feed_query_handling(self, mock_api_client, mock_search_judgments_and_parse_response):
         """Check that the feed is performing the expected searches behind the scenes."""
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
