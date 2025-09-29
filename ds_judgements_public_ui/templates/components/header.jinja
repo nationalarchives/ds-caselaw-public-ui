@@ -1,0 +1,7 @@
+{% macro header() %}
+  <header class="govuk-header" data-module="govuk-header">
+    <div class="container">
+      <div class="page-header__container">{{ caller() }}</div>
+    </div>
+  </header>
+{% endmacro %}
