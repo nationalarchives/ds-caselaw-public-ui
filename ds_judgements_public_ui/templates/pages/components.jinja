@@ -4,6 +4,8 @@
 {% from "components/tna_logo.jinja" import tna_logo %}
 {% from "components/fcl_logo.jinja" import fcl_logo %}
 {% from "components/contents.jinja" import contents %}
+{% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
+{% from "components/header.jinja" import header %}
 {% block content %}
   <div class="components container">
     <h1>Components</h1>
@@ -86,7 +88,7 @@
         Primary
       {% endcall %}
     </div>
-    <h2>Contents static page navigation</h2>
+    <h2>Contents</h2>
     {% call contents(title="On this page") %}
       <ul>
         <li>
@@ -96,6 +98,30 @@
           <a href="#section-pages">Pages in this section</a>
         </li>
       </ul>
+    {% endcall %}
+    <h2>Navigation</h2>
+    {% call header() %}
+      {% call navigation() %}
+        {% call navigation_items() %}
+          {% call navigation_item(view_name="home") %}
+            Home
+          {% endcall %}
+          {% call navigation_item(view_name="about_this_service") %}
+            About
+          {% endcall %}
+          {% call navigation_item(view_name="help_and_guidance") %}
+            Help and guidance
+          {% endcall %}
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+    <h2>Header</h2>
+    {% call header() %}
+      {{ tna_logo() }}
+      {{ fcl_logo() }}
+      {% call navigation() %}
+        Navigation goes here
+      {% endcall %}
     {% endcall %}
   </div>
 {% endblock content %}
