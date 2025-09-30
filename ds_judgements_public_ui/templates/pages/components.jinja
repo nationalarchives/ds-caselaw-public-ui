@@ -6,6 +6,7 @@
 {% from "components/contents.jinja" import contents %}
 {% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
 {% from "components/header.jinja" import header %}
+{% from "components/alert.jinja" import alert %}
 {% block content %}
   <div class="components container">
     <h1>Components</h1>
@@ -122,6 +123,13 @@
       {% call navigation() %}
         Navigation goes here
       {% endcall %}
+    {% endcall %}
+    <h2>Alert</h2>
+    {% call alert(title="Important") %}
+      <p>
+        You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
+        your answers before you apply.
+      </p>
     {% endcall %}
   </div>
 {% endblock content %}

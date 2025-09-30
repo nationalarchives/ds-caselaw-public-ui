@@ -1,0 +1,6 @@
+{% macro alert(title=None) %}
+  <div class="home-office-alert">
+    {% if title %}<h2 class="home-office-alert__heading">{{ title }}</h2>{% endif %}
+    {{ caller() }}
+  </div>
+{% endmacro %}
