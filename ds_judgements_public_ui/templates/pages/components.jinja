@@ -7,8 +7,17 @@
 {% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
 {% from "components/header.jinja" import header %}
 {% from "components/alert.jinja" import alert %}
+{% from "components/document_navigation.jinja" import document_navigation %}
+{% from "components/hero.jinja" import hero %}
 {% block content %}
-  <div class="components container">
+  {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
+    <h2>Page title</h2>
+    <p>
+      <span class="visually-hidden">Best human identifer name</span>Best human identifier value
+    </p>
+  {% endcall %}
+  <div class="components container" data-document-body>
+    <div data-document-navigation-start></div>
     <h1>Components</h1>
     <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
     <h2>TNA logo Component</h2>
@@ -131,5 +140,17 @@
         your answers before you apply.
       </p>
     {% endcall %}
+    <h2>Hero</h2>
+    {% call hero() %}
+      <h1>Hero heading</h1>
+      <h2>Hero subheading</h2>
+      <p>Extra hero content goes here</p>
+    {% endcall %}
+    <div data-document-navigation-end></div>
   </div>
 {% endblock content %}
+{% block javascript %}
+  <script type="module"
+          defer
+          src="{{ static('js/dist/document_navigation_links.js') }}"></script>
+{% endblock javascript %}

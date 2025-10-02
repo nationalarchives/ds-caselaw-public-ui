@@ -1,0 +1,25 @@
+.hero {
+  padding: $space-8 0;
+  background-color: colour-var("accent-background-light");
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+    color: colour-var("accent-font-base");
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-weight: $typography-normal-font-weight;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    align-items: center;
+  }
+}
