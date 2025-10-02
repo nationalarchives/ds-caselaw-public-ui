@@ -33,6 +33,22 @@
     <script>
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {% for breadcrumb in structured_breadcrumbs %}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.counter }},
+              "name": "{{ breadcrumb.text }}"{% if breadcrumb.url %},
+                "item": "{{ breadcrumb.url }}"{% endif %}
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
     <main id="main-content">
       {% block content %}
       {% endblock content %}

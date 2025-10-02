@@ -7,6 +7,7 @@
 {% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
 {% from "components/header.jinja" import header %}
 {% from "components/alert.jinja" import alert %}
+{% from "components/breadcrumbs.jinja" import breadcrumbs %}
 {% from "components/document_navigation.jinja" import document_navigation %}
 {% from "components/hero.jinja" import hero %}
 {% block content %}
@@ -140,6 +141,16 @@
         your answers before you apply.
       </p>
     {% endcall %}
+    <h2>Breadcrumbs</h2>
+    {{ breadcrumbs(breadcrumbs_list= [
+        {
+        "url": "/components",
+        "text": "Components"
+        },
+        {
+        "text": "Example components"
+        }
+        ]) }}
     <h2>Hero</h2>
     {% call hero() %}
       <h1>Hero heading</h1>
