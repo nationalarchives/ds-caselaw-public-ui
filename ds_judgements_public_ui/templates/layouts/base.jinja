@@ -38,5 +38,7 @@
       {% endblock content %}
     </main>
     <script type="module" defer src="{{ static('js/dist/app.js') }}"></script>
+    {% block javascript %}
+    {% endblock javascript %}
   </body>
 </html>

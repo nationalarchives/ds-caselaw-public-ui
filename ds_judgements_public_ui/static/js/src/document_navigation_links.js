@@ -30,7 +30,7 @@ const manageClass = (intersecting) => {
     const documentNavigationContainer = document.getElementById(
         "js-document-navigation",
     );
-    const pageScrolls = $(".judgment-body").height() > $(window).height();
+    const pageScrolls = $("[data-document-body]").height() > $(window).height();
 
     if (intersecting && pageScrolls) {
         documentNavigationContainer.classList.remove("show");
@@ -94,11 +94,11 @@ $(() => {
         "js-document-navigation-links-end",
     );
 
-    let skipToEndLinkContainer = document.getElementById(
+    const skipToEndLinkContainer = document.getElementById(
         "js-document-navigation-links-start",
     );
 
-    let footerBackLink = document.querySelector(
+    const footerBackLink = document.querySelector(
         ".judgment-end-document-marker__top-link a",
     );
 
@@ -121,7 +121,7 @@ $(() => {
         }
     }
 
-    let queryContainer = document.getElementById(
+    const queryContainer = document.getElementById(
         "js-document-navigation-links-query-container",
     );
 
@@ -202,13 +202,16 @@ $(() => {
         document.getElementById(targetId).scrollIntoView();
     });
 
-    let judgmentsFooter = document.querySelector(".site-footer");
-    let judgmentsToolbarContainer = document.querySelector(
-        ".judgment-toolbar__container",
+    const documentNavigationEnd = document.querySelector(
+        "[data-document-navigation-end]",
     );
-    if (judgmentsFooter && judgmentsToolbarContainer) {
+    const documentNavigationStart = document.querySelector(
+        "[data-document-navigation-start]",
+    );
+    if (documentNavigationEnd && documentNavigationStart) {
+        console.log("document navigating");
         createIntersectionObserver(
-            [judgmentsFooter, judgmentsToolbarContainer],
+            [documentNavigationEnd, documentNavigationStart],
             furnitureIntersectionHandler,
         );
     }

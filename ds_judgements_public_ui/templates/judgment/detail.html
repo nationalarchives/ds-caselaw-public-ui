@@ -19,9 +19,11 @@
   {% include "includes/judgment_navigation.html" %}
   {% if document_html %}
     <div id="start-of-document"></div>
-    {% autoescape off %}
-      {{ document_html }}
-    {% endautoescape %}
+    <div data-document-body>
+      {% autoescape off %}
+        {{ document_html }}
+      {% endautoescape %}
+    </div>
     {% include "includes/judgment_end_document_marker.html" %}
   {% else %}
     <div class="container judgment-pdf-only">
