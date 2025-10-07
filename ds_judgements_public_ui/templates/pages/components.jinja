@@ -112,6 +112,13 @@
     <h2>Contents</h2>
     {% call contents(title="On this page") %}
       <div class="details__text">
+      <h2>Alert</h2>
+      {% call alert(title="Important") %}
+        <p>
+          You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
+          your answers before you apply.
+        </p>
+      {% endcall %}
       <h2>TNA logo Component</h2>
       {{ tna_logo() }}
       <h2>FCL logo Component</h2>
@@ -219,7 +226,6 @@
           {% endcall %}
         {% endcall %}
       {% endcall %}
-<<<<<<< HEAD
       <h2>Header</h2>
       {% call header() %}
         {{ tna_logo() }}
