@@ -1,0 +1,23 @@
+{% macro search_input(id="search_input", placeholder="", value="", label=None, button_action="", button_label="Search") %}
+  <div class="search-input__container">
+    {% if label %}<label for="{{ id }}" class="search-input__label">{{ label }}</label>{% endif %}
+    <input value="{{ value }}"
+           type="text"
+           placeholder="{{ placeholder }}"
+           id="{{ id }}" />
+    <input type="submit"
+           value="{{ button_label }}"
+           class="button-primary"
+           formaction="{{ button_action }}" />
+  </div>
+{% endmacro %}
+{% macro search_form(label="", id="") %}
+  <div class="search-input">
+    <form role="search" aria-label="{{ label }}" id="{{ id }}">
+      {{ caller() }}
+    </form>
+  </div>
+{% endmacro %}
+{% macro search_input_actions() %}
+  <div class="search-input__actions">{{ caller() }}</div>
+{% endmacro %}

@@ -11,6 +11,7 @@
 {% from "components/document_navigation.jinja" import document_navigation %}
 {% from "components/hero.jinja" import hero %}
 {% from "components/details.jinja" import details %}
+{% from "components/search_input.jinja" import search_form, search_input, search_input_actions %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -18,10 +19,11 @@
       <span class="visually-hidden">Best human identifer name</span>Best human identifier value
     </p>
   {% endcall %}
-  <div class="components container" data-document-body>
+  <div class="components" data-document-body>
     <div data-document-navigation-start></div>
-    <h1>Components</h1>
-    <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
+    <div class="container">
+      <h1>Components</h1>
+      <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
     <h2>Alert</h2>
     {% call alert(title="Important") %}
       <p>
@@ -110,6 +112,88 @@
     <h2>Contents</h2>
     {% call contents(title="On this page") %}
       <div class="details__text">
+      <h2>TNA logo Component</h2>
+      {{ tna_logo() }}
+      <h2>FCL logo Component</h2>
+      {{ fcl_logo() }}
+      <h2>Cards</h2>
+      <div class="components__grid">
+        {% call card(title="Default") %}
+          <p>This is the default card style</p>
+        {% endcall %}
+        {% call card(title="Default - with link", url=url("components")) %}
+          <p>This is a default card with a link</p>
+        {% endcall %}
+        {% call card(title="Light", variant="light") %}
+          <p>This is the light card style</p>
+        {% endcall %}
+        {% call card(variant="light") %}
+          {% call button() %}
+            Button
+          {% endcall %}
+          <p>Just a light example with a button</p>
+        {% endcall %}
+        {% call card(title="Image", variant="image", image_url=static("images/modern-magnifying-glass.jpg")) %}
+          <p>This is the image card style</p>
+        {% endcall %}
+        {% call card(title="Ghost", variant="ghost") %}
+          <p>This is the ghost card style</p>
+        {% endcall %}
+        {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
+          <p>This is a ghost card with a link</p>
+        {% endcall %}
+      </div>
+      <h2>Buttons</h2>
+      <h3>Variants</h3>
+      <div class="components__grid">
+        {% call button() %}
+          Primary button
+        {% endcall %}
+        {% call button(variant="secondary") %}
+          Secondary button
+        {% endcall %}
+        {% call button(variant="underline") %}
+          Underline button
+        {% endcall %}
+        {% call button(variant="link") %}
+          Link button
+        {% endcall %}
+      </div>
+      <h3>Sizes</h3>
+      <div class="components__grid">
+        {% call button(size="small") %}
+          Small primary button
+        {% endcall %}
+        {% call button(variant="secondary", size="small") %}
+          Small secondary button
+        {% endcall %}
+        {% call button(variant="underline", size="small") %}
+          Small underline button
+        {% endcall %}
+        {% call button(variant="link", size="small") %}
+          Small link button
+        {% endcall %}
+      </div>
+      <h3>With contrast</h3>
+      <div class="components__grid components--contrast">
+        {% call button(contrast=True) %}
+          Primary button
+        {% endcall %}
+        {% call button(variant="secondary", contrast=True) %}
+          Secondary button
+        {% endcall %}
+        {% call button(variant="underline", contrast=True) %}
+          Underline button
+        {% endcall %}
+      </div>
+      <h3>With href</h3>
+      <div class="components__grid">
+        {% call button(href=url("components")) %}
+          Primary
+        {% endcall %}
+      </div>
+      <h2>Contents</h2>
+      {% call contents(title="On this page") %}
         <ul>
           <li>
             <a href="#section-what">What Find Case Law does</a>
@@ -135,6 +219,7 @@
           {% endcall %}
         {% endcall %}
       {% endcall %}
+<<<<<<< HEAD
       <h2>Header</h2>
       {% call header() %}
         {{ tna_logo() }}
@@ -195,10 +280,49 @@
       {% endcall %}
     </div>
     <h2>Hero</h2>
+    </div>
+    <div class="container">
+      <h2>Header</h2>
+    </div>
+    {% call header() %}
+      {{ tna_logo() }}
+      {{ fcl_logo() }}
+      {% call navigation() %}
+        Navigation goes here
+      {% endcall %}
+    {% endcall %}
+    <div class="container">
+      <h2>Hero</h2>
+    </div>
     {% call hero() %}
       <h1>Hero heading</h1>
       <h2>Hero subheading</h2>
       <p>Extra hero content goes here</p>
+    {% endcall %}
+    <h2>Search input</h2>
+    {% call hero() %}
+      {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
+        <p>Use any search term including neutral citation, names and keywords</p>
+        {{ search_input(label="Search by keyword or neutral citation", button_action=url("advanced_search") , button_label="Search") }}
+        <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
+        {% call search_input_actions() %}
+          {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+    <br />
+    {% call hero() %}
+      {% call search_form() %}
+        <p>With no params</p>
+        {{ search_input() }}
+      {% endcall %}
+    {% endcall %}
+    <br />
+    {% call hero() %}
+      {% call search_form() %}
+        <h3>With a bigger heading</h3>
+        {{ search_input() }}
+      {% endcall %}
     {% endcall %}
     <div data-document-navigation-end></div>
   </div>
