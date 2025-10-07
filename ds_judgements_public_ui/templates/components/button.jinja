@@ -1,4 +1,4 @@
-{% macro button(href=None, variant=None, size=None, contrast=None) %}
+{% macro button(href=None, variant=None, size=None, contrast=None, element_type="button", attrs={}) %}
   {% set variant_classes = {"default": "", "secondary": "button--secondary", "underline": "button--underline", "link": "button--link"} %}
   {% set size_classes = {"default": "", "small": "button--small"} %}
   {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
@@ -13,15 +13,23 @@
     {% set contrast_class = variant_class %}
   {% endif %}
   {% set button_class = ('button ' ~ contrast_class ~ ' ' ~ size_class).strip() %}
-  {% if href %}
-    <a href="{{ href }}" class="{{ button_class }}">
-    {% else %}
-      <button class="{{ button_class }}">
-      {% endif %}
-      {{ caller() }}
-      {% if href %}
-      </a>
-    {% else %}
-    </button>
+  {% if element_type == "input" %}
+    <input class="{{ button_class }}"
+           {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %} />
+  {% else %}
+    {% if href %}
+      <a href="{{ href }}"
+         class="{{ button_class }}"
+         {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
+      {% else %}
+        <button class="{{ button_class }}"
+                {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
+        {% endif %}
+        {{ caller() }}
+        {% if href %}
+        </a>
+      {% else %}
+      </button>
+    {% endif %}
   {% endif %}
 {% endmacro %}

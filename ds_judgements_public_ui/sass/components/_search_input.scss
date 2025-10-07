@@ -1,0 +1,53 @@
+.search-input {
+  width: 47rem;
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    align-items: flex-start;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a:visited {
+    color: colour-var("link");
+  }
+
+  &__label {
+    @include sr-only;
+  }
+
+  input[type="text"] {
+    @include text_field;
+
+    margin: 0;
+  }
+
+  input[type="submit"] {
+    margin: 0;
+  }
+
+  &__input {
+    @include text_field;
+  }
+
+  &__container {
+    display: flex;
+    gap: $space-4;
+    width: 100%;
+  }
+
+  &__actions {
+    width: 100%;
+    text-align: center;
+  }
+}
