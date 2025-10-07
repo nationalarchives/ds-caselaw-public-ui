@@ -305,7 +305,9 @@
       <h2>Hero subheading</h2>
       <p>Extra hero content goes here</p>
     {% endcall %}
-    <h2>Search input</h2>
+    <div class="container">
+      <h2>Search input</h2>
+    </div>
     {% call hero() %}
       {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
         <p>Use any search term including neutral citation, names and keywords</p>
