@@ -1,0 +1,40 @@
+{% macro breadcrumb(url=None, text=None) %}
+  {% if url %}
+    <li>
+      <a href="{{ url }}">{{ text }}</a>
+    </li>
+  {% else %}
+    <li>{{ text }}</li>
+  {% endif %}
+{% endmacro %}
+{% macro breadcrumbs( text=None, home=None, home_text=None) %}
+  <div class="breadcrumbs">
+    <div class="container">
+      <nav class="breadcrumbs__container" aria-label="Breadcrumb">
+        <ol>
+          <li>
+            <span class="breadcrumbs">{{ text }}</span>
+            <a href="{{ url(home) }}" class="breadcrumbs__prefix">{{ home_text }}</a>
+          </li>
+          {% if caller %}{{ caller() }}{% endif %}
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {% for breadcrumb in structured_breadcrumbs %}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.counter }},
+              "name": "{{ breadcrumb.text }}"{% if breadcrumb.url %},
+                "item": "{{ breadcrumb.url }}"{% endif %}
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+  </script>
+{% endmacro %}
