@@ -42,7 +42,7 @@ repos:
         types_or: [yaml, json, xml, markdown, scss, javascript]
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: v16.24.0
+    rev: v16.25.0
     hooks:
       - id: stylelint
         args: [--fix]
