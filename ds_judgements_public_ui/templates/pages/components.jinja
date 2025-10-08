@@ -7,7 +7,7 @@
 {% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
 {% from "components/header.jinja" import header %}
 {% from "components/alert.jinja" import alert %}
-{% from "components/breadcrumbs.jinja" import breadcrumbs %}
+{% from "components/breadcrumbs.jinja" import breadcrumbs,breadcrumb %}
 {% from "components/document_navigation.jinja" import document_navigation %}
 {% from "components/hero.jinja" import hero %}
 {% block content %}
@@ -142,15 +142,10 @@
       </p>
     {% endcall %}
     <h2>Breadcrumbs</h2>
-    {{ breadcrumbs(home="home", home_text="Find Case Law", breadcrumbs_list= [
-        {
-        "url": "/components",
-        "text": "Components"
-        },
-        {
-        "text": "Example components"
-        }
-        ]) }}
+    {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
+      {{ breadcrumb(url="/components", text="Components") }}
+      {{ breadcrumb(text="Example components") }}
+    {% endcall %}
     <h2>Hero</h2>
     {% call hero() %}
       <h1>Hero heading</h1>

@@ -1,21 +1,22 @@
-{% macro breadcrumbs(home=None ,breadcrumbs_list=None, home_text=None) %}
+{% macro breadcrumb(url=None, text=None) %}
+  {% if url %}
+    <li>
+      <a href="{{ url }}">{{ text }}</a>
+    </li>
+  {% else %}
+    <li>{{ text }}</li>
+  {% endif %}
+{% endmacro %}
+{% macro breadcrumbs( text=None, home=None, home_text=None) %}
   <div class="breadcrumbs">
     <div class="container">
-      <nav class="breadcrumbs__flex-container" aria-label="Breadcrumb">
+      <nav class="breadcrumbs__container" aria-label="Breadcrumb">
         <ol>
           <li>
-            <span class="breadcrumbs">You are in</span>
+            <span class="breadcrumbs">{{ text }}</span>
             <a href="{{ url(home) }}" class="breadcrumbs__prefix">{{ home_text }}</a>
           </li>
-          {% for breadcrumb in breadcrumbs_list %}
-            {% if breadcrumb.url %}
-              <li>
-                <a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a>
-              </li>
-            {% else %}
-              <li>{{ breadcrumb.text }}</li>
-            {% endif %}
-          {% endfor %}
+          {% if caller %}{{ caller() }}{% endif %}
         </ol>
       </nav>
     </div>
