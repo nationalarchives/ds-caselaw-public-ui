@@ -2,7 +2,13 @@ from functools import wraps
 
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import reverse
-from jinja2 import Environment, select_autoescape
+from jinja2 import (
+    ChoiceLoader,
+    Environment,
+    PackageLoader,
+    PrefixLoader,
+    select_autoescape,
+)
 
 from judgments.templatetags import navigation_tags
 
@@ -22,6 +28,17 @@ def with_context(fn):
 
 
 def environment(**options):
+    base_loader = options.get("loader")
+    govuk_loader = PrefixLoader(
+        {
+            "govuk_frontend_jinja": PackageLoader("govuk_frontend_jinja"),
+        }
+    )
+
+    combined_loader = ChoiceLoader([base_loader, govuk_loader]) if base_loader else govuk_loader
+
+    options["loader"] = combined_loader
+
     options.pop("autoescape", None)
     env = Environment(
         autoescape=select_autoescape(
