@@ -1,14 +1,24 @@
-{% macro alert(title=None) %}
-  <div class="home-office-alert">
-    {% if title %}<h2 class="home-office-alert__heading">{{ title }}</h2>{% endif %}
+{% macro alert(title=None, variant="default", size="md") %}
+  {% set variant_classes = {"default": "alert", "error": "alert alert--error", "success": "alert alert--success"} %}
+  {% set size_classes = {"sm": "alert--sm", "md": "alert--md"} %}
+  {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
+  {% set size_class = size_classes.get(size, size_classes['md']) %}
+  <div class="{{ variant_class }} {{ size_class }}">
+    {% if title %}<h2 class="alert__heading">{{ title }}</h2>{% endif %}
     {{ caller() }}
   </div>
 {% endmacro %}
 {% macro alert_examples() %}
-  {% call alert(title="Important") %}
-    <p>
-      You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
-      your answers before you apply.
-    </p>
+  {% call alert(title="Title") %}
+    <p>Content</p>
+  {% endcall %}
+  {% call alert(title="Small size title", size="sm") %}
+    <p>Small size content</p>
+  {% endcall %}
+  {% call alert(title="Error variant",variant="error") %}
+    <p>Error variant content</p>
+  {% endcall %}
+  {% call alert(title="Success variant",variant="success") %}
+    <p>Success variant content</p>
   {% endcall %}
 {% endmacro %}
