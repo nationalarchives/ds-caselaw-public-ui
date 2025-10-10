@@ -1,5 +1,11 @@
 {% macro details(title=None,variant=None) %}
-  {% set variant_classes = {"default": "details", "light": "details details--compact"} %}
+  {% set variant_classes = {
+    "default": "card card--default",
+    "ghost": "card card--ghost",
+    "light": "card card--light",
+    "image": "card card--image"
+  } %}
+  {% set variant_classes = {"default": "details", "light": "details details--light"} %}
   {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
   <details class="{{ variant_class }}">
     <summary class="details__summary">
