@@ -11,6 +11,7 @@
 {% from "components/document_navigation.jinja" import document_navigation %}
 {% from "components/hero.jinja" import hero %}
 {% from "components/checkboxes.jinja" import checkboxes %}
+{% from "components/tabs.jinja" import tabs %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -175,6 +176,36 @@
         }
       ]
     }) }}
+    <h2>Tabs</h2>
+    {{ tabs({
+        "idPrefix": "example-tabs",
+        "items": [
+        {
+        "label": "Tab 1",
+        "id": "tab1",
+        "panel": {
+        "text": "Text panel content"
+        }
+        },
+        {
+        "label": "Tab 2",
+        "id": "tab2",
+        "panel": {
+        "html": "
+        <h3>HTML panel content</h3>
+        <p>Content for panel</p>
+        "
+        }
+        },
+        {
+        "label": "Tab 3",
+        "id": "tab3",
+        "panel": {
+        "text": "Another tab"
+        }
+        },
+        ]
+        }) }}
     <div data-document-navigation-end></div>
   </div>
 {% endblock content %}
