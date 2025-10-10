@@ -10,6 +10,7 @@
 {% from "components/breadcrumbs.jinja" import breadcrumbs,breadcrumb %}
 {% from "components/document_navigation.jinja" import document_navigation %}
 {% from "components/hero.jinja" import hero %}
+{% from "components/checkboxes.jinja" import checkboxes %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -152,6 +153,28 @@
       <h2>Hero subheading</h2>
       <p>Extra hero content goes here</p>
     {% endcall %}
+    <h2>Checkboxes</h2>
+    {{ checkboxes({
+      "idPrefix": "checkbox",
+      "name": "checkbox",
+      "hint": {
+        "text": "This is the hint text"
+      },
+      "items": [
+        {
+          "value": "option1",
+          "text": "Option 1"
+        },
+        {
+          "value": "option2",
+          "text": "Option 2"
+        },
+        {
+          "value": "option3",
+          "text": "Option 3"
+        }
+      ]
+    }) }}
     <div data-document-navigation-end></div>
   </div>
 {% endblock content %}
