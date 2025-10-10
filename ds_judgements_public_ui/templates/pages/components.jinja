@@ -10,6 +10,7 @@
 {% from "components/breadcrumbs.jinja" import breadcrumbs,breadcrumb %}
 {% from "components/document_navigation.jinja" import document_navigation %}
 {% from "components/hero.jinja" import hero %}
+{% from "components/details.jinja" import details %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -101,58 +102,91 @@
     </div>
     <h2>Contents</h2>
     {% call contents(title="On this page") %}
-      <ul>
-        <li>
-          <a href="#section-what">What Find Case Law does</a>
-        </li>
-        <li>
-          <a href="#section-pages">Pages in this section</a>
-        </li>
-      </ul>
-    {% endcall %}
-    <h2>Navigation</h2>
-    {% call header() %}
-      {% call navigation() %}
-        {% call navigation_items() %}
-          {% call navigation_item(view_name="home") %}
-            Home
-          {% endcall %}
-          {% call navigation_item(view_name="about_this_service") %}
-            About
-          {% endcall %}
-          {% call navigation_item(view_name="help_and_guidance") %}
-            Help and guidance
+      <div class="details__text">
+        <ul>
+          <li>
+            <a href="#section-what">What Find Case Law does</a>
+          </li>
+          <li>
+            <a href="#section-pages">Pages in this section</a>
+          </li>
+        </ul>
+      {% endcall %}
+      <h2>Navigation</h2>
+      {% call header() %}
+        {% call navigation() %}
+          {% call navigation_items() %}
+            {% call navigation_item(view_name="home") %}
+              Home
+            {% endcall %}
+            {% call navigation_item(view_name="about_this_service") %}
+              About
+            {% endcall %}
+            {% call navigation_item(view_name="help_and_guidance") %}
+              Help and guidance
+            {% endcall %}
           {% endcall %}
         {% endcall %}
       {% endcall %}
-    {% endcall %}
-    <h2>Header</h2>
-    {% call header() %}
-      {{ tna_logo() }}
-      {{ fcl_logo() }}
-      {% call navigation() %}
-        Navigation goes here
+      <h2>Header</h2>
+      {% call header() %}
+        {{ tna_logo() }}
+        {{ fcl_logo() }}
+        {% call navigation() %}
+          Navigation goes here
+        {% endcall %}
       {% endcall %}
-    {% endcall %}
-    <h2>Alert</h2>
-    {% call alert(title="Important") %}
-      <p>
-        You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
-        your answers before you apply.
-      </p>
-    {% endcall %}
-    <h2>Breadcrumbs</h2>
-    {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
-      {{ breadcrumb(url="/components", text="Components") }}
-      {{ breadcrumb(text="Example components") }}
-    {% endcall %}
-    <h2>Hero</h2>
-    {% call hero() %}
-      <h1>Hero heading</h1>
-      <h2>Hero subheading</h2>
-      <p>Extra hero content goes here</p>
-    {% endcall %}
-    <div data-document-navigation-end></div>
+      <h2>Alert</h2>
+      {% call alert(title="Important") %}
+        <p>
+          You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
+          your answers before you apply.
+        </p>
+      {% endcall %}
+      <h2>Breadcrumbs</h2>
+      {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
+        {{ breadcrumb(url="/components", text="Components") }}
+        {{ breadcrumb(text="Example components") }}
+      {% endcall %}
+      <h2>Hero</h2>
+      {% call hero() %}
+        <h1>Hero heading</h1>
+        <h2>Hero subheading</h2>
+        <p>Extra hero content goes here</p>
+      {% endcall %}
+      <div data-document-navigation-end></div>
+      <h2>Details</h2>
+      <h3>Default (with border)</h3>
+      {% call details(title="Details") %}
+        <strong>Do you intend to apply for a licence?</strong>
+        <p>
+          If you intend to use computational analysis on Find Case Law records,
+          you will need a computational analysis licence
+        </p>
+        <p>
+          If you intend to use computational analysis on Find Case Law records,
+          you will need a computational analysis licence
+        </p>
+        <ol>
+          <li>Do you intend to use a computational analysis on Find Case Law records?</li>
+        </ol>
+      {% endcall %}
+      <h3>Light (without border)</h3>
+      {% call details(title="Details",variant="light") %}
+        <strong>Do you intend to apply for a licence?</strong>
+        <p>
+          If you intend to use computational analysis on Find Case Law records,
+          you will need a computational analysis licence
+        </p>
+        <p>
+          If you intend to use computational analysis on Find Case Law records,
+          you will need a computational analysis licence
+        </p>
+        <ol>
+          <li>Do you intend to use a computational analysis on Find Case Law records?</li>
+        </ol>
+      {% endcall %}
+    </div>
   </div>
 {% endblock content %}
 {% block javascript %}
