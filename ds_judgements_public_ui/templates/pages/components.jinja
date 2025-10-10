@@ -135,11 +135,17 @@
       {% endcall %}
     {% endcall %}
     <h2>Alert</h2>
-    {% call alert(title="Important") %}
-      <p>
-        You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
-        your answers before you apply.
-      </p>
+    {% call alert(title="Title") %}
+      <p>Content</p>
+    {% endcall %}
+    {% call alert(title="Small size title", size="sm") %}
+      <p>Small size content</p>
+    {% endcall %}
+    {% call alert(title="Error variant",variant="error") %}
+      <p>Error variant content</p>
+    {% endcall %}
+    {% call alert(title="Success variant",variant="success") %}
+      <p>Success variant content</p>
     {% endcall %}
     <h2>Breadcrumbs</h2>
     {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
