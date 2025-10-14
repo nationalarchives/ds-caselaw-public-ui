@@ -33,3 +33,47 @@
     {% endif %}
   {% endif %}
 {% endmacro %}
+{% macro button_variant_examples() %}
+  {% call button() %}
+    Primary button
+  {% endcall %}
+  {% call button(variant="secondary") %}
+    Secondary button
+  {% endcall %}
+  {% call button(variant="underline") %}
+    Underline button
+  {% endcall %}
+  {% call button(variant="link") %}
+    Link button
+  {% endcall %}
+{% endmacro %}
+{% macro button_size_examples() %}
+  {% call button(size="small") %}
+    Small primary button
+  {% endcall %}
+  {% call button(variant="secondary", size="small") %}
+    Small secondary button
+  {% endcall %}
+  {% call button(variant="underline", size="small") %}
+    Small underline button
+  {% endcall %}
+  {% call button(variant="link", size="small") %}
+    Small link button
+  {% endcall %}
+{% endmacro %}
+{% macro button_contrast_examples() %}
+  {% call button(contrast=True) %}
+    Primary button
+  {% endcall %}
+  {% call button(variant="secondary", contrast=True) %}
+    Secondary button
+  {% endcall %}
+  {% call button(variant="underline", contrast=True) %}
+    Underline button
+  {% endcall %}
+{% endmacro %}
+{% macro button_href_examples() %}
+  {% call button(href=url("components")) %}
+    Primary
+  {% endcall %}
+{% endmacro %}

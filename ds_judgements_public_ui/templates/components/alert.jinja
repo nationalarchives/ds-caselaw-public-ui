@@ -4,3 +4,11 @@
     {{ caller() }}
   </div>
 {% endmacro %}
+{% macro alert_examples() %}
+  {% call alert(title="Important") %}
+    <p>
+      You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
+      your answers before you apply.
+    </p>
+  {% endcall %}
+{% endmacro %}

@@ -8,3 +8,35 @@
     <div class="details__text">{{ caller() }}</div>
   </details>
 {% endmacro %}
+{% macro details_examples() %}
+  <h3>Default (with border)</h3>
+  {% call details(title="Details") %}
+    <strong>Do you intend to apply for a licence?</strong>
+    <p>
+      If you intend to use computational analysis on Find Case Law records,
+      you will need a computational analysis licence
+    </p>
+    <p>
+      If you intend to use computational analysis on Find Case Law records,
+      you will need a computational analysis licence
+    </p>
+    <ol>
+      <li>Do you intend to use a computational analysis on Find Case Law records?</li>
+    </ol>
+  {% endcall %}
+  <h3>Light (without border)</h3>
+  {% call details(title="Details",variant="light") %}
+    <strong>Do you intend to apply for a licence?</strong>
+    <p>
+      If you intend to use computational analysis on Find Case Law records,
+      you will need a computational analysis licence
+    </p>
+    <p>
+      If you intend to use computational analysis on Find Case Law records,
+      you will need a computational analysis licence
+    </p>
+    <ol>
+      <li>Do you intend to use a computational analysis on Find Case Law records?</li>
+    </ol>
+  {% endcall %}
+{% endmacro %}

@@ -22,3 +22,27 @@
     </div>
   {% endif %}
 {% endmacro %}
+{% macro card_examples() %}
+  {% call card(title="Default") %}
+    <p>This is the default card style</p>
+  {% endcall %}
+  {% call card(title="Default - with link", url=url("components")) %}
+    <p>This is a default card with a link</p>
+  {% endcall %}
+  {% call card(title="Light", variant="light") %}
+    <p>This is the light card style</p>
+  {% endcall %}
+  {% call card(variant="light") %}
+    <button class="button-primary">Button</button>
+    <p>Just a light example with a button</p>
+  {% endcall %}
+  {% call card(title="Image", variant="image", image_url=static("images/modern-magnifying-glass.jpg")) %}
+    <p>This is the image card style</p>
+  {% endcall %}
+  {% call card(title="Ghost", variant="ghost") %}
+    <p>This is the ghost card style</p>
+  {% endcall %}
+  {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
+    <p>This is a ghost card with a link</p>
+  {% endcall %}
+{% endmacro %}

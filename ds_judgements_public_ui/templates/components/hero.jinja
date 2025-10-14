@@ -3,3 +3,10 @@
     <div class="container">{{ caller() }}</div>
   </div>
 {% endmacro %}
+{% macro hero_examples() %}
+  {% call hero() %}
+    <h1>Hero heading</h1>
+    <h2>Hero subheading</h2>
+    <p>Extra hero content goes here</p>
+  {% endcall %}
+{% endmacro %}

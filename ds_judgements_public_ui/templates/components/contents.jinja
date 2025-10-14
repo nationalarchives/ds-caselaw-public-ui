@@ -6,3 +6,15 @@
     </div>
   </nav>
 {% endmacro %}
+{% macro contents_examples() %}
+  {% call contents(title="On this page") %}
+    <ul>
+      <li>
+        <a href="#section-what">What Find Case Law does</a>
+      </li>
+      <li>
+        <a href="#section-pages">Pages in this section</a>
+      </li>
+    </ul>
+  {% endcall %}
+{% endmacro %}

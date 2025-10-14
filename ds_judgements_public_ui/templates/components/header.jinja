@@ -1,7 +1,16 @@
+{% from "components/tna_logo.jinja" import tna_logo %}
+{% from "components/fcl_logo.jinja" import fcl_logo %}
 {% macro header() %}
   <header class="govuk-header" data-module="govuk-header">
     <div class="container">
       <div class="page-header__container">{{ caller() }}</div>
     </div>
   </header>
+{% endmacro %}
+{% macro header_examples() %}
+  {% call header() %}
+    {{ tna_logo() }}
+    {{ fcl_logo() }}
+    Navigation goes here
+  {% endcall %}
 {% endmacro %}
