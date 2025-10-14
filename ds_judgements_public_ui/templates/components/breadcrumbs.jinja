@@ -38,3 +38,9 @@
       }
   </script>
 {% endmacro %}
+{% macro breadcrumbs_examples() %}
+  {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
+    {{ breadcrumb(url="/components", text="Components") }}
+    {{ breadcrumb(text="Example components") }}
+  {% endcall %}
+{% endmacro %}

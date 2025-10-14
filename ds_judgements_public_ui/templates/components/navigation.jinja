@@ -1,3 +1,4 @@
+{% from "components/header.jinja" import header %}
 {% macro navigation(menu_text="Menu") %}
   <div class="govuk-header__content">
     <nav aria-label="Menu" class="govuk-header__navigation">
@@ -21,4 +22,21 @@
        href="{{ url (view_name) }}"
        {% if request.resolver_match.view_name == view_name %}aria-current="true"{% endif %}>{{ caller() }}</a>
   </li>
+{% endmacro %}
+{% macro navigation_examples() %}
+  {% call header() %}
+    {% call navigation() %}
+      {% call navigation_items() %}
+        {% call navigation_item(view_name="home") %}
+          Home
+        {% endcall %}
+        {% call navigation_item(view_name="about_this_service") %}
+          About
+        {% endcall %}
+        {% call navigation_item(view_name="help_and_guidance") %}
+          Help and guidance
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
 {% endmacro %}

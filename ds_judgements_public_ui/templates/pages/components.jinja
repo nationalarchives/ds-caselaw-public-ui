@@ -1,16 +1,17 @@
 {% extends "layouts/base.jinja" %}
-{% from "components/card.jinja" import card %}
-{% from "components/button.jinja" import button %}
+{% from "components/card.jinja" import card, card_examples %}
+{% from "components/button.jinja" import button, button_variant_examples, button_size_examples, button_href_examples, button_contrast_examples %}
 {% from "components/tna_logo.jinja" import tna_logo %}
 {% from "components/fcl_logo.jinja" import fcl_logo %}
-{% from "components/contents.jinja" import contents %}
-{% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
-{% from "components/header.jinja" import header %}
-{% from "components/alert.jinja" import alert %}
-{% from "components/breadcrumbs.jinja" import breadcrumbs,breadcrumb %}
+{% from "components/contents.jinja" import contents, contents_examples %}
+{% from "components/navigation.jinja" import navigation, navigation_items, navigation_examples, navigation_item with context %}
+{% from "components/header.jinja" import header, header_examples %}
+{% from "components/alert.jinja" import alert, alert_examples %}
+{% from "components/breadcrumbs.jinja" import breadcrumbs, breadcrumb, breadcrumbs_examples %}
 {% from "components/document_navigation.jinja" import document_navigation %}
-{% from "components/hero.jinja" import hero %}
-{% from "components/details.jinja" import details %}
+{% from "components/hero.jinja" import hero, hero_examples %}
+{% from "components/details.jinja" import details, details_examples %}
+{% from "components/search_input.jinja" import search_form, search_input, search_input_actions, search_input_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -18,175 +19,54 @@
       <span class="visually-hidden">Best human identifer name</span>Best human identifier value
     </p>
   {% endcall %}
-  <div class="components container" data-document-body>
+  <div class="components" data-document-body>
     <div data-document-navigation-start></div>
-    <h1>Components</h1>
-    <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
-    <h2>TNA logo Component</h2>
-    {{ tna_logo() }}
-    <h2>FCL logo Component</h2>
-    {{ fcl_logo() }}
-    <h2>Cards</h2>
-    <div class="components__grid">
-      {% call card(title="Default") %}
-        <p>This is the default card style</p>
-      {% endcall %}
-      {% call card(title="Default - with link", url=url("components")) %}
-        <p>This is a default card with a link</p>
-      {% endcall %}
-      {% call card(title="Light", variant="light") %}
-        <p>This is the light card style</p>
-      {% endcall %}
-      {% call card(variant="light") %}
-        <button class="button-primary">Button</button>
-        <p>Just a light example with a button</p>
-      {% endcall %}
-      {% call card(title="Image", variant="image", image_url=static("images/modern-magnifying-glass.jpg")) %}
-        <p>This is the image card style</p>
-      {% endcall %}
-      {% call card(title="Ghost", variant="ghost") %}
-        <p>This is the ghost card style</p>
-      {% endcall %}
-      {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
-        <p>This is a ghost card with a link</p>
-      {% endcall %}
-    </div>
-    <h2>Buttons</h2>
-    <h3>Variants</h3>
-    <div class="components__grid">
-      {% call button() %}
-        Primary button
-      {% endcall %}
-      {% call button(variant="secondary") %}
-        Secondary button
-      {% endcall %}
-      {% call button(variant="underline") %}
-        Underline button
-      {% endcall %}
-      {% call button(variant="link") %}
-        Link button
-      {% endcall %}
-    </div>
-    <h3>Sizes</h3>
-    <div class="components__grid">
-      {% call button(size="small") %}
-        Small primary button
-      {% endcall %}
-      {% call button(variant="secondary", size="small") %}
-        Small secondary button
-      {% endcall %}
-      {% call button(variant="underline", size="small") %}
-        Small underline button
-      {% endcall %}
-      {% call button(variant="link", size="small") %}
-        Small link button
-      {% endcall %}
-    </div>
-    <h3>With contrast</h3>
-    <div class="components__grid components--contrast">
-      {% call button(contrast=True) %}
-        Primary button
-      {% endcall %}
-      {% call button(variant="secondary", contrast=True) %}
-        Secondary button
-      {% endcall %}
-      {% call button(variant="underline", contrast=True) %}
-        Underline button
-      {% endcall %}
-    </div>
-    <h3>With href</h3>
-    <div class="components__grid">
-      {% call button(href=url("components")) %}
-        Primary
-      {% endcall %}
-    </div>
-    <h2>Contents</h2>
-    {% call contents(title="On this page") %}
-      <div class="details__text">
-        <ul>
-          <li>
-            <a href="#section-what">What Find Case Law does</a>
-          </li>
-          <li>
-            <a href="#section-pages">Pages in this section</a>
-          </li>
-        </ul>
-      {% endcall %}
-      <h2>Navigation</h2>
-      {% call header() %}
-        {% call navigation() %}
-          {% call navigation_items() %}
-            {% call navigation_item(view_name="home") %}
-              Home
-            {% endcall %}
-            {% call navigation_item(view_name="about_this_service") %}
-              About
-            {% endcall %}
-            {% call navigation_item(view_name="help_and_guidance") %}
-              Help and guidance
-            {% endcall %}
-          {% endcall %}
-        {% endcall %}
-      {% endcall %}
-      <h2>Header</h2>
-      {% call header() %}
-        {{ tna_logo() }}
-        {{ fcl_logo() }}
-        {% call navigation() %}
-          Navigation goes here
-        {% endcall %}
-      {% endcall %}
+    <div class="container">
+      <h1>Components</h1>
+      <p>As we create the components in jinja templates we can add them to this template to ensure they work as expected</p>
       <h2>Alert</h2>
-      {% call alert(title="Important") %}
-        <p>
-          You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
-          your answers before you apply.
-        </p>
-      {% endcall %}
-      <h2>Breadcrumbs</h2>
-      {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
-        {{ breadcrumb(url="/components", text="Components") }}
-        {{ breadcrumb(text="Example components") }}
-      {% endcall %}
-      <h2>Hero</h2>
-      {% call hero() %}
-        <h1>Hero heading</h1>
-        <h2>Hero subheading</h2>
-        <p>Extra hero content goes here</p>
-      {% endcall %}
-      <div data-document-navigation-end></div>
+      {{ alert_examples() }}
+      <h2>TNA logo Component</h2>
+      {{ tna_logo() }}
+      <h2>FCL logo Component</h2>
+      {{ fcl_logo() }}
+      <h2>Cards</h2>
+      <div class="components__grid">{{ card_examples() }}</div>
+      <h2>Buttons</h2>
+      <h3>Variants</h3>
+      <div class="components__grid">{{ button_variant_examples() }}</div>
+      <h3>Sizes</h3>
+      <div class="components__grid">{{ button_size_examples() }}</div>
+      <h3>With contrast</h3>
+      <div class="components__grid components--contrast">{{ button_contrast_examples() }}</div>
+      <h3>With href</h3>
+      <div class="components__grid">{{ button_href_examples() }}</div>
+      <h2>Contents</h2>
+      {{ contents_examples() }}
       <h2>Details</h2>
-      <h3>Default (with border)</h3>
-      {% call details(title="Details") %}
-        <strong>Do you intend to apply for a licence?</strong>
-        <p>
-          If you intend to use computational analysis on Find Case Law records,
-          you will need a computational analysis licence
-        </p>
-        <p>
-          If you intend to use computational analysis on Find Case Law records,
-          you will need a computational analysis licence
-        </p>
-        <ol>
-          <li>Do you intend to use a computational analysis on Find Case Law records?</li>
-        </ol>
-      {% endcall %}
-      <h3>Light (without border)</h3>
-      {% call details(title="Details",variant="light") %}
-        <strong>Do you intend to apply for a licence?</strong>
-        <p>
-          If you intend to use computational analysis on Find Case Law records,
-          you will need a computational analysis licence
-        </p>
-        <p>
-          If you intend to use computational analysis on Find Case Law records,
-          you will need a computational analysis licence
-        </p>
-        <ol>
-          <li>Do you intend to use a computational analysis on Find Case Law records?</li>
-        </ol>
-      {% endcall %}
+      {{ details_examples() }}
     </div>
+    <div class="container">
+      <h2>Navigation</h2>
+    </div>
+    {{ navigation_examples() }}
+    <div class="container">
+      <h2>Header</h2>
+    </div>
+    {{ header_examples() }}
+    <div class="container">
+      <h2>Breadcrumbs</h2>
+    </div>
+    {{ breadcrumbs_examples() }}
+    <div class="container">
+      <h2>Hero</h2>
+    </div>
+    {{ hero_examples() }}
+    <div class="container">
+      <h2>Search input</h2>
+    </div>
+    {{ search_input_examples() }}
+    <div data-document-navigation-end></div>
   </div>
 {% endblock content %}
 {% block javascript %}
