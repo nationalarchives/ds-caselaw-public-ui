@@ -1,0 +1,27 @@
+{% from "govuk_frontend_jinja/components/checkboxes/macro.html" import govukCheckboxes %}
+{% macro checkboxes(params) %}
+  {{ govukCheckboxes(params) }}
+{% endmacro %}
+{% macro checkboxes_examples() %}
+  {{ checkboxes({
+    "idPrefix": "checkbox",
+    "name": "checkbox",
+    "hint": {
+      "text": "This is the hint text"
+    },
+    "items": [
+      {
+        "value": "option1",
+        "text": "Option 1"
+      },
+      {
+        "value": "option2",
+        "text": "Option 2"
+      },
+      {
+        "value": "option3",
+        "text": "Option 3"
+      }
+    ]
+  }) }}
+{% endmacro %}
