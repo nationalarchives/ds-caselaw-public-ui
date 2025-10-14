@@ -1,130 +1,127 @@
 {% macro icon(name="", size="sm") %}
   <span class="icon icon__{{ name }} icon__{{ size }}"></span>
 {% endmacro %}
-
 {% macro icon_size_examples() %}
-        <div>
-          sm (default)
-          {{ icon(name="circle_xmark_solid", size="sm") }}
-        </div>
-        <div>
-          md
-          {{ icon(name="circle_xmark_solid", size="md") }}
-        </div>
-        <div>
-          lg
-          {{ icon(name="circle_xmark_solid", size="lg") }}
-        </div>
-        <div>
-          xl
-          {{ icon(name="circle_xmark_solid", size="xl") }}
-        </div>
+  <div>
+    sm (default)
+    {{ icon(name="circle_xmark_solid", size="sm") }}
+  </div>
+  <div>
+    md
+    {{ icon(name="circle_xmark_solid", size="md") }}
+  </div>
+  <div>
+    lg
+    {{ icon(name="circle_xmark_solid", size="lg") }}
+  </div>
+  <div>
+    xl
+    {{ icon(name="circle_xmark_solid", size="xl") }}
+  </div>
 {% endmacro %}
-
-
 {% macro icon_variant_examples() %}
-        <div>
-          Download
-          {{ icon(name="download") }}
-        </div>
-        <div>
-          {{ icon(name="chevron_right") }}
-          chevron_right
-        </div>
-        <div>
-          {{ icon(name="chevron_right_aqua_blue") }}
-          chevron_right_aqua_blue
-        </div>
-        <div>
-          {{ icon(name="chevron_right_disabled") }}
-          chevron_right_disabled
-        </div>
-        <div>
-          {{ icon(name="chevron_right_link_blue") }}
-          chevron_right_link_blue
-        </div>
-        <div>
-          {{ icon(name="chevron_right_link_hover_blue") }}
-          chevron_right_link_hover_blue
-        </div>
-        <div>
-          {{ icon(name="chevron_left") }}
-          chevron_left
-        </div>
-        <div>
-          {{ icon(name="chevron_left_white") }}
-          chevron_left_white
-        </div>
-        <div>
-          {{ icon(name="chevron_left_aqua_blue") }}
-          chevron_left_aqua_blue
-        </div>
-        <div>
-          {{ icon(name="chevron_left_disabled") }}
-          chevron_left_disabled
-        </div>
-        <div>
-          {{ icon(name="chevron_left_link_blue") }}
-          chevron_left_link_blue
-        </div>
-        <div>
-          {{ icon(name="chevron_left_link_hover_blue") }}
-          chevron_left_link_hover_blue
-        </div>
-        <div>
-          {{ icon(name="chevron_download_link_blue") }}
-          chevron_download_link_blue
-        </div>
-        <div>
-          {{ icon(name="chevron_download_link_hover_blue") }}
-          chevron_download_link_hover_blue
-        </div>
-        <div>
-          {{ icon(name="circle_xmark_solid") }}
-          circle_xmark_solid
-        </div>
-        <div>
-          {{ icon(name="circle_xmark_solid_white") }}
-          circle_xmark_solid_white
-        </div>
-        <div>
-          {{ icon(name="circle_xmark_solid_link_blue") }}
-          circle_xmark_solid_link_blue
-        </div>
-        <div>
-          {{ icon(name="circle_xmark_solid_link_hover_blue") }}
-          circle_xmark_solid_link_hover_blue
-        </div>
-        <div>
-          {{ icon(name="circle_xmark_light") }}
-          circle_xmark_light
-        </div>
-        <div>
-          {{ icon(name="info") }}
-          info
-        </div>
-        <div>
-          {{ icon(name="info_solid") }}
-          info_solid
-        </div>
-        <div>
-          {{ icon(name="magnifying_glass_solid_white") }}
-          magnifying_glass_solid_white
-        </div>
-        <div>
-          {{ icon(name="xmark_solid") }}
-          xmark_solid
-        </div>
-        <div>
-          {{ icon(name="arrow_left") }}
-          arrow_left
-        </div>
-        <div>
-          {{ icon(name="arrow_right") }}
-          arrow_right
-        </div>
-        <div>
-          {{ icon(name="beta_arrow_right") }}
-          beta_arrow_right
-        </div>
+  <div>
+    Download
+    {{ icon(name="download") }}
+  </div>
+  <div>
+    {{ icon(name="chevron_right") }}
+    chevron_right
+  </div>
+  <div>
+    {{ icon(name="chevron_right_aqua_blue") }}
+    chevron_right_aqua_blue
+  </div>
+  <div>
+    {{ icon(name="chevron_right_disabled") }}
+    chevron_right_disabled
+  </div>
+  <div>
+    {{ icon(name="chevron_right_link_blue") }}
+    chevron_right_link_blue
+  </div>
+  <div>
+    {{ icon(name="chevron_right_link_hover_blue") }}
+    chevron_right_link_hover_blue
+  </div>
+  <div>
+    {{ icon(name="chevron_left") }}
+    chevron_left
+  </div>
+  <div>
+    {{ icon(name="chevron_left_white") }}
+    chevron_left_white
+  </div>
+  <div>
+    {{ icon(name="chevron_left_aqua_blue") }}
+    chevron_left_aqua_blue
+  </div>
+  <div>
+    {{ icon(name="chevron_left_disabled") }}
+    chevron_left_disabled
+  </div>
+  <div>
+    {{ icon(name="chevron_left_link_blue") }}
+    chevron_left_link_blue
+  </div>
+  <div>
+    {{ icon(name="chevron_left_link_hover_blue") }}
+    chevron_left_link_hover_blue
+  </div>
+  <div>
+    {{ icon(name="chevron_download_link_blue") }}
+    chevron_download_link_blue
+  </div>
+  <div>
+    {{ icon(name="chevron_download_link_hover_blue") }}
+    chevron_download_link_hover_blue
+  </div>
+  <div>
+    {{ icon(name="circle_xmark_solid") }}
+    circle_xmark_solid
+  </div>
+  <div>
+    {{ icon(name="circle_xmark_solid_white") }}
+    circle_xmark_solid_white
+  </div>
+  <div>
+    {{ icon(name="circle_xmark_solid_link_blue") }}
+    circle_xmark_solid_link_blue
+  </div>
+  <div>
+    {{ icon(name="circle_xmark_solid_link_hover_blue") }}
+    circle_xmark_solid_link_hover_blue
+  </div>
+  <div>
+    {{ icon(name="circle_xmark_light") }}
+    circle_xmark_light
+  </div>
+  <div>
+    {{ icon(name="info") }}
+    info
+  </div>
+  <div>
+    {{ icon(name="info_solid") }}
+    info_solid
+  </div>
+  <div>
+    {{ icon(name="magnifying_glass_solid_white") }}
+    magnifying_glass_solid_white
+  </div>
+  <div>
+    {{ icon(name="xmark_solid") }}
+    xmark_solid
+  </div>
+  <div>
+    {{ icon(name="arrow_left") }}
+    arrow_left
+  </div>
+  <div>
+    {{ icon(name="arrow_right") }}
+    arrow_right
+  </div>
+  <div>
+    {{ icon(name="beta_arrow_right") }}
+    beta_arrow_right
+  </div>
 {% endmacro %}

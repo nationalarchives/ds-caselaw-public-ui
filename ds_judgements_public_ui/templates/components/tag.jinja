@@ -1,5 +1,4 @@
 {% from "components/icon.jinja" import icon %}
-
 {% macro tag(href=None) %}
   {% if href %}
     <a href="{{ href }}" class="tag">
@@ -13,10 +12,9 @@
     </div>
   {% endif %}
 {% endmacro %}
-
 {% macro tag_examples() %}
-      {% call tag() %}
-        Query: <strong>test</strong>
-        {{ icon(name="xmark_solid") }}
-      {% endcall %}
+  {% call tag() %}
+    Query: <strong>test</strong>
+    {{ icon(name="xmark_solid") }}
+  {% endcall %}
 {% endmacro %}

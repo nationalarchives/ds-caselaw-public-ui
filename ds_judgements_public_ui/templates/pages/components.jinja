@@ -15,7 +15,6 @@
 {% from "components/checkboxes.jinja" import checkboxes, checkboxes_examples %}
 {% from "components/tag.jinja" import tag, tag_examples %}
 {% from "components/icon.jinja" import icon, icon_variant_examples, icon_size_examples %}
-
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -31,7 +30,6 @@
       <h2>Alert</h2>
       {{ alert_examples() }}
       <h2>TNA logo Component</h2>
-
       {{ tna_logo() }}
       <h2>FCL logo Component</h2>
       {{ fcl_logo() }}
@@ -39,13 +37,9 @@
       {{ tag_examples() }}
       <h2>Icons</h2>
       <h3>Sizes</h3>
-      <div class="components__grid">
-        {{ icon_size_examples() }}
-      </div>
+      <div class="components__grid">{{ icon_size_examples() }}</div>
       <h3>Variants</h3>
-      <div class="components__grid">
-        {{ icon_variant_examples() }}
-      </div>
+      <div class="components__grid">{{ icon_variant_examples() }}</div>
       <h2>Cards</h2>
       <div class="components__grid">{{ card_examples() }}</div>
       <h2>Buttons</h2>
