@@ -1,0 +1,22 @@
+{% from "components/icon.jinja" import icon %}
+
+{% macro tag(href=None) %}
+  {% if href %}
+    <a href="{{ href }}" class="tag">
+    {% else %}
+      <div class="tag">
+      {% endif %}
+      {{ caller() }}
+      {% if href %}
+      </a>
+    {% else %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro tag_examples() %}
+      {% call tag() %}
+        Query: <strong>test</strong>
+        {{ icon(name="xmark_solid") }}
+      {% endcall %}
+{% endmacro %}
