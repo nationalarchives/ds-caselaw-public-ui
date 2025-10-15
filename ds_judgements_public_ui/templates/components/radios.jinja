@@ -1,12 +1,12 @@
-{% from "govuk_frontend_jinja/components/checkboxes/macro.html" import govukCheckboxes %}
-{% macro checkboxes(params) %}
-  {{ govukCheckboxes(params) }}
+{% from "govuk_frontend_jinja/components/radios/macro.html" import govukRadios %}
+{% macro radios(params) %}
+  {{ govukRadios(params) }}
 {% endmacro %}
-{% macro checkboxes_examples() %}
+{% macro radios_examples() %}
   <h3>Default</h3>
-  {{ checkboxes({
-    "idPrefix": "checkbox",
-    "name": "checkbox",
+  {{ radios({
+    "idPrefix": "radios",
+    "name": "radios",
     "hint": {
       "text": "This is the hint text"
     },
@@ -26,9 +26,9 @@
     ]
   }) }}
   <h3>With error</h3>
-  {{ checkboxes({
-    "idPrefix": "checkbox-with-error",
-    "name": "checkbox-with-error",
+  {{ radios({
+    "idPrefix": "radios-with-error",
+    "name": "radios-with-error",
     "errorMessage": {
       "text": "This is error text"
     },
@@ -47,15 +47,15 @@
       }
     ]
   }) }}
-  <h3>Conditional checkboxes</h3>
-  {{ checkboxes({
-    "idPrefix": "checkbox-with-conditional",
-    "name": "checkbox-with-conditional",
+  <h3>Conditional radios</h3>
+  {{ radios({
+    "idPrefix": "radios-with-conditional",
+    "name": "radios-with-conditional",
+    "value": "option1",
     "items": [
       {
         "value": "option1",
         "text": "Option 1",
-        "checked": "true",
         "conditional": {
           "html": "This is something conditional"
         }
