@@ -1,0 +1,14 @@
+#ds-cookie-consent-banner {
+  box-sizing: border-box;
+
+  .container {
+    @include container;
+
+    padding: $space-4 $space-8;
+
+    .cookie_head {
+      font-family: $font-roboto;
+      font-size: $typography-xl-text-size;
+    }
+  }
+}

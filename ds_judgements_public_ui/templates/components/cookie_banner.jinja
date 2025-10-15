@@ -1,0 +1,110 @@
+{% macro cookie_banner() %}
+  {% if not dontShowCookieNotice %}
+    <div id="ds-cookie-consent-banner"
+         class="cookieConsent"
+         role="region"
+         aria-label="Cookie banner">
+      <div class="container"
+           role="region"
+           aria-label="Cookies on The National Archives">
+        <div class="row">
+          <h2 class="cookie_head">This website uses cookies</h2>
+          <p class="cookie-p">
+            We place some essential cookies on your device to make this website work.
+            <br />
+            <br />
+            We'd like to use additional cookies to remember your settings and understand how you use our services.
+            <br />
+            <br />
+            This information will help us make improvements to the website.
+          </p>
+          <a href="https://www.nationalarchives.gov.uk/legal/cookies/"
+             id="btn_preferences">Set cookie preferences</a>
+        </div>
+      </div>
+    </div>
+    <script>
+  const Data = {
+    buttonAccept: {
+        text: "Accept cookies",
+        url: "#",
+        id: "accept_optional_cookies",
+        class: "button",
+    },
+    buttonReject: {
+        text: "Reject cookies",
+        url: "#",
+        id: "reject_optional_cookies",
+        class: "button",
+    },
+    hideThisMessage: {
+        text: "Close cookie message",
+        url: "#",
+        id: "hide_this_message",
+        class: "button",
+    },
+    buttonPreferences: {
+        id: "#btn_preferences",
+    },
+    bannerParagraph: {
+        id: ".cookie-p",
+    },
+    bannerHeadline: {
+        id: ".cookie_head",
+    },
+    bannerWrapper: {
+        id: "#ds-cookie-consent-banner",
+    },
+    cookies: {
+        cookieOne: "dontShowCookieNotice",
+        cookieTwo: "cookies_policy",
+        gaCookies: [
+            "_ga",
+            "_gid",
+            "_gat_UA-2827241-22",
+            "_gat_UA-2827241-1",
+            "_ga_2CP7QT8TDG",
+        ],
+        settings: ["dontAutoStartResultsTour"],
+    },
+    formWrapper: {
+        id: "#ds-cookie-consent-form",
+    },
+    acceptMessageAfterInteraction: {
+        text: "You have accepted optional cookies. You can change your cookie settings on the <a href='https://www.nationalarchives.gov.uk/legal/cookies/'>Cookies page</a>.",
+        ariaLabel: "Cookie consent confirmation message",
+    },
+    rejectMessageAfterInteraction: {
+        text: "You have rejected optional cookies. You can change your cookie settings on the <a href='https://www.nationalarchives.gov.uk/legal/cookies/'>Cookies page</a>.",
+        ariaLabel: "Cookie consent confirmation message",
+    },
+    oldCookieBannerWrapper: {
+        class: ".cookieNotice",
+    },
+    cookiesToRemove: {
+        one: "_ga",
+        two: "_gid",
+        three: "_gat_UA-2827241-1",
+        four: "_gat_UA-2827241-22",
+        five: "_ga_2CP7QT8TDG",
+    },
+    DOM: {
+        on: ".jsON",
+        off: ".jsOFF",
+    },
+    form: {
+        analytics: {
+            measure: "#measure_website_use",
+            doNotMeasure: "#donot_measure_website_use",
+        },
+        settings: {
+            rememberSettings: "#remember_your_settings",
+            doNotRememberSettings: "#donot_remember_your_settings",
+        },
+    },
+};
+
+export default Data;
+    </script>
+  {% endif %}
+{% endmacro %}
