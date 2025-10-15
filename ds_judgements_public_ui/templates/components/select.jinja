@@ -1,0 +1,73 @@
+{% from "govuk_frontend_jinja/components/select/macro.html" import govukSelect %}
+{% macro select(params) %}
+  {{ govukSelect(params) }}
+{% endmacro %}
+{% macro select_examples() %}
+  <h3>Default</h3>
+  {{ govukSelect({
+    "id": "country",
+    "name": "country",
+    "label": {
+      "text": "Label text"
+    },
+    "hint": {
+      "text": "This is the hint text"
+    },
+    "disabled": false,
+    "items": [
+      {
+        "text": "Select an option",
+        "value": "",
+        "selected": true,
+        "disabled": true
+      },
+      {
+        "text": "Option 1",
+        "value": "option1"
+      },
+      {
+        "text": "Option 2",
+        "value": "option2"
+      },
+      {
+        "text": "Option 3",
+        "value": "option3"
+      }
+    ]
+  }) }}
+  <h3>With error</h3>
+  {{ govukSelect({
+    "id": "country",
+    "name": "country",
+    "label": {
+      "text": "Label text"
+    },
+    "hint": {
+      "text": "This is the hint text"
+    },
+    "errorMessage": {
+      "text": "This is error text"
+    },
+    "disabled": false,
+    "items": [
+      {
+        "text": "Select an option",
+        "value": "",
+        "selected": true,
+        "disabled": true
+      },
+      {
+        "text": "Option 1",
+        "value": "option1"
+      },
+      {
+        "text": "Option 2",
+        "value": "option2"
+      },
+      {
+        "text": "Option 3",
+        "value": "option3"
+      }
+    ]
+  }) }}
+{% endmacro %}

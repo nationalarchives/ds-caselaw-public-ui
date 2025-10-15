@@ -1,21 +1,22 @@
 {% extends "layouts/base.jinja" %}
-{% from "components/card.jinja" import card, card_examples %}
-{% from "components/button.jinja" import button, button_variant_examples, button_size_examples, button_href_examples, button_contrast_examples %}
+{% from "components/card.jinja" import card_examples %}
+{% from "components/button.jinja" import button_variant_examples, button_size_examples, button_href_examples, button_contrast_examples %}
 {% from "components/tna_logo.jinja" import tna_logo %}
 {% from "components/fcl_logo.jinja" import fcl_logo %}
-{% from "components/contents.jinja" import contents, contents_examples %}
-{% from "components/navigation.jinja" import navigation, navigation_items, navigation_examples, navigation_item with context %}
-{% from "components/header.jinja" import header, header_examples %}
-{% from "components/alert.jinja" import alert, alert_examples %}
-{% from "components/breadcrumbs.jinja" import breadcrumbs, breadcrumb, breadcrumbs_examples %}
+{% from "components/contents.jinja" import contents_examples %}
+{% from "components/navigation.jinja" import navigation_items, navigation_examples, navigation_item with context %}
+{% from "components/header.jinja" import header_examples %}
+{% from "components/alert.jinja" import alert_examples %}
+{% from "components/breadcrumbs.jinja" import breadcrumbs_examples %}
 {% from "components/document_navigation.jinja" import document_navigation %}
-{% from "components/hero.jinja" import hero, hero_examples %}
-{% from "components/details.jinja" import details, details_examples %}
-{% from "components/search_input.jinja" import search_form, search_input, search_input_actions, search_input_examples %}
-{% from "components/checkboxes.jinja" import checkboxes, checkboxes_examples %}
 {% from "components/tag.jinja" import tag_examples %}
 {% from "components/icon.jinja" import icon_variant_examples, icon_size_examples %}
+{% from "components/hero.jinja" import hero_examples %}
+{% from "components/details.jinja" import details_examples %}
+{% from "components/search_input.jinja" import search_input_examples %}
+{% from "components/checkboxes.jinja" import checkboxes_examples %}
 {% from "components/radios.jinja" import radios_examples %}
+{% from "components/select.jinja" import select_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -60,6 +61,8 @@
       {{ checkboxes_examples() }}
       <h2>Radios</h2>
       {{ radios_examples() }}
+      <h2>Select</h2>
+      {{ select_examples() }}
     </div>
     <div class="container">
       <h2>Navigation</h2>
