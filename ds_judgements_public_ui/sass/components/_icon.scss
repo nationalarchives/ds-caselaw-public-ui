@@ -1,0 +1,64 @@
+$icons: (
+  download: $fa_download,
+  chevron_right: $fa_chevron_right,
+  chevron_right_white: $fa_chevron_right_white,
+  chevron_right_aqua_blue: $fa_chevron_right_aqua_blue,
+  chevron_right_disabled: $fa_chevron_right_disabled,
+  chevron_right_link_blue: $fa_chevron_right_link_blue,
+  chevron_right_link_hover_blue: $fa_chevron_right_link_hover_blue,
+  chevron_left: $fa_chevron_left,
+  chevron_left_white: $fa_chevron_left_white,
+  chevron_left_aqua_blue: $fa_chevron_left_aqua_blue,
+  chevron_left_disabled: $fa_chevron_left_disabled,
+  chevron_left_link_blue: $fa_chevron_left_link_blue,
+  chevron_left_link_hover_blue: $fa_chevron_left_link_hover_blue,
+  chevron_up_aqua_blue: $fa_chevron_up_aqua_blue,
+  chevron_up_link_blue: $fa_chevron_up_link_blue,
+  chevron_up_link_hover_blue: $fa_chevron_up_link_hover_blue,
+  chevron_down_link_blue: $fa_chevron_down_link_blue,
+  chevron_down_link_hover_blue: $fa_chevron_down_link_hover_blue,
+  circle_xmark_solid: $fa_circle_xmark_solid,
+  circle_xmark_solid_white: $fa_circle_xmark_solid_white,
+  circle_xmark_solid_link_blue: $fa_circle_xmark_solid_link_blue,
+  circle_xmark_solid_link_hover_blue: $fa_circle_xmark_solid_link_hover_blue,
+  circle_xmark_light: $fa_circle_xmark_light,
+  info: $fa_info,
+  info_solid: $fa_info_solid,
+  magnifying_glass_solid_white: $fa_magnifying_glass_solid_white,
+  xmark_solid: $fa_xmark_solid,
+  arrow_left: $arrow-left,
+  arrow_right: $arrow-right,
+  beta_arrow_right: $beta-arrow-right,
+);
+
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &__sm {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__md {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__lg {
+    width: 28px;
+    height: 28px;
+  }
+
+  &__xl {
+    width: 32px;
+    height: 32px;
+  }
+
+  @each $name, $path in $icons {
+    &__#{$name} {
+      background-image: url(#{$path});
+    }
+  }
+}
