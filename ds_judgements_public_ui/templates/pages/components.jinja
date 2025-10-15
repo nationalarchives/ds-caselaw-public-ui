@@ -13,8 +13,9 @@
 {% from "components/details.jinja" import details, details_examples %}
 {% from "components/search_input.jinja" import search_form, search_input, search_input_actions, search_input_examples %}
 {% from "components/checkboxes.jinja" import checkboxes, checkboxes_examples %}
-{% from "components/tag.jinja" import tag, tag_examples %}
-{% from "components/icon.jinja" import icon, icon_variant_examples, icon_size_examples %}
+{% from "components/tag.jinja" import tag_examples %}
+{% from "components/icon.jinja" import icon_variant_examples, icon_size_examples %}
+{% from "components/radios.jinja" import radios_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -57,6 +58,8 @@
       {{ details_examples() }}
       <h2>Checkboxes</h2>
       {{ checkboxes_examples() }}
+      <h2>Radios</h2>
+      {{ radios_examples() }}
     </div>
     <div class="container">
       <h2>Navigation</h2>
