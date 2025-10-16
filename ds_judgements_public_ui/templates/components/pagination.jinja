@@ -1,0 +1,45 @@
+{% from "govuk_frontend_jinja/components/pagination/macro.html" import govukPagination %}
+{% macro pagination(params) %}
+  {{ govukPagination(params) }}
+{% endmacro %}
+{% macro pagination_examples() %}
+  {{ pagination({
+    "previous": {
+      "href": "?page=4",
+      "html": "Previous"
+    },
+    "items": [
+      {
+        "number": 1,
+        "href": "?page=1"
+      },
+      {
+        "ellipsis": true
+      },
+      {
+        "number": 4,
+        "href": "?page=4"
+      },
+      {
+        "number": 5,
+        "href": "?page=5",
+        "current": true
+      },
+      {
+        "number": 6,
+        "href": "?page=6"
+      },
+      {
+        "ellipsis": true
+      },
+      {
+        "number": 12,
+        "href": "?page=12"
+      }
+    ],
+    "next": {
+      "href": "?page=6",
+      "html": "Next"
+    }
+  }) }}
+{% endmacro %}
