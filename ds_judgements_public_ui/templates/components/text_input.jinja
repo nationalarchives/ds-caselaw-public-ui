@@ -1,0 +1,32 @@
+{% from "govuk_frontend_jinja/components/input/macro.html" import govukInput %}
+{% macro text_input(params) %}
+  {{ govukInput(params) }}
+{% endmacro %}
+{% macro text_input_examples() %}
+  {{ text_input({
+    "label": {
+      "text": "This is the label text",
+      "classes": "govuk-label--m"
+    },
+    "hint": {
+      "text": "This is the hint text"
+    },
+    "id": "text-input",
+    "name": "textInput"
+  }) }}
+  <h3>Text input - error</h3>
+  {{ text_input({
+    "label": {
+      "text": "This is the label text",
+      "classes": "govuk-label--m"
+    },
+    "id": "text-input",
+    "name": "textInput",
+    "hint": {
+      "text": "This is the hint text"
+    },
+    "errorMessage": {
+      "text": "This is the error message"
+    }
+  }) }}
+{% endmacro %}
