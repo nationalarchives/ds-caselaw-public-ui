@@ -23,3 +23,5 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+WAFFLE_OVERRIDE = True  # allow all flags to be controlled by the querystring
+WAFFLE_CREATE_MISSING_FLAGS = True

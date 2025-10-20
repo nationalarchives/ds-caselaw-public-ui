@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/playwright/python:v1.54.0-noble@sha256:9e85bdc9c6980dc230c17f3548acb8d2d73b2cb2d5f6e34e706e18464559ef63
-
+ENV WAFFLE_OVERRIDE=1
 WORKDIR /app
 
 RUN pip install playwright==1.54.0 && \

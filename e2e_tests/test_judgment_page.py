@@ -98,7 +98,7 @@ def test_judgment_page(page: Page, document):
     assert_download_xml_link(page, uri)
     assert_has_default_breadcrumbs(page, heading)
 
-    page.goto(f"{uri}?query={query}")
+    page.goto(f"{uri}?query={query}&document_search_query_highlighting=1")
 
     assert_has_search_query_breadcrumb(page, query)
     assert_is_accessible(page)
