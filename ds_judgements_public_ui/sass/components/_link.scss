@@ -1,0 +1,46 @@
+.link {
+  color: colour-var("link");
+  text-decoration: underline;
+  text-decoration-thickness: $link-underline-thickness;
+  text-underline-offset: auto;
+
+  &:hover {
+    color: colour-var("link");
+    text-decoration-thickness: $link-hover-underline-thickness;
+  }
+
+  &:visited {
+    color: colour-var("link-visited");
+  }
+
+  &:active {
+    color: colour-var("link");
+  }
+
+  &:focus {
+    z-index: 999;
+    color: colour-var("link");
+    outline: 5px solid brand-colour("navy");
+    outline-offset: 2px;
+  }
+
+  &--contrast {
+    color: colour-var("contrast-link");
+
+    &:hover {
+      color: colour-var("contrast-link");
+    }
+
+    &:visited {
+      color: colour-var("contrast-link-visited");
+    }
+
+    &:active {
+      color: colour-var("contrast-link");
+    }
+
+    &:focus {
+      outline-color: colour-var("contrast-link");
+    }
+  }
+}

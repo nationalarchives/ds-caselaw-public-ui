@@ -18,6 +18,7 @@
 {% from "components/radios.jinja" import radios_examples %}
 {% from "components/select.jinja" import select_examples %}
 {% from "components/documents_table.jinja" import documents_table_examples %}
+{% from "components/link.jinja" import link_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -64,6 +65,8 @@
       {{ radios_examples() }}
       <h2>Select</h2>
       {{ select_examples() }}
+      <h2>Link</h2>
+      {{ link_examples() }}
     </div>
     <div class="container">
       <h2>Navigation</h2>
