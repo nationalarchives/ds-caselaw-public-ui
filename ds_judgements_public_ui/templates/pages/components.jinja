@@ -21,6 +21,7 @@
 {% from "components/link.jinja" import link_examples %}
 {% from "components/heading.jinja" import heading_examples %}
 {% from "components/pagination.jinja" import pagination_examples %}
+{% from "components/banner.jinja" import banner_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -98,6 +99,9 @@
       <h2>Documents table</h2>
       {{ documents_table_examples() }}
     </div>
+      <h2>Banner</h2>
+    </div>
+    {{ banner_examples() }}
     <div data-document-navigation-end></div>
   </div>
 {% endblock content %}
