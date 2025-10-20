@@ -31,6 +31,11 @@
 
     padding: $space-2;
 
+    &:first-child,
+    &:last-child {
+      display: flex;
+    }
+
     &:hover {
       background-color: colour-var("accent-background");
 
@@ -101,7 +106,7 @@
 
   @media (min-width: $grid-breakpoint-medium) {
     &__item--ellipsis {
-      display: block;
+      display: flex;
     }
   }
 }
