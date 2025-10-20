@@ -7,11 +7,21 @@ from .utils.assertions import assert_is_accessible
 
 documents = [
     {
+        "test_name": "One Word Query",
         "uri": "/eat/2023/1",
         "title": "Imperial College Healthcare NHS Trust",
         "heading": "IMPERIAL COLLEGE HEALTHCARE NHS TRUST",
         "query": "IMPERIAL",
-    }
+        "should_have_highlighting": True,
+    },
+    {
+        "test_name": "Eight Word Query",
+        "uri": "/eat/2023/1",
+        "title": "Imperial College Healthcare NHS Trust",
+        "heading": "IMPERIAL COLLEGE HEALTHCARE NHS TRUST",
+        "query": "QUERY HAS TOO MANY WORDS TO SEARCH FOR",
+        "should_have_highlighting": False,
+    },
 ]
 
 
@@ -66,12 +76,17 @@ def assert_has_search_query_breadcrumb(page, query):
     expect(search_breadcrumb).to_be_visible()
 
 
-@pytest.mark.parametrize("document", documents)
+def _test_ids(val):
+    return val["test_name"]
+
+
+@pytest.mark.parametrize("document", documents, ids=_test_ids)
 def test_judgment_page(page: Page, document):
     uri = document.get("uri")
     title = document.get("title")
     heading = document.get("heading")
     query = document.get("query")
+    should_have_highlighting = document.get("should_have_highlighting")
 
     page.goto(uri)
 
@@ -87,6 +102,6 @@ def test_judgment_page(page: Page, document):
 
     assert_has_search_query_breadcrumb(page, query)
     assert_is_accessible(page)
-
+    assert ("Remove query highlights" in page.content()) == should_have_highlighting
     # TODO: Add this back in when the data from the seed matches staging
     # assert_matches_snapshot(page, "judgment_page")
