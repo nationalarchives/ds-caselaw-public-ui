@@ -1,0 +1,26 @@
+.tag {
+  display: inline-block;
+  display: flex;
+  gap: $space-2;
+  align-items: center;
+
+  max-width: max-content;
+  padding: $space-2;
+  border: 2px solid colour-var("accent-brand");
+
+  color: colour-var("accent-link");
+  text-decoration: none;
+
+  &:hover {
+    color: colour-var("accent-link");
+    background: colour-var("accent-brand");
+  }
+
+  &:visited {
+    color: colour-var("accent-link-visited");
+  }
+
+  &:focus {
+    outline-offset: $space-1;
+  }
+}
