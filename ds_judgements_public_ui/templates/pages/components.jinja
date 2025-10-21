@@ -17,6 +17,7 @@
 {% from "components/checkboxes.jinja" import checkboxes_examples %}
 {% from "components/radios.jinja" import radios_examples %}
 {% from "components/select.jinja" import select_examples %}
+{% from "components/documents_table.jinja" import documents_table_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -84,6 +85,10 @@
       <h2>Search input</h2>
     </div>
     {{ search_input_examples() }}
+    <div class="container">
+      <h2>Documents table</h2>
+      {{ documents_table_examples() }}
+    </div>
     <div data-document-navigation-end></div>
   </div>
 {% endblock content %}

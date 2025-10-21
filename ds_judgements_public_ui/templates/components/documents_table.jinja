@@ -1,0 +1,78 @@
+{% macro documents_table(title=None, headings=[]) %}
+  <div class="documents-table">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            {% if title %}<h1>{{ title }}</h1>{% endif %}
+          </th>
+          {% for heading in headings %}<th>{{ heading }}</th>{% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {{ caller() }}
+      </tbody>
+    </table>
+  </div>
+{% endmacro %}
+{% macro document_table_row() %}
+  <tr>{{ caller() }}</tr>
+{% endmacro %}
+{% macro document_table_cell(label=None, variant="default") %}
+  <td>
+    {% if label %}<span class="documents-table__label">{{ label }}</span>{% endif %}
+    {{ caller() }}
+  </td>
+{% endmacro %}
+{% macro document_table_matches() %}
+  <div class="documents-table__matches">{{ caller() }}</div>
+{% endmacro %}
+{% macro document_table_highlight() %}
+  <div class="documents-table__highlight">{{ caller() }}</div>
+{% endmacro %}
+{% macro documents_table_examples() %}
+  <h3>Homepage example</h3>
+  {% call documents_table(title="Recently published judgments", headings=["Neutral citation", "Handed down"]) %}
+    {% call document_table_row() %}
+      {% call document_table_cell(variant="details") %}
+        <a href="">Laurence Pagden & Anor v Craig Andrew Ridgley</a>
+        High Court (Insolvency and Companies List)
+      {% endcall %}
+      {% call document_table_cell(variant="text", label="Neutral citation") %}
+        [2025] EWHC 2674 (Ch)
+      {% endcall %}
+      {% call document_table_cell(variant="text", label="Handed down") %}
+        17 Oct 2025
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+  <h3>Search example</h3>
+  {% call documents_table(headings=["Neutral citation", "Handed down"]) %}
+    {% call document_table_row() %}
+      {% call document_table_cell(variant="details") %}
+        {% call document_table_highlight() %}
+          Neutral citation matches
+        {% endcall %}
+        <a href="">Laurence Pagden & Anor v Craig Andrew Ridgley</a>
+        High Court (Insolvency and Companies List)
+        {% call document_table_matches() %}
+          <p>
+            <mark>Nebahat</mark> Evyap Işbilen
+          </p>
+          <p>
+            ...bank statement is “Payment for <mark>Nebahat</mark> Evyap Işbilen”.  In her...
+          </p>
+          <p>
+            ...upon the application of Mrs <mark>Nebahat</mark> Evyap İşbilen (“
+          </p>
+        {% endcall %}
+      {% endcall %}
+      {% call document_table_cell(variant="text", label="Neutral citation") %}
+        [2025] EWHC 2674 (Ch)
+      {% endcall %}
+      {% call document_table_cell(variant="text", label="Handed down") %}
+        17 Oct 2025
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endmacro %}
