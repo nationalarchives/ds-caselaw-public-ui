@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.exceptions import SuspiciousOperation
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -17,8 +18,6 @@ register_converter(converters.SubdivisionConverter, "subdivision")
 register_converter(converters.DocumentUriConverter, "document_uri")
 register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
-
-from django.conf import settings
 
 print(settings)
 1 / 0
