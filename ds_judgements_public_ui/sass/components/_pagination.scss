@@ -1,0 +1,112 @@
+.govuk-pagination {
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  background-color: colour-var("contrast-background");
+
+  &__list {
+    display: flex;
+    gap: $space-1;
+  }
+
+  &__icon {
+    display: none;
+  }
+
+  &__link {
+    color: colour-var("contrast-link");
+    text-decoration: none;
+  }
+
+  &__next,
+  &__prev {
+    padding: $space-2 $space-4;
+  }
+
+  &__item {
+    float: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: $space-2;
+
+    &:first-child,
+    &:last-child {
+      display: flex;
+    }
+
+    &:hover {
+      background-color: colour-var("accent-background");
+
+      .govuk-pagination__link:link,
+      .govuk-pagination__link:visited {
+        font-weight: $typography-bold-font-weight;
+        color: colour-var("accent-link");
+      }
+    }
+  }
+
+  &__item--current {
+    background-color: colour-var("accent-background");
+
+    &:hover {
+      background-color: colour-var("accent-background");
+
+      .govuk-pagination__link:link,
+      .govuk-pagination__link:visited {
+        color: colour-var("accent-link");
+      }
+    }
+
+    .govuk-pagination__link:link,
+    .govuk-pagination__link:visited {
+      color: colour-var("accent-link");
+    }
+  }
+
+  &__prev,
+  &__next {
+    float: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: $space-2 $space-4;
+
+    background-color: colour-var("accent-background");
+
+    &:hover {
+      background-color: colour-var("accent-background");
+
+      .govuk-pagination__link:link,
+      .govuk-pagination__link:visited {
+        color: colour-var("accent-link");
+      }
+    }
+
+    .govuk-pagination__link:link,
+    .govuk-pagination__link:visited {
+      color: colour-var("accent-link");
+    }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      width: auto;
+    }
+  }
+
+  &__item--ellipsis {
+    display: none;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    &__item--ellipsis {
+      display: flex;
+    }
+  }
+}

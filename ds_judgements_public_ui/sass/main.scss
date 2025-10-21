@@ -43,6 +43,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "govuk-frontend/dist/govuk/components/header";
 @import "govuk-frontend/dist/govuk/components/character-count";
 @import "govuk-frontend/dist/govuk/components/textarea";
+@import "govuk-frontend/dist/govuk/components/pagination";
 @import "govuk-frontend/dist/govuk/components/radios";
 @import "govuk-frontend/dist/govuk/components/select";
 @import "govuk-frontend/dist/govuk/components/tabs";
@@ -51,7 +52,6 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "govuk-frontend/dist/govuk/core/govuk-frontend-properties";
 
 // Vendor overrides
-@import "includes/govuk_overrides/checkboxes";
 @import "includes/govuk_overrides/details";
 @import "includes/govuk_overrides/fieldset";
 @import "includes/govuk_overrides/form_group";
@@ -83,6 +83,8 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "components/documents_table";
 @import "components/link";
 @import "components/heading";
+@import "components/checkboxes";
+@import "components/pagination";
 
 // Base
 @import "includes/confirmation";
