@@ -1,0 +1,48 @@
+{% macro heading(tag="h1", size="default") %}
+  {% set size_classes = {
+    "default": "",
+    "h1": "heading heading--h1",
+    "h2": "heading heading--h2",
+    "h3": "heading heading--h3",
+    "h4": "heading heading--h4"
+  } %}
+  {% set size_class = size_classes.get(size, size_classes["default"]) %}
+  {% if tag == "h1" %}<h1 class="{{ size_class }}">{{ caller() }}</h1>{% endif %}
+  {% if tag == "h2" %}<h2 class="{{ size_class }}">{{ caller() }}</h2>{% endif %}
+  {% if tag == "h3" %}<h3 class="{{ size_class }}">{{ caller() }}</h3>{% endif %}
+  {% if tag == "h4" %}<h4 class="{{ size_class }}">{{ caller() }}</h4>{% endif %}
+  {% if tag == "div" %}<div class="{{ size_class }}">{{ caller() }}</div>{% endif %}
+  {% if tag == "span" %}<span class="{{ size_class }}">{{ caller() }}</span>{% endif %}
+{% endmacro %}
+{% macro heading_examples() %}
+  {% call heading(size="h1") %}
+    Size H1
+  {% endcall %}
+  {% call heading(size="h2") %}
+    Size H2
+  {% endcall %}
+  {% call heading(size="h3") %}
+    Size H3
+  {% endcall %}
+  {% call heading(size="h4") %}
+    Size H4
+  {% endcall %}
+  {% call heading(tag="h1") %}
+    Tag H1
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Tag H2
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    Tag H3
+  {% endcall %}
+  {% call heading(tag="h4") %}
+    Tag H4
+  {% endcall %}
+  {% call heading(tag="div") %}
+    Tag div
+  {% endcall %}
+  {% call heading(tag="span") %}
+    Tag span
+  {% endcall %}
+{% endmacro %}

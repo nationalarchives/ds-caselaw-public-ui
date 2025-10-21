@@ -1,0 +1,61 @@
+h1,
+h2,
+h3 {
+  font-family: $font-roboto;
+  font-weight: $typography-normal-font-weight;
+}
+
+@mixin header($base-size) {
+  margin-top: $base-size * $typography-header-margin-top-multiplier;
+  margin-bottom: $base-size * $typography-header-margin-bottom-multiplier;
+
+  font-size: $base-size;
+  font-weight: $typography-header-font-weight;
+  line-height: $base-size * $typography-header-line-size-multiplier;
+
+  @media only screen and (max-width: $grid-breakpoint-medium) {
+    font-size: $base-size * $typography-header-medium-breakpoint-multiplier;
+    line-height: $base-size * $typography-header-line-size-multiplier *
+      $typography-header-medium-breakpoint-multiplier;
+  }
+}
+
+h1 {
+  @include header($typography-header-h1-size);
+}
+
+h2 {
+  @include header($typography-header-h2-size);
+}
+
+h3 {
+  @include header($typography-header-h3-size);
+}
+
+h4 {
+  margin: 0;
+  padding: $space-5 0 0;
+  font-size: $typography-md-text-size;
+  font-weight: $typography-bold-font-weight;
+}
+
+.heading {
+  &--h1 {
+    @include header($typography-header-h1-size);
+  }
+
+  &--h2 {
+    @include header($typography-header-h2-size);
+  }
+
+  &--h3 {
+    @include header($typography-header-h3-size);
+  }
+
+  &--h4 {
+    margin: 0;
+    padding: $space-5 0 0;
+    font-size: $typography-md-text-size;
+    font-weight: $typography-bold-font-weight;
+  }
+}

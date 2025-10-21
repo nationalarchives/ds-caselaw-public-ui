@@ -19,6 +19,7 @@
 {% from "components/select.jinja" import select_examples %}
 {% from "components/documents_table.jinja" import documents_table_examples %}
 {% from "components/link.jinja" import link_examples %}
+{% from "components/heading.jinja" import heading_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -67,6 +68,8 @@
       {{ select_examples() }}
       <h2>Link</h2>
       {{ link_examples() }}
+      <h2>Headings</h2>
+      {{ heading_examples() }}
     </div>
     <div class="container">
       <h2>Navigation</h2>
