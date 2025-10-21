@@ -1,0 +1,18 @@
+{% macro link(href="", variant="default") %}
+  {% set variant_classes = {"default": "", "contrast": "link--contrast"} %}
+  {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
+  {% set link_class = ("link " ~ variant_class).strip() %}
+  <a href="{{ href }}" class="{{ link_class }}">{{ caller() }}</a>
+{% endmacro %}
+{% macro link_examples() %}
+  <h3>Default</h3>
+  {% call link() %}
+    Default link
+  {% endcall %}
+  <h3>Contrast</h3>
+  <div class="components--contrast">
+    {% call link(variant="contrast") %}
+      Contrast link
+    {% endcall %}
+  </div>
+{% endmacro %}
