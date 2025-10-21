@@ -1,0 +1,14 @@
+{% from "components/button.jinja" import button %}
+{% macro banner() %}
+  <div class="banner">
+    <div class="banner__container">{{ caller() }}</div>
+  </div>
+{% endmacro %}
+{% macro banner_examples() %}
+  {% call banner() %}
+    <h2>Help us improve this service</h2>
+    {% call button(variant="secondary") %}
+      Take a short survey
+    {% endcall %}
+  {% endcall %}
+{% endmacro %}
