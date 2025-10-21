@@ -18,6 +18,11 @@ register_converter(converters.DocumentUriConverter, "document_uri")
 register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
 
+from django.conf import settings
+
+print(settings)
+1 / 0
+
 
 def safer_redirect(target):
     if url_has_allowed_host_and_scheme(target, None):
