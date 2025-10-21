@@ -39,3 +39,4 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+WAFFLE_OVERRIDE = True
