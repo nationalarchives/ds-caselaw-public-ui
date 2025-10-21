@@ -234,6 +234,9 @@ jobs:
         run: docker compose down
 
   e2e-tests:
+    env:
+      DJANGO_SETTINGS_MODULE: local
+
     needs:
       - build-scss
       - js-tests
