@@ -21,6 +21,8 @@ register_converter(converters.ComponentConverter, "component")
 
 print("ocelot", settings)
 print(settings.WAFFLE_OVERRIDE)
+if "prod" in str(settings):
+    1 / 0
 
 
 def safer_redirect(target):
