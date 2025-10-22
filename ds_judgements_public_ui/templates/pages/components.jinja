@@ -23,6 +23,7 @@
 {% from "components/heading.jinja" import heading_examples %}
 {% from "components/pagination.jinja" import pagination_examples %}
 {% from "components/banner.jinja" import banner_examples %}
+{% from "components/cookie_banner.jinja" import cookie_banner %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -106,6 +107,10 @@
       <h2>Banner</h2>
     </div>
     {{ banner_examples() }}
+    <div class="container">
+      <h2>Cookie banner</h2>
+    </div>
+    {{ cookie_banner() }}
     <div data-document-navigation-end></div>
   </div>
 {% endblock content %}

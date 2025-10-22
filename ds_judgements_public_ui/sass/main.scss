@@ -86,6 +86,8 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "components/checkboxes";
 @import "components/pagination";
 @import "components/banner";
+@import "components/cookie_consent";
+@import "components/ds_cookie_consent";
 
 // Base
 @import "includes/confirmation";
