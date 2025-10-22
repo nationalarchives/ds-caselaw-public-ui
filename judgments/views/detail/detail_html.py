@@ -17,6 +17,8 @@ from judgments.utils import (
     search_context_from_url,
 )
 
+MAX_QUERY_WORDS = int(os.environ.get("MAX_QUERY_WORDS", "5"))
+
 # suppress weasyprint log spam
 if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
     logging.getLogger("weasyprint").handlers = []
@@ -32,7 +34,7 @@ def detail_html(request, document_uri):
 
     context: dict[str, Any] = {}
 
-    if query and flag_is_active(request, "document_search_query_highlighting"):
+    if query and query.count(" ") < MAX_QUERY_WORDS and flag_is_active(request, "document_search_query_highlighting"):
         cleaned_search_query = preprocess_query(query)
         document = get_published_document_by_uri(document_uri, search_query=cleaned_search_query)
         context["query"] = query

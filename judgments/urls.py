@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.urls import path, re_path, register_converter, reverse
 from django.utils.http import url_has_allowed_host_and_scheme
 
+from judgments.dragondebug import DragonDebugView
 from judgments.views.browse import BrowseView
 from judgments.views.index import IndexView
 
@@ -27,6 +28,7 @@ def safer_redirect(target):
 
 
 urlpatterns = [
+    path("dragondebug", view=DragonDebugView.as_view(), name="dragondebug"),
     path("<court:court>", BrowseView.as_view(), name="browse"),
     path("<yyyy:year>", BrowseView.as_view(), name="browse"),
     path("<court:court>/<yyyy:year>", BrowseView.as_view(), name="browse"),
