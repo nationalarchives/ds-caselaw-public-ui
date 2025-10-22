@@ -40,3 +40,4 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 # Your stuff...
 # ------------------------------------------------------------------------------
 WAFFLE_OVERRIDE = True
+WAFFLE_CREATE_MISSING_FLAGS = True

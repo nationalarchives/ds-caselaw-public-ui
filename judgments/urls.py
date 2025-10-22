@@ -19,8 +19,8 @@ register_converter(converters.DocumentUriConverter, "document_uri")
 register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
 
-print(settings)
-1 / 0
+print("ocelot", settings)
+print(settings.WAFFLE_OVERRIDE)
 
 
 def safer_redirect(target):
