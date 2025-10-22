@@ -308,7 +308,7 @@ jobs:
         working-directory: "./marklogic"
 
       - name: Run DB Migrations
-        run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
+        run: docker compose run --rm django python manage.py migrate --settings=config.settings.local
 
       - name: Setup django server for e2e tests
         run: docker compose up -d django
@@ -323,7 +323,7 @@ jobs:
         run: docker compose run --rm django python manage.py recalculate_court_dates
 
       - name: Kick off the django server itself
-        run: docker compose exec -d django python manage.py runserver 0.0.0.0:3000
+        run: docker compose exec -d django python manage.py runserver 0.0.0.0:3000 --settings=config.settings.local
 
       - name: Build playwright runner container
         run: docker compose up -d e2e_tests
