@@ -1,5 +1,10 @@
 .documents-table {
-  padding-top: $space-8;
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-8;
+  }
 
   &__highlight {
     margin-right: auto;

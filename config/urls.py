@@ -16,6 +16,7 @@ from .views.check import status
 from .views.components import ComponentsView
 from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
+from .views.home import HomeView
 from .views.schema import schema
 from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
 from .views.style_guide import StyleGuideView
@@ -164,6 +165,12 @@ urlpatterns = [
         "components",
         ComponentsView.as_view(),
         name="components",
+    ),
+    # Home (Jinja)
+    path(
+        "home",
+        HomeView.as_view(),
+        name="home",
     ),
     # Test page
     path(

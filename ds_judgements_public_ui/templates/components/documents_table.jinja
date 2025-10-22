@@ -1,4 +1,5 @@
-{% macro documents_table(title=None, headings=[]) %}
+{% from "components/button.jinja" import button %}
+{% macro documents_table(title=None, headings=[], footer_button_url=None, footer_button_text=None) %}
   <div class="documents-table">
     <table>
       <thead>
@@ -13,6 +14,13 @@
         {{ caller() }}
       </tbody>
     </table>
+    {% if footer_button_url and footer_button_text %}
+      <div class="documents-table__footer">
+        {% call button(href=footer_button_url) %}
+          {{ footer_button_text }}
+        {% endcall %}
+      </div>
+    {% endif %}
   </div>
 {% endmacro %}
 {% macro document_table_row() %}

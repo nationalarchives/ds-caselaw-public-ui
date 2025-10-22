@@ -16,6 +16,27 @@
     display: flex;
     border-top: 4px solid colour-var("accent-brand");
     background-color: colour-var("accent-background-light");
+
+    &:is(a) {
+      color: colour-var("link");
+
+      &:hover {
+        background-color: colour-var("accent-background");
+      }
+
+      &:visited {
+        color: colour-var("link");
+      }
+    }
+  }
+
+  &--image &__body {
+    padding: $space-4;
+
+    p {
+      font-size: $typography-xs-text-size;
+      line-height: $typography-lg-line-height;
+    }
   }
 
   &--light {
@@ -29,6 +50,10 @@
       &:hover {
         background-color: transparent;
       }
+
+      &:visited {
+        color: colour-var("link");
+      }
     }
   }
 
@@ -41,6 +66,10 @@
 
       &:hover {
         background-color: colour-var("accent-background");
+      }
+
+      &:visited {
+        color: colour-var("link");
       }
     }
   }
