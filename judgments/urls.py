@@ -1,10 +1,10 @@
-from django.conf import settings
 from django.core.exceptions import SuspiciousOperation
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import path, re_path, register_converter, reverse
 from django.utils.http import url_has_allowed_host_and_scheme
 
+from judgments.dragondebug import DragonDebugView
 from judgments.views.browse import BrowseView
 from judgments.views.index import IndexView
 
@@ -19,11 +19,6 @@ register_converter(converters.DocumentUriConverter, "document_uri")
 register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
 
-print("ocelot", settings)
-print(settings.WAFFLE_OVERRIDE)
-if "prod" in str(settings):
-    1 / 0
-
 
 def safer_redirect(target):
     if url_has_allowed_host_and_scheme(target, None):
@@ -33,6 +28,7 @@ def safer_redirect(target):
 
 
 urlpatterns = [
+    path("dragondebug", view=DragonDebugView.as_view(), name="dragondebug"),
     path("<court:court>", BrowseView.as_view(), name="browse"),
     path("<yyyy:year>", BrowseView.as_view(), name="browse"),
     path("<court:court>/<yyyy:year>", BrowseView.as_view(), name="browse"),
