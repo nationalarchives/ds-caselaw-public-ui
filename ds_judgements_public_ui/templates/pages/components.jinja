@@ -24,6 +24,7 @@
 {% from "components/pagination.jinja" import pagination_examples %}
 {% from "components/banner.jinja" import banner_examples %}
 {% from "components/cookie_banner.jinja" import cookie_banner %}
+{% from "components/footer.jinja" import footer_examples with context %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -111,6 +112,10 @@
       <h2>Cookie banner</h2>
     </div>
     {{ cookie_banner() }}
+    <div class="container">
+      <h2>Footer</h2>
+    </div>
+    {{ footer_examples() }}
     <div data-document-navigation-end></div>
   </div>
 {% endblock content %}

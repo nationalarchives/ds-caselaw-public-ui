@@ -10,7 +10,7 @@ from jinja2 import (
     select_autoescape,
 )
 
-from judgments.templatetags import navigation_tags
+from judgments.templatetags import link_tags, navigation_tags
 
 
 def with_context(fn):
@@ -52,6 +52,7 @@ def environment(**options):
         {
             "navigation_item_class": with_context(navigation_tags.navigation_item_class),
             "static": staticfiles_storage.url,
+            "trackable_link": with_context(link_tags.trackable_link),
             "url": reverse,
         }
     )

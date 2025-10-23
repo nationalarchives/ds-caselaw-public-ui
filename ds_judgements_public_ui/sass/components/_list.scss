@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  margin: 0;
+  padding: 0;
+
+  list-style-type: none;
+
+  &--horizontal {
+    flex-direction: column;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      flex-direction: row;
+    }
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    gap: $space-6;
+  }
+}

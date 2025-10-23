@@ -1,0 +1,11 @@
+{% macro open_justice_license_logo() %}
+  <div class="ojl-logo">
+    <img src="{{ static('images/Open-Justice-Licence-logo.svg') }}"
+         alt="Open Justice Licence logo"
+         height="50"
+         width="32" />
+    <p>
+      All content is available under the <a href="{{ url('open_justice_licence') }}" rel="license">Open Justice Licence</a>.
+    </p>
+  </div>
+{% endmacro %}
