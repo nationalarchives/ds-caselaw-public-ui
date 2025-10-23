@@ -52,6 +52,7 @@ class CacheHeaderMiddleware:
 
 class FeedbackLinkMiddleware:
     BASE_FEEDBACK_URL: str = "https://www.smartsurvey.co.uk/s/findcaselaw-feedback/"
+    RECRUITMENT_URL: str = "https://www.smartsurvey.co.uk/s/tna_bulk_access/"
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -83,6 +84,7 @@ class FeedbackLinkMiddleware:
             params["tribunal"] = response.context_data["feedback_survey_tribunal"]
 
         response.context_data["feedback_survey_link"] = self.BASE_FEEDBACK_URL + "?" + urlencode(params)
+        response.context_data["recruitment_survey_link"] = self.RECRUITMENT_URL + "?" + urlencode(params)
         return response
 
 
