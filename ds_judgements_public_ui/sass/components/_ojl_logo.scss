@@ -1,0 +1,13 @@
+.ojl-logo {
+  display: flex;
+  gap: $space-4;
+
+  img {
+    width: 62px;
+    height: 54px;
+  }
+
+  a {
+    white-space: nowrap;
+  }
+}

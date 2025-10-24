@@ -1,0 +1,63 @@
+.footer {
+  padding: $space-8 0;
+  font-size: $typography-md-text-size;
+  color: colour-var("contrast-font-base");
+  background-color: colour-var("contrast-background");
+
+  &__container {
+    @include container;
+
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+
+    h2 {
+      @include sr-only;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+    text-wrap: balance;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      flex-direction: row;
+      gap: $space-12;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $space-4;
+
+    h3,
+    p {
+      margin: 0;
+    }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      gap: $space-6;
+    }
+  }
+
+  h3 {
+    font-size: $typography-lg-text-size;
+    font-weight: $typography-bold-font-weight;
+  }
+
+  a {
+    @include contrast-link;
+
+    &:focus {
+      color: colour-var("accent-button-text");
+    }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    font-size: $typography-md-text-size;
+  }
+}

@@ -1,0 +1,112 @@
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/tna_logo.jinja" import tna_logo %}
+{% from "components/link.jinja" import link %}
+{% from "components/open_justice_license_logo.jinja" import open_justice_license_logo with context %}
+{% macro footer_link(text="", url="") %}
+  {% set attrs = trackable_link(request, title, href=url) %}
+  {% if request.path == url %}
+    {{ text }}
+  {% else %}
+    {% call link(href=url, variant="contrast", class_name=attrs.class_name) %}
+      {{ text }}
+    {% endcall %}
+  {% endif %}
+{% endmacro %}
+{% macro footer_row() %}
+  <div class="footer__row">{{ caller() }}</div>
+{% endmacro %}
+{% macro footer_item(title=None, title_url=None) %}
+  <div class="footer__item">
+    {% if title %}
+      <h3>
+        {% if title_url %}
+          {{ footer_link(text=title, url=title_url) }}
+        {% else %}
+          {{ title }}
+        {% endif %}
+      </h3>
+    {% endif %}
+    {{ caller() }}
+  </div>
+{% endmacro %}
+{% macro footer() %}
+  <div class="footer">
+    <div class="footer__container">
+      <h2>Footer</h2>
+      {{ caller() }}
+    </div>
+  </div>
+{% endmacro %}
+{% macro footer_examples() %}
+  {% call footer() %}
+    {% call footer_row() %}
+      {% call footer_item(title="Find case law", title_url=url("home")) %}
+        <p>Delivered by</p>
+        {{ tna_logo() }}
+      {% endcall %}
+      {% call footer_item(title="About", title_url=url("about_this_service")) %}
+        {% call list() %}
+          {% call list_item() %}
+            {{ footer_link("Courts and tribunals in Find Case Law", url=url("courts_and_tribunals") ) }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("Terms and policies", url=url("terms_and_policies") ) }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("Publishing policy", url=url("publishing_policy") ) }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("Help us improve this service", url=url("user_research") ) }}
+          {% endcall %}
+        {% endcall %}
+      {% endcall %}
+      {% call footer_item(title="Help and guidance", title_url=url("help_and_guidance")) %}
+        {% call list() %}
+          {% call list_item() %}
+            {{ footer_link("How to search", url=url("how_to_search_find_case_law") ) }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("Understanding judgments and decisions", url=url("understanding_judgments_and_decisions") ) }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("Contact us", url=url("contact_us") ) }}
+          {% endcall %}
+        {% endcall %}
+      {% endcall %}
+      {% call footer_item(title="Re-use Find Case Law records") %}
+        {{ open_justice_license_logo() }}
+        <p>
+          For computational analysis, which is not allowed under the OJL {{ footer_link("apply for a license", url=url("transactional-licence-form") ) }}.
+        </p>
+      {% endcall %}
+    {% endcall %}
+    {% call footer_row() %}
+      {% call footer_item(title="Legal") %}
+        {% call list(variant="horizontal") %}
+          {% call list_item() %}
+            {{ footer_link("Accessibility statement", url=url("accessibility_statement") ) }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("Privacy notice", url=url("privacy_notice") ) }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("Cookies", url="https://www.nationalarchives.gov.uk/legal/cookies/") }}
+          {% endcall %}
+        {% endcall %}
+      {% endcall %}
+      {% call footer_item(title="Other websites") %}
+        {% call list(variant="horizontal") %}
+          {% call list_item() %}
+            {{ footer_link("Legislation.gov.uk", url="https://www.legislation.gov.uk/") }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("The Judiciary", url="https://www.judiciary.uk/") }}
+          {% endcall %}
+          {% call list_item() %}
+            {{ footer_link("UK Government Web Archive", url="https://www.nationalarchives.gov.uk/webarchive/") }}
+          {% endcall %}
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endmacro %}
