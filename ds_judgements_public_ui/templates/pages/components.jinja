@@ -25,6 +25,7 @@
 {% from "components/banner.jinja" import banner_examples %}
 {% from "components/cookie_banner.jinja" import cookie_banner %}
 {% from "components/footer.jinja" import footer_examples with context %}
+{% from "components/summary_card.jinja" import summary_card, summary_card_examples %}
 {% block content %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
     <h2>Page title</h2>
@@ -79,6 +80,8 @@
       {{ pagination_examples() }}
       <h2>Text input</h2>
       {{ text_input_examples() }}
+      <h2>Summary Card</h2>
+      {{ summary_card_examples() }}
     </div>
     <div class="container">
       <h2>Navigation</h2>

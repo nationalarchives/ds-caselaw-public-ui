@@ -1,0 +1,143 @@
+{% from "govuk_frontend_jinja/components/summary-list/macro.html" import govukSummaryList %}
+{% macro summary_card(params) %}
+  {{ govukSummaryList(params) }}
+{% endmacro %}
+{% macro summary_card_examples() %}
+  {{ summary_card({
+    "card": {
+      "title": {
+        "text": "This is the title text"
+      }
+    },
+    "rows": [
+      {
+        "key": {
+          "text": "This is the key text"
+        },
+        "value": {
+          "html": "This is the value text"
+        },
+        "actions": {
+          "items": [
+            {
+              "href": "#",
+              "text": "Change",
+              "visuallyHiddenText": "This is the hidden key text"
+            }
+          ]
+        }
+      },
+      {
+        "key": {
+          "text": "This is the key text"
+        },
+        "value": {
+          "html": "This is the value text"
+        },
+        "actions": {
+          "items": [
+            {
+              "href": "#",
+              "text": "Change",
+              "visuallyHiddenText": "This is the hidden key text"
+            }
+          ]
+        }
+      },
+      {
+        "key": {
+          "text": "This is the key text"
+        },
+        "value": {
+          "html": "This is the value text"
+        },
+        "actions": {
+          "items": [
+            {
+              "href": "#",
+              "text": "Change",
+              "visuallyHiddenText": "This is the hidden key text"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+  {{ summary_card({
+    "card": {
+      "title": {
+        "text": "This is the title text"
+      }
+    },
+    "rows": [
+      {
+        "key": {
+          "text": "This is the key text"
+        },
+        "value": {
+          "html": "This is the value text"
+        },
+        "actions": {
+          "items": [
+            {
+              "href": "#",
+              "text": "Change",
+              "visuallyHiddenText": "This is the hidden key text"
+            }
+          ]
+        }
+      },
+      {
+        "key": {
+          "text": "This is the key text"
+        },
+        "value": {
+          "html": "This is the value text"
+        },
+        "actions": {
+          "items": [
+            {
+              "href": "#",
+              "text": "Change",
+              "visuallyHiddenText": "This is the hidden key text"
+            }
+          ]
+        }
+      },
+      {
+        "key": {
+          "text": "This is the key text"
+        },
+        "value": {
+          "html": "This is the value text"
+        },
+        "actions": {
+          "items": [
+            {
+              "href": "#",
+              "text": "Change",
+              "visuallyHiddenText": "This is the hidden key text"
+            }
+          ]
+        }
+      },
+      {
+        "key": {
+          "text": "This is the key text"
+        },
+        "value": {
+          "html": "This is the value text"
+        },
+        "actions": {
+          "items": [
+            {
+              "href": "#",
+              "text": "Change",
+              "visuallyHiddenText": "This is the hidden key text"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+{% endmacro %}
