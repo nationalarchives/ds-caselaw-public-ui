@@ -92,6 +92,11 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "components/list";
 @import "components/ojl_logo";
 
+// Components Vendor overrides
+
+@import "components/govuk_overrides/summary_card";
+@import "components/govuk_overrides/summary_list";
+
 // Base
 @import "includes/confirmation";
 @import "includes/help_end_document_marker";
