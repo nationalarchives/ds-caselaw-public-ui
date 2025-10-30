@@ -13,6 +13,16 @@ from jinja2 import (
 from judgments.templatetags import link_tags, navigation_tags
 
 
+def formatdate(value):
+    if value is None:
+        return ""
+    return value.strftime("%d %b %Y")
+
+
+def jinja_url(name, *args, **kwargs):
+    return reverse(name, args=args or None, kwargs=kwargs or None)
+
+
 def with_context(fn):
     """
     Wraps a Django template tag function that takes context, so it works in Jinja.
@@ -53,7 +63,8 @@ def environment(**options):
             "navigation_item_class": with_context(navigation_tags.navigation_item_class),
             "static": staticfiles_storage.url,
             "trackable_link": with_context(link_tags.trackable_link),
-            "url": reverse,
+            "formatdate": formatdate,
+            "url": jinja_url,
         }
     )
     return env

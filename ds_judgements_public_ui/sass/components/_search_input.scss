@@ -1,6 +1,4 @@
 .search-input {
-  width: 47rem;
-
   h1,
   h2,
   h3 {
@@ -12,6 +10,8 @@
     flex-direction: column;
     gap: $space-2;
     align-items: flex-start;
+
+    margin: 0;
   }
 
   p {
@@ -29,7 +29,12 @@
   input[type="text"] {
     @include text_field;
 
+    width: 100%;
     margin: 0;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      width: 80%;
+    }
   }
 
   input[type="submit"] {
@@ -42,12 +47,24 @@
 
   &__container {
     display: flex;
+    flex-direction: column;
     gap: $space-4;
     width: 100%;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      flex-direction: row;
+    }
   }
 
   &__actions {
     width: 100%;
-    text-align: center;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      text-align: center;
+    }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    width: 47rem;
   }
 }

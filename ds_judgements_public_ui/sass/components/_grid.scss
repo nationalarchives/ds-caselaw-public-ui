@@ -1,0 +1,9 @@
+.grid {
+  display: grid;
+  gap: $space-4;
+  justify-content: center;
+
+  @media (min-width: $grid-breakpoint-extra-large) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

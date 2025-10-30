@@ -1,0 +1,152 @@
+{% extends "layouts/base.jinja" %}
+{% from "components/banner.jinja" import banner %}
+{% from "components/button.jinja" import button %}
+{% from "components/card.jinja" import card %}
+{% from "components/content_container.jinja" import content_container %}
+{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
+{% from "components/fcl_logo.jinja" import fcl_logo %}
+{% from "components/grid.jinja" import grid %}
+{% from "components/header.jinja" import header %}
+{% from "components/hero.jinja" import hero %}
+{% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
+{% from "components/search_input.jinja" import search_form, search_input, search_input_actions %}
+{% from "components/tna_logo.jinja" import tna_logo %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/link.jinja" import link %}
+{% from "components/open_justice_license_logo.jinja" import open_justice_license_logo %}
+{% from "components/footer.jinja" import footer, footer_row, footer_item, footer_link with context %}
+{% call header() %}
+  {{ tna_logo() }}
+  {{ fcl_logo() }}
+  {% call navigation() %}
+    {% call navigation_items() %}
+      {% call navigation_item(view_name="home") %}
+        Home
+      {% endcall %}
+      {% call navigation_item(view_name="about_this_service") %}
+        About
+      {% endcall %}
+      {% call navigation_item(view_name="help_and_guidance") %}
+        Help and guidance
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endcall %}
+{% call hero() %}
+  {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
+    <p>Use any search term including neutral citation, names and keywords</p>
+    {{ search_input(label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+    <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
+    {% call search_input_actions() %}
+      {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+    {% endcall %}
+  {% endcall %}
+{% endcall %}
+{% call content_container() %}
+  {% call grid() %}
+    {% call card(title="Browse by court or tribunal", url=url('courts_and_tribunals'), variant="image", image_url=static("images/HM-courts-and-tribunal-service-building-sign.jpg")) %}
+      <p>View judgments and decisions from specific courts and tribunals.</p>
+    {% endcall %}
+    {% call card(title="How to search", variant="image", url=url('how_to_search_find_case_law'), image_url=static("images/modern-magnifying-glass.jpg")) %}
+      <p>Learn how to search the full text of every judgment and decision available on Find Case Law.</p>
+    {% endcall %}
+    {% call card(title="Re-use Find Case Law records", url=url('transactional-licence-form'), variant="image", image_url=static("images/person-working-on-a-laptop.jpg")) %}
+      <p>Find out how to gain free access to and re-use of judgments and decisions.</p>
+    {% endcall %}
+  {% endcall %}
+  {% call documents_table(title="Recently published judgments", headings=["Neutral citation", "Handed down"], footer_button_url=url("search"), footer_button_text="View all judgments") %}
+    {% for judgment in judgments %}
+      {% call document_table_row() %}
+        {% call document_table_cell(variant="details") %}
+          {% call link(href=url("detail", judgment.slug)) %}
+            {{ judgment.name }}
+          {% endcall %}
+          {{ judgment.court.name }}
+        {% endcall %}
+        {% call document_table_cell(variant="text", label="Neutral citation") %}
+          {{ judgment.neutral_citation | default("&mdash;", true) | safe }}
+        {% endcall %}
+        {% call document_table_cell(variant="text", label="Handed down") %}
+          {{ formatdate(judgment.date) }}
+        {% endcall %}
+      {% endcall %}
+    {% endfor %}
+  {% endcall %}
+{% endcall %}
+{% call banner() %}
+  <h2>Help us improve this service</h2>
+  {% call button(variant="secondary") %}
+    Take a short survey
+  {% endcall %}
+{% endcall %}
+{% call footer() %}
+  {% call footer_row() %}
+    {% call footer_item(title="Find case law", title_url=url("home")) %}
+      <p>Delivered by</p>
+      {{ tna_logo() }}
+    {% endcall %}
+    {% call footer_item(title="About", title_url=url("about_this_service")) %}
+      {% call list() %}
+        {% call list_item() %}
+          {{ footer_link("Courts and tribunals in Find Case Law", url=url("courts_and_tribunals") ) }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("Terms and policies", url=url("terms_and_policies") ) }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("Publishing policy", url=url("publishing_policy") ) }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("Help us improve this service", url=url("user_research") ) }}
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+    {% call footer_item(title="Help and guidance", title_url=url("help_and_guidance")) %}
+      {% call list() %}
+        {% call list_item() %}
+          {{ footer_link("How to search", url=url("how_to_search_find_case_law") ) }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("Understanding judgments and decisions", url=url("understanding_judgments_and_decisions") ) }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("Contact us", url=url("contact_us") ) }}
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+    {% call footer_item(title="Re-use Find Case Law records") %}
+      {{ open_justice_license_logo() }}
+      <p>
+        For computational analysis, which is not allowed under the OJL {{ footer_link("apply for a license", url=url("transactional-licence-form") ) }}.
+      </p>
+    {% endcall %}
+  {% endcall %}
+  {% call footer_row() %}
+    {% call footer_item(title="Legal") %}
+      {% call list(variant="horizontal") %}
+        {% call list_item() %}
+          {{ footer_link("Accessibility statement", url=url("accessibility_statement") ) }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("Privacy notice", url=url("privacy_notice") ) }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("Cookies", url="https://www.nationalarchives.gov.uk/legal/cookies/") }}
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+    {% call footer_item(title="Other websites") %}
+      {% call list(variant="horizontal") %}
+        {% call list_item() %}
+          {{ footer_link("Legislation.gov.uk", url="https://www.legislation.gov.uk/") }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("The Judiciary", url="https://www.judiciary.uk/") }}
+        {% endcall %}
+        {% call list_item() %}
+          {{ footer_link("UK Government Web Archive", url="https://www.nationalarchives.gov.uk/webarchive/") }}
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endcall %}

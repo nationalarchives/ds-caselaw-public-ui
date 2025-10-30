@@ -4,6 +4,7 @@
   <div class="search-input__container">
     {% if label %}<label for="{{ id }}" class="search-input__label">{{ label }}</label>{% endif %}
     <input value="{{ value }}"
+           name="query"
            type="text"
            placeholder="{{ placeholder }}"
            id="{{ id }}" />
