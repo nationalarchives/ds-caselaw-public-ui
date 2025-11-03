@@ -1,0 +1,122 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/grid.jinja" import grid %}
+{% block meta_description %}
+  <meta name="description"
+        content="These terms tell you the rules for using the Find Case Law service.  The Find Case Law service is provided by The National Archives." />
+{% endblock meta_description %}
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="2024-08-20">20 August 2024</time>
+  </small>
+  {% call heading() %}
+    Terms of use
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="2024-08-20">20 August 2024</time>
+  </small>
+  {% call heading() %}
+    Terms of use
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#section-reasonable-use") %}
+          Fair and reasonable use
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-crawling") %}
+          Crawling and indexing
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-reuse") %}
+          Reusing information from Find Case Law
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-interested-in") %}
+          You may also be interested in
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    <p>You may access Find Case Law through this website or the Find Case Law API.</p>
+    <p>By using Find Case Law, you confirm that you accept these terms of use and that you agree to comply with them.</p>
+    {% call heading(tag="h2", id="section-reasonable-use") %}
+      Fair and reasonable use
+    {% endcall %}
+    <p>
+      You must use Find Case Law responsibly. This includes making a reasonable number of requests. In order to
+      maintain the integrity of the service for everyone, we may block or disable use of the service from specific IP addresses if they make an excessive number of requests.
+    </p>
+    {% call heading(tag="h2", id="section-crawling") %}
+      Crawling and indexing
+    {% endcall %}
+    <p>
+      You may access the Find Case Law service through the website, or access the data through
+      {% call link(href="https://nationalarchives.github.io/ds-find-caselaw-docs/public") %}
+        the API
+      {% endcall %}
+      .
+    </p>
+    <p>
+      We do not allow external indexing of documents. You must follow both the instructions in this website’s
+      {% call link(href="https://caselaw.nationalarchives.gov.uk/robots.txt") %}
+        robots.txt
+      {% endcall %}
+      and any directives provided in HTML <code>&lt;meta&gt;</code> tags or <code>X-Robots-Tag</code> HTTP headers for all documents and their related assets.
+    </p>
+    <p>
+      We may block or disable the service for any users who appear to be compiling an index in violation of these terms.
+    </p>
+    {% call heading(tag="h2", id="section-reuse") %}
+      Reusing information from Find Case Law
+    {% endcall %}
+    <p>
+      You may use and re-use the contents of the Find Case Law service under the terms of the
+      {% call link(href=url("open_justice_licence")) %}
+        Open Justice Licence
+      {% endcall %}
+      .
+    </p>
+    <p>
+      You must apply for a licence to do computational analysis if you wish to conduct computational analysis of the information provided by Find Case Law.
+    </p>
+    <p>
+      For more detailed information, see our instructions on how to
+      {% call link(href=url("transactional-licence-form")) %}
+        Reuse information from Find Case Law
+      {% endcall %}
+      .
+    </p>
+  </section>
+{% endblock article_content %}
+{% block article_footer %}
+  {% call heading(tag="h2", id="section-interested-in") %}
+    You may also be interested in
+  {% endcall %}
+  {% call grid() %}
+    {% call card(title="Contact us", url=url('contact_us')) %}
+      <p>Find out how you can contact the Find Case Law team.</p>
+    {% endcall %}
+    {% call card(title="Courts and tribunals in Find Case Law", url=url('courts_and_tribunals_in_fcl')) %}
+      <p>Learn which judgments and decisions this service provides.</p>
+    {% endcall %}
+    {% call card(title="Publishing policy", url=url('publishing_policy')) %}
+      <p>Read how Find Case Law receives and publishes judgments and decisions.</p>
+    {% endcall %}
+  {% endcall %}
+{% endblock article_footer %}

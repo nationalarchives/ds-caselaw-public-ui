@@ -1,0 +1,328 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="2025-07-30">30 July 2025</time>
+  </small>
+  {% call heading() %}
+    Accessibility statement for Find Case Law
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="2025-07-30">30 July 2025</time>
+  </small>
+  {% call heading() %}
+    Accessibility statement for Find Case Law
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#section-how") %}
+          How accessible is this website?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-feedback") %}
+          Feedback, contact information and
+          reporting accessibility problems
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-contact") %}
+          Contacting us or visiting in person
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-enforcement") %}
+          Enforcement procedure
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-technical-information") %}
+          Technical information about this website's accessibility
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-compliance") %}
+          Compliance status
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-burden") %}
+          Disproportionate burden
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-scope") %}
+          Content that's not within the scope of the accessibility regulations
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-improve") %}
+          What we’re doing to improve accessibility
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-preparation") %}
+          Preparation of this accessibility statement
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    <p>
+      This accessibility statement applies to the
+      {% call link(href=url('home')) %}
+        Find Case Law
+      {% endcall %}
+      service provided by The National Archives.
+    </p>
+    <p>
+      Accessibility and inclusion are important to everyone at The National Archives and we want as many people as possible to be able to use the Case Law service. The text should be clear and easy to understand. You should be able to:
+    </p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        Change colours, contrast levels and fonts
+      {% endcall %}
+      {% call list_item() %}
+        Zoom in up to 400% without the text spilling off the screen
+      {% endcall %}
+      {% call list_item() %}
+        Navigate most of the website using just a keyboard
+      {% endcall %}
+      {% call list_item() %}
+        Navigate most of the website using speech recognition software
+      {% endcall %}
+      {% call list_item() %}
+        Listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)
+      {% endcall %}
+    {% endcall %}
+    <p>We’ve also made the website text as simple as possible to understand.</p>
+    <p>
+      {% call link(href="https://mcmw.abilitynet.org.uk/") %}
+        AbilityNet
+      {% endcall %}
+      has advice on making your device easier to use if you have a disability.
+    </p>
+    <p>
+      We are continually working to improve the accessibility of our digital services, and to develop our skills in relevant standards and techniques.
+      {% call link(href="https://nationalarchives.github.io/engineering-handbook/technology/standards/accessibility/") %}
+        See our current development standards
+      {% endcall %}
+      .
+    </p>
+    <p>
+      As well as working with third-party accessibility specialists, most of our accessibility testing is conducted in-house using automated tools and the best professional judgment of our digital teams. We acknowledge that this approach is not perfect and recognise that we may get some things wrong.
+    </p>
+    {% call heading(tag="h2", id="section-how") %}
+      How accessible is this website?
+    {% endcall %}
+    <p>Some parts of this website may not be fully accessible:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        Judgments that contain images may not have a text alternative or image descriptions that serves the equivalent purpose
+      {% endcall %}
+      {% call list_item() %}
+        Downloadable file on the service including PDF and Microsoft Word files may not be fully accessible to screen reader software
+      {% endcall %}
+      {% call list_item() %}
+        Information, structure, and relationships conveyed through a judgment presentation may not be programmatically determined or are available in text
+      {% endcall %}
+      {% call list_item() %}
+        Outbound links to websites that we do not own or manage and so cannot guarantee their accessibility
+      {% endcall %}
+    {% endcall %}
+    {% call heading(tag="h2", id="section-feedback") %}
+      Feedback, contact information and reporting accessibility problems
+    {% endcall %}
+    <p>
+      If you need information on this website in a different format, for example accessible PDF, large print, easy read, audio recording or Braille:
+    </p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        email
+        {% call link(href="mailto:webmaster@nationalarchives.gov.uk") %}
+          webmaster@nationalarchives.gov.uk
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        call 020 8876 3444.
+      {% endcall %}
+    {% endcall %}
+    <p>If you need to contact us via post, write to:</p>
+    <p>
+      Digital Access Team c/o
+      <br />
+      Digital Archiving Department
+      <br />
+      The National Archives,
+      <br />
+      Kew, Richmond,
+      <br />
+      Surrey
+      <br />
+      TW9 4DU
+    </p>
+    <p>In your message, include:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        the web address (URL) of the content
+      {% endcall %}
+      {% call list_item() %}
+        your email address and name
+      {% endcall %}
+      {% call list_item() %}
+        the format you need
+      {% endcall %}
+    {% endcall %}
+    <p>We’ll consider your request and get back to you in 10 working days.</p>
+    <p>You can also use these contact details to report accessibility problems with this website.</p>
+    <p>
+      If you have an accessibility need and would like to participate in user testing as we make improvements
+      to our website, email
+      {% call link(href="mailto:caselawresearch@nationalarchives.gov.uk") %}
+        caselawresearch@nationalarchives.gov.uk
+      {% endcall %}
+      .
+    </p>
+    {% call heading(tag="h2", id="section-enforcement") %}
+      Enforcement procedure
+    {% endcall %}
+    <p>
+      The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations').
+    </p>
+    <p>
+      If you are not happy with how we respond to your complaint,
+      {% call link(href="https://www.equalityadvisoryservice.com/", attrs={"target":"_blank"}) %}contact the Equality Advisory and Support Service (EASS)
+      {% endcall %}
+      .
+    </p>
+    {% call heading(tag="h2", id="section-technical-information") %}
+      Technical information about this website's accessibility
+    {% endcall %}
+    <p>
+      The National Archives is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+    </p>
+    {% call heading(tag="h2", id="section-compliance") %}
+      Compliance status
+    {% endcall %}
+    <p>The website has been tested against the Web Content Accessibility Guidelines (WCAG) 2.2 AA standard.</p>
+    <p>
+      This website is partially compliant with the
+      {% call link(href="https://www.w3.org/TR/WCAG22/", attrs={"target":"_blank"}) %}Web Content Accessibility Guidelines version 2.2
+      {% endcall %}
+      AA standard, due to the non-compliances and exemptions listed below:
+    </p>
+    {% call heading(tag="h3") %}
+      Non-accessible content
+    {% endcall %}
+    <p>
+      Based on sample testing of pages selected by our user experience and metrics teams, we know that the content listed below is non-compliant with the accessibility regulations for the following reasons:
+    </p>
+    <p>Non-compliance with the accessibility regulations</p>
+    {% call list(variant="decimal") %}
+      {% call list_item() %}
+        Images within judgment text do not have a text alternative, which means some content is not available when using text-to-speech software (Success Criterion 1.1.1 Non-text Content)
+      {% endcall %}
+      {% call list_item() %}
+        Some HTML heading markup has been used in a way that does not accurately represent relationships in the content, which makes the content difficult to understand and navigate for screenreader users (Success Criterion 1.3.1 Info and Relationships).
+      {% endcall %}
+    {% endcall %}
+    {% call heading(tag="h2", id="section-burden") %}
+      Disproportionate burden
+    {% endcall %}
+    <p>Not applicable.</p>
+    {% call heading(tag="h2", id="section-scope") %}
+      Content that's not within the scope of the accessibility regulations
+    {% endcall %}
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        Judgment documents, such as PDFs and Word files, are published in the same format and condition in which they were originally submitted to us. This means we do not make changes to improve accessibility, and as a result, some documents may not meet current accessibility standards.
+      {% endcall %}
+    {% endcall %}
+    <p>
+      While reproductions of items in heritage collections are
+      {% call link(href="https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made", attrs={"target":"_blank"}) %}exempt from meeting the accessibility regulations
+      {% endcall %}
+      ,
+      we are investigating ways to use emerging technology to improve the data
+      and accessibility of our heritage collections.
+    </p>
+    {% call heading(tag="h2", id="section-improve") %}
+      What we’re doing to improve accessibility
+    {% endcall %}
+    <p>
+      The service manual helps our teams build products and services to meet the same accessibility standards.
+      Creating an accessible service is a team effort. We want our team to make this service accessible by:
+    </p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        considering accessibility at the start of their project, and throughout
+      {% endcall %}
+      {% call list_item() %}
+        making accessibility the whole team's responsibility
+      {% endcall %}
+      {% call list_item() %}
+        provide accessibility training for our staff
+      {% endcall %}
+      {% call list_item() %}
+        include individuals with disabilities in our design personas
+      {% endcall %}
+      {% call list_item() %}
+        researching with users having access needs including some using assistive technologies
+      {% endcall %}
+      {% call list_item() %}
+        using a library of accessible components and design patterns
+      {% endcall %}
+      {% call list_item() %}
+        carrying out regular internal and external accessibility audits and testing
+      {% endcall %}
+      {% call list_item() %}
+        designing and building to level AA of WCAG 2.2
+      {% endcall %}
+    {% endcall %}
+    <p>
+      The accessibility issues highlighted in our latest accessibility test report (include link) have been reviewed, prioritised and fixed.
+    </p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        Screenreader users are informed of their current page in the navigation.
+      {% endcall %}
+      {% call list_item() %}
+        Graphics used to present the purpose of a link are provided with a descriptive text alternative to inform users of their functionality and purpose.
+      {% endcall %}
+      {% call list_item() %}
+        Colour contrast issues have been resolved
+      {% endcall %}
+      {% call list_item() %}
+        Button elements are descriptive of their purpose and function on the page
+      {% endcall %}
+      {% call list_item() %}
+        Content can be presented without loss of information or functionality,
+      {% endcall %}
+    {% endcall %}
+    {% call heading(tag="h2", id="section-preparation") %}
+      Preparation of this accessibility statement
+    {% endcall %}
+    <p>This statement was prepared on 12 April 2022. It was last reviewed on 30 July 2025.</p>
+    <p>This website was last tested on 4 March 2025 against the WCAG 2.2 AA standard.</p>
+    <p>
+      The test was carried out by Digital Accessibility Center (DAC). The most viewed pages were tested using automated testing tools by the DAC team. A further audit of the website was carried out using manual testing, in accordance with the WCAG 2.2 AA standard.
+    </p>
+    <p>
+      You can read the full report here:
+      {% call link(href=static('/documents/2025 FCL_DAC Accessibility Expert Review WCAG 2.2.pdf')) %}
+        "DAC accessibility report
+      {% endcall %}
+      for Find Case Law.
+    </p>
+  </section>
+{% endblock article_content %}

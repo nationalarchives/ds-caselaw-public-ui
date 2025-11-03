@@ -1,0 +1,107 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/grid.jinja" import grid %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    About Find Case Law
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    About Find Case Law
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#section-what") %}
+          What Find Case Law does
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-pages") %}
+          Pages in this section
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    {% call heading(tag="h2", id="section-what") %}
+      What Find Case Law does
+    {% endcall %}
+    <p>
+      Find Case Law is a service that provides public access to court judgments and tribunal decisions made in England and Wales from 2001 onwards.
+    </p>
+    <p>It publishes selected judgments and decisions on this website, in a range of formats.</p>
+    <p>
+      It is provided by
+      {% call link(href="https://www.nationalarchives.gov.uk/") %}
+        The National Archives
+      {% endcall %}
+      ,  working in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.
+    </p>
+    <p>
+      Please note that:
+      {% call list(variant="bullets") %}
+        {% call list_item() %}
+          Find Case Law is currently in beta, meaning it is being actively developed and may change in order to test and introduce new features
+        {% endcall %}
+        {% call list_item() %}
+          Find Case Law is not a complete record of judgments and decisions (see our
+          {% call link(url('publishing_policy')) %}
+            Publishing policy
+          {% endcall %}
+          )
+        {% endcall %}
+        {% call list_item() %}
+          Find Case Law does not provide legal advice, interpretation or support. Sources of these include:
+          {% call list(variant="bullets") %}
+            {% call list_item() %}
+              {% call link(href="https://www.citizensadvice.org.uk/") %}
+                Citizens Advice
+              {% endcall %}
+            {% endcall %}
+            {% call list_item() %}
+              {% call link(href="https://www.lawcentres.org.uk/") %}
+                The Law Centres Network
+              {% endcall %}
+            {% endcall %}
+            {% call list_item() %}
+              {% call link(href="https://www.supportthroughcourt.org/") %}
+                Support Through Court
+              {% endcall %}
+            {% endcall %}
+            {% call list_item() %}
+              {% call link(href="https://www.weareadvocate.org.uk/") %}
+                Advocate
+              {% endcall %}
+            {% endcall %}
+          {% endcall %}
+        {% endcall %}
+      {% endcall %}
+    </p>
+  </section>
+{% endblock article_content %}
+{% block article_footer %}
+  {% call heading(tag="h2", id="section-pages") %}
+    Pages in this section
+  {% endcall %}
+  {% call grid() %}
+    {% call card(title="Courts and tribunals in Find Case Law", url=url('courts_and_tribunals_in_fcl')) %}
+      <p>Learn which judgments and decisions this service provides.</p>
+    {% endcall %}
+    {% call card(title="Reuse Find Case Law records", url=url('transactional-licence-form')) %}
+      <p>Read what you’re allowed to do with records from this service.</p>
+    {% endcall %}
+    {% call card(title="Terms and policies", url=url('terms_and_policies')) %}
+      <p>Find out the rules and policies that apply to this service.</p>
+    {% endcall %}
+  {% endcall %}
+{% endblock article_footer %}

@@ -1,0 +1,112 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="2025-01-21">21 January 2025</time>
+  </small>
+  {% call heading() %}
+    Contact us
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="2025-01-21">21 January 2025</time>
+  </small>
+  {% call heading() %}
+    Contact us
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#section-general") %}
+          General enquiries
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-licensing") %}
+          Licensing queries
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-who") %}
+          Who we are
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-privacy") %}
+          Personal information and privacy
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    {% call heading(tag="h2", id="section-general") %}
+      General enquiries
+    {% endcall %}
+    <p>
+      To contact the Find Case Law team, please email
+      {% call link(href="mailto:caselaw@nationalarchives.gov.uk") %}
+        caselaw@nationalarchives.gov.uk
+      {% endcall %}
+      .
+    </p>
+    <p>
+      If your online access is limited and you need to speak to someone, you can call us during office hours on 020 8876 3444.
+      Please leave your number and message and we will call you back.
+    </p>
+    {% call heading(tag="h2", id="section-licensing") %}
+      Licensing queries
+    {% endcall %}
+    <p>
+      This website explains
+      {% call link(href=url("transactional-licence-form")) %}
+        how you can use and re-use Find Case Law records
+      {% endcall %}
+      .
+    </p>
+    <p>
+      If you have any questions about licensing, please email our Licensing Department at
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {% endcall %}
+      .
+    </p>
+    {% call heading(tag="h2", id="section-who") %}
+      Who we are
+    {% endcall %}
+    <p>
+      Find Case Law is provided by
+      {% call link(href="https://www.nationalarchives.gov.uk/") %}
+        The National Archives
+      {% endcall %}
+      , working in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.
+    </p>
+    <p>
+      The National Archives is a non-ministerial government department, and the official archive and publisher for the UK Government, and for England and Wales.
+    </p>
+    {% call heading(tag="h2", id="section-privacy") %}
+      Personal information and privacy
+    {% endcall %}
+    <p>
+      Any personal information you email us will be handled in accordance with our
+      {% call link(href=url('privacy_notice')) %}
+        Privacy notice
+      {% endcall %}
+      .
+    </p>
+    <p>
+      Concerns about processing of personal data in judgments should be addressed to the court or tribunal that delivered the judgment. To contact a specific court or tribunal please use the
+      {% call link(href="https://www.gov.uk/find-court-tribunal") %}
+        GOV.UK Find a court or tribunal service
+      {% endcall %}
+      .
+    </p>
+  </section>
+{% endblock article_content %}

@@ -1,7 +1,9 @@
 from functools import wraps
 
+from django.contrib.humanize.templatetags.humanize import intcomma
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import reverse
+from django.utils.text import slugify
 from jinja2 import (
     ChoiceLoader,
     Environment,
@@ -10,7 +12,7 @@ from jinja2 import (
     select_autoescape,
 )
 
-from judgments.templatetags import link_tags, navigation_tags
+from judgments.templatetags import court_utils, link_tags, navigation_tags
 
 
 def formatdate(value):
@@ -67,4 +69,7 @@ def environment(**options):
             "url": jinja_url,
         }
     )
+    env.filters["get_court_judgments_count"] = court_utils.get_court_judgments_count
+    env.filters["intcomma"] = intcomma
+    env.filters["slugify"] = slugify
     return env

@@ -1,0 +1,143 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/tabs.jinja" import tabs %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "includes/courts_and_tribunals_group.jinja" import courts_and_tribunals_group %}
+{% block javascript %}
+  <script type="module"
+          defer
+          src="{{ static('js/dist/govuk_tabs_extended.js') }}"></script>
+{% endblock javascript %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Types of courts in England and Wales
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Types of courts in England and Wales
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call heading(tag="h3") %}
+      {% call link(href="#courts") %}
+        <strong>Courts</strong>
+      {% endcall %}
+    {% endcall %}
+    {% call list() %}
+      {% for court in courts %}
+        {% if court.display_heading %}
+          {% call list_item() %}
+            {% call link(href="#{{ court.name|slugify }}") %}
+              {{ court.name }} ({{ court.courts|length }})
+            {% endcall %}
+          {% endcall %}
+        {% else %}
+          {% for subcourt in court.courts %}
+            {% call list_item() %}
+              {% call link(href="#{{ subcourt.name|slugify }}") %}
+                {{ subcourt.name }}
+              {% endcall %}
+            {% endcall %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endcall %}
+    {% call list() %}
+      {% for court in courts %}
+        {% if court.display_heading %}
+          {% call list_item() %}
+            {% call link(href="#{{ court.name|slugify }}") %}
+              {{ court.name }} ({{ court.courts|length }})
+            {% endcall %}
+          {% endcall %}
+        {% else %}
+          {% for subcourt in court.courts %}
+            {% call list_item() %}
+              {% call link(href="#{{ subcourt.name|slugify }}") %}
+                {{ subcourt.name }}
+              {% endcall %}
+            {% endcall %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endcall %}
+    {% call heading(tag="h3") %}
+      {% call link(href="#tribunals") %}
+        <strong>Tribunals</strong>
+      {% endcall %}
+    {% endcall %}
+    {% call list() %}
+      {% for tribunal in tribunals %}
+        {% if tribunal.display_heading %}
+          {% call list_item() %}
+            {% call link(href="#{{ tribunal.name|slugify }}") %}
+              {{ tribunal.name }} ({{ tribunal.courts|length }})
+            {% endcall %}
+          {% endcall %}
+        {% else %}
+          {% for subcourt in tribunal.courts %}
+            {% call list_item() %}
+              {% call link(href="#{{ subcourt.name|slugify }}") %}
+                {{ subcourt.name }}
+              {% endcall %}
+            {% endcall %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <p>
+    Courts and tribunals in England and Wales handle different types of legal cases. There are the civil courts, which deal with disputes between individuals or organisations, and the criminal courts, which deal with criminal offences defined by law.
+  </p>
+  <p>
+    Decisions made by a court or tribunal may be appealed. The Court of Appeal and the UK Supreme Court are the most senior courts for appeals.
+  </p>
+  <p>
+    You can find more information about the justice system in England and Wales on the {% call link(href="https://www.judiciary.uk/structure-of-courts-and-tribunals-system/", attrs={"target": "_blank"}) %}judiciary website
+  {% endcall %}
+  . Older records held by The National Archives can be found on our website using the {% call link(href="https://discovery.nationalarchives.gov.uk/browse/r/h/C162", attrs={"target":"_blank"}) %}Discovery catalogue
+{% endcall %}
+. Government policy around what records to keep and where to keep them has changed over time. To find out more you can look at the Ministry of Justice’s policy on what to archive in their
+{% call link(href="https://www.gov.uk/government/publications/record-retention-and-disposition-schedules") %}
+  Record Retention and Disposition Schedules
+{% endcall %}
+.
+</p>
+{% call heading(tag="h2") %}
+  What each court and tribunal does
+{% endcall %}
+{% set courts_panel %}
+  <h2>
+    <strong>Courts</strong>
+  </h2>
+  {% for group in courts %}{{ courts_and_tribunals_group(group=group, type="court") }}{% endfor %}
+{% endset %}
+{% set tribunals_panel %}
+  <h2>
+    <strong>Tribunals</strong>
+  </h2>
+  {% for group in tribunals %}{{ courts_and_tribunals_group(group=group, type="tribunal") }}{% endfor %}
+{% endset %}
+{{ tabs({
+"id": "courts-and-tribunals",
+"title": "Contents",
+"items": [
+{
+"label": "Courts",
+"id": "courts",
+"panel": { "html": courts_panel | safe }
+},
+{
+"label": "Tribunals",
+"id": "tribunals",
+"panel": { "html": tribunals_panel | safe }
+}
+]
+}) }}
+{% endblock article_content %}

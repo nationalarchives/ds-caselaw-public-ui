@@ -1,0 +1,20 @@
+{% from "components/heading.jinja" import heading %}
+{% from "includes/courts_and_tribunals_court.jinja" import courts_and_tribunals_court %}
+{% macro courts_and_tribunals_group(group=None, type=None) %}
+  <div class="courts-and-tribunals__item">
+    {% if group.display_heading %}
+      {% call heading(tag="h2", id=group.name|slugify) %}
+        {{ group.name }}
+      {% endcall %}
+      {% if group.description_text_as_html %}
+        <div class="courts-and-tribunals__description">
+          {% autoescape off %}
+            {{ group.description_text_as_html }}
+          {% endautoescape %}
+        </div>
+      {% endif %}
+    {% endif %}
+    {# these 'courts' could instead be tribunals #}
+    {% for court in group.courts %}{{ courts_and_tribunals_court(court=court, type=type, group=group) }}{% endfor %}
+  </div>
+{% endmacro %}

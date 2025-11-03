@@ -52,6 +52,11 @@ class CourtsTribunalsListView(TemplateViewWithContext):
         return context
 
 
+class CourtsTribunalsListJinjaView(CourtsTribunalsListView):
+    template_engine = "jinja"
+    template_name = "pages/courts_and_tribunals.jinja"
+
+
 class CourtOrTribunalView(TemplateViewWithContext):
     """Individual view for a specific court or tribunal landing page."""
 

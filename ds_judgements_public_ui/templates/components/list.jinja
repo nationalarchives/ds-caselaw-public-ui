@@ -1,5 +1,10 @@
 {% macro list(variant="default") %}
-  {% set variant_classes = {"default": "list", "horizontal": "list list--horizontal"} %}
+  {% set variant_classes = {
+    "default": "list list--default",
+    "horizontal": "list list--horizontal",
+    "bullets": "list list--bullets",
+    "decimal": "list list--decimal"
+  } %}
   {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
   <ul class="{{ variant_class }}">
     {{ caller() }}

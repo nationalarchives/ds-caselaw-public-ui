@@ -23,6 +23,11 @@ class AboutThisServiceView(TemplateViewWithContext):
         return context
 
 
+class AboutThisServiceJinjaView(AboutThisServiceView):
+    template_engine = "jinja"
+    template_name = "pages/about_this_service.jinja"
+
+
 class AccessibilityStatementView(TemplateViewWithContext):
     template_name = "pages/accessibility_statement.html"
     page_title = "Accessibility statement for Find Case Law"
@@ -42,6 +47,11 @@ class AccessibilityStatementView(TemplateViewWithContext):
         return context
 
 
+class AccessibilityStatementJinjaView(AccessibilityStatementView):
+    template_engine = "jinja"
+    template_name = "pages/accessibility_statement.jinja"
+
+
 class ContactUsView(TemplateViewWithContext):
     template_name = "pages/contact_us.html"
     page_title = "Contact Us"
@@ -59,6 +69,11 @@ class ContactUsView(TemplateViewWithContext):
             {"text": "Contact us"},
         ]
         return context
+
+
+class ContactUsJinjaView(ContactUsView):
+    template_engine = "jinja"
+    template_name = "pages/contact_us.jinja"
 
 
 class CourtsAndTribunalsInFclView(TemplateViewWithContext):
@@ -118,6 +133,11 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
         return context
 
 
+class HowToSearchFindCaseLawJinjaView(HowToSearchFindCaseLawView):
+    template_engine = "jinja"
+    template_name = "pages/how_to_search_find_case_law.jinja"
+
+
 class OpenJusticeLicenceView(TemplateViewWithContext):
     template_name = "pages/open_justice_licence.html"
     page_title = "Open Justice Licence"
@@ -131,6 +151,11 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
+
+
+class OpenJusticeLicenceJinjaView(OpenJusticeLicenceView):
+    template_engine = "jinja"
+    template_name = "pages/open_justice_licence.jinja"
 
 
 class PrivacyNotice(TemplateViewWithContext):
@@ -151,6 +176,11 @@ class PrivacyNotice(TemplateViewWithContext):
         return context
 
 
+class PrivacyNoticeJinja(PrivacyNotice):
+    template_engine = "jinja"
+    template_name = "pages/privacy_notice.jinja"
+
+
 class PublishingPolicyView(TemplateViewWithContext):
     template_name = "pages/publishing_policy.html"
     page_title = "Publishing policy"
@@ -168,6 +198,11 @@ class PublishingPolicyView(TemplateViewWithContext):
             {"text": "Publishing policy"},
         ]
         return context
+
+
+class PublishingPolicyJinjaView(PublishingPolicyView):
+    template_engine = "jinja"
+    template_name = "pages/publishing_policy.jinja"
 
 
 class TermsAndPoliciesView(TemplateViewWithContext):
@@ -207,6 +242,11 @@ class TermsOfUseView(TemplateViewWithContext):
         return context
 
 
+class TermsOfUseJinjaView(TermsOfUseView):
+    template_engine = "jinja"
+    template_name = "pages/terms_of_use.jinja"
+
+
 class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
     template_name = "pages/understanding_judgments_and_decisions.html"
     page_title = "Understanding judgments and decisions"
@@ -226,6 +266,11 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
         return context
 
 
+class UnderstandingJudgmentsAndDecisionsJinjaView(UnderstandingJudgmentsAndDecisionsView):
+    template_engine = "jinja"
+    template_name = "pages/understanding_judgments_and_decisions.jinja"
+
+
 class UserResearchView(TemplateViewWithContext):
     template_name = "pages/user_research.html"
     page_title = "User research"
@@ -239,3 +284,8 @@ class UserResearchView(TemplateViewWithContext):
             {"text": "User research"},
         ]
         return context
+
+
+class UserResearchJinjaView(UserResearchView):
+    template_engine = "jinja"
+    template_name = "pages/user_research.jinja"
