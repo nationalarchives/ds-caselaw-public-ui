@@ -1,0 +1,36 @@
+{% extends "layouts/base.jinja" %}
+{% from "components/end_marker.jinja" import end_marker %}
+{% from "components/content_container.jinja" import content_container %}
+{% block content %}
+  {% call content_container() %}
+    <div class="standard-content" id="start-of-document">
+      <div class="standard-content__body">
+        {% block is_full_screen %}
+          <div class="mobile-only">
+            {% block mobile_article_title %}
+            {% endblock mobile_article_title %}
+          </div>
+          {% block article_navigation %}
+          {% endblock article_navigation %}
+        {% endblock is_full_screen %}
+        <article class="standard-content__article">
+          <div class="desktop-only">
+            {% block desktop_article_title %}
+            {% endblock desktop_article_title %}
+          </div>
+          {% block article_content %}
+          {% endblock article_content %}
+        </article>
+      </div>
+      <div class="standard-content__footer">
+        {% block article_footer %}
+        {% endblock article_footer %}
+      </div>
+    </div>
+    {% block end_of_document_marker %}
+      {% call end_marker() %}
+        Back to top
+      {% endcall %}
+    {% endblock end_of_document_marker %}
+  {% endcall %}
+{% endblock content %}

@@ -1,8 +1,10 @@
-{% macro link(href="", variant="default", class_name="") %}
+{% macro link(href="", variant="default", class_name="", attrs={}) %}
   {% set variant_classes = {"default": "", "contrast": "link--contrast"} %}
   {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
   {% set link_class = ("link " ~ variant_class).strip() %}
-  <a href="{{ href }}" class="{{ link_class }} {{ class_name }}">{{ caller() }}</a>
+  <a href="{{ href }}"
+     class="{{ link_class }} {{ class_name }}"
+     {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>{{ caller() }}</a>
 {% endmacro %}
 {% macro link_examples() %}
   <h3>Default</h3>

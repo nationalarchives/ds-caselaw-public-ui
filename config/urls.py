@@ -14,7 +14,7 @@ from .converters import SchemaFileConverter
 from .views import static as static_views
 from .views.check import status
 from .views.components import ComponentsView
-from .views.courts import CourtOrTribunalView, CourtsTribunalsListView
+from .views.courts import CourtOrTribunalView, CourtsTribunalsListJinjaView, CourtsTribunalsListView
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
 from .views.home import HomeView
 from .views.schema import schema
@@ -41,6 +41,11 @@ urlpatterns = [
         "courts-and-tribunals",
         CourtsTribunalsListView.as_view(),
         name="courts_and_tribunals",
+    ),
+    path(
+        "home/courts-and-tribunals",
+        CourtsTribunalsListJinjaView.as_view(),
+        name="home_courts_and_tribunals",
     ),
     # Search
     path(
@@ -80,6 +85,16 @@ urlpatterns = [
         name="about_this_service",
     ),
     path(
+        "home/about-this-service",
+        static_views.AboutThisServiceJinjaView.as_view(),
+        name="home_about_this_service",
+    ),
+    path(
+        "home/accessibility-statement",
+        static_views.AccessibilityStatementJinjaView.as_view(),
+        name="home_accessibility_statement",
+    ),
+    path(
         "accessibility-statement",
         static_views.AccessibilityStatementView.as_view(),
         name="accessibility_statement",
@@ -88,6 +103,11 @@ urlpatterns = [
         "contact-us",
         static_views.ContactUsView.as_view(),
         name="contact_us",
+    ),
+    path(
+        "home/contact-us",
+        static_views.ContactUsJinjaView.as_view(),
+        name="home_contact_us",
     ),
     path(
         "courts-and-tribunals-in-fcl",
@@ -100,6 +120,11 @@ urlpatterns = [
         name="help_and_guidance",
     ),
     path(
+        "home/how-to-search-find-case-law",
+        static_views.HowToSearchFindCaseLawJinjaView.as_view(),
+        name="home_how_to_search_find_case_law",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
@@ -110,9 +135,19 @@ urlpatterns = [
         name="how_to_use_this_service",
     ),
     path(
+        "home/open-justice-licence",
+        static_views.OpenJusticeLicenceJinjaView.as_view(),
+        name="home_open_justice_licence",
+    ),
+    path(
         "open-justice-licence",
         static_views.OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",
+    ),
+    path(
+        "home/privacy-notice",
+        static_views.PrivacyNoticeJinja.as_view(),
+        name="home_privacy_notice",
     ),
     path(
         "privacy-notice",
@@ -125,6 +160,11 @@ urlpatterns = [
         name="publishing_policy",
     ),
     path(
+        "home/publishing-policy",
+        static_views.PublishingPolicyJinjaView.as_view(),
+        name="home_publishing_policy",
+    ),
+    path(
         "terms-and-policies",
         static_views.TermsAndPoliciesView.as_view(),
         name="terms_and_policies",
@@ -135,6 +175,11 @@ urlpatterns = [
         name="terms_of_use",
     ),
     path(
+        "home/terms-of-use",
+        static_views.TermsOfUseJinjaView.as_view(),
+        name="home_terms_of_use",
+    ),
+    path(
         "the-find-case-law-api",
         lambda request: HttpResponseRedirect("https://nationalarchives.github.io/ds-find-caselaw-docs/public"),
         name="the_find_case_law_api",
@@ -143,6 +188,16 @@ urlpatterns = [
         "understanding-judgments-and-decisions",
         static_views.UnderstandingJudgmentsAndDecisionsView.as_view(),
         name="understanding_judgments_and_decisions",
+    ),
+    path(
+        "home/understanding-judgments-and-decisions",
+        static_views.UnderstandingJudgmentsAndDecisionsJinjaView.as_view(),
+        name="home_understanding_judgments_and_decisions",
+    ),
+    path(
+        "home/user-research",
+        static_views.UserResearchJinjaView.as_view(),
+        name="home_user_research",
     ),
     path(
         "user-research",

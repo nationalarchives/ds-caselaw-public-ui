@@ -1,0 +1,93 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/grid.jinja" import grid %}
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="2025-01-21">21 January 2025</time>
+  </small>
+  {% call heading() %}
+    Understanding judgments and decisions
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="2025-01-21">21 January 2025</time>
+  </small>
+  {% call heading() %}
+    Understanding judgments and decisions
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#section-what") %}
+          What judgments and decisions are
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-interested-in") %}
+          You may also be interested in
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    {% call heading(tag="h2", id="section-what") %}
+      What judgments and decisions are
+    {% endcall %}
+    <p>
+      A judgment is the decision a court has made after hearing a case. Written judgments are also known as handed down judgments. They can be very long.
+    </p>
+    <p>Find Case Law does not provide summaries, interpretation or advice on any judgments or decisions.</p>
+    <p>
+      Every judgment or decision will start with a 'header' or title page which contains the important information about the judgment or decision, such as:
+      {% call list(variant="bullets") %}
+        {% call list_item() %}
+          Neutral citation
+        {% endcall %}
+        {% call list_item() %}
+          Case number
+        {% endcall %}
+        {% call list_item() %}
+          Court or chamber
+        {% endcall %}
+        {% call list_item() %}
+          Judge name(s)
+        {% endcall %}
+        {% call list_item() %}
+          Party names
+        {% endcall %}
+      {% endcall %}
+    </p>
+    <p>
+      The way the text of each judgment or decision is written is up to the judge. Typically, judgments will summarise 'the facts' of the case,
+      the law that applies to those facts, the arguments presented in court, the decision the court has given and the reasons for the decision. The decision made by the judge normally appears towards the end of the judgment or decision.
+    </p>
+    <p>
+      You may find that some judgments and decisions have reporting restrictions. In these cases the relevant parts of the judgment will have been redacted by the court.
+    </p>
+  </section>
+{% endblock article_content %}
+{% block article_footer %}
+  {% call heading(tag="h2", id="section-interested-in") %}
+    You may also be interested in
+  {% endcall %}
+  {% call grid() %}
+    {% call card(title="Courts and tribunals in Find Case Law", url=url('courts_and_tribunals_in_fcl')) %}
+      <p>Learn which judgments and decisions this service provides.</p>
+    {% endcall %}
+    {% call card(title="Publishing policy", url=url('publishing_policy')) %}
+      <p>Read how Find Case Law receives and publishes judgments and decisions.</p>
+    {% endcall %}
+    {% call card(title="Reuse Find Case Law records", url=url('transactional-licence-form')) %}
+      <p>Read what you’re allowed to do with records from this service.</p>
+    {% endcall %}
+  {% endcall %}
+{% endblock article_footer %}

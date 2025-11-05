@@ -1,0 +1,128 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/button.jinja" import button %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="2025-07-03">3 July 2025</time>
+  </small>
+  {% call heading() %}
+    User research for Find Case Law
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="2025-07-03">3 July 2025</time>
+  </small>
+  {% call heading() %}
+    User research for Find Case Law
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#what-does-taking-part-in-user-research-involve") %}
+          What does taking part in user research involve?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-often-will-you-contact-me") %}
+          How often will you contact me?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-long-does-participation-take") %}
+          How long does participation take?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-will-my-data-be-handled") %}
+          How will my data be handled?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#what-if-i-opt-out-of-user-research") %}
+          What if I opt out of user research?
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    <p>
+      We are looking for people to help improve the Find Case Law service and ensure it works well for those who need it. Your feedback will help us make it easier to find and use court judgments and tribunal decisions.
+    </p>
+    <p>To take part, you must be 18 or older.</p>
+    <p>You do not need to be good with computers or have any specific knowledge—anyone can participate.</p>
+    {% call heading(tag="h2", id="what-does-taking-part-in-user-research-involve") %}
+      What does taking part in user research involve?
+    {% endcall %}
+    <p>If you sign up, we may invite you to user research activities such as:</p>
+    {% call list() %}
+      {% call list_item() %}
+        Trying out new features
+      {% endcall %}
+      {% call list_item() %}
+        Answering a few questions by email
+      {% endcall %}
+      {% call list_item() %}
+        Sharing your experience through surveys
+      {% endcall %}
+    {% endcall %}
+    <p>
+      Most sessions are remote, but some may take place in person. We will always let you know in advance. Sessions are flexible and accessible, and you can always say no to an invite or unsubscribe at any time.
+    </p>
+    {% call heading(tag="h2", id="how-often-will-you-contact-me") %}
+      How often will you contact me?
+    {% endcall %}
+    <p>
+      We will only contact you when there is a relevant research opportunity. You are free to decline invitations or unsubscribe at any time.
+    </p>
+    {% call heading(tag="h2", id="how-long-does-participation-take") %}
+      How long does participation take?
+    {% endcall %}
+    <p>
+      Research sessions vary in length: some take 10 minutes, others 45 minutes to an hour. We will always tell you in advance what’s involved and how long it will take.
+    </p>
+    {% call heading(tag="h2", id="how-will-my-data-be-handled") %}
+      How will my data be handled?
+    {% endcall %}
+    <p>User research sessions may be observed and recorded using written notes, video, or audio.</p>
+    <p>
+      Your data will only be used for research purposes to improve the Find Case Law service. It will be stored securely for one year and never shared with third parties.
+    </p>
+    <p>All responses are confidential and reported anonymously.</p>
+    <p>
+      For full details, see our
+      {% call link(href="https://www.nationalarchives.gov.uk/legal/privacy-policy/") %}
+        privacy policy
+      {% endcall %}
+      .
+    </p>
+    {% call heading(tag="h2", id="what-if-i-opt-out-of-user-research") %}
+      What if I opt out of user research?
+    {% endcall %}
+    <p>Participation is completely voluntary. You can choose not to take part or stop at any time.</p>
+    <p>
+      If you have signed up but wish to opt out, email us at
+      {% call link(href="mailto:caselawresearch@nationalarchives.gov.uk") %}
+        caselawresearch@nationalarchives.gov.uk
+      {% endcall %}
+      and we will remove you from our list. Your data will also be deleted.
+    </p>
+    <p>
+      If you have any questions before signing up, email us at
+      {% call link(href="mailto:caselawresearch@nationalarchives.gov.uk") %}
+        caselawresearch@nationalarchives.gov.uk
+      {% endcall %}
+      .
+    </p>
+    {% call button(href="https://www.smartsurvey.co.uk/s/CaseLaw-research/", attrs={"rel": "noreferrer noopener", "target": "_blank"}) %}
+      Participate in research
+    {% endcall %}
+  </section>
+{% endblock article_content %}

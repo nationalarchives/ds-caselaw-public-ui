@@ -1,0 +1,131 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/grid.jinja" import grid %}
+{% from "components/card.jinja" import card %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  <small>Last updated on
+    <time datetime="2024-08-20">20 August 2024</time>
+  </small>
+  {% call heading() %}
+    Privacy notice
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Last updated on
+    <time datetime="2024-08-20">20 August 2024</time>
+  </small>
+  {% call heading() %}
+    Privacy notice
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#section-who") %}
+          Who we are
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-personal") %}
+          Publication of personal data
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-cookies") %}
+          Cookies
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#section-interested-in") %}
+          You may also be interested in
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    {% call heading(tag="h2", id="section-who") %}
+      Who we are
+    {% endcall %}
+    <p>
+      Find Case Law is managed by The National Archives, a non-ministerial government department that is the official archive and publisher for the UK Government and for England and Wales.
+    </p>
+    <p>
+      The National Archives is the data processor for the publication of judgments and decisions on Find Case Law. The court that decided the case is the data controller for the content of judgments.
+      In doing so, both parties are acting in a judicial capacity.
+    </p>
+    <p>
+      This notice relates only to Find Case Law. Please also see
+      {% call link(href="https://www.nationalarchives.gov.uk/legal/privacy-policy/") %}
+        The National Archives’ privacy policy
+      {% endcall %}
+      .
+    </p>
+    {% call heading(tag="h2", id="section-personal") %}
+      Publication of personal data
+    {% endcall %}
+    <p>
+      Court judgments and tribunal decisions contain information about people. This typically includes the names of parties and other people mentioned in the case, as well as their representatives and the names of the judges hearing the case. The information about people varies and can be very extensive. It can include a variety of types of special category personal data, depending on the subject matter of the case.
+    </p>
+    <p>
+      We must comply with reporting restrictions in law. A court or tribunal may decide to redact personal data within a judgment, such as an individual’s name or address. The court may also hold its proceedings in private and place restrictions on access to court and tribunal files. Such decisions are judicial decisions and can only be taken within the context of legal proceedings. Individuals wishing to request
+      anonymisation or withdrawal of a judgment from publication should seek legal advice.
+    </p>
+    <p>
+      The National Archives cannot and will not take down a judgment published in Find Case Law without explicit instruction from the court or tribunal. Revisions to judgments already published must also come directly from the court or tribunal. See also our
+      {% call link(href=url('publishing_policy')) %}
+        publishing policy
+      {% endcall %}
+      .
+    </p>
+    <p>
+      Court judgments are largely exempt from the requirements of
+      {% call link(href="https://www.legislation.gov.uk/ukpga/2018/12/schedule/2/paragraph/14/enacted") %}
+        data protection law.
+      {% endcall %}
+      The
+      {% call link(href="https://www.legislation.gov.uk/ukpga/2018/12/section/117/enacted") %}
+        Information Commissioner
+      {% endcall %}
+      has no regulatory function in relation to an individual acting in a judicial capacity, or a court or tribunal acting in its judicial capacity.
+    </p>
+    <p>
+      Concerns about processing of personal data in judgments should be addressed to the court or tribunal that delivered the judgment. To contact a specific court or tribunal please use the
+      {% call link(href="https://www.gov.uk/find-court-tribunal") %}
+        GOV.UK Find a court or tribunal service
+      {% endcall %}
+      .
+    </p>
+    {% call heading(tag="h2", id="section-cookies") %}
+      Cookies
+    {% endcall %}
+    <p>
+      Please see this information about
+      {% call link(href="https://www.nationalarchives.gov.uk/legal/cookies/") %}
+        cookies used by The National Archives
+      {% endcall %}
+      .
+    </p>
+  </section>
+{% endblock article_content %}
+{% block article_footer %}
+  {% call heading(tag="h2", id="section-interested-in") %}
+    You may also be interested in
+  {% endcall %}
+  {% call grid() %}
+    {% call card(title="Contact us", url=url('contact_us')) %}
+      <p>Find out how you can contact the Find Case Law team.</p>
+    {% endcall %}
+    {% call card(title="Terms of use", url=url('terms_of_use')) %}
+      <p>Learn what you may do with material from this service.</p>
+    {% endcall %}
+    {% call card(title="Publishing policy", url=url('publishing_policy')) %}
+      <p>Read how Find Case Law receives and publishes judgments and decisions.</p>
+    {% endcall %}
+  {% endcall %}
+{% endblock article_footer %}

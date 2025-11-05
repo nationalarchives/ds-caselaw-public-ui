@@ -1,28 +1,58 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: $space-4;
 
-  margin: 0;
-  padding: 0;
-
-  list-style-type: none;
-
-  &--horizontal {
-    flex-direction: column;
-
-    @media (min-width: $grid-breakpoint-medium) {
-      flex-direction: row;
-    }
-  }
-
-  li {
+  &--default {
+    gap: $space-4;
     margin: 0;
     padding: 0;
     list-style-type: none;
+
+    li {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      gap: $space-6;
+    }
   }
 
-  @media (min-width: $grid-breakpoint-medium) {
-    gap: $space-6;
+  &--bullets {
+    list-style-type: disc;
+
+    li {
+      list-style-type: disc;
+    }
+  }
+
+  &--decimal {
+    list-style-type: decimal;
+
+    li {
+      list-style-type: decimal;
+    }
+  }
+
+  &--horizontal {
+    flex-direction: column;
+    gap: $space-4;
+
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+
+    li {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      flex-direction: row;
+      gap: $space-4;
+    }
   }
 }
