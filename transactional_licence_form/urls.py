@@ -1,12 +1,6 @@
 from django.urls import re_path
 
-from .views import (
-    ConfirmationView,
-    StartView1,
-    StartView2,
-    StartView3,
-    wizard_view,
-)
+from .views import ConfirmationView, StartView1, StartView1Jinja, StartView2, StartView3, wizard_view
 
 form_name = "transactional-licence-form-steps"
 form_view = wizard_view("%s-step" % form_name)
@@ -16,6 +10,11 @@ urlpatterns = [
         "^/?$",
         StartView1.as_view(),
         name="transactional-licence-form",
+    ),
+    re_path(
+        "^/home?$",
+        StartView1Jinja.as_view(),
+        name="home-transactional-licence-form",
     ),
     re_path(
         "^/licence-application-process/?$",

@@ -153,6 +153,11 @@ class StartView1(TemplateView):
         return context
 
 
+class StartView1Jinja(StartView1):
+    template_engine = "jinja"
+    template_name = "start.jinja"
+
+
 class StartView2(TemplateView):
     template_name = "start2.html"
 
