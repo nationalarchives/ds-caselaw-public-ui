@@ -1,5 +1,5 @@
 {% load static waffle_tags %}
-{% if 'tna_logo' %}
+{% switch 'tna_logo_poppy' %}
     <a class="page-header__tna-logo-link" href="https://www.nationalarchives.gov.uk">
         <img class="page-header__tna-logo-poppy"
              src="{% static 'images/tna-logo-poppy.png' %}"
@@ -16,4 +16,4 @@
              height="100"
              width="100" />
     </a>
-{% endif %}
+{% endswitch %}
