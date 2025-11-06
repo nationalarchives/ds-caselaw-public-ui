@@ -195,6 +195,11 @@ class StartView3(TemplateView):
         return context
 
 
+class StartView3Jinja(StartView3):
+    template_engine = "jinja"
+    template_name = "start3.jinja"
+
+
 class ConfirmationView(TemplateView):
     template_name = "confirmation.html"
 

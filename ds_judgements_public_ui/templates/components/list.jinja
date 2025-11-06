@@ -1,14 +1,18 @@
-{% macro list(variant="default") %}
+{% macro list(variant="default", attrs={}) %}
   {% set variant_classes = {
     "default": "list list--default",
     "horizontal": "list list--horizontal",
     "bullets": "list list--bullets",
     "decimal": "list list--decimal"
   } %}
+  {% set variant_tags = {"default": "ul", "horizontal": "ul", "bullets": "ul", "decimal": "ol"} %}
+  {% set variant_tag = variant_tags.get(variant, variant_tags['default']) %}
   {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
-  <ul class="{{ variant_class }}">
-    {{ caller() }}
-  </ul>
+  <{{ variant_tag }} class="{{ variant_class }}"
+  {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}
+  >
+  {{ caller() }}
+  </{{ variant_tag }}>
 {% endmacro %}
 {% macro list_item() %}
   <li>{{ caller() }}</li>
