@@ -38,6 +38,16 @@
     }
   }
 
+  &__tna-logo-poppy {
+    width: 85px;
+    height: 85px;
+
+    @media only screen and (min-width: $grid-breakpoint-large) {
+      width: 115px;
+      height: 115px;
+    }
+  }
+
   &__tna-logo-link {
     display: inline-block;
     width: 70px;

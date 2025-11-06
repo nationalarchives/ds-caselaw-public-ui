@@ -1,8 +1,19 @@
-{% load static %}
-<a class="site-footer__tna-logo-link" href="https://www.nationalarchives.gov.uk">
-  <img class="site-footer__tna-logo"
-       src="{% static 'images/logo.svg' %}"
-       alt="The National Archives home page"
-       height="100"
-       width="100" />
-</a>
+{% load static waffle_tags %}
+{% switch 'tna_logo_poppy' %}
+  <a class="page-header__tna-logo-link" href="https://www.nationalarchives.gov.uk">
+    <img class="page-header__tna-logo"
+         src="{% static 'images/tna-logo-poppy.png' %}"
+         alt="The National Archives home page"
+         height="100"
+         width="100" />
+  </a>
+
+{% else %}
+  <a class="site-footer__tna-logo-link" href="https://www.nationalarchives.gov.uk">
+    <img class="site-footer__tna-logo"
+         src="{% static 'images/logo.svg' %}"
+         alt="The National Archives home page"
+         height="100"
+         width="100" />
+  </a>
+{% endswitch %}
