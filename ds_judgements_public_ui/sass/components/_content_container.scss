@@ -3,6 +3,7 @@
 
   display: flex;
   flex-direction: column;
+  gap: $space-6;
   padding: $space-6;
 
   @media (min-width: $grid-breakpoint-medium) {
