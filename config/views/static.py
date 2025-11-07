@@ -114,6 +114,11 @@ class HelpAndGuidanceView(TemplateViewWithContext):
         return context
 
 
+class HelpAndGuidanceJinjaView(HelpAndGuidanceView):
+    template_engine = "jinja"
+    template_name = "pages/help_and_guidance.jinja"
+
+
 class HowToSearchFindCaseLawView(TemplateViewWithContext):
     template_name = "pages/how_to_search_find_case_law.html"
     page_title = "How to search Find Case Law"
@@ -221,6 +226,11 @@ class TermsAndPoliciesView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
+
+
+class TermsAndPoliciesJinjaView(TermsAndPoliciesView):
+    template_engine = "jinja"
+    template_name = "pages/terms_and_policies.jinja"
 
 
 class TermsOfUseView(TemplateViewWithContext):

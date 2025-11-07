@@ -1,0 +1,46 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/card.jinja" import card %}
+{% from "components/content_container.jinja" import content_container %}
+{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
+{% from "components/grid.jinja" import grid %}
+{% block article_content %}
+  {% call heading(size="h1") %}
+    Help and guidance
+  {% endcall %}
+  {% call heading(size="h2") %}
+    Pages in this section
+  {% endcall %}
+  {% call grid() %}
+    {% call card(title="How to search Find Case Law", url=url('how_to_search_find_case_law')) %}
+      <p>Learn how this website’s search box works and how to filter results.</p>
+    {% endcall %}
+    {% call card(title="Understanding Judgments and decisions", url=url('understanding_judgments_and_decisions')) %}
+      <p>Read an explanation of what judgments are and what they contain.</p>
+    {% endcall %}
+    {% call card(title="Contact us", url=url('contact_us')) %}
+      <p>Find out how you can contact the Find Case Law team.</p>
+    {% endcall %}
+  {% endcall %}
+  <br />
+  {% call heading(size="h2") %}
+    Pages elsewhere on this site
+  {% endcall %}
+  {% call grid() %}
+    {% call card(title="Courts and tribunals in Find Case Law", url=url('courts_and_tribunals_in_fcl'), variant="ghost") %}
+      <p>Learn which judgments and decisions this service provides.</p>
+    {% endcall %}
+    {% call card(title="Re-use Find Case Law records", url=url('transactional-licence-form'), variant="ghost") %}
+      <p>Read what you can and can’t do with material from this service.</p>
+    {% endcall %}
+  {% endcall %}
+  <br />
+  {% call heading(size="h2") %}
+    Pages on other websites
+  {% endcall %}
+  {% call grid() %}
+    {% call card(title="Cookies", url='https://www.nationalarchives.gov.uk/legal/cookies/', variant="ghost") %}
+      <p>Find out how you can contact the Find Case Law team.</p>
+    {% endcall %}
+  {% endcall %}
+{% endblock article_content %}

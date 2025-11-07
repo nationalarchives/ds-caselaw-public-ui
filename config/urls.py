@@ -120,6 +120,11 @@ urlpatterns = [
         name="help_and_guidance",
     ),
     path(
+        "home/help-and-guidance",
+        static_views.HelpAndGuidanceJinjaView.as_view(),
+        name="home_help_and_guidance",
+    ),
+    path(
         "home/how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawJinjaView.as_view(),
         name="home_how_to_search_find_case_law",
@@ -168,6 +173,11 @@ urlpatterns = [
         "terms-and-policies",
         static_views.TermsAndPoliciesView.as_view(),
         name="terms_and_policies",
+    ),
+    path(
+        "home/terms-and-policies",
+        static_views.TermsAndPoliciesJinjaView.as_view(),
+        name="home_terms_and_policies",
     ),
     path(
         "terms-of-use",
