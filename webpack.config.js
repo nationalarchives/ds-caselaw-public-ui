@@ -7,8 +7,10 @@ module.exports = {
         app: "./ds_judgements_public_ui/static/js/src/app.js",
         cookie_consent:
             "./ds_judgements_public_ui/static/js/cookie_consent/src/ds-cookie-consent.js",
-        document_navigation_links:
-            "./ds_judgements_public_ui/static/js/src/document_navigation_links.js",
+        document_navigation:
+            "./ds_judgements_public_ui/static/js/src/document_navigation.js",
+        document_search_links:
+            "./ds_judgements_public_ui/static/js/src/document_search_links.js",
         document_paragraph_tooltip_anchors:
             "./ds_judgements_public_ui/static/js/src/document_paragraph_tooltip_anchors.js",
         feedback_link:
@@ -16,6 +18,8 @@ module.exports = {
         govuk_tabs_extended:
             "./ds_judgements_public_ui/static/js/src/govuk_tabs_extended.js",
         gtm_script: "./ds_judgements_public_ui/static/js/src/gtm_script.js",
+        highlight_text:
+            "./ds_judgements_public_ui/static/js/src/highlight_text.js",
         location_picker:
             "./ds_judgements_public_ui/static/js/src/location_picker.js",
         manage_filters:
