@@ -189,7 +189,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.jinja2.Jinja2",
         "NAME": "jinja",
-        "DIRS": [str(APPS_DIR / "templates")],
+        "DIRS": [str(APPS_DIR / "templates"), str(ROOT_DIR / "transactional_licence_form/templates")],
         "APP_DIRS": False,
         "OPTIONS": {
             "environment": "judgments.jinja.environment",

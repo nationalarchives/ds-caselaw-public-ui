@@ -153,6 +153,11 @@ class StartView1(TemplateView):
         return context
 
 
+class StartView1Jinja(StartView1):
+    template_engine = "jinja"
+    template_name = "start.jinja"
+
+
 class StartView2(TemplateView):
     template_name = "start2.html"
 
@@ -169,6 +174,11 @@ class StartView2(TemplateView):
         return context
 
 
+class StartView2Jinja(StartView2):
+    template_engine = "jinja"
+    template_name = "start2.jinja"
+
+
 class StartView3(TemplateView):
     template_name = "start3.html"
 
@@ -183,6 +193,11 @@ class StartView3(TemplateView):
             {"text": "What you need to apply for a licence"},
         ]
         return context
+
+
+class StartView3Jinja(StartView3):
+    template_engine = "jinja"
+    template_name = "start3.jinja"
 
 
 class ConfirmationView(TemplateView):

@@ -3,8 +3,11 @@ from django.urls import re_path
 from .views import (
     ConfirmationView,
     StartView1,
+    StartView1Jinja,
     StartView2,
+    StartView2Jinja,
     StartView3,
+    StartView3Jinja,
     wizard_view,
 )
 
@@ -18,14 +21,29 @@ urlpatterns = [
         name="transactional-licence-form",
     ),
     re_path(
+        "^/home?$",
+        StartView1Jinja.as_view(),
+        name="home-transactional-licence-form",
+    ),
+    re_path(
         "^/licence-application-process/?$",
         StartView2.as_view(),
         name="transactional-licence-form-page-2",
     ),
     re_path(
+        "^/home/licence-application-process/?$",
+        StartView2Jinja.as_view(),
+        name="home-transactional-licence-form-page-2",
+    ),
+    re_path(
         "^/what-you-need-to-apply-for-a-licence/?$",
         StartView3.as_view(),
         name="transactional-licence-form-page-3",
+    ),
+    re_path(
+        "^/home/what-you-need-to-apply-for-a-licence/?$",
+        StartView3Jinja.as_view(),
+        name="home-transactional-licence-form-page-3",
     ),
     re_path(
         "^/confirmation/?$",
