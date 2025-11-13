@@ -1,10 +1,10 @@
-{% macro breadcrumb(url=None, text=None) %}
+{% macro breadcrumb(url=None) %}
   {% if url %}
     <li>
-      <a href="{{ url }}">{{ text }}</a>
+      <a href="{{ url }}">{{ caller() }}</a>
     </li>
   {% else %}
-    <li>{{ text }}</li>
+    <li>{{ caller() }}</li>
   {% endif %}
 {% endmacro %}
 {% macro breadcrumbs( text=None, home=None, home_text=None) %}
@@ -40,7 +40,11 @@
 {% endmacro %}
 {% macro breadcrumbs_examples() %}
   {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
-    {{ breadcrumb(url="/components", text="Components") }}
-    {{ breadcrumb(text="Example components") }}
+    {% call breadcrumb(url="/components") %}
+      Components
+    {% endcall %}
+    {% call breadcrumb() %}
+      Example components
+    {% endcall %}
   {% endcall %}
 {% endmacro %}
