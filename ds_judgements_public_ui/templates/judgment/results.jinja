@@ -1,0 +1,64 @@
+{% extends "layouts/search_results.jinja" %}
+{% from "components/alert.jinja" import alert %}
+{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
+{% block content_body %}
+  {% if show_no_exact_ncn_warning %}
+    {% call alert() %}
+      <p>There is no judgment with the Neutral Citation of {{ query }} in our database.</p>
+    {% endcall %}
+  {% endif %}
+  {% if requires_from_warning %}
+    {% call alert() %}
+      <p>
+        {{ date_warning }} <a href="{{ url("about_this_service") }}#section-coverage">Find out what records are available on this service.</a>
+      </p>
+    {% endcall %}
+  {% endif %}
+  {% if total > 0 %}
+    <div class="results__result-header-container">
+      <div class="results__result-header">
+        <p class="results__results-intro">{{ total|intcomma }} documents found</p>
+      </div>
+      {% include "includes/atom_feed_button.jinja" %}
+      {% include "includes/results_controls.jinja" %}
+    </div>
+    <div class="results__result-list-container">
+      <h2>Results listing</h2>
+      {% call documents_table(headings=["Neutral citation", "Handed down"]) %}
+        {% for judgment in search_results %}
+          {% call document_table_row() %}
+            {% call document_table_cell(variant="details") %}
+              {% call link(href=url("detail", judgment.slug)) %}
+                {{ judgment.name }}
+              {% endcall %}
+              {{ judgment.court.name }}
+              {% if judgment|show_matches(query) %}
+                <div>
+                  {% autoescape off %}
+                    {{ judgment.matches }}
+                  {% endautoescape %}
+                </div>
+              {% endif %}
+            {% endcall %}
+            {% call document_table_cell(variant="text", label="Neutral citation") %}
+              {{ judgment.neutral_citation | default("&mdash;", true) | safe }}
+            {% endcall %}
+            {% call document_table_cell(variant="text", label="Handed down") %}
+              {{ formatdate(judgment.date) }}
+            {% endcall %}
+          {% endcall %}
+        {% endfor %}
+      {% endcall %}
+    </div>
+    {% if not paginator.has_next_page %}
+      {% call alert(title="End of results") %}
+        {% include "includes/no_results_message.jinja" %}
+      {% endcall %}
+    {% endif %}
+    {% include "includes/pagination.html" %}
+  {% else %}
+    {% call alert(title="No matching results have been found") %}
+      {% include "includes/no_results_message.jinja" %}
+    {% endcall %}
+  {% endif %}
+{% endblock content_body %}

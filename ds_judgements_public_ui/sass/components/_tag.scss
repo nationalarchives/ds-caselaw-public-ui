@@ -1,5 +1,10 @@
+.tag-container {
+  display: flex;
+  gap: $space-4;
+  align-items: center;
+}
+
 .tag {
-  display: inline-block;
   display: flex;
   gap: $space-2;
   align-items: center;
@@ -10,6 +15,15 @@
 
   color: colour-var("accent-link");
   text-decoration: none;
+
+  a {
+    display: flex;
+    gap: $space-2;
+    align-items: center;
+
+    color: colour-var("accent-link");
+    text-decoration: none;
+  }
 
   &:hover {
     color: colour-var("accent-link");

@@ -197,3 +197,8 @@ class SearchResultsView(TemplateViewWithContext):
             warning += f"Showing matching results from {min_actual_year}. "
 
         return from_warning, warning
+
+
+class SearchResultsViewJinja(SearchResultsView):
+    template_engine = "jinja"
+    template_name = "judgment/results.jinja"
