@@ -12,7 +12,14 @@ from jinja2 import (
     select_autoescape,
 )
 
-from judgments.templatetags import court_utils, link_tags, navigation_tags, query_filters, search_results_filters
+from judgments.templatetags import (
+    court_utils,
+    document_utils,
+    link_tags,
+    navigation_tags,
+    query_filters,
+    search_results_filters,
+)
 
 
 def capfirst(value):
@@ -73,6 +80,7 @@ def environment(**options):
             "trackable_link": with_context(link_tags.trackable_link),
             "formatdate": formatdate,
             "url": jinja_url,
+            "formatted_document_uri": document_utils.formatted_document_uri,
         }
     )
     env.filters["get_court_judgments_count"] = court_utils.get_court_judgments_count
