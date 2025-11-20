@@ -1,0 +1,108 @@
+{% extends "layouts/base.jinja" %}
+{% from "components/document_navigation.jinja" import document_navigation %}
+{% from "components/alert.jinja" import alert %}
+{% from "components/content_container.jinja" import content_container %}
+{% from "components/card.jinja" import card %}
+{% from "components/button.jinja" import button %}
+{% from "components/heading.jinja" import heading %}
+{% block javascript %}
+  <script type="module"
+          defer
+          src="{{ static('js/dist/document_navigation_links.js') }}"></script>
+  <script type="module"
+          defer
+          src="{{ static('js/dist/document_paragraph_tooltip_anchors.js') }}"></script>
+{% endblock javascript %}
+{% block title %}
+  {% if page_title %}{{ page_title }} -{% endif %}
+  Find Case Law
+{% endblock title %}
+{% block extra_head_tags %}
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap"
+        rel="stylesheet" />
+{% endblock extra_head_tags %}
+{% block precontent %}
+  {% include "includes/survey_banner.html" %}
+  {% include "includes/judgment_text_toolbar.html" %}
+{% endblock precontent %}
+{% block body_class %}
+  document-detail
+{% endblock body_class %}
+{% block content %}
+  {% call document_navigation(query=query, number_of_mentions=number_of_mentions, page_title=page_title ) %}
+    {% if page_title %}<h2>{{ page_title }}</h2>{% endif %}
+    {% if document.best_human_identifier %}
+      <p>
+        <span class="visually-hidden">{{ document.best_human_identifier.schema.name }}</span>{{ document.best_human_identifier.value }}
+      </p>
+    {% endif %}
+  {% endcall %}
+  {% if document_html %}
+    <div id="start-of-document" data-document-navigation-start></div>
+    <div data-document-body>
+      {% autoescape off %}
+        {{ document_html }}
+      {% endautoescape %}
+    </div>
+    <div class="judgment-end-document-marker"
+         id="end-of-document"
+         data-document-navigation-end>
+      <div class="judgment-end-document-marker__top-link">
+        <span>End of document</span>
+        <br />
+        <a id="footer-start-of-document-link"
+           class="document-navigation-link"
+           href="#start-of-document">Back to top</a>
+      </div>
+    </div>
+  {% else %}
+    <div class="container judgment-pdf-only">
+      {% call alert(title="Document status") %}
+        <p>This document is only available to download and view as a PDF.</p>
+      {% endcall %}
+    </div>
+  {% endif %}
+{% endblock content %}
+{% block postcontent %}
+  {% call content_container() %}
+    <section id="download-options">
+      {% call heading(tag="h2") %}
+        Document download options
+      {% endcall %}
+      <div class="judgment-download-options__options-list">
+        {% call card(variant="light") %}
+          {% call button(href=formatted_document_uri(document.slug, 'pdf'), attrs={"aria-label": "Download {{ document|get_title_to_display_in_html }} as a PDF
+            {% if pdf_size %}({{ pdf_size }}){% endif %}
+            ", "download": ""}) %}
+            Download PDF
+            {% if pdf_size %}<span class="btn__label">({{ pdf_size }})</span>{% endif %}
+          {% endcall %}
+          <p>
+            The original format of the {{ document.document_noun }} as handed down by the court, for printing and downloading.
+          </p>
+        {% endcall %}
+        {% if document_html %}
+          {% call card(variant="light") %}
+            {% call button(href=formatted_document_uri(document.slug, 'xml'), attrs={"aria-label": "Download {{ document|get_title_to_display_in_html }} as XML"}) %}
+              Download XML
+            {% endcall %}
+            <p>
+              {% if document.document_noun == 'press summary' %}
+                The press summary in machine-readable LegalDocML format for developers, data scientists and researchers.
+              {% else %}
+                The judgment in machine-readable LegalDocML format for developers, data scientists and researchers.
+              {% endif %}
+            </p>
+          {% endcall %}
+        {% endif %}
+      </div>
+    </section>
+    {% if not document_html %}
+      {% include "includes/judgment_catalogue_card.html" %}
+    {% else %}
+      {% if waffle.flag("document_catalogue_card") %}
+        {% include "includes/judgment_catalogue_card.html" %}
+      {% endif %}
+    {% endif %}
+  {% endcall %}
+{% endblock postcontent %}

@@ -1,4 +1,4 @@
-{% macro card(title=None, image_url=None, url=None, variant=None) %}
+{% macro card(title=None, image_url=None, url=None, variant=None, attrs={}) %}
   {% set variant_classes = {
     "default": "card card--default",
     "ghost": "card card--ghost",
@@ -7,9 +7,12 @@
   } %}
   {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
   {% if url %}
-    <a class="{{ variant_class }}" href="{{ url }}">
+    <a class="{{ variant_class }}"
+       href="{{ url }}"
+       {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
     {% else %}
-      <div class="{{ variant_class }}">
+      <div class="{{ variant_class }}"
+           {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
       {% endif %}
       {% if image_url %}<img src="{{ image_url }}" alt="" />{% endif %}
       <div class="card__body">
