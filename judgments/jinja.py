@@ -12,13 +12,19 @@ from jinja2 import (
     select_autoescape,
 )
 
-from judgments.templatetags import court_utils, link_tags, navigation_tags
+from judgments.templatetags import court_utils, link_tags, navigation_tags, query_filters, search_results_filters
 
 
-def formatdate(value):
+def capfirst(value):
+    if not value:
+        return value
+    return value[0].upper() + value[1:]
+
+
+def formatdate(value, format="%d %b %Y"):
     if value is None:
         return ""
-    return value.strftime("%d %b %Y")
+    return value.strftime(format)
 
 
 def jinja_url(name, *args, **kwargs):
@@ -72,4 +78,13 @@ def environment(**options):
     env.filters["get_court_judgments_count"] = court_utils.get_court_judgments_count
     env.filters["intcomma"] = intcomma
     env.filters["slugify"] = slugify
+    env.filters["show_matches"] = search_results_filters.show_matches
+    env.filters["is_exact_ncn_match"] = search_results_filters.is_exact_ncn_match
+    env.filters["is_exact_title_match"] = search_results_filters.is_exact_title_match
+    env.filters["is_exact_match"] = search_results_filters.is_exact_match
+    env.filters["remove_query"] = query_filters.remove_query
+    env.filters["remove_court"] = query_filters.remove_court
+    env.filters["get_court_name"] = court_utils.get_court_name
+    env.filters["removable_filter_param"] = query_filters.removable_filter_param
+    env.filters["capfirst"] = capfirst
     return env

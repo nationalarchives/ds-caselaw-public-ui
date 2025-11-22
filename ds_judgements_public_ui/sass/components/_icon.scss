@@ -1,5 +1,6 @@
 $icons: (
   download: $fa_download,
+  chevron_down: $fa_chevron_down,
   chevron_right: $fa_chevron_right,
   chevron_right_white: $fa_chevron_right_white,
   chevron_right_aqua_blue: $fa_chevron_right_aqua_blue,
@@ -34,6 +35,7 @@ $icons: (
 .icon {
   display: inline-block;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
 
   &__sm {

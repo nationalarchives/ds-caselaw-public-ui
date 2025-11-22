@@ -110,6 +110,10 @@
 .button {
   @include button-primary;
 
+  display: inline-flex;
+  gap: $space-2;
+  align-items: center;
+
   margin: 0;
   border: 2px solid brand-colour("navy");
 
@@ -136,7 +140,7 @@
   }
 
   &--underline {
-    padding: $space-2 0 $space-2 $space-6;
+    padding: $space-2 0 $space-2;
     border: 0;
     border-bottom: 3px solid colour-var("accent-brand");
 
@@ -204,7 +208,7 @@
   }
 
   &--underline-contrast {
-    padding: $space-2 0 $space-2 $space-6;
+    padding: $space-2 0 $space-2;
     border: 0;
     border-bottom: 3px solid colour-var("accent-brand");
 

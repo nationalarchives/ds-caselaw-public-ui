@@ -21,8 +21,11 @@
     </form>
   </div>
 {% endmacro %}
-{% macro search_input_actions() %}
-  <div class="search-input__actions">{{ caller() }}</div>
+{% macro search_input_footer() %}
+  <div class="search-input__footer">{{ caller() }}</div>
+{% endmacro %}
+{% macro search_input_actions(class="") %}
+  <div class="search-input__actions {{ class }}">{{ caller() }}</div>
 {% endmacro %}
 {% macro search_input_examples() %}
   <div class="container">
@@ -33,7 +36,7 @@
       <p>Use any search term including neutral citation, names and keywords</p>
       {{ search_input(label="Search by keyword or neutral citation", button_action=url("advanced_search") , button_label="Search") }}
       <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
-      {% call search_input_actions() %}
+      {% call search_input_footer() %}
         {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
       {% endcall %}
     {% endcall %}

@@ -8,7 +8,7 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView, TemplateView
 
-from judgments.views.search import AdvancedSearchView, SearchResultsView
+from judgments.views.search import AdvancedSearchView, SearchResultsView, SearchResultsViewJinja
 
 from .converters import SchemaFileConverter
 from .views import static as static_views
@@ -52,6 +52,11 @@ urlpatterns = [
         "search",
         SearchResultsView.as_view(),
         name="search",
+    ),
+    path(
+        "home/search",
+        SearchResultsViewJinja.as_view(),
+        name="home_search",
     ),
     path(
         "search/advanced",

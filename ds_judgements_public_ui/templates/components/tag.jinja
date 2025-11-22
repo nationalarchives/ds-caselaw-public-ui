@@ -1,4 +1,7 @@
 {% from "components/icon.jinja" import icon %}
+{% macro tag_container() %}
+  <div class="tag-container">{{ caller() }}</div>
+{% endmacro %}
 {% macro tag(href=None) %}
   {% if href %}
     <a href="{{ href }}" class="tag">

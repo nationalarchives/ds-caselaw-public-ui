@@ -7,7 +7,7 @@
 {% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
 {% from "components/list.jinja" import list, list_item %}
 {% from "components/link.jinja" import link %}
-{% from "components/link.jinja" import link %}
+{% from "components/breadcrumbs.jinja" import breadcrumbs as breadcrumbs_component, breadcrumb %}
 {% from "components/open_justice_license_logo.jinja" import open_justice_license_logo %}
 {% from "components/footer.jinja" import footer, footer_row, footer_item, footer_link with context %}
 <!DOCTYPE html>
@@ -65,6 +65,15 @@
           {% endcall %}
         {% endcall %}
       {% endblock header %}
+      {% if breadcrumbs %}
+        {% call breadcrumbs_component(text="You are in", home="home", home_text="Find Case Law") %}
+          {% for crumb in breadcrumbs %}
+            {% call breadcrumb(url=crumb.url) %}
+              {{ crumb.text }}
+            {% endcall %}
+          {% endfor %}
+        {% endcall %}
+      {% endif %}
       {% block content %}
       {% endblock content %}
       {% block banner %}
