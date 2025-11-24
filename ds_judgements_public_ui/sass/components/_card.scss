@@ -13,6 +13,11 @@
 
   &--light &__body {
     align-items: center;
+    padding: $space-8;
+  }
+
+  &--left &__body {
+    align-items: flex-start;
   }
 
   &--ghost &__body {

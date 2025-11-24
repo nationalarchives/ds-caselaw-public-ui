@@ -2,6 +2,7 @@ from django.urls import re_path
 
 from .views import (
     ConfirmationView,
+    ConfirmationViewJinja,
     StartView1,
     StartView1Jinja,
     StartView2,
@@ -9,10 +10,12 @@ from .views import (
     StartView3,
     StartView3Jinja,
     wizard_view,
+    wizard_view_jinja,
 )
 
 form_name = "transactional-licence-form-steps"
 form_view = wizard_view("%s-step" % form_name)
+form_view_jinja = wizard_view_jinja("%s-step" % form_name)
 
 urlpatterns = [
     re_path(
@@ -51,12 +54,27 @@ urlpatterns = [
         name="transactional-licence-form-confirmation",
     ),
     re_path(
+        "^/home/confirmation/?$",
+        ConfirmationViewJinja.as_view(),
+        name="home-transactional-licence-form-confirmation",
+    ),
+    re_path(
+        r"^/home/steps/(?P<step>.+)/?$",
+        form_view_jinja,
+        name="%s-step" % form_name,
+    ),
+    re_path(
         r"^/steps/(?P<step>.+)/?$",
         form_view,
         name="%s-step" % form_name,
     ),
     re_path(
         "^/steps/?$",
+        form_view,
+        name=form_name,
+    ),
+    re_path(
+        "^/home/steps/?$",
         form_view,
         name=form_name,
     ),

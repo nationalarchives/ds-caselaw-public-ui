@@ -1,17 +1,19 @@
-{% macro card(title=None, image_url=None, url=None, variant=None, attrs={}) %}
+{% macro card(title=None, alignment=None, image_url=None, url=None, variant=None, attrs={}) %}
   {% set variant_classes = {
     "default": "card card--default",
     "ghost": "card card--ghost",
     "light": "card card--light",
     "image": "card card--image"
   } %}
+  {% set alignment_classes = {"default": "", "left": "card card--left"} %}
   {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
+  {% set alignment_class = alignment_classes.get(alignment, alignment_classes['default']) %}
   {% if url %}
-    <a class="{{ variant_class }}"
+    <a class="{{ variant_class }} {{ alignment_class }}"
        href="{{ url }}"
        {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
     {% else %}
-      <div class="{{ variant_class }}"
+      <div class="{{ variant_class }} {{ alignment_class }}"
            {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
       {% endif %}
       {% if image_url %}<img src="{{ image_url }}" alt="" />{% endif %}
