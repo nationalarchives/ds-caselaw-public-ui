@@ -14,10 +14,11 @@
           {% endblock article_navigation %}
         {% endblock is_full_screen %}
         <article class="standard-content__article">
-          <div class="desktop-only">
+          {% set desktop_title %}
             {% block desktop_article_title %}
             {% endblock desktop_article_title %}
-          </div>
+          {% endset %}
+          {% if desktop_title|trim %}<div class="desktop-only">{{ desktop_title }}</div>{% endif %}
           {% block article_content %}
           {% endblock article_content %}
         </article>

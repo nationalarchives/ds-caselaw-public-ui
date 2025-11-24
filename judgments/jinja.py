@@ -1,9 +1,12 @@
 from functools import wraps
 
+from crispy_forms.templatetags.crispy_forms_filters import as_crispy_form
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import reverse
 from django.utils.text import slugify
+
+# from django.middleware.csrf import get_token
 from jinja2 import (
     ChoiceLoader,
     Environment,
@@ -20,6 +23,7 @@ from judgments.templatetags import (
     query_filters,
     search_results_filters,
 )
+from transactional_licence_form.templatetags import transactional_licence_utils
 
 
 def capfirst(value):
@@ -81,6 +85,7 @@ def environment(**options):
             "formatdate": formatdate,
             "url": jinja_url,
             "formatted_document_uri": document_utils.formatted_document_uri,
+            "crispy": as_crispy_form,
         }
     )
     env.filters["get_court_judgments_count"] = court_utils.get_court_judgments_count
@@ -95,4 +100,8 @@ def environment(**options):
     env.filters["get_court_name"] = court_utils.get_court_name
     env.filters["removable_filter_param"] = query_filters.removable_filter_param
     env.filters["capfirst"] = capfirst
+    env.filters["submit_label_for_step"] = transactional_licence_utils.submit_label_for_step
+    env.filters["get_form"] = transactional_licence_utils.get_form
+    env.filters["get_field_name"] = transactional_licence_utils.get_field_name
+    env.filters["format_value_for_review"] = transactional_licence_utils.format_value_for_review
     return env

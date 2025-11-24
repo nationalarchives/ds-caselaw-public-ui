@@ -1,0 +1,161 @@
+{% extends "layouts/form_step.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/card.jinja" import card %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block pre_form %}
+  <p>
+    There are nine principles that have been established by the Ministry of Justice. They form part of the terms of any licence we grant. You will need to read these principles carefully and explain in detail how you will meet these terms.
+  </p>
+  <p>The nine principles are:</p>
+  {% call card(variant="light", alignment="left") %}
+    {% call list() %}
+      {% call list_item() %}
+        <a href="#dignity">1. Dignity of the court</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#independence">2. Independence of the court</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#scrutiny">3. Appropriate scrutiny</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#anti-discrimination">4. Anti-discriminatory harm</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#anti-bias">5. Anti-bias</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#privacy">6. Personal privacy</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#discoverability">7. Discoverability</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#transparency">8. Algorithmic transparency</a>
+      {% endcall %}
+      {% call list_item() %}
+        <a href="#representation">9. Accurate data representation</a>
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3", id="dignity") %}
+    1. Dignity of the court
+  {% endcall %}
+  <p>
+    It is important that any analysis maintains the dignity of the courts and tribunals and does not undermine their functioning as working bodies. This is consistent with access to justice.
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Licence holders must not undermine the courts and tribunals’ ability to function as working bodies.
+    {% endcall %}
+  {% endcall %}
+  <p>
+    You should consider anything that may undermine the ability for the justice system to operate impartially and with integrity and treat all members of the public equally and fairly, no matter who they are.
+  </p>
+  {% call heading(tag="h3", id="independence") %}
+    2. Independence of the court
+  {% endcall %}
+  <p>It is important that any analysis respects the independence of the judiciary and their impartial judgement.</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Licence holders must respect the independence of the judiciary
+    {% endcall %}
+  {% endcall %}
+  <p>
+    You should consider anything that may undermine the ability for the justice system to be fair and transparent, free of any influence outside the rule of law.
+  </p>
+  {% call heading(tag="h3", id="scrutiny") %}
+    3. Appropriate scrutiny
+  {% endcall %}
+  <p>
+    We seek to encourage the analysis of machine-readable judgments to allow the public to scrutinise justice outcomes and the law more effectively. We also acknowledge that the incomplete nature of the dataset and the current lack of safeguard against opaque or biased methodologies increases the risk of inaccurate or biased conclusions which may cause harm to individuals named therein.
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Licence holders must acknowledge the incomplete nature of the dataset and apply appropriate scrutiny
+    {% endcall %}
+  {% endcall %}
+  <p>
+    You should consider how you will prevent anonymised people from being identified. This is referred to as jigsaw identification - putting together information in a way that identifies individuals even if they have been anonymised.
+  </p>
+  {% call heading(tag="h3", id="anti-discrimination") %}
+    4. Anti-discriminatory harm
+  {% endcall %}
+  <p>
+    Outcomes of analysis should not cause direct discriminatory harm and reasonable steps should be taken by the licence holder to avoid introducing or compounding bias.
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Licence holders must take actions to prevent discriminatory harm
+    {% endcall %}
+  {% endcall %}
+  <p>
+    You should consider how you will monitor for and address harmful outcomes including misleading analysis or conclusions and discrimination against individuals or communities.
+  </p>
+  {% call heading(tag="h3", id="anti-bias") %}
+    5. Anti Bias
+  {% endcall %}
+  <p>
+    Licence holders have a responsibility to operate effective governance to ensure that bias does not enter the process over time.
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Licence holders must ensure bias does not enter their process over time
+    {% endcall %}
+  {% endcall %}
+  <p>You should consider any ethical governance structures you have in place.</p>
+  {% call heading(tag="h3", id="privacy") %}
+    6. Personal Privacy
+  {% endcall %}
+  <p>
+    Re-users should satisfy themselves that their practices comply with the standards set out in the DPA and UK GDPR regarding data security and data subjects’ rights, regardless of their location.
+  </p>
+  <p>Please note that this licence:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      is not a data sharing agreement for personal data
+    {% endcall %}
+    {% call list_item() %}
+      is not a processing agreement for personal data
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3", id="discoverability") %}
+    7. Discoverability
+  {% endcall %}
+  <p>
+    We acknowledge a distinction between publicly available and readily available information. For example, care should be given to data subjects’ discoverability in line with Ministry of Justice/The National Archives’ decision not to index the content of judgments on search engines.
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Licence holders must not index the contents of judgments and decisions on search engines.
+    {% endcall %}
+  {% endcall %}
+  <p>
+    You should consider what you will do to prevent third party services from crawling or scraping either the text of the records or the data you have extracted from the records.
+  </p>
+  {% call heading(tag="h3", id="transparency") %}
+    8. Algorithmic transparency
+  {% endcall %}
+  <p>Where possible, algorithms should be explainable and transparent.</p>
+  <p>
+    You should consider how you will be transparent in your use of algorithms to people using your project or product.
+  </p>
+  {% call heading(tag="h3", id="representation") %}
+    9. Accurate data representation
+  {% endcall %}
+  <p>
+    The Find Case Law service comprises an incomplete set of court judgments and tribunal decisions. Outcomes from analysis should therefore reflect the limitations of the data and avoid misrepresenting the significance of findings.
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Licence holders must avoid misrepresenting the significance of findings
+    {% endcall %}
+    {% call list_item() %}
+      Occasionally records that have been published will be revised and taken down by the court. Licence holders must regularly check to make sure they are re-using the authoritative version of the record
+    {% endcall %}
+  {% endcall %}
+  <p>
+    You should consider how you will make sure the records you use are the most up to date published version of the records.
+  </p>
+{% endblock pre_form %}

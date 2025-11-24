@@ -1,0 +1,102 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/button.jinja" import button %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/checkboxes.jinja" import checkboxes %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/alert.jinja" import alert %}
+{% from "components/list.jinja" import list, list_item %}
+{% block is_full_screen %}
+  {% call contents(title="Licence application steps") %}
+    {% call list() %}
+      {% call list_item() %}
+        <b>1 &ndash; Are you ready to apply</b>
+      {% endcall %}
+      {% call list_item() %}
+        2 &ndash; Contact details
+      {% endcall %}
+      {% call list_item() %}
+        3 &ndash; About your organisation
+      {% endcall %}
+      {% call list_item() %}
+        4 &ndash; Purpose and activities
+      {% endcall %}
+      {% call list_item() %}
+        5 &ndash; Public statement
+      {% endcall %}
+      {% call list_item() %}
+        6 &ndash; Working practices
+      {% endcall %}
+      {% call list_item() %}
+        7 &ndash; Working practices
+      {% endcall %}
+      {% call list_item() %}
+        8 &ndash; Nine principles
+      {% endcall %}
+      {% call list_item() %}
+        9 &ndash; Nine principles statement
+      {% endcall %}
+      {% call list_item() %}
+        10 &ndash; Additional comments
+      {% endcall %}
+      {% call list_item() %}
+        11 &ndash; Review your answers
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock is_full_screen %}
+{% block article_content %}
+  {% call alert(title="Important") %}
+    <p>
+      You can not save your application part way through. You will need to complete your application in one session.  Please make sure you have prepared
+      your answers before you apply.
+    </p>
+  {% endcall %}
+  {% call heading() %}
+    Step 1 &ndash; Are you ready to apply?
+  {% endcall %}
+  <p>
+    You only need to apply for a licence if you intend to use computational analysis in your re-use of Find Case Law records in ways
+    that are not already permitted under the Open Justice Licence.
+  </p>
+  {{ checkboxes({
+    "idPrefix": "apply-checklist",
+    "name": "apply-checklist",
+    "fieldset": {
+      "legend": {
+        "html": "<strong>The application can not be saved part way through. Please make sure you are ready to apply in one session: Have you...</strong>"
+      }
+    },
+    "items": [
+      {
+        "id": "details",
+        "name": "details",
+        "value": "applying",
+        "text": "Read the terms of the Open Justice Licence"
+      },
+      {
+        "id": "licence_holder",
+        "name": "licence_holder",
+        "value": "prepared",
+        "html": "Got the details of the licence holder (This will need to be someone senior in your organisation)"
+      },
+      {
+        "id": "statement",
+        "name": "statement",
+        "value": "prepared",
+        "text": "Prepared your public statement"
+      },
+      {
+        "id": "nine_principles",
+        "name": "nine_principles",
+        "value": "prepared",
+        "html": "Read and identified risks against the nine principles"
+      }
+    ]
+  }) }}
+  <br />
+  {% call button(href=url('transactional-licence-form-steps')) %}
+    Apply now
+  {% endcall %}
+{% endblock article_content %}
+{% block end_of_document_marker %}
+{% endblock end_of_document_marker %}

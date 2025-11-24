@@ -1,0 +1,29 @@
+{% extends "layouts/form_step.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/button.jinja" import button %}
+{% block form_inner %}
+  <input type="hidden" name="reviewing" value="true" />
+  {% for form_key, data in all_data.items() %}
+    {% set form = form_key|get_form(all_forms) %}
+    {% if form.display_in_review %}
+      {% call heading(tag="h2") %}
+        {{ form.title }}
+      {% endcall %}
+      <dl class="govuk-summary-list">
+        {% for key, value in data.items() %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">{{ key|get_field_name(all_field_names) }}</dt>
+            <dd class="govuk-summary-list__value">
+              {{ value|format_value_for_review(key) }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              {% call button(variant="link", attrs={"name":"wizard_goto_step", "type":"submit", "aria-label":"Change question {{ key|get_field_name(all_field_names) }}", "value": form_key}) %}
+                Change
+              {% endcall %}
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
+    {% endif %}
+  {% endfor %}
+{% endblock form_inner %}

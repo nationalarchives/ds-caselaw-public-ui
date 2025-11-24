@@ -20,6 +20,16 @@ TEMPLATE_OVERRIDES = {
     "public-statement": "public-statement.html",
 }
 
+TEMPLATE_OVERRIDES_JINJA = {
+    "contact": "contact.jinja",
+    "review": "review.jinja",
+    "nine-principles-1": "nine_principles_1.jinja",
+    "nine-principles-2": "nine_principles_2.jinja",
+    "organization": "organization.jinja",
+    "project-purpose": "project-purpose.jinja",
+    "public-statement": "public-statement.jinja",
+}
+
 REVIEWING_SESSION_KEY = "transactional_licence_form_reviewing"
 
 
@@ -135,6 +145,20 @@ class FormWizardView(NamedUrlSessionWizardView):
         return render(self.request, "submitted.html")
 
 
+@method_decorator(never_cache, name="dispatch")
+class FormWizardViewJinja(FormWizardView):
+    template_engine = "jinja"
+
+    def get_template_names(self):
+        return [TEMPLATE_OVERRIDES_JINJA.get(self.steps.current, "form.jinja")]
+
+    def done(self, form_list, **kwargs):
+        if REVIEWING_SESSION_KEY in self.request.session:
+            del self.request.session[REVIEWING_SESSION_KEY]
+        send_form_response_to_dynamics(self.get_all_cleaned_data())
+        return render(self.request, "submitted.jinja")
+
+
 class StartView1(TemplateView):
     template_name = "start.html"
 
@@ -215,8 +239,21 @@ class ConfirmationView(TemplateView):
         return context
 
 
+class ConfirmationViewJinja(ConfirmationView):
+    template_engine = "jinja"
+    template_name = "confirmation.jinja"
+
+
 def wizard_view(url_name):
     return FormWizardView.as_view(
+        FORMS,
+        url_name=url_name,
+        done_step_name="submitted",
+    )
+
+
+def wizard_view_jinja(url_name):
+    return FormWizardViewJinja.as_view(
         FORMS,
         url_name=url_name,
         done_step_name="submitted",
