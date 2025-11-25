@@ -24,6 +24,26 @@
     outline-offset: 2px;
   }
 
+  &--md {
+    font-size: $typography-md-text-size;
+  }
+
+  &--lg {
+    font-size: $typography-lg-text-size;
+  }
+
+  &--center {
+    display: flex;
+    gap: $space-2;
+    align-items: center;
+  }
+
+  &--hide-visited {
+    &:visited {
+      color: colour-var("link");
+    }
+  }
+
   &--contrast {
     color: colour-var("contrast-link");
 

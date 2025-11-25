@@ -104,4 +104,5 @@ def environment(**options):
     env.filters["get_form"] = transactional_licence_utils.get_form
     env.filters["get_field_name"] = transactional_licence_utils.get_field_name
     env.filters["format_value_for_review"] = transactional_licence_utils.format_value_for_review
+    env.filters["get_title_to_display_in_html"] = document_utils.get_title_to_display_in_html
     return env
