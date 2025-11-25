@@ -22,8 +22,8 @@
         rel="stylesheet" />
 {% endblock extra_head_tags %}
 {% block precontent %}
-  {% include "includes/survey_banner.html" %}
-  {% include "includes/judgment_text_toolbar.html" %}
+  {% include "includes/survey_banner.jinja" %}
+  {% include "includes/document_header.jinja" %}
 {% endblock precontent %}
 {% block body_class %}
   document-detail
@@ -98,10 +98,10 @@
       </div>
     </section>
     {% if not document_html %}
-      {% include "includes/judgment_catalogue_card.html" %}
+      {% include "includes/document_catalogue.jinja" %}
     {% else %}
       {% if waffle.flag("document_catalogue_card") %}
-        {% include "includes/judgment_catalogue_card.html" %}
+        {% include "includes/document_catalogue.jinja" %}
       {% endif %}
     {% endif %}
   {% endcall %}

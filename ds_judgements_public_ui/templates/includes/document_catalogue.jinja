@@ -1,0 +1,68 @@
+{% from "components/heading.jinja" import heading %}
+{% call heading(tag="h2") %}
+  Document summary information
+{% endcall %}
+<table class="catalogue-card__table">
+  <tr>
+    <th>Title</th>
+    <td>{{ document.body.name }}</td>
+  </tr>
+  <tr>
+    <th>Document type</th>
+    <td>{{ document.document_noun|capfirst }}</td>
+  </tr>
+  <tr>
+    <th>Court</th>
+    <td>{{ document.body.court|get_court_name }}</td>
+  </tr>
+  <tr>
+    <th>Handed down</th>
+    <td>{{ formatdate(document.body.document_date_as_date) }}</td>
+  </tr>
+  {% if document.body.case_number %}
+    <tr>
+      <th>Case number</th>
+      <td>{{ document.body.case_number }}</td>
+    </tr>
+  {% endif %}
+  {% if document.body.claimant %}
+    <tr>
+      <th>Claimant</th>
+      <td>{{ document.body.claimant }}</td>
+    </tr>
+  {% endif %}
+  {% if document.body.respondent %}
+    <tr>
+      <th>Respondent</th>
+      <td>{{ document.body.respondent }}</td>
+    </tr>
+  {% endif %}
+  {% for category in document.body.categories %}
+    <tr>
+      <th>Category</th>
+      <td>{{ category.name }}</td>
+    </tr>
+    {% for subcategory in category.subcategories %}
+      <tr>
+        <th>Subcategory</th>
+        <td>{{ subcategory.name }}</td>
+      </tr>
+    {% endfor %}
+  {% endfor %}
+  <tr>
+    <th>Link to this {{ document.document_noun }}</th>
+    <td>{{ document.public_uri }}</td>
+  </tr>
+  {% for identifier in document.identifiers.by_score() %}
+    <tr>
+      <th>{{ identifier.schema.name }}</th>
+      <td>
+        {% if identifier.deprecated %}
+          <small>Previously known as</small>
+          <br>
+        {% endif %}
+        {{ identifier.value }}
+      </td>
+    </tr>
+  {% endfor %}
+</table>
