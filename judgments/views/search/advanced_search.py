@@ -24,3 +24,8 @@ class AdvancedSearchView(TemplateViewWithContext):
         ]
 
         return context
+
+
+class AdvancedSearchViewJinja(AdvancedSearchView):
+    template_engine = "jinja"
+    template_name = "pages/advanced_search.jinja"

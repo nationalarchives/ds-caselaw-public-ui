@@ -31,14 +31,14 @@
       {% for court in courts %}
         {% if court.display_heading %}
           {% call list_item() %}
-            {% call link(href="#{{ court.name|slugify }}") %}
+            {% call link(href="#" ~ court.name|slugify) %}
               {{ court.name }} ({{ court.courts|length }})
             {% endcall %}
           {% endcall %}
         {% else %}
           {% for subcourt in court.courts %}
             {% call list_item() %}
-              {% call link(href="#{{ subcourt.name|slugify }}") %}
+              {% call link(href="#" ~ subcourt.name|slugify) %}
                 {{ subcourt.name }}
               {% endcall %}
             {% endcall %}
@@ -50,14 +50,14 @@
       {% for court in courts %}
         {% if court.display_heading %}
           {% call list_item() %}
-            {% call link(href="#{{ court.name|slugify }}") %}
+            {% call link(href="#" ~ court.name|slugify) %}
               {{ court.name }} ({{ court.courts|length }})
             {% endcall %}
           {% endcall %}
         {% else %}
           {% for subcourt in court.courts %}
             {% call list_item() %}
-              {% call link(href="#{{ subcourt.name|slugify }}") %}
+              {% call link(href="#" ~ subcourt.name|slugify) %}
                 {{ subcourt.name }}
               {% endcall %}
             {% endcall %}
@@ -74,14 +74,14 @@
       {% for tribunal in tribunals %}
         {% if tribunal.display_heading %}
           {% call list_item() %}
-            {% call link(href="#{{ tribunal.name|slugify }}") %}
+            {% call link(href="#" ~ tribunal.name|slugify) %}
               {{ tribunal.name }} ({{ tribunal.courts|length }})
             {% endcall %}
           {% endcall %}
         {% else %}
           {% for subcourt in tribunal.courts %}
             {% call list_item() %}
-              {% call link(href="#{{ subcourt.name|slugify }}") %}
+              {% call link(href="#" ~ subcourt.name|slugify) %}
                 {{ subcourt.name }}
               {% endcall %}
             {% endcall %}
