@@ -82,3 +82,8 @@ class CourtOrTribunalView(TemplateViewWithContext):
         ]
 
         return context
+
+
+class CourtOrTribunalViewJinja(CourtOrTribunalView):
+    template_engine = "jinja"
+    template_name = "pages/court_or_tribunal.jinja"
