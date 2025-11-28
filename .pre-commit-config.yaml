@@ -52,6 +52,6 @@ repos:
           - stylelint-config-clean-order@7.0.0
 
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: v1.16.3
+    rev: v1.17.0
     hooks:
       - id: zizmor
