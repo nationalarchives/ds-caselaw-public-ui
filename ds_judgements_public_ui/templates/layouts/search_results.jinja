@@ -1,0 +1,46 @@
+{% extends "layouts/base.jinja" %}
+{% from "components/content_container.jinja" import content_container %}
+{% from "components/button.jinja" import button %}
+{% from "components/icon.jinja" import icon %}
+{% from "components/hero.jinja" import hero %}
+{% from "components/tag.jinja" import tag, tag_container %}
+{% from "components/search_input.jinja" import search_form, search_input, search_input_actions %}
+{% block title %}
+  Search results - Find Case Law
+{% endblock title %}
+{% block extra_head_tags %}
+  <link rel="alternate"
+        type="application/atom+xml"
+        title="{{ breadcrumbs.0.text }}"
+        href="{{ url("search-feed") }}?{{ query_param_string }}" />
+{% endblock extra_head_tags %}
+{% block javascript %}
+  <script type="module" defer src="{{ static('js/dist/manage_filters.js')}}"></script>
+{% endblock javascript %}
+{% block content %}
+  <div class="results">
+    <h1>Search results</h1>
+    <div class="js-results-facets-wrapper">
+      {% call hero() %}
+        {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
+          <p>Use any search term including neutral citation, names and keywords</p>
+          {{ search_input(value=query, label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+          <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
+        {% endcall %}
+        {% call search_input_actions() %}
+          {% include "includes/results_applied_filters.jinja" %}
+          <div class="results-search-component__control-container js-results-control-container"></div>
+        {% endcall %}
+        {% include "includes/results_filters_inputs.jinja" %}
+      {% endcall %}
+    </div>
+    {% call content_container() %}
+      <div class="results__container">
+        <div class="results__list-layout-container">
+          {% block content_body %}
+          {% endblock content_body %}
+        </div>
+      </div>
+    {% endcall %}
+  </div>
+{% endblock content %}

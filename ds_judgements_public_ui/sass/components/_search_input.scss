@@ -57,6 +57,12 @@
   }
 
   &__actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__footer {
     width: 100%;
 
     @media (min-width: $grid-breakpoint-medium) {

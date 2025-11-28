@@ -1,14 +1,14 @@
 .standard-content {
-  @include container;
-
   padding-bottom: $space-8;
+
+  &__container {
+    @include container;
+  }
 
   &__body {
     display: flex;
     flex-direction: column;
     gap: $space-8;
-
-    padding-top: $space-10;
 
     font-size: $typography-md-text-size;
     line-height: $typography-xl-line-height;
@@ -16,6 +16,7 @@
 
     @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
+      padding-top: $space-10;
     }
   }
 
