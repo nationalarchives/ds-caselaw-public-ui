@@ -29,3 +29,11 @@ class AdvancedSearchView(TemplateViewWithContext):
 class AdvancedSearchViewJinja(AdvancedSearchView):
     template_engine = "jinja"
     template_name = "pages/advanced_search.jinja"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        form = context["form"]
+        context["query"] = form.data.get("query", "")
+
+        return context

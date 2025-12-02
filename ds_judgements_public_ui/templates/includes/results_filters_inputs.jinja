@@ -1,11 +1,10 @@
 <form id="analytics-results-filters" action="{{ url('search') }}">
   <input value="{{ query }}" name="query" type="hidden" />
   <div id="js-results-facets"
-       class="structured-search__filter-options js-results-facets"
-       style="display:none">
+       class="structured-search__filter-options js-results-facets">
     <div class="structured-search__multi-fields-panel">
       <div class="structured-search__limit-to-container">
-        <fieldset class="{% if form.non_field_errors or form.from_date.errors %}with-errors{% endif %}">
+        <fieldset class="{% if form.non_field_errors() or form.from_date.errors %}with-errors{% endif %}">
           <legend class="structured-search__limit-to-label">From date</legend>
           <p class="structured-search__help-text" id="from_date-help-text">
             For example <em>01 01 2003</em> or <em>2003</em>
@@ -26,7 +25,7 @@
         </fieldset>
       </div>
       <div class="structured-search__limit-to-container">
-        <fieldset class="{% if form.non_field_errors or form.has_errors %}with-errors{% endif %}">
+        <fieldset class="{% if form.non_field_errors() or form.has_errors %}with-errors{% endif %}">
           <legend class="structured-search__limit-to-label">To date</legend>
           <p class="structured-search__help-text" id="to_date-help-text">
             For example <em>30 04 2023</em> or <em>2023</em>
