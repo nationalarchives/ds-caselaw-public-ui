@@ -9,7 +9,7 @@ django-environ==0.12.0 # https://github.com/joke2k/django-environ
 django-model-utils==5.0.0  # https://github.com/jazzband/django-model-utils
 requests~=2.32.2
 wsgi-basic-auth~=1.1.0
-ds-caselaw-marklogic-api-client==43.1.0
+ds-caselaw-marklogic-api-client==44.1.0
 ds-caselaw-utils==2.9.0
 rollbar
 django-weasyprint==2.4.0
@@ -21,5 +21,5 @@ Jinja2>=3.0
 govuk-frontend-jinja>=3.4.0
 
 # Type stubs
-mypy-boto3-s3==1.40.61
-mypy-boto3-sns==1.40.57
+mypy-boto3-s3==1.41.1
+mypy-boto3-sns==1.41.0

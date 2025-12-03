@@ -1,8 +1,10 @@
 {% extends "layouts/base.html" %}
 {% load document_utils waffle_tags static %}
 {% block javascript %}
-  <script type="module" defer src="{% static 'js/dist/document_navigation_links.js' %}"></script>
   <script type="module" defer src="{% static 'js/dist/document_paragraph_tooltip_anchors.js' %}"></script>
+  <script type="module" defer src="{% static 'js/dist/highlight_text.js' %}"></script>
+  <script type="module" defer src="{% static 'js/dist/document_navigation.js' %}"></script>
+  <script type="module" defer src="{% static 'js/dist/document_search_links.js' %}"></script>
 {% endblock javascript %}
 {% block title %}
   {% if page_title %}{{ page_title }} -{% endif %}
