@@ -196,6 +196,7 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.request",
             ],
+            "extensions": ["waffle.jinja.WaffleExtension"],
         },
     },
 ]

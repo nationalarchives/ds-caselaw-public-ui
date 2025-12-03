@@ -28,7 +28,7 @@ def number_of_mentions(content: str, query: str) -> int:
     return len(tree.findall(".//mark"))
 
 
-def detail_html(request, document_uri):
+def build_context(request, document_uri):
     query = request.GET.get("query")
 
     context: dict[str, Any] = {}
@@ -89,4 +89,21 @@ def detail_html(request, document_uri):
     context["page_title"] = document.body.name  # TODO: Remove this from context
     context["pdf_uri"] = pdf.uri  # TODO: Remove this from context
 
+    return context
+
+
+def detail_html(request, document_uri):
+    context = build_context(request, document_uri)
+
     return TemplateResponse(request, "judgment/detail.html", context=context)
+
+
+def detail_jinja(request, document_uri):
+    context = build_context(request, document_uri)
+
+    return TemplateResponse(
+        request,
+        "judgment/detail.jinja",
+        context=context,
+        using="jinja",
+    )
