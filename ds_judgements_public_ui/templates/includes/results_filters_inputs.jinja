@@ -1,7 +1,7 @@
-<form id="analytics-results-filters" action="{{ url('search') }}">
-  <input value="{{ query }}" name="query" type="hidden" />
-  <div id="js-results-facets"
-       class="structured-search__filter-options js-results-facets">
+<div id="js-results-facets"
+     class="structured-search__filter-options js-results-facets {% if hidden %}js-results-facets--hidden{% endif %}">
+  <form id="analytics-results-filters" action="{{ url('search') }}">
+    <input value="{{ query }}" name="query" type="hidden" />
     <div class="structured-search__multi-fields-panel">
       <div class="structured-search__limit-to-container">
         <fieldset class="{% if form.non_field_errors() or form.from_date.errors %}with-errors{% endif %}">
@@ -83,5 +83,5 @@
              class="button-primary structured-search__update-filters-button"
              value="Update filters" />
     </div>
-  </div>
-</form>
+  </form>
+</div>

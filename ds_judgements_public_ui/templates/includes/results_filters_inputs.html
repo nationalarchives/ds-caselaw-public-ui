@@ -1,7 +1,7 @@
 {% load court_utils errors search_results_filters crispy_forms_tags %}
 
 <div id="js-results-facets"
-     class="structured-search__filter-options js-results-facets">
+     class="structured-search__filter-options js-results-facets {% if hidden %}js-results-facets--hidden{% endif %}">
   <div class="container">
     <div class="structured-search__container">
       <div class="structured-search__multi-fields-panel">
