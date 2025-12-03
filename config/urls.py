@@ -140,6 +140,11 @@ urlpatterns = [
         name="courts_and_tribunals_in_fcl",
     ),
     path(
+        "home/courts-and-tribunals-in-fcl",
+        static_views.CourtsAndTribunalsInFclJinjaView.as_view(),
+        name="home-courts_and_tribunals_in_fcl",
+    ),
+    path(
         "help-and-guidance",
         static_views.HelpAndGuidanceView.as_view(),
         name="help_and_guidance",
