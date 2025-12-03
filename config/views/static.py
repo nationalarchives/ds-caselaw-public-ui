@@ -96,6 +96,11 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
         return context
 
 
+class CourtsAndTribunalsInFclJinjaView(CourtsAndTribunalsInFclView):
+    template_engine = "jinja"
+    template_name = "pages/courts_and_tribunals_in_fcl.jinja"
+
+
 class HelpAndGuidanceView(TemplateViewWithContext):
     template_name = "pages/help_and_guidance.html"
     page_title = "Help and guidance"
