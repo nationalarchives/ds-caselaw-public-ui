@@ -13,8 +13,10 @@ class TestDocumentResolverEngine(TestCaseWithMockAPI):
     @patch("judgments.resolvers.document_resolver_engine.generated_pdf")
     @patch("judgments.resolvers.document_resolver_engine.detail_xml")
     @patch("judgments.resolvers.document_resolver_engine.detail_html")
+    @patch("judgments.resolvers.document_resolver_engine.detail_jinja")
     def test_resolver_engine_with_fileformats(
         self,
+        mock_detail_jinja,
         mock_detail_html,
         mock_detail_xml,
         mock_generated_pdf,

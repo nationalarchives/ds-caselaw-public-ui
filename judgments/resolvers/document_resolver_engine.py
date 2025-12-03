@@ -14,15 +14,17 @@ class MultipleResolutionsError(Exception):
 
 
 class DocumentResolverEngine(View):
-    fileformat_lookup = {
-        "data.pdf": best_pdf,
-        "generated.pdf": generated_pdf,
-        "data.xml": detail_xml,
-        "data.html": detail_html,
-    }
-
     def get_default_renderer(self):
         return detail_html
+
+    def get_fileformat_renderer(self, file_format: str):
+        lookup = {
+            "data.pdf": best_pdf,
+            "generated.pdf": generated_pdf,
+            "data.xml": detail_xml,
+            "data.html": detail_html,
+        }
+        return lookup[file_format]
 
     def dispatch(
         self,
@@ -44,7 +46,8 @@ class DocumentResolverEngine(View):
         database_uri = resolved_documents[0].document_uri.as_document_uri()
 
         if file_format:
-            return self.fileformat_lookup[file_format](request, database_uri)
+            renderer = self.get_fileformat_renderer(file_format)
+            return renderer(request, database_uri)
 
         renderer = self.get_default_renderer()
         return renderer(request, database_uri)
@@ -54,7 +57,11 @@ class JinjaDocumentResolverEngine(DocumentResolverEngine):
     def get_default_renderer(self):
         return detail_jinja
 
-    fileformat_lookup = {
-        **DocumentResolverEngine.fileformat_lookup,
-        "data.html": detail_jinja,
-    }
+    def get_fileformat_renderer(self, file_format: str):
+        lookup = {
+            "data.pdf": best_pdf,
+            "generated.pdf": generated_pdf,
+            "data.xml": detail_xml,
+            "data.html": detail_jinja,
+        }
+        return lookup[file_format]
