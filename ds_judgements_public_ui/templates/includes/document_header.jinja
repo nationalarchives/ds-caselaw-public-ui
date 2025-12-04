@@ -1,0 +1,31 @@
+{% from "components/hero.jinja" import hero %}
+{% from "components/link.jinja" import link %}
+{% from "components/icon.jinja" import icon %}
+{% from "components/button.jinja" import button %}
+{% from "components/heading.jinja" import heading %}
+{% call hero() %}
+  {% if document.document_noun == "press summary" %}<p>Press Summary</p>{% endif %}
+  {% call heading(id="judgment-toolbar-title") %}
+    {{ document|get_title_to_display_in_html }}
+  {% endcall %}
+  {% if document.best_human_identifier %}
+    {% call heading(tag="h2") %}
+      <span class="visually-hidden">{{ document.best_human_identifier.schema.name }}</span>{{ document.best_human_identifier.value }}
+    {% endcall %}
+  {% endif %}
+  {%+ if linked_document_uri -%}
+  {% set linked_document_url = url('detail', document_uri=linked_document_uri) ~ (query and ('?query=' ~ query|urlencode) or '') %}
+  {% call button(variant="secondary", size="small", href=linked_document_url) %}
+    {% if document.document_noun == "judgment" %}
+      View Press Summary
+    {% else %}
+      View Judgment
+    {% endif %}
+  {% endcall %}
+{%- endif +%}
+{% if document_html %}
+  {% call link(href="#download-options", size="md", alignment="center", show_visited=False) %}
+    View download options {{ icon(name="chevron_down_link_blue", size="md") }}
+  {% endcall %}
+{% endif %}
+{% endcall %}

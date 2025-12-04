@@ -8,13 +8,23 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView, TemplateView
 
-from judgments.views.search import AdvancedSearchView, SearchResultsView, SearchResultsViewJinja
+from judgments.views.search import (
+    AdvancedSearchView,
+    AdvancedSearchViewJinja,
+    SearchResultsView,
+    SearchResultsViewJinja,
+)
 
 from .converters import SchemaFileConverter
 from .views import static as static_views
 from .views.check import status
 from .views.components import ComponentsView
-from .views.courts import CourtOrTribunalView, CourtsTribunalsListJinjaView, CourtsTribunalsListView
+from .views.courts import (
+    CourtOrTribunalView,
+    CourtOrTribunalViewJinja,
+    CourtsTribunalsListJinjaView,
+    CourtsTribunalsListView,
+)
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
 from .views.home import HomeView
 from .views.schema import schema
@@ -36,6 +46,11 @@ urlpatterns = [
         "courts-and-tribunals/<path:param>",
         CourtOrTribunalView.as_view(),
         name="court_or_tribunal",
+    ),
+    path(
+        "home/courts-and-tribunals/<path:param>",
+        CourtOrTribunalViewJinja.as_view(),
+        name="home_court_or_tribunal",
     ),
     path(
         "courts-and-tribunals",
@@ -62,6 +77,11 @@ urlpatterns = [
         "search/advanced",
         AdvancedSearchView.as_view(),
         name="advanced_search",
+    ),
+    path(
+        "home/search/advanced",
+        AdvancedSearchViewJinja.as_view(),
+        name="home_advanced_search",
     ),
     path(
         "judgments/results",
@@ -118,6 +138,11 @@ urlpatterns = [
         "courts-and-tribunals-in-fcl",
         static_views.CourtsAndTribunalsInFclView.as_view(),
         name="courts_and_tribunals_in_fcl",
+    ),
+    path(
+        "home/courts-and-tribunals-in-fcl",
+        static_views.CourtsAndTribunalsInFclJinjaView.as_view(),
+        name="home-courts_and_tribunals_in_fcl",
     ),
     path(
         "help-and-guidance",

@@ -1,0 +1,7 @@
+{% extends "layouts/form_step.html" %}
+{% from "components/alert.jinja" import alert %}
+{% block pre_form %}
+  {% call alert() %}
+    <p>Your answers to these questions may be published in the future.</p>
+  {% endcall %}
+{% endblock pre_form %}

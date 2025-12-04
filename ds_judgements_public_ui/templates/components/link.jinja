@@ -1,7 +1,12 @@
-{% macro link(href="", variant="default", class_name="", attrs={}) %}
+{% macro link(href="", variant="default", class_name="", alignment=None, size=None, show_visited=True, attrs={}) %}
+  {% set size_classes = {"default": "", "md": "link--md", "lg": "link--lg"} %}
+  {% set alignment_classes = {"default": "", "center": "link--center"} %}
   {% set variant_classes = {"default": "", "contrast": "link--contrast"} %}
   {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
-  {% set link_class = ("link " ~ variant_class).strip() %}
+  {% set size_class = size_classes.get(size, size_classes["default"]) %}
+  {% set alignment_class = alignment_classes.get(alignment, alignment_classes["default"]) %}
+  {% set visited_class = "link--with-visited" if show_visited else "link--hide-visited" %}
+  {% set link_class = ("link " ~ variant_class ~ " " ~ size_class ~ " " ~ alignment_class ~ " " ~ visited_class).strip() %}
   <a href="{{ href }}"
      class="{{ link_class }} {{ class_name }}"
      {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>{{ caller() }}</a>
