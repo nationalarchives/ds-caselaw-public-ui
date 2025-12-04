@@ -21,5 +21,5 @@ Jinja2>=3.0
 govuk-frontend-jinja>=3.4.0
 
 # Type stubs
-mypy-boto3-s3==1.41.1
+mypy-boto3-s3==1.42.1
 mypy-boto3-sns==1.41.0
