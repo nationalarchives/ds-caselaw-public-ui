@@ -180,11 +180,6 @@ urlpatterns = [
         name="open_justice_licence",
     ),
     path(
-        "home/privacy-notice",
-        static_views.PrivacyNoticeJinja.as_view(),
-        name="home_privacy_notice",
-    ),
-    path(
         "privacy-notice",
         static_views.PrivacyNotice.as_view(),
         name="privacy_notice",

@@ -169,7 +169,8 @@ class OpenJusticeLicenceJinjaView(OpenJusticeLicenceView):
 
 
 class PrivacyNotice(TemplateViewWithContext):
-    template_name = "pages/privacy_notice.html"
+    template_engine = "jinja"
+    template_name = "pages/privacy_notice.jinja"
     page_title = "Privacy Notice"
     page_canonical_url_name = "privacy_notice"
     page_allow_index = True
@@ -184,11 +185,6 @@ class PrivacyNotice(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class PrivacyNoticeJinja(PrivacyNotice):
-    template_engine = "jinja"
-    template_name = "pages/privacy_notice.jinja"
 
 
 class PublishingPolicyView(TemplateViewWithContext):
