@@ -1,4 +1,5 @@
 {% from "components/header.jinja" import header %}
+{% from "components/cookie_banner.jinja" import cookie_banner %}
 {% from "components/heading.jinja" import heading %}
 {% from "components/banner.jinja" import banner %}
 {% from "components/button.jinja" import button %}
@@ -40,11 +41,15 @@
             rel="stylesheet" />
       <link href="{{ static('css/main.css') }}" rel="stylesheet" />
     {% endblock css %}
+    {% include "includes/gtm_head.jinja" %}
   </head>
   <body class="{% block body_class %}{% endblock body_class %}">
     <script>
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
+    {% include "includes/gtm_body.jinja" %}
+    {{ cookie_banner() }}
+    {% include "components/environment_banner.jinja" %}
     <main id="main-content">
       {% block header %}
         {% call header() %}
