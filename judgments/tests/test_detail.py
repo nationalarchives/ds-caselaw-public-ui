@@ -12,6 +12,7 @@ from django.http import Http404
 from django.template.defaultfilters import filesizeformat
 from django.test import Client
 from fixtures import MockAPI, TestCaseWithMockAPI
+from waffle.testutils import override_flag
 
 from judgments.tests.utils.assertions import (
     assert_contains_html,
@@ -575,3 +576,36 @@ class TestHTMLTitle(TestCaseWithMockAPI):
         title = "Judgment A - Find Case Law - The National Archives"
         xpath_query = "//title"
         assert_response_contains_text(response, title, xpath_query)
+
+
+class TestCatalogueCard(TestCaseWithMockAPI):
+    @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
+    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
+    def test_card_visible_for_documents_without_html(self, mock_get_document_by_uri, mock_pdf):
+        document = JudgmentFactory.build(is_published=True)
+
+        with patch.object(document, "content_as_html", return_value=None):
+            mock_get_document_by_uri.return_value = document
+            response = self.client.get("/test/2023/123")
+
+        self.assertContains(response, "Document summary information", html=True)
+
+    @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
+    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
+    def test_card_hidden_for_documents_with_html_by_default(self, mock_get_document_by_uri, mock_pdf):
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+        response = self.client.get("/test/2023/123")
+
+        self.assertNotContains(response, "Document summary information", html=True)
+
+    @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
+    @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
+    @patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.com"})
+    @override_flag("document_catalogue_card", active=True)
+    def test_card_visible_for_documents_with_html_when_flag_set(self, mock_get_document_by_uri, mock_pdf):
+        mock_get_document_by_uri.return_value = JudgmentFactory.build(is_published=True)
+        response = self.client.get("/test/2023/123")
+
+        self.assertContains(response, "Document summary information", html=True)
