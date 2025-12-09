@@ -205,11 +205,6 @@ urlpatterns = [
         name="terms_of_use",
     ),
     path(
-        "home/terms-of-use",
-        static_views.TermsOfUseJinjaView.as_view(),
-        name="home_terms_of_use",
-    ),
-    path(
         "the-find-case-law-api",
         lambda request: HttpResponseRedirect("https://nationalarchives.github.io/ds-find-caselaw-docs/public"),
         name="the_find_case_law_api",
