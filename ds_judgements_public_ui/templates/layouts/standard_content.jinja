@@ -23,10 +23,13 @@
           {% endblock article_content %}
         </article>
       </div>
-      <div class="standard-content__footer">
+      {% set article_footer_content %}
         {% block article_footer %}
         {% endblock article_footer %}
-      </div>
+      {% endset %}
+      {% if article_footer_content|trim %}
+        <div class="standard-content__footer">{{ article_footer_content }}</div>
+      {% endif %}
     </div>
     {% block end_of_document_marker %}
       {% call end_marker() %}
