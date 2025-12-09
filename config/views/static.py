@@ -29,7 +29,8 @@ class AboutThisServiceJinjaView(AboutThisServiceView):
 
 
 class AccessibilityStatementView(TemplateViewWithContext):
-    template_name = "pages/accessibility_statement.html"
+    template_engine = "jinja"
+    template_name = "pages/accessibility_statement.jinja"
     page_title = "Accessibility statement for Find Case Law"
     page_canonical_url_name = "accessibility_statement"
     page_allow_index = True
@@ -45,11 +46,6 @@ class AccessibilityStatementView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class AccessibilityStatementJinjaView(AccessibilityStatementView):
-    template_engine = "jinja"
-    template_name = "pages/accessibility_statement.jinja"
 
 
 class ContactUsView(TemplateViewWithContext):
