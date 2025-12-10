@@ -247,7 +247,8 @@ class TermsOfUseView(TemplateViewWithContext):
 
 
 class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
-    template_name = "pages/understanding_judgments_and_decisions.html"
+    template_engine = "jinja"
+    template_name = "pages/understanding_judgments_and_decisions.jinja"
     page_title = "Understanding judgments and decisions"
     page_canonical_url_name = "understanding_judgments_and_decisions"
     page_allow_index = True
@@ -263,11 +264,6 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
             {"text": "Understanding judgments and decisions"},
         ]
         return context
-
-
-class UnderstandingJudgmentsAndDecisionsJinjaView(UnderstandingJudgmentsAndDecisionsView):
-    template_engine = "jinja"
-    template_name = "pages/understanding_judgments_and_decisions.jinja"
 
 
 class UserResearchView(TemplateViewWithContext):
