@@ -271,7 +271,8 @@ class UnderstandingJudgmentsAndDecisionsJinjaView(UnderstandingJudgmentsAndDecis
 
 
 class UserResearchView(TemplateViewWithContext):
-    template_name = "pages/user_research.html"
+    template_engine = "jinja"
+    template_name = "pages/user_research.jinja"
     page_title = "User research"
     page_canonical_url_name = "user_research"
     page_allow_index = True
@@ -283,8 +284,3 @@ class UserResearchView(TemplateViewWithContext):
             {"text": "User research"},
         ]
         return context
-
-
-class UserResearchJinjaView(UserResearchView):
-    template_engine = "jinja"
-    template_name = "pages/user_research.jinja"
