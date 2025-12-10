@@ -73,7 +73,8 @@ class ContactUsJinjaView(ContactUsView):
 
 
 class CourtsAndTribunalsInFclView(TemplateViewWithContext):
-    template_name = "pages/courts_and_tribunals_in_fcl.html"
+    template_engine = "jinja"
+    template_name = "pages/courts_and_tribunals_in_fcl.jinja"
     page_title = "Courts and tribunals in Find Case Law"
     page_canonical_url_name = "courts_and_tribunals_in_fcl"
     page_allow_index = True
@@ -90,11 +91,6 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
             {"text": "Courts and tribunals in Find Case Law"},
         ]
         return context
-
-
-class CourtsAndTribunalsInFclJinjaView(CourtsAndTribunalsInFclView):
-    template_engine = "jinja"
-    template_name = "pages/courts_and_tribunals_in_fcl.jinja"
 
 
 class HelpAndGuidanceView(TemplateViewWithContext):
