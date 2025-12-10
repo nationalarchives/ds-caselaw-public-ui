@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% load waffle_tags %}
 {% block breadcrumbs %}
 {% endblock breadcrumbs %}
 
@@ -13,7 +14,7 @@
 
 {% block content %}
   {% include "includes/basic_search_form.html" %}
-  {% include "includes/survey_banner.html" %}
+  {% flag "show_survey_banner" %}{% include "includes/survey_banner.html" %}{% endflag %}
   {% include "includes/info_cards_homepage.html" %}
   {% include "includes/recent_judgments.html" %}
 {% endblock content %}
