@@ -110,11 +110,6 @@ urlpatterns = [
         name="about_this_service",
     ),
     path(
-        "home/about-this-service",
-        static_views.AboutThisServiceJinjaView.as_view(),
-        name="home_about_this_service",
-    ),
-    path(
         "accessibility-statement",
         static_views.AccessibilityStatementView.as_view(),
         name="accessibility_statement",

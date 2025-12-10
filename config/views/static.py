@@ -5,7 +5,8 @@ from .template_view_with_context import TemplateViewWithContext
 
 
 class AboutThisServiceView(TemplateViewWithContext):
-    template_name = "pages/about_this_service.html"
+    template_engine = "jinja"
+    template_name = "pages/about_this_service.jinja"
     page_title = "About Find Case Law"
     page_canonical_url_name = "about_this_service"
     page_allow_index = True
@@ -21,11 +22,6 @@ class AboutThisServiceView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class AboutThisServiceJinjaView(AboutThisServiceView):
-    template_engine = "jinja"
-    template_name = "pages/about_this_service.jinja"
 
 
 class AccessibilityStatementView(TemplateViewWithContext):
