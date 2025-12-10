@@ -22,7 +22,9 @@
         rel="stylesheet" />
 {% endblock extra_head_tags %}
 {% block precontent %}
-  {% include "includes/survey_banner.jinja" %}
+  {% if waffle.flag("show_survey_banner") %}
+    {% include "includes/survey_banner.jinja" %}
+  {% endif %}
   {% include "includes/document_header.jinja" %}
 {% endblock precontent %}
 {% block body_class %}
