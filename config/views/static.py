@@ -49,7 +49,8 @@ class AccessibilityStatementView(TemplateViewWithContext):
 
 
 class ContactUsView(TemplateViewWithContext):
-    template_name = "pages/contact_us.html"
+    template_engine = "jinja"
+    template_name = "pages/contact_us.jinja"
     page_title = "Contact Us"
     page_canonical_url_name = "contact_us"
     page_allow_index = True
@@ -65,11 +66,6 @@ class ContactUsView(TemplateViewWithContext):
             {"text": "Contact us"},
         ]
         return context
-
-
-class ContactUsJinjaView(ContactUsView):
-    template_engine = "jinja"
-    template_name = "pages/contact_us.jinja"
 
 
 class CourtsAndTribunalsInFclView(TemplateViewWithContext):
