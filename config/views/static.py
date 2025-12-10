@@ -208,7 +208,8 @@ class PublishingPolicyJinjaView(PublishingPolicyView):
 
 
 class TermsAndPoliciesView(TemplateViewWithContext):
-    template_name = "pages/terms_and_policies.html"
+    template_engine = "jinja"
+    template_name = "pages/terms_and_policies.jinja"
     page_title = "Terms and policies"
     page_canonical_url_name = "terms_and_policies"
     page_allow_index = True
@@ -223,11 +224,6 @@ class TermsAndPoliciesView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class TermsAndPoliciesJinjaView(TermsAndPoliciesView):
-    template_engine = "jinja"
-    template_name = "pages/terms_and_policies.jinja"
 
 
 class TermsOfUseView(TemplateViewWithContext):
