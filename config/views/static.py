@@ -227,7 +227,8 @@ class TermsAndPoliciesView(TemplateViewWithContext):
 
 
 class TermsOfUseView(TemplateViewWithContext):
-    template_name = "pages/terms_of_use.html"
+    template_engine = "jinja"
+    template_name = "pages/terms_of_use.jinja"
     page_title = "Terms of use"
     page_canonical_url_name = "terms_of_use"
     page_allow_index = True
@@ -243,11 +244,6 @@ class TermsOfUseView(TemplateViewWithContext):
             {"text": "Terms of Use"},
         ]
         return context
-
-
-class TermsOfUseJinjaView(TermsOfUseView):
-    template_engine = "jinja"
-    template_name = "pages/terms_of_use.jinja"
 
 
 class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
