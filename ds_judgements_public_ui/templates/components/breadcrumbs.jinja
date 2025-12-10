@@ -7,7 +7,7 @@
     <li>{{ caller() }}</li>
   {% endif %}
 {% endmacro %}
-{% macro breadcrumbs( text=None, home=None, home_text=None) %}
+{% macro breadcrumbs(text=None, home=None, home_text=None, data=[]) %}
   <div class="breadcrumbs">
     <div class="container">
       <nav class="breadcrumbs__container" aria-label="Breadcrumb">
@@ -26,14 +26,14 @@
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-          {% for breadcrumb in structured_breadcrumbs %}
-            {
-              "@type": "ListItem",
-              "position": {{ forloop.counter }},
-              "name": "{{ breadcrumb.text }}"{% if breadcrumb.url %},
-                "item": "{{ breadcrumb.url }}"{% endif %}
-            }{% if not forloop.last %},{% endif %}
-          {% endfor %}
+{% for breadcrumb in data %}
+  {
+    "@type": "ListItem",
+    "position": {{ loop.index }},
+    "name": "{{ breadcrumb.text }}"{% if breadcrumb.url %},
+    "item": "{{ breadcrumb.url }}"{% endif %}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
         ]
       }
   </script>
