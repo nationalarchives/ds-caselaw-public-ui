@@ -184,7 +184,8 @@ class PrivacyNotice(TemplateViewWithContext):
 
 
 class PublishingPolicyView(TemplateViewWithContext):
-    template_name = "pages/publishing_policy.html"
+    template_engine = "jinja"
+    template_name = "pages/publishing_policy.jinja"
     page_title = "Publishing policy"
     page_canonical_url_name = "publishing_policy"
     page_allow_index = True
@@ -200,11 +201,6 @@ class PublishingPolicyView(TemplateViewWithContext):
             {"text": "Publishing policy"},
         ]
         return context
-
-
-class PublishingPolicyJinjaView(PublishingPolicyView):
-    template_engine = "jinja"
-    template_name = "pages/publishing_policy.jinja"
 
 
 class TermsAndPoliciesView(TemplateViewWithContext):

@@ -185,11 +185,6 @@ urlpatterns = [
         name="publishing_policy",
     ),
     path(
-        "home/publishing-policy",
-        static_views.PublishingPolicyJinjaView.as_view(),
-        name="home_publishing_policy",
-    ),
-    path(
         "terms-and-policies",
         static_views.TermsAndPoliciesView.as_view(),
         name="terms_and_policies",
