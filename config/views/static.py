@@ -86,7 +86,8 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
 
 
 class HelpAndGuidanceView(TemplateViewWithContext):
-    template_name = "pages/help_and_guidance.html"
+    template_engine = "jinja"
+    template_name = "pages/help_and_guidance.jinja"
     page_title = "Help and guidance"
     page_canonical_url_name = "help_and_guidance"
     page_allow_index = True
@@ -101,11 +102,6 @@ class HelpAndGuidanceView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class HelpAndGuidanceJinjaView(HelpAndGuidanceView):
-    template_engine = "jinja"
-    template_name = "pages/help_and_guidance.jinja"
 
 
 class HowToSearchFindCaseLawView(TemplateViewWithContext):
