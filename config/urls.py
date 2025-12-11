@@ -155,11 +155,6 @@ urlpatterns = [
         name="how_to_use_this_service",
     ),
     path(
-        "home/open-justice-licence",
-        static_views.OpenJusticeLicenceJinjaView.as_view(),
-        name="home_open_justice_licence",
-    ),
-    path(
         "open-justice-licence",
         static_views.OpenJusticeLicenceView.as_view(),
         name="open_justice_licence",
