@@ -5,7 +5,8 @@ from .template_view_with_context import TemplateViewWithContext
 
 
 class AboutThisServiceView(TemplateViewWithContext):
-    template_name = "pages/about_this_service.html"
+    template_engine = "jinja"
+    template_name = "pages/about_this_service.jinja"
     page_title = "About Find Case Law"
     page_canonical_url_name = "about_this_service"
     page_allow_index = True
@@ -21,11 +22,6 @@ class AboutThisServiceView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class AboutThisServiceJinjaView(AboutThisServiceView):
-    template_engine = "jinja"
-    template_name = "pages/about_this_service.jinja"
 
 
 class AccessibilityStatementView(TemplateViewWithContext):
@@ -49,7 +45,8 @@ class AccessibilityStatementView(TemplateViewWithContext):
 
 
 class ContactUsView(TemplateViewWithContext):
-    template_name = "pages/contact_us.html"
+    template_engine = "jinja"
+    template_name = "pages/contact_us.jinja"
     page_title = "Contact Us"
     page_canonical_url_name = "contact_us"
     page_allow_index = True
@@ -65,11 +62,6 @@ class ContactUsView(TemplateViewWithContext):
             {"text": "Contact us"},
         ]
         return context
-
-
-class ContactUsJinjaView(ContactUsView):
-    template_engine = "jinja"
-    template_name = "pages/contact_us.jinja"
 
 
 class CourtsAndTribunalsInFclView(TemplateViewWithContext):
@@ -180,7 +172,8 @@ class PrivacyNotice(TemplateViewWithContext):
 
 
 class PublishingPolicyView(TemplateViewWithContext):
-    template_name = "pages/publishing_policy.html"
+    template_engine = "jinja"
+    template_name = "pages/publishing_policy.jinja"
     page_title = "Publishing policy"
     page_canonical_url_name = "publishing_policy"
     page_allow_index = True
@@ -196,11 +189,6 @@ class PublishingPolicyView(TemplateViewWithContext):
             {"text": "Publishing policy"},
         ]
         return context
-
-
-class PublishingPolicyJinjaView(PublishingPolicyView):
-    template_engine = "jinja"
-    template_name = "pages/publishing_policy.jinja"
 
 
 class TermsAndPoliciesView(TemplateViewWithContext):
@@ -267,7 +255,8 @@ class UnderstandingJudgmentsAndDecisionsJinjaView(UnderstandingJudgmentsAndDecis
 
 
 class UserResearchView(TemplateViewWithContext):
-    template_name = "pages/user_research.html"
+    template_engine = "jinja"
+    template_name = "pages/user_research.jinja"
     page_title = "User research"
     page_canonical_url_name = "user_research"
     page_allow_index = True
@@ -279,8 +268,3 @@ class UserResearchView(TemplateViewWithContext):
             {"text": "User research"},
         ]
         return context
-
-
-class UserResearchJinjaView(UserResearchView):
-    template_engine = "jinja"
-    template_name = "pages/user_research.jinja"

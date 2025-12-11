@@ -37,6 +37,7 @@ static_pages = [
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
     },
+    {"url": "/user-research", "title": "User research", "heading": "User research for Find Case Law"},
 ]
 
 
