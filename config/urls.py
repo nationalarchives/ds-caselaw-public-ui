@@ -130,11 +130,6 @@ urlpatterns = [
         name="help_and_guidance",
     ),
     path(
-        "home/how-to-search-find-case-law",
-        static_views.HowToSearchFindCaseLawJinjaView.as_view(),
-        name="home_how_to_search_find_case_law",
-    ),
-    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",

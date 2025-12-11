@@ -105,7 +105,8 @@ class HelpAndGuidanceView(TemplateViewWithContext):
 
 
 class HowToSearchFindCaseLawView(TemplateViewWithContext):
-    template_name = "pages/how_to_search_find_case_law.html"
+    template_engine = "jinja"
+    template_name = "pages/how_to_search_find_case_law.jinja"
     page_title = "How to search Find Case Law"
     page_canonical_url_name = "how_to_search_find_case_law"
     page_allow_index = True
@@ -121,11 +122,6 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
             {"text": "How to search Find Case Law"},
         ]
         return context
-
-
-class HowToSearchFindCaseLawJinjaView(HowToSearchFindCaseLawView):
-    template_engine = "jinja"
-    template_name = "pages/how_to_search_find_case_law.jinja"
 
 
 class OpenJusticeLicenceView(TemplateViewWithContext):
