@@ -32,6 +32,7 @@ static_pages = [
         "title": "Understanding judgments and decisions",
         "heading": "Understanding judgments and decisions",
     },
+    {"url": "/user-research", "title": "User research", "heading": "User research for Find Case Law"},
 ]
 
 
