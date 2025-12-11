@@ -5,10 +5,10 @@
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
 {% from "components/grid.jinja" import grid %}
 {% block article_content %}
-  {% call heading(size="h1") %}
+  {% call heading(tag="h1") %}
     Help and guidance
   {% endcall %}
-  {% call heading(size="h2") %}
+  {% call heading(tag="h2") %}
     Pages in this section
   {% endcall %}
   {% call grid() %}
@@ -23,7 +23,7 @@
     {% endcall %}
   {% endcall %}
   <br />
-  {% call heading(size="h2") %}
+  {% call heading(tag="h2") %}
     Pages elsewhere on this site
   {% endcall %}
   {% call grid() %}
@@ -35,7 +35,7 @@
     {% endcall %}
   {% endcall %}
   <br />
-  {% call heading(size="h2") %}
+  {% call heading(tag="h2") %}
     Pages on other websites
   {% endcall %}
   {% call grid() %}

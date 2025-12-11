@@ -125,19 +125,9 @@ urlpatterns = [
         name="courts_and_tribunals_in_fcl",
     ),
     path(
-        "home/courts-and-tribunals-in-fcl",
-        static_views.CourtsAndTribunalsInFclJinjaView.as_view(),
-        name="home-courts_and_tribunals_in_fcl",
-    ),
-    path(
         "help-and-guidance",
         static_views.HelpAndGuidanceView.as_view(),
         name="help_and_guidance",
-    ),
-    path(
-        "home/help-and-guidance",
-        static_views.HelpAndGuidanceJinjaView.as_view(),
-        name="home_help_and_guidance",
     ),
     path(
         "how-to-search-find-case-law",
@@ -148,11 +138,6 @@ urlpatterns = [
         "how-to-use-this-service",
         lambda request: HttpResponseRedirect(reverse("how_to_search_find_case_law")),
         name="how_to_use_this_service",
-    ),
-    path(
-        "home/open-justice-licence",
-        static_views.OpenJusticeLicenceJinjaView.as_view(),
-        name="home_open_justice_licence",
     ),
     path(
         "open-justice-licence",
@@ -188,11 +173,6 @@ urlpatterns = [
         "understanding-judgments-and-decisions",
         static_views.UnderstandingJudgmentsAndDecisionsView.as_view(),
         name="understanding_judgments_and_decisions",
-    ),
-    path(
-        "home/understanding-judgments-and-decisions",
-        static_views.UnderstandingJudgmentsAndDecisionsJinjaView.as_view(),
-        name="home_understanding_judgments_and_decisions",
     ),
     path(
         "user-research",

@@ -65,7 +65,8 @@ class ContactUsView(TemplateViewWithContext):
 
 
 class CourtsAndTribunalsInFclView(TemplateViewWithContext):
-    template_name = "pages/courts_and_tribunals_in_fcl.html"
+    template_engine = "jinja"
+    template_name = "pages/courts_and_tribunals_in_fcl.jinja"
     page_title = "Courts and tribunals in Find Case Law"
     page_canonical_url_name = "courts_and_tribunals_in_fcl"
     page_allow_index = True
@@ -84,13 +85,9 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
         return context
 
 
-class CourtsAndTribunalsInFclJinjaView(CourtsAndTribunalsInFclView):
-    template_engine = "jinja"
-    template_name = "pages/courts_and_tribunals_in_fcl.jinja"
-
-
 class HelpAndGuidanceView(TemplateViewWithContext):
-    template_name = "pages/help_and_guidance.html"
+    template_engine = "jinja"
+    template_name = "pages/help_and_guidance.jinja"
     page_title = "Help and guidance"
     page_canonical_url_name = "help_and_guidance"
     page_allow_index = True
@@ -105,11 +102,6 @@ class HelpAndGuidanceView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class HelpAndGuidanceJinjaView(HelpAndGuidanceView):
-    template_engine = "jinja"
-    template_name = "pages/help_and_guidance.jinja"
 
 
 class HowToSearchFindCaseLawView(TemplateViewWithContext):
@@ -133,7 +125,9 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
 
 
 class OpenJusticeLicenceView(TemplateViewWithContext):
-    template_name = "pages/open_justice_licence.html"
+    template_engine = "jinja"
+    template_name = "pages/open_justice_license.jinja"
+
     page_title = "Open Justice Licence"
     page_canonical_url_name = "open_justice_licence"
     page_allow_index = True
@@ -145,11 +139,6 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class OpenJusticeLicenceJinjaView(OpenJusticeLicenceView):
-    template_engine = "jinja"
-    template_name = "pages/open_justice_licence.jinja"
 
 
 class PrivacyNotice(TemplateViewWithContext):
@@ -231,7 +220,8 @@ class TermsOfUseView(TemplateViewWithContext):
 
 
 class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
-    template_name = "pages/understanding_judgments_and_decisions.html"
+    template_engine = "jinja"
+    template_name = "pages/understanding_judgments_and_decisions.jinja"
     page_title = "Understanding judgments and decisions"
     page_canonical_url_name = "understanding_judgments_and_decisions"
     page_allow_index = True
@@ -247,11 +237,6 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
             {"text": "Understanding judgments and decisions"},
         ]
         return context
-
-
-class UnderstandingJudgmentsAndDecisionsJinjaView(UnderstandingJudgmentsAndDecisionsView):
-    template_engine = "jinja"
-    template_name = "pages/understanding_judgments_and_decisions.jinja"
 
 
 class UserResearchView(TemplateViewWithContext):
