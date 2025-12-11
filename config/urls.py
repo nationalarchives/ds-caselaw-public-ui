@@ -110,11 +110,6 @@ urlpatterns = [
         name="about_this_service",
     ),
     path(
-        "home/about-this-service",
-        static_views.AboutThisServiceJinjaView.as_view(),
-        name="home_about_this_service",
-    ),
-    path(
         "accessibility-statement",
         static_views.AccessibilityStatementView.as_view(),
         name="accessibility_statement",
@@ -123,11 +118,6 @@ urlpatterns = [
         "contact-us",
         static_views.ContactUsView.as_view(),
         name="contact_us",
-    ),
-    path(
-        "home/contact-us",
-        static_views.ContactUsJinjaView.as_view(),
-        name="home_contact_us",
     ),
     path(
         "courts-and-tribunals-in-fcl",
@@ -185,11 +175,6 @@ urlpatterns = [
         name="publishing_policy",
     ),
     path(
-        "home/publishing-policy",
-        static_views.PublishingPolicyJinjaView.as_view(),
-        name="home_publishing_policy",
-    ),
-    path(
         "terms-and-policies",
         static_views.TermsAndPoliciesView.as_view(),
         name="terms_and_policies",
@@ -208,11 +193,6 @@ urlpatterns = [
         "understanding-judgments-and-decisions",
         static_views.UnderstandingJudgmentsAndDecisionsView.as_view(),
         name="understanding_judgments_and_decisions",
-    ),
-    path(
-        "home/user-research",
-        static_views.UserResearchJinjaView.as_view(),
-        name="home_user_research",
     ),
     path(
         "user-research",
