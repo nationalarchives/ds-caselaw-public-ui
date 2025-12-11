@@ -195,11 +195,6 @@ urlpatterns = [
         name="understanding_judgments_and_decisions",
     ),
     path(
-        "home/understanding-judgments-and-decisions",
-        static_views.UnderstandingJudgmentsAndDecisionsJinjaView.as_view(),
-        name="home_understanding_judgments_and_decisions",
-    ),
-    path(
         "user-research",
         static_views.UserResearchView.as_view(),
         name="user_research",
