@@ -129,7 +129,9 @@ class HowToSearchFindCaseLawJinjaView(HowToSearchFindCaseLawView):
 
 
 class OpenJusticeLicenceView(TemplateViewWithContext):
-    template_name = "pages/open_justice_licence.html"
+    template_engine = "jinja"
+    template_name = "pages/open_justice_license.jinja"
+
     page_title = "Open Justice Licence"
     page_canonical_url_name = "open_justice_licence"
     page_allow_index = True
@@ -141,11 +143,6 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
             {"text": self.page_title},
         ]
         return context
-
-
-class OpenJusticeLicenceJinjaView(OpenJusticeLicenceView):
-    template_engine = "jinja"
-    template_name = "pages/open_justice_licence.jinja"
 
 
 class PrivacyNotice(TemplateViewWithContext):
