@@ -21,7 +21,6 @@ from .views.check import status
 from .views.components import ComponentsView
 from .views.courts import (
     CourtOrTribunalView,
-    CourtOrTribunalViewJinja,
     CourtsTribunalsListView,
 )
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
@@ -45,11 +44,6 @@ urlpatterns = [
         "courts-and-tribunals/<path:param>",
         CourtOrTribunalView.as_view(),
         name="court_or_tribunal",
-    ),
-    path(
-        "home/courts-and-tribunals/<path:param>",
-        CourtOrTribunalViewJinja.as_view(),
-        name="home_court_or_tribunal",
     ),
     path(
         "courts-and-tribunals",
