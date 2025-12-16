@@ -10,9 +10,7 @@ from django.views.generic.base import RedirectView, TemplateView
 
 from judgments.views.search import (
     AdvancedSearchView,
-    AdvancedSearchViewJinja,
     SearchResultsView,
-    SearchResultsViewJinja,
 )
 
 from .converters import SchemaFileConverter
@@ -25,7 +23,6 @@ from .views.courts import (
     CourtsTribunalsListView,
 )
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
-from .views.home import HomeView
 from .views.schema import schema
 from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
 from .views.style_guide import StyleGuideView
@@ -63,19 +60,9 @@ urlpatterns = [
         name="search",
     ),
     path(
-        "home/search",
-        SearchResultsViewJinja.as_view(),
-        name="home_search",
-    ),
-    path(
         "search/advanced",
         AdvancedSearchView.as_view(),
         name="advanced_search",
-    ),
-    path(
-        "home/search/advanced",
-        AdvancedSearchViewJinja.as_view(),
-        name="home_advanced_search",
     ),
     path(
         "judgments/results",
@@ -189,12 +176,6 @@ urlpatterns = [
         "components",
         ComponentsView.as_view(),
         name="components",
-    ),
-    # Home (Jinja)
-    path(
-        "home",
-        HomeView.as_view(),
-        name="home",
     ),
     # Test page
     path(

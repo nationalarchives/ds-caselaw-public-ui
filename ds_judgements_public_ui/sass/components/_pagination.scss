@@ -1,7 +1,10 @@
 .govuk-pagination {
   align-items: center;
   justify-content: space-between;
+
   margin: 0;
+  margin-top: $space-4;
+
   background-color: colour-var("contrast-background");
 
   &__list {
@@ -16,6 +19,11 @@
   &__link {
     color: colour-var("contrast-link");
     text-decoration: none;
+
+    &:visited {
+      color: colour-var("contrast-link");
+      text-decoration: none;
+    }
   }
 
   &__next,
