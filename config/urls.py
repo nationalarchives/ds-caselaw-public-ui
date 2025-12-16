@@ -25,7 +25,6 @@ from .views.courts import (
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
 from .views.schema import schema
 from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
-from .views.style_guide import StyleGuideView
 
 register_converter(SchemaFileConverter, "schemafile")
 
@@ -164,12 +163,6 @@ urlpatterns = [
         "what-to-expect",
         lambda request: HttpResponseRedirect(reverse("about_this_service")),
         name="what_to_expect",
-    ),
-    # Styleguide
-    path(
-        "style-guide",
-        StyleGuideView.as_view(),
-        name="style_guide",
     ),
     # Components
     path(

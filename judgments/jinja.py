@@ -97,6 +97,8 @@ def environment(**options):
     env.filters["is_exact_match"] = search_results_filters.is_exact_match
     env.filters["remove_query"] = query_filters.remove_query
     env.filters["remove_court"] = query_filters.remove_court
+    env.filters["replace_integer_with_day"] = query_filters.replace_integer_with_day
+    env.filters["replace_integer_with_month"] = query_filters.replace_integer_with_month
     env.filters["get_court_name"] = court_utils.get_court_name
     env.filters["removable_filter_param"] = query_filters.removable_filter_param
     env.filters["capfirst"] = capfirst

@@ -10,7 +10,7 @@ def test_home_page(page: Page):
 
     expect(page.locator("h1", has_text="Recently published judgments")).to_be_visible()
 
-    assert page.locator(".recent-judgments tbody tr").count() > 1
+    assert page.locator(".documents-table tbody tr").count() > 1
 
     assert_is_accessible(page)
     # TODO: Add this back in when populate_from_caselaw seeds match staging
