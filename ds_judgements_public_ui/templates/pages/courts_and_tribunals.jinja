@@ -1,4 +1,5 @@
 {% extends "layouts/standard_content.jinja" %}
+{% from "components/divider.jinja" import divider %}
 {% from "components/heading.jinja" import heading %}
 {% from "components/contents.jinja" import contents %}
 {% from "components/link.jinja" import link %}
@@ -116,13 +117,19 @@
   <h2>
     <strong>Courts</strong>
   </h2>
-  {% for group in courts %}{{ courts_and_tribunals_group(group=group, type="court") }}{% endfor %}
+  {% for group in courts %}
+    {{ courts_and_tribunals_group(group=group, type="court") }}
+    {% if not loop.last %}{{ divider() }}{% endif %}
+  {% endfor %}
 {% endset %}
 {% set tribunals_panel %}
   <h2>
     <strong>Tribunals</strong>
   </h2>
-  {% for group in tribunals %}{{ courts_and_tribunals_group(group=group, type="tribunal") }}{% endfor %}
+  {% for group in tribunals %}
+    {{ courts_and_tribunals_group(group=group, type="tribunal") }}
+    {% if not loop.last %}{{ divider() }}{% endif %}
+  {% endfor %}
 {% endset %}
 {{ tabs({
 "id": "courts-and-tribunals",

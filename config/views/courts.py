@@ -9,7 +9,8 @@ from .template_view_with_context import TemplateViewWithContext
 class CourtsTribunalsListView(TemplateViewWithContext):
     """List view for all courts and tribunals in the Find Case Law database."""
 
-    template_name = "pages/courts_and_tribunals.html"
+    template_engine = "jinja"
+    template_name = "pages/courts_and_tribunals.jinja"
     page_title = "Types of courts in England and Wales"
     page_allow_index = True
 
@@ -50,11 +51,6 @@ class CourtsTribunalsListView(TemplateViewWithContext):
         ]
 
         return context
-
-
-class CourtsTribunalsListJinjaView(CourtsTribunalsListView):
-    template_engine = "jinja"
-    template_name = "pages/courts_and_tribunals.jinja"
 
 
 class CourtOrTribunalView(TemplateViewWithContext):

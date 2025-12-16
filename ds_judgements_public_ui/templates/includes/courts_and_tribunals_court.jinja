@@ -13,7 +13,7 @@
       {% endcall %}
     {% endif %}
     {% if court.description_text_as_html %}
-      {% call details(title="About the " ~ court.grouped_name) %}
+      {% call details(title="About the " ~ court.grouped_name, variant="light") %}
         {% autoescape off %}
           {{ court.description_text_as_html }}
         {% endautoescape %}
@@ -31,7 +31,7 @@
       {% endif %}
     </p>
     {% if court.historic_documents_support_text_as_html %}
-      {% call details(title="Looking for older documents") %}
+      {% call details(title="Looking for older documents", variant="light") %}
         {% autoescape off %}
           {{ court.historic_documents_support_text_as_html }}
         {% endautoescape %}
