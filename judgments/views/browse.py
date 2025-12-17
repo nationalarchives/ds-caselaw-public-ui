@@ -16,7 +16,8 @@ from judgments.utils.utils import sanitise_input_to_integer
 
 
 class BrowseView(TemplateView):
-    template_name = "judgment/results.html"
+    template_engine = "jinja"
+    template_name = "judgment/results.jinja"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -47,6 +48,7 @@ class BrowseView(TemplateView):
             )
             search_response = search_judgments_and_parse_response(api_client, search_parameters)
 
+            context["query"] = self.request.GET.get("query", "")
             context["search_results"] = search_response.results
             context["total"] = search_response.total
             context["per_page"] = per_page

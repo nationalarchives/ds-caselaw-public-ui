@@ -18,6 +18,7 @@ from jinja2 import (
 from judgments.templatetags import (
     court_utils,
     document_utils,
+    errors,
     link_tags,
     navigation_tags,
     query_filters,
@@ -88,6 +89,7 @@ def environment(**options):
             "crispy": as_crispy_form,
         }
     )
+    env.filters["error_messages"] = errors.error_messages
     env.filters["get_court_judgments_count"] = court_utils.get_court_judgments_count
     env.filters["intcomma"] = intcomma
     env.filters["slugify"] = slugify
