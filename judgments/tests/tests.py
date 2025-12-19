@@ -83,7 +83,7 @@ class TestPaginator(TestCase):
         response = self.client.get("/search?tribunal=ukut/iac&order=&page=3")
         decoded_response = response.content.decode("utf-8")
         self.assertIn(
-            "/search?tribunal=ukut%2Fiac&amp;order=&page=4",
+            "/search?tribunal=ukut%2Fiac&amp;order=&amp;page=4",
             decoded_response,
         )
 

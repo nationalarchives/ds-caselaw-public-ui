@@ -1,4 +1,4 @@
-{% if query_params.items %}
+{% if query_params and query_params.items %}
   {% if filtered %}<h2 class="results-search-component__sub-header">Current filter(s)</h2>{% endif %}
   <ul class="results-search-component__removable-options js-results-facets-applied-filters">
     {% for key, value in query_params.items() %}

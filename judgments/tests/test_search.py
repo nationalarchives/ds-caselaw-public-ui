@@ -154,7 +154,7 @@ class TestSearchResults(TestCase):
         AND it should contain facet info
 
         The expected applied filters HTML:
-        - Includes a div with class `home-office-alert` and correct warning text
+        - Includes a div with class `alert` and correct warning text
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseWithFacets()
 
@@ -164,7 +164,7 @@ class TestSearchResults(TestCase):
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing matching results from 2010.  Find out what records are available on this service.
         """
-        xpath_query = "//div[@class='home-office-alert']"
+        xpath_query = "//div"
 
         assert_response_contains_text(response, expected_text, xpath_query)
 
@@ -190,7 +190,7 @@ class TestSearchResults(TestCase):
                 2011 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
         """
-        xpath_query = "//div[@class='home-office-alert']"
+        xpath_query = "//div[@class='alert']/p"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.search.results.api_client")
@@ -214,7 +214,7 @@ class TestSearchResults(TestCase):
         expected_text = """
                 the date of the oldest record
         """
-        xpath_query = "//div[@class='home-office-alert']"
+        xpath_query = "//div[@class='alert']/p"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.search.results.api_client")
@@ -240,7 +240,7 @@ class TestSearchResults(TestCase):
                 1444 is before 2003, the date of the oldest record on the Find Case Law service.
                 Showing results from 2003.
         """
-        xpath_query = "//div[@class='home-office-alert']"
+        xpath_query = "//div[@class='alert']/p"
         assert_response_not_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.search.results.api_client")
@@ -414,7 +414,8 @@ class TestSearchBreadcrumbs(TestCase):
     def test_search_breadcrumbs_without_query_string(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search")
-        assert response.context["breadcrumbs"] == [{"text": "Search results"}]
+        assert response.context_data is not None
+        assert response.context_data["breadcrumbs"] == [{"text": "Search results"}]
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -422,7 +423,8 @@ class TestSearchBreadcrumbs(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?query=waltham+forest")
 
-        assert response.context["breadcrumbs"] == [{"text": 'Search results for "waltham forest"'}]
+        assert response.context_data is not None
+        assert response.context_data["breadcrumbs"] == [{"text": 'Search results for "waltham forest"'}]
 
 
 class TestSearchFacets(TestCase):
@@ -433,12 +435,13 @@ class TestSearchFacets(TestCase):
         court_code = all_courts.get_by_code(CourtCode("EWHC-KBD-TCC"))
         response = self.client.get("/search?query=example+query")
 
+        assert response.context_data is not None
         # Desired court_facet is present
-        assert response.context["court_facets"] == {court_code: "1"}
+        assert response.context_data["court_facets"] == {court_code: "1"}
         # Blank keys are not present
-        assert "" not in response.context["court_facets"].keys()
+        assert "" not in response.context_data["court_facets"].keys()
         # Keys that don't match existing courts are not present
-        assert "invalid_court" not in response.context["court_facets"].keys()
+        assert "invalid_court" not in response.context_data["court_facets"].keys()
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -447,12 +450,13 @@ class TestSearchFacets(TestCase):
         tribunal_code = all_courts.get_by_code(CourtCode("EAT"))
         response = self.client.get("/search?query=example+query")
 
+        assert response.context_data is not None
         # Desired tribunal_facet is present
-        assert response.context["tribunal_facets"] == {tribunal_code: "3"}
+        assert response.context_data["tribunal_facets"] == {tribunal_code: "3"}
         # Blank keys are not present
-        assert "" not in response.context["tribunal_facets"].keys()
+        assert "" not in response.context_data["tribunal_facets"].keys()
         # Keys that don't match existing tribunals are not present
-        assert "invalid_court" not in response.context["tribunal_facets"].keys()
+        assert "invalid_court" not in response.context_data["tribunal_facets"].keys()
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -463,8 +467,9 @@ class TestSearchFacets(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoFacets()
         response = self.client.get("/search?query=example+query")
 
-        assert response.context["court_facets"] == {}
-        assert response.context["tribunal_facets"] == {}
+        assert response.context_data is not None
+        assert response.context_data["court_facets"] == {}
+        assert response.context_data["tribunal_facets"] == {}
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -472,10 +477,11 @@ class TestSearchFacets(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?query=example+query")
 
+        assert response.context_data is not None
         # Desired year_facet is present
-        assert response.context["year_facets"] == {"2010": "103"}
+        assert response.context_data["year_facets"] == {"2010": "103"}
         # Keys that don't match valid years are not present
-        assert "1900" not in response.context["year_facets"].keys()
+        assert "1900" not in response.context_data["year_facets"].keys()
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -498,7 +504,8 @@ class TestSearchFacets(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoFacets()
         response = self.client.get("/search?query=example+query")
 
-        assert response.context["year_facets"] == {}
+        assert response.context_data is not None
+        assert response.context_data["year_facets"] == {}
 
 
 class TestSearchValidation(TestCase):
@@ -508,7 +515,7 @@ class TestSearchValidation(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?court=ewhc")
         root = lxml.html.fromstring(response.content)
-        failure = root.xpath('//*[@class="page-notification--failure"]')
+        failure = root.xpath('//*[@class="alert"]')
         assert not failure
 
     @patch("judgments.views.search.results.api_client")
@@ -516,9 +523,11 @@ class TestSearchValidation(TestCase):
     def test_fake_short_code_court(self, mock_search_judgments_and_parse_response, mock_api_client):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?court=kitten")
-        root = lxml.html.fromstring(response.content)
-        failure = root.xpath('//*[@class="page-notification--failure"]')
-        assert failure[0].text == "Errors in 'court' - see below for details"
+
+        expected_text = "Errors in 'court' - see below for details"
+        xpath_query = "//div"
+
+        assert_response_contains_text(response, expected_text, xpath_query)
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -526,7 +535,7 @@ class TestSearchValidation(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?tribunal=ukut")
         root = lxml.html.fromstring(response.content)
-        failure = root.xpath('//*[@class="page-notification--failure"]')
+        failure = root.xpath('//*[@class="alert"]')
         assert not failure
 
     @patch("judgments.views.search.results.api_client")
@@ -535,7 +544,7 @@ class TestSearchValidation(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?court=ukut")
         root = lxml.html.fromstring(response.content)
-        failure = root.xpath('//*[@class="page-notification--failure"]')
+        failure = root.xpath('//*[@class="alert"]')
         assert not failure
 
     @patch("judgments.views.search.results.api_client")
@@ -544,5 +553,5 @@ class TestSearchValidation(TestCase):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
         response = self.client.get("/search?tribunal=uksc")
         root = lxml.html.fromstring(response.content)
-        failure = root.xpath('//*[@class="page-notification--failure"]')
+        failure = root.xpath('//*[@class="alert"]')
         assert not failure

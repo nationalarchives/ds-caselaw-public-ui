@@ -7,7 +7,7 @@ from .utils.assertions import assert_is_accessible, assert_matches_snapshot
 
 
 def query_input(page: Page):
-    return page.locator("#search_form")
+    return page.locator("#search_input")
 
 
 def submit_button(page: Page):

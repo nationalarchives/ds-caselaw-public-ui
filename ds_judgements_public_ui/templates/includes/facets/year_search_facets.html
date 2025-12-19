@@ -1,8 +1,0 @@
-{% load query_filters %}
-<div style="text-align: left;">
-  <b>Years relevant to your query:</b>
-  {% for year, item_count in year_facets.items %}
-    <a href="{% url "search" %}?{{ query_params|replace_year_in_query:year }}">{{ year }} ({{ item_count }})</a>
-    {% if not forloop.last %},{% endif %}
-  {% endfor %}
-</div>

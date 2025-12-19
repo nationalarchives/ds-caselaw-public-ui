@@ -42,12 +42,18 @@ class SearchResultsView(TemplateViewWithContext):
     * Given anything except an HTTP GET request raise an error
     """
 
-    template_name = "judgment/results.html"
+    template_engine = "jinja"
+    template_name = "judgment/results.jinja"
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
         if not form.is_valid():
-            return TemplateResponse(request, "pages/advanced_search.html", {"form": form})
+            return TemplateResponse(
+                request,
+                "pages/advanced_search.jinja",
+                {"form": form, "query": request.GET.get("query", "")},
+                using="jinja",
+            )
 
         search_parameters: SearchParameters = search_request_to_parameters(request)
         context = self._initialize_context(form)
@@ -69,7 +75,7 @@ class SearchResultsView(TemplateViewWithContext):
 
         context.update(
             {
-                "query": search_parameters.query,
+                "query": request.GET.get("query", ""),
                 "requires_from_warning": requires_warning,
                 "date_warning": warning,
                 "earliest_record": get_minimum_warning_year(),
@@ -197,8 +203,3 @@ class SearchResultsView(TemplateViewWithContext):
             warning += f"Showing matching results from {min_actual_year}. "
 
         return from_warning, warning
-
-
-class SearchResultsViewJinja(SearchResultsView):
-    template_engine = "jinja"
-    template_name = "judgment/results.jinja"

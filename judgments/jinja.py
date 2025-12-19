@@ -18,6 +18,7 @@ from jinja2 import (
 from judgments.templatetags import (
     court_utils,
     document_utils,
+    errors,
     link_tags,
     navigation_tags,
     query_filters,
@@ -88,6 +89,7 @@ def environment(**options):
             "crispy": as_crispy_form,
         }
     )
+    env.filters["error_messages"] = errors.error_messages
     env.filters["get_court_judgments_count"] = court_utils.get_court_judgments_count
     env.filters["intcomma"] = intcomma
     env.filters["slugify"] = slugify
@@ -97,6 +99,8 @@ def environment(**options):
     env.filters["is_exact_match"] = search_results_filters.is_exact_match
     env.filters["remove_query"] = query_filters.remove_query
     env.filters["remove_court"] = query_filters.remove_court
+    env.filters["replace_integer_with_day"] = query_filters.replace_integer_with_day
+    env.filters["replace_integer_with_month"] = query_filters.replace_integer_with_month
     env.filters["get_court_name"] = court_utils.get_court_name
     env.filters["removable_filter_param"] = query_filters.removable_filter_param
     env.filters["capfirst"] = capfirst

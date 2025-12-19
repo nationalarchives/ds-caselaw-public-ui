@@ -1,4 +1,4 @@
-from .advanced_search import AdvancedSearchView, AdvancedSearchViewJinja
-from .results import SearchResultsView, SearchResultsViewJinja
+from .advanced_search import AdvancedSearchView
+from .results import SearchResultsView
 
-__all__ = ["SearchResultsView", "AdvancedSearchView", "AdvancedSearchViewJinja", "SearchResultsViewJinja"]
+__all__ = ["SearchResultsView", "AdvancedSearchView"]

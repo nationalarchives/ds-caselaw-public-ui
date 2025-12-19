@@ -26,7 +26,8 @@ def cached_recent_judgments(ttl_hash: int) -> SearchResponse:
 
 
 class IndexView(TemplateView):
-    template_name = "pages/home.html"
+    template_engine = "jinja"
+    template_name = "pages/home.jinja"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,14 +38,14 @@ class IndexView(TemplateView):
         context["form"] = AdvancedSearchForm()
 
         try:
-            search_response = cached_recent_judgments(ttl_hash=round(time() / 900))  # Expire cache in 15 mins
-            search_results = search_response.results
-            context["recent_judgments"] = search_results
+            response = cached_recent_judgments(ttl_hash=round(time() / 900))
+            judgments = response.results
+            context["judgments"] = judgments
 
         except MarklogicResourceNotFoundError:
             raise Http404("Search results not found")  # TODO: This should be something else!
         except RequestException:
-            context["recent_judgments"] = []
+            context["judgments"] = []
             return context
 
         return context
