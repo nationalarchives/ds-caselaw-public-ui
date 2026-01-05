@@ -3,7 +3,7 @@
 {% from "components/alert.jinja" import alert %}
 {% from "components/content_container.jinja" import content_container %}
 {% from "components/card.jinja" import card %}
-{% from "components/button.jinja" import button %}
+{% from "components/button.jinja" import button, button_label %}
 {% from "components/heading.jinja" import heading %}
 {% block javascript %}
   <script type="module"
@@ -73,11 +73,22 @@
       {% endcall %}
       <div class="judgment-download-options__options-list">
         {% call card(variant="light") %}
-          {% call button(href=formatted_document_uri(document.slug, 'pdf'), attrs={"aria-label": "Download {{ document|get_title_to_display_in_html }} as a PDF
-            {% if pdf_size %}({{ pdf_size }}){% endif %}
-            ", "download": ""}) %}
+          {% call button(href=formatted_document_uri(document.slug, 'pdf'),
+            attrs={
+            "aria-label":
+            "Download " ~
+            (document | get_title_to_display_in_html) ~
+            " as a PDF" ~
+            (pdf_size and " (" ~ pdf_size ~ ")" or ""),
+            "download": ""
+            }
+            ) %}
             Download PDF
-            {% if pdf_size %}<span class="btn__label">({{ pdf_size }})</span>{% endif %}
+            {% if pdf_size %}
+              {% call button_label() %}
+                ({{ pdf_size }})
+              {% endcall %}
+            {% endif %}
           {% endcall %}
           <p>
             The original format of the {{ document.document_noun }} as handed down by the court, for printing and downloading.
