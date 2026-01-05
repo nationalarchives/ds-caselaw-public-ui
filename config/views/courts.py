@@ -56,7 +56,8 @@ class CourtsTribunalsListView(TemplateViewWithContext):
 class CourtOrTribunalView(TemplateViewWithContext):
     """Individual view for a specific court or tribunal landing page."""
 
-    template_name = "pages/court_or_tribunal.html"
+    template_engine = "jinja"
+    template_name = "pages/court_or_tribunal.jinja"
     page_allow_index = True
 
     @property
@@ -78,8 +79,3 @@ class CourtOrTribunalView(TemplateViewWithContext):
         ]
 
         return context
-
-
-class CourtOrTribunalViewJinja(CourtOrTribunalView):
-    template_engine = "jinja"
-    template_name = "pages/court_or_tribunal.jinja"
