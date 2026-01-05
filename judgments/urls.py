@@ -8,7 +8,7 @@ from judgments.views.browse import BrowseView
 from judgments.views.index import IndexView
 
 from . import converters, feeds
-from .resolvers.document_resolver_engine import DocumentResolverEngine, JinjaDocumentResolverEngine
+from .resolvers.document_resolver_engine import DocumentResolverEngine
 
 register_converter(converters.YearConverter, "yyyy")
 register_converter(converters.DateConverter, "date")
@@ -63,11 +63,6 @@ urlpatterns = [
     path(
         "<document_uri:document_uri>/<file_format:file_format>",
         DocumentResolverEngine.as_view(),
-        name="detail",
-    ),
-    path(
-        "home/<document_uri:document_uri>",
-        JinjaDocumentResolverEngine.as_view(),
         name="detail",
     ),
     path(

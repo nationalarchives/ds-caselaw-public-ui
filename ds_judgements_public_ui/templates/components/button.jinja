@@ -33,6 +33,9 @@
     {% endif %}
   {% endif %}
 {% endmacro %}
+{% macro button_label() %}
+  <span class="button__label">{{ caller() }}</span>
+{% endmacro %}
 {% macro button_variant_examples() %}
   {% call button() %}
     Primary button

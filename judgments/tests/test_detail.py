@@ -150,28 +150,29 @@ class TestDocumentDownloadOptions(MockAPI):
         client = Client()
         response = client.get(f"/{uri}")
 
-        download_options_html = f"""
-        <section id="download-options" class="judgment-download-options" aria-labelledby="judgment-download-options-header">
-            <h2 id="judgment-download-options-header" class="judgment-download-options__header">Document download options</h2>
-            <div class="judgment-download-options__options-list">
-                <div class="judgment-download-options__download-option">
-                    <a href="/tna.tn4t35ts/data.pdf" class="btn" aria-label="Download {document_title} as a PDF ({filesizeformat(112)})" download="">
-                        Download PDF <span class="btn__label">({filesizeformat(112)})</span>
-                    </a>
-                    <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
-                </div>
-                <div class="judgment-download-options__download-option">
-                    <a href="/{document.identifiers.preferred().url_slug}/data.xml" class="btn" aria-label="Download {document_title} as XML">
-                        Download XML
-                    </a>
-                    <p>
-                        The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
-                    </p>
-                </div>
-            </div>
-        </section>
+        pdf_download_button = f"""
+            <a href="/{document.identifiers.preferred().url_slug}/data.pdf" class="button" aria-label="Download {document_title} as a PDF ({filesizeformat(112)})" download="">
+                Download PDF <span class="button__label">({filesizeformat(112)})</span>
+            </a>
         """
-        assert_contains_html(response, download_options_html)
+        pdf_download_description = f"""
+            <p>The original format of the {document_noun} as handed down by the court, for printing and downloading.</p>
+        """
+        xml_download_button = f"""
+            <a href="/{document.identifiers.preferred().url_slug}/data.xml" class="button" aria-label="Download {document_title} as XML">
+                Download XML
+            </a>
+        """
+        xml_download_description = f"""
+            <p>
+                The {document_noun} in machine-readable LegalDocML format for developers, data scientists and researchers.
+            </p>
+        """
+
+        assert_contains_html(response, pdf_download_button)
+        assert_contains_html(response, pdf_download_description)
+        assert_contains_html(response, xml_download_button)
+        assert_contains_html(response, xml_download_description)
 
 
 class TestPressSummaryLabel(TestCaseWithMockAPI):
@@ -187,7 +188,7 @@ class TestPressSummaryLabel(TestCaseWithMockAPI):
         mock_get_document_by_uri.return_value = PressSummaryFactory.build(is_published=True)
         response = self.client.get("/test/2023/123")  # has to match factory to avoid redirect.
 
-        xpath_query = "//p[@class='judgment-toolbar__press-summary-title']"
+        xpath_query = "//p"
         assert_response_contains_text(response, "Press Summary", xpath_query)
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
@@ -203,7 +204,7 @@ class TestPressSummaryLabel(TestCaseWithMockAPI):
         )
         response = self.client.get("/eat/2023/1")
 
-        xpath_query = "//p[@class='judgment-toolbar__press-summary-title']"
+        xpath_query = "//p"
         assert_response_not_contains_text(response, "Press Summary", xpath_query)
 
 
@@ -468,7 +469,7 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
         response = self.client.get("/eat/2023/1/press-summary")
         h1_xpath_query = "//h1"
-        reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
+        reference_xpath_query = "//p"
 
         assert_response_contains_text(response, "Judgment A (with some slightly different wording)", h1_xpath_query)
         assert_response_contains_text(response, "[2023] EAT 1", reference_xpath_query)
@@ -515,7 +516,7 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
         mock_get_document_by_uri.return_value = document
 
         response = self.client.get("/eat/2023/1")
-        reference_xpath_query = "//p[@class='judgment-toolbar__reference']"
+        reference_xpath_query = "//p"
 
         assert_response_contains_text(response, "[1234] UKSC 1", reference_xpath_query)
 

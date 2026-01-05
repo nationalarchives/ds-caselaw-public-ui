@@ -6,7 +6,7 @@ from django.http.request import HttpRequest
 from django.views.generic import View
 
 from judgments.utils import api_client
-from judgments.views.detail import best_pdf, detail_html, detail_jinja, detail_xml, generated_pdf
+from judgments.views.detail import best_pdf, detail_html, detail_xml, generated_pdf
 
 
 class MultipleResolutionsError(Exception):
@@ -51,17 +51,3 @@ class DocumentResolverEngine(View):
 
         renderer = self.get_default_renderer()
         return renderer(request, database_uri)
-
-
-class JinjaDocumentResolverEngine(DocumentResolverEngine):
-    def get_default_renderer(self):
-        return detail_jinja
-
-    def get_fileformat_renderer(self, file_format: str):
-        lookup = {
-            "data.pdf": best_pdf,
-            "generated.pdf": generated_pdf,
-            "data.xml": detail_xml,
-            "data.html": detail_jinja,
-        }
-        return lookup[file_format]

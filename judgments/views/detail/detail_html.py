@@ -95,12 +95,6 @@ def build_context(request, document_uri):
 def detail_html(request, document_uri):
     context = build_context(request, document_uri)
 
-    return TemplateResponse(request, "judgment/detail.html", context=context)
-
-
-def detail_jinja(request, document_uri):
-    context = build_context(request, document_uri)
-
     return TemplateResponse(
         request,
         "judgment/detail.jinja",
