@@ -1,5 +1,6 @@
 {% extends "layouts/search_results.jinja" %}
 {% from "components/alert.jinja" import alert %}
+{% from "components/pagination.jinja" import pagination %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
 {% block content_body %}
   {% if show_no_exact_ncn_warning %}
@@ -55,7 +56,53 @@
         {% include "includes/no_results_message.jinja" %}
       {% endcall %}
     {% endif %}
-    {% include "includes/pagination.html" %}
+    {% if paginator.show_pagination %}
+      {% set base_qs = request.path ~ "?" ~ (query_string ~ "&" if query_string else "") %}
+      {% set items = [] %}
+      {% if paginator.show_first_page %}
+        {% set _ = items.append({
+                  "number": 1,
+                  "href": base_qs ~ "page=1"
+                }) %}
+      {% endif %}
+      {% if paginator.show_first_page_divider %}
+        {% set _ = items.append({"ellipsis": true}) %}
+      {% endif %}
+      {% for page in paginator.page_range %}
+        {% if page == paginator.current_page %}
+          {% set _ = items.append({
+                      "number": page,
+                      "href": base_qs ~ "page=" ~ page,
+                      "current": true
+                    }) %}
+        {% else %}
+          {% set _ = items.append({
+                      "number": page,
+                      "href": base_qs ~ "page=" ~ page
+                    }) %}
+        {% endif %}
+      {% endfor %}
+      {% if paginator.show_last_page_divider %}
+        {% set _ = items.append({"ellipsis": true}) %}
+      {% endif %}
+      {% if paginator.show_last_page %}
+        {% set _ = items.append({
+                  "number": paginator.number_of_pages,
+                  "href": base_qs ~ "page=" ~ paginator.number_of_pages
+                }) %}
+      {% endif %}
+      {{ pagination({
+            "previous": {
+            "html": "Previous",
+            "href":  (base_qs ~ "page=" ~ paginator.prev_page) if paginator.has_prev_page else (base_qs ~ "page=" ~ paginator.current_page)
+      },
+      "items": items,
+      "next": {
+      "html": "Next",
+      "href": (base_qs ~ "page=" ~ paginator.next_page) if paginator.has_next_page else (base_qs ~ "page=" ~ paginator.current_page)
+      }
+      }) }}
+    {% endif %}
   {% else %}
     {% call alert(title="No matching results have been found") %}
       {% include "includes/no_results_message.jinja" %}

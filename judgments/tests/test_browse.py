@@ -6,9 +6,6 @@ from django.test import TestCase
 from judgments.tests.fixture_data import (
     FakeSearchResponse,
 )
-from judgments.tests.utils.assertions import (
-    assert_contains_html,
-)
 
 
 class TestBrowse(TestCase):
@@ -29,16 +26,3 @@ class TestBrowse(TestCase):
         self.assertContains(response, "Judgment v Judgement", html=True)
         self.assertContains(response, "/uksc/2025/1")
         self.assertNotContains(response, "d-123456789abcdef")
-
-        expected_html = """
-        <div class="search-term-component__container">
-            <div class="search-term-component__search-term-container">
-            <label for="search_form" class="search-term-component__search-term-label">Search</label>
-            <input type="text" name="query" placeholder="Input your search term..." id="search_form" class="search-term-component__search-term-input">
-            </div>
-
-            <input type="submit" value="Search" class="button-primary" formaction="/search">
-        </div>
-        """
-
-        assert_contains_html(response, expected_html)

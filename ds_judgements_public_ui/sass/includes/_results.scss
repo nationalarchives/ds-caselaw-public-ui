@@ -6,10 +6,6 @@
     @include sr-only;
   }
 
-  &__container {
-    @include container;
-  }
-
   &__result-header {
     @media (min-width: $grid-breakpoint-large) {
       flex: 1;
