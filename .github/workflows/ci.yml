@@ -242,7 +242,6 @@ jobs:
       - pytest
       - static-analysis
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1

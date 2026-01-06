@@ -106,9 +106,10 @@ def assert_matches_snapshot(page, page_name):
         page.screenshot(path=actual_path, full_page=True)
 
         if not os.path.exists(expected_path):
-            warnings.warn(f"Expected {label} snapshot for {page_name} not found — generating from current page.")
             os.replace(actual_path, expected_path)
-            return
+            pytest.fail(
+                f"Expected {label} snapshot for {page_name} not found - this whas been generated. Re-run to try again"
+            )
 
         page.screenshot(path=actual_path, full_page=True)
         result, score = compare_snapshot(actual_path, expected_path)
