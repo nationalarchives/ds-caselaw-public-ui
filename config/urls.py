@@ -149,6 +149,11 @@ urlpatterns = [
         name="understanding_judgments_and_decisions",
     ),
     path(
+        "understanding-case-law",
+        static_views.UnderstandingCaseLawView.as_view(),
+        name="understanding_case_law",
+    ),
+    path(
         "user-research",
         static_views.UserResearchView.as_view(),
         name="user_research",

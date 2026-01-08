@@ -1,3 +1,4 @@
+import re
 from functools import wraps
 
 from crispy_forms.templatetags.crispy_forms_filters import as_crispy_form
@@ -25,6 +26,13 @@ from judgments.templatetags import (
     search_results_filters,
 )
 from transactional_licence_form.templatetags import transactional_licence_utils
+
+
+def hyphenate(value: str) -> str:
+    value = value.lower()
+    value = re.sub(r"[^\w\s-]", "", value)
+    value = re.sub(r"[\s_-]+", "-", value)
+    return value.strip("-")
 
 
 def capfirst(value):
@@ -110,4 +118,5 @@ def environment(**options):
     env.filters["format_value_for_review"] = transactional_licence_utils.format_value_for_review
     env.filters["get_title_to_display_in_html"] = document_utils.get_title_to_display_in_html
     env.filters["get_court_date_range"] = court_utils.get_court_date_range
+    env.filters["hyphenate"] = hyphenate
     return env

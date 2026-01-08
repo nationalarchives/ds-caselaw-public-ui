@@ -1,4 +1,4 @@
-{% macro heading(tag="h1", size="default", id="") %}
+{% macro heading(tag="h1", size="default", id=None) %}
   {% set size_classes = {
     "default": "",
     "h1": "heading heading--h1",
@@ -7,12 +7,14 @@
     "h4": "heading heading--h4"
   } %}
   {% set size_class = size_classes.get(size, size_classes["default"]) %}
-  {% if tag == "h1" %}<h1 id="{{ id }}" class="{{ size_class }}">{{ caller() }}</h1>{% endif %}
-  {% if tag == "h2" %}<h2 id="{{ id }}" class="{{ size_class }}">{{ caller() }}</h2>{% endif %}
-  {% if tag == "h3" %}<h3 id="{{ id }}" class="{{ size_class }}">{{ caller() }}</h3>{% endif %}
-  {% if tag == "h4" %}<h4 id="{{ id }}" class="{{ size_class }}">{{ caller() }}</h4>{% endif %}
-  {% if tag == "div" %}<div id="{{ id }}" class="{{ size_class }}">{{ caller() }}</div>{% endif %}
-  {% if tag == "span" %}<span id="{{ id }}" class="{{ size_class }}">{{ caller() }}</span>{% endif %}
+  {% set text = caller() | trim %}
+  {% set id_value = id | default(text | hyphenate, true) %}
+  {% if tag == "h1" %}<h1 id="{{ id_value }}" class="{{ size_class }}">{{ caller() }}</h1>{% endif %}
+  {% if tag == "h2" %}<h2 id="{{ id_value }}" class="{{ size_class }}">{{ caller() }}</h2>{% endif %}
+  {% if tag == "h3" %}<h3 id="{{ id_value }}" class="{{ size_class }}">{{ caller() }}</h3>{% endif %}
+  {% if tag == "h4" %}<h4 id="{{ id_value }}" class="{{ size_class }}">{{ caller() }}</h4>{% endif %}
+  {% if tag == "div" %}<div id="{{ id_value }}" class="{{ size_class }}">{{ caller() }}</div>{% endif %}
+  {% if tag == "span" %}<span id="{{ id_value }}" class="{{ size_class }}">{{ caller() }}</span>{% endif %}
 {% endmacro %}
 {% macro heading_examples() %}
   {% call heading(size="h1") %}
