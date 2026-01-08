@@ -33,6 +33,11 @@ static_pages = [
         "heading": "Understanding judgments and decisions",
     },
     {
+        "url": "/understanding-case-law",
+        "title": "Understanding case law",
+        "heading": "Understanding case law",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
