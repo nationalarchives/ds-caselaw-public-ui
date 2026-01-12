@@ -1,0 +1,107 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/search_input.jinja" import search_form, search_input, search_input_actions %}
+{% block mobile_article_title %}
+  <small>Published on
+    <time datetime="2026-01-12">12 January 2026</time>
+  </small>
+  {% call heading() %}
+    Search and browse
+  {% endcall %}
+  <p>Find the judgments and decisions you need using our search tools or browse by court and tribunal.</p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Published on
+    <time datetime="2025-01-12">12 January 2026</time>
+  </small>
+  {% call heading() %}
+    Search and browse
+  {% endcall %}
+  <p>Find the judgments and decisions you need using our search tools or browse by court and tribunal.</p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#search-for-judgments") %}
+          Search for judgments
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#browse-by-court-or-tribunal") %}
+          Browse by court or tribunal
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#understanding-search-results") %}
+          Understanding search results
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#more-search-tips") %}
+          More search tips
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    {% call heading(tag="h2") %}
+      Search for judgments
+    {% endcall %}
+    {% call search_form( id="analytics-search-form") %}
+      {{ search_input(value="", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+    {% endcall %}
+    <p>
+      Search court judgments and tribunal decisions using the search box. You can search the full text of every judgment or decision in Find Case Law, as well as details such as court name and neutral citation.
+    </p>
+    <p>
+      Use
+      {% call link(href=url("advanced_search")) %}
+        Advanced search
+      {% endcall %}
+      to filter search results by specific dates, courts or tribunals, party names or judge names.
+    </p>
+    {% call heading(tag="h2") %}
+      Browse by court or tribunal
+    {% endcall %}
+    <p>Not sure exactly what you're looking for? Browse judgments by court or tribunal type.</p>
+    <p>
+      {% call link(href=url("courts_and_tribunals")) %}
+        Browse courts and tribunals
+      {% endcall %}
+      to:
+    </p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        see which courts and tribunals are included in Find Case Law
+      {% endcall %}
+      {% call list_item() %}
+        understand date ranges and coverage for each court
+      {% endcall %}
+      {% call list_item() %}
+        access the Courts and Tribunals directory
+      {% endcall %}
+    {% endcall %}
+    {% call card(title="Understanding search results", variant="unbordered", title_tag="h2") %}
+      <p>
+        By default, search results are ordered by 'Most relevant'. If you have multiple search terms, results in which those terms appear closer together will be listed higher up.
+      </p>
+      <p>You can also order results by 'Newest' and 'Oldest', based on the date the judgment or decision was handed down.</p>
+    {% endcall %}
+    {% call card(title="More search tips", title_tag="h2") %}
+      <p>
+        Visit
+        {% call link(href=url("how_to_search_find_case_law")) %}
+          How to search Find Case Law
+        {% endcall %}
+        for more tips and examples to help you find what you’re looking for.
+      </p>
+    {% endcall %}
+  </section>
+{% endblock article_content %}

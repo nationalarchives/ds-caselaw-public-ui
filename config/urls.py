@@ -154,6 +154,11 @@ urlpatterns = [
         name="understanding_case_law",
     ),
     path(
+        "search-and-browse",
+        static_views.SearchAndBrowseView.as_view(),
+        name="search_and_browse",
+    ),
+    path(
         "user-research",
         static_views.UserResearchView.as_view(),
         name="user_research",
