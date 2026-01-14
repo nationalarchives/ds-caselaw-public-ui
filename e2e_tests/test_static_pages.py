@@ -48,6 +48,11 @@ static_pages = [
         "heading": "Browse courts and tribunals",
     },
     {
+        "url": "/about-find-case-law",
+        "title": "About Find Case Law",
+        "heading": "About Find Case Law",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
