@@ -104,6 +104,11 @@ urlpatterns = [
         name="help_and_guidance",
     ),
     path(
+        "what-we-provide",
+        static_views.WhatWeProvideView.as_view(),
+        name="what_we_provide",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
