@@ -58,6 +58,11 @@ static_pages = [
         "heading": "What we provide",
     },
     {
+        "url": "/courts-and-date-coverage",
+        "title": "Courts and date coverage",
+        "heading": "Courts and date coverage",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
