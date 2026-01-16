@@ -341,6 +341,26 @@ class WhatWeProvideView(TemplateViewWithContext):
         return context
 
 
+class PermissionsAndLicencingView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/permissions_and_licencing.jinja"
+    page_title = "Permissions and Licencing"
+    page_canonical_url_name = "permissions_and_licencing"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "permissions_and_licencing"
+        context["page_description"] = (
+            "All judgments on Find Case Law are free to access, but different rules apply depending on how you want to use the records."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing"},
+        ]
+
+        return context
+
+
 class CourtsAndDateCoverageView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/courts_and_date_coverage.jinja"

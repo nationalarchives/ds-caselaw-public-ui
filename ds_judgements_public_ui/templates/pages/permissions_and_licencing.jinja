@@ -1,0 +1,169 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Permissions and Licencing
+  {% endcall %}
+  <p>
+    All judgments on Find Case Law are free to access, but different rules apply depending on how you want to use the records.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Permissions and Licencing
+  {% endcall %}
+  <p>
+    All judgments on Find Case Law are free to access, but different rules apply depending on how you want to use the records.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#understanding-permissions") %}
+          Understanding permissions
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#what-you-can-do-freely") %}
+          What you can do freely
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#when-you-need-permission") %}
+          When you need permission
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-to-apply-for-a-licence") %}
+          How to apply for a licence
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#legal-framework") %}
+          Legal framework
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#questions-about-permissions") %}
+          Questions about permissions
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Understanding permissions
+  {% endcall %}
+  <p>
+    Most uses of Find Case Law judgments are free under the
+    {% call link(href=url("open_justice_licence")) %}
+      Open Justice Licence
+    {% endcall %}
+    . This includes commercial use such as incorporating judgments into products or applications.
+  </p>
+  <p>
+    However, if you want to perform computational analysis, you need to apply for a separate licence. Computational analysis includes any programmatic searching in bulk across Find Case Law records to identify, extract or enrich contents within the records.
+  </p>
+  <p>Here's what you can do freely, when you need permission and how to apply.</p>
+  {% call heading(tag="h2") %}
+    What you can do freely
+  {% endcall %}
+  <p>You don't need permission for most uses of Find Case Law judgments, including:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      reading and downloading judgments
+    {% endcall %}
+    {% call list_item() %}
+      using them for legal research and case preparation
+    {% endcall %}
+    {% call list_item() %}
+      quoting them in academic work, articles, or publications
+    {% endcall %}
+    {% call list_item() %}
+      sharing links to judgments
+    {% endcall %}
+    {% call list_item() %}
+      teaching and educational purposes
+    {% endcall %}
+    {% call list_item() %}
+      personal reference and study
+    {% endcall %}
+    {% call list_item() %}
+      commercial use, such as incorporating into products or applications
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    When you need permission
+  {% endcall %}
+  <p>
+    You need to apply for a licence if you want to perform computational analysis. You can read a more detailed description of computational analysis in our glossary.
+  </p>
+  <p>
+    When you need permission explains what counts as computational analysis and whether your intended use requires a licence.
+  </p>
+  {% call heading(tag="h2") %}
+    How to apply for a licence
+  {% endcall %}
+  <p>If you need to perform computational analysis, we have a straightforward application process.</p>
+  <p>What you need to apply for a licence explains:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the 6 sections of the application form
+    {% endcall %}
+    {% call list_item() %}
+      the 29 questions you'll need to answer
+    {% endcall %}
+    {% call list_item() %}
+      how to prepare your application
+    {% endcall %}
+  {% endcall %}
+  <p>Licence application process explains:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      how applications are assessed
+    {% endcall %}
+    {% call list_item() %}
+      the approval process
+    {% endcall %}
+    {% call list_item() %}
+      timelines and what to expect
+    {% endcall %}
+  {% endcall %}
+  <p>There are no costs to apply for a licence to perform computational analysis.</p>
+  {% call heading(tag="h2") %}
+    Legal framework
+  {% endcall %}
+  <p>If you need the detailed legal terms, read our legal framework for:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the Open Justice Licence terms
+    {% endcall %}
+    {% call list_item() %}
+      technical specifications for licensed uses
+    {% endcall %}
+    {% call list_item() %}
+      legal definitions and conditions
+    {% endcall %}
+  {% endcall %}
+  {% call card(title="Questions about permissions", title_tag="h2") %}
+    <p>
+      If you're unsure whether you need a licence, visit
+      {% call link(href=url("permissions_and_licencing")) %}
+        When you need permission
+      {% endcall %}
+      for guidance, or contact us at
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {% endcall %}
+    </p>
+    <p>
+      Most people using Find Case Law for research, legal work, journalism or commercial products don't need a licence – you can start using judgments freely right away under the Open Justice Licence.
+    </p>
+  {% endcall %}
+{% endblock article_content %}
