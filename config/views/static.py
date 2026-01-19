@@ -382,6 +382,27 @@ class WhatYouCanDoFreelyView(TemplateViewWithContext):
         return context
 
 
+class WhenYouNeedPermissionView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/when_you_need_permission.jinja"
+    page_title = "When you need permission"
+    page_canonical_url_name = "when_you_need_permission"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "when_you_need_permission"
+        context["page_description"] = (
+            "Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "When you need permission"},
+        ]
+
+        return context
+
+
 class CourtsAndDateCoverageView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/courts_and_date_coverage.jinja"
