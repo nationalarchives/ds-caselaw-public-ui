@@ -1,0 +1,227 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/details.jinja" import details %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    What you need to apply for a licence
+  {% endcall %}
+  <p>
+    If you want to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's what the application involves and how to prepare.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    What you need to apply for a licence
+  {% endcall %}
+  <p>
+    If you want to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's what the application involves and how to prepare.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#before-you-start") %}
+          Before you start
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#the-application-form") %}
+          The application form
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#additional-comments") %}
+          Additional comments
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#help-to-prepare") %}
+          Help to prepare
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#ready-to-apply") %}
+          Ready to apply?
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Before you start
+  {% endcall %}
+  <p>
+    <strong>Important:</strong> You cannot save your application partway through. You will need to complete your application in one session.
+  </p>
+  <p>Make sure you have all the information you need before you begin.</p>
+  <p>You do not need to apply for a licence if your re-use is already covered under the Open Justice Licence.</p>
+  <p>
+    The Open Justice Licence covers most uses, including commercial use. You only need to apply if you want to perform computational analysis.
+  </p>
+  {% call heading(tag="h2") %}
+    The application form
+  {% endcall %}
+  <p>
+    There is one application form to apply to perform computational analysis across Find Case Law records. It is made up of 6 main sections with 29 questions in total.
+  </p>
+  <p>You will need to respond to all the questions. There is no way to save the application partway through.</p>
+  {% call heading(tag="h3") %}
+    The 6 sections
+  {% endcall %}
+  {% call heading(tag="h4") %}
+    1. The details of the person responsible for the licence
+  {% endcall %}
+  <p>
+    They should be someone who is senior in your organisation and will be responsible for licence application and compliance. They will need to be someone we can talk to if we have questions about the application.
+  </p>
+  {% call details(title="Contact") %}
+    {% call heading(tag="h4") %}
+      2. The details of your organisation
+    {% endcall %}
+    <p>We will ask you information about your organisation:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        legal name of your organisation
+      {% endcall %}
+      {% call list_item() %}
+        what type of organisation is it (for example, private limited company or registered charity)
+      {% endcall %}
+    {% endcall %}
+    <p>Responses to this section may be published in the future.</p>
+  {% endcall %}
+  {% call details(title="Organisation details") %}
+    {% call heading(tag="h4") %}
+      3. The purpose of your re–use
+    {% endcall %}
+    <p>Your statement should summarise:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        the purpose and anticipated outcomes of your product or service
+      {% endcall %}
+      {% call list_item() %}
+        the individuals or communities you intend to serve
+      {% endcall %}
+      {% call list_item() %}
+        the methodologies or activities you will use to analyse the records
+      {% endcall %}
+    {% endcall %}
+    <p>You should aim for no more than 150 words in your statement.</p>
+    <p>
+      Responses to this section may be published in the future, for example, if we receive a freedom of information request.
+    </p>
+  {% endcall %}
+  {% call details(title="Purpose and Activities") %}
+    {% call heading(tag="h4") %}
+      4. A public statement
+    {% endcall %}
+    <p>
+      We will ask you to write a brief public statement that summarises the reasons why you want to perform computational analysis. This statement should include:
+    </p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        purpose and anticipated outcomes
+      {% endcall %}
+      {% call list_item() %}
+        individuals or communities served
+      {% endcall %}
+      {% call list_item() %}
+        methodologies or activities this will involve
+      {% endcall %}
+    {% endcall %}
+    <p>You should aim for no more than 150 words in your public statement.</p>
+    <p>Responses to this section may be published in the future.</p>
+  {% endcall %}
+  {% call details(title="Public statement") %}
+    {% call heading(tag="h4") %}
+      5. Details of your working practices and governance
+    {% endcall %}
+    <p>
+      We will ask you a series of questions to understand how you will work with the data from these records. These will include questions about your methodology and ethical governance.
+    </p>
+  {% endcall %}
+  {% call details(title="Working practices") %}
+    {% call heading(tag="h4") %}
+      6. Details of risks you have identified against the nine principles
+    {% endcall %}
+    <p>
+      In 2023 the Ministry of Justice established nine principles to guide our decision making process on applications to conduct computational analysis across the Find Case Law collection.
+    </p>
+    <p>
+      We will ask you to accept these as licence terms and to prepare a statement about any risks you have identified for each of these principles.
+    </p>
+    <p>
+      It's important that you respond to each principle in turn. Responses that do not address each of the nine principles may experience delays and requests for further information.
+    </p>
+    <p>The nine principles are:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        Dignity of the court
+      {% endcall %}
+      {% call list_item() %}
+        Independence of the court
+      {% endcall %}
+      {% call list_item() %}
+        Appropriate scrutiny
+      {% endcall %}
+      {% call list_item() %}
+        Anti-discriminatory harm
+      {% endcall %}
+      {% call list_item() %}
+        Anti-bias
+      {% endcall %}
+      {% call list_item() %}
+        Personal Privacy
+      {% endcall %}
+      {% call list_item() %}
+        Discoverability
+      {% endcall %}
+      {% call list_item() %}
+        Algorithmic transparency
+      {% endcall %}
+      {% call list_item() %}
+        Accurate data representation
+      {% endcall %}
+    {% endcall %}
+    <p>
+      Please read the information carefully. If you are unsure how to answer this question you can contact the licensing department for further information.
+    </p>
+  {% endcall %}
+  {% call details(title="Nine Principles") %}
+    {% call heading(tag="h2") %}
+      Additional comments
+    {% endcall %}
+    <p>There will be space at the end of the application for any additional comments you wish to make.</p>
+    {% call heading(tag="h2") %}
+      Help to prepare
+    {% endcall %}
+    <p>
+      To help you prepare, you can download a full list of the 29 questions we will ask you as a Microsoft Word document.
+    </p>
+    <p>
+      {% call link(href=static('/documents/Dowloadable version of online application form reviewed 29_05.docx')) %}
+        Download full list of 29 questions (Microsoft Word 29.2 kB)
+      {% endcall %}
+    </p>
+  {% endcall %}
+  {% call card(title="Ready to apply?", title_tag="h2") %}
+    <p>
+      It may take a few weeks until you receive a decision on your application. You can read more about the approval process on the
+      {% call link(href=url("transactional-licence-form")) %}
+        Licence application process
+      {% endcall %}
+      page.
+    </p>
+    <p>
+      If you have any questions about licensing, please email the Licensing Department:
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {% endcall %}
+    </p>
+  {% endcall %}
+{% endblock article_content %}

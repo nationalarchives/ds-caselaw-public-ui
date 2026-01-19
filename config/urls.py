@@ -134,6 +134,11 @@ urlpatterns = [
         name="using_find_case_law_records",
     ),
     path(
+        "what-you-need-to-apply-for-a-licence",
+        static_views.WhatYouNeedToApplyForALicence.as_view(),
+        name="what_you_need_to_apply_for_a_licence",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",

@@ -83,6 +83,11 @@ static_pages = [
         "heading": "Using Find Case Law records",
     },
     {
+        "url": "/what-you-need-to-apply-for-a-licence",
+        "title": "What you need to apply for a licence",
+        "heading": "What you need to apply for a licence",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
