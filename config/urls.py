@@ -119,6 +119,11 @@ urlpatterns = [
         name="permissions_and_licencing",
     ),
     path(
+        "what-you-can-do-freely",
+        static_views.WhatYouCanDoFreelyView.as_view(),
+        name="what_you_can_do_freely",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",

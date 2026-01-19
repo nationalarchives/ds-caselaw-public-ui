@@ -68,6 +68,11 @@ static_pages = [
         "heading": "Permissions and Licencing",
     },
     {
+        "url": "/what-you-can-do-freely",
+        "title": "What you can do freely",
+        "heading": "What you can do freely",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
