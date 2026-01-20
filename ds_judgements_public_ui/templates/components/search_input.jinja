@@ -15,11 +15,12 @@
   </div>
 {% endmacro %}
 {% macro search_form(label="", id="") %}
-  <div class="search-input">
-    <form role="search" aria-label="{{ label }}" id="{{ id }}">
-      {{ caller() }}
-    </form>
-  </div>
+  <form role="search" aria-label="{{ label }}" id="{{ id }}">
+    {{ caller() }}
+  </form>
+{% endmacro %}
+{% macro search_form_container() %}
+  <div class="search-input">{{ caller() }}</div>
 {% endmacro %}
 {% macro search_input_footer() %}
   <div class="search-input__footer">{{ caller() }}</div>
@@ -28,35 +29,37 @@
   <div class="search-input__actions {{ class }}">{{ caller() }}</div>
 {% endmacro %}
 {% macro search_input_examples() %}
-  <div class="container">
-    <h3>Current homepage usage</h3>
-  </div>
-  {% call hero() %}
-    {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
-      <p>Use any search term including neutral citation, names and keywords</p>
-      {{ search_input(label="Search by keyword or neutral citation", button_action=url("advanced_search") , button_label="Search") }}
-      <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
-      {% call search_input_footer() %}
-        {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+  {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
+    <div class="container">
+      <h3>Current homepage usage</h3>
+    </div>
+    {% call hero() %}
+      {% call search_form_container() %}
+        <p>Use any search term including neutral citation, names and keywords</p>
+        {{ search_input(label="Search by keyword or neutral citation", button_action=url("advanced_search") , button_label="Search") }}
+        <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
+        {% call search_input_footer() %}
+          {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+        {% endcall %}
       {% endcall %}
     {% endcall %}
-  {% endcall %}
-  <div class="container">
-    <h3>With no params</h3>
-  </div>
-  {% call hero() %}
-    {% call search_form() %}
-      <p>With no params</p>
-      {{ search_input() }}
+    <div class="container">
+      <h3>With no params</h3>
+    </div>
+    {% call hero() %}
+      {% call search_form_container() %}
+        <p>With no params</p>
+        {{ search_input() }}
+      {% endcall %}
     {% endcall %}
-  {% endcall %}
-  <div class="container">
-    <h3>With a bigger heading</h3>
-  </div>
-  {% call hero() %}
-    {% call search_form() %}
+    <div class="container">
       <h3>With a bigger heading</h3>
-      {{ search_input() }}
+    </div>
+    {% call hero() %}
+      {% call search_form_container() %}
+        <h3>With a bigger heading</h3>
+        {{ search_input() }}
+      {% endcall %}
     {% endcall %}
   {% endcall %}
 {% endmacro %}
