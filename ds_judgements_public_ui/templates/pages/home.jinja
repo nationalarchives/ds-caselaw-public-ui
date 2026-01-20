@@ -5,15 +5,17 @@
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
 {% from "components/grid.jinja" import grid %}
 {% from "components/hero.jinja" import hero %}
-{% from "components/search_input.jinja" import search_form, search_input, search_input_footer %}
+{% from "components/search_input.jinja" import search_form,search_form_container, search_input, search_input_footer %}
 {% block content %}
   {% call hero() %}
     {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
-      <p>Use any search term including neutral citation, names and keywords</p>
-      {{ search_input(label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
-      <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
-      {% call search_input_footer() %}
-        {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+      {% call search_form_container() %}
+        <p>Use any search term including neutral citation, names and keywords</p>
+        {{ search_input(label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+        <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
+        {% call search_input_footer() %}
+          {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+        {% endcall %}
       {% endcall %}
     {% endcall %}
   {% endcall %}

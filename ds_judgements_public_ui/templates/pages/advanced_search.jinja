@@ -5,19 +5,21 @@
 {% from "components/hero.jinja" import hero %}
 {% from "components/alert.jinja" import alert %}
 {% from "components/tag.jinja" import tag, tag_container %}
-{% from "components/search_input.jinja" import search_form, search_input, search_input_actions %}
+{% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
 {% block title %}
   Advanced search - Find Case Law
 {% endblock title %}
 {% block content %}
   <div class="js-results-facets-wrapper">
     {% call hero() %}
-      {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
-        {% call heading() %}
-          Advanced search
+      {% call search_form_container() %}
+        {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
+          {% call heading() %}
+            Advanced search
+          {% endcall %}
+          {{ search_input(value=query, label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+          <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
         {% endcall %}
-        {{ search_input(value=query, label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
-        <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
       {% endcall %}
     {% endcall %}
     {% call content_container() %}
@@ -26,7 +28,11 @@
           {{ form.errors|error_messages }}
         {% endcall %}
       {% endif %}
-      <div class="structured-search">{% include "includes/results_filters_inputs.jinja" %}</div>
+      <div class="structured-search">
+        {% call search_form(id="analytics-results-filters") %}
+          {% include "includes/results_filters_inputs.jinja" %}
+        {% endcall %}
+      </div>
     {% endcall %}
   </div>
 {% endblock content %}
