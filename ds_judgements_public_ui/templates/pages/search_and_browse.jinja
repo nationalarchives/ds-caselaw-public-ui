@@ -64,14 +64,14 @@
     </p>
     <p>
       Use
-      {% call link(href=url("advanced_search")) %}
+      {%- call link(href=url("advanced_search")) -%}
         Advanced search
-      {% endcall %}
+      {%- endcall -%}
       to filter search results by specific dates, courts or tribunals, party names or judge names.
     </p>
-    {% call heading(tag="h2") %}
+    {%- call heading(tag="h2") -%}
       Browse by court or tribunal
-    {% endcall %}
+    {%- endcall -%}
     <p>Not sure exactly what you're looking for? Browse judgments by court or tribunal type.</p>
     <p>
       {%- call link(href=url("courts_and_tribunals")) -%}
