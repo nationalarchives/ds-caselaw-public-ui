@@ -86,7 +86,25 @@
     }
   }
 
+  &--unbordered {
+    background-color: colour-var("accent-background-light");
+
+    &:is(a) {
+      color: colour-var("link");
+
+      &:hover {
+        background-color: colour-var("accent-background");
+      }
+
+      &:visited {
+        color: colour-var("link");
+      }
+    }
+  }
+
   &:is(a) {
+    h1,
+    h2,
     h3 {
       text-decoration: underline;
       text-decoration-thickness: $link-underline-thickness;
@@ -97,6 +115,8 @@
     }
   }
 
+  h1,
+  h2,
   h3,
   p,
   button {

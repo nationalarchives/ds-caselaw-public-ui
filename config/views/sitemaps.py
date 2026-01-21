@@ -67,6 +67,8 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
             "help_and_guidance",
             "how_to_search_find_case_law",
             "understanding_judgments_and_decisions",
+            # TODO: Remove this when we want them to be in the sitemap
+            # "understanding_case_law",
         ]
 
         context["items"] = [{"url": self.request.build_absolute_uri(reverse(url))} for url in url_names]

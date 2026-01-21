@@ -1,0 +1,137 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  <small>Published on
+    <time datetime="2026-01-08">8 January 2026</time>
+  </small>
+  {% call heading() %}
+    Understanding case law
+  {% endcall %}
+  <p>
+    If you're new to legal information, we’ll help you understand how case law works and how to read court judgments.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  <small>Published on
+    <time datetime="2025-01-08">8 January 2026</time>
+  </small>
+  {% call heading() %}
+    Understanding case law
+  {% endcall %}
+  <p>
+    If you're new to legal information, we’ll help you understand how case law works and how to read court judgments.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#what-is-case-law") %}
+          What is case law?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-courts-and-tribunals-work") %}
+          How courts and tribunals work
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#reading-judgments") %}
+          Reading judgments
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#legal-terms-explained") %}
+          ​​Legal terms explained
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#getting-started-with-finding-and-reading-judgments") %}
+          Getting started with finding and reading judgments
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <section>
+    {% call heading(tag="h2") %}
+      What is case law?
+    {% endcall %}
+    <p>
+      Case law is the body of law created by judges' decisions in court cases. When judges interpret the law and make rulings, these decisions can set precedents that guide future cases. Understanding case law helps you see how the law has been applied in real situations.
+    </p>
+    {% call heading(tag="h2") %}
+      How courts and tribunals work
+    {% endcall %}
+    <p>
+      Learn about the structure of the court system in England and Wales, from magistrates' courts to the Supreme Court, and understand how different tribunals operate.
+    </p>
+    {% call heading(tag="h2") %}
+      Reading judgments
+    {% endcall %}
+    <p>Discover how to read and understand court judgments, including:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        the structure and sections of a typical judgment
+      {% endcall %}
+      {% call list_item() %}
+        how judges explain their reasoning
+      {% endcall %}
+      {% call list_item() %}
+        understanding legal citations and references
+      {% endcall %}
+      {% call list_item() %}
+        what different types of orders and decisions mean
+      {% endcall %}
+    {% endcall %}
+    {% call heading(tag="h2") %}
+      ​​Legal terms explained
+    {% endcall %}
+    <p>
+      Access our glossary of common legal terms to help you understand the language used in
+      judgments. From "appellant" to "precedent", we explain key concepts in plain English.
+    </p>
+    {% call card(title="Getting started with finding and reading judgments", variant="unbordered", title_tag="h2") %}
+      <p>
+        We’ve provided this information for anyone who needs to understand case law but may not have legal training, including:
+      </p>
+      {% call list(variant="bullets") %}
+        {% call list_item() %}
+          students and researchers
+        {% endcall %}
+        {% call list_item() %}
+          journalists and writers
+        {% endcall %}
+        {% call list_item() %}
+          people representing themselves in legal matters
+        {% endcall %}
+        {% call list_item() %}
+          members of the public interested in how courts work
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+    {% call card(title="If you’re new to judgments") %}
+      <p>
+        If you're looking at a judgment for the first time, start with
+        {%- call link(href="/reading-judgments") -%}
+          Reading judgments
+        {%- endcall -%}
+        to understand what you're reading.
+      </p>
+    {% endcall %}
+    {% call card(title="If you’re a legal professional") %}
+      <p>
+        Legal professionals may want to go straight to
+        {%- call link(href="/search-and-browse") -%}
+          Search and Browse
+        {%- endcall -%}
+        to find specific cases.
+      </p>
+    {% endcall %}
+  </section>
+{% endblock article_content %}

@@ -1,6 +1,7 @@
-{% macro card(title=None, alignment=None, image_url=None, url=None, variant=None, attrs={}) %}
+{% macro card(title=None, alignment=None, image_url=None, url=None, variant=None, attrs={}, title_tag="h3") %}
   {% set variant_classes = {
     "default": "card card--default",
+    "unbordered": "card card--unbordered",
     "ghost": "card card--ghost",
     "light": "card card--light",
     "image": "card card--image"
@@ -18,7 +19,7 @@
       {% endif %}
       {% if image_url %}<img src="{{ image_url }}" alt="" />{% endif %}
       <div class="card__body">
-        {% if title %}<h3>{{ title }}</h3>{% endif %}
+        {% if title %}<{{ title_tag }} id="{{ title| hyphenate }}">{{ title }}</{{ title_tag }}>{% endif %}
         {{ caller() }}
       </div>
       {% if url %}
