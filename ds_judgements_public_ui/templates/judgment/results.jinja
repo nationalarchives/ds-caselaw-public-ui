@@ -29,9 +29,15 @@
         {% for judgment in search_results %}
           {% call document_table_row() %}
             {% call document_table_cell(variant="details") %}
-              {% call link(href=url("detail", judgment.slug)) %}
-                {{ judgment.name }}
-              {% endcall %}
+              {% if query_param_string %}
+                {% call link(href=url("detail", judgment.slug) ~ "?" ~ query_param_string) %}
+                  {{ judgment.name }}
+                {% endcall %}
+              {% else %}
+                {% call link(href=url("detail", judgment.slug)) %}
+                  {{ judgment.name }}
+                {% endcall %}
+              {% endif %}
               {{ judgment.court.name }}
               {% if judgment|show_matches(query) %}
                 <div>
