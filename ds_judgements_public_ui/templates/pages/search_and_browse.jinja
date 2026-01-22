@@ -4,7 +4,7 @@
 {% from "components/heading.jinja" import heading %}
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list, list_item %}
-{% from "components/search_input.jinja" import search_form, search_input, search_input_actions %}
+{% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
 {% block mobile_article_title %}
   <small>Published on
     <time datetime="2026-01-12">12 January 2026</time>
@@ -54,8 +54,10 @@
     {% call heading(tag="h2") %}
       Search for judgments
     {% endcall %}
-    {% call search_form( id="analytics-search-form") %}
-      {{ search_input(value="", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+    {% call search_form_container() %}
+      {% call search_form( id="analytics-search-form") %}
+        {{ search_input(value="", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+      {% endcall %}
     {% endcall %}
     <p>
       Search court judgments and tribunal decisions using the search box. You can search the full text of every judgment or decision in Find Case Law, as well as details such as court name and neutral citation.
@@ -72,9 +74,9 @@
     {% endcall %}
     <p>Not sure exactly what you're looking for? Browse judgments by court or tribunal type.</p>
     <p>
-      {% call link(href=url("courts_and_tribunals")) %}
+      {%- call link(href=url("courts_and_tribunals")) -%}
         Browse courts and tribunals
-      {% endcall %}
+      {%- endcall -%}
       to:
     </p>
     {% call list(variant="bullets") %}
@@ -97,9 +99,9 @@
     {% call card(title="More search tips", title_tag="h2") %}
       <p>
         Visit
-        {% call link(href=url("how_to_search_find_case_law")) %}
+        {%- call link(href=url("how_to_search_find_case_law")) -%}
           How to search Find Case Law
-        {% endcall %}
+        {%- endcall -%}
         for more tips and examples to help you find what you’re looking for.
       </p>
     {% endcall %}
