@@ -1,0 +1,164 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Browse courts and tribunals
+  {% endcall %}
+  <p>
+    Explore judgments by court or tribunal type. This helps you understand what’s available and find cases from specific jurisdictions.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Browse courts and tribunals
+  {% endcall %}
+  <p>
+    Explore judgments by court or tribunal type. This helps you understand what’s available and find cases from specific jurisdictions.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#what-youll-find") %}
+          What you’ll find
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#courts-and-tribunals-directory") %}
+          Courts and tribunals directory
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#understanding-coverage") %}
+          Understanding coverage
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#check-for-appeals") %}
+          Check for appeals
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#prefer-to-search") %}
+          Prefer to search?
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    What you’ll find
+  {% endcall %}
+  <p>Find Case Law regularly receives and publishes judgments from:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      The Privy Council
+    {% endcall %}
+    {% call list_item() %}
+      The UK Supreme Court
+    {% endcall %}
+    {% call list_item() %}
+      The Court of Appeal
+    {% endcall %}
+    {% call list_item() %}
+      The High Court
+    {% endcall %}
+    {% call list_item() %}
+      The Upper Tribunals
+    {% endcall %}
+    {% call list_item() %}
+      The Investigatory Powers Tribunal
+    {% endcall %}
+    {% call list_item() %}
+      The Employment Appeal Tribunal
+    {% endcall %}
+  {% endcall %}
+  <p>
+    The service also receives decisions from some first-tier tribunal chambers and some judgments from the Family Court, Court of Protection, County Court and Crown Court.
+  </p>
+  {% call heading(tag="h2") %}
+    Courts and tribunals directory
+  {% endcall %}
+  <p>
+    The
+    {% call link(href=url("courts_and_tribunals")) %}
+      Courts and tribunals directory
+    {% endcall %}
+    provides the complete list of courts and tribunals included in Find Case Law.
+  </p>
+  <p>Use the directory to:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      see which courts and tribunals are covered
+    {% endcall %}
+    {% call list_item() %}
+      access individual court pages
+    {% endcall %}
+    {% call list_item() %}
+      navigate to specific jurisdictions
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    Individual court landing pages
+  {% endcall %}
+  <p>Each court and tribunal has its own page showing:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      recent judgments from that court
+    {% endcall %}
+    {% call list_item() %}
+      coverage information (date ranges and completeness)
+    {% endcall %}
+    {% call list_item() %}
+      description of the court's role and jurisdiction
+    {% endcall %}
+    {% call list_item() %}
+      direct search within that court's judgments
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Understanding coverage
+  {% endcall %}
+  <p>Different courts and tribunals have different date ranges in Find Case Law.</p>
+  <p>
+    {% call link(href=url("courts_and_tribunals_in_fcl")) %}
+      Courts and tribunals in Find Case Law
+    {% endcall %}
+    shows you:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      date ranges for each court's judgments and tribunal’s decision
+    {% endcall %}
+    {% call list_item() %}
+      what's included and what's not available
+    {% endcall %}
+    {% call list_item() %}
+      information about historical judgments
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Find Case Law is not a complete record of judgments and decisions for the courts or tribunals. Ex tempore (verbal) judgments that are not routinely transcribed may not be sent to The National Archives. For these, please contact the court or tribunal directly.
+  </p>
+  {% call heading(tag="h2") %}
+    Check for appeals
+  {% endcall %}
+  <p>
+    Some judgments may subsequently have been appealed and the judgments on appeal may not be included in the Find Case Law service. You should satisfy yourself that a judgment has not been the subject of an appeal before relying on it as an authority.
+  </p>
+  {% call heading(tag="h2") %}
+    Prefer to search?
+  {% endcall %}
+  <p>
+    If you know what case or topic you're looking for, you might find it faster to
+    {% call link(href=url("search")) %}
+      search
+    {% endcall %}
+    instead of browsing. You can always filter search results by specific courts.
+  </p>
+{% endblock article_content %}
