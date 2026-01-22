@@ -38,6 +38,11 @@ static_pages = [
         "heading": "Understanding case law",
     },
     {
+        "url": "/search-and-browse",
+        "title": "Search and browse",
+        "heading": "Search and browse",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
