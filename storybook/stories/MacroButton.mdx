@@ -1,0 +1,68 @@
+import { Meta, Source, Story } from '@storybook/blocks';
+import { PrimaryButton, SecondaryButton, AllButtons } from './button.stories.js';
+
+<Meta title="Components/Button Examples/Jinja Macros" />
+
+# Button Jinja Macros
+
+This page shows the Jinja macros for buttons alongside rendered examples.
+
+## Wrapper Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default() %}
+  <h2>Buttons</h2>
+
+  <h3>Variants</h3>
+  <div class="components__grid">
+    {{ button_variant_examples() }}
+  </div>
+
+  <h3>Sizes</h3>
+  <div class="components__grid">
+    {{ button_size_examples() }}
+  </div>
+
+  <h3>With contrast</h3>
+  <div class="components__grid components--contrast">
+    {{ button_contrast_examples() }}
+  </div>
+
+  <h3>With href</h3>
+  <div class="components__grid">
+    {{ button_href_examples() }}
+  </div>
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="AllButtons" of={AllButtons} />
+
+## Primary Button Macro
+
+<Source
+  language="jinja"
+  code={`{% macro primary() %}
+  {% call button(variant="primary") %}
+    Primary button
+  {% endcall %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="PrimaryButton" of={PrimaryButton} />
+
+## Secondary Button Macro
+
+<Source
+  language="jinja"
+  code={`{% macro secondary() %}
+  {% call button(variant="secondary") %}
+    Secondary button
+  {% endcall %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="SecondaryButton" of={SecondaryButton} />
