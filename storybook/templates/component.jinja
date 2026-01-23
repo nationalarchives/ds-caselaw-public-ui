@@ -1,0 +1,10 @@
+{% macro component() %}
+  {# If required replace with markup based on component requirements variants, size, image, url etc  #}
+  {{ caller() }}
+{% endmacro %}
+{% macro component_examples() %}
+  {% call component() %}
+    {# Add example content #}
+    <p>Example content</p>
+  {% endcall %}
+{% endmacro %}

@@ -39,3 +39,45 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+THIRD_PARTY_APPS = [
+    "corsheaders",
+]
+
+MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # must be first
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "config.middleware.CacheHeaderMiddleware",
+    "config.middleware.RobotsTagMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.common.BrokenLinkEmailsMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
+    "config.middleware.FeedbackLinkMiddleware",
+    "config.middleware.StructuredBreadcrumbsMiddleware",
+    "waffle.middleware.WaffleMiddleware",
+]
+
+
+# Only allow Storybook CORS in dev
+DEBUG = env.bool("DJANGO_DEBUG", default=True)
+
+if DEBUG:
+    # Storybook iframe runs on port 6006 in dev
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:6006",
+        "http://127.0.0.1:6006",
+    ]
+else:
+    # Production Storybook served from same domain — no CORS
+    CORS_ALLOWED_ORIGINS = []
+
+STORYBOOK_SERVER = env(
+    "STORYBOOK_SERVER",
+    default="http://localhost:3000",
+)

@@ -1,0 +1,6 @@
+ignoreRules:
+  - id: "WS-I013-JAVASCRIPT-00031"
+    reason: "Trusted Jinja macro HTML rendered server-side for Storybook only"
+    paths:
+      - "storybook/**/*.stories.js"
+      - "storybook/**/*.stories.ts"

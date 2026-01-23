@@ -1,0 +1,15 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<script>
+  window.STORYBOOK_SERVER =
+    window.STORYBOOK_SERVER ||
+  window.location.origin.replace(":6006", ":3000");
+
+  const cssHref = `${window.STORYBOOK_SERVER}/static/css/main.css`;
+
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = cssHref;
+  document.head.appendChild(link);
+</script>

@@ -333,6 +333,11 @@ UI applications are not shared.
 
 In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
 
+### Working with Storybook for Django/Ninja Components
+
+In a new terminal session run `npm run story-book`
+The Storybook 8.6.14 for html-webpack5 should then be started automatically you can then access the site in your browser: <http://localhost:6006>
+
 ## A note on running `django` commands locally
 
 django commands need to be run within the `django` docker container, not on your machine itself, so from your terminal, you will need to first run `fab sh`, which will give you a console where you can run commands within the container (you'll see your terminal change from saying something like `tim@Tims-Macbook` at the start of each line to `root@abcde12345`). You can then run the commands you need to (such as `python manage.py shell_plus`), and when you're done, type the command `exit` to exit back out to your own machine again (the start of each line will change back).
