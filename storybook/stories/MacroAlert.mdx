@@ -1,0 +1,90 @@
+import { Meta, Source, Story } from '@storybook/blocks';
+import { AllAlerts, DefaultAlert, SmallAlert, ErrorAlert, SuccessAlert } from './alert.stories.js';
+
+<Meta title="Components/Alert Examples/Jinja Macros" />
+
+# Alert Jinja Macros
+
+Use an alert to tell the user about something they need to know about directly related to the page content.
+This page shows the Jinja macros for the Alert component alongside rendered examples.
+
+---
+
+## Wrapper Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default_alert() %}
+<h2>Alert</h2>
+<div class="components__grid">
+      {{ alert_examples() }}
+</div>
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="AllAlerts" of={AllAlerts} />
+
+---
+
+## Default Alert Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default() %}
+  {% call alert(title="Title") %}
+    <p>Content</p>
+  {% endcall %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="DefaultAlert" of={DefaultAlert} />
+
+---
+
+## Small Alert Macro
+
+<Source
+  language="jinja"
+  code={`{% macro small() %}
+{% call alert(title="Small size title", size="sm") %}
+    <p>Small size content</p>
+  {% endcall %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="SmallAlert" of={SmallAlert} />
+
+---
+
+## Error Alert Macro
+
+<Source
+  language="jinja"
+  code={`{% macro error() %}
+  {% call alert(title="Error variant",variant="error") %}
+    <p>Error variant content</p>
+  {% endcall %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="ErrorAlert" of={ErrorAlert} />
+
+---
+
+## Success Alert Macro
+
+<Source
+  language="jinja"
+  code={`{% macro success() %}
+  {% call alert(title="Success variant",variant="success") %}
+    <p>Success variant content</p>
+  {% endcall %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="SuccessAlert" of={SuccessAlert} />

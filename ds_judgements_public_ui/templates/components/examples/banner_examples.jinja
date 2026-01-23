@@ -1,0 +1,6 @@
+{% from "components/banner.jinja" import banner, banner_examples %}
+{% from "components/button.jinja" import button, button_variant_examples, button_size_examples, button_href_examples, button_contrast_examples %}
+{% macro default() %}
+  <h2>Banner</h2>
+  {{ banner_examples() }}
+{% endmacro %}

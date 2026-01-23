@@ -333,6 +333,123 @@ UI applications are not shared.
 
 In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
 
+### Working with Storybook for Django/Ninja Components
+
+In a new terminal session run `npm run story-book`
+The Storybook 8.6.14 for html-webpack5 should then be started automatically you can then access the site in your browser: <http://localhost:6006>
+
+#### Adding a New Component
+
+This Storybook setup dynamically renders Jinja macros via Django. Every component MUST have its own \_examples.jinja file Storybook stories always render via the examples macro.
+Each component component follows the pattern below:
+
+**1. Create the Component Macro**
+Create the base component macro in: `templates/components/banner.jinja`
+
+```jinja
+{% from "components/button.jinja" import button %}
+
+{% macro banner() %}
+  <div class="banner">
+    <div class="banner__container">{{ caller() }}</div>
+  </div>
+{% endmacro %}
+
+{% macro banner_examples() %}
+  {% call banner() %}
+    <h2>Help us improve this service</h2>
+    {% call button(variant="secondary") %}
+      Take a short survey
+    {% endcall %}
+  {% endcall %}
+{% endmacro %}
+```
+
+**Important**
+
+- `banner()` is the base macro
+- `banner_examples()` is mandatory
+- Storybook never calls `banner()` directly
+- All default content and composition is in `banner_examples()`
+
+**2. Create the Examples Wrapper File**
+Create the wrapper file that Storybook will render in: `templates/components/examples/banner_examples.jinja`
+
+```jinja
+{% from "components/banner.jinja" import banner, banner_examples %}
+{% from "components/button.jinja" import button, button_variant_examples, button_size_examples, button_href_examples, button_contrast_examples %}
+{% macro default() %}
+  <h2>Banner</h2>
+  {{ banner_examples() }}
+{% endmacro %}
+```
+
+**Important**
+
+- Storybook loaders always call one macro
+- The wrapper file calls `*_examples()` internally
+- Storybook focus on the wrapper file not the component itself
+
+**3. Create the Storybook Story**
+Create the Storybook file in: `storybook/stories/banner.stories.js`
+
+```javascript
+import renderComponentHtml from "../render_fetch.js";
+
+export default {
+  title: "Components/Banner Examples",
+};
+
+// --------------------
+// Banner (wrapper macro)
+// --------------------
+export const Banner = {
+  loaders: [
+    async () => {
+      const html = await renderComponentHtml(
+        "components/examples/banner_examples.jinja",
+        "default",
+        {}, // wrapper macro does not take variant/size
+      );
+      return { html };
+    },
+  ],
+  render: (args, context) => {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = context.loaded?.html || "<div>No HTML returned</div>";
+    return wrapper;
+  },
+};
+
+// --------------------
+// Banner loader
+// --------------------
+const BannerLoader = (args) =>
+  renderComponentHtml("components/banner.jinja", "button", args).then(
+    (html) => ({ html }),
+  );
+
+// --------------------
+// Banner render
+// --------------------
+const BannerRender = (context) => {
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = context.loaded?.html || "<div>No HTML returned</div>";
+  return wrapper;
+};
+```
+
+**Important**
+
+- Storybook always renders:
+  - `components/banner_examples.jinja`
+  - macro: `default`
+- `innerHTML` is intentional and expected
+- No component logic lives in JavaScript
+- Do not render `banner()` directly from Storybook
+- Do not skip the `_examples.jinja` file
+- Do not put macro `macro default()` or `*_examples()` inside `banner.jinja` they are only to be used in the wrapper for Storybook.
+
 ## A note on running `django` commands locally
 
 django commands need to be run within the `django` docker container, not on your machine itself, so from your terminal, you will need to first run `fab sh`, which will give you a console where you can run commands within the container (you'll see your terminal change from saying something like `tim@Tims-Macbook` at the start of each line to `root@abcde12345`). You can then run the commands you need to (such as `python manage.py shell_plus`), and when you're done, type the command `exit` to exit back out to your own machine again (the start of each line will change back).

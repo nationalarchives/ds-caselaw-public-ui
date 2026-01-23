@@ -1,8 +1,35 @@
-{% from "govuk_frontend_jinja/components/checkboxes/macro.html" import govukCheckboxes %}
-{% macro checkboxes(params) %}
-  {{ govukCheckboxes(params) }}
-{% endmacro %}
-{% macro checkboxes_examples() %}
+import { Meta, Source, Story } from '@storybook/blocks';
+import { AllCheckboxes, DefaultCheckbox, ErrorCheckbox, ConditionalCheckbox } from './checkboxes.stories.js';
+
+<Meta title="Components/Checkboxes Examples/Jinja Macros" />
+
+# Checkboxes Jinja Macros
+
+Let users select one or more options by using the checkboxes component.
+This page shows the Jinja macros for the Checkboxes component alongside rendered examples.
+
+---
+
+## Wrapper Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default_checkboxes() %}
+<h2>Checkboxes</h2>
+      {{ checkboxes_examples() }}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="AllCheckboxes" of={AllCheckboxes} />
+
+---
+
+## Default Checkbox Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default() %}
   <h3>Default</h3>
   {{ checkboxes({
     "idPrefix": "checkbox",
@@ -25,6 +52,19 @@
       }
     ]
   }) }}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="DefaultCheckbox" of={DefaultCheckbox} />
+
+---
+
+## Error Checkbox Macro
+
+<Source
+  language="jinja"
+  code={`{% macro error() %}
   <h3>With error</h3>
   {{ checkboxes({
     "idPrefix": "checkbox-with-error",
@@ -47,7 +87,19 @@
       }
     ]
   }) }}
-  <h3>Conditional checkboxes</h3>
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="ErrorCheckbox" of={ErrorCheckbox} />
+
+---
+
+## Conditional Checkbox Macro
+
+<Source
+  language="jinja"
+  code={`{% macro conditional() %}
   {{ checkboxes({
     "idPrefix": "checkbox-with-conditional",
     "name": "checkbox-with-conditional",
@@ -70,4 +122,8 @@
       }
     ]
   }) }}
-{% endmacro %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="ConditionalCheckbox" of={ConditionalCheckbox} />

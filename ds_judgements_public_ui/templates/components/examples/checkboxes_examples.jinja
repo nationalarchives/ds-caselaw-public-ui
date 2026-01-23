@@ -1,8 +1,10 @@
 {% from "govuk_frontend_jinja/components/checkboxes/macro.html" import govukCheckboxes %}
-{% macro checkboxes(params) %}
-  {{ govukCheckboxes(params) }}
+{% from "components/checkboxes.jinja" import checkboxes, checkboxes_examples %}
+{% macro default_checkboxes() %}
+  <h2>Checkboxes</h2>
+  {{ checkboxes_examples() }}
 {% endmacro %}
-{% macro checkboxes_examples() %}
+{% macro default() %}
   <h3>Default</h3>
   {{ checkboxes({
     "idPrefix": "checkbox",
@@ -25,6 +27,8 @@
       }
     ]
   }) }}
+{% endmacro %}
+{% macro error() %}
   <h3>With error</h3>
   {{ checkboxes({
     "idPrefix": "checkbox-with-error",
@@ -47,7 +51,9 @@
       }
     ]
   }) }}
-  <h3>Conditional checkboxes</h3>
+{% endmacro %}
+{% macro conditional() %}
+  <h3>Conditional</h3>
   {{ checkboxes({
     "idPrefix": "checkbox-with-conditional",
     "name": "checkbox-with-conditional",

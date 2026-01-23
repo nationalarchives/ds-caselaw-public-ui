@@ -1,0 +1,21 @@
+import { Meta, Source, Story } from '@storybook/blocks';
+import { Banner } from './banner.stories.js';
+
+<Meta title="Components/Banner Examples/Jinja Macros" />
+
+# Banner Jinja Macros
+
+This page shows the Jinja macros for banner.
+
+## Wrapper Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default() %}
+  <h2>Banner</h2>
+    {{ banner_examples() }}
+  {% endmacro %}`}
+  dark
+/>
+
+<Story name="Banner" of={Banner} />

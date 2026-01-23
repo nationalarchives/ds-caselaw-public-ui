@@ -1,0 +1,35 @@
+{% from "components/card.jinja" import card, card_examples, default, light, image, ghost %}
+{% macro default_card() %}
+  <h2>Cards</h2>
+  <div class="components__grid">{{ card_examples() }}</div>
+{% endmacro %}
+{% macro default() %}
+  {% call card(title="Default") %}
+    <p>This is the default card style</p>
+  {% endcall %}
+  {% call card(title="Default - with link", url=url("components")) %}
+    <p>This is a default card with a link</p>
+  {% endcall %}
+{% endmacro %}
+{% macro light() %}
+  {% call card(title="Light", variant="light") %}
+    <p>This is the light card style</p>
+  {% endcall %}
+  {% call card(variant="light") %}
+    <button class="button-primary">Button</button>
+    <p>Just a light example with a button</p>
+  {% endcall %}
+{% endmacro %}
+{% macro image() %}
+  {% call card(title="Image", variant="image", image_url=static("images/modern-magnifying-glass.jpg")) %}
+    <p>This is the image card style</p>
+  {% endcall %}
+{% endmacro %}
+{% macro ghost() %}
+  {% call card(title="Ghost", variant="ghost") %}
+    <p>This is the ghost card style</p>
+  {% endcall %}
+  {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
+    <p>This is a ghost card with a link</p>
+  {% endcall %}
+{% endmacro %}
