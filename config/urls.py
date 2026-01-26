@@ -135,8 +135,13 @@ urlpatterns = [
     ),
     path(
         "what-you-need-to-apply-for-a-licence",
-        static_views.WhatYouNeedToApplyForALicence.as_view(),
+        static_views.WhatYouNeedToApplyForALicenceView.as_view(),
         name="what_you_need_to_apply_for_a_licence",
+    ),
+    path(
+        "how-to-get-permission",
+        static_views.HowToGetPermissionView.as_view(),
+        name="how_to_get_permission",
     ),
     path(
         "how-to-search-find-case-law",
