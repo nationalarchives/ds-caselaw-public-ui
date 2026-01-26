@@ -7,19 +7,20 @@
   {% set alignment_class = alignment_classes.get(alignment, alignment_classes["default"]) %}
   {% set visited_class = "link--with-visited" if show_visited else "link--hide-visited" %}
   {% set link_class = ("link " ~ variant_class ~ " " ~ size_class ~ " " ~ alignment_class ~ " " ~ visited_class).strip() %}
+  {# djlint:off #}
   <a href="{{ href }}"
      class="{{ link_class }} {{ class_name }}"
-     {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>{{ caller() }}</a>
-{% endmacro %}
-{% macro link_examples() %}
-  <h3>Default</h3>
-  {% call link() %}
-    Default link
-  {% endcall %}
-  <h3>Contrast</h3>
-  <div class="components--contrast">
-    {% call link(variant="contrast") %}
-      Contrast link
+     {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>{{ caller() }}</a>{% endmacro %}
+  {# djlint:on #}
+  {% macro link_examples() %}
+    <h3>Default</h3>
+    {% call link() %}
+      Default link
     {% endcall %}
-  </div>
-{% endmacro %}
+    <h3>Contrast</h3>
+    <div class="components--contrast">
+      {% call link(variant="contrast") %}
+        Contrast link
+      {% endcall %}
+    </div>
+  {% endmacro %}
