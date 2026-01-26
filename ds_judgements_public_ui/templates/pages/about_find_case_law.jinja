@@ -1,0 +1,303 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    About Find Case Law
+  {% endcall %}
+  <p>
+    Find Case Law is the official public source for judgments and decisions from courts and
+    tribunals in England and Wales. We provide free access to judgments to
+    support open justice, legal practice, research and public understanding.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    About Find Case Law
+  {% endcall %}
+  <p>
+    Find Case Law is the official public source for judgments and decisions from courts and
+    tribunals in England and Wales. We provide free access to judgments to
+    support open justice, legal practice, research and public understanding.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#what-find-case-law-provides") %}
+          What Find Case Law provides
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#what-we-include-and-what-we-dont") %}
+          What we include – and what we don't
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#why-these-limitations-exist") %}
+          Why these limitations exist
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-were-expanding") %}
+          How we're expanding
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#finding-what-you-need") %}
+          Finding what you need
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#who-provides-find-case-law") %}
+          Who provides Find Case Law
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#partnership-with-the-judiciary") %}
+          Partnership with the judiciary
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#our-commitment") %}
+          Our commitment
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    What Find Case Law provides
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    Court and tribunal judgments
+  {% endcall %}
+  <p>We publish judgments from:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Appellate courts – Supreme Court, Court of Appeal, High Court
+    {% endcall %}
+    {% call list_item() %}
+      First instance courts – Crown Court, County Court (selected cases)
+    {% endcall %}
+    {% call list_item() %}
+      Tribunals – Employment, Immigration, Tax, and other specialist tribunals
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Coverage varies by court and tribunal. Some have comprehensive recent records, while others include selected cases of legal significance.
+  </p>
+  {% call heading(tag="h3") %}
+    Official and authoritative
+  {% endcall %}
+  <p>
+    Find Case Law works directly with the judiciary of England and Wales. Judgments are provided by courts and tribunals themselves, making this the official source for:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      accurate judgment text as approved by judges
+    {% endcall %}
+    {% call list_item() %}
+      authoritative citations and case details
+    {% endcall %}
+    {% call list_item() %}
+      timely publication of new decisions
+    {% endcall %}
+    {% call list_item() %}
+      reliable long–term access through The National Archives
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    What we include – and what we don't
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    What's in Find Case Law
+  {% endcall %}
+  <p>We include judgments that serve the public interest and support open justice:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      substantive decisions like full judgments explaining legal reasoning and outcomes
+    {% endcall %}
+    {% call list_item() %}
+      important procedural decisions like significant rulings on practice and procedure
+    {% endcall %}
+    {% call list_item() %}
+      appellate and first instance like decisions from all levels where publicly available
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    What's not included
+  {% endcall %}
+  <p>Find Case Law is not a comprehensive record of every court case in England and Wales. We don't include:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      most magistrates' court decisions as they handle thousands of cases daily and most are not published
+    {% endcall %}
+    {% call list_item() %}
+      cases subject to restrictions such as judgments that cannot be published due to reporting restrictions, anonymisation requirements, or other legal constraints
+    {% endcall %}
+    {% call list_item() %}
+      cases not in the public interest including some cases that don't contribute to public understanding or legal development
+    {% endcall %}
+  {% endcall %}
+  <p>
+    The scope is determined by publication policies of individual courts and tribunals, balanced with considerations of public interest, judicial resources, and privacy.
+  </p>
+  {% call heading(tag="h2") %}
+    Why these limitations exist
+  {% endcall %}
+  <p>Courts and tribunals produce far more documents than could meaningfully be published:</p>
+  <p>
+    Volume – Magistrates' courts alone handle over 1.5 million cases annually. Publishing all decisions would be impractical and would not serve users who need to find relevant precedent.
+  </p>
+  <p>
+    Privacy and protection – Some cases involve sensitive personal information, children, or national security matters that require protection even when a judgment is needed.
+  </p>
+  <p>
+    Public interest – Publishing focuses on cases that help people understand the law, set precedent, or involve matters of public importance.
+  </p>
+  <p>
+    Judicial resources – Preparing judgments for publication requires judicial time. Courts prioritise cases where publication serves the public interest.
+  </p>
+  {% call heading(tag="h2") %}
+    How we're expanding
+  {% endcall %}
+  <p>Find Case Law is continually growing:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      we're working to include judgments from additional courts and tribunals
+    {% endcall %}
+    {% call list_item() %}
+      adding older judgments to provide deeper coverage
+    {% endcall %}
+    {% call list_item() %}
+      adding features that help users find and understand judgments
+    {% endcall %}
+    {% call list_item() %}
+      making judgments easier to access for all users
+    {% endcall %}
+  {% endcall %}
+  <p>The service launched publicly in 2022 and we’re constantly adding new features and expanding what’s available.</p>
+  {% call heading(tag="h2") %}
+    Finding what you need
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    If a case isn't in Find Case Law
+  {% endcall %}
+  <p>The absence of a case from Find Case Law might mean it:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      falls outside our current coverage dates for that court
+    {% endcall %}
+    {% call list_item() %}
+      wasn't selected for publication by that court
+    {% endcall %}
+    {% call list_item() %}
+      is subject to reporting restrictions
+    {% endcall %}
+    {% call list_item() %}
+      was decided by a court we don't yet cover comprehensively
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Check our
+    {%- call link(href=url("courts_and_tribunals")) -%}
+      Courts and date coverage
+    {%- endcall %}
+    to see what's available for specific courts.
+  </p>
+  {% call heading(tag="h3") %}
+    Alternative sources
+  {% endcall %}
+  <p>For cases not in Find Case Law:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      BAILII (British and Irish Legal Information Institute) – Free legal database with additional coverage
+    {% endcall %}
+    {% call list_item() %}
+      Court archives – Contact the specific court for records of cases
+    {% endcall %}
+    {% call list_item() %}
+      Commercial legal databases – LexisNexis, Westlaw, and other services offer comprehensive coverage
+    {% endcall %}
+    {% call list_item() %}
+      Legal advice – Solicitors and barristers can help locate specific cases
+    {% endcall %}
+    {% call list_item() %}
+      Scotland –
+      {% call link(href="https://www.scotcourts.gov.uk/judgments/#/") %}
+        The Scottish Courts and Tribunal Service
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Who provides Find Case Law
+  {% endcall %}
+  <p>
+    Find Case Law is provided by
+    {%- call link(href="https://www.nationalarchives.gov.uk/") -%}
+      The National Archives
+    {%- endcall %}
+    in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.
+  </p>
+  <p>
+    As the official archive and publisher for the UK Government, The National Archives has
+    preserved legal records for centuries. Find Case Law continues this tradition in the digital age, ensuring that court judgments remain accessible for current use and future generations.
+  </p>
+  {% call heading(tag="h2") %}
+    Partnership with the judiciary
+  {% endcall %}
+  <p>We work closely with courts and tribunals to:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      receive judgments directly from judicial sources
+    {% endcall %}
+    {% call list_item() %}
+      implement appropriate publication policies
+    {% endcall %}
+    {% call list_item() %}
+      respect judicial decisions about what to publish
+    {% endcall %}
+    {% call list_item() %}
+      support the principle of open justice
+    {% endcall %}
+  {% endcall %}
+  {% call card(title="Our commitment", title_tag="h2", variant="unbordered") %}
+    <p>We're committed to:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        Free access – judgments are free to read, download, and use for most purposes.
+      {% endcall %}
+      {% call list_item() %}
+        Long–term preservation – As part of The National Archives, we ensure judgments remain accessible indefinitely.
+      {% endcall %}
+      {% call list_item() %}
+        Accuracy – We publish judgments as provided by courts without alteration.
+      {% endcall %}
+      {% call list_item() %}
+        Open justice – We support public access to judicial decisions as a cornerstone of democracy.
+      {% endcall %}
+      {% call list_item() %}
+        User–focused development – We improve the service based on how people actually use it.
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+  {% call card(title="Get in touch with us", title_tag="h3") %}
+    <p>
+      If you have questions about what's included in Find Case Law or suggestions for improvements, visit our
+      {%- call link(href=url("help_and_guidance")) -%}
+        Help and Support
+      {%- endcall %}
+      or
+      {%- call link(href=url("contact_us")) -%}
+        contact us directly
+      {%- endcall -%}.
+    </p>
+    <p>Your feedback helps us make the service better.</p>
+  {% endcall %}
+{% endblock article_content %}

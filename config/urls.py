@@ -104,6 +104,16 @@ urlpatterns = [
         name="help_and_guidance",
     ),
     path(
+        "what-we-provide",
+        static_views.WhatWeProvideView.as_view(),
+        name="what_we_provide",
+    ),
+    path(
+        "courts-and-date-coverage",
+        static_views.CourtsAndDateCoverageView.as_view(),
+        name="courts_and_date_coverage",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
@@ -162,6 +172,11 @@ urlpatterns = [
         "browse-courts-and-tribunals",
         static_views.BrowseCourtsAndTribunalsView.as_view(),
         name="browse_courts_and_tribunals",
+    ),
+    path(
+        "about-find-case-law",
+        static_views.AboutFindCaseLawView.as_view(),
+        name="about_find_case_law",
     ),
     path(
         "user-research",

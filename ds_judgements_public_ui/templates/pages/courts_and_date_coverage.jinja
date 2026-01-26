@@ -1,0 +1,118 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Courts and date coverage
+  {% endcall %}
+  <p>
+    Different courts and tribunals have different coverage on Find Case Law. Some have
+    comprehensive recent records, while others include selected historical judgments.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Courts and date coverage
+  {% endcall %}
+  <p>
+    Different courts and tribunals have different coverage on Find Case Law. Some have
+    comprehensive recent records, while others include selected historical judgments.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#why-coverage-varies") %}
+          Why coverage varies
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#understanding-our-coverage") %}
+          Understanding our coverage
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#using-coverage-information") %}
+          Using coverage information
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#coverage-is-expanding") %}
+          Coverage is expanding
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Why coverage varies
+  {% endcall %}
+  <p>The coverage we provide depends on different factors:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      court digitisation – when courts began creating digital records
+    {% endcall %}
+    {% call list_item() %}
+      publication practices – how different courts decide what to publish
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Understanding these variations helps you know what to expect when searching and whether the case you're looking for should be in our collection.
+  </p>
+  {% call heading(tag="h2") %}
+    Understanding our coverage
+  {% endcall %}
+  <p>
+    {%- call link(href=url("courts_and_tribunals")) -%}
+      Courts and tribunals in Find Case Law
+    {%- endcall %}
+    provides detailed coverage information for each court and tribunal, including:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      date ranges for each court's records
+    {% endcall %}
+    {% call list_item() %}
+      how complete the coverage is
+    {% endcall %}
+    {% call list_item() %}
+      what types of cases are included
+    {% endcall %}
+    {% call list_item() %}
+      notes on special collections or historical records
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Using coverage information
+  {% endcall %}
+  <p>Knowing the coverage helps you:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      search more effectively – understanding what's available prevents frustration when cases don't appear
+    {% endcall %}
+    {% call list_item() %}
+      set realistic expectations – some courts have gaps in their records
+    {% endcall %}
+    {% call list_item() %}
+      find alternatives – if coverage is limited, we can point you to other sources
+    {% endcall %}
+    {% call list_item() %}
+      understand the collection – see how Find Case Law has grown and continues to expand
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Coverage is expanding
+  {% endcall %}
+  <p>
+    We regularly add new courts, extend date ranges for existing courts, and digitise historical
+    judgments. The coverage information is updated as we expand the service.
+  </p>
+  <p>
+    If you can't find what you're looking for, check the coverage details to see whether it falls within our current scope.
+  </p>
+{% endblock article_content %}

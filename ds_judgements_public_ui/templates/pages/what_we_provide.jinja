@@ -1,0 +1,110 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    What we provide
+  {% endcall %}
+  <p>
+    Find Case Law focuses on providing judgments and decisions from courts and tribunals in England and Wales. Understanding what we include – and what we don't – helps you know what to expect when searching.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    What we provide
+  {% endcall %}
+  <p>
+    Find Case Law focuses on providing judgments and decisions from courts and tribunals in England and Wales. Understanding what we include – and what we don't – helps you know what to expect when searching.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#service-scope") %}
+          Service scope
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#coverage-details") %}
+          Coverage details
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#understanding-what-youll-find") %}
+          Understanding what you'll find
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Service scope
+  {% endcall %}
+  <p>
+    Find Case Law is designed to support open justice by making court judgments publicly
+    accessible. We work with the judiciary to publish case law for legal research, public understanding, and accountability.
+  </p>
+  <p>
+    <strong>What's included</strong>
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      judgments from appellate courts (Supreme Court, Court of Appeal, High Court)
+    {% endcall %}
+    {% call list_item() %}
+      decisions from First–tier and Upper Tribunals
+    {% endcall %}
+    {% call list_item() %}
+      selected Crown Court and County Court cases
+    {% endcall %}
+    {% call list_item() %}
+      press Summaries for Supreme Court decisions
+    {% endcall %}
+  {% endcall %}
+  <p>
+    <strong>What's not included</strong>
+  </p>
+  <p>Find Case Law is a very comprehensive library but we don't include:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      most magistrates' court decisions
+    {% endcall %}
+    {% call list_item() %}
+      judgments that are subject to reporting restrictions
+    {% endcall %}
+    {% call list_item() %}
+      routine orders
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Coverage details
+  {% endcall %}
+  <p>
+    {%- call link(href=url("home")) -%}
+      About Find Case Law
+    {%- endcall %}
+    provides a detailed explanation of our service scope, what types of
+    judgments we publish and what to include.
+  </p>
+  <p>The scope of Find Case Law continues to expand as we add more courts and enhance coverage of existing courts.</p>
+  {% call heading(tag="h2") %}
+    Understanding what you'll find
+  {% endcall %}
+  <p>
+    Different courts and tribunals have different levels of coverage. Some have nearly complete
+    recent records, while others are more selective. See our
+    {%- call link(href=url("courts_and_date_coverage")) -%}
+      Courts and date coverage
+    {%- endcall %}
+    for exactly what's available for each jurisdiction.
+  </p>
+  <p>
+    Knowing our scope helps you search effectively and understand whether the case you're
+    looking for should be in Find Case Law.
+  </p>
+{% endblock article_content %}

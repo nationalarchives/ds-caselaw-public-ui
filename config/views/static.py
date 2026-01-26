@@ -298,6 +298,70 @@ class BrowseCourtsAndTribunalsView(TemplateViewWithContext):
         return context
 
 
+class AboutFindCaseLawView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/about_find_case_law.jinja"
+    page_title = "About Find Case Law"
+    page_canonical_url_name = "about_find_case_law"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "about_find_case_law"
+        context["page_description"] = (
+            "Find Case Law is the official public source for judgments and decisions from courts and tribunals in England and Wales. We provide free access to judgments to support open justice, legal practice, research and public understanding."
+        )
+        context["breadcrumbs"] = [
+            {"text": "About this service", "url": reverse("about_this_service")},
+            {"text": "What we provide", "url": reverse("what_we_provide")},
+            {"text": "About Find Case Law"},
+        ]
+
+        return context
+
+
+class WhatWeProvideView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/what_we_provide.jinja"
+    page_title = "What we provide"
+    page_canonical_url_name = "what_we_provide"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "what_we_provide"
+        context["page_description"] = (
+            "Find Case Law focuses on providing judgments and decisions from courts and tribunals in England and Wales. Understanding what we include – and what we don't – helps you know what to expect when searching."
+        )
+        context["breadcrumbs"] = [
+            {"text": "About this service", "url": reverse("about_this_service")},
+            {"text": "What we provide"},
+        ]
+
+        return context
+
+
+class CourtsAndDateCoverageView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/courts_and_date_coverage.jinja"
+    page_title = "Courts and date coverage"
+    page_canonical_url_name = "courts_and_date_coverage"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "courts_and_date_coverage"
+        context["page_description"] = (
+            "Different courts and tribunals have different coverage on Find Case Law. Some have comprehensive recent records, while others include selected historical judgments."
+        )
+        context["breadcrumbs"] = [
+            {"text": "About this service", "url": reverse("about_this_service")},
+            {"text": "Courts and date coverage"},
+        ]
+
+        return context
+
+
 class UserResearchView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/user_research.jinja"
