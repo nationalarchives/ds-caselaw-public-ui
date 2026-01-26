@@ -93,6 +93,11 @@ static_pages = [
         "heading": "How to get permission",
     },
     {
+        "url": "/licence-application-process",
+        "title": "Licence application process",
+        "heading": "Licence application process",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",

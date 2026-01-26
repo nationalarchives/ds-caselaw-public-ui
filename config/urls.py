@@ -144,6 +144,11 @@ urlpatterns = [
         name="how_to_get_permission",
     ),
     path(
+        "licence-application-process",
+        static_views.LicenceApplicationProcessView.as_view(),
+        name="licence_application_process",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
