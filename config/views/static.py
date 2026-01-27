@@ -126,7 +126,7 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
 
 class OpenJusticeLicenceView(TemplateViewWithContext):
     template_engine = "jinja"
-    template_name = "pages/open_justice_license.jinja"
+    template_name = "pages/open_justice_licence.jinja"
 
     page_title = "Open Justice Licence"
     page_canonical_url_name = "open_justice_licence"
@@ -135,7 +135,12 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "license"
+        context["page_description"] = (
+            "Open justice is a fundamental constitutional principle and necessary for the rule of law. The purpose of this licence is to support open justice."
+        )
         context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Legal framework", "url": reverse("legal_framework")},
             {"text": self.page_title},
         ]
         return context
