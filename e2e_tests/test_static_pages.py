@@ -103,6 +103,11 @@ static_pages = [
         "heading": "Apply for a licence",
     },
     {
+        "url": "/legal-framework",
+        "title": "Legal framework",
+        "heading": "Legal framework",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",

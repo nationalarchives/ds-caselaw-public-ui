@@ -154,6 +154,11 @@ urlpatterns = [
         name="apply_for_a_licence",
     ),
     path(
+        "legal-framework",
+        static_views.LegalFrameworkView.as_view(),
+        name="legal_framework",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
