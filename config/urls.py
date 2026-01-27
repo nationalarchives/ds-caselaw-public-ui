@@ -8,6 +8,7 @@ from django.views import defaults as default_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView, TemplateView
 
+from config.views.storybook import storybook_render_view
 from judgments.views.search import (
     AdvancedSearchView,
     SearchResultsView,
@@ -35,6 +36,12 @@ handler403 = PermissionDeniedView.as_view()
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+    # storybook
+    path(
+        "storybook-render",
+        storybook_render_view,
+        name="storybook_render",
+    ),
     # Pages for viewing court details
     path(
         "courts-and-tribunals/<path:param>",

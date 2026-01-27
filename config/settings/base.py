@@ -78,7 +78,7 @@ LOCAL_APPS = [
     "transactional_licence_form.apps.TransactionalLicenceFormConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + ["corsheaders"]
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -120,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # must be first
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -135,6 +136,11 @@ MIDDLEWARE = [
     "config.middleware.FeedbackLinkMiddleware",
     "config.middleware.StructuredBreadcrumbsMiddleware",
     "waffle.middleware.WaffleMiddleware",
+]
+# Remove This Storybook test
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:6006",  # if Storybook runs here
+    "http://127.0.0.1:6006",
 ]
 
 # STATIC

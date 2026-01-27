@@ -1,0 +1,22 @@
+{
+  "v": 5,
+  "entries": {
+    "components-button--docs": {
+      "id": "components-button--docs",
+      "title": "Components/Button",
+      "name": "Docs",
+      "importPath": "./stories/button.stories.js",
+      "type": "docs",
+      "tags": ["dev", "test", "autodocs"],
+      "storiesImports": []
+    },
+    "components-button--primary": {
+      "type": "story",
+      "id": "components-button--primary",
+      "name": "Primary",
+      "title": "Components/Button",
+      "importPath": "./stories/button.stories.js",
+      "tags": ["dev", "test", "autodocs"]
+    }
+  }
+}
