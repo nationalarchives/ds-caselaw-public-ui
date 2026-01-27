@@ -469,6 +469,26 @@ class LicenceApplicationProcessView(TemplateViewWithContext):
         return context
 
 
+class ApplyForALicenceView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/apply_for_a_licence.jinja"
+    page_title = "Apply for a licence"
+    page_canonical_url_name = "apply_for_a_licence"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "apply_for_a_licence"
+        context["page_description"] = "Apply online to perform computational analysis on Find Case Law records."
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "How to get permission", "url": reverse("how_to_get_permission")},
+            {"text": "Apply for a licence"},
+        ]
+
+        return context
+
+
 class WhenYouNeedPermissionView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/when_you_need_permission.jinja"
