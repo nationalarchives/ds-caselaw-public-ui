@@ -117,6 +117,11 @@ static_pages = [
         "title": "Search tips",
         "heading": "Search tips",
     },
+    {
+        "url": "/help-and-support",
+        "title": "Help and Support",
+        "heading": "Help and Support",
+    },
     {"url": "/user-research", "title": "User research", "heading": "User research for Find Case Law"},
 ]
 
