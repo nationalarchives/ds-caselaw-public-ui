@@ -112,6 +112,11 @@ static_pages = [
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
     },
+    {
+        "url": "/search-tips",
+        "title": "Search tips",
+        "heading": "Search tips",
+    },
     {"url": "/user-research", "title": "User research", "heading": "User research for Find Case Law"},
 ]
 

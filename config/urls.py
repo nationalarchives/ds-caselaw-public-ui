@@ -229,6 +229,11 @@ urlpatterns = [
         name="user_research",
     ),
     path(
+        "search-tips",
+        static_views.SearchTipsView.as_view(),
+        name="search_tips",
+    ),
+    path(
         "what-to-expect",
         lambda request: HttpResponseRedirect(reverse("about_this_service")),
         name="what_to_expect",

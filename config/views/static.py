@@ -535,6 +535,26 @@ class WhenYouNeedPermissionView(TemplateViewWithContext):
 
         return context
 
+class SearchTipsView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/search_tips.jinja"
+    page_title = "Search tips"
+    page_canonical_url_name = "search_tips"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "search_tips"
+        context["page_description"] = (
+            "Search court judgments and tribunal decisions in Find Case Law using the search box on the homepage of this website."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Help and support", "url": reverse("help_and_guidance")},
+            {"text": "Search tips"},
+        ]
+
+        return context
+
 
 class CourtsAndDateCoverageView(TemplateViewWithContext):
     template_engine = "jinja"
