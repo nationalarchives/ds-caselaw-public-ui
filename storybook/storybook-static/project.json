@@ -1,0 +1,35 @@
+{
+  "generatedAt": 1762898632498,
+  "userSince": 1762882959366,
+  "hasCustomBabel": false,
+  "hasCustomWebpack": false,
+  "hasStaticDirs": false,
+  "hasStorybookEslint": false,
+  "refCount": 0,
+  "testPackages": {
+    "babel-jest": "30.2.0",
+    "jest": "30.2.0",
+    "jest-environment-jsdom": "30.2.0"
+  },
+  "hasRouterPackage": false,
+  "packageManager": { "type": "npm", "agent": "npm" },
+  "preview": { "usesGlobals": false },
+  "framework": { "name": "@storybook/server-webpack5", "options": {} },
+  "builder": "@storybook/builder-webpack5",
+  "renderer": "@storybook/server",
+  "portableStoriesFileCount": 0,
+  "applicationFileCount": 0,
+  "storybookVersion": "8.6.14",
+  "storybookVersionSpecifier": "^8.0.0",
+  "language": "javascript",
+  "storybookPackages": {
+    "@storybook/server": { "version": "8.6.14" },
+    "storybook": { "version": "8.6.14" },
+    "@storybook/server-webpack5": { "version": "8.6.14" }
+  },
+  "addons": {
+    "@storybook/addon-essentials": { "version": "8.6.14" },
+    "@storybook/addon-webpack5-compiler-babel": { "version": "4.0.0" },
+    "@chromatic-com/storybook": { "version": "3.2.7" }
+  }
+}

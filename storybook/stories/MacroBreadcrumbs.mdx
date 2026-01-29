@@ -1,0 +1,21 @@
+import { Meta, Source, Story } from '@storybook/blocks';
+import { Breadcrumbs } from './breadcrumbs.stories.js';
+
+<Meta title="Components/Breadcrumbs Examples/Jinja Macros" />
+
+# Breadcrumbs Jinja Macros
+
+This page shows the Jinja macros for breadcrumbs.
+
+## Wrapper Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default() %}
+  <h2>Breadcrumbs</h2>
+    {{ breadcrumbs_examples() }}
+  {% endmacro %}`}
+  dark
+/>
+
+<Story name="Breadcrumbs" of={Breadcrumbs} />

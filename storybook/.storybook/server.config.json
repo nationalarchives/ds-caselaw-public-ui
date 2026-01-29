@@ -1,0 +1,8 @@
+{
+  "options": {
+    "command": "python ./render_jinja_core.py",
+    "port": 3000,
+    "launchTimeout": 10000,
+    "url": "http://localhost:6006/render"
+  }
+}
