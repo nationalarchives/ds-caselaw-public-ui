@@ -63,6 +63,51 @@ static_pages = [
         "heading": "Courts and date coverage",
     },
     {
+        "url": "/permissions-and-licencing",
+        "title": "Permissions and Licencing",
+        "heading": "Permissions and Licencing",
+    },
+    {
+        "url": "/what-you-can-do-freely",
+        "title": "What you can do freely",
+        "heading": "What you can do freely",
+    },
+    {
+        "url": "/when-you-need-permission",
+        "title": "When you need permission",
+        "heading": "When you need permission",
+    },
+    {
+        "url": "/using-find-case-law-records",
+        "title": "Using Find Case Law records",
+        "heading": "Using Find Case Law records",
+    },
+    {
+        "url": "/what-you-need-to-apply-for-a-licence",
+        "title": "What you need to apply for a licence",
+        "heading": "What you need to apply for a licence",
+    },
+    {
+        "url": "/how-to-get-permission",
+        "title": "How to get permission",
+        "heading": "How to get permission",
+    },
+    {
+        "url": "/licence-application-process",
+        "title": "Licence application process",
+        "heading": "Licence application process",
+    },
+    {
+        "url": "/apply-for-a-licence",
+        "title": "Apply for a licence",
+        "heading": "Apply for a licence",
+    },
+    {
+        "url": "/legal-framework",
+        "title": "Legal framework",
+        "heading": "Legal framework",
+    },
+    {
         "url": "/courts-and-tribunals-in-fcl",
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",

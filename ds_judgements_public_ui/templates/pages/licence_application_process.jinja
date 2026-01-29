@@ -1,0 +1,211 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Licence application process
+  {% endcall %}
+  <p>
+    If you want to perform computational analysis on Find Case Law records, you need to apply for a licence. Here's how applications are assessed and approved.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Licence application process
+  {% endcall %}
+  <p>
+    If you want to perform computational analysis on Find Case Law records, you need to apply for a licence. Here's how applications are assessed and approved.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#understanding-computational-analysis") %}
+          Understanding computational analysis
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#no-costs-to-apply") %}
+          No costs to apply
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-applications-are-assessed") %}
+          How applications are assessed
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#two-types-of-licence") %}
+          Two types of licence
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#what-licences-do-not-cover") %}
+          What licences do not cover
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#approval-process") %}
+          Approval process
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#publication-of-approved-licences") %}
+          Publication of approved licences
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#ready-to-apply") %}
+          Ready to apply?
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Understanding computational analysis
+  {% endcall %}
+  <p>
+    Records published on the Find Case Law service are available for re-use under the terms of the Open Justice Licence. You do not need to apply if your re-use complies with these terms.
+  </p>
+  <p>However, if you want to perform computational analysis, you will need to apply for an additional licence.</p>
+  <p>
+    Computational analysis includes activities such as any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records.
+  </p>
+  {% call heading(tag="h2") %}
+    No costs to apply
+  {% endcall %}
+  <p>There are no costs to apply for a licence to perform computational analysis.</p>
+  {% call heading(tag="h2") %}
+    How applications are assessed
+  {% endcall %}
+  <p>
+    Licences for computational analysis are assessed based on the activities and re-use that you state in your application. The licences we issue will be specific to your re-use.
+  </p>
+  <p>The licence team at The National Archives will assess your application against:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the Five Safes Framework
+    {% endcall %}
+    {% call list_item() %}
+      the nine principles established in 2023 by the Ministry of Justice:
+      {% call list(variant="decimal") %}
+        {% call list_item() %}
+          Dignity of the court
+        {% endcall %}
+        {% call list_item() %}
+          Independence of the court
+        {% endcall %}
+        {% call list_item() %}
+          Appropriate scrutiny
+        {% endcall %}
+        {% call list_item() %}
+          Anti-discriminatory harm
+        {% endcall %}
+        {% call list_item() %}
+          Anti-bias
+        {% endcall %}
+        {% call list_item() %}
+          Personal Privacy
+        {% endcall %}
+        {% call list_item() %}
+          Discoverability
+        {% endcall %}
+        {% call list_item() %}
+          Algorithmic transparency
+        {% endcall %}
+        {% call list_item() %}
+          Accurate data representation
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    Risk assessment
+  {% endcall %}
+  <p>
+    The licence team will determine whether your re-use is high risk or not. They will use this to decide the type of licence you will receive.
+  </p>
+  <p>Activities currently considered high risk include:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      whether you intend to produce fully automated legal advice
+    {% endcall %}
+    {% call list_item() %}
+      whether you intend to perform automation to anticipate legal decisions directly for a client or consumer, such as tools which set expectations for case outcomes through modelling or predictive analytics
+    {% endcall %}
+    {% call list_item() %}
+      whether you intend to directly inform or influence the decision of a third-party regarding whether to pursue justice or legal action
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Context is important when understanding risk. If you have an idea that you think might be high risk, please apply giving as much detail as you can.
+  </p>
+  {% call heading(tag="h2") %}
+    Two types of licence
+  {% endcall %}
+  <p>
+    Based on your application, there are two main categories for licences we issue to perform computational analysis.
+  </p>
+  <p>
+    <strong>1. Research and Development</strong>
+  </p>
+  <p>
+    These licences are typically granted for 1 year where the purpose of re-using the data is to gain insight or develop new technologies or practices.
+  </p>
+  <p>
+    <strong>2.  Transactional</strong>
+  </p>
+  <p>
+    These licences are typically granted for up to 5 years. These are for when computational analysis is necessary to deliver a commercial product or service and it is not high risk.
+  </p>
+  {% call heading(tag="h2") %}
+    What licences do not cover
+  {% endcall %}
+  <p>It is important to note that any licence we issue will not be:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      a data sharing agreement for personal data
+    {% endcall %}
+    {% call list_item() %}
+      a processing agreement for personal data
+    {% endcall %}
+  {% endcall %}
+  <p>You should make sure that you comply with all relevant regulations.</p>
+  {% call heading(tag="h2") %}
+    Approval process
+  {% endcall %}
+  <p>
+    Once your licence has been assessed by the licence team, your licence application will be reviewed by the Discovery Board. This is a cross-departmental board at The National Archives. The board meets once a month.
+  </p>
+  <p>Rarely, applications will need to be reviewed by the Senior Data Governance Panel that meets 4 times a year.</p>
+  <p>
+    You will be updated on the status of your application. It may be a few weeks until you get a decision on your application.
+  </p>
+  {% call heading(tag="h2") %}
+    Publication of approved licences
+  {% endcall %}
+  <p>
+    We keep a record of all applications. If your application is successful, part of your application may be made publicly available in the future. This will support transparency in activities using computational analysis that have been approved under licence.
+  </p>
+  {% call card(title="Ready to apply?", title_tag="h2") %}
+    <p>
+      Visit
+      {% call link(href=url("what_you_need_to_apply_for_a_licence")) %}
+        What you need to apply for a licence
+      {% endcall %}
+      to understand what information you need to prepare.
+    </p>
+    <p>
+      If you have any questions about licensing, please email the Licensing Department:
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {% endcall %}
+    </p>
+  {% endcall %}
+{% endblock article_content %}

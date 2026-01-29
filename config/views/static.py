@@ -126,7 +126,7 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
 
 class OpenJusticeLicenceView(TemplateViewWithContext):
     template_engine = "jinja"
-    template_name = "pages/open_justice_license.jinja"
+    template_name = "pages/open_justice_licence.jinja"
 
     page_title = "Open Justice Licence"
     page_canonical_url_name = "open_justice_licence"
@@ -135,7 +135,12 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "license"
+        context["page_description"] = (
+            "Open justice is a fundamental constitutional principle and necessary for the rule of law. The purpose of this licence is to support open justice."
+        )
         context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Legal framework", "url": reverse("legal_framework")},
             {"text": self.page_title},
         ]
         return context
@@ -336,6 +341,196 @@ class WhatWeProvideView(TemplateViewWithContext):
         context["breadcrumbs"] = [
             {"text": "About this service", "url": reverse("about_this_service")},
             {"text": "What we provide"},
+        ]
+
+        return context
+
+
+class PermissionsAndLicencingView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/permissions_and_licencing.jinja"
+    page_title = "Permissions and Licencing"
+    page_canonical_url_name = "permissions_and_licencing"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "permissions_and_licencing"
+        context["page_description"] = (
+            "All judgments on Find Case Law are free to access, but different rules apply depending on how you want to use the records."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing"},
+        ]
+
+        return context
+
+
+class WhatYouCanDoFreelyView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/what_you_can_do_freely.jinja"
+    page_title = "What you can do freely"
+    page_canonical_url_name = "what_you_can_do_freely"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "what_you_can_do_freely"
+        context["page_description"] = (
+            "Most uses of Find Case Law judgments don't require permission or a licence. You're free to use judgments under the Open Justice Licence in ways that support open justice, legal practice, research and commercial innovation."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "What you can do freely"},
+        ]
+
+        return context
+
+
+class UsingFindCaseLawRecordsView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/using_find_case_law_records.jinja"
+    page_title = "Using Find Case Law records"
+    page_canonical_url_name = "using_find_case_law_records"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "using_find_case_law_records"
+        context["page_description"] = (
+            "You can freely use judgments from Find Case Law for most purposes without permission or payment. This page explains what you can do and gives practical examples."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "What you can do freely", "url": reverse("what_you_can_do_freely")},
+            {"text": "Using Find Case Law records"},
+        ]
+
+        return context
+
+
+class WhatYouNeedToApplyForALicenceView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/what_you_need_to_apply_for_a_licence.jinja"
+    page_title = "What you need to apply for a licence"
+    page_canonical_url_name = "what_you_need_to_apply_for_a_licence"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "what_you_need_to_apply_for_a_licence"
+        context["page_description"] = (
+            "If you want to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's what the application involves and how to prepare."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "When you need permission", "url": reverse("when_you_need_permission")},
+            {"text": "What you need to apply for a licence"},
+        ]
+
+        return context
+
+
+class HowToGetPermissionView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/how_to_get_permission.jinja"
+    page_title = "How to get permission"
+    page_canonical_url_name = "how_to_get_permission"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "how_to_get_permission"
+        context["page_description"] = (
+            "If you need to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's an overview of the process."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "How to get permission"},
+        ]
+
+        return context
+
+
+class LicenceApplicationProcessView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/licence_application_process.jinja"
+    page_title = "Licence application process"
+    page_canonical_url_name = "licence_application_process"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "licence_application_process"
+        context["page_description"] = (
+            "If you want to perform computational analysis on Find Case Law records, you need to apply for a licence. Here's how applications are assessed and approved."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "How to get permission", "url": reverse("how_to_get_permission")},
+            {"text": "Licence application process"},
+        ]
+
+        return context
+
+
+class ApplyForALicenceView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/apply_for_a_licence.jinja"
+    page_title = "Apply for a licence"
+    page_canonical_url_name = "apply_for_a_licence"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "apply_for_a_licence"
+        context["page_description"] = "Apply online to perform computational analysis on Find Case Law records."
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "How to get permission", "url": reverse("how_to_get_permission")},
+            {"text": "Apply for a licence"},
+        ]
+
+        return context
+
+
+class LegalFrameworkView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/legal_framework.jinja"
+    page_title = "Legal framework"
+    page_canonical_url_name = "legal_framework"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "legal_framework"
+        context["page_description"] = (
+            "Here are the legal and technical details of how Find Case Law judgments can be used and licensed."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Legal framework"},
+        ]
+
+        return context
+
+
+class WhenYouNeedPermissionView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/when_you_need_permission.jinja"
+    page_title = "When you need permission"
+    page_canonical_url_name = "when_you_need_permission"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "when_you_need_permission"
+        context["page_description"] = (
+            "Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "When you need permission"},
         ]
 
         return context
