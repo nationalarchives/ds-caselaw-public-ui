@@ -24,7 +24,7 @@
         We don't currently hold any documents
       {% else %}
         We currently hold
-        {% call link(href=url("search") ~ "?" ~ "type=" ~ court.canonical_param) %}
+        {% call link(href=url("search") ~ "?" ~ "court=" ~ court.canonical_param) %}
           {{ court|get_court_judgments_count|intcomma }} documents from
           {{ court.start_year }}&nbsp;to&nbsp;{{ court.end_year }}
         {% endcall %}
