@@ -50,7 +50,7 @@ repos:
         additional_dependencies:
           - stylelint@16.26.1
           - stylelint-config-standard-scss@17.0.0
-          - stylelint-config-clean-order@7.0.0
+          - stylelint-config-clean-order@8.0.0
 
   - repo: https://github.com/woodruffw/zizmor-pre-commit
     rev: v1.22.0
