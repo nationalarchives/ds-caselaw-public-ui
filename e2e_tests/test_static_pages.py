@@ -127,6 +127,11 @@ static_pages = [
         "title": "Feedback",
         "heading": "Feedback",
     },
+    {
+        "url": "/glossary",
+        "title": "Find Case Law Glossary",
+        "heading": "Find Case Law Glossary",
+    },
     {"url": "/user-research", "title": "User research", "heading": "User research for Find Case Law"},
 ]
 

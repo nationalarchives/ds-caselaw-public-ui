@@ -244,6 +244,11 @@ urlpatterns = [
         name="feedback",
     ),
     path(
+        "glossary",
+        static_views.GlossaryView.as_view(),
+        name="glossary",
+    ),
+    path(
         "what-to-expect",
         lambda request: HttpResponseRedirect(reverse("about_this_service")),
         name="what_to_expect",
