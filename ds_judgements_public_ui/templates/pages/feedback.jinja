@@ -1,0 +1,86 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/button.jinja" import button %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Feedback
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Feedback
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#take-part-in-user-research") %}
+          Take part in user research
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <p>
+    Your feedback and experiences help us improve Find Case Law for everyone. We want to hear from everyone, whether you use the service daily or are visiting for the first time.
+  </p>
+  <p>Find Case Law is actively developed based on what users tell us. Your input helps us:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      improve search and discovery
+    {% endcall %}
+    {% call list_item() %}
+      add useful features
+    {% endcall %}
+    {% call list_item() %}
+      enhance accessibility
+    {% endcall %}
+    {% call list_item() %}
+      expand coverage
+    {% endcall %}
+    {% call list_item() %}
+      fix problems
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Take part in user research
+  {% endcall %}
+  <p>
+    We're looking for people to help improve the Find Case Law service and make sure it works well for those who need it. Your feedback will help us make it easier to find and use court judgments and tribunal decisions.
+  </p>
+  <p>
+    {% call link(href=url("user_research")) %}
+      User research
+    {% endcall %}
+    explains:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      what taking part involves
+    {% endcall %}
+    {% call list_item() %}
+      how often we'll contact you
+    {% endcall %}
+    {% call list_item() %}
+      how long participation takes
+    {% endcall %}
+    {% call list_item() %}
+      how your data will be handled
+    {% endcall %}
+    {% call list_item() %}
+      how to opt out if you change your mind
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Whether you're a legal professional using Find Case Law daily, a student learning about case law, a journalist researching a story, or a member of the public trying to understand a legal issue – your perspective matters.
+  </p>
+  <p>We read every piece of feedback and use it to make Find Case Law better.</p>
+  {% call button(href="https://www.smartsurvey.co.uk/s/CaseLaw-research/", attrs={"rel": "noreferrer noopener", "target": "_blank"}) %}
+    Sign up for research
+  {% endcall %}
+{% endblock article_content %}

@@ -239,6 +239,11 @@ urlpatterns = [
         name="help_and_support",
     ),
     path(
+        "feedback",
+        static_views.FeedbackView.as_view(),
+        name="feedback",
+    ),
+    path(
         "what-to-expect",
         lambda request: HttpResponseRedirect(reverse("about_this_service")),
         name="what_to_expect",
