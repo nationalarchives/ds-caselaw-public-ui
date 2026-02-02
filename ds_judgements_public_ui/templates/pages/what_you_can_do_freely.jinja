@@ -109,8 +109,8 @@
     Visit
     {% call link(href=url("when_you_need_permission")) %}
       When you need permission
-    {% endcall %}
-    to understand what counts as computational analysis.
+    {%- endcall -%}
+    {{ " " }}to understand what counts as computational analysis.
   </p>
   {% call heading(tag="h2") %}
     Full terms
@@ -118,8 +118,8 @@
   <p>
     {% call link(href=url("open_justice_licence")) %}
       Open Justice Licence
-    {% endcall %}
-    provides the complete legal terms governing the use of Find Case Law judgments, including specific conditions and requirements.
+    {%- endcall -%}
+    {{ " " }}provides the complete legal terms governing the use of Find Case Law judgments, including specific conditions and requirements.
   </p>
   {% call card(title="Questions about free use", title_tag="h2") %}
     <p>
@@ -129,8 +129,8 @@
       Contact us at
       {% call link(href="caselawlicence@nationalarchives.gov.uk") %}
         caselawlicence@nationalarchives.gov.uk
-      {% endcall %}
-      if you have specific questions about what the Open Justice Licence permits.
+      {%- endcall -%}
+      {{ " " }}if you have specific questions about what the Open Justice Licence permits.
     </p>
   {% endcall %}
 {% endblock article_content %}

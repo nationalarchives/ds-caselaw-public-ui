@@ -67,12 +67,12 @@
     If you just want to understand permissions in more detail, visit
     {% call link(href=url("what_you_can_do_freely")) %}
       What you can do freely
-    {% endcall %}
-    or
+    {%- endcall -%}
+    {{ " " }}or
     {% call link(href=url("when_you_need_permission")) %}
       When you need permission
-    {% endcall %}
-    instead.
+    {%- endcall -%}
+    {{ " " }}instead.
   </p>
   {% call heading(tag="h2") %}
     The Open Justice Licence
@@ -81,8 +81,8 @@
     The
     {% call link(href=url("open_justice_licence")) %}
       Open Justice Licence
-    {% endcall %}
-    contains the complete legal terms governing the use of Find Case Law judgments, including:
+    {%- endcall -%}
+    {{ " " }}contains the complete legal terms governing the use of Find Case Law judgments, including:
   </p>
   {% call list(variant="bullets") %}
     {% call list_item() %}

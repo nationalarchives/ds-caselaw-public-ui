@@ -49,8 +49,8 @@
     Make sure you have all the information you need before you begin. See
     {% call link(href=url("what_you_need_to_apply_for_a_licence")) %}
       What you need to apply for a licence
-    {% endcall %}
-    for details of the 29 questions we'll ask across 6 sections.
+    {%- endcall -%}
+    {{ " " }} for details of the 29 questions we'll ask across 6 sections.
   </p>
   <p>You do not need to apply for a licence if your re-use is already covered under the Open Justice Licence.</p>
   <p>
@@ -60,7 +60,8 @@
     See
     {% call link(href=url("when_you_need_permission")) %}
       When you need permission
-    {% endcall %}
+    {%- endcall -%}
+    {{ " " }}
     if you're unsure whether you need to apply.
   </p>
   {% call heading(tag="h2") %}
@@ -142,7 +143,7 @@
       Read more about the
       {% call link(href=url("licence_application_process")) %}
         Licence application process
-      {% endcall %}
+      {%- endcall -%}
       .
     </p>
     <p>There are no costs to apply for a licence to perform computational analysis.</p>

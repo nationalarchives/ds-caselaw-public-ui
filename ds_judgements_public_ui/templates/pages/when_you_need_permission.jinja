@@ -118,19 +118,19 @@
       Visit
       {% call link(href=url("transactional-licence-form-page-3")) %}
         What you need to apply for a licence
-      {% endcall %}
-      to understand the application requirements, or go straight to
+      {%- endcall -%}
+      {{ " " }}to understand the application requirements, or go straight to
       {% call link() %}
         Licence application process
-      {% endcall %}
-      to learn about how applications are assessed.
+      {%- endcall -%}
+      {{ " " }}to learn about how applications are assessed.
     </p>
     <p>
       If you're uncertain whether your intended use counts as computational analysis, contact us at
       {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
         caselawlicence@nationalarchives.gov.uk
-      {% endcall %}
-      to discuss your needs.
+      {%- endcall -%}
+      {{ " " }}to discuss your needs.
     </p>
     <p>It's better to ask than to proceed without permission if a licence is required.</p>
   {% endcall %}

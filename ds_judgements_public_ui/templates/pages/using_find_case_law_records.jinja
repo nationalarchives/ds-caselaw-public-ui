@@ -261,16 +261,16 @@
     See
     {% call link(href=url("when_you_need_permission")) %}
       When you need permission
-    {% endcall %}
-    for more details about licensed uses.
+    {%- endcall -%}
+    {{ " " }}for more details about licensed uses.
   </p>
   {% call card(title="Questions about free use", title_tag="h2") %}
     <p>
       If you're unsure whether what you want to do is free use, it probably is. The vast majority of how people want to use judgments is freely permitted. Contact us through
       {% call link(href=url("contact_us")) %}
         Help and Support
-      {% endcall %}
-      if you have specific questions.
+      {%- endcall -%}
+      {{ " " }}if you have specific questions.
     </p>
   {% endcall %}
 {% endblock article_content %}
