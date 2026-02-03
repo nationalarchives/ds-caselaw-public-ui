@@ -22,6 +22,7 @@ class AdvancedSearchView(TemplateViewWithContext):
         context["feedback_survey_type"] = "advanced_search"
         context["form"] = AdvancedSearchForm(self.request.GET)
         context["query"] = self.request.GET.get("query", "")
+        context["breadcrumbs_variant"] = "accent"
         context["breadcrumbs"] = [
             {"text": self.page_title},
         ]
