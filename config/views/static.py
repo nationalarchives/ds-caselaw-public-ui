@@ -535,6 +535,7 @@ class WhenYouNeedPermissionView(TemplateViewWithContext):
 
         return context
 
+
 class SearchTipsView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/search_tips.jinja"
