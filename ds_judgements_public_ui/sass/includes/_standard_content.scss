@@ -14,6 +14,11 @@
     line-height: $typography-xl-line-height;
     overflow-wrap: break-word;
 
+    h1,
+    > h2 {
+      margin: 0 0 $space-8;
+    }
+
     @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
     }
