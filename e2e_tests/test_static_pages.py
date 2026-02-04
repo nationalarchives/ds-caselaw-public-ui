@@ -112,6 +112,26 @@ static_pages = [
         "title": "Courts and tribunals in Find Case Law",
         "heading": "Courts and tribunals in Find Case Law",
     },
+    {
+        "url": "/search-tips",
+        "title": "Search tips",
+        "heading": "Search tips",
+    },
+    {
+        "url": "/help-and-support",
+        "title": "Help and Support",
+        "heading": "Help and Support",
+    },
+    {
+        "url": "/feedback",
+        "title": "Feedback",
+        "heading": "Feedback",
+    },
+    {
+        "url": "/glossary",
+        "title": "Find Case Law Glossary",
+        "heading": "Find Case Law Glossary",
+    },
     {"url": "/user-research", "title": "User research", "heading": "User research for Find Case Law"},
 ]
 

@@ -536,6 +536,47 @@ class WhenYouNeedPermissionView(TemplateViewWithContext):
         return context
 
 
+class SearchTipsView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/search_tips.jinja"
+    page_title = "Search tips"
+    page_canonical_url_name = "search_tips"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "search_tips"
+        context["page_description"] = (
+            "Search court judgments and tribunal decisions in Find Case Law using the search box on the homepage of this website."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Help and support", "url": reverse("help_and_support")},
+            {"text": "Search tips"},
+        ]
+
+        return context
+
+
+class HelpAndSupportView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/help_and_support.jinja"
+    page_title = "Help and Support"
+    page_canonical_url_name = "help_and_support"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "help_and_support"
+        context["page_description"] = (
+            "Get help using Find Case Law, report problems and share your feedback to help us improve the service."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Help and support"},
+        ]
+
+        return context
+
+
 class CourtsAndDateCoverageView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/courts_and_date_coverage.jinja"
@@ -552,6 +593,48 @@ class CourtsAndDateCoverageView(TemplateViewWithContext):
         context["breadcrumbs"] = [
             {"text": "About this service", "url": reverse("about_this_service")},
             {"text": "Courts and date coverage"},
+        ]
+
+        return context
+
+
+class FeedbackView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/feedback.jinja"
+    page_title = "Feedback"
+    page_canonical_url_name = "feedback"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "feedback"
+        context["page_description"] = (
+            "Your feedback and experiences help us improve Find Case Law for everyone. We want to hear from everyone, whether you use the service daily or are visiting for the first time."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Help and support", "url": reverse("help_and_support")},
+            {"text": "Feedback"},
+        ]
+
+        return context
+
+
+class GlossaryView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/glossary.jinja"
+    page_title = "Find Case Law Glossary"
+    page_canonical_url_name = "glossary"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "glossary"
+        context["page_description"] = (
+            "Find Case Law aims to make court judgments accessible to everyone. However, legal language and court terminology can be unfamiliar, even to regular users. This glossary explains common terms you'll encounter when searching for and reading court judgments, helping you understand how our service works."
+        )
+        context["breadcrumbs"] = [
+            {"text": "Help and support", "url": reverse("help_and_support")},
+            {"text": "Find Case Law Glossary"},
         ]
 
         return context

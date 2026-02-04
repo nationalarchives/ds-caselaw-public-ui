@@ -1,0 +1,163 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Help and Support
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Help and Support
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#getting-started-with-find-case-law") %}
+          Getting started with Find Case Law
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#contact-us") %}
+          Contact us
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#help-us-improve") %}
+          Help us improve
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <p>Get help using Find Case Law, report problems and share your feedback to help us improve the service.</p>
+  {% call heading(tag="h2") %}
+    Getting started with Find Case Law
+  {% endcall %}
+  <p>
+    New to the service? Visit
+    {% call link(href=url("understanding_case_law")) %}
+      Understanding Case Law
+    {% endcall %}
+    to learn about court judgments and how to read them.
+  </p>
+  <p>
+    Ready to search? Our
+    {% call link(href=url("search_tips")) %}
+      Search tips
+    {% endcall %}
+    page provides guidance for finding specific cases, including:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      how to search for case names and citations
+    {% endcall %}
+    {% call list_item() %}
+      using keywords effectively
+    {% endcall %}
+    {% call list_item() %}
+      filtering by court, date, or judge
+    {% endcall %}
+    {% call list_item() %}
+      tips for using advanced search
+    {% endcall %}
+  {% endcall %}
+  <p>Whether you're a beginner or experienced researcher, our search guidance helps you find what you need quickly.</p>
+  {% call heading(tag="h2") %}
+    Contact us
+  {% endcall %}
+  <p>If you need direct assistance our team can help with:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      technical problems using the service
+    {% endcall %}
+    {% call list_item() %}
+      questions about specific judgments
+    {% endcall %}
+    {% call list_item() %}
+      reporting errors or issues
+    {% endcall %}
+    {% call list_item() %}
+      general enquiries about Find Case Law
+    {% endcall %}
+  {% endcall %}
+  <p>
+    {% call link(href=url("contact_us")) %}
+      Contact us
+    {% endcall %}
+    to get in touch. We aim to respond to all enquiries promptly.
+  </p>
+  {% call heading(tag="h2") %}
+    Help us improve
+  {% endcall %}
+  <p>Your feedback and experiences help us make Find Case Law better for everyone.</p>
+  <p>Tell us about your experience using Find Case Law through our feedback surveys. Your input helps us:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      improve search functionality
+    {% endcall %}
+    {% call list_item() %}
+      add features that users need
+    {% endcall %}
+    {% call list_item() %}
+      make the service more accessible
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    Participate in user research
+  {% endcall %}
+  <p>
+    We conduct research to understand how people use Find Case Law and what they need. Participating in user research gives you the chance to:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      shape future features and improvements
+    {% endcall %}
+    {% call list_item() %}
+      test new functionality before it launches
+    {% endcall %}
+    {% call list_item() %}
+      share your specific needs and challenges
+    {% endcall %}
+    {% call list_item() %}
+      help us serve your user community better
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Visit
+    {% call link(href=url("help_and_support")) %}
+      Feedback
+    {% endcall %}
+    to access our surveys and learn about current research opportunities.
+  </p>
+  {% call heading(tag="h3") %}
+    Reporting problems
+  {% endcall %}
+  <p>
+    If you find technical issues, broken links, or errors in judgments, please let us know through our contact form. Include as much detail as possible:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      what you were trying to do
+    {% endcall %}
+    {% call list_item() %}
+      what went wrong
+    {% endcall %}
+    {% call list_item() %}
+      which page or judgment was affected
+    {% endcall %}
+    {% call list_item() %}
+      any error messages you saw
+    {% endcall %}
+  {% endcall %}
+  <p>This helps us investigate and fix problems quickly.</p>
+  <p>
+    We're constantly improving Find Case Law based on user feedback and changing needs. Check back regularly for new features and expanded coverage.
+  </p>
+{% endblock article_content %}

@@ -1,0 +1,325 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Search tips
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Search tips
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#quick-start") %}
+          Quick start
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#use-the-search-box") %}
+          Use the search box
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#search-examples") %}
+          Search examples
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#sort-search-results") %}
+          Sort search results
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#filter-search-results") %}
+          Filter search results
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#search-by-neutral-citation") %}
+          Search by neutral citation
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#troubleshooting-your-search") %}
+          Troubleshooting your search
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#if-you-need-more-help") %}
+          If you need more help
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <p>
+    Search court judgments and tribunal decisions in Find Case Law using the search box on the homepage of this website.
+  </p>
+  <p>Use advanced search to filter search results by specific dates, courts or tribunals, party names or judge names.</p>
+  {% call heading(tag="h2") %}
+    Quick start
+  {% endcall %}
+  <p>New to searching? Here's what you need to know:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      type case names, keywords, or citations into the search box
+    {% endcall %}
+    {% call list_item() %}
+      put phrases in "quote marks" to search for exact wording
+    {% endcall %}
+    {% call list_item() %}
+      use filters to narrow results by date, court, party name, or judge
+    {% endcall %}
+    {% call list_item() %}
+      order results by relevance (default), newest, or oldest
+    {% endcall %}
+  {% endcall %}
+  <p>Read on for detailed guidance on each search feature.</p>
+  {% call heading(tag="h2") %}
+    Use the search box
+  {% endcall %}
+  <p>The search box on the homepage allows you to search:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the full text of every judgment or decision on Find Case Law
+    {% endcall %}
+    {% call list_item() %}
+      details such as court name and neutral citation for each of these
+    {% endcall %}
+  {% endcall %}
+  <p>It shows the judgments and decisions that include all of your search terms. You should also note that:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      it allows you to search for specific phrases if you put them in double quote marks "like this"
+    {% endcall %}
+    {% call list_item() %}
+      it does not recognise Boolean operators such as 'AND' and 'OR'
+    {% endcall %}
+    {% call list_item() %}
+      it is not a smart search, meaning it does not match similar words and concepts to your search terms
+    {% endcall %}
+    {% call list_item() %}
+      it is not able to correct spelling mistakes
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Search examples
+  {% endcall %}
+  <p>If you search for:</p>
+  <p>
+    <em>environmental matters</em>
+  </p>
+  <p>
+    Your search will return any judgments or decisions that contain the word 'environmental' and/or the word 'matters', even if they don't appear next to one another.
+  </p>
+  <p>If you search for:</p>
+  <p>
+    <em>"environmental matters"</em>
+  </p>
+  <p>
+    Your search will return any judgments or decisions that contain the phrase 'environmental matters', where the words appear together and in that order.
+  </p>
+  <p>If you search for:</p>
+  <p>
+    <em>"environmental matters" subsidiary</em>
+  </p>
+  <p>
+    Your search will return judgments or decisions that contain both the phrase 'environmental matters' and/or the word 'subsidiary'.
+  </p>
+  {% call heading(tag="h2") %}
+    Sort search results
+  {% endcall %}
+  <p>Once you have made your search, you can choose what you 'Order results by' and the number of 'Results per page'.</p>
+  <p>
+    By default, search results will be ordered by 'Most relevant'. If you have multiple search terms, results in which those terms appear closer together will be listed higher up on the page.
+  </p>
+  <p>
+    You can also order search results by 'Newest' and 'Oldest', based on the date on which the judgment or decision was handed down.
+  </p>
+  {% call heading(tag="h2") %}
+    Filter search results
+  {% endcall %}
+  <p>
+    You can apply filters to narrow down the results returned by the search box by selecting 'Add another filter' to an existing search, or beginning your search on the advanced search page.
+  </p>
+  <p>What each filter does is explained below.</p>
+  {% call heading(tag="h3") %}
+    'From date' and 'to date'
+  {% endcall %}
+  <p>
+    At the top of each judgment or decision is the date on which it was handed down. You can set a date range to filter your results by this.
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      'From date' only shows results from after (and including) that date
+    {% endcall %}
+    {% call list_item() %}
+      'To date' only shows results up until (and including) that date
+    {% endcall %}
+  {% endcall %}
+  <p>You can set one of these or both together. If no end date is selected, the current date will be used.</p>
+  {% call heading(tag="h3") %}
+    From specific courts or tribunals
+  {% endcall %}
+  <p>
+    Also at the top of each judgment or decision is the court or chamber where the case was decided. You can filter your search to only show results from specific courts and chambers.
+  </p>
+  <p>
+    See also
+    {% call link(href=url("courts_and_tribunals")) %}
+      Courts and tribunals in Find Case Law
+    {% endcall %}
+    .
+  </p>
+  {% call heading(tag="h3") %}
+    Party name
+  {% endcall %}
+  <p>
+    This is the name of someone involved in the case, such as the claimant or defendant. There are often multiple party names listed at the top of the judgment or decision.
+  </p>
+  <p>
+    If a name has been struck through on a judgment, this means that the person withdrew from the case before it was decided.
+  </p>
+  <p>You can search using multiple party names at once.</p>
+  <p>
+    This allows you to search by case name, since the case name is made from some (or all) of the parties listed as the appellant and defendant.
+  </p>
+  <p>
+    For example: You can enter 'Cape Intermediate Holdings Ltd v Dring' under 'Party name' and bring up all cases with that name.
+  </p>
+  <p>
+    In some instances the case name has been edited. For example, if there are multiple parties the editors may just list the first one in this field so the parties may not match what is on the document. See our
+    {% call link(href=url("publishing_policy")) %}
+      Publishing policy
+    {%- endcall -%}.
+  </p>
+  {% call heading(tag="h3") %}
+    Judge name
+  {% endcall %}
+  <p>The name of the judge(s) who decided a case appears at the top of every judgment or decision.</p>
+  <p>
+    This filter only shows search results for judges that have given a judgment or decision on a case, instead of searching every reference to the name of the judge within the full text of cases.
+  </p>
+  <p>You can use a part of the name, the whole name, or the whole name and judicial titles.</p>
+  {% call heading(tag="h2") %}
+    Search by neutral citation
+  {% endcall %}
+  <p>
+    The courts give a unique identifier to every judgment and decision, called a 'neutral citation'. This appears at the top of the judgment or decision, and is the official way to cite it.
+  </p>
+  <p>Examples of neutral citations</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      [2021] EWCA Civ 1847
+    {% endcall %}
+    {% call list_item() %}
+      [2009] EWHC 2500 (Mercantile)
+    {% endcall %}
+    {% call list_item() %}
+      [2021] EWCOP 18
+    {% endcall %}
+    {% call list_item() %}
+      [2019] UKSC 38
+    {% endcall %}
+  {% endcall %}
+  <p>They typically include:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the year the judgment or decision was handed down. For example: [2009]
+    {% endcall %}
+    {% call list_item() %}
+      the standard court acronym. For example: EWCA is England and Wales Court of Appeal
+    {% endcall %}
+    {% call list_item() %}
+      the standard acronym for the division of court. For example: Civ is Civil Division
+    {% endcall %}
+    {% call list_item() %}
+      a unique number allocated by the individual court within a given year. For example: '1847' will be the unique number for the Court of Appeal Civil Division in 2021
+    {% endcall %}
+  {% endcall %}
+  <p>If you're struggling to find a judgment using a neutral citation first check:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      you have written the neutral citation in full
+    {% endcall %}
+    {% call list_item() %}
+      it contains no typing errors
+    {% endcall %}
+    {% call list_item() %}
+      the spaces are in the appropriate places
+    {% endcall %}
+    {% call list_item() %}
+      it is the neutral citation allocated by the court rather than a case or reference number issued by a publisher
+    {% endcall %}
+  {% endcall %}
+  <p>
+    If you are confident that the neutral citation is correct but are struggling to find it, it may be that that judgment is not within our collection.
+  </p>
+  {% call heading(tag="h2") %}
+    Troubleshooting your search
+  {% endcall %}
+  <p>
+    <strong>Can't find a judgment you know exists?</strong>
+  </p>
+  <p>
+    Check the coverage – Visit
+    {% call link(href=url("courts_and_tribunals")) %}
+      Courts and tribunals in Find Case Law
+    {% endcall %}
+    to see if the court and date range are covered.
+  </p>
+  <p>Try different search terms – Use alternative spellings, different party names, or just the citation.</p>
+  <p>Check your spelling – The search doesn't correct spelling mistakes automatically.</p>
+  <p>Simplify your search – Try fewer keywords or remove filters to broaden results.</p>
+  <p>
+    <strong>Getting too many results?</strong>
+  </p>
+  <p>Add more specific keywords – Include unique terms from the case.</p>
+  <p>Use quote marks – Search for exact phrases "like this".</p>
+  <p>Add filters – Narrow by date range, specific court, or party name.</p>
+  <p>Try the citation – If you know it, searching by neutral citation is the most precise.</p>
+  <p>
+    <strong>Results don't seem relevant?</strong>
+  </p>
+  <p>Check your search terms – Make sure you're using the right keywords.</p>
+  <p>Try different ordering – Switch from 'Most relevant' to 'Newest' or 'Oldest'.</p>
+  <p>Review the filters – Make sure you haven't accidentally filtered out relevant results.</p>
+  <p>Browse instead – Sometimes browsing by court is easier than searching.</p>
+  {% call card(title="If you need more help", title_tag="h2") %}
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        New to case law? Visit
+        {% call link(href=url("understanding_case_law")) %}
+          Understanding Case Law
+        {% endcall %}
+        to learn about court judgments
+      {% endcall %}
+      {% call list_item() %}
+        Can't find a specific court? Check
+        {% call link(href=url("courts_and_tribunals")) %}
+          Courts and tribunals in Find Case Law
+        {% endcall %}
+        for coverage details
+      {% endcall %}
+      {% call list_item() %}
+        Technical problems?
+        {% call link(href=url("contact_us")) %}
+          Contact us
+        {% endcall %}
+        for assistance
+      {% endcall %}
+      {% call list_item() %}
+        Questions about a judgment? Contact the court that issued it
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_content %}
