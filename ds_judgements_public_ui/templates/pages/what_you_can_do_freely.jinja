@@ -1,0 +1,136 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    What you can do freely
+  {% endcall %}
+  <p>
+    Most uses of Find Case Law judgments don't require permission or a licence. You're free to use judgments under the Open Justice Licence in ways that support open justice, legal practice, research and commercial innovation.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    What you can do freely
+  {% endcall %}
+  <p>
+    Most uses of Find Case Law judgments don't require permission or a licence. You're free to use judgments under the Open Justice Licence in ways that support open justice, legal practice, research and commercial innovation.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#free-to-use") %}
+          Free to use
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#commercial-use-is-permitted") %}
+          Commercial use is permitted
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#what-you-cant-do-freely") %}
+          What you can't do freely
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#full-terms") %}
+          Full terms
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#questions-about-free-use") %}
+          Questions about free use
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Free to use
+  {% endcall %}
+  <p>Under the Open Justice Licence, you can freely:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      read and download any judgment from Find Case Law
+    {% endcall %}
+    {% call list_item() %}
+      share links to judgments with colleagues, clients, or the public
+    {% endcall %}
+    {% call list_item() %}
+      quote and cite judgments in your work, including academic papers, legal arguments, articles, and publications
+    {% endcall %}
+    {% call list_item() %}
+      use for legal research including case preparation, legal advice, and court submissions
+    {% endcall %}
+    {% call list_item() %}
+      teach and learn using judgments in educational settings
+    {% endcall %}
+    {% call list_item() %}
+      reference personally for your own understanding and study
+    {% endcall %}
+    {% call list_item() %}
+      use commercially including incorporating judgments into your own products or applications
+    {% endcall %}
+  {% endcall %}
+  <p>No permission needed, no forms to fill in and no fees to pay.</p>
+  {% call heading(tag="h2") %}
+    Commercial use is permitted
+  {% endcall %}
+  <p>The Open Justice Licence allows you to use judgments commercially. You can:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      copy, publish, distribute and transmit case law data
+    {% endcall %}
+    {% call list_item() %}
+      combine judgments with other information
+    {% endcall %}
+    {% call list_item() %}
+      include judgments in your own product or application
+    {% endcall %}
+  {% endcall %}
+  <p>
+    This means commercial legal technology products, legal databases and other commercial services can incorporate Find Case Law judgments freely.
+  </p>
+  {% call heading(tag="h2") %}
+    What you can't do freely
+  {% endcall %}
+  <p>The Open Justice Licence does not permit computational analysis.</p>
+  <p>
+    If you intend to do any programmatic searching in bulk across Find Case Law records to identify, extract or enrich contents within the records, you will need to apply for a licence to perform computational analysis.
+  </p>
+  <p>
+    Visit
+    {% call link(href=url("when_you_need_permission")) %}
+      When you need permission
+    {%- endcall -%}
+    {{ " " }}to understand what counts as computational analysis.
+  </p>
+  {% call heading(tag="h2") %}
+    Full terms
+  {% endcall %}
+  <p>
+    {% call link(href=url("open_justice_licence")) %}
+      Open Justice Licence
+    {%- endcall -%}
+    {{ " " }}provides the complete legal terms governing the use of Find Case Law judgments, including specific conditions and requirements.
+  </p>
+  {% call card(title="Questions about free use", title_tag="h2") %}
+    <p>
+      The Open Justice Licence covers the vast majority of how people want to use judgments, including commercial applications.
+    </p>
+    <p>
+      Contact us at
+      {% call link(href="caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {%- endcall -%}
+      {{ " " }}if you have specific questions about what the Open Justice Licence permits.
+    </p>
+  {% endcall %}
+{% endblock article_content %}

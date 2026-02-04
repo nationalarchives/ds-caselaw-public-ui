@@ -1,0 +1,102 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    How to get permission
+  {% endcall %}
+  <p>
+    If you need to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's an overview of the process.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    How to get permission
+  {% endcall %}
+  <p>
+    If you need to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's an overview of the process.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#the-application") %}
+          The application
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#the-assessment-process") %}
+          The assessment process
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#no-costs") %}
+          No costs
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#questions-about-applying") %}
+          Questions about applying
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    The application
+  {% endcall %}
+  <p>There is one application form made up of 6 main sections with 29 questions in total.</p>
+  <p>
+    <strong>Important:</strong> You cannot save your application partway through. You will need to complete your application in one session.
+  </p>
+  <p>
+    {% call link(url("what_you_need_to_apply_for_a_licence")) %}
+      What you need to apply for a licence
+    {%- endcall -%}
+    {{ " " }}explains:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the 6 sections of the application form
+    {% endcall %}
+    {% call list_item() %}
+      what questions you'll need to answer
+    {% endcall %}
+    {% call list_item() %}
+      how to prepare before you start
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    The assessment process
+  {% endcall %}
+  <p>Once you submit your application, it will be assessed by the licence team at The National Archives.</p>
+  <p>Licence application process explains:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      how applications are assessed
+    {% endcall %}
+    {% call list_item() %}
+      the approval process through Discovery Board
+    {% endcall %}
+    {% call list_item() %}
+      what to expect and timelines
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    No costs
+  {% endcall %}
+  <p>There are no costs to apply for a licence to perform computational analysis.</p>
+  {% call card(title="Questions about applying", title_tag="h2") %}
+    <p>
+      If you have any questions about licensing, please email the Licensing Department:
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {% endcall %}
+    </p>
+  {% endcall %}
+{% endblock article_content %}

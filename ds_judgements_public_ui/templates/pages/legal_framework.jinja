@@ -1,0 +1,127 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Legal framework
+  {% endcall %}
+  <p>Here are the legal and technical details of how Find Case Law judgments can be used and licensed.</p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Legal framework
+  {% endcall %}
+  <p>Here are the legal and technical details of how Find Case Law judgments can be used and licensed.</p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#who-needs-this-information") %}
+          Who needs this information
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#the-open-justice-licence") %}
+          The Open Justice Licence
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#computational-analysis-licences") %}
+          Computational analysis licences
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#plain-english-explanations") %}
+          Plain English explanations
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#questions") %}
+          Questions?
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Who needs this information
+  {% endcall %}
+  <p>The legal framework information is designed for:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      legal and compliance teams reviewing licensing terms
+    {% endcall %}
+    {% call list_item() %}
+      developers implementing technical integrations
+    {% endcall %}
+    {% call list_item() %}
+      anyone requiring precise legal definitions and conditions
+    {% endcall %}
+  {% endcall %}
+  <p>
+    If you just want to understand permissions in more detail, visit
+    {% call link(href=url("what_you_can_do_freely")) %}
+      What you can do freely
+    {%- endcall -%}
+    {{ " " }}or
+    {% call link(href=url("when_you_need_permission")) %}
+      When you need permission
+    {%- endcall -%}
+    {{ " " }}instead.
+  </p>
+  {% call heading(tag="h2") %}
+    The Open Justice Licence
+  {% endcall %}
+  <p>
+    The
+    {% call link(href=url("open_justice_licence")) %}
+      Open Justice Licence
+    {%- endcall -%}
+    {{ " " }}contains the complete legal terms governing the use of Find Case Law judgments, including:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      what uses are permitted
+    {% endcall %}
+    {% call list_item() %}
+      conditions and restrictions
+    {% endcall %}
+    {% call list_item() %}
+      attribution requirements
+    {% endcall %}
+    {% call list_item() %}
+      what the licence does not permit (computational analysis)
+    {% endcall %}
+  {% endcall %}
+  <p>
+    The Open Justice Licence is the formal legal framework that underpins free use of judgments on Find Case Law, including commercial use.
+  </p>
+  {% call heading(tag="h2") %}
+    Computational analysis licences
+  {% endcall %}
+  <p>
+    If you need to perform computational analysis, separate licensing terms will apply specific to your use case. These licences are assessed individually based on your application.
+  </p>
+  {% call heading(tag="h2") %}
+    Plain English explanations
+  {% endcall %}
+  <p>
+    While the Open Justice Licence contains necessary legal detail, we provide plain English explanations throughout the Permissions and Licensing pages to help everyone understand what they can do.
+  </p>
+  <p>
+    The detailed legal terms are here when you need them, but you don't need to read legal text to understand your permissions for common uses.
+  </p>
+  {% call card(title="Questions?", title_tag="h2") %}
+    <p>
+      If you have any questions about licensing, please email the Licensing Department:
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {% endcall %}
+    </p>
+  {% endcall %}
+{% endblock article_content %}

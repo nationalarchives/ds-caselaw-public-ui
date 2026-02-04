@@ -1,0 +1,276 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Using Find Case Law records
+  {% endcall %}
+  <p>
+    You can freely use judgments from Find Case Law for most purposes without permission or
+    payment. This page explains what you can do and gives practical examples.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Using Find Case Law records
+  {% endcall %}
+  <p>
+    You can freely use judgments from Find Case Law for most purposes without permission or
+    payment. This page explains what you can do and gives practical examples.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#what-you-can-do-freely") %}
+          What you can do freely
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#practical-examples") %}
+          Practical examples
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#attribution") %}
+          Attribution
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#no-registration-required") %}
+          No registration required
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#whats-different-from-free-use") %}
+          What's different from free use?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#questions-about-free-use") %}
+          Questions about free use
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    What you can do freely
+  {% endcall %}
+  <p>
+    All judgments on Find Case Law are available under terms that support open justice and public access to legal information. You don't need permission to:
+  </p>
+  {% call heading(tag="h3") %}
+    Read, download, and share
+  {% endcall %}
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      access any judgment on the service
+    {% endcall %}
+    {% call list_item() %}
+      download judgments as PDFs
+    {% endcall %}
+    {% call list_item() %}
+      share links to specific judgments
+    {% endcall %}
+    {% call list_item() %}
+      print judgments for your use
+    {% endcall %}
+    {% call list_item() %}
+      save judgments for future reference
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    Use for legal work
+  {% endcall %}
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      research cases for legal advice and representation
+    {% endcall %}
+    {% call list_item() %}
+      prepare arguments and submissions for court
+    {% endcall %}
+    {% call list_item() %}
+      cite judgments in legal documents and court filings
+    {% endcall %}
+    {% call list_item() %}
+      provide case law to clients as part of legal services
+    {% endcall %}
+    {% call list_item() %}
+      reference judgments in legal opinions
+    {% endcall %}
+  {% endcall %}
+  <p>This applies whether you're a solicitor, barrister, legal executive, paralegal, or representing yourself.</p>
+  {% call heading(tag="h3") %}
+    Academic and educational use
+  {% endcall %}
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      cite judgments in essays, dissertations, and theses
+    {% endcall %}
+    {% call list_item() %}
+      use judgments in teaching materials and courses
+    {% endcall %}
+    {% call list_item() %}
+      include judgments in academic publications and research papers
+    {% endcall %}
+    {% call list_item() %}
+      analyse judgments for research projects
+    {% endcall %}
+    {% call list_item() %}
+      create educational resources about case law
+    {% endcall %}
+  {% endcall %}
+  <p>Students, teachers, lecturers, and researchers can all use judgments freely.</p>
+  {% call heading(tag="h3") %}
+    Journalism and public information
+  {% endcall %}
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      quote judgments in news articles and reports
+    {% endcall %}
+    {% call list_item() %}
+      reference judgments in investigative journalism
+    {% endcall %}
+    {% call list_item() %}
+      include judgments in broadcast media
+    {% endcall %}
+    {% call list_item() %}
+      use judgments in public interest reporting
+    {% endcall %}
+    {% call list_item() %}
+      cite judgments in books and publications
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    Personal use
+  {% endcall %}
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      read judgments to understand legal issues
+    {% endcall %}
+    {% call list_item() %}
+      research judgments for personal matters
+    {% endcall %}
+    {% call list_item() %}
+      learn about how courts work
+    {% endcall %}
+    {% call list_item() %}
+      follow cases of public interest
+    {% endcall %}
+    {% call list_item() %}
+      understand legal precedents
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Practical examples
+  {% endcall %}
+  <p>Here are real–world scenarios to show what's freely permitted:</p>
+  <p>
+    <strong>Example 1: Law firm research</strong>
+  </p>
+  <p>
+    A solicitor downloads 20 judgments about contract law to research a client's case. She quotes several in her legal advice and cites them in court documents.
+  </p>
+  <p>
+    <strong>Example 2: Student dissertation</strong>
+  </p>
+  <p>
+    A law student writes a dissertation analysing how courts have interpreted employment law. She cites 50 judgments throughout her work and includes extracts in her analysis.
+  </p>
+  <p>
+    <strong>Example 3: Journalist reporting</strong>
+  </p>
+  <p>
+    A journalist writing about a public interest case downloads the judgment, quotes from it in her article, and links to it on the news website.
+  </p>
+  <p>
+    <strong>Example 4: Charity guidance</strong>
+  </p>
+  <p>
+    A housing charity creates guidance documents for tenants facing eviction. They cite relevant court judgments to explain tenants' legal rights.
+  </p>
+  <p>
+    <strong>Example 5: Self–represented litigant</strong>
+  </p>
+  <p>
+    Someone representing themselves in a tribunal downloads judgments about similar cases to understand how their case might be decided and what arguments to make.
+  </p>
+  <p>
+    <strong>Example 6: Academic researcher</strong>
+  </p>
+  <p>
+    A university researcher studying judicial reasoning downloads 200 judgments on a specific legal topic, reads them all, and analyses patterns in judicial decision–making for an academic paper.
+  </p>
+  <p>
+    <strong>Example 7: Legal blog</strong>
+  </p>
+  <p>
+    A lawyer writes a blog explaining recent court decisions, quoting from judgments and providing commentary for other lawyers and the public.
+  </p>
+  {% call heading(tag="h2") %}
+    Attribution
+  {% endcall %}
+  <p>
+    When you quote or cite judgments, use standard legal citation formats. You don't need special permission statements, but good practice is to cite:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the case name and citation (for example, Smith v Jones [2024] EWCA Civ 123)
+    {% endcall %}
+    {% call list_item() %}
+      the court
+    {% endcall %}
+    {% call list_item() %}
+      the date of judgment
+    {% endcall %}
+    {% call list_item() %}
+      the paragraph numbers for specific quotes
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    No registration required
+  {% endcall %}
+  <p>
+    You don't need to register, create an account, or tell us you're using judgments for any of these free uses. Just go ahead and use them.
+  </p>
+  {% call heading(tag="h2") %}
+    What's different from free use?
+  {% endcall %}
+  <p>
+    Free use covers reading, downloading reasonable numbers of judgments, quoting, and citing – even for commercial legal work, journalism, and research.
+  </p>
+  <p>You need a licence for:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      incorporating large numbers of judgments into commercial products
+    {% endcall %}
+    {% call list_item() %}
+      bulk downloading substantial portions of the collection for commercial purposes
+    {% endcall %}
+    {% call list_item() %}
+      computational analysis of judgments at scale for commercial use
+    {% endcall %}
+  {% endcall %}
+  <p>
+    See
+    {% call link(href=url("when_you_need_permission")) %}
+      When you need permission
+    {%- endcall -%}
+    {{ " " }}for more details about licensed uses.
+  </p>
+  {% call card(title="Questions about free use", title_tag="h2") %}
+    <p>
+      If you're unsure whether what you want to do is free use, it probably is. The vast majority of how people want to use judgments is freely permitted. Contact us through
+      {% call link(href=url("contact_us")) %}
+        Help and Support
+      {%- endcall -%}
+      {{ " " }}if you have specific questions.
+    </p>
+  {% endcall %}
+{% endblock article_content %}

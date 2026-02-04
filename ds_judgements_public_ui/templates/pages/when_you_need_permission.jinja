@@ -1,0 +1,137 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    When you need permission
+  {% endcall %}
+  <p>
+    Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence.
+  </p>
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    When you need permission
+  {% endcall %}
+  <p>
+    Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence.
+  </p>
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#understanding-computational-analysis") %}
+          Understanding computational analysis
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#do-you-need-a-licence") %}
+          Do you need a licence?
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#no-costs-to-apply") %}
+          No costs to apply
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-to-apply") %}
+          How to apply
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% call heading(tag="h2") %}
+    Understanding computational analysis
+  {% endcall %}
+  <p>
+    Computational analysis includes activities such as any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records.
+  </p>
+  <p>This means using automated or algorithmic methods to process large numbers of judgments systematically.</p>
+  {% call heading(tag="h3") %}
+    Examples of computational analysis
+  {% endcall %}
+  <p>Computational analysis includes activities like:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      text mining across large numbers of judgments
+    {% endcall %}
+    {% call list_item() %}
+      natural language processing of judgment text
+    {% endcall %}
+    {% call list_item() %}
+      bulk extraction of data from judgments
+    {% endcall %}
+    {% call list_item() %}
+      machine learning or AI training on judgment datasets
+    {% endcall %}
+    {% call list_item() %}
+      statistical analysis across the full collection
+    {% endcall %}
+    {% call list_item() %}
+      automated identification or classification of judgments
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    What's not computational analysis
+  {% endcall %}
+  <p>Standard uses that don't require a licence include:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      reading individual judgments
+    {% endcall %}
+    {% call list_item() %}
+      downloading judgments one at a time as you need them
+    {% endcall %}
+    {% call list_item() %}
+      using the search function to find cases
+    {% endcall %}
+    {% call list_item() %}
+      incorporating judgments into commercial products or services
+    {% endcall %}
+    {% call list_item() %}
+      quoting or citing judgments in your work
+    {% endcall %}
+  {% endcall %}
+  <p>These uses are all covered by the Open Justice Licence.</p>
+  {% call heading(tag="h2") %}
+    Do you need a licence?
+  {% endcall %}
+  <p>
+    You need a licence if you want to perform any programmatic searching in bulk across Find Case Law records to identify, extract or enrich contents within the records.
+  </p>
+  <p>
+    You don't need a licence if your use is covered by the Open Justice Licence, including commercial products that incorporate judgments.
+  </p>
+  {% call heading(tag="h2") %}
+    No costs to apply
+  {% endcall %}
+  <p>There are no costs to apply for a licence to perform computational analysis.</p>
+  {% call card(title="How to apply", title_tag="h2") %}
+    <p>
+      Visit
+      {% call link(href=url("transactional-licence-form-page-3")) %}
+        What you need to apply for a licence
+      {%- endcall -%}
+      {{ " " }}to understand the application requirements, or go straight to
+      {% call link() %}
+        Licence application process
+      {%- endcall -%}
+      {{ " " }}to learn about how applications are assessed.
+    </p>
+    <p>
+      If you're uncertain whether your intended use counts as computational analysis, contact us at
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {%- endcall -%}
+      {{ " " }}to discuss your needs.
+    </p>
+    <p>It's better to ask than to proceed without permission if a licence is required.</p>
+  {% endcall %}
+{% endblock article_content %}

@@ -114,6 +114,51 @@ urlpatterns = [
         name="courts_and_date_coverage",
     ),
     path(
+        "permissions-and-licencing",
+        static_views.PermissionsAndLicencingView.as_view(),
+        name="permissions_and_licencing",
+    ),
+    path(
+        "what-you-can-do-freely",
+        static_views.WhatYouCanDoFreelyView.as_view(),
+        name="what_you_can_do_freely",
+    ),
+    path(
+        "when-you-need-permission",
+        static_views.WhenYouNeedPermissionView.as_view(),
+        name="when_you_need_permission",
+    ),
+    path(
+        "using-find-case-law-records",
+        static_views.UsingFindCaseLawRecordsView.as_view(),
+        name="using_find_case_law_records",
+    ),
+    path(
+        "what-you-need-to-apply-for-a-licence",
+        static_views.WhatYouNeedToApplyForALicenceView.as_view(),
+        name="what_you_need_to_apply_for_a_licence",
+    ),
+    path(
+        "how-to-get-permission",
+        static_views.HowToGetPermissionView.as_view(),
+        name="how_to_get_permission",
+    ),
+    path(
+        "licence-application-process",
+        static_views.LicenceApplicationProcessView.as_view(),
+        name="licence_application_process",
+    ),
+    path(
+        "apply-for-a-licence",
+        static_views.ApplyForALicenceView.as_view(),
+        name="apply_for_a_licence",
+    ),
+    path(
+        "legal-framework",
+        static_views.LegalFrameworkView.as_view(),
+        name="legal_framework",
+    ),
+    path(
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",

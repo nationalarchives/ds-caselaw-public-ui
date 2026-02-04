@@ -1,0 +1,157 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Apply for a licence
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Apply for a licence
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#what-to-expect") %}
+          What to expect
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#help-to-prepare") %}
+          Help to prepare
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#apply-online") %}
+          Apply online
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#after-you-apply") %}
+          After you apply
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <p>Apply online to perform computational analysis on Find Case Law records.</p>
+  <p>
+    <strong>Important:</strong> You cannot save your application partway through. You will need to complete your application in one session.
+  </p>
+  <p>
+    Make sure you have all the information you need before you begin. See
+    {% call link(href=url("what_you_need_to_apply_for_a_licence")) %}
+      What you need to apply for a licence
+    {%- endcall -%}
+    {{ " " }} for details of the 29 questions we'll ask across 6 sections.
+  </p>
+  <p>You do not need to apply for a licence if your re-use is already covered under the Open Justice Licence.</p>
+  <p>
+    The Open Justice Licence covers most uses, including commercial use. You only need to apply if you want to perform computational analysis.
+  </p>
+  <p>
+    See
+    {% call link(href=url("when_you_need_permission")) %}
+      When you need permission
+    {%- endcall -%}
+    {{ " " }}
+    if you're unsure whether you need to apply.
+  </p>
+  {% call heading(tag="h2") %}
+    What to expect
+  {% endcall %}
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      29 questions across 6 sections
+    {% endcall %}
+    {% call list_item() %}
+      you must complete the application in one session
+    {% endcall %}
+    {% call list_item() %}
+      some of your responses may be published in the future
+    {% endcall %}
+    {% call list_item() %}
+      it may take a few weeks until you receive a decision
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h3") %}
+    The 6 sections
+  {% endcall %}
+  {% call list(variant="decimal") %}
+    {% call list_item() %}
+      Contact details – The person responsible for the licence
+    {% endcall %}
+    {% call list_item() %}
+      Organisation details – Legal name and organisation type
+    {% endcall %}
+    {% call list_item() %}
+      Purpose and activities – What you intend to do (150 words)
+    {% endcall %}
+    {% call list_item() %}
+      Public statement – Summary for potential publication (150 words)
+    {% endcall %}
+    {% call list_item() %}
+      Working practices – Your methodology and ethical governance
+    {% endcall %}
+    {% call list_item() %}
+      Nine principles – Risk assessment against Ministry of Justice principles
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Help to prepare
+  {% endcall %}
+  <p>Download a full list of the 29 questions to prepare your answers before starting the application.</p>
+  <p>
+    {% call link(href=static('/documents/Dowloadable version of online application form reviewed 29_05.docx')) %}
+      Download full list of 29 questions (Microsoft Word 29.2 kB)
+    {% endcall %}
+  </p>
+  {% call heading(tag="h2") %}
+    Apply online
+  {% endcall %}
+  <p>
+    {% call button(href=url("transactional-licence-form")) %}
+      Apply for a licence
+    {% endcall %}
+  </p>
+  {% call card(title="After you apply", title_tag="h2") %}
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        you will receive confirmation that we have received your application
+      {% endcall %}
+      {% call list_item() %}
+        your application will be assessed by the licence team
+      {% endcall %}
+      {% call list_item() %}
+        it will be reviewed by Discovery Board (meets monthly)
+      {% endcall %}
+      {% call list_item() %}
+        you'll be updated on the status of your application
+      {% endcall %}
+      {% call list_item() %}
+        it may be a few weeks until you receive a decision
+      {% endcall %}
+    {% endcall %}
+    <p>
+      Read more about the
+      {% call link(href=url("licence_application_process")) %}
+        Licence application process
+      {%- endcall -%}
+      .
+    </p>
+    <p>There are no costs to apply for a licence to perform computational analysis.</p>
+    <p>
+      If you have any questions about licensing, please email the Licensing Department:
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {% endcall %}
+    </p>
+  {% endcall %}
+{% endblock article_content %}
