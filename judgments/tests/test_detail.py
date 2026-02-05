@@ -394,7 +394,7 @@ class TestBreadcrumbs(MockAPI):
             ),
         )
         response = self.client.get("/eat/2023/1")
-        assert_response_contains_text(response, "Judgment A", "//div[@class='breadcrumbs']")
+        assert_response_contains_text(response, "Judgment A", "//div[@class='breadcrumbs breadcrumbs--accent']")
 
     @patch("judgments.views.detail.detail_html.DocumentPdf", autospec=True)
     @patch("judgments.views.detail.detail_html.get_published_document_by_uri")
