@@ -7,17 +7,21 @@
     <li>{{ caller() }}</li>
   {% endif %}
 {% endmacro %}
-{% macro breadcrumbs(text=None, home=None, home_text=None, data=[]) %}
-  <div class="breadcrumbs">
+{% macro breadcrumbs(prefix=None, postfix=None, home=None, home_text=None, data=[], variant="default") %}
+  {% set variant_classes = {"default": "", "accent": "breadcrumbs--accent"} %}
+  {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
+  {% set breadcrumbs_class = ("breadcrumbs " ~ variant_class).strip() %}
+  <div class="{{ breadcrumbs_class }}">
     <div class="container">
       <nav class="breadcrumbs__container" aria-label="Breadcrumb">
         <ol>
           <li>
-            <span class="breadcrumbs">{{ text }}</span>
+            <span>{{ prefix }}</span>
             <a href="{{ url(home) }}" class="breadcrumbs__prefix">{{ home_text }}</a>
           </li>
           {% if caller %}{{ caller() }}{% endif %}
         </ol>
+        {% if postfix %}<span class="breadcrumbs__postfix">{{ postfix }}</span>{% endif %}
       </nav>
     </div>
   </div>
@@ -39,7 +43,7 @@
   </script>
 {% endmacro %}
 {% macro breadcrumbs_examples() %}
-  {% call breadcrumbs(text="You are in", home="home", home_text="Find Case Law") %}
+  {% call breadcrumbs(prefix="You are in", home="home", home_text="Find Case Law") %}
     {% call breadcrumb(url="/components") %}
       Components
     {% endcall %}

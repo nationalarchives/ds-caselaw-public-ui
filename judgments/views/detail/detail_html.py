@@ -80,6 +80,7 @@ def build_context(request, document_uri):
         breadcrumbs.append({"text": document.body.name})
 
     context["breadcrumbs"] = breadcrumbs
+    context["breadcrumbs_variant"] = "accent"
     context["feedback_survey_type"] = "judgment"  # TODO: update the survey to allow for generalisation to `document`
     # https://trello.com/c/l0iBFM1e/1151-update-survey-to-account-for-judgment-the-fact-that-we-have-press-summaries-as-well-as-judgments-now
     context["search_context"] = search_context_from_url(request.META.get("HTTP_REFERER"))

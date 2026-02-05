@@ -1,10 +1,27 @@
 .breadcrumbs {
-  background-color: colour-var("contrast-background");
+  padding: $space-4 0 $space-2;
+  background-color: colour-var("background");
+
+  &--accent {
+    background-color: colour-var("accent-background-light");
+  }
 
   &__container {
     display: flex;
-    align-items: end;
-    padding: $space-4 0 $space-2 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+
+    @media only screen and (min-width: $grid-breakpoint-medium) {
+      flex-direction: row;
+      gap: $space-4;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__postfix {
+    font-size: $typography-sm-text-size;
   }
 
   ol {
@@ -13,8 +30,7 @@
     margin: 0;
     padding: 0;
 
-    font-family: $font-roboto;
-    font-size: $typography-xs-text-size;
+    font-size: $typography-sm-text-size;
     list-style-type: none;
 
     li {
@@ -27,7 +43,7 @@
       padding: 0;
 
       line-height: 1.3rem;
-      color: colour-var("contrast-link");
+      color: colour-var("font-base");
       letter-spacing: 0.3px;
 
       &:not(:nth-child(1)) {
@@ -48,7 +64,7 @@
           height: 7px;
           margin: auto 0;
           border: solid;
-          border-color: colour-var("contrast-link");
+          border-color: colour-var("font-base");
           border-width: 0.125rem 0.125rem 0 0;
 
           @media only screen and (max-width: $grid-breakpoint-medium) {
@@ -60,16 +76,23 @@
     }
 
     a {
-      @include contrast-link;
+      @include link;
 
-      &:visited {
-        color: colour-var("contrast-link");
+      color: colour-var("font-base");
+
+      &:visited,
+      &:hover {
+        color: colour-var("font-base");
       }
     }
   }
 
   &__prefix {
-    color: colour-var("contrast-link");
+    color: colour-var("font-base");
+  }
+
+  @media only screen and (min-width: $grid-breakpoint-medium) {
+    padding: $space-8 0 $space-4;
   }
 
   @media only screen and (max-width: $grid-breakpoint-medium) {
