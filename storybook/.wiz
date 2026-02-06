@@ -1,0 +1,7 @@
+rules:
+  ignore:
+    - id: WS-I013-JAVASCRIPT-00031  # XSS via innerHTML
+      files:
+        - "storybook/**/*.stories.js"  # all stories in storybook folder
+        - "storybook/**/*.stories.ts"
+      reason: "Trusted Jinja macro HTML, cannot be exploited"

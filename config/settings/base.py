@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     "waffle",
     "crispy_forms",
     "crispy_forms_gds",
+    "corsheaders",
 ]
 
 LOCAL_APPS = [
@@ -120,6 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # must be first
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -136,6 +138,24 @@ MIDDLEWARE = [
     "config.middleware.StructuredBreadcrumbsMiddleware",
     "waffle.middleware.WaffleMiddleware",
 ]
+
+# Only allow Storybook CORS in dev
+DEBUG = env.bool("DJANGO_DEBUG", default=True)
+
+if DEBUG:
+    # Storybook iframe runs on port 6006 in dev
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:6006",
+        "http://127.0.0.1:6006",
+    ]
+else:
+    # Production Storybook served from same domain — no CORS
+    CORS_ALLOWED_ORIGINS = []
+
+STORYBOOK_SERVER = env(
+    "STORYBOOK_SERVER",
+    default="http://localhost:3000",
+)
 
 # STATIC
 # ------------------------------------------------------------------------------
