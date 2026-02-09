@@ -4,7 +4,7 @@ from playwright.sync_api import Page, expect
 from .utils.assertions import assert_is_accessible, assert_matches_snapshot
 
 static_pages = [
-    {"url": "/about-this-service", "title": "About Find Case Law", "heading": "About Find Case Law"},
+    {"url": "/about-this-service", "title": "About this service", "heading": "About this service"},
     {
         "url": "/accessibility-statement",
         "title": "Accessibility statement for Find Case Law",
@@ -16,7 +16,6 @@ static_pages = [
         "title": "Types of courts in England and Wales",
         "heading": "Types of courts in England and Wales",
     },
-    {"url": "/help-and-guidance", "title": "Help and guidance", "heading": "Help and guidance"},
     {
         "url": "/how-to-search-find-case-law",
         "title": "How to search Find Case Law",
@@ -131,6 +130,11 @@ static_pages = [
         "url": "/glossary",
         "title": "Find Case Law Glossary",
         "heading": "Find Case Law Glossary",
+    },
+    {
+        "url": "/reading-judgments",
+        "title": "Reading judgments",
+        "heading": "Reading judgments",
     },
     {"url": "/user-research", "title": "User research", "heading": "User research for Find Case Law"},
 ]

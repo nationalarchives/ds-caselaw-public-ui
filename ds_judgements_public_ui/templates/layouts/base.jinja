@@ -63,8 +63,8 @@
               {% call navigation_item(view_name="about_this_service") %}
                 About
               {% endcall %}
-              {% call navigation_item(view_name="help_and_guidance") %}
-                Help and guidance
+              {% call navigation_item(view_name="help_and_support") %}
+                Help and support
               {% endcall %}
             {% endcall %}
           {% endcall %}
@@ -119,7 +119,7 @@
               {% endcall %}
             {% endcall %}
           {% endcall %}
-          {% call footer_item(title="Help and guidance", title_url=url("help_and_guidance")) %}
+          {% call footer_item(title="Help and support", title_url=url("help_and_support")) %}
             {% call list() %}
               {% call list_item() %}
                 {{ footer_link("How to search", url=url("how_to_search_find_case_law") ) }}

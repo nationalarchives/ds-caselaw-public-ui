@@ -100,8 +100,7 @@ urlpatterns = [
     ),
     path(
         "help-and-guidance",
-        static_views.HelpAndGuidanceView.as_view(),
-        name="help_and_guidance",
+        lambda request: HttpResponseRedirect(reverse("help_and_support")),
     ),
     path(
         "what-we-provide",
@@ -162,6 +161,11 @@ urlpatterns = [
         "how-to-search-find-case-law",
         static_views.HowToSearchFindCaseLawView.as_view(),
         name="how_to_search_find_case_law",
+    ),
+    path(
+        "reading-judgments",
+        static_views.ReadingJudgmentsView.as_view(),
+        name="reading_judgments",
     ),
     path(
         "how-to-use-this-service",

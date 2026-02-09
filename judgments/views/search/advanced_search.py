@@ -1,3 +1,4 @@
+from django.urls import reverse
 from ds_caselaw_utils import courts
 
 from config.views.template_view_with_context import TemplateViewWithContext
@@ -24,6 +25,7 @@ class AdvancedSearchView(TemplateViewWithContext):
         context["query"] = self.request.GET.get("query", "")
         context["breadcrumbs_variant"] = "accent"
         context["breadcrumbs"] = [
+            {"text": "Search and browse", "url": reverse("search_and_browse")},
             {"text": self.page_title},
         ]
 

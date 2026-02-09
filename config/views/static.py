@@ -7,7 +7,7 @@ from .template_view_with_context import TemplateViewWithContext
 class AboutThisServiceView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/about_this_service.jinja"
-    page_title = "About Find Case Law"
+    page_title = "About this service"
     page_canonical_url_name = "about_this_service"
     page_allow_index = True
 
@@ -38,7 +38,6 @@ class AccessibilityStatementView(TemplateViewWithContext):
             "Find out how accessible the Find Case Law service is by reading our accessibility statement. It is important that everyone can use this service."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("terms_and_policies"), "text": "Terms and policies"},
             {"text": self.page_title},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 30 July 2025"
@@ -59,7 +58,7 @@ class ContactUsView(TemplateViewWithContext):
             "Find out how to get in touch with us to ask a question or report a problem to the Find Case Law service team."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("help_and_guidance"), "text": "Help and guidance"},
+            {"url": reverse("help_and_support"), "text": "Help and support"},
             {"text": "Contact us"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 21 January 2025"
@@ -81,29 +80,10 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
             "Find out which courts and tribunals publish judgments and decisions on the Find Case Law service."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("about_this_service"), "text": "About Find Case Law"},
+            {"url": reverse("about_this_service"), "text": "About this service"},
             {"text": "Courts and tribunals in Find Case Law"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 21 January 2025"
-        return context
-
-
-class HelpAndGuidanceView(TemplateViewWithContext):
-    template_engine = "jinja"
-    template_name = "pages/help_and_guidance.jinja"
-    page_title = "Help and guidance"
-    page_canonical_url_name = "help_and_guidance"
-    page_allow_index = True
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "help_and_guidance"
-        context["page_description"] = (
-            "A list of help and guidance available on the Find Case Law service. We do not offer legal advice or research services."
-        )
-        context["breadcrumbs"] = [
-            {"text": self.page_title},
-        ]
         return context
 
 
@@ -121,10 +101,31 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
             "Help and guidance on how to search judgments and decisions on the Find Case Law service using the search box and filters."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("help_and_guidance"), "text": "Help and guidance"},
+            {"url": reverse("help_and_support"), "text": "Help and support"},
             {"text": "How to search Find Case Law"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 21 January 2025"
+        return context
+
+
+class ReadingJudgmentsView(TemplateViewWithContext):
+    template_engine = "jinja"
+    template_name = "pages/reading_judgments.jinja"
+    page_title = "Reading judgments"
+    page_canonical_url_name = "reading_judgments"
+    page_allow_index = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_survey_type"] = "reading_judgments"
+        context["page_description"] = (
+            "Court judgments can seem complicated if you haven't read them before. We’ll help you understand how judgments are structured and how to find the information you need."
+        )
+        context["breadcrumbs"] = [
+            {"url": reverse("understanding_case_law"), "text": "Understanding case law"},
+            {"text": "Reading judgments"},
+        ]
+        context["breadcrumbs_postfix"] = "Last updated on 19 February 2026"
         return context
 
 
@@ -184,7 +185,7 @@ class PublishingPolicyView(TemplateViewWithContext):
             "Read our policy to find out how we receive and publish judgments and decisions on the Find Case Law service."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("terms_and_policies"), "text": "Terms and policies"},
+            {"url": reverse("about_this_service"), "text": "About this service"},
             {"text": "Publishing policy"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 20 August 2024"
@@ -224,7 +225,6 @@ class TermsOfUseView(TemplateViewWithContext):
             "The terms of use page and pages it links to explains how you can use information from the Find Case Law service."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("terms_and_policies"), "text": "Terms and policies"},
             {"text": "Terms of Use"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 20 August 2024"
@@ -245,7 +245,7 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
             "A basic overview of what a judgment is and how they are commonly structured to help people reading a judgment for the first time."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("help_and_guidance"), "text": "Help and guidance"},
+            {"url": reverse("help_and_support"), "text": "Help and support"},
             {"text": "Understanding judgments and decisions"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 21 January 2025"
@@ -328,7 +328,6 @@ class AboutFindCaseLawView(TemplateViewWithContext):
         )
         context["breadcrumbs"] = [
             {"text": "About this service", "url": reverse("about_this_service")},
-            {"text": "What we provide", "url": reverse("what_we_provide")},
             {"text": "About Find Case Law"},
         ]
 
@@ -661,6 +660,8 @@ class UserResearchView(TemplateViewWithContext):
         context = super().get_context_data(**kwargs)
         context["page_description"] = ""
         context["breadcrumbs"] = [
+            {"text": "Help and support", "url": reverse("help_and_support")},
+            {"text": "Feedback", "url": reverse("feedback")},
             {"text": "User research"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 3 July 2025"

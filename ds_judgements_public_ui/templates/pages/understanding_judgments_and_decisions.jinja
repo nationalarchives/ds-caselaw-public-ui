@@ -19,69 +19,369 @@
   {% call contents(title="On this page") %}
     {% call list() %}
       {% call list_item() %}
-        {% call link(href="#section-what") %}
-          What judgments and decisions are
+        {% call link(href="#what-is-a-judgment") %}
+          What is a judgment?
         {% endcall %}
       {% endcall %}
       {% call list_item() %}
-        {% call link(href="#section-interested-in") %}
-          You may also be interested in
+        {% call link(href="#typical-structure-of-a-judgment") %}
+          Typical structure of a judgment
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#understanding-different-types-of-decisions") %}
+          Understanding different types of decisions
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#reading-judicial-reasoning") %}
+          Reading judicial reasoning
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#understanding-legal-citations") %}
+          Understanding legal citations
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#different-writing-styles") %}
+          Different writing styles
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#tips-for-reading-judgments") %}
+          Tips for reading judgments
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#getting-help") %}
+          Getting help
         {% endcall %}
       {% endcall %}
     {% endcall %}
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
-  <section>
-    {% call heading(tag="h2", id="section-what") %}
-      What judgments and decisions are
+  <p>
+    Written judgments are also known as handed down judgments. They can be very long. Find Case Law does not provide summaries, interpretation or advice on any judgments or decisions.
+  </p>
+  <p>
+    Court judgments follow common structures and patterns. Once you understand these patterns, reading any judgment becomes easier – whether from the Supreme Court or a tribunal.
+  </p>
+  {% call heading(tag="h2") %}
+    What is a judgment?
+  {% endcall %}
+  <p>A judgment is a judge's formal written decision explaining:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      what the case was about
+    {% endcall %}
+    {% call list_item() %}
+      the legal issues to be decided
+    {% endcall %}
+    {% call list_item() %}
+      the judge's reasoning and analysis
+    {% endcall %}
+    {% call list_item() %}
+      the final decision or order
+    {% endcall %}
+  {% endcall %}
+  <p>
+    Judgments serve multiple purposes: they resolve the specific case, explain how the law
+    applies and can create precedents that guide future cases.
+  </p>
+  {% call heading(tag="h2") %}
+    Typical structure of a judgment
+  {% endcall %}
+  <p>Most judgments follow a similar structure, though the exact format varies by court:</p>
+  {% call heading(tag="h3") %}
+    1. Top of the page
+  {% endcall %}
+  <p>At the top you'll find:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      Case name which is usually the parties involved (for example, Smith v Jones)
+    {% endcall %}
+    {% call list_item() %}
+      Citation, the unique reference number (for example, [2024] EWCA Civ 123)
+    {% endcall %}
+    {% call list_item() %}
+      Court is which court heard the case
+    {% endcall %}
+    {% call list_item() %}
+      Date is when the judgment was given
+    {% endcall %}
+    {% call list_item() %}
+      Judge(s) refers to who decided the case
+    {% endcall %}
+  {% endcall %}
+  <p>This information helps you identify and cite the judgment.</p>
+  {% call heading(tag="h3") %}
+    2. Introduction and background
+  {% endcall %}
+  <p>The judgment typically begins with:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      summary of the case including what the dispute is about
+    {% endcall %}
+    {% call list_item() %}
+      procedural history and how the case reached this court
+    {% endcall %}
+    {% call list_item() %}
+      the parties involved and their roles (claimant, defendant, appellant, respondent)
+    {% endcall %}
+  {% endcall %}
+  <p>This section provides context for what happened before this decision.</p>
+  {% call heading(tag="h3") %}
+    3. Facts of the case
+  {% endcall %}
+  <p>The judge sets out:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      what happened and the relevant events that led to the dispute
+    {% endcall %}
+    {% call list_item() %}
+      agreed and disputed facts of what parties agree on and what they don't
+    {% endcall %}
+    {% call list_item() %}
+      evidence presented that the court considered
+    {% endcall %}
+  {% endcall %}
+  <p>Understanding the facts helps you see how the law applies to the specific situation.</p>
+  {% call heading(tag="h3") %}
+    4. Legal issues
+  {% endcall %}
+  <p>The judge identifies:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      questions to be decided and the specific legal issues the court must resolve
+    {% endcall %}
+    {% call list_item() %}
+      relevant law, statutes, regulations, or previous cases that apply
+    {% endcall %}
+    {% call list_item() %}
+      arguments from each side and what each party's lawyers argued
+    {% endcall %}
+  {% endcall %}
+  <p>This section frames what the judge needs to decide.</p>
+  {% call heading(tag="h3") %}
+    5. Analysis and reasoning
+  {% endcall %}
+  <p>This is usually the longest section, where the judge:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      examines the law, interprets statutes or applies precedents
+    {% endcall %}
+    {% call list_item() %}
+      considers the facts and applies the law to what happened in this case
+    {% endcall %}
+    {% call list_item() %}
+      addresses arguments and explains why certain arguments succeed or fail
+    {% endcall %}
+    {% call list_item() %}
+      reasons through the decision and shows the logical steps to the conclusion
+    {% endcall %}
+  {% endcall %}
+  <p>This section shows you how judges think about legal problems.</p>
+  {% call heading(tag="h3") %}
+    6. Conclusion and order
+  {% endcall %}
+  <p>Finally, the judge states:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the decision of who wins and who loses
+    {% endcall %}
+    {% call list_item() %}
+      the order of what must happen as a result (for example, damages paid, appeal dismissed)
+    {% endcall %}
+    {% call list_item() %}
+      costs like who pays the legal costs
+    {% endcall %}
+    {% call list_item() %}
+      other directions such as any other requirements or next steps
+    {% endcall %}
+  {% endcall %}
+  <p>This tells you the practical outcome of the case.</p>
+  {% call heading(tag="h2") %}
+    Understanding different types of decisions
+  {% endcall %}
+  <p>Not all decisions are the same. Here are some examples of the different types on the Find Case Law website:</p>
+  {% call heading(tag="h3") %}
+    Final judgments
+  {% endcall %}
+  <p>
+    These decide cases after hearing all the evidence. They contain detailed findings of fact and
+    apply the law to those facts.
+  </p>
+  {% call heading(tag="h3") %}
+    Appeal judgments
+  {% endcall %}
+  <p>
+    These review decisions from lower courts. They focus on whether the lower court applied the
+    law correctly, rather than reconsidering all the facts.
+  </p>
+  {% call heading(tag="h3") %}
+    Interlocutory decisions
+  {% endcall %}
+  <p>
+    These are decisions made during a case, not the final judgment. They might deal with
+    procedural matters, requests for disclosure or interim orders.
+  </p>
+  {% call heading(tag="h3") %}
+    Permission decisions
+  {% endcall %}
+  <p>
+    Some courts require permission to appeal. These short decisions explain whether an appeal
+    can proceed.
+  </p>
+  {% call heading(tag="h2") %}
+    Reading judicial reasoning
+  {% endcall %}
+  <p>Judges explain their reasoning so that:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      parties understand the outcome
+    {% endcall %}
+    {% call list_item() %}
+      other judges can follow the precedent in future cases
+    {% endcall %}
+    {% call list_item() %}
+      the public can see justice being done
+    {% endcall %}
+  {% endcall %}
+  <p>When reading judicial reasoning:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      follow the structure, judges usually address issues in a logical order
+    {% endcall %}
+    {% call list_item() %}
+      notice how precedent is used as judges explain how previous cases guide their decision
+    {% endcall %}
+    {% call list_item() %}
+      understand the level of decision, for example, decisions from higher courts carry more weight
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Understanding legal citations
+  {% endcall %}
+  <p>Judgments refer to other cases and laws. Citations look like:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      [2024] UKSC 15 – A Supreme Court case from 2024, number 15
+    {% endcall %}
+    {% call list_item() %}
+      Section 3 of the Contract Act 1872 – A specific law
+    {% endcall %}
+    {% call list_item() %}
+      at paragraph [45] – Referring to a specific part of another judgment
+    {% endcall %}
+  {% endcall %}
+  <p>
+    You don't need to understand every citation, but they show you which laws and previous cases influenced the decision.
+  </p>
+  {% call heading(tag="h2") %}
+    Different writing styles
+  {% endcall %}
+  <p>
+    Judges write in different styles. The style doesn't affect the legal importance. A clearly written tribunal decision is just as authoritative for its level as a complex High Court judgment.
+  </p>
+  {% call heading(tag="h2") %}
+    Tips for reading judgments
+  {% endcall %}
+  <p>If you're new to judgments:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      start with the introduction and conclusion to understand what the case is about
+    {% endcall %}
+    {% call list_item() %}
+      read the facts section carefully because understanding what happened is crucial
+    {% endcall %}
+    {% call list_item() %}
+      don't worry if you don't understand every legal term initially
+    {% endcall %}
+  {% endcall %}
+  <p>If you're researching a specific issue:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      use the search function to find relevant passages
+    {% endcall %}
+    {% call list_item() %}
+      focus on the analysis section where judges discuss the legal issues
+    {% endcall %}
+    {% call list_item() %}
+      note which other cases are cited as they might also be relevant
+    {% endcall %}
+    {% call list_item() %}
+      pay attention to paragraph numbers for future reference
+    {% endcall %}
+  {% endcall %}
+  <p>For everyone:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      take your time, judgments are meant to be read carefully
+    {% endcall %}
+    {% call list_item() %}
+      it's fine to skip procedural sections if they're not relevant to you
+    {% endcall %}
+    {% call list_item() %}
+      you can quote and cite judgments freely in your work
+    {% endcall %}
+    {% call list_item() %}
+      the more judgments you read, the easier they become
+    {% endcall %}
+  {% endcall %}
+  {% call card(title="Getting help", title_tag="h2") %}
+    <p>If you're struggling to understand a judgment:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        check our
+        {% call link(href=url("glossary")) %}
+          glossary
+        {% endcall %}
+        for legal term definitions
+      {% endcall %}
+      {% call list_item() %}
+        visit
+        {% call link(href=url("search_tips")) %}
+          Search tips
+        {% endcall %}
+        for help finding related cases
+      {% endcall %}
+      {% call list_item() %}
+        contact us through
+        {% call link(href=url("help_and_support")) %}
+          Help and Support
+        {% endcall %}
+        if you think there's an error
+      {% endcall %}
     {% endcall %}
     <p>
-      A judgment is the decision a court has made after hearing a case. Written judgments are also known as handed down judgments. They can be very long.
+      Judgments are written primarily for lawyers, judges and people who already understand the law. They are public documents which can be complex so it’s ok if you cannot understand them entirely. that anyone can access and understand with some effort.
     </p>
-    <p>Find Case Law does not provide summaries, interpretation or advice on any judgments or decisions.</p>
-    <p>
-      Every judgment or decision will start with a 'header' or title page which contains the important information about the judgment or decision, such as:
-      {% call list(variant="bullets") %}
-        {% call list_item() %}
-          Neutral citation
-        {% endcall %}
-        {% call list_item() %}
-          Case number
-        {% endcall %}
-        {% call list_item() %}
-          Court or chamber
-        {% endcall %}
-        {% call list_item() %}
-          Judge name(s)
-        {% endcall %}
-        {% call list_item() %}
-          Party names
+    <p>Find Case Law does not provide legal advice, interpretation or support. Sources of these include:</p>
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        {% call link(href="https://www.citizensadvice.org.uk/", attrs={"target":"_blank"}) %}Citizens Advice
         {% endcall %}
       {% endcall %}
-    </p>
+      {% call list_item() %}
+        {% call link(href="https://www.lawcentres.org.uk/", attrs={"target":"_blank"}) %}The Law Centres Network
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="https://www.supportthroughcourt.org/", attrs={"target":"_blank"}) %}Support Through Court
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="https://www.weareadvocate.org.uk/", attrs={"target":"_blank"}) %}Advocate
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
     <p>
-      The way the text of each judgment or decision is written is up to the judge. Typically, judgments will summarise 'the facts' of the case,
-      the law that applies to those facts, the arguments presented in court, the decision the court has given and the reasons for the decision. The decision made by the judge normally appears towards the end of the judgment or decision.
+      {% call link(href=url("what_we_provide")) %}
+        What we provide
+      {% endcall %}
+      explains the scope of our service, what types of judgments you'll find, and what isn't included.
     </p>
-    <p>
-      You may find that some judgments and decisions have reporting restrictions. In these cases the relevant parts of the judgment will have been redacted by the court.
-    </p>
-  </section>
+  {% endcall %}
 {% endblock article_content %}
-{% block article_footer %}
-  {% call heading(tag="h2", id="section-interested-in") %}
-    You may also be interested in
-  {% endcall %}
-  {% call grid() %}
-    {% call card(title="Courts and tribunals in Find Case Law", url=url('courts_and_tribunals_in_fcl')) %}
-      <p>Learn which judgments and decisions this service provides.</p>
-    {% endcall %}
-    {% call card(title="Publishing policy", url=url('publishing_policy')) %}
-      <p>Read how Find Case Law receives and publishes judgments and decisions.</p>
-    {% endcall %}
-    {% call card(title="Reuse Find Case Law records", url=url('transactional-licence-form')) %}
-      <p>Read what you’re allowed to do with records from this service.</p>
-    {% endcall %}
-  {% endcall %}
-{% endblock article_footer %}
