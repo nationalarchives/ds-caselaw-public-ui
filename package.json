@@ -30,9 +30,9 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/preset-env": "7.29.0",
-    "@chromatic-com/storybook": "^3.2.7",
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/html-webpack5": "^8.6.14",
+    "@chromatic-com/storybook": "3.2.7",
+    "@storybook/addon-essentials": "8.6.14",
+    "@storybook/html-webpack5": "8.6.14",
     "babel-jest": "30.2.0",
     "babel-loader": "10.0.0",
     "jest": "30.2.0",
