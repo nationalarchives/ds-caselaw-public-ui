@@ -1,0 +1,232 @@
+.navigation {
+  $navigation-height-extra-large: 53px;
+  $navigation-height-large: 37px;
+
+  position: relative;
+  padding-top: $space-4;
+  background-color: colour-var("contrast-background");
+
+  &:focus-within {
+    .container {
+      display: block;
+    }
+
+    .navigation__menu-button {
+      span {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__menu-button {
+    all: unset;
+
+    position: absolute;
+    top: -110px;
+    right: $space-8;
+
+    color: colour-var("contrast-font-base");
+
+    @media (max-width: $grid-breakpoint-medium) {
+      top: -156px;
+    }
+
+    @media (min-width: $grid-breakpoint-large) {
+      display: none;
+    }
+  }
+
+  &__item-icon {
+    padding: $space-4;
+    border-left: 1px solid colour-var("background");
+
+    @media (max-width: $grid-breakpoint-medium) {
+      display: none;
+    }
+
+    @media (min-width: $grid-breakpoint-large) {
+      display: none;
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      display: inline-block;
+      padding-right: 0;
+      border: none;
+    }
+  }
+
+  &__item-icon-spacer {
+    border: 0;
+  }
+
+  &__item-label {
+    display: inline-block;
+    padding: $space-4;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      padding: $space-2;
+    }
+
+    @media (max-width: $grid-breakpoint-large) {
+      padding: $space-4;
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      padding: $space-4;
+      padding-left: 0;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: $space-2;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      flex: 1;
+    }
+
+    @media (min-width: $grid-breakpoint-large) {
+      flex-direction: row;
+    }
+  }
+
+  .container {
+    display: none;
+
+    > ul {
+      display: flex;
+      flex-direction: column;
+
+      margin: 0;
+      padding: 0;
+
+      list-style-type: none;
+
+      > li {
+        position: relative;
+        border-top: 1px solid colour-var("background");
+
+        .icon__chevron_down_black {
+          display: none;
+        }
+
+        &.navigation__item--active {
+          background: colour-var("accent-brand");
+
+          .icon__chevron_down_white {
+            display: none;
+          }
+
+          .icon__chevron_down_black {
+            display: inline-block;
+          }
+
+          a,
+          a:hover,
+          a:visited {
+            color: colour-var("font-base");
+          }
+        }
+
+        &:hover,
+        &:focus {
+          background: colour-var("accent-brand");
+
+          .icon__chevron_down_white {
+            display: none;
+          }
+
+          .icon__chevron_down_black {
+            transform: rotate(180deg);
+            display: inline-block;
+          }
+
+          a {
+            color: colour-var("font-base");
+          }
+
+          ul {
+            display: flex;
+          }
+        }
+
+        a {
+          text-decoration: none;
+
+          span {
+            text-decoration: underline;
+          }
+        }
+
+        ul {
+          display: none;
+          flex-direction: column;
+
+          width: 100%;
+          margin: 0;
+          padding: 0;
+
+          list-style-type: none;
+
+          background: color-mix(
+            in srgb,
+            colour-var("accent-brand") 50%,
+            colour-var("background")
+          );
+
+          li {
+            padding: $space-4;
+
+            a {
+              flex-direction: row;
+            }
+
+            a,
+            a:visited,
+            a:hover {
+              color: colour-var("font-base");
+            }
+          }
+
+          @media (min-width: $grid-breakpoint-large) {
+            position: absolute;
+            z-index: 999;
+            left: 0;
+          }
+
+          @media (min-width: $grid-breakpoint-large) {
+            top: $navigation-height-large;
+          }
+
+          @media (min-width: $grid-breakpoint-extra-large) {
+            top: $navigation-height-extra-large;
+          }
+        }
+
+        @media (min-width: $grid-breakpoint-large) {
+          border-top: 0;
+        }
+      }
+
+      @media (min-width: $grid-breakpoint-large) {
+        flex-direction: row;
+      }
+    }
+
+    @media (min-width: $grid-breakpoint-large) {
+      display: block;
+    }
+
+    @media (max-width: $grid-breakpoint-medium) {
+      padding: 0;
+    }
+  }
+
+  @media (min-width: $grid-breakpoint-large) {
+    padding-top: 0;
+    border-top: 1px solid colour-var("background");
+  }
+}
