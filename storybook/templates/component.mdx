@@ -1,0 +1,21 @@
+import { Meta, Source, Story } from '@storybook/blocks';
+import { <ExportedConstName> } from './<component>.stories.js';
+
+<Meta title="Components/<Component Name> Examples/Jinja Macros" />
+
+# <Component Name> Jinja Macros
+
+This page shows the Jinja macros for this component.
+
+## Wrapper Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default() %}
+  # Optional <h2><!-- ADD: Component name --></h2>#
+  {{ component_examples() }}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="<DisplayNameInStorybook>" of={<ExportedConstName>} />

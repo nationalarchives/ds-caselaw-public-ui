@@ -1,0 +1,12 @@
+{% from "components/document_navigation.jinja" import document_navigation, document_navigation_examples %}
+{% macro default() %}
+  {{ document_navigation_examples() }}
+{% endmacro %}
+{% macro judgment_navigation() %}
+  {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
+    <h2>Page title</h2>
+    <p>
+      <span class="visually-hidden">Best human identifer name</span>Best human identifier value
+    </p>
+  {% endcall %}
+{% endmacro %}
