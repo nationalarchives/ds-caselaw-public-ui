@@ -199,6 +199,7 @@ If the structural similarity score drops below an acceptable threshold, the test
 #### What to do when a test fails
 
 1. Check the screenshots located in `e2e_tests/snapshots`:
+
    - Expected snapshots are prefixed with `_expected`
    - Actual (newly generated) screenshots are prefixed with `_actual`
 
