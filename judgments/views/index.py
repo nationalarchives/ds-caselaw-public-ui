@@ -35,6 +35,7 @@ class IndexView(TemplateView):
         context["page_canonical_url"] = self.request.build_absolute_uri(reverse("home"))
         context["page_allow_index"] = True
         context["feedback_survey_type"] = "home"
+        context["active_navigation_endpoint"] = "home"
         context["form"] = AdvancedSearchForm()
 
         try:

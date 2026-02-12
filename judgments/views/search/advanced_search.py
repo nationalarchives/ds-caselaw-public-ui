@@ -20,6 +20,7 @@ class AdvancedSearchView(TemplateViewWithContext):
         )
         context["courts"] = courts.get_grouped_selectable_courts()
         context["tribunals"] = courts.get_grouped_selectable_tribunals()
+        context["active_navigation_endpoint"] = "search_and_browse"
         context["feedback_survey_type"] = "advanced_search"
         context["form"] = AdvancedSearchForm(self.request.GET)
         context["query"] = self.request.GET.get("query", "")

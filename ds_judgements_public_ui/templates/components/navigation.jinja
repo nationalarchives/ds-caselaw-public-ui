@@ -1,42 +1,127 @@
-{% from "components/header.jinja" import header %}
-{% macro navigation(menu_text="Menu") %}
-  <div class="govuk-header__content">
-    <nav aria-label="Menu" class="govuk-header__navigation">
-      <button type="button"
-              class="govuk-header__menu-button govuk-js-header-toggle"
-              aria-controls="navigation"
-              hidden>{{ menu_text }}</button>
-      {{ caller() }}
-    </nav>
-  </div>
-{% endmacro %}
-{% macro navigation_items() %}
-  <ul id="navigation" class="govuk-header__navigation-list">
-    {{ caller() }}
-  </ul>
-{% endmacro %}
-{% macro navigation_item(view_name="") %}
-  <li class="{{ navigation_item_class(request, view_name) }}">
-    <a class="govuk-header__link"
-       title="{{ caller() }}"
-       href="{{ url (view_name) }}"
-       {% if request.resolver_match.view_name == view_name %}aria-current="true"{% endif %}>{{ caller() }}</a>
-  </li>
-{% endmacro %}
-{% macro navigation_examples() %}
-  {% call header() %}
-    {% call navigation() %}
-      {% call navigation_items() %}
-        {% call navigation_item(view_name="home") %}
-          Home
-        {% endcall %}
-        {% call navigation_item(view_name="about_this_service") %}
-          About
-        {% endcall %}
-        {% call navigation_item(view_name="help_and_support") %}
-          Help and support
-        {% endcall %}
-      {% endcall %}
-    {% endcall %}
-  {% endcall %}
+{% from "components/link.jinja" import link %}
+{% from "components/icon.jinja" import icon %}
+{% set nav_items = [
+  {
+    "endpoint": "home",
+    "label": "Home",
+    "children": []
+  },
+  {
+    "endpoint": "understanding_case_law",
+    "label": "Understanding case law",
+    "children": [
+      {
+        "endpoint": "reading_judgments",
+        "label": "Reading judgments"
+      }
+    ]
+  },
+  {
+    "endpoint": "search_and_browse",
+    "label": "Search and browse",
+    "children": [
+      {
+        "endpoint": "advanced_search",
+        "label": "Advanced search"
+      },
+      {
+        "endpoint": "browse_courts_and_tribunals",
+        "label": "Browse courts and tribunals"
+      }
+    ]
+  },
+  {
+    "endpoint": "about_this_service",
+    "label": "About this service",
+    "children": [
+      {
+        "endpoint": "what_we_provide",
+        "label": "What we provide"
+      },
+      {
+        "endpoint": "courts_and_date_coverage",
+        "label": "Courts and date coverage"
+      },
+      {
+        "endpoint": "publishing_policy",
+        "label": "Publishing policy"
+      }
+    ]
+  },
+  {
+    "endpoint": "permissions_and_licencing",
+    "label": "Permissions and licencing",
+    "children": [
+      {
+        "endpoint": "what_you_can_do_freely",
+        "label": "What you can do freely"
+      },
+      {
+        "endpoint": "when_you_need_permission",
+        "label": "When you need permission"
+      },
+      {
+        "endpoint": "how_to_get_permission",
+        "label": "How to get permission"
+      },
+      {
+        "endpoint": "legal_framework",
+        "label": "Legal framework"
+      }
+    ]
+  },
+  {
+    "endpoint": "help_and_support",
+    "label": "Help and support",
+    "children": [
+      {
+        "endpoint": "search_tips",
+        "label": "Search tips"
+      },
+      {
+        "endpoint": "contact_us",
+        "label": "Contact us"
+      },
+      {
+        "endpoint": "feedback",
+        "label": "Feedback"
+      }
+    ]
+  }
+] %}
+{% macro navigation(active_endpoint=None) %}
+  <nav class="navigation" tabindex="0">
+    <button class="navigation__menu-button">Menu {{ icon(name="chevron_down_white", size="xs") }}</button>
+    <div class="container">
+      <ul>
+        {% for item in nav_items %}
+          {% set is_active = (active_endpoint and item.endpoint == active_endpoint) %}
+          <li class="{{ 'navigation__item--active' if is_active }}">
+            <span class="navigation__item">
+              <span class="navigation__item-icon {% if not item.children %}navigation__item-icon-spacer{% endif %}">
+                {% if item.children %}
+                  {{ icon(name="chevron_down_black", size="xs") }}
+                  {{ icon(name="chevron_down_white", size="xs") }}
+                {% endif %}
+              </span>
+              {% call link(href=url(item.endpoint), variant="contrast") %}
+                <span class="navigation__item-label">{{ item.label }}</span>
+              {% endcall %}
+            </span>
+            {% if item.children %}
+              <ul>
+                {% for child in item.children %}
+                  <li>
+                    {% call link(href=url(child.endpoint)) %}
+                      {{ child.label }}
+                    {% endcall %}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
 {% endmacro %}

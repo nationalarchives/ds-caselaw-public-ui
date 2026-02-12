@@ -5,9 +5,9 @@
 {% from "components/button.jinja" import button %}
 {% from "components/tna_logo.jinja" import tna_logo %}
 {% from "components/fcl_logo.jinja" import fcl_logo %}
-{% from "components/navigation.jinja" import navigation, navigation_items, navigation_item with context %}
 {% from "components/list.jinja" import list, list_item %}
 {% from "components/link.jinja" import link %}
+{% from "components/navigation.jinja" import navigation %}
 {% from "components/breadcrumbs.jinja" import breadcrumbs as breadcrumbs_component, breadcrumb %}
 {% from "components/open_justice_license_logo.jinja" import open_justice_license_logo %}
 {% from "components/footer.jinja" import footer, footer_row, footer_item, footer_link with context %}
@@ -55,21 +55,9 @@
         {% call header() %}
           {{ tna_logo() }}
           {{ fcl_logo() }}
-          {% call navigation() %}
-            {% call navigation_items() %}
-              {% call navigation_item(view_name="home") %}
-                Home
-              {% endcall %}
-              {% call navigation_item(view_name="about_this_service") %}
-                About
-              {% endcall %}
-              {% call navigation_item(view_name="help_and_support") %}
-                Help and support
-              {% endcall %}
-            {% endcall %}
-          {% endcall %}
         {% endcall %}
       {% endblock header %}
+      {{ navigation(active_endpoint=active_navigation_endpoint) }}
       {% if breadcrumbs %}
         {% call breadcrumbs_component(prefix="You are in", home="home", home_text="Find Case Law", data=structured_breadcrumbs, variant=breadcrumbs_variant, postfix=breadcrumbs_postfix) %}
           {% for crumb in breadcrumbs %}
