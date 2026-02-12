@@ -64,7 +64,7 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
             "terms_and_policies",
             "contact_us",
             "courts_and_tribunals_in_fcl",
-            "help_and_guidance",
+            "help_and_support",
             "how_to_search_find_case_law",
             "understanding_judgments_and_decisions",
             # TODO: Remove this when we want them to be in the sitemap

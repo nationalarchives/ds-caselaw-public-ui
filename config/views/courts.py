@@ -47,6 +47,7 @@ class CourtsTribunalsListView(TemplateViewWithContext):
         context["tribunals"] = grouped_tribunals
         context["feedback_survey_type"] = "courts_and_tribunals"
         context["breadcrumbs"] = [
+            {"text": "Search and browse", "url": reverse("search_and_browse")},
             {"text": self.page_title},
         ]
 
@@ -74,6 +75,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
         context["feedback_survey_type"] = "court_or_tribunal_%s" % self.court.canonical_param
         context["court"] = self.court
         context["breadcrumbs"] = [
+            {"text": "Search and browse", "url": reverse("search_and_browse")},
             {"url": reverse("courts_and_tribunals"), "text": "Types of courts in England and Wales"},
             {"text": self.page_title},
         ]

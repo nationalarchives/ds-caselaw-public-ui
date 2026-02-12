@@ -7,101 +7,141 @@
 {% from "components/grid.jinja" import grid %}
 {% block mobile_article_title %}
   {% call heading() %}
-    About Find Case Law
+    About this service
   {% endcall %}
 {% endblock mobile_article_title %}
 {% block desktop_article_title %}
   {% call heading() %}
-    About Find Case Law
+    About this service
   {% endcall %}
 {% endblock desktop_article_title %}
 {% block article_navigation %}
   {% call contents(title="On this page") %}
     {% call list() %}
       {% call list_item() %}
-        {% call link(href="#section-what") %}
-          What Find Case Law does
+        {% call link(href="#what-find-case-law-provides") %}
+          What Find Case Law provides
         {% endcall %}
       {% endcall %}
       {% call list_item() %}
-        {% call link(href="#section-pages") %}
-          Pages in this section
+        {% call link(href="#courts-and-date-coverage") %}
+          Courts and date coverage
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#how-we-publish-judgments") %}
+          How we publish judgments
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#who-provides-this-service") %}
+          Who provides this service
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#service-development") %}
+          Service development
         {% endcall %}
       {% endcall %}
     {% endcall %}
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
-  <section>
-    {% call heading(tag="h2", id="section-what") %}
-      What Find Case Law does
+  <p>
+    We provide free access to court judgments and tribunal decisions from England and Wales, plus UK-wide cases from the Supreme Court and Privy Council. Our collection includes the vast majority of judgments that courts have made publicly available in digital form, with coverage for most courts starting from the early 2000s when digital records became standard (the Supreme Court was established in 2009).
+  </p>
+  <p>
+    We're continuously expanding our collection as courts send us new judgments. While we have most material that exists in publishable form, please note that not all court decisions are written down – many lower court hearings and some tribunal decisions are given verbally and never transcribed.
+  </p>
+  {% call heading(tag="h2") %}
+    What Find Case Law provides
+  {% endcall %}
+  <p>
+    Find Case Law is the official and free source for judgments and decisions from courts and tribunals in England and Wales. We work directly with the judiciary to publish case law that supports open justice and public access to legal information.
+  </p>
+  <p>Find Case Law does not provide legal advice, interpretation or support. Sources of these include:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      {% call link(href="https://www.citizensadvice.org.uk/", attrs={"target":"_blank"}) %}Citizens Advice
+      {% endcall %}
     {% endcall %}
-    <p>
-      Find Case Law is a service that provides public access to court judgments and tribunal decisions made in England and Wales from 2001 onwards.
-    </p>
-    <p>It publishes selected judgments and decisions on this website, in a range of formats.</p>
-    <p>
-      It is provided by
-      {% call link(href="https://www.nationalarchives.gov.uk/") %}
-        The National Archives
+    {% call list_item() %}
+      {% call link(href="https://www.lawcentres.org.uk/", attrs={"target":"_blank"}) %}The Law Centres Network
       {% endcall %}
-      ,  working in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.
-    </p>
-    <p>
-      Please note that:
-      {% call list(variant="bullets") %}
-        {% call list_item() %}
-          Find Case Law is currently in beta, meaning it is being actively developed and may change in order to test and introduce new features
-        {% endcall %}
-        {% call list_item() %}
-          Find Case Law is not a complete record of judgments and decisions (see our
-          {% call link(url('publishing_policy')) %}
-            Publishing policy
-          {% endcall %}
-          )
-        {% endcall %}
-        {% call list_item() %}
-          Find Case Law does not provide legal advice, interpretation or support. Sources of these include:
-          {% call list(variant="bullets") %}
-            {% call list_item() %}
-              {% call link(href="https://www.citizensadvice.org.uk/") %}
-                Citizens Advice
-              {% endcall %}
-            {% endcall %}
-            {% call list_item() %}
-              {% call link(href="https://www.lawcentres.org.uk/") %}
-                The Law Centres Network
-              {% endcall %}
-            {% endcall %}
-            {% call list_item() %}
-              {% call link(href="https://www.supportthroughcourt.org/") %}
-                Support Through Court
-              {% endcall %}
-            {% endcall %}
-            {% call list_item() %}
-              {% call link(href="https://www.weareadvocate.org.uk/") %}
-                Advocate
-              {% endcall %}
-            {% endcall %}
-          {% endcall %}
-        {% endcall %}
+    {% endcall %}
+    {% call list_item() %}
+      {% call link(href="https://www.supportthroughcourt.org/", attrs={"target":"_blank"}) %}Support Through Court
       {% endcall %}
+    {% endcall %}
+    {% call list_item() %}
+      {% call link(href="https://www.weareadvocate.org.uk/", attrs={"target":"_blank"}) %}Advocate
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+  <p>What we provide explains the scope of our service, what types of judgments you'll find, and what isn't included.</p>
+  {% call heading(tag="h2") %}
+    Courts and date coverage
+  {% endcall %}
+  <p>Different courts and tribunals have different coverage on Find Case Law.</p>
+  <p>Courts and date coverage shows you:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      which courts and tribunals are included
+    {% endcall %}
+    {% call list_item() %}
+      date ranges for each court's records
+    {% endcall %}
+    {% call list_item() %}
+      how complete the coverage is for different jurisdictions
+    {% endcall %}
+  {% endcall %}
+  <p>Understanding our coverage helps you know what to expect when searching.</p>
+  {% call heading(tag="h2") %}
+    How we publish judgments
+  {% endcall %}
+  <p>
+    Our
+    {% call link(href=url("publishing_policy")) %}
+      publishing policy
+    {% endcall %}
+    explains:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      how judgments are selected for publication
+    {% endcall %}
+    {% call list_item() %}
+      when new judgments appear after court hearings
+    {% endcall %}
+    {% call list_item() %}
+      how we handle anonymisation and sensitive information
+    {% endcall %}
+    {% call list_item() %}
+      our approach to corrections and updates
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Who provides this service
+  {% endcall %}
+  <p>
+    Find Case Law is provided by The National Archives in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office. The service is part of our role in preserving and providing access to official records.
+  </p>
+  <p>
+    The National Archives is the official archive and publisher for the UK Government and for
+    England and Wales. We've been collecting and preserving legal records for centuries, and Find Case Law continues that tradition in the digital age.
+  </p>
+  {% call card(title="Service development", title_tag="h2", variant="unbordered") %}
+    <p>
+      Find Case Law is actively maintained and improved based on user feedback and changing needs. We regularly add new features, expand coverage and enhance accessibility.
     </p>
-  </section>
+  {% endcall %}
+  {% call card(title="Want to help shape the service?", title_tag="h3") %}
+    <p>
+      Visit
+      {% call link(href=url("feedback")) %}
+        Feedback
+      {% endcall %}
+      in our Help and Support section to participate in user research or share your suggestions.
+    </p>
+  {% endcall %}
 {% endblock article_content %}
-{% block article_footer %}
-  {% call heading(tag="h2", id="section-pages") %}
-    Pages in this section
-  {% endcall %}
-  {% call grid() %}
-    {% call card(title="Courts and tribunals in Find Case Law", url=url('courts_and_tribunals_in_fcl')) %}
-      <p>Learn which judgments and decisions this service provides.</p>
-    {% endcall %}
-    {% call card(title="Reuse Find Case Law records", url=url('transactional-licence-form')) %}
-      <p>Read what you’re allowed to do with records from this service.</p>
-    {% endcall %}
-    {% call card(title="Terms and policies", url=url('terms_and_policies')) %}
-      <p>Find out the rules and policies that apply to this service.</p>
-    {% endcall %}
-  {% endcall %}
-{% endblock article_footer %}

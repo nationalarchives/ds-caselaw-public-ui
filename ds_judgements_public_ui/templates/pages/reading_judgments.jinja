@@ -1,0 +1,108 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Reading judgments
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Reading judgments
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {% call link(href="#what-youll-learn") %}
+          What you'll learn
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#why-judgment-structure-matters") %}
+          Why judgment structure matters
+        {% endcall %}
+      {% endcall %}
+      {% call list_item() %}
+        {% call link(href="#getting-started-with-reading-judgments") %}
+          Getting started with reading judgments
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <p>
+    Court judgments can seem complicated if you haven't read them before. We’ll help you
+    understand how judgments are structured and how to find the information you need.
+  </p>
+  {% call heading(tag="h2") %}
+    What you'll learn
+  {% endcall %}
+  <p>
+    Court judgments follow common patterns and structures. Once you understand these patterns, reading any judgment is easier.
+  </p>
+  <p>
+    {% call link(href=url("understanding_judgments_and_decisions")) %}
+      Understanding judgments and decisions
+    {% endcall %}
+    explains:
+  </p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      the typical structure of a judgment
+    {% endcall %}
+    {% call list_item() %}
+      how judges present their reasoning
+    {% endcall %}
+    {% call list_item() %}
+      understanding the outcome and orders
+    {% endcall %}
+    {% call list_item() %}
+      reading legal citations and references
+    {% endcall %}
+    {% call list_item() %}
+      different types of decisions and what they mean
+    {% endcall %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Why judgment structure matters
+  {% endcall %}
+  <p>Judges write judgments to explain their decisions and reasoning. Understanding the structure helps you:</p>
+  {% call list(variant="bullets") %}
+    {% call list_item() %}
+      find the key information quickly
+    {% endcall %}
+    {% call list_item() %}
+      follow the judge's legal reasoning
+    {% endcall %}
+    {% call list_item() %}
+      understand how the law applies to the case
+    {% endcall %}
+    {% call list_item() %}
+      see which parts are binding precedent
+    {% endcall %}
+  {% endcall %}
+  {% call card(title="Getting started with reading judgments", title_tag="h2", variant="unbordered") %}
+    <p>
+      If you're reading a judgment for the first time, start with
+      {% call link(href=url("understanding_judgments_and_decisions")) %}
+        Understanding judgments and decisions
+      {% endcall %}
+      . This guide takes you through a judgment section by section, explaining what each part contains and why it matters.
+    </p>
+  {% endcall %}
+  {% call card(title="If you’re already familiar with judgments", title_tag="h3") %}
+    <p>
+      You can go straight to
+      {% call link(href=url("search_and_browse")) %}
+        Search and Browse
+      {% endcall %}
+      to find the cases you need.
+    </p>
+  {% endcall %}
+{% endblock article_content %}

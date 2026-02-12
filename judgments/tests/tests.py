@@ -221,8 +221,9 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
         # with nofollow,noindex
         response = self.client.get("/about-this-service")
         assert "noindex" not in response.content.decode("utf-8")
-        assert "Find Case Law is a service that provides public access to court judgments" in response.content.decode(
-            "utf-8"
+        assert (
+            "We provide free access to court judgments and tribunal decisions from England"
+            in response.content.decode("utf-8")
         )
 
     def test_static_pages(self):
