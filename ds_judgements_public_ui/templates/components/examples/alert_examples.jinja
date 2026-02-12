@@ -1,0 +1,25 @@
+{% from "components/alert.jinja" import alert, alert_examples, default, small, error, success %}
+{% macro default_alert() %}
+  <h2>Alert</h2>
+  <div class="components__grid">{{ alert_examples() }}</div>
+{% endmacro %}
+{% macro default() %}
+  {% call alert(title="Title") %}
+    <p>Content</p>
+  {% endcall %}
+{% endmacro %}
+{% macro small() %}
+  {% call alert(title="Small size title", size="sm") %}
+    <p>Small size content</p>
+  {% endcall %}
+{% endmacro %}
+{% macro error() %}
+  {% call alert(title="Error variant",variant="error") %}
+    <p>Error variant content</p>
+  {% endcall %}
+{% endmacro %}
+{% macro success() %}
+  {% call alert(title="Success variant",variant="success") %}
+    <p>Success variant content</p>
+  {% endcall %}
+{% endmacro %}

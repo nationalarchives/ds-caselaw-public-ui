@@ -16,7 +16,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.14
+    rev: v0.15.0
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -42,13 +42,13 @@ repos:
         types_or: [yaml, json, xml, markdown, scss, javascript]
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: v17.1.0
+    rev: v17.1.1
     hooks:
       - id: stylelint
         args: [--fix]
         language: node
         additional_dependencies:
-          - stylelint@17.1.0
+          - stylelint@17.1.1
           - stylelint-config-standard-scss@17.0.0
           - stylelint-config-clean-order@8.0.0
 

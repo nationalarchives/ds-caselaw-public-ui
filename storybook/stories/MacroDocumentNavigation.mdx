@@ -1,0 +1,34 @@
+import { Meta, Source, Story } from '@storybook/blocks';
+import { DocumentNavigation} from './document_navigation.stories.js';
+
+<Meta title="Components/Document Navigation Examples/Jinja Macros" />
+
+
+
+This page shows the Jinja macros for this component.
+
+## Document Navigation Macro
+
+<Source
+  language="jinja"
+  code={`{% macro default() %}
+  {{ document_navigation_examples() }}
+{% endmacro %}`}
+  dark
+/>
+
+## Judgment Navigation Macro
+<Source
+  language="jinja"
+  code={`{% macro judgment_navigation() %}
+  {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title" ) %}
+    <h2>Page title</h2>
+    <p>
+      <span class="visually-hidden">Best human identifer name</span>Best human identifier value
+    </p>
+  {% endcall %}
+{% endmacro %}`}
+  dark
+/>
+
+<Story name="DocumentNavigation" of={DocumentNavigation} />

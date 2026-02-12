@@ -1,0 +1,9 @@
+{% from "components/component.jinja" import component, component_examples %}
+{% macro default() %}
+  # Optional
+  <h2>
+    <!-- ADD: Component name -->
+  </h2>
+  #
+  {{ component_examples() }}
+{% endmacro %}

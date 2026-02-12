@@ -14,7 +14,7 @@ pytest-socket==0.7.0 # https://github.com/miketheman/pytest-socket
 
 # Code quality
 # ------------------------------------------------------------------------------
-coverage==7.13.2  # https://github.com/nedbat/coveragepy
+coverage==7.13.4  # https://github.com/nedbat/coveragepy
 pylint-django==2.7.0  # https://github.com/PyCQA/pylint-django
 pre-commit==4.5.1  # https://github.com/pre-commit/pre-commit
 
@@ -34,3 +34,7 @@ types-requests==2.32.4.20260107
 
 # memray
 memray==1.19.1
+
+
+# django cors headers
+django-cors-headers
