@@ -90,38 +90,40 @@
   }
 ] %}
 {% macro navigation(active_endpoint=None) %}
-  <nav class="navigation" tabindex="0">
-    <button class="navigation__menu-button">Menu {{ icon(name="chevron_down_white", size="xs") }}</button>
-    <div class="container">
-      <ul>
-        {% for item in nav_items %}
-          {% set is_active = (active_endpoint and item.endpoint == active_endpoint) %}
-          <li class="{{ 'navigation__item--active' if is_active }}">
-            <span class="navigation__item">
-              <span class="navigation__item-icon {% if not item.children %}navigation__item-icon-spacer{% endif %}">
+  <div class="navigation-container">
+    <nav class="navigation" tabindex="0">
+      <button class="navigation__menu-button">Menu {{ icon(name="chevron_down_white", size="xs") }}</button>
+      <div class="container">
+        <ul>
+          {% for item in nav_items %}
+            {% set is_active = (active_endpoint and item.endpoint == active_endpoint) %}
+            <li class="{{ 'navigation__item--active' if is_active }} {% if item.children %}navigation__item--has-children{% endif %}">
+              <span class="navigation__item">
                 {% if item.children %}
-                  {{ icon(name="chevron_down_black", size="xs") }}
-                  {{ icon(name="chevron_down_white", size="xs") }}
+                  <span class="navigation__item-icon">
+                    {{ icon(name="chevron_down_black", size="sm") }}
+                    {{ icon(name="chevron_down_white", size="sm") }}
+                  </span>
                 {% endif %}
+                {% call link(href=url(item.endpoint), variant="contrast") %}
+                  <span class="navigation__item-label">{{ item.label }}</span>
+                {% endcall %}
               </span>
-              {% call link(href=url(item.endpoint), variant="contrast") %}
-                <span class="navigation__item-label">{{ item.label }}</span>
-              {% endcall %}
-            </span>
-            {% if item.children %}
-              <ul>
-                {% for child in item.children %}
-                  <li>
-                    {% call link(href=url(child.endpoint)) %}
-                      {{ child.label }}
-                    {% endcall %}
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </nav>
+              {% if item.children %}
+                <ul>
+                  {% for child in item.children %}
+                    <li>
+                      {% call link(href=url(child.endpoint)) %}
+                        {{ child.label }}
+                      {% endcall %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+  </div>
 {% endmacro %}
