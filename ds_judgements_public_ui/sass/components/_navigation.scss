@@ -1,5 +1,6 @@
 .navigation-container {
   position: relative;
+  z-index: 9999;
   height: 54px;
   background-color: colour-var("contrast-background");
 }
