@@ -87,48 +87,17 @@
     {% block footer %}
       {% call footer() %}
         {% call footer_row() %}
-          {% call footer_item(title="Find case law", title_url=url("home")) %}
+          {% call footer_item( title_url=url("home")) %}
             <p>Delivered by</p>
             {{ tna_logo() }}
           {% endcall %}
-          {% call footer_item(title="About", title_url=url("about_this_service")) %}
+          {% call footer_item(title="Terms and policies", title_url=url("terms_and_policies")) %}
             {% call list() %}
-              {% call list_item() %}
-                {{ footer_link("Courts and tribunals in Find Case Law", url=url("courts_and_tribunals") ) }}
-              {% endcall %}
               {% call list_item() %}
                 {{ footer_link("Publishing policy", url=url("publishing_policy") ) }}
               {% endcall %}
               {% call list_item() %}
-                {{ footer_link("Help us improve this service", url=url("user_research") ) }}
-              {% endcall %}
-            {% endcall %}
-          {% endcall %}
-          {% call footer_item(title="Help and support", title_url=url("help_and_support")) %}
-            {% call list() %}
-              {% call list_item() %}
-                {{ footer_link("How to search", url=url("how_to_search_find_case_law") ) }}
-              {% endcall %}
-              {% call list_item() %}
-                {{ footer_link("Understanding judgments and decisions", url=url("understanding_judgments_and_decisions") ) }}
-              {% endcall %}
-              {% call list_item() %}
-                {{ footer_link("Contact us", url=url("contact_us") ) }}
-              {% endcall %}
-            {% endcall %}
-          {% endcall %}
-          {% call footer_item(title="Re-use Find Case Law records") %}
-            {{ open_justice_license_logo() }}
-            <p>
-              For computational analysis, which is not allowed under the OJL {{ footer_link("apply for a license", url=url("transactional-licence-form") ) }}.
-            </p>
-          {% endcall %}
-        {% endcall %}
-        {% call footer_row() %}
-          {% call footer_item(title="Legal") %}
-            {% call list(variant="horizontal") %}
-              {% call list_item() %}
-                {{ footer_link("Accessibility statement", url=url("accessibility_statement") ) }}
+                {{ footer_link("Terms of use", url=url("terms_of_use") ) }}
               {% endcall %}
               {% call list_item() %}
                 {{ footer_link("Privacy notice", url=url("privacy_notice") ) }}
@@ -136,18 +105,24 @@
               {% call list_item() %}
                 {{ footer_link("Cookies", url="https://www.nationalarchives.gov.uk/legal/cookies/") }}
               {% endcall %}
+              {% call list_item() %}
+                {{ footer_link("Accessibility statement", url=url("accessibility_statement") ) }}
+              {% endcall %}
             {% endcall %}
           {% endcall %}
-          {% call footer_item(title="Other websites") %}
-            {% call list(variant="horizontal") %}
+          {% call footer_item(title="Re-use and licencing", title_url=url("transactional-licence-form")) %}
+            {% call list() %}
               {% call list_item() %}
-                {{ footer_link("Legislation.gov.uk", url="https://www.legislation.gov.uk/") }}
+                {{ footer_link("Apply for a licence", url=url("apply_for_a_licence") ) }}
               {% endcall %}
               {% call list_item() %}
-                {{ footer_link("The Judiciary", url="https://www.judiciary.uk/") }}
+                {{ footer_link("Open justice licence", url=url("open_justice_licence") ) }}
               {% endcall %}
               {% call list_item() %}
-                {{ footer_link("UK Government Web Archive", url="https://www.nationalarchives.gov.uk/webarchive/") }}
+                {{ footer_link("API documentation", url="https://nationalarchives.github.io/ds-find-caselaw-docs/public") }}
+              {% endcall %}
+              {% call list_item() %}
+                {{ footer_link("Help us improve this service", url=url("user_research") ) }}
               {% endcall %}
             {% endcall %}
           {% endcall %}

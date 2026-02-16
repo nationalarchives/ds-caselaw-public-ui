@@ -19,12 +19,11 @@
   &__row {
     display: flex;
     flex-direction: column;
-    gap: $space-8;
+    gap: $space-12;
     text-wrap: balance;
 
     @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
-      gap: $space-12;
     }
   }
 
