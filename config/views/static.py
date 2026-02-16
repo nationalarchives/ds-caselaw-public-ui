@@ -199,25 +199,6 @@ class PublishingPolicyView(TemplateViewWithContext):
         return context
 
 
-class TermsAndPoliciesView(TemplateViewWithContext):
-    template_engine = "jinja"
-    template_name = "pages/terms_and_policies.jinja"
-    page_title = "Terms and policies"
-    page_canonical_url_name = "terms_and_policies"
-    page_allow_index = True
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["feedback_survey_type"] = "terms_and_policies"
-        context["page_description"] = (
-            "A list of the Find Case Law service’s terms and policies including the accessibility statement, publishing policy and terms of use."
-        )
-        context["breadcrumbs"] = [
-            {"text": self.page_title},
-        ]
-        return context
-
-
 class TermsOfUseView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/terms_of_use.jinja"
