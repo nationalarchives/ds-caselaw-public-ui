@@ -73,6 +73,7 @@
 
     @media (max-width: $grid-breakpoint-large) {
       padding: $space-4;
+      padding-left: $space-6;
     }
 
     @media (min-width: $grid-breakpoint-extra-large) {
@@ -229,6 +230,11 @@
             a:visited,
             a:hover {
               color: colour-var("font-base");
+            }
+
+            @media (max-width: $grid-breakpoint-large) {
+              padding: $space-4;
+              padding-left: $space-6;
             }
 
             @media (min-width: $grid-breakpoint-large) {
