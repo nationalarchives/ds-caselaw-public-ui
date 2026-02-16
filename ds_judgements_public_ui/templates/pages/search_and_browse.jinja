@@ -81,7 +81,10 @@
         understand date ranges and coverage for each court
       {% endcall %}
       {% call list_item() %}
-        access the Courts and Tribunals directory
+        access the
+        {%- call link(href=url("courts_and_tribunals")) -%}
+          Courts and Tribunals directory
+        {%- endcall %}
       {% endcall %}
     {% endcall %}
     {% call card(title="Understanding search results", variant="unbordered", title_tag="h2") %}
