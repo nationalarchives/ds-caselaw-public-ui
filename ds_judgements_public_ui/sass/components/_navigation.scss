@@ -1,8 +1,11 @@
 .navigation-container {
   position: relative;
   z-index: 9999;
-  height: 54px;
   background-color: colour-var("contrast-background");
+
+  @media (min-width: $grid-breakpoint-medium) {
+    height: 54px;
+  }
 }
 
 .navigation {
