@@ -46,6 +46,7 @@ class CourtsTribunalsListView(TemplateViewWithContext):
         context["courts"] = grouped_courts
         context["tribunals"] = grouped_tribunals
         context["feedback_survey_type"] = "courts_and_tribunals"
+        context["active_navigation_endpoint"] = "search_and_browse"
         context["breadcrumbs"] = [
             {"text": "Search and browse", "url": reverse("search_and_browse")},
             {"text": self.page_title},
