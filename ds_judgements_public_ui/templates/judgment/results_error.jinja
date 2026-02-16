@@ -1,0 +1,7 @@
+{% extends "layouts/search_results.jinja" %}
+{% from "components/alert.jinja" import alert %}
+{% block content_body %}
+  {% call alert(title="No matching results have been found") %}
+    {% include "includes/no_results_message.jinja" %}
+  {% endcall %}
+{% endblock content_body %}

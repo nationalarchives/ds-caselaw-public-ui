@@ -58,6 +58,12 @@ class SearchResultsView(TemplateViewWithContext):
         search_parameters: SearchParameters = search_request_to_parameters(request)
         context = self._initialize_context(form)
 
+        context.update(
+            {
+                "query": request.GET.get("query", ""),
+            }
+        )
+
         search_response = self._get_search_response(request, search_parameters, context)
         if isinstance(search_response, TemplateResponse):
             return search_response
@@ -75,7 +81,6 @@ class SearchResultsView(TemplateViewWithContext):
 
         context.update(
             {
-                "query": request.GET.get("query", ""),
                 "requires_from_warning": requires_warning,
                 "date_warning": warning,
                 "earliest_record": get_minimum_warning_year(),
@@ -114,7 +119,9 @@ class SearchResultsView(TemplateViewWithContext):
             return search_judgments_and_parse_response(api_client, search_parameters)
         except (MarklogicResourceNotFoundError, RequestException):
             context["breadcrumbs"] = self._build_breadcrumbs(search_parameters)
-            return TemplateResponse(request, "judgment/results_error.html", context)
+            context["breadcrumbs_variant"] = "accent"
+            context["query"] = request.GET.get("query", "")
+            return TemplateResponse(request, "judgment/results_error.jinja", context, using="jinja")
 
     def _build_query_params(self, form, search_parameters):
         from_date: Optional[date] = form.cleaned_data.get("from_date")
