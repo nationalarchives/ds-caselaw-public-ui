@@ -228,7 +228,7 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "help_and_support"
+        context["active_navigation_endpoint"] = "understanding_case_law"
         context["feedback_survey_type"] = "understanding_judgments_and_decisions"
         context["page_description"] = (
             "A basic overview of what a judgment is and how they are commonly structured to help people reading a judgment for the first time."
