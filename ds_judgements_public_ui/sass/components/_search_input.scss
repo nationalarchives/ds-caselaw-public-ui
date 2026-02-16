@@ -1,4 +1,7 @@
 .search-input {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
   width: 100%;
 
   h1,
