@@ -46,16 +46,3 @@ services:
     volumes:
       - ./docker/db/data/:/var/opt/MarkLogic/
       - ./docker/db/backup:/var/opt/backup
-
-  traefik:
-    build:
-      context: .
-      dockerfile: ./compose/production/traefik/Dockerfile
-    image: ds_judgements_public_ui_production_traefik
-    depends_on:
-      - django
-    volumes:
-      - production_traefik:/etc/traefik/acme:z
-    ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
