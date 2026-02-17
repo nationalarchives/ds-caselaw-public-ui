@@ -196,7 +196,7 @@ urlpatterns = [
     ),
     path(
         "terms-and-policies",
-        static_views.TermsAndPoliciesView.as_view(),
+        lambda request: HttpResponseRedirect(reverse("terms_of_use")),
         name="terms_and_policies",
     ),
     path(

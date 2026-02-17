@@ -24,7 +24,6 @@ static_pages = [
     {"url": "/open-justice-licence", "title": "Open Justice Licence", "heading": "Open Justice Licence"},
     {"url": "/privacy-notice", "title": "Privacy Notice", "heading": "Privacy notice"},
     {"url": "/publishing-policy", "title": "Publishing policy", "heading": "Publishing policy"},
-    {"url": "/terms-and-policies", "title": "Terms and policies", "heading": "Terms and policies"},
     {"url": "/terms-of-use", "title": "Terms of use", "heading": "Terms of use"},
     {
         "url": "/understanding-judgments-and-decisions",

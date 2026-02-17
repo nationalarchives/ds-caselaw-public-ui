@@ -90,7 +90,9 @@
   <p>The licence team at The National Archives will assess your application against:</p>
   {% call list(variant="bullets") %}
     {% call list_item() %}
-      the Five Safes Framework
+      {% call link(href="https://en.wikipedia.org/wiki/Five_safes", attrs={"target":"_blank"}) %}
+        the Five Safes Framework
+      {% endcall %}
     {% endcall %}
     {% call list_item() %}
       the nine principles established in 2023 by the Ministry of Justice:

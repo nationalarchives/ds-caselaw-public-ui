@@ -61,7 +61,6 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
             "open_justice_licence",
             "terms_of_use",
             "publishing_policy",
-            "terms_and_policies",
             "contact_us",
             "courts_and_tribunals_in_fcl",
             "help_and_support",
