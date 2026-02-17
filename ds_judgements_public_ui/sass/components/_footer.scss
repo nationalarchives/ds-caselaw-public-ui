@@ -27,6 +27,18 @@
     }
   }
 
+  &__item-spacer {
+    display: none;
+
+    @media (min-width: $grid-breakpoint-medium) {
+      display: inline-block;
+
+      span {
+        display: inline-block;
+      }
+    }
+  }
+
   &__item {
     display: flex;
     flex: 1;

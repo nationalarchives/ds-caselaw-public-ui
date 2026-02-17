@@ -10,7 +10,7 @@
 {% from "components/navigation.jinja" import navigation %}
 {% from "components/breadcrumbs.jinja" import breadcrumbs as breadcrumbs_component, breadcrumb %}
 {% from "components/open_justice_license_logo.jinja" import open_justice_license_logo %}
-{% from "components/footer.jinja" import footer, footer_row, footer_item, footer_link with context %}
+{% from "components/footer.jinja" import footer, footer_row, footer_item, footer_link, footer_item_spacer with context %}
 <!DOCTYPE html>
 <html lang="en-gb">
   <head>
@@ -91,7 +91,7 @@
             <p>Delivered by</p>
             {{ tna_logo() }}
           {% endcall %}
-          {% call footer_item(title="Terms and policies", title_url=url("terms_and_policies")) %}
+          {% call footer_item(title="Terms and policies") %}
             {% call list() %}
               {% call list_item() %}
                 {{ footer_link("Publishing policy", url=url("publishing_policy") ) }}
@@ -110,7 +110,7 @@
               {% endcall %}
             {% endcall %}
           {% endcall %}
-          {% call footer_item(title="Re-use and licencing", title_url=url("transactional-licence-form")) %}
+          {% call footer_item(title="Re-use and licencing") %}
             {% call list() %}
               {% call list_item() %}
                 {{ footer_link("Apply for a licence", url=url("apply_for_a_licence") ) }}
@@ -121,6 +121,7 @@
               {% call list_item() %}
                 {{ footer_link("API documentation", url="https://nationalarchives.github.io/ds-find-caselaw-docs/public") }}
               {% endcall %}
+              {{ footer_item_spacer() }}
               {% call list_item() %}
                 {{ footer_link("Help us improve this service", url=url("user_research") ) }}
               {% endcall %}
