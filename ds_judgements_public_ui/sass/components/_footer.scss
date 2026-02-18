@@ -28,14 +28,10 @@
   }
 
   &__item-spacer {
-    display: none;
+    display: inline-block;
 
-    @media (min-width: $grid-breakpoint-medium) {
+    span {
       display: inline-block;
-
-      span {
-        display: inline-block;
-      }
     }
   }
 
