@@ -2,20 +2,14 @@ from django.urls import re_path
 
 from .views import (
     ConfirmationView,
-    ConfirmationViewJinja,
     StartView1,
-    StartView1Jinja,
     StartView2,
-    StartView2Jinja,
     StartView3,
-    StartView3Jinja,
     wizard_view,
-    wizard_view_jinja,
 )
 
 form_name = "transactional-licence-form-steps"
 form_view = wizard_view("%s-step" % form_name)
-form_view_jinja = wizard_view_jinja("%s-step" % form_name)
 
 urlpatterns = [
     re_path(
@@ -24,19 +18,9 @@ urlpatterns = [
         name="transactional-licence-form",
     ),
     re_path(
-        "^/home?$",
-        StartView1Jinja.as_view(),
-        name="home-transactional-licence-form",
-    ),
-    re_path(
         "^/licence-application-process/?$",
         StartView2.as_view(),
         name="transactional-licence-form-page-2",
-    ),
-    re_path(
-        "^/home/licence-application-process/?$",
-        StartView2Jinja.as_view(),
-        name="home-transactional-licence-form-page-2",
     ),
     re_path(
         "^/what-you-need-to-apply-for-a-licence/?$",
@@ -44,24 +28,9 @@ urlpatterns = [
         name="transactional-licence-form-page-3",
     ),
     re_path(
-        "^/home/what-you-need-to-apply-for-a-licence/?$",
-        StartView3Jinja.as_view(),
-        name="home-transactional-licence-form-page-3",
-    ),
-    re_path(
         "^/confirmation/?$",
         ConfirmationView.as_view(),
         name="transactional-licence-form-confirmation",
-    ),
-    re_path(
-        "^/home/confirmation/?$",
-        ConfirmationViewJinja.as_view(),
-        name="home-transactional-licence-form-confirmation",
-    ),
-    re_path(
-        r"^/home/steps/(?P<step>.+)/?$",
-        form_view_jinja,
-        name="%s-step" % form_name,
     ),
     re_path(
         r"^/steps/(?P<step>.+)/?$",
