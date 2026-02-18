@@ -24,7 +24,7 @@ def test_transactional_licence_form(page: Page):
 
     assert_is_accessible(page)
     assert_matches_snapshot(page, "re_use_find_case_law_records_to_apply_page")
-    page.get_by_role("button", name="Apply for a licence").click()
+    page.locator("a.button", has_text="Apply for a licence").click()
 
     assert_is_accessible(page)
     assert_matches_snapshot(page, "re_use_find_case_law_records_confirmation_page")

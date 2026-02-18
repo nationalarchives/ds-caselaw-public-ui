@@ -11,16 +11,6 @@ from .forms import FORMS
 from .utils import send_form_response_to_dynamics
 
 TEMPLATE_OVERRIDES = {
-    "contact": "contact.html",
-    "review": "review.html",
-    "nine-principles-1": "nine_principles_1.html",
-    "nine-principles-2": "nine_principles_2.html",
-    "organization": "organization.html",
-    "project-purpose": "project-purpose.html",
-    "public-statement": "public-statement.html",
-}
-
-TEMPLATE_OVERRIDES_JINJA = {
     "contact": "contact.jinja",
     "review": "review.jinja",
     "nine-principles-1": "nine_principles_1.jinja",
@@ -35,8 +25,10 @@ REVIEWING_SESSION_KEY = "transactional_licence_form_reviewing"
 
 @method_decorator(never_cache, name="dispatch")
 class FormWizardView(NamedUrlSessionWizardView):
+    template_engine = "jinja"
+
     def get_template_names(self):
-        return [TEMPLATE_OVERRIDES.get(self.steps.current, "form.html")]
+        return [TEMPLATE_OVERRIDES.get(self.steps.current, "form.jinja")]
 
     def render_goto_step(self, goto_step, **kwargs):
         # We override this to ensure that the "reviewing" state is passed along.
@@ -142,25 +134,12 @@ class FormWizardView(NamedUrlSessionWizardView):
         if REVIEWING_SESSION_KEY in self.request.session:
             del self.request.session[REVIEWING_SESSION_KEY]
         send_form_response_to_dynamics(self.get_all_cleaned_data())
-        return render(self.request, "submitted.html")
-
-
-@method_decorator(never_cache, name="dispatch")
-class FormWizardViewJinja(FormWizardView):
-    template_engine = "jinja"
-
-    def get_template_names(self):
-        return [TEMPLATE_OVERRIDES_JINJA.get(self.steps.current, "form.jinja")]
-
-    def done(self, form_list, **kwargs):
-        if REVIEWING_SESSION_KEY in self.request.session:
-            del self.request.session[REVIEWING_SESSION_KEY]
-        send_form_response_to_dynamics(self.get_all_cleaned_data())
-        return render(self.request, "submitted.jinja")
+        return render(self.request, "submitted.jinja", using="jinja")
 
 
 class StartView1(TemplateView):
-    template_name = "start.html"
+    template_engine = "jinja"
+    template_name = "start.jinja"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -170,6 +149,7 @@ class StartView1(TemplateView):
             "Find out about the Open Justice licensing framework and how to apply for a license to do computational analysis across judgments and decisions on the Find Case Law service."
         )
         context["page_allow_index"] = True
+        context["breadcrumbs_postfix"] = "31 January 2025"
         context["breadcrumbs"] = [
             {"url": reverse("about_this_service"), "text": "About this service"},
             {"text": "Re-use Find Case Law records"},
@@ -177,19 +157,16 @@ class StartView1(TemplateView):
         return context
 
 
-class StartView1Jinja(StartView1):
-    template_engine = "jinja"
-    template_name = "start.jinja"
-
-
 class StartView2(TemplateView):
-    template_name = "start2.html"
+    template_engine = "jinja"
+    template_name = "start2.jinja"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "licence_application_process"
         context["page_title"] = "Licence application process"
         context["page_allow_index"] = True
+        context["breadcrumbs_postfix"] = "31 January 2025"
         context["breadcrumbs"] = [
             {"url": reverse("about_this_service"), "text": "About this service"},
             {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
@@ -198,19 +175,16 @@ class StartView2(TemplateView):
         return context
 
 
-class StartView2Jinja(StartView2):
-    template_engine = "jinja"
-    template_name = "start2.jinja"
-
-
 class StartView3(TemplateView):
-    template_name = "start3.html"
+    template_engine = "jinja"
+    template_name = "start3.jinja"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_survey_type"] = "what_you_need_to_apply_for_a_licence"
         context["page_title"] = "What you need to apply for a licence"
         context["page_allow_index"] = True
+        context["breadcrumbs_postfix"] = "31 January 2025"
         context["breadcrumbs"] = [
             {"url": reverse("about_this_service"), "text": "About this service"},
             {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
@@ -219,13 +193,9 @@ class StartView3(TemplateView):
         return context
 
 
-class StartView3Jinja(StartView3):
-    template_engine = "jinja"
-    template_name = "start3.jinja"
-
-
 class ConfirmationView(TemplateView):
-    template_name = "confirmation.html"
+    template_engine = "jinja"
+    template_name = "confirmation.jinja"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -239,21 +209,8 @@ class ConfirmationView(TemplateView):
         return context
 
 
-class ConfirmationViewJinja(ConfirmationView):
-    template_engine = "jinja"
-    template_name = "confirmation.jinja"
-
-
 def wizard_view(url_name):
     return FormWizardView.as_view(
-        FORMS,
-        url_name=url_name,
-        done_step_name="submitted",
-    )
-
-
-def wizard_view_jinja(url_name):
-    return FormWizardViewJinja.as_view(
         FORMS,
         url_name=url_name,
         done_step_name="submitted",
