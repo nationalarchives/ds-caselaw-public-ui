@@ -1,12 +1,16 @@
 {% from "components/icon.jinja" import icon %}
-{% macro tag_container() %}
-  <div class="tag-container">{{ caller() }}</div>
+{% macro tag_grid() %}
+  <div class="tag-grid">{{ caller() }}</div>
 {% endmacro %}
-{% macro tag(href=None) %}
+{% macro tag(href=None, variant=None, size=None) %}
+  {% set size_classes = {"sm": "tag--sm", "md": "tag--md"} %}
+  {% set size_class = size_classes.get(size, size_classes["md"]) %}
+  {% set variant_classes = {"default": "tag", "active": "tag tag--active", "disabled": "tag tag--disabled", "button": "tag tag--button"} %}
+  {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
   {% if href %}
-    <a href="{{ href }}" class="tag">
+    <a href="{{ href }}" class="{{ variant_class }} {{ size_class }}">
     {% else %}
-      <div class="tag">
+      <div class="{{ variant_class }} {{ size_class }}">
       {% endif %}
       {{ caller() }}
       {% if href %}
@@ -16,8 +20,31 @@
   {% endif %}
 {% endmacro %}
 {% macro tag_examples() %}
-  {% call tag() %}
+  {% call tag(variant="button") %}
     Query: <strong>test</strong>
     {{ icon(name="xmark_solid") }}
+  {% endcall %}
+  {% call tag(variant="button") %}
+    Button variant
+  {% endcall %}
+  {% call tag(variant="active") %}
+    Active variant
+  {% endcall %}
+  {% call tag(variant="disabled") %}
+    Disabled variant
+  {% endcall %}
+  {% call tag_grid() %}
+    {% call tag() %}
+      Tag grid 1
+    {% endcall %}
+    {% call tag() %}
+      Tag grid 2
+    {% endcall %}
+    {% call tag() %}
+      Tag grid 3
+    {% endcall %}
+  {% endcall %}
+  {% call tag(size="sm") %}
+    SM
   {% endcall %}
 {% endmacro %}
