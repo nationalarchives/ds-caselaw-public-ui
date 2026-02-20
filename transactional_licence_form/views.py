@@ -181,13 +181,14 @@ class StartView3(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["active_navigation_endpoint"] = "permissions_and_licencing"
         context["feedback_survey_type"] = "what_you_need_to_apply_for_a_licence"
         context["page_title"] = "What you need to apply for a licence"
         context["page_allow_index"] = True
         context["breadcrumbs_postfix"] = "31 January 2025"
         context["breadcrumbs"] = [
-            {"url": reverse("about_this_service"), "text": "About this service"},
-            {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
+            {"url": reverse("permissions_and_licencing"), "text": "Permissions and licencing"},
+            {"url": reverse("when_you_need_permission"), "text": "When you need permission"},
             {"text": "What you need to apply for a licence"},
         ]
         return context
