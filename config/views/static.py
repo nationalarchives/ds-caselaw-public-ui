@@ -84,6 +84,7 @@ class CourtsAndTribunalsInFclView(TemplateViewWithContext):
         )
         context["breadcrumbs"] = [
             {"url": reverse("about_this_service"), "text": "About this service"},
+            {"url": reverse("courts_and_date_coverage"), "text": "Courts and date coverage"},
             {"text": "Courts and tribunals in Find Case Law"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 21 January 2025"
@@ -105,7 +106,7 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
             "Help and guidance on how to search judgments and decisions on the Find Case Law service using the search box and filters."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("help_and_support"), "text": "Help and support"},
+            {"url": reverse("search_and_browse"), "text": "Search and Browse"},
             {"text": "How to search Find Case Law"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 21 January 2025"
@@ -234,7 +235,8 @@ class UnderstandingJudgmentsAndDecisionsView(TemplateViewWithContext):
             "A basic overview of what a judgment is and how they are commonly structured to help people reading a judgment for the first time."
         )
         context["breadcrumbs"] = [
-            {"url": reverse("help_and_support"), "text": "Help and support"},
+            {"url": reverse("understanding_case_law"), "text": "Understanding Case Law"},
+            {"url": reverse("reading_judgments"), "text": "Reading judgments"},
             {"text": "Understanding judgments and decisions"},
         ]
         context["breadcrumbs_postfix"] = "Last updated on 21 January 2025"
@@ -321,6 +323,7 @@ class AboutFindCaseLawView(TemplateViewWithContext):
         )
         context["breadcrumbs"] = [
             {"text": "About this service", "url": reverse("about_this_service")},
+            {"text": "What we provide", "url": reverse("what_we_provide")},
             {"text": "About Find Case Law"},
         ]
 
