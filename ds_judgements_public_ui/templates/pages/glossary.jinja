@@ -29,12 +29,12 @@
   {% endcall %}
 {% endblock article_header %}
 {% block article_navigation %}
-  {% call contents(title="On this page") %}
+  {% call contents(title="Glossary terms under " ~ selected_letter | upper ~ ":") %}
     {% call list() %}
       {% for term in terms %}
         {% set anchor = term.title | lower | replace(" ", "-") %}
         {% call list_item() %}
-          {% call link(href="#" ~ anchor) %}
+          {% call link(href="#" ~ anchor | hyphenate) %}
             {{ term.title }}
           {% endcall %}
         {% endcall %}
