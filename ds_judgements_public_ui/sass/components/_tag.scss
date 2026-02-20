@@ -1,20 +1,76 @@
-.tag-container {
+.tag-grid {
   display: flex;
-  gap: $space-4;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-2;
+
+  @media (min-width: $grid-breakpoint-extra-large) {
+    gap: 0;
+
+    .tag {
+      margin-left: -2px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 .tag {
+  position: relative;
+  z-index: 2;
+
   display: flex;
   gap: $space-2;
   align-items: center;
 
+  box-sizing: border-box;
   max-width: max-content;
   padding: $space-2;
   border: 2px solid colour-var("accent-brand");
 
-  color: colour-var("accent-link");
-  text-decoration: none;
+  font-weight: $typography-bold-font-weight;
+
+  &:visited {
+    color: colour-var("link");
+  }
+
+  &--button {
+    font-weight: $typography-normal-font-weight;
+    color: colour-var("accent-link");
+    text-decoration: none;
+
+    &:hover {
+      color: colour-var("accent-link");
+      background: colour-var("accent-brand");
+    }
+
+    &:visited {
+      color: colour-var("accent-link-visited");
+    }
+
+    &:focus {
+      outline-offset: $space-1;
+    }
+  }
+
+  &--sm {
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+  }
+
+  &--active {
+    background: colour-var("accent-brand");
+  }
+
+  &--disabled {
+    pointer-events: none;
+    z-index: 1;
+    border-color: colour-var("accent-background");
+    color: colour-var("accent-background");
+  }
 
   a {
     display: flex;
@@ -23,18 +79,5 @@
 
     color: colour-var("accent-link");
     text-decoration: none;
-  }
-
-  &:hover {
-    color: colour-var("accent-link");
-    background: colour-var("accent-brand");
-  }
-
-  &:visited {
-    color: colour-var("accent-link-visited");
-  }
-
-  &:focus {
-    outline-offset: $space-1;
   }
 }

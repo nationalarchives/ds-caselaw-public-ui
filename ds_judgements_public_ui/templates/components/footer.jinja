@@ -29,6 +29,11 @@
     {{ caller() }}
   </div>
 {% endmacro %}
+{% macro footer_item_spacer() %}
+  <li class="footer__item-spacer">
+    <span>&nbsp;</span>
+  </li>
+{% endmacro %}
 {% macro footer() %}
   <div class="footer">
     <div class="footer__container">

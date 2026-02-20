@@ -5,6 +5,17 @@
     @include container;
   }
 
+  &__header {
+    padding-bottom: $space-8;
+    font-size: $typography-md-text-size;
+    line-height: $typography-xl-line-height;
+
+    h1,
+    > h2 {
+      margin: 0 0 $space-8;
+    }
+  }
+
   &__body {
     display: flex;
     flex-direction: column;

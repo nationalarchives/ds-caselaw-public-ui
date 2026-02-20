@@ -635,28 +635,6 @@ class FeedbackView(TemplateViewWithContext):
         return context
 
 
-class GlossaryView(TemplateViewWithContext):
-    template_engine = "jinja"
-    template_name = "pages/glossary.jinja"
-    page_title = "Find Case Law Glossary"
-    page_canonical_url_name = "glossary"
-    page_allow_index = True
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "help_and_support"
-        context["feedback_survey_type"] = "glossary"
-        context["page_description"] = (
-            "Find Case Law aims to make court judgments accessible to everyone. However, legal language and court terminology can be unfamiliar, even to regular users. This glossary explains common terms you'll encounter when searching for and reading court judgments, helping you understand how our service works."
-        )
-        context["breadcrumbs"] = [
-            {"text": "Help and support", "url": reverse("help_and_support")},
-            {"text": "Find Case Law Glossary"},
-        ]
-
-        return context
-
-
 class UserResearchView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/user_research.jinja"

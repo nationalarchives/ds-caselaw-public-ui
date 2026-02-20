@@ -5,11 +5,11 @@ whitenoise==6.11.0  # https://github.com/evansd/whitenoise
 # Django
 # ------------------------------------------------------------------------------
 django==6.0.2  # https://www.djangoproject.com/
-django-environ==0.12.1 # https://github.com/joke2k/django-environ
+django-environ==0.13.0 # https://github.com/joke2k/django-environ
 django-model-utils==5.0.0  # https://github.com/jazzband/django-model-utils
 requests~=2.32.2
 wsgi-basic-auth~=1.1.0
-ds-caselaw-marklogic-api-client==44.4.3
+ds-caselaw-marklogic-api-client==44.4.4
 ds-caselaw-utils==4.1.1
 rollbar
 django-weasyprint==2.4.0
