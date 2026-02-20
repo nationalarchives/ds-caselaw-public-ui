@@ -23,6 +23,7 @@ from .views.courts import (
     CourtsTribunalsListView,
 )
 from .views.errors import NotFoundView, PermissionDeniedView, ServerErrorView
+from .views.glossary import GlossaryView
 from .views.schema import schema
 from .views.sitemaps import SitemapCourtsView, SitemapCourtView, SitemapIndexView, SitemapStaticView
 
@@ -256,7 +257,7 @@ urlpatterns = [
     ),
     path(
         "glossary",
-        static_views.GlossaryView.as_view(),
+        GlossaryView.as_view(),
         name="glossary",
     ),
     path(

@@ -4,6 +4,13 @@
 {% block content %}
   {% call content_container() %}
     <div class="standard-content" id="start-of-document">
+      {% set article_header_content %}
+        {% block article_header %}
+        {% endblock article_header %}
+      {% endset %}
+      {% if article_header_content|trim %}
+        <div class="standard-content__header">{{ article_header_content }}</div>
+      {% endif %}
       <div class="standard-content__body">
         {% block is_full_screen %}
           <div class="mobile-only">
