@@ -1,10 +1,10 @@
-from django.urls import re_path
+from django.http import HttpResponseRedirect
+from django.urls import re_path, reverse
 
 from .views import (
     ConfirmationView,
     StartView1,
     StartView2,
-    StartView3,
     wizard_view,
 )
 
@@ -24,8 +24,7 @@ urlpatterns = [
     ),
     re_path(
         "^/what-you-need-to-apply-for-a-licence/?$",
-        StartView3.as_view(),
-        name="transactional-licence-form-page-3",
+        lambda request: HttpResponseRedirect(reverse("what_you_need_to_apply_for_a_licence")),
     ),
     re_path(
         "^/confirmation/?$",
