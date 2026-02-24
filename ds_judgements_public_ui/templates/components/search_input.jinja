@@ -37,7 +37,6 @@
       {% call search_form_container() %}
         <p>Use any search term including neutral citation, names and keywords</p>
         {{ search_input(label="Search by keyword or neutral citation", button_action=url("advanced_search") , button_label="Search") }}
-        <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
         {% call search_input_footer() %}
           {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
         {% endcall %}

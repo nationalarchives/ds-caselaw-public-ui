@@ -25,7 +25,6 @@
           {% call search_form_container() %}
             <p>Use any search term including neutral citation, names and keywords</p>
             {{ search_input(value=query, label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
-            <a href="{{ url('how_to_search_find_case_law') }}">How to search</a>
           {% endcall %}
           {% call search_input_actions() %}
             {% include "includes/results_applied_filters.jinja" %}
