@@ -48,22 +48,39 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
     # This is a list of the names of URLs to reverse and include in the map
     url_names = [
         "home",
+        # Understanding case law
+        "understanding_case_law",
+        "reading_judgments",
+        "understanding_judgments_and_decisions",
+        # Search and browse
+        "search_and_browse",
         "advanced_search",
-        "about_this_service",
+        "browse_courts_and_tribunals",
         "courts_and_tribunals",
-        "transactional-licence-form",
+        # About this service
+        "about_this_service",
+        "what_we_provide",
+        "courts_and_date_coverage",
+        "courts_and_tribunals_in_fcl",
+        "publishing_policy",
+        # Permissions and licencing
+        "permissions_and_licencing",
+        "open_justice_licence",
+        "what_you_can_do_freely",
+        "when_you_need_permission",
+        "how_to_get_permission",
+        "legal_framework",
+        # Help and support
+        "help_and_support",
+        "search_tips",
+        "contact_us",
+        "feedback",
+        # Footer
+        "terms_of_use",
         "privacy_notice",
         "accessibility_statement",
-        "open_justice_licence",
-        "terms_of_use",
-        "publishing_policy",
-        "contact_us",
-        "courts_and_tribunals_in_fcl",
-        "help_and_support",
-        "how_to_search_find_case_law",
-        "understanding_judgments_and_decisions",
-        # TODO: Remove this when we want them to be in the sitemap
-        # "understanding_case_law",
+        "apply_for_a_licence",
+        "user_research",
     ]
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
