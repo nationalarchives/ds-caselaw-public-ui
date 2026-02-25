@@ -45,32 +45,31 @@ class SitemapIndexView(TemplateView, TemplateResponseMixin):
 class SitemapStaticView(TemplateView, TemplateResponseMixin):
     content_type = "application/xml"
     template_name = "sitemaps/sitemap.xml"
+    # This is a list of the names of URLs to reverse and include in the map
+    url_names = [
+        "home",
+        "advanced_search",
+        "about_this_service",
+        "courts_and_tribunals",
+        "transactional-licence-form",
+        "privacy_notice",
+        "accessibility_statement",
+        "open_justice_licence",
+        "terms_of_use",
+        "publishing_policy",
+        "contact_us",
+        "courts_and_tribunals_in_fcl",
+        "help_and_support",
+        "how_to_search_find_case_law",
+        "understanding_judgments_and_decisions",
+        # TODO: Remove this when we want them to be in the sitemap
+        # "understanding_case_law",
+    ]
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
 
-        # This is a list of the names of URLs to reverse and include in the map
-        url_names = [
-            "home",
-            "advanced_search",
-            "about_this_service",
-            "courts_and_tribunals",
-            "transactional-licence-form",
-            "privacy_notice",
-            "accessibility_statement",
-            "open_justice_licence",
-            "terms_of_use",
-            "publishing_policy",
-            "contact_us",
-            "courts_and_tribunals_in_fcl",
-            "help_and_support",
-            "how_to_search_find_case_law",
-            "understanding_judgments_and_decisions",
-            # TODO: Remove this when we want them to be in the sitemap
-            # "understanding_case_law",
-        ]
-
-        context["items"] = [{"url": self.request.build_absolute_uri(reverse(url))} for url in url_names]
+        context["items"] = [{"url": self.request.build_absolute_uri(reverse(url))} for url in self.url_names]
         return context
 
 
