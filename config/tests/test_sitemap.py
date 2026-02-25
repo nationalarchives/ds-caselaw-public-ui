@@ -3,9 +3,11 @@ from unittest.mock import patch
 
 from caselawclient.factories import SearchResultFactory
 from django.test import TestCase
+from django.urls import reverse
 
+from config.views.sitemaps import SitemapStaticView
 from judgments.models import CourtDates
-from judgments.tests.fixture_data import FakeSearchResponseBaseClass
+from judgments.tests.fixture_data import FakeSearchResponse, FakeSearchResponseBaseClass
 
 
 class MockCourtYearSearchResult(FakeSearchResponseBaseClass):
@@ -64,3 +66,19 @@ class TestSitemaps(TestCase):
         self.assertContains(response, "/test/2025/456")
         self.assertNotContains(response, "d-d4e5f6")
         self.assertContains(response, "2025-02-02")
+
+    @patch("judgments.templatetags.court_utils.search_judgments_and_parse_response")
+    @patch("judgments.views.index.search_judgments_and_parse_response")
+    def test_static_sitemaps_do_not_redirect(self, mock_search_judgments_index, mock_search_judgments_template):
+        """Test that all static page URL names in the sitemap resolve with status 200, and do not redirect or 404."""
+        mock_search_judgments_index.return_value = FakeSearchResponse()
+        mock_search_judgments_template.return_value = FakeSearchResponse()
+        for url_name in SitemapStaticView.url_names:
+            with self.subTest(url_name=url_name):
+                url = reverse(url_name)
+                response = self.client.get(url)
+                self.assertEqual(
+                    response.status_code,
+                    200,
+                    f"URL name '{url_name}' resolved to '{url}' but returned status {response.status_code}",
+                )
