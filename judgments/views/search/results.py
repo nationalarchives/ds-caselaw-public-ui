@@ -103,6 +103,7 @@ class SearchResultsView(TemplateViewWithContext):
                 "query_param_string": urllib.parse.urlencode(form.cleaned_data, doseq=True),
                 "breadcrumbs_variant": "accent",
                 "breadcrumbs": self._build_breadcrumbs(search_parameters),
+                "active_navigation_endpoint": "search_and_browse"
             }
         )
 
