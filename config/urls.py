@@ -121,9 +121,9 @@ urlpatterns = [
         name="courts_and_date_coverage",
     ),
     path(
-        "permissions-and-licencing",
-        static_views.PermissionsAndLicencingView.as_view(),
-        name="permissions_and_licencing",
+        "permissions-and-licensing",
+        static_views.PermissionsAndLicensingView.as_view(),
+        name="permissions_and_licensing",
     ),
     path(
         "what-you-can-do-freely",
