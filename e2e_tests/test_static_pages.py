@@ -61,9 +61,9 @@ static_pages = [
         "heading": "Courts and date coverage",
     },
     {
-        "url": "/permissions-and-licencing",
-        "title": "Permissions and Licencing",
-        "heading": "Permissions and Licencing",
+        "url": "/permissions-and-licensing",
+        "title": "Permissions and Licensing",
+        "heading": "Permissions and Licensing",
     },
     {
         "url": "/what-you-can-do-freely",

@@ -63,8 +63,8 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
         "courts_and_date_coverage",
         "courts_and_tribunals_in_fcl",
         "publishing_policy",
-        # Permissions and licencing
-        "permissions_and_licencing",
+        # Permissions and licensing
+        "permissions_and_licensing",
         "open_justice_licence",
         "what_you_can_do_freely",
         "when_you_need_permission",

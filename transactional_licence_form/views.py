@@ -117,9 +117,9 @@ class FormWizardView(NamedUrlSessionWizardView):
 
         context["feedback_survey_type"] = f"license_form_{self.steps.current}"
         context["page_title"] = "Apply for a licence"
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["breadcrumbs"] = [
-            {"url": reverse("permissions_and_licencing"), "text": "Permissions and licencing"},
+            {"url": reverse("permissions_and_licensing"), "text": "Permissions and licensing"},
             {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
             {"text": "Apply for a licence"},
         ]
@@ -144,7 +144,7 @@ class StartView1(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "re_use_find_case_law_records"
         context["page_title"] = "Re-use Find Case Law records"
         context["page_description"] = (
@@ -153,7 +153,7 @@ class StartView1(TemplateView):
         context["page_allow_index"] = True
         context["breadcrumbs_postfix"] = "31 January 2025"
         context["breadcrumbs"] = [
-            {"url": reverse("permissions_and_licencing"), "text": "Permissions and licencing"},
+            {"url": reverse("permissions_and_licensing"), "text": "Permissions and licensing"},
             {"text": "Re-use Find Case Law records"},
         ]
         return context
@@ -165,14 +165,14 @@ class StartView2(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "licence_application_process"
         context["page_title"] = "Licence application process"
         context["page_allow_index"] = True
         context["active_navigation_endpoint"] = "about_this_service"
         context["breadcrumbs_postfix"] = "31 January 2025"
         context["breadcrumbs"] = [
-            {"url": reverse("permissions_and_licencing"), "text": "Permissions and licencing"},
+            {"url": reverse("permissions_and_licensing"), "text": "Permissions and licensing"},
             {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
             {"text": "Licence application process"},
         ]
@@ -185,11 +185,11 @@ class ConfirmationView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "apply_for_a_license"
         context["page_title"] = "Apply for a licence"
         context["breadcrumbs"] = [
-            {"url": reverse("permissions_and_licencing"), "text": "Permissions and licencing"},
+            {"url": reverse("permissions_and_licensing"), "text": "Permissions and licensing"},
             {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
             {"text": "Apply for a licence"},
         ]

@@ -9,7 +9,7 @@ def test_transactional_licence_form(page: Page):
     """
     Test the process to apply for a computational analysis licence.
     We stop on the review page (short of actually submitting the form)
-    (which triggers an email to the licencing team): the final step will be tested
+    (which triggers an email to the licensing team): the final step will be tested
     in isolation with a mocked email service."""
 
     # Preamble pages
@@ -256,7 +256,7 @@ def test_data_saved_when_going_back(page: Page):
     """
     Test the process to apply for a computational analysis licence.
     We stop on the review page (short of actually submitting the form)
-    (which triggers an email to the licencing team): the final step will be tested
+    (which triggers an email to the licensing team): the final step will be tested
     in isolation with a mocked email service."""
 
     # Fill contact details in full

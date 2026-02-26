@@ -145,13 +145,13 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "license"
         context["page_description"] = (
             "Open justice is a fundamental constitutional principle and necessary for the rule of law. The purpose of this licence is to support open justice."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "Legal framework", "url": reverse("legal_framework")},
             {"text": self.page_title},
         ]
@@ -352,22 +352,22 @@ class WhatWeProvideView(TemplateViewWithContext):
         return context
 
 
-class PermissionsAndLicencingView(TemplateViewWithContext):
+class PermissionsAndLicensingView(TemplateViewWithContext):
     template_engine = "jinja"
-    template_name = "pages/permissions_and_licencing.jinja"
-    page_title = "Permissions and Licencing"
-    page_canonical_url_name = "permissions_and_licencing"
+    template_name = "pages/permissions_and_licensing.jinja"
+    page_title = "Permissions and Licensing"
+    page_canonical_url_name = "permissions_and_licensing"
     page_allow_index = True
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
-        context["feedback_survey_type"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
+        context["feedback_survey_type"] = "permissions_and_licensing"
         context["page_description"] = (
             "All judgments on Find Case Law are free to access, but different rules apply depending on how you want to use the records."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing"},
+            {"text": "Permissions and Licensing"},
         ]
 
         return context
@@ -382,13 +382,13 @@ class WhatYouCanDoFreelyView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "what_you_can_do_freely"
         context["page_description"] = (
             "Most uses of Find Case Law judgments don't require permission or a licence. You're free to use judgments under the Open Justice Licence in ways that support open justice, legal practice, research and commercial innovation."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "What you can do freely"},
         ]
 
@@ -404,13 +404,13 @@ class UsingFindCaseLawRecordsView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "using_find_case_law_records"
         context["page_description"] = (
             "You can freely use judgments from Find Case Law for most purposes without permission or payment. This page explains what you can do and gives practical examples."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "What you can do freely", "url": reverse("what_you_can_do_freely")},
             {"text": "Using Find Case Law records"},
         ]
@@ -427,13 +427,13 @@ class WhatYouNeedToApplyForALicenceView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "what_you_need_to_apply_for_a_licence"
         context["page_description"] = (
             "If you want to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's what the application involves and how to prepare."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "When you need permission", "url": reverse("when_you_need_permission")},
             {"text": "What you need to apply for a licence"},
         ]
@@ -450,13 +450,13 @@ class HowToGetPermissionView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "how_to_get_permission"
         context["page_description"] = (
             "If you need to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's an overview of the process."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "How to get permission"},
         ]
 
@@ -472,13 +472,13 @@ class LicenceApplicationProcessView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "licence_application_process"
         context["page_description"] = (
             "If you want to perform computational analysis on Find Case Law records, you need to apply for a licence. Here's how applications are assessed and approved."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "How to get permission", "url": reverse("how_to_get_permission")},
             {"text": "Licence application process"},
         ]
@@ -495,11 +495,11 @@ class ApplyForALicenceView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "apply_for_a_licence"
         context["page_description"] = "Apply online to perform computational analysis on Find Case Law records."
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "How to get permission", "url": reverse("how_to_get_permission")},
             {"text": "Apply for a licence"},
         ]
@@ -516,13 +516,13 @@ class LegalFrameworkView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "legal_framework"
         context["page_description"] = (
             "Here are the legal and technical details of how Find Case Law judgments can be used and licensed."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "Legal framework"},
         ]
 
@@ -538,13 +538,13 @@ class WhenYouNeedPermissionView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licencing"
+        context["active_navigation_endpoint"] = "permissions_and_licensing"
         context["feedback_survey_type"] = "when_you_need_permission"
         context["page_description"] = (
             "Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licencing", "url": reverse("permissions_and_licencing")},
+            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
             {"text": "When you need permission"},
         ]
 
