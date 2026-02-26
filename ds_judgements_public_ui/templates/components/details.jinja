@@ -5,7 +5,6 @@
     <summary class="details__summary">
       {% if title %}<span class="details__summary-text">{{ title }}</span>{% endif %}
       {% if closed_title %}<span class="details__closed-title">{{ closed_title }}</span>{% endif %}
-
     </summary>
     <div class="details__text">{{ caller() }}</div>
   </details>
@@ -41,13 +40,13 @@
       <li>Do you intend to use a computational analysis on Find Case Law records?</li>
     </ol>
   {% endcall %}
-
   <h3>Centered</h3>
   {% call details(title="About this service", closed_title="We’ll hide this introduction next time you visit – you can choose to see it again at anytime.", variant="centered", open=true) %}
-    <p>We provide free access to court judgments and tribunal decisions from England and Wales, plus UK – wide cases from the Supreme Court and Privy Council. Our collection includes the vast majority of judgments that courts have made publicly available in digital form, with coverage for most courts starting from the early 2000s when digital records became standard (the Supreme Court was established in 2009).</p>
-
-
-
-<p>We're continuously expanding our collection as courts send us new judgments. While we have most material that exists in publishable form, please note that not all court decisions are written down – many lower court hearings and some tribunal decisions are given verbally and never transcribed.</p>
+    <p>
+      We provide free access to court judgments and tribunal decisions from England and Wales, plus UK – wide cases from the Supreme Court and Privy Council. Our collection includes the vast majority of judgments that courts have made publicly available in digital form, with coverage for most courts starting from the early 2000s when digital records became standard (the Supreme Court was established in 2009).
+    </p>
+    <p>
+      We're continuously expanding our collection as courts send us new judgments. While we have most material that exists in publishable form, please note that not all court decisions are written down – many lower court hearings and some tribunal decisions are given verbally and never transcribed.
+    </p>
   {% endcall %}
 {% endmacro %}
