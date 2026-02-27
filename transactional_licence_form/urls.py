@@ -3,8 +3,6 @@ from django.urls import re_path, reverse
 
 from .views import (
     ConfirmationView,
-    StartView1,
-    StartView2,
     wizard_view,
 )
 
@@ -14,12 +12,12 @@ form_view = wizard_view("%s-step" % form_name)
 urlpatterns = [
     re_path(
         "^/?$",
-        StartView1.as_view(),
+        lambda request: HttpResponseRedirect(reverse("what_you_can_do_freely")),
         name="transactional-licence-form",
     ),
     re_path(
         "^/licence-application-process/?$",
-        StartView2.as_view(),
+        lambda request: HttpResponseRedirect(reverse("licence_application_process")),
         name="transactional-licence-form-page-2",
     ),
     re_path(

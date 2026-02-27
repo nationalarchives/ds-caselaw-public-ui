@@ -5,7 +5,11 @@
       <thead>
         <tr>
           <th>
-            {% if title %}<h1>{{ title }}</h1>{% endif %}
+            {% if title %}
+              <h1>{{ title }}</h1>
+            {% else %}
+              <span class="govuk-visually-hidden">Documents</span>
+            {% endif %}
           </th>
           {% for heading in headings %}<th>{{ heading }}</th>{% endfor %}
         </tr>

@@ -13,7 +13,7 @@
   {% set breadcrumbs_class = ("breadcrumbs " ~ variant_class).strip() %}
   <div class="{{ breadcrumbs_class }}">
     <div class="container">
-      <nav class="breadcrumbs__container" aria-label="Breadcrumb">
+      <div class="breadcrumbs__container" aria-label="Breadcrumb">
         <ol>
           <li>
             <span>{{ prefix }}</span>
@@ -22,7 +22,7 @@
           {% if caller %}{{ caller() }}{% endif %}
         </ol>
         {% if postfix %}<span class="breadcrumbs__postfix">{{ postfix }}</span>{% endif %}
-      </nav>
+      </div>
     </div>
   </div>
   <script type="application/ld+json">

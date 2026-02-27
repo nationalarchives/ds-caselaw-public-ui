@@ -50,14 +50,14 @@
     {% include "includes/gtm_body.jinja" %}
     {{ cookie_banner() }}
     {% include "components/environment_banner.jinja" %}
-    <main id="main-content">
-      {% block header %}
-        {% call header() %}
-          {{ tna_logo() }}
-          {{ fcl_logo() }}
-        {% endcall %}
-      {% endblock header %}
-      {{ navigation(active_endpoint=active_navigation_endpoint) }}
+    {% block header %}
+      {% call header() %}
+        {{ tna_logo() }}
+        {{ fcl_logo() }}
+      {% endcall %}
+    {% endblock header %}
+    {{ navigation(active_endpoint=active_navigation_endpoint) }}
+    <main id="main-content" role="main">
       {% if breadcrumbs %}
         {% call breadcrumbs_component(prefix="You are in", home="home", home_text="Find Case Law", data=structured_breadcrumbs, variant=breadcrumbs_variant, postfix=breadcrumbs_postfix) %}
           {% for crumb in breadcrumbs %}
@@ -71,19 +71,19 @@
       {% endblock precontent %}
       {% block content %}
       {% endblock content %}
+      {% block postcontent %}
+      {% endblock postcontent %}
+      {% block banner %}
+        {% call banner() %}
+          {% call heading(tag="h2") %}
+            Help us improve this service
+          {% endcall %}
+          {% call button(variant="secondary", href=feedback_survey_link) %}
+            Take a short survey
+          {% endcall %}
+        {% endcall %}
+      {% endblock banner %}
     </main>
-    {% block postcontent %}
-    {% endblock postcontent %}
-    {% block banner %}
-      {% call banner() %}
-        {% call heading(tag="h2") %}
-          Help us improve this service
-        {% endcall %}
-        {% call button(variant="secondary", href=feedback_survey_link) %}
-          Take a short survey
-        {% endcall %}
-      {% endcall %}
-    {% endblock banner %}
     {% block footer %}
       {% call footer() %}
         {% call footer_row() %}
