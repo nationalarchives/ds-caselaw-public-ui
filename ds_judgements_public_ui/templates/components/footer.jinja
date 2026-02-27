@@ -35,12 +35,12 @@
   </li>
 {% endmacro %}
 {% macro footer() %}
-  <div class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer__container">
       <h2>Footer</h2>
       {{ caller() }}
     </div>
-  </div>
+  </footer>
 {% endmacro %}
 {% macro footer_examples() %}
   {% call footer() %}

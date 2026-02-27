@@ -17,16 +17,32 @@
 .desktop-only {
   display: none;
 
+  h1 {
+    display: none;
+  }
+
   @media (min-width: $grid-breakpoint-large) {
     display: block;
+
+    h1 {
+      display: block;
+    }
   }
 }
 
 .mobile-only {
   display: block;
 
+  h1 {
+    display: block;
+  }
+
   @media (min-width: $grid-breakpoint-medium) {
     display: none;
+
+    h1 {
+      display: none;
+    }
   }
 }
 

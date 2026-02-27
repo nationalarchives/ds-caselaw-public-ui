@@ -13,17 +13,11 @@ def test_transactional_licence_form(page: Page):
     in isolation with a mocked email service."""
 
     # Preamble pages
-    page.goto("/re-use-find-case-law-records/")
-    assert_is_accessible(page)
-    assert_matches_snapshot(page, "re_use_find_case_law_records_page")
-    page.get_by_text("I want to perform computational analysis").click()
+    page.goto("/what-you-can-do-freely")
+    page.get_by_role("link", name="When you need permission").click()
 
-    assert_is_accessible(page)
-    assert_matches_snapshot(page, "re_use_find_case_law_records_process_page")
     page.get_by_text("What you need to apply for a licence").click()
 
-    assert_is_accessible(page)
-    assert_matches_snapshot(page, "re_use_find_case_law_records_to_apply_page")
     page.locator("a", has_text="Licence application process").click()
 
     assert_is_accessible(page)

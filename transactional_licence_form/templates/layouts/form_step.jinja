@@ -1,4 +1,5 @@
 {% extends "layouts/standard_content.jinja" %}
+{% from "components/heading.jinja" import heading %}
 {% block javascript %}
   <script type="module"
           defer
@@ -16,7 +17,9 @@
     </div>
     <div class="standard-content__navigation-links">
       {% block article_navigation %}
-        <h3>Licence application steps</h3>
+        {% call heading(tag="div", size="h3") %}
+          Licence application steps
+        {% endcall %}
         <ul>
           {% for steps in wizard.form.navigation_done %}<li>{{ steps }}</li>{% endfor %}
           <li>

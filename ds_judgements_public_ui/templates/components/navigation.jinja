@@ -90,8 +90,11 @@
   }
 ] %}
 {% macro navigation(active_endpoint=None) %}
-  <div class="navigation-container">
-    <nav class="navigation" tabindex="0">
+  <nav class="navigation-container"
+       tabindex="0"
+       aria-label="Navigation"
+       role="navigation">
+    <div class="navigation">
       <button class="navigation__menu-button">Menu {{ icon(name="chevron_down_white", size="xs") }}</button>
       <div class="container">
         <ul>
@@ -124,6 +127,6 @@
           {% endfor %}
         </ul>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 {% endmacro %}
