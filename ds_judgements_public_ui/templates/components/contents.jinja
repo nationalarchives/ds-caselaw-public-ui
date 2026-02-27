@@ -1,7 +1,12 @@
+{% from "components/heading.jinja" import heading %}
 {% macro contents(title=None) %}
   <nav class="contents">
     <div class="contents__links">
-      {% if title %}<h3>{{ title }}</h3>{% endif %}
+      {% if title %}
+        {% call heading(tag="div", size="h3") %}
+          {{ title }}
+        {% endcall %}
+      {% endif %}
       {{ caller() }}
     </div>
   </nav>
