@@ -15,6 +15,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
+from ds_caselaw_utils.courts import CourtNotFoundException
 from ds_caselaw_utils.courts import courts as all_courts
 from ds_caselaw_utils.types import CourtParam
 
@@ -251,8 +252,11 @@ class SearchJudgmentsFeed(JudgmentsFeed):
         if obj["query_string"]:
             title_string += f' for "{obj["query_string"]}"'
 
-        if obj["courts"]:
-            title_string += _courts_string_for_title(obj["courts"])
+        try:
+            if obj["courts"]:
+                title_string += _courts_string_for_title(obj["courts"])
+        except CourtNotFoundException:
+            title_string += " from selected courts"
 
         if obj["order"]:
             title_string += _order_string_for_title(obj["order"])
