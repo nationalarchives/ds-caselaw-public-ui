@@ -24,6 +24,20 @@ export const Banner = {
             context.loaded?.html || "<div>No HTML returned</div>";
         return wrapper;
     },
+    parameters: {
+        design: [
+            {
+                name: "Figma - Desktop",
+                type: "figma",
+                url: "https://www.figma.com/design/dZsjJ3ayTdSUaZkL7h6oW2/Access-team-design?node-id=383-450&t=SfxIezDj45ExPgKq-1",
+            },
+            {
+                name: "Figma - Mobile",
+                type: "figma",
+                url: "https://www.figma.com/design/dZsjJ3ayTdSUaZkL7h6oW2/Access-team-design?node-id=384-472&t=SfxIezDj45ExPgKq-1",
+            },
+        ],
+    },
 };
 
 // --------------------
