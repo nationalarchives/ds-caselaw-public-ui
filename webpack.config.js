@@ -26,6 +26,8 @@ module.exports = {
             "./ds_judgements_public_ui/static/js/src/manage_filters.js",
         transactional_licence_form:
             "./ds_judgements_public_ui/static/js/src/transactional_licence_form.js",
+        stateful_details:
+            "./ds_judgements_public_ui/static/js/src/stateful_details.js",
     },
     output: {
         filename: "[name].js",
