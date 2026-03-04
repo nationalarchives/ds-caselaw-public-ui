@@ -68,6 +68,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 // Components
 
 @import "pages/components";
+@import "components/aside";
 @import "components/card";
 @import "components/contents";
 @import "components/divider";

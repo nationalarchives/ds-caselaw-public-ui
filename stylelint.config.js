@@ -15,5 +15,6 @@ module.exports = {
         "scss/operator-no-newline-after": null,
         "scss/double-slash-comment-whitespace-inside": null,
         "scss/dollar-variable-pattern": null,
+        "no-invalid-position-declaration": null,
     },
 };

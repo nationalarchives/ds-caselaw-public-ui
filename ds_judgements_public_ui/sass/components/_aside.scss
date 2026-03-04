@@ -1,0 +1,35 @@
+.aside-container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  > *:first-child {
+    flex: 1;
+  }
+
+  aside {
+    margin-bottom: auto;
+    padding: $space-6;
+
+    font-size: $typography-md-text-size;
+    line-height: $typography-lg-line-height;
+
+    background: color-mix(in srgb, colour-var("accent-brand") 20%, transparent);
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+    }
+
+    @media only screen and (min-width: $grid-breakpoint-extra-large) {
+      min-width: 370px;
+      max-width: 370px;
+    }
+  }
+
+  @media only screen and (min-width: $grid-breakpoint-extra-large) {
+    flex-direction: row;
+  }
+}

@@ -14,9 +14,7 @@
           {% for heading in headings %}<th>{{ heading }}</th>{% endfor %}
         </tr>
       </thead>
-      <tbody>
-        {{ caller() }}
-      </tbody>
+      {{ caller() }}
     </table>
     {% if footer_button_url and footer_button_text %}
       <div class="documents-table__footer">
@@ -27,11 +25,16 @@
     {% endif %}
   </div>
 {% endmacro %}
+{% macro document_table_body() %}
+  <tbody>
+    {{ caller() }}
+  </tbody>
+{% endmacro %}
 {% macro document_table_row() %}
   <tr>{{ caller() }}</tr>
 {% endmacro %}
-{% macro document_table_cell(label=None, variant="default") %}
-  <td>
+{% macro document_table_cell(label=None, variant="default", colspan=None) %}
+  <td {% if colspan %}colspan="{{ colspan }}"{% endif %}>
     {% if label %}<span class="documents-table__label">{{ label }}</span>{% endif %}
     {{ caller() }}
   </td>

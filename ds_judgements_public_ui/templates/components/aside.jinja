@@ -1,0 +1,8 @@
+{% macro aside() %}
+  <aside>
+    {{ caller() }}
+  </aside>
+{% endmacro %}
+{% macro aside_container() %}
+  <div class="aside-container">{{ caller() }}</div>
+{% endmacro %}
