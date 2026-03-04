@@ -1,7 +1,7 @@
 const DETAILS_SELECTOR = "[data-stateful-details]";
 const CLOSED_TITLE_SELECTOR = "[data-stateful-details-close-title]";
 const COOKIE_NAME = "dontShowCookieNotice";
-const HIDE_AFTER_MS = 6000;
+const HIDE_CLOSED_TITLE_AFTER_MS = 6000;
 
 export function getCookie(name, cookieString = document.cookie) {
     const cookies = cookieString ? cookieString.split("; ") : [];
@@ -24,7 +24,7 @@ export function initStatefulDetails(details, options = {}) {
     const {
         closedTitleSelector = CLOSED_TITLE_SELECTOR,
         cookieName = COOKIE_NAME,
-        hideAfterMs = HIDE_AFTER_MS,
+        hideClosedTitleAfterMs = HIDE_CLOSED_TITLE_AFTER_MS,
         cookieString,
     } = options;
 
@@ -48,7 +48,7 @@ export function initStatefulDetails(details, options = {}) {
         hideTimerId = window.setTimeout(() => {
             closedTitle.hidden = true;
             hideTimerId = null;
-        }, hideAfterMs);
+        }, hideClosedTitleAfterMs);
     };
 
     if (closedTitle) closedTitle.hidden = true;
