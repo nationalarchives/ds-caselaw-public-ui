@@ -106,7 +106,7 @@ describe("initStatefulDetails", () => {
 
         initStatefulDetails(details, {
             cookieString: "dontShowCookieNotice=false",
-            hideAfterMs: 10,
+            hideClosedTitleAfterMs: 10,
         });
 
         details.open = false;
@@ -119,7 +119,7 @@ describe("initStatefulDetails", () => {
         jest.useRealTimers();
     });
 
-    it("when user has interacted, closing details shows closed title then hides it after hideAfterMs", () => {
+    it("when user has interacted, closing details shows closed title then hides it after hideClosedTitleAfterMs", () => {
         jest.useFakeTimers();
 
         document.body.innerHTML = `
@@ -137,7 +137,7 @@ describe("initStatefulDetails", () => {
 
         initStatefulDetails(details, {
             cookieString: "dontShowCookieNotice=false",
-            hideAfterMs: 50,
+            hideClosedTitleAfterMs: 50,
         });
 
         summary.dispatchEvent(new MouseEvent("click", { bubbles: true }));
@@ -174,7 +174,7 @@ describe("initStatefulDetails", () => {
 
         initStatefulDetails(details, {
             cookieString: "dontShowCookieNotice=false",
-            hideAfterMs: 100,
+            hideClosedTitleAfterMs: 100,
         });
 
         summary.dispatchEvent(new MouseEvent("click", { bubbles: true }));
@@ -211,7 +211,7 @@ describe("initStatefulDetails", () => {
 
         initStatefulDetails(details, {
             cookieString: "dontShowCookieNotice=true",
-            hideAfterMs: 10,
+            hideClosedTitleAfterMs: 10,
         });
 
         summary.dispatchEvent(new MouseEvent("click", { bubbles: true }));
@@ -245,7 +245,7 @@ describe("initStatefulDetails", () => {
 
         const cleanup = initStatefulDetails(details, {
             cookieString: "dontShowCookieNotice=false",
-            hideAfterMs: 100,
+            hideClosedTitlehideAfterMs: 100,
         });
 
         summary.dispatchEvent(new MouseEvent("click", { bubbles: true }));
