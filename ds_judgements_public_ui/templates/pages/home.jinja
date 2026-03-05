@@ -1,8 +1,10 @@
 {% extends "layouts/base.jinja" %}
+{% from "components/aside.jinja" import aside, aside_container %}
 {% from "components/button.jinja" import button %}
 {% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
 {% from "components/content_container.jinja" import content_container %}
-{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
+{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
 {% from "components/grid.jinja" import grid %}
 {% from "components/hero.jinja" import hero %}
 {% from "components/search_input.jinja" import search_form,search_form_container, search_input, search_input_footer %}
@@ -30,23 +32,66 @@
         <p>Find out how to gain free access to and re-use of judgments and decisions.</p>
       {% endcall %}
     {% endcall %}
-    {% call documents_table(title="Recently published judgments", headings=["Neutral citation", "Handed down"], footer_button_url=url("search"), footer_button_text="View all judgments") %}
-      {% for judgment in judgments %}
-        {% call document_table_row() %}
-          {% call document_table_cell(variant="details") %}
-            {% call link(href=url("detail", judgment.slug)) %}
-              {{ judgment.name }}
+    {% call heading(tag="h2", withoutMargins=True) %}
+      Recently published judgments
+    {% endcall %}
+    {% call aside_container() %}
+      {% call documents_table(headings=["Neutral citation", "Handed down"]) %}
+        {% for judgment in judgments %}
+          {% call document_table_body() %}
+            {% call document_table_row() %}
+              {% call document_table_cell(variant="details", colspan=3) %}
+                {% call link(href=url("detail", judgment.slug)) %}
+                  {{ judgment.name }}
+                {% endcall %}
+              {% endcall %}
             {% endcall %}
-            {{ judgment.court.name }}
+            {% call document_table_row() %}
+              {% call document_table_cell(variant="details") %}
+                {{ judgment.court.name }}
+              {% endcall %}
+              {% call document_table_cell(variant="text", label="Neutral citation") %}
+                {{ judgment.neutral_citation | default("&mdash;", true) | safe }}
+              {% endcall %}
+              {% call document_table_cell(variant="text", label="Handed down") %}
+                {{ formatdate(judgment.date) }}
+              {% endcall %}
+            {% endcall %}
           {% endcall %}
-          {% call document_table_cell(variant="text", label="Neutral citation") %}
-            {{ judgment.neutral_citation | default("&mdash;", true) | safe }}
+        {% endfor %}
+      {% endcall %}
+      {% call aside() %}
+        {% call heading(tag="h3") %}
+          What you can do with judgments
+        {% endcall %}
+        <p>All judgments on Find Case Law are free to read, download, and share. You can use them for:</p>
+        {% call list(variant="bullets") %}
+          {% call list_item() %}
+            legal research and case preparation
           {% endcall %}
-          {% call document_table_cell(variant="text", label="Handed down") %}
-            {{ formatdate(judgment.date) }}
+          {% call list_item() %}
+            academic study and teaching
+          {% endcall %}
+          {% call list_item() %}
+            journalism and public information
+          {% endcall %}
+          {% call list_item() %}
+            personal reference
           {% endcall %}
         {% endcall %}
-      {% endfor %}
+        <p>
+          For commercial use or computational analysis, you may need a licence. See our
+          {% call link(href=url("permissions_and_licensing")) %}
+            Permissions and Licensing
+          {% endcall %}
+          section for details.
+        </p>
+      {% endcall %}
     {% endcall %}
+    <div class="container--center">
+      {% call button(href=url("search")) %}
+        View all judgments
+      {% endcall %}
+    </div>
   {% endcall %}
 {% endblock content %}

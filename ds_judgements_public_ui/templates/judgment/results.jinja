@@ -1,7 +1,7 @@
 {% extends "layouts/search_results.jinja" %}
 {% from "components/alert.jinja" import alert %}
 {% from "components/pagination.jinja" import pagination %}
-{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
+{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
 {% block content_body %}
   {% if show_no_exact_ncn_warning %}
     {% call alert() %}
@@ -27,31 +27,37 @@
       <h2>Results listing</h2>
       {% call documents_table(headings=["Neutral citation", "Handed down"]) %}
         {% for judgment in search_results %}
-          {% call document_table_row() %}
-            {% call document_table_cell(variant="details") %}
-              {% if query_param_string %}
-                {% call link(href=url("detail", judgment.slug) ~ "?" ~ query_param_string) %}
-                  {{ judgment.name }}
-                {% endcall %}
-              {% else %}
-                {% call link(href=url("detail", judgment.slug)) %}
-                  {{ judgment.name }}
-                {% endcall %}
-              {% endif %}
-              {{ judgment.court.name }}
-              {% if judgment|show_matches(query) %}
-                <div>
-                  {% autoescape off %}
-                    {{ judgment.matches }}
-                  {% endautoescape %}
-                </div>
-              {% endif %}
+          {% call document_table_body() %}
+            {% call document_table_row() %}
+              {% call document_table_cell(variant="details", colspan=3) %}
+                {% if query_param_string %}
+                  {% call link(href=url("detail", judgment.slug) ~ "?" ~ query_param_string) %}
+                    {{ judgment.name }}
+                  {% endcall %}
+                {% else %}
+                  {% call link(href=url("detail", judgment.slug)) %}
+                    {{ judgment.name }}
+                  {% endcall %}
+                {% endif %}
+              {% endcall %}
             {% endcall %}
-            {% call document_table_cell(variant="text", label="Neutral citation") %}
-              {{ judgment.neutral_citation | default("&mdash;", true) | safe }}
-            {% endcall %}
-            {% call document_table_cell(variant="text", label="Handed down") %}
-              {{ formatdate(judgment.date) }}
+            {% call document_table_row() %}
+              {% call document_table_cell(variant="details") %}
+                {{ judgment.court.name }}
+                {% if judgment|show_matches(query) %}
+                  <div>
+                    {% autoescape off %}
+                      {{ judgment.matches }}
+                    {% endautoescape %}
+                  </div>
+                {% endif %}
+              {% endcall %}
+              {% call document_table_cell(variant="text", label="Neutral citation") %}
+                {{ judgment.neutral_citation | default("&mdash;", true) | safe }}
+              {% endcall %}
+              {% call document_table_cell(variant="text", label="Handed down") %}
+                {{ formatdate(judgment.date) }}
+              {% endcall %}
             {% endcall %}
           {% endcall %}
         {% endfor %}

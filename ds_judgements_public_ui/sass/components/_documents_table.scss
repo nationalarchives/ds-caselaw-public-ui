@@ -58,6 +58,10 @@
         text-align: left;
         white-space: nowrap;
 
+        &:first-child {
+          padding-right: $space-4;
+        }
+
         @media (max-width: $grid-breakpoint-medium) {
           display: none;
           border-bottom: 0;
@@ -70,51 +74,28 @@
     }
 
     tbody {
+      border-bottom: 1px solid colour-var("keyline-dark");
+
       tr {
+        &:first-child {
+          td {
+            padding: $space-4 0 $space-2 0;
+          }
+        }
+
         &:last-child {
           td {
-            border-bottom: 1px solid colour-var("input-border");
+            padding-bottom: $space-4;
           }
         }
       }
 
       td {
-        padding: $space-4 0;
-        border-bottom: 1px solid colour-var("keyline-dark");
         text-align: left;
         vertical-align: top;
 
         a {
           font-size: $typography-md-text-size;
-        }
-
-        &:first-child {
-          display: flex;
-          flex-direction: column;
-          gap: $space-2;
-          padding-right: $space-8;
-        }
-
-        &:last-child {
-          min-width: 115px;
-        }
-
-        @media (min-width: $grid-breakpoint-medium) {
-          min-width: 170px;
-        }
-
-        @media (min-width: $grid-breakpoint-large) {
-          &:first-child {
-            min-width: 606px;
-          }
-        }
-
-        @media (min-width: $grid-breakpoint-extra-large) {
-          min-width: 200px;
-
-          &:first-child {
-            min-width: 673px;
-          }
         }
       }
 

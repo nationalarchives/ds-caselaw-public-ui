@@ -10,3 +10,11 @@
     padding: $space-6 0;
   }
 }
+
+.container {
+  &--center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
