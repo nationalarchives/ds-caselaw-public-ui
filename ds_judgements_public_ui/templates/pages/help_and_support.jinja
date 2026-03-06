@@ -44,14 +44,14 @@
     New to the service? Visit
     {% call link(href=url("understanding_case_law")) %}
       Understanding Case Law
-    {% endcall %}
+    {%- endcall %}
     to learn about court judgments and how to read them.
   </p>
   <p>
     Ready to search? Our
     {% call link(href=url("search_tips")) %}
       Search tips
-    {% endcall %}
+    {%- endcall %}
     page provides guidance for finding specific cases, including:
   </p>
   {% call list(variant="bullets") %}
@@ -90,7 +90,7 @@
   <p>
     {% call link(href=url("contact_us")) %}
       Contact us
-    {% endcall %}
+    {%- endcall %}
     to get in touch. We aim to respond to all enquiries promptly.
   </p>
   {% call heading(tag="h2") %}
@@ -131,9 +131,9 @@
   {% endcall %}
   <p>
     Visit
-    {% call link(href=url("help_and_support")) %}
+    {% call link(href=url("feedback")) %}
       Feedback
-    {% endcall %}
+    {%- endcall %}
     to access our surveys and learn about current research opportunities.
   </p>
   {% call heading(tag="h3") %}

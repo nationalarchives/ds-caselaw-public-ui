@@ -76,7 +76,7 @@
       This accessibility statement applies to the
       {% call link(href=url('home')) %}
         Find Case Law
-      {% endcall %}
+      {%- endcall %}
       service provided by The National Archives.
     </p>
     <p>
@@ -103,14 +103,14 @@
     <p>
       {% call link(href="https://mcmw.abilitynet.org.uk/") %}
         AbilityNet
-      {% endcall %}
+      {%- endcall %}
       has advice on making your device easier to use if you have a disability.
     </p>
     <p>
       We are continually working to improve the accessibility of our digital services, and to develop our skills in relevant standards and techniques.
       {% call link(href="https://nationalarchives.github.io/engineering-handbook/technology/standards/accessibility/") %}
         See our current development standards
-      {% endcall %}
+      {%- endcall -%}
       .
     </p>
     <p>
@@ -145,7 +145,7 @@
         email
         {% call link(href="mailto:webmaster@nationalarchives.gov.uk") %}
           webmaster@nationalarchives.gov.uk
-        {% endcall %}
+        {%- endcall %}
       {% endcall %}
       {% call list_item() %}
         call 020 8876 3444.
@@ -184,7 +184,7 @@
       to our website, email
       {% call link(href="mailto:caselawresearch@nationalarchives.gov.uk") %}
         caselawresearch@nationalarchives.gov.uk
-      {% endcall %}
+      {%- endcall -%}
       .
     </p>
     {% call heading(tag="h2", id="section-enforcement") %}
@@ -196,7 +196,7 @@
     <p>
       If you are not happy with how we respond to your complaint,
       {% call link(href="https://www.equalityadvisoryservice.com/", attrs={"target":"_blank"}) %}contact the Equality Advisory and Support Service (EASS)
-      {% endcall %}
+      {%- endcall -%}
       .
     </p>
     {% call heading(tag="h2", id="section-technical-information") %}
@@ -212,7 +212,7 @@
     <p>
       This website is partially compliant with the
       {% call link(href="https://www.w3.org/TR/WCAG22/", attrs={"target":"_blank"}) %}Web Content Accessibility Guidelines version 2.2
-      {% endcall %}
+      {%- endcall %}
       AA standard, due to the non-compliances and exemptions listed below:
     </p>
     {% call heading(tag="h3") %}
@@ -245,7 +245,7 @@
     <p>
       While reproductions of items in heritage collections are
       {% call link(href="https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made", attrs={"target":"_blank"}) %}exempt from meeting the accessibility regulations
-      {% endcall %}
+      {%- endcall -%}
       ,
       we are investigating ways to use emerging technology to improve the data
       and accessibility of our heritage collections.
@@ -314,8 +314,8 @@
     <p>
       You can read the full report here:
       {% call link(href=static('/documents/2025 FCL_DAC Accessibility Expert Review WCAG 2.2.pdf')) %}
-        "DAC accessibility report
-      {% endcall %}
+        DAC accessibility report
+      {%- endcall %}
       for Find Case Law.
     </p>
   </section>
