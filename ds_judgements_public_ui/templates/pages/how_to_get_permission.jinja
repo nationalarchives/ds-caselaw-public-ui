@@ -75,7 +75,12 @@
     The assessment process
   {% endcall %}
   <p>Once you submit your application, it will be assessed by the licence team at The National Archives.</p>
-  <p>Licence application process explains:</p>
+  <p>
+    {% call link(url("licence_application_process")) %}
+      Licence application process
+    {%- endcall -%}
+    {{ " " }}explains:
+  </p>
   {% call list(variant="bullets") %}
     {% call list_item() %}
       how applications are assessed

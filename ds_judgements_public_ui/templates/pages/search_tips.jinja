@@ -177,7 +177,7 @@
     See also
     {% call link(href=url("courts_and_tribunals")) %}
       Courts and tribunals in Find Case Law
-    {% endcall %}
+    {%- endcall -%}
     .
   </p>
   {% call heading(tag="h3") %}
@@ -274,7 +274,7 @@
     Check the coverage – Visit
     {% call link(href=url("courts_and_tribunals")) %}
       Courts and tribunals in Find Case Law
-    {% endcall %}
+    {%- endcall %}
     to see if the court and date range are covered.
   </p>
   <p>Try different search terms – Use alternative spellings, different party names, or just the citation.</p>
@@ -300,21 +300,21 @@
         New to case law? Visit
         {% call link(href=url("understanding_case_law")) %}
           Understanding Case Law
-        {% endcall %}
+        {%- endcall %}
         to learn about court judgments
       {% endcall %}
       {% call list_item() %}
         Can't find a specific court? Check
         {% call link(href=url("courts_and_tribunals")) %}
           Courts and tribunals in Find Case Law
-        {% endcall %}
+        {%- endcall %}
         for coverage details
       {% endcall %}
       {% call list_item() %}
         Technical problems?
         {% call link(href=url("contact_us")) %}
           Contact us
-        {% endcall %}
+        {%- endcall %}
         for assistance
       {% endcall %}
       {% call list_item() %}
