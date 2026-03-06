@@ -1,5 +1,6 @@
 {% extends "layouts/base.jinja" %}
 {% from "components/button.jinja" import button %}
+{% from "components/details.jinja" import details %}
 {% from "components/card.jinja" import card %}
 {% from "components/content_container.jinja" import content_container %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table %}
@@ -19,6 +20,14 @@
     {% endcall %}
   {% endcall %}
   {% call content_container() %}
+    {% call details(title="About this service", closed_title="We’ll hide this introduction next time you visit – you can choose to see it again at anytime.", variant="centered", open=true, stateful=True) %}
+      <p>
+        We provide free access to court judgments and tribunal decisions from England and Wales, plus UK – wide cases from the Supreme Court and Privy Council. Our collection includes the vast majority of judgments that courts have made publicly available in digital form, with coverage for most courts starting from the early 2000s when digital records became standard (the Supreme Court was established in 2009).
+      </p>
+      <p>
+        We're continuously expanding our collection as courts send us new judgments. While we have most material that exists in publishable form, please note that not all court decisions are written down – many lower court hearings and some tribunal decisions are given verbally and never transcribed.
+      </p>
+    {% endcall %}
     {% call grid() %}
       {% call card(title="Browse by court or tribunal", url=url('courts_and_tribunals'), variant="image", image_url=static("images/HM-courts-and-tribunal-service-building-sign.jpg")) %}
         <p>View judgments and decisions from specific courts and tribunals.</p>
@@ -50,3 +59,6 @@
     {% endcall %}
   {% endcall %}
 {% endblock content %}
+{% block javascript %}
+  <script type="module" defer src="{{ static('js/dist/stateful_details.js') }}"></script>
+{% endblock javascript %}

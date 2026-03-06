@@ -7,12 +7,19 @@
   background-color: colour-var("background");
 
   &.details--centered {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+
+    max-width: 47rem;
+    margin: auto;
     padding: 0;
     border: 0;
-    border-right: 3px solid colour-var("accent-brand");
-    border-left: 3px solid colour-var("accent-brand");
 
     &[open] {
+      border-right: 3px solid colour-var("accent-brand");
+      border-left: 3px solid colour-var("accent-brand");
+
       .details__summary {
         .details__closed-title {
           display: none;
@@ -73,7 +80,16 @@
     }
 
     .details__text {
+      display: flex;
+      flex-direction: column;
+      gap: $space-6;
       padding: 0 $space-6;
+
+      p {
+        margin: 0;
+        font-size: $typography-md-text-size;
+        line-height: $typography-lg-line-height;
+      }
     }
   }
 
