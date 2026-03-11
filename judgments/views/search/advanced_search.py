@@ -7,7 +7,7 @@ from judgments.forms import AdvancedSearchForm
 
 class AdvancedSearchView(TemplateViewWithContext):
     template_engine = "jinja"
-    template_name = "pages/advanced_search.jinja"
+    template_name = "pages/search_and_browse/advanced_search.jinja"
 
     page_canonical_url_name = "advanced_search"
     page_title = "Advanced search"
