@@ -3,6 +3,7 @@
 {% from "components/contents.jinja" import contents %}
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list, list_item %}
+{% from "components/table.jinja" import table, table_row, table_cell %}
 {% block meta_description %}
   <meta name="description"
         content="The National Archives receives selected Court Judgments and Tribunal Decisions for permanent preservation and publication on the Find Case Law service." />
@@ -44,15 +45,15 @@
       Why we publish judgments and decisions
     {% endcall %}
     <p>
-      Court judgments and tribunal decisions are significant public records. It is important that they are available to the public, as part of open justice.
+      Court judgments and tribunal decisions are important public records. We make them available to the public as part of open justice.
     </p>
     <p>
-      Open justice is a fundamental principle at the heart of the justice system. It means that justice must not only be done, but it must also be seen to be done.
-      It is part of the administration of justice and vital to the rule of law. The importance and history of open justice as part of our law can be traced back to before Magna Carta.
+      Open justice means that justice must be done and must be seen to be done. It is a core principle of our legal system and essential to the rule of law.
+      This principle dates back to before Magna Carta.
     </p>
     <p>
-      In accordance with The Public Records Act 1958 (PRA), The National Archives permanently preserves the digital record of each court judgment or tribunal decision transferred to
-      it in the Digital Records Infrastructure. It creates digital surrogates of the record for publication and reuse, which are provided in Find Case Law.
+      Under the Public Records Act 1958, The National Archives permanently preserves each court judgment and tribunal decision it receives. We store these digital records in our Digital Archive.
+      We then create copies for people to view and use, which we publish on Find Case Law.
     </p>
     {% call heading(tag="h2", id="section-we-publish") %}
       How we publish judgments and decisions
@@ -61,11 +62,10 @@
       How we receive judgments and decisions
     {% endcall %}
     <p>
-      Since 19 April 2022, courts have been able to transfer judgments to The National Archives, straight away, for permanent preservation and immediate publication in Find Case Law.
+      Since 19 April 2022, courts have been able to send judgments directly to The National Archives. We preserve these permanently and publish them straight away on Find Case Law.
     </p>
     <p>
-      The National Archives requires that clerks and judges use the Transfer Digital Records (TDR) service to pass the publication version of each new judgment or decision to
-      The National Archives for inclusion in Find Case Law. If you are a judge or clerk looking for information about how to transfer digital records,
+      Clerks and judges use our Transfer Digital Records (TDR) service to send us the version of each judgment or decision that is ready for publication. If you are a judge or clerk and need information about how to transfer records,
       please email
       {% call link(href="mailto:caselaw@nationalarchives.gov.uk") %}
         caselaw@nationalarchives.gov.uk
@@ -73,68 +73,70 @@
       .
     </p>
     <p>
-      The transfer process has been made as easy as possible for clerks and judges:
-      {% call list(variant="bullets") %}
+      <b>The transfer process</b>
+    </p>
+    <p>
+      We have made this process as simple as possible:
+      {% call list(variant="decimal") %}
         {% call list_item() %}
-          Clerks or judges save the publication version of the judgment as a Microsoft Word document.
+          The clerk or judge saves the publication version of the judgment as a Microsoft Word document.
         {% endcall %}
         {% call list_item() %}
-          The clerk or judge logs in, uploads the document, and receives a reference number.
-          {% call list(variant="bullets") %}
-            {% call list_item() %}
-              Judges without clerks can email a Judicial Office Helpdesk for support. The Helpdesk may also use TDR to transfer judgments to The National Archives.
-            {% endcall %}
-          {% endcall %}
+          They log in, upload the document, and receive a reference number.
         {% endcall %}
         {% call list_item() %}
-          The TDR service carries out some controls and checks, including:
-          {% call list(variant="bullets") %}
-            {% call list_item() %}
-              Virus scanning
-            {% endcall %}
-            {% call list_item() %}
-              File format signature identification
-            {% endcall %}
-            {% call list_item() %}
-              Creating and confirming checksums
-            {% endcall %}
-          {% endcall %}
-        {% endcall %}
-        {% call list_item() %}
-          The TDR service then transmits the judgment and creates an audit trail that provides the chain of custody for the judgment from the court to The National Archives.
-        {% endcall %}
-        {% call list_item() %}
-          The National Archives receives a Microsoft Word document that is the digital record of the publication version of the judgment.
-        {% endcall %}
-        {% call list_item() %}
-          The clerk or judge are then emailed confirmation when the judgment is published.
+          Judges without clerks can email the Judicial Office Helpdesk for support. The Helpdesk can also use TDR to transfer judgments on their behalf.
         {% endcall %}
       {% endcall %}
     </p>
-    {% call heading(tag="h3",id="section-content") %}
-      Content of judgments and decisions
-    {% endcall %}
     <p>
-      The National Archives will never change the digital record of a judgment or decision (the Word document we receive from the court).
-    </p>
-    <p>The National Archives will never change the text of the digital surrogate (ie we will not undertake redactions).</p>
-    <p>
-      Since The National Archives should only receive publication versions of judgments, any redactions or anonymisation needed for publication should already have been made by the court.
-    </p>
-    {% call heading(tag="h3", id="section-checks") %}
-      Due diligence checks
-    {% endcall %}
-    <p>
-      Find Case Law has a dedicated team who review every judgment and decision sent to The National Archives by the courts and tribunals before it is published.
+      <b>What the TDR service does</b>
     </p>
     <p>
-      These checks are to:
+      The service carries out several checks, including:
       {% call list(variant="bullets") %}
         {% call list_item() %}
-          Mitigate the risk that a judgment or decision is sent in error by the court or tribunal
+          scanning for viruses
         {% endcall %}
         {% call list_item() %}
-          Check that the record sent by the court or tribunal is the version intended to be published
+          identifying the file format
+        {% endcall %}
+        {% call list_item() %}
+          creating and confirming checksums (these are codes that verify the file has not been altered)
+        {% endcall %}
+      {% endcall %}
+    </p>
+    <p>
+      The service then sends the judgment to us and creates an audit trail. This trail provides a complete
+      record of the judgment's journey from the court to The National Archives. When judgments are sent to us, nothing is changed during the process so what we receive is exactly as it was at the court.
+    </p>
+    <p>
+      We receive the Word document, which is the official digital record of the judgment. The clerk or judge then receives an email when we publish the judgment.
+    </p>
+    {% call heading(tag="h3",id="section-content") %}
+      What is in judgments and decisions
+    {% endcall %}
+    <p>We will never change the original digital record (the Word document we receive from the court).</p>
+    <p>We will never change the text of any published version. This means we do not carry out redactions.</p>
+    <p>
+      We should only receive versions that are ready for publication. Any redactions or anonymisation needed
+      should already have been made by the court before it sends the judgment to us.
+    </p>
+    {% call heading(tag="h3", id="section-checks") %}
+      Our checks before publication
+    {% endcall %}
+    <p>We have a dedicated team who review every judgment and decision before we publish it.</p>
+    <p>
+      <b>Why we carry out these checks</b>
+    </p>
+    <p>
+      We do this to:
+      {% call list(variant="bullets") %}
+        {% call list_item() %}
+          reduce the risk that a court or tribunal sends us a judgment in error
+        {% endcall %}
+        {% call list_item() %}
+          make sure we have received the version the court or tribunal intended to publish
         {% endcall %}
         {% call list_item() %}
           Comply with The National Archives’ obligations as a publisher, in relation to reporting restrictions.
@@ -142,46 +144,51 @@
       {% endcall %}
     </p>
     <p>
+      <b>What we check</b>
+    </p>
+    <p>
       The initial assessment involves:
       {% call list(variant="bullets") %}
         {% call list_item() %}
-          Checking whether the judgment says it is ‘Approved’ and has been ‘released to The National Archives’ for publication
+          checking whether the judgment is the approved version and has been 'released to The National Archives' for publication
         {% endcall %}
         {% call list_item() %}
-          Reading the first few sentences of the judgment body to see if there is a restriction or condition on publication (ie reporting restrictions)
-          {% call list(variant="bullets") %}
-            {% call list_item() %}
-              Checking whether any reporting restrictions have been consistently applied throughout the body of the judgment (eg anonymisation of parties)
-            {% endcall %}
-            {% call list_item() %}
-              Making an overall assessment on whether the version of the judgment supplied complies with any notice requiring anonymisation or redaction
-            {% endcall %}
-          {% endcall %}
+          reading the start of the judgment to see if there are any restrictions on publication (such as reporting restrictions)
         {% endcall %}
         {% call list_item() %}
-          Checking for any obvious errors in the judgment header (eg dates or neutral citations)
+          checking whether any reporting restrictions have been applied consistently throughout the judgment (for example, anonymising the names of the people involved)
         {% endcall %}
         {% call list_item() %}
-          Checking the whole HTML and PDF versions of the judgment against the Word document original to check for formatting errors.
+          making an overall assessment of whether the version we have received meets any requirements for anonymisation or redaction
+        {% endcall %}
+        {% call list_item() %}
+          checking for obvious errors in the header (such as incorrect dates or neutral citations)
+        {% endcall %}
+        {% call list_item() %}
+          comparing the HTML and PDF versions against the original Word document to check for formatting errors
         {% endcall %}
       {% endcall %}
     </p>
     <p>
-      As a result of the checking process, The National Archives will either:
+      <b>What happens next</b>
+      <p>After checking, we will either:</p>
       {% call list(variant="bullets") %}
         {% call list_item() %}
-          Publish the judgment (using the digital surrogate that has been created) or
+          publish the judgment, or
         {% endcall %}
         {% call list_item() %}
-          Ask for clarification or confirmation from the court.
+          ask the court for clarification or confirmation
         {% endcall %}
       {% endcall %}
     </p>
     <p>
-      The judge has the final word on suitability for publication and The National Archives will always publish judgments having received confirmation from the clerk or judge.
+      The judge has the final say on whether a judgment is suitable for publication. We will always publish a judgment once the clerk or judge confirms it is ready.
     </p>
+    {% call heading(tag="h3", id="section-formatting") %}
+      How long publication takes
+    {% endcall %}
+    <p>Once we have reviewed a judgment, we publish it straight away on Find Case Law. We do this as quickly as we can.</p>
     <p>
-      Once a record has been reviewed we immediately publish it on the Find Case Law service. We do this as quickly as possible.
       It may take us longer to review and publish judgments and decisions that:
       {% call list(variant="bullets") %}
         {% call list_item() %}
@@ -196,51 +203,72 @@
       {% endcall %}
     </p>
     <p>
-      Occasionally we need to double check with the court or tribunal whether the version of the record that has been sent to us is
-      the version they intended to publish. In these cases publication may take longer while we wait for confirmation from the court or tribunal, or for the correct version to be sent to us.
+      Sometimes we need to check with the court or tribunal whether the version we received is the one they meant to publish. In these cases, publication may take longer while we wait for confirmation or for the correct version.
     </p>
     <p>
-      This review step means it is less likely for judgments or decisions to be published in error. If you believe there is an error within a published judgment or decision, you can flag it
-      for review by contacting us. If necessary, we will refer it back to the court to determine the appropriate course of action.
+      Our review process makes it less likely that we will publish a judgment with an error. If you think there is an error in a published judgment, you can contact us. If needed, we will refer it back to the court to decide what to do.
     </p>
     <p>
-      We appreciate that speedy publication is important for many of our users. It is very unusual for judgments or decisions to take longer than two working days to be reviewed and published.
-      If it has been more than two working days, it is more likely that we have not received the judgment or decision from the court or tribunal.
+      We know that quick publication matters to many of our users. It is very unusual for judgments or decisions to take longer than two working days to review and publish. If it has been more than two working days, it is likely that we have not received the judgment from the court or tribunal.
     </p>
     <p>
-      The checking process takes a risk-based approach to achieve the right balance between speed of publication and the depth and thoroughness of checking. The National Archives will
-      iteratively develop this process considering operational experience and feedback, and report on its operation to the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judiciary.
+      We take a risk-based approach to our checks. This helps us balance speed of publication with thoroughness. We will keep developing this process based on our experience and feedback. We report on how this process is working to the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judiciary.
     </p>
     {% call heading(tag="h3", id="section-formatting") %}
-      Formatting of judgments and decisions
+      How we format judgments and decisions
     {% endcall %}
     <p>
-      Find Case Law has been designed to provide users with access to Court Judgments and Tribunal Decisions in a variety of different formats.
+      Find Case Law lets users access judgments and decisions in different formats. We choose these formats based on what works best for different uses:
     </p>
-    <p>
-      Our choice of surrogate file formats is driven by what is most suitable for the three main types of access we provide.
-      {% call list(variant="bullets") %}
-        {% call list_item() %}
-          For reading judgments on the Find Case Law website, we provide HTML 5.
+    {% call table() %}
+      {# Header #}
+      {% call table_row() %}
+        {% call table_cell(header=True) %}
+          Format
         {% endcall %}
-        {% call list_item() %}
-          For re-using the judgments as data via our API, we provide LegalDocML (an international XML standard for legal documents)
-        {% endcall %}
-        {% call list_item() %}
-          For downloading and printing copies of judgments, we provide PDF files.
+        {% call table_cell(header=True) %}
+          What it is for
         {% endcall %}
       {% endcall %}
+      {# Row 1 #}
+      {% call table_row() %}
+        {% call table_cell() %}
+          HTML 5
+        {% endcall %}
+        {% call table_cell() %}
+          Reading judgments on the Find Case Law website
+        {% endcall %}
+      {% endcall %}
+      {# Row 2 #}
+      {% call table_row() %}
+        {% call table_cell() %}
+          LegalDocML (an international XML standard for legal documents)
+        {% endcall %}
+        {% call table_cell() %}
+          Re-using judgments as data through our API
+        {% endcall %}
+      {% endcall %}
+      {# Row 3 #}
+      {% call table_row() %}
+        {% call table_cell() %}
+          PDF
+        {% endcall %}
+        {% call table_cell() %}
+          Downloading and printing copies of judgments
+        {% endcall %}
+      {% endcall %}
+    {% endcall %}
+    <p>
+      The copies we create keep the styling and formatting from the original document. This means we can show the judgment on the website in a way that closely matches the original.
     </p>
     <p>
-      The digital surrogate The National Archives creates of each judgment retains styling and formatting information extracted from the digital record. This enables Find Case Law to present
-      the judgment in HTML with reasonable fidelity to the original record.
+      <b>How we convert judgments</b>
     </p>
     <p>
-      As part of the publishing process, we transform the original version of each judgment from (typically) a Microsoft Word document into XML (the legal document mark-up language) and a PDF file.
-      We use this XML to create the HTML version of the judgment.
+      We convert each judgment from a Microsoft Word document into XML (a legal document mark-up language) and a PDF file. We use this XML to create the HTML version.
     </p>
     <p>
-      We make this HTML as accessible as possible to people using the web by adapting the styling and layout to:
+      We make the HTML version as accessible as possible by:
       {% call list(variant="bullets") %}
         {% call list_item() %}
           standardise indentation of paragraphs
@@ -252,45 +280,47 @@
           convert images to a format that a web browser can properly display
         {% endcall %}
         {% call list_item() %}
-          adjust tables so that they appear sensibly on a wide range of screen sizes and orientations
+          adjusting tables so they work well on different screen sizes
         {% endcall %}
         {% call list_item() %}
           add hyperlinks.
         {% endcall %}
       {% endcall %}
-      This conversion and enrichment process may cause minor formatting issues with published versions of judgments.
+      This conversion process may sometimes cause minor formatting issues.
     </p>
     <p>
-      Links added to legislation will take you to the legislation as it stands today. Users will need to use legislation.gov.uk’s ‘point in time’ feature to find the legislation as it stood at a particular date.
+      Links to legislation will take you to the current version of the law. If you need to see the law as it was on a particular date, use the 'point in time' feature on legislation.gov.uk.
     </p>
     {% call heading(tag="h3", id="section-personal-data") %}
       Personal data in judgments and decisions
     {% endcall %}
     <p>
-      Please see our
+      See our
       {% call link(href=url('privacy_notice')) %}
         Privacy notice
       {%- endcall %}
-      for full details on what, how and why we process and publish personal data held in judgments and decisions.
+      for full details on what personal data we process and publish in judgments and decisions, and why we do this.
     </p>
     <p>
-      The details given in a judgment or tribunal about the facts of a case may sometimes constitute distressing content (particularly in criminal cases, or cases involving children).
+      The facts of a case described in a judgment or tribunal decision may sometimes include distressing content. This is particularly true in criminal cases or cases involving children.
     </p>
-    {% call heading(tag="h3", id="section-timing") %}
-      Timing of publication
+    {% call heading(tag="h3", id="section-publish-timing") %}
+      When we publish
     {% endcall %}
     <p>
-      The National Archives understands that rapid publication of judgments is important for the users of its service. Most judgments will be published within two working days of receipt.
-      Judgments that have not appeared on the service after two working days of public hand-down are likely to have not been sent to The National Archives for publication.
+      We understand that quick publication matters to our users. We publish most judgments within two working days of receiving them.
     </p>
     <p>
-      Judgments with reporting restrictions may take longer, due to the checks required and whether we have requested confirmation or clarification from the court.
+      If a judgment has not appeared on the service two working days after it was handed down in public, we probably have not received it.
     </p>
     <p>
-      The National Archives will measure the time it takes from receipt to publication and report on the results, including the reasons for delays.
+      Judgments with reporting restrictions may take longer because of the checks we need to carry out and any clarification we may need from the court.
     </p>
     <p>
-      If you believe a judgment is missing from the service and it has been more than two working days since it was handed down, you can contact us.
+      We measure how long it takes from receiving a judgment to publishing it. We report on these results, including the reasons for any delays.
+    </p>
+    <p>
+      If you think a judgment is missing from the service and it has been more than two working days since it was handed down, please contact us.
     </p>
     {% call heading(tag="h2", id="section-manage") %}
       How we manage published judgments and decisions
@@ -299,28 +329,25 @@
       Versions and revisions
     {% endcall %}
     <p>
-      Over time Find Case Law may receive several publication versions of the same judgment from the court. We will keep the digital record of each of the versions,
-      but only publish the latest version authorised by the court.
+      Over time, we may receive several versions of the same judgment from the court.
+      We keep the digital record of each version, but we only publish the latest version the court has approved.
     </p>
     <p>
-      Changes, refinements or corrections to the text of currently published judgments can only be made by the court by sending another publication
-      version of the judgment to The National Archives by the usual
+      If the court needs to make changes, corrections, or refinements to a published judgment, it must send us a new version through the
       {% call link(href="https://www.nationalarchives.gov.uk/information-management/manage-information/digital-records-transfer/transfer-digital-records-tdr/") %}
         Transfer Digital Records
       {%- endcall %}
       service.
     </p>
-    {% call heading(tag="h3", id="section-withdrawal") %}
-      Withdrawal from publication
+    {% call heading(tag="h3", id="section-removal") %}
+      Removing judgments from publication
     {% endcall %}
     <p>
-      The National Archives’ take down and reclosure policy does not apply to judgments or decisions published in Find Case Law.
+      The National Archives usual take down and reclosure policy does not apply to judgments or decisions on Find Case Law.
     </p>
+    <p>Once we have published a judgment or decision, we will only remove it if the court or tribunal tells us to.</p>
     <p>
-      Once a judgment or decision has been published, we will only withdraw it from publication if we are instructed to do so by the court or tribunal.
-    </p>
-    <p>
-      If you believe that a judgment or decision should not be publicly available, you should contact the court or tribunal directly.
+      If you think a judgment or decision should not be publicly available, please contact the court or tribunal directly.
     </p>
   </section>
 {% endblock article_content %}
