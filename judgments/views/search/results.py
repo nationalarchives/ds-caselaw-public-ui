@@ -50,7 +50,7 @@ class SearchResultsView(TemplateViewWithContext):
         if not form.is_valid():
             return TemplateResponse(
                 request,
-                "pages/advanced_search.jinja",
+                "pages/search_and_browse/advanced_search.jinja",
                 {"form": form, "query": request.GET.get("query", "")},
                 using="jinja",
             )
