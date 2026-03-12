@@ -31,14 +31,14 @@
       </p>
     {% endcall %}
     {% call grid() %}
-      {% call card(title="Browse by court or tribunal", url=url('courts_and_tribunals'), variant="image", image_url=static("images/HM-courts-and-tribunal-service-building-sign.jpg")) %}
-        <p>View judgments and decisions from specific courts and tribunals.</p>
+      {% call card(title="New to case law?", url=url('understanding_case_law'), variant="image", image_url=static("images/HM-courts-and-tribunal-service-building-sign.jpg")) %}
+        <p>Our Understanding case law section explains how courts work and how to read judgments.</p>
       {% endcall %}
-      {% call card(title="How to search", variant="image", url=url('how_to_search_find_case_law'), image_url=static("images/modern-magnifying-glass.jpg")) %}
-        <p>Learn how to search the full text of every judgment and decision available on Find Case Law.</p>
+      {% call card(title="Ready to search?", variant="image", url=url('search_and_browse'), image_url=static("images/modern-magnifying-glass.jpg")) %}
+        <p>Use the search box above or browse by courts and tribunals to find specific cases</p>
       {% endcall %}
-      {% call card(title="Re-use Find Case Law records", url=url('transactional-licence-form'), variant="image", image_url=static("images/person-working-on-a-laptop.jpg")) %}
-        <p>Find out how to gain free access to and re-use of judgments and decisions.</p>
+      {% call card(title="Need help?", url=url('help_and_support'), variant="image", image_url=static("images/person-working-on-a-laptop.jpg")) %}
+        <p>Visit our Help and support section for search tips and guidance.</p>
       {% endcall %}
     {% endcall %}
     {% call heading(tag="h2", withoutMargins=True) %}
