@@ -1,0 +1,15 @@
+# .github/release.yml
+
+changelog:
+  categories:
+    - title: What's new
+      labels:
+        - "*"
+      exclude:
+        authors:
+          - "app/renovate"
+    - title: Renovate
+      labels:
+        - "*"
+      authors:
+        - "app/renovate"
