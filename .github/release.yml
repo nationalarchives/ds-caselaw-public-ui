@@ -7,9 +7,9 @@ changelog:
         - "*"
       exclude:
         authors:
-          - "app/renovate"
+          - "@renovate[bot]"
     - title: Renovate
       labels:
         - "*"
       authors:
-        - "app/renovate"
+        - "@renovate[bot]"
