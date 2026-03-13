@@ -91,10 +91,9 @@
 ] %}
 {% macro navigation(active_endpoint=None) %}
   <nav class="navigation-container"
-       tabindex="0"
        aria-label="Navigation"
        role="navigation">
-    <div class="navigation">
+    <div class="navigation" tabindex="0">
       <button class="navigation__menu-button">Menu {{ icon(name="chevron_down_white", size="xs") }}</button>
       <div class="container">
         <ul>
