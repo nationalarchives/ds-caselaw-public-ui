@@ -1,0 +1,16 @@
+{% macro table(attrs={}) %}
+  <table class="table"
+         {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
+    {{ caller() }}
+  </table>
+{% endmacro %}
+{% macro table_row(header=False) %}
+  <tr class="table__row">{{ caller() }}</tr>
+{% endmacro %}
+{% macro table_cell(header=False) %}
+  {% if header %}
+    <th class="table__header">{{ caller() }}</th>
+  {% else %}
+    <td class="table__cell">{{ caller() }}</td>
+  {% endif %}
+{% endmacro %}

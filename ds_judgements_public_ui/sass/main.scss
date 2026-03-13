@@ -50,6 +50,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "govuk-frontend/dist/govuk/core/lists";
 @import "govuk-frontend/dist/govuk/core/section-break";
 @import "govuk-frontend/dist/govuk/core/govuk-frontend-properties";
+@import "govuk-frontend/dist/govuk/components/table";
 
 // Vendor overrides
 @import "includes/govuk_overrides/details";
@@ -96,6 +97,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "components/grid";
 @import "components/tabs";
 @import "components/navigation";
+@import "components/table";
 
 // Components Vendor overrides
 
