@@ -33,7 +33,7 @@ types-python-dateutil==2.9.0.20260305
 types-requests==2.32.4.20260107
 
 # memray
-memray==1.19.1
+memray==1.19.2
 
 
 # django cors headers
