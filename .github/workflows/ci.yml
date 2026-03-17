@@ -249,10 +249,7 @@ jobs:
           persist-credentials: false
 
       - name: Copy .env.example file
-        uses: canastro/copy-file-action@ae66602ce7d214dbd2e298c1db67a81388755a0a
-        with:
-          source: ".env.example"
-          target: ".env"
+        run: cp .env.example .env
 
       - name: Create docker network as used in dev
         run: docker network create caselaw
@@ -275,33 +272,11 @@ jobs:
       - name: Load Postgres image
         run: docker load --input /tmp/postgres-image.tar
 
-      - name: Checkout Marklogic repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          repository: "nationalarchives/ds-caselaw-marklogic"
-          path: "./marklogic"
-          persist-credentials: false
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
-
       - name: Setup Python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
 
       - name: Install requests
         run: "pip install requests"
-
-      - name: Run marklogic docker container
-        run: docker compose up -d --wait
-        working-directory: "./marklogic"
-
-      - name: Deploy marklogic configuration
-        run: gradle mlDeploy
-        working-directory: "./marklogic"
-
-      - name: Populate marklogic DB with test data
-        run: python ./development_scripts/populate_from_caselaw.py
-        working-directory: "./marklogic"
 
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
@@ -314,9 +289,6 @@ jobs:
 
       - name: Build the JS and SASS
         run: npm run build
-
-      - name: Update court dates
-        run: docker compose run --rm django python manage.py recalculate_court_dates
 
       - name: Kick off the django server itself
         run: docker compose exec -d django python manage.py runserver 0.0.0.0:3000
@@ -347,10 +319,6 @@ jobs:
           name: playwright-snapshots
           path: e2e_tests/snapshots
           retention-days: 7
-
-      - name: Tear down marklogic
-        run: docker compose down
-        working-directory: "./marklogic"
 
       - name: Tear down the Stack
         run: docker compose down
