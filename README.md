@@ -178,6 +178,15 @@ Pytest unit tests can be run with `fab test`.
 We also have a suite of end to end tests (in the `e2e_tests/` directory) written with [playwright-pytest](https://playwright.dev/python/docs/api/class-playwright), which can be run with `fab e2etest`.
 These will run by default against the running `django` container. You can supply a `baseURL` argument to test against staging or production.
 
+### VCR Cassettes
+
+To allow running the E2E tests in isolation, and to run the application in a state where it doesn't call out to external services, we have added VCR cassettes that can be played for external requests instead of calling out to that external service.
+
+To enable these, add the following to your .env:
+
+VCR_ENABLED=true // Controls whether to use recorded cassettes for HTTP requests
+VCR_MODE=playback // VCR modes: playback (use cassettes), record (save requests)
+
 ### memray memory tools
 
 To generate a flamegraph run `fab flamegraph`. After using the application, press Ctrl-C and the application will quit and the flamegraph will appear in your browser.
@@ -220,7 +229,7 @@ def test_my_page(page: Page):
     assert_is_accessible(page)
 ```
 
-If the page is accessible, the console won't output anything other than the usual test output. If there are accessibility issues, there will be output that explains what the issues are and also helpful links explaining how to fix them.
+    If the page is accessible, the console won't output anything other than the usual test output. If there are accessibility issues, there will be output that explains what the issues are and also helpful links explaining how to fix them.
 
 #### Test traces in CI
 
