@@ -126,6 +126,12 @@ class OrganizationForm(LicenseApplicationForm):
         error_messages={"required": "Enter other names your organisation is known by, or 'none'"},
     )
 
+    agent_country = fields.FCLChoiceField(
+        label="6. Which country is your organisation registered in?",
+        choices=countries_and_territories_choices,
+        widget=forms.Select(attrs={"class": "location-autocomplete"}),
+    )
+
     agent_address_line_1 = fields.FCLCharField(
         label="Address line 1",
         error_messages={"required": "Enter building and street"},
@@ -143,12 +149,6 @@ class OrganizationForm(LicenseApplicationForm):
     agent_postcode = fields.FCLCharField(
         label="Postcode",
         error_messages={"required": "Enter postcode"},
-    )
-
-    agent_country = fields.FCLChoiceField(
-        label="Country",
-        choices=countries_and_territories_choices,
-        widget=forms.Select(attrs={"class": "location-autocomplete"}),
     )
 
     tna_contacttype = fields.FCLMultipleChoiceFieldWithOthers(
