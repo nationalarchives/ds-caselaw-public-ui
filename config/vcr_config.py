@@ -309,7 +309,7 @@ def get_vcr_instance():
         decode_compressed_response=False,
     )
 
-    my_vcr.register_matcher("body", _body_matcher)
+    # my_vcr.register_matcher("body", _body_matcher)
     return my_vcr
 
 
