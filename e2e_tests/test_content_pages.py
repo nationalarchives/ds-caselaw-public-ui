@@ -91,6 +91,14 @@ permissions_and_licensing_pages = [
         "url": "/what-you-need-to-apply-for-a-licence",
         "title": "What you need to apply for a licence",
         "heading": "What you need to apply for a licence",
+        "expected_sections": [
+            "1. The details of the person responsible for the licence",
+            "2. The details of your organisation",
+            "3. The purpose of your re–use",
+            "4. A public statement",
+            "5. Details of your working practices and governance",
+            "6. Details of risks you have identified against the nine principles",
+        ],
     },
     {
         "url": "/how-to-get-permission",
@@ -158,6 +166,7 @@ def assert_content_page(page: Page, content_page):
     url = content_page.get("url")
     title = content_page.get("title")
     heading = content_page.get("heading")
+    expected_sections = content_page.get("expected_sections", [])
 
     page.goto(url)
 
@@ -167,6 +176,9 @@ def assert_content_page(page: Page, content_page):
 
     assert_is_accessible(page)
     assert_matches_snapshot(page, f"{url.replace('/', '')}_page")
+
+    for section_text in expected_sections:
+        expect(page.get_by_text(section_text)).to_be_visible()
 
 
 @pytest.mark.parametrize("content_page", root_content_pages)
