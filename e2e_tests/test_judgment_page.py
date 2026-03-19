@@ -75,6 +75,9 @@ def test_judgment_page(page: Page, document):
 
     page.goto(uri)
 
+    screenshot_path = "snapshots/judgment_page_test.png"
+    page.screenshot(path=screenshot_path, full_page=True)
+
     expect(page).to_have_title(re.compile(title, re.IGNORECASE))
     expect(page.locator("h1")).to_have_text(re.compile(heading, re.IGNORECASE))
     # assert_download_options_link(page)
