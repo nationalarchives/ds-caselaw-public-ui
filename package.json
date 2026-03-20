@@ -29,7 +29,7 @@
   "homepage": "https://github.com/nationalarchives/ds-judgments-public-ui#readme",
   "devDependencies": {
     "@babel/core": "7.29.0",
-    "@babel/preset-env": "7.29.0",
+    "@babel/preset-env": "7.29.2",
     "@chromatic-com/storybook": "3.2.7",
     "@storybook/addon-essentials": "8.6.14",
     "@storybook/html-webpack5": "8.6.14",
