@@ -1,5 +1,8 @@
 from .base import *  # noqa
 from .base import env
+from .base import ROOT_DIR
+
+import os
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -48,6 +51,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",  # must be first
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "config.vcr_middleware.VCRMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -62,6 +66,13 @@ MIDDLEWARE = [
     "config.middleware.StructuredBreadcrumbsMiddleware",
     "waffle.middleware.WaffleMiddleware",
 ]
+
+VCR_ENABLED = os.getenv("VCR_ENABLED", "true").lower() == "true"
+VCR_MODE = os.getenv("VCR_MODE", "playback")
+VCR_CASSETTE_DIR = str(ROOT_DIR / "vcr_cassettes")
+
+if VCR_ENABLED:
+    os.makedirs(VCR_CASSETTE_DIR, exist_ok=True)
 
 
 # Only allow Storybook CORS in dev
