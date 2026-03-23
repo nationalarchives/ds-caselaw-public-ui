@@ -1,0 +1,19 @@
+{% extends "layouts/standard_content.jinja" %}
+{% block title %}
+  Forbidden - Find Case Law
+{% endblock title %}
+{% block article_content %}
+  <h1>Forbidden</h1>
+  <p>
+    {% if exception %}
+      {{ exception }}
+    {% else %}
+      Access to this page is forbidden.
+    {% endif %}
+  </p>
+  <p>
+    <a href="{{ url('home') }}">Return to Find Case Law</a>
+  </p>
+{% endblock article_content %}
+{% block end_of_document_marker %}
+{% endblock end_of_document_marker %}
