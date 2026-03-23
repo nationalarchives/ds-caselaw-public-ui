@@ -54,11 +54,6 @@ search_and_browse_pages = [
         "heading": "Search and browse",
     },
     {
-        "url": "/courts-and-tribunals",
-        "title": "Types of courts in England and Wales",
-        "heading": "Types of courts in England and Wales",
-    },
-    {
         "url": "/browse-courts-and-tribunals",
         "title": "Browse courts and tribunals",
         "heading": "Browse courts and tribunals",
