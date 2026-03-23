@@ -2,10 +2,10 @@ FROM mcr.microsoft.com/playwright/python:v1.57.0-noble@sha256:3de745b23fc4b33fcc
 
 WORKDIR /app
 
-RUN pip install playwright==1.54.0 && \
+RUN pip install --no-cache-dir playwright==1.54.0 && \
     playwright install --with-deps
 
-RUN pip install pytest-playwright axe-playwright-python pillow numpy scikit-image
+RUN pip install --no-cache-dir pytest-playwright axe-playwright-python pillow numpy scikit-image
 COPY . .
 
 EXPOSE 9222
