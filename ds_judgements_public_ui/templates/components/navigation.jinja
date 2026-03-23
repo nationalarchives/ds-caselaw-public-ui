@@ -102,10 +102,11 @@
             <li class="{{ 'navigation__item--active' if is_active }} {% if item.children %}navigation__item--has-children{% endif %}">
               <span class="navigation__item">
                 {% if item.children %}
-                  <span class="navigation__item-icon">
+                  <button class="navigation__item-icon">
                     {{ icon(name="chevron_down_black", size="sm") }}
                     {{ icon(name="chevron_down_white", size="sm") }}
-                  </span>
+                    <span class="govuk-visually-hidden">Toggle navigation</span>
+                  </button>
                 {% endif %}
                 {% call link(href=url(item.endpoint), variant="contrast") %}
                   <span class="navigation__item-label">{{ item.label }}</span>
