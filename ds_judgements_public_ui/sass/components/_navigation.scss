@@ -46,6 +46,7 @@
   }
 
   &__item-icon {
+    all: unset;
     padding: $space-4;
     border-left: 1px solid colour-var("background");
 
