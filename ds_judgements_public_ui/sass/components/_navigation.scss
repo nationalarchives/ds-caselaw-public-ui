@@ -1,3 +1,60 @@
+.navigation__toggle,
+.navigation__item-toggle {
+  display: none;
+}
+
+.navigation__overlay {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9998;
+  inset: 0;
+}
+
+#navigation-toggle:checked ~ .navigation__overlay {
+  pointer-events: all;
+}
+
+#navigation-toggle:checked ~ .navigation-container {
+  .container {
+    display: block;
+  }
+
+  .navigation__menu-button {
+    span {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.navigation .container > ul > li {
+  @media (max-width: $grid-breakpoint-large) {
+    .navigation__item-toggle:checked {
+      ~ ul {
+        display: flex;
+      }
+
+      ~ .navigation__item {
+        background: colour-var("accent-brand");
+
+        a,
+        a:hover,
+        a:visited {
+          color: colour-var("font-base");
+        }
+
+        .icon__chevron_down_black {
+          transform: rotate(180deg);
+          display: inline-block;
+        }
+
+        .icon__chevron_down_white {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 .navigation-container {
   position: relative;
   z-index: 9999;
@@ -15,20 +72,10 @@
   padding-top: $space-4;
   background-color: colour-var("contrast-background");
 
-  &:focus-within {
-    .container {
-      display: block;
-    }
-
-    .navigation__menu-button {
-      span {
-        transform: rotate(180deg);
-      }
-    }
-  }
-
   &__menu-button {
     all: unset;
+
+    cursor: pointer;
 
     position: absolute;
     top: -110px;
@@ -47,6 +94,7 @@
 
   &__item-icon {
     all: unset;
+    cursor: pointer;
     padding: $space-4;
     border-left: 1px solid colour-var("background");
 
@@ -99,6 +147,10 @@
     @media (min-width: $grid-breakpoint-large) {
       flex-direction: row;
     }
+  }
+
+  .icon {
+    transition: transform 0.25s ease;
   }
 
   .container {
@@ -160,7 +212,7 @@
         }
 
         &:hover,
-        &:focus {
+        &:focus-within {
           background: colour-var("accent-brand");
 
           .icon__chevron_down_white {
@@ -168,7 +220,6 @@
           }
 
           .icon__chevron_down_black {
-            transform: rotate(180deg);
             display: inline-block;
           }
 
@@ -176,8 +227,14 @@
             color: colour-var("font-base");
           }
 
-          ul {
-            display: flex;
+          @media (min-width: $grid-breakpoint-large) {
+            ul {
+              display: flex;
+            }
+
+            .icon__chevron_down_black {
+              transform: rotate(180deg);
+            }
           }
         }
 
