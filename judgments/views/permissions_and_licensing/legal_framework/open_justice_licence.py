@@ -19,7 +19,7 @@ class OpenJusticeLicenceView(TemplateViewWithContext):
             "Open justice is a fundamental constitutional principle and necessary for the rule of law. The purpose of this licence is to support open justice."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "Legal framework", "url": reverse("legal_framework")},
             {"text": self.page_title},
         ]

@@ -16,7 +16,7 @@ class ApplyForALicenceView(TemplateViewWithContext):
         context["feedback_survey_type"] = "apply_for_a_licence"
         context["page_description"] = "Apply online to perform computational analysis on Find Case Law records."
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "How to get permission", "url": reverse("how_to_get_permission")},
             {"text": "Apply for a licence"},
         ]

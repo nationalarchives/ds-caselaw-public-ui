@@ -12,7 +12,7 @@ class HowToSearchFindCaseLawView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "help_and_support"
+        context["active_navigation_endpoint"] = "search_and_browse"
         context["feedback_survey_type"] = "how_to_search_find_case_law"
         context["page_description"] = (
             "Help and guidance on how to search judgments and decisions on the Find Case Law service using the search box and filters."

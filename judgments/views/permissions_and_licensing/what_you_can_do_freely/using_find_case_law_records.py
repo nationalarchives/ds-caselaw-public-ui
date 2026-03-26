@@ -18,7 +18,7 @@ class UsingFindCaseLawRecordsView(TemplateViewWithContext):
             "You can freely use judgments from Find Case Law for most purposes without permission or payment. This page explains what you can do and gives practical examples."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "What you can do freely", "url": reverse("what_you_can_do_freely")},
             {"text": "Using Find Case Law records"},
         ]

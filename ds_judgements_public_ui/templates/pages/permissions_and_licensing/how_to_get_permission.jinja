@@ -95,7 +95,13 @@
   {% call heading(tag="h2") %}
     No costs
   {% endcall %}
-  <p>There are no costs to apply for a licence to perform computational analysis.</p>
+  <p>
+    There are no costs to
+    {% call link(href=url("apply_for_a_licence")) %}
+      apply for a licence
+    {%- endcall -%}
+    {{ " " }} to perform computational analysis.
+  </p>
   {% call card(title="Questions about applying", title_tag="h2") %}
     <p>
       If you have any questions about licensing, please email the Licensing Department:

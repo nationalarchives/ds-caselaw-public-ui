@@ -4,7 +4,7 @@ from config.views.template_view_with_context import TemplateViewWithContext
 class PermissionsAndLicensingView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/permissions_and_licensing.jinja"
-    page_title = "Permissions and Licensing"
+    page_title = "Permissions and licensing"
     page_canonical_url_name = "permissions_and_licensing"
     page_allow_index = True
 
@@ -16,7 +16,7 @@ class PermissionsAndLicensingView(TemplateViewWithContext):
             "All judgments on Find Case Law are free to access, but different rules apply depending on how you want to use the records."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing"},
+            {"text": "Permissions and licensing"},
         ]
 
         return context
