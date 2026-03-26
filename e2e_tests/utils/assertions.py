@@ -9,6 +9,11 @@ from skimage.metrics import structural_similarity as ssim
 
 axe = Axe()
 
+VIEWPORTS = {
+    "desktop": {"width": 1280, "height": 720},
+    "mobile": {"width": 375, "height": 667},
+}
+
 
 class AccessibilityWarning(UserWarning):
     pass
@@ -93,14 +98,9 @@ def compare_snapshot(actual_path, expected_path):
 
 
 def assert_matches_snapshot(page, page_name):
-    viewports = [
-        ("desktop", {"width": 1280, "height": 720}),
-        ("mobile", {"width": 375, "height": 667}),
-    ]
-
     regenerate = os.getenv("E2E_REGENERATE_SNAPSHOTS", "false").lower() == "true"
 
-    for label, viewport in viewports:
+    for label, viewport in VIEWPORTS.items():
         actual_path = f"snapshots/{page_name}_{label}_actual.png"
         expected_path = f"snapshots/{page_name}_{label}_expected.png"
 

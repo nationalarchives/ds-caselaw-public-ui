@@ -257,6 +257,7 @@ def e2etest(c, baseUrl="http://django:3000", regenerateSnapshots="false"):
             "docker",
             "compose",
             "run",
+            "--rm",
             "-e",
             f"E2E_REGENERATE_SNAPSHOTS={regenerateSnapshots}",
             "e2e_tests",
