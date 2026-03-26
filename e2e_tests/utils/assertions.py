@@ -98,6 +98,8 @@ def assert_matches_snapshot(page, page_name):
         ("mobile", {"width": 375, "height": 667}),
     ]
 
+    regenerate = os.getenv("E2E_REGENERATE_SNAPSHOTS", "false").lower() == "true"
+
     for label, viewport in viewports:
         actual_path = f"snapshots/{page_name}_{label}_actual.png"
         expected_path = f"snapshots/{page_name}_{label}_expected.png"
@@ -107,14 +109,20 @@ def assert_matches_snapshot(page, page_name):
 
         if not os.path.exists(expected_path):
             os.replace(actual_path, expected_path)
+            if regenerate:
+                continue
             pytest.fail(
-                f"Expected {label} snapshot for {page_name} not found - this whas been generated. Re-run to try again"
+                f"Expected {label} snapshot for {page_name} not found - this has been generated. Re-run to try again"
             )
 
         page.screenshot(path=actual_path, full_page=True)
         result, score = compare_snapshot(actual_path, expected_path)
 
         if not result:
+            if regenerate:
+                os.replace(actual_path, expected_path)
+                continue
+
             pytest.fail(
                 f"\n{page_name} on {label} has changed ({score}). Please check screenshots/{page_name}_{label}_actual.png and update screenshots/{page_name}_{label}_expected.png if happy."
             )

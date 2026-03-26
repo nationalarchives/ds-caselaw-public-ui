@@ -238,8 +238,8 @@ def test(c, test=None):
         subprocess.run(["docker", "compose", "exec", "django", "pytest", test])
 
 
-@task(optional=["baseUrl"])
-def e2etest(c, baseUrl="http://django:3000"):
+@task(optional=["baseUrl", "regenerateSnapshots"])
+def e2etest(c, baseUrl="http://django:3000", regenerateSnapshots="false"):
     """
     Run end-to-end playwright tests against the given base url -
     the default is the running local django web container.
@@ -252,7 +252,19 @@ def e2etest(c, baseUrl="http://django:3000"):
             "e2e_tests",
         ]
     )
-    subprocess.run(["docker", "compose", "run", "e2e_tests", "pytest", "--base-url", baseUrl])
+    subprocess.run(
+        [
+            "docker",
+            "compose",
+            "run",
+            "-e",
+            f"E2E_REGENERATE_SNAPSHOTS={regenerateSnapshots}",
+            "e2e_tests",
+            "pytest",
+            "--base-url",
+            baseUrl,
+        ]
+    )
 
 
 @task
