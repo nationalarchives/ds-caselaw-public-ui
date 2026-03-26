@@ -18,7 +18,7 @@ class HowToGetPermissionView(TemplateViewWithContext):
             "If you need to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's an overview of the process."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "How to get permission"},
         ]
 

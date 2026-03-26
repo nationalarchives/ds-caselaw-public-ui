@@ -18,7 +18,7 @@ class WhenYouNeedPermissionView(TemplateViewWithContext):
             "Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "When you need permission"},
         ]
 

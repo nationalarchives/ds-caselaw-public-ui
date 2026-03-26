@@ -63,8 +63,8 @@ search_and_browse_pages = [
 permissions_and_licensing_pages = [
     {
         "url": "/permissions-and-licensing",
-        "title": "Permissions and Licensing",
-        "heading": "Permissions and Licensing",
+        "title": "Permissions and licensing",
+        "heading": "Permissions and licensing",
     },
     {"url": "/open-justice-licence", "title": "Open Justice Licence", "heading": "Open Justice Licence"},
     {

@@ -18,7 +18,7 @@ class LegalFrameworkView(TemplateViewWithContext):
             "Here are the legal and technical details of how Find Case Law judgments can be used and licensed."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "Legal framework"},
         ]
 

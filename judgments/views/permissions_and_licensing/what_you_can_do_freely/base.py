@@ -18,7 +18,7 @@ class WhatYouCanDoFreelyView(TemplateViewWithContext):
             "Most uses of Find Case Law judgments don't require permission or a licence. You're free to use judgments under the Open Justice Licence in ways that support open justice, legal practice, research and commercial innovation."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "What you can do freely"},
         ]
 

@@ -20,7 +20,7 @@ class WhatYouNeedToApplyForALicenceView(TemplateViewWithContext):
             "If you want to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's what the application involves and how to prepare."
         )
         context["breadcrumbs"] = [
-            {"text": "Permissions and Licensing", "url": reverse("permissions_and_licensing")},
+            {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "When you need permission", "url": reverse("when_you_need_permission")},
             {"text": "What you need to apply for a licence"},
         ]
