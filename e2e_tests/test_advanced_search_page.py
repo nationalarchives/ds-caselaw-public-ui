@@ -130,5 +130,4 @@ def test_advanced_search_results_page_is_accessible(page: Page):
     submit_button(page).click()
 
     assert_is_accessible(page)
-    # TODO: Add this back in when the data from the seed matches staging
-    # assert_matches_snapshot(page, "search_results_page")
+    assert_matches_snapshot(page, "search_results_page")
