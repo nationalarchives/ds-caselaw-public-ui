@@ -11,7 +11,7 @@
 {% endblock mobile_article_title %}
 {% block desktop_article_title %}
   {% call heading() %}
-    Open Justice Licence
+    Open Justice Licence v1.0
   {% endcall %}
 {% endblock desktop_article_title %}
 {% block article_navigation %}
@@ -253,7 +253,17 @@
     The Information licensed under the Open Justice Licence includes court judgments and tribunal decisions in which Crown copyright subsists.
   </p>
   <p>
-    Further context, best practice and guidance relating to the re-use of public sector information can be found in the UK Government Licensing Framework section on The National Archives website.
+    Further context, best practice and guidance relating to the re-use of public sector information can be found in the
+    {% call link(href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework") %}
+      UK Government Licensing Framework section
+    {%- endcall %}
+    on The National Archives website.
+  </p>
+  <p>
+    Go to the
+    {% call link(href=url("open_justice_licence_v1")) %}
+      latest version of the licence.
+    {%- endcall %}
   </p>
   {% call heading(tag="h2") %}
     Understanding this licence

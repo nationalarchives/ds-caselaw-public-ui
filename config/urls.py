@@ -311,7 +311,7 @@ permissions_and_licensing_urls = [
     ),
     path(
         "open-justice-licence",
-        RedirectView.as_view(url="/open-justice-licence/version/2", permanent=False),
+        RedirectView.as_view(url="/open-justice-licence/version/2"),
     ),
     path(
         "open-justice-licence/version/2",

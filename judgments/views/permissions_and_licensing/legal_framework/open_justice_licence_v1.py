@@ -7,7 +7,7 @@ class OpenJusticeLicenceV1View(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/permissions_and_licensing/legal_framework/open_justice_licence_v1.jinja"
 
-    page_title = "Open Justice Licence"
+    page_title = "Open Justice Licence v1.0"
     page_canonical_url_name = "open_justice_licence_v1"
     page_allow_index = True
 
@@ -21,6 +21,6 @@ class OpenJusticeLicenceV1View(TemplateViewWithContext):
         context["breadcrumbs"] = [
             {"text": "Permissions and licensing", "url": reverse("permissions_and_licensing")},
             {"text": "Legal framework", "url": reverse("legal_framework")},
-            {"text": f"{self.page_title} v1.0"},
+            {"text": self.page_title},
         ]
         return context
