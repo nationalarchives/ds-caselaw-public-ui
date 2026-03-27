@@ -310,10 +310,6 @@ permissions_and_licensing_urls = [
         name="legal_framework",
     ),
     path(
-        ".well-known/trust.txt",
-        RedirectView.as_view(url="/trust.txt"),
-    ),
-    path(
         "open-justice-licence",
         RedirectView.as_view(url="/open-justice-licence/version/2", permanent=False),
     ),
