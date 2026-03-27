@@ -58,6 +58,8 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 	&& rm -rf /wheels/
 
 # copy application code to WORKDIR
+RUN useradd --create-home --shell /bin/bash appuser
+USER appuser
 COPY . ${APP_HOME}
 
 # Do nothing forever (use 'exec' to resuse the container)
