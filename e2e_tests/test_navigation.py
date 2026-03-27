@@ -1,10 +1,7 @@
 import pytest
 from playwright.sync_api import Browser, Locator, Page, expect
 
-VIEWPORTS = {
-    "desktop": {"width": 1280, "height": 720},
-    "mobile": {"width": 375, "height": 667},
-}
+from .utils.assertions import VIEWPORTS
 
 
 def get_navigation(page: Page) -> Locator:
