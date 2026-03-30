@@ -213,3 +213,25 @@ def test_understanding_case_law_pages(page: Page, content_page):
 @pytest.mark.parametrize("content_page", about_this_service_pages)
 def test_about_this_service_pages(page: Page, content_page):
     assert_content_page(page, content_page)
+
+
+def test_licence_v1_links_to_latest_version(page: Page):
+    """
+    Test that the 'latest version of the licence' link on the v1 licence page
+    correctly points to the v2 (latest) licence page.
+
+    This test prevents regression of the bug where the link was pointing to
+    the wrong URL.
+    """
+    page.goto("/open-justice-licence/version/1")
+
+    # The link text is "latest version of the licence"
+    latest_licence_link = page.get_by_text("latest version of the licence")
+    expect(latest_licence_link).to_be_visible()
+
+    # Click the link and verify it navigates to the latest version (v2)
+    latest_licence_link.click()
+
+    # Verify we're on the v2 licence page
+    expect(page).to_have_url("/open-justice-licence/version/2")
+    expect(page.locator("h1:visible")).to_have_text("Open Justice Licence v2.0")
