@@ -1,4 +1,5 @@
 import re
+from urllib.parse import urlencode
 
 import pytest
 from playwright.sync_api import Browser, Page, expect
@@ -20,6 +21,16 @@ def judgment_page(browser: Browser, base_url: str) -> Page:
     page.goto(JUDGMENT_URI)
     yield page
     context.close()
+
+
+@pytest.fixture(autouse=True)
+def reset_judgment_page(judgment_page: Page, base_url: str):
+    yield
+
+    expected_url = f"{base_url.rstrip('/')}{JUDGMENT_URI}"
+
+    if judgment_page.url != expected_url:
+        judgment_page.goto(JUDGMENT_URI)
 
 
 def get_download_pdf_url(document_uri):
@@ -62,7 +73,8 @@ def test_judgment_page_has_default_breadcrumbs(judgment_page: Page):
 
 
 def test_judgment_page_has_search_query_breadcrumb(judgment_page: Page):
-    judgment_page.goto(f"{JUDGMENT_URI}?query={JUDGMENT_SEARCH_QUERY}")
+    query_string = urlencode({"query": JUDGMENT_SEARCH_QUERY})
+    judgment_page.goto(f"{JUDGMENT_URI}?{query_string}")
     breadcrumb_container = judgment_page.locator("[aria-label='Breadcrumb']")
 
     search_breadcrumb = breadcrumb_container.locator(
@@ -70,7 +82,6 @@ def test_judgment_page_has_search_query_breadcrumb(judgment_page: Page):
     )
 
     expect(search_breadcrumb).to_be_visible()
-    judgment_page.goto(JUDGMENT_URI)
 
 
 def test_judgment_page_has_title(judgment_page: Page):
@@ -79,7 +90,7 @@ def test_judgment_page_has_title(judgment_page: Page):
 
 
 def test_judgment_page_details(judgment_page: Page):
-    judgment_page.goto(f"{JUDGMENT_URI}?query={JUDGMENT_SEARCH_QUERY}")
+    query_string = urlencode({"query": JUDGMENT_SEARCH_QUERY})
+    judgment_page.goto(f"{JUDGMENT_URI}?{query_string}")
     assert_is_accessible(judgment_page)
     assert_matches_snapshot(judgment_page, "judgment_page")
-    judgment_page.goto(JUDGMENT_URI)
