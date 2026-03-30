@@ -65,7 +65,8 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
         "publishing_policy",
         # Permissions and licensing
         "permissions_and_licensing",
-        "open_justice_licence",
+        "open_justice_licence_v2",
+        "open_justice_licence_v1",
         "what_you_can_do_freely",
         "when_you_need_permission",
         "how_to_get_permission",

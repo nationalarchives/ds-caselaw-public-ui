@@ -3,12 +3,12 @@ from django.urls import reverse
 from config.views.template_view_with_context import TemplateViewWithContext
 
 
-class OpenJusticeLicenceView(TemplateViewWithContext):
+class OpenJusticeLicenceV1View(TemplateViewWithContext):
     template_engine = "jinja"
-    template_name = "pages/permissions_and_licensing/legal_framework/open_justice_licence.jinja"
+    template_name = "pages/permissions_and_licensing/legal_framework/open_justice_licence_v1.jinja"
 
-    page_title = "Open Justice Licence"
-    page_canonical_url_name = "open_justice_licence"
+    page_title = "Open Justice Licence v1.0"
+    page_canonical_url_name = "open_justice_licence_v1"
     page_allow_index = True
 
     def get_context_data(self, **kwargs):

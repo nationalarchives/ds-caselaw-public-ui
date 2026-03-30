@@ -66,7 +66,16 @@ permissions_and_licensing_pages = [
         "title": "Permissions and licensing",
         "heading": "Permissions and licensing",
     },
-    {"url": "/open-justice-licence", "title": "Open Justice Licence", "heading": "Open Justice Licence"},
+    {
+        "url": "/open-justice-licence/version/2",
+        "title": "Open Justice Licence v2.0",
+        "heading": "Open Justice Licence v2.0",
+    },
+    {
+        "url": "/open-justice-licence/version/1",
+        "title": "Open Justice Licence v1.0",
+        "heading": "Open Justice Licence v1.0",
+    },
     {
         "url": "/what-you-can-do-freely",
         "title": "What you can do freely",
