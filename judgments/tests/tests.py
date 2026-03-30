@@ -236,6 +236,8 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
             "privacy-notice",
             "accessibility-statement",
             "open-justice-licence",
+            "open-justice-licence/version/1",
+            "open-justice-licence/version/2",
             "terms-of-use",
             "publishing-policy",
             "robots.txt",
