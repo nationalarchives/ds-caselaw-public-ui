@@ -312,11 +312,12 @@ permissions_and_licensing_urls = [
     path(
         "open-justice-licence",
         RedirectView.as_view(url="/open-justice-licence/version/2"),
+        name="open_justice_licence",
     ),
     path(
         "open-justice-licence/version/2",
-        permissions_and_licensing_views.OpenJusticeLicenceView.as_view(),
-        name="open_justice_licence",
+        permissions_and_licensing_views.OpenJusticeLicenceV2View.as_view(),
+        name="open_justice_licence_v2",
     ),
     path(
         "open-justice-licence/version/1",
