@@ -66,9 +66,6 @@
 }
 
 .navigation {
-  $navigation-height-extra-large: 53px;
-  $navigation-height-large: 37px;
-
   padding-top: $space-4;
   background-color: colour-var("contrast-background");
 
@@ -185,10 +182,10 @@
           }
 
           &:hover {
-            height: 248px;
+            height: 250px;
 
             @media (min-width: $grid-breakpoint-extra-large) {
-              height: 220px;
+              height: 235px;
             }
           }
         }

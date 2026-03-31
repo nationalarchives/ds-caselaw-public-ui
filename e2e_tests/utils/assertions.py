@@ -97,10 +97,12 @@ def compare_snapshot(actual_path, expected_path):
     return score >= 0.9, score
 
 
-def assert_matches_snapshot(page, page_name):
+def assert_matches_snapshot(page, page_name, breakpoint: str | None = None):
     regenerate = os.getenv("E2E_REGENERATE_SNAPSHOTS", "false").lower() == "true"
 
-    for label, viewport in VIEWPORTS.items():
+    viewports = [(breakpoint, VIEWPORTS[breakpoint])] if breakpoint else VIEWPORTS.items()
+
+    for label, viewport in viewports:
         actual_path = f"snapshots/{page_name}_{label}_actual.png"
         expected_path = f"snapshots/{page_name}_{label}_expected.png"
 
