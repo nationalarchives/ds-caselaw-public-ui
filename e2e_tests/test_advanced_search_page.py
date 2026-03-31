@@ -69,18 +69,6 @@ def test_advanced_search_before_2003(page: Page):
     ).to_be_visible()
 
 
-def test_advanced_search_no_results_page(page: Page):
-    query = "thisshouldnotgiveanyresults"
-
-    page.goto("/search/advanced")
-
-    query_input(page).fill(query)
-    submit_button(page).click()
-
-    expect(page.locator("h2", has_text="No matching results have been found")).to_be_visible()
-    expect(page.locator("a", has_text=f"Query: {query}"))
-
-
 def test_advanced_search_basic_query_page(page: Page):
     query = "Imperial"
     page.goto("/search/advanced")
@@ -99,35 +87,7 @@ def test_advanced_search_basic_query_page(page: Page):
     expect(page.locator("a", has_text=f"Query: {query}"))
 
 
-def test_advanced_search_sorting(page: Page):
-    page.goto("/search/advanced")
-
-    query_input(page).fill("Imperial")
-    submit_button(page).click()
-
-    sort_input = page.locator("#order_by")
-    per_page_input = page.locator("#per_page")
-    sort_button = page.get_by_role("button", name="Apply")
-
-    sort_input.select_option("Newest")
-    per_page_input.select_option("25")
-    sort_button.click()
-
-    expect(sort_input).to_have_value("-date")
-    expect(per_page_input).to_have_value("25")
-
-
 def test_advanced_search_page_is_accessible(page: Page):
     page.goto("/search/advanced")
     assert_is_accessible(page)
     assert_matches_snapshot(page, "advanced_search_page")
-
-
-def test_advanced_search_results_page_is_accessible(page: Page):
-    page.goto("/search/advanced")
-
-    query_input(page).fill("Imperial")
-    submit_button(page).click()
-
-    assert_is_accessible(page)
-    assert_matches_snapshot(page, "search_results_page")

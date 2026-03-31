@@ -12,10 +12,10 @@ interactions:
     body:
       string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
         {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
-        snippet-format=\"custom\" total=\"578\" start=\"1\" page-length=\"10\" selected=\"include\"
+        snippet-format=\"custom\" total=\"577\" start=\"1\" page-length=\"10\" selected=\"include\"
         xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/ewhc/qb/2013/1646.xml\" path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)\"
-        score=\"51843\" confidence=\"0.3326513\" fitness=\"0.532398\">\n    <search:snippet>\n      <search:match
+        score=\"51893\" confidence=\"0.3327096\" fitness=\"0.5324132\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)/*:akomaNtoso/*:judgment/*:coverPage/*:table/*:tr/*:td[2]/*:p/*:span\">Interim
         Judgment  in Saha v <search:highlight>Imperial</search:highlight> College</search:match>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[3]/*:td[2]/*:p/*:party\"><search:highlight>IMPERIAL</search:highlight>
@@ -31,7 +31,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-6de15015-0fd5-42b4-9ffd-52cd1fda02fb</uuid>\n\t  <value>[2013]
         EWHC 1646 (QB)</value>\n\t  <url_slug>ewhc/qb/2013/1646</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"2\" uri=\"/ewhc/tcc/2017/2299.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2017/2299.xml&quot;)\"
-        score=\"41346\" confidence=\"0.2970714\" fitness=\"0.4754535\">\n    <search:snippet>\n      <search:match
+        score=\"41386\" confidence=\"0.297124\" fitness=\"0.4754678\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2017/2299.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\"><search:highlight>IMPERIAL</search:highlight>
         CHEMICAL INDUSTRIES LTD</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2017-07-26\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -47,7 +47,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-32a636fd-31d0-49bb-b5a9-fe598215bb09</uuid>\n\t  <value>[2017]
         EWHC 2299 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2017/2299</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"3\" uri=\"/ewca/civ/2012/672.xml\" path=\"fn:doc(&quot;/ewca/civ/2012/672.xml&quot;)\"
-        score=\"41346\" confidence=\"0.2970714\" fitness=\"0.4754535\">\n    <search:snippet>\n      <search:match
+        score=\"41386\" confidence=\"0.297124\" fitness=\"0.4754678\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2012/672.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[3]/*:td[2]/*:p[2]/*:party\"><search:highlight>Imperial</search:highlight>
         London Hotels Limited</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2012-05-01\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -62,7 +62,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-c57191b0-c924-4318-858c-1be5c7e099bd</uuid>\n\t  <value>[2012]
         EWCA Civ 672</value>\n\t  <url_slug>ewca/civ/2012/672</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"4\" uri=\"/ewcop/2019/29.xml\" path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)\"
-        score=\"37836\" confidence=\"0.2841821\" fitness=\"0.4548246\">\n    <search:snippet>\n      <search:match
+        score=\"37870\" confidence=\"0.2842226\" fitness=\"0.4548226\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[10]/*:span[2]\"><search:highlight>Imperial</search:highlight>
         College Healthcare An NHS Trust...</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[14]/*:span[2]\">
         <search:highlight>Imperial</search:highlight> College Healthcare An NHS Trust</search:match>\n      <search:match
@@ -81,7 +81,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2390f800-da06-4737-8063-4a2ac83676c7</uuid>\n\t  <value>[2019]
         EWCOP 29</value>\n\t  <url_slug>ewcop/2019/29</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"5\" uri=\"/ewhc/tcc/2016/3082.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)\"
-        score=\"37765\" confidence=\"0.2839153\" fitness=\"0.4543976\">\n    <search:snippet>\n      <search:match
+        score=\"37798\" confidence=\"0.2839523\" fitness=\"0.45439\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[13]/*:content/*:table/*:tr[1]/*:td[2]/*:p/*:span\"><search:highlight>IMPERIAL</search:highlight>
         CHEMICAL INDUSTRIES LTD</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[3]/*:content/*:p\">...of
         certain applications made by <search:highlight>Imperial</search:highlight>
@@ -97,7 +97,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-154c5e2a-2db7-4bee-8e64-a5cb1dbf33c3</uuid>\n\t  <value>[2016]
         EWHC 3082 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2016/3082</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"6\" uri=\"/ewcop/2019/30.xml\" path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)\"
-        score=\"37765\" confidence=\"0.2839153\" fitness=\"0.4543976\">\n    <search:snippet>\n      <search:match
+        score=\"37798\" confidence=\"0.2839523\" fitness=\"0.45439\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[10]/*:span[2]\"><search:highlight>Imperial</search:highlight>
         College Healthcare An NHS Trust...</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[14]/*:span[2]\">
         <search:highlight>Imperial</search:highlight> College Healthcare An NHS Trust</search:match>\n    </search:snippet>\n    <search:extracted
@@ -114,7 +114,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-25fe0a72-fbc6-453b-90ec-091cecf36452</uuid>\n\t  <value>[2019]
         EWCOP 30</value>\n\t  <url_slug>ewcop/2019/30</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"7\" uri=\"/ewhc/ch/2010/854.xml\" path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)\"
-        score=\"31849\" confidence=\"0.2607306\" fitness=\"0.4172912\">\n    <search:snippet>\n      <search:match
+        score=\"31879\" confidence=\"0.2607734\" fitness=\"0.4172984\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\">SEL-<search:highlight>IMPERIAL</search:highlight>
         LIMITED</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[10]/*:content/*:p\">The
         claimant (\u201cSEL-<search:highlight>Imperial</search:highlight>\u201d) imports
@@ -154,7 +154,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-eea8c40a-ee21-43e5-a8b6-ee4bd2d86692</uuid>\n\t  <value>[2010]
         EWHC 854 (Ch)</value>\n\t  <url_slug>ewhc/ch/2010/854</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"8\" uri=\"/ewhc/tcc/2015/2915.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)\"
-        score=\"31491\" confidence=\"0.2592611\" fitness=\"0.4149393\">\n    <search:snippet>\n      <search:match
+        score=\"31521\" confidence=\"0.259305\" fitness=\"0.4149487\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\"><search:highlight>Imperial</search:highlight>
         Chemical Industries Ltd</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...an
         application by the Claimant, <search:highlight>Imperial</search:highlight>
@@ -180,7 +180,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-667ada9e-3426-4f29-8577-40a4f876ab7d</uuid>\n\t  <value>[2015]
         EWHC 2915 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2015/2915</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"9\" uri=\"/ewca/civ/2009/619.xml\" path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)\"
-        score=\"31205\" confidence=\"0.2580811\" fitness=\"0.4130507\">\n    <search:snippet>\n      <search:match
+        score=\"31235\" confidence=\"0.258126\" fitness=\"0.4130619\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\">CANADIAN
         <search:highlight>IMPERIAL</search:highlight> BANK OF COMMERCE</search:match>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...against
@@ -197,7 +197,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-a93ecea3-1191-4fef-b65b-afa31dd98375</uuid>\n\t  <value>[2009]
         EWCA Civ 619</value>\n\t  <url_slug>ewca/civ/2009/619</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"10\" uri=\"/ewcop/2022/28.xml\" path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)\"
-        score=\"31205\" confidence=\"0.2580811\" fitness=\"0.4130507\">\n    <search:snippet>\n      <search:match
+        score=\"31235\" confidence=\"0.258126\" fitness=\"0.4130619\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p[1]/*:party\"><search:highlight>Imperial</search:highlight>
         College Healthcare NHS Trust</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...an
         application made by the <search:highlight>Imperial</search:highlight> College
@@ -214,7 +214,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-89aa05f6-7d33-4d0b-b039-93d3fe9ddaa5</uuid>\n\t  <value>[2022]
         EWCOP 28</value>\n\t  <url_slug>ewcop/2022/28</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
         name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"\" count=\"1\"/>\n    <search:facet-value
-        name=\"EAT\" count=\"6\">EAT</search:facet-value>\n    <search:facet-value
+        name=\"EAT\" count=\"5\">EAT</search:facet-value>\n    <search:facet-value
         name=\"EWCA-Civil\" count=\"103\">EWCA-Civil</search:facet-value>\n    <search:facet-value
         name=\"EWCA-Criminal\" count=\"14\">EWCA-Criminal</search:facet-value>\n    <search:facet-value
         name=\"EWCOP\" count=\"8\">EWCOP</search:facet-value>\n    <search:facet-value
@@ -232,7 +232,7 @@ interactions:
         name=\"2009\" count=\"26\">2009</search:facet-value>\n    <search:facet-value
         name=\"2010\" count=\"22\">2010</search:facet-value>\n    <search:facet-value
         name=\"2011\" count=\"31\">2011</search:facet-value>\n    <search:facet-value
-        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.02445S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.00814S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.175745S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.018946S</search:extract-resolution-time>\n    <search:total-time>PT0.448994S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.011581S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002517S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.051458S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004582S</search:extract-resolution-time>\n    <search:total-time>PT0.072542S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -240,7 +240,7 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:04 GMT
+      - Tue, 31 Mar 2026 13:35:24 GMT
       Server:
       - MarkLogic 11.0.2
     status:
@@ -259,10 +259,10 @@ interactions:
     body:
       string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
         {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
-        snippet-format=\"custom\" total=\"578\" start=\"1\" page-length=\"10\" selected=\"include\"
+        snippet-format=\"custom\" total=\"577\" start=\"1\" page-length=\"10\" selected=\"include\"
         xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/ewhc/qb/2013/1646.xml\" path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)\"
-        score=\"51843\" confidence=\"0.3326513\" fitness=\"0.532398\">\n    <search:snippet>\n      <search:match
+        score=\"51893\" confidence=\"0.3327096\" fitness=\"0.5324132\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)/*:akomaNtoso/*:judgment/*:coverPage/*:table/*:tr/*:td[2]/*:p/*:span\">Interim
         Judgment  in Saha v <search:highlight>Imperial</search:highlight> College</search:match>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[3]/*:td[2]/*:p/*:party\"><search:highlight>IMPERIAL</search:highlight>
@@ -278,7 +278,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-6de15015-0fd5-42b4-9ffd-52cd1fda02fb</uuid>\n\t  <value>[2013]
         EWHC 1646 (QB)</value>\n\t  <url_slug>ewhc/qb/2013/1646</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"2\" uri=\"/ewhc/tcc/2017/2299.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2017/2299.xml&quot;)\"
-        score=\"41346\" confidence=\"0.2970714\" fitness=\"0.4754535\">\n    <search:snippet>\n      <search:match
+        score=\"41386\" confidence=\"0.297124\" fitness=\"0.4754678\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2017/2299.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\"><search:highlight>IMPERIAL</search:highlight>
         CHEMICAL INDUSTRIES LTD</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2017-07-26\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -294,7 +294,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-32a636fd-31d0-49bb-b5a9-fe598215bb09</uuid>\n\t  <value>[2017]
         EWHC 2299 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2017/2299</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"3\" uri=\"/ewca/civ/2012/672.xml\" path=\"fn:doc(&quot;/ewca/civ/2012/672.xml&quot;)\"
-        score=\"41346\" confidence=\"0.2970714\" fitness=\"0.4754535\">\n    <search:snippet>\n      <search:match
+        score=\"41386\" confidence=\"0.297124\" fitness=\"0.4754678\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2012/672.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[3]/*:td[2]/*:p[2]/*:party\"><search:highlight>Imperial</search:highlight>
         London Hotels Limited</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2012-05-01\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -309,7 +309,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-c57191b0-c924-4318-858c-1be5c7e099bd</uuid>\n\t  <value>[2012]
         EWCA Civ 672</value>\n\t  <url_slug>ewca/civ/2012/672</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"4\" uri=\"/ewcop/2019/29.xml\" path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)\"
-        score=\"37836\" confidence=\"0.2841821\" fitness=\"0.4548246\">\n    <search:snippet>\n      <search:match
+        score=\"37870\" confidence=\"0.2842226\" fitness=\"0.4548226\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[10]/*:span[2]\"><search:highlight>Imperial</search:highlight>
         College Healthcare An NHS Trust...</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[14]/*:span[2]\">
         <search:highlight>Imperial</search:highlight> College Healthcare An NHS Trust</search:match>\n      <search:match
@@ -328,7 +328,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2390f800-da06-4737-8063-4a2ac83676c7</uuid>\n\t  <value>[2019]
         EWCOP 29</value>\n\t  <url_slug>ewcop/2019/29</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"5\" uri=\"/ewhc/tcc/2016/3082.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)\"
-        score=\"37765\" confidence=\"0.2839153\" fitness=\"0.4543976\">\n    <search:snippet>\n      <search:match
+        score=\"37798\" confidence=\"0.2839523\" fitness=\"0.45439\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[13]/*:content/*:table/*:tr[1]/*:td[2]/*:p/*:span\"><search:highlight>IMPERIAL</search:highlight>
         CHEMICAL INDUSTRIES LTD</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[3]/*:content/*:p\">...of
         certain applications made by <search:highlight>Imperial</search:highlight>
@@ -344,7 +344,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-154c5e2a-2db7-4bee-8e64-a5cb1dbf33c3</uuid>\n\t  <value>[2016]
         EWHC 3082 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2016/3082</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"6\" uri=\"/ewcop/2019/30.xml\" path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)\"
-        score=\"37765\" confidence=\"0.2839153\" fitness=\"0.4543976\">\n    <search:snippet>\n      <search:match
+        score=\"37798\" confidence=\"0.2839523\" fitness=\"0.45439\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[10]/*:span[2]\"><search:highlight>Imperial</search:highlight>
         College Healthcare An NHS Trust...</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[14]/*:span[2]\">
         <search:highlight>Imperial</search:highlight> College Healthcare An NHS Trust</search:match>\n    </search:snippet>\n    <search:extracted
@@ -361,7 +361,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-25fe0a72-fbc6-453b-90ec-091cecf36452</uuid>\n\t  <value>[2019]
         EWCOP 30</value>\n\t  <url_slug>ewcop/2019/30</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"7\" uri=\"/ewhc/ch/2010/854.xml\" path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)\"
-        score=\"31849\" confidence=\"0.2607306\" fitness=\"0.4172912\">\n    <search:snippet>\n      <search:match
+        score=\"31879\" confidence=\"0.2607734\" fitness=\"0.4172984\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\">SEL-<search:highlight>IMPERIAL</search:highlight>
         LIMITED</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[10]/*:content/*:p\">The
         claimant (\u201cSEL-<search:highlight>Imperial</search:highlight>\u201d) imports
@@ -401,7 +401,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-eea8c40a-ee21-43e5-a8b6-ee4bd2d86692</uuid>\n\t  <value>[2010]
         EWHC 854 (Ch)</value>\n\t  <url_slug>ewhc/ch/2010/854</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"8\" uri=\"/ewhc/tcc/2015/2915.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)\"
-        score=\"31491\" confidence=\"0.2592611\" fitness=\"0.4149393\">\n    <search:snippet>\n      <search:match
+        score=\"31521\" confidence=\"0.259305\" fitness=\"0.4149487\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\"><search:highlight>Imperial</search:highlight>
         Chemical Industries Ltd</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...an
         application by the Claimant, <search:highlight>Imperial</search:highlight>
@@ -427,7 +427,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-667ada9e-3426-4f29-8577-40a4f876ab7d</uuid>\n\t  <value>[2015]
         EWHC 2915 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2015/2915</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"9\" uri=\"/ewca/civ/2009/619.xml\" path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)\"
-        score=\"31205\" confidence=\"0.2580811\" fitness=\"0.4130507\">\n    <search:snippet>\n      <search:match
+        score=\"31235\" confidence=\"0.258126\" fitness=\"0.4130619\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\">CANADIAN
         <search:highlight>IMPERIAL</search:highlight> BANK OF COMMERCE</search:match>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...against
@@ -444,7 +444,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-a93ecea3-1191-4fef-b65b-afa31dd98375</uuid>\n\t  <value>[2009]
         EWCA Civ 619</value>\n\t  <url_slug>ewca/civ/2009/619</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"10\" uri=\"/ewcop/2022/28.xml\" path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)\"
-        score=\"31205\" confidence=\"0.2580811\" fitness=\"0.4130507\">\n    <search:snippet>\n      <search:match
+        score=\"31235\" confidence=\"0.258126\" fitness=\"0.4130619\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p[1]/*:party\"><search:highlight>Imperial</search:highlight>
         College Healthcare NHS Trust</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...an
         application made by the <search:highlight>Imperial</search:highlight> College
@@ -461,7 +461,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-89aa05f6-7d33-4d0b-b039-93d3fe9ddaa5</uuid>\n\t  <value>[2022]
         EWCOP 28</value>\n\t  <url_slug>ewcop/2022/28</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
         name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"\" count=\"1\"/>\n    <search:facet-value
-        name=\"EAT\" count=\"6\">EAT</search:facet-value>\n    <search:facet-value
+        name=\"EAT\" count=\"5\">EAT</search:facet-value>\n    <search:facet-value
         name=\"EWCA-Civil\" count=\"103\">EWCA-Civil</search:facet-value>\n    <search:facet-value
         name=\"EWCA-Criminal\" count=\"14\">EWCA-Criminal</search:facet-value>\n    <search:facet-value
         name=\"EWCOP\" count=\"8\">EWCOP</search:facet-value>\n    <search:facet-value
@@ -479,7 +479,7 @@ interactions:
         name=\"2009\" count=\"26\">2009</search:facet-value>\n    <search:facet-value
         name=\"2010\" count=\"22\">2010</search:facet-value>\n    <search:facet-value
         name=\"2011\" count=\"31\">2011</search:facet-value>\n    <search:facet-value
-        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.010562S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.00224S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.041463S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004166S</search:extract-resolution-time>\n    <search:total-time>PT0.060606S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.010728S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002595S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.048327S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004191S</search:extract-resolution-time>\n    <search:total-time>PT0.06828S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -487,7 +487,7 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:06 GMT
+      - Tue, 31 Mar 2026 13:36:09 GMT
       Server:
       - MarkLogic 11.0.2
     status:
@@ -506,10 +506,10 @@ interactions:
     body:
       string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
         {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
-        snippet-format=\"custom\" total=\"578\" start=\"1\" page-length=\"10\" selected=\"include\"
+        snippet-format=\"custom\" total=\"577\" start=\"1\" page-length=\"10\" selected=\"include\"
         xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/ewhc/qb/2013/1646.xml\" path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)\"
-        score=\"51843\" confidence=\"0.3326513\" fitness=\"0.532398\">\n    <search:snippet>\n      <search:match
+        score=\"51893\" confidence=\"0.3327096\" fitness=\"0.5324132\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)/*:akomaNtoso/*:judgment/*:coverPage/*:table/*:tr/*:td[2]/*:p/*:span\">Interim
         Judgment  in Saha v <search:highlight>Imperial</search:highlight> College</search:match>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/qb/2013/1646.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[3]/*:td[2]/*:p/*:party\"><search:highlight>IMPERIAL</search:highlight>
@@ -525,7 +525,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-6de15015-0fd5-42b4-9ffd-52cd1fda02fb</uuid>\n\t  <value>[2013]
         EWHC 1646 (QB)</value>\n\t  <url_slug>ewhc/qb/2013/1646</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"2\" uri=\"/ewhc/tcc/2017/2299.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2017/2299.xml&quot;)\"
-        score=\"41346\" confidence=\"0.2970714\" fitness=\"0.4754535\">\n    <search:snippet>\n      <search:match
+        score=\"41386\" confidence=\"0.297124\" fitness=\"0.4754678\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2017/2299.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\"><search:highlight>IMPERIAL</search:highlight>
         CHEMICAL INDUSTRIES LTD</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2017-07-26\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -541,7 +541,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-32a636fd-31d0-49bb-b5a9-fe598215bb09</uuid>\n\t  <value>[2017]
         EWHC 2299 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2017/2299</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"3\" uri=\"/ewca/civ/2012/672.xml\" path=\"fn:doc(&quot;/ewca/civ/2012/672.xml&quot;)\"
-        score=\"41346\" confidence=\"0.2970714\" fitness=\"0.4754535\">\n    <search:snippet>\n      <search:match
+        score=\"41386\" confidence=\"0.297124\" fitness=\"0.4754678\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2012/672.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[3]/*:td[2]/*:p[2]/*:party\"><search:highlight>Imperial</search:highlight>
         London Hotels Limited</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2012-05-01\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -556,7 +556,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-c57191b0-c924-4318-858c-1be5c7e099bd</uuid>\n\t  <value>[2012]
         EWCA Civ 672</value>\n\t  <url_slug>ewca/civ/2012/672</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"4\" uri=\"/ewcop/2019/29.xml\" path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)\"
-        score=\"37836\" confidence=\"0.2841821\" fitness=\"0.4548246\">\n    <search:snippet>\n      <search:match
+        score=\"37870\" confidence=\"0.2842226\" fitness=\"0.4548226\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[10]/*:span[2]\"><search:highlight>Imperial</search:highlight>
         College Healthcare An NHS Trust...</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2019/29.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[14]/*:span[2]\">
         <search:highlight>Imperial</search:highlight> College Healthcare An NHS Trust</search:match>\n      <search:match
@@ -575,7 +575,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2390f800-da06-4737-8063-4a2ac83676c7</uuid>\n\t  <value>[2019]
         EWCOP 29</value>\n\t  <url_slug>ewcop/2019/29</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"5\" uri=\"/ewhc/tcc/2016/3082.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)\"
-        score=\"37765\" confidence=\"0.2839153\" fitness=\"0.4543976\">\n    <search:snippet>\n      <search:match
+        score=\"37798\" confidence=\"0.2839523\" fitness=\"0.45439\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[13]/*:content/*:table/*:tr[1]/*:td[2]/*:p/*:span\"><search:highlight>IMPERIAL</search:highlight>
         CHEMICAL INDUSTRIES LTD</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/tcc/2016/3082.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[3]/*:content/*:p\">...of
         certain applications made by <search:highlight>Imperial</search:highlight>
@@ -591,7 +591,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-154c5e2a-2db7-4bee-8e64-a5cb1dbf33c3</uuid>\n\t  <value>[2016]
         EWHC 3082 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2016/3082</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"6\" uri=\"/ewcop/2019/30.xml\" path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)\"
-        score=\"37765\" confidence=\"0.2839153\" fitness=\"0.4543976\">\n    <search:snippet>\n      <search:match
+        score=\"37798\" confidence=\"0.2839523\" fitness=\"0.45439\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[10]/*:span[2]\"><search:highlight>Imperial</search:highlight>
         College Healthcare An NHS Trust...</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2019/30.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:p[14]/*:span[2]\">
         <search:highlight>Imperial</search:highlight> College Healthcare An NHS Trust</search:match>\n    </search:snippet>\n    <search:extracted
@@ -608,7 +608,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-25fe0a72-fbc6-453b-90ec-091cecf36452</uuid>\n\t  <value>[2019]
         EWCOP 30</value>\n\t  <url_slug>ewcop/2019/30</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"7\" uri=\"/ewhc/ch/2010/854.xml\" path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)\"
-        score=\"31849\" confidence=\"0.2607306\" fitness=\"0.4172912\">\n    <search:snippet>\n      <search:match
+        score=\"31879\" confidence=\"0.2607734\" fitness=\"0.4172984\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\">SEL-<search:highlight>IMPERIAL</search:highlight>
         LIMITED</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/ch/2010/854.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[10]/*:content/*:p\">The
         claimant (\u201cSEL-<search:highlight>Imperial</search:highlight>\u201d) imports
@@ -648,7 +648,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-eea8c40a-ee21-43e5-a8b6-ee4bd2d86692</uuid>\n\t  <value>[2010]
         EWHC 854 (Ch)</value>\n\t  <url_slug>ewhc/ch/2010/854</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"8\" uri=\"/ewhc/tcc/2015/2915.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)\"
-        score=\"31491\" confidence=\"0.2592611\" fitness=\"0.4149393\">\n    <search:snippet>\n      <search:match
+        score=\"31521\" confidence=\"0.259305\" fitness=\"0.4149487\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\"><search:highlight>Imperial</search:highlight>
         Chemical Industries Ltd</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/tcc/2015/2915.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...an
         application by the Claimant, <search:highlight>Imperial</search:highlight>
@@ -674,7 +674,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-667ada9e-3426-4f29-8577-40a4f876ab7d</uuid>\n\t  <value>[2015]
         EWHC 2915 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2015/2915</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"9\" uri=\"/ewca/civ/2009/619.xml\" path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)\"
-        score=\"31205\" confidence=\"0.2580811\" fitness=\"0.4130507\">\n    <search:snippet>\n      <search:match
+        score=\"31235\" confidence=\"0.258126\" fitness=\"0.4130619\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p/*:party\">CANADIAN
         <search:highlight>IMPERIAL</search:highlight> BANK OF COMMERCE</search:match>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2009/619.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...against
@@ -691,7 +691,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-a93ecea3-1191-4fef-b65b-afa31dd98375</uuid>\n\t  <value>[2009]
         EWCA Civ 619</value>\n\t  <url_slug>ewca/civ/2009/619</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"10\" uri=\"/ewcop/2022/28.xml\" path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)\"
-        score=\"31205\" confidence=\"0.2580811\" fitness=\"0.4130507\">\n    <search:snippet>\n      <search:match
+        score=\"31235\" confidence=\"0.258126\" fitness=\"0.4130619\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)/*:akomaNtoso/*:judgment/*:header/*:table/*:tr[1]/*:td[2]/*:p[1]/*:party\"><search:highlight>Imperial</search:highlight>
         College Healthcare NHS Trust</search:match>\n      <search:match path=\"fn:doc(&quot;/ewcop/2022/28.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[1]/*:content/*:p\">...an
         application made by the <search:highlight>Imperial</search:highlight> College
@@ -708,7 +708,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-89aa05f6-7d33-4d0b-b039-93d3fe9ddaa5</uuid>\n\t  <value>[2022]
         EWCOP 28</value>\n\t  <url_slug>ewcop/2022/28</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
         name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"\" count=\"1\"/>\n    <search:facet-value
-        name=\"EAT\" count=\"6\">EAT</search:facet-value>\n    <search:facet-value
+        name=\"EAT\" count=\"5\">EAT</search:facet-value>\n    <search:facet-value
         name=\"EWCA-Civil\" count=\"103\">EWCA-Civil</search:facet-value>\n    <search:facet-value
         name=\"EWCA-Criminal\" count=\"14\">EWCA-Criminal</search:facet-value>\n    <search:facet-value
         name=\"EWCOP\" count=\"8\">EWCOP</search:facet-value>\n    <search:facet-value
@@ -726,7 +726,7 @@ interactions:
         name=\"2009\" count=\"26\">2009</search:facet-value>\n    <search:facet-value
         name=\"2010\" count=\"22\">2010</search:facet-value>\n    <search:facet-value
         name=\"2011\" count=\"31\">2011</search:facet-value>\n    <search:facet-value
-        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.010693S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002379S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.043957S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004308S</search:extract-resolution-time>\n    <search:total-time>PT0.063464S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.010941S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.006937S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.044822S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004094S</search:extract-resolution-time>\n    <search:total-time>PT0.182847S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -734,7 +734,7 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:11 GMT
+      - Tue, 31 Mar 2026 13:54:41 GMT
       Server:
       - MarkLogic 11.0.2
     status:
