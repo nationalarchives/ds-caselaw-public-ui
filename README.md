@@ -344,8 +344,15 @@ In a new terminal session run `npm run start-scripts` to kick off a Webpack watc
 
 ### Working with Storybook for Django/Ninja Components
 
-In a new terminal session run `npm run story-book`
-The Storybook 8.6.14 for html-webpack5 should then be started automatically you can then access the site in your browser: <http://localhost:6006>
+In a new terminal session run `npm run storybook`
+
+Storybook 8 for html-webpack5 should then start automatically. You can access it in your browser at <http://localhost:6006>.
+
+The repository also publishes Storybook to GitHub Pages using [.github/workflows/publish-storybook.yml](.github/workflows/publish-storybook.yml), which is intended to provide a stable, shareable URL for design interaction.
+
+After GitHub Pages is enabled for this repository (Settings > Pages > Build and deployment: GitHub Actions), the live URL will be:
+
+<https://nationalarchives.github.io/ds-caselaw-public-ui/>
 
 ## A note on running `django` commands locally
 
