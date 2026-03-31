@@ -16,7 +16,8 @@ export default async function renderComponentHtml(template, macro, args = {}) {
 
     const res = await fetch(endpointUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        // Use a simple request content type to avoid browser CORS preflight.
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
         body: JSON.stringify(payload),
     });
 
