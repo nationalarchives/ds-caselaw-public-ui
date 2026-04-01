@@ -115,7 +115,9 @@ def test_desktop_submenu_open_snapshot(desktop_page: Page, desktop_navigation: L
 
     search_and_browse.hover()
 
-    assert_matches_snapshot(desktop_page, "navigation_open", "desktop")
+    assert_matches_snapshot(
+        desktop_page, "navigation_open", "desktop", clip={"x": 0, "y": 0, "width": 1280, "height": 650}
+    )
 
 
 def test_mobile_navigation_has_menu_button(mobile_navigation: Locator):
@@ -185,4 +187,4 @@ def test_mobile_submenu_open_snapshot(mobile_page: Page, mobile_navigation: Loca
     toggle = top_level_navigation_toggle_button(mobile_navigation, "Search and browse")
     toggle.click()
 
-    assert_matches_snapshot(mobile_page, "navigation_open", "mobile")
+    assert_matches_snapshot(mobile_page, "navigation_open", "mobile", {"x": 0, "y": 0, "width": 375, "height": 720})

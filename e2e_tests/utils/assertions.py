@@ -1,5 +1,6 @@
 import os
 import warnings
+from typing import Any
 
 import numpy as np
 import pytest
@@ -97,18 +98,27 @@ def compare_snapshot(actual_path, expected_path):
     return score >= 0.9, score
 
 
-def assert_matches_snapshot(page, page_name, breakpoint: str | None = None):
+def assert_matches_snapshot(
+    page,
+    page_name,
+    breakpoint: str | None = None,
+    clip: dict | None = None,
+):
     regenerate = os.getenv("E2E_REGENERATE_SNAPSHOTS", "false").lower() == "true"
 
     viewports = [(breakpoint, VIEWPORTS[breakpoint])] if breakpoint else VIEWPORTS.items()
+    screenshot_opts: dict[str, Any] = {"full_page": True}
+
+    if clip:
+        screenshot_opts["full_page"] = False
+        screenshot_opts["clip"] = clip
 
     for label, viewport in viewports:
         actual_path = f"snapshots/{page_name}_{label}_actual.png"
         expected_path = f"snapshots/{page_name}_{label}_expected.png"
 
         page.set_viewport_size(viewport)
-        page.screenshot(path=actual_path, full_page=True)
-
+        page.screenshot(path=actual_path, **screenshot_opts)
         if not os.path.exists(expected_path):
             os.replace(actual_path, expected_path)
             if regenerate:
@@ -116,8 +126,7 @@ def assert_matches_snapshot(page, page_name, breakpoint: str | None = None):
             pytest.fail(
                 f"Expected {label} snapshot for {page_name} not found - this has been generated. Re-run to try again"
             )
-
-        page.screenshot(path=actual_path, full_page=True)
+        page.screenshot(path=actual_path, **screenshot_opts)
         result, score = compare_snapshot(actual_path, expected_path)
 
         if not result:
