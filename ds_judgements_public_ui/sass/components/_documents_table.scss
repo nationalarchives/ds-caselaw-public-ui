@@ -48,6 +48,8 @@
     font-size: $typography-xs-text-size;
 
     thead {
+      display: none;
+
       th {
         min-width: 138px;
         padding: $space-2 0;
@@ -71,10 +73,26 @@
           }
         }
       }
+
+      @media (min-width: $grid-breakpoint-large) {
+        display: table-header-group;
+      }
     }
 
     tbody {
       border-bottom: 1px solid colour-var("keyline-dark");
+
+      &:first-of-type {
+        tr:first-child {
+          td {
+            padding-top: 0;
+
+            @media (min-width: $grid-breakpoint-medium) {
+              padding-top: $space-4;
+            }
+          }
+        }
+      }
 
       tr {
         &:first-child {
@@ -83,9 +101,11 @@
           }
         }
 
-        &:last-child {
-          td {
-            padding-bottom: $space-4;
+        @media (min-width: $grid-breakpoint-medium) {
+          &:last-child {
+            td {
+              padding-bottom: $space-4;
+            }
           }
         }
       }
@@ -102,15 +122,17 @@
       @media (max-width: $grid-breakpoint-medium) {
         display: flex;
         flex-direction: column;
-        gap: $space-4;
+        gap: 0;
 
         tr {
           display: flex;
           flex-direction: column;
           gap: $space-2;
-
           padding-bottom: $space-4;
-          border-bottom: 1px solid colour-var("keyline-dark");
+
+          &:first-child {
+            padding-bottom: 0;
+          }
 
           &:last-child {
             td {
@@ -128,7 +150,7 @@
     }
   }
 
-  @media (max-width: $grid-breakpoint-medium) {
+  @media (min-width: $grid-breakpoint-medium) {
     padding-top: $space-2;
   }
 }
