@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import Browser, Locator, Page, expect
 
-from .utils.assertions import VIEWPORTS
+from .utils.assertions import VIEWPORTS, assert_matches_snapshot
 
 
 def get_navigation(page: Page) -> Locator:
@@ -31,7 +31,7 @@ def get_menu_button(navigation: Locator) -> Locator:
     return navigation.locator("label.navigation__menu-button")
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def desktop_page(browser: Browser, base_url: str) -> Page:
     context = browser.new_context(
         viewport=VIEWPORTS["desktop"],
@@ -43,7 +43,7 @@ def desktop_page(browser: Browser, base_url: str) -> Page:
     context.close()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def mobile_page(browser: Browser, base_url: str) -> Page:
     context = browser.new_context(
         viewport=VIEWPORTS["mobile"],
@@ -55,14 +55,14 @@ def mobile_page(browser: Browser, base_url: str) -> Page:
     context.close()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def desktop_navigation(desktop_page: Page) -> Locator:
     navigation = get_navigation(desktop_page)
     expect(navigation).to_be_visible()
     return navigation
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def mobile_navigation(mobile_page: Page) -> Locator:
     navigation = get_navigation(mobile_page)
     expect(navigation).to_be_visible()
@@ -99,6 +99,25 @@ def test_desktop_navigation_does_not_have_menu_button(desktop_navigation: Locato
     expect(menu_button).not_to_be_visible()
 
 
+def test_desktop_submenu_closes_on_mouse_leave(desktop_page: Page, desktop_navigation: Locator):
+    search_and_browse = top_level_navigation_item(desktop_navigation, "Search and browse")
+    advanced_search = submenu_navigation_link(desktop_navigation, "Search and browse", "Advanced search")
+
+    search_and_browse.hover()
+    expect(advanced_search).to_be_visible()
+
+    desktop_page.mouse.move(0, 0)
+    expect(advanced_search).not_to_be_visible()
+
+
+def test_desktop_submenu_open_snapshot(desktop_page: Page, desktop_navigation: Locator):
+    search_and_browse = top_level_navigation_item(desktop_navigation, "Search and browse")
+
+    search_and_browse.hover()
+
+    assert_matches_snapshot(desktop_page, "navigation_open", "desktop")
+
+
 def test_mobile_navigation_has_menu_button(mobile_navigation: Locator):
     menu_button = get_menu_button(mobile_navigation)
     expect(menu_button).to_be_visible()
@@ -114,7 +133,6 @@ def test_mobile_navigation_menu_button_shows_navigation_container(mobile_navigat
 
 
 def test_mobile_navigation_shows_submenu_on_click(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     menu_button = get_menu_button(mobile_navigation)
     menu_button.click()
     advanced_search = submenu_navigation_link(mobile_navigation, "Search and browse", "Advanced search")
@@ -127,7 +145,6 @@ def test_mobile_navigation_shows_submenu_on_click(mobile_page: Page, mobile_navi
 
 
 def test_mobile_navigation_menu_button_closes_navigation(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     menu_button = get_menu_button(mobile_navigation)
     navigation_container = mobile_navigation.locator(".container")
 
@@ -139,7 +156,6 @@ def test_mobile_navigation_menu_button_closes_navigation(mobile_page: Page, mobi
 
 
 def test_mobile_navigation_closes_on_overlay_click(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     menu_button = get_menu_button(mobile_navigation)
     navigation_container = mobile_navigation.locator(".container")
 
@@ -151,7 +167,6 @@ def test_mobile_navigation_closes_on_overlay_click(mobile_page: Page, mobile_nav
 
 
 def test_mobile_navigation_submenu_collapses_on_second_click(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     get_menu_button(mobile_navigation).click()
 
     advanced_search = submenu_navigation_link(mobile_navigation, "Search and browse", "Advanced search")
@@ -164,12 +179,10 @@ def test_mobile_navigation_submenu_collapses_on_second_click(mobile_page: Page, 
     expect(advanced_search).not_to_be_visible()
 
 
-def test_desktop_submenu_closes_on_mouse_leave(desktop_page: Page, desktop_navigation: Locator):
-    search_and_browse = top_level_navigation_item(desktop_navigation, "Search and browse")
-    advanced_search = submenu_navigation_link(desktop_navigation, "Search and browse", "Advanced search")
+def test_mobile_submenu_open_snapshot(mobile_page: Page, mobile_navigation: Locator):
+    get_menu_button(mobile_navigation).click()
 
-    search_and_browse.hover()
-    expect(advanced_search).to_be_visible()
+    toggle = top_level_navigation_toggle_button(mobile_navigation, "Search and browse")
+    toggle.click()
 
-    desktop_page.mouse.move(0, 0)
-    expect(advanced_search).not_to_be_visible()
+    assert_matches_snapshot(mobile_page, "navigation_open", "mobile")
