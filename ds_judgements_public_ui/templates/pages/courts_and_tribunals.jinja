@@ -47,25 +47,6 @@
         {% endif %}
       {% endfor %}
     {% endcall %}
-    {% call list() %}
-      {% for court in courts %}
-        {% if court.display_heading %}
-          {% call list_item() %}
-            {% call link(href="#" ~ court.name|slugify) %}
-              {{ court.name }} ({{ court.courts|length }})
-            {% endcall %}
-          {% endcall %}
-        {% else %}
-          {% for subcourt in court.courts %}
-            {% call list_item() %}
-              {% call link(href="#" ~ subcourt.name|slugify) %}
-                {{ subcourt.name }}
-              {% endcall %}
-            {% endcall %}
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
-    {% endcall %}
     {% call heading(tag="h3") %}
       {% call link(href="#tribunals") %}
         <strong>Tribunals</strong>
