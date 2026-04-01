@@ -31,7 +31,7 @@ def get_menu_button(navigation: Locator) -> Locator:
     return navigation.locator("label.navigation__menu-button")
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def desktop_page(browser: Browser, base_url: str) -> Page:
     context = browser.new_context(
         viewport=VIEWPORTS["desktop"],
@@ -43,7 +43,7 @@ def desktop_page(browser: Browser, base_url: str) -> Page:
     context.close()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def mobile_page(browser: Browser, base_url: str) -> Page:
     context = browser.new_context(
         viewport=VIEWPORTS["mobile"],
@@ -55,14 +55,14 @@ def mobile_page(browser: Browser, base_url: str) -> Page:
     context.close()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def desktop_navigation(desktop_page: Page) -> Locator:
     navigation = get_navigation(desktop_page)
     expect(navigation).to_be_visible()
     return navigation
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def mobile_navigation(mobile_page: Page) -> Locator:
     navigation = get_navigation(mobile_page)
     expect(navigation).to_be_visible()
@@ -116,7 +116,6 @@ def test_desktop_submenu_open_snapshot(desktop_page: Page, desktop_navigation: L
     search_and_browse.hover()
 
     assert_matches_snapshot(desktop_page, "navigation_open", "desktop")
-    desktop_page.mouse.move(0, 0)
 
 
 def test_mobile_navigation_has_menu_button(mobile_navigation: Locator):
@@ -134,7 +133,6 @@ def test_mobile_navigation_menu_button_shows_navigation_container(mobile_navigat
 
 
 def test_mobile_navigation_shows_submenu_on_click(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     menu_button = get_menu_button(mobile_navigation)
     menu_button.click()
     advanced_search = submenu_navigation_link(mobile_navigation, "Search and browse", "Advanced search")
@@ -147,7 +145,6 @@ def test_mobile_navigation_shows_submenu_on_click(mobile_page: Page, mobile_navi
 
 
 def test_mobile_navigation_menu_button_closes_navigation(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     menu_button = get_menu_button(mobile_navigation)
     navigation_container = mobile_navigation.locator(".container")
 
@@ -159,7 +156,6 @@ def test_mobile_navigation_menu_button_closes_navigation(mobile_page: Page, mobi
 
 
 def test_mobile_navigation_closes_on_overlay_click(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     menu_button = get_menu_button(mobile_navigation)
     navigation_container = mobile_navigation.locator(".container")
 
@@ -171,7 +167,6 @@ def test_mobile_navigation_closes_on_overlay_click(mobile_page: Page, mobile_nav
 
 
 def test_mobile_navigation_submenu_collapses_on_second_click(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     get_menu_button(mobile_navigation).click()
 
     advanced_search = submenu_navigation_link(mobile_navigation, "Search and browse", "Advanced search")
@@ -185,7 +180,6 @@ def test_mobile_navigation_submenu_collapses_on_second_click(mobile_page: Page, 
 
 
 def test_mobile_submenu_open_snapshot(mobile_page: Page, mobile_navigation: Locator):
-    mobile_page.reload()
     get_menu_button(mobile_navigation).click()
 
     toggle = top_level_navigation_toggle_button(mobile_navigation, "Search and browse")
