@@ -1,7 +1,7 @@
 import pytest
-from django.template import Context, Template
+from django.test import RequestFactory
 
-from judgments.templatetags.link_tags import trackable_class_name
+from judgments.templatetags.link_tags import trackable_class_name, trackable_link
 
 
 @pytest.mark.parametrize(
@@ -18,47 +18,52 @@ def test_trackable_class_name(input_text, expected_class_name):
     assert trackable_class_name(input_text) == expected_class_name
 
 
-@pytest.mark.django_db
-def test_trackable_link_tag_no_attrs():
-    template = Template("{% load link_tags %}{% trackable_link 'Click me' %}")
-    rendered = template.render(Context())
+def test_trackable_link_no_attrs():
+    result = trackable_link({}, "Click me")
 
-    assert "<a " in rendered
-    assert 'class="analytics-click-me"' in rendered
-    assert "Click me" in rendered
-
-
-@pytest.mark.django_db
-def test_trackable_link_tag_with_attrs():
-    template = Template("{% load link_tags %}{% trackable_link 'Click me' href='/test-url' target='_blank' %}")
-    rendered = template.render(Context())
-
-    assert "<a " in rendered
-    assert 'class="analytics-click-me"' in rendered
-    assert 'href="/test-url"' in rendered
-    assert 'target="_blank"' in rendered
-    assert "Click me" in rendered
+    assert result == {
+        "text": "Click me",
+        "attrs": {},
+        "class_name": "analytics-click-me",
+        "current_path": "",
+    }
 
 
-@pytest.mark.django_db
-def test_trackable_link_tag_with_special_characters():
-    template = Template("{% load link_tags %}{% trackable_link 'Hello World!' href='/hello-world' %}")
-    rendered = template.render(Context())
+def test_trackable_link_with_attrs():
+    result = trackable_link({}, "Click me", href="/test-url", target="_blank")
 
-    assert "<a " in rendered
-    assert 'class="analytics-hello-world"' in rendered
-    assert 'href="/hello-world"' in rendered
-    assert "Hello World!" in rendered
+    assert result == {
+        "text": "Click me",
+        "attrs": {"href": "/test-url", "target": "_blank"},
+        "class_name": "analytics-click-me",
+        "current_path": "",
+    }
 
 
-@pytest.mark.django_db
-def test_trackable_link_tag_with_anchor():
-    template = Template(
-        "{% load link_tags %}{% url 'how_to_search_find_case_law' as my_url %}{% trackable_link 'Click me' href=my_url|add:'#anchor' %}"
-    )
-    context = Context()
-    rendered = template.render(context)
+def test_trackable_link_with_special_characters():
+    result = trackable_link({}, "Hello World!", href="/hello-world")
 
-    assert "<a " in rendered
-    assert 'href="/how-to-search-find-case-law#anchor"' in rendered
-    assert "Click me" in rendered
+    assert result == {
+        "text": "Hello World!",
+        "attrs": {"href": "/hello-world"},
+        "class_name": "analytics-hello-world",
+        "current_path": "",
+    }
+
+
+def test_trackable_link_with_anchor():
+    result = trackable_link({}, "Click me", href="/how-to-search-find-case-law#anchor")
+
+    assert result == {
+        "text": "Click me",
+        "attrs": {"href": "/how-to-search-find-case-law#anchor"},
+        "class_name": "analytics-click-me",
+        "current_path": "",
+    }
+
+
+def test_trackable_link_includes_current_path_from_request():
+    request = RequestFactory().get("/current-page/")
+    result = trackable_link({"request": request}, "Click me")
+
+    assert result["current_path"] == "/current-page/"

@@ -199,7 +199,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
     def test_weasy_pdf(self, mock_context):
-        mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
+        mock_context.return_value = {"document": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/generated.pdf")
         mock_context.assert_called_with(document_uri="ml-eat/2023/1")
         self.assertContains(response, b"%PDF-1.7")
@@ -208,7 +208,7 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
     @patch.object(PdfDetailView, "pdf_stylesheets", [])
     @patch("judgments.views.detail.generated_pdf.PdfDetailView.get_context_data")
     def test_weasy_pdf_press_summary(self, mock_context):
-        mock_context.return_value = {"judgment": "<cat>KITTEN</cat>"}
+        mock_context.return_value = {"document": "<cat>KITTEN</cat>"}
         response = self.client.get("/eat/2023/1/press-summary/1/generated.pdf")
         mock_context.assert_called_with(document_uri="ml-eat/2023/1/press-summary/1")
         self.assertContains(response, b"%PDF-1.7")
