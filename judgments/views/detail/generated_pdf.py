@@ -15,7 +15,8 @@ if os.environ.get("SHOW_WEASYPRINT_LOGS") != "True":
 
 
 class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
-    template_name = "pdf/document.html"
+    template_engine = "jinja"
+    template_name = "pdf/document.jinja"
     pdf_stylesheets = [os.path.join(settings.STATIC_ROOT, "css", "document_pdf.css")]
     pdf_attachment = True
 

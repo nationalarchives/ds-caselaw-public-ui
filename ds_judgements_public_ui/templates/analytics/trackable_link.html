@@ -1,7 +1,0 @@
-{% if current_path == attrs.href %}
-  {{ text }}
-{% else %}
-  <a class="{{ class_name }}" {% for key, value in attrs.items %} {{ key }}="{{ value }}" {% endfor %}>
-    {{ text }}
-  </a>
-{% endif %}

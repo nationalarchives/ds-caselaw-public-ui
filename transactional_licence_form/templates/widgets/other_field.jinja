@@ -1,0 +1,8 @@
+<input aria-labelledby="id_{{ choose_widget_name }}_{{ i }}_label"
+       type="{{ widget.type }}"
+       name="{{ widget.name }}"
+       class="govuk-input govuk-input--inline"
+       {% if widget.value != None %}value="{{ widget.value | string }}"{% endif %}
+       {% for attr, value in widget.attrs.items() %}{% if value is not none and value != False %}{{ attr }}{% if value != True %}="{{ value }}"{% endif %}
+       {% endif %}
+       {% endfor %}>

@@ -1,0 +1,16 @@
+{% if widget.wrap_label %}
+  <div class="structured-search__court-option">
+    <label {% if widget.attrs.id %}for="{{ widget.attrs.id }}"{% endif %}>
+    {% endif %}
+    <input name="{{ widget.name }}"
+           type="{{ widget.type }}"
+           value="{{ widget.value }}"
+           {% for k, v in widget.attrs.items() %}{{ k }}="{{ v }}"{% endfor %}>
+    {% if widget.wrap_label %}
+      <span class="structured-search__court-option-label">
+        {{ widget.label }}
+        <span class="structured-search__court-date-range">—{{ widget.value|get_court_date_range }}</span>
+      </span>
+    </label>
+  </div>
+{% endif %}

@@ -1,7 +1,0 @@
-<script id="waffle-flags" type="text/javascript">
-  window.waffleFlags = [
-    {% for flag, is_active in waffle_flags.items %}
-      {"{{ flag }}": {% if is_active %}true{% else %}false{% endif %}},
-    {% endfor %}
-  ]
-</script>
