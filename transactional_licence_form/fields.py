@@ -1,4 +1,5 @@
 from django import forms
+from django.template import engines
 
 
 class FCLFieldMixin(object):
@@ -8,11 +9,23 @@ class FCLFieldMixin(object):
 
 
 class FCLOtherField(forms.TextInput):
-    template_name = "widgets/other_field.html"
+    template_name = "widgets/other_field.jinja"
+
+    def _render(self, template_name, context, renderer=None):
+        jinja_engine = engines["jinja"]
+        template = jinja_engine.get_template(template_name)
+
+        return template.render(context)
 
 
 class FCLCheckboxWidgetWithOthers(forms.MultiWidget):
-    template_name = "widgets/checkbox_with_others.html"
+    template_name = "widgets/checkbox_with_others.jinja"
+
+    def _render(self, template_name, context, renderer=None):
+        jinja_engine = engines["jinja"]
+        template = jinja_engine.get_template(template_name)
+
+        return template.render(context)
 
     def __init__(self, choices_field, other_fields, attrs=None):
         self.choices_field = choices_field

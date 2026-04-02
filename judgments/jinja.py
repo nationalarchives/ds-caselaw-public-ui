@@ -4,6 +4,7 @@ from functools import wraps
 from crispy_forms.templatetags.crispy_forms_filters import as_crispy_form
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.templatetags.l10n import unlocalize
 from django.urls import reverse
 from django.utils.text import slugify
 
@@ -95,6 +96,9 @@ def environment(**options):
             "url": jinja_url,
             "formatted_document_uri": document_utils.formatted_document_uri,
             "crispy": as_crispy_form,
+            "unlocalize": unlocalize,
+            "has_other_field": transactional_licence_utils.has_other_field,
+            "get_subwidget_for_other_field": transactional_licence_utils.get_subwidget_for_other_field,
         }
     )
     env.filters["error_messages"] = errors.error_messages
