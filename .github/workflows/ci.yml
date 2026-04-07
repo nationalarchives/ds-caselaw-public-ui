@@ -246,7 +246,7 @@ jobs:
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Tests with coverage
-        run: docker compose run django pytest --cov --cov-branch --cov-report=xml -vvvv -rsa -m "not local"
+        run: docker compose run -e COVERAGE_FILE=/tmp/.coverage django pytest --cov --cov-branch --cov-report=xml -vvvv -rsa -m "not local"
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
