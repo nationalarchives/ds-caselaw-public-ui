@@ -12,6 +12,7 @@ module.exports = {
         "@storybook/addon-essentials",
         "@storybook/addon-webpack5-compiler-babel",
         "@chromatic-com/storybook",
+        "@storybook/addon-designs",
     ],
 
     // Use HTML framework
