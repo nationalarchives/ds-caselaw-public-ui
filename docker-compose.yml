@@ -43,22 +43,6 @@ services:
     volumes:
       - ./database_backups:/backups:z
 
-  docs:
-    image: ds_judgements_public_ui_local_docs
-    container_name: ds_judgements_public_ui_local_docs
-    build:
-      context: .
-      dockerfile: ./compose/local/docs/Dockerfile
-    env_file:
-      - ./.env
-    volumes:
-      - ./docs:/docs:z
-      - ./config:/app/config:z
-      - ./ds_judgements_public_ui:/app/ds_judgements_public_ui:z
-    ports:
-      - "7000:7000"
-    command: /start-docs
-
   e2e_tests:
     container_name: e2e_tests_container
     build:
