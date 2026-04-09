@@ -57,10 +57,17 @@ COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
 RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 	&& rm -rf /wheels/
 
+# Create django user and group
+RUN addgroup --system django \
+    && adduser --system --ingroup django --home /home/django django
+
 # copy application code to WORKDIR
-RUN useradd --create-home --shell /bin/bash appuser
-USER appuser
-COPY . ${APP_HOME}
+COPY --chown=django:django . ${APP_HOME}
+
+# make django owner of the WORKDIR directory as well.
+RUN chown django:django ${APP_HOME}
+
+USER django
 
 # Do nothing forever (use 'exec' to resuse the container)
 CMD ["tail", "-f", "/dev/null"]
