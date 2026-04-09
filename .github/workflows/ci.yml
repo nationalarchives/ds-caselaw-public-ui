@@ -200,8 +200,11 @@ jobs:
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
+      - name: Make workspace writable for container user
+        run: chmod -R a+w .
+
       - name: Run mypy
-        run: docker compose run django mypy --cache-dir=/tmp/.mypy_cache ds_judgements_public_ui judgments
+        run: docker compose run django mypy ds_judgements_public_ui judgments
 
   pytest:
     needs:
@@ -242,14 +245,14 @@ jobs:
       - name: Load Postgres image
         run: docker load --input /tmp/postgres-image.tar
 
+      - name: Make workspace writable for container user
+        run: chmod -R a+w .
+
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
 
       - name: Run Django Tests with coverage
         run: docker compose run django pytest --cov --cov-branch --cov-report=xml -vvvv -rsa -m "not local"
-
-      - name: Copy coverage file from container
-        run: docker compose run django cat /tmp/coverage.xml > coverage.xml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0

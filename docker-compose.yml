@@ -4,7 +4,10 @@ services:
     platform: linux/amd64
     build:
       context: .
-      dockerfile: ./compose/local/django/Dockerfile
+      dockerfile: ./Dockerfile
+      args:
+        BUILD_ENVIRONMENT: local
+    entrypoint: [] # Override production entrypoint for local dev
     depends_on:
       - postgres
     volumes:
