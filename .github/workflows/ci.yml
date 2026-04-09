@@ -200,8 +200,10 @@ jobs:
       - name: Create docker network as used in dev
         run: docker network create caselaw
 
-      - name: Make workspace writable for container user
-        run: chmod -R a+w .
+      - name: Prepare writable directories for container user
+        run: |
+          mkdir -p .mypy_cache
+          chmod -R a+w .mypy_cache
 
       - name: Run mypy
         run: docker compose run django mypy ds_judgements_public_ui judgments
@@ -245,8 +247,11 @@ jobs:
       - name: Load Postgres image
         run: docker load --input /tmp/postgres-image.tar
 
-      - name: Make workspace writable for container user
-        run: chmod -R a+w .
+      - name: Prepare writable paths for container user
+        run: |
+          chmod a+w .
+          touch coverage.xml .coverage
+          chmod a+w coverage.xml .coverage
 
       - name: Run DB Migrations
         run: docker compose run --rm django python manage.py migrate --settings=config.settings.test
