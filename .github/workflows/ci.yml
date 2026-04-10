@@ -88,6 +88,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          target: python-production-stage
           push: false
           tags: ds_judgments_public_ui:production-test
           cache-from: type=gha
