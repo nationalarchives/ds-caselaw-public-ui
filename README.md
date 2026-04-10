@@ -20,17 +20,38 @@ manager or [download a `.deb` or
 `.rpm`](https://docs.docker.com/engine/install/)
 
 Once installed, we need to build our containers. We use
-[`docker-compose`](https://docs.docker.com/compose/) to orchestrate the
-building of the project's containers, one for each each service:
+[`docker compose`](https://docs.docker.com/compose/) to orchestrate the
+building of the project's containers:
 
-### `django`
+### Services
 
-Our custom container responsible for running the application. Built from the
-official [python 3.9](https://hub.docker.com/_/python/) base image
+- **`django`** — The application container, built from a multi-stage Dockerfile (local dev stage by default)
+- **`postgres`** — PostgreSQL database
+- **`marklogic`** — Local MarkLogic instance (included in compose by default)
+- **`e2e_tests`** — Playwright end-to-end tests (opt-in via `--profile e2e_tests`)
 
-### `postgres`
+### Compose files
 
-The database service built from the official [postgres](https://hub.docker.com/_/postgres/) image
+#### `docker-compose.yml` — Local development (default)
+
+The base compose file targets the `python-local-stage` of the multi-stage Dockerfile. This stage installs all dependencies (including dev dependencies) but does **not** run the application server — instead it runs `tail -f /dev/null` so the container stays alive and you use `fab run` or `docker exec` to start the Django dev server, watch Sass, etc. Source code is mounted from the host (`.:/app:z`) so edits are reflected immediately without rebuilding.
+
+#### `docker-compose.prod-test.yml` — Production image verification
+
+This override file targets the final `python-production-stage` of the Dockerfile, which is the same image deployed to AWS ECS. Key differences from the local stage:
+
+- **No volume mounts** — the app runs entirely from the files baked into the image, exactly as it would in production.
+- **Separate entrypoint and start scripts** — `compose/docker/entrypoint` waits for Postgres and runs migrations, then `compose/docker/start` compiles frontend assets (`npm run build`), collects static files (`collectstatic`), and starts gunicorn on port 5000.
+- **Runs as the `django` user** — not root, matching the production security model.
+- **Includes a healthcheck** — polls `http://localhost:5000/check` to confirm the app is actually serving traffic, not just that the container started.
+
+You won't use this during normal development, but it lets you catch production-only failures locally — for example, file permission issues, missing static assets, or entrypoint bugs that volume mounts would mask. CI runs this automatically on every push using `docker compose ... up --build --wait` to verify the production image builds and starts successfully before merging.
+
+To verify the production image locally:
+
+```console
+docker compose -f docker-compose.yml -f docker-compose.prod-test.yml up --build --wait
+```
 
 ## Getting started
 
@@ -44,19 +65,23 @@ cp .env.example .env
 
 If new environment variables are required, you might need to update .env to reflect that. Check .env.example for suitable default values
 
-### 2. Get access to Marklogic
+### 2. MarkLogic
 
-This app is intended to edit Judgments in the Marklogic database defined in [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
+This app connects to the MarkLogic database defined in [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
 
-If you wish to run your own Marklogic instance, you will need to follow the setup instructions for it at
-[ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
+A basic local MarkLogic instance is included in `docker-compose.yml` and starts automatically with `fab run` / `docker compose up`. This is enough to get the static site running without needing a separate repo or VPN access, but the local MarkLogic setup may need further development — see the [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic) repo for full configuration details.
 
-For TNA/dxw developers, it is simpler to access the shared [staging Marklogic database](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1152974873/MarkLogic+database+location) via VPN,
-and then set the `MARKLOGIC_HOST`, `MARKLOGIC_USER`, and `MARKLOGIC_PASSWORD` variables in your `.env` file.
+Alternatively, TNA/dxw developers can connect to the shared [staging MarkLogic database](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1152974873/MarkLogic+database+location) via VPN by setting `MARKLOGIC_HOST`, `MARKLOGIC_USER`, and `MARKLOGIC_PASSWORD` in your `.env` file.
 
-The defaults in `.env.example` are correct for a local Marklogic instance.
+### 3. Create Docker network
 
-### 3. Compile frontend assets
+The compose files in this repo and in other caselaw services share an external network named `caselaw`. Create it if it does not yet exist:
+
+```console
+docker network create caselaw
+```
+
+### 4. Compile frontend assets
 
 With the dependencies installed as described in [Front end development](#front-end-development)
 
@@ -64,7 +89,7 @@ With the dependencies installed as described in [Front end development](#front-e
 npm run build
 ```
 
-### 4. Build Docker containers
+### 5. Build Docker containers
 
 ```console
 fab build
@@ -75,28 +100,7 @@ it's a good thing to run if your environment suddenly stops working.
 
 If this fails early on, it's very likely that Docker isn't running, and you'll need to start it.
 
-### 5. Create Docker network
-
-The `docker-compose` files in this repo and in [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic) both specify an external default network named `caselaw`.
-
-We need to create a network with this name if it does not yet exist:
-
-```console
-docker network create caselaw
-```
-
-### 6. Run Marklogic
-
-**Note** If you are using the staging instance of Marklogic, you do not need to
-follow this step.
-
-Switch to the location of [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic) and run:
-
-```console
-docker-compose up
-```
-
-### 7. Quick start
+### 6. Quick start
 
 At this point you can run the following command to "quick start" the application:
 

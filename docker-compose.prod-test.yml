@@ -1,0 +1,30 @@
+# Production image verification.
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod-test.yml up --build --wait
+services:
+  django:
+    build:
+      target: python-production-stage
+      args:
+        BUILD_ENVIRONMENT: production
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes: !reset []
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.production
+      VCR_ENABLED: false
+    ports:
+      - "5001:5000"
+    command: ["/start"]
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:5000/check')",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
