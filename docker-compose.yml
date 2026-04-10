@@ -5,9 +5,9 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+      target: python-local-stage
       args:
         BUILD_ENVIRONMENT: local
-    entrypoint: [] # Override production entrypoint for local dev
     depends_on:
       - postgres
     volumes:
