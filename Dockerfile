@@ -117,11 +117,11 @@ RUN npm run build
 RUN python manage.py collectstatic --noinput --settings=config.settings.production
 
 # Copy and prepare production scripts (owned by root)
-COPY ./compose/production/django/entrypoint /entrypoint
+COPY ./compose/docker/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
 
-COPY ./compose/production/django/start /start
+COPY ./compose/docker/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
