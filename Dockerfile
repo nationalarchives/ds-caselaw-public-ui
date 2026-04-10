@@ -107,14 +107,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
 COPY package-lock.json package.json ./
 RUN npm ci --engine-strict=true
 
-# Copy application code (owned by root for security - immutable at runtime)
+# Copy application code (owned by root)
 COPY . ${APP_HOME}
-
-# Build frontend assets at build-time (as root)
-RUN npm run build
-
-# Collect static files at build-time (as root)
-RUN python manage.py collectstatic --noinput --settings=config.settings.production
 
 # Copy and prepare production scripts (owned by root)
 COPY ./compose/docker/entrypoint /entrypoint
