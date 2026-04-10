@@ -103,27 +103,35 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js dependencies
-COPY --chown=django:django package-lock.json package-lock.json
-COPY --chown=django:django package.json package.json
+# Install Node.js dependencies (as root)
+COPY package-lock.json package.json ./
 RUN npm ci --engine-strict=true
 
-# Copy production scripts
-COPY --chown=django:django ./compose/production/django/entrypoint /entrypoint
+# Copy application code (owned by root for security - immutable at runtime)
+COPY . ${APP_HOME}
+
+# Build frontend assets at build-time (as root)
+RUN npm run build
+
+# Collect static files at build-time (as root)
+RUN python manage.py collectstatic --noinput --settings=config.settings.production
+
+# Copy and prepare production scripts (owned by root)
+COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
 
-COPY --chown=django:django ./compose/production/django/start /start
+COPY ./compose/production/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
-# Copy application code to WORKDIR
-COPY --chown=django:django . ${APP_HOME}
-
-# Make django owner of the WORKDIR directory
-RUN chown django:django ${APP_HOME}
+# Create only the directories that need to be writable by the django user
+# Application code remains owned by root (immutable)
+RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs \
+  && chown -R django:django ${APP_HOME}/media ${APP_HOME}/logs ${APP_HOME}/staticfiles
 
 # Run as non-root user in production
+# User can write to media/logs/staticfiles but cannot modify application code
 USER django
 
 ENTRYPOINT ["/entrypoint"]
