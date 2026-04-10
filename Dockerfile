@@ -119,10 +119,19 @@ COPY ./compose/docker/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
-# Create only the directories that need to be writable by the django user
-# Application code remains owned by root (immutable)
+# Create directories that need to be writable by the django user at runtime
+# - media/logs: application data
+# - static output dirs: written by npm run build and collectstatic in /start
 RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs \
-  && chown -R django:django ${APP_HOME}/media ${APP_HOME}/logs
+    ${APP_HOME}/ds_judgements_public_ui/static/css \
+    ${APP_HOME}/ds_judgements_public_ui/static/js/dist \
+    ${APP_HOME}/staticfiles \
+  && chown -R django:django \
+    ${APP_HOME}/media \
+    ${APP_HOME}/logs \
+    ${APP_HOME}/ds_judgements_public_ui/static/css \
+    ${APP_HOME}/ds_judgements_public_ui/static/js/dist \
+    ${APP_HOME}/staticfiles
 
 # Run as non-root user in production
 # User can write to media/logs/staticfiles but cannot modify application code
