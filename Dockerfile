@@ -104,26 +104,28 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js dependencies (as root)
-COPY --chown=django:django package-lock.json package.json ./
+COPY package-lock.json package.json ./
 RUN npm ci --engine-strict=true
 
-# Copy application code (owned by django for now - will change in later PR)
-COPY --chown=django:django . ${APP_HOME}
+# Copy application code (owned by root)
+COPY . ${APP_HOME}
 
-# Copy and prepare production scripts
-COPY --chown=django:django ./compose/docker/entrypoint /entrypoint
+# Copy and prepare production scripts (owned by root)
+COPY ./compose/docker/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
 
-COPY --chown=django:django ./compose/docker/start /start
+COPY ./compose/docker/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
-# Create directories that need to be writable by the django user
+# Create only the directories that need to be writable by the django user
+# Application code remains owned by root (immutable)
 RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs \
   && chown -R django:django ${APP_HOME}/media ${APP_HOME}/logs
 
 # Run as non-root user in production
+# User can write to media/logs/staticfiles but cannot modify application code
 USER django
 
 ENTRYPOINT ["/entrypoint"]
