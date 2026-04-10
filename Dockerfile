@@ -122,7 +122,7 @@ RUN chmod +x /start
 # Create only the directories that need to be writable by the django user
 # Application code remains owned by root (immutable)
 RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs \
-  && chown -R django:django ${APP_HOME}/media ${APP_HOME}/logs ${APP_HOME}/staticfiles
+  && chown -R django:django ${APP_HOME}/media ${APP_HOME}/logs
 
 # Run as non-root user in production
 # User can write to media/logs/staticfiles but cannot modify application code
