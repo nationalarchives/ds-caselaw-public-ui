@@ -4,8 +4,12 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Static assets and frontend builds are done at container build-time
-# This makes startup faster and more secure (code is immutable)
-
 cd /app
+
+>&2 echo 'Building frontend assets...'
+npm run build
+
+>&2 echo 'Collecting static files...'
+python manage.py collectstatic --noinput
+
 /usr/local/bin/gunicorn config.wsgi --bind 0.0.0.0:5000 --chdir=/app --access-logfile - -w 5 --access-logformat '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(L)s "%({x-forwarded-for}i)s" "%({cloudfront-viewer-address}i)s" "%({x-amz-cf-id}i)s" "%({x-amzn-trace-id}i)s"' --max-requests 1000 --max-requests-jitter 100
