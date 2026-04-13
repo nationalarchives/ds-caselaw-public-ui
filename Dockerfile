@@ -63,6 +63,8 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 # Local development stage
 FROM python-runtime-stage AS python-local-stage
 
+ARG APP_HOME=/app
+
 ARG BUILD_ENVIRONMENT=local
 ENV BUILD_ENV=${BUILD_ENVIRONMENT}
 
@@ -84,6 +86,8 @@ CMD ["tail", "-f", "/dev/null"]
 
 # Production stage
 FROM python-runtime-stage AS python-production-stage
+
+ARG APP_HOME=/app
 
 ARG BUILD_ENVIRONMENT=production
 ENV BUILD_ENV=${BUILD_ENVIRONMENT}
