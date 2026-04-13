@@ -43,7 +43,7 @@
     "stylelint": "17.6.0",
     "stylelint-config-clean-order": "8.0.1",
     "stylelint-config-standard-scss": "17.0.0",
-    "webpack": "5.106.0",
+    "webpack": "5.106.1",
     "webpack-cli": "7.0.2"
   },
   "browserslist": [
