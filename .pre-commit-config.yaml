@@ -9,6 +9,7 @@ repos:
       - id: check-merge-conflict
       - id: check-xml
       - id: check-yaml
+        args: [--unsafe] # Allow !reset tag for clearing inherited volumes in prod test config. See https://github.com/pre-commit/pre-commit-hooks/issues/1090 issue comment for context.
       - id: end-of-file-fixer
       - id: forbid-submodules
       - id: mixed-line-ending

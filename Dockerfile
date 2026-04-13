@@ -119,18 +119,14 @@ COPY ./compose/docker/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
-# Create directories that need to be writable by the django user at runtime
+# Grant django user write access to directories written at runtime:
 # - media/logs: application data
-# - static output dirs: written by npm run build and collectstatic in /start
-RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs \
-    ${APP_HOME}/ds_judgements_public_ui/static/css \
-    ${APP_HOME}/ds_judgements_public_ui/static/js/dist \
-    ${APP_HOME}/staticfiles \
+# - static: build outputs from npm run build (webpack + sass) and collectstatic
+RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs ${APP_HOME}/staticfiles \
   && chown -R django:django \
     ${APP_HOME}/media \
     ${APP_HOME}/logs \
-    ${APP_HOME}/ds_judgements_public_ui/static/css \
-    ${APP_HOME}/ds_judgements_public_ui/static/js/dist \
+    ${APP_HOME}/ds_judgements_public_ui/static \
     ${APP_HOME}/staticfiles
 
 # Run as non-root user in production

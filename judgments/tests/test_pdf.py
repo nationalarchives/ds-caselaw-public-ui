@@ -8,6 +8,7 @@ from judgments.models.document_pdf import DocumentPdf
 from judgments.utils import formatted_document_uri
 
 
+@patch.dict(environ, {"ASSETS_CDN_BASE_URL": "https://example.org"})
 class TestDocumentPdf:
     @patch("judgments.models.document_pdf.requests")
     def test_get_pdf_size_returns_pdf_size_if_it_exists(self, requests_mock):

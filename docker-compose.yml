@@ -9,50 +9,100 @@ services:
       args:
         BUILD_ENVIRONMENT: local
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+      marklogic:
+        condition: service_healthy
+    init: true
     volumes:
       - .:/app:z
       - ../ds-caselaw-custom-api-client:/apiclient
-    init: true
     environment:
-      DATABASE_URL: "postgres://postgres:admin@postgres:5432/ds_judgements_public_ui"
-      DJANGO_SETTINGS_MODULE: "config.settings.local"
-      SECRET_KEY: local_dev_secret_key
-      SECURE_SSL_REDIRECT: "false"
-    env_file:
-      - ./.env
+      DATABASE_URL: "postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-admin}@postgres:5432/${POSTGRES_DB:-ds_judgements_public_ui}"
+      DJANGO_SETTINGS_MODULE: config.settings.local
+      SECRET_KEY: ${SECRET_KEY:-local_dev_secret_key}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-local_dev_secret_key}
+      DJANGO_ADMIN_URL: ${DJANGO_ADMIN_URL:-admin/}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,0.0.0.0}
+      ROLLBAR_ACCESS_TOKEN: ${ROLLBAR_ACCESS_TOKEN:-}
+      ROLLBAR_ENV: ${ROLLBAR_ENV:-development}
+      SECURE_SSL_REDIRECT: ${SECURE_SSL_REDIRECT:-false}
+      DJANGO_SECURE_SSL_REDIRECT: ${DJANGO_SECURE_SSL_REDIRECT:-false}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: ${POSTGRES_DB:-ds_judgements_public_ui}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-admin}
+      MARKLOGIC_HOST: ${MARKLOGIC_HOST:-marklogic}
+      MARKLOGIC_USER: ${MARKLOGIC_USER:-admin}
+      MARKLOGIC_PASSWORD: ${MARKLOGIC_PASSWORD:-admin}
+      MARKLOGIC_USE_HTTPS: ${MARKLOGIC_USE_HTTPS:-false}
+      VCR_ENABLED: ${VCR_ENABLED:-true}
+      VCR_MODE: ${VCR_MODE:-playback}
+      ASSETS_CDN_BASE_URL: ${ASSETS_CDN_BASE_URL:-}
+      PUBLIC_ASSET_BUCKET: ${PUBLIC_ASSET_BUCKET:-}
+      S3_REGION: ${S3_REGION:-eu-west-2}
+      MAX_QUERY_WORDS: ${MAX_QUERY_WORDS:-5}
+      WSGI_AUTH_EXCLUDE_PATHS: ${WSGI_AUTH_EXCLUDE_PATHS:-/check}
     ports:
       - "3000:3000"
-    # do nothing forever - exec commands elsewhere
     command: tail -f /dev/null
 
   postgres:
     image: postgres:15.17@sha256:3e43515057e113ee741fca2f621f15300be34a6d4a8dfcf2e20651288c8272f3
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: ds_judgements_public_ui
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      PGDATABASE: ds_judgements_public_ui
-      PGUSER: postgres
-      PGPASSWORD: admin
+      POSTGRES_DB: ${POSTGRES_DB:-ds_judgements_public_ui}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-admin}
       POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - ./database_backups:/backups:z
+
+  marklogic:
+    image: progressofficial/marklogic-db:12.0.1-ubi-rootless-2.2.4@sha256:2159236c8d6a52d41a84a50822864d99d528789489e8247e81dd2922cb0711c6
+    container_name: marklogic
+    hostname: marklogic
+    dns_search: ""
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'curl http://localhost:8002/manage/v2?view=healthcheck -u "admin:admin" || exit 1',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    environment:
+      - MARKLOGIC_INIT=true
+      - MARKLOGIC_ADMIN_USERNAME=admin
+      - MARKLOGIC_ADMIN_PASSWORD=admin
+      - REALM=public
+      - TZ=Europe/London
+    volumes:
+      - marklogic_data:/var/opt/MarkLogic
+    ports:
+      - 8000-8010:8000-8010
 
   e2e_tests:
     container_name: e2e_tests_container
     build:
       context: ./e2e_tests
       dockerfile: "../compose/local/e2e_tests/Dockerfile"
-
     profiles: [e2e_tests]
     volumes:
       - "./e2e_tests:/app:z"
     tty: true
+
+volumes:
+  marklogic_data:
 
 networks:
   default:
