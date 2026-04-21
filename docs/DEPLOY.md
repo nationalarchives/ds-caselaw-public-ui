@@ -1,6 +1,6 @@
 # Deployment
 
-<!-- last_review: 2026-04-08 -->
+<!-- last_review: 2026-04-21 -->
 
 ## Environment variables
 
@@ -16,10 +16,8 @@ The `main` branch is automatically deployed with each commit. The deployed app c
 
 To deploy to production:
 
-1. Create a [new release](https://github.com/nationalarchives/ds-caselaw-public-ui/releases).
-2. Set the tag and release name to `vX.Y.Z`, following semantic versioning.
-3. Publish the release.
-4. Automated workflow will then force-push that release to the `production` branch, which will then be deployed to the production environment.
-5. If you need to roll back to an earlier version, force-push that version to `production` manually. Explictly run `dalmatian service deploy` (with the right `-i`, `-e`, `-s` flags) if it is not a new commit.
+1. Follow the [release process](RELEASE.md) to create a new release.
+1. Automated workflow will then force-push that release to the `production` branch, which will then be deployed to the production environment.
+1. If you need to roll back to an earlier version, force-push that version to `production` manually. Explictly run `dalmatian service deploy` (with the right `-i`, `-e`, `-s` flags) if it is not a new commit.
 
 The production app is at [https://caselaw.nationalarchives.gov.uk/](https://caselaw.nationalarchives.gov.uk/)
