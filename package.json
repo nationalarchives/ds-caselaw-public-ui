@@ -51,10 +51,10 @@
   ],
   "dependencies": {
     "@nationalarchives/ds-caselaw-frontend": "github:nationalarchives/ds-caselaw-frontend#v2.0.17",
-    "@nationalarchives/frontend": "^0.39.0",
-    "govuk-country-and-territory-autocomplete": "^2.0.0",
-    "govuk-frontend": "^6.0.0",
-    "nodemon": "^3.0.3",
-    "sass": "^1.58.3"
+    "@nationalarchives/frontend": "0.39.0",
+    "govuk-country-and-territory-autocomplete": "2.0.0",
+    "govuk-frontend": "6.1.0",
+    "nodemon": "3.1.14",
+    "sass": "1.99.0"
   }
 }
