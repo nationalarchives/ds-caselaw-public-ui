@@ -3,4 +3,4 @@
 -r base.txt
 
 gunicorn==25.3.0  # https://github.com/benoitc/gunicorn
-psycopg2==2.9.11  # https://github.com/psycopg/psycopg2
+psycopg2==2.9.12  # https://github.com/psycopg/psycopg2
