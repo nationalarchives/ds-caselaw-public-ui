@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.urls import reverse
+from django.utils.functional import cached_property
 from ds_caselaw_utils import courts
 from ds_caselaw_utils.courts import CourtNotFoundException
 
@@ -68,7 +69,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
     def page_title(self):
         return self.court.name
 
-    @property
+    @cached_property
     def court(self):
         try:
             return courts.get_by_param(self.kwargs["param"])
