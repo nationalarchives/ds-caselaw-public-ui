@@ -1,5 +1,8 @@
+from django.http import Http404
 from django.urls import reverse
+from django.utils.functional import cached_property
 from ds_caselaw_utils import courts
+from ds_caselaw_utils.courts import CourtNotFoundException
 
 from judgments.models.court_dates import CourtDates
 
@@ -66,15 +69,21 @@ class CourtOrTribunalView(TemplateViewWithContext):
     def page_title(self):
         return self.court.name
 
-    @property
+    @cached_property
     def court(self):
-        return courts.get_by_param(self.kwargs["param"])
+        try:
+            return courts.get_by_param(self.kwargs["param"])
+        except CourtNotFoundException:
+            raise Http404("Court not found")
 
     def get_context_data(self, **kwargs):
+
+        court = self.court
+
         context = super().get_context_data(**kwargs)
 
-        context["feedback_survey_type"] = "court_or_tribunal_%s" % self.court.canonical_param
-        context["court"] = self.court
+        context["feedback_survey_type"] = "court_or_tribunal_%s" % court.canonical_param
+        context["court"] = court
         context["breadcrumbs"] = [
             {"text": "Search and browse", "url": reverse("search_and_browse")},
             {"url": reverse("courts_and_tribunals"), "text": "Types of courts in England and Wales"},
