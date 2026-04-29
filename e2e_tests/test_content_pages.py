@@ -17,16 +17,7 @@ about_this_service_pages = [
         "title": "What we provide",
         "heading": "What we provide",
     },
-    {
-        "url": "/courts-and-date-coverage",
-        "title": "Courts and date coverage",
-        "heading": "Courts and date coverage",
-    },
-    {
-        "url": "/courts-and-tribunals-in-fcl",
-        "title": "Courts and tribunals in Find Case Law",
-        "heading": "Courts and tribunals in Find Case Law",
-    },
+    {"url": "/courts-and-coverage", "title": "Courts and coverage", "heading": "Courts and coverage"},
 ]
 
 understanding_case_law_pages = [
@@ -52,11 +43,6 @@ search_and_browse_pages = [
         "url": "/search-and-browse",
         "title": "Search and browse",
         "heading": "Search and browse",
-    },
-    {
-        "url": "/browse-courts-and-tribunals",
-        "title": "Browse courts and tribunals",
-        "heading": "Browse courts and tribunals",
     },
 ]
 

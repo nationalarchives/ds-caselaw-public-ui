@@ -1,0 +1,141 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/list.jinja" import list, list_item %}
+{% block mobile_article_title %}
+  {{ heading(content="Courts and coverage") }}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {{ heading(content="Courts and coverage") }}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {{ link(href="#what-we-receive", content="What we receive") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#date-ranges", content="Date ranges") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#why-coverage-varies", content="Why coverage varies") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#whats-not-available", content="What's not available") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#check-for-appeals", content="Check for appeals") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#historical-records", content="Historical records") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#related-information", content="Related information") }}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  <p>
+    Find Case Law publishes judgments and decisions from courts and tribunals in England and Wales. Coverage varies by court — this page explains what’s included, what date ranges are available, and what’s not in the service.
+  </p>
+  {{ heading(tag="h2", content="What we receive") }}
+  <p>
+    Courts and tribunals select judgments and decisions to send to The National Archives for permanent preservation and publication on Find Case Law.
+  </p>
+  <p>We regularly receive and publish judgments from:</p>
+  {% call list(variant="bullets") %}
+    {{ list_item(content="United Kingdom Supreme Court") }}
+    {{ list_item(content="Privy Council") }}
+    {{ list_item(content="Court of Appeal (Civil Division and Criminal Division)") }}
+    {{ list_item(content="High Court (across all divisions)") }}
+    {{ list_item(content="Upper Tribunals") }}
+    {{ list_item(content="Employment Appeal Tribunal") }}
+  {% endcall %}
+  <p>
+    We also receive some decisions from first-tier tribunal chambers and some judgments from the Family Court, Court of Protection, County Court and Crown Court.
+  </p>
+  {{ heading(tag="h2", content="Date ranges") }}
+  <p>
+    Coverage dates vary by court. Some have comprehensive recent records, while others include selected historical judgments.
+  </p>
+  {% call list() %}
+    {% for group in courts %}
+      {% if group.display_heading %}
+        {% call list_item() %}
+          <strong>{{ group.name }}</strong>
+          {% call list(variant="bullets") %}
+            {% for court in group.courts %}
+              {% call list_item() %}
+                {{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}
+              {% endcall %}
+            {% endfor %}
+          {% endcall %}
+        {% endcall %}
+      {% else %}
+        {% for court in group.courts %}
+          {% call list_item() %}
+            <strong>{{ court.grouped_name }}</strong> &mdash; {{ court.canonical_param|get_court_date_range }}
+          {% endcall %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endcall %}
+  <p>
+    Each court and tribunal also has its own page on Find Case Law showing recent judgments, coverage details and a description of its role and jurisdiction. You can find these through the {{ link(href="", content="courts and tribunals directory.") }}
+  </p>
+  {{ heading(tag="h2", content="Why coverage varies") }}
+  <p>
+    The date ranges reflect when courts began creating digital records and how they decide what to publish. Not all courts started sending judgments at the same time, and publication practices differ between courts.
+  </p>
+  <p>
+    Judgments from 19 April 2022 onwards have been transferred to The National Archives directly by the courts and tribunals. Judgments from before this date have been sourced from a variety of different sources, including BAILII.
+  </p>
+  <p>
+    Coverage is expanding. We regularly add new tribunals and extend date ranges for existing courts. The National Archives, the Ministry of Justice and the Judiciary share the ambition to grow Find Case Law into a comprehensive and authoritative repository for case law in England and Wales.
+  </p>
+  {{ heading(tag="h2", content="What’s not available") }}
+  <p>
+    Find Case Law is not a complete record of all judgments and decisions. It contains only judgments and decisions that have been handed down and made public.
+  </p>
+  <p>We do not routinely receive judgments from:</p>
+  {% call list(variant="bullets") %}
+    {{ list_item(content="Crown Courts") }}
+    {{ list_item(content="County Courts") }}
+    {{ list_item(content="Magistrates’ Courts") }}
+  {% endcall %}
+  <p>
+    Some selected Crown Court and County Court judgments may be published at the discretion of the judiciary. The service does not contain judgments or decisions from Scottish, Northern Irish or Irish courts or tribunals.
+  </p>
+  <p>
+    Ex tempore (verbal) judgments that are not routinely transcribed may not be sent to The National Archives. For these, contact the court or tribunal directly.
+  </p>
+  {{ heading(tag="h2", content="Check for appeals") }}
+  <p>
+    Some judgments on Find Case Law may have been appealed, and the appeal judgment may not be included in the service. You should check whether a judgment has been the subject of an appeal before relying on it as an authority.
+  </p>
+  {{ heading(tag="h2", content="Historical records") }}
+  <p>
+    Older legal records that have been transferred to The National Archives on paper can be found in Discovery, The National Archives’ main catalogue. Research guides provide help with finding particular records.
+  </p>
+  {% call card(title="Related information", title_tag="h2") %}
+    {% call list(variant="bullets") %}
+      {% call list_item() %}
+        Search for judgments — if you know what you're looking for, start with {{ link(href=url("search") , content="search") }} or {{ link(href=url("advanced_search") , content="advanced search") }}
+      {% endcall %}
+      {% call list_item() %}
+        Browse by court — the {{ link(href=url("courts_and_tribunals") , content="courts and tribunals directory") }} lists every court with links to their individual pages and recent judgments
+      {% endcall %}
+      {% call list_item() %}
+        How we publish — {{ link(href=url("publishing_policy") , content="publishing policy") }} explains how judgments are received and published on Find Case Law
+      {% endcall %}
+      {% call list_item() %}
+        Can't find what you're looking for? — {{ link(href=url("contact_us") , content="contact us") }} and we can help
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href=url("glossary") , content="Our glossary") }} explains legal and technical terms you may encounter when searching for and reading judgments
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_content %}
