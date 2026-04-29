@@ -55,13 +55,11 @@ class SitemapStaticView(TemplateView, TemplateResponseMixin):
         # Search and browse
         "search_and_browse",
         "advanced_search",
-        "browse_courts_and_tribunals",
         "courts_and_tribunals",
         # About this service
         "about_this_service",
         "what_we_provide",
-        "courts_and_date_coverage",
-        "courts_and_tribunals_in_fcl",
+        "courts_and_coverage",
         "publishing_policy",
         # Permissions and licensing
         "permissions_and_licensing",
