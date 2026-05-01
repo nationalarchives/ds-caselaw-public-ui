@@ -14,6 +14,7 @@
   {{ caller() }}
   </{{ variant_tag }}>
 {% endmacro %}
-{% macro list_item() %}
-  <li>{{ caller() }}</li>
+{% macro list_item(content=None) %}
+  {% set body_content = caller() if caller is defined else content if content is defined else "" %}
+  <li>{{ body_content }}</li>
 {% endmacro %}

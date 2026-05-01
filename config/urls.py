@@ -175,9 +175,10 @@ about_this_service_urls = [
     ),
     path(
         "courts-and-date-coverage",
-        about_this_service_views.CourtsAndDateCoverageView.as_view(),
+        lambda request: HttpResponseRedirect(reverse("courts_and_coverage")),
         name="courts_and_date_coverage",
     ),
+    path("courts-and-coverage", about_this_service_views.CourtsAndCoverageView.as_view(), name="courts_and_coverage"),
     path(
         "publishing-policy",
         about_this_service_views.PublishingPolicyView.as_view(),
@@ -185,7 +186,7 @@ about_this_service_urls = [
     ),
     path(
         "courts-and-tribunals-in-fcl",
-        about_this_service_views.CourtsAndTribunalsInFclView.as_view(),
+        lambda request: HttpResponseRedirect(reverse("courts_and_coverage")),
         name="courts_and_tribunals_in_fcl",
     ),
     path(
@@ -263,7 +264,7 @@ search_and_browse_urls = [
     ),
     path(
         "browse-courts-and-tribunals",
-        search_and_browse_views.BrowseCourtsAndTribunalsView.as_view(),
+        lambda request: HttpResponseRedirect(reverse("courts_and_coverage")),
         name="browse_courts_and_tribunals",
     ),
 ]

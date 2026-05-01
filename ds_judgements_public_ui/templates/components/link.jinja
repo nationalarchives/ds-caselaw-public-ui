@@ -1,4 +1,5 @@
-{% macro link(href="", variant="default", class_name="", alignment=None, size=None, show_visited=True, attrs={}) %}
+{% macro link(href="", variant="default", class_name="", alignment=None, size=None, show_visited=True, attrs={}, content=None) %}
+  {% set body_content = caller() if caller is defined else content if content is defined else "" %}
   {% set size_classes = {"default": "", "md": "link--md", "lg": "link--lg"} %}
   {% set alignment_classes = {"default": "", "center": "link--center"} %}
   {% set variant_classes = {"default": "", "contrast": "link--contrast"} %}
@@ -10,7 +11,7 @@
   {# djlint:off #}
   <a href="{{ href }}"
      class="{{ link_class }} {{ class_name }}"
-     {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>{{ caller() }}</a>{% endmacro %}
+     {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>{{ body_content }}</a>{% endmacro %}
   {# djlint:on #}
   {% macro link_examples() %}
     <h3>Default</h3>
