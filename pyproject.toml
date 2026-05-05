@@ -17,8 +17,8 @@ unfixable = ["ERA"]
 
 [tool.ruff.lint.extend-per-file-ignores]
 "tests/*" = ["S101"]  # `assert` is fine in tests
-"judgments/tests/*" = ["S101"]  # `assert` is fine in tests
+"judgments/tests/*" = ["S101"]  # `assert` is fine in tests
 "config/tests/*" = ["S101"] # `assert` is fine in tests
 "e2e_tests/*" = ["S101"]  # `assert` is fine in tests
 "fabfile.py" = ["S607",  # starting a process (docker) with an executable defined by PATH
-                "S603", ] # untrusted input to subprocess (docker commands)
+                "S603", ] # untrusted input to subprocess (docker commands)
