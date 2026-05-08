@@ -1,40 +1,92 @@
-{% extends "layouts/base.jinja" %}
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
 {% from "components/heading.jinja" import heading %}
 {% from "components/button.jinja" import button %}
-{% from "components/content_container.jinja" import content_container %}
-{% block content %}
-  {% call content_container() %}
-    <div>
-      {% call heading() %}
-        {{ court.name }}
-      {% endcall %}
-      {% autoescape off %}
-        {{ court.description_text_as_html }}
-      {% endautoescape %}
-      {% call heading(tag="h2") %}
-        Documents on Find Case Law
-      {% endcall %}
-      {% if court|get_court_judgments_count > 0 %}
-        <p>
-          We currently hold <b>{{ court | get_court_judgments_count | intcomma }} documents</b> from
-          the {{ court.name }}, from {{ court.canonical_param | get_court_date_range }}.
-        </p>
-        <p>
-          {% call button(href=url("search") ~ "?" ~ court.type.value ~ "=" ~ court.canonical_param) %}
-            See all documents from the {{ court.name }}
-          {% endcall %}
-        </p>
-      {% else %}
-        <p>We do not currently hold any documents from the {{ court.name }}.</p>
-      {% endif %}
-      {% if court.historic_documents_support_text_as_html %}
-        {% call heading(tag="h2") %}
-          Finding older documents
-        {% endcall %}
-        {% autoescape off %}
-          {{ court.historic_documents_support_text_as_html }}
-        {% endautoescape %}
-      {% endif %}
-    </div>
+{% from "components/contents.jinja" import contents %}
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
+{% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    {{ court.name }}
   {% endcall %}
-{% endblock content %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    {{ court.name }}
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#recent-judgments", content="Recent judgments") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#search-this-court", content="Search this court") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {% autoescape off %}
+    {{ court.description_text_as_html }}
+  {% endautoescape %}
+  {% call heading(tag="h2") %}
+    Coverage on Find Case Law
+  {% endcall %}
+  <p>
+    <strong>Date range</strong> — {{ param|get_court_date_range }}
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+  {% call heading(tag="h2") %}
+    Recent judgments
+  {% endcall %}
+  {% call documents_table(headings=["Case name", "Neutral citation", "Handed down"], hide_title=True, margin=True) %}
+    {% for document in documents %}
+      {% call document_table_body() %}
+        {% call document_table_row() %}
+          {% call document_table_cell(variant="text") %}
+            {% call link(href=url("detail", document.slug)) %}
+              {{ document.name }}
+            {% endcall %}
+          {% endcall %}
+          {% call document_table_cell(variant="text", label="Neutral citation") %}
+            {{ document.neutral_citation | default("&mdash;", true) | safe }}
+          {% endcall %}
+          {% call document_table_cell(variant="text", label="Handed down") %}
+            {{ formatdate(document.date) }}
+          {% endcall %}
+        {% endcall %}
+      {% endcall %}
+    {% endfor %}
+  {% endcall %}
+  {% call heading(tag="h2") %}
+    Search this court
+  {% endcall %}
+  <p>
+    Use the search box to find specific cases from the Supreme Court, or visit {{ link(href=url("advanced_search") , content="Advanced search") }} to combine court filters with other search criteria.
+  </p>
+  {% call search_form_container(margin=True) %}
+    {% call search_form() %}
+      {{ search_input(value="", placeholder="Input your search term for this court...", button_action=url("search") , button_label="Search") }}
+    {% endcall %}
+  {% endcall %}
+  {% call card(title="Questions about judgments from this court", title_tag="h2") %}
+    <p>
+      Please note that neither Find Case Law or The National Archives are responsible for the content of any court judgments provided to us by the {{ court.name }}.
+    </p>
+    <p>If you have any queries concerning a judgment from this court, please contact them directly.</p>
+  {% endcall %}
+{% endblock article_content %}

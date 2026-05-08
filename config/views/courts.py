@@ -1,10 +1,21 @@
+import logging
+
+from caselawclient.Client import MarklogicResourceNotFoundError
+from caselawclient.client_helpers.search_helpers import (
+    search_judgments_and_parse_response,
+)
+from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
 from django.urls import reverse
 from django.utils.functional import cached_property
 from ds_caselaw_utils import courts
 from ds_caselaw_utils.courts import CourtNotFoundException
+from requests.exceptions import RequestException
 
 from judgments.models.court_dates import CourtDates
+from judgments.utils import (
+    api_client,
+)
 
 from .template_view_with_context import TemplateViewWithContext
 
@@ -76,16 +87,30 @@ class CourtOrTribunalView(TemplateViewWithContext):
         except CourtNotFoundException:
             raise Http404("Court not found")
 
+    def _get_search_response(self, search_parameters):
+        try:
+            return search_judgments_and_parse_response(api_client, search_parameters)
+        except (MarklogicResourceNotFoundError, RequestException) as error:
+            logging.warn(f"Error fetching judgments for {self.court.name}: {error}")
+
+            return []
+
     def get_context_data(self, **kwargs):
 
         court = self.court
 
         context = super().get_context_data(**kwargs)
 
+        search_parameters: SearchParameters = SearchParameters(
+            court=court.canonical_param, page=1, order="-date", page_size=5
+        )
+
+        search_response = self._get_search_response(search_parameters)
+
+        context["documents"] = search_response.results
         context["feedback_survey_type"] = "court_or_tribunal_%s" % court.canonical_param
         context["court"] = court
         context["breadcrumbs"] = [
-            {"text": "Search and browse", "url": reverse("search_and_browse")},
             {"url": reverse("courts_and_tribunals"), "text": "Types of courts in England and Wales"},
             {"text": self.page_title},
         ]

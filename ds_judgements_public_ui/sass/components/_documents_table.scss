@@ -1,4 +1,8 @@
 .documents-table {
+  &--with-margins {
+    margin-bottom: $space-8;
+  }
+
   &__footer {
     display: flex;
     align-items: center;
