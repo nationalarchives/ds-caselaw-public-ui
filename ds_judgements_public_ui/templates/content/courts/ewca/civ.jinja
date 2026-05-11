@@ -1,0 +1,11 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>The Court of Appeal Civil Division is the second most senior court for non-criminal cases in England and Wales.</p>
+  <p>
+    This court began to regularly transfer judgments to The National Archives in 2022.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about it on the {{ link(content="Court of Appeal Civil Division page", href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division", attrs={"target":"_blank"}) }} on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

@@ -1,0 +1,12 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Mercantile Court is now known as The Circuit Commercial Court and is closely associated with the Commercial Court. {{ link(content="You can find cases decided by the Mercantile Court here", href="https://caselaw.nationalarchives.gov.uk/judgments/search?query=&from_day=&from_month=&from_year=&to_day=&to_month=&to_year=&court=ewhc%2Fmercantile&party=&judge=", attrs={"target": "_blank"}) }}.
+  </p>
+  <p>
+    This court does not transfer judgments to The National Archives. The judgments from this court included in Find Case Law are from 2008 to 2014.
+  </p>
+  <p>
+    You can read more about it on {{ link(content="the Commercial Court on the Judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/commercial-court/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

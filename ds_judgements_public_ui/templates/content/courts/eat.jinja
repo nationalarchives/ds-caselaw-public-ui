@@ -1,0 +1,15 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    This tribunal is responsible for handling appeals against decisions made by the Employment Tribunal where a legal mistake may have been made in the case. They also hear appeals and applications about decisions made by the certification officer and the Central Arbitration Committee.
+  </p>
+  <p>
+    This tribunal began to regularly transfer decisions to The National Archives in 2022.
+    {% if start_year %}
+      The oldest decision from this tribunal included in Find Case Law is from {{ start_year }}.
+    {% endif %}
+  </p>
+  <p>
+    You can read more about it on the {{ link(content="Employment Appeal tribunal page", href="https://www.gov.uk/courts-tribunals/employment-appeal-tribunal", attrs={"target":"_blank"}) }} on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about", attrs={"target":"_blank"}) }}.
+  </p>
+{% endmacro %}

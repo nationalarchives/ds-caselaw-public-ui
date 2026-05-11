@@ -7,6 +7,7 @@
 {% from "components/list.jinja" import list, list_item %}
 {% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
+{% from "content/courts/" ~ court.canonical_param ~ ".jinja" import description %}
 {% block mobile_article_title %}
   {% call heading() %}
     {{ court.name }}
@@ -36,9 +37,7 @@
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
-  {% autoescape off %}
-    {{ court.description_text_as_html }}
-  {% endautoescape %}
+  {{ description(start_year=court|get_court_start_year) }}
   {% call heading(tag="h2") %}
     Coverage on Find Case Law
   {% endcall %}
@@ -50,28 +49,30 @@
       {{ court.historic_documents_support_text_as_html }}
     {% endautoescape %}
   {% endif %}
-  {% call heading(tag="h2") %}
-    Recent judgments
-  {% endcall %}
-  {% call documents_table(headings=["Case name", "Neutral citation", "Handed down"], hide_title=True, margin=True) %}
-    {% for document in documents %}
-      {% call document_table_body() %}
-        {% call document_table_row() %}
-          {% call document_table_cell(variant="text") %}
-            {% call link(href=url("detail", document.slug)) %}
-              {{ document.name }}
+  {% if documents %}
+    {% call heading(tag="h2") %}
+      Recent judgments
+    {% endcall %}
+    {% call documents_table(headings=["Case name", "Neutral citation", "Handed down"], hide_title=True, margin=True) %}
+      {% for document in documents %}
+        {% call document_table_body() %}
+          {% call document_table_row() %}
+            {% call document_table_cell(variant="text") %}
+              {% call link(href=url("detail", document.slug)) %}
+                {{ document.name }}
+              {% endcall %}
+            {% endcall %}
+            {% call document_table_cell(variant="text", label="Neutral citation") %}
+              {{ document.neutral_citation | default("&mdash;", true) | safe }}
+            {% endcall %}
+            {% call document_table_cell(variant="text", label="Handed down") %}
+              {{ formatdate(document.date) }}
             {% endcall %}
           {% endcall %}
-          {% call document_table_cell(variant="text", label="Neutral citation") %}
-            {{ document.neutral_citation | default("&mdash;", true) | safe }}
-          {% endcall %}
-          {% call document_table_cell(variant="text", label="Handed down") %}
-            {{ formatdate(document.date) }}
-          {% endcall %}
         {% endcall %}
-      {% endcall %}
-    {% endfor %}
-  {% endcall %}
+      {% endfor %}
+    {% endcall %}
+  {% endif %}
   {% call heading(tag="h2") %}
     Search this court
   {% endcall %}

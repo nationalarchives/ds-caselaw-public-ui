@@ -1,0 +1,9 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Find Case Law service publishes decisions from two first-tier tribunals. These are the General Regulatory Chamber and the Tax Chamber.
+  </p>
+  <p>
+    You can read more about first-tier tribunals on the {{ link(content="HM Courts and Tribunals website", href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

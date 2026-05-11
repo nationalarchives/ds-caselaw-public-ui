@@ -1,0 +1,18 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Tax Chamber is responsible for handling appeals against some decisions made by HMRC relating to Income Tax; PAYE tax; Corporation Tax; Capital Gains Tax; National Insurance Contributions; Statutory Sick Pay; Statutory Maternity Pay; Inheritance Tax; VAT; Excise Duty and Customs Duty.
+  </p>
+  <p>
+    They also handle some appeals relating to goods seized by either HM Revenue and Customs or Border Force and against some decisions made by the National Crime Agency and the Gambling Commission.
+  </p>
+  <p>
+    This tribunal began to regularly transfer decisions to The National Archives in 2022.
+    {% if start_year %}
+      The oldest decision from this tribunal included in Find Case Law is from {{ start_year }}.
+    {% endif %}
+  </p>
+  <p>
+    You can read more about it on the Tax Chamber page on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

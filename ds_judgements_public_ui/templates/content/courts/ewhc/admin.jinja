@@ -1,0 +1,13 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Administrative Court is a specialist court within the King’s Bench Division of the High Court. It specialises in public law, often reviewing the decisions made by local authorities and regulatory bodies in England and Wales. The Administrative Court contains a dedicated Planning Court for planning related disputes. Cases in the Administrative Court may be heard by a Divisional Court, which is a court consisting of at least two judges.
+  </p>
+  <p>
+    This court began to regularly transfer judgments to The National Archives in 2022.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about {{ link(content="the Administrative court on the judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/high-court/administrative-court/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

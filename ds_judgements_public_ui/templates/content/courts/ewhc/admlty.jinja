@@ -1,0 +1,13 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Admiralty Court is a specialist court within the King's Bench Division of the High Court. It specialises in shipping and maritime disputes and has the power to arrest and sell ships in England and Wales.
+  </p>
+  <p>
+    This court began to regularly transfer judgments to The National Archives in 2022.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about {{ link(content="the Admiralty court on the judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/admiralty-court/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

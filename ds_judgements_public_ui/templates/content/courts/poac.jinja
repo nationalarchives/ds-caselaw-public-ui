@@ -1,0 +1,9 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    About the Proscribed Organisations Appeal Commission (POAC): This commission deals with appeals in cases where the Secretary of State has refused to de-proscribe an organisation believed to be involved in terrorism. POAC is an independent tribunal that was established under the Terrorism Act 2000.
+  </p>
+  <p>
+    You can read more about it on the {{ link(content="Proscribed Organisations Appeal Commission website", href="https://www.gov.uk/guidance/appeal-against-a-ban-on-your-organisation", attrs={"target":"_blank"}) }}.
+  </p>
+{% endmacro %}

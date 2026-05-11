@@ -1,0 +1,13 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Judicial Committee of the Privy Council is the highest court of appeal for many countries in the Commonwealth, UK territories and military sovereign base areas. It also deals with appeals from ecclesiastical courts.
+  </p>
+  <p>
+    This court began to regularly transfer judgments to The National Archives in 2022.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about it on the {{ link(content="Judicial Committee of the Privy Council website", href="https://www.jcpc.uk/about/role-of-the-jcpc.html", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
