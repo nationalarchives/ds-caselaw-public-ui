@@ -1,16 +1,19 @@
 {% from "components/button.jinja" import button %}
-{% macro documents_table(title=None, headings=[], footer_button_url=None, footer_button_text=None) %}
-  <div class="documents-table">
+{% macro documents_table(title=None, headings=[], footer_button_url=None, footer_button_text=None, hide_title=False, margin=False) %}
+  {% set margin_class = "documents-table--with-margins" if margin else "" %}
+  <div class="documents-table {{ margin_class }}">
     <table>
       <thead>
         <tr>
-          <th>
-            {% if title %}
-              <h1>{{ title }}</h1>
-            {% else %}
-              <span class="govuk-visually-hidden">Documents</span>
-            {% endif %}
-          </th>
+          {% if not hide_title %}
+            <th>
+              {% if title %}
+                <h1>{{ title }}</h1>
+              {% else %}
+                <span class="govuk-visually-hidden">Documents</span>
+              {% endif %}
+            </th>
+          {% endif %}
           {% for heading in headings %}<th>{{ heading }}</th>{% endfor %}
         </tr>
       </thead>

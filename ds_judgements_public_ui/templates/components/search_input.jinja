@@ -19,8 +19,9 @@
     {{ caller() }}
   </form>
 {% endmacro %}
-{% macro search_form_container() %}
-  <div class="search-input">{{ caller() }}</div>
+{% macro search_form_container(margin=False) %}
+  {% set margin_class = "search-input--with-margins" if margin else "" %}
+  <div class="search-input {{ margin_class }}">{{ caller() }}</div>
 {% endmacro %}
 {% macro search_input_footer() %}
   <div class="search-input__footer">{{ caller() }}</div>

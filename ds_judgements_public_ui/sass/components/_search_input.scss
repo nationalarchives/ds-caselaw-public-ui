@@ -4,6 +4,10 @@
   gap: $space-2;
   width: 100%;
 
+  &--with-margins {
+    margin-bottom: $space-8;
+  }
+
   h1,
   h2,
   h3 {
