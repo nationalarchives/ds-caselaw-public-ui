@@ -1,0 +1,15 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Investigatory Powers Tribunal is an independent court that considers complaints under the Regulation of Investigatory Powers Act 2000 and claims under the Human Rights Act 1998. It considers allegations of unlawful intrusion by public bodies, including the UK intelligence services, the Police and local authorities and investigates alleged conduct by or on behalf of the UK intelligence services whether or not it involves investigatory powers.
+  </p>
+  <p>
+    This tribunal began to regularly transfer judgments to The National Archives in 2024.
+    {% if start_year %}
+      The oldest decision from this tribunal included in Find Case Law is from {{ start_year }}.
+    {% endif %}
+  </p>
+  <p>
+    You can read more about this tribunal on {{ link(content="the Investigatory Powers Tribunal website", href="https://investigatorypowerstribunal.org.uk/about-the-tribunal/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

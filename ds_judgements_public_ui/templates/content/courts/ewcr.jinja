@@ -1,0 +1,13 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Crown Court deals with the most serious criminal offences. It is located in over 70 court centres across England and Wales, including the Central Criminal Court, more commonly known as the Old Bailey.
+  </p>
+  <p>
+    This court began to occasionally transfer selected judgments to The National Archives in 2024.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about this court on the {{ link(content="Crown Court page", href="https://www.judiciary.uk/courts-and-tribunals/crown-court/", attrs={"target": "_blank"}) }} on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.judiciary.uk/", attrs={"target":"_blank"}) }}.
+  </p>
+{% endmacro %}

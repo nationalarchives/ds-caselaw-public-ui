@@ -1,0 +1,16 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Immigration and Asylum Chamber is responsible for handling appeals against some decisions made by the Home Office relating to permission to stay in the UK, deportation from the UK, and entry clearance to the UK.
+  </p>
+  <p>
+    They also handle applications for immigration bail from people being held by the Home Office on immigration matters.
+  </p>
+  <p>
+    This tribunal began to regularly transfer decisions to The National Archives in 2022.
+    {% if start_year %}The oldest decision from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about it on the Immigration and Asylum Chamber on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

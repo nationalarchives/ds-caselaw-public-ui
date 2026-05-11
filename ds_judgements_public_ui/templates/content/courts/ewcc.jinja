@@ -1,0 +1,14 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>The County Court deals with civil (non-criminal) matters.</p>
+  <p>
+    Unlike criminal cases, in which the state prosecutes an individual, civil court cases arise where an individual or a business believes their rights have been infringed.
+  </p>
+  <p>
+    This court began to occasionally transfer select judgments to The National Archives in 2024.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about it on the {{ link(content="County Court page", href="https://www.gov.uk/courts-tribunals/court-of-protection", attrs={"target": "_blank"}) }} on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.judiciary.uk/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

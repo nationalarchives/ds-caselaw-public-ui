@@ -1,0 +1,18 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    The Tax and Chancery Chamber is responsible for handling appeals for certain decisions made by First-Tier Tribunal (Tax), for cases about tax and General Regulatory Chamber for cases about charities.
+  </p>
+  <p>
+    They also handle appeals against certain decisions made by the Financial Conduct Authority; the Prudential Regulation Authority; Secretary of State for International Trade or the Trade Remedies Authority; the Pensions Regulator; the Bank of England; HM Treasury and Ofgem.
+  </p>
+  <p>
+    This tribunal began to regularly transfer decisions to The National Archives in 2022.
+    {% if start_year %}
+      The oldest decision from this tribunal included in Find Case Law is from {{ start_year }}.
+    {% endif %}
+  </p>
+  <p>
+    You can read more about it on the Tax and Chancery Chamber page of {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/courts-tribunals/upper-tribunal-tax-and-chancery-chamber", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}

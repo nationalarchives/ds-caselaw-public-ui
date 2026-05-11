@@ -122,5 +122,6 @@ def environment(**options):
     env.filters["format_value_for_review"] = transactional_licence_utils.format_value_for_review
     env.filters["get_title_to_display_in_html"] = document_utils.get_title_to_display_in_html
     env.filters["get_court_date_range"] = court_utils.get_court_date_range
+    env.filters["get_court_start_year"] = court_utils.get_court_start_year
     env.filters["hyphenate"] = hyphenate
     return env

@@ -1,0 +1,13 @@
+{% from "components/link.jinja" import link %}
+{% macro description(start_year=None) %}
+  <p>
+    This court is a specialist court within the Chancery Division of the High Court. It is also one of the Business and Property Courts. It specialises in cases involving patents, registered designs and plant varieties. Typically it handles cases where damages sought are over £500,000. Cases less than £500,000 are typically handled by the Intellectual Property Enterprise Court.
+  </p>
+  <p>
+    This court began to regularly transfer judgments to The National Archives in 2022.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about {{ link(content="the Patents Court on the Judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/business-list-general-chancery/intellectual-property-list/patents-court/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
