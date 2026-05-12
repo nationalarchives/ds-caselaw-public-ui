@@ -37,7 +37,7 @@
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
-  {{ description(start_year=court|get_court_start_year) }}
+  {{ description(start_year=court.canonical_param|get_court_start_year) }}
   {% call heading(tag="h2") %}
     Coverage on Find Case Law
   {% endcall %}
