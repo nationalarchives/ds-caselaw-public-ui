@@ -80,6 +80,7 @@
   </p>
   {% call search_form_container(margin=True) %}
     {% call search_form() %}
+      <input type="hidden" name="court" value="{{ court.canonical_param }}" />
       {{ search_input(value="", placeholder="Input your search term for this court...", button_action=url("search") , button_label="Search") }}
     {% endcall %}
   {% endcall %}
