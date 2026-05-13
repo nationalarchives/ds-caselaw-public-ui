@@ -1,5 +1,49 @@
 {% from "components/link.jinja" import link %}
-{% macro description(start_year=None) %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  court
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this court") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+  {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
+  <p>
+    Family Court neutral citation numbers use the format [Year] EWFC [Number]. For example, [2024] EWFC 141. Citations with a (B) suffix indicate that the judge is a District or Circuit judge rather than a High Court judge from the Family Division.
+  </p>
+{% endmacro %}
+{% macro description_content(start_year=None) %}
   <p>
     Most family cases are heard in the Family Court. A limited number of cases are heard in the Family Division of the High Court, for example cases involving international child abduction and cases involving the inherent jurisdiction of the High Court. You can learn more about when the {{ link(content="family court publish judgments in their practice guidance (opens as PDF)", href="https://www.judiciary.uk/wp-content/uploads/2014/01/transparency-in-the-family-courts-jan-2014-1.pdf", attrs={"target": "_blank"}) }}.
   </p>

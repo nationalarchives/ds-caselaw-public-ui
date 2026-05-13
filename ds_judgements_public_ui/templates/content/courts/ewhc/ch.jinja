@@ -1,5 +1,49 @@
 {% from "components/link.jinja" import link %}
-{% macro description(start_year=None) %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  court
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this court") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+  {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
+  <p>
+    Chancery Division Judges are highly specialised in the wide range of work carried out by the Division and include High Court Judges, Chancery Masters and Insolvency and Companies Court Judges.
+  </p>
+{% endmacro %}
+{% macro description_content(start_year=None) %}
   <p>
     The Chancery Division is one of three divisions of the High Court. It handles a wide range of civil cases including business disputes, intellectual property and probate issues. It has various lists that deal with specialist issues such as the Business List, Insolvency and Companies List, Intellectual Property List, or Property, Trusts and Probate List. It contains the Intellectual Property Enterprise and Patents Courts.
   </p>

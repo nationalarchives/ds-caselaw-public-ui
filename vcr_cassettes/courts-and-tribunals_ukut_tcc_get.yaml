@@ -1,0 +1,590 @@
+interactions:
+- request:
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukut%2Ftcc%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+5%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%22%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    headers:
+      Accept:
+      - multipart/mixed
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/invoke
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
+        snippet-format=\"empty-snippet\" total=\"85\" start=\"1\" page-length=\"5\"
+        selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
+        index=\"1\" uri=\"/ukut/tcc/2023/244.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/244.xml&quot;)\"
+        score=\"1792\" confidence=\"0.06171207\" fitness=\"0.4527077\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-10-02\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"STEPHEN JOHN MULLENS v THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE
+        AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-02T10:18:21\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-26T15:33:22\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKFTT-GRC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 244 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">55af0cf5304822909e726fb85fdc273bebafb185e0dc0bb44c788be100fa2cd2</uk:hash>\n      <uk:jurisdiction
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">InformationRights</uk:jurisdiction>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00244 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-982ad36f-9885-47aa-809c-9a04db2f1fdd</uuid>\n\t  <value>[2023]
+        UKUT 244 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/244</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"2\" uri=\"/ukut/tcc/2023/242.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/242.xml&quot;)\"
+        score=\"2447\" confidence=\"0.07211375\" fitness=\"0.5290124\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-29\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE AND CUSTOMS v GERALD
+        LEE\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-09T09:03:40\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-13T16:49:40\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 242 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">91ec6ca1aebb57fe12c6d292a03648a9d577a51b3cb8ecba7aa4143844de0390</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00242 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2cf13783-f6fb-4a80-897f-1ed507f8170f</uuid>\n\t  <value>[2023]
+        UKUT 242 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/242</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"3\" uri=\"/ukut/tcc/2023/236.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/236.xml&quot;)\"
+        score=\"2447\" confidence=\"0.07211375\" fitness=\"0.5290124\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-26\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"INTELLIGENT MONEY LIMITED v THE COMMISSIONERS FOR HIS MAJESTY\u2019S
+        REVENUE AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-03T14:07:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-18T17:01:16\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 236 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">258ae8329ee950afdabce47d017475f5dd7a6655ecc307344a4426cf56a96275</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00236 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-afbde43b-0a78-4edd-9f89-551ba3f13d04</uuid>\n\t  <value>[2023]
+        UKUT 236 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/236</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"4\" uri=\"/ukut/tcc/2023/232.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/232.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-18\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE AND CUSTOMS v BLUECREST
+        CAPITAL MANAGEMENT (UK) LLP\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:22\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-20T11:06:20\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 232 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">97f6aa577d116028556836acc3bcc52b29c8360fdf63d4e5acac4c6d941d4e09</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00232 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-09-18\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-02cad753-b13b-43ed-bb1b-80d51023dad3</uuid>\n\t  <value>[2023]
+        UKUT 232 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/232</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"5\" uri=\"/ukut/tcc/2023/218.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/218.xml&quot;)\"
+        score=\"2447\" confidence=\"0.07211375\" fitness=\"0.5290124\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-05\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"SCOTTISHPOWER (SCPL) LIMITED v THE COMMISSIONERS FOR HIS MAJESTY\u2019S
+        REVENUE AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-05T13:06:37\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 218 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">15eb915b97f8d68407e5285f2ca987e084e140158fa74e84d8f52b8831cf089d</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00218 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-79962a6e-51c7-4b4b-a65b-0fda8f041d8e</uuid>\n\t  <value>[2023]
+        UKUT 218 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/218</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
+        name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKFTT-GRC\"
+        count=\"1\">UKFTT-GRC</search:facet-value>\n    <search:facet-value name=\"UKUT-TCC\"
+        count=\"84\">UKUT-TCC</search:facet-value>\n  </search:facet>\n  <search:facet
+        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2017\" count=\"1\">2017</search:facet-value>\n    <search:facet-value
+        name=\"2019\" count=\"2\">2019</search:facet-value>\n    <search:facet-value
+        name=\"2020\" count=\"3\">2020</search:facet-value>\n    <search:facet-value
+        name=\"2021\" count=\"6\">2021</search:facet-value>\n    <search:facet-value
+        name=\"2022\" count=\"37\">2022</search:facet-value>\n    <search:facet-value
+        name=\"2023\" count=\"36\">2023</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.013072S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.00226S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000092S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.007033S</search:extract-resolution-time>\n    <search:total-time>PT0.023293S</search:total-time>\n  </search:metrics>\n</search:response>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Wed, 13 May 2026 09:12:51 GMT
+      Server:
+      - MarkLogic 11.0.2
+    status:
+      code: 200
+      message: OK
+- request:
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukut%2Ftcc%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22%22%2C+%22from%22%3A+%22%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    headers:
+      Accept:
+      - multipart/mixed
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/invoke
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
+        snippet-format=\"empty-snippet\" total=\"85\" start=\"1\" page-length=\"10\"
+        selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
+        index=\"1\" uri=\"/ukut/tcc/2022/128.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/128.xml&quot;)\"
+        score=\"3320\" confidence=\"0.08399823\" fitness=\"0.6161946\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-05-11\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"The Commissioners for HMRC v Nicola Martino\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-07-05T14:15:40\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 128 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">12b85155cb10e87de53ea593f1bec258d7e660757c9aca5f03bfd4335473a34a</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:Arial;color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 128 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-0ce6e534-98af-47cc-bcdc-b5a2992647a1</uuid>\n\t  <value>[2022]
+        UKUT 128 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/128</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"2\" uri=\"/ukut/tcc/2022/289.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/289.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-11-03\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"NTK LEISURE LIMITED v THE COMMISSIONERS FOR HIS MAJESTY\u2019S\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-11-24T12:32:16\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 289 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">493df3978df5ac913c856d233ce51ef901f4b958f3c15930e8c12c51de79a80d</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00289 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-696dddfe-1ac6-4c43-8b81-f1acaa340bb6</uuid>\n\t  <value>[2022]
+        UKUT 289 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/289</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"3\" uri=\"/ukut/tcc/2023/154.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/154.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-10\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S v JAYANTH KUNJUR\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-10T10:55:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 154 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">d6fd6010bab5adb6a82bd916d0ec889df0b6836d8cbc8026ba7bf2de7756e83c</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00154 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-49f932e3-82b6-46f3-ad76-d26508fe5651</uuid>\n\t  <value>[2023]
+        UKUT 154 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/154</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"4\" uri=\"/ukut/tcc/2022/225.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/225.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-08-12\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"PRIORY LONDON LIMITED v THE COMMISSIONERS FOR HMRC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-11-24T13:51:34\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 225 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">5adaa9b8207ad8f6833e5357b255300abf8552e35c1351a436b3c71080eabcfc</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00225 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2c732784-d03f-4d1a-9ba2-55e6d79dc802</uuid>\n\t  <value>[2022]
+        UKUT 225 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/225</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"5\" uri=\"/ukut/tcc/2022/119.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/119.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-05-04\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"The Commissioners for HMRC v Bashir Ahmed Jafari\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-07-05T14:14:16\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 119 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">1b9c3a8cd1fb210469bc94752cb21bd962fb0cab38c96b13e0084017d1ae0160</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:Arial;color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 119 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-6ad78301-094b-483f-9285-857f21aeee92</uuid>\n\t  <value>[2022]
+        UKUT 119 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/119</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"6\" uri=\"/ukut/tcc/2023/155.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/155.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-10\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"LAING O\u2019ROURKE SERVICES LIMITED v WILLMOTT DIXON HOLDINGS LIMITED\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-10T13:55:43\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-31T11:53:36\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 155 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">afedb718398ccddd37023cdfeec513e14108d1df43be238f5e98a6249396bc5f</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00155 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-07-10\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-10T13:55:45\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-d427c320-4f47-40cc-9cad-e737e624aec4</uuid>\n\t  <value>[2023]
+        UKUT 155 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/155</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"7\" uri=\"/ukut/tcc/2023/194.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/194.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-08-07\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"JTI ACQUISITIONS COMPANY (2011) LIMITED v THE COMMISSIONERS FOR HIS
+        MAJESTY\u2019S REVENUE AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-08-07T13:28:32\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-13T10:20:19\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 194 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">7b55a95c0d8ed1b10a6c6117800b0723fdc0c32831f24a086345e37631c88a04</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00194 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-08-07\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-08-07T13:28:35\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-9dad8423-c47f-4f18-957b-434700e7c711</uuid>\n\t  <value>[2023]
+        UKUT 194 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/194</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"8\" uri=\"/ukut/tcc/2022/116.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/116.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-04-25\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"Wyatt Paul v The Commissioners for HMRC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-07-27T09:31:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-14T07:41:02\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 116 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">40381856f42df7eb631e8c195819a75ee41370ca1855643a7af541a40130c62a</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00116 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-23153469-1498-4cde-aa20-b49e895d5196</uuid>\n\t  <value>[2022]
+        UKUT 116 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/116</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"9\" uri=\"/ukut/tcc/2023/232.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/232.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-18\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE AND CUSTOMS v BLUECREST
+        CAPITAL MANAGEMENT (UK) LLP\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:22\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-20T11:06:20\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 232 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">97f6aa577d116028556836acc3bcc52b29c8360fdf63d4e5acac4c6d941d4e09</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00232 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-09-18\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-02cad753-b13b-43ed-bb1b-80d51023dad3</uuid>\n\t  <value>[2023]
+        UKUT 232 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/232</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"10\" uri=\"/ukut/tcc/2022/252.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/252.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-09-16\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"The Commissioners for HMRC v Mohammed Zaman\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-09-24T08:16:59\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 252 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">689d57c81c36d49a2a398e698a9e98399faeb4ae508488d07f493e0a14f4a934</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua''\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00252 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-485aa388-b791-4a40-96be-2e6e12b3c1ee</uuid>\n\t  <value>[2022]
+        UKUT 252 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/252</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
+        name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKFTT-GRC\"
+        count=\"1\">UKFTT-GRC</search:facet-value>\n    <search:facet-value name=\"UKUT-TCC\"
+        count=\"84\">UKUT-TCC</search:facet-value>\n  </search:facet>\n  <search:facet
+        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2017\" count=\"1\">2017</search:facet-value>\n    <search:facet-value
+        name=\"2019\" count=\"2\">2019</search:facet-value>\n    <search:facet-value
+        name=\"2020\" count=\"3\">2020</search:facet-value>\n    <search:facet-value
+        name=\"2021\" count=\"6\">2021</search:facet-value>\n    <search:facet-value
+        name=\"2022\" count=\"37\">2022</search:facet-value>\n    <search:facet-value
+        name=\"2023\" count=\"36\">2023</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.009828S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002344S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000231S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.005055S</search:extract-resolution-time>\n    <search:total-time>PT0.018527S</search:total-time>\n  </search:metrics>\n</search:response>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Wed, 13 May 2026 09:12:51 GMT
+      Server:
+      - MarkLogic 11.0.2
+    status:
+      code: 200
+      message: OK
+- request:
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukut%2Ftcc%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+5%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%22%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    headers:
+      Accept:
+      - multipart/mixed
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/invoke
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
+        snippet-format=\"empty-snippet\" total=\"85\" start=\"1\" page-length=\"5\"
+        selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
+        index=\"1\" uri=\"/ukut/tcc/2023/244.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/244.xml&quot;)\"
+        score=\"1792\" confidence=\"0.06171207\" fitness=\"0.4527077\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-10-02\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"STEPHEN JOHN MULLENS v THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE
+        AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-02T10:18:21\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-26T15:33:22\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKFTT-GRC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 244 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">55af0cf5304822909e726fb85fdc273bebafb185e0dc0bb44c788be100fa2cd2</uk:hash>\n      <uk:jurisdiction
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">InformationRights</uk:jurisdiction>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00244 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-982ad36f-9885-47aa-809c-9a04db2f1fdd</uuid>\n\t  <value>[2023]
+        UKUT 244 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/244</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"2\" uri=\"/ukut/tcc/2023/242.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/242.xml&quot;)\"
+        score=\"2447\" confidence=\"0.07211375\" fitness=\"0.5290124\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-29\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE AND CUSTOMS v GERALD
+        LEE\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-09T09:03:40\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-13T16:49:40\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 242 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">91ec6ca1aebb57fe12c6d292a03648a9d577a51b3cb8ecba7aa4143844de0390</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00242 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2cf13783-f6fb-4a80-897f-1ed507f8170f</uuid>\n\t  <value>[2023]
+        UKUT 242 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/242</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"3\" uri=\"/ukut/tcc/2023/236.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/236.xml&quot;)\"
+        score=\"2447\" confidence=\"0.07211375\" fitness=\"0.5290124\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-26\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"INTELLIGENT MONEY LIMITED v THE COMMISSIONERS FOR HIS MAJESTY\u2019S
+        REVENUE AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-03T14:07:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-18T17:01:16\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 236 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">258ae8329ee950afdabce47d017475f5dd7a6655ecc307344a4426cf56a96275</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00236 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-afbde43b-0a78-4edd-9f89-551ba3f13d04</uuid>\n\t  <value>[2023]
+        UKUT 236 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/236</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"4\" uri=\"/ukut/tcc/2023/232.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/232.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-18\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE AND CUSTOMS v BLUECREST
+        CAPITAL MANAGEMENT (UK) LLP\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:22\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-20T11:06:20\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 232 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">97f6aa577d116028556836acc3bcc52b29c8360fdf63d4e5acac4c6d941d4e09</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00232 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-09-18\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-02cad753-b13b-43ed-bb1b-80d51023dad3</uuid>\n\t  <value>[2023]
+        UKUT 232 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/232</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"5\" uri=\"/ukut/tcc/2023/218.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/218.xml&quot;)\"
+        score=\"2447\" confidence=\"0.07211375\" fitness=\"0.5290124\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-05\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"SCOTTISHPOWER (SCPL) LIMITED v THE COMMISSIONERS FOR HIS MAJESTY\u2019S
+        REVENUE AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-05T13:06:37\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 218 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">15eb915b97f8d68407e5285f2ca987e084e140158fa74e84d8f52b8831cf089d</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00218 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-79962a6e-51c7-4b4b-a65b-0fda8f041d8e</uuid>\n\t  <value>[2023]
+        UKUT 218 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/218</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
+        name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKFTT-GRC\"
+        count=\"1\">UKFTT-GRC</search:facet-value>\n    <search:facet-value name=\"UKUT-TCC\"
+        count=\"84\">UKUT-TCC</search:facet-value>\n  </search:facet>\n  <search:facet
+        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2017\" count=\"1\">2017</search:facet-value>\n    <search:facet-value
+        name=\"2019\" count=\"2\">2019</search:facet-value>\n    <search:facet-value
+        name=\"2020\" count=\"3\">2020</search:facet-value>\n    <search:facet-value
+        name=\"2021\" count=\"6\">2021</search:facet-value>\n    <search:facet-value
+        name=\"2022\" count=\"37\">2022</search:facet-value>\n    <search:facet-value
+        name=\"2023\" count=\"36\">2023</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.015869S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002746S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000103S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.003686S</search:extract-resolution-time>\n    <search:total-time>PT0.023393S</search:total-time>\n  </search:metrics>\n</search:response>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Wed, 13 May 2026 09:20:09 GMT
+      Server:
+      - MarkLogic 11.0.2
+    status:
+      code: 200
+      message: OK
+- request:
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukut%2Ftcc%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22%22%2C+%22from%22%3A+%22%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    headers:
+      Accept:
+      - multipart/mixed
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/invoke
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
+        snippet-format=\"empty-snippet\" total=\"85\" start=\"1\" page-length=\"10\"
+        selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
+        index=\"1\" uri=\"/ukut/tcc/2022/128.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/128.xml&quot;)\"
+        score=\"3320\" confidence=\"0.08399823\" fitness=\"0.6161946\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-05-11\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"The Commissioners for HMRC v Nicola Martino\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-07-05T14:15:40\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 128 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">12b85155cb10e87de53ea593f1bec258d7e660757c9aca5f03bfd4335473a34a</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:Arial;color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 128 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-0ce6e534-98af-47cc-bcdc-b5a2992647a1</uuid>\n\t  <value>[2022]
+        UKUT 128 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/128</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"2\" uri=\"/ukut/tcc/2022/289.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/289.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-11-03\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"NTK LEISURE LIMITED v THE COMMISSIONERS FOR HIS MAJESTY\u2019S\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-11-24T12:32:16\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 289 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">493df3978df5ac913c856d233ce51ef901f4b958f3c15930e8c12c51de79a80d</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00289 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-696dddfe-1ac6-4c43-8b81-f1acaa340bb6</uuid>\n\t  <value>[2022]
+        UKUT 289 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/289</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"3\" uri=\"/ukut/tcc/2023/154.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/154.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-10\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S v JAYANTH KUNJUR\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-10T10:55:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 154 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">d6fd6010bab5adb6a82bd916d0ec889df0b6836d8cbc8026ba7bf2de7756e83c</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00154 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-49f932e3-82b6-46f3-ad76-d26508fe5651</uuid>\n\t  <value>[2023]
+        UKUT 154 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/154</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"4\" uri=\"/ukut/tcc/2022/225.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/225.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-08-12\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"PRIORY LONDON LIMITED v THE COMMISSIONERS FOR HMRC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-11-24T13:51:34\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 225 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">5adaa9b8207ad8f6833e5357b255300abf8552e35c1351a436b3c71080eabcfc</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00225 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2c732784-d03f-4d1a-9ba2-55e6d79dc802</uuid>\n\t  <value>[2022]
+        UKUT 225 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/225</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"5\" uri=\"/ukut/tcc/2022/119.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/119.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-05-04\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"The Commissioners for HMRC v Bashir Ahmed Jafari\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-07-05T14:14:16\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 119 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">1b9c3a8cd1fb210469bc94752cb21bd962fb0cab38c96b13e0084017d1ae0160</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:Arial;color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 119 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-6ad78301-094b-483f-9285-857f21aeee92</uuid>\n\t  <value>[2022]
+        UKUT 119 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/119</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"6\" uri=\"/ukut/tcc/2023/155.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/155.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-10\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"LAING O\u2019ROURKE SERVICES LIMITED v WILLMOTT DIXON HOLDINGS LIMITED\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-10T13:55:43\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-31T11:53:36\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 155 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">afedb718398ccddd37023cdfeec513e14108d1df43be238f5e98a6249396bc5f</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00155 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-07-10\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-10T13:55:45\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-d427c320-4f47-40cc-9cad-e737e624aec4</uuid>\n\t  <value>[2023]
+        UKUT 155 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/155</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"7\" uri=\"/ukut/tcc/2023/194.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/194.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-08-07\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"JTI ACQUISITIONS COMPANY (2011) LIMITED v THE COMMISSIONERS FOR HIS
+        MAJESTY\u2019S REVENUE AND CUSTOMS\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-08-07T13:28:32\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-13T10:20:19\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 194 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">7b55a95c0d8ed1b10a6c6117800b0723fdc0c32831f24a086345e37631c88a04</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00194 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-08-07\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-08-07T13:28:35\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-9dad8423-c47f-4f18-957b-434700e7c711</uuid>\n\t  <value>[2023]
+        UKUT 194 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/194</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"8\" uri=\"/ukut/tcc/2022/116.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/116.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-04-25\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"Wyatt Paul v The Commissioners for HMRC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-07-27T09:31:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-14T07:41:02\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 116 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">40381856f42df7eb631e8c195819a75ee41370ca1855643a7af541a40130c62a</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00116 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-23153469-1498-4cde-aa20-b49e895d5196</uuid>\n\t  <value>[2022]
+        UKUT 116 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/116</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"9\" uri=\"/ukut/tcc/2023/232.xml\" path=\"fn:doc(&quot;/ukut/tcc/2023/232.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-18\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"THE COMMISSIONERS FOR HIS MAJESTY\u2019S REVENUE AND CUSTOMS v BLUECREST
+        CAPITAL MANAGEMENT (UK) LLP\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:22\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-20T11:06:20\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] UKUT 232 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">97f6aa577d116028556836acc3bcc52b29c8360fdf63d4e5acac4c6d941d4e09</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua'';color:#000000\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        UKUT 00232 (TCC)</neutralCitation>\n      <FRBRdate date=\"2023-09-18\" name=\"decision\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-18T11:03:25\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-02cad753-b13b-43ed-bb1b-80d51023dad3</uuid>\n\t  <value>[2023]
+        UKUT 232 (TCC)</value>\n\t  <url_slug>ukut/tcc/2023/232</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"10\" uri=\"/ukut/tcc/2022/252.xml\" path=\"fn:doc(&quot;/ukut/tcc/2022/252.xml&quot;)\"
+        score=\"2884\" confidence=\"0.07828864\" fitness=\"0.5743101\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2022-09-16\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"The Commissioners for HMRC v Mohammed Zaman\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2022-09-24T08:16:59\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKUT-TCC</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2022] UKUT 252 (TCC)</uk:cite>\n      <uk:hash
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">689d57c81c36d49a2a398e698a9e98399faeb4ae508488d07f493e0a14f4a934</uk:hash>\n      <neutralCitation
+        style=\"font-weight:bold;font-family:''Book Antiqua''\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2022]
+        UKUT 00252 (TCC)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-485aa388-b791-4a40-96be-2e6e12b3c1ee</uuid>\n\t  <value>[2022]
+        UKUT 252 (TCC)</value>\n\t  <url_slug>ukut/tcc/2022/252</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
+        name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKFTT-GRC\"
+        count=\"1\">UKFTT-GRC</search:facet-value>\n    <search:facet-value name=\"UKUT-TCC\"
+        count=\"84\">UKUT-TCC</search:facet-value>\n  </search:facet>\n  <search:facet
+        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2017\" count=\"1\">2017</search:facet-value>\n    <search:facet-value
+        name=\"2019\" count=\"2\">2019</search:facet-value>\n    <search:facet-value
+        name=\"2020\" count=\"3\">2020</search:facet-value>\n    <search:facet-value
+        name=\"2021\" count=\"6\">2021</search:facet-value>\n    <search:facet-value
+        name=\"2022\" count=\"37\">2022</search:facet-value>\n    <search:facet-value
+        name=\"2023\" count=\"36\">2023</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.010266S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.00292S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000272S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.005186S</search:extract-resolution-time>\n    <search:total-time>PT0.019818S</search:total-time>\n  </search:metrics>\n</search:response>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Wed, 13 May 2026 09:20:09 GMT
+      Server:
+      - MarkLogic 11.0.2
+    status:
+      code: 200
+      message: OK
+version: 1
