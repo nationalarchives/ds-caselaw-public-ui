@@ -1,5 +1,54 @@
 {% from "components/link.jinja" import link %}
-{% macro description(start_year=None) %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  court
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this court") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+  {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
+  {{ heading(content="Citation format", tag="h3") }}
+  <p>
+    Civil Division neutral citation numbers are formatted as [Year] EWCA Civ [Number]. For example, [2026] EWCA Civ 50 is case number 50 decided by the Court of Appeal (Civil Division) for England and Wales in 2026.
+  </p>
+  {{ heading(content="Who sits", tag="h3") }}
+  <p>
+    Cases are usually heard by three judges, consisting of any combination of the Heads of Division and Lord/Lady Justices of Appeal.
+  </p>
+{% endmacro %}
+{% macro description_content(start_year=None) %}
   <p>The Court of Appeal Civil Division is the second most senior court for non-criminal cases in England and Wales.</p>
   <p>
     This court began to regularly transfer judgments to The National Archives in 2022.
