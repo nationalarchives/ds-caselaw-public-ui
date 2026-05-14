@@ -5,3 +5,4 @@ include = judgments/**/*.py, judgments/*.py
 [report]
 omit =
     *__init__*
+    ds_judgements_public_ui/templates/content/**/*.jinja
