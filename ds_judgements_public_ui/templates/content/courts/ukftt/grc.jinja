@@ -18,6 +18,9 @@
     {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-tribunal", content="Questions about judgments from this tribunal") }}
   {% endcall %}
 {% endmacro %}
@@ -52,5 +55,11 @@
   </p>
   <p>
     You can read more about the General Regulatory Chamber on the {{ link(content="HM Courts and Tribunals website", href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-general-regulatory-chamber", attrs={"target":"_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>
+    The General Regulatory Chamber is one of seven chambers of the First-tier Tribunal and it deals with appeals against government regulators.
   </p>
 {% endmacro %}

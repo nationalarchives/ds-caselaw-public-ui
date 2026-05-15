@@ -18,6 +18,9 @@
     {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
   {% endcall %}
 {% endmacro %}
@@ -53,5 +56,11 @@
   </p>
   <p>
     You can read more about it on {{ link(content="the chancery division on the Judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/chancery-division/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>
+    The Chancery Division deals with commercial, business, intellectual property and competition disputes and cases concerning companies, partnerships, mortgages, insolvency, land and trusts. The President of the Chancery Division is the Chancellor of the High Court.
   </p>
 {% endmacro %}

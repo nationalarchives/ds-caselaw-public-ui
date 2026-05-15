@@ -18,6 +18,9 @@
     {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-tribunal", content="Questions about judgments from this tribunal") }}
   {% endcall %}
 {% endmacro %}
@@ -58,5 +61,11 @@
   </p>
   <p>
     You can read more about it on the Tax Chamber page on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/courts-tribunals/first-tier-tribunal-tax", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>
+    The First-Tier Tribunal Tax Chamber is one of the seven Chambers of the First-tier Tribunal. It deals with disputes concerning tax.
   </p>
 {% endmacro %}

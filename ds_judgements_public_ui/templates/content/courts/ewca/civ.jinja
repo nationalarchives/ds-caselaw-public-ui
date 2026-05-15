@@ -18,6 +18,9 @@
     {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
   {% endcall %}
 {% endmacro %}
@@ -56,5 +59,11 @@
   </p>
   <p>
     You can read more about it on the {{ link(content="Court of Appeal Civil Division page", href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division", attrs={"target":"_blank"}) }} on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>
+    The Civil Division hears a range of civil appeals from the High Court, County Court, Family Court and Tribunals. Its President is the Master of the Rolls.
   </p>
 {% endmacro %}
