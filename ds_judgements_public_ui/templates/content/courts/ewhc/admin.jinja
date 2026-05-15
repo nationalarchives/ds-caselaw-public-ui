@@ -15,6 +15,9 @@
     {{ link(href="#search-this-court", content="Search this court") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
   {% endcall %}
 {% endmacro %}
@@ -47,4 +50,8 @@
   <p>
     You can read more about {{ link(content="the Administrative court on the judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/high-court/administrative-court/", attrs={"target": "_blank"}) }}.
   </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>The Administrative Court has both a Civil and Criminal jurisdiction exercised mainly through judicial review.</p>
 {% endmacro %}
