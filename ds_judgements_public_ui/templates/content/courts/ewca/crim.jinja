@@ -58,3 +58,9 @@
     You can read more about it on the {{ link(content="Court of Appeal Criminal Division page", href="https://www.gov.uk/courts-tribunals/court-of-appeal-criminal-division", attrs={"target":"_blank"}) }} on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about", attrs={"target": "_blank"}) }}
   </p>
 {% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>
+    The Criminal Division hears appeals from the Crown Court relating to convictions and sentences. Its President is the Lady Chief Justice.
+  </p>
+{% endmacro %}

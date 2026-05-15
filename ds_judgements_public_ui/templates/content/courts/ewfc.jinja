@@ -18,6 +18,9 @@
     {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
   {% endcall %}
 {% endmacro %}
@@ -53,5 +56,11 @@
   </p>
   <p>
     You can read more about it on the {{ link(content="Family Justice System", href="https://www.judiciary.uk/courts-and-tribunals/family-law-courts/", attrs={"target": "_blank"}) }} page on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>
+    The Family courts in England and Wales are the Family Court and the Family Division of the High Court. Disputes touch on many aspect of family life and cases can involve marriage, divorce, child arrangements, protecting children, adoption, surrogacy, forced marriage, female genital mutilation, international child abduction and the inherent jurisdiction of the High Court.
   </p>
 {% endmacro %}

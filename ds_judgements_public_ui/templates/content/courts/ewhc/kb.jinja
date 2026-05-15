@@ -18,6 +18,9 @@
     {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
   {% endcall %}
 {% endmacro %}
@@ -52,4 +55,8 @@
   <p>
     You can read more about it on {{ link(content="the King’s Bench Division on the judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/kings-bench-division/", attrs={"target": "_blank"}) }}.
   </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>The King's Bench Division is the biggest of the three High Court Divisions and has the most varied jurisdiction.</p>
 {% endmacro %}
