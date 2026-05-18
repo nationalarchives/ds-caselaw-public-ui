@@ -1,6 +1,9 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
+{% macro website_link(label=None) %}
+  {{ link(content=label or (court.name ~ " website") , href="https://www.judiciary.uk/courts-and-tribunals/kings-bench-division/", attrs={"target": "_blank"}) }}
+{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

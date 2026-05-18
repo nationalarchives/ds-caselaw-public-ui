@@ -41,9 +41,11 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
+    font-size: $typography-xs-text-size;
 
     @media (min-width: $grid-breakpoint-medium) {
       width: 80%;
+      font-size: $typography-md-text-size;
     }
   }
 
