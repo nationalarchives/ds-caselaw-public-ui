@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential=12.9 \
   # psycopg2 dependencies
-  libpq-dev=15.16-0+deb12u1 \
+  libpq-dev=15.18-0+deb12u1\
   # WeasyPrint dependencies
   weasyprint=57.2-1 \
   python3-cffi=1.15.1-5 \
@@ -43,7 +43,7 @@ WORKDIR ${APP_HOME}
 # Install runtime system dependencies (shared by both local and production)
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
-  libpq-dev=15.16-0+deb12u1 \
+  libpq-dev=15.18-0+deb12u1\
   # WeasyPrint dependencies
   weasyprint=57.2-1 \
   python3-cffi=1.15.1-5 \
@@ -73,7 +73,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   fonts-liberation=1:1.07.4-11 \
   lldb=1:14.0-55.7~deb12u1 \
   procps=2:4.0.2-3 \
-  libcap2-bin=1:2.66-4+deb12u2+b2 \
+  libcap2-bin=1:2.66-4+deb12u3+b1 \
   && rm -rf /var/lib/apt/lists/*
 
 # Copy application code to WORKDIR
