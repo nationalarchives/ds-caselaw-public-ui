@@ -1,0 +1,55 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  court
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this court") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+  {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
+  <p>
+    King’s Bench Division Judges, High Court Judges from other Divisions of the High Court and some Deputy High Court Judges can sit in the Administrative Court. When sitting as a Divisional Court, the Administrative Court often includes a judge from the Court of Appeal.
+  </p>
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    The High Court deals at first instance with all high value and high importance civil law (non-criminal) cases, and also has a supervisory jurisdiction over all subordinate courts and tribunals, with a few statutory exceptions. The High court has three divisions, King’s/Queen’s Bench, Family and Chancery Divisions.
+  </p>
+  <p>
+    You can {{ link(content="read more about the High court on the judiciary website", href="https://www.judiciary.uk/structure-of-courts-and-tribunals-system/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+{% endmacro %}

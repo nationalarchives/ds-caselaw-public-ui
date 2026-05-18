@@ -1,0 +1,54 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  tribunal
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this tribunal") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this tribunal") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    This tribunal is responsible for handling appeals against decisions made by the Employment Tribunal where a legal mistake may have been made in the case. They also hear appeals and applications about decisions made by the certification officer and the Central Arbitration Committee.
+  </p>
+  <p>
+    This tribunal began to regularly transfer decisions to The National Archives in 2022.
+    {% if start_year %}
+      The oldest decision from this tribunal included in Find Case Law is from {{ start_year }}.
+    {% endif %}
+  </p>
+  <p>
+    You can read more about it on the {{ link(content="Employment Appeal tribunal page", href="https://www.gov.uk/courts-tribunals/employment-appeal-tribunal", attrs={"target":"_blank"}) }} on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service/about", attrs={"target":"_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+{% endmacro %}

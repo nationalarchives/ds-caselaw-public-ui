@@ -1,0 +1,62 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  court
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this court") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+  {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
+  <p>Cases are heard by High Court Judges and Masters, and Deputy High Court Judges and Masters.</p>
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    The King’s Bench Division is one of three Divisions of the High Court. It handles a wide range of civil claims across contract disputes and civil wrongs (tort) including claims of: negligence, defamation, assault, trespass. This Division contains specialist courts including Administrative, Admiralty, Commercial, and Technology and Construction Courts.
+  </p>
+  <p>
+    This court began to regularly transfer judgments to The National Archives in 2022.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+  </p>
+  <p>
+    You can read more about it on {{ link(content="the King’s Bench Division on the judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/kings-bench-division/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>The King's Bench Division is the biggest of the three High Court Divisions and has the most varied jurisdiction.</p>
+{% endmacro %}

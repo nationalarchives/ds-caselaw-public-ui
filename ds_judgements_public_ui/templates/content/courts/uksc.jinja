@@ -1,0 +1,104 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  court
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this court") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+  {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
+  {{ heading(content="Citation format", tag="h3") }}
+  <p>
+    Supreme Court citations use the format [Year] UKSC [Number]. For example, [2024] UKSC 15 is the 15th case decided by the Supreme Court in 2024.
+  </p>
+  {{ heading(content="Typical judgment structure", tag="h3") }}
+  <p>
+    Supreme Court judgments are often lengthy and contain detailed legal analysis. Unlike most other courts, multiple Justices may give separate judgments — some agreeing with different aspects of the decision, others dissenting. This means a single case can contain several individual judgments within it.
+  </p>
+  <p>
+    Each judgment typically includes a summary of the facts, the legal questions being considered, the reasoning, and the decision.
+  </p>
+  {{ heading(content="Who sits", tag="h3") }}
+  <p>
+    Cases are heard by panels of Justices — usually 5, sometimes 7, and occasionally 9 for the most significant constitutional cases. Larger panels are used when the court is being asked to depart from a previous Supreme Court or House of Lords decision.
+  </p>
+  {{ heading(content="Appeal routes", tag="h3") }}
+  <p>The Supreme Court is the final court of appeal. There is no further appeal from Supreme Court decisions.</p>
+  <p>
+    Cases reach the Supreme Court on appeal from the Court of Appeal (Civil Division or Criminal Division) or, in some cases, directly from the High Court via a ‘leapfrog’ appeal. Permission to appeal must be granted, and is only given for cases raising arguable points of law of general public importance.
+  </p>
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    The Supreme Court is the final court of appeal for civil cases in all of the UK and for criminal cases in England, Wales and Northern Ireland. Typically this court deals with important legal questions that affect the public or the constitution.
+  </p>
+  <p>
+    The UK Supreme Court was established in October 2009. This court began to regularly transfer judgments to The National Archives in 2022.
+    {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
+    House of Lords decisions from before 2009 are held by the Parliamentary Archives.
+  </p>
+  <p>
+    You can read more about it on the {{ link(content="UK Supreme Court website", href="https://www.supremecourt.uk/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  {{ heading(content="Jurisdiction and powers", tag="h3") }}
+  <p>The Supreme Court hears appeals on arguable points of law of general public importance. Its jurisdiction covers:</p>
+  {% call list(variant="bullets") %}
+    {{ list_item(content="Civil cases from England, Wales, Scotland and Northern Ireland") }}
+    {{ list_item(content="Criminal cases from England, Wales and Northern Ireland (Scottish criminal cases cannot be appealed to the Supreme Court)") }}
+    {{ list_item(content="Important points of law under the devolution settlements for Scotland, Wales and Northern Ireland") }}
+  {% endcall %}
+  <p>
+    Permission to appeal is required and is granted only for cases raising issues of general public importance. The Supreme Court does not retry cases or review findings of fact — it considers questions of law.
+  </p>
+  {{ heading(content="Types of cases", tag="h3") }}
+  <p>The Supreme Court hears cases involving:</p>
+  {% call list(variant="bullets") %}
+    {{ list_item(content="Constitutional and human rights issues") }}
+    {{ list_item(content="Public law and judicial review") }}
+    {{ list_item(content="Commercial and contract disputes of legal significance") }}
+    {{ list_item(content="Family law matters raising important legal principles") }}
+    {{ list_item(content="Criminal appeals on points of law") }}
+    {{ list_item(content="Devolution issues") }}
+  {% endcall %}
+  <p>The court typically hears 60 to 80 cases per year.</p>
+  {{ heading(content="More about this court", tag="h3") }}
+  <p>You can read more on the UK Supreme Court website</p>
+{% endmacro %}

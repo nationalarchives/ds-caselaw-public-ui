@@ -1,0 +1,57 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  tribunal
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-tribunal", content="Search this tribunal") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-tribunal", content="Questions about judgments from this tribunal") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    The Lands Chamber is responsible for handling appeals against decisions made by First-Tier Tribunal (Property Chamber); Residential Property Tribunal in Wales and Leasehold Valuation Tribunal in Wales.
+  </p>
+  <p>
+    They are also responsible for handling applications for cases about a decision about rates made by the Valuation Tribunal in England or Wales; compensation for the compulsory purchase of land; discharge or modification of land affected by a ‘restrictive covenant’; compensation for the effect on land affected by public works; a tree preservation order; compensation for damage to land damaged by subsidence from mining; the valuation of land or buildings for Capital Gains Tax or Inheritance Tax purposes; a ‘right to light’ dispute; compensation for blighted land and Electronic Communication Code - disputes involving masts and other telecommunications equipment on land.
+  </p>
+  <p>
+    This tribunal began to regularly transfer decisions to The National Archives in 2022.
+    {% if start_year %}
+      The oldest decision from this tribunal included in Find Case Law is from {{ start_year }}.
+    {% endif %}
+  </p>
+  <p>
+    You can read more about it on the Lands Chamber on the {{ link(content="HM Courts and Tribunals Service website", href="https://www.gov.uk/courts-tribunals/upper-tribunal-lands-chamber", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+{% endmacro %}

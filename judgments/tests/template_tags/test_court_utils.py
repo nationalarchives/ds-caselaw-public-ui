@@ -11,6 +11,7 @@ from judgments.templatetags.court_utils import (
     get_court_date_range,
     get_court_judgments_count,
     get_court_name,
+    get_court_start_year,
     get_first_judgment_year,
     get_last_judgment_year,
 )
@@ -105,6 +106,53 @@ class TestGetCourtDateRange(TestCase):
         param = CourtParam("fallback-court")
         result = get_court_date_range(param)
         assert result == "1995&nbsp;to&nbsp;1999"
+
+
+class TestGetCourtStartYear(TestCase):
+    @patch("judgments.templatetags.court_utils.CourtDates.objects.get")
+    def test_returns_start_year_from_courtdates(self, mock_get):
+        mock_get.return_value = Mock(start_year=2015)
+        param = CourtParam("court-x")
+
+        result = get_court_start_year(param)
+
+        assert result == 2015
+
+    @patch("judgments.templatetags.court_utils.all_courts.get_by_param")
+    @patch(
+        "judgments.templatetags.court_utils.CourtDates.objects.get",
+        side_effect=CourtDates.DoesNotExist,
+    )
+    def test_fallback_to_all_courts_on_missing_courtdates(
+        self,
+        mock_get,
+        mock_get_by_param,
+    ):
+        mock_get_by_param.return_value = Mock(start_year=1995)
+        param = CourtParam("fallback-court")
+
+        result = get_court_start_year(param)
+
+        assert result == 1995
+
+    @patch(
+        "judgments.templatetags.court_utils.all_courts.get_by_param",
+        side_effect=CourtNotFoundException,
+    )
+    @patch(
+        "judgments.templatetags.court_utils.CourtDates.objects.get",
+        side_effect=CourtDates.DoesNotExist,
+    )
+    def test_returns_none_when_court_is_not_found(
+        self,
+        mock_get,
+        mock_get_by_param,
+    ):
+        param = CourtParam("missing-court")
+
+        result = get_court_start_year(param)
+
+        assert result is None
 
 
 class TestGetCourtJudgmentsCount(TestCase):

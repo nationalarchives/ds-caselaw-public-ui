@@ -1,0 +1,51 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  tribunal
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-tribunal", content="Search this tribunal") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-tribunal", content="Questions about judgments from this tribunal") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    The Primary Health List deals with appeals and applications arising from decisions made by Primary Care Trusts and NHS England in England and Health Boards in Wales as part of the local management of lists of medical practitioners, dental practitioners, ophthalmic practitioners and some pharmacists who are able to provide NHS service.
+  </p>
+  <p>
+    The appeals include appeals against decisions to refuse to include any practitioner on the performers list, imposition of any conditions and removal of any practitioner from the performers list.
+  </p>
+  <p>
+    You can read more about the tribunal on its website {{ link(content="Primary Health Lists - Courts and Tribunals Judiciary", href="https://www.judiciary.uk/courts-and-tribunals/tribunals/first-tier-tribunal/health-education-and-social-care-chamber/special-educational-needs-and-disability-care-standards-and-primary-health-lists-send/primary-health-lists/", attrs={"target":"_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+{% endmacro %}

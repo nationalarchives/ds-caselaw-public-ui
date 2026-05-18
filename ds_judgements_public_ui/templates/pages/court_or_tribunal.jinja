@@ -1,93 +1,69 @@
 {% extends "layouts/standard_content.jinja" %}
 {% from "components/card.jinja" import card %}
+{% from "components/contents.jinja" import contents %}
 {% from "components/heading.jinja" import heading %}
 {% from "components/button.jinja" import button %}
-{% from "components/contents.jinja" import contents %}
 {% from "components/link.jinja" import link %}
-{% from "components/list.jinja" import list, list_item %}
+{% from "components/list.jinja" import list %}
 {% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
+{% from "content/courts/" ~ court.canonical_param ~ ".jinja" import description_content, understanding_content, coverage_content, court_noun_content, about_content, contents_navigation with context %}
 {% block mobile_article_title %}
-  {% call heading() %}
-    {{ court.name }}
-  {% endcall %}
+  {{ heading(content=court.name) }}
 {% endblock mobile_article_title %}
 {% block desktop_article_title %}
-  {% call heading() %}
-    {{ court.name }}
-  {% endcall %}
+  {{ heading(content=court.name) }}
 {% endblock desktop_article_title %}
 {% block article_navigation %}
   {% call contents(title="On this page") %}
     {% call list() %}
-      {% call list_item() %}
-        {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
-      {% endcall %}
-      {% call list_item() %}
-        {{ link(href="#recent-judgments", content="Recent judgments") }}
-      {% endcall %}
-      {% call list_item() %}
-        {{ link(href="#search-this-court", content="Search this court") }}
-      {% endcall %}
-      {% call list_item() %}
-        {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
-      {% endcall %}
+      {{ contents_navigation() }}
     {% endcall %}
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
-  {% autoescape off %}
-    {{ court.description_text_as_html }}
-  {% endautoescape %}
-  {% call heading(tag="h2") %}
-    Coverage on Find Case Law
-  {% endcall %}
-  <p>
-    <strong>Date range</strong> — {{ param|get_court_date_range }}
-  </p>
-  {% if court.historic_documents_support_text_as_html %}
-    {% autoescape off %}
-      {{ court.historic_documents_support_text_as_html }}
-    {% endautoescape %}
-  {% endif %}
-  {% call heading(tag="h2") %}
-    Recent judgments
-  {% endcall %}
-  {% call documents_table(headings=["Case name", "Neutral citation", "Handed down"], hide_title=True, margin=True) %}
-    {% for document in documents %}
-      {% call document_table_body() %}
-        {% call document_table_row() %}
-          {% call document_table_cell(variant="text") %}
-            {% call link(href=url("detail", document.slug)) %}
-              {{ document.name }}
+  {{ description_content(start_year=court.canonical_param|get_court_start_year) }}
+  {{ coverage_content() }}
+  {% if documents %}
+    {{ heading(content="Recent judgments", tag="h2") }}
+    {% call documents_table(headings=["Case name", "Neutral citation", "Handed down"], hide_title=True, margin=True) %}
+      {% for document in documents %}
+        {% call document_table_body() %}
+          {% call document_table_row() %}
+            {% call document_table_cell(variant="text") %}
+              {% call link(href=url("detail", document.slug)) %}
+                {{ document.name or document.slug }}
+              {% endcall %}
+            {% endcall %}
+            {% call document_table_cell(variant="text", label="Neutral citation") %}
+              {{ document.neutral_citation | default("&mdash;", true) | safe }}
+            {% endcall %}
+            {% call document_table_cell(variant="text", label="Handed down") %}
+              {{ formatdate(document.date) }}
             {% endcall %}
           {% endcall %}
-          {% call document_table_cell(variant="text", label="Neutral citation") %}
-            {{ document.neutral_citation | default("&mdash;", true) | safe }}
-          {% endcall %}
-          {% call document_table_cell(variant="text", label="Handed down") %}
-            {{ formatdate(document.date) }}
-          {% endcall %}
         {% endcall %}
-      {% endcall %}
-    {% endfor %}
-  {% endcall %}
-  {% call heading(tag="h2") %}
-    Search this court
-  {% endcall %}
+      {% endfor %}
+    {% endcall %}
+  {% endif %}
+  {{ heading(content="Search this " ~ court_noun_content() , tag="h2") }}
   <p>
-    Use the search box to find specific cases from the Supreme Court, or visit {{ link(href=url("advanced_search") , content="Advanced search") }} to combine court filters with other search criteria.
+    Use the search box to find specific cases from the {{ court.name }}, or visit {{ link(href=url("advanced_search") , content="Advanced search") }} to combine {{ court_noun_content() }} filters with other search criteria.
   </p>
   {% call search_form_container(margin=True) %}
     {% call search_form() %}
       <input type="hidden" name="court" value="{{ court.canonical_param }}" />
-      {{ search_input(value="", placeholder="Input your search term for this court...", button_action=url("search") , button_label="Search") }}
+      {{ search_input(value="", placeholder="Input your search term for this " ~ court_noun_content() ~ "...", button_action=url("search") , button_label="Search") }}
     {% endcall %}
   {% endcall %}
-  {% call card(title="Questions about judgments from this court", title_tag="h2") %}
+  {{ understanding_content() }}
+  {{ about_content() }}
+  {% call card(title="Questions about judgments from this " ~ court_noun_content(), title_tag="h2") %}
     <p>
-      Please note that neither Find Case Law or The National Archives are responsible for the content of any court judgments provided to us by the {{ court.name }}.
+      Please note that neither Find Case Law or The National Archives are responsible for the content of any {{ court_noun_content() }} judgments provided to us by the {{ court.name }}.
     </p>
-    <p>If you have any queries concerning a judgment from this court, please contact them directly.</p>
+    <p>
+      If you have any queries concerning a judgment from this {{ court_noun_content() }}, please contact them directly.
+    </p>
   {% endcall %}
 {% endblock article_content %}

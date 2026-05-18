@@ -1,0 +1,51 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  court
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-court", content="Search this court") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
+  </p>
+  {% if court.historic_documents_support_text_as_html %}
+    {% autoescape off %}
+      {{ court.historic_documents_support_text_as_html }}
+    {% endautoescape %}
+  {% endif %}
+{% endmacro %}
+{% macro understanding_content() %}
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    The Mercantile Court is now known as The Circuit Commercial Court and is closely associated with the Commercial Court. {{ link(content="You can find cases decided by the Mercantile Court here", href="https://caselaw.nationalarchives.gov.uk/judgments/search?query=&from_day=&from_month=&from_year=&to_day=&to_month=&to_year=&court=ewhc%2Fmercantile&party=&judge=", attrs={"target": "_blank"}) }}.
+  </p>
+  <p>
+    This court does not transfer judgments to The National Archives. The judgments from this court included in Find Case Law are from 2008 to 2014.
+  </p>
+  <p>
+    You can read more about it on {{ link(content="the Commercial Court on the Judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/commercial-court/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+{% endmacro %}
