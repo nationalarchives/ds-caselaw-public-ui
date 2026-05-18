@@ -53,7 +53,7 @@
   {% call search_form_container(margin=True) %}
     {% call search_form() %}
       <input type="hidden" name="court" value="{{ court.canonical_param }}" />
-      {{ search_input(value="", placeholder="Input your search term for this " ~ court_noun_content() ~ "...", button_action=url("search") , button_label="Search") }}
+      {{ search_input(value="", placeholder="Input your search term for this " ~ court_noun_content() |trim ~ "...", button_action=url("search") , button_label="Search") }}
     {% endcall %}
   {% endcall %}
   {{ understanding_content() }}
@@ -63,7 +63,7 @@
       Please note that neither Find Case Law or The National Archives are responsible for the content of any {{ court_noun_content() }} judgments provided to us by the {{ court.name }}.
     </p>
     <p>
-      If you have any queries concerning a judgment from this {{ court_noun_content() }}, please contact them directly.
+      If you have any queries concerning a judgment from this {{ court_noun_content() |trim }}, please contact them directly.
     </p>
   {% endcall %}
 {% endblock article_content %}
