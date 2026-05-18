@@ -264,7 +264,7 @@ search_and_browse_urls = [
     ),
     path(
         "browse-courts-and-tribunals",
-        lambda request: HttpResponseRedirect(reverse("courts_and_coverage")),
+        lambda request: HttpResponseRedirect(reverse("courts_and_tribunals")),
         name="browse_courts_and_tribunals",
     ),
 ]
