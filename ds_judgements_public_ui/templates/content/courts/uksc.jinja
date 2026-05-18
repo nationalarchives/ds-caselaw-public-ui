@@ -18,6 +18,9 @@
     {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
   {% endcall %}
   {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
     {{ link(href="#questions-about-judgments-from-this-court", content="Questions about judgments from this court") }}
   {% endcall %}
 {% endmacro %}
