@@ -110,7 +110,9 @@ class CourtOrTribunalView(TemplateViewWithContext):
         context["documents"] = search_response.results
         context["feedback_survey_type"] = "court_or_tribunal_%s" % court.canonical_param
         context["court"] = court
+        context["active_navigation_endpoint"] = "search_and_browse"
         context["breadcrumbs"] = [
+            {"url": reverse("search_and_browse"), "text": "Search and browse"},
             {"url": reverse("courts_and_tribunals"), "text": "Types of courts in England and Wales"},
             {"text": self.page_title},
         ]

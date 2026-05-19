@@ -1,6 +1,9 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list, list_item %}
 {% from "components/heading.jinja" import heading %}
+{% macro website_link(label=None) %}
+  {{ link(content=label or (court.name ~ " website") , href="https://www.supremecourt.uk/", attrs={"target": "_blank"}) }}
+{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}
@@ -72,9 +75,7 @@
     {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
     House of Lords decisions from before 2009 are held by the Parliamentary Archives.
   </p>
-  <p>
-    You can read more about it on the {{ link(content="UK Supreme Court website", href="https://www.supremecourt.uk/", attrs={"target": "_blank"}) }}.
-  </p>
+  <p>You can read more about it on the {{ website_link() |trim }}.</p>
 {% endmacro %}
 {% macro about_content() %}
   {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
@@ -100,5 +101,5 @@
   {% endcall %}
   <p>The court typically hears 60 to 80 cases per year.</p>
   {{ heading(content="More about this court", tag="h3") }}
-  <p>You can read more on the UK Supreme Court website</p>
+  <p>You can read more on the {{ website_link() |trim }}</p>
 {% endmacro %}

@@ -87,7 +87,7 @@
       border-bottom: 1px solid colour-var("keyline-dark");
 
       &:first-of-type {
-        tr:first-child {
+        tr:first-child:not(:only-child) {
           td {
             padding-top: 0;
 
@@ -99,16 +99,28 @@
       }
 
       tr {
-        &:first-child {
+        &:only-child {
+          td {
+            padding: 0;
+          }
+        }
+
+        &:first-child:not(:only-child) {
           td {
             padding: $space-4 0 $space-2 0;
           }
         }
 
         @media (min-width: $grid-breakpoint-medium) {
-          &:last-child {
+          &:last-child:not(:only-child) {
             td {
               padding-bottom: $space-4;
+            }
+          }
+
+          &:only-child {
+            td {
+              padding: $space-4 0;
             }
           }
         }
@@ -134,11 +146,15 @@
           gap: $space-2;
           padding-bottom: $space-4;
 
-          &:first-child {
+          &:only-child {
+            padding-top: $space-4;
+          }
+
+          &:first-child:not(:only-child) {
             padding-bottom: 0;
           }
 
-          &:last-child {
+          &:last-child:not(:only-child) {
             td {
               border: none;
             }

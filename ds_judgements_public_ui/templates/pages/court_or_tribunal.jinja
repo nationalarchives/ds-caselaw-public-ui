@@ -7,7 +7,7 @@
 {% from "components/list.jinja" import list %}
 {% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
-{% from "content/courts/" ~ court.canonical_param ~ ".jinja" import description_content, understanding_content, coverage_content, court_noun_content, about_content, contents_navigation with context %}
+{% from "content/courts/" ~ court.canonical_param ~ ".jinja" import description_content, understanding_content, coverage_content, court_noun_content, about_content, contents_navigation, website_link with context %}
 {% block mobile_article_title %}
   {{ heading(content=court.name) }}
 {% endblock mobile_article_title %}
@@ -53,7 +53,7 @@
   {% call search_form_container(margin=True) %}
     {% call search_form() %}
       <input type="hidden" name="court" value="{{ court.canonical_param }}" />
-      {{ search_input(value="", placeholder="Input your search term for this " ~ court_noun_content() ~ "...", button_action=url("search") , button_label="Search") }}
+      {{ search_input(value="", placeholder="Input your search term for this " ~ court_noun_content() |trim ~ "...", button_action=url("search") , button_label="Search") }}
     {% endcall %}
   {% endcall %}
   {{ understanding_content() }}
@@ -63,7 +63,7 @@
       Please note that neither Find Case Law or The National Archives are responsible for the content of any {{ court_noun_content() }} judgments provided to us by the {{ court.name }}.
     </p>
     <p>
-      If you have any queries concerning a judgment from this {{ court_noun_content() }}, please contact them directly.
+      If you have any queries concerning a judgment from this {{ court_noun_content() |trim }}, please {{ website_link(label="contact them directly") |trim }}.
     </p>
   {% endcall %}
 {% endblock article_content %}
