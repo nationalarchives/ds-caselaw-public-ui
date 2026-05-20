@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.14-slim-bookworm@sha256:a3974109d36f164ca70024bc0d0828ac706e4ccda849f8638d879e91f79e90ec
+ARG PYTHON_VERSION=3.14-slim-bookworm@sha256:eae5d4c3ba20e5f89782e37950bb4815460e8f27564fd25112c3d950cd5351c9
 
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} AS python
