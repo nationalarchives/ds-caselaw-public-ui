@@ -68,6 +68,12 @@
           padding-right: $space-4;
         }
 
+        @media (min-width: $grid-breakpoint-large) {
+          &:last-child {
+            text-align: right;
+          }
+        }
+
         @media (max-width: $grid-breakpoint-medium) {
           display: none;
           border-bottom: 0;
@@ -132,6 +138,12 @@
 
         a {
           font-size: $typography-md-text-size;
+        }
+
+        @media (min-width: $grid-breakpoint-large) {
+          &:last-child:not(:only-child) {
+            text-align: right;
+          }
         }
       }
 

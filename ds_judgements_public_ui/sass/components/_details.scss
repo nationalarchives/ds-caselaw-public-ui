@@ -17,9 +17,6 @@
     border: 0;
 
     &[open] {
-      border-right: 3px solid colour-var("accent-brand");
-      border-left: 3px solid colour-var("accent-brand");
-
       .details__summary {
         .details__closed-title {
           display: none;
@@ -83,11 +80,11 @@
       display: flex;
       flex-direction: column;
       gap: $space-6;
-      padding: 0 $space-6;
+      padding: 0 0 $space-6;
 
       p {
         margin: 0;
-        font-size: $typography-md-text-size;
+        font-size: $typography-sm-text-size;
         line-height: $typography-lg-line-height;
       }
     }
