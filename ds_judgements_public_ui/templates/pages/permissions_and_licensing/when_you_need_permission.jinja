@@ -8,17 +8,11 @@
   {% call heading() %}
     When you need permission
   {% endcall %}
-  <p>
-    Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence.
-  </p>
 {% endblock mobile_article_title %}
 {% block desktop_article_title %}
   {% call heading() %}
     When you need permission
   {% endcall %}
-  <p>
-    Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence.
-  </p>
 {% endblock desktop_article_title %}
 {% block article_navigation %}
   {% call contents(title="On this page") %}
@@ -47,13 +41,15 @@
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
+  <p>
+    Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to apply for a licence.
+  </p>
   {% call heading(tag="h2") %}
     Understanding computational analysis
   {% endcall %}
   <p>
-    Computational analysis includes activities such as any programmatic searching in bulk across the Find Case Law records to identify, extract or enrich contents within the records.
+    Computational analysis means using automated or algorithmic methods to process large numbers of judgments systematically — including using AI or large language models (LLMs).
   </p>
-  <p>This means using automated or algorithmic methods to process large numbers of judgments systematically.</p>
   {% call heading(tag="h3") %}
     Examples of computational analysis
   {% endcall %}
@@ -70,6 +66,12 @@
     {% endcall %}
     {% call list_item() %}
       machine learning or AI training on judgment datasets
+    {% endcall %}
+    {% call list_item() %}
+      building services or products using AI or large language models (LLMs)
+    {% endcall %}
+    {% call list_item() %}
+      building vector databases for semantic search
     {% endcall %}
     {% call list_item() %}
       statistical analysis across the full collection
@@ -103,6 +105,7 @@
   {% call heading(tag="h2") %}
     Do you need a licence?
   {% endcall %}
+  <p>{{ link(content="Guidance for public sector re-use", href=url("public_sector_reuse") ) }}.</p>
   <p>
     You need a licence if you want to perform any programmatic searching in bulk across Find Case Law records to identify, extract or enrich contents within the records.
   </p>
