@@ -110,6 +110,7 @@ permissions_and_licensing_pages = [
         "title": "Legal framework",
         "heading": "Legal framework",
     },
+    {"url": "/public-sector-reuse", "title": "Public sector re-use", "heading": "Public sector re-use"},
 ]
 
 help_and_support_pages = [

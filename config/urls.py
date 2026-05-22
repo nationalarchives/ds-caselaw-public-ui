@@ -291,6 +291,11 @@ permissions_and_licensing_urls = [
         name="what_you_need_to_apply_for_a_licence",
     ),
     path(
+        "public-sector-reuse",
+        permissions_and_licensing_views.PublicSectorReuseView.as_view(),
+        name="public_sector_reuse",
+    ),
+    path(
         "how-to-get-permission",
         permissions_and_licensing_views.HowToGetPermissionView.as_view(),
         name="how_to_get_permission",

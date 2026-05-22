@@ -1,0 +1,89 @@
+{% extends "layouts/standard_content.jinja" %}
+{% from "components/card.jinja" import card %}
+{% from "components/heading.jinja" import heading %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/list.jinja" import list, list_item %}
+{% from "components/link.jinja" import link %}
+{% block mobile_article_title %}
+  {% call heading() %}
+    Public sector re-use
+  {% endcall %}
+{% endblock mobile_article_title %}
+{% block desktop_article_title %}
+  {% call heading() %}
+    Public sector re-use
+  {% endcall %}
+{% endblock desktop_article_title %}
+{% block article_navigation %}
+  {% call contents(title="On this page") %}
+    {% call list() %}
+      {% call list_item() %}
+        {{ link(content="Crown bodies and Non-Crown bodies", href="crown-bodies-and-non-crown-bodies") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(content="Guidance for Crown bodies", href="guidance-for-crown-bodies") }}
+      {% endcall %}
+      {% call list_item() %}
+        {{ link(content="How to apply", href="#how-to-apply") }}
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+{% endblock article_navigation %}
+{% block article_content %}
+  {{ heading(content="Crown bodies and Non-Crown bodies", tag="h2") }}
+  <p>
+    Before you do anything else, you need to establish whether your organisation is a Crown body or a Non-Crown body. The answer determines whether you need to apply for a licence to re-use Find Case Law data.
+  </p>
+  {{ heading(content="Crown bodies", tag="h3") }}
+  <p>
+    If your organisation is a Crown body, you do not need to apply for a licence. This is because of the constitutional principle of the indivisibility of the Crown — it would not be appropriate for us to licence data between Crown bodies.
+  </p>
+  <p>
+    If you are not sure whether your organisation is a Crown body, check your founding legislation. A practical way to tell: if information your organisation produces is Crown copyright, your organisation is a Crown body.
+  </p>
+  {{ heading(content="Non-Crown bodies", tag="h3") }}
+  <p>
+    If your organisation is a Non-Crown body, you need to apply for a licence to re-use Find Case Law data for computational analysis.
+  </p>
+  <p>{{ link(content="Find out how to apply", href=url("what_you_need_to_apply_for_a_licence") ) }}.</p>
+  {{ heading(content="Guidance for Crown bodies", tag="h2") }}
+  <p>
+    The Find Case Law dataset contains personal data, including some special category personal data. When you re-use this data, you are processing it — and that makes your organisation a Data Controller under UK GDPR.
+  </p>
+  {{ heading(content="What you need to do", tag="h3") }}
+  <p>
+    You must establish a lawful basis for processing this data before you proceed. Your Data Protection Officer (DPO) can advise whether your organisation has a sufficient legal basis. Document their advice in case your use is ever questioned.
+  </p>
+  <p>
+    If your DPO concludes that your organisation does not have a sufficient legal basis on its own, you could consider approaching the Ministry of Justice (MoJ) or His Majesty’s Courts and Tribunals Service (HMCTS) about entering into a data sharing agreement with them.
+  </p>
+  {{ heading(content="What The National Archives cannot do", tag="h3") }}
+  <p>
+    We cannot enter into a data sharing agreement with you. We process Find Case Law data on behalf of the courts, for publication purposes only.
+  </p>
+  <p>
+    We are happy to answer questions about the dataset itself — how to access it and how to make sure you are working with the most up-to-date version.
+  </p>
+  <p>{{ link(content="Contact us", href=url("contact_us") ) }} if you need help with this.</p>
+  {% call card(title="How to apply", title_tag="h2") %}
+    <p>
+      Visit
+      {% call link(href=url("what_you_need_to_apply_for_a_licence")) %}
+        What you need to apply for a licence
+      {%- endcall -%}
+      {{ " " }}to understand the application requirements, or go straight to
+      {% call link(href=url("licence_application_process")) %}
+        Licence application process
+      {%- endcall -%}
+      {{ " " }}to learn about how applications are assessed.
+    </p>
+    <p>
+      If you're uncertain whether your intended use counts as computational analysis, contact us at
+      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
+        caselawlicence@nationalarchives.gov.uk
+      {%- endcall -%}
+      {{ " " }}to discuss your needs.
+    </p>
+    <p>It's better to ask than to proceed without permission if a licence is required.</p>
+  {% endcall %}
+{% endblock article_content %}
