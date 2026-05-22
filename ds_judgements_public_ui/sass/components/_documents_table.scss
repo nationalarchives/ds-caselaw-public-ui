@@ -55,7 +55,7 @@
       display: none;
 
       th {
-        min-width: 138px;
+        min-width: 110px;
         padding: $space-2 0;
         border-bottom: 1px solid colour-var("input-border");
 
@@ -71,6 +71,10 @@
         @media (min-width: $grid-breakpoint-large) {
           &:last-child {
             text-align: right;
+          }
+
+          &:first-child {
+            width: 100%;
           }
         }
 
@@ -141,6 +145,13 @@
         }
 
         @media (min-width: $grid-breakpoint-large) {
+          white-space: nowrap;
+
+          &:first-child {
+            padding-right: $space-4;
+            white-space: wrap;
+          }
+
           &:last-child:not(:only-child) {
             text-align: right;
           }
