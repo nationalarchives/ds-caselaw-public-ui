@@ -55,6 +55,6 @@
     "govuk-country-and-territory-autocomplete": "2.0.0",
     "govuk-frontend": "6.1.0",
     "nodemon": "3.1.14",
-    "sass": "1.99.0"
+    "sass": "1.100.0"
   }
 }
