@@ -3,7 +3,6 @@
 {% from "components/contents.jinja" import contents %}
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list, list_item %}
-{% from "components/table.jinja" import table, table_row, table_cell %}
 {% block meta_description %}
   <meta name="description"
         content="The National Archives receives selected Court Judgments and Tribunal Decisions for permanent preservation and publication on the Find Case Law service." />
@@ -220,44 +219,28 @@
     <p>
       Find Case Law lets users access judgments and decisions in different formats. We choose these formats based on what works best for different uses:
     </p>
-    {% call table() %}
-      {# Header #}
-      {% call table_row() %}
-        {% call table_cell(header=True) %}
-          Format
-        {% endcall %}
-        {% call table_cell(header=True) %}
-          What it is for
-        {% endcall %}
-      {% endcall %}
-      {# Row 1 #}
-      {% call table_row() %}
-        {% call table_cell() %}
-          HTML 5
-        {% endcall %}
-        {% call table_cell() %}
-          Reading judgments on the Find Case Law website
-        {% endcall %}
-      {% endcall %}
-      {# Row 2 #}
-      {% call table_row() %}
-        {% call table_cell() %}
-          LegalDocML (an international XML standard for legal documents)
-        {% endcall %}
-        {% call table_cell() %}
-          Re-using judgments as data through our API
-        {% endcall %}
-      {% endcall %}
-      {# Row 3 #}
-      {% call table_row() %}
-        {% call table_cell() %}
-          PDF
-        {% endcall %}
-        {% call table_cell() %}
-          Downloading and printing copies of judgments
-        {% endcall %}
-      {% endcall %}
-    {% endcall %}
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header">Format</th>
+          <th class="govuk-table__header">What it is for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">HTML 5</td>
+          <td class="govuk-table__cell">Reading judgments on the Find Case Law website</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">LegalDocML (an international XML standard for legal documents)</td>
+          <td class="govuk-table__cell">Re-using judgments as data through our API</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">PDF</td>
+          <td class="govuk-table__cell">Downloading and printing copies of judgments</td>
+        </tr>
+      </tbody>
+    </table>
     <p>
       The copies we create keep the styling and formatting from the original document. This means we can show the judgment on the website in a way that closely matches the original.
     </p>
