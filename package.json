@@ -30,7 +30,7 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/preset-env": "7.29.5",
-    "@chromatic-com/storybook": "3.2.7",
+    "@chromatic-com/storybook": "5.2.1",
     "@storybook/addon-designs": "8.2.1",
     "@storybook/addon-essentials": "8.6.14",
     "@storybook/html-webpack5": "8.6.14",
