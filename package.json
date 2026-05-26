@@ -39,7 +39,7 @@
     "jest": "30.4.2",
     "jest-environment-jsdom": "30.4.1",
     "jquery": "4.0.0",
-    "storybook": "8.6.18",
+    "storybook": "10.4.1",
     "stylelint": "17.12.0",
     "stylelint-config-clean-order": "8.0.2",
     "stylelint-config-standard-scss": "17.0.0",
