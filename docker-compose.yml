@@ -49,7 +49,7 @@ services:
     command: tail -f /dev/null
 
   postgres:
-    image: postgres:15.18@sha256:67dc02dae6e27fa8b4333df9bfdf15265b33ce04186cd7e65c0b8fe67ee37b97
+    image: postgres:15.18@sha256:1b92e7a80c021647bf70f5d3eb66066a998e4f5cf43c07bb9dc9f729782cf88e
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
