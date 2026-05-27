@@ -1,6 +1,11 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
+{% macro historic_documents_content() %}
+  <p>
+    You can read more about how to find older civil justice records in the research guide {{ link(content="Criminal courts: appeal cases", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/criminal-courts-appeal-cases/", attrs={"target": "_blank"}) }}.
+  </p>
+{% endmacro %}
 {% macro website_link(label=None) %}
   {{ link(content=label or (court.name ~ " website") , href="https://www.gov.uk/courts-tribunals/court-of-appeal-criminal-division", attrs={"target": "_blank"}) }}
 {% endmacro %}
@@ -37,11 +42,7 @@
   <p>
     <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
   </p>
-  {% if court.historic_documents_support_text_as_html %}
-    {% autoescape off %}
-      {{ court.historic_documents_support_text_as_html }}
-    {% endautoescape %}
-  {% endif %}
+  {{ historic_documents_content() }}
 {% endmacro %}
 {% macro understanding_content() %}
   {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
