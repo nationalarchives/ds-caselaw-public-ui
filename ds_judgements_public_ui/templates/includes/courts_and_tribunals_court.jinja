@@ -2,6 +2,7 @@
 {% from "components/heading.jinja" import heading %}
 {% from "components/details.jinja" import details %}
 {% macro courts_and_tribunals_court(court=None, type=None, group=None) %}
+  {% from "content/courts/" ~ court.canonical_param ~ ".jinja" import description_content with context %}
   <div class="courts-and-tribunals__sub-item">
     {% if group.display_heading %}
       {% call heading(tag="h3", id=court.name|slugify) %}
@@ -12,13 +13,9 @@
         {{ link(content=court.grouped_name, href=url("court_or_tribunal", court.canonical_param) ) }}
       {% endcall %}
     {% endif %}
-    {% if court.description_text_as_html %}
-      {% call details(title="About the " ~ court.grouped_name, variant="light") %}
-        {% autoescape off %}
-          {{ court.description_text_as_html }}
-        {% endautoescape %}
-      {% endcall %}
-    {% endif %}
+    {% call details(title="About the " ~ court.grouped_name, variant="light") %}
+      {{ description_content(start_year=court.canonical_param|get_court_start_year) }}
+    {% endcall %}
     <p>
       {% if court|get_court_judgments_count == 0 %}
         We don't currently hold any documents

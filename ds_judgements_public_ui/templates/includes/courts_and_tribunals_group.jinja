@@ -6,13 +6,6 @@
       {% call heading(tag="h2", id=group.name|slugify) %}
         {{ group.name }}
       {% endcall %}
-      {% if group.description_text_as_html %}
-        <div class="courts-and-tribunals__description">
-          {% autoescape off %}
-            {{ group.description_text_as_html }}
-          {% endautoescape %}
-        </div>
-      {% endif %}
     {% endif %}
     {# these 'courts' could instead be tribunals #}
     {% for court in group.courts %}{{ courts_and_tribunals_court(court=court, type=type, group=group) }}{% endfor %}
