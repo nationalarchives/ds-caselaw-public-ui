@@ -155,7 +155,9 @@ jobs:
         run: docker compose pull postgres
 
       - name: Save Postgres image
-        run: docker save -o /tmp/postgres-image.tar postgres
+        run: |
+          POSTGRES_IMAGE="$(docker compose config --images postgres)"
+          docker save -o /tmp/postgres-image.tar "${POSTGRES_IMAGE}"
 
       - name: Upload Postgres image
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
