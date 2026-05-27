@@ -31,7 +31,6 @@ class CourtsTribunalsListView(TemplateViewWithContext):
     def decorate_court_group(self, group):
         """
         Updates the start_year and end_year with data from CourtDates if available.
-        Updates the description_text_as_html with the updated dates if they are available..
         """
 
         date_map = {
@@ -43,9 +42,6 @@ class CourtsTribunalsListView(TemplateViewWithContext):
             dates = date_map.get(court.canonical_param)
 
             if dates:
-                court.description_text_as_html = court.render_markdown_text(
-                    "description", {"start_year": dates.start_year, "end_year": dates.end_year}
-                )
                 court.start_year = dates.start_year
                 court.end_year = dates.end_year
 
