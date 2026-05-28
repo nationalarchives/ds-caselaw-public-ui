@@ -1,6 +1,11 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
+{% macro historic_documents_content() %}
+  <p>
+    This is a historic tribunal. The functions of this tribunal have been transferred to the General Regulatory Chamber of the First-tier Tribunal starting in 2009. The GRC began transferring records to Find Case Law in 2022. To view an archived version of the decisions of this tribunal from 2008-2009 visit the {{ link(content="UK Government Web Archive", href="https://webarchive.nationalarchives.gov.uk/ukgwa/20160811143635/http://www.estateagentappeals.tribunals.gov.uk/decisions.htm", attrs={"target":"_blank"}) }}.
+  </p>
+{% endmacro %}
 {% macro website_link(label=None) %}
   {{ label }}
 {% endmacro %}
@@ -31,11 +36,7 @@
   <p>
     <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
   </p>
-  {% if court.historic_documents_support_text_as_html %}
-    {% autoescape off %}
-      {{ court.historic_documents_support_text_as_html }}
-    {% endautoescape %}
-  {% endif %}
+  {{ historic_documents_content() }}
 {% endmacro %}
 {% macro understanding_content() %}
 {% endmacro %}

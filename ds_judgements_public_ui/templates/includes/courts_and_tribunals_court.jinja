@@ -2,7 +2,7 @@
 {% from "components/heading.jinja" import heading %}
 {% from "components/details.jinja" import details %}
 {% macro courts_and_tribunals_court(court=None, type=None, group=None) %}
-  {% from "content/courts/" ~ court.canonical_param ~ ".jinja" import description_content with context %}
+  {% from "content/courts/" ~ court.canonical_param ~ ".jinja" import historic_documents_content, description_content with context %}
   <div class="courts-and-tribunals__sub-item">
     {% if group.display_heading %}
       {% call heading(tag="h3", id=court.name|slugify) %}
@@ -27,11 +27,9 @@
         {% endcall %}
       {% endif %}
     </p>
-    {% if court.historic_documents_support_text_as_html %}
+    {% if historic_documents_content()|trim %}
       {% call details(title="Looking for older documents", variant="light") %}
-        {% autoescape off %}
-          {{ court.historic_documents_support_text_as_html }}
-        {% endautoescape %}
+        {{ historic_documents_content() }}
       {% endcall %}
     {% endif %}
   </div>
