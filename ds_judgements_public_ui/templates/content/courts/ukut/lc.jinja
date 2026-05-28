@@ -6,9 +6,6 @@
     You may be able to find older Lands Chamber decisions {{ link(content="on the Courts and Tribunals Judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/tribunals/upper-tribunal/upper-tribunal-lands-chamber/upper-tribunal-lands-chamber-decisions/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.gov.uk/courts-tribunals/upper-tribunal-lands-chamber", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   tribunal
 {% endmacro %}

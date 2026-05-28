@@ -9,9 +9,6 @@
     You can read more about how to find older immigration records in The National Archives in the {{ link(content="Immigration and immigrants research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/immigration/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.gov.uk/courts-tribunals/upper-tribunal-immigration-and-asylum-chamber", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   tribunal
 {% endmacro %}

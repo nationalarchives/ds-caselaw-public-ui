@@ -6,9 +6,6 @@
     You can read more about how to find older civil justice records in the research guide {{ link(content="Criminal courts: appeal cases", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/criminal-courts-appeal-cases/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.gov.uk/courts-tribunals/court-of-appeal-criminal-division", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

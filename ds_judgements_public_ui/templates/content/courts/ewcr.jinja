@@ -4,9 +4,6 @@
 {% macro historic_documents_content() %}
   <p>Crown Court records are more likely held in local archives rather than at The National Archives.</p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.judiciary.uk/courts-and-tribunals/crown-court/", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

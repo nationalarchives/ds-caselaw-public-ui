@@ -4,9 +4,6 @@
 {% macro historic_documents_content() %}
   <p>County Court records are more likely held in local archives rather than at the National Archives.</p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.gov.uk/courts-tribunals/court-of-protection", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

@@ -6,9 +6,6 @@
     You can read more about how to find older King’s Bench records in {{ link(content="Civil court cases: King’s/Queen’s Bench 1702-1998 research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/court-of-kings-bench-plea-side-and-kings-queens-bench-division-cases-1702-1998/", attrs={"target": "_blank"}) }} or {{ link(content="Criminal court cases: King’s/Queen’s Bench 1675-1988", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/court-kings-bench-crown-side-1675-1875/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.judiciary.uk/courts-and-tribunals/kings-bench-division/", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

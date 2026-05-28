@@ -6,9 +6,6 @@
     You may be able to find older Administrative Appeals Chamber decisions on {{ link(content="the Courts and Tribunals Judiciary website", href="https://www.judiciary.uk/courts-and-tribunals/tribunals/upper-tribunal/upper-tribunal-administrative-appeals-chamber/administrative-appeals-chamber-decisions/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.gov.uk/courts-tribunals/upper-tribunal-administrative-appeals-chamber", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   tribunal
 {% endmacro %}
