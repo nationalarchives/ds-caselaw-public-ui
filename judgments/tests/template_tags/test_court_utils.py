@@ -14,6 +14,7 @@ from judgments.templatetags.court_utils import (
     get_court_start_year,
     get_first_judgment_year,
     get_last_judgment_year,
+    is_court_ended,
 )
 
 
@@ -172,3 +173,18 @@ class TestGetCourtJudgmentsCount(TestCase):
         assert isinstance(args[0], object)
         assert isinstance(args[1], SearchParameters)
         assert args[1].court == "some-court"
+
+
+class TestIsCourtEnded(TestCase):
+    def test_court_is_ended(self):
+        mock_court = Mock()
+        mock_court.end_year = 2025
+
+        assert is_court_ended(mock_court)
+
+    def test_court_is_not_ended(self):
+
+        mock_court = Mock()
+        mock_court.end_year = date.today().year
+
+        assert not is_court_ended(mock_court)
