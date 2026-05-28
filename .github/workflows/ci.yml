@@ -143,7 +143,7 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-docker-action@b2189fbf2a6592b51fee7cdd93ee2bfaeba733db # v5.1.0
         with:
-          version: v28.2.2
+          version: v29.5.2
 
       - name: Copy .env.example file
         uses: canastro/copy-file-action@ae66602ce7d214dbd2e298c1db67a81388755a0a
