@@ -27,7 +27,6 @@ building of the project's containers:
 
 - **`django`** — The application container, built from a multi-stage Dockerfile (local dev stage by default)
 - **`postgres`** — PostgreSQL database
-- **`marklogic`** — Local MarkLogic instance (included in compose by default)
 - **`e2e_tests`** — Playwright end-to-end tests (opt-in via `--profile e2e_tests`)
 
 ### Compose files
@@ -65,21 +64,36 @@ cp .env.example .env
 
 If new environment variables are required, you might need to update .env to reflect that. Check .env.example for suitable default values
 
-### 2. MarkLogic
-
-This app connects to the MarkLogic database defined in [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic).
-
-A basic local MarkLogic instance is included in `docker-compose.yml` and starts automatically with `fab run` / `docker compose up`. This is enough to get the static site running without needing a separate repo or VPN access, but the local MarkLogic setup may need further development — see the [ds-find-caselaw-docs/marklogic](https://github.com/nationalarchives/ds-find-caselaw-docs/tree/main/marklogic) repo for full configuration details.
-
-Alternatively, TNA/dxw developers can connect to the shared [staging MarkLogic database](https://national-archives.atlassian.net/wiki/spaces/DFCL/pages/1152974873/MarkLogic+database+location) via VPN by setting `MARKLOGIC_HOST`, `MARKLOGIC_USER`, and `MARKLOGIC_PASSWORD` in your `.env` file.
-
-### 3. Create Docker network
+### 2. Create Docker network
 
 The compose files in this repo and in other caselaw services share an external network named `caselaw`. Create it if it does not yet exist:
 
 ```console
 docker network create caselaw
 ```
+
+### 3. MarkLogic
+
+A MarkLogic instance is required for some functionality of the public interface, such as searching and viewing judgments.
+
+You may not need to configure MarkLogic if you are not working on MarkLogic-dependent features or if the example MarkLogic responses provided by the VCR cassettes are sufficient.
+
+The VCR cassettes provide MarkLogic responses for:
+
+- [recently published judgments](http://127.0.0.1:3000/)
+- [a judgment /eat/2023/1](http://127.0.0.1:3000/eat/2023/1)
+- [a search query](http://127.0.0.1:3000/search?query=Imperial)
+
+If you need to connect to a live MarkLogic instance, there are two main options:
+
+1. Connect to the shared staging MarkLogic database.
+2. Set up a local MarkLogic server.
+
+**Setting up a local MarkLogic server:**
+
+Clone and follow the README of the [ds-caselaw-marklogic](https://github.com/nationalarchives/ds-caselaw-marklogic) repository to set up a local MarkLogic server.
+
+You can then set `MARKLOGIC_HOST=marklogic` in your `.env` to point the public interface at the local MarkLogic instance.
 
 ### 4. Compile frontend assets
 

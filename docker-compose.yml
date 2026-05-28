@@ -11,8 +11,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      marklogic:
-        condition: service_healthy
     init: true
     volumes:
       - .:/app:z
@@ -65,32 +63,6 @@ services:
     volumes:
       - ./database_backups:/backups:z
 
-  marklogic:
-    image: progressofficial/marklogic-db:12.0.1-ubi-rootless-2.2.4@sha256:2159236c8d6a52d41a84a50822864d99d528789489e8247e81dd2922cb0711c6
-    container_name: marklogic
-    hostname: marklogic
-    dns_search: ""
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          'curl http://localhost:8002/manage/v2?view=healthcheck -u "admin:admin" || exit 1',
-        ]
-      interval: 10s
-      timeout: 5s
-      retries: 30
-      start_period: 60s
-    environment:
-      - MARKLOGIC_INIT=true
-      - MARKLOGIC_ADMIN_USERNAME=admin
-      - MARKLOGIC_ADMIN_PASSWORD=admin
-      - REALM=public
-      - TZ=Europe/London
-    volumes:
-      - marklogic_data:/var/opt/MarkLogic
-    ports:
-      - 8000-8010:8000-8010
-
   e2e_tests:
     container_name: e2e_tests_container
     build:
@@ -100,9 +72,6 @@ services:
     volumes:
       - "./e2e_tests:/app:z"
     tty: true
-
-volumes:
-  marklogic_data:
 
 networks:
   default:
