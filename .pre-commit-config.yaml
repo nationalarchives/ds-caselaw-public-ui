@@ -51,7 +51,7 @@ repos:
         additional_dependencies:
           - stylelint@17.12.0
           - stylelint-config-standard-scss@17.0.0
-          - stylelint-config-clean-order@9.0.0
+          - stylelint-config-clean-order@10.0.0
 
   - repo: https://github.com/renovatebot/pre-commit-hooks
     rev: 43.202.0
