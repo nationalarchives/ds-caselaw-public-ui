@@ -1,123 +1,56 @@
-import renderComponentHtml from "../render_fetch.js";
+import { createExampleStory, renderLoadedHtml } from "../helpers.js";
+
+const ALERT_TEMPLATE = "components/alert.jinja";
 
 export default {
-    title: "Components/Alert Examples",
+    title: "Components/Alert",
+    render: renderLoadedHtml,
 };
 
-// --------------------
-// All Alerts (wrapper macro)
-// --------------------
-export const AllAlerts = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/alert_examples.jinja",
-                "default_alert",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+const defaultDocs = `
+{% call alert(title="Title") %}
+    <p>Content</p>
+{% endcall %}
+`;
 
-// --------------------
-// Alert loader
-// --------------------
-const AlertLoader = (args) =>
-    renderComponentHtml("components/alert.jinja", "alert", args).then(
-        (html) => ({ html }),
-    );
+export const DefaultAlert = createExampleStory(
+    ALERT_TEMPLATE,
+    "alert_default_examples",
+    defaultDocs,
+);
 
-// --------------------
-// Alert render
-// --------------------
-const Render = (context) => {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = context.loaded?.html || "<div>No HTML returned</div>";
-    return wrapper;
-};
+const smallDocs = `
+  {% call alert(title="Small size title", size="sm") %}
+    <p>Small size content</p>
+  {% endcall %}
+`;
 
-// --------------------
-// Individual Alerts
-// --------------------
-export const DefaultAlert = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/alert_examples.jinja",
-                "default",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+export const SmallAlert = createExampleStory(
+    ALERT_TEMPLATE,
+    "alert_size_examples",
+    smallDocs,
+);
 
-export const SmallAlert = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/alert_examples.jinja",
-                "small",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+const errorDocs = `
+  {% call alert(title="Error variant",variant="error") %}
+    <p>Error variant content</p>
+  {% endcall %}
+`;
 
-export const ErrorAlert = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/alert_examples.jinja",
-                "error",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+export const ErrorAlert = createExampleStory(
+    ALERT_TEMPLATE,
+    "alert_error_examples",
+    errorDocs,
+);
 
-export const SuccessAlert = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/alert_examples.jinja",
-                "success",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+const successDocs = `
+  {% call alert(title="Success variant",variant="success") %}
+    <p>Success variant content</p>
+  {% endcall %}
+`;
+
+export const SuccessAlert = createExampleStory(
+    ALERT_TEMPLATE,
+    "alert_success_examples",
+    successDocs,
+);

@@ -8,17 +8,29 @@
     {{ caller() }}
   </div>
 {% endmacro %}
-{% macro alert_examples() %}
+{% macro alert_default_examples() %}
   {% call alert(title="Title") %}
     <p>Content</p>
   {% endcall %}
+{% endmacro %}
+{% macro alert_size_examples() %}
   {% call alert(title="Small size title", size="sm") %}
     <p>Small size content</p>
   {% endcall %}
+{% endmacro %}
+{% macro alert_error_examples() %}
   {% call alert(title="Error variant",variant="error") %}
     <p>Error variant content</p>
   {% endcall %}
+{% endmacro %}
+{% macro alert_success_examples() %}
   {% call alert(title="Success variant",variant="success") %}
     <p>Success variant content</p>
   {% endcall %}
+{% endmacro %}
+{% macro alert_examples() %}
+  {{ alert_default_examples() }}
+  {{ alert_size_examples() }}
+  {{ alert_error_examples() }}
+  {{ alert_success_examples() }}
 {% endmacro %}

@@ -1,3 +1,10 @@
 {% macro grid() %}
   <div class="grid">{{ caller() }}</div>
 {% endmacro %}
+{% macro grid_examples() %}
+  {% call grid() %}
+    <div>Grid item 1</div>
+    <div>Grid item 2</div>
+    <div>Grid item 3</div>
+  {% endcall %}
+{% endmacro %}

@@ -1,85 +1,88 @@
-import renderComponentHtml from "../render_fetch.js";
+import { createExampleStory, renderLoadedHtml } from "../helpers.js";
+
+const BUTTON_TEMPLATE = "components/button.jinja";
 
 export default {
-    title: "Components/Button Examples",
+    title: "Components/Button",
+    render: renderLoadedHtml,
 };
 
-// --------------------
-// All Buttons (wrapper macro)
-// --------------------
-export const AllButtons = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/button_examples.jinja",
-                "default",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+const variantDocs = `
+{% call button() %}
+    Primary button
+{% endcall %}
 
-// --------------------
-// Individual buttons loader
-// --------------------
-const ButtonLoader = (args) =>
-    renderComponentHtml("components/button.jinja", "button", args).then(
-        (html) => ({ html }),
-    );
+{% call button(variant="secondary") %}
+    Secondary button
+{% endcall %}
 
-// --------------------
-// Individual buttons render
-// --------------------
-const ButtonRender = (context) => {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = context.loaded?.html || "<div>No HTML returned</div>";
-    return wrapper;
-};
+{% call button(variant="underline") %}
+    Underline button
+{% endcall %}
 
-// --------------------
-// Individual buttons
-// --------------------
-export const PrimaryButton = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/button_examples.jinja",
-                "primary",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+{% call button(variant="link") %}
+    Link button
+{% endcall %}
+`;
 
-export const SecondaryButton = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/button_examples.jinja",
-                "secondary",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+export const Variants = createExampleStory(
+    BUTTON_TEMPLATE,
+    "button_variant_examples",
+    variantDocs,
+);
+
+const sizesDocs = `
+{% call button(size="small") %}
+    Small primary button
+{% endcall %}
+
+{% call button(variant="secondary", size="small") %}
+    Small secondary button
+{% endcall %}
+
+{% call button(variant="underline", size="small") %}
+    Small underline button
+{% endcall %}
+
+{% call button(variant="link", size="small") %}
+    Small link button
+{% endcall %}
+`;
+
+export const Sizes = createExampleStory(
+    BUTTON_TEMPLATE,
+    "button_size_examples",
+    sizesDocs,
+);
+
+const contrastDocs = `
+{% call button(contrast=True) %}
+    Primary button
+{% endcall %}
+
+{% call button(variant="secondary", contrast=True) %}
+    Secondary button
+{% endcall %}
+
+{% call button(variant="underline", contrast=True) %}
+    Underline button
+{% endcall %}
+`;
+
+export const Contrast = createExampleStory(
+    BUTTON_TEMPLATE,
+    "button_contrast_examples",
+    contrastDocs,
+);
+
+const hrefDocs = `
+{% call button(href=url("components")) %}
+    Primary
+{% endcall %}
+`;
+
+export const Href = createExampleStory(
+    BUTTON_TEMPLATE,
+    "button_href_examples",
+    hrefDocs,
+);

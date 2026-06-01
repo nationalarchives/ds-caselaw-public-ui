@@ -5,7 +5,7 @@ module.exports = {
     stories: ["../stories/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"],
 
     sidebar: {
-        items: ["Introduction"], // Only your Introduction page
+        items: ["Introduction"],
     },
 
     addons: [
@@ -15,18 +15,16 @@ module.exports = {
         "@storybook/addon-designs",
     ],
 
-    // Use HTML framework
     framework: {
         name: "@storybook/html-webpack5",
         options: {},
     },
 
     docs: {
-        autodocs: false,
+        autodocs: true,
     },
 
     webpackFinal: async (config) => {
-        // uses global STORYBOOK_SERVER
         if (
             STORYBOOK_SERVER.includes("localhost") ||
             STORYBOOK_SERVER.includes("0.0.0.0")

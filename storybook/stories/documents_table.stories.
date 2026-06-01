@@ -1,0 +1,18 @@
+import {
+    createExampleStory,
+    renderLoadedHtml,
+} from "../helpers.js";
+
+export default {
+    title: "Components/Documents table",
+    render: renderLoadedHtml,
+};
+
+const docs = `
+`;
+
+export const DocumentsTable = createExampleStory(
+    "components/documents_table.jinja",
+    "documents_table_examples",
+    docs
+);
