@@ -6,9 +6,6 @@
     You can read more about how to find older patent records in {{ link(content="Intellectual property: patents for invention research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/patents-of-invention/", attrs={"target": "_blank"}) }}; {{ link(content="Intellectual property: registered designs 1839-1991 research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/registered-designs-1839-1991/", attrs={"target":"_blank"}) }} or {{ link(content="Intellectual property: trademarks 1876 -1938 research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/trade-marks/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/business-list-general-chancery/intellectual-property-list/patents-court/", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

@@ -124,4 +124,5 @@ def environment(**options):
     env.filters["get_court_date_range"] = court_utils.get_court_date_range
     env.filters["get_court_start_year"] = court_utils.get_court_start_year
     env.filters["hyphenate"] = hyphenate
+    env.filters["is_court_ended"] = court_utils.is_court_ended
     return env

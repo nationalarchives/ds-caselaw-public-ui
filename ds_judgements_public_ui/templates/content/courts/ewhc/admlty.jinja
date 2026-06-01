@@ -6,9 +6,6 @@
     You can read more about how to find older Admiralty Court records in the research guide {{ link(content="High court of Admiralty", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/high-court-admiralty-records/", attrs={"target":"_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/admiralty-court/", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

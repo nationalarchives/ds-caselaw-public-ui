@@ -6,9 +6,6 @@
     You can read more about how to find older Court of Appeal (civil) justice records in the research guide {{ link(content="Civil court cases: an overview", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/civil-courts-appeal-cases-after-1875/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.gov.uk/courts-tribunals/court-of-appeal-civil-division", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

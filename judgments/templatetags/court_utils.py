@@ -91,3 +91,9 @@ def get_court_judgments_count(court: Court) -> int:
         )  # TODO: This should really be an integer coming from the API Client
     except RequestException:
         return 0
+
+
+def is_court_ended(court: Court) -> bool:
+    current_year = date.today().year
+
+    return court.end_year < current_year

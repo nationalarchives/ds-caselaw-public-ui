@@ -6,9 +6,6 @@
     You can read more about how to find older Privy Council and Judicial Committee of the Privy Council records held by The National Archives in the {{ link(content="Privy Council research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/privy-council-since-1386/", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.jcpc.uk/about/role-of-the-jcpc.html", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

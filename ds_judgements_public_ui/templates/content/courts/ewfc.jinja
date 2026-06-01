@@ -3,9 +3,6 @@
 {% from "components/heading.jinja" import heading %}
 {% macro historic_documents_content() %}
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.judiciary.uk/courts-and-tribunals/family-law-courts/", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}

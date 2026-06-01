@@ -6,9 +6,6 @@
     You may be able to find older Investigatory Powers Tribunal judgments starting in 2003 on the {{ link(content="Investigatory Powers Tribunal website", href="https://investigatorypowerstribunal.org.uk", attrs={"target": "_blank"}) }}.
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://investigatorypowerstribunal.org.uk/about-the-tribunal/", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   tribunal
 {% endmacro %}

@@ -6,9 +6,6 @@
     You can read more about how to find older records in {{ link(content="Civil court cases: Chancery Division since 1875", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/civil-court-cases-chancery-division-since-1875/", attrs={"target":"_blank"}) }}
   </p>
 {% endmacro %}
-{% macro website_link(label=None) %}
-  {{ link(content=label or (court.name ~ " website") , href="https://www.judiciary.uk/courts-and-tribunals/business-and-property-courts/chancery-division/", attrs={"target": "_blank"}) }}
-{% endmacro %}
 {% macro court_noun_content() %}
   court
 {% endmacro %}
