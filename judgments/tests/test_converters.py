@@ -4,7 +4,7 @@ import re
 
 import ds_caselaw_utils
 from django.test import TestCase
-from ds_caselaw_utils import factory
+from ds_caselaw_utils.tests import factory
 
 from judgments.converters import (
     ComponentConverter,
