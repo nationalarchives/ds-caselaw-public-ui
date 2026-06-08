@@ -1,5 +1,5 @@
-playwright==1.59.0
-pytest-playwright==0.7.2
+playwright==1.60.0
+pytest-playwright==0.8.0
 axe-playwright-python==0.1.7
 pillow==12.2.0
 numpy==2.4.6
