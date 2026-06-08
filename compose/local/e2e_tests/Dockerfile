@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright/python:v1.59.0-noble@sha256:01671e89f7b85dcdc35bebdc96b5fee2a5fd7f10d607fc9ae00bf094f5e94f26
+FROM mcr.microsoft.com/playwright/python:v1.60.0-noble@sha256:abf13b369f8829eb45e29df38d6c5221f7e7521649cb5d2de7989c82bdb574ad
 WORKDIR /app
 
 COPY requirements.txt .
