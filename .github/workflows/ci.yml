@@ -267,6 +267,7 @@ jobs:
       - download-postgres
       - pytest
       - static-analysis
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code Repository
