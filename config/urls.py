@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponseRedirect
 from django.urls import include, path, re_path, register_converter, reverse
 from django.views import defaults as default_views
@@ -76,7 +75,13 @@ non_public_urls = [
         ".well-known/trust.txt",
         RedirectView.as_view(url="/trust.txt"),
     ),
-    path("favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("images/favicons/favicon.ico"))),
+    path(
+        "favicon.ico",
+        RedirectView.as_view(
+            url=f"{settings.STATIC_URL}images/favicons/favicon.ico",
+            permanent=True,
+        ),
+    ),
     path(
         "googleb0ce3f99fae65e7c.html",
         TemplateView.as_view(template_name="googleb0ce3f99fae65e7c.html", content_type="text/html"),
