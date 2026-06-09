@@ -10,27 +10,23 @@
 {% endblock title %}
 {% block content %}
   <div class="js-results-facets-wrapper">
-    {% call hero() %}
-      {% call search_form_container() %}
-        {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
+    {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
+      {% call hero() %}
+        {% call search_form_container() %}
           {% call heading() %}
             Advanced search
           {% endcall %}
           {{ search_input(value=query, label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
         {% endcall %}
       {% endcall %}
-    {% endcall %}
-    {% call content_container() %}
-      {% if form.errors %}
-        {% call alert(variant="error") %}
-          {{ form.errors|error_messages }}
-        {% endcall %}
-      {% endif %}
-      <div class="structured-search">
-        {% call search_form(id="analytics-results-filters") %}
-          {% include "includes/results_filters_inputs.jinja" %}
-        {% endcall %}
-      </div>
+      {% call content_container() %}
+        {% if form.errors %}
+          {% call alert(variant="error") %}
+            {{ form.errors|error_messages }}
+          {% endcall %}
+        {% endif %}
+        <div class="structured-search">{% include "includes/results_filters_inputs.jinja" %}</div>
+      {% endcall %}
     {% endcall %}
   </div>
 {% endblock content %}
