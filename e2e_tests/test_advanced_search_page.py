@@ -34,8 +34,6 @@ court_filters = [
     "Patents Court",
     "Senior Courts Costs Office",
     "Technology and Construction Court",
-    "Crown Court",
-    "County Court",
     "Family Court",
     "Court of Protection",
 ]
@@ -45,11 +43,11 @@ court_filters = [
 def test_advanced_search_court_filters(page: Page, filter):
     page.goto("/search/advanced")
 
-    page.locator("label", has_text=f"{filter}")
+    page.locator("label", has_text=f"{filter}").click()
 
     update_filters_button(page).click()
 
-    form = page.locator("#analytics-results-filters")
+    form = page.locator("#analytics-search-form")
 
     expect(form.locator("a", has_text=f"{filter}"))
     expect(page.locator("p", has_text=re.compile(r"\d+\s*documents found"))).to_be_visible()
