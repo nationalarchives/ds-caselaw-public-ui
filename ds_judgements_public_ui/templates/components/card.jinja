@@ -57,7 +57,7 @@
     <p>This is the ghost card style</p>
   {% endcall %}
 {% endmacro %}
-{% macro card_with_link_examples() %}
+{% macro card_ghost_with_link_examples() %}
   {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
     <p>This is a ghost card with a link</p>
   {% endcall %}
@@ -68,5 +68,5 @@
   {{ card_light_examples() }}
   {{ card_image_examples() }}
   {{ card_ghost_examples() }}
-  {{ card_with_link_examples() }}
+  {{ card_ghost_with_link_examples() }}
 {% endmacro %}

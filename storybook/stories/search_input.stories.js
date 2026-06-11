@@ -7,11 +7,10 @@ export default {
 
 const docs = `
   {% call search_form() %}
-      {% call search_form_container() %}
-        {{ search_input(label="Search by keyword or neutral citation", button_action=url("advanced_search") , button_label="Search") }}
-        {% call search_input_footer() %}
-            Footer content goes here
-        {% endcall %}
+     {% call search_form_container() %}
+       {{ search_input(label="Search by keyword or neutral citation", button_action=url("advanced_search") , button_label="Search") }}
+       {% call search_input_footer() %}
+         Footer content goes here
       {% endcall %}
     {% endcall %}
   {% endcall %}
