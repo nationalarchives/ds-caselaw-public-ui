@@ -19,25 +19,23 @@ def update_filters_button(page: Page):
 
 
 court_filters = [
-    "United Kingdom Supreme Court",
-    "Privy Council",
-    "Civil Division",
-    "Criminal Division",
-    "Administrative Court",
-    "Admiralty Court",
-    "Chancery Division",
-    "Commercial Court",
-    "Family Division",
-    "Intellectual Property Enterprise Court",
-    "King's / Queen's Bench Division",
-    "Mercantile Court",
-    "Patents Court",
-    "Senior Courts Costs Office",
-    "Technology and Construction Court",
-    "Crown Court",
-    "County Court",
-    "Family Court",
-    "Court of Protection",
+    {"control_label": "United Kingdom Supreme Court", "tag_label": "United Kingdom Supreme Court"},
+    {"control_label": "Privy Council", "tag_label": "Privy Council"},
+    {"control_label": "Civil Division", "tag_label": "Civil Division"},
+    {"control_label": "Criminal Division", "tag_label": "Criminal Division"},
+    {"control_label": "Administrative Court", "tag_label": "Administrative Court"},
+    {"control_label": "Admiralty Court", "tag_label": "High Court (Admiralty Division)"},
+    {"control_label": "Chancery Division", "tag_label": "Chancery Division"},
+    {"control_label": "Commercial Court", "tag_label": "Commercial Court"},
+    {"control_label": "Family Division", "tag_label": "Family Division"},
+    {"control_label": "Intellectual Property Enterprise Court", "tag_label": "Intellectual Property Enterprise Court"},
+    {"control_label": "King's / Queen's Bench Division", "tag_label": "High Court (King's Bench Division)"},
+    {"control_label": "Mercantile Court", "tag_label": "Mercantile Court"},
+    {"control_label": "Patents Court", "tag_label": "Patents Court"},
+    {"control_label": "Senior Courts Costs Office", "tag_label": "High Court (Senior Court Costs Office)"},
+    {"control_label": "Technology and Construction Court", "tag_label": "Technology and Construction Court"},
+    {"control_label": "Family Court", "tag_label": "Family Court"},
+    {"control_label": "Court of Protection", "tag_label": "Court of Protection"},
 ]
 
 
@@ -45,13 +43,16 @@ court_filters = [
 def test_advanced_search_court_filters(page: Page, filter):
     page.goto("/search/advanced")
 
-    page.locator("label", has_text=f"{filter}")
+    control_label = filter.get("control_label")
+    tag_label = filter.get("tag_label")
+
+    page.locator("label", has_text=f"{control_label}").click()
 
     update_filters_button(page).click()
 
-    form = page.locator("#analytics-results-filters")
+    form = page.locator("#analytics-search-form")
 
-    expect(form.locator("a", has_text=f"{filter}"))
+    expect(form.locator("a", has_text=f"{tag_label}")).to_be_visible()
     expect(page.locator("p", has_text=re.compile(r"\d+\s*documents found"))).to_be_visible()
 
 

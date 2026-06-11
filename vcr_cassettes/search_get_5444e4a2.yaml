@@ -1,0 +1,170 @@
+interactions:
+- request:
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ewhc%2Fpat%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%221085-01-01%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    headers:
+      Accept:
+      - multipart/mixed
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/invoke
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
+        snippet-format=\"empty-snippet\" total=\"502\" start=\"1\" page-length=\"10\"
+        selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
+        index=\"1\" uri=\"/ewhc/pat/2023/2417.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/2417.xml&quot;)\"
+        score=\"1498\" confidence=\"0.05637112\" fitness=\"0.6113095\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-10-05\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"CHIARO TECHNOLOGY LIMITED v MAYBORN (UK) LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-05T10:17:37\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 2417
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">56fa7e46b993ead1154f6335713399686d99c2c52428067e740c22e322c5d8a4</uk:hash>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <neutralCitation
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 2417
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-8165f8cf-674a-48c5-9549-fcc7319fbc4c</uuid>\n\t  <value>[2023]
+        EWHC 2417 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/2417</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"2\" uri=\"/ewhc/pat/2023/2361.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/2361.xml&quot;)\"
+        score=\"1498\" confidence=\"0.05637112\" fitness=\"0.6113095\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-09-25\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"SYCURIO LIMITED v PCI-PAL PLC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-09-25T15:54:54\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-10-05T13:55:28\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 2361
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">18b0d07f5a1afe7a790628ac761d2c6cf4ca239b484eaf2482c5b0be54c8952c</uk:hash>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <neutralCitation
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 2361
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2fa3b509-0200-4857-884c-a0fb86f697fb</uuid>\n\t  <value>[2023]
+        EWHC 2361 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/2361</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"3\" uri=\"/ewhc/pat/2023/2163.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/2163.xml&quot;)\"
+        score=\"1837\" confidence=\"0.06242453\" fitness=\"0.676955\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-08-30\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"COOK UK LIMITED v BOSTON SCIENTIFIC LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-08-31T06:29:02\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 2163
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">367f82102a897fcb2f8e689182c3606158f0dde0e4bad86c65ad6264127255cf</uk:hash>\n      <neutralCitation
+        style=\"text-decoration-line:underline;text-decoration-style:solid;font-size:11pt;color:#000000\"
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 2163
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-a47f48d6-545d-4dac-ad6c-0014ab07baf8</uuid>\n\t  <value>[2023]
+        EWHC 2163 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/2163</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"4\" uri=\"/ewhc/pat/2023/1950.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/1950.xml&quot;)\"
+        score=\"1498\" confidence=\"0.05637112\" fitness=\"0.6113095\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-31\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"HERAEUS NOBLELIGHT LIMTIED v FIRST LIGHT LAMPS LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-31T15:40:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 1950
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">b05b170bef79279239a1e3ac63771c5ea5ad980cb00f6f22d1d5e89aaa35fd79</uk:hash>\n      <neutralCitation
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 1950
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-0ed3821e-9c67-4ce0-a825-96d1947a4173</uuid>\n\t  <value>[2023]
+        EWHC 1950 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/1950</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"5\" uri=\"/ewhc/pat/2023/1912.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/1912.xml&quot;)\"
+        score=\"1329\" confidence=\"0.05309617\" fitness=\"0.5757948\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-26\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"NOKIA TECHNOLOGIES OY v ONEPLUS TECHNOLOGY (SHENZHEN) CO., LTD\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-26T13:42:38\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-26T14:52:26\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 1912
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">8c77d6723cd18f90995bfc1e2584c1b97abf57f85662e2e77544f4a63beac353</uk:hash>\n      <neutralCitation
+        style=\"text-decoration-line:underline;text-decoration-style:solid\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        EWHC 1912 (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2f18cf76-4a66-4d41-a987-33489d63f230</uuid>\n\t  <value>[2023]
+        EWHC 1912 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/1912</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"6\" uri=\"/ewhc/pat/2023/1836.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/1836.xml&quot;)\"
+        score=\"1329\" confidence=\"0.05309617\" fitness=\"0.5757948\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-24\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"TEVA PHARMACEUTICAL INDUSTRIES LIMITED v GR\u00dcNENTHAL GmbH\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-25T08:35:16\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-28T15:39:00\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 1836
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">27c178b3136e3dcf376b51bd141fd9aca1eda0dcca2c0f1a8b2adba983ddbdaa</uk:hash>\n      <neutralCitation
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 1836
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-f630dc17-5950-4690-96d6-27de43fec0ea</uuid>\n\t  <value>[2023]
+        EWHC 1836 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/1836</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"7\" uri=\"/ewhc/pat/2023/1746.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/1746.xml&quot;)\"
+        score=\"1668\" confidence=\"0.0594838\" fitness=\"0.6450647\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-13\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"PHILIP PRICE v FLITCRAFT LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-13T09:21:33\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-16T21:15:02\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 1746
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">9c07d8b188d443ccbe9f1c4fe6386c5447c432907771f72226b433320c9fcd0d</uk:hash>\n      <neutralCitation
+        style=\"text-decoration-line:underline;text-decoration-style:solid;font-family:''Times
+        New Roman'';font-size:12pt\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023]
+        EWHC 1746 (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted
+        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
+        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-18160131-35d9-4cd9-b201-33357b947738</uuid>\n\t  <value>[2023]
+        EWHC 1746 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/1746</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"8\" uri=\"/ewhc/pat/2023/1583.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/1583.xml&quot;)\"
+        score=\"1329\" confidence=\"0.05309617\" fitness=\"0.5757948\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-07-04\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"INTERDIGITAL TECHNOLOGY CORPORATION v LENOVO GROUP LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-07-04T09:35:10\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 1583
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">55b292b2e2894d61191b2d497fead508479508d2e6f56d6ff8a6b5fd27a771fd</uk:hash>\n      <neutralCitation
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 1583
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-b4dfa6ae-e81d-4170-88d0-830d77be2c1b</uuid>\n\t  <value>[2023]
+        EWHC 1583 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/1583</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"9\" uri=\"/ewhc/pat/2023/1577.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/1577.xml&quot;)\"
+        score=\"1668\" confidence=\"0.0594838\" fitness=\"0.6450647\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-06-28\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"INTERDIGITAL TECHNOLOGY CORPORATION v LENOVO GROUP LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-06-28T12:58:40\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 1577
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">cbfd880e5f9e12f2eac246626b30d6c3bdd448d6d250ea618322d0ee991e024f</uk:hash>\n      <neutralCitation
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 1577
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-037dfa73-5f1d-4207-b234-4f989133d08a</uuid>\n\t  <value>[2023]
+        EWHC 1577 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/1577</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
+        index=\"10\" uri=\"/ewhc/pat/2023/1578.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/1578.xml&quot;)\"
+        score=\"1498\" confidence=\"0.05637112\" fitness=\"0.6113095\">\n    <search:snippet/>\n    <search:extracted
+        kind=\"element\">\n      <FRBRdate date=\"2023-06-27\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
+        value=\"INTERDIGITAL TECHNOLOGY CORPORATION v LENOVO GROUP LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2023-06-27T12:44:29\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
+        date=\"2024-01-14T13:35:09\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">EWHC-Chancery-Patents</uk:court>\n      <uk:cite
+        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 1578
+        (Pat)</uk:cite>\n      <uk:hash xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">0df9d950f4abf3d4ac6b55682e76220824e6dc074e9820caa1f63a5f93d1f45f</uk:hash>\n      <neutralCitation
+        xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\">[2023] EWHC 1578
+        (Pat)</neutralCitation>\n    </search:extracted>\n    <search:extracted kind=\"identifiers\"
+        xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-96a2b333-c9b7-4b92-bfea-652194c57e08</uuid>\n\t  <value>[2023]
+        EWHC 1578 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/1578</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
+        name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"\" count=\"1\"/>\n    <search:facet-value
+        name=\"EHWC-Pat\" count=\"1\">EHWC-Pat</search:facet-value>\n    <search:facet-value
+        name=\"EWHC-Chancery-Patents\" count=\"491\">EWHC-Chancery-Patents</search:facet-value>\n  </search:facet>\n  <search:facet
+        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2003\" count=\"14\">2003</search:facet-value>\n    <search:facet-value
+        name=\"2004\" count=\"11\">2004</search:facet-value>\n    <search:facet-value
+        name=\"2005\" count=\"10\">2005</search:facet-value>\n    <search:facet-value
+        name=\"2006\" count=\"26\">2006</search:facet-value>\n    <search:facet-value
+        name=\"2007\" count=\"19\">2007</search:facet-value>\n    <search:facet-value
+        name=\"2008\" count=\"25\">2008</search:facet-value>\n    <search:facet-value
+        name=\"2009\" count=\"27\">2009</search:facet-value>\n    <search:facet-value
+        name=\"2010\" count=\"22\">2010</search:facet-value>\n    <search:facet-value
+        name=\"2011\" count=\"31\">2011</search:facet-value>\n    <search:facet-value
+        name=\"2012\" count=\"22\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.012171S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.00322S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000139S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.009769S</search:extract-resolution-time>\n    <search:total-time>PT0.026386S</search:total-time>\n  </search:metrics>\n</search:response>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Thu, 11 Jun 2026 08:19:11 GMT
+      Server:
+      - MarkLogic 11.0.2
+    status:
+      code: 200
+      message: OK
+version: 1
