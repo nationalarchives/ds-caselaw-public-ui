@@ -43,7 +43,8 @@ services:
       MAX_QUERY_WORDS: ${MAX_QUERY_WORDS:-5}
       WSGI_AUTH_EXCLUDE_PATHS: ${WSGI_AUTH_EXCLUDE_PATHS:-/check}
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
+      - "[::1]:3000:3000"
     command: tail -f /dev/null
 
   postgres:
@@ -54,7 +55,8 @@ services:
       timeout: 3s
       retries: 10
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
+      - "[::1]:5432:5432"
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-ds_judgements_public_ui}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
