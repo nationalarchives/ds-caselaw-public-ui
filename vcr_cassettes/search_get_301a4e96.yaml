@@ -64,7 +64,7 @@ interactions:
         count=\"4\">EWHC-QBD-Commercial-Circuit</search:facet-value>\n  </search:facet>\n  <search:facet
         name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2008\" count=\"1\">2008</search:facet-value>\n    <search:facet-value
         name=\"2009\" count=\"1\">2009</search:facet-value>\n    <search:facet-value
-        name=\"2014\" count=\"2\">2014</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.059769S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.016076S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000078S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.03318S</search:extract-resolution-time>\n    <search:total-time>PT0.109873S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2014\" count=\"2\">2014</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.008354S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002932S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000073S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.00225S</search:extract-resolution-time>\n    <search:total-time>PT0.014345S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Thu, 11 Jun 2026 08:16:01 GMT
+      - Thu, 11 Jun 2026 08:19:08 GMT
       Server:
       - MarkLogic 11.0.2
     status:

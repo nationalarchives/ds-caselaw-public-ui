@@ -130,7 +130,7 @@ interactions:
         name=\"2007\" count=\"2193\">2007</search:facet-value>\n    <search:facet-value
         name=\"2008\" count=\"2557\">2008</search:facet-value>\n    <search:facet-value
         name=\"2009\" count=\"2562\">2009</search:facet-value>\n    <search:facet-value
-        name=\"2010\" count=\"2460\">2010</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.01844S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.003488S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000142S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.003338S</search:extract-resolution-time>\n    <search:total-time>PT0.026544S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2010\" count=\"2460\">2010</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.019096S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.003858S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000158S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.001997S</search:extract-resolution-time>\n    <search:total-time>PT0.026275S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -138,7 +138,7 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Thu, 11 Jun 2026 08:15:25 GMT
+      - Thu, 11 Jun 2026 08:18:33 GMT
       Server:
       - MarkLogic 11.0.2
     status:
