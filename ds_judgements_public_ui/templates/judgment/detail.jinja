@@ -70,7 +70,9 @@
 {% endblock content %}
 {% block postcontent %}
   {% call content_container() %}
-    {% if not document_html %}<div class="container judgment-pdf-only">{% endif %}
+    {% if not document_html %}
+      <div class="container judgment-pdf-only">
+      {% endif %}
       <section id="download-options">
         {% call heading(tag="h2") %}
           Document download options
@@ -114,7 +116,9 @@
           {% endif %}
         </div>
       </section>
-      {% if not document_html %}</div>{% endif %}
+      {% if not document_html %}
+      </div>
+    {% endif %}
     {% if not document_html %}
       <div class="container judgment-pdf-only">{% include "includes/document_catalogue.jinja" %}</div>
     {% else %}

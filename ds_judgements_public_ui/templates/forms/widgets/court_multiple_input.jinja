@@ -12,6 +12,8 @@
         {% set widget = option %}
         <div>{% include option.template_name %}</div>
       {% endfor %}
-      {% if group %}</div>{% endif %}
+      {% if group %}
+      </div>
+    {% endif %}
   {% endfor %}
 </div>

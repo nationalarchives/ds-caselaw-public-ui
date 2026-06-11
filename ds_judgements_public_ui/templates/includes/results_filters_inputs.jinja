@@ -33,7 +33,9 @@
              id="from-date-error">{{ form.non_field_errors[0] }}</p>
         {% endif %}
         {% if form.to_date.errors %}
-          {% for error in form.to_date.errors %}<p class="structured-search__to-date-error-message">{{ error }}</p>{% endfor %}
+          {% for error in form.to_date.errors %}
+            <p class="structured-search__to-date-error-message">{{ error }}</p>
+          {% endfor %}
         {% endif %}
         {% if form.to_date.errors[2] %}
           <p class="structured-search__to-date-error-message">{{ form.to_date.errors[2] }}</p>
