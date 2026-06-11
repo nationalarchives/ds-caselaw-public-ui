@@ -3,7 +3,6 @@ With these settings, tests run faster.
 """
 
 from .base import *  # noqa
-from . import base
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -24,10 +23,3 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-
-STORAGES = {
-    **base.STORAGES,
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
