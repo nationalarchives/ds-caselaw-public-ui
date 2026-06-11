@@ -17,6 +17,7 @@
   </div>
 {% endmacro %}
 {% macro document_navigation_examples() %}
-  {% call document_navigation() %}
+  {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title") %}
+    Test content
   {% endcall %}
 {% endmacro %}

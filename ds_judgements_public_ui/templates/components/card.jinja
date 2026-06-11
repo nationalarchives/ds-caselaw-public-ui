@@ -28,13 +28,17 @@
     </div>
   {% endif %}
 {% endmacro %}
-{% macro card_examples() %}
+{% macro card_default_examples() %}
   {% call card(title="Default") %}
     <p>This is the default card style</p>
   {% endcall %}
+{% endmacro %}
+{% macro card_with_link_examples() %}
   {% call card(title="Default - with link", url=url("components")) %}
     <p>This is a default card with a link</p>
   {% endcall %}
+{% endmacro %}
+{% macro card_light_examples() %}
   {% call card(title="Light", variant="light") %}
     <p>This is the light card style</p>
   {% endcall %}
@@ -42,13 +46,27 @@
     <button class="button-primary">Button</button>
     <p>Just a light example with a button</p>
   {% endcall %}
+{% endmacro %}
+{% macro card_image_examples() %}
   {% call card(title="Image", variant="image", image_url=static("images/modern-magnifying-glass.jpg")) %}
     <p>This is the image card style</p>
   {% endcall %}
+{% endmacro %}
+{% macro card_ghost_examples() %}
   {% call card(title="Ghost", variant="ghost") %}
     <p>This is the ghost card style</p>
   {% endcall %}
+{% endmacro %}
+{% macro card_ghost_with_link_examples() %}
   {% call card(title="Ghost - with link", variant="ghost", url=url("components")) %}
     <p>This is a ghost card with a link</p>
   {% endcall %}
+{% endmacro %}
+{% macro card_examples() %}
+  {{ card_default_examples() }}
+  {{ card_with_link_examples() }}
+  {{ card_light_examples() }}
+  {{ card_image_examples() }}
+  {{ card_ghost_examples() }}
+  {{ card_ghost_with_link_examples() }}
 {% endmacro %}

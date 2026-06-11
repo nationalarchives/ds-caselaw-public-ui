@@ -1,0 +1,44 @@
+import { createExampleStory, renderLoadedHtml } from "../helpers.js";
+
+export default {
+    title: "Components/Tabs",
+    render: renderLoadedHtml,
+};
+
+const docs = `
+  {{ tabs({
+    "idPrefix": "example-tabs",
+    "items": [
+    {
+    "label": "Tab 1",
+    "id": "tab1",
+    "panel": {
+    "text": "Text panel content"
+    }
+    },
+    {
+    "label": "Tab 2",
+    "id": "tab2",
+    "panel": {
+    "html": "
+    <h3>HTML panel content</h3>
+    <p>Content for panel</p>
+    "
+    }
+    },
+    {
+    "label": "Tab 3",
+    "id": "tab3",
+    "panel": {
+    "text": "Another tab"
+    }
+    },
+    ]
+    }) }}
+`;
+
+export const Tabs = createExampleStory(
+    "components/tabs.jinja",
+    "tabs_examples",
+    docs,
+);

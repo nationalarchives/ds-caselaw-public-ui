@@ -1,47 +1,23 @@
-import renderComponentHtml from "../render_fetch.js";
+import { createExampleStory, renderLoadedHtml } from "../helpers.js";
 
 export default {
-    title: "Components/Breadcrumbs Examples",
+    title: "Components/Breadcrumbs",
+    render: renderLoadedHtml,
 };
 
-// --------------------
-// Breadcrumbs (wrapper macro)
-// --------------------
-export const Breadcrumbs = {
-    loaders: [
-        async () => {
-            const html = await renderComponentHtml(
-                "components/examples/breadcrumbs_examples.jinja",
-                "default",
-                {}, // wrapper macro does not take variant/size
-            );
-            return { html };
-        },
-    ],
-    render: (args, context) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML =
-            context.loaded?.html || "<div>No HTML returned</div>";
-        return wrapper;
-    },
-};
+const docs = `
+{% call breadcrumbs(prefix="You are in", home="home", home_text="Find Case Law") %}
+    {% call breadcrumb(url="/components") %}
+        Components
+    {% endcall %}
+    {% call breadcrumb() %}
+        Example components
+    {% endcall %}
+{% endcall %}
+`;
 
-// --------------------
-// Breadcrumbs loader
-// --------------------
-const BreadcrumbsLoader = (args) =>
-    renderComponentHtml(
-        "components/breadcrumbs.jinja",
-        "breadcrumb",
-        "breadcrumbs",
-        args,
-    ).then((html) => ({ html }));
-
-// --------------------
-// Breadcrumbs render
-// --------------------
-const BreadcrumbsRender = (context) => {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = context.loaded?.html || "<div>No HTML returned</div>";
-    return wrapper;
-};
+export const Breadcrumbs = createExampleStory(
+    "components/breadcrumbs.jinja",
+    "breadcrumbs_examples",
+    docs,
+);

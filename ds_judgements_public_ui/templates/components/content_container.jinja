@@ -1,3 +1,8 @@
 {% macro content_container() %}
   <div class="content-container">{{ caller() }}</div>
 {% endmacro %}
+{% macro content_container_examples() %}
+  {% call content_container() %}
+    Content goes here
+  {% endcall %}
+{% endmacro %}

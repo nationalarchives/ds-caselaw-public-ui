@@ -6,3 +6,11 @@
 {% macro aside_container() %}
   <div class="aside-container">{{ caller() }}</div>
 {% endmacro %}
+{% macro aside_examples() %}
+  {% call aside_container() %}
+    <div>Content</div>
+    {% call aside() %}
+      Aside
+    {% endcall %}
+  {% endcall %}
+{% endmacro %}
