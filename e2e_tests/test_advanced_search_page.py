@@ -49,7 +49,7 @@ def test_advanced_search_court_filters(page: Page, filter):
 
     form = page.locator("#analytics-search-form")
 
-    expect(form.locator("a", has_text=f"{filter}"))
+    expect(form.locator("a", has_text=f"{filter}")).to_be_visible()
     expect(page.locator("p", has_text=re.compile(r"\d+\s*documents found"))).to_be_visible()
 
 
