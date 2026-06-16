@@ -16,7 +16,9 @@
       <div class="breadcrumbs__container" aria-label="Breadcrumb">
         <ol>
           <li>
-            <span>{{ prefix }}</span>
+            {% if prefix %}
+              <span>{{ prefix }}</span>
+            {% endif %}
             <a href="{{ url(home) }}" class="breadcrumbs__prefix">{{ home_text }}</a>
           </li>
           {% if caller %}{{ caller() }}{% endif %}
