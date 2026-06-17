@@ -17,7 +17,7 @@
               {{ value|format_value_for_review(key) }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              {% call button(variant="link", attrs={"name":"wizard_goto_step", "type":"submit", "aria-label":"Change question {{ key|get_field_name(all_field_names) }}", "value": form_key}) %}
+              {% call button(variant="link", attrs={"name":"wizard_goto_step", "type":"submit", "aria-label":"Change question " ~ key|get_field_name(all_field_names), "value": form_key}) %}
                 Change
               {% endcall %}
             </dd>

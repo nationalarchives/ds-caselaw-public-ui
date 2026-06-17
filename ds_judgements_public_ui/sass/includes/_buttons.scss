@@ -8,6 +8,7 @@
   border: 0;
   border-radius: 0;
 
+  font-family: $typography-body-font-family;
   font-size: $typography-md-text-size;
   font-weight: $typography-bold-font-weight;
   color: colour-var("accent-button-text");
@@ -173,6 +174,10 @@
     text-decoration: underline;
 
     background: none !important;
+
+    &:hover {
+      outline: none;
+    }
 
     @include link;
   }

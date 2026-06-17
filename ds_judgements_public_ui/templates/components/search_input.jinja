@@ -8,10 +8,7 @@
            type="text"
            placeholder="{{ placeholder }}"
            id="{{ id }}" />
-    <input type="submit"
-           value="{{ button_label }}"
-           class="button-primary"
-           formaction="{{ button_action }}" />
+    {{ button(element_type="input", attrs={"type": "submit", "value": button_label, "formaction": button_action}) }}
   </div>
 {% endmacro %}
 {% macro search_form(label="", id="") %}
