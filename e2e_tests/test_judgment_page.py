@@ -65,7 +65,7 @@ def test_judgment_page_has_download_xml_link(judgment_page: Page):
 def test_judgment_page_has_default_breadcrumbs(judgment_page: Page):
     breadcrumb_container = judgment_page.locator("[aria-label='Breadcrumb']")
 
-    primary_breadcrumb = breadcrumb_container.locator("a", has_text="Find Case Law")
+    primary_breadcrumb = breadcrumb_container.locator("a", has_text="Home")
     secondary_breadcrumb = breadcrumb_container.locator("li", has_text=re.compile(JUDGMENT_HEADING, re.IGNORECASE))
 
     expect(primary_breadcrumb).to_be_visible()

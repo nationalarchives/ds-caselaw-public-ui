@@ -59,7 +59,7 @@
     {{ navigation(active_endpoint=active_navigation_endpoint) }}
     <main id="main-content" role="main">
       {% if breadcrumbs %}
-        {% call breadcrumbs_component(prefix="You are in", home="home", home_text="Find Case Law", data=structured_breadcrumbs, variant=breadcrumbs_variant, postfix=breadcrumbs_postfix) %}
+        {% call breadcrumbs_component(home="home", home_text="Home", data=structured_breadcrumbs, variant=breadcrumbs_variant, postfix=breadcrumbs_postfix) %}
           {% for crumb in breadcrumbs %}
             {% call breadcrumb(url=crumb.url) %}
               {{ crumb.text }}
