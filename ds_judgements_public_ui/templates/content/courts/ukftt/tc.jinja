@@ -32,6 +32,7 @@
 {% macro coverage_content() %}
   {{ heading(content="Coverage on Find Case Law", tag="h2") }}
   {% set court_date_range = param|get_court_date_range %}
+  {% set court_start_year = param|get_court_start_year %}
   {% set court_documents_count = court|get_court_judgments_count|intcomma %}
   <p>
     <strong>Date range</strong> — {{ court_date_range }}
@@ -39,6 +40,7 @@
   <p>
     <strong>What’s included</strong> — We currently hold {{ court_documents_count }} documents from {{ court_date_range }}.
   </p>
+  <p><strong>Transfer method</strong> — This tribunal began regularly transferring decisions to The National Archives in 2022. The oldest judgment from this tribunal included in Find Case Law is from {{ court_start_year }}. Decisions from {{ court_start_year }}–2022 were sourced from other collections.</p>
   {{ historic_documents_content() }}
 {% endmacro %}
 {% macro understanding_content() %}
