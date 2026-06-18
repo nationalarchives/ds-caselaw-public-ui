@@ -59,28 +59,30 @@
       {% endblock form_inner %}
       <div class="transactional-licence-form__actions">
         {% if wizard.steps.prev %}
-          <button name="wizard_goto_step"
-                  type="button"
-                  id="transactional-licence-form-previous-button"
-                  class="button-secondary"
-                  value="{{ wizard.steps.prev }}"
-                  style="display:none">Previous</button>
+          {% call button(
+            variant="secondary",
+            attrs={
+            "name": "wizard_goto_step",
+            "type": "button",
+            "id": "transactional-licence-form-previous-button",
+            "value": wizard.steps.prev
+            }
+            ) %}
+            Previous
+          {% endcall %}
           &nbsp;
         {% endif %}
-        <input type="submit"
-               class="{% if reviewing %}button-secondary{% else %}button-primary{% endif %}"
-               value="{{ wizard.steps.current|submit_label_for_step }}" />
+        {{ button(variant=("secondary" if reviewing) , element_type="input", attrs={"type": "submit", "value": wizard.steps.current|submit_label_for_step}) }}
         {% if reviewing %}
-          <button name="wizard_goto_step"
-                  type="submit"
-                  class="button-primary"
-                  value="review">
-            {% if reviewing %}
-              Save and review
-            {% else %}
-              Review your answers
-            {% endif %}
-          </button>
+          {% call button(
+            attrs={
+            "name": "wizard_goto_step",
+            "type": "submit",
+            "value": "review"
+            }
+            ) %}
+            Save and review
+          {% endcall %}
         {% endif %}
       </div>
     </form>
