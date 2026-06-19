@@ -1,3 +1,19 @@
+.contents-container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+
+  .contents {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    min-width: 33%;
+    max-width: 33%;
+  }
+}
+
 .contents {
   display: flex;
   flex-direction: column;
@@ -10,6 +26,18 @@
   .heading {
     margin: 0;
     padding: 0;
+  }
+
+  &--unbordered {
+    .contents__links {
+      gap: $space-8;
+      padding: 0;
+      border: 0;
+
+      p {
+        margin: 0 0 $space-4;
+      }
+    }
   }
 
   &__links {
