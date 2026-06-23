@@ -18,7 +18,7 @@
   {% if total > 0 %}
     <div class="results__result-header-container">
       <div class="results__result-header">
-        <p class="results__results-intro">{{ total|intcomma }} documents found</p>
+        <p class="results__results-intro">{{ total|intcomma }} results</p>
       </div>
       {% include "includes/atom_feed_button.jinja" %}
       {% include "includes/results_controls.jinja" %}
@@ -63,6 +63,7 @@
         {% endfor %}
       {% endcall %}
     </div>
+    {% include "includes/results_footer_controls.jinja" %}
     {% if not paginator.has_next_page %}
       {% call alert(title="End of results") %}
         {% include "includes/no_results_message.jinja" %}
