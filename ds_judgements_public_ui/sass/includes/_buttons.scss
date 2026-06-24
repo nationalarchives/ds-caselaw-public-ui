@@ -237,12 +237,13 @@
   }
 
   &--small {
-    max-height: 35px;
+    max-height: 32px;
     margin: 0;
     padding: $space-2 $space-3;
 
     font-size: $typography-xs-text-size;
     font-weight: $typography-normal-font-weight;
+    line-height: $typography-xs-line-height;
   }
 
   &__label {

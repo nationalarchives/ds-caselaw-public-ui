@@ -30,7 +30,7 @@ def test_search_results_sorting(search_results_page: Page):
     per_page_input = search_results_page.locator("#per_page")
     sort_button = search_results_page.get_by_role("button", name="Apply")
 
-    sort_input.select_option("Newest")
+    sort_input.select_option("Sort by: Newest")
     per_page_input.select_option("25")
     sort_button.click()
 
@@ -41,7 +41,7 @@ def test_search_results_sorting(search_results_page: Page):
 def test_search_results_page(search_results_page: Page):
     expect(search_results_page.locator("h1")).to_have_text("Search results")
 
-    expect(search_results_page.locator("p", has_text=re.compile(r"\d+\s*documents found"))).to_be_visible()
+    expect(search_results_page.locator("p", has_text=re.compile(r"\d+\s*results"))).to_be_visible()
 
     expect(search_results_page.locator("a", has_text="Query: Imperial"))
 

@@ -53,7 +53,7 @@ def test_advanced_search_court_filters(page: Page, filter):
     form = page.locator("#analytics-search-form")
 
     expect(form.locator("a", has_text=f"{tag_label}")).to_be_visible()
-    expect(page.locator("p", has_text=re.compile(r"\d+\s*documents found"))).to_be_visible()
+    expect(page.locator("p", has_text=re.compile(r"\d+\s*results"))).to_be_visible()
 
 
 def test_advanced_search_before_2003(page: Page):
@@ -83,7 +83,7 @@ def test_advanced_search_basic_query_page(page: Page):
 
     expect(page.locator("h1")).to_have_text("Search results")
 
-    expect(page.locator("p", has_text=re.compile(r"\d+\s*documents found"))).to_be_visible()
+    expect(page.locator("p", has_text=re.compile(r"\d+\s*results"))).to_be_visible()
 
     expect(page.locator("a", has_text=f"Query: {query}"))
 

@@ -17,6 +17,16 @@ def judgment_page(browser: Browser, base_url: str) -> Page:
     context = browser.new_context(
         base_url=base_url,
     )
+    context.add_cookies(
+        [
+            {
+                "name": "dontShowCookieNotice",
+                "value": "true",
+                "domain": "django",
+                "path": "/",
+            },
+        ],
+    )
     page = context.new_page()
     page.goto(JUDGMENT_URI)
     yield page
@@ -93,4 +103,6 @@ def test_judgment_page_details(judgment_page: Page):
     query_string = urlencode({"query": JUDGMENT_SEARCH_QUERY})
     judgment_page.goto(f"{JUDGMENT_URI}?{query_string}")
     assert_is_accessible(judgment_page)
-    assert_matches_snapshot(judgment_page, "judgment_page")
+
+    assert_matches_snapshot(judgment_page, "judgment_page", "desktop", {"x": 0, "y": 0, "width": 1280, "height": 720})
+    assert_matches_snapshot(judgment_page, "judgment_page", "mobile", {"x": 0, "y": 0, "width": 375, "height": 720})
