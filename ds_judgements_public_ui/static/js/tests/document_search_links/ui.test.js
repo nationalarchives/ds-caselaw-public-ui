@@ -5,6 +5,7 @@ describe("createUI", () => {
     let linksEndContainer;
 
     beforeEach(() => {
+        document.body.className = "";
         document.body.innerHTML = `
             <div id="js-document-navigation-links-end"></div>
         `;
@@ -138,5 +139,111 @@ describe("createUI", () => {
         expect(positionSpan).not.toBeNull();
         expect(positionSpan).toBe(domPositionSpan);
         expect(positionSpan.textContent).toBe("");
+    });
+
+    it("creates a highlights toggle link with correct initial text and attributes", () => {
+        createUI(linksEndContainer, 5, "query");
+
+        const highlightsToggle = linksEndContainer.querySelector(
+            ".document-navigation-links__highlights-toggle",
+        );
+
+        expect(highlightsToggle).not.toBeNull();
+        expect(highlightsToggle.tagName).toBe("A");
+        expect(highlightsToggle.getAttribute("href")).toBe("#");
+        expect(highlightsToggle.textContent).toBe("Hide highlights");
+        expect(highlightsToggle.title).toBe("Hide highlights");
+    });
+
+    it("hides highlights-related UI and adds body class when highlights toggle is clicked", () => {
+        const { prevLink, nextLink } = createUI(linksEndContainer, 5, "query");
+
+        const highlightsToggle = linksEndContainer.querySelector(
+            ".document-navigation-links__highlights-toggle",
+        );
+        const queryLabelContainer = linksEndContainer.querySelector(
+            ".document-navigation-links__search-query-text-container.document-navigation-links__query",
+        );
+        const matchCountContent = linksEndContainer.querySelector(
+            ".document-navigation-links__match-count-content",
+        );
+
+        highlightsToggle.click();
+
+        expect(
+            document.body.classList.contains(
+                "document-navigation-links--hide-matches",
+            ),
+        ).toBe(true);
+
+        expect(prevLink.hidden).toBe(true);
+        expect(nextLink.hidden).toBe(true);
+        expect(queryLabelContainer.hidden).toBe(true);
+        expect(matchCountContent.hidden).toBe(true);
+
+        expect(highlightsToggle.hidden).toBe(false);
+        expect(highlightsToggle.textContent).toBe("Show highlights");
+        expect(highlightsToggle.title).toBe("Show highlights");
+    });
+
+    it("shows highlights-related UI and removes body class when highlights toggle is clicked twice", () => {
+        const { prevLink, nextLink } = createUI(linksEndContainer, 5, "query");
+
+        const highlightsToggle = linksEndContainer.querySelector(
+            ".document-navigation-links__highlights-toggle",
+        );
+        const queryLabelContainer = linksEndContainer.querySelector(
+            ".document-navigation-links__search-query-text-container.document-navigation-links__query",
+        );
+        const matchCountContent = linksEndContainer.querySelector(
+            ".document-navigation-links__match-count-content",
+        );
+
+        highlightsToggle.click();
+        highlightsToggle.click();
+
+        expect(
+            document.body.classList.contains(
+                "document-navigation-links--hide-matches",
+            ),
+        ).toBe(false);
+
+        expect(prevLink.hidden).toBe(false);
+        expect(nextLink.hidden).toBe(false);
+        expect(queryLabelContainer.hidden).toBe(false);
+        expect(matchCountContent.hidden).toBe(false);
+
+        expect(highlightsToggle.hidden).toBe(false);
+        expect(highlightsToggle.textContent).toBe("Hide highlights");
+        expect(highlightsToggle.title).toBe("Hide highlights");
+    });
+
+    it("toggles highlights correctly when queryText is empty", () => {
+        const { prevLink, nextLink } = createUI(linksEndContainer, 5, "");
+
+        const highlightsToggle = linksEndContainer.querySelector(
+            ".document-navigation-links__highlights-toggle",
+        );
+        const queryLabelContainer = linksEndContainer.querySelector(
+            ".document-navigation-links__search-query-text-container.document-navigation-links__query",
+        );
+        const matchCountContent = linksEndContainer.querySelector(
+            ".document-navigation-links__match-count-content",
+        );
+
+        expect(queryLabelContainer).toBeNull();
+
+        highlightsToggle.click();
+
+        expect(
+            document.body.classList.contains(
+                "document-navigation-links--hide-matches",
+            ),
+        ).toBe(true);
+
+        expect(prevLink.hidden).toBe(true);
+        expect(nextLink.hidden).toBe(true);
+        expect(matchCountContent.hidden).toBe(true);
+        expect(highlightsToggle.textContent).toBe("Show highlights");
     });
 });
