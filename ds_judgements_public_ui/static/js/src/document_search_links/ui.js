@@ -1,3 +1,5 @@
+const HIDE_MATCHES_CLASS = "document-navigation-links--hide-matches";
+
 function createWrapper(className) {
     const span = document.createElement("span");
     span.className = className;
@@ -10,6 +12,41 @@ function createNavLink({ className, title, text }) {
     link.className = className;
     link.title = title;
     link.textContent = text;
+    return link;
+}
+
+function setHidden(elements, isHidden) {
+    elements.forEach((element) => {
+        if (element) {
+            element.hidden = isHidden;
+        }
+    });
+}
+
+function createHighlightsToggleLink(elementsToToggle) {
+    const link = createNavLink({
+        className: "document-navigation-links__highlights-toggle",
+        title: "Hide highlights",
+        text: "Hide highlights",
+    });
+
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const highlightsAreHidden =
+            document.body.classList.toggle(HIDE_MATCHES_CLASS);
+
+        setHidden(elementsToToggle, highlightsAreHidden);
+
+        link.textContent = highlightsAreHidden
+            ? "Show highlights"
+            : "Hide highlights";
+
+        link.title = highlightsAreHidden
+            ? "Show highlights"
+            : "Hide highlights";
+    });
+
     return link;
 }
 
@@ -30,43 +67,53 @@ function createQueryLabel(queryText) {
     return container;
 }
 
-function createMatchCountWrapper(totalMatches) {
+function createMatchCountWrapper(totalMatches, elementsToToggle) {
     const wrapper = createWrapper(
         "document-navigation-links__match-count-wrapper document-navigation-links__matches",
     );
 
-    const openParen = document.createTextNode(" (");
+    const matchCountContent = createWrapper(
+        "document-navigation-links__match-count-content",
+    );
 
     const positionSpan = document.createElement("span");
     positionSpan.className =
         "document-navigation-links__match-position position";
 
-    const ofText = document.createTextNode(" of ");
+    const ofText = document.createTextNode(" / ");
 
     const countSpan = document.createElement("span");
     countSpan.className =
         "document-navigation-links__match-count document-navigation-links__link-count";
     countSpan.textContent = String(totalMatches);
 
-    const matchesText = document.createTextNode(" matches)");
+    const separatorText = document.createTextNode(" ");
 
-    wrapper.appendChild(openParen);
-    wrapper.appendChild(positionSpan);
-    wrapper.appendChild(ofText);
-    wrapper.appendChild(countSpan);
-    wrapper.appendChild(matchesText);
+    matchCountContent.appendChild(positionSpan);
+    matchCountContent.appendChild(ofText);
+    matchCountContent.appendChild(countSpan);
+    matchCountContent.appendChild(separatorText);
+
+    elementsToToggle.push(matchCountContent);
+
+    wrapper.appendChild(matchCountContent);
+    wrapper.appendChild(createHighlightsToggleLink(elementsToToggle));
 
     return wrapper;
 }
 
-function createQueryWrapper(queryText, totalMatches) {
+function createQueryWrapper(queryText, totalMatches, elementsToToggle) {
     const wrapper = createWrapper("document-navigation-links__query-wrapper");
 
     if (queryText) {
-        wrapper.appendChild(createQueryLabel(queryText));
+        const queryLabel = createQueryLabel(queryText);
+        elementsToToggle.push(queryLabel);
+        wrapper.appendChild(queryLabel);
     }
 
-    wrapper.appendChild(createMatchCountWrapper(totalMatches));
+    wrapper.appendChild(
+        createMatchCountWrapper(totalMatches, elementsToToggle),
+    );
 
     return wrapper;
 }
@@ -78,6 +125,8 @@ export function createUI(linksEndContainer, totalMatches, queryText) {
         linksEndContainer.classList.add("with-query");
     }
 
+    const elementsToToggle = [];
+
     const leftWrapper = createWrapper(
         "document-navigation-links__left-wrapper",
     );
@@ -86,9 +135,8 @@ export function createUI(linksEndContainer, totalMatches, queryText) {
         title: "Previous match",
         text: "Previous",
     });
+    elementsToToggle.push(prevLink);
     leftWrapper.appendChild(prevLink);
-
-    const queryWrapper = createQueryWrapper(queryText, totalMatches);
 
     const rightWrapper = createWrapper(
         "document-navigation-links__right-wrapper",
@@ -98,7 +146,14 @@ export function createUI(linksEndContainer, totalMatches, queryText) {
         title: "Next match",
         text: "Next",
     });
+    elementsToToggle.push(nextLink);
     rightWrapper.appendChild(nextLink);
+
+    const queryWrapper = createQueryWrapper(
+        queryText,
+        totalMatches,
+        elementsToToggle,
+    );
 
     linksEndContainer.appendChild(leftWrapper);
     linksEndContainer.appendChild(queryWrapper);
