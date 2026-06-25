@@ -8,13 +8,13 @@ a {
 }
 
 code {
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 mark {
   scroll-margin-top: 50vh;
-  font-weight: $typography-bold-font-weight;
-  background: color-mix(in srgb, colour-var("accent-brand") 50%, transparent);
+  font-weight: $typography-normal-font-weight;
+  background: color-mix(in srgb, colour-var("accent-brand") 30%, transparent);
 
   &.current {
     background: colour-var("accent-brand");
