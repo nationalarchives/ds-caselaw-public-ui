@@ -83,7 +83,7 @@ def _cassette_string_to_multipart_bytes(value) -> bytes:
     return _rebuild_multipart_body(parts, _VCR_BOUNDARY)
 
 
-def _patched_vcrhttpresponse_init(self, recorded_response):
+def _patched_vcrhttpresponse_init(self, recorded_response, request_url=None):
     body = recorded_response.get("body", {})
     headers = recorded_response.get("headers", {})
 
