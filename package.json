@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/nationalarchives/ds-judgments-public-ui#readme",
   "devDependencies": {
-    "@babel/core": "7.29.7",
-    "@babel/preset-env": "7.29.7",
+    "@babel/core": "8.0.1",
+    "@babel/preset-env": "8.0.2",
     "@chromatic-com/storybook": "3.2.7",
     "@storybook/addon-designs": "8.2.1",
     "@storybook/addon-essentials": "8.6.14",
