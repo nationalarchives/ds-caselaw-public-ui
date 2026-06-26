@@ -11,7 +11,7 @@
   {% if requires_from_warning %}
     {% call alert() %}
       <p>
-        {{ date_warning }} <a href="{{ url("about_this_service") }}#section-coverage">Find out what records are available on this service.</a>
+        {{ date_warning }} <a href="{{ url('about_this_service') }}#section-coverage">Find out what records are available on this service.</a>
       </p>
     {% endcall %}
   {% endif %}

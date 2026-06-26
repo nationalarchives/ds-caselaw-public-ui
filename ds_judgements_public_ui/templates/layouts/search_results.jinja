@@ -11,7 +11,7 @@
   <link rel="alternate"
         type="application/atom+xml"
         title="{{ breadcrumbs.0.text }}"
-        href="{{ url("search-feed") }}?{{ query_param_string }}" />
+        href="{{ url('search-feed') }}?{{ query_param_string }}" />
 {% endblock extra_head_tags %}
 {% block javascript %}
   <script type="module" defer src="{{ static('js/dist/manage_filters.js')}}"></script>

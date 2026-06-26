@@ -10,7 +10,7 @@
                draggable="false"
                class="results-search-component__removable-options-link"
                aria-label="Remove {{ key|capfirst }} filter"
-               href="{{ url("search") }}?{{ query_params|remove_query(key) }}">
+               href="{{ url('search') }}?{{ query_params|remove_query(key) }}">
               <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
               <span class="results-search-component__removable-options-value">
                 <span class="results-search-component__removable-options-value-text">{{ value }}</span>
@@ -24,7 +24,7 @@
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 href="{{ url("search") }}?{{ query_params|remove_court(court) }}"
+                 href="{{ url('search') }}?{{ query_params|remove_court(court) }}"
                  aria-label="Remove {{ court|get_court_name }} filter"
                  title="{{ court|get_court_name }}">
                 <span class="results-search-component__removable-options-value">
@@ -40,7 +40,7 @@
                draggable="false"
                class="results-search-component__removable-options-link"
                aria-label="Remove from date filter"
-               href="{{ url("search") }}?{{ query_params|remove_query("from") }}">
+               href="{{ url('search') }}?{{ query_params|remove_query('from') }}">
               <span class="results-search-component__removable-options-key">From:</span>
               <span class="results-search-component__removable-options-value">
                 <span class="results-search-component__removable-options-value-text">
@@ -58,7 +58,7 @@
                draggable="false"
                class="results-search-component__removable-options-link"
                aria-label="Remove to date filter"
-               href="{{ url("search") }}?{{ query_params|remove_query("to") }}">
+               href="{{ url('search') }}?{{ query_params|remove_query('to') }}">
               <span class="results-search-component__removable-options-key">To:</span>
               <span class="results-search-component__removable-options-value">
                 <span class="results-search-component__removable-options-value-text">
