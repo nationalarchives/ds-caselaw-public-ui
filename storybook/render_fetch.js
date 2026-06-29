@@ -1,10 +1,8 @@
-const STORYBOOK_SERVER =
-    process.env.STORYBOOK_SERVER || "http://localhost:3000";
+const STORYBOOK_SERVER = "http://localhost:3000";
 
 export default async function renderComponentHtml(template, macro, args = {}) {
     const endpointUrl = `${STORYBOOK_SERVER}/storybook-render`;
 
-    // Only send label/variant/size for the actual button macro
     const payload = { template, macro };
     if (macro === "button") {
         if ("label" in args) payload.label = args.label;
@@ -16,7 +14,6 @@ export default async function renderComponentHtml(template, macro, args = {}) {
 
     const res = await fetch(endpointUrl, {
         method: "POST",
-        // Use a simple request content type to avoid browser CORS preflight.
         headers: { "Content-Type": "text/plain;charset=UTF-8" },
         body: JSON.stringify(payload),
     });

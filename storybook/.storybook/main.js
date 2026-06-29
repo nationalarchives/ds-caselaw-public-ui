@@ -9,19 +9,14 @@ module.exports = {
     },
 
     addons: [
-        "@storybook/addon-essentials",
-        "@storybook/addon-webpack5-compiler-babel",
+        "@storybook/addon-docs",
         "@chromatic-com/storybook",
         "@storybook/addon-designs",
     ],
 
     framework: {
-        name: "@storybook/html-webpack5",
+        name: "@storybook/html-vite",
         options: {},
-    },
-
-    docs: {
-        autodocs: true,
     },
 
     webpackFinal: async (config) => {
