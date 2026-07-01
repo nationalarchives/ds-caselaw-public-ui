@@ -1,6 +1,6 @@
 {% extends "layouts/standard_content.jinja" %}
 {% from "components/card.jinja" import card %}
-{% from "components/contents.jinja" import contents %}
+{% from "components/contents.jinja" import contents, contents_container %}
 {% from "components/heading.jinja" import heading %}
 {% from "components/button.jinja" import button %}
 {% from "components/link.jinja" import link %}
@@ -22,10 +22,52 @@
   {{ heading(content=court.name) }}
 {% endblock desktop_article_title %}
 {% block article_navigation %}
-  {% call contents(title="On this page") %}
-    {% call list() %}
-      {{ contents_navigation() }}
+  {% call contents_container() %}
+    {% call contents(title="On this page") %}
+      {% call list() %}
+        {{ contents_navigation() }}
+      {% endcall %}
     {% endcall %}
+    {% if relationships %}
+      {% call contents(variant="unbordered", title="Browse related " ~ court_noun_content() | trim() ~ "s") %}
+        {% if relationships.hears_appeals_from %}
+          <div>
+            <p>This {{ court_noun_content() }} hears appeals from these {{ court_noun_content() | trim }}s:</p>
+            {% call list() %}
+              {% for relationship in relationships.hears_appeals_from %}
+                {% call list_item() %}
+                  {{ link(content=relationship.name, href=url("court_or_tribunal", relationship.canonical_param) ) }}
+                {% endcall %}
+              {% endfor %}
+            {% endcall %}
+          </div>
+        {% endif %}
+        {% if relationships.hears_similar_cases_to %}
+          <div>
+            <p>This {{ court_noun_content() }} hears similar cases from these {{ court_noun_content() | trim }}s:</p>
+            {% call list() %}
+              {% for relationship in relationships.hears_similar_cases_to %}
+                {% call list_item() %}
+                  {{ link(content=relationship.name, href=url("court_or_tribunal", relationship.canonical_param) ) }}
+                {% endcall %}
+              {% endfor %}
+            {% endcall %}
+          </div>
+        {% endif %}
+        {% if relationships.might_be_looking_for %}
+          <div>
+            <p>You may be looking for:</p>
+            {% call list() %}
+              {% for relationship in relationships.might_be_looking_for %}
+                {% call list_item() %}
+                  {{ link(content=relationship.name, href=url("court_or_tribunal", relationship.canonical_param) ) }}
+                {% endcall %}
+              {% endfor %}
+            {% endcall %}
+          </div>
+        {% endif %}
+      {% endcall %}
+    {% endif %}
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
