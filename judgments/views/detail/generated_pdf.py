@@ -30,6 +30,7 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
         self.pdf_filename = f"{filename}.pdf"
 
         context["document"] = document.content_as_html()
+        context["slug"] = document.slug
 
         return context
 
