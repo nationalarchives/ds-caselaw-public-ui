@@ -7,6 +7,10 @@
   }
 
   &__result-header {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
     @media (min-width: $grid-breakpoint-large) {
       flex: 1;
     }
@@ -25,7 +29,6 @@
       display: flex;
       gap: $space-1;
       align-items: center;
-      height: 33px;
     }
 
     @media (min-width: $grid-breakpoint-extra-large) {
@@ -90,8 +93,8 @@
 
     @media (min-width: $grid-breakpoint-extra-large) {
       top: 30px;
-      left: -107px;
-      width: 185px;
+      left: -142px;
+      width: 285px;
     }
   }
 
@@ -113,6 +116,7 @@
       flex-direction: row;
       gap: $space-6;
       align-items: flex-end;
+      padding-bottom: $space-2;
     }
   }
 
