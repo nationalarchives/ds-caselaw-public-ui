@@ -1,3 +1,4 @@
+{% from "components/alert.jinja" import alert %}
 <div class="results__result-atom-feed-button-container">
   <div class="results__result-atom-feed-button">
     <a href="{{ url('search-feed') }}?{{ query_param_string }}">
@@ -10,9 +11,10 @@
     <div class="results__result-atom-feed-info" tabindex="0">
       <div class="results__result-atom-feed-info-icon"></div>
       <div class="results__result-atom-feed-info-text">
-        <div class="home-office-alert home-office-alert--sm">
-          This Atom feed is a data format that provides the latest results for this search query.
-        </div>
+        {% call alert(size="sm") %}
+          <p><strong>Stay up to date with this search</strong></p>
+          <p>Subscribe to this search using an Atom feed with a compatible feed reader to receive updates when new judgments matching this search are published.</p>
+        {% endcall %}
       </div>
     </div>
   </div>
