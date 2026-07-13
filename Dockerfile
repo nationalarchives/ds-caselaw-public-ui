@@ -98,7 +98,7 @@ RUN addgroup --system django \
 
 # Install production-specific dependencies (curl for Node.js installation)
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  curl=7.88.1-10+deb12u14 \
+  curl \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js and clean up in one layer
