@@ -74,58 +74,18 @@
   {% endcall %}
 {% endblock article_navigation %}
 {% block article_content %}
-  <p>
-    Courts and tribunals in England and Wales handle different types of legal cases. There are the civil courts, which deal with disputes between individuals or organisations, and the criminal courts, which deal with criminal offences defined by law.
-  </p>
-  <p>
-    Decisions made by a court or tribunal may be appealed. The Court of Appeal and the UK Supreme Court are the most senior courts for appeals.
-  </p>
-  <p>
-    You can find more information about the justice system in England and Wales on the {% call link(href="https://www.judiciary.uk/structure-of-courts-and-tribunals-system/", attrs={"target": "_blank"}) %}judiciary website
-  {% endcall %}
-  . Older records held by The National Archives can be found on our website using the {% call link(href="https://discovery.nationalarchives.gov.uk/browse/r/h/C162", attrs={"target":"_blank"}) %}Discovery catalogue
-{% endcall %}
-. Government policy around what records to keep and where to keep them has changed over time. To find out more you can look at the Ministry of Justice’s policy on what to archive in their
-{% call link(href="https://www.gov.uk/government/publications/record-retention-and-disposition-schedules") %}
-  Record Retention and Disposition Schedules
-{% endcall %}
-.
-</p>
-{% call heading(tag="h2") %}
-  What each court and tribunal does
-{% endcall %}
-{% set courts_panel %}
-  <h2>
-    <strong>Courts</strong>
-  </h2>
+  <p>This page lists the courts and tribunals whose judgments and decisions are published on Find Case Law.</p>
+  <p>For more about the justice system, visit the {% call link(href="https://www.judiciary.uk/structure-of-courts-and-tribunals-system/", attrs={"target": "_blank"}) %}judiciary website{% endcall %}. For older records, search the {% call link(href="https://discovery.nationalarchives.gov.uk/browse/r/h/C162", attrs={"target":"_blank"}) %}Discovery catalogue{% endcall %}.</p>
+  {{ heading(tag="h2", content="Understanding date ranges") }}
+  <p>The date range shows our earliest and most recent judgment from this court. Coverage within that range may not be complete — not every judgment is sent to us for publication.</p>
+  {{ heading(tag="h2", content="Courts") }}
   {% for group in courts %}
     {{ courts_and_tribunals_group(group=group, type="court") }}
     {% if not loop.last %}{{ divider() }}{% endif %}
   {% endfor %}
-{% endset %}
-{% set tribunals_panel %}
-  <h2>
-    <strong>Tribunals</strong>
-  </h2>
+  {{ heading(tag="h2", content="Tribunals") }}
   {% for group in tribunals %}
     {{ courts_and_tribunals_group(group=group, type="tribunal") }}
     {% if not loop.last %}{{ divider() }}{% endif %}
   {% endfor %}
-{% endset %}
-{{ tabs({
-"id": "courts-and-tribunals",
-"title": "Contents",
-"items": [
-{
-"label": "Courts",
-"id": "courts",
-"panel": { "html": courts_panel | safe }
-},
-{
-"label": "Tribunals",
-"id": "tribunals",
-"panel": { "html": tribunals_panel | safe }
-}
-]
-}) }}
 {% endblock article_content %}
