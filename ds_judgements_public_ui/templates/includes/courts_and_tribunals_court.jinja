@@ -2,35 +2,21 @@
 {% from "components/heading.jinja" import heading %}
 {% from "components/details.jinja" import details %}
 {% macro courts_and_tribunals_court(court=None, type=None, group=None) %}
-  {% from "content/courts/" ~ court.canonical_param ~ ".jinja" import historic_documents_content, description_content with context %}
   <div class="courts-and-tribunals__sub-item">
-    {% if group.display_heading %}
-      {% call heading(tag="h3", id=court.name|slugify) %}
-        {{ link(content=court.grouped_name, href=url("court_or_tribunal", court.canonical_param) ) }}
-      {% endcall %}
-    {% else %}
-      {% call heading(tag="h2", id=court.name|slugify) %}
-        {{ link(content=court.grouped_name, href=url("court_or_tribunal", court.canonical_param) ) }}
-      {% endcall %}
-    {% endif %}
-    {% call details(title="About the " ~ court.grouped_name, variant="light") %}
-      {{ description_content(start_year=court.canonical_param|get_court_start_year) }}
+    {% set heading_tag = "h2" if group.display_heading else "h2" %}
+    {% call heading(tag=heading_tag, id=court.name|slugify) %}
+      {{ court.grouped_name }}
     {% endcall %}
     <p>
       {% if court|get_court_judgments_count == 0 %}
         We don't currently hold any documents
       {% else %}
-        We currently hold
         {% call link(href=url("search") ~ "?" ~ "court=" ~ court.canonical_param) %}
-          {{ court|get_court_judgments_count|intcomma }} documents from
+          {{ court|get_court_judgments_count|intcomma }} documents —
           {{ court.start_year }}&nbsp;to&nbsp;{{ court.end_year }}
         {% endcall %}
       {% endif %}
     </p>
-    {% if historic_documents_content()|trim %}
-      {% call details(title="Looking for older documents", variant="light") %}
-        {{ historic_documents_content() }}
-      {% endcall %}
-    {% endif %}
+    <p>{{ link(content="About " ~ court.grouped_name, href=url("court_or_tribunal", court.canonical_param) ) }}</p>
   </div>
 {% endmacro %}
