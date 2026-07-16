@@ -11,7 +11,7 @@ from caselawclient.search_parameters import SearchParameters
 from django.contrib.syndication.views import Feed
 from django.core.exceptions import BadRequest
 from django.http.request import HttpRequest
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.feedgenerator import Atom1Feed
@@ -211,7 +211,10 @@ class JudgmentsFeed(Feed):
         return extra_kwargs
 
     def __call__(self, request, *args, **kwargs):
-        response = super().__call__(request, *args, **kwargs)
+        try:
+            response = super().__call__(request, *args, **kwargs)
+        except BadRequest as exc:
+            return HttpResponseBadRequest(str(exc))
 
         # Inject our stylesheet at the top of the feed
         css = b'<?xml-stylesheet href="/static/atom.xsl" type="text/xsl" ?>\n'

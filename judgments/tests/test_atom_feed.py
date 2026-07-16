@@ -241,3 +241,10 @@ class TestAtomFeed(TestCase):
     def test_bad_tribunal(self):
         response = self.client.get("/atom.xml?tribunal=tennis")
         assert response.status_code == 400
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    def test_invalid_order_returns_400_without_raising(self, mock_search):
+        response = self.client.get("/atom.xml?order=modified")
+
+        assert response.status_code == 400
+        mock_search.assert_not_called()
