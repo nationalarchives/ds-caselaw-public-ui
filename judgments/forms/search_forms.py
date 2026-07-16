@@ -81,6 +81,16 @@ class CourtOrTribunalField(forms.MultipleChoiceField):
 
 
 class AdvancedSearchForm(forms.Form):
+    ORDER_CHOICES = [
+        ("relevance", "Most relevant"),
+        ("-date", "Newest"),
+        ("date", "Oldest"),
+        ("-transformation", "Recently modified"),
+        ("transformation", "Least recently modified"),
+        ("-updated", "Recently updated"),
+        ("updated", "Least recently updated"),
+    ]
+
     query = forms.CharField(
         required=False,
         widget=forms.TextInput(
@@ -138,6 +148,14 @@ class AdvancedSearchForm(forms.Form):
         required=False,
     )
 
+    order = forms.ChoiceField(
+        choices=ORDER_CHOICES,
+        required=False,
+        error_messages={
+            "invalid_choice": ("Sort order should be one of " + ", ".join(choice for choice, _label in ORDER_CHOICES)),
+        },
+    )
+
     def clean(self):
         cleaned_data = super().clean()
         # Validate that from is before to now that we have access to both fields
@@ -155,7 +173,7 @@ class AdvancedSearchForm(forms.Form):
         # Ignore warnings related to MyPy not understanding what cleaned_data is
         if cleaned_data.get("query"):
             cleaned_data["query"] = preprocess_query(cleaned_data.get("query", ""))
-        for parameter in ["query", "from_date", "to_date", "court", "tribunal", "party", "judge"]:
+        for parameter in ["query", "from_date", "to_date", "court", "tribunal", "party", "judge", "order"]:
             if cleaned_data.get(parameter, "Non-nilsy placeholder") in (None, "", []):
                 del cleaned_data[parameter]
         return cleaned_data
