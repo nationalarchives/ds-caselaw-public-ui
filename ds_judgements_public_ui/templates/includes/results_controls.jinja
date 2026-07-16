@@ -13,7 +13,7 @@
             <input type="hidden"
                    name="{{ key }}"
                    value="{{ formatdate(value, '%Y-%b-%d') }}" />
-          {% elif key != "order" or key != "per_page" %}
+          {% elif key != "order" and key != "per_page" %}
             <input type="hidden" name="{{ key }}" value="{{ value }}" />
           {% endif %}
         {% endif %}
