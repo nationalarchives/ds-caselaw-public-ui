@@ -15,6 +15,7 @@ from judgments.tests.fixture_data import (
 )
 from judgments.tests.utils.assertions import (
     assert_contains_html,
+    assert_not_contains_html,
     assert_response_contains_text,
     assert_response_not_contains_text,
 )
@@ -406,6 +407,43 @@ class TestSearchResults(TestCase):
         )
 
         assert_contains_html(response, expected_applied_filters_html)
+
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_judgment_search_has_order_and_page_per_controls(
+        self,
+        mock_search_judgments_and_parse_response,
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        response = self.client.get("/search")
+
+        expected_order_select_html = """
+            <select class="result-controls__select" id="order_by" name="order">
+                <option value="-date" selected="selected">Sort by: Newest</option>
+                <option value="date">Sort by: Oldest</option>
+            </select>
+        """
+
+        expected_per_page_select_html = """
+            <select class="result-controls__select" id="per_page" name="per_page">
+                <option value="10" selected="selected">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        """
+
+        unexpected_order_hidden_input_html = """
+            <input type="hidden" name="order" value="-date" />
+        """
+
+        unexpected_per_page_hidden_input_html = """
+            <input type="hidden" name="per_page" value="10" />
+        """
+
+        assert_contains_html(response, expected_order_select_html)
+        assert_contains_html(response, expected_per_page_select_html)
+        assert_not_contains_html(response, unexpected_order_hidden_input_html)
+        assert_not_contains_html(response, unexpected_per_page_hidden_input_html)
 
 
 class TestSearchBreadcrumbs(TestCase):
