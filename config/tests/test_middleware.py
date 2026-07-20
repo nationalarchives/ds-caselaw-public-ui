@@ -89,3 +89,21 @@ class TestLinkHeaderMiddleware(TestCase):
             response = LinkHeaderMiddleware(get_response)(request)
 
             assert "Link" not in response.headers
+
+    def test_response_link_headers_attribute_works_on_any_response_type(self):
+        request = self.request_factory.get("/ewca/civ/2024/1/data.xml")
+
+        def get_response(_request):
+            response = HttpResponse("<xml/>", content_type="application/xml")
+            response.link_headers = [
+                {"href": "/ewca/civ/2024/1", "rel": "alternate", "type": "text/html"},
+            ]
+            return response
+
+        response = LinkHeaderMiddleware(get_response)(request)
+
+        assert response.headers["Link"] == (
+            '</sitemap.xml>; rel="sitemap"; type="application/xml", '
+            '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", '
+            '</ewca/civ/2024/1>; rel="alternate"; type="text/html"'
+        )

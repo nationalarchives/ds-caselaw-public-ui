@@ -65,8 +65,12 @@ class LinkHeaderMiddleware:
 
         link_values = [self._serialise_link(link) for link in self._base_links()]
 
+        # Per-resource links set explicitly by the view on the response object.
+        # Works for any response type: HttpResponse, JsonResponse, TemplateResponse, etc.
+        link_values.extend(self._serialise_link(link) for link in getattr(response, "link_headers", []))
+
         if isinstance(response, TemplateResponse):
-            link_values.extend(self._serialise_link(link) for link in self._template_links(response))
+            link_values.extend(self._serialise_link(link) for link in self._context_links(response))
 
         existing_link_header = response.headers.get("Link")
         if existing_link_header:
@@ -86,7 +90,7 @@ class LinkHeaderMiddleware:
         ]
 
     @staticmethod
-    def _template_links(response: TemplateResponse) -> list[dict[str, str]]:
+    def _context_links(response: TemplateResponse) -> list[dict[str, str]]:
         links = list(response.context_data.get("links", []))
         links.extend(
             {
