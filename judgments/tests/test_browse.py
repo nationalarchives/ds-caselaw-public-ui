@@ -6,6 +6,7 @@ from django.test import TestCase
 from judgments.tests.fixture_data import (
     FakeSearchResponse,
 )
+from judgments.views.browse import BrowseView
 
 
 class TestBrowse(TestCase):
@@ -26,3 +27,15 @@ class TestBrowse(TestCase):
         self.assertContains(response, "Judgment v Judgement", html=True)
         self.assertContains(response, "/uksc/2025/1")
         self.assertNotContains(response, "d-123456789abcdef")
+
+    def test_atom_feed_url_uses_tribunal_param_for_nested_tribunal_codes(self):
+        view = BrowseView()
+
+        # Top-level tribunal code
+        assert view._build_atom_feed_url("eat", None) == "/atom.xml?tribunal=eat"
+        # Nested under a group heading (must not be misclassified as court)
+        assert view._build_atom_feed_url("ukut/iac", 2024) == (
+            "/atom.xml?tribunal=ukut%2Fiac&from_date_2=2024&to_date_2=2024"
+        )
+        # Court code still uses court param
+        assert view._build_atom_feed_url("ewhc/ch", None) == "/atom.xml?court=ewhc%2Fch"
