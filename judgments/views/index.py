@@ -37,6 +37,12 @@ class IndexView(TemplateView):
         context["feedback_survey_type"] = "home"
         context["active_navigation_endpoint"] = "home"
         context["form"] = AdvancedSearchForm()
+        context["alternates"] = [
+            {
+                "type": "application/atom+xml",
+                "href": reverse("search-feed"),
+            }
+        ]
 
         try:
             response = cached_recent_judgments(ttl_hash=round(time() / 900))
