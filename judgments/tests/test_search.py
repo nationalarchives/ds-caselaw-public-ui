@@ -465,6 +465,54 @@ class TestSearchBreadcrumbs(TestCase):
         assert response.context_data["breadcrumbs"] == [{"text": 'Search results for "waltham forest"'}]
 
 
+class TestSearchAtomFeedLink(TestCase):
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_alternates_context(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?query=waltham+forest")
+
+        assert response.context_data is not None
+        assert response.context_data["atom_feed_url"] == "/atom.xml?query=waltham+forest"
+        assert "alternates" in response.context_data
+        alternates = response.context_data["alternates"]
+        assert len(alternates) == 1
+        assert alternates[0]["type"] == "application/atom+xml"
+        assert alternates[0]["href"] == response.context_data["atom_feed_url"]
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_announce_atom_feed(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?query=waltham+forest")
+
+        assert_contains_html(
+            response,
+            """
+            <link rel="alternate"
+                  type="application/atom+xml"
+                  href="/atom.xml?query=waltham+forest" />
+            """,
+        )
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_without_query_announce_atom_feed(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search")
+
+        assert_contains_html(
+            response,
+            """
+            <link rel="alternate"
+                  type="application/atom+xml"
+                  href="/atom.xml" />
+            """,
+        )
+
+
 class TestSearchFacets(TestCase):
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")

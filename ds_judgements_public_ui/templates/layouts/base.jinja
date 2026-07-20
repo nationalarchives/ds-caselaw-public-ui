@@ -42,6 +42,11 @@
       <link href="{{ static('css/main.css') }}" rel="stylesheet" />
     {% endblock css %}
     {% include "includes/gtm_head.jinja" %}
+    {% block extra_head_tags %}
+    {% endblock extra_head_tags %}
+    {% for alt in alternates|default([]) %}
+      <link rel="alternate" type="{{ alt.type }}" href="{{ alt.href }}" />
+    {% endfor %}
   </head>
   <body class="{% block body_class %}{% endblock body_class %}">
     <script>
