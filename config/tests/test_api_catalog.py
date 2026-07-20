@@ -7,6 +7,10 @@ class TestApiCatalog(TestCase):
 
         assert response.status_code == 200
         assert response["Content-Type"].startswith("application/linkset+json")
+        assert response.headers["Link"] == (
+            '</sitemap.xml>; rel="sitemap"; type="application/xml", '
+            '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"'
+        )
 
     def test_includes_link_relations(self):
         response = self.client.get("/.well-known/api-catalog")
