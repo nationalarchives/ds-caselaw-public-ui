@@ -1,4 +1,5 @@
 import logging
+from typing import Any
 
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
@@ -72,6 +73,29 @@ class CourtOrTribunalView(TemplateViewWithContext):
     template_name = "pages/court_or_tribunal.jinja"
     page_allow_index = True
 
+    HEARS_APPEALS_FROM = "hears_appeals_from"
+    HEARS_SIMILAR_CASES_TO = "hears_similar_cases_to"
+    MIGHT_BE_LOOKING_FOR = "might_be_looking_for"
+
+    def decorate_relationships(self, relationships: list[dict[str, str]]) -> dict[str, list[Any]]:
+        decorated_relationships = {
+            self.HEARS_APPEALS_FROM: [],
+            self.HEARS_SIMILAR_CASES_TO: [],
+            self.MIGHT_BE_LOOKING_FOR: [],
+        }
+
+        for relationship in relationships:
+            relationship_type = relationship["relationship_type"]
+            court_code = relationship["court_code"]
+
+            if relationship_type not in decorated_relationships:
+                continue
+
+            court = courts.get_court_by_code(court_code)
+            decorated_relationships[relationship_type].append(court)
+
+        return decorated_relationships
+
     @property
     def page_title(self):
         return self.court.name
@@ -92,7 +116,6 @@ class CourtOrTribunalView(TemplateViewWithContext):
             return []
 
     def get_context_data(self, **kwargs):
-
         court = self.court
 
         context = super().get_context_data(**kwargs)
@@ -106,6 +129,9 @@ class CourtOrTribunalView(TemplateViewWithContext):
         context["documents"] = search_response.results
         context["feedback_survey_type"] = "court_or_tribunal_%s" % court.canonical_param
         context["court"] = court
+
+        context["relationships"] = self.decorate_relationships(court.relationships)
+
         context["active_navigation_endpoint"] = "search_and_browse"
         context["breadcrumbs"] = [
             {"url": reverse("search_and_browse"), "text": "Search and browse"},

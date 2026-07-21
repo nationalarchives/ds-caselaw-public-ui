@@ -1,6 +1,11 @@
 {% from "components/heading.jinja" import heading %}
-{% macro contents(title=None) %}
-  <nav class="contents">
+{% macro contents_container() %}
+  <div class="contents-container">{{ caller() }}</div>
+{% endmacro %}
+{% macro contents(title=None, variant="default") %}
+  {% set variant_classes = {"default": "contents", "unbordered": "contents contents--unbordered"} %}
+  {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
+  <nav class="{{ variant_class }}">
     <div class="contents__links">
       {% if title %}
         {% call heading(tag="div", size="h3") %}
