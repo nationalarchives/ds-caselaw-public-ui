@@ -1,7 +1,7 @@
 {% from "components/alert.jinja" import alert %}
 <div class="results__result-atom-feed-button-container">
   <div class="results__result-atom-feed-button">
-    <a href="{{ url('search-feed') }}?{{ query_param_string }}">
+    <a href="{{ atom_feed_url }}">
       <img src="{{ static('fontawesome-svgs/rss.svg') }}"
            width="20"
            height="20"

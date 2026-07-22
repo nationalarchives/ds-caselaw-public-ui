@@ -15,6 +15,12 @@ class TestHomepage(TestCase):
         mock_cached_recent_judgments.assert_called_once()
         self.assertContains(response, "Judgment v Judgement", html=True)
 
+        assert response.headers["Link"] == (
+            '</sitemap.xml>; rel="sitemap"; type="application/xml", '
+            '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", '
+            '</atom.xml>; rel="alternate"; type="application/atom+xml"'
+        )
+
     @patch("judgments.views.index.api_client")
     @patch("judgments.views.index.search_judgments_and_parse_response")
     def test_cached_recent_judgments(self, mock_search_judgments_and_parse_response, mock_api_client):

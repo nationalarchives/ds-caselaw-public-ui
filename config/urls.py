@@ -22,6 +22,7 @@ from judgments.views.search import (
 from .converters import SchemaFileConverter
 
 # from .views import static as static_views
+from .views.api_catalog import api_catalog
 from .views.check import status
 from .views.components import ComponentsView
 from .views.courts import (
@@ -74,6 +75,11 @@ non_public_urls = [
     path(
         ".well-known/trust.txt",
         RedirectView.as_view(url="/trust.txt"),
+    ),
+    path(
+        ".well-known/api-catalog",
+        api_catalog,
+        name="api_catalog",
     ),
     path(
         "favicon.ico",

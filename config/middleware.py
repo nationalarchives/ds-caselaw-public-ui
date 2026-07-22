@@ -1,6 +1,6 @@
 from urllib.parse import urlencode
 
-from django.http import HttpResponseRedirect
+from django.http.response import HttpResponseRedirectBase
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.cache import patch_cache_control
@@ -17,7 +17,7 @@ class RobotsTagMiddleware:
         response = self.get_response(request)
 
         # If the response is a redirect, short-circuit adding the X-Robots-Tag
-        if isinstance(response, HttpResponseRedirect):
+        if isinstance(response, HttpResponseRedirectBase):
             return response
 
         # If page_allow_index is True, short-circuit adding the X-Robots-Tag
@@ -48,6 +48,69 @@ class CacheHeaderMiddleware:
         # the view is called.
 
         return response
+
+
+class LinkHeaderMiddleware:
+    SITEMAP_TYPE = "application/xml"
+    API_CATALOG_TYPE = "application/linkset+json"
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+
+        if isinstance(response, HttpResponseRedirectBase):
+            return response
+
+        link_values = [self._serialise_link(link) for link in self._base_links()]
+
+        # Per-resource links set explicitly by the view on the response object.
+        # Works for any response type: HttpResponse, JsonResponse, TemplateResponse, etc.
+        link_values.extend(self._serialise_link(link) for link in getattr(response, "link_headers", []))
+
+        if isinstance(response, TemplateResponse):
+            link_values.extend(self._serialise_link(link) for link in self._context_links(response))
+
+        existing_link_header = response.headers.get("Link")
+        if existing_link_header:
+            link_values.insert(0, existing_link_header)
+
+        response.headers["Link"] = ", ".join(link_values)
+        return response
+
+    def _base_links(self) -> list[dict[str, str]]:
+        return [
+            {"href": reverse("sitemap_index"), "rel": "sitemap", "type": self.SITEMAP_TYPE},
+            {
+                "href": reverse("api_catalog"),
+                "rel": "api-catalog",
+                "type": self.API_CATALOG_TYPE,
+            },
+        ]
+
+    @staticmethod
+    def _context_links(response: TemplateResponse) -> list[dict[str, str]]:
+        links = list(response.context_data.get("links", []))
+        links.extend(
+            {
+                "href": alternate["href"],
+                "rel": "alternate",
+                "type": alternate.get("type"),
+                "title": alternate.get("title"),
+            }
+            for alternate in response.context_data.get("alternates", [])
+        )
+        return links
+
+    @staticmethod
+    def _serialise_link(link: dict[str, str | None]) -> str:
+        segments = [f"<{link['href']}>", f'rel="{link["rel"]}"']
+        if link.get("type"):
+            segments.append(f'type="{link["type"]}"')
+        if link.get("title"):
+            segments.append(f'title="{link["title"]}"')
+        return "; ".join(segments)
 
 
 class FeedbackLinkMiddleware:

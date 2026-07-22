@@ -42,6 +42,12 @@ class TestBrowseResults(TestCase):
         # search results reference the slug not the uri
         self.assertContains(response, "/uksc/2025/1")
         self.assertNotContains(response, "d-123456789abcdef")
+        assert response.headers["Link"] == (
+            '</sitemap.xml>; rel="sitemap"; type="application/xml", '
+            '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", '
+            "</atom.xml?court=ewhc%2Fch&from_date_2=2022&to_date_2=2022>; "
+            'rel="alternate"; type="application/atom+xml"'
+        )
 
 
 class TestNoNCN(TestCase):
@@ -463,6 +469,87 @@ class TestSearchBreadcrumbs(TestCase):
 
         assert response.context_data is not None
         assert response.context_data["breadcrumbs"] == [{"text": 'Search results for "waltham forest"'}]
+
+
+class TestSearchAtomFeedLink(TestCase):
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_alternates_context(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?query=waltham+forest")
+
+        assert response.context_data is not None
+        assert response.context_data["atom_feed_url"] == "/atom.xml?query=waltham+forest"
+        assert "alternates" in response.context_data
+        alternates = response.context_data["alternates"]
+        assert len(alternates) == 1
+        assert alternates[0]["type"] == "application/atom+xml"
+        assert alternates[0]["href"] == response.context_data["atom_feed_url"]
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_announce_atom_feed(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?query=waltham+forest")
+
+        assert_contains_html(
+            response,
+            """
+            <link rel="alternate"
+                  type="application/atom+xml"
+                  href="/atom.xml?query=waltham+forest" />
+            """,
+        )
+        assert response.headers["Link"] == (
+            '</sitemap.xml>; rel="sitemap"; type="application/xml", '
+            '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", '
+            '</atom.xml?query=waltham+forest>; rel="alternate"; type="application/atom+xml"'
+        )
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_without_query_announce_atom_feed(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search")
+
+        assert_contains_html(
+            response,
+            """
+            <link rel="alternate"
+                  type="application/atom+xml"
+                  href="/atom.xml" />
+            """,
+        )
+        assert response.headers["Link"] == (
+            '</sitemap.xml>; rel="sitemap"; type="application/xml", '
+            '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", '
+            '</atom.xml>; rel="alternate"; type="application/atom+xml"'
+        )
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_atom_feed_preserves_multipart_dates(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get(
+            "/search?query=cheese&from_date_0=15&from_date_1=3&from_date_2=2010&to_date_2=2012&page=2"
+        )
+
+        assert response.context_data is not None
+        atom_feed_url = response.context_data["atom_feed_url"]
+        assert atom_feed_url.startswith("/atom.xml?")
+        assert "query=cheese" in atom_feed_url
+        assert "from_date_0=15" in atom_feed_url
+        assert "from_date_1=3" in atom_feed_url
+        assert "from_date_2=2010" in atom_feed_url
+        assert "to_date_2=2012" in atom_feed_url
+        assert "page=" not in atom_feed_url
+        # Must not serialise dates as single ISO params the feed cannot parse
+        assert "from_date=2010" not in atom_feed_url
+        assert "to_date=2012" not in atom_feed_url
 
 
 class TestSearchFacets(TestCase):

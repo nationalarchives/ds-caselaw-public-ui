@@ -1,5 +1,6 @@
 import datetime
 from typing import Union
+from urllib.parse import urlencode
 
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
@@ -7,10 +8,12 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
+from django.urls import reverse
 from django.views.generic.base import TemplateView
 from ds_caselaw_utils import courts as all_courts
 
 from judgments.forms import AdvancedSearchForm
+from judgments.forms.search_forms import TRIBUNAL_CHOICES
 from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, clamp, paginator
 from judgments.utils.utils import sanitise_input_to_integer
 
@@ -18,6 +21,50 @@ from judgments.utils.utils import sanitise_input_to_integer
 class BrowseView(TemplateView):
     template_engine = "jinja"
     template_name = "judgment/results.jinja"
+
+    @staticmethod
+    def _is_tribunal(court_query: str) -> bool:
+        """Return True if court_query is a tribunal code in TRIBUNAL_CHOICES."""
+        for key, value in TRIBUNAL_CHOICES.items():
+            if isinstance(value, dict):
+                if court_query in value:
+                    return True
+            elif key == court_query:
+                return True
+        return False
+
+    def _build_atom_feed_url(self, court_query: str, year: Union[int, None]) -> str:
+        """
+        Build the Atom feed URL for browse results with court and year params.
+        Browse pages can have court (which may include subdivision) and year.
+        These map to feed params: court → court/tribunal, year → from_date_2/to_date_2.
+        Year-only multipart date params are used so AdvancedSearchForm can default
+        day/month (1 Jan / 31 Dec) when the Atom feed parses the URL.
+        """
+        params = {}
+        if court_query:
+            # TRIBUNAL_CHOICES nests some codes under group headings, so check nested
+            # values as well as top-level keys.
+            if self._is_tribunal(court_query):
+                params["tribunal"] = court_query
+            else:
+                params["court"] = court_query
+        if year:
+            params["from_date_2"] = str(year)
+            params["to_date_2"] = str(year)
+
+        query_string = urlencode(params, doseq=True) if params else ""
+        feed_path = reverse("search-feed")
+        return f"{feed_path}?{query_string}" if query_string else feed_path
+
+    def _build_alternates(self, atom_feed_url: str) -> list:
+        """Build alternates list with single Atom feed entry."""
+        return [
+            {
+                "type": "application/atom+xml",
+                "href": atom_feed_url,
+            }
+        ]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,6 +103,11 @@ class BrowseView(TemplateView):
             context["courts"] = all_courts.get_grouped_selectable_courts()
             context["tribunals"] = all_courts.get_grouped_selectable_tribunals()
             context["page_title"] = "Search results"
+
+            # Build feed URL and alternates for this browse view
+            atom_feed_url = self._build_atom_feed_url(court_query, year)
+            context["atom_feed_url"] = atom_feed_url
+            context["alternates"] = self._build_alternates(atom_feed_url)
 
         except MarklogicResourceNotFoundError:
             raise Http404("Search failed")  # TODO: This should be something else!

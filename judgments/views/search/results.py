@@ -13,6 +13,7 @@ from django.http import (
     HttpResponse,
 )
 from django.template.response import TemplateResponse
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from requests.exceptions import RequestException
@@ -78,6 +79,13 @@ class SearchResultsView(TemplateViewWithContext):
             warning,
             changed_queries,
         ) = self._process_facets_and_warnings(request, form, search_parameters, search_response)
+        query_param_string = urllib.parse.urlencode(form.cleaned_data, doseq=True)
+        # Build the Atom feed from the original request params (minus page) so
+        # multipart date fields (from_date_0/1/2, to_date_0/1/2) are preserved.
+        # urlencoding cleaned_data would serialise dates as from_date/to_date ISO
+        # values, which AdvancedSearchForm ignores on the feed endpoint.
+        atom_feed_query = urllib.parse.urlencode(changed_queries, doseq=True)
+        atom_feed_url = self._build_atom_feed_url(atom_feed_query)
 
         context.update(
             {
@@ -100,9 +108,11 @@ class SearchResultsView(TemplateViewWithContext):
                     search_response.results, search_parameters.query or "", search_parameters.page
                 ),
                 "query_params": query_params,
-                "query_param_string": urllib.parse.urlencode(form.cleaned_data, doseq=True),
+                "query_param_string": query_param_string,
+                "atom_feed_url": atom_feed_url,
                 "breadcrumbs_variant": "accent",
                 "breadcrumbs": self._build_breadcrumbs(search_parameters),
+                "alternates": self._build_alternates(atom_feed_url),
                 "active_navigation_endpoint": "search_and_browse",
             }
         )
@@ -182,6 +192,19 @@ class SearchResultsView(TemplateViewWithContext):
             return [{"text": f'Search results for "{search_parameters.query}"'}]
         else:
             return [{"text": "Search results"}]
+
+    def _build_atom_feed_url(self, query_param_string):
+        feed_path = reverse("search-feed")
+        return f"{feed_path}?{query_param_string}" if query_param_string else feed_path
+
+    def _build_alternates(self, atom_feed_url):
+        """Build array of alternate link formats (e.g., atom feed)."""
+        return [
+            {
+                "type": "application/atom+xml",
+                "href": atom_feed_url,
+            }
+        ]
 
     def _do_dates_require_warnings(
         self, iso_date: Optional[str], total_results: int, min_actual_year: Optional[int]
