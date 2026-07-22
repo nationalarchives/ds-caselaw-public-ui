@@ -1,0 +1,54 @@
+{% macro search_results_controls(search_path=None, query_params=None, query=None, order=None, per_page=None, is_footer=False) %}
+  {% if query_params and query_params.items %}
+    <div class="result-controls {{ "result-controls--footer" if is_footer }}">
+      <form method="get"
+            action="{{ search_path }}"
+            id="analytics-result-controls{{ "-footer" if is_footer else "" }}">
+        {% for key, value in query_params.items() %}
+          {% if value %}
+            {% if key == "court" %}
+              {% for court in value %}<input type="hidden" name="court" value="{{ court }}" />{% endfor %}
+            {% elif key == "tribunal" %}
+              {% for tribunal in value %}<input type="hidden" name="tribunal" value="{{ tribunal }}" />{% endfor %}
+            {% elif key == "from" or key == "to" %}
+              <input type="hidden"
+                     name="{{ key }}"
+                     value="{{ formatdate(value, '%Y-%b-%d') }}" />
+            {% elif key != "order" and key != "per_page" %}
+              <input type="hidden" name="{{ key }}" value="{{ value }}" />
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if not is_footer %}
+          <div class="result-controls__item">
+            <label for="order_by" class="result-controls__label">Order results by</label>
+            <select class="result-controls__select" id="order_by" name="order">
+              {% if query %}
+                <option value="relevance"
+                        {% if order == "relevance" or order is none %}selected='selected'{% endif %}>Sort by: Most relevant</option>
+              {% endif %}
+              <option value="-date"
+                      {% if order == "-date" or (order is none and not query) %}selected='selected'{% endif %}>Sort by: Newest</option>
+              <option value="date" {% if order == "date" %}selected='selected'{% endif %}>Sort by: Oldest</option>
+            </select>
+          </div>
+        {% endif %}
+        <div class="result-controls__item {{ "result-controls__item--desktop-only" if not is_footer }}">
+          <label for="per_page{{ "_footer" if is_footer else "" }}"
+                 class="result-controls__label">Results per page</label>
+          <select class="result-controls__select"
+                  id="per_page{{ "_footer" if is_footer else "" }}"
+                  name="per_page">
+            <option value="10"
+                    {% if per_page == 10 or per_page is none %}selected='selected'{% endif %}>10</option>
+            <option value="25" {% if per_page == 25 %}selected='selected'{% endif %}>25</option>
+            <option value="50" {% if per_page == 50 %}selected='selected'{% endif %}>50</option>
+          </select>
+        </div>
+        <input type="submit"
+               value="Apply"
+               class="button-small result-controls__button" />
+      </form>
+    </div>
+  {% endif %}
+{% endmacro %}

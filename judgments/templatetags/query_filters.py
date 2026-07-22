@@ -9,13 +9,12 @@ register = template.Library()
 def make_query_string(params):
     pairs = []
     for key, value in params.items():
-        if isinstance(value, list):
-            for value2 in value:
-                pairs.append(f"{key}={value2}")
-        elif value:
-            pairs.append(f"{key}={value}")
-        else:
-            pairs.append(f"{key}=")
+        if value:
+            if isinstance(value, list):
+                for value2 in value:
+                    pairs.append(f"{key}={value2}")
+            else:
+                pairs.append(f"{key}={value}")
     return "&".join(pairs)
 
 
@@ -53,6 +52,7 @@ def remove_query(query_params, key):
     else:
         params = dict(query_params)
         params["page"] = None
+        params["order"] = None
         params[key] = None
         return make_query_string(params)
 
@@ -60,6 +60,7 @@ def remove_query(query_params, key):
 def remove_date(query_params, key):
     params = dict(query_params)
     params["page"] = None
+    params["order"] = None
     del params[f"{key}_date_0"]
     del params[f"{key}_date_1"]
     del params[f"{key}_date_2"]
@@ -70,6 +71,7 @@ def remove_date(query_params, key):
 def remove_court(query_params, court):
     params = dict(query_params)
     params["page"] = None
+    params["order"] = None
     params["court"] = [court2 for court2 in params.get("court", []) if court != court2]
     params["tribunal"] = [court2 for court2 in params.get("tribunal", []) if court != court2]
     return make_query_string(params)

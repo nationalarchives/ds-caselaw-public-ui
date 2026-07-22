@@ -273,7 +273,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link"
                  aria-label="Remove High Court (Chancery Division) filter"
-                 href="/search?query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?court=ewhc/ipec"
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -289,7 +289,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link"
                  aria-label="Remove High Court (Intellectual Property Enterprise Court) filter"
-                 href="/search?query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?court=ewhc/ch"
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -351,7 +351,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link"
                  aria-label="Remove from date filter"
-                 href="/search?query=&amp;court=ewhc/ch&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page=">
+                 href="/search?court=ewhc/ch&amp;court=ewhc/ipec">
                  <span class="results-search-component__removable-options-key">From:</span>
                  <span class="results-search-component__removable-options-value">
                    <span class="results-search-component__removable-options-value-text"> 01 Jan 2011</span>
@@ -364,7 +364,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link"
                  aria-label="Remove High Court (Chancery Division) filter"
-                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ipec&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;court=ewhc/ipec"
                  title="High Court (Chancery Division)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -379,7 +379,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link"
                  aria-label="Remove High Court (Intellectual Property Enterprise Court) filter"
-                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;query=&amp;court=ewhc/ch&amp;judge=&amp;party=&amp;order=-date&amp;page="
+                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;court=ewhc/ch"
                  title="High Court (Intellectual Property Enterprise Court)">
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">

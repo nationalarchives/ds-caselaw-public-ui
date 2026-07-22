@@ -2,6 +2,7 @@
 {% from "components/alert.jinja" import alert %}
 {% from "components/pagination.jinja" import pagination %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
+{% from "components/search_results_controls.jinja" import search_results_controls %}
 {% block content_body %}
   {% if show_no_exact_ncn_warning %}
     {% call alert() %}
@@ -21,7 +22,7 @@
         <p class="results__results-intro">{{ total|intcomma }} results</p>
         {% include "includes/atom_feed_button.jinja" %}
       </div>
-      {% include "includes/results_controls.jinja" %}
+      {{ search_results_controls(search_path=request.path, query_params=query_params, query=query, order=order, per_page=per_page) }}
     </div>
     <div class="results__result-list-container">
       <h2>Results listing</h2>
@@ -63,7 +64,7 @@
         {% endfor %}
       {% endcall %}
     </div>
-    {% include "includes/results_footer_controls.jinja" %}
+    {{ search_results_controls(search_path=request.path, query_params=query_params, order=order, per_page=per_page, is_footer=True) }}
     {% if not paginator.has_next_page %}
       {% call alert(title="End of results") %}
         {% include "includes/no_results_message.jinja" %}
