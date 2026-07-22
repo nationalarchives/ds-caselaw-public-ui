@@ -230,6 +230,9 @@ def _courts_string_for_title(courts: list[str]) -> str:
 
 
 def _order_string_for_title(order: str) -> str:
+    if order == "relevance":
+        return ", sorted by relevance"
+
     if order[0] == "-":
         direction = "newest first"
         order = order[1:]
@@ -283,12 +286,9 @@ class SearchJudgmentsFeed(JudgmentsFeed):
         return urlunsplit((scheme, netloc, path, new_query, fragment))
 
     def get_object(self, request: HttpRequest) -> dict[str, Any]:
-        # Taken verbatim from judgments/views/advanced_search advanced_search()
-        order = request.GET.get("order", default=None)
-        if order not in [None, "-date", "date", "-transformation", "transformation", "updated", "-updated"]:
-            raise BadRequest(
-                "Sort order should be one of date, transformation or updated, or -date, -transformation or -updated"
-            )
+        # Treat missing and empty order the same so the feed keeps its -date default
+        # rather than falling through to relevance for text queries.
+        order = request.GET.get("order") or None
 
         per_page = request.GET.get("per_page", default="50")
         try:

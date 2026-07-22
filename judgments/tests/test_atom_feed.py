@@ -247,4 +247,39 @@ class TestAtomFeed(TestCase):
         response = self.client.get("/atom.xml?order=modified")
 
         assert response.status_code == 400
+        assert b"Sort order should be one of relevance" in response.content
         mock_search.assert_not_called()
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_empty_order_falls_back_to_date(self, mock_api_client, mock_search):
+        mock_search.return_value = FakeSearchResponse()
+
+        response = self.client.get("/atom.xml?query=obscure-search-query&order=")
+
+        assert response.status_code == 200
+        mock_search.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="obscure-search-query",
+                court="",
+                judge=None,
+                party=None,
+                date_from="1085-01-01",
+                date_to=None,
+                order="-date",
+                page=1,
+                page_size=50,
+                only_with_html_representation=True,
+            ),
+        )
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    def test_relevance_order_in_title(self, mock_search):
+        mock_search.return_value = FakeSearchResponse()
+
+        response = self.client.get("/atom.xml?query=obscure-search-query&order=relevance")
+        decoded_response = response.content.decode("utf-8")
+
+        assert response.status_code == 200
+        assert 'Latest documents for "obscure-search-query", sorted by relevance' in decoded_response

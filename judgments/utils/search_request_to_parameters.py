@@ -37,7 +37,7 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     query_params: dict = {}
     query_text: str = form.cleaned_data.get("query", "")
     page: int = clamp(sanitise_input_to_integer(params.get("page"), 1), minimum=1)
-    order = params.get("order", None)
+    order = form.cleaned_data.get("order")
     # If there is no query, order by -date, else order by relevance
     if not order and not query_text:
         order = "-date"

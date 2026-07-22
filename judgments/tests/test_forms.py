@@ -54,6 +54,38 @@ class TestAdvancedSearchForm(TestCase):
             {"from_date": [expected_warning], "to_date": [expected_warning]},
         )
 
+    def test_order_valid_choice_accepted(self):
+        form = AdvancedSearchForm(data={"order": "-date"})
+
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data["order"], "-date")
+
+    def test_order_invalid_choice_rejected(self):
+        form = AdvancedSearchForm(data={"order": "modified"})
+
+        self.assertFalse(form.is_valid())
+        self.assertEqual(
+            form.errors,
+            {
+                "order": [
+                    "Sort order should be one of relevance, -date, date, "
+                    "-transformation, transformation, -updated, updated"
+                ]
+            },
+        )
+
+    def test_order_blank_treated_as_unset(self):
+        form = AdvancedSearchForm(data={"order": ""})
+
+        self.assertTrue(form.is_valid())
+        self.assertNotIn("order", form.cleaned_data)
+
+    def test_order_missing_treated_as_unset(self):
+        form = AdvancedSearchForm(data={})
+
+        self.assertTrue(form.is_valid())
+        self.assertNotIn("order", form.cleaned_data)
+
 
 class TestDateRangeInputField(TestCase):
     def test_compress_from_no_day(self):
