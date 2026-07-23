@@ -8,11 +8,11 @@
       {{ court.grouped_name }}
     {% endcall %}
     <p>
-      {% if court|get_court_judgments_count == 0 %}
+      {% if court.documents_count == 0 %}
         We don't currently hold any documents
       {% else %}
         {% call link(href=url("search") ~ "?" ~ "court=" ~ court.canonical_param) %}
-          {{ court|get_court_judgments_count|intcomma }} documents —
+          {{ court.documents_count|intcomma }} documents —
           {{ court.start_year }}&nbsp;to&nbsp;{{ court.end_year }}
         {% endcall %}
       {% endif %}
