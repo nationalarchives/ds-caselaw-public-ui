@@ -28,7 +28,7 @@ class CourtsTribunalsListView(TemplateViewWithContext):
     page_title = "Types of courts in England and Wales"
     page_allow_index = True
 
-    def decorate_court_group(self, group):
+    def decorate_court_group(self, group, courts_with_documents_count):
         """
         Updates the start_year and end_year with data from CourtDates if available.
         """
@@ -40,6 +40,10 @@ class CourtsTribunalsListView(TemplateViewWithContext):
 
         for court in group.courts:
             dates = date_map.get(court.canonical_param)
+            documents_count = courts_with_documents_count.get(court.canonical_param)
+
+            if documents_count:
+                court.documents_count = documents_count
 
             if dates:
                 court.start_year = dates.start_year
@@ -50,8 +54,16 @@ class CourtsTribunalsListView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        grouped_courts = [self.decorate_court_group(group) for group in courts.get_grouped_selectable_courts()]
-        grouped_tribunals = [self.decorate_court_group(group) for group in courts.get_grouped_selectable_tribunals()]
+        courts_with_documents_count = api_client.get_courts_with_document_count()
+
+        grouped_courts = [
+            self.decorate_court_group(group, courts_with_documents_count)
+            for group in courts.get_grouped_selectable_courts()
+        ]
+        grouped_tribunals = [
+            self.decorate_court_group(group, courts_with_documents_count)
+            for group in courts.get_grouped_selectable_tribunals()
+        ]
 
         context["courts"] = grouped_courts
         context["tribunals"] = grouped_tribunals

@@ -8824,4 +8824,35 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: xquery=xquery+version+%221.0-ml%22%3B%0A%0Aimport+module+namespace+dls+%3D+%22http%3A%2F%2Fmarklogic.com%2Fxdmp%2Fdls%22+at+%22%2FMarkLogic%2Fdls.xqy%22%3B%0A%0Adeclare+namespace+akn+%3D+%22http%3A%2F%2Fdocs.oasis-open.org%2Flegaldocml%2Fns%2Fakn%2F3.0%22%3B%0Adeclare+namespace+uk+%3D+%22https%3A%2F%2Fcaselaw.nationalarchives.gov.uk%2Fakn%22%3B%0A%0Alet+%24query+%3A%3D+cts%3Aand-query%28%28%0A++dls%3Adocuments-query%28%29%2C%0A++cts%3Aproperties-fragment-query%28%0A++++cts%3Aelement-value-query%28xs%3AQName%28%22published%22%29%2C+%22true%22%29%0A++%29%0A%29%29%0Alet+%24court-ref+%3A%3D+cts%3Apath-reference%28%0A++%22%2F%2Fakn%3Aproprietary%2Fuk%3Acourt%22%2C%0A++%28%22type%3Dstring%22%2C+%22collation%3Dhttp%3A%2F%2Fmarklogic.com%2Fcollation%2F%22%29%0A%29%0Alet+%24court-counts+%3A%3D+map%3Amap%28%29%0Alet+%24_+%3A%3D+%28%0A++for+%24court+in+cts%3Avalues%28%24court-ref%2C+%28%29%2C+%28%22item-order%22%29%2C+%24query%29%0A++let+%24court-key+%3A%3D+fn%3Alower-case%28fn%3Anormalize-space%28%24court%29%29%0A++let+%24existing-count+%3A%3D+%28map%3Aget%28%24court-counts%2C+%24court-key%29%2C+0%29%5B1%5D%0A++where+%24court-key%0A++return+map%3Aput%28%24court-counts%2C+%24court-key%2C+%24existing-count+%2B+cts%3Afrequency%28%24court%29%29%0A%29%0Areturn+xdmp%3Ato-json%28%24court-counts%29&vars=%7B%7D
+    headers:
+      Accept:
+      - application/xml
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/eval
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/json", "extra_headers":
+        {"X-Primitive": "object-node()"}, "body": "{\"ewca/civ\": 470, \"ewhc/admin\":
+        470, \"ftt/phl\": 470, \"siac\": 470, \"ukftt/credit\": 470, \"ukut/aac\": 470, \"ewhc/scco\":
+        470, \"ukftt/estate\": 470, \"ewcr\": 470, \"ewhc/mercantile\": 470, \"ukftt/grc\":
+        470, \"ftt/transport\": 470, \"ukist\": 470, \"ukftt/hesc\": 470, \"ewhc/kb\": 470,
+        \"ukiptrib\": 470, \"ewhc/admlty\": 470, \"ukut/tcc\": 470, \"ewhc/ch\": 470, \"ewcc\":
+        470, \"ukpc\": 470, \"ftt/claims\": 470, \"ukut/iac\": 470, \"ewcop\": 470, \"ewhc/pat\":
+        470, \"ewhc/tcc\": 470, \"eat\": 470, \"ftt/pc\": 470, \"ewhc/comm\": 470, \"ewhc/ipec\":
+        470, \"uksc\": 470, \"ewfc\": 470, \"ukut/lc\": 470, \"ewca/crim\": 470, \"ewhc/fam\":
+        470, \"ukftt/tc\": 470, \"ukit\": 470}", "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - close
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Server:
+      - MarkLogic 11.0.3
+    status:
+      code: 200
+      message: OK
 version: 1
