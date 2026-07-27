@@ -44,6 +44,8 @@ class CourtsTribunalsListView(TemplateViewWithContext):
 
             if documents_count:
                 court.documents_count = documents_count
+            else:
+                court.documents_count = 0
 
             if dates:
                 court.start_year = dates.start_year
