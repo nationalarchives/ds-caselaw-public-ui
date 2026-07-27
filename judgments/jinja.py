@@ -8,6 +8,7 @@ from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.templatetags.l10n import unlocalize
 from django.urls import reverse
+from django.utils.html import json_script
 from django.utils.text import slugify
 
 # from django.middleware.csrf import get_token
@@ -136,4 +137,5 @@ def environment(**options):
     env.filters["get_court_start_year"] = court_utils.get_court_start_year
     env.filters["hyphenate"] = hyphenate
     env.filters["is_court_ended"] = court_utils.is_court_ended
+    env.filters["json_script"] = json_script
     return env

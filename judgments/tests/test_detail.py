@@ -54,6 +54,9 @@ class TestJudgment(TestCaseWithMockAPI):
 
         self.assertIn("This is a document.", decoded_response)
         self.assertIn('<meta name="robots" content="noindex,nofollow,noai" />', decoded_response)
+        assert response.context_data is not None
+        self.assertEqual(response.context_data["gtm_data_layer"]["page_type"], "document")
+        self.assertEqual(response.context_data["gtm_data_layer"]["document_noun"], "judgment")
 
         self.assertEqual(response.status_code, 200)
 

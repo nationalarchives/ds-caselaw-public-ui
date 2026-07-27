@@ -15,6 +15,10 @@ from judgments.utils import (
     preprocess_query,
     search_context_from_url,
 )
+from judgments.utils.gtm_datalayer import (
+    build_gtm_data_layer,
+    court_analytics_from_code,
+)
 
 MAX_QUERY_WORDS = int(os.environ.get("MAX_QUERY_WORDS", "5"))
 
@@ -89,6 +93,11 @@ def build_context(request, document_uri):
     context["feedback_survey_document_uri"] = document.slug  # TODO: Remove this from context
     context["page_title"] = document.body.name  # TODO: Remove this from context
     context["pdf_uri"] = pdf.uri  # TODO: Remove this from context
+    context["gtm_data_layer"] = build_gtm_data_layer(
+        page_type="document",
+        document_noun=document.document_noun,
+        **court_analytics_from_code(document.body.court_and_jurisdiction_identifier_string),
+    )
 
     return context
 

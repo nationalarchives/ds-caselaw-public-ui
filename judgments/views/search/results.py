@@ -29,6 +29,7 @@ from judgments.utils import (
     process_year_facets,
     show_no_exact_ncn_warning,
 )
+from judgments.utils.gtm_datalayer import build_gtm_data_layer
 from judgments.utils.search_request_to_parameters import search_request_to_parameters
 
 
@@ -123,6 +124,7 @@ class SearchResultsView(TemplateViewWithContext):
         context = {}
         context["form"] = form
         context["feedback_survey_type"] = "advanced_search_filters_applied"
+        context["gtm_data_layer"] = build_gtm_data_layer(page_type="search results")
         return context
 
     def _get_search_response(self, request, search_parameters, context):

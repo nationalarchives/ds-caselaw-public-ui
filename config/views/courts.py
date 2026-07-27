@@ -16,6 +16,7 @@ from judgments.models.court_dates import CourtDates
 from judgments.utils import (
     api_client,
 )
+from judgments.utils.gtm_datalayer import build_gtm_data_layer, court_analytics
 
 from .template_view_with_context import TemplateViewWithContext
 
@@ -107,6 +108,10 @@ class CourtOrTribunalView(TemplateViewWithContext):
         context["feedback_survey_type"] = "court_or_tribunal_%s" % court.canonical_param
         context["court"] = court
         context["active_navigation_endpoint"] = "search_and_browse"
+        context["gtm_data_layer"] = build_gtm_data_layer(
+            page_type="court",
+            **court_analytics(court),
+        )
         context["breadcrumbs"] = [
             {"url": reverse("search_and_browse"), "text": "Search and browse"},
             {"url": reverse("courts_and_tribunals"), "text": "Types of courts in England and Wales"},

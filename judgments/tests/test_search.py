@@ -480,6 +480,7 @@ class TestSearchAtomFeedLink(TestCase):
 
         assert response.context_data is not None
         assert response.context_data["atom_feed_url"] == "/atom.xml?query=waltham+forest"
+        assert response.context_data["gtm_data_layer"] == {"page_type": "search results"}
         assert "alternates" in response.context_data
         alternates = response.context_data["alternates"]
         assert len(alternates) == 1

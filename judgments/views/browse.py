@@ -15,6 +15,7 @@ from ds_caselaw_utils import courts as all_courts
 from judgments.forms import AdvancedSearchForm
 from judgments.forms.search_forms import TRIBUNAL_CHOICES
 from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, clamp, paginator
+from judgments.utils.gtm_datalayer import build_gtm_data_layer, court_analytics_from_param
 from judgments.utils.utils import sanitise_input_to_integer
 
 
@@ -115,5 +116,13 @@ class BrowseView(TemplateView):
         context["feedback_survey_tribunal"] = self.kwargs.get("tribunal")
         context["feedback_survey_type"] = "browse"
         context["feedback_survey_court"] = court_query
+
+        if court_query:
+            context["gtm_data_layer"] = build_gtm_data_layer(
+                page_type="browse",
+                **court_analytics_from_param(court_query),
+            )
+        else:
+            context["gtm_data_layer"] = build_gtm_data_layer(page_type="browse")
 
         return context
