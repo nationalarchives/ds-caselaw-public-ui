@@ -95,7 +95,7 @@ class TestLinkHeaderMiddleware(TestCase):
 
         def get_response(_request):
             response = HttpResponse("<xml/>", content_type="application/xml")
-            response.link_headers = [
+            response.link_headers = [  # type: ignore[attr-defined]
                 {"href": "/ewca/civ/2024/1", "rel": "alternate", "type": "text/html"},
             ]
             return response

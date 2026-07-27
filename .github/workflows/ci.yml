@@ -204,7 +204,7 @@ jobs:
         run: docker network create caselaw
 
       - name: Run mypy
-        run: docker compose run django mypy ds_judgements_public_ui judgments
+        run: docker compose run django mypy ds_judgements_public_ui judgments config transactional_licence_form
 
   pytest:
     needs:

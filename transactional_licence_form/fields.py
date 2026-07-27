@@ -1,3 +1,5 @@
+from typing import Any, cast
+
 from django import forms
 from django.template import engines
 
@@ -45,7 +47,10 @@ class FCLCheckboxWidgetWithOthers(forms.MultiWidget):
 
         self.choice_widget = forms.CheckboxSelectMultiple(attrs)
         widgets = {**{"choices": self.choice_widget}, **other_widgets}
-        super(FCLCheckboxWidgetWithOthers, self).__init__(widgets, attrs)
+        super(FCLCheckboxWidgetWithOthers, self).__init__(
+            cast(dict[str, forms.Widget | type[forms.Widget]], widgets),
+            attrs,
+        )
 
     def get_context(self, name, value, attrs):
         context = super(FCLCheckboxWidgetWithOthers, self).get_context(name, value, attrs)
@@ -63,7 +68,7 @@ class FCLCheckboxWidgetWithOthers(forms.MultiWidget):
         if value is None:
             value = {}
         choices = value.get("choices", [])
-        others = []
+        others: list[Any] = []
         for field in self.other_fields.values():
             others.insert(field["field_index"], value.get(field["name"], None))
         return [choices] + others

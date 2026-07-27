@@ -1,6 +1,7 @@
 from types import SimpleNamespace
 from unittest.mock import patch
 
+from django.template.response import TemplateResponse
 from django.test import RequestFactory, TestCase
 from ds_caselaw_utils.courts import CourtNotFoundException
 
@@ -49,6 +50,8 @@ class TestCourtOrTribunalView(TestCase):
 
         response = CourtOrTribunalView.as_view()(request, param="eat")
 
+        assert isinstance(response, TemplateResponse)
+        assert response.context_data is not None
         assert response.context_data["gtm_data_layer"] == {
             "page_type": "court",
             "court_code": "EAT",
