@@ -182,7 +182,7 @@ class SearchResultsView(TemplateViewWithContext):
             if values and key != "page":
                 changed_queries[key] = values
 
-        min_actual_year = min([int(x) for x in year_facets.keys()]) if year_facets else None
+        min_actual_year = min([int(x) for x in year_facets]) if year_facets else None
         requires_warning, warning = self._do_dates_require_warnings(
             search_parameters.date_from, int(search_response.total), min_actual_year
         )

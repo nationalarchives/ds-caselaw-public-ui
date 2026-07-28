@@ -11,7 +11,7 @@ def error_messages(errors):
     Given a form level error return a generic error.
     Given a field level error append the problem fields into the error message.
     """
-    if "__all__" in errors.keys():
+    if "__all__" in errors:
         return "Errors in form - see below for details"
     errors = [f"""'{error.replace("_", " ")}'""" for error in list(errors.keys())]
     errors = ", ".join(errors)

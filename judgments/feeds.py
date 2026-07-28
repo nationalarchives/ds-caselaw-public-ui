@@ -52,7 +52,7 @@ def redirect_atom_feed(
     new_parameters = {}
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))  # type: ignore[arg-type]
     if court_query:
-        if court_query in TRIBUNAL_CHOICES.keys():
+        if court_query in TRIBUNAL_CHOICES:
             new_parameters["tribunal"] = court_query
         else:
             new_parameters["court"] = court_query
@@ -281,7 +281,7 @@ class SearchJudgmentsFeed(JudgmentsFeed):
         full_path = request.get_full_path()
         scheme, netloc, path, query, fragment = urlsplit(full_path)
         query_dict = parse_qs(query)
-        if "page" in query_dict.keys():
+        if "page" in query_dict:
             del query_dict["page"]
         new_query = urlencode(query_dict, doseq=True)
         scheme = "https"
