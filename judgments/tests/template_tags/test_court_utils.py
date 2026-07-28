@@ -170,7 +170,7 @@ class TestGetCourtJudgmentsCount(TestCase):
         result = get_court_judgments_count(mock_court)
         assert result == 42
         mock_search.assert_called_once()
-        args, kwargs = mock_search.call_args
+        args, _ = mock_search.call_args
         assert isinstance(args[0], object)
         assert isinstance(args[1], SearchParameters)
         assert args[1].court == "some-court"
