@@ -161,12 +161,11 @@ class AdvancedSearchForm(forms.Form):
             raise RuntimeError("Cleaned data can never be None, this should never occur")
         to_date = cleaned_data.get("to_date")
         from_date = cleaned_data.get("from_date")
-        if from_date and to_date:
-            if from_date > to_date:
-                raise ValidationError(
-                    "Please enter a 'to' date after the 'from' date",
-                    code="to_date",
-                )
+        if from_date and to_date and from_date > to_date:
+            raise ValidationError(
+                "Please enter a 'to' date after the 'from' date",
+                code="to_date",
+            )
         # Run the pre-process query step
         # Ignore warnings related to MyPy not understanding what cleaned_data is
         if cleaned_data.get("query"):
