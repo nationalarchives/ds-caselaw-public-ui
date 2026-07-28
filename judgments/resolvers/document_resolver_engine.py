@@ -1,5 +1,3 @@
-from typing import Optional
-
 from caselawclient.types import DocumentIdentifierSlug
 from django.http import Http404
 from django.http.request import HttpRequest
@@ -30,7 +28,7 @@ class DocumentResolverEngine(View):
         self,
         request: HttpRequest,
         document_uri: str,
-        file_format: Optional[str] = None,
+        file_format: str | None = None,
     ):
         resolved_documents = api_client.resolve_from_identifier_slug(DocumentIdentifierSlug(document_uri))
 

@@ -1,5 +1,4 @@
 import datetime
-from typing import Union
 from urllib.parse import urlencode
 
 from caselawclient.Client import MarklogicResourceNotFoundError
@@ -36,7 +35,7 @@ class BrowseView(TemplateView):
                 return True
         return False
 
-    def _build_atom_feed_url(self, court_query: str, year: Union[int, None]) -> str:
+    def _build_atom_feed_url(self, court_query: str, year: int | None) -> str:
         """
         Build the Atom feed URL for browse results with court and year params.
         Browse pages can have court (which may include subdivision) and year.
@@ -72,9 +71,9 @@ class BrowseView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        court: Union[str, None] = self.kwargs.get("court")
-        subdivision: Union[str, None] = self.kwargs.get("subdivision")
-        year: Union[int, None] = self.kwargs.get("year")
+        court: str | None = self.kwargs.get("court")
+        subdivision: str | None = self.kwargs.get("subdivision")
+        year: int | None = self.kwargs.get("year")
 
         # All non-None values of court and subdivision should be truthy
         court_query = "/".join(filter(None, [court, subdivision]))

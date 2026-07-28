@@ -1,5 +1,4 @@
 from datetime import date
-from typing import Optional
 
 from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.conf import settings
@@ -44,8 +43,8 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     elif not order:
         order = "relevance"
 
-    from_date: Optional[date] = form.cleaned_data.get("from_date")
-    to_date: Optional[date] = form.cleaned_data.get("to_date")
+    from_date: date | None = form.cleaned_data.get("from_date")
+    to_date: date | None = form.cleaned_data.get("to_date")
     # If a from_date is not specified, ensure it is set to a year
     # which encompasses all possible records
     if not from_date:

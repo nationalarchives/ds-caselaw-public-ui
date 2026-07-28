@@ -7,7 +7,7 @@ from invoke.tasks import task
 # Process .env file
 if os.path.exists(".env"):
     with open(".env", "r") as f:
-        for line in f.readlines():
+        for line in f:
             if not line or line.startswith("#") or "=" not in line:
                 continue
             var, value = line.strip().split("=", 1)

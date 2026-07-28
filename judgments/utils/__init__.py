@@ -29,21 +29,20 @@ from .utils import (
 )
 
 __all__ = [
-    "test_date_and_dict",
     "ALL_COURT_CODES",
+    "MAX_RESULTS_PER_PAGE",
     "api_client",
     "clamp",
     "formatted_document_uri",
     "get_document_by_uri",
-    "get_published_document_by_uri",
     "get_document_download_filename",
     "get_minimum_warning_year",
     "get_press_summaries_for_document_uri",
+    "get_published_document_by_uri",
     "has_filters",
     "is_exact_ncn_match",
     "linked_doc_title",
     "linked_doc_url",
-    "MAX_RESULTS_PER_PAGE",
     "normalise_quotes",
     "paginator",
     "preprocess_query",
@@ -55,5 +54,6 @@ __all__ = [
     "search_context_from_url",
     "show_no_exact_ncn_warning",
     "solo_stop_word_regex",
+    "test_date_and_dict",
     "without_stop_words_regex",
 ]

@@ -1,6 +1,6 @@
 import urllib
 from datetime import date
-from typing import Any, Optional
+from typing import Any
 
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
@@ -137,8 +137,8 @@ class SearchResultsView(TemplateViewWithContext):
             return TemplateResponse(request, "judgment/results_error.jinja", context, using="jinja")
 
     def _build_query_params(self, form, search_parameters):
-        from_date: Optional[date] = form.cleaned_data.get("from_date")
-        to_date: Optional[date] = form.cleaned_data.get("to_date")
+        from_date: date | None = form.cleaned_data.get("from_date")
+        to_date: date | None = form.cleaned_data.get("to_date")
         query_params: dict[str, Any] = {}
         if from_date:
             query_params |= {
@@ -209,8 +209,8 @@ class SearchResultsView(TemplateViewWithContext):
         ]
 
     def _do_dates_require_warnings(
-        self, iso_date: Optional[str], total_results: int, min_actual_year: Optional[int]
-    ) -> tuple[bool, Optional[str]]:
+        self, iso_date: str | None, total_results: int, min_actual_year: int | None
+    ) -> tuple[bool, str | None]:
         """
         Check if users have requested a year before what we have available,
         if it is, then we provide a warning letting them know.

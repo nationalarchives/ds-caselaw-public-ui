@@ -1,4 +1,3 @@
-from typing import Optional
 from urllib.parse import quote
 
 from caselawclient.errors import DocumentNotFoundError, MarklogicNotPermittedError
@@ -9,7 +8,7 @@ from .utils import get_document_by_uri
 
 
 def get_published_document_by_uri(
-    document_uri: DocumentURIString, cache_if_not_found: bool = False, search_query: Optional[str] = None
+    document_uri: DocumentURIString, cache_if_not_found: bool = False, search_query: str | None = None
 ) -> Document:
     try:
         document = get_document_by_uri(document_uri, cache_if_not_found=cache_if_not_found, search_query=search_query)

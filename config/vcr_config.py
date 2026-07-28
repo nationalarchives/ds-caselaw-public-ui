@@ -90,12 +90,12 @@ def _patched_vcrhttpresponse_init(self, recorded_response, request_url=None):
     if isinstance(body, dict) and "string" in body:
         value = body["string"]
 
-        if isinstance(value, str) and value.startswith(_PARTS_PREFIX):
-            body["string"] = _cassette_string_to_multipart_bytes(value)
-            _remove_header_case_insensitive(headers, "Content-Encoding")
-            _remove_header_case_insensitive(headers, "Transfer-Encoding")
-
-        elif isinstance(value, bytes) and value.startswith(_PARTS_PREFIX.encode("utf-8")):
+        if (
+            isinstance(value, str)
+            and value.startswith(_PARTS_PREFIX)
+            or isinstance(value, bytes)
+            and value.startswith(_PARTS_PREFIX.encode("utf-8"))
+        ):
             body["string"] = _cassette_string_to_multipart_bytes(value)
             _remove_header_case_insensitive(headers, "Content-Encoding")
             _remove_header_case_insensitive(headers, "Transfer-Encoding")

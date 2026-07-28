@@ -2,7 +2,7 @@ import math
 import re
 from functools import lru_cache
 from time import time
-from typing import Any, Literal, Optional, TypedDict, overload
+from typing import Any, Literal, TypedDict, overload
 from urllib.parse import parse_qs, urlparse
 
 from caselawclient.Client import DEFAULT_USER_AGENT, MarklogicApiClient
@@ -98,7 +98,7 @@ def sanitise_input_to_integer(input: Any, default: int) -> int:
 def clamp(
     number: int,
     minimum: int,
-    maximum: Optional[int] = None,
+    maximum: int | None = None,
 ) -> int:
     """
     Clamp an integer, making sure it's between the min and max
@@ -155,10 +155,10 @@ def paginator(current_page: int, total, size_per_page: int = RESULTS_PER_PAGE):
 
 class SearchContextDict(TypedDict):
     search_url: str
-    query: Optional[str]
+    query: str | None
 
 
-def search_context_from_url(url) -> Optional[dict]:
+def search_context_from_url(url) -> dict | None:
     """
     We only display the 'back' link on a judgment detail page if the user
     navigated from a search result page. This method determines if the referrer
@@ -195,19 +195,19 @@ def get_document_by_uri(
     document_uri: str,
     max_ttl: int = 900,
     cache_if_not_found: Literal[False] = False,
-    search_query: Optional[str] = None,
+    search_query: str | None = None,
 ) -> Document: ...
 
 
 @overload
 def get_document_by_uri(
-    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False, search_query: Optional[str] = None
-) -> Optional[Document]: ...
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False, search_query: str | None = None
+) -> Document | None: ...
 
 
 def get_document_by_uri(
-    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False, search_query: Optional[str] = None
-) -> Optional[Document]:
+    document_uri: str, max_ttl: int = 900, cache_if_not_found: bool = False, search_query: str | None = None
+) -> Document | None:
     """
     This is a wrapper for getting a document from the cache, with a maximum TTL. The `max_ttl` is a [workaround](https://stackoverflow.com/questions/31771286/python-in-memory-cache-with-time-to-live) for the fact `lru_cache` doesn't have any time-based expiry
     """
@@ -225,8 +225,8 @@ def get_document_by_uri_from_cache(
     document_uri: DocumentURIString,
     ttl_hash: int = 0,
     cache_if_not_found: bool = False,
-    search_query: Optional[str] = None,
-) -> Optional[Document]:
+    search_query: str | None = None,
+) -> Document | None:
     del ttl_hash  # ttl_hash is used to fake cache expiry with time
 
     # Try to get the document. If it doesn't exist and `cache_if_not_found` is `True`, return a `None` response so it will be cached. Otherwise, bubble the exception up.
@@ -242,7 +242,7 @@ def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary
     return api_client.get_press_summaries_for_document_uri(DocumentURIString(document_uri))
 
 
-def formatted_document_uri(document_uri: DocumentURIString, format: Optional[str] = None) -> str:
+def formatted_document_uri(document_uri: DocumentURIString, format: str | None = None) -> str:
     url = reverse("detail", args=[document_uri])
     if format == "pdf":
         url = url + "/data.pdf"

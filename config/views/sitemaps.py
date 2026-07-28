@@ -1,5 +1,5 @@
 import datetime
-from typing import Any, Union
+from typing import Any
 
 from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.client_helpers.search_helpers import (
@@ -113,7 +113,7 @@ class SitemapCourtView(TemplateView, TemplateResponseMixin):
         context = super().get_context_data(**kwargs)
 
         court_query = self.kwargs.get("code")
-        year: Union[int, None] = self.kwargs.get("year")
+        year: int | None = self.kwargs.get("year")
 
         try:
             search_parameters = SearchParameters(

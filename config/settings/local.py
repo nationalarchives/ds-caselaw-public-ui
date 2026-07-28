@@ -30,7 +30,7 @@ EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.c
 # WhiteNoise
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
-INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
+INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS
 
 SECRET_KEY = "not-secret-whatsoever"  # noqa: S105 hardcoded password
 
@@ -38,7 +38,7 @@ SECRET_KEY = "not-secret-whatsoever"  # noqa: S105 hardcoded password
 # django-extensions
 # ------------------------------------------------------------------------------
 # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
-INSTALLED_APPS += ["django_extensions"]  # noqa F405
+INSTALLED_APPS += ["django_extensions"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------

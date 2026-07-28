@@ -33,7 +33,7 @@ def best_pdf(request, document_uri):
         return response
 
     if external_response.status_code != 404:
-        logging.warn(
+        logging.warning(
             f"Unexpected {external_response.status_code} error on {document_uri} whilst trying to get_best_pdf"
         )
     # fall back to weasy_pdf

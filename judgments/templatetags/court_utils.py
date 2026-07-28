@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
@@ -54,8 +53,8 @@ def get_last_judgment_year() -> int:
 
 @register.filter
 def get_court_date_range(court_param: CourtParam) -> str:
-    start_year: Optional[int]
-    end_year: Optional[int]
+    start_year: int | None
+    end_year: int | None
 
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
@@ -71,7 +70,7 @@ def get_court_date_range(court_param: CourtParam) -> str:
         return mark_safe("%s&nbsp;to&nbsp;%s" % (start_year, end_year))  # noqa: S308 XSS [safe because years are numbers or None]
 
 
-def get_court_start_year(court_param: CourtParam) -> Optional[int]:
+def get_court_start_year(court_param: CourtParam) -> int | None:
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
         return court_dates.start_year

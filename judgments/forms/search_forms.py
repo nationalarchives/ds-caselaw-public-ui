@@ -1,5 +1,3 @@
-from typing import Optional, Union
-
 from django import forms
 from django.forms import ValidationError
 from ds_caselaw_utils import courts as all_courts
@@ -10,7 +8,7 @@ from judgments.utils import preprocess_query
 from .fields import DateRangeInputField
 from .widgets import CheckBoxSelectCourtWithYearRange
 
-court_choices_dict = dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]]
+court_choices_dict = dict[str | None | CourtParam, str | dict[CourtParam, str]]
 
 
 def _get_choices_by_group(courts: list[CourtGroup]):

@@ -4,7 +4,7 @@ from django.utils.deconstruct import deconstructible
 
 
 @deconstructible
-class ValidateYearRange(object):
+class ValidateYearRange:
     def __init__(self, date_type):
         self.date_type = date_type
 

@@ -1,5 +1,3 @@
-from typing import Optional, Union
-
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -45,7 +43,7 @@ class Command(BaseCommand):
                     defaults={"start_year": start_year, "end_year": end_year},
                 )
 
-    def get_start_year(self, court: Union[CourtWithJurisdiction, Court]) -> Optional[int]:
+    def get_start_year(self, court: CourtWithJurisdiction | Court) -> int | None:
         fallback_start_year = court.start_year
         start_year = self._get_year_of_first_document_in_order(
             court.canonical_param, "date", "oldest", fallback_start_year
@@ -62,7 +60,7 @@ falling back to config value of {fallback_start_year}"
 
         return start_year
 
-    def get_end_year(self, court: Union[CourtWithJurisdiction, Court]) -> Optional[int]:
+    def get_end_year(self, court: CourtWithJurisdiction | Court) -> int | None:
         fallback_end_year = court.end_year
         end_year = self._get_year_of_first_document_in_order(
             court.canonical_param, "-date", "newest", fallback_end_year
@@ -80,8 +78,8 @@ falling back to config value of {fallback_end_year}"
         return end_year
 
     def _get_year_of_first_document_in_order(
-        self, canonical_court_param: Optional[CourtParam], order: str, document_reference: str, fallback: Optional[int]
-    ) -> Optional[int]:
+        self, canonical_court_param: CourtParam | None, order: str, document_reference: str, fallback: int | None
+    ) -> int | None:
         search_response = search_judgments_and_parse_response(
             api_client, SearchParameters(court=canonical_court_param, order=order)
         )
@@ -98,7 +96,7 @@ falling back to config value of {fallback}"
         first_document = search_response.results[0]
 
         if first_document.date:
-            year: Optional[int] = first_document.date.year
+            year: int | None = first_document.date.year
             self.stdout.write(
                 self.style.NOTICE(
                     f"{document_reference.capitalize()} document: {first_document.uri} @ {first_document.date.year}"

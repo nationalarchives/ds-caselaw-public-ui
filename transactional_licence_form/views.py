@@ -115,7 +115,7 @@ class FormWizardView(NamedUrlSessionWizardView):
         return all_forms
 
     def get_context_data(self, form, **kwargs):
-        context = super(FormWizardView, self).get_context_data(form)
+        context = super().get_context_data(form)
 
         context["feedback_survey_type"] = f"license_form_{self.steps.current}"
         context["page_title"] = "Apply for a licence"

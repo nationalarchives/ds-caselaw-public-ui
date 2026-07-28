@@ -9,13 +9,13 @@ from .when_you_need_permission import (
 )
 
 __all__ = [
-    "PermissionsAndLicensingView",
     "ApplyForALicenceView",
     "HowToGetPermissionView",
-    "LicenceApplicationProcessView",
     "LegalFrameworkView",
-    "OpenJusticeLicenceV2View",
+    "LicenceApplicationProcessView",
     "OpenJusticeLicenceV1View",
+    "OpenJusticeLicenceV2View",
+    "PermissionsAndLicensingView",
     "PublicSectorReuseView",
     "UsingFindCaseLawRecordsView",
     "WhatYouCanDoFreelyView",

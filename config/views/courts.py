@@ -98,7 +98,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
         try:
             return search_judgments_and_parse_response(api_client, search_parameters)
         except (MarklogicResourceNotFoundError, RequestException) as error:
-            logging.warn(f"Error fetching judgments for {self.court.name}: {error}")
+            logging.warning(f"Error fetching judgments for {self.court.name}: {error}")
 
             return []
 

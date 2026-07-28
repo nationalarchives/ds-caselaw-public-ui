@@ -1,5 +1,5 @@
 import datetime
-from typing import Any, List, Optional
+from typing import Any
 from urllib.parse import ParseResult, parse_qs, parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 from caselawclient.client_helpers.search_helpers import (
@@ -38,7 +38,7 @@ def _add_page_to_url(url: str, page: int = 1) -> str:
     return return_value
 
 
-def readable_list(seq: List[Any]) -> str:
+def readable_list(seq: list[Any]) -> str:
     # Ref: https://stackoverflow.com/a/53981846/
     seq = [str(s) for s in seq]
     if len(seq) < 3:
@@ -47,7 +47,7 @@ def readable_list(seq: List[Any]) -> str:
 
 
 def redirect_atom_feed(
-    request: HttpRequest, court: Optional[str] = None, subdivision: Optional[str] = None, year: Optional[str] = None
+    request: HttpRequest, court: str | None = None, subdivision: str | None = None, year: str | None = None
 ) -> HttpResponseRedirect:
     new_parameters = {}
     court_query = "/".join(filter(lambda x: x is not None, [court, subdivision]))  # type: ignore[arg-type]
@@ -172,7 +172,7 @@ class JudgmentsFeed(Feed):
     author_name = "The National Archives"
     feed_copyright = "https://caselaw.nationalarchives.gov.uk/open-justice-licence"
 
-    def items(self, obj) -> List[SearchResult]:
+    def items(self, obj) -> list[SearchResult]:
         return obj["search_response"].results
 
     def item_description(self, item) -> str:
@@ -187,7 +187,7 @@ class JudgmentsFeed(Feed):
     def item_link(self, item) -> str:
         return reverse("detail", args=[item.slug])
 
-    def item_author_name(self, item) -> Optional[str]:
+    def item_author_name(self, item) -> str | None:
         return item.court
 
     def item_extra_kwargs(self, item):
@@ -202,7 +202,7 @@ class JudgmentsFeed(Feed):
         date_string = item.transformation_date or "1970-01-01T00:00:00+00:00"
         return as_utc_datetime(date_string)
 
-    def item_pubdate(self, item: SearchResult) -> Optional[datetime.datetime]:
+    def item_pubdate(self, item: SearchResult) -> datetime.datetime | None:
         if item.date is None:
             return None
         return as_utc_datetime(item.date)
