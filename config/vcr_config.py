@@ -7,6 +7,7 @@ import hashlib
 import json
 import logging
 import os
+from email.errors import MessageError
 from email.parser import BytesParser
 from email.policy import default
 from urllib.parse import parse_qsl, urlencode
@@ -146,7 +147,7 @@ def _parse_form_body(body_bytes: bytes) -> dict[str, str]:
 def _normalise_json_string(value: str) -> str:
     try:
         return json.dumps(json.loads(value), sort_keys=True, separators=(",", ":"))
-    except Exception:
+    except (TypeError, ValueError):
         return value.strip()
 
 
@@ -167,7 +168,7 @@ def _normalise_user_in_request_body(body: bytes) -> bytes:
         vars_dict["user"] = _CANONICAL_MARKLOGIC_USER
         params["vars"] = json.dumps(vars_dict, sort_keys=True, separators=(",", ":"))
         return urlencode(params).encode("utf-8")
-    except Exception:
+    except (TypeError, ValueError):
         return body
 
 
@@ -298,12 +299,12 @@ def _before_record_response(response):
                 transformed_body = gzip.decompress(raw_body)
             elif "deflate" in content_encoding.lower():
                 transformed_body = zlib.decompress(raw_body)
-        except Exception:
+        except (OSError, EOFError, zlib.error):
             transformed_body = raw_body
 
     try:
         parts = _extract_all_parts_from_multipart(transformed_body, content_type)
-    except Exception:
+    except (TypeError, ValueError, AttributeError, LookupError, UnicodeError, MessageError):
         return response
 
     if not parts:
