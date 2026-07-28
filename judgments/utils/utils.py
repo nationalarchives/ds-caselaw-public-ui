@@ -232,10 +232,10 @@ def get_document_by_uri_from_cache(
     # Try to get the document. If it doesn't exist and `cache_if_not_found` is `True`, return a `None` response so it will be cached. Otherwise, bubble the exception up.
     try:
         return api_client.get_document_by_uri(document_uri, search_query=search_query)
-    except DocumentNotFoundError as e:
+    except DocumentNotFoundError:
         if cache_if_not_found:
             return None
-        raise e
+        raise
 
 
 def get_press_summaries_for_document_uri(document_uri: str) -> list[PressSummary]:
