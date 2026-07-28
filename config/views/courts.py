@@ -20,6 +20,8 @@ from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
 
 from .template_view_with_context import TemplateViewWithContext
 
+logger = logging.getLogger(__name__)
+
 
 class CourtsTribunalsListView(TemplateViewWithContext):
     """List view for all courts and tribunals in the Find Case Law database."""
@@ -98,7 +100,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
         try:
             return search_judgments_and_parse_response(api_client, search_parameters)
         except (MarklogicResourceNotFoundError, RequestException) as error:
-            logging.warning(f"Error fetching judgments for {self.court.name}: {error}")
+            logger.warning(f"Error fetching judgments for {self.court.name}: {error}")
 
             return []
 

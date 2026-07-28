@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Import your Jinja macro renderer
 
+logger = logging.getLogger(__name__)
+
 
 @csrf_exempt
 def storybook_render_view(request):
@@ -32,5 +34,5 @@ def storybook_render_view(request):
         return HttpResponse(html)
 
     except Exception:
-        logging.exception("Error rendering storybook macro")
+        logger.exception("Error rendering storybook macro")
         return JsonResponse({"error": "Internal server error"}, status=500)

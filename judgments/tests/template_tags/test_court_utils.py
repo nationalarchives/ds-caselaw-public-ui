@@ -53,7 +53,7 @@ class TestGetFirstJudgmentYear(TestCase):
         result = get_first_judgment_year()
         assert result == 1999
 
-    @patch("judgments.templatetags.court_utils.logging.warning")
+    @patch("judgments.templatetags.court_utils.logger.warning")
     @patch("judgments.templatetags.court_utils.CourtDates.min_year", return_value=None)
     @patch("judgments.templatetags.court_utils.all_courts.get_selectable")
     def test_returns_fallback_min_start_year(self, mock_get_selectable, mock_min_year, mock_logging):
@@ -76,7 +76,7 @@ class TestGetLastJudgmentYear(TestCase):
         assert result == 2022
 
     @patch("judgments.templatetags.court_utils.london_today")
-    @patch("judgments.templatetags.court_utils.logging.warning")
+    @patch("judgments.templatetags.court_utils.logger.warning")
     @patch("judgments.templatetags.court_utils.CourtDates.max_year", return_value=None)
     def test_fallback_to_today_year(self, mock_max_year, mock_logging, mock_london_today):
         mock_london_today.return_value = date(2024, 1, 1)

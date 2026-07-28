@@ -14,6 +14,8 @@ from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
 from judgments.utils.timezones import london_today
 
+logger = logging.getLogger(__name__)
+
 register = template.Library()
 
 
@@ -36,7 +38,7 @@ def get_first_judgment_year():
     if min_year := CourtDates.min_year():
         return min_year
     else:
-        logging.warning("CourtDates table is empty! using fallback min_year.")
+        logger.warning("CourtDates table is empty! using fallback min_year.")
         return min(court.start_year for court in all_courts.get_selectable() if court.start_year)
 
 
@@ -45,7 +47,7 @@ def get_last_judgment_year() -> int:
     if max_year := CourtDates.max_year():
         return max_year
     else:
-        logging.warning("CourtDates table is empty! using fallback max_year.")
+        logger.warning("CourtDates table is empty! using fallback max_year.")
         # The dates in all_courts don't work as a fallback, as they can't
         # be relied on to be up to date.
         return london_today().year

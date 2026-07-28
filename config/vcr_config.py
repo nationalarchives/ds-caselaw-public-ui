@@ -14,6 +14,8 @@ from urllib.parse import parse_qsl, urlencode
 import vcr
 import vcr.stubs
 
+logger = logging.getLogger(__name__)
+
 VCR_MODE = os.getenv("VCR_MODE", "playback")
 VCR_ENABLED = os.getenv("VCR_ENABLED", "false").lower() == "true"
 VCR_CASSETTE_DIR = "vcr_cassettes"
@@ -254,7 +256,7 @@ def _extract_all_parts_from_multipart(raw_body: str | bytes, content_type: str) 
                 if isinstance(payload, bytes):
                     payload = json.dumps(json.loads(payload.decode("utf-8"))).encode("utf-8")
             except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-                logging.debug("Failed to parse json part: %s", exc)
+                logger.debug("Failed to parse json part: %s", exc)
 
         extra = {k: v for k, v in part.items() if k.lower() != "content-type"}
         parts.append(

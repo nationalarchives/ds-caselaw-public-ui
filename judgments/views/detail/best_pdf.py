@@ -10,6 +10,8 @@ from judgments.utils import (
     get_document_download_filename,
 )
 
+logger = logging.getLogger(__name__)
+
 
 def best_pdf(request, document_uri):
     """
@@ -21,7 +23,7 @@ def best_pdf(request, document_uri):
 
     external_response = requests.get(pdf.generate_uri(), timeout=10)
 
-    logging.debug("Response %s", external_response.status_code)
+    logger.debug("Response %s", external_response.status_code)
 
     if external_response.status_code == 200:
         response = HttpResponse(external_response.content, content_type="application/pdf")
@@ -33,7 +35,7 @@ def best_pdf(request, document_uri):
         return response
 
     if external_response.status_code != 404:
-        logging.warning(
+        logger.warning(
             f"Unexpected {external_response.status_code} error on {document_uri} whilst trying to get_best_pdf"
         )
     # fall back to weasy_pdf
