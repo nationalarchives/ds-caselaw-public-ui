@@ -105,8 +105,8 @@ class FCLMultipleChoiceFieldWithOthers(FCLFieldMixin, forms.MultiValueField):
         fields = [self.choices_field] + [d["field"] for d in self.other_fields.values()]
         super().__init__(fields, **kwargs, require_all_fields=False)
 
-    def compress(self, values=[[]]):
-        if len(values) == 0:
+    def compress(self, values=None):
+        if values is None or len(values) == 0:
             values = [[]]
         choices, *others = values
         compressed = {"choices": choices}

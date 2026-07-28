@@ -182,11 +182,13 @@ def search_context_from_url(url) -> dict | None:
     return None
 
 
-def has_filters(query_params, exclude=["order", "per_page"]):
+def has_filters(query_params, exclude=None):
     """
     This method returns true if the query parameters contain any filters,
     be they query string, court, date, or party.
     """
+    if exclude is None:
+        exclude = ["order", "per_page"]
     return len({k for (k, v) in query_params.items() if v} - set(exclude)) > 0
 
 
