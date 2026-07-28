@@ -187,7 +187,7 @@ def has_filters(query_params, exclude=["order", "per_page"]):
     This method returns true if the query parameters contain any filters,
     be they query string, court, date, or party.
     """
-    return len(set(k for (k, v) in query_params.items() if v) - set(exclude)) > 0
+    return len({k for (k, v) in query_params.items() if v} - set(exclude)) > 0
 
 
 @overload

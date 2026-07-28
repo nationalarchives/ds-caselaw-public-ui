@@ -60,7 +60,7 @@ def all_valid_courts_and_tribunals() -> set[str]:
             raise RuntimeError("_get_choices_by_group unexpected shape")
 
     # Add all short forms of court identifiers (before the `/`)
-    ids.update(set(_id.partition("/")[0] for _id in ids))
+    ids.update({_id.partition("/")[0] for _id in ids})
     return ids
 
 
