@@ -7,7 +7,7 @@ from .views import (
 )
 
 form_name = "transactional-licence-form-steps"
-form_view = wizard_view("%s-step" % form_name)
+form_view = wizard_view(f"{form_name}-step")
 
 urlpatterns = [
     re_path(
@@ -32,7 +32,7 @@ urlpatterns = [
     re_path(
         r"^/steps/(?P<step>.+)/?$",
         form_view,
-        name="%s-step" % form_name,
+        name=f"{form_name}-step",
     ),
     re_path(
         "^/steps/?$",

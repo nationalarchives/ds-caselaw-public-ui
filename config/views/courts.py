@@ -116,7 +116,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
         search_response = self._get_search_response(search_parameters)
 
         context["documents"] = search_response.results
-        context["feedback_survey_type"] = "court_or_tribunal_%s" % court.canonical_param
+        context["feedback_survey_type"] = f"court_or_tribunal_{court.canonical_param}"
         context["court"] = court
         context["active_navigation_endpoint"] = "search_and_browse"
         context["gtm_data_layer"] = build_gtm_data_layer(

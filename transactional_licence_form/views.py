@@ -94,7 +94,7 @@ class FormWizardView(NamedUrlSessionWizardView):
             cleaned_data[form_key] = {}
             form_obj = self.get_form_object(form_key)
             if form_obj.is_valid() and isinstance(form_obj.cleaned_data, (tuple, list)):
-                cleaned_data[form_key].update({"formset-%s" % form_key: form_obj.cleaned_data})
+                cleaned_data[form_key].update({f"formset-{form_key}": form_obj.cleaned_data})
             elif form_obj.is_valid():
                 cleaned_data[form_key].update(form_obj.cleaned_data)
         return cleaned_data
