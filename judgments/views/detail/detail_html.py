@@ -5,6 +5,8 @@ from typing import Any
 
 from django.template.defaultfilters import filesizeformat
 from django.template.response import TemplateResponse
+from ds_caselaw_utils.courts import CourtNotFoundException
+from ds_caselaw_utils.courts import courts as all_courts
 from lxml import html as html_parser
 
 from judgments.forms import AdvancedSearchForm
@@ -14,6 +16,10 @@ from judgments.utils import (
     linked_doc_title,
     preprocess_query,
     search_context_from_url,
+)
+from judgments.utils.gtm_datalayer import (
+    GtmPageType,
+    build_gtm_data_layer,
 )
 
 MAX_QUERY_WORDS = int(os.environ.get("MAX_QUERY_WORDS", "5"))
@@ -89,6 +95,17 @@ def build_context(request, document_uri):
     context["feedback_survey_document_uri"] = document.slug  # TODO: Remove this from context
     context["page_title"] = document.body.name  # TODO: Remove this from context
     context["pdf_uri"] = pdf.uri  # TODO: Remove this from context
+
+    try:
+        court = all_courts.get_by_code(document.body.court_and_jurisdiction_identifier_string)
+    except CourtNotFoundException:
+        court = None
+
+    context["gtm_data_layer"] = build_gtm_data_layer(
+        page_type=GtmPageType.DOCUMENT,
+        document_noun=document.document_noun,
+        court=court,
+    )
 
     return context
 

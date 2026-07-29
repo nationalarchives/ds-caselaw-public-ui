@@ -43,7 +43,7 @@ class TestJudgment(TestCaseWithMockAPI):
     def test_published_judgment_response(self, mock_get_document_by_uri, mock_pdf):
         mock_get_document_by_uri.return_value = JudgmentFactory.build(
             is_published=True,
-            body=DocumentBodyFactory.build(),
+            body=DocumentBodyFactory.build(court="EAT"),
         )
         mock_pdf.return_value.size = 1234
 
@@ -54,6 +54,16 @@ class TestJudgment(TestCaseWithMockAPI):
 
         self.assertIn("This is a document.", decoded_response)
         self.assertIn('<meta name="robots" content="noindex,nofollow,noai" />', decoded_response)
+        assert response.context_data is not None
+        self.assertEqual(
+            response.context_data["gtm_data_layer"],
+            {
+                "page_type": "document",
+                "court_code": "EAT",
+                "court_type": "tribunal",
+                "document_noun": "judgment",
+            },
+        )
 
         self.assertEqual(response.status_code, 200)
 

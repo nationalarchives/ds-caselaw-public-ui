@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 from formtools.wizard.forms import ManagementForm
 from formtools.wizard.views import NamedUrlSessionWizardView
 
+from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
+
 from .forms import FORMS
 from .utils import send_form_response_to_dynamics
 
@@ -128,6 +130,7 @@ class FormWizardView(NamedUrlSessionWizardView):
         context["all_field_names"] = self.get_all_field_names()
         context["all_forms"] = self.get_all_forms()
         context["reviewing"] = self.in_review()
+        context["gtm_data_layer"] = build_gtm_data_layer(page_type=GtmPageType.LICENSE_APPLICATION)
 
         return context
 
@@ -156,6 +159,7 @@ class StartView1(TemplateView):
             {"url": reverse("permissions_and_licensing"), "text": "Permissions and licensing"},
             {"text": "Re-use Find Case Law records"},
         ]
+        context["gtm_data_layer"] = build_gtm_data_layer(page_type=GtmPageType.LICENSE_APPLICATION)
         return context
 
 
@@ -176,6 +180,7 @@ class StartView2(TemplateView):
             {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
             {"text": "Licence application process"},
         ]
+        context["gtm_data_layer"] = build_gtm_data_layer(page_type=GtmPageType.LICENSE_APPLICATION)
         return context
 
 
@@ -193,6 +198,7 @@ class ConfirmationView(TemplateView):
             {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
             {"text": "Apply for a licence"},
         ]
+        context["gtm_data_layer"] = build_gtm_data_layer(page_type=GtmPageType.LICENSE_APPLICATION)
         return context
 
 

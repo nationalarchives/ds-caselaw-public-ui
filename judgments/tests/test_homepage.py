@@ -14,6 +14,8 @@ class TestHomepage(TestCase):
         response = self.client.get("/")
         mock_cached_recent_judgments.assert_called_once()
         self.assertContains(response, "Judgment v Judgement", html=True)
+        assert response.context_data is not None
+        assert response.context_data["gtm_data_layer"] == {"page_type": "index"}
 
         assert response.headers["Link"] == (
             '</sitemap.xml>; rel="sitemap"; type="application/xml", '
