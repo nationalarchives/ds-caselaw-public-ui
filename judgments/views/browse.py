@@ -12,6 +12,7 @@ from django.urls import reverse
 from django.views.generic.base import TemplateView
 from ds_caselaw_utils.courts import CourtNotFoundException
 from ds_caselaw_utils.courts import courts as all_courts
+from ds_caselaw_utils.types import CourtParam
 
 from judgments.forms import AdvancedSearchForm
 from judgments.forms.search_forms import TRIBUNAL_CHOICES
@@ -118,16 +119,16 @@ class BrowseView(TemplateView):
         context["feedback_survey_type"] = "browse"
         context["feedback_survey_court"] = court_query
 
-        court = None
+        court_for_analytics = None
         if court_query:
             try:
-                court = all_courts.get_by_param(court_query)
+                court_for_analytics = all_courts.get_by_param(CourtParam(court_query))
             except CourtNotFoundException:
                 pass
 
         context["gtm_data_layer"] = build_gtm_data_layer(
             page_type=GtmPageType.BROWSE,
-            court=court,
+            court=court_for_analytics,
         )
 
         return context
