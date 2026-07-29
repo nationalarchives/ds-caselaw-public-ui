@@ -67,12 +67,16 @@ class TestSitemaps(TestCase):
         self.assertNotContains(response, "d-d4e5f6")
         self.assertContains(response, "2025-02-02")
 
+    @patch("config.views.courts.api_client")
     @patch("judgments.templatetags.court_utils.search_judgments_and_parse_response")
     @patch("judgments.views.index.search_judgments_and_parse_response")
-    def test_static_sitemaps_do_not_redirect(self, mock_search_judgments_index, mock_search_judgments_template):
+    def test_static_sitemaps_do_not_redirect(
+        self, mock_search_judgments_index, mock_search_judgments_template, mock_api_client
+    ):
         """Test that all static page URL names in the sitemap resolve with status 200, and do not redirect or 404."""
         mock_search_judgments_index.return_value = FakeSearchResponse()
         mock_search_judgments_template.return_value = FakeSearchResponse()
+        mock_api_client.get_courts_with_document_count.return_value = {}
         for url_name in SitemapStaticView.url_names:
             with self.subTest(url_name=url_name):
                 url = reverse(url_name)

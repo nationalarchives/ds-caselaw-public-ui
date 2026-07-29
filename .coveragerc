@@ -1,8 +1,18 @@
 [run]
 branch = True
-include = judgments/**/*.py, judgments/*.py
+include =
+    judgments/*
+    judgments/**/*
+    config/*
+    config/**/*
+    transactional_licence_form/*
+    transactional_licence_form/**/*
+omit =
+    **/migrations/**
+    **/__init__.py
 
 [report]
 omit =
-    *__init__*
+    **/migrations/**
+    **/__init__.py
     ds_judgements_public_ui/templates/content/**/*.jinja

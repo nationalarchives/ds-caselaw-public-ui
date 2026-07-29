@@ -54,13 +54,13 @@ repos:
           - stylelint-config-clean-order@10.0.0
 
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 43.274.0
+    rev: 43.281.1
     hooks:
       - id: renovate-config-validator
         args: [--strict]
         files: ^renovate\.json$
 
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: v1.27.0
+    rev: v1.28.0
     hooks:
       - id: zizmor
