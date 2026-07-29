@@ -14,7 +14,7 @@ from requests.exceptions import RequestException
 
 from judgments.forms import AdvancedSearchForm
 from judgments.utils import api_client
-from judgments.utils.gtm_datalayer import build_gtm_data_layer
+from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
 
 
 @lru_cache(maxsize=4)
@@ -38,7 +38,7 @@ class IndexView(TemplateView):
         context["feedback_survey_type"] = "home"
         context["active_navigation_endpoint"] = "home"
         context["form"] = AdvancedSearchForm()
-        context["gtm_data_layer"] = build_gtm_data_layer(page_type="index")
+        context["gtm_data_layer"] = build_gtm_data_layer(page_type=GtmPageType.INDEX)
         context["alternates"] = [
             {
                 "type": "application/atom+xml",

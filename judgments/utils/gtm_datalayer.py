@@ -1,8 +1,19 @@
-from typing import Any, Optional, Union
+from enum import Enum
+from typing import Any, Optional
 
-from ds_caselaw_utils.courts import Court, CourtNotFoundException, CourtWithJurisdiction
-from ds_caselaw_utils.courts import courts as all_courts
-from ds_caselaw_utils.types import CourtCode, CourtParam
+from ds_caselaw_utils.courts import Court, CourtWithJurisdiction
+
+
+class GtmPageType(str, Enum):
+    """Canonical GA4/GTM page_type values. Treat as an analytics contract — do not invent ad-hoc strings."""
+
+    INDEX = "index"
+    BROWSE = "browse"
+    COURT = "court"
+    SEARCH_RESULTS = "search results"
+    DOCUMENT = "document"
+    LICENSE_APPLICATION = "license_application"
+    STATIC = "static"
 
 
 def court_analytics(court: Court) -> dict[str, str]:
@@ -18,45 +29,21 @@ def court_analytics(court: Court) -> dict[str, str]:
     }
 
 
-def court_analytics_from_param(param: str) -> dict[str, str]:
-    """
-    Resolve analytics fields from a court URL param or browse path segment.
-
-    Prefer utils param lookup (e.g. ``ewhc/ch``, ``eat``). Fall back to treating
-    the value as a court code (e.g. browse parent path ``ewhc`` → ``EWHC``).
-    """
-    try:
-        return court_analytics(all_courts.get_by_param(CourtParam(param)))
-    except CourtNotFoundException:
-        return court_analytics_from_code(param.upper())
-
-
-def court_analytics_from_code(code: Union[str, CourtCode]) -> dict[str, str]:
-    if not code:
-        return {}
-    try:
-        return court_analytics(all_courts.get_by_code(CourtCode(str(code))))
-    except CourtNotFoundException:
-        return {}
-
-
 def build_gtm_data_layer(
     *,
-    page_type: str,
-    court_code: Optional[str] = None,
-    court_type: Optional[str] = None,
+    page_type: GtmPageType,
+    court: Optional[Court] = None,
     document_noun: Optional[str] = None,
 ) -> dict[str, Any]:
     """
     Build a dataLayer object for GTM / GA4 custom dimensions.
 
     Only include keys that have values so GA reports show (not set) rather than empty strings.
+    Callers must resolve any Court themselves — this helper does not look courts up.
     """
-    payload: dict[str, Any] = {"page_type": page_type}
-    if court_code:
-        payload["court_code"] = court_code
-    if court_type:
-        payload["court_type"] = court_type
+    payload: dict[str, Any] = {"page_type": page_type.value}
+    if court is not None:
+        payload.update(court_analytics(court))
     if document_noun:
         payload["document_noun"] = document_noun
     return payload

@@ -10,12 +10,13 @@ from caselawclient.search_parameters import RESULTS_PER_PAGE, SearchParameters
 from django.http import Http404
 from django.urls import reverse
 from django.views.generic.base import TemplateView
-from ds_caselaw_utils import courts as all_courts
+from ds_caselaw_utils.courts import CourtNotFoundException
+from ds_caselaw_utils.courts import courts as all_courts
 
 from judgments.forms import AdvancedSearchForm
 from judgments.forms.search_forms import TRIBUNAL_CHOICES
 from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, clamp, paginator
-from judgments.utils.gtm_datalayer import build_gtm_data_layer, court_analytics_from_param
+from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
 from judgments.utils.utils import sanitise_input_to_integer
 
 
@@ -117,12 +118,16 @@ class BrowseView(TemplateView):
         context["feedback_survey_type"] = "browse"
         context["feedback_survey_court"] = court_query
 
+        court = None
         if court_query:
-            context["gtm_data_layer"] = build_gtm_data_layer(
-                page_type="browse",
-                **court_analytics_from_param(court_query),
-            )
-        else:
-            context["gtm_data_layer"] = build_gtm_data_layer(page_type="browse")
+            try:
+                court = all_courts.get_by_param(court_query)
+            except CourtNotFoundException:
+                pass
+
+        context["gtm_data_layer"] = build_gtm_data_layer(
+            page_type=GtmPageType.BROWSE,
+            court=court,
+        )
 
         return context

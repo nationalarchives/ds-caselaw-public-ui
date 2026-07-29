@@ -32,8 +32,6 @@ class TestBrowse(TestCase):
             response.context_data["gtm_data_layer"],
             {
                 "page_type": "browse",
-                "court_code": "EWHC",
-                "court_type": "court",
             },
         )
 
@@ -45,6 +43,22 @@ class TestBrowse(TestCase):
 
         assert response.context_data is not None
         self.assertEqual(response.context_data["gtm_data_layer"], {"page_type": "browse"})
+
+    @patch("judgments.views.browse.api_client")
+    @patch("judgments.views.browse.search_judgments_and_parse_response")
+    def test_browse_with_court_param_sets_gtm_court(self, mock_search_judgments_and_parse_response, mock_api_client):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/ewhc/ch")
+
+        assert response.context_data is not None
+        self.assertEqual(
+            response.context_data["gtm_data_layer"],
+            {
+                "page_type": "browse",
+                "court_code": "EWHC-Chancery",
+                "court_type": "court",
+            },
+        )
 
     def test_atom_feed_url_uses_tribunal_param_for_nested_tribunal_codes(self):
         view = BrowseView()

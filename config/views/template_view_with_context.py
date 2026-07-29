@@ -3,7 +3,7 @@ from typing import Optional
 from django.urls import reverse
 from django.views.generic import TemplateView
 
-from judgments.utils.gtm_datalayer import build_gtm_data_layer
+from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
 
 
 class TemplateViewWithContext(TemplateView):
@@ -12,7 +12,7 @@ class TemplateViewWithContext(TemplateView):
     page_allow_index: bool = False
     # Optional GTM page_type. Subclasses that need analytics metadata should set this
     # (or assign gtm_data_layer in get_context_data); there is no blanket default.
-    page_type: Optional[str] = None
+    page_type: Optional[GtmPageType] = None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
