@@ -141,49 +141,6 @@ class FormWizardView(NamedUrlSessionWizardView):
         return render(self.request, "submitted.jinja", using="jinja")
 
 
-class StartView1(TemplateView):
-    template_engine = "jinja"
-    template_name = "start.jinja"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licensing"
-        context["feedback_survey_type"] = "re_use_find_case_law_records"
-        context["page_title"] = "Re-use Find Case Law records"
-        context["page_description"] = (
-            "Find out about the Open Justice licensing framework and how to apply for a license to do computational analysis across judgments and decisions on the Find Case Law service."
-        )
-        context["page_allow_index"] = True
-        context["breadcrumbs_postfix"] = "31 January 2025"
-        context["breadcrumbs"] = [
-            {"url": reverse("permissions_and_licensing"), "text": "Permissions and licensing"},
-            {"text": "Re-use Find Case Law records"},
-        ]
-        context["gtm_data_layer"] = build_gtm_data_layer(page_type=GtmPageType.LICENSE_APPLICATION)
-        return context
-
-
-class StartView2(TemplateView):
-    template_engine = "jinja"
-    template_name = "start2.jinja"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["active_navigation_endpoint"] = "permissions_and_licensing"
-        context["feedback_survey_type"] = "licence_application_process"
-        context["page_title"] = "Licence application process"
-        context["page_allow_index"] = True
-        context["active_navigation_endpoint"] = "about_this_service"
-        context["breadcrumbs_postfix"] = "31 January 2025"
-        context["breadcrumbs"] = [
-            {"url": reverse("permissions_and_licensing"), "text": "Permissions and licensing"},
-            {"url": reverse("transactional-licence-form"), "text": "Re-use Find Case Law records"},
-            {"text": "Licence application process"},
-        ]
-        context["gtm_data_layer"] = build_gtm_data_layer(page_type=GtmPageType.LICENSE_APPLICATION)
-        return context
-
-
 class ConfirmationView(TemplateView):
     template_engine = "jinja"
     template_name = "confirmation.jinja"
