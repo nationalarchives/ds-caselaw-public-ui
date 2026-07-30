@@ -1,4 +1,5 @@
 import rollbar
+from django.http import Http404
 
 from .base import *  # noqa
 from .base import ROOT_DIR, env
@@ -137,6 +138,9 @@ ROLLBAR = {
     "environment": env("ROLLBAR_ENV"),
     "root": str(ROOT_DIR),
     "scrub_fields": scrub_fields,
+    "exception_level_filters": [
+        (Http404, "ignored"),
+    ],
 }
 
 rollbar.init(**ROLLBAR)
