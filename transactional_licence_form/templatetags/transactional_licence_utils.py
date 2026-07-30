@@ -5,6 +5,10 @@ from ..utils import countries_and_territories_dict
 register = template.Library()
 
 
+def mailto_with_subject_href(email: str, subject: str):
+    return f"mailto:{email}?subject={subject}"
+
+
 @register.filter
 def default_if_empty(value, default):
     if value is not None and len(value.strip()) > 0:

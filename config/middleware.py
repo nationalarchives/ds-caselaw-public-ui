@@ -113,6 +113,21 @@ class LinkHeaderMiddleware:
         return "; ".join(segments)
 
 
+class LicensingEmailAddressMiddleware:
+    EMAIL_ADDRESS = "caselawlicence@nationalarchives.gov.uk"
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.get_response(request)
+
+    def process_template_response(self, request, response):
+        response.context_data["licensing_email_address"] = self.EMAIL_ADDRESS
+
+        return response
+
+
 class FeedbackLinkMiddleware:
     BASE_FEEDBACK_URL: str = "https://www.smartsurvey.co.uk/s/findcaselaw-feedback/"
     RECRUITMENT_URL: str = "https://www.smartsurvey.co.uk/s/tna_bulk_access/"

@@ -621,8 +621,12 @@
     </p>
     <p>
       If you have any questions about licensing, please email the Licensing Department:
-      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
-        caselawlicence@nationalarchives.gov.uk
+      {% set subject = "Licensing enquiry – What do I need to apply for a licence" %}
+      {% call link(
+        href=mailto_with_subject_href(licensing_email_address, subject),
+        class_name=trackable_class_name(subject)
+        ) %}
+        {{ licensing_email_address }}
       {% endcall %}
     </p>
   {% endcall %}

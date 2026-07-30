@@ -160,13 +160,15 @@
   {% call card(title="Questions about permissions", title_tag="h2") %}
     <p>
       If you're unsure whether you need a licence, visit
-      {% call link(href=url("when_you_need_permission")) %}
-        When you need permission
-      {%- endcall -%}
-      {{ " " }}for guidance, or contact us at
-      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
-        caselawlicence@nationalarchives.gov.uk
-      {% endcall %}
+      {{ link(href=url("when_you_need_permission") , content="When you need permission") }}
+      for guidance, or contact us at
+      {% set subject = "Licensing enquiry – Permissions and licensing" %}
+      {% call link(
+        href=mailto_with_subject_href(licensing_email_address, subject),
+        class_name=trackable_class_name(subject)
+        ) %}
+        {{ licensing_email_address }}
+      {%- endcall %}.
     </p>
     <p>
       Most people using Find Case Law for research, legal work, journalism or commercial products don't need a licence – you can start using judgments freely right away under the Open Justice Licence.

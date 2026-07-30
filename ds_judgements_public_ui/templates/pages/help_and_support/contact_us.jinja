@@ -70,10 +70,7 @@
   </p>
   <p>
     If you have any questions about licensing, please email our Licensing Department at
-    {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
-      caselawlicence@nationalarchives.gov.uk
-    {%- endcall -%}
-    .
+    {{ link(href="mailto:" ~ licensing_email_address, content=licensing_email_address) }}.
   </p>
   {% call heading(tag="h2") %}
     Who we are

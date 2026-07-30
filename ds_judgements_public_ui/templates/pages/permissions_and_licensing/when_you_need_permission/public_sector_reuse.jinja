@@ -79,10 +79,8 @@
     </p>
     <p>
       If you're uncertain whether your intended use counts as computational analysis, contact us at
-      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
-        caselawlicence@nationalarchives.gov.uk
-      {%- endcall -%}
-      {{ " " }}to discuss your needs.
+      {{ link(href="mailto:" ~ licensing_email_address, content=licensing_email_address) }}
+      to discuss your needs.
     </p>
     <p>It's better to ask than to proceed without permission if a licence is required.</p>
   {% endcall %}
