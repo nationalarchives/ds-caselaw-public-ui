@@ -33,6 +33,7 @@ class LicenseApplicationForm(FCLForm):
         "10 – Additional comments",
         "11 – Review your answers",
     ]
+    step_index: int
 
     @property
     def navigation_done(self):

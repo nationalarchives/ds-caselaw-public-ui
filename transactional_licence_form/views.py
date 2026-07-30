@@ -89,7 +89,7 @@ class FormWizardView(NamedUrlSessionWizardView):
         )
 
     def get_all_cleaned_data_by_form(self):
-        cleaned_data = {}
+        cleaned_data: dict[str, dict] = {}
         for form_key in self.get_form_list():
             cleaned_data[form_key] = {}
             form_obj = self.get_form_object(form_key)

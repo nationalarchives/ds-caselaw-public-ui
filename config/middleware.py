@@ -1,9 +1,18 @@
+from typing import TypedDict
 from urllib.parse import urlencode
 
 from django.http.response import HttpResponseRedirectBase
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.cache import patch_cache_control
+from typing_extensions import NotRequired
+
+
+class _LinkHeader(TypedDict):
+    href: str
+    rel: str
+    type: NotRequired[str]
+    title: NotRequired[str]
 
 
 class RobotsTagMiddleware:
@@ -21,7 +30,8 @@ class RobotsTagMiddleware:
             return response
 
         # If page_allow_index is True, short-circuit adding the X-Robots-Tag
-        if isinstance(response, TemplateResponse) and response.context_data.get("page_allow_index", False):
+        context_data = response.context_data if isinstance(response, TemplateResponse) else None
+        if context_data and context_data.get("page_allow_index", False):
             return response
 
         # In all other cases, assume we don't want it indexing and add the noindex X-Robots-Tag.
@@ -79,7 +89,7 @@ class LinkHeaderMiddleware:
         response.headers["Link"] = ", ".join(link_values)
         return response
 
-    def _base_links(self) -> list[dict[str, str]]:
+    def _base_links(self) -> list[_LinkHeader]:
         return [
             {"href": reverse("sitemap_index"), "rel": "sitemap", "type": self.SITEMAP_TYPE},
             {
@@ -90,21 +100,20 @@ class LinkHeaderMiddleware:
         ]
 
     @staticmethod
-    def _context_links(response: TemplateResponse) -> list[dict[str, str]]:
-        links = list(response.context_data.get("links", []))
-        links.extend(
-            {
-                "href": alternate["href"],
-                "rel": "alternate",
-                "type": alternate.get("type"),
-                "title": alternate.get("title"),
-            }
-            for alternate in response.context_data.get("alternates", [])
-        )
+    def _context_links(response: TemplateResponse) -> list[_LinkHeader]:
+        context_data = response.context_data or {}
+        links: list[_LinkHeader] = list(context_data.get("links", []))
+        for alternate in context_data.get("alternates", []):
+            link: _LinkHeader = {"href": alternate["href"], "rel": "alternate"}
+            if alternate.get("type"):
+                link["type"] = alternate["type"]
+            if alternate.get("title"):
+                link["title"] = alternate["title"]
+            links.append(link)
         return links
 
     @staticmethod
-    def _serialise_link(link: dict[str, str | None]) -> str:
+    def _serialise_link(link: _LinkHeader) -> str:
         segments = [f"<{link['href']}>", f'rel="{link["rel"]}"']
         if link.get("type"):
             segments.append(f'type="{link["type"]}"')

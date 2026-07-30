@@ -87,10 +87,6 @@ class CourtOrTribunalView(TemplateViewWithContext):
     template_name = "pages/court_or_tribunal.jinja"
     page_allow_index = True
 
-    @property
-    def page_title(self):
-        return self.court.name
-
     @cached_property
     def court(self):
         try:
@@ -109,6 +105,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
 
         court = self.court
+        self.page_title = court.name
 
         context = super().get_context_data(**kwargs)
 

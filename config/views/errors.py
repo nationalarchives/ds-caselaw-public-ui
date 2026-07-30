@@ -1,9 +1,11 @@
+from typing import Optional
+
 from django.views.generic import TemplateView
 
 
 class BaseErrorView(TemplateView):
-    template_name = None
-    template_engine = None
+    template_name: Optional[str] = None
+    template_engine: Optional[str] = None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

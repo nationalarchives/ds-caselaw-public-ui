@@ -103,6 +103,7 @@ if __name__ == "__main__":
             key, value = arg.split("=", 1)
             stripped_value = value.strip('"').strip("'")
 
+            final_value: bool | int | str
             if stripped_value.lower() == "true":
                 final_value = True
             elif stripped_value.lower() == "false":

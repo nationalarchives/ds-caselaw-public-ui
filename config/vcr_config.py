@@ -251,7 +251,8 @@ def _extract_all_parts_from_multipart(raw_body: str | bytes, content_type: str) 
 
         if part_ct == "application/json" and payload:
             try:
-                payload = json.dumps(json.loads(payload.decode("utf-8"))).encode("utf-8")
+                if isinstance(payload, bytes):
+                    payload = json.dumps(json.loads(payload.decode("utf-8"))).encode("utf-8")
             except (json.JSONDecodeError, UnicodeDecodeError) as exc:
                 logging.debug("Failed to parse json part: %s", exc)
 
@@ -359,8 +360,12 @@ class VCRContext:
         return cls(cassette_name_for_request(method, path, query_string))
 
     def __enter__(self):
-        self.cassette = self.vcr.use_cassette(f"{self.cassette_name}.yaml", allow_playback_repeats=True)
-        return self.cassette.__enter__()
+        cassette = self.vcr.use_cassette(f"{self.cassette_name}.yaml", allow_playback_repeats=True)
+        self.cassette = cassette
+        return cassette.__enter__()
 
     def __exit__(self, *args):
-        return self.cassette.__exit__(*args)
+        cassette = self.cassette
+        if cassette is None:
+            raise RuntimeError("VCRContext.__exit__ called before __enter__")
+        return cassette.__exit__(*args)

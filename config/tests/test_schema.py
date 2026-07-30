@@ -2,12 +2,12 @@ from unittest.mock import patch
 
 import pytest
 from django.http import Http404
+from django.test import TestCase
 
 from config.views.schema import schema
-from judgments.tests.fixtures import TestCaseWithMockAPI
 
 
-class TestSchemas(TestCaseWithMockAPI):
+class TestSchemas(TestCase):
     @patch("config.views.schema.requests.get")
     def test_cached(self, get):
         # Tests caching behaviour; happy path
