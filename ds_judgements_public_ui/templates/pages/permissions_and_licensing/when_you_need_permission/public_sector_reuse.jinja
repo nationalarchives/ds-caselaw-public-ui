@@ -32,7 +32,7 @@
 {% block article_content %}
   {{ heading(content="Crown bodies and Non-Crown bodies", tag="h2") }}
   <p>
-    Before you do anything else, you need to establish whether your organisation is a Crown body or a Non-Crown body. The answer determines whether you need to apply for a licence to re-use Find Case Law data.
+    Before you do anything else, you need to establish whether your organisation is a Crown body or a Non-Crown body. The answer determines whether you need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }} to re-use Find Case Law data.
   </p>
   {{ heading(content="Crown bodies", tag="h3") }}
   <p>
@@ -43,7 +43,7 @@
   </p>
   {{ heading(content="Non-Crown bodies", tag="h3") }}
   <p>
-    If your organisation is a Non-Crown body, you need to apply for a licence to re-use Find Case Law data for computational analysis.
+    If your organisation is a Non-Crown body, you need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }} to re-use Find Case Law data for computational analysis.
   </p>
   <p>{{ link(content="Find out how to apply", href=url("what_you_need_to_apply_for_a_licence") ) }}.</p>
   {{ heading(content="Guidance for Crown bodies", tag="h2") }}
