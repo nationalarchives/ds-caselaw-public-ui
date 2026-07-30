@@ -10,7 +10,7 @@
     What you need to apply for a licence
   {% endcall %}
   <p>
-    If you want to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's what the application involves and how to prepare.
+    If you want to perform computational analysis on Find Case Law records, you'll need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }}. Here's what the application involves and how to prepare.
   </p>
 {% endblock mobile_article_title %}
 {% block desktop_article_title %}
@@ -18,7 +18,7 @@
     What you need to apply for a licence
   {% endcall %}
   <p>
-    If you want to perform computational analysis on Find Case Law records, you'll need to apply for a licence. Here's what the application involves and how to prepare.
+    If you want to perform computational analysis on Find Case Law records, you'll need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }}. Here's what the application involves and how to prepare.
   </p>
 {% endblock desktop_article_title %}
 {% block article_navigation %}
@@ -619,6 +619,7 @@
       {%- endcall -%}
       {{ " " }}page.
     </p>
+    <p>When you are ready, you can {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }}.</p>
     <p>
       If you have any questions about licensing, please email the Licensing Department:
       {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
