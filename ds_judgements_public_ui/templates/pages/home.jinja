@@ -71,29 +71,21 @@
       {% endcall %}
       {% call aside() %}
         {% call heading(tag="h3") %}
-          What you can do with judgments
+          Using judgments
         {% endcall %}
-        <p>All judgments on Find Case Law are free to read, download, and share. You can use them for:</p>
-        {% call list(variant="bullets") %}
+        {% call list(variant="bullets", margin="none") %}
           {% call list_item() %}
-            legal research and case preparation
+            <strong>No licence is required</strong>
+            to read, download or share judgments.
           {% endcall %}
           {% call list_item() %}
-            academic study and teaching
-          {% endcall %}
-          {% call list_item() %}
-            journalism and public information
-          {% endcall %}
-          {% call list_item() %}
-            personal reference
+            <strong>A free licence may be required</strong>
+            for commercial use or computational analysis.
           {% endcall %}
         {% endcall %}
-        <p>
-          For commercial use or computational analysis, you may need a licence. See our
-          {% call link(href=url("permissions_and_licensing")) %}
-            Permissions and licensing
-          {%- endcall %} section for details.
-        </p>
+        {{ link(href=url("permissions_and_licensing") , content="Read the licensing guidance", class_name=trackable_class_name("Licence guidance card homepage")) }}
+        <br />
+        {{ link(href=url("apply_for_a_licence") , content="Apply for a licence", class_name=trackable_class_name("Licence apply card homepage")) }}
       {% endcall %}
     {% endcall %}
     <div class="container--center">

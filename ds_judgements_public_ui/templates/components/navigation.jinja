@@ -132,7 +132,7 @@
                     <span class="govuk-visually-hidden">Toggle navigation</span>
                   </label>
                 {% endif %}
-                {% call link(href=url(item.endpoint), variant="contrast") %}
+                {% call link(href=url(item.endpoint), variant="contrast", class_name=trackable_class_name("navigation " ~ item.label)) %}
                   <span class="navigation__item-label">{{ item.label }}</span>
                 {% endcall %}
               </span>
@@ -140,7 +140,7 @@
                 <ul>
                   {% for child in item.children %}
                     <li>
-                      {% call link(href=url(child.endpoint)) %}
+                      {% call link(href=url(child.endpoint), class_name=trackable_class_name("navigation " ~ child.label)) %}
                         {{ child.label }}
                       {% endcall %}
                     </li>

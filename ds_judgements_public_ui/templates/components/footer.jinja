@@ -3,7 +3,7 @@
 {% from "components/link.jinja" import link %}
 {% from "components/open_justice_license_logo.jinja" import open_justice_license_logo with context %}
 {% macro footer_link(text="", url="") %}
-  {% set attrs = trackable_link(request, title, href=url) %}
+  {% set attrs = trackable_link(request, "footer " ~ text, href=url) %}
   {% if request.path == url %}
     {{ text }}
   {% else %}
