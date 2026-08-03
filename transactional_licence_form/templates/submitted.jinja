@@ -1,5 +1,6 @@
 {% extends "layouts/base.jinja" %}
 {% from "components/button.jinja" import button %}
+{% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list, list_item %}
 {% from "components/heading.jinja" import heading %}
 {% block content %}
@@ -26,7 +27,7 @@
       {% endcall %}
     {% endcall %}
     <p>
-      If you have any questions, you can email the licensing department at: <a href="mailto:caselawlicence@nationalarchives.gov.uk">caselawlicence@nationalarchives.gov.uk</a>.
+      If you have any questions, you can email the licensing department at: {{ link(href="mailto:" ~ licensing_email_address, content=licensing_email_address) }}.
     </p>
     <p>
       In the future we may contact you to invite you to take part in research. All participation is voluntary and will not impact your application or licence terms in any way.

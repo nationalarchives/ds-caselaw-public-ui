@@ -298,9 +298,7 @@
         When you need permission
       {% endcall %}
       or contact us at
-      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
-        caselawlicence@nationalarchives.gov.uk
-      {% endcall %}
+      {{ link(href="mailto:" ~ licensing_email_address, content=licensing_email_address) }}
     </p>
     <p>
       Want to perform computational analysis? See
@@ -310,9 +308,7 @@
     </p>
     <p>
       Questions about the licence terms? Contact us at
-      {% call link(href="mailto:caselawlicence@nationalarchives.gov.uk") %}
-        caselawlicence@nationalarchives.gov.uk
-      {% endcall %}
+      {{ link(href="mailto:" ~ licensing_email_address, content=licensing_email_address) }}
     </p>
     <p>Using judgments freely? Just go ahead – follow the attribution requirements and other conditions.</p>
   {% endcall %}

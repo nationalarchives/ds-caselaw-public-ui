@@ -64,6 +64,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
     "config.middleware.FeedbackLinkMiddleware",
+    "config.middleware.LicensingEmailAddressMiddleware",
     "config.middleware.StructuredBreadcrumbsMiddleware",
     "waffle.middleware.WaffleMiddleware",
 ]

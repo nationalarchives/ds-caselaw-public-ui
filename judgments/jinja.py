@@ -103,6 +103,7 @@ def environment(**options):
             "navigation_item_class": with_context(navigation_tags.navigation_item_class),
             "static": staticfiles_storage.url,
             "trackable_link": with_context(link_tags.trackable_link),
+            "trackable_class_name": link_tags.trackable_class_name,
             "formatdate": formatdate,
             "url": jinja_url,
             "formatted_document_uri": document_utils.formatted_document_uri,
@@ -111,6 +112,7 @@ def environment(**options):
             "has_other_field": transactional_licence_utils.has_other_field,
             "template_exists": template_exists,
             "get_subwidget_for_other_field": transactional_licence_utils.get_subwidget_for_other_field,
+            "mailto_with_subject_href": transactional_licence_utils.mailto_with_subject_href,
         }
     )
     env.filters["error_messages"] = errors.error_messages
