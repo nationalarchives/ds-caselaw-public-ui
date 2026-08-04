@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 from ds_caselaw_utils.courts import Court, CourtWithJurisdiction
 
@@ -32,8 +32,8 @@ def court_analytics(court: Court) -> dict[str, str]:
 def build_gtm_data_layer(
     *,
     page_type: GtmPageType,
-    court: Optional[Court] = None,
-    document_noun: Optional[str] = None,
+    court: Court | None = None,
+    document_noun: str | None = None,
 ) -> dict[str, Any]:
     """
     Build a dataLayer object for GTM / GA4 custom dimensions.

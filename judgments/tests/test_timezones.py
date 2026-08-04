@@ -40,7 +40,7 @@ def test_as_utc_datetime_parses_zulu_string():
 
 
 def test_as_utc_datetime_treats_naive_as_utc():
-    result = as_utc_datetime(datetime(2025, 1, 1, 12, 0, 0))
+    result = as_utc_datetime(datetime(2025, 1, 1, 12, 0, 0))  # noqa: DTZ001
     assert result == datetime(2025, 1, 1, 12, 0, 0, tzinfo=UTC)
 
 
@@ -132,7 +132,7 @@ class TestFeedTimestampsRemainUtc(SimpleTestCase):
 
     def test_item_pubdate_treats_naive_client_datetime_as_utc(self):
         # SearchResult.date can still be naive when MarkLogic omits an offset
-        item = Mock(date=datetime(2023, 2, 3, 0, 0, 0))
+        item = Mock(date=datetime(2023, 2, 3, 0, 0, 0))  # noqa: DTZ001
         result = self.feed.item_pubdate(item)
         assert result == datetime(2023, 2, 3, 0, 0, 0, tzinfo=UTC)
 
