@@ -1,5 +1,4 @@
 {% from "components/header.jinja" import header %}
-{% from "components/cookie_banner.jinja" import cookie_banner %}
 {% from "components/heading.jinja" import heading %}
 {% from "components/banner.jinja" import banner %}
 {% from "components/button.jinja" import button %}
@@ -54,7 +53,6 @@
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
     {% include "includes/gtm_body.jinja" %}
-    {{ cookie_banner() }}
     {% include "components/environment_banner.jinja" %}
     {% block header %}
       {% call header() %}
@@ -137,7 +135,6 @@
       {% endcall %}
     {% endblock footer %}
     <script type="module" defer src="{{ static('js/dist/app.js') }}"></script>
-    <script defer src="{{ static ('js/dist/cookie_consent.js') }}"></script>
     {% block javascript %}
     {% endblock javascript %}
   </body>
