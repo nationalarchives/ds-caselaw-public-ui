@@ -94,9 +94,16 @@ def environment(**options):
         }
     )
 
-    combined_loader = ChoiceLoader([base_loader, govuk_loader]) if base_loader else govuk_loader
+    tna_loader = PackageLoader("tna_frontend_jinja")
 
-    options["loader"] = combined_loader
+    loaders = []
+
+    if base_loader:
+        loaders.append(base_loader)
+
+    loaders.extend([govuk_loader, tna_loader])
+
+    options["loader"] = ChoiceLoader(loaders)
 
     options.pop("autoescape", None)
     env = Environment(

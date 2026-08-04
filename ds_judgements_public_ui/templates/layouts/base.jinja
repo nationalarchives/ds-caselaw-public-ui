@@ -10,6 +10,7 @@
 {% from "components/breadcrumbs.jinja" import breadcrumbs as breadcrumbs_component, breadcrumb %}
 {% from "components/open_justice_license_logo.jinja" import open_justice_license_logo %}
 {% from "components/footer.jinja" import footer, footer_row, footer_item, footer_link, footer_item_spacer with context %}
+{% from "components/cookie-banner/macro.html" import tnaCookieBanner %}
 <!DOCTYPE html>
 <html lang="en-gb">
   <head>
@@ -49,6 +50,10 @@
     {% endfor %}
   </head>
   <body class="{% block body_class %}{% endblock body_class %}">
+    {{ tnaCookieBanner({
+      "serviceName": "Find Case Law",
+      "cookiesUrl": "https://www.nationalarchives.gov.uk/legal/cookies/"
+    }) }}
     <script>
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>

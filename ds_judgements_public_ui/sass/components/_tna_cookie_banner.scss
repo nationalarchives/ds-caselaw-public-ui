@@ -1,0 +1,35 @@
+.tna-cookie-banner {
+  padding: $space-8 0;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.tna-container {
+  @include container;
+}
+
+.tna-button {
+  @include button-primary;
+
+  margin-top: 0;
+}
+
+.tna-button-group {
+  display: flex;
+  gap: $space-4;
+  align-items: center;
+}
+
+.tna-button--plain {
+  all: unset;
+
+  @include link;
+
+  &:hover {
+    cursor: pointer;
+    background: none;
+    outline: none;
+  }
+}
