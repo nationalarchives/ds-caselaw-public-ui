@@ -32,6 +32,10 @@ from judgments.templatetags import (
 from transactional_licence_form.templatetags import transactional_licence_utils
 
 
+def component_class_names(*values):
+    return " ".join(class_name for value in values if value for class_name in str(value).split())
+
+
 def hyphenate(value: str) -> str:
     value = value.lower()
     value = re.sub(r"[^\w\s-]", "", value)
@@ -113,6 +117,7 @@ def environment(**options):
             "template_exists": template_exists,
             "get_subwidget_for_other_field": transactional_licence_utils.get_subwidget_for_other_field,
             "mailto_with_subject_href": transactional_licence_utils.mailto_with_subject_href,
+            "component_class_names": component_class_names,
         }
     )
     env.filters["error_messages"] = errors.error_messages
