@@ -22,6 +22,7 @@ from ds_caselaw_utils.types import CourtParam
 from .forms.search_forms import TRIBUNAL_CHOICES
 from .utils import api_client, paginator
 from .utils.search_request_to_parameters import search_request_to_parameters
+from .utils.timezones import as_utc_datetime
 
 
 def _add_page_to_url(url: str, page: int = 1) -> str:
@@ -198,11 +199,13 @@ class JudgmentsFeed(Feed):
         return extra_kwargs
 
     def item_updateddate(self, item: SearchResult) -> datetime.datetime:
-        date_string = item.transformation_date or "1970-01-01T00:00:00.000"
-        return datetime.datetime.fromisoformat(date_string)
+        date_string = item.transformation_date or "1970-01-01T00:00:00+00:00"
+        return as_utc_datetime(date_string)
 
     def item_pubdate(self, item: SearchResult) -> Optional[datetime.datetime]:
-        return item.date
+        if item.date is None:
+            return None
+        return as_utc_datetime(item.date)
 
     def feed_extra_kwargs(self, obj):
         extra_kwargs = super().item_extra_kwargs(obj)

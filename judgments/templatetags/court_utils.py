@@ -1,5 +1,4 @@
 import logging
-from datetime import date
 from typing import Optional
 
 from caselawclient.client_helpers.search_helpers import (
@@ -14,6 +13,7 @@ from requests.exceptions import RequestException
 
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
+from judgments.utils.timezones import london_today
 
 register = template.Library()
 
@@ -49,7 +49,7 @@ def get_last_judgment_year() -> int:
         logging.warning("CourtDates table is empty! using fallback max_year.")
         # The dates in all_courts don't work as a fallback, as they can't
         # be relied on to be up to date.
-        return date.today().year
+        return london_today().year
 
 
 @register.filter
@@ -94,6 +94,6 @@ def get_court_judgments_count(court: Court) -> int:
 
 
 def is_court_ended(court: Court) -> bool:
-    current_year = date.today().year
+    current_year = london_today().year
 
     return court.end_year < current_year

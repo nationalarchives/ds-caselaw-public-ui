@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from unittest.mock import patch
 
 from caselawclient.factories import SearchResultFactory
@@ -13,10 +13,14 @@ from judgments.tests.fixture_data import FakeSearchResponse, FakeSearchResponseB
 class MockCourtYearSearchResult(FakeSearchResponseBaseClass):
     results = [
         SearchResultFactory.build(
-            uri="d-a1b2c3", slug="test/2025/123", transformation_date=datetime(2025, 1, 1, 1, 23).isoformat()
+            uri="d-a1b2c3",
+            slug="test/2025/123",
+            transformation_date=datetime(2025, 1, 1, 1, 23, tzinfo=timezone.utc).isoformat(),
         ),
         SearchResultFactory.build(
-            uri="d-d4e5f6", slug="test/2025/456", transformation_date=datetime(2025, 2, 2, 4, 56).isoformat()
+            uri="d-d4e5f6",
+            slug="test/2025/456",
+            transformation_date=datetime(2025, 2, 2, 4, 56, tzinfo=timezone.utc).isoformat(),
         ),
     ]
 

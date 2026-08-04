@@ -24,16 +24,16 @@ DEBUG = env.bool("DJANGO_DEBUG", default=False)
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 if env("SECRET_KEY", default=None):
     SECRET_KEY = env("SECRET_KEY")
-# Local time zone. Choices are
+# Presentation / default display timezone (UK local time, including BST).
+# Datetimes are still stored and exchanged in UTC when USE_TZ is True.
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# though not all of them may be available with every OS.
-# In Windows, this must be set to your system time zone.
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/London"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
 USE_L10N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
+# Keep True so the database and aware datetimes remain UTC on the storage layer.
 USE_TZ = True
 
 # DATABASES

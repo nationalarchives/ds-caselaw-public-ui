@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 from functools import wraps
 
 from crispy_forms.templatetags.crispy_forms_filters import as_crispy_form
@@ -29,6 +30,7 @@ from judgments.templatetags import (
     query_filters,
     search_results_filters,
 )
+from judgments.utils.timezones import LONDON
 from transactional_licence_form.templatetags import transactional_licence_utils
 
 
@@ -48,6 +50,9 @@ def capfirst(value):
 def formatdate(value, format="%d %b %Y"):
     if value is None:
         return ""
+    # Aware datetimes are shown in Europe/London; date-only values are calendar days.
+    if isinstance(value, datetime) and value.tzinfo is not None:
+        value = value.astimezone(LONDON)
     return value.strftime(format)
 
 

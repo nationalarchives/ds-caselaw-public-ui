@@ -1,9 +1,8 @@
-import datetime
-
 from django.conf import settings
 from ds_caselaw_utils import courts as all_courts
 
 from judgments.models.court_dates import CourtDates
+from judgments.utils.timezones import london_today
 
 ALL_COURT_CODES = [court.code for court in all_courts.get_all()]
 
@@ -15,7 +14,7 @@ def _valid_years():
     """
     Generate a list of valid years as strings.
     """
-    today = datetime.date.today()
+    today = london_today()
     valid_years = range(2003, today.year + 1)
     return [f"{year}" for year in valid_years]
 

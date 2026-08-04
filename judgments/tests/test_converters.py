@@ -57,11 +57,11 @@ class TestDateConverter(TestCase):
 
     def test_to_python_converts_string_to_datetime(self):
         result = self.converter.to_python("2024-06-17")
-        expected = datetime.datetime(2024, 6, 17)
+        expected = datetime.datetime(2024, 6, 17, tzinfo=datetime.timezone.utc)
         self.assertEqual(result, expected)
 
     def test_to_url_formats_datetime_as_string(self):
-        dt = datetime.datetime(2025, 1, 5)
+        dt = datetime.datetime(2025, 1, 5, tzinfo=datetime.timezone.utc)
         self.assertEqual(self.converter.to_url(dt), "2025-01-05")
 
     def test_to_url_raises_value_error_on_none(self):

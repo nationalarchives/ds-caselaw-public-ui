@@ -1,4 +1,3 @@
-import datetime
 from typing import Optional, Union
 
 from caselawclient.client_helpers.search_helpers import (
@@ -11,6 +10,7 @@ from ds_caselaw_utils.courts import Court, CourtParam, CourtWithJurisdiction
 
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
+from judgments.utils.timezones import london_today
 
 
 class Command(BaseCommand):
@@ -68,7 +68,7 @@ falling back to config value of {fallback_start_year}"
             court.canonical_param, "-date", "newest", fallback_end_year
         )
 
-        if end_year and end_year > datetime.date.today().year:
+        if end_year and end_year > london_today().year:
             self.stdout.write(
                 self.style.WARNING(
                     f"Calculated end year of {end_year} is impossible, \
