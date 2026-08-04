@@ -7,7 +7,7 @@ from invoke.tasks import task
 # Process .env file
 if os.path.exists(".env"):
     with open(".env", "r") as f:
-        for line in f.readlines():
+        for line in f:
             if not line or line.startswith("#") or "=" not in line:
                 continue
             var, value = line.strip().split("=", 1)
@@ -24,7 +24,7 @@ LOCAL_DB_DUMP_DIR = "database_dumps"
 
 
 def container_exec(cmd, container_name="django", check_returncode=False):
-    result = subprocess.run(["docker", "compose", "exec", "-T", container_name, "bash", "-c", cmd])
+    result = subprocess.run(["docker", "compose", "exec", "-T", container_name, "bash", "-c", cmd], check=False)
     if check_returncode:
         result.check_returncode()
     return result
@@ -159,7 +159,7 @@ def flamegraph(c):
     except KeyboardInterrupt:
         pass
 
-    subprocess.run(["open", "memray-flamegraph-memray.html"])
+    subprocess.run(["open", "memray-flamegraph-memray.html"], check=False)
     stop(c, "django")
 
 
@@ -188,7 +188,7 @@ def sh(c):
     """
     Run bash in a local container (with access to dependencies)
     """
-    subprocess.run(["docker", "compose", "exec", "django", "bash"])
+    subprocess.run(["docker", "compose", "exec", "django", "bash"], check=False)
 
 
 @task
@@ -202,7 +202,8 @@ def checktypes(c):
             "mypy",
             "ds_judgements_public_ui",
             "judgments",
-        ]
+        ],
+        check=False,
     )
 
 
@@ -222,7 +223,8 @@ def test(c, test=None):
                 "mypy",
                 "ds_judgements_public_ui",
                 "judgments",
-            ]
+            ],
+            check=False,
         )
         # Pytest
         subprocess.run(
@@ -232,10 +234,11 @@ def test(c, test=None):
                 "exec",
                 "django",
                 "pytest",
-            ]
+            ],
+            check=False,
         )
     else:
-        subprocess.run(["docker", "compose", "exec", "django", "pytest", test])
+        subprocess.run(["docker", "compose", "exec", "django", "pytest", test], check=False)
 
 
 @task(optional=["baseUrl", "regenerateSnapshots", "testPath"])
@@ -250,7 +253,8 @@ def e2etest(c, baseUrl="http://django:3000", regenerateSnapshots="false", testPa
             "compose",
             "build",
             "e2e_tests",
-        ]
+        ],
+        check=False,
     )
 
     pytest_cmd = [
@@ -272,7 +276,8 @@ def e2etest(c, baseUrl="http://django:3000", regenerateSnapshots="false", testPa
             f"E2E_REGENERATE_SNAPSHOTS={regenerateSnapshots}",
             "e2e_tests",
             *pytest_cmd,
-        ]
+        ],
+        check=False,
     )
 
 
@@ -289,7 +294,8 @@ def coverage(c):
             "run",
             "-m",
             "pytest",
-        ]
+        ],
+        check=False,
     )
     # Generate html report
     subprocess.run(
@@ -300,7 +306,8 @@ def coverage(c):
             "django",
             "coverage",
             "html",
-        ]
+        ],
+        check=False,
     )
 
 
@@ -326,7 +333,7 @@ def psql(c, command=None):
     if command:
         cmd_list.extend(["-c", command])
 
-    subprocess.run(cmd_list)
+    subprocess.run(cmd_list, check=False)
 
 
 def delete_db(c):

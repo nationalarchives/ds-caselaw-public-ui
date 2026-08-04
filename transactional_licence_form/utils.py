@@ -46,7 +46,7 @@ def list_to_choices(values):
 @functools.lru_cache(maxsize=1)
 def countries_and_territories_dict():
     with open(COUNTRIES_AND_TERRITORIES_JSON_PATH) as file:
-        return dict([(pair[1], pair[0]) for pair in json.load(file)])
+        return {pair[1]: pair[0] for pair in json.load(file)}
 
 
 def countries_and_territories_choices():

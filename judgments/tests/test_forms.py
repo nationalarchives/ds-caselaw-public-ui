@@ -68,8 +68,10 @@ class TestAdvancedSearchForm(TestCase):
             form.errors,
             {
                 "order": [
-                    "Sort order should be one of relevance, -date, date, "
-                    "-transformation, transformation, -updated, updated"
+                    (
+                        "Sort order should be one of relevance, -date, date, "
+                        "-transformation, transformation, -updated, updated"
+                    )
                 ]
             },
         )

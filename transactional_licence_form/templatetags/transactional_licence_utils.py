@@ -30,7 +30,7 @@ def submit_label_for_step(step):
 
 @register.filter
 def has_other_field(option_index, other_field_subwidgets):
-    return option_index - 1 in other_field_subwidgets.keys()
+    return option_index - 1 in other_field_subwidgets
 
 
 @register.filter

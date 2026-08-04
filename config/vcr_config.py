@@ -7,12 +7,15 @@ import hashlib
 import json
 import logging
 import os
+from email.errors import MessageError
 from email.parser import BytesParser
 from email.policy import default
 from urllib.parse import parse_qsl, urlencode
 
 import vcr
 import vcr.stubs
+
+logger = logging.getLogger(__name__)
 
 VCR_MODE = os.getenv("VCR_MODE", "playback")
 VCR_ENABLED = os.getenv("VCR_ENABLED", "false").lower() == "true"
@@ -90,12 +93,12 @@ def _patched_vcrhttpresponse_init(self, recorded_response, request_url=None):
     if isinstance(body, dict) and "string" in body:
         value = body["string"]
 
-        if isinstance(value, str) and value.startswith(_PARTS_PREFIX):
-            body["string"] = _cassette_string_to_multipart_bytes(value)
-            _remove_header_case_insensitive(headers, "Content-Encoding")
-            _remove_header_case_insensitive(headers, "Transfer-Encoding")
-
-        elif isinstance(value, bytes) and value.startswith(_PARTS_PREFIX.encode("utf-8")):
+        if (
+            isinstance(value, str)
+            and value.startswith(_PARTS_PREFIX)
+            or isinstance(value, bytes)
+            and value.startswith(_PARTS_PREFIX.encode("utf-8"))
+        ):
             body["string"] = _cassette_string_to_multipart_bytes(value)
             _remove_header_case_insensitive(headers, "Content-Encoding")
             _remove_header_case_insensitive(headers, "Transfer-Encoding")
@@ -144,7 +147,7 @@ def _parse_form_body(body_bytes: bytes) -> dict[str, str]:
 def _normalise_json_string(value: str) -> str:
     try:
         return json.dumps(json.loads(value), sort_keys=True, separators=(",", ":"))
-    except Exception:
+    except (TypeError, ValueError):
         return value.strip()
 
 
@@ -165,7 +168,7 @@ def _normalise_user_in_request_body(body: bytes) -> bytes:
         vars_dict["user"] = _CANONICAL_MARKLOGIC_USER
         params["vars"] = json.dumps(vars_dict, sort_keys=True, separators=(",", ":"))
         return urlencode(params).encode("utf-8")
-    except Exception:
+    except (TypeError, ValueError):
         return body
 
 
@@ -254,7 +257,7 @@ def _extract_all_parts_from_multipart(raw_body: str | bytes, content_type: str) 
                 if isinstance(payload, bytes):
                     payload = json.dumps(json.loads(payload.decode("utf-8"))).encode("utf-8")
             except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-                logging.debug("Failed to parse json part: %s", exc)
+                logger.debug("Failed to parse json part: %s", exc)
 
         extra = {k: v for k, v in part.items() if k.lower() != "content-type"}
         parts.append(
@@ -296,12 +299,12 @@ def _before_record_response(response):
                 transformed_body = gzip.decompress(raw_body)
             elif "deflate" in content_encoding.lower():
                 transformed_body = zlib.decompress(raw_body)
-        except Exception:
+        except (OSError, EOFError, zlib.error):
             transformed_body = raw_body
 
     try:
         parts = _extract_all_parts_from_multipart(transformed_body, content_type)
-    except Exception:
+    except (TypeError, ValueError, AttributeError, LookupError, UnicodeError, MessageError):
         return response
 
     if not parts:

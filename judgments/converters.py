@@ -7,8 +7,8 @@ from ds_caselaw_utils import courts
 def converter_regexes(court_repo) -> tuple[str, str]:
     """Return regex like "uksc|ukftt" (court) and "crim|civ" (subdivision) suitable for URL parsing"""
     params = tuple(itertools.chain.from_iterable([court.param_aliases for court in court_repo.get_all()]))
-    court_set = set([court for param in params if (court := param.partition("/")[0])])
-    subdivision_set = set([subdivision for param in params if (subdivision := param.partition("/")[2])])
+    court_set = {court for param in params if (court := param.partition("/")[0])}
+    subdivision_set = {subdivision for param in params if (subdivision := param.partition("/")[2])}
     court_regex = "|".join(sorted(court_set))
     subdivision_regex = "|".join(sorted(subdivision_set))
     return (court_regex, subdivision_regex)
@@ -24,7 +24,7 @@ class YearConverter:
         return int(value)
 
     def to_url(self, value):
-        return "%04d" % value
+        return f"{value:04d}"
 
 
 class DateConverter:

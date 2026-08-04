@@ -36,11 +36,13 @@ def _sort_by_number_in_value(unsorted_dict: dict):
     return dict(sorted_items)
 
 
-def process_court_facets(facets: dict, current_courts: dict = {}):
+def process_court_facets(facets: dict, current_courts: dict | None = None):
     """
     Separates facets dict into non-court facets,
     and court facets.
     """
+    if current_courts is None:
+        current_courts = {}
     court_facets = {
         all_courts.get_by_code(facet_key): facet_value
         for facet_key, facet_value in facets.items()

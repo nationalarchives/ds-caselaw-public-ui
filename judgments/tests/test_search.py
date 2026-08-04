@@ -565,9 +565,9 @@ class TestSearchFacets(TestCase):
         # Desired court_facet is present
         assert response.context_data["court_facets"] == {court_code: "1"}
         # Blank keys are not present
-        assert "" not in response.context_data["court_facets"].keys()
+        assert "" not in response.context_data["court_facets"]
         # Keys that don't match existing courts are not present
-        assert "invalid_court" not in response.context_data["court_facets"].keys()
+        assert "invalid_court" not in response.context_data["court_facets"]
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -580,9 +580,9 @@ class TestSearchFacets(TestCase):
         # Desired tribunal_facet is present
         assert response.context_data["tribunal_facets"] == {tribunal_code: "3"}
         # Blank keys are not present
-        assert "" not in response.context_data["tribunal_facets"].keys()
+        assert "" not in response.context_data["tribunal_facets"]
         # Keys that don't match existing tribunals are not present
-        assert "invalid_court" not in response.context_data["tribunal_facets"].keys()
+        assert "invalid_court" not in response.context_data["tribunal_facets"]
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
@@ -607,7 +607,7 @@ class TestSearchFacets(TestCase):
         # Desired year_facet is present
         assert response.context_data["year_facets"] == {"2010": "103"}
         # Keys that don't match valid years are not present
-        assert "1900" not in response.context_data["year_facets"].keys()
+        assert "1900" not in response.context_data["year_facets"]
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")

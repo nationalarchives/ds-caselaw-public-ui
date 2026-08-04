@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
@@ -14,6 +13,8 @@ from requests.exceptions import RequestException
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
 from judgments.utils.timezones import london_today
+
+logger = logging.getLogger(__name__)
 
 register = template.Library()
 
@@ -37,7 +38,7 @@ def get_first_judgment_year():
     if min_year := CourtDates.min_year():
         return min_year
     else:
-        logging.warning("CourtDates table is empty! using fallback min_year.")
+        logger.warning("CourtDates table is empty! using fallback min_year.")
         return min(court.start_year for court in all_courts.get_selectable() if court.start_year)
 
 
@@ -46,7 +47,7 @@ def get_last_judgment_year() -> int:
     if max_year := CourtDates.max_year():
         return max_year
     else:
-        logging.warning("CourtDates table is empty! using fallback max_year.")
+        logger.warning("CourtDates table is empty! using fallback max_year.")
         # The dates in all_courts don't work as a fallback, as they can't
         # be relied on to be up to date.
         return london_today().year
@@ -54,8 +55,8 @@ def get_last_judgment_year() -> int:
 
 @register.filter
 def get_court_date_range(court_param: CourtParam) -> str:
-    start_year: Optional[int]
-    end_year: Optional[int]
+    start_year: int | None
+    end_year: int | None
 
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
@@ -68,10 +69,10 @@ def get_court_date_range(court_param: CourtParam) -> str:
     if start_year == end_year:
         return str(start_year)
     else:
-        return mark_safe("%s&nbsp;to&nbsp;%s" % (start_year, end_year))  # noqa: S308 XSS [safe because years are numbers or None]
+        return mark_safe(f"{start_year}&nbsp;to&nbsp;{end_year}")  # noqa: S308 XSS [safe because years are numbers or None]
 
 
-def get_court_start_year(court_param: CourtParam) -> Optional[int]:
+def get_court_start_year(court_param: CourtParam) -> int | None:
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
         return court_dates.start_year

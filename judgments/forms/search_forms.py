@@ -1,5 +1,3 @@
-from typing import Optional, Union
-
 from django import forms
 from django.forms import ValidationError
 from ds_caselaw_utils import courts as all_courts
@@ -10,7 +8,7 @@ from judgments.utils import preprocess_query
 from .fields import DateRangeInputField
 from .widgets import CheckBoxSelectCourtWithYearRange
 
-court_choices_dict = dict[Union[Optional[str], CourtParam], Union[str, dict[CourtParam, str]]]
+court_choices_dict = dict[str | None | CourtParam, str | dict[CourtParam, str]]
 
 
 def _get_choices_by_group(courts: list[CourtGroup]):
@@ -59,10 +57,10 @@ def all_valid_courts_and_tribunals() -> set[str]:
         elif isinstance(value, str):
             ids.add(key)
         else:
-            raise RuntimeError("_get_choices_by_group unexpected shape")
+            raise TypeError("_get_choices_by_group unexpected shape")
 
     # Add all short forms of court identifiers (before the `/`)
-    ids.update(set(_id.partition("/")[0] for _id in ids))
+    ids.update({_id.partition("/")[0] for _id in ids})
     return ids
 
 
@@ -163,12 +161,11 @@ class AdvancedSearchForm(forms.Form):
             raise RuntimeError("Cleaned data can never be None, this should never occur")
         to_date = cleaned_data.get("to_date")
         from_date = cleaned_data.get("from_date")
-        if from_date and to_date:
-            if from_date > to_date:
-                raise ValidationError(
-                    "Please enter a 'to' date after the 'from' date",
-                    code="to_date",
-                )
+        if from_date and to_date and from_date > to_date:
+            raise ValidationError(
+                "Please enter a 'to' date after the 'from' date",
+                code="to_date",
+            )
         # Run the pre-process query step
         # Ignore warnings related to MyPy not understanding what cleaned_data is
         if cleaned_data.get("query"):

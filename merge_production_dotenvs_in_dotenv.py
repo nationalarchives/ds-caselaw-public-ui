@@ -1,6 +1,6 @@
 import os
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
 import pytest
 
@@ -39,7 +39,7 @@ def test_merge(tmpdir_factory, merged_file_count: int, append_linesep: bool):
     for i in range(merged_file_count):
         merged_file_ord = i + 1
 
-        merged_filename = ".service{}".format(merged_file_ord)
+        merged_filename = f".service{merged_file_ord}"
         merged_file_path = tmp_dir_path / merged_filename
 
         merged_file_content = merged_filename * merged_file_ord

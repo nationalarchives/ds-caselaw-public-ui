@@ -4,10 +4,10 @@ from django import forms
 from django.template import engines
 
 
-class FCLFieldMixin(object):
+class FCLFieldMixin:
     def __init__(self, *args, **kwargs):
         self.send_to_dynamics = kwargs.pop("send_to_dynamics", True)
-        super(FCLFieldMixin, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class FCLOtherField(forms.TextInput):
@@ -46,14 +46,14 @@ class FCLCheckboxWidgetWithOthers(forms.MultiWidget):
             other_widgets[name] = widget
 
         self.choice_widget = forms.CheckboxSelectMultiple(attrs)
-        widgets = {**{"choices": self.choice_widget}, **other_widgets}
-        super(FCLCheckboxWidgetWithOthers, self).__init__(
+        widgets = {"choices": self.choice_widget, **other_widgets}
+        super().__init__(
             cast(dict[str, forms.Widget | type[forms.Widget]], widgets),
             attrs,
         )
 
     def get_context(self, name, value, attrs):
-        context = super(FCLCheckboxWidgetWithOthers, self).get_context(name, value, attrs)
+        context = super().get_context(name, value, attrs)
         context["field"] = self.choices_field
         context["other_fields"] = self.other_fields
         context["other_field_subwidgets"] = {}
@@ -103,10 +103,10 @@ class FCLMultipleChoiceFieldWithOthers(FCLFieldMixin, forms.MultiValueField):
         self.choices_field = FCLMultipleChoiceField(choices=choices, required=True, label=False)
         self.widget = FCLCheckboxWidgetWithOthers(self.choices_field, self.other_fields)
         fields = [self.choices_field] + [d["field"] for d in self.other_fields.values()]
-        super(FCLMultipleChoiceFieldWithOthers, self).__init__(fields, **kwargs, require_all_fields=False)
+        super().__init__(fields, **kwargs, require_all_fields=False)
 
-    def compress(self, values=[[]]):
-        if len(values) == 0:
+    def compress(self, values=None):
+        if values is None or len(values) == 0:
             values = [[]]
         choices, *others = values
         compressed = {"choices": choices}

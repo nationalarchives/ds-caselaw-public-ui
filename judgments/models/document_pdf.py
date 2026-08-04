@@ -7,6 +7,8 @@ from caselawclient.models.documents import DocumentURIString
 
 from judgments.utils import formatted_document_uri
 
+logger = logging.getLogger(__name__)
+
 
 class DocumentPdf:
     def __init__(self, document_uri: DocumentURIString):
@@ -27,7 +29,7 @@ class DocumentPdf:
         if content_length:
             return int(content_length)
         else:
-            logging.warning(f"Unable to determine PDF size for {self.document_uri}")
+            logger.warning(f"Unable to determine PDF size for {self.document_uri}")
             return None
 
     @cached_property

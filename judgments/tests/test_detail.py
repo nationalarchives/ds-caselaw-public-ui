@@ -1,5 +1,4 @@
 from os import environ
-from typing import Optional
 from unittest.mock import call, patch
 
 import pytest
@@ -253,7 +252,7 @@ class TestViewRelatedDocumentButton(MockAPI):
         THEN the response should contain a button linking to the related document
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: str | None = None):
             return document_class_factory.build(uri=document_uri, is_published=True)
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -297,7 +296,7 @@ class TestViewRelatedDocumentButton(MockAPI):
         THEN the response should contain a button linking to the related document
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: str | None = None):
             return document_class_factory.build(uri=document_uri, is_published=True)
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -331,7 +330,7 @@ class TestViewRelatedDocumentButton(MockAPI):
         THEN the response should not contain a button linking to the related judgment
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: str | None = None):
             return JudgmentFactory.build(uri=document_uri, is_published=True, document_noun="press summary")
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -356,7 +355,7 @@ class TestBreadcrumbs(MockAPI):
         AND an additional `Press Summary` breadcrumb
         """
 
-        def get_document_by_uri_side_effect(uri, cache_if_not_found=False, search_query: Optional[str] = None):
+        def get_document_by_uri_side_effect(uri, cache_if_not_found=False, search_query: str | None = None):
             if "press" in uri:
                 return PressSummaryFactory.build(
                     uri=DocumentURIString("eat/2023/1/press-summary"),
@@ -428,7 +427,7 @@ class TestBreadcrumbs(MockAPI):
         THEN the response should contain breadcrumbs including the appropriate error reference
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: str | None = None):
             raise http_error()
 
         mock_get_document_by_uri.side_effect = get_document_by_uri_side_effect
@@ -450,7 +449,7 @@ class TestDocumentHeadings(TestCaseWithMockAPI):
         AND a p tag subheading with the related judgment's NCN
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: str | None = None):
             if document_uri == "ml-eat/2023/1/press-summary":
                 press_summary = PressSummaryFactory.build(
                     uri=DocumentURIString("ml-eat/2023/1/press-summary"),
@@ -542,7 +541,7 @@ class TestHTMLTitle(TestCaseWithMockAPI):
         summary name and "- Find Case Law - The National Archives"
         """
 
-        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: Optional[str] = None):
+        def get_document_by_uri_side_effect(document_uri, cache_if_not_found=False, search_query: str | None = None):
             if document_uri == "ml-eat/2023/1/press-summary":
                 return JudgmentFactory.build(
                     uri=DocumentURIString("ml-eat/2023/1/press-summary"),

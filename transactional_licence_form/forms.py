@@ -90,7 +90,7 @@ class ContactForm(LicenseApplicationForm):
 
 class OrganizationForm(LicenseApplicationForm):
     def __init__(self, *args, **kwargs):
-        super(OrganizationForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.initial["agent_country"] = "country:GB"
 
     def layout(self):
@@ -381,7 +381,6 @@ class ReviewForm(LicenseApplicationForm):
     # and a custom template, as once the `done` callback of the form-tools
     # wizard is called, the form data has been scrubbed from the session,
     # making amendments impossible.
-    pass
 
 
 FORMS = (

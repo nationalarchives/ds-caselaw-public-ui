@@ -7,6 +7,7 @@ from jinja2 import (
     FileSystemLoader,
     PackageLoader,
     PrefixLoader,
+    TemplateError,
 )
 
 # -----------------------------
@@ -80,7 +81,7 @@ def render_macro(template_path, macro_name, content=None, **context):
         else:
             return macro(**context)
 
-    except Exception as e:
+    except (TemplateError, AttributeError, TypeError) as e:
         return f"Error rendering macro: {e}"
 
 
