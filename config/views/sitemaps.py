@@ -12,6 +12,7 @@ from django.views.generic.base import TemplateResponseMixin, TemplateView
 
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
+from judgments.utils.timezones import as_utc_datetime
 
 
 class SitemapIndexView(TemplateView, TemplateResponseMixin):
@@ -128,9 +129,7 @@ class SitemapCourtView(TemplateView, TemplateResponseMixin):
             context["items"] = [
                 {
                     "url": self.request.build_absolute_uri("/" + result.slug),
-                    "lastmod": datetime.datetime.strptime(result.transformation_date, "%Y-%m-%dT%H:%M:%S")
-                    .date()
-                    .isoformat(),
+                    "lastmod": as_utc_datetime(result.transformation_date).date().isoformat(),
                 }
                 for result in search_response.results
             ]

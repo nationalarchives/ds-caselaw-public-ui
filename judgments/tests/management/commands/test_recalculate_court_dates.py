@@ -7,6 +7,7 @@ from django.test import TestCase
 from ds_caselaw_utils.courts import CourtParam
 
 from judgments.management.commands.recalculate_court_dates import Command
+from judgments.utils.timezones import london_today
 
 
 class TestRecalculateCourtDates(TestCase):
@@ -91,7 +92,7 @@ class TestRecalculateCourtDates(TestCase):
         court.canonical_param = "test-court"
         court.end_year = 2022
 
-        future_year = datetime.date.today().year + 1
+        future_year = london_today().year + 1
         mock_doc = MagicMock()
         mock_doc.date = datetime.date(future_year, 1, 1)
         mock_doc.uri = "/judgment/future"

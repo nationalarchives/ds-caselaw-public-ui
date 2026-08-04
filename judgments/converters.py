@@ -31,7 +31,7 @@ class DateConverter:
     regex = "([0-9]{4})-([0-9]{2})-([0-9]{2})"
 
     def to_python(self, value):
-        return datetime.datetime.strptime(value, "%Y-%m-%d")
+        return datetime.datetime.strptime(value, "%Y-%m-%d").replace(tzinfo=datetime.timezone.utc)
 
     def to_url(self, value):
         if value is None:

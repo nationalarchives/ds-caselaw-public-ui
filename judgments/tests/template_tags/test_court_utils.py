@@ -16,6 +16,7 @@ from judgments.templatetags.court_utils import (
     get_last_judgment_year,
     is_court_ended,
 )
+from judgments.utils.timezones import london_today
 
 
 class TestGetCourtName(TestCase):
@@ -74,11 +75,11 @@ class TestGetLastJudgmentYear(TestCase):
         result = get_last_judgment_year()
         assert result == 2022
 
-    @patch("judgments.templatetags.court_utils.date")
+    @patch("judgments.templatetags.court_utils.london_today")
     @patch("judgments.templatetags.court_utils.logging.warning")
     @patch("judgments.templatetags.court_utils.CourtDates.max_year", return_value=None)
-    def test_fallback_to_today_year(self, mock_max_year, mock_logging, mock_date):
-        mock_date.today.return_value = date(2024, 1, 1)
+    def test_fallback_to_today_year(self, mock_max_year, mock_logging, mock_london_today):
+        mock_london_today.return_value = date(2024, 1, 1)
         result = get_last_judgment_year()
         assert result == 2024
         mock_logging.assert_called_once_with("CourtDates table is empty! using fallback max_year.")
@@ -178,13 +179,13 @@ class TestGetCourtJudgmentsCount(TestCase):
 class TestIsCourtEnded(TestCase):
     def test_court_is_ended(self):
         mock_court = Mock()
-        mock_court.end_year = 2025
+        mock_court.end_year = london_today().year - 1
 
         assert is_court_ended(mock_court)
 
     def test_court_is_not_ended(self):
 
         mock_court = Mock()
-        mock_court.end_year = date.today().year
+        mock_court.end_year = london_today().year
 
         assert not is_court_ended(mock_court)
