@@ -36,8 +36,6 @@ export function initStatefulDetails(details, options = {}) {
     const isPreferencesSet =
         getCookie(cookieName, cookieString ?? document.cookie) === "true";
 
-    console.log({ isPreferencesSet });
-
     let hideTimerId = null;
     let userHasInteracted = false;
 
