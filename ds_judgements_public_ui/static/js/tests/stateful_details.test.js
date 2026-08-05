@@ -1,5 +1,9 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { getCookie, initStatefulDetails } from "../src/stateful_details";
+import {
+    getCookie,
+    initStatefulDetails,
+    COOKIE_NAME,
+} from "../src/stateful_details";
 
 describe("getCookie", () => {
     it("returns null when the cookie string is empty", () => {
@@ -48,7 +52,7 @@ describe("initStatefulDetails", () => {
 
         const details = document.querySelector("[data-stateful-details]");
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
         });
 
         expect(details.open).toBe(true);
@@ -64,7 +68,7 @@ describe("initStatefulDetails", () => {
 
         const details = document.querySelector("[data-stateful-details]");
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=true",
+            cookieString: `${COOKIE_NAME}=true`,
         });
 
         expect(details.open).toBe(false);
@@ -105,7 +109,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitleAfterMs: 10,
         });
 
@@ -136,7 +140,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitleAfterMs: 50,
         });
 
@@ -173,7 +177,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitleAfterMs: 100,
         });
 
@@ -210,7 +214,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=true",
+            cookieString: `${COOKIE_NAME}=true`,
             hideClosedTitleAfterMs: 10,
         });
 
@@ -244,7 +248,7 @@ describe("initStatefulDetails", () => {
         );
 
         const cleanup = initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitlehideAfterMs: 100,
         });
 
