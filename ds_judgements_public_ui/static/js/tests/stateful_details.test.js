@@ -197,7 +197,7 @@ describe("initStatefulDetails", () => {
         jest.useRealTimers();
     });
 
-    it("does not show the closed title when cookie is false (even after interaction)", () => {
+    it("does not show the closed title when cookie is true (even after interaction)", () => {
         jest.useFakeTimers();
 
         document.body.innerHTML = `
