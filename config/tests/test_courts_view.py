@@ -10,7 +10,16 @@ from judgments.models.court_dates import CourtDates
 
 
 class TestCourtsTribunalsListView(TestCase):
-    def test_decorate_court_group_adds_dates_and_document_counts(self):
+    @patch("config.views.courts.get_court_judgments_count")
+    def test_decorate_court_group_adds_dates_and_document_counts(self, mock_get_court_judgments_count):
+
+        def judgment_count(court):
+            if court.canonical_param == "court-with-data":
+                return 123
+            else:
+                return 0
+
+        mock_get_court_judgments_count.side_effect = judgment_count
         CourtDates.objects.create(param="court-with-data", start_year=2020, end_year=2024)
 
         court_with_data = SimpleNamespace(canonical_param="court-with-data", start_year=None, end_year=None)
@@ -19,7 +28,6 @@ class TestCourtsTribunalsListView(TestCase):
 
         decorated_group = CourtsTribunalsListView().decorate_court_group(
             group,
-            {"court-with-data": 123},
         )
 
         assert decorated_group == group
