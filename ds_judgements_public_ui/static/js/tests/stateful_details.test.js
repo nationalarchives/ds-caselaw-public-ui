@@ -42,7 +42,7 @@ describe("initStatefulDetails", () => {
         cleanup();
     });
 
-    it("sets details.open to true when dontShow cookie is not true", () => {
+    it("sets details.open to true when cookie is not true", () => {
         document.body.innerHTML = `
       <details data-stateful-details>
         <summary>Cookie notice</summary>
@@ -58,7 +58,7 @@ describe("initStatefulDetails", () => {
         expect(details.open).toBe(true);
     });
 
-    it("sets details.open to false when dontShow cookie is true", () => {
+    it("sets details.open to false when cookie is true", () => {
         document.body.innerHTML = `
       <details data-stateful-details>
         <summary>Cookie notice</summary>
@@ -197,7 +197,7 @@ describe("initStatefulDetails", () => {
         jest.useRealTimers();
     });
 
-    it("does not show the closed title when dontShow cookie is true (even after interaction)", () => {
+    it("does not show the closed title when cookie is false (even after interaction)", () => {
         jest.useFakeTimers();
 
         document.body.innerHTML = `

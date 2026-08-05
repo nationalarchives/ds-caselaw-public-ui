@@ -1,6 +1,6 @@
 const DETAILS_SELECTOR = "[data-stateful-details]";
 const CLOSED_TITLE_SELECTOR = "[data-stateful-details-close-title]";
-const COOKIE_NAME = "cookie_preferences_set";
+export const COOKIE_NAME = "cookie_preferences_set";
 const HIDE_CLOSED_TITLE_AFTER_MS = 6000;
 
 export function getCookie(name, cookieString = document.cookie) {
@@ -33,7 +33,7 @@ export function initStatefulDetails(details, options = {}) {
     const closedTitle = details.querySelector(closedTitleSelector);
     const summary = details.querySelector("summary");
 
-    const isPreferencesSet =
+    const isCookieSet =
         getCookie(cookieName, cookieString ?? document.cookie) === "true";
 
     let hideTimerId = null;
@@ -53,7 +53,7 @@ export function initStatefulDetails(details, options = {}) {
 
     if (closedTitle) closedTitle.hidden = true;
 
-    details.open = !isPreferencesSet;
+    details.open = !isCookieSet;
 
     const onToggle = () => {
         if (!userHasInteracted) return;
@@ -63,7 +63,7 @@ export function initStatefulDetails(details, options = {}) {
             window.clearTimeout(hideTimerId);
             hideTimerId = null;
         } else {
-            if (!isPreferencesSet) showClosedTitle();
+            if (!isCookieSet) showClosedTitle();
         }
     };
 
