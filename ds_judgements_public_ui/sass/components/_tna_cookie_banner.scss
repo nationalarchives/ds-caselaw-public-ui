@@ -18,8 +18,13 @@
 
 .tna-button-group {
   display: flex;
+  flex-direction: column;
   gap: $space-4;
-  align-items: center;
+
+  @media (min-width: $grid-breakpoint-medium) {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .tna-button--plain {
