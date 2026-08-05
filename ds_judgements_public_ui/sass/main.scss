@@ -86,8 +86,6 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "components/checkboxes";
 @import "components/pagination";
 @import "components/banner";
-@import "components/cookie_consent";
-@import "components/ds_cookie_consent";
 @import "components/footer";
 @import "components/list";
 @import "components/ojl_logo";
@@ -95,6 +93,7 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "components/grid";
 @import "components/tabs";
 @import "components/navigation";
+@import "components/tna_cookie_banner";
 
 // Components Vendor overrides
 
@@ -109,11 +108,6 @@ $govuk-focus-colour: colour-var("focus-outline");
 @import "includes/service_introduction";
 @import "includes/standard_text_template";
 @import "includes/info_card";
-
-// Cookies
-@import "includes/cookie_banner_overrides";
-@import "includes/cookie_consent/cookie-consent";
-@import "includes/cookie_consent/ds-cookie-consent";
 
 // Navigation
 @import "includes/document_navigation_links";

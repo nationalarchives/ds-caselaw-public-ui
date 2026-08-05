@@ -1,5 +1,9 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import { getCookie, initStatefulDetails } from "../src/stateful_details";
+import {
+    getCookie,
+    initStatefulDetails,
+    COOKIE_NAME,
+} from "../src/stateful_details";
 
 describe("getCookie", () => {
     it("returns null when the cookie string is empty", () => {
@@ -38,7 +42,7 @@ describe("initStatefulDetails", () => {
         cleanup();
     });
 
-    it("sets details.open to true when dontShow cookie is not true", () => {
+    it("sets details.open to true when cookie is not true", () => {
         document.body.innerHTML = `
       <details data-stateful-details>
         <summary>Cookie notice</summary>
@@ -48,13 +52,13 @@ describe("initStatefulDetails", () => {
 
         const details = document.querySelector("[data-stateful-details]");
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
         });
 
         expect(details.open).toBe(true);
     });
 
-    it("sets details.open to false when dontShow cookie is true", () => {
+    it("sets details.open to false when cookie is true", () => {
         document.body.innerHTML = `
       <details data-stateful-details>
         <summary>Cookie notice</summary>
@@ -64,7 +68,7 @@ describe("initStatefulDetails", () => {
 
         const details = document.querySelector("[data-stateful-details]");
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=true",
+            cookieString: `${COOKIE_NAME}=true`,
         });
 
         expect(details.open).toBe(false);
@@ -105,7 +109,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitleAfterMs: 10,
         });
 
@@ -136,7 +140,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitleAfterMs: 50,
         });
 
@@ -173,7 +177,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitleAfterMs: 100,
         });
 
@@ -193,7 +197,7 @@ describe("initStatefulDetails", () => {
         jest.useRealTimers();
     });
 
-    it("does not show the closed title when dontShow cookie is true (even after interaction)", () => {
+    it("does not show the closed title when cookie is true (even after interaction)", () => {
         jest.useFakeTimers();
 
         document.body.innerHTML = `
@@ -210,7 +214,7 @@ describe("initStatefulDetails", () => {
         );
 
         initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=true",
+            cookieString: `${COOKIE_NAME}=true`,
             hideClosedTitleAfterMs: 10,
         });
 
@@ -244,7 +248,7 @@ describe("initStatefulDetails", () => {
         );
 
         const cleanup = initStatefulDetails(details, {
-            cookieString: "dontShowCookieNotice=false",
+            cookieString: `${COOKIE_NAME}=false`,
             hideClosedTitlehideAfterMs: 100,
         });
 

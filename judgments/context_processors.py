@@ -8,9 +8,7 @@ from config.settings.base import env
 
 def cookie_consent(request):
     showGTM = False
-    dontShowCookieNotice = False
     cookie_policy = request.COOKIES.get("cookies_policy", None)
-    dont_show_cookie_notice = request.COOKIES.get("dontShowCookieNotice", None)
 
     if cookie_policy:
         decoder = json.JSONDecoder()
@@ -20,10 +18,7 @@ def cookie_consent(request):
             raise SuspiciousOperation("Cookie tampered with: not valid JSON")
         showGTM = decoded["usage"] or False
 
-    if dont_show_cookie_notice == "true":
-        dontShowCookieNotice = True
-
-    return {"showGTM": showGTM, "dontShowCookieNotice": dontShowCookieNotice}
+    return {"showGTM": showGTM}
 
 
 def environment(request):

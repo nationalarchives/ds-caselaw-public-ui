@@ -19,6 +19,9 @@ crispy-forms-gds==2.0.1
 defusedxml==0.7.1
 Jinja2>=3.0
 govuk-frontend-jinja>=3.4.0
+tna-frontend-jinja>=1.1.0
+
+
 
 # Type stubs
 mypy-boto3-s3==1.43.50

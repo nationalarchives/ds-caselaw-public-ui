@@ -5,8 +5,6 @@ module.exports = {
     devtool: false,
     entry: {
         app: "./ds_judgements_public_ui/static/js/src/app.js",
-        cookie_consent:
-            "./ds_judgements_public_ui/static/js/cookie_consent/src/ds-cookie-consent.js",
         document_navigation:
             "./ds_judgements_public_ui/static/js/src/document_navigation.js",
         document_search_links:
