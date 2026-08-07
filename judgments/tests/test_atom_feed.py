@@ -283,3 +283,79 @@ class TestAtomFeed(TestCase):
 
         assert response.status_code == 200
         assert 'Latest documents for "obscure-search-query", sorted by relevance' in decoded_response
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_minimum_availability_metadata(self, mock_api_client, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        self.client.get("/atom.xml?minimum_availability=metadata")
+
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="",
+                court="",
+                judge=None,
+                party=None,
+                date_from="1085-01-01",
+                date_to=None,
+                order="-date",
+                page=1,
+                page_size=50,
+                only_with_html_representation=False,
+            ),
+        )
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_minimum_availability_document(self, mock_api_client, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        self.client.get("/atom.xml?minimum_availability=document")
+
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="",
+                court="",
+                judge=None,
+                party=None,
+                date_from="1085-01-01",
+                date_to=None,
+                order="-date",
+                page=1,
+                page_size=50,
+                only_with_html_representation=False,
+            ),
+        )
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_minimum_availability_full_text(self, mock_api_client, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        self.client.get("/atom.xml?minimum_availability=full-text")
+
+        mock_search_judgments_and_parse_response.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="",
+                court="",
+                judge=None,
+                party=None,
+                date_from="1085-01-01",
+                date_to=None,
+                order="-date",
+                page=1,
+                page_size=50,
+                only_with_html_representation=True,
+            ),
+        )
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    def test_minimum_availability_bad_value(self, mock_search_judgments_and_parse_response):
+        response = self.client.get("/atom.xml?minimum_availability=invalid")
+
+        assert response.status_code == 400
+        mock_search_judgments_and_parse_response.assert_not_called()
