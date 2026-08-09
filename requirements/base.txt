@@ -24,5 +24,5 @@ tna-frontend-jinja>=1.1.0
 
 
 # Type stubs
-mypy-boto3-s3==1.43.50
+mypy-boto3-s3==1.43.66
 mypy-boto3-sns==1.43.23
