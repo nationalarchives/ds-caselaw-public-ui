@@ -24,7 +24,6 @@ from judgments.templatetags import (
     document_utils,
     errors,
     link_tags,
-    navigation_tags,
     query_filters,
     search_results_filters,
 )
@@ -106,7 +105,6 @@ def environment(**options):
     )
     env.globals.update(
         {
-            "navigation_item_class": with_context(navigation_tags.navigation_item_class),
             "static": staticfiles_storage.url,
             "trackable_link": with_context(link_tags.trackable_link),
             "trackable_class_name": link_tags.trackable_class_name,
@@ -126,9 +124,6 @@ def environment(**options):
     env.filters["intcomma"] = intcomma
     env.filters["slugify"] = slugify
     env.filters["show_matches"] = search_results_filters.show_matches
-    env.filters["is_exact_ncn_match"] = search_results_filters.is_exact_ncn_match
-    env.filters["is_exact_title_match"] = search_results_filters.is_exact_title_match
-    env.filters["is_exact_match"] = search_results_filters.is_exact_match
     env.filters["remove_query"] = query_filters.remove_query
     env.filters["remove_court"] = query_filters.remove_court
     env.filters["replace_integer_with_day"] = query_filters.replace_integer_with_day

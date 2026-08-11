@@ -78,18 +78,6 @@ def remove_court(query_params, court):
 
 
 @register.filter
-def replace_year_in_query(query_params, year):
-    params = dict(query_params)
-    params.pop("from_date_0", None)
-    params.pop("from_date_1", None)
-    params.pop("to_date_0", None)
-    params.pop("to_date_1", None)
-    params["from_date_2"] = year
-    params["to_date_2"] = year
-    return make_query_string(params)
-
-
-@register.filter
 def replace_integer_with_day(day):
     if day < 10:
         return f"0{day}"

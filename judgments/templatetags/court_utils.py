@@ -1,5 +1,3 @@
-import logging
-
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
@@ -13,8 +11,6 @@ from requests.exceptions import RequestException
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
 from judgments.utils.timezones import london_today
-
-logger = logging.getLogger(__name__)
 
 register = template.Library()
 
@@ -31,26 +27,6 @@ def get_court_name(court):
         return court_object.name
     except CourtNotFoundException:
         return ""
-
-
-@register.simple_tag
-def get_first_judgment_year():
-    if min_year := CourtDates.min_year():
-        return min_year
-    else:
-        logger.warning("CourtDates table is empty! using fallback min_year.")
-        return min(court.start_year for court in all_courts.get_selectable() if court.start_year)
-
-
-@register.simple_tag
-def get_last_judgment_year() -> int:
-    if max_year := CourtDates.max_year():
-        return max_year
-    else:
-        logger.warning("CourtDates table is empty! using fallback max_year.")
-        # The dates in all_courts don't work as a fallback, as they can't
-        # be relied on to be up to date.
-        return london_today().year
 
 
 @register.filter
