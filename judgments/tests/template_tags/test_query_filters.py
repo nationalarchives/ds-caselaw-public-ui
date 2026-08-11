@@ -1,7 +1,14 @@
 import unittest
 from typing import Any
 
-from judgments.templatetags.query_filters import make_query_string, remove_court, remove_query
+from judgments.templatetags.query_filters import (
+    make_query_string,
+    removable_filter_param,
+    remove_court,
+    remove_query,
+    replace_integer_with_day,
+    replace_integer_with_month,
+)
 
 
 class TestQueryFilters(unittest.TestCase):
@@ -90,3 +97,12 @@ class TestQueryFilters(unittest.TestCase):
         query_string = make_query_string(query_params)
 
         self.assertEqual(query_string, "")
+
+    def test_removable_filter_param(self):
+        self.assertTrue(removable_filter_param("judge"))
+
+    def test_replace_integer_with_day(self):
+        self.assertEqual(replace_integer_with_day(3), "03")
+
+    def test_replace_integer_with_month(self):
+        self.assertEqual(replace_integer_with_month(9), "Sep")
