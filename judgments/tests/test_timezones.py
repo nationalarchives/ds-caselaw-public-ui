@@ -6,7 +6,7 @@ from django.conf import settings
 from django.test import SimpleTestCase
 
 from judgments.feeds import JudgmentsFeed
-from judgments.jinja import formatdate
+from judgments.templatetags.date_utils import formatdate
 from judgments.utils.timezones import LONDON, UTC, as_utc_datetime, london_today, utc_now
 
 # UK DST transitions in 2025:
