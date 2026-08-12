@@ -6,6 +6,8 @@ from caselawclient.client_helpers.search_helpers import (
 )
 from caselawclient.search_parameters import SearchParameters
 from django.http import Http404
+from django.template import TemplateDoesNotExist
+from django.template.loader import get_template
 from django.urls import reverse
 from django.utils.functional import cached_property
 from ds_caselaw_utils import courts
@@ -97,6 +99,24 @@ class CourtOrTribunalView(TemplateViewWithContext):
 
             return []
 
+    def get_court_content_template(self, court):
+        template_name = f"content/courts/{court.canonical_param}.jinja"
+
+        try:
+            get_template(template_name, using="jinja")
+            return template_name
+        except TemplateDoesNotExist:
+            logger.warning(
+                "Court content template missing; using default court content",
+                extra={
+                    "court_param": court.canonical_param,
+                    "court_name": court.name,
+                    "missing_template": template_name,
+                    "fallback_template": "content/courts/default.jinja",
+                },
+            )
+            return "content/courts/default.jinja"
+
     def get_context_data(self, **kwargs):
 
         court = self.court
@@ -113,6 +133,7 @@ class CourtOrTribunalView(TemplateViewWithContext):
         context["documents"] = search_response.results
         context["feedback_survey_type"] = f"court_or_tribunal_{court.canonical_param}"
         context["court"] = court
+        context["court_content_template"] = self.get_court_content_template(court)
         context["active_navigation_endpoint"] = "search_and_browse"
         context["gtm_data_layer"] = build_gtm_data_layer(
             page_type=GtmPageType.COURT,
