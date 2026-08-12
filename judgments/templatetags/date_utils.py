@@ -1,13 +1,8 @@
 from datetime import datetime
 
-from django import template
-
 from judgments.utils.timezones import LONDON
 
-register = template.Library()
 
-
-@register.filter
 def formatdate(value, format="%d %b %Y"):
     if value is None:
         return ""

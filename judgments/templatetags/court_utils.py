@@ -2,7 +2,6 @@ from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
 from caselawclient.search_parameters import SearchParameters
-from django import template
 from django.utils.safestring import mark_safe
 from ds_caselaw_utils.courts import Court, CourtNotFoundException, CourtParam
 from ds_caselaw_utils.courts import courts as all_courts
@@ -12,10 +11,7 @@ from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
 from judgments.utils.timezones import london_today
 
-register = template.Library()
 
-
-@register.filter
 def get_court_name(court):
     try:
         court_object = all_courts.get_by_param(court)
@@ -29,7 +25,6 @@ def get_court_name(court):
         return ""
 
 
-@register.filter
 def get_court_date_range(court_param: CourtParam) -> str:
     start_year: int | None
     end_year: int | None
@@ -60,7 +55,6 @@ def get_court_start_year(court_param: CourtParam) -> int | None:
             return None
 
 
-@register.filter
 def get_court_judgments_count(court: Court) -> int:
     try:
         return int(
