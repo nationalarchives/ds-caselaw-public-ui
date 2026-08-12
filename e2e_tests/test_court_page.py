@@ -27,6 +27,7 @@ courts_and_tribunals = [
     "ukftt/estate",
     "ukftt/hesc",
     "ukftt/credit",
+    "ukftt/iac",
     "ftt/pc",
     "ftt/phl",
     "ftt/transport",
