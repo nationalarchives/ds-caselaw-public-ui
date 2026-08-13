@@ -10,6 +10,7 @@ from judgments.converters import (
     ComponentConverter,
     CourtConverter,
     DateConverter,
+    DocumentIdentifierSlugConverter,
     DocumentUriConverter,
     FileFormatConverter,
     SubdivisionConverter,
@@ -182,7 +183,7 @@ class TestDocumentUriConverter(TestCase):
         self.converter = DocumentUriConverter()
 
     def test_regex_matches_valid_document_uris(self):
-        valid_uris = ["ewca/civ/2025/abc", "ewca/civ/2025/a-b-c", "ewca/civ/2025/a.b.c"]
+        valid_uris = ["ewca/civ/2025/abc", "ewca/civ/2025/a-b-c", "d-a1b2c3"]
         for uri in valid_uris:
             self.assertIsNotNone(re.fullmatch(self.converter.regex, uri))
 
@@ -192,6 +193,8 @@ class TestDocumentUriConverter(TestCase):
             "spaces are bad",
             "spec!al&ch@racters",
             "with-a-hash#",
+            "ewca/civ/2025/a.b.c",
+            "tna.abcd2345",
             "",
         ]
         for uri in invalid_uris:
@@ -202,6 +205,38 @@ class TestDocumentUriConverter(TestCase):
 
     def test_to_url_returns_value_unchanged(self):
         self.assertEqual(self.converter.to_url("ewca/civ/2025/abc"), "ewca/civ/2025/abc")
+
+
+class TestDocumentIdentifierSlugConverter(TestCase):
+    def setUp(self):
+        self.converter = DocumentIdentifierSlugConverter()
+
+    def test_regex_matches_valid_slugs(self):
+        valid_slugs = [
+            "ewca/civ/2025/abc",
+            "ewca/civ/2025/a-b-c",
+            "ewca/civ/2025/a.b.c",
+            "tna.abcd2345",
+        ]
+        for slug in valid_slugs:
+            self.assertIsNotNone(re.fullmatch(self.converter.regex, slug))
+
+    def test_regex_rejects_invalid_slugs(self):
+        invalid_slugs = [
+            "UPPERCASETOOLOUD",
+            "spaces are bad",
+            "spec!al&ch@racters",
+            "with-a-hash#",
+            "",
+        ]
+        for slug in invalid_slugs:
+            self.assertIsNone(re.fullmatch(self.converter.regex, slug))
+
+    def test_to_python_returns_value_unchanged(self):
+        self.assertEqual(self.converter.to_python("tna.abcd2345"), "tna.abcd2345")
+
+    def test_to_url_returns_value_unchanged(self):
+        self.assertEqual(self.converter.to_url("tna.abcd2345"), "tna.abcd2345")
 
 
 class TestComponentConverter(TestCase):
