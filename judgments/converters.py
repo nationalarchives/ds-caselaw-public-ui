@@ -71,6 +71,20 @@ class FileFormatConverter:
 
 
 class DocumentUriConverter:
+    """Path converter for document URIs under `/id/` (no full stops)."""
+
+    regex = r"[a-z0-9/-]+"
+
+    def to_python(self, value):
+        return value
+
+    def to_url(self, value):
+        return value
+
+
+class DocumentIdentifierSlugConverter:
+    """Path converter for identifier slug URLs at the site root (may contain full stops)."""
+
     regex = r"[a-z0-9./-]+"
 
     def to_python(self, value):

@@ -3,6 +3,7 @@ from unittest.mock import patch
 from caselawclient.factories import JudgmentFactory
 from caselawclient.models.identifiers.neutral_citation import NeutralCitationNumber
 from django.test import RequestFactory
+from django.urls import resolve
 from fixtures import TestCaseWithMockAPI
 
 from judgments.resolvers.id_dispatch import representation_kind_from_accept
@@ -116,3 +117,10 @@ class TestIdDispatchEngine(TestCaseWithMockAPI):
         self.assertEqual(response.status_code, 406)
         self.assertIsNone(response.headers.get("Location"))
         self.assertEqual(response.headers.get("Vary"), "Accept")
+
+    def test_representation_suffix_does_not_match_id_route(self):
+        """Dots are invalid in document URIs, so /id/.../data.xml must not hit IdDispatchEngine."""
+        match = resolve("/id/ewhc/ch/2024/1714/data.xml")
+        self.assertEqual(match.url_name, "detail")
+        self.assertEqual(match.kwargs["document_uri"], "id/ewhc/ch/2024/1714")
+        self.assertEqual(match.kwargs["file_format"], "data.xml")

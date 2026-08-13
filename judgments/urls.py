@@ -16,6 +16,7 @@ register_converter(converters.DateConverter, "date")
 register_converter(converters.CourtConverter, "court")
 register_converter(converters.SubdivisionConverter, "subdivision")
 register_converter(converters.DocumentUriConverter, "document_uri")
+register_converter(converters.DocumentIdentifierSlugConverter, "document_identifier_slug")
 register_converter(converters.FileFormatConverter, "file_format")
 register_converter(converters.ComponentConverter, "component")
 
@@ -68,12 +69,12 @@ urlpatterns = [
         name="press_summary_1",
     ),
     path(
-        "<document_uri:document_uri>/<file_format:file_format>",
+        "<document_identifier_slug:document_uri>/<file_format:file_format>",
         DocumentResolverEngine.as_view(),
         name="detail",
     ),
     path(
-        "<document_uri:document_uri>",
+        "<document_identifier_slug:document_uri>",
         DocumentResolverEngine.as_view(),
         name="detail",
     ),
