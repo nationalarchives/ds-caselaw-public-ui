@@ -3,6 +3,11 @@ ARG PYTHON_VERSION=3.14-slim-bookworm@sha256:23c59390fc717bf09f9336908199a0ae75d
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} AS python
 
+# renovate: suite=bookworm depName=libpq5
+ENV LIBPQ5_VERSION="15.18-0+deb12u1"
+# renovate: suite=bookworm depName=libpq-dev
+ENV LIBPQ_DEV_VERSION="15.18-0+deb12u1"
+
 # Python build stage (shared by both local and production)
 FROM python AS python-build-stage
 
@@ -13,7 +18,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential=12.9 \
   # psycopg2 dependencies
-  libpq-dev=15.18-0+deb12u1\
+  libpq5=${LIBPQ5_VERSION} \
+  libpq-dev=${LIBPQ_DEV_VERSION} \
   # WeasyPrint dependencies
   weasyprint=57.2-1 \
   python3-cffi=1.15.1-5 \
@@ -43,7 +49,8 @@ WORKDIR ${APP_HOME}
 # Install runtime system dependencies (shared by both local and production)
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
-  libpq-dev=15.18-0+deb12u1\
+  libpq5=${LIBPQ5_VERSION} \
+  libpq-dev=${LIBPQ_DEV_VERSION} \
   # WeasyPrint dependencies
   weasyprint=57.2-1 \
   python3-cffi=1.15.1-5 \

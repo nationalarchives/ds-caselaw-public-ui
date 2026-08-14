@@ -6,5 +6,17 @@
       "/requirements/.*\\.txt/",
       "/e2e_tests/requirements\\.txt"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["deb"],
+      "matchPackageNames": ["libpq5", "libpq-dev"],
+      "groupName": "libpq packages",
+      "groupSlug": "libpq-group",
+      "registryUrls": [
+        "https://deb.debian.org/debian?suite=bookworm&components=main,contrib,non-free&binaryArch=amd64",
+        "https://security.debian.org/debian-security?suite=bookworm-security&components=main&binaryArch=amd64"
+      ]
+    }
+  ]
 }
