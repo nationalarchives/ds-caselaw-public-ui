@@ -1,0 +1,88 @@
+{% from "components/link.jinja" import link %}
+{% from "components/list.jinja" import list_item %}
+{% from "components/heading.jinja" import heading %}
+{% macro court_noun_content() %}
+  tribunal
+{% endmacro %}
+{% macro contents_navigation() %}
+  {% call list_item() %}
+    {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#recent-judgments", content="Recent judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#search-this-tribunal", content="Search this tribunal") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#understanding-judgments", content="Understanding " ~ court.name ~ " judgments") }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#about", content="About " ~ court.name) }}
+  {% endcall %}
+  {% call list_item() %}
+    {{ link(href="#questions-about-judgments-from-this-tribunal", content="Questions about judgments from this tribunal") }}
+  {% endcall %}
+{% endmacro %}
+{% macro coverage_content() %}
+  {{ heading(content="Coverage on Find Case Law", tag="h2") }}
+  {% set court_date_range = param|get_court_date_range %}
+  {% set court_start_year = param|get_court_start_year %}
+  {% set court_documents_count = court|get_court_judgments_count|intcomma %}
+  <p>
+    <strong>Date range</strong> — {{ court_date_range }}
+  </p>
+  <p>
+    <strong>What’s included</strong> — We currently hold {{ court_documents_count }}
+    documents from {{ court_date_range }}.
+  </p>
+  <p>
+    <strong>Transfer method</strong> — This tribunal began regularly transferring
+    decisions to The National Archives in 2026. Please note that only a representative
+    grouping of decisions of the First-tier Tribunal (Immigration and Asylum Chamber)
+    are published on Find Case Law as part of a short-term pilot.
+  </p>
+{% endmacro %}
+{% macro understanding_content() %}
+  {{ heading(content="Understanding " ~ court.name ~ " judgments", tag="h2", id="understanding-judgments") }}
+  <p>
+    Each chamber of the First-tier Tribunal is headed by a Chamber President who is
+    appointed to the role by the Senior President of Tribunals.
+  </p>
+{% endmacro %}
+{% macro description_content(start_year=None) %}
+  <p>
+    The Immigration and Asylum Chamber is responsible for handling appeals against some
+    decisions made by the Home Office relating to:
+  </p>
+  <ul>
+    <li>permission to stay in the UK</li>
+    <li>deportation from the UK</li>
+    <li>entry clearance to the UK</li>
+    <li>human rights applications</li>
+  </ul>
+  <p>
+    This tribunal began to regularly transfer judgments to The National Archives in
+    2026.
+  </p>
+  <p>
+    Please note that only a representative grouping of decisions of the First-tier
+    Tribunal (Immigration and Asylum Chamber) are published on Find Case Law as part of
+    a short-term pilot.
+  </p>
+  <p>
+    You can read more about it on
+    <a href='https://www.gov.uk/courts-tribunals/first-tier-tribunal-immigration-and-asylum'>
+      the Immigration and Asylum Chamber page on the HM Courts and Tribunals Service
+      website</a>.
+    </p>
+  {% endmacro %}
+  {% macro about_content() %}
+    {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+    <p>
+      The First-Tier Tribunal Immigration and Asylum Chamber is one of the seven Chambers
+      of the First-tier Tribunal. It deals with appeals for some decisions made by the
+      Home Office relating to permission to stay, deportation from and entry clearance to
+      the United Kingdom.
+    </p>
+  {% endmacro %}
