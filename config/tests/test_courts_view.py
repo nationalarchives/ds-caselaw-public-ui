@@ -1,6 +1,7 @@
 from types import SimpleNamespace
 from unittest.mock import patch
 
+from django.template import TemplateDoesNotExist
 from django.template.response import TemplateResponse
 from django.test import RequestFactory, TestCase
 from ds_caselaw_utils.courts import CourtNotFoundException
@@ -65,3 +66,35 @@ class TestCourtOrTribunalView(TestCase):
             "court_code": "EAT",
             "court_type": "tribunal",
         }
+
+    @patch("config.views.courts.get_template")
+    def test_get_court_content_template_returns_court_template_when_it_exists(self, mock_get_template):
+        court = SimpleNamespace(canonical_param="uksc", name="Supreme Court")
+
+        result = CourtOrTribunalView().get_court_content_template(court)
+
+        assert result == "content/courts/uksc.jinja"
+        mock_get_template.assert_called_once_with("content/courts/uksc.jinja", using="jinja")
+
+    @patch("config.views.courts.logger.warning")
+    @patch("config.views.courts.get_template", side_effect=TemplateDoesNotExist("missing"))
+    def test_get_court_content_template_logs_warning_and_returns_default_when_missing(
+        self,
+        mock_get_template,
+        mock_warning,
+    ):
+        court = SimpleNamespace(canonical_param="missing-court", name="Missing Court")
+
+        result = CourtOrTribunalView().get_court_content_template(court)
+
+        assert result == "content/courts/default.jinja"
+        mock_get_template.assert_called_once_with("content/courts/missing-court.jinja", using="jinja")
+        mock_warning.assert_called_once_with(
+            "Court content template missing; using default court content",
+            extra={
+                "court_param": "missing-court",
+                "court_name": "Missing Court",
+                "missing_template": "content/courts/missing-court.jinja",
+                "fallback_template": "content/courts/default.jinja",
+            },
+        )

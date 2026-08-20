@@ -7,11 +7,7 @@
 {% from "components/list.jinja" import list %}
 {% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
-{% if template_exists("content/courts/" ~ court.canonical_param ~ ".jinja") %}
-  {% from "content/courts/" ~ court.canonical_param ~ ".jinja" import description_content, understanding_content, coverage_content, court_noun_content, about_content, contents_navigation with context %}
-{% else %}
-  {% from "content/courts/default.jinja" import description_content, understanding_content, coverage_content, court_noun_content, about_content, contents_navigation with context %}
-{% endif %}
+{% from court_content_template import description_content, understanding_content, coverage_content, court_noun_content, about_content, contents_navigation with context %}
 {% macro website_link(court=None, label=None) %}
   {% if court.link %}
     {{ link(content=label or (court.name ~ " website") , href=court.link, attrs={"target": "_blank"}) }}

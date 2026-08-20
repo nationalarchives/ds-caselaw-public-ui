@@ -5,8 +5,6 @@ from functools import wraps
 from crispy_forms.templatetags.crispy_forms_filters import as_crispy_form
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.template import TemplateDoesNotExist
-from django.template.loader import get_template
 from django.templatetags.l10n import unlocalize
 from django.urls import reverse
 from django.utils.html import json_script
@@ -78,14 +76,6 @@ def with_context(fn):
     return wrapped
 
 
-def template_exists(template_name: str) -> bool:
-    try:
-        get_template(template_name, using="jinja")
-        return True
-    except TemplateDoesNotExist:
-        return False
-
-
 def environment(**options):
     base_loader = options.get("loader")
     govuk_loader = PrefixLoader(
@@ -126,7 +116,6 @@ def environment(**options):
             "crispy": as_crispy_form,
             "unlocalize": unlocalize,
             "has_other_field": transactional_licence_utils.has_other_field,
-            "template_exists": template_exists,
             "get_subwidget_for_other_field": transactional_licence_utils.get_subwidget_for_other_field,
             "mailto_with_subject_href": transactional_licence_utils.mailto_with_subject_href,
             "component_class_names": component_class_names,
