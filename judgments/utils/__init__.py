@@ -1,6 +1,7 @@
 from .judgment_utils import get_document_download_filename, get_published_document_by_uri
 from .search_utils import (
     ALL_COURT_CODES,
+    court_of_record_search_params,
     get_minimum_warning_year,
     process_court_facets,
     process_year_facets,
@@ -33,6 +34,7 @@ __all__ = [
     "MAX_RESULTS_PER_PAGE",
     "api_client",
     "clamp",
+    "court_of_record_search_params",
     "formatted_document_uri",
     "get_document_by_uri",
     "get_document_download_filename",

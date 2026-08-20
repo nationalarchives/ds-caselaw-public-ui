@@ -57,7 +57,7 @@ class SearchResultsView(TemplateViewWithContext):
                 using="jinja",
             )
 
-        search_parameters: SearchParameters = search_request_to_parameters(request)
+        search_parameters: SearchParameters = search_request_to_parameters(request, default_to_courts_of_record=True)
         context = self._initialize_context(form)
 
         context.update(
