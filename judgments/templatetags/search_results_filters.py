@@ -15,4 +15,4 @@ def is_exact_ncn_match(result, query):
 
 
 def show_matches(result, query):
-    return result.matches and not is_exact_match(result, query)
+    return bool(result.matches) and not is_exact_match(result, query)

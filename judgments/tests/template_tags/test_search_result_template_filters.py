@@ -9,4 +9,4 @@ def test_show_matches_returns_true_when_result_has_matches_and_is_not_exact_matc
     result.neutral_citation = "[2025] UKSC 1"
     result.matches = ["Example highlighted match"]
 
-    assert show_matches(result, "different query")
+    assert show_matches(result, "different query") is True
