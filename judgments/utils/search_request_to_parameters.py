@@ -11,11 +11,15 @@ from judgments.forms import AdvancedSearchForm
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     clamp,
+    court_of_record_search_params,
 )
 from judgments.utils.utils import sanitise_input_to_integer
 
 
-def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
+def search_request_to_parameters(
+    request: HttpRequest,
+    default_to_courts_of_record: bool = False,
+) -> SearchParameters:
     """
     The advanced search view handles any searches made in the application
 
@@ -74,6 +78,12 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     }
     # Merge the courts and tribunals as they are treated as the same in MarkLogic.
     courts_and_tribunals = form.cleaned_data.get("court", []) + form.cleaned_data.get("tribunal", [])
+    if courts_and_tribunals:
+        court_search_params = ",".join(courts_and_tribunals)
+    elif default_to_courts_of_record:
+        court_search_params = court_of_record_search_params()
+    else:
+        court_search_params = ""
     # `SearchParameters` takes an optional string for dates
     if not to_date:
         to_date_as_search_param = None
@@ -83,7 +93,7 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     # Construct the search parameter object required for Marklogic query
     search_parameters: SearchParameters = SearchParameters(
         query=query_text,
-        court=",".join(courts_and_tribunals),
+        court=court_search_params,
         judge=form.cleaned_data.get("judge"),
         party=form.cleaned_data.get("party"),
         page=int(page),

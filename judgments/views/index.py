@@ -13,7 +13,7 @@ from django.views.generic import TemplateView
 from requests.exceptions import RequestException
 
 from judgments.forms import AdvancedSearchForm
-from judgments.utils import api_client
+from judgments.utils import api_client, court_of_record_search_params
 from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
 
 
@@ -23,7 +23,10 @@ def cached_recent_judgments(ttl_hash: int) -> SearchResponse:
     This is a wrapper for caching homepage search results in memory with a maximum TTL. https://stackoverflow.com/questions/31771286/python-in-memory-cache-with-time-to-live
     """
     del ttl_hash  # ttl_hash is used to fake cache expiry with time
-    return search_judgments_and_parse_response(api_client, SearchParameters(order="-date", page_size=6))
+    return search_judgments_and_parse_response(
+        api_client,
+        SearchParameters(court=court_of_record_search_params(), order="-date", page_size=6),
+    )
 
 
 class IndexView(TemplateView):

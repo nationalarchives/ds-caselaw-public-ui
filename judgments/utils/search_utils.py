@@ -10,6 +10,14 @@ ALL_LISTABLE_COURT_NAMES = [court.name for court in all_courts.get_listable_cour
 ALL_LISTABLE_TRIBUNAL_NAMES = [tribunal.name for tribunal in all_courts.get_listable_tribunals()]
 
 
+def court_of_record_search_params() -> str:
+    return ",".join(
+        str(court.canonical_param)
+        for court in all_courts.get_all()
+        if court.is_court_of_record and court.canonical_param
+    )
+
+
 def _valid_years():
     """
     Generate a list of valid years as strings.
