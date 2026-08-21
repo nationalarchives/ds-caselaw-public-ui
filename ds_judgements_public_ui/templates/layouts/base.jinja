@@ -12,7 +12,7 @@
 {% from "components/footer.jinja" import footer, footer_row, footer_item, footer_link, footer_item_spacer with context %}
 {% from "components/cookie-banner/macro.html" import tnaCookieBanner %}
 <!DOCTYPE html>
-<html lang="en-gb">
+<html lang="en-gb" data-tna-cookies-domain="{{ cookie_domain }}">
   <head>
     <meta charset="utf-8" />
     {% block meta_description %}
@@ -50,10 +50,7 @@
     {% endfor %}
   </head>
   <body class="{% block body_class %}{% endblock body_class %}">
-    {{ tnaCookieBanner({
-      "serviceName": "Find Case Law",
-      "cookiesUrl": "https://www.nationalarchives.gov.uk/legal/cookies/"
-    }) }}
+    {{ tnaCookieBanner({"serviceName": "Find Case Law", "cookiesUrl": "https://www.nationalarchives.gov.uk/cookies/"}) }}
     <script>
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
@@ -112,7 +109,7 @@
                 {{ footer_link("Privacy notice", url=url("privacy_notice") ) }}
               {% endcall %}
               {% call list_item() %}
-                {{ footer_link("Cookies", url="https://www.nationalarchives.gov.uk/legal/cookies/") }}
+                {{ footer_link("Cookies", url="https://www.nationalarchives.gov.uk/cookies/") }}
               {% endcall %}
               {% call list_item() %}
                 {{ footer_link("Accessibility statement", url=url("accessibility_statement") ) }}
