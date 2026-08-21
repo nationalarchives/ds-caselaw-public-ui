@@ -1,9 +1,3 @@
-from django import template
-
-register = template.Library()
-
-
-@register.filter
 def error_messages(errors):
     """
     Templatetag to construct the error message for `page-notification-failure`.

@@ -1,10 +1,7 @@
-import logging
-
 from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
 from caselawclient.search_parameters import SearchParameters
-from django import template
 from django.utils.safestring import mark_safe
 from ds_caselaw_utils.courts import Court, CourtNotFoundException, CourtParam
 from ds_caselaw_utils.courts import courts as all_courts
@@ -14,12 +11,7 @@ from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
 from judgments.utils.timezones import london_today
 
-logger = logging.getLogger(__name__)
 
-register = template.Library()
-
-
-@register.filter
 def get_court_name(court):
     try:
         court_object = all_courts.get_by_param(court)
@@ -33,27 +25,6 @@ def get_court_name(court):
         return ""
 
 
-@register.simple_tag
-def get_first_judgment_year():
-    if min_year := CourtDates.min_year():
-        return min_year
-    else:
-        logger.warning("CourtDates table is empty! using fallback min_year.")
-        return min(court.start_year for court in all_courts.get_selectable() if court.start_year)
-
-
-@register.simple_tag
-def get_last_judgment_year() -> int:
-    if max_year := CourtDates.max_year():
-        return max_year
-    else:
-        logger.warning("CourtDates table is empty! using fallback max_year.")
-        # The dates in all_courts don't work as a fallback, as they can't
-        # be relied on to be up to date.
-        return london_today().year
-
-
-@register.filter
 def get_court_date_range(court_param: CourtParam) -> str:
     start_year: int | None
     end_year: int | None
@@ -84,7 +55,6 @@ def get_court_start_year(court_param: CourtParam) -> int | None:
             return None
 
 
-@register.filter
 def get_court_judgments_count(court: Court) -> int:
     try:
         return int(
