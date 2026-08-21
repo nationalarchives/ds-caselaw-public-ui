@@ -15,6 +15,8 @@ VIEWPORTS = {
     "mobile": {"width": 375, "height": 667},
 }
 
+FONT_LOAD_TIMEOUT_MS = int(os.getenv("E2E_FONT_LOAD_TIMEOUT_MS", "30000"))
+
 
 class AccessibilityWarning(UserWarning):
     pass
@@ -98,6 +100,60 @@ def compare_snapshot(actual_path, expected_path):
     return score >= 0.9, score
 
 
+def wait_for_fonts(page):
+    result = page.evaluate(
+        """async ({ timeout }) => {
+            const fontStatuses = (fontFaceSet) => Array.from(fontFaceSet).map((fontFace) => ({
+                family: fontFace.family,
+                status: fontFace.status,
+            }));
+
+            if (!document.fonts) {
+                return { supported: false, status: "unsupported", timedOut: false, fontStatuses: [] };
+            }
+
+            const timeoutPromise = new Promise((resolve) => {
+                window.setTimeout(() => {
+                    resolve({
+                        supported: true,
+                        status: document.fonts.status,
+                        timedOut: true,
+                        fontStatuses: fontStatuses(document.fonts),
+                    });
+                }, timeout);
+            });
+
+            const readyPromise = document.fonts.ready.then((fontFaceSet) => ({
+                supported: true,
+                status: fontFaceSet.status,
+                timedOut: false,
+                fontStatuses: fontStatuses(fontFaceSet),
+            }));
+
+            return Promise.race([readyPromise, timeoutPromise]);
+        }""",
+        {"timeout": FONT_LOAD_TIMEOUT_MS},
+    )
+
+    if not result["supported"]:
+        return
+
+    if result["timedOut"]:
+        pytest.fail(
+            f"Fonts did not finish loading within {FONT_LOAD_TIMEOUT_MS}ms before snapshotting {page.url}. "
+            f"FontFaceSet status was {result['status']}."
+        )
+
+    if result["status"] != "loaded":
+        pytest.fail(f"Fonts were not ready before snapshotting {page.url}. FontFaceSet status was {result['status']}.")
+
+    failed_fonts = [font for font in result["fontStatuses"] if font["status"] == "failed"]
+
+    if failed_fonts:
+        failed_font_families = ", ".join(font["family"] for font in failed_fonts)
+        pytest.fail(f"Fonts failed to load before snapshotting {page.url}: {failed_font_families}.")
+
+
 def assert_matches_snapshot(
     page,
     page_name,
@@ -118,6 +174,7 @@ def assert_matches_snapshot(
         expected_path = f"snapshots/{page_name}_{label}_expected.png"
 
         page.set_viewport_size(viewport)
+        wait_for_fonts(page)
         page.screenshot(path=actual_path, **screenshot_opts)
         if not os.path.exists(expected_path):
             os.replace(actual_path, expected_path)
@@ -126,7 +183,6 @@ def assert_matches_snapshot(
             pytest.fail(
                 f"Expected {label} snapshot for {page_name} not found - this has been generated. Re-run to try again"
             )
-        page.screenshot(path=actual_path, **screenshot_opts)
         result, score = compare_snapshot(actual_path, expected_path)
 
         if not result:
