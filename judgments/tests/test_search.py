@@ -480,12 +480,41 @@ class TestSearchAtomFeedLink(TestCase):
 
         assert response.context_data is not None
         assert response.context_data["atom_feed_url"] == "/atom.xml?query=waltham+forest"
-        assert response.context_data["gtm_data_layer"] == {"page_type": "search results"}
+        assert response.context_data["gtm_data_layer"] == {
+            "page_type": "search results",
+            "search_query": "waltham forest",
+            "search_results_count": 200,
+        }
         assert "alternates" in response.context_data
         alternates = response.context_data["alternates"]
         assert len(alternates) == 1
         assert alternates[0]["type"] == "application/atom+xml"
         assert alternates[0]["href"] == response.context_data["atom_feed_url"]
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_gtm_data_layer_includes_filters(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get(
+            "/search?query=waltham+forest&court=ewhc/ch&court=ewhc/ipec&tribunal=eat"
+            "&party=Smith&judge=Jones&from_date_0=1&from_date_1=1&from_date_2=2024"
+            "&to_date_0=31&to_date_1=12&to_date_2=2024"
+        )
+
+        assert response.context_data is not None
+        assert response.context_data["gtm_data_layer"] == {
+            "page_type": "search results",
+            "search_query": "waltham forest",
+            "search_party": "Smith",
+            "search_judge": "Jones",
+            "search_court": "ewhc/ch,ewhc/ipec",
+            "search_tribunal": "eat",
+            "search_from_date": "2024-01-01",
+            "search_to_date": "2024-12-31",
+            "search_results_count": 200,
+        }
 
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
