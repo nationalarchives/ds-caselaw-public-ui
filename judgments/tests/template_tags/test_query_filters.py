@@ -1,7 +1,14 @@
 import unittest
 from typing import Any
 
-from judgments.templatetags.query_filters import make_query_string, remove_court, remove_query, replace_year_in_query
+from judgments.templatetags.query_filters import (
+    make_query_string,
+    removable_filter_param,
+    remove_court,
+    remove_query,
+    replace_integer_with_day,
+    replace_integer_with_month,
+)
 
 
 class TestQueryFilters(unittest.TestCase):
@@ -91,22 +98,11 @@ class TestQueryFilters(unittest.TestCase):
 
         self.assertEqual(query_string, "")
 
-    def test_replace_year_in_query(self):
-        query_params: dict[str, Any] = {
-            "from_date_0": "3",
-            "from_date_1": "9",
-            "from_date_2": "2009",
-            "to_date_0": "7",
-            "to_date_1": "10",
-            "to_date_2": "2019",
-            "per_page": "10",
-        }
+    def test_removable_filter_param(self):
+        self.assertTrue(removable_filter_param("judge"))
 
-        replaced = replace_year_in_query(query_params, "2015")
+    def test_replace_integer_with_day(self):
+        self.assertEqual(replace_integer_with_day(3), "03")
 
-        self.assertNotIn("from_date_0=", replaced)
-        self.assertNotIn("from_date_1=", replaced)
-        self.assertNotIn("to_date_0=", replaced)
-        self.assertNotIn("to_date_1=", replaced)
-        self.assertIn("from_date_2=2015", replaced)
-        self.assertIn("to_date_2=2015", replaced)
+    def test_replace_integer_with_month(self):
+        self.assertEqual(replace_integer_with_month(9), "Sep")

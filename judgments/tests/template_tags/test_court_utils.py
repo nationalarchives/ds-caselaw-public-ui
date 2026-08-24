@@ -1,4 +1,3 @@
-from datetime import date
 from unittest.mock import Mock, patch
 
 from caselawclient.search_parameters import SearchParameters
@@ -12,8 +11,6 @@ from judgments.templatetags.court_utils import (
     get_court_judgments_count,
     get_court_name,
     get_court_start_year,
-    get_first_judgment_year,
-    get_last_judgment_year,
     is_court_ended,
 )
 from judgments.utils.timezones import london_today
@@ -44,45 +41,6 @@ class TestGetCourtName(TestCase):
     def test_returns_empty_string_when_both_lookups_fail(self, mock_get_by_param, mock_get_by_code):
         result = get_court_name("unknown")
         assert result == ""
-
-
-class TestGetFirstJudgmentYear(TestCase):
-    @patch("judgments.templatetags.court_utils.CourtDates.min_year")
-    def test_returns_min_year(self, mock_min_year):
-        mock_min_year.return_value = 1999
-        result = get_first_judgment_year()
-        assert result == 1999
-
-    @patch("judgments.templatetags.court_utils.logger.warning")
-    @patch("judgments.templatetags.court_utils.CourtDates.min_year", return_value=None)
-    @patch("judgments.templatetags.court_utils.all_courts.get_selectable")
-    def test_returns_fallback_min_start_year(self, mock_get_selectable, mock_min_year, mock_logging):
-        mock_get_selectable.return_value = [
-            Mock(start_year=None),
-            Mock(start_year=2005),
-            Mock(start_year=1998),
-            Mock(start_year=2010),
-        ]
-        result = get_first_judgment_year()
-        assert result == 1998
-        mock_logging.assert_called_once_with("CourtDates table is empty! using fallback min_year.")
-
-
-class TestGetLastJudgmentYear(TestCase):
-    @patch("judgments.templatetags.court_utils.CourtDates.max_year")
-    def test_returns_max_year(self, mock_max_year):
-        mock_max_year.return_value = 2022
-        result = get_last_judgment_year()
-        assert result == 2022
-
-    @patch("judgments.templatetags.court_utils.london_today")
-    @patch("judgments.templatetags.court_utils.logger.warning")
-    @patch("judgments.templatetags.court_utils.CourtDates.max_year", return_value=None)
-    def test_fallback_to_today_year(self, mock_max_year, mock_logging, mock_london_today):
-        mock_london_today.return_value = date(2024, 1, 1)
-        result = get_last_judgment_year()
-        assert result == 2024
-        mock_logging.assert_called_once_with("CourtDates table is empty! using fallback max_year.")
 
 
 class TestGetCourtDateRange(TestCase):

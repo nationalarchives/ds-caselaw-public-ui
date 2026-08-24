@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 from django.test import TestCase
 
-from judgments.templatetags.search_results_filters import is_exact_match
+from judgments.templatetags.search_results_filters import is_exact_match, is_exact_ncn_match, is_exact_title_match
 
 
 def buildResult(name="Alice Xenakis v Bob Young", ncn="[2023] EWHC 1234 (Ch)"):
@@ -12,6 +12,18 @@ def buildResult(name="Alice Xenakis v Bob Young", ncn="[2023] EWHC 1234 (Ch)"):
 
 
 class TestExactMatch(TestCase):
+    def test_is_exact_title_match(self):
+        result = buildResult()
+        query = "Alice Xenakis v Bob Young"
+
+        self.assertTrue(is_exact_title_match(result, query))
+
+    def test_is_exact_ncn_match(self):
+        result = buildResult()
+        query = "[2023] EWHC 1234 (Ch)"
+
+        self.assertTrue(is_exact_ncn_match(result, query))
+
     def test_when_the_name_matches_the_query_exactly(self):
         result = buildResult()
         query = "Alice Xenakis v Bob Young"
