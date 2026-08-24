@@ -40,6 +40,16 @@
         display: block;
       }
     }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      overflow-y: scroll;
+    }
+  }
+
+  @media (min-width: $grid-breakpoint-medium) {
+    position: sticky;
+    top: $space-8;
+    max-height: calc(100vh - $space-16);
   }
 
   @media (min-width: $grid-breakpoint-medium) {

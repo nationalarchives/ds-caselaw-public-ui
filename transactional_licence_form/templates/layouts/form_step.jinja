@@ -1,4 +1,6 @@
 {% extends "layouts/standard_content.jinja" %}
+{% from "components/contents.jinja" import contents %}
+{% from "components/list.jinja" import list, list_item %}
 {% from "components/heading.jinja" import heading %}
 {% block javascript %}
   <script type="module"
@@ -10,26 +12,26 @@
   {{ wizard.form.media }}
 {% endblock head %}
 {% block is_full_screen %}
-  <nav class="standard-content__navigation">
+  {% set mobile_article_title_content %}
     <div class="mobile-only">
       {% block mobile_article_title %}
       {% endblock mobile_article_title %}
     </div>
-    <div class="standard-content__navigation-links">
-      {% block article_navigation %}
-        {% call heading(tag="div", size="h3") %}
-          Licence application steps
-        {% endcall %}
-        <ul>
-          {% for steps in wizard.form.navigation_done %}<li>{{ steps }}</li>{% endfor %}
-          <li>
-            <b>{{ wizard.form.navigation_current }}</b>
-          </li>
-          {% for steps in wizard.form.navigation_todo %}<li>{{ steps }}</li>{% endfor %}
-        </ul>
-      {% endblock article_navigation %}
-    </div>
-  </nav>
+  {% endset %}
+  {% call contents(
+    title="Licence application steps",
+    class_name="standard-content__navigation",
+    links_class_name="standard-content__navigation-links",
+    before_links=mobile_article_title_content
+    ) %}
+    {% call list() %}
+      {% for steps in wizard.form.navigation_done %}{{ list_item(content=steps) }}{% endfor %}
+      {% call list_item() %}
+        <strong>{{ wizard.form.navigation_current }}</strong>
+      {% endcall %}
+      {% for steps in wizard.form.navigation_todo %}{{ list_item(content=steps) }}{% endfor %}
+    {% endcall %}
+  {% endcall %}
 {% endblock is_full_screen %}
 {% block article_content %}
   <div class="transactional-licence-form">
