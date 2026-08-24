@@ -29,7 +29,7 @@ from judgments.utils import (
     process_year_facets,
     show_no_exact_ncn_warning,
 )
-from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
+from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer, build_search_data_layer
 from judgments.utils.search_request_to_parameters import search_request_to_parameters
 
 
@@ -69,6 +69,10 @@ class SearchResultsView(TemplateViewWithContext):
         search_response = self._get_search_response(request, search_parameters, context)
         if isinstance(search_response, TemplateResponse):
             return search_response
+        context["gtm_data_layer"] = build_gtm_data_layer(
+            page_type=GtmPageType.SEARCH_RESULTS,
+            search_data=build_search_data_layer(form, int(search_response.total)),
+        )
 
         query_params = self._build_query_params(form, search_parameters)
 
