@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import Page, expect
 
-from .utils.assertions import assert_is_accessible, assert_matches_snapshot
+from .utils.assertions import VIEWPORTS, assert_is_accessible, assert_matches_snapshot
 
 about_this_service_pages = [
     {
@@ -222,3 +222,17 @@ def test_licence_v1_links_to_latest_version(page: Page):
     # Verify we're on the v2 licence page
     expect(page).to_have_url("/open-justice-licence/version/2")
     expect(page.locator("h1:visible")).to_have_text("Open Justice Licence v2.0")
+
+
+def test_contents_stays_sticky_after_scroll(page: Page):
+    page.set_viewport_size(VIEWPORTS["desktop"])
+    page.goto("/what-you-need-to-apply-for-a-licence")
+    page.evaluate("window.scrollTo(0, 900)")
+
+    expect(page.locator(".contents")).to_be_visible()
+    assert_matches_snapshot(
+        page,
+        "sticky_contents_after_scroll",
+        "desktop",
+        {"x": 0, "y": 0, "width": VIEWPORTS["desktop"]["width"], "height": VIEWPORTS["desktop"]["height"]},
+    )
