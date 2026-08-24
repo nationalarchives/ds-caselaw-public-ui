@@ -190,6 +190,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "judgments.context_processors.cookie_consent",
+                "judgments.context_processors.cookie_settings",
                 "judgments.context_processors.environment",
             ],
         },
@@ -205,6 +206,7 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.request",
                 "judgments.context_processors.cookie_consent",
+                "judgments.context_processors.cookie_settings",
                 "judgments.context_processors.environment",
             ],
             "extensions": ["waffle.jinja.WaffleExtension"],

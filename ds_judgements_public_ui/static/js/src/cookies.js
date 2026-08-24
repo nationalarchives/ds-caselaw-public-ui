@@ -2,7 +2,7 @@ import { CookieBanner } from "@nationalarchives/frontend/nationalarchives/compon
 import Cookies from "@nationalarchives/cookies";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const cookies = new Cookies();
+    new Cookies();
 
     const cookieBannerElement = document.querySelector(
         '[data-module="tna-cookie-banner"]',
