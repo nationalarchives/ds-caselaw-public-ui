@@ -1,44 +1,39 @@
 <div id="js-results-facets"
      class="structured-search__filter-options js-results-facets {% if hidden %}js-results-facets--hidden{% endif %}">
+  {% set non_field_errors = form.non_field_errors() %}
   <div class="structured-search__multi-fields-panel">
     <div class="structured-search__limit-to-container">
-      <fieldset class="{% if form.non_field_errors() or form.from_date.errors %}with-errors{% endif %}">
+      <fieldset class="{% if non_field_errors or form.from_date.errors %}with-errors{% endif %}">
         <legend class="structured-search__limit-to-label">From date</legend>
         <p class="structured-search__help-text" id="from_date-help-text">
           For example <em>01 01 2003</em> or <em>2003</em>
         </p>
-        {% if form.non_field_errors() %}
+        {% if non_field_errors %}
           <p class="structured-search__from-date-error-message"
-             id="from-date-error">{{ form.non_field_errors[0] }}</p>
+             id="from-date-error">{{ non_field_errors[0] }}</p>
         {% endif %}
         {% if form.from_date.errors %}
           {% for error in form.from_date.errors %}
             <p class="structured-search__from-date-error-message">{{ error }}</p>
           {% endfor %}
         {% endif %}
-        {% if form.from_date.errors[2] %}
-          <p class="structured-search__from-date-error-message">{{ form.from_date.errors[2] }}</p>
-        {% endif %}
         <div class="structured-search__date-input-group js-date-input">{{ form.from_date }}</div>
       </fieldset>
     </div>
     <div class="structured-search__limit-to-container">
-      <fieldset class="{% if form.non_field_errors() or form.has_errors %}with-errors{% endif %}">
+      <fieldset class="{% if non_field_errors or form.to_date.errors %}with-errors{% endif %}">
         <legend class="structured-search__limit-to-label">To date</legend>
         <p class="structured-search__help-text" id="to_date-help-text">
           For example <em>30 04 2023</em> or <em>2023</em>
         </p>
-        {% if form.non_field_errors() %}
+        {% if non_field_errors %}
           <p class="structured-search__from-date-error-message"
-             id="from-date-error">{{ form.non_field_errors[0] }}</p>
+             id="from-date-error">{{ non_field_errors[0] }}</p>
         {% endif %}
         {% if form.to_date.errors %}
           {% for error in form.to_date.errors %}
             <p class="structured-search__to-date-error-message">{{ error }}</p>
           {% endfor %}
-        {% endif %}
-        {% if form.to_date.errors[2] %}
-          <p class="structured-search__to-date-error-message">{{ form.to_date.errors[2] }}</p>
         {% endif %}
         <div class="structured-search__date-input-group js-date-input">{{ form.to_date }}</div>
       </fieldset>
