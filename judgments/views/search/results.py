@@ -55,6 +55,7 @@ class SearchResultsView(TemplateViewWithContext):
                 "pages/search_and_browse/advanced_search.jinja",
                 {"form": form, "query": request.GET.get("query", "")},
                 using="jinja",
+                status=400,
             )
 
         search_parameters: SearchParameters = search_request_to_parameters(request)
@@ -138,7 +139,7 @@ class SearchResultsView(TemplateViewWithContext):
             context["breadcrumbs"] = self._build_breadcrumbs(search_parameters)
             context["breadcrumbs_variant"] = "accent"
             context["query"] = request.GET.get("query", "")
-            return TemplateResponse(request, "judgment/results_error.jinja", context, using="jinja")
+            return TemplateResponse(request, "judgment/results_error.jinja", context, using="jinja", status=503)
 
     def _build_query_params(self, form, search_parameters):
         from_date: date | None = form.cleaned_data.get("from_date")
