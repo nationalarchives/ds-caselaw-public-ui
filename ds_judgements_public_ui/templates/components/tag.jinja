@@ -9,15 +9,15 @@
   {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
   {% if href %}
     <a href="{{ href }}" class="{{ variant_class }} {{ size_class }}">
-    {% else %}
-      <div class="{{ variant_class }} {{ size_class }}">
-      {% endif %}
-      {{ caller() }}
-      {% if href %}
+  {% else %}
+    <div class="{{ variant_class }} {{ size_class }}">
+  {% endif %}
+    {{ caller() }}
+    {% if href %}
       </a>
     {% else %}
-    </div>
-  {% endif %}
+      </div>
+    {% endif %}
 {% endmacro %}
 {% macro tag_examples() %}
   {% call tag(variant="button") %}

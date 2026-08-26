@@ -109,7 +109,7 @@
   {% endcall %}
   <p>The Open Justice Licence does not permit computational analysis.</p>
   <p>
-    If you intend to do any programmatic searching in bulk across Find Case Law records to identify, extract or enrich contents within the records, you will need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }} to perform computational analysis.
+    If you intend to do any programmatic searching in bulk across Find Case Law records to identify, extract or enrich contents within the records, you will need to {{ link(content="apply for a licence", href=url("apply_for_a_licence")) }} to perform computational analysis.
   </p>
   <p>
     Visit
@@ -137,7 +137,7 @@
       {% call link(
         href=mailto_with_subject_href(licensing_email_address, subject),
         class_name=trackable_class_name(subject)
-        ) %}
+      ) %}
         {{ licensing_email_address }}
       {%- endcall %}
       if you have specific questions about what the Open Justice Licence permits.

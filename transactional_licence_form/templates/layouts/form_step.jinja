@@ -23,7 +23,7 @@
     class_name="standard-content__navigation",
     links_class_name="standard-content__navigation-links",
     before_links=mobile_article_title_content
-    ) %}
+  ) %}
     {% call list() %}
       {% for steps in wizard.form.navigation_done %}{{ list_item(content=steps) }}{% endfor %}
       {% call list_item() %}
@@ -64,12 +64,12 @@
           {% call button(
             variant="secondary",
             attrs={
-            "name": "wizard_goto_step",
-            "type": "button",
-            "id": "transactional-licence-form-previous-button",
-            "value": wizard.steps.prev
+              "name": "wizard_goto_step",
+              "type": "button",
+              "id": "transactional-licence-form-previous-button",
+              "value": wizard.steps.prev
             }
-            ) %}
+          ) %}
             Previous
           {% endcall %}
           &nbsp;
@@ -78,11 +78,11 @@
         {% if reviewing %}
           {% call button(
             attrs={
-            "name": "wizard_goto_step",
-            "type": "submit",
-            "value": "review"
+              "name": "wizard_goto_step",
+              "type": "submit",
+              "value": "review"
             }
-            ) %}
+          ) %}
             Save and review
           {% endcall %}
         {% endif %}
