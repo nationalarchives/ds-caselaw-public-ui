@@ -75,14 +75,14 @@
     <a href='https://www.gov.uk/courts-tribunals/first-tier-tribunal-immigration-and-asylum'>
       the Immigration and Asylum Chamber page on the HM Courts and Tribunals Service
       website</a>.
-    </p>
-  {% endmacro %}
-  {% macro about_content() %}
-    {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
-    <p>
-      The First-Tier Tribunal Immigration and Asylum Chamber is one of the seven Chambers
-      of the First-tier Tribunal. It deals with appeals for some decisions made by the
-      Home Office relating to permission to stay, deportation from and entry clearance to
-      the United Kingdom.
-    </p>
-  {% endmacro %}
+  </p>
+{% endmacro %}
+{% macro about_content() %}
+  {{ heading(content="About " ~ court.name, tag="h2", id="about") }}
+  <p>
+    The First-Tier Tribunal Immigration and Asylum Chamber is one of the seven Chambers
+    of the First-tier Tribunal. It deals with appeals for some decisions made by the
+    Home Office relating to permission to stay, deportation from and entry clearance to
+    the United Kingdom.
+  </p>
+{% endmacro %}

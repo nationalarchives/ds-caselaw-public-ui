@@ -14,23 +14,27 @@
   {%- if url -%}
     <a class="{{ card_class }}"
        href="{{ url }}"
-       {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
-    {%- else -%}
-      <div class="{{ card_class }}"
-           {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
-      {%- endif -%}
-      {%- if image_url -%}
-        <img src="{{ image_url }}" alt="" />
-      {%- endif -%}
-      <div class="card__body">
-        {%- if title -%}<{{ title_tag }} id="{{ title| hyphenate }}">{{ title }}</{{ title_tag }}>{%- endif -%}
-        {{ body_content }}
-      </div>
-      {%- if url -%}
+       {%- for key, value in attrs.items() %}
+       {{ key }}="{{ value }}"
+       {%- endfor %}>
+  {%- else -%}
+    <div class="{{ card_class }}"
+         {%- for key, value in attrs.items() %}
+         {{ key }}="{{ value }}"
+         {%- endfor %}>
+  {%- endif -%}
+    {%- if image_url -%}
+      <img src="{{ image_url }}" alt="" />
+    {%- endif -%}
+    <div class="card__body">
+      {%- if title -%}<{{ title_tag }} id="{{ title| hyphenate }}">{{ title }}</{{ title_tag }}>{%- endif -%}
+      {{ body_content }}
+    </div>
+    {%- if url -%}
       </a>
     {%- else -%}
-    </div>
-  {%- endif -%}
+      </div>
+    {%- endif -%}
 {%- endmacro -%}
 {% macro card_default_examples() %}
   {% call card(title="Default") %}

@@ -16,15 +16,15 @@
   {%- set tag_class = component_class_names(variant_class, size_class) -%}
   {%- if href -%}
     <a href="{{ href }}" class="{{ tag_class }}">
-    {%- else -%}
-      <div class="{{ tag_class }}">
-      {%- endif -%}
-      {{ body_content }}
-      {%- if href -%}
+  {%- else -%}
+    <div class="{{ tag_class }}">
+  {%- endif -%}
+    {{ body_content }}
+    {%- if href -%}
       </a>
     {%- else -%}
-    </div>
-  {%- endif -%}
+      </div>
+    {%- endif -%}
 {%- endmacro -%}
 {% macro tag_examples() %}
   {% call tag(variant="button") %}

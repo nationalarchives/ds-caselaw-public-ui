@@ -127,19 +127,19 @@
               <span class="navigation__item">{%- if item.children -%}
                 <label class="navigation__item-icon"
                        for="navigation-sub-{{ item.endpoint }}">{{ icon(name="chevron_down_black", size="sm") }}{{ icon(name="chevron_down_white", size="sm") }}<span class="govuk-visually-hidden">Toggle navigation</span></label>
-              {%- endif -%}
-              {{- link(href=url(item.endpoint) , variant="contrast", class_name=trackable_class_name("navigation " ~ item.label), content=item_label_content | safe) -}}
-            </span>{%- if item.children -%}
-            <ul>
-              {%- for child in item.children -%}
-                <li>{{- link(href=url(child.endpoint) , class_name=trackable_class_name("navigation " ~ child.label), content=child.label) -}}</li>
-              {%- endfor -%}
-            </ul>
           {%- endif -%}
-        </li>
-      {%- endfor -%}
-    </ul>
-  </div>
+          {{- link(href=url(item.endpoint) , variant="contrast", class_name=trackable_class_name("navigation " ~ item.label), content=item_label_content | safe) -}}
+        </span>{%- if item.children -%}
+        <ul>
+          {%- for child in item.children -%}
+            <li>{{- link(href=url(child.endpoint) , class_name=trackable_class_name("navigation " ~ child.label), content=child.label) -}}</li>
+          {%- endfor -%}
+        </ul>
+{%- endif -%}
+</li>
+{%- endfor -%}
+</ul>
+</div>
 </div>
 </nav>
 {%- endmacro -%}
