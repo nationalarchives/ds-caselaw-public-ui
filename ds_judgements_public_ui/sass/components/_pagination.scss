@@ -1,6 +1,12 @@
 .govuk-pagination {
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
   margin-top: $space-4;
+
+  &__item {
+    display: list-item;
+  }
 
   &__item--current {
     background: brand-var("navy");

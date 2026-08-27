@@ -1,5 +1,6 @@
 module.exports = {
     extends: ["@nationalarchives/ds-caselaw-frontend/stylelint.config.js"],
+    // NOTE: these are vendor css files
     ignoreFiles: ["ds_judgements_public_ui/static/css/includes/**/*"],
     rules: {
         "selector-id-pattern": null,
