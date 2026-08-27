@@ -112,10 +112,12 @@
     gap: $space-4;
     padding-bottom: $space-4;
 
-    @media (min-width: $grid-breakpoint-extra-large) {
+    @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
       gap: $space-6;
       align-items: flex-end;
+      justify-content: space-between;
+
       padding-bottom: $space-2;
     }
   }
