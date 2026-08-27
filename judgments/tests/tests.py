@@ -86,6 +86,26 @@ class TestPaginator(TestCase):
             "/search?tribunal=ukut%2Fiac&amp;order=&amp;page=4",
             decoded_response,
         )
+        self.assertIn("Previous", decoded_response)
+        self.assertIn("Next", decoded_response)
+
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_pagination_does_not_render_previous_link_on_first_page(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?tribunal=ukut/iac&order=&page=1")
+        decoded_response = response.content.decode("utf-8")
+
+        self.assertNotIn("Previous", decoded_response)
+        self.assertIn("Next", decoded_response)
+
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_pagination_does_not_render_next_link_on_last_page(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+        response = self.client.get("/search?tribunal=ukut/iac&order=&page=20")
+        decoded_response = response.content.decode("utf-8")
+
+        self.assertIn("Previous", decoded_response)
+        self.assertNotIn("Next", decoded_response)
 
 
 class TestConverters(TestCase):

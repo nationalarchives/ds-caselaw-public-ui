@@ -108,14 +108,14 @@
       {{ pagination({
             "previous": {
             "html": "Previous",
-            "href":  (base_qs ~ "page=" ~ paginator.prev_page) if paginator.has_prev_page else (base_qs ~ "page=" ~ paginator.current_page)
-      },
-      "items": items,
-      "next": {
-      "html": "Next",
-      "href": (base_qs ~ "page=" ~ paginator.next_page) if paginator.has_next_page else (base_qs ~ "page=" ~ paginator.current_page)
-      }
-      }) }}
+            "href": base_qs ~ "page=" ~ paginator.prev_page
+            } if paginator.has_prev_page else None,
+            "items": items,
+            "next": {
+            "html": "Next",
+            "href": base_qs ~ "page=" ~ paginator.next_page
+            } if paginator.has_next_page else None
+            }) }}
     {% endif %}
   {% else %}
     {% call alert(title="No matching results have been found") %}
