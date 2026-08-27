@@ -42,7 +42,7 @@
 {% endblock article_navigation %}
 {% block article_content %}
   <p>
-    Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }}.
+    Most uses of Find Case Law judgments are free under the Open Justice Licence, including commercial use. However, if you want to perform computational analysis, you need to {{ link(content="apply for a licence", href=url("apply_for_a_licence")) }}.
   </p>
   {% call heading(tag="h2") %}
     Understanding computational analysis
@@ -105,7 +105,7 @@
   {% call heading(tag="h2") %}
     Do you need a licence?
   {% endcall %}
-  <p>{{ link(content="Guidance for public sector re-use", href=url("public_sector_reuse") ) }}.</p>
+  <p>{{ link(content="Guidance for public sector re-use", href=url("public_sector_reuse")) }}.</p>
   <p>
     You need a licence if you want to perform any programmatic searching in bulk across Find Case Law records to identify, extract or enrich contents within the records.
   </p>
@@ -115,7 +115,7 @@
   {% call heading(tag="h2") %}
     No costs to apply
   {% endcall %}
-  <p>There are no costs to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }} to perform computational analysis.</p>
+  <p>There are no costs to {{ link(content="apply for a licence", href=url("apply_for_a_licence")) }} to perform computational analysis.</p>
   {% call card(title="How to apply", title_tag="h2") %}
     <p>
       Visit
@@ -134,7 +134,7 @@
       {% call link(
         href=mailto_with_subject_href(licensing_email_address, subject),
         class_name=trackable_class_name(subject)
-        ) %}
+      ) %}
         {{ licensing_email_address }}
       {%- endcall %}
       to discuss your needs.

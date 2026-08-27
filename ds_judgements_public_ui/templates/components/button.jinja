@@ -21,16 +21,16 @@
       <a href="{{ href }}"
          class="{{ button_class }}"
          {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
-      {% else %}
-        <button class="{{ button_class }}"
-                {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
-        {% endif %}
-        {{ caller() }}
-        {% if href %}
+    {% else %}
+      <button class="{{ button_class }}"
+              {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
+    {% endif %}
+      {{ caller() }}
+      {% if href %}
         </a>
       {% else %}
-      </button>
-    {% endif %}
+        </button>
+      {% endif %}
   {% endif %}
 {% endmacro %}
 {% macro button_label() %}

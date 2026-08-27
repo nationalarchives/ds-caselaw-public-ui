@@ -22,10 +22,10 @@
       View Judgment
     {% endif %}
   {% endcall %}
-{%- endif +%}
-{% if document_html %}
-  {% call link(href="#download-options", size="md", alignment="center", show_visited=False) %}
-    View download options {{ icon(name="chevron_down_link_blue", size="md") }}
-  {% endcall %}
-{% endif %}
+  {%+ endif -%}
+  {% if document_html %}
+    {% call link(href="#download-options", size="md", alignment="center", show_visited=False) %}
+      View download options {{ icon(name="chevron_down_link_blue", size="md") }}
+    {% endcall %}
+  {% endif %}
 {% endcall %}

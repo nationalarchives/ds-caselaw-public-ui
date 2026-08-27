@@ -75,9 +75,9 @@
       {% set items = [] %}
       {% if paginator.show_first_page %}
         {% set _ = items.append({
-                  "number": 1,
-                  "href": base_qs ~ "page=1"
-                }) %}
+          "number": 1,
+          "href": base_qs ~ "page=1"
+        }) %}
       {% endif %}
       {% if paginator.show_first_page_divider %}
         {% set _ = items.append({"ellipsis": true}) %}
@@ -85,15 +85,15 @@
       {% for page in paginator.page_range %}
         {% if page == paginator.current_page %}
           {% set _ = items.append({
-                      "number": page,
-                      "href": base_qs ~ "page=" ~ page,
-                      "current": true
-                    }) %}
+            "number": page,
+            "href": base_qs ~ "page=" ~ page,
+            "current": true
+          }) %}
         {% else %}
           {% set _ = items.append({
-                      "number": page,
-                      "href": base_qs ~ "page=" ~ page
-                    }) %}
+            "number": page,
+            "href": base_qs ~ "page=" ~ page
+          }) %}
         {% endif %}
       {% endfor %}
       {% if paginator.show_last_page_divider %}
@@ -101,20 +101,20 @@
       {% endif %}
       {% if paginator.show_last_page %}
         {% set _ = items.append({
-                  "number": paginator.number_of_pages,
-                  "href": base_qs ~ "page=" ~ paginator.number_of_pages
-                }) %}
+          "number": paginator.number_of_pages,
+          "href": base_qs ~ "page=" ~ paginator.number_of_pages
+        }) %}
       {% endif %}
       {{ pagination({
-            "previous": {
-            "html": "Previous",
-            "href":  (base_qs ~ "page=" ~ paginator.prev_page) if paginator.has_prev_page else (base_qs ~ "page=" ~ paginator.current_page)
-      },
-      "items": items,
-      "next": {
-      "html": "Next",
-      "href": (base_qs ~ "page=" ~ paginator.next_page) if paginator.has_next_page else (base_qs ~ "page=" ~ paginator.current_page)
-      }
+        "previous": {
+          "html": "Previous",
+          "href":  (base_qs ~ "page=" ~ paginator.prev_page) if paginator.has_prev_page else (base_qs ~ "page=" ~ paginator.current_page)
+        },
+        "items": items,
+        "next": {
+          "html": "Next",
+          "href": (base_qs ~ "page=" ~ paginator.next_page) if paginator.has_next_page else (base_qs ~ "page=" ~ paginator.current_page)
+        }
       }) }}
     {% endif %}
   {% else %}
