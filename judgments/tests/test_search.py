@@ -1,10 +1,12 @@
 from unittest.mock import patch
 
 import lxml
+from caselawclient.Client import MarklogicResourceNotFoundError
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 from ds_caselaw_utils import courts as all_courts
 from ds_caselaw_utils.courts import CourtCode
+from requests.exceptions import RequestException
 
 from judgments.tests.factories import CourtDateFactory
 from judgments.tests.fixture_data import (
@@ -62,6 +64,45 @@ class TestNoNCN(TestCase):
 
 
 class TestSearchResults(TestCase):
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_invalid_search_parameters_return_bad_request(self, mock_search_judgments_and_parse_response):
+        response = self.client.get("/search?from_date_2=2024&to_date_2=2023")
+
+        assert response.status_code == 400
+        assert getattr(response, "template_name", None) == "pages/search_and_browse/advanced_search.jinja"
+        self.assertContains(
+            response,
+            "Errors in form - see below for details",
+            status_code=400,
+        )
+        mock_search_judgments_and_parse_response.assert_not_called()
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_request_exception_returns_service_unavailable(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.side_effect = RequestException
+
+        response = self.client.get("/search?query=waltham+forest")
+
+        assert response.status_code == 503
+        assert getattr(response, "template_name", None) == "judgment/results_error.jinja"
+        self.assertContains(response, "No matching results have been found", status_code=503)
+
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_resource_not_found_returns_service_unavailable(
+        self, mock_search_judgments_and_parse_response, mock_api_client
+    ):
+        mock_search_judgments_and_parse_response.side_effect = MarklogicResourceNotFoundError
+
+        response = self.client.get("/search?query=waltham+forest")
+
+        assert response.status_code == 503
+        assert getattr(response, "template_name", None) == "judgment/results_error.jinja"
+        self.assertContains(response, "No matching results have been found", status_code=503)
+
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_judgment_advanced_search_with_populated_court_dates(
