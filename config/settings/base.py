@@ -51,6 +51,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = "config.wsgi.application"
+STORYBOOK_CORS_ALLOWED_ORIGINS = env.list(
+    "STORYBOOK_CORS_ALLOWED_ORIGINS",
+    default=[
+        "http://localhost:6006",
+        "http://127.0.0.1:6006",
+        "https://nationalarchives.github.io",
+    ],
+)
 
 # APPS
 # ------------------------------------------------------------------------------
