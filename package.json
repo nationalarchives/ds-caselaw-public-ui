@@ -50,7 +50,7 @@
     "IE 11"
   ],
   "dependencies": {
-    "@nationalarchives/cookies": "0.1.5",
+    "@nationalarchives/cookies": "0.1.6",
     "@nationalarchives/ds-caselaw-frontend": "github:nationalarchives/ds-caselaw-frontend#v2.0.17",
     "@nationalarchives/frontend": "1.2.0",
     "govuk-country-and-territory-autocomplete": "2.0.0",
