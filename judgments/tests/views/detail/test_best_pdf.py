@@ -1,5 +1,6 @@
 from unittest.mock import Mock, patch
 
+import requests
 from django.http import HttpResponseRedirect
 from django.test import RequestFactory, TestCase
 from django.urls import reverse
@@ -63,3 +64,43 @@ class BestPdfViewTest(TestCase):
 
         self.assertIsInstance(response, HttpResponseRedirect)
         self.assertIn(f"Unexpected 500 error on {self.document_uri}", log.output[0])
+
+    @patch.object(DocumentPdf, "generate_uri")
+    @patch("requests.get")
+    def test_logs_warning_and_redirects_on_request_failure(self, mock_get, mock_generate_uri):
+        mock_generate_uri.return_value = self.mock_pdf_uri
+        mock_get.side_effect = requests.exceptions.ConnectionError
+
+        with self.assertLogs(level="WARNING") as log:
+            request = self.factory.get(f"/data/{self.document_uri}.pdf")
+            response = best_pdf(request, self.document_uri)
+
+        self.assertIsInstance(response, HttpResponseRedirect)
+        self.assertEqual(
+            response.url,
+            reverse(
+                "detail",
+                kwargs={"document_uri": self.document_uri, "file_format": "generated.pdf"},
+            ),
+        )
+        self.assertIn(f"Request failed trying to get best_pdf for {self.document_uri}", log.output[0])
+
+    @patch.object(DocumentPdf, "generate_uri")
+    @patch("requests.get")
+    def test_logs_warning_and_redirects_on_request_timeout(self, mock_get, mock_generate_uri):
+        mock_generate_uri.return_value = self.mock_pdf_uri
+        mock_get.side_effect = requests.exceptions.Timeout
+
+        with self.assertLogs(level="WARNING") as log:
+            request = self.factory.get(f"/data/{self.document_uri}.pdf")
+            response = best_pdf(request, self.document_uri)
+
+        self.assertIsInstance(response, HttpResponseRedirect)
+        self.assertEqual(
+            response.url,
+            reverse(
+                "detail",
+                kwargs={"document_uri": self.document_uri, "file_format": "generated.pdf"},
+            ),
+        )
+        self.assertIn(f"Timed out trying to get best_pdf for {self.document_uri}", log.output[0])
