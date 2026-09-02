@@ -1,7 +1,7 @@
 import logging
 
 import requests
-from django.http import HttpResponse
+from django.http import StreamingHttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 
@@ -11,6 +11,15 @@ from judgments.utils import (
 )
 
 logger = logging.getLogger(__name__)
+
+PDF_STREAM_CHUNK_SIZE = 8192
+
+
+def stream_pdf(response):
+    try:
+        yield from response.iter_content(chunk_size=PDF_STREAM_CHUNK_SIZE)
+    finally:
+        response.close()
 
 
 def best_pdf(request, document_uri):
@@ -22,7 +31,7 @@ def best_pdf(request, document_uri):
     pdf = DocumentPdf(document_uri)
 
     try:
-        external_response = requests.get(pdf.generate_uri(), timeout=10)
+        external_response = requests.get(pdf.generate_uri(), timeout=10, stream=True)
     except requests.exceptions.Timeout:
         logger.warning("Timed out trying to get best_pdf for %s", document_uri)
     except requests.exceptions.RequestException:
@@ -31,7 +40,7 @@ def best_pdf(request, document_uri):
         logger.debug("Response %s", external_response.status_code)
 
         if external_response.status_code == 200:
-            response = HttpResponse(external_response.content, content_type="application/pdf")
+            response = StreamingHttpResponse(stream_pdf(external_response), content_type="application/pdf")
 
             filename = get_document_download_filename(document_uri)
 

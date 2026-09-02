@@ -7,6 +7,7 @@ from django.urls import reverse
 
 from judgments.models.document_pdf import DocumentPdf
 from judgments.views.detail import best_pdf
+from judgments.views.detail.best_pdf import PDF_STREAM_CHUNK_SIZE
 
 
 class BestPdfViewTest(TestCase):
@@ -20,7 +21,7 @@ class BestPdfViewTest(TestCase):
     @patch("requests.get")
     def test_returns_pdf_when_found(self, mock_get, mock_generate_uri, mock_get_filename):
         mock_generate_uri.return_value = self.mock_pdf_uri
-        mock_get.return_value = Mock(status_code=200, content=b"%PDF-1.4 binary data")
+        mock_get.return_value = Mock(status_code=200, iter_content=Mock(return_value=[b"%PDF-1.4 ", b"binary data"]))
         mock_get_filename.return_value = "some_download_filename"
 
         request = self.factory.get(f"/data/{self.document_uri}.pdf")
@@ -32,7 +33,10 @@ class BestPdfViewTest(TestCase):
             response["Content-Disposition"],
             "attachment; filename=\"some_download_filename.pdf\"; filename*=UTF-8''some_download_filename.pdf",
         )
-        self.assertIn(b"%PDF-1.4", response.content)
+        self.assertIn(b"%PDF-1.4", b"".join(response.streaming_content))
+        mock_get.assert_called_once_with(self.mock_pdf_uri, stream=True, timeout=10)
+        mock_get.return_value.iter_content.assert_called_once_with(chunk_size=PDF_STREAM_CHUNK_SIZE)
+        mock_get.return_value.close.assert_called_once()
 
     @patch.object(DocumentPdf, "generate_uri")
     @patch("requests.get")
