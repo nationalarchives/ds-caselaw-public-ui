@@ -1,0 +1,49 @@
+.link-with-tooltip {
+  position: relative;
+  display: flex;
+  gap: $space-2;
+  align-items: center;
+
+  a {
+    display: flex;
+    gap: $space-1;
+    align-items: center;
+  }
+
+  &__info {
+    &:hover,
+    &:focus {
+      .link-with-tooltip__info-text {
+        display: block;
+      }
+
+      .link-with-tooltip__info-icon {
+        background-image: url($fa_info_solid);
+      }
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      position: relative;
+    }
+  }
+
+  &__info-icon {
+    width: 16px;
+    height: 16px;
+    background-image: url($fa_info);
+    background-repeat: no-repeat;
+  }
+
+  &__info-text {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    display: none;
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      top: 30px;
+      left: -142px;
+      width: 285px;
+    }
+  }
+}
