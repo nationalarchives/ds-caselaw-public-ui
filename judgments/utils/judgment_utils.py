@@ -24,8 +24,10 @@ def get_published_document_by_uri(
     return document
 
 
-def get_document_download_filename(document_uri: DocumentURIString) -> str:
-    document = get_published_document_by_uri(document_uri)
+def get_document_download_filename(document_uri: DocumentURIString, document: Document | None = None) -> str:
+    if document is None:
+        document = get_published_document_by_uri(document_uri)
+
     if document and document.body and document.best_human_identifier and document.best_human_identifier.value:
         return quote(f"{document.body.name}-{document.best_human_identifier.value}")
 

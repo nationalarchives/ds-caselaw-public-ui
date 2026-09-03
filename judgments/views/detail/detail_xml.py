@@ -9,7 +9,7 @@ def detail_xml(_request, document_uri: DocumentURIString) -> HttpResponse:
 
     document_xml = document.body.content_as_xml
 
-    filename = get_document_download_filename(document_uri)
+    filename = get_document_download_filename(document_uri, document)
 
     response = HttpResponse(document_xml, content_type="application/xml")
     response["Content-Disposition"] = f"attachment; filename=\"{filename}.xml\"; filename*=UTF-8''{filename}.xml"
