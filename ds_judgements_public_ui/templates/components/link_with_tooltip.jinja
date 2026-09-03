@@ -1,0 +1,14 @@
+{% from "components/alert.jinja" import alert %}
+{% macro link_with_tooltip(href=None, tooltip=None) %}
+  <div class="link-with-tooltip">
+    <a href="{{ href }}">{{ caller() }}</a>
+    <div class="link-with-tooltip__info" tabindex="0">
+      <div class="link-with-tooltip__info-icon"></div>
+      <div class="link-with-tooltip__info-text">
+        {% call alert(size="sm") %}
+          {{ tooltip }}
+        {% endcall %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
