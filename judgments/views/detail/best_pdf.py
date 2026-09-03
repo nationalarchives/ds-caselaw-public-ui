@@ -54,6 +54,8 @@ def best_pdf(request, document_uri):
             logger.warning(
                 f"Unexpected {external_response.status_code} error on {document_uri} whilst trying to get_best_pdf"
             )
+            external_response.close()
+
     # fall back to weasy_pdf
 
     return redirect(
