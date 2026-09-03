@@ -38,3 +38,14 @@ class TestGetDocumentDownloadFilename(TestCase):
 
         result = get_document_download_filename(self.example_uri)
         assert result == quote(self.example_uri)
+
+    @patch("judgments.utils.judgment_utils.get_published_document_by_uri")
+    def test_uses_supplied_document_without_fetching_again(self, mock_get_document_by_uri):
+        mock_document = Mock()
+        mock_document.body.name = "Smith-v-Jones"
+        mock_document.best_human_identifier.value = "2025-EWHC-12"
+
+        result = get_document_download_filename(self.example_uri, mock_document)
+        expected = quote("Smith-v-Jones-2025-EWHC-12")
+        assert result == expected
+        mock_get_document_by_uri.assert_not_called()
