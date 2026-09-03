@@ -1,9 +1,9 @@
 {% from "components/button.jinja" import button %}
-{% macro banner() %}
+{%- macro banner() -%}
   <div class="banner">
-    <div class="banner__container">{{ caller() }}</div>
+    <div class="banner__container">{{ caller() | trim }}</div>
   </div>
-{% endmacro %}
+{%- endmacro -%}
 {% macro banner_examples() %}
   {% call banner() %}
     <h2>Help us improve this service</h2>

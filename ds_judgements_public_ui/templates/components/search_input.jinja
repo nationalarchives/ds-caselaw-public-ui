@@ -1,8 +1,8 @@
 {% from "components/hero.jinja" import hero %}
 {% from "components/button.jinja" import button %}
-{% macro search_input(id="search_input", placeholder="", value="", label=None, button_action="", button_label="Search") %}
+{%- macro search_input(id="search_input", placeholder="", value="", label=None, button_action="", button_label="Search") -%}
   <div class="search-input__container">
-    {% if label %}<label for="{{ id }}" class="search-input__label">{{ label }}</label>{% endif %}
+    {%- if label -%}<label for="{{ id }}" class="search-input__label">{{ label }}</label>{%- endif -%}
     <input value="{{ value }}"
            name="query"
            type="text"
@@ -10,22 +10,22 @@
            id="{{ id }}" />
     {{ button(element_type="input", attrs={"type": "submit", "value": button_label, "formaction": button_action}) }}
   </div>
-{% endmacro %}
-{% macro search_form(label="", id="") %}
+{%- endmacro -%}
+{%- macro search_form(label="", id="") -%}
   <form role="search" aria-label="{{ label }}" id="{{ id }}">
-    {{ caller() }}
+    {{ caller() | trim }}
   </form>
-{% endmacro %}
-{% macro search_form_container(margin=False) %}
-  {% set margin_class = "search-input--with-margins" if margin else "" %}
-  <div class="search-input {{ margin_class }}">{{ caller() }}</div>
-{% endmacro %}
-{% macro search_input_footer() %}
-  <div class="search-input__footer">{{ caller() }}</div>
-{% endmacro %}
-{% macro search_input_actions(class="") %}
-  <div class="search-input__actions {{ class }}">{{ caller() }}</div>
-{% endmacro %}
+{%- endmacro -%}
+{%- macro search_form_container(margin=False) -%}
+  {%- set margin_class = "search-input--with-margins" if margin else "" -%}
+  <div class="{{ component_class_names('search-input', margin_class) }}">{{ caller() | trim }}</div>
+{%- endmacro -%}
+{%- macro search_input_footer() -%}
+  <div class="search-input__footer">{{ caller() | trim }}</div>
+{%- endmacro -%}
+{%- macro search_input_actions(class="") -%}
+  <div class="{{ component_class_names('search-input__actions', class) }}">{{ caller() | trim }}</div>
+{%- endmacro -%}
 {% macro search_input_examples() %}
   {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
     <div class="container">

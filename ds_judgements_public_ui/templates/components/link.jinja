@@ -1,27 +1,25 @@
-{% macro link(href="", variant="default", class_name="", alignment=None, size=None, show_visited=True, attrs={}, content=None) %}
-  {% set body_content = caller() if caller is defined else content if content is defined else "" %}
-  {% set size_classes = {"default": "", "md": "link--md", "lg": "link--lg"} %}
-  {% set alignment_classes = {"default": "", "center": "link--center"} %}
-  {% set variant_classes = {"default": "", "contrast": "link--contrast"} %}
-  {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
-  {% set size_class = size_classes.get(size, size_classes["default"]) %}
-  {% set alignment_class = alignment_classes.get(alignment, alignment_classes["default"]) %}
-  {% set visited_class = "link--with-visited" if show_visited else "link--hide-visited" %}
-  {% set link_class = ("link " ~ variant_class ~ " " ~ size_class ~ " " ~ alignment_class ~ " " ~ visited_class).strip() %}
-  {# djlint:off #}
-  <a href="{{ href }}"
-     class="{{ link_class }} {{ class_name }}"
-     {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>{{ body_content }}</a>{% endmacro %}
-  {# djlint:on #}
-  {% macro link_examples() %}
-    <h3>Default</h3>
-    {% call link() %}
-      Default link
+{# djlint:off #}
+{%- macro link(href="", variant="default", class_name="", alignment=None, size=None, show_visited=True, attrs={}, content=None) -%}
+  {%- set body_content = (caller() if caller is defined else content if content is defined else "") | trim -%}
+  {%- set size_classes = {"default": "", "md": "link--md", "lg": "link--lg"} -%}
+  {%- set alignment_classes = {"default": "", "center": "link--center"} -%}
+  {%- set variant_classes = {"default": "", "contrast": "link--contrast"} -%}
+  {%- set variant_class = variant_classes.get(variant, variant_classes["default"]) -%}
+  {%- set size_class = size_classes.get(size, size_classes["default"]) -%}
+  {%- set alignment_class = alignment_classes.get(alignment, alignment_classes["default"]) -%}
+  {%- set visited_class = "link--with-visited" if show_visited else "link--hide-visited" -%}
+  <a href="{{ href }}" class="{{ component_class_names('link', variant_class, size_class, alignment_class, visited_class, class_name) }}"{%- for key, value in attrs.items() %} {{ key }}="{{ value }}"{%- endfor %}>{{ body_content }}</a>
+{%- endmacro -%}
+{% macro link_examples() %}
+  <h3>Default</h3>
+  {% call link() %}
+    Default link
+  {% endcall %}
+  <h3>Contrast</h3>
+  <div class="components--contrast">
+    {% call link(variant="contrast") %}
+      Contrast link
     {% endcall %}
-    <h3>Contrast</h3>
-    <div class="components--contrast">
-      {% call link(variant="contrast") %}
-        Contrast link
-      {% endcall %}
-    </div>
-  {% endmacro %}
+  </div>
+{% endmacro %}
+{# djlint:on #}

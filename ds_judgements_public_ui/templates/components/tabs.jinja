@@ -1,7 +1,7 @@
 {% from "govuk_frontend_jinja/components/tabs/macro.html" import govukTabs %}
-{% macro tabs(params) %}
-  {{ govukTabs(params) }}
-{% endmacro %}
+{%- macro tabs(params) -%}
+  {{ govukTabs(params) | trim }}
+{%- endmacro -%}
 {% macro tabs_examples() %}
   {{ tabs({
     "idPrefix": "example-tabs",

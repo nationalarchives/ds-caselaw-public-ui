@@ -1,33 +1,37 @@
-{% macro card(title=None, alignment=None, image_url=None, url=None, variant=None, attrs={}, title_tag="h3") %}
-  {% set variant_classes = {
+{%- macro card(title=None, alignment=None, image_url=None, url=None, variant=None, attrs={}, title_tag="h3") -%}
+  {%- set body_content = caller() | trim -%}
+  {%- set variant_classes = {
     "default": "card card--default",
     "unbordered": "card card--unbordered",
     "ghost": "card card--ghost",
     "light": "card card--light",
     "image": "card card--image"
-  } %}
-  {% set alignment_classes = {"default": "", "left": "card card--left"} %}
-  {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
-  {% set alignment_class = alignment_classes.get(alignment, alignment_classes['default']) %}
-  {% if url %}
-    <a class="{{ variant_class }} {{ alignment_class }}"
+  } -%}
+  {%- set alignment_classes = {"default": "", "left": "card--left"} -%}
+  {%- set variant_class = variant_classes.get(variant, variant_classes['default']) -%}
+  {%- set alignment_class = alignment_classes.get(alignment, alignment_classes['default']) -%}
+  {%- set card_class = component_class_names(variant_class, alignment_class) -%}
+  {%- if url -%}
+    <a class="{{ card_class }}"
        href="{{ url }}"
-       {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
-    {% else %}
-      <div class="{{ variant_class }} {{ alignment_class }}"
-           {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
-      {% endif %}
-      {% if image_url %}<img src="{{ image_url }}" alt="" />{% endif %}
+       {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
+    {%- else -%}
+      <div class="{{ card_class }}"
+           {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
+      {%- endif -%}
+      {%- if image_url -%}
+        <img src="{{ image_url }}" alt="" />
+      {%- endif -%}
       <div class="card__body">
-        {% if title %}<{{ title_tag }} id="{{ title| hyphenate }}">{{ title }}</{{ title_tag }}>{% endif %}
-        {{ caller() }}
+        {%- if title -%}<{{ title_tag }} id="{{ title| hyphenate }}">{{ title }}</{{ title_tag }}>{%- endif -%}
+        {{ body_content }}
       </div>
-      {% if url %}
+      {%- if url -%}
       </a>
-    {% else %}
+    {%- else -%}
     </div>
-  {% endif %}
-{% endmacro %}
+  {%- endif -%}
+{%- endmacro -%}
 {% macro card_default_examples() %}
   {% call card(title="Default") %}
     <p>This is the default card style</p>

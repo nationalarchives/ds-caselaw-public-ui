@@ -1,7 +1,5 @@
-{% macro end_marker() %}
+{%- macro end_marker() -%}
   <div class="help-end-document-marker" id="end-of-document">
-    <div class="help-end-document-marker__top-link">
-      <a href="#start-of-document">{{ caller() }}</a>
-    </div>
+    <div class="help-end-document-marker__top-link"><a href="#start-of-document">{{ caller() | trim }}</a></div>
   </div>
-{% endmacro %}
+{%- endmacro -%}
