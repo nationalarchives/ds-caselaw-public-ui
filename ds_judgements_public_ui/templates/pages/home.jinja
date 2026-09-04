@@ -70,9 +70,7 @@
         {% endfor %}
       {% endcall %}
       {% call aside() %}
-        {% call heading(tag="h3") %}
-          Using judgments
-        {% endcall %}
+        {{ heading(tag="h3", content="Using judgments") }}
         {% call list(variant="bullets", padding="none") %}
           {% call list_item() %}
             <strong>No licence is required</strong>
@@ -88,11 +86,7 @@
         {{ link(href=url("apply_for_a_licence") , content="Apply for a licence", class_name=trackable_class_name("Licence apply card homepage")) }}
       {% endcall %}
     {% endcall %}
-    <div class="container--center">
-      {% call button(href=url("search")) %}
-        View all judgments
-      {% endcall %}
-    </div>
+    <div class="container--center">{{ button(href=url("search") , content="View all judgments") }}</div>
   {% endcall %}
 {% endblock content %}
 {% block javascript %}

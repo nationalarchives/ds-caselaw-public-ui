@@ -1,8 +1,8 @@
-{% macro document_navigation(query=None, number_of_mentions=0, page_title=None) %}
+{%- macro document_navigation(query=None, number_of_mentions=0, page_title=None) -%}
   <div class="document-navigation" id="js-document-navigation">
-    <div class="document-navigation__summary">{{ caller() }}</div>
+    <div class="document-navigation__summary">{{ caller() | trim }}</div>
     <div id="js-document-navigation-links-end"
-         class="document-navigation-links {% if query %}with-query{% endif %}">
+         class="{{ component_class_names('document-navigation-links', 'with-query' if query) }}">
       <span class="document-navigation-links__up-wrapper">
         <a id="start-of-document-link"
            class="document-navigation-links__link-up document-navigation-link"
@@ -15,7 +15,7 @@
       </span>
     </div>
   </div>
-{% endmacro %}
+{%- endmacro -%}
 {% macro document_navigation_examples() %}
   {% call document_navigation(query="Query", number_of_mentions=42, page_title="Page title") %}
     Test content

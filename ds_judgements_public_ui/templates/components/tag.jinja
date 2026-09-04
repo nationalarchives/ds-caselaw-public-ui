@@ -1,24 +1,31 @@
 {% from "components/icon.jinja" import icon %}
-{% macro tag_grid() %}
-  <div class="tag-grid">{{ caller() }}</div>
-{% endmacro %}
-{% macro tag(href=None, variant=None, size=None) %}
-  {% set size_classes = {"sm": "tag--sm", "md": "tag--md"} %}
-  {% set size_class = size_classes.get(size, size_classes["md"]) %}
-  {% set variant_classes = {"default": "tag", "active": "tag tag--active", "disabled": "tag tag--disabled", "button": "tag tag--button"} %}
-  {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
-  {% if href %}
-    <a href="{{ href }}" class="{{ variant_class }} {{ size_class }}">
-    {% else %}
-      <div class="{{ variant_class }} {{ size_class }}">
-      {% endif %}
-      {{ caller() }}
-      {% if href %}
+{%- macro tag_grid() -%}
+  <div class="tag-grid">{{ caller() | trim }}</div>
+{%- endmacro -%}
+{%- macro tag(href=None, variant=None, size=None) -%}
+  {%- set body_content = caller() | trim -%}
+  {%- set size_classes = {"sm": "tag--sm", "md": "tag--md"} -%}
+  {%- set size_class = size_classes.get(size, size_classes["md"]) -%}
+  {%- set variant_classes = {
+    "default": "tag",
+    "active": "tag tag--active",
+    "disabled": "tag tag--disabled",
+    "button": "tag tag--button"
+  } -%}
+  {%- set variant_class = variant_classes.get(variant, variant_classes["default"]) -%}
+  {%- set tag_class = component_class_names(variant_class, size_class) -%}
+  {%- if href -%}
+    <a href="{{ href }}" class="{{ tag_class }}">
+    {%- else -%}
+      <div class="{{ tag_class }}">
+      {%- endif -%}
+      {{ body_content }}
+      {%- if href -%}
       </a>
-    {% else %}
+    {%- else -%}
     </div>
-  {% endif %}
-{% endmacro %}
+  {%- endif -%}
+{%- endmacro -%}
 {% macro tag_examples() %}
   {% call tag(variant="button") %}
     Query: <strong>test</strong>

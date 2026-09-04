@@ -58,6 +58,8 @@ def build_environment(options):
             default_for_string=True,
             default=True,
         ),
+        trim_blocks=True,
+        lstrip_blocks=True,
         **options,
     )
 

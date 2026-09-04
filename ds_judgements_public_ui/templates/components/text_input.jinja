@@ -1,7 +1,7 @@
 {% from "govuk_frontend_jinja/components/input/macro.html" import govukInput %}
-{% macro text_input(params) %}
-  {{ govukInput(params) }}
-{% endmacro %}
+{%- macro text_input(params) -%}
+  {{ govukInput(params) | trim }}
+{%- endmacro -%}
 {% macro text_input_examples() %}
   {{ text_input({
     "label": {

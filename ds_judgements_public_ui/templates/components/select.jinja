@@ -1,7 +1,7 @@
 {% from "govuk_frontend_jinja/components/select/macro.html" import govukSelect %}
-{% macro select(params) %}
-  {{ govukSelect(params) }}
-{% endmacro %}
+{%- macro select(params) -%}
+  {{ govukSelect(params) | trim }}
+{%- endmacro -%}
 {% macro select_examples() %}
   <h3>Default</h3>
   {{ govukSelect({

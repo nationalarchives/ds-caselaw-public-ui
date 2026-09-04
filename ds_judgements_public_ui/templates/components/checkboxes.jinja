@@ -1,7 +1,7 @@
 {% from "govuk_frontend_jinja/components/checkboxes/macro.html" import govukCheckboxes %}
-{% macro checkboxes(params) %}
-  {{ govukCheckboxes(params) }}
-{% endmacro %}
+{%- macro checkboxes(params) -%}
+  {{ govukCheckboxes(params) | trim }}
+{%- endmacro -%}
 {% macro checkboxes_examples() %}
   <h3>Default</h3>
   {{ checkboxes({
