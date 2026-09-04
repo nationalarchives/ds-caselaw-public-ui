@@ -6,11 +6,6 @@
 {% from "components/tabs.jinja" import tabs %}
 {% from "components/list.jinja" import list, list_item %}
 {% from "includes/courts_and_tribunals_group.jinja" import courts_and_tribunals_group %}
-{% block javascript %}
-  <script type="module"
-          defer
-          src="{{ static('js/dist/govuk_tabs_extended.js') }}"></script>
-{% endblock javascript %}
 {% block mobile_article_title %}
   {% call heading() %}
     Types of courts in England and Wales
