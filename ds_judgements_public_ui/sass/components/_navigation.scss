@@ -1,3 +1,5 @@
+$navigation-height: 54px;
+
 .navigation__toggle,
 .navigation__item-toggle {
   display: none;
@@ -61,7 +63,7 @@
   background-color: colour-var("contrast-background");
 
   @media (min-width: $grid-breakpoint-medium) {
-    height: 54px;
+    height: $navigation-height;
   }
 }
 
@@ -143,6 +145,7 @@
 
     @media (min-width: $grid-breakpoint-large) {
       flex-direction: row;
+      min-height: $navigation-height;
     }
   }
 
@@ -308,22 +311,16 @@
         }
 
         @media (min-width: $grid-breakpoint-large) {
-          text-align: center;
-        }
-
-        @media (min-width: $grid-breakpoint-large) {
+          min-height: $navigation-height;
           border-top: 0;
+          text-align: center;
         }
       }
 
       @media (min-width: $grid-breakpoint-large) {
         flex-direction: row;
+        min-height: $navigation-height;
       }
-    }
-
-    @media (max-width: $grid-breakpoint-large) {
-      max-width: 100%;
-      padding: 0;
     }
 
     @media (min-width: $grid-breakpoint-large) {
@@ -331,6 +328,7 @@
     }
 
     @media (max-width: $grid-breakpoint-medium) {
+      max-width: 100%;
       padding: 0;
     }
   }
