@@ -174,12 +174,12 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
     def test_aws_pdf(self, mock_get, mock_pdf, mock_get_filename):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/eat_2023_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
-        mock_get.return_value.content = b"CAT"
+        mock_get.return_value.iter_content.return_value = [b"CAT"]
         mock_get.return_value.status_code = 200
         mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/data.pdf")
-        mock_get.assert_called_with(url, timeout=ANY)
-        self.assertContains(response, "CAT")
+        mock_get.assert_called_with(url, stream=True, timeout=ANY)
+        self.assertIn(b"CAT", b"".join(response.streaming_content))
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch("judgments.views.detail.best_pdf.get_document_download_filename")
@@ -188,12 +188,12 @@ class TestRobotsDirectives(TestCaseWithMockAPI):
     def test_aws_pdf_press_summary(self, mock_get, mock_pdf, mock_get_filename):
         url = "https://assets.caselaw.nationalarchives.gov.uk/eat/2023/1/press-summary/1/eat_2023_1_press-summary_1.pdf"
         mock_pdf.return_value.generate_uri.return_value = url
-        mock_get.return_value.content = b"CAT"
+        mock_get.return_value.iter_content.return_value = [b"CAT"]
         mock_get.return_value.status_code = 200
         mock_get_filename.return_value = "some_download_filename"
         response = self.client.get("/eat/2023/1/press-summary/1/data.pdf")
-        mock_get.assert_called_with(url, timeout=ANY)
-        self.assertContains(response, "CAT")
+        mock_get.assert_called_with(url, stream=True, timeout=ANY)
+        self.assertIn(b"CAT", b"".join(response.streaming_content))
         self.assertEqual(response.headers.get("X-Robots-Tag"), "noindex,nofollow,noai")
 
     @patch("judgments.views.detail.detail_xml.get_document_download_filename")
