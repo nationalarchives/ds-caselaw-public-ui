@@ -13,8 +13,6 @@ module.exports = {
             "./ds_judgements_public_ui/static/js/src/document_paragraph_tooltip_anchors.js",
         feedback_link:
             "./ds_judgements_public_ui/static/js/src/feedback_link.js",
-        govuk_tabs_extended:
-            "./ds_judgements_public_ui/static/js/src/govuk_tabs_extended.js",
         gtm_script: "./ds_judgements_public_ui/static/js/src/gtm_script.js",
         highlight_text:
             "./ds_judgements_public_ui/static/js/src/highlight_text.js",
