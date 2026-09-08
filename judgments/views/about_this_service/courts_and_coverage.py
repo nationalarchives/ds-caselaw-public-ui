@@ -13,7 +13,7 @@ class CourtsAndCoverageView(TemplateViewWithContext):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["courts"] = courts.get_grouped_selectable_courts()
+        context["courts"] = courts.get_grouped_listable_courts()
         context["active_navigation_endpoint"] = "about_this_service"
         context["feedback_survey_type"] = "courts_and_coverage"
         context["page_description"] = (
