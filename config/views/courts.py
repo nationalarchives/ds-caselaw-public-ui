@@ -62,8 +62,8 @@ class CourtsTribunalsListView(TemplateViewWithContext):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        grouped_courts = [self.decorate_court_group(group) for group in courts.get_grouped_selectable_courts()]
-        grouped_tribunals = [self.decorate_court_group(group) for group in courts.get_grouped_selectable_tribunals()]
+        grouped_courts = [self.decorate_court_group(group) for group in courts.get_grouped_listable_courts()]
+        grouped_tribunals = [self.decorate_court_group(group) for group in courts.get_grouped_listable_tribunals()]
 
         context["courts"] = grouped_courts
         context["tribunals"] = grouped_tribunals
