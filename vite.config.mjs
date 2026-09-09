@@ -5,38 +5,18 @@ import { defineConfig } from "vite";
 
 const projectRoot = process.cwd();
 
-const jsEntries = {
-  "js/dist/app": "static/js/src/app.js",
-  "js/dist/document_navigation": "static/js/src/document_navigation.js",
-  "js/dist/document_search_links": "static/js/src/document_search_links.js",
-  "js/dist/document_paragraph_tooltip_anchors":
-    "static/js/src/document_paragraph_tooltip_anchors.js",
-  "js/dist/feedback_link": "static/js/src/feedback_link.js",
-  "js/dist/gtm_script": "static/js/src/gtm_script.js",
-  "js/dist/highlight_text": "static/js/src/highlight_text.js",
-  "js/dist/location_picker": "static/js/src/location_picker.js",
-  "js/dist/manage_filters": "static/js/src/manage_filters.js",
-  "js/dist/transactional_licence_form":
-    "static/js/src/transactional_licence_form.js",
-  "js/dist/stateful_details": "static/js/src/stateful_details.js",
-};
-
-const cssEntries = {
-  main: "sass/main.scss",
-  document_pdf: "sass/document_pdf.scss",
-};
-
 function djangoReloadPlugin() {
   return {
     name: "django-reload",
     configureServer(server) {
-      server.watcher.add([
-        resolve(projectRoot, "ds_judgements_public_ui/templates/**/*.jinja"),
-        resolve(projectRoot, "transactional_licence_form/templates/**/*.jinja"),
-        resolve(projectRoot, "judgments/**/*.py"),
-        resolve(projectRoot, "config/**/*.py"),
-        resolve(projectRoot, "transactional_licence_form/**/*.py"),
-      ]);
+      server.watcher.add(
+        [
+          "ds_judgements_public_ui/templates",
+          "transactional_licence_form",
+          "judgments",
+          "config",
+        ].map((directory) => resolve(projectRoot, directory)),
+      );
 
       server.watcher.on("change", (file) => {
         if (/\.(jinja|py)$/.test(file)) {
@@ -45,24 +25,6 @@ function djangoReloadPlugin() {
       });
     },
   };
-}
-
-function assetFileName(assetInfo) {
-  const sourceName =
-    assetInfo.originalFileNames?.[0] || assetInfo.names?.[0] || "";
-
-  if (sourceName.endsWith("main.scss") || assetInfo.name === "main.css") {
-    return "css/main.css";
-  }
-
-  if (
-    sourceName.endsWith("document_pdf.scss") ||
-    assetInfo.name === "document_pdf.css"
-  ) {
-    return "css/document_pdf.css";
-  }
-
-  return "assets/[name][extname]";
 }
 
 export default defineConfig(({ command }) => ({
@@ -104,17 +66,28 @@ export default defineConfig(({ command }) => ({
     outDir: "static",
     emptyOutDir: false,
     manifest: "manifest.json",
-    sourcemap: false,
-    cssCodeSplit: true,
     rollupOptions: {
-      input: {
-        ...jsEntries,
-        ...cssEntries,
-      },
+      input: [
+        "static/js/src/app.js",
+        "static/js/src/document_navigation.js",
+        "static/js/src/document_search_links.js",
+        "static/js/src/document_paragraph_tooltip_anchors.js",
+        "static/js/src/feedback_link.js",
+        "static/js/src/gtm_script.js",
+        "static/js/src/highlight_text.js",
+        "static/js/src/location_picker.js",
+        "static/js/src/manage_filters.js",
+        "static/js/src/transactional_licence_form.js",
+        "static/js/src/stateful_details.js",
+        "sass/main.scss",
+        "sass/document_pdf.scss",
+      ],
       output: {
-        entryFileNames: "[name].js",
-        chunkFileNames: "js/dist/[name].js",
-        assetFileNames: assetFileName,
+        // PDF generation reads css/document_pdf.css directly from disk.
+        assetFileNames: (asset) =>
+          asset.names.some((name) => name.endsWith(".css"))
+            ? "css/[name][extname]"
+            : "assets/[name]-[hash][extname]",
       },
     },
   },
