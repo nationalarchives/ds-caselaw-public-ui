@@ -3,10 +3,8 @@
 {% from "components/list.jinja" import list, list_item %}
 {% from "components/heading.jinja" import heading %}
 {% block javascript %}
-  <script type="module"
-          defer
-          src="{{ static('js/dist/transactional_licence_form.js') }}"></script>
-  <script type="module" defer src="{{ static('js/dist/location_picker.js') }}"></script>
+  {{ vite_asset("static/js/src/transactional_licence_form.js") }}
+  {{ vite_asset("static/js/src/location_picker.js") }}
 {% endblock javascript %}
 {% block head %}
   {{ wizard.form.media }}

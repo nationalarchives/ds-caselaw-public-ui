@@ -4,6 +4,11 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.templatetags.l10n import unlocalize
 from django.utils.html import json_script
 from django.utils.text import slugify
+from django_vite.templatetags.django_vite import (
+    vite_asset,
+    vite_asset_url,
+    vite_hmr_client,
+)
 from jinja2 import (
     ChoiceLoader,
     Environment,
@@ -67,6 +72,9 @@ def build_environment(options):
 def get_globals():
     return {
         "static": staticfiles_storage.url,
+        "vite_asset": vite_asset,
+        "vite_asset_url": vite_asset_url,
+        "vite_hmr_client": vite_hmr_client,
         "trackable_link": with_context(link_tags.trackable_link),
         "trackable_class_name": link_tags.trackable_class_name,
         "formatdate": date_utils.formatdate,

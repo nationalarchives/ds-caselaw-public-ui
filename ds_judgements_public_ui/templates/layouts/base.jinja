@@ -39,7 +39,8 @@
             rel="stylesheet" />
       <link href="{{ static('css/includes/govuk-country-and-territory-autocomplete/location-autocomplete.min.css') }}"
             rel="stylesheet" />
-      <link href="{{ static('css/main.css') }}" rel="stylesheet" />
+      {{ vite_hmr_client() }}
+      <link href="{{ vite_asset_url('sass/main.scss') }}" rel="stylesheet" />
     {% endblock css %}
     {% include "includes/gtm_datalayer.jinja" %}
     {% include "includes/gtm_head.jinja" %}
@@ -136,7 +137,7 @@
         {% endcall %}
       {% endcall %}
     {% endblock footer %}
-    <script type="module" defer src="{{ static('js/dist/app.js') }}"></script>
+    {{ vite_asset("static/js/src/app.js") }}
     {% block javascript %}
     {% endblock javascript %}
   </body>
