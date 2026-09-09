@@ -67,6 +67,10 @@ services:
 
   e2e_tests:
     container_name: e2e_tests_container
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      E2E_VITE_HOST: host.docker.internal
     build:
       context: ./e2e_tests
       dockerfile: "../compose/local/e2e_tests/Dockerfile"
