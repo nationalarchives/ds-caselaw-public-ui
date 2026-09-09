@@ -98,10 +98,10 @@ def collectstatic(c):
 @task
 def runquick(c):
     start(c, "django")
-    background_exec("npm run watch", "assets")
+    background_exec("npm run dev", "assets")
     collectstatic(c)
     try:
-        django_exec("python manage.py runserver 0.0.0.0:3000")
+        django_exec("VITE_DEV_SERVER_ENABLED=true python manage.py runserver 0.0.0.0:3000")
     except KeyboardInterrupt:
         pass
     stop(c, "django")
@@ -115,10 +115,12 @@ def run(c): ...
 def memray(c):
     """Launch the server with memray tracking for live connections with `live`"""
     start(c, "django")
-    background_exec("npm run watch", "assets")
+    background_exec("npm run dev", "assets")
     collectstatic(c)
     try:
-        django_exec("memray run --live-remote --live-port 8002 manage.py runserver 0.0.0.0:3000")
+        django_exec(
+            "VITE_DEV_SERVER_ENABLED=true memray run --live-remote --live-port 8002 manage.py runserver 0.0.0.0:3000"
+        )
     except KeyboardInterrupt:
         pass
     stop(c, "django")
@@ -137,7 +139,7 @@ def live(c):
 def flamegraph(c):
     """Take a memray log whilst running the server, then generate a flamegraph from it and show that flamegraph in the browser"""
     start(c, "django")
-    background_exec("npm run watch", "assets")
+    background_exec("npm run dev", "assets")
     collectstatic(c)
     try:
         os.remove("memray.out")
@@ -145,7 +147,7 @@ def flamegraph(c):
         pass
 
     try:
-        django_exec("memray run -o memray.out manage.py runserver 0.0.0.0:3000")
+        django_exec("VITE_DEV_SERVER_ENABLED=true memray run -o memray.out manage.py runserver 0.0.0.0:3000")
     except KeyboardInterrupt:
         pass
 

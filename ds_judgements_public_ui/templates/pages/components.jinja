@@ -116,8 +116,6 @@
   </div>
 {% endblock content %}
 {% block javascript %}
-  <script type="module"
-          defer
-          src="{{ static('js/dist/document_navigation.js') }}"></script>
-  <script type="module" defer src="{{ static('js/dist/stateful_details.js') }}"></script>
+  {{ vite_asset("static/js/src/document_navigation.js") }}
+  {{ vite_asset("static/js/src/stateful_details.js") }}
 {% endblock javascript %}

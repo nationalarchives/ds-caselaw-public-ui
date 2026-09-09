@@ -90,5 +90,5 @@
   {% endcall %}
 {% endblock content %}
 {% block javascript %}
-  <script type="module" defer src="{{ static('js/dist/stateful_details.js') }}"></script>
+  {{ vite_asset("static/js/src/stateful_details.js") }}
 {% endblock javascript %}
