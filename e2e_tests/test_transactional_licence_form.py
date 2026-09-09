@@ -16,6 +16,11 @@ def page(browser: Browser, base_url: str) -> Page:
     context.close()
 
 
+@pytest.fixture(scope="class")
+def journey_state():
+    return {"failed_step": None}
+
+
 # Pytest tests class methods in the order they are defined
 class TestTransactionalLienceForm:
     """
@@ -23,6 +28,16 @@ class TestTransactionalLienceForm:
     We stop on the review page (short of actually submitting the form)
     (which triggers an email to the licensing team): the final step will be tested
     in isolation with a mocked email service."""
+
+    @pytest.fixture(autouse=True)
+    def stop_after_failed_step(self, request, journey_state):
+        if journey_state["failed_step"]:
+            pytest.skip(f"Previous licence application step failed: {journey_state['failed_step']}")
+
+        failures_before = request.session.testsfailed
+        yield
+        if request.session.testsfailed > failures_before:
+            journey_state["failed_step"] = request.node.name
 
     def get_review_row(self, page: Page, label: str):
         return page.locator("dt", has_text=label).locator("..").locator("dd.govuk-summary-list__value")
