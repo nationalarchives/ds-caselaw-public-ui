@@ -366,7 +366,7 @@ In a new terminal session run `npm run dev` to start the Vite dev server with li
 
 In a new terminal session run `npm run storybook`
 
-Storybook 8 for html-webpack5 should then start automatically. You can access it in your browser at <http://localhost:6006>.
+Storybook for HTML/Vite should then start automatically. You can access it in your browser at <http://localhost:6006>.
 
 The repository also publishes Storybook to GitHub Pages using [.github/workflows/publish-storybook.yml](.github/workflows/publish-storybook.yml), which is intended to provide a stable, shareable URL for design interaction.
 

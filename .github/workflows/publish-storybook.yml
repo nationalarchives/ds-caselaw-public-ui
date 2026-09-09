@@ -12,7 +12,7 @@ on:
       - "ds_judgements_public_ui/sass/**"
       - "package.json"
       - "package-lock.json"
-      - "webpack.config.js"
+      - "vite.config.mjs"
       - "babel.config.js"
       - ".github/workflows/publish-storybook.yml"
 

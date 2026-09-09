@@ -9,7 +9,7 @@
   "scripts": {
     "build": "vite build",
     "watch": "vite build --watch",
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite",
     "lint:scss": "npx stylelint '**/*.scss'",
     "test": "npx jest",
     "storybook": "storybook dev -p 6006 --config-dir storybook/.storybook",
