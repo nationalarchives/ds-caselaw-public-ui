@@ -94,10 +94,10 @@ describe("goToFirstErrorField", () => {
         document.body.innerHTML = `
           <div style="margin-top: 500px;" class="govuk-error-message" tabindex="-1">This is an error</div>
     `;
-        $.fn.animate = function (props, duration, callback) {
+        $.fn.animate = jest.fn(function (props, duration, callback) {
             callback();
             return this;
-        };
+        });
 
         $.fn.focus = jest.fn();
     });
@@ -106,5 +106,26 @@ describe("goToFirstErrorField", () => {
         goToFirstErrorField();
 
         expect($.fn.focus).toHaveBeenCalled();
+    });
+
+    it("does not scroll or focus when there are no errors", () => {
+        document.body.innerHTML = "<form><input /></form>";
+
+        expect(() => goToFirstErrorField()).not.toThrow();
+
+        expect($.fn.animate).not.toHaveBeenCalled();
+        expect($.fn.focus).not.toHaveBeenCalled();
+    });
+
+    it("focuses only the first error when there are multiple errors", () => {
+        document.body.innerHTML +=
+            '<div class="govuk-error-message">Another error</div>';
+
+        goToFirstErrorField();
+
+        expect($.fn.focus.mock.instances[0].length).toBe(1);
+        expect($.fn.focus.mock.instances[0][0]).toBe(
+            document.querySelector(".govuk-error-message"),
+        );
     });
 });

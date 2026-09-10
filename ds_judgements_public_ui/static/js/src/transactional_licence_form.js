@@ -76,13 +76,18 @@ export const setupPreviousButton = function () {
 };
 
 export const goToFirstErrorField = function () {
+    const firstError = $(".govuk-error-message").first();
+    if (!firstError.length) {
+        return;
+    }
+
     $("html, body").animate(
         {
-            scrollTop: $(".govuk-error-message").offset().top - 80,
+            scrollTop: firstError.offset().top - 80,
         },
         1,
         function () {
-            $(".govuk-error-message").focus();
+            firstError.focus();
         },
     );
 };
