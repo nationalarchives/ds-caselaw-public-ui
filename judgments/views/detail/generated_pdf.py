@@ -24,8 +24,8 @@ class PdfDetailView(WeasyTemplateResponseMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         document_uri = DocumentURIString(kwargs["document_uri"])
-        filename = get_document_download_filename(document_uri)
         document = get_published_document_by_uri(document_uri)
+        filename = get_document_download_filename(document_uri, document)
 
         self.pdf_filename = f"{filename}.pdf"
 

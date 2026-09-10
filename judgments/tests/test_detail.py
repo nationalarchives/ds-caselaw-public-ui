@@ -29,11 +29,13 @@ class TestWeasyWithoutCSS(TestCaseWithMockAPI):
     @patch("judgments.views.detail.generated_pdf.get_published_document_by_uri")
     def test_weasy_without_css_runs_in_ci(self, mock_get_document_by_uri, mock_get_filename):
         mock_get_filename.return_value = "some_download_filename"
-        judgment = JudgmentFactory.build(is_published=True)
-        mock_get_document_by_uri.return_value = judgment
+        document = JudgmentFactory.build(is_published=True)
+        mock_get_document_by_uri.return_value = document
         response = self.client.get("/eat/2023/1/generated.pdf")
         assert response.status_code == 200
         assert b"%PDF-1.7" in response.content
+        mock_get_document_by_uri.assert_called_once_with("ml-eat/2023/1")
+        mock_get_filename.assert_called_once_with("ml-eat/2023/1", document)
 
 
 class TestJudgment(TestCaseWithMockAPI):
