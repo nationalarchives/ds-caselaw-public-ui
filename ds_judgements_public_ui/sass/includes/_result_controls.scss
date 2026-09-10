@@ -39,22 +39,17 @@
   &__item {
     display: flex;
     flex: 1;
-    gap: $space-3;
+    gap: $space-2;
     align-items: center;
 
-    select {
-      width: 100%;
-    }
-
-    @media (min-width: $grid-breakpoint-medium) {
-      flex-direction: column;
-      align-items: flex-start;
+    label {
+      white-space: nowrap;
     }
   }
 
   form {
     display: flex;
-    gap: $space-3;
+    gap: $space-8;
 
     @media (min-width: $grid-breakpoint-medium) {
       gap: 0;
@@ -62,18 +57,13 @@
 
     @media (min-width: $grid-breakpoint-medium) {
       flex-direction: row;
-      gap: $space-3;
+      gap: $space-8;
     }
   }
 
   &__label {
-    display: none;
     font-family: $font-roboto;
     font-size: $typography-sm-text-size;
-
-    @media (min-width: $grid-breakpoint-medium) {
-      display: block;
-    }
   }
 
   &__select {

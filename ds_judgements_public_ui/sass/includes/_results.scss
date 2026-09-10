@@ -31,7 +31,7 @@
     padding-bottom: $space-4;
 
     @media (min-width: $grid-breakpoint-medium) {
-      flex-direction: row;
+      flex-flow: row wrap;
       gap: $space-6;
       align-items: flex-end;
       justify-content: space-between;
