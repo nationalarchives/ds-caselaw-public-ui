@@ -1,4 +1,4 @@
-{%- macro list(variant="default", padding="default", attrs={}) -%}
+{%- macro list(variant="default", padding="default", gap="default", attrs={}) -%}
   {%- set variant_classes = {
     "default": "list list--default",
     "horizontal": "list list--horizontal",
@@ -10,7 +10,9 @@
   {%- set variant_class = variant_classes.get(variant, variant_classes['default']) -%}
   {%- set padding_classes = {"default": "", "none": "list--paddingless"} -%}
   {%- set padding_class = padding_classes.get(padding, padding_classes["default"]) -%}
-  <{{ variant_tag }} class="{{ component_class_names(variant_class, padding_class) }}"{%- for key, value in attrs.items() %} {{ key }}="{{ value }}"{%- endfor %}>{{ caller() | trim }}</{{ variant_tag }}>
+  {%- set gap_classes = {"default": "", "xs": "list--gap-xs", "sm": "list--gap-sm", "md": "list--gap-md", "lg": "list--gap-lg"} -%}
+  {%- set gap_class = gap_classes.get(gap, gap_classes["default"]) -%}
+  <{{ variant_tag }} class="{{ component_class_names(variant_class, padding_class, gap_class) }}"{%- for key, value in attrs.items() %} {{ key }}="{{ value }}"{%- endfor %}>{{ caller() | trim }}</{{ variant_tag }}>
 {%- endmacro -%}
 {%- macro list_item(content=None) -%}
   {%- set body_content = (caller() if caller is defined else content if content is defined else "") | trim -%}
