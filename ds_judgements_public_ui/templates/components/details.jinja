@@ -2,9 +2,11 @@
   {%- set body_content = caller() | trim -%}
   {%- set variant_classes = {"default": "details", "light": "details details--light", "centered": "details details--centered"} -%}
   {%- set variant_class = variant_classes.get(variant, variant_classes['default']) -%}
-  <details {% if stateful %}data-stateful-details{%- endif %}
+  <details {% if stateful %}
+           data-stateful-details{%- endif %}
            class="{{ component_class_names(variant_class) }}"
-           {%- if open %}open{%- endif %}>
+           {%- if open %}
+           open{%- endif %}>
     <summary class="details__summary">
       {%- if title -%}<span class="details__summary-text">{{ title }}</span>{%- endif -%}
       {%- if closed_title -%}

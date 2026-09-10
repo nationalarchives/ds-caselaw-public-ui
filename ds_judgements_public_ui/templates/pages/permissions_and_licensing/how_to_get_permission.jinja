@@ -9,7 +9,7 @@
     How to get permission
   {% endcall %}
   <p>
-    If you need to perform computational analysis on Find Case Law records, you'll need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }}. Here's an overview of the process.
+    If you need to perform computational analysis on Find Case Law records, you'll need to {{ link(content="apply for a licence", href=url("apply_for_a_licence")) }}. Here's an overview of the process.
   </p>
 {% endblock mobile_article_title %}
 {% block desktop_article_title %}
@@ -17,7 +17,7 @@
     How to get permission
   {% endcall %}
   <p>
-    If you need to perform computational analysis on Find Case Law records, you'll need to {{ link(content="apply for a licence", href=url("apply_for_a_licence") ) }}. Here's an overview of the process.
+    If you need to perform computational analysis on Find Case Law records, you'll need to {{ link(content="apply for a licence", href=url("apply_for_a_licence")) }}. Here's an overview of the process.
   </p>
 {% endblock desktop_article_title %}
 {% block article_navigation %}
@@ -109,7 +109,7 @@
       {% call link(
         href=mailto_with_subject_href(licensing_email_address, subject),
         class_name=trackable_class_name(subject)
-        ) %}
+      ) %}
         {{ licensing_email_address }}
       {% endcall %}
     </p>

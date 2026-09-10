@@ -16,22 +16,28 @@
   {%- set button_class = component_class_names('button', contrast_class, size_class) -%}
   {%- if element_type == "input" -%}
     <input class="{{ button_class }}"
-           {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %} />
+           {%- for key, value in attrs.items() %}
+           {{ key }}="{{ value }}"
+           {%- endfor %} />
   {%- else -%}
     {%- if href -%}
       <a href="{{ href }}"
          class="{{ button_class }}"
-         {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
-      {%- else -%}
-        <button class="{{ button_class }}"
-                {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
-        {%- endif -%}
-        {{ body_content }}
-        {%- if href -%}
+         {%- for key, value in attrs.items() %}
+         {{ key }}="{{ value }}"
+         {%- endfor %}>
+    {%- else -%}
+      <button class="{{ button_class }}"
+              {%- for key, value in attrs.items() %}
+              {{ key }}="{{ value }}"
+              {%- endfor %}>
+    {%- endif -%}
+      {{ body_content }}
+      {%- if href -%}
         </a>
       {%- else -%}
-      </button>
-    {%- endif -%}
+        </button>
+      {%- endif -%}
   {%- endif -%}
 {%- endmacro -%}
 {%- macro button_label() -%}
