@@ -1,41 +1,42 @@
-{% macro button(href=None, variant=None, size=None, contrast=None, element_type="button", attrs={}) %}
-  {% set variant_classes = {"default": "", "secondary": "button--secondary", "underline": "button--underline", "link": "button--link"} %}
-  {% set size_classes = {"default": "", "small": "button--small"} %}
-  {% set variant_class = variant_classes.get(variant, variant_classes['default']) %}
-  {% set size_class = size_classes.get(size, size_classes['default']) %}
-  {% if contrast %}
-    {% if variant and variant_class %}
-      {% set contrast_class = variant_class ~ '-contrast' %}
-    {% else %}
-      {% set contrast_class = "button--contrast" %}
-    {% endif %}
-  {% else %}
-    {% set contrast_class = variant_class %}
-  {% endif %}
-  {% set button_class = ('button ' ~ contrast_class ~ ' ' ~ size_class).strip() %}
-  {% if element_type == "input" %}
+{%- macro button(href=None, variant=None, size=None, contrast=None, element_type="button", attrs={}, content=None) -%}
+  {%- set body_content = (caller() if caller is defined else content if content is defined else "") | trim -%}
+  {%- set variant_classes = {"default": "", "secondary": "button--secondary", "underline": "button--underline", "link": "button--link"} -%}
+  {%- set size_classes = {"default": "", "small": "button--small"} -%}
+  {%- set variant_class = variant_classes.get(variant, variant_classes['default']) -%}
+  {%- set size_class = size_classes.get(size, size_classes['default']) -%}
+  {%- if contrast -%}
+    {%- if variant and variant_class -%}
+      {%- set contrast_class = variant_class ~ '-contrast' -%}
+    {%- else -%}
+      {%- set contrast_class = "button--contrast" -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- set contrast_class = variant_class -%}
+  {%- endif -%}
+  {%- set button_class = component_class_names('button', contrast_class, size_class) -%}
+  {%- if element_type == "input" -%}
     <input class="{{ button_class }}"
-           {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %} />
-  {% else %}
-    {% if href %}
+           {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %} />
+  {%- else -%}
+    {%- if href -%}
       <a href="{{ href }}"
          class="{{ button_class }}"
-         {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
-      {% else %}
+         {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
+      {%- else -%}
         <button class="{{ button_class }}"
-                {% for key, value in attrs.items() %}{{ key }}="{{ value }}"{% endfor %}>
-        {% endif %}
-        {{ caller() }}
-        {% if href %}
+                {%- for key, value in attrs.items() %}{{ key }}="{{ value }}"{%- endfor %}>
+        {%- endif -%}
+        {{ body_content }}
+        {%- if href -%}
         </a>
-      {% else %}
+      {%- else -%}
       </button>
-    {% endif %}
-  {% endif %}
-{% endmacro %}
-{% macro button_label() %}
-  <span class="button__label">{{ caller() }}</span>
-{% endmacro %}
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}
+{%- macro button_label() -%}
+  <span class="button__label">{{ caller() | trim }}</span>
+{%- endmacro -%}
 {% macro button_variant_examples() %}
   {% call button() %}
     Primary button

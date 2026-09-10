@@ -1,6 +1,6 @@
-{% macro grid() %}
-  <div class="grid">{{ caller() }}</div>
-{% endmacro %}
+{%- macro grid() -%}
+  <div class="grid">{{ caller() | trim }}</div>
+{%- endmacro -%}
 {% macro grid_examples() %}
   {% call grid() %}
     <div>Grid item 1</div>

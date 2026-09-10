@@ -1,35 +1,41 @@
-{% macro heading(tag="h1", size="default", id=None, withoutMargins=False, content=None) %}
-  {% set body_content = caller() if caller is defined else content if content is defined else "" %}
-  {% set size_classes = {
+{%- macro heading(tag="h1", size="default", id=None, withoutMargins=False, content=None) -%}
+  {%- set body_content = (caller() if caller is defined else content if content is defined else "") | trim -%}
+  {%- set size_classes = {
     "default": "",
     "h1": "heading heading--h1",
     "h2": "heading heading--h2",
     "h3": "heading heading--h3",
     "h4": "heading heading--h4"
-  } %}
-  {% set size_class = size_classes.get(size, size_classes["default"]) %}
-  {% set margin_class = "heading--without-margins" if withoutMargins else "" %}
-  {% set text = body_content | trim %}
-  {% set id_value = id | default(text | hyphenate, true) %}
-  {% if tag == "h1" %}
-    <h1 id="{{ id_value }}" class="{{ size_class }} {{ margin_class }}">{{ body_content }}</h1>
-  {% endif %}
-  {% if tag == "h2" %}
-    <h2 id="{{ id_value }}" class="{{ size_class }} {{ margin_class }}">{{ body_content }}</h2>
-  {% endif %}
-  {% if tag == "h3" %}
-    <h3 id="{{ id_value }}" class="{{ size_class }} {{ margin_class }}">{{ body_content }}</h3>
-  {% endif %}
-  {% if tag == "h4" %}
-    <h4 id="{{ id_value }}" class="{{ size_class }} {{ margin_class }}">{{ body_content }}</h4>
-  {% endif %}
-  {% if tag == "div" %}
-    <div id="{{ id_value }}" class="{{ size_class }} {{ margin_class }}">{{ body_content }}</div>
-  {% endif %}
-  {% if tag == "span" %}
-    <span id="{{ id_value }}" class="{{ size_class }} {{ margin_class }}">{{ body_content }}</span>
-  {% endif %}
-{% endmacro %}
+  } -%}
+  {%- set size_class = size_classes.get(size, size_classes["default"]) -%}
+  {%- set margin_class = "heading--without-margins" if withoutMargins else "" -%}
+  {%- set text = body_content | trim -%}
+  {%- set id_value = id | default(text | hyphenate, true) -%}
+  {%- if tag == "h1" -%}
+    <h1 id="{{ id_value }}"
+        class="{{ component_class_names(size_class, margin_class) }}">{{ body_content }}</h1>
+  {%- endif -%}
+  {%- if tag == "h2" -%}
+    <h2 id="{{ id_value }}"
+        class="{{ component_class_names(size_class, margin_class) }}">{{ body_content }}</h2>
+  {%- endif -%}
+  {%- if tag == "h3" -%}
+    <h3 id="{{ id_value }}"
+        class="{{ component_class_names(size_class, margin_class) }}">{{ body_content }}</h3>
+  {%- endif -%}
+  {%- if tag == "h4" -%}
+    <h4 id="{{ id_value }}"
+        class="{{ component_class_names(size_class, margin_class) }}">{{ body_content }}</h4>
+  {%- endif -%}
+  {%- if tag == "div" -%}
+    <div id="{{ id_value }}"
+         class="{{ component_class_names(size_class, margin_class) }}">{{ body_content }}</div>
+  {%- endif -%}
+  {%- if tag == "span" -%}
+    <span id="{{ id_value }}"
+          class="{{ component_class_names(size_class, margin_class) }}">{{ body_content }}</span>
+  {%- endif -%}
+{%- endmacro -%}
 {% macro heading_examples() %}
   {% call heading(size="h1") %}
     Size H1

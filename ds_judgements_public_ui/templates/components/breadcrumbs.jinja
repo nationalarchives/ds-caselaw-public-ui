@@ -1,29 +1,31 @@
-{% macro breadcrumb(url=None) %}
-  {% if url %}
+{%- macro breadcrumb(url=None) -%}
+  {%- set body_content = caller() | trim -%}
+  {%- if url -%}
     <li>
-      <a href="{{ url }}">{{ caller() }}</a>
+      <a href="{{ url }}">{{ body_content }}</a>
     </li>
-  {% else %}
-    <li>{{ caller() }}</li>
-  {% endif %}
-{% endmacro %}
-{% macro breadcrumbs(prefix=None, postfix=None, home=None, home_text=None, data=[], variant="default") %}
-  {% set variant_classes = {"default": "", "accent": "breadcrumbs--accent"} %}
-  {% set variant_class = variant_classes.get(variant, variant_classes["default"]) %}
-  {% set breadcrumbs_class = ("breadcrumbs " ~ variant_class).strip() %}
+  {%- else -%}
+    <li>{{ body_content }}</li>
+  {%- endif -%}
+{%- endmacro -%}
+{%- macro breadcrumbs(prefix=None, postfix=None, home=None, home_text=None, data=[], variant="default") -%}
+  {%- set body_content = caller() | trim if caller else "" -%}
+  {%- set variant_classes = {"default": "", "accent": "breadcrumbs--accent"} -%}
+  {%- set variant_class = variant_classes.get(variant, variant_classes["default"]) -%}
+  {%- set breadcrumbs_class = component_class_names("breadcrumbs", variant_class) -%}
   <div class="{{ breadcrumbs_class }}">
     <div class="container">
       <div class="breadcrumbs__container" aria-label="Breadcrumb">
         <ol>
           <li>
-            {% if prefix %}
+            {%- if prefix -%}
               <span>{{ prefix }}</span>
-            {% endif %}
+            {%- endif -%}
             <a href="{{ url(home) }}" class="breadcrumbs__prefix">{{ home_text }}</a>
           </li>
-          {% if caller %}{{ caller() }}{% endif %}
+          {%- if body_content -%}{{ body_content }}{%- endif -%}
         </ol>
-        {% if postfix %}<span class="breadcrumbs__postfix">{{ postfix }}</span>{% endif %}
+        {%- if postfix -%}<span class="breadcrumbs__postfix">{{ postfix }}</span>{%- endif -%}
       </div>
     </div>
   </div>
@@ -32,18 +34,18 @@
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-{% for breadcrumb in data %}
+{%- for breadcrumb in data %}
   {
     "@type": "ListItem",
     "position": {{ loop.index }},
-    "name": "{{ breadcrumb.text }}"{% if breadcrumb.url %},
-    "item": "{{ breadcrumb.url }}"{% endif %}
-  }{% if not loop.last %},{% endif %}
-{% endfor %}
+    "name": "{{ breadcrumb.text }}"{%- if breadcrumb.url %},
+    "item": "{{ breadcrumb.url }}"{%- endif %}
+  }{%- if not loop.last %},{%- endif %}
+{%- endfor %}
         ]
       }
   </script>
-{% endmacro %}
+{%- endmacro -%}
 {% macro breadcrumbs_examples() %}
   {% call breadcrumbs(prefix="You are in", home="home", home_text="Find Case Law") %}
     {% call breadcrumb(url="/components") %}

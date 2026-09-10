@@ -1,7 +1,7 @@
 {% from "govuk_frontend_jinja/components/radios/macro.html" import govukRadios %}
-{% macro radios(params) %}
-  {{ govukRadios(params) }}
-{% endmacro %}
+{%- macro radios(params) -%}
+  {{ govukRadios(params) | trim }}
+{%- endmacro -%}
 {% macro radios_examples() %}
   <h3>Default</h3>
   {{ radios({

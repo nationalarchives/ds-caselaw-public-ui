@@ -1,8 +1,8 @@
-{% macro hero() %}
+{%- macro hero() -%}
   <div class="hero">
-    <div class="container">{{ caller() }}</div>
+    <div class="container">{{ caller() | trim }}</div>
   </div>
-{% endmacro %}
+{%- endmacro -%}
 {% macro hero_examples() %}
   {% call hero() %}
     <h1>Hero heading</h1>

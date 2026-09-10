@@ -1,7 +1,7 @@
 {% from "govuk_frontend_jinja/components/summary-list/macro.html" import govukSummaryList %}
-{% macro summary_card(params) %}
-  {{ govukSummaryList(params) }}
-{% endmacro %}
+{%- macro summary_card(params) -%}
+  {{ govukSummaryList(params) | trim }}
+{%- endmacro -%}
 {% macro summary_card_examples() %}
   {{ summary_card({
     "card": {

@@ -1,17 +1,18 @@
 {% from "components/heading.jinja" import heading %}
-{% macro contents(title=None, class_name="", links_class_name="", before_links=None) %}
+{%- macro contents(title=None, class_name="", links_class_name="", before_links=None) -%}
+  {%- set body_content = caller() | trim -%}
   <nav class="{{ component_class_names('contents', class_name) }}">
-    {% if before_links %}{{ before_links }}{% endif %}
+    {%- if before_links -%}{{ before_links }}{%- endif -%}
     <div class="{{ component_class_names('contents__links', links_class_name) }}">
-      {% if title %}
+      {%- if title -%}
         {% call heading(tag="div", size="h3") %}
           {{ title }}
         {% endcall %}
-      {% endif %}
-      {{ caller() }}
+      {%- endif -%}
+      {{ body_content }}
     </div>
   </nav>
-{% endmacro %}
+{%- endmacro -%}
 {% macro contents_examples() %}
   {% call contents(title="On this page") %}
     <ul>

@@ -1,7 +1,7 @@
 {% from "govuk_frontend_jinja/components/pagination/macro.html" import govukPagination %}
-{% macro pagination(params) %}
-  {{ govukPagination(params) }}
-{% endmacro %}
+{%- macro pagination(params) -%}
+  {{ govukPagination(params) | trim }}
+{%- endmacro -%}
 {% macro pagination_examples() %}
   {{ pagination({
     "previous": {
