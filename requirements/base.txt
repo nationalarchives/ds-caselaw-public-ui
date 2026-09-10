@@ -14,6 +14,7 @@ ds-caselaw-utils==4.9.0
 rollbar
 django-weasyprint==2.5.0
 django-waffle==5.0.0  # https://github.com/django-waffle/django-waffle
+django-vite==3.1.0  # https://github.com/MrBin99/django-vite
 django-formtools~=2.7.0
 crispy-forms-gds==2.0.1
 defusedxml==0.7.1

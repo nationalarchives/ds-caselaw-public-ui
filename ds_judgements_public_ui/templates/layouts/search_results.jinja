@@ -8,7 +8,7 @@
   Search results - Find Case Law
 {% endblock title %}
 {% block javascript %}
-  <script type="module" defer src="{{ static('js/dist/manage_filters.js')}}"></script>
+  {{ vite_asset("static/js/src/manage_filters.js") }}
 {% endblock javascript %}
 {% block content %}
   <div class="results">

@@ -132,7 +132,7 @@ RUN chmod +x /start
 
 # Grant django user write access to directories written at runtime:
 # - media/logs: application data
-# - static: build outputs from npm run build (webpack + sass) and collectstatic
+# - static: build outputs from npm run build (Vite) and collectstatic
 RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs ${APP_HOME}/staticfiles \
   && chown -R django:django \
     ${APP_HOME}/media \

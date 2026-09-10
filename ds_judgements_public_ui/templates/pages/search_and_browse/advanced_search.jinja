@@ -31,5 +31,5 @@
   </div>
 {% endblock content %}
 {% block javascript %}
-  <script type="module" defer src="{{ static('js/dist/manage_filters.js')}}"></script>
+  {{ vite_asset("static/js/src/manage_filters.js") }}
 {% endblock javascript %}

@@ -7,10 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "start-sass": "npx sass --watch --load-path=node_modules ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css",
-    "start-scripts": "npx webpack --watch",
-    "build": "npx webpack && npx sass --quiet-deps --load-path=node_modules ds_judgements_public_ui/sass:ds_judgements_public_ui/static/css --style=compressed",
-    "watch": "npx nodemon --watch './ds_judgements_public_ui/sass/*' --watch './ds_judgements_public_ui/static/js/*' --exec 'npm run start-sass && npm run start-scripts'",
+    "build": "vite build --configLoader native",
+    "watch": "vite build --watch",
+    "dev": "vite",
     "lint:scss": "npx stylelint '**/*.scss'",
     "test": "npx jest",
     "storybook": "storybook dev -p 6006 --config-dir storybook/.storybook",
@@ -35,7 +34,6 @@
     "@storybook/addon-docs": "10.6.0",
     "@storybook/html-vite": "10.6.0",
     "babel-jest": "30.5.0",
-    "babel-loader": "10.1.1",
     "jest": "30.5.0",
     "jest-environment-jsdom": "30.5.0",
     "jquery": "4.0.0",
@@ -43,8 +41,7 @@
     "stylelint": "17.15.0",
     "stylelint-config-clean-order": "10.0.0",
     "stylelint-config-standard-scss": "17.0.0",
-    "webpack": "5.110.3",
-    "webpack-cli": "7.2.3"
+    "vite": "8.2.2"
   },
   "browserslist": [
     "IE 11"
