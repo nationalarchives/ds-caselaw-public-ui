@@ -88,7 +88,11 @@
     }
   }
 
-  @media (min-width: $grid-breakpoint-medium) {
+  @media (min-width: $grid-breakpoint-large) {
+    width: 38rem;
+  }
+
+  @media (min-width: $grid-breakpoint-extra-large) {
     width: 47rem;
   }
 }
