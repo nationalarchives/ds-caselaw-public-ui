@@ -97,9 +97,6 @@
       border-bottom: 1px solid colour-var("keyline-dark");
 
       &:first-of-type {
-        padding-top: $space-4;
-        border-top: 1px solid colour-var("keyline-dark");
-
         tr:first-child:not(:only-child) {
           td {
             padding-top: 0;

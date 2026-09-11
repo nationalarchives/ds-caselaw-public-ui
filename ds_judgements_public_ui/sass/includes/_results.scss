@@ -28,7 +28,10 @@
     display: flex;
     flex-direction: column;
     gap: $space-4;
+
+    margin-bottom: $space-4;
     padding-bottom: $space-4;
+    border-bottom: 1px solid colour-var("keyline-dark");
 
     @media (min-width: $grid-breakpoint-medium) {
       flex-flow: row wrap;
@@ -36,7 +39,9 @@
       align-items: flex-end;
       justify-content: space-between;
 
+      margin-bottom: 0;
       padding-bottom: $space-2;
+      border-bottom: 0;
     }
   }
 
