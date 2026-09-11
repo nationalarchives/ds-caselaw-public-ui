@@ -28,11 +28,9 @@ def test_advanced_search_no_results_page(page: Page):
 def test_search_results_sorting(search_results_page: Page):
     sort_input = search_results_page.locator("#order_by")
     per_page_input = search_results_page.locator("#per_page")
-    sort_button = search_results_page.get_by_role("button", name="Apply")
 
-    sort_input.select_option("Sort by: Newest")
+    sort_input.select_option("Newest")
     per_page_input.select_option("25")
-    sort_button.click()
 
     expect(sort_input).to_have_value("-date")
     expect(per_page_input).to_have_value("25")
