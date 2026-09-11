@@ -2,10 +2,6 @@
   display: flex;
   flex-direction: column;
 
-  &--paddingless {
-    padding-left: $space-4;
-  }
-
   &--default {
     gap: $space-4;
     margin: 0;
@@ -58,5 +54,25 @@
       flex-direction: row;
       gap: $space-4;
     }
+  }
+
+  &--gap-xs {
+    gap: 0;
+  }
+
+  &--gap-sm {
+    gap: $space-2;
+  }
+
+  &--gap-md {
+    gap: $space-4;
+  }
+
+  &--gap-lg {
+    gap: $space-6;
+  }
+
+  &--paddingless {
+    padding-left: $space-4;
   }
 }
