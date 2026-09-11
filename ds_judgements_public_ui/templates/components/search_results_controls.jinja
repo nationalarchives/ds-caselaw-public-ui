@@ -3,6 +3,7 @@
   {%- if query_params and query_params.items -%}
     <div class="{{ component_class_names('result-controls', 'result-controls--footer' if is_footer) }}">
       <form method="get"
+            data-search-results-controls
             action="{{ search_path }}"
             id="analytics-result-controls{{ "-footer" if is_footer else "" }}">
         {%- for key, value in query_params.items() -%}

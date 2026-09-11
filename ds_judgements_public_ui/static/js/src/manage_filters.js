@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { setupSearchResultsControls } from "./search_results_controls";
 
 (function ($) {
     $.fn.manage_filters = function (options) {
@@ -67,3 +68,4 @@ import $ from "jquery";
 })($);
 
 $(".js-results-facets-wrapper").manage_filters();
+setupSearchResultsControls();

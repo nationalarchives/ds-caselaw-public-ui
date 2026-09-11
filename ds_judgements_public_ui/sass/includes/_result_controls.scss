@@ -2,6 +2,10 @@
   display: inline-block;
   text-align: left;
 
+  [type="submit"][hidden] {
+    display: none;
+  }
+
   &--footer.result-controls {
     width: 100%;
     padding-top: $space-4;
