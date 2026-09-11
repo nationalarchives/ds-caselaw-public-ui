@@ -106,6 +106,10 @@
             }
           }
         }
+
+        @media (min-width: $grid-breakpoint-medium) {
+          border-top: 0;
+        }
       }
 
       tr {

@@ -1,7 +1,9 @@
+{% from "components/button.jinja" import button %}
 {%- macro search_results_controls(search_path=None, query_params=None, query=None, order=None, per_page=None, is_footer=False) -%}
   {%- if query_params and query_params.items -%}
     <div class="{{ component_class_names('result-controls', 'result-controls--footer' if is_footer) }}">
       <form method="get"
+            data-search-results-controls
             action="{{ search_path }}"
             id="analytics-result-controls{{ "-footer" if is_footer else "" }}">
         {%- for key, value in query_params.items() -%}
@@ -31,14 +33,15 @@
                 <option value="relevance"
                         {%- if order == "relevance" or order is none %}
                         selected='selected'
-                        {%- endif %}>Sort by: Most relevant</option>
+                        {%- endif %}>Most relevant</option>
               {%- endif -%}
               <option value="-date"
                       {%- if order == "-date" or (order is none and not query) %}
                       selected='selected'
-                      {%- endif %}>Sort by: Newest</option>
-              <option value="date"{%- if order == "date" %} selected='selected'{%- endif %}>Sort by: Oldest</option>
+                      {%- endif %}>Newest</option>
+              <option value="date"{%- if order == "date" %} selected='selected'{%- endif %}>Oldest</option>
             </select>
+            {{ button(variant="secondary", element_type="input", size="small", attrs={"type":"submit", "value":"Sort"}) }}
           </div>
         {%- endif -%}
         <div class="{{ component_class_names('result-controls__item', 'result-controls__item--desktop-only' if not is_footer) }}">
@@ -54,10 +57,8 @@
             <option value="25"{%- if per_page == 25 %} selected='selected'{%- endif %}>25</option>
             <option value="50"{%- if per_page == 50 %} selected='selected'{%- endif %}>50</option>
           </select>
+          {{ button(variant="secondary", element_type="input", size="small", attrs={"type":"submit", "value":"Apply"}) }}
         </div>
-        <input type="submit"
-               value="Apply"
-               class="button-small result-controls__button" />
       </form>
     </div>
   {%- endif -%}

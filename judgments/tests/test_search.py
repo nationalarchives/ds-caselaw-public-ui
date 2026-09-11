@@ -466,8 +466,8 @@ class TestSearchResults(TestCase):
 
         expected_order_select_html = """
             <select class="result-controls__select" id="order_by" name="order">
-                <option value="-date" selected="selected">Sort by: Newest</option>
-                <option value="date">Sort by: Oldest</option>
+                <option value="-date" selected="selected">Newest</option>
+                <option value="date">Oldest</option>
             </select>
         """
 
