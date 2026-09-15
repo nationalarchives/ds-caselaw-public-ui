@@ -16,9 +16,10 @@
     {{ caller() | trim }}
   </form>
 {%- endmacro -%}
-{%- macro search_form_container(margin=False) -%}
+{%- macro search_form_container(margin=False, fixed_width=False) -%}
   {%- set margin_class = "search-input--with-margins" if margin else "" -%}
-  <div class="{{ component_class_names('search-input', margin_class) }}">{{ caller() | trim }}</div>
+  {%- set width_class = "search-input--fixed-width" if fixed_width else "" -%}
+  <div class="{{ component_class_names('search-input', margin_class, width_class) }}">{{ caller() | trim }}</div>
 {%- endmacro -%}
 {%- macro search_input_footer() -%}
   <div class="search-input__footer">{{ caller() | trim }}</div>
