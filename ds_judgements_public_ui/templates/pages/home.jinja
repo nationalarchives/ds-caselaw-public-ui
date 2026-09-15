@@ -12,7 +12,7 @@
 {% block content %}
   {% call hero() %}
     {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
-      {% call search_form_container() %}
+      {% call search_form_container(fixed_width=True) %}
         <p>Use any search term including neutral citation, names and keywords</p>
         {{ search_input(label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
         {% call search_input_footer() %}
