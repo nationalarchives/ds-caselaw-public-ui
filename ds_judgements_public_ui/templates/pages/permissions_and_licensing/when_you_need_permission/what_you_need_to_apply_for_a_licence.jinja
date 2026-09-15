@@ -1,4 +1,5 @@
 {% extends "layouts/standard_content.jinja" %}
+{% from "components/alert.jinja" import alert %}
 {% from "components/details.jinja" import details %}
 {% from "components/card.jinja" import card %}
 {% from "components/heading.jinja" import heading %}
@@ -85,18 +86,19 @@
     <ol>
       <li>Contact Full Name</li>
       <li>Contact Email address</li>
-      <br />
       <li>
         We need the contact details of the person who will be responsible for the licence. This should be someone senior who has overall responsibility for compliance with the terms and conditions of the licence.
-        <br />
         <ul>
           <li>This is the same person as the main contact</li>
           <li>This is a different person (please enter their details below)</li>
         </ul>
       </li>
     </ol>
-    <p style="text-indent: 1rem;">1a. Licence holder Full Name</p>
-    <p style="text-indent: 1rem;">2a. Licence holder Email</p>
+    <p>
+      1a. Licence holder Full Name
+    </br>
+    2a. Licence holder Email
+    </p>
   {% endcall %}
   {% call heading(tag="h4") %}
     2. The details of your organisation
@@ -176,10 +178,7 @@
         <br />
         If you cannot share a link, please type none
       </li>
-      <li>
-        What is the main purpose of your project or product?
-        <br />
-      </li>
+      <li>What is the main purpose of your project or product?</li>
       <li>
         Which one best describes who will be able to access the outcomes of your computational analysis?
         <br />
@@ -502,14 +501,9 @@
       </li>
     </ol>
     <h2>9 Principles Statement</h2>
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <span class="govuk-warning-text__text">
-        <span class="govuk-visually-hidden">Information</span>
-        You should address each of the 9 principles in your answer. Applications that do not reference each of the 9 principles may experience delays.
-      </span>
-    </div>
-    <br />
+    {% call alert(title="Information") %}
+      <p>You should address each of the 9 principles in your answer. Applications that do not reference each of the 9 principles may experience delays.</p>
+    {% endcall %}
     <p>Please describe how you will meet the 9 Principles as terms of your licence. You should state:</p>
     <ul>
       <li>any risks you have identified</li>
@@ -609,8 +603,7 @@
       Download full list of 29 questions (Microsoft Word 34.1 kB)
     {% endcall %}
   </p>
-  <br>
-  <br>
+  <p>&nbsp;</p>
   {% call card(title="Ready to apply?", title_tag="h2") %}
     <p>
       It may take a few weeks until you receive a decision on your application. You can read more about the approval process on the

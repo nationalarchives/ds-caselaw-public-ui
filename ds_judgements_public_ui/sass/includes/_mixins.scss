@@ -180,7 +180,7 @@
 
   white-space: nowrap;
 
-  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
 }
 
 @mixin reset_visually_hidden {
@@ -196,5 +196,5 @@
 
   white-space: normal;
 
-  clip: auto;
+  clip-path: none;
 }
