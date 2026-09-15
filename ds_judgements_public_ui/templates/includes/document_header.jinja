@@ -14,14 +14,14 @@
     {% endcall %}
   {% endif %}
   {%+ if linked_document_uri -%}
-  {% set linked_document_url = url('detail', document_uri=linked_document_uri) ~ (query and ('?query=' ~ query|urlencode) or '') %}
-  {% call button(variant="secondary", size="small", href=linked_document_url) %}
-    {% if document.document_noun == "judgment" %}
-      View Press Summary
-    {% else %}
-      View Judgment
-    {% endif %}
-  {% endcall %}
+    {% set linked_document_url = url('detail', document_uri=linked_document_uri) ~ (query and ('?query=' ~ query|urlencode) or '') %}
+    {% call button(variant="secondary", size="small", href=linked_document_url) %}
+      {% if document.document_noun == "judgment" %}
+        View Press Summary
+      {% else %}
+        View Judgment
+      {% endif %}
+    {% endcall %}
   {%+ endif -%}
   {% if document_html %}
     {% call link(href="#download-options", size="md", alignment="center", show_visited=False) %}

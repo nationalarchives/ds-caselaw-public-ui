@@ -18,9 +18,9 @@
         size="sm",
         href=(none if letter.is_active else letter.href),
         variant=(
-        "active" if letter.is_active
-        else "default" if letter.has_terms
-        else "disabled"
+          "active" if letter.is_active
+          else "default" if letter.has_terms
+          else "disabled"
         )
       ) %}
         {{ letter.letter }}

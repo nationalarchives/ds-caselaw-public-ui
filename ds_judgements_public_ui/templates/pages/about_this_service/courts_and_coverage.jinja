@@ -68,7 +68,7 @@
           {% call list(variant="bullets") %}
             {% for court in group.courts %}
               {% call list_item() %}
-                {{ court.grouped_name }} &mdash; {{ court.canonical_param|get_court_date_range }}
+                {{ court.grouped_name }} — {{ court.canonical_param|get_court_date_range }}
               {% endcall %}
             {% endfor %}
           {% endcall %}
@@ -76,7 +76,7 @@
       {% else %}
         {% for court in group.courts %}
           {% call list_item() %}
-            <strong>{{ court.grouped_name }}</strong> &mdash; {{ court.canonical_param|get_court_date_range }}
+            <strong>{{ court.grouped_name }}</strong> — {{ court.canonical_param|get_court_date_range }}
           {% endcall %}
         {% endfor %}
       {% endif %}

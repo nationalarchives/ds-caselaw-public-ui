@@ -27,8 +27,7 @@
           For example <em>30 04 2023</em> or <em>2023</em>
         </p>
         {% if non_field_errors %}
-          <p class="structured-search__from-date-error-message"
-             id="from-date-error">{{ non_field_errors[0] }}</p>
+          <p class="structured-search__from-date-error-message" id="to-date-error">{{ non_field_errors[0] }}</p>
         {% endif %}
         {% if form.to_date.errors %}
           {% for error in form.to_date.errors %}
@@ -60,7 +59,8 @@
       <label for="id_party"
              class="structured-search__limit-to-label"
              aria-label="Search by party name">Party name</label>
-      <p class="structured-search__help-text" id="party_name-help-text">For example a claimant, defendant or other party</p>
+      <p class="structured-search__help-text"
+         id="party_name-help-text">For example a claimant, defendant or other party</p>
       {{ form.party }}
     </div>
     <div class="structured-search__specific-field-container">

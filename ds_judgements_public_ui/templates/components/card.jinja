@@ -14,14 +14,10 @@
   {%- if url -%}
     <a class="{{ card_class }}"
        href="{{ url }}"
-       {%- for key, value in attrs.items() %}
-       {{ key }}="{{ value }}"
-       {%- endfor %}>
+       {%- for key, value in attrs.items() %} {{ key }}="{{ value }}" {%- endfor %}>
   {%- else -%}
     <div class="{{ card_class }}"
-         {%- for key, value in attrs.items() %}
-         {{ key }}="{{ value }}"
-         {%- endfor %}>
+         {%- for key, value in attrs.items() %} {{ key }}="{{ value }}" {%- endfor %}>
   {%- endif -%}
     {%- if image_url -%}
       <img src="{{ image_url }}" alt="" />
@@ -51,7 +47,7 @@
     <p>This is the light card style</p>
   {% endcall %}
   {% call card(variant="light") %}
-    <button class="button-primary">Button</button>
+    <button type="button" class="button-primary">Button</button>
     <p>Just a light example with a button</p>
   {% endcall %}
 {% endmacro %}
