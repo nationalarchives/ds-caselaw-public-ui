@@ -1,4 +1,4 @@
-import { CookieBanner } from "@nationalarchives/frontend/nationalarchives/components/cookie-banner/cookie-banner.js";
+import { CookieBanner } from "@nationalarchives/frontend/nationalarchives/components/cookie-banner/cookie-banner.mjs";
 import Cookies from "@nationalarchives/cookies";
 
 document.addEventListener("DOMContentLoaded", () => {
