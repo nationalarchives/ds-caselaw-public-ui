@@ -31,3 +31,10 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
+
+DJANGO_VITE = {
+    "default": {
+        **base.DJANGO_VITE["default"],
+        "dev_mode": True,
+    }
+}

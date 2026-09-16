@@ -6,15 +6,9 @@
 {% from "components/button.jinja" import button, button_label %}
 {% from "components/heading.jinja" import heading %}
 {% block javascript %}
-  <script type="module"
-          defer
-          src="{{ static('js/dist/document_navigation.js') }}"></script>
-  <script type="module"
-          defer
-          src="{{ static('js/dist/document_search_links.js') }}"></script>
-  <script type="module"
-          defer
-          src="{{ static('js/dist/document_paragraph_tooltip_anchors.js') }}"></script>
+  {{ vite_asset("static/js/src/document_navigation.js") }}
+  {{ vite_asset("static/js/src/document_search_links.js") }}
+  {{ vite_asset("static/js/src/document_paragraph_tooltip_anchors.js") }}
 {% endblock javascript %}
 {% block title %}
   {% if page_title %}{{ page_title }} -{% endif %}

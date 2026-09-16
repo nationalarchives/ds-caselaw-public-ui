@@ -134,7 +134,7 @@ You can then access the site in your browser:
 
 <http://127.0.0.1:3000>
 
-(NOTE: The output of the asset and JS builds are logged in the ./assets.log file)
+(NOTE: The output of the Vite dev server is logged in the ./assets.log file)
 
 #### Fixing an issue when another project is already running
 
@@ -195,6 +195,8 @@ Pytest unit tests can be run with `fab test`.
 
 We also have a suite of end to end tests (in the `e2e_tests/` directory) written with [playwright-pytest](https://playwright.dev/python/docs/api/class-playwright), which can be run with `fab e2etest`.
 These will run by default against the running `django` container. You can supply a `baseURL` argument to test against staging or production.
+
+When testing against `fab run`, the Chromium browser maps `localhost:5173` to the Docker host so it can load Vite's development assets. Docker Compose sets `E2E_VITE_HOST` for this purpose. Tests against built assets, including CI, do not need a Vite server.
 
 ### VCR Cassettes
 
@@ -334,7 +336,7 @@ npm unlink ../path/to/your/copy/nationalarchives/ds-caselaw-frontend
 
 ### Working with SASS/CSS
 
-- To watch and build the site SASS, run `npm run start-sass`
+- To build the site CSS and JavaScript, run `npm run build`
 - To modify styles, navigate to the `sass` folder in your editor.
 
 #### Note about `ds_judgements_public_ui/sass/includes/_judgment_text.scss`
@@ -358,13 +360,13 @@ UI applications are not shared.
 
 ### Working with JavaScript
 
-In a new terminal session run `npm run start-scripts` to kick off a Webpack watch task
+In a new terminal session run `npm run dev` to start the Vite dev server with live reload
 
 ### Working with Storybook for Django/Ninja Components
 
 In a new terminal session run `npm run storybook`
 
-Storybook 8 for html-webpack5 should then start automatically. You can access it in your browser at <http://localhost:6006>.
+Storybook for HTML/Vite should then start automatically. You can access it in your browser at <http://localhost:6006>.
 
 The repository also publishes Storybook to GitHub Pages using [.github/workflows/publish-storybook.yml](.github/workflows/publish-storybook.yml), which is intended to provide a stable, shareable URL for design interaction.
 

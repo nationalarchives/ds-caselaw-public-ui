@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     "waffle",
     "crispy_forms",
     "crispy_forms_gds",
+    "django_vite",
 ]
 
 LOCAL_APPS = [
@@ -158,6 +159,18 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
+
+VITE_DEV_SERVER_ENABLED = env.bool("VITE_DEV_SERVER_ENABLED", default=False)
+
+DJANGO_VITE = {
+    "default": {
+        "dev_mode": VITE_DEV_SERVER_ENABLED,
+        "dev_server_host": env("VITE_DEV_SERVER_HOST", default="localhost"),
+        "dev_server_port": env.int("VITE_DEV_SERVER_PORT", default=5173),
+        "manifest_path": str(APPS_DIR / "static" / "manifest.json"),
+        "static_url_prefix": "../" if VITE_DEV_SERVER_ENABLED else "",
+    }
+}
 
 # MEDIA
 # ------------------------------------------------------------------------------

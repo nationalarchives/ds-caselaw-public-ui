@@ -19,14 +19,15 @@ module.exports = {
         options: {},
     },
 
-    webpackFinal: async (config) => {
+    viteFinal: async (config) => {
         if (
             STORYBOOK_SERVER.includes("localhost") ||
             STORYBOOK_SERVER.includes("0.0.0.0")
         ) {
-            config.devServer = {
-                ...config.devServer,
+            config.server = {
+                ...config.server,
                 proxy: {
+                    ...(config.server?.proxy || {}),
                     "/storybook-render": {
                         target: STORYBOOK_SERVER,
                         changeOrigin: true,
