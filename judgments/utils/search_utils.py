@@ -6,9 +6,11 @@ from judgments.utils.timezones import london_today
 
 ALL_COURT_CODES = [court.code for court in all_courts.get_all()]
 
-ALL_SELECTABLE_COURT_NAMES = [court.name for court in all_courts.get_selectable() if court.type.value == "court"]
-ALL_SELECTABLE_TRIBUNAL_NAMES = [
-    tribunal.name for tribunal in all_courts.get_selectable() if tribunal.type.value == "tribunal"
+ALL_SEARCHABLE_COURT_NAMES = [
+    court.name for court in all_courts.get_show_in_search_filters() if court.type.value == "court"
+]
+ALL_SEARCHABLE_TRIBUNAL_NAMES = [
+    tribunal.name for tribunal in all_courts.get_show_in_search_filters() if tribunal.type.value == "tribunal"
 ]
 
 
@@ -50,14 +52,14 @@ def process_court_facets(facets: dict, current_courts: dict | None = None):
         for facet_key, facet_value in facets.items()
         if facet_key in ALL_COURT_CODES
         and facet_key not in current_courts
-        and all_courts.get_by_code(facet_key).name in ALL_SELECTABLE_COURT_NAMES
+        and all_courts.get_by_code(facet_key).name in ALL_SEARCHABLE_COURT_NAMES
     }
     tribunal_facets = {
         all_courts.get_by_code(facet_key): facet_value
         for facet_key, facet_value in facets.items()
         if facet_key in ALL_COURT_CODES
         and facet_key not in current_courts
-        and all_courts.get_by_code(facet_key).name in ALL_SELECTABLE_TRIBUNAL_NAMES
+        and all_courts.get_by_code(facet_key).name in ALL_SEARCHABLE_TRIBUNAL_NAMES
     }
     unprocessed_facets = {
         facet_key: facet_value for facet_key, facet_value in facets.items() if facet_key not in ALL_COURT_CODES
