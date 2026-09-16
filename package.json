@@ -41,7 +41,7 @@
     "stylelint": "17.15.0",
     "stylelint-config-clean-order": "10.0.0",
     "stylelint-config-standard-scss": "17.0.0",
-    "vite": "8.2.2"
+    "vite": "8.3.0"
   },
   "browserslist": [
     "IE 11"
