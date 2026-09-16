@@ -1,71 +1,42 @@
-import $ from "jquery";
 import { setupSearchResultsControls } from "./search_results_controls";
 
-(function ($) {
-    $.fn.manage_filters = function (options) {
-        const settings = $.extend({}, $.fn.manage_filters.defaults, options);
-        return this.each(() => {
-            const $wrapper = $(this);
+export function manageFilters(wrapper, options = {}) {
+    const settings = { ...manageFilters.defaults, ...options };
+    const toggleArea = wrapper.querySelector(".js-results-facets");
+    const controlContainer = wrapper.querySelector(
+        ".js-results-control-container",
+    );
+    const filters = wrapper.querySelector(".js-results-facets-applied-filters");
+    const button = document.createElement("button");
+    button.className = "results-search-component__toggle-control collapsed";
+    button.type = "button";
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", "js-results-facets");
+    const collapsedText = () =>
+        filters.children.length === 0
+            ? settings.collapsed_text_without_filters
+            : settings.collapsed_text_with_filters;
+    button.textContent = collapsedText();
 
-            const $toggle_area = $(".js-results-facets", $wrapper);
+    button.addEventListener("click", () => {
+        toggleArea.style.display =
+            getComputedStyle(toggleArea).display === "none" ? "block" : "none";
+        const collapsed = button.classList.toggle("collapsed");
+        button.setAttribute("aria-expanded", String(!collapsed));
+        button.textContent = collapsed
+            ? collapsedText()
+            : settings.expanded_text;
+    });
+    controlContainer.append(button);
+}
 
-            const $control_container = $(
-                ".js-results-control-container",
-                $wrapper,
-            );
+manageFilters.defaults = {
+    collapsed_text_with_filters: "Add another filter",
+    collapsed_text_without_filters: "Filter by court, date or person",
+    expanded_text: "Hide filter options",
+};
 
-            const $filters = $(".js-results-facets-applied-filters", $wrapper);
-
-            window.$ = $;
-
-            const btn = $("<button>", {
-                class: "results-search-component__toggle-control collapsed",
-                type: "button",
-                "aria-expanded": "false",
-                "aria-controls": "js-results-facets",
-                text:
-                    $filters.children().length == 0
-                        ? settings.collapsed_text_without_filters
-                        : settings.collapsed_text_with_filters,
-                click: (e) => {
-                    $toggle_area.toggle();
-
-                    const $el = $(e.target);
-                    const $filters = $(
-                        ".js-results-facets-applied-filters",
-                        $wrapper,
-                    );
-                    $el.toggleClass("collapsed");
-                    if ($el.hasClass("collapsed")) {
-                        btn.attr("aria-expanded", "false");
-                    } else {
-                        btn.attr("aria-expanded", "true");
-                    }
-                    $el.text(() => {
-                        if (
-                            $el.hasClass("collapsed") &&
-                            $filters.children().length == 0
-                        ) {
-                            return settings.collapsed_text_without_filters;
-                        } else if ($el.hasClass("collapsed")) {
-                            return settings.collapsed_text_with_filters;
-                        } else {
-                            return settings.expanded_text;
-                        }
-                    });
-                },
-            });
-
-            $control_container.append(btn);
-        });
-    };
-
-    $.fn.manage_filters.defaults = {
-        collapsed_text_with_filters: "Add another filter",
-        collapsed_text_without_filters: "Filter by court, date or person",
-        expanded_text: "Hide filter options",
-    };
-})($);
-
-$(".js-results-facets-wrapper").manage_filters();
+document
+    .querySelectorAll(".js-results-facets-wrapper")
+    .forEach((wrapper) => manageFilters(wrapper));
 setupSearchResultsControls();

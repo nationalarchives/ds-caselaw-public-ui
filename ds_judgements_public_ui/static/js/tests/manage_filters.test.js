@@ -1,21 +1,20 @@
-import { describe, expect, it, beforeEach, jest } from "@jest/globals";
+import { describe, expect, it, beforeEach } from "@jest/globals";
 
-import $ from "jquery";
-import "../src/manage_filters";
+import { manageFilters } from "../src/manage_filters";
 
 describe("manage_filters", () => {
     beforeEach(() => {
         document.body.innerHTML = `
             <div class="js-results-facets-wrapper">
                 <div class="js-results-control-container"></div>
-                <div class="js-results-facets"></div>
+                <div class="js-results-facets" style="display: none"></div>
                 <div class="js-results-facets-applied-filters"></div>
             </div>
         `;
     });
 
     it("initialises the button with correct text when there are no filters", () => {
-        $(".js-results-facets-wrapper").manage_filters();
+        manageFilters(document.querySelector(".js-results-facets-wrapper"));
         const button = document.querySelector(
             ".results-search-component__toggle-control",
         );
@@ -29,7 +28,7 @@ describe("manage_filters", () => {
         document.querySelector(".js-results-facets-applied-filters").innerHTML =
             `<div class="filter-item">Filter 1</div>`;
 
-        $(".js-results-facets-wrapper").manage_filters();
+        manageFilters(document.querySelector(".js-results-facets-wrapper"));
         const button = document.querySelector(
             ".results-search-component__toggle-control",
         );
@@ -40,7 +39,7 @@ describe("manage_filters", () => {
     });
 
     it("toggles the filter section on click", () => {
-        $(".js-results-facets-wrapper").manage_filters();
+        manageFilters(document.querySelector(".js-results-facets-wrapper"));
 
         const button = document.querySelector(
             ".results-search-component__toggle-control",
@@ -49,23 +48,23 @@ describe("manage_filters", () => {
 
         expect(button.getAttribute("aria-expanded")).toBe("false");
         expect(button.classList.contains("collapsed")).toBe(true);
-        expect(toggleArea.style.display).toBe("");
+        expect(toggleArea.style.display).toBe("none");
 
         button.click();
 
         expect(button.getAttribute("aria-expanded")).toBe("true");
         expect(button.classList.contains("collapsed")).toBe(false);
-        expect(toggleArea.style.display).toBe("none");
+        expect(toggleArea.style.display).toBe("block");
 
         button.click();
 
         expect(button.getAttribute("aria-expanded")).toBe("false");
         expect(button.classList.contains("collapsed")).toBe(true);
-        expect(toggleArea.style.display).toBe("");
+        expect(toggleArea.style.display).toBe("none");
     });
 
     it("updates the button text based on the presence of filters", () => {
-        $(".js-results-facets-wrapper").manage_filters();
+        manageFilters(document.querySelector(".js-results-facets-wrapper"));
         const button = document.querySelector(
             ".results-search-component__toggle-control",
         );
