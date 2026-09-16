@@ -41,8 +41,8 @@ def _get_choices_by_group(courts: list[CourtGroup]):
     return options
 
 
-COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_courts())
-TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_selectable_tribunals())
+COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_show_in_search_filters_courts())
+TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_show_in_search_filters_tribunals())
 
 
 def all_valid_courts_and_tribunals() -> set[str]:

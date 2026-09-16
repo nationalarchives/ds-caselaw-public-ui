@@ -102,8 +102,8 @@ class BrowseView(TemplateView):
             context["total"] = search_response.total
             context["per_page"] = per_page
             context["paginator"] = paginator(page, search_response.total, per_page)
-            context["courts"] = all_courts.get_grouped_selectable_courts()
-            context["tribunals"] = all_courts.get_grouped_selectable_tribunals()
+            context["courts"] = all_courts.get_grouped_show_in_search_filters_courts()
+            context["tribunals"] = all_courts.get_grouped_show_in_search_filters_tribunals()
             context["page_title"] = "Search results"
 
             # Build feed URL and alternates for this browse view

@@ -18,8 +18,8 @@ class AdvancedSearchView(TemplateViewWithContext):
         context["page_description"] = (
             "Search the Find Case Law service using filters such as date ranges, courts and names of parties and judges."
         )
-        context["courts"] = courts.get_grouped_selectable_courts()
-        context["tribunals"] = courts.get_grouped_selectable_tribunals()
+        context["courts"] = courts.get_grouped_show_in_search_filters_courts()
+        context["tribunals"] = courts.get_grouped_show_in_search_filters_tribunals()
         context["active_navigation_endpoint"] = "search_and_browse"
         context["feedback_survey_type"] = "advanced_search"
         context["form"] = AdvancedSearchForm(self.request.GET)

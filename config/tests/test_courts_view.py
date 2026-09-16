@@ -11,6 +11,31 @@ from judgments.models.court_dates import CourtDates
 
 
 class TestCourtsTribunalsListView(TestCase):
+    @patch("config.views.courts.courts.get_grouped_show_in_public_directory_tribunals")
+    @patch("config.views.courts.courts.get_grouped_show_in_public_directory_courts")
+    @patch.object(CourtsTribunalsListView, "decorate_court_group", side_effect=lambda group: group)
+    def test_context_uses_public_directory_courts_and_tribunals(
+        self,
+        mock_decorate_court_group,
+        mock_get_grouped_show_in_public_directory_courts,
+        mock_get_grouped_show_in_public_directory_tribunals,
+    ):
+        grouped_courts = [SimpleNamespace(name="Public directory court")]
+        grouped_tribunals = [SimpleNamespace(name="Public directory tribunal")]
+        mock_get_grouped_show_in_public_directory_courts.return_value = grouped_courts
+        mock_get_grouped_show_in_public_directory_tribunals.return_value = grouped_tribunals
+        request = RequestFactory().get("/courts-and-tribunals")
+
+        view = CourtsTribunalsListView()
+        view.setup(request)
+        context = view.get_context_data()
+
+        assert context["courts"] == grouped_courts
+        assert context["tribunals"] == grouped_tribunals
+        mock_get_grouped_show_in_public_directory_courts.assert_called_once_with()
+        mock_get_grouped_show_in_public_directory_tribunals.assert_called_once_with()
+        assert mock_decorate_court_group.call_count == 2
+
     @patch("config.views.courts.get_court_judgments_count")
     def test_decorate_court_group_adds_dates_and_document_counts(self, mock_get_court_judgments_count):
 
