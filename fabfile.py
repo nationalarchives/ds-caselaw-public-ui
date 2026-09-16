@@ -103,9 +103,11 @@ def start(c, container_name=None):
 @task
 def pip(c):
     start(c, "django")
-    django_exec("pip install -r requirements/local.txt -U")
-    django_exec("python manage.py migrate")
-    stop(c, "django")
+    try:
+        django_exec("pip install -r requirements/local.txt -U")
+        django_exec("python manage.py migrate")
+    finally:
+        stop(c)
 
 
 @task
@@ -127,15 +129,15 @@ def collectstatic(c):
 
 @task
 def runquick(c):
-    start(c, "django")
     try:
+        start(c, "django")
         with background_exec(["npm", "run", "dev"], "assets"):
             collectstatic(c)
             django_exec("VITE_DEV_SERVER_ENABLED=true python manage.py runserver 0.0.0.0:3000")
     except KeyboardInterrupt:
         pass
     finally:
-        stop(c, "django")
+        stop(c)
 
 
 @task(pip, npm_install, runquick)
@@ -145,8 +147,8 @@ def run(c): ...
 @task
 def memray(c):
     """Launch the server with memray tracking for live connections with `live`"""
-    start(c, "django")
     try:
+        start(c, "django")
         with background_exec(["npm", "run", "dev"], "assets"):
             collectstatic(c)
             django_exec(
@@ -155,7 +157,7 @@ def memray(c):
     except KeyboardInterrupt:
         pass
     finally:
-        stop(c, "django")
+        stop(c)
 
 
 @task
@@ -170,8 +172,8 @@ def live(c):
 @task
 def flamegraph(c):
     """Take a memray log whilst running the server, then generate a flamegraph from it and show that flamegraph in the browser"""
-    start(c, "django")
     try:
+        start(c, "django")
         with background_exec(["npm", "run", "dev"], "assets"):
             collectstatic(c)
             try:
@@ -196,7 +198,7 @@ def flamegraph(c):
 
             subprocess.run(["open", "memray-flamegraph-memray.html"], check=False)
     finally:
-        stop(c, "django")
+        stop(c)
 
 
 @task
@@ -204,10 +206,18 @@ def stop(c, container_name=None):
     """
     Stop the local development environment.
     """
-    cmd = "docker compose stop"
+    cmd = ["docker", "compose", "stop", "--timeout", "10"]
     if container_name:
-        cmd += f" {container_name}"
-    local(cmd)
+        cmd.append(container_name)
+    # Allow shutdown to finish even if the terminal sends another interrupt.
+    previous_handlers = {
+        sig: signal.signal(sig, signal.SIG_IGN) for sig in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP)
+    }
+    try:
+        subprocess.run(cmd, check=True, start_new_session=True)
+    finally:
+        for sig, handler in previous_handlers.items():
+            signal.signal(sig, handler)
 
 
 @task
