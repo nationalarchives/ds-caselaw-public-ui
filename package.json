@@ -36,7 +36,6 @@
     "babel-jest": "30.5.0",
     "jest": "30.5.0",
     "jest-environment-jsdom": "30.5.0",
-    "jquery": "4.0.0",
     "storybook": "10.6.0",
     "stylelint": "17.15.0",
     "stylelint-config-clean-order": "10.0.0",
