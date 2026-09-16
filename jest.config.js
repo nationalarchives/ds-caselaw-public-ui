@@ -4,7 +4,5 @@ module.exports = {
     transform: {
         "^.+\\.js$": "babel-jest",
     },
-    testMatch: [
-        "<rootDir>/ds_judgements_public_ui/static/js/tests/**/*.test.js",
-    ],
+    testMatch: ["<rootDir>/ds_judgements_public_ui/javascript/**/*.test.js"],
 };

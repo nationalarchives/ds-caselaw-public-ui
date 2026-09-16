@@ -6,7 +6,7 @@ import {
     beforeEach,
     afterEach,
 } from "@jest/globals";
-import { setupFeedbackLink } from "../src/feedback_link";
+import { setupFeedbackLink } from "./feedback_link";
 
 describe("setupFeedbackLink", () => {
     const setUAData = (data) => {

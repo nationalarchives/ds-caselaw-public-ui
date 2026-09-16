@@ -3,7 +3,7 @@ import {
     getCookie,
     initStatefulDetails,
     COOKIE_NAME,
-} from "../src/stateful_details";
+} from "./stateful_details";
 
 describe("getCookie", () => {
     it("returns null when the cookie string is empty", () => {

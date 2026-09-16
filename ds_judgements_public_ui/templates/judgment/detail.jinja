@@ -6,9 +6,9 @@
 {% from "components/button.jinja" import button, button_label %}
 {% from "components/heading.jinja" import heading %}
 {% block javascript %}
-  {{ vite_asset("static/js/src/document_navigation.js") }}
-  {{ vite_asset("static/js/src/document_search_links.js") }}
-  {{ vite_asset("static/js/src/document_paragraph_tooltip_anchors.js") }}
+  {{ vite_asset("javascript/document_navigation.js") }}
+  {{ vite_asset("javascript/document_search_links.js") }}
+  {{ vite_asset("javascript/document_paragraph_tooltip_anchors.js") }}
 {% endblock javascript %}
 {% block title %}
   {% if page_title %}{{ page_title }} -{% endif %}

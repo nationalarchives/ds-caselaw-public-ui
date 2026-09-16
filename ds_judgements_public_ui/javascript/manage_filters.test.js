@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach } from "@jest/globals";
 
-import { manageFilters } from "../src/manage_filters";
+import { manageFilters } from "./manage_filters";
 
 describe("manage_filters", () => {
     beforeEach(() => {

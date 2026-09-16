@@ -360,6 +360,10 @@ UI applications are not shared.
 
 ### Working with JavaScript
 
+JavaScript source lives in `ds_judgements_public_ui/javascript/`, alongside `sass/` and `static/`, with colocated `*.test.js` tests.
+
+Built assets remain in `static/`. Run `npm test` for the JavaScript unit tests.
+
 In a new terminal session run `npm run dev` to start the Vite dev server with live reload
 
 ### Working with Storybook for Django/Ninja Components

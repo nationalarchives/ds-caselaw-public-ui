@@ -1,8 +1,5 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import {
-    updateDocumentNavigationLinkText,
-    showBackToTopLinks,
-} from "../../src/document_search_links/links";
+import { updateDocumentNavigationLinkText, showBackToTopLinks } from "./links";
 
 describe("showBackToTopLinks", () => {
     beforeEach(() => {

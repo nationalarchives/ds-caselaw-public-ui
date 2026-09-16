@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach } from "@jest/globals";
-import { createUI } from "../../src/document_search_links/ui";
+import { createUI } from "./ui";
 
 describe("createUI", () => {
     let linksEndContainer;
