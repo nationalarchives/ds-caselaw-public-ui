@@ -1,6 +1,5 @@
 import { describe, expect, it, beforeEach, jest } from "@jest/globals";
 
-import $ from "jquery";
 import {
     setupTogglableFields,
     setupPreviousButton,
@@ -17,47 +16,52 @@ describe("setupTogglableFields", () => {
         <input type="radio" value="No" name="contact-alternative_contact" />
       </div>
     `;
-
-        $.fn.show = jest.fn(function () {
-            this.css("display", "block");
-        });
-        $.fn.hide = jest.fn(function () {
-            this.css("display", "none");
-        });
     });
 
     it("shows fields when 'Yes' is selected", () => {
         setupTogglableFields();
 
-        const yesRadio = $(
+        const yesRadio = document.querySelector(
             "#div_id_contact-alternative_contact input[value='Yes']",
-        )[0];
+        );
         yesRadio.checked = true;
-        $(yesRadio).trigger("change");
+        yesRadio.dispatchEvent(new Event("change"));
 
         expect(
-            $("#div_id_contact-licence_holder_lastname").css("display"),
+            getComputedStyle(
+                document.querySelector(
+                    "#div_id_contact-licence_holder_lastname",
+                ),
+            ).display,
         ).toBe("block");
-        expect($("#div_id_contact-licence_holder_email").css("display")).toBe(
-            "block",
-        );
+        expect(
+            getComputedStyle(
+                document.querySelector("#div_id_contact-licence_holder_email"),
+            ).display,
+        ).toBe("block");
     });
 
     it("hides fields when 'No' is selected", () => {
         setupTogglableFields();
 
-        const noRadio = $(
+        const noRadio = document.querySelector(
             "#div_id_contact-alternative_contact input[value='No']",
-        )[0];
+        );
         noRadio.checked = true;
-        $(noRadio).trigger("change");
+        noRadio.dispatchEvent(new Event("change"));
 
         expect(
-            $("#div_id_contact-licence_holder_lastname").css("display"),
+            getComputedStyle(
+                document.querySelector(
+                    "#div_id_contact-licence_holder_lastname",
+                ),
+            ).display,
         ).toBe("none");
-        expect($("#div_id_contact-licence_holder_email").css("display")).toBe(
-            "none",
-        );
+        expect(
+            getComputedStyle(
+                document.querySelector("#div_id_contact-licence_holder_email"),
+            ).display,
+        ).toBe("none");
     });
 });
 
@@ -67,7 +71,8 @@ describe("setupPreviousButton", () => {
       <form id="transactional-licence-form-form">
         <button
           id="transactional-licence-form-previous-button"
-          name="previous"
+          type="button"
+          name="wizard_goto_step"
           value="previous-page"
         >
           Previous
@@ -75,8 +80,7 @@ describe("setupPreviousButton", () => {
       </form>
     `;
 
-        $.fn.prependTo = jest.fn();
-        $.fn.trigger = jest.fn();
+        document.querySelector("form").requestSubmit = jest.fn();
     });
 
     it("shows the 'Previous' button", () => {
@@ -89,23 +93,37 @@ describe("setupPreviousButton", () => {
     });
 });
 
+describe("previous button submission", () => {
+    it("includes the previous step when submitting the form", () => {
+        document.body.innerHTML =
+            '<form id="transactional-licence-form-form"><button type="button" id="transactional-licence-form-previous-button" name="wizard_goto_step" value="contact">Previous</button></form>';
+        const form = document.querySelector("form");
+        form.requestSubmit = jest.fn();
+        setupPreviousButton();
+        document.querySelector("button").click();
+        expect(form.requestSubmit).toHaveBeenCalledTimes(1);
+        expect(new FormData(form).get("wizard_goto_step")).toBe("contact");
+    });
+});
+
 describe("goToFirstErrorField", () => {
     beforeEach(() => {
         document.body.innerHTML = `
           <div style="margin-top: 500px;" class="govuk-error-message" tabindex="-1">This is an error</div>
     `;
-        $.fn.animate = jest.fn(function (props, duration, callback) {
-            callback();
-            return this;
-        });
-
-        $.fn.focus = jest.fn();
+        window.scrollTo = jest.fn();
     });
 
     it("scrolls to the error-message and focuses it", () => {
         goToFirstErrorField();
 
-        expect($.fn.focus).toHaveBeenCalled();
+        expect(document.activeElement).toBe(
+            document.querySelector(".govuk-error-message"),
+        );
+        expect(window.scrollTo).toHaveBeenCalledWith({
+            top: -80,
+            behavior: "instant",
+        });
     });
 
     it("does not scroll or focus when there are no errors", () => {
@@ -113,8 +131,7 @@ describe("goToFirstErrorField", () => {
 
         expect(() => goToFirstErrorField()).not.toThrow();
 
-        expect($.fn.animate).not.toHaveBeenCalled();
-        expect($.fn.focus).not.toHaveBeenCalled();
+        expect(window.scrollTo).not.toHaveBeenCalled();
     });
 
     it("focuses only the first error when there are multiple errors", () => {
@@ -123,8 +140,7 @@ describe("goToFirstErrorField", () => {
 
         goToFirstErrorField();
 
-        expect($.fn.focus.mock.instances[0].length).toBe(1);
-        expect($.fn.focus.mock.instances[0][0]).toBe(
+        expect(document.activeElement).toBe(
             document.querySelector(".govuk-error-message"),
         );
     });
