@@ -6,6 +6,7 @@ export function manageFilters(wrapper, options = {}) {
     const controlContainer = wrapper.querySelector(
         ".js-results-control-container",
     );
+    if (!toggleArea || !controlContainer) return;
     const filters = wrapper.querySelector(".js-results-facets-applied-filters");
     const button = document.createElement("button");
     button.className = "results-search-component__toggle-control collapsed";
@@ -13,7 +14,7 @@ export function manageFilters(wrapper, options = {}) {
     button.setAttribute("aria-expanded", "false");
     button.setAttribute("aria-controls", "js-results-facets");
     const collapsedText = () =>
-        filters.children.length === 0
+        (filters?.children.length ?? 0) === 0
             ? settings.collapsed_text_without_filters
             : settings.collapsed_text_with_filters;
     button.textContent = collapsedText();
