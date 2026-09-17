@@ -1,6 +1,8 @@
+from typing import cast
 from unittest.mock import patch
 
 from django.template import engines
+from django.template.backends.jinja2 import Jinja2
 from django.test import TestCase, override_settings
 from jinja2 import ChoiceLoader, DictLoader
 
@@ -18,7 +20,8 @@ class TestStorybookRenderView(TestCase):
         self.assertNotContains(response, "href=")
 
     def test_uses_configured_environment_and_request_context(self):
-        env = engines["jinja"].env
+        env = cast(Jinja2, engines["jinja"]).env
+        assert env.loader is not None
         loader = DictLoader(
             {
                 "storybook_test.jinja": (
