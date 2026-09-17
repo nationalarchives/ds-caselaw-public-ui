@@ -78,7 +78,7 @@ export default defineConfig(({ command }) => ({
         "javascript/location_picker.js",
         "javascript/manage_filters.js",
         "javascript/transactional_licence_form.js",
-        "javascript/stateful_details.js",
+        "javascript/stateful_details.ts",
         "sass/main.scss",
         "sass/document_pdf.scss",
       ],
