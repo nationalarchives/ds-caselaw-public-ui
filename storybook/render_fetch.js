@@ -1,4 +1,5 @@
-const STORYBOOK_SERVER = "http://localhost:3000";
+const STORYBOOK_SERVER =
+    import.meta.env.STORYBOOK_SERVER || "http://localhost:3000";
 
 export default async function renderComponentHtml(template, macro, args = {}) {
     const endpointUrl = `${STORYBOOK_SERVER}/storybook-render`;
