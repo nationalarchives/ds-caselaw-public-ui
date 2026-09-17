@@ -1,5 +1,7 @@
 import os
+import signal
 import subprocess
+from contextlib import contextmanager
 
 from invoke import run as local
 from invoke.tasks import task
@@ -30,10 +32,38 @@ def container_exec(cmd, container_name="django", check_returncode=False):
     return result
 
 
+@contextmanager
 def background_exec(cmd, logfile):
-    "Run a command in the background and capture logs."
-    if os.name == "posix":
-        local(f"nohup {cmd} &> {logfile}.log &")
+    "Run a child process for the duration of a task, capturing its logs."
+    with open(f"{logfile}.log", "w") as output:
+        process = subprocess.Popen(cmd, stdout=output, stderr=subprocess.STDOUT, start_new_session=True)
+
+        def terminate(signum, frame):
+            raise SystemExit(128 + signum)
+
+        previous_handlers = {sig: signal.signal(sig, terminate) for sig in (signal.SIGTERM, signal.SIGHUP)}
+        try:
+            yield process
+        finally:
+            try:
+                # npm spawns Node, so stop the whole group rather than just npm.
+                try:
+                    os.killpg(process.pid, signal.SIGTERM)
+                except ProcessLookupError:
+                    pass
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    pass
+                finally:
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                    process.wait()
+            finally:
+                for sig, handler in previous_handlers.items():
+                    signal.signal(sig, handler)
 
 
 def postgres_exec(cmd, check_returncode=False):
@@ -73,9 +103,11 @@ def start(c, container_name=None):
 @task
 def pip(c):
     start(c, "django")
-    django_exec("pip install -r requirements/local.txt -U")
-    django_exec("python manage.py migrate")
-    stop(c, "django")
+    try:
+        django_exec("pip install -r requirements/local.txt -U")
+        django_exec("python manage.py migrate")
+    finally:
+        stop(c)
 
 
 @task
@@ -97,14 +129,15 @@ def collectstatic(c):
 
 @task
 def runquick(c):
-    start(c, "django")
-    background_exec("npm run dev", "assets")
-    collectstatic(c)
     try:
-        django_exec("VITE_DEV_SERVER_ENABLED=true python manage.py runserver 0.0.0.0:3000")
+        start(c, "django")
+        with background_exec(["npm", "run", "dev"], "assets"):
+            collectstatic(c)
+            django_exec("VITE_DEV_SERVER_ENABLED=true python manage.py runserver 0.0.0.0:3000")
     except KeyboardInterrupt:
         pass
-    stop(c, "django")
+    finally:
+        stop(c)
 
 
 @task(pip, npm_install, runquick)
@@ -114,16 +147,17 @@ def run(c): ...
 @task
 def memray(c):
     """Launch the server with memray tracking for live connections with `live`"""
-    start(c, "django")
-    background_exec("npm run dev", "assets")
-    collectstatic(c)
     try:
-        django_exec(
-            "VITE_DEV_SERVER_ENABLED=true memray run --live-remote --live-port 8002 manage.py runserver 0.0.0.0:3000"
-        )
+        start(c, "django")
+        with background_exec(["npm", "run", "dev"], "assets"):
+            collectstatic(c)
+            django_exec(
+                "VITE_DEV_SERVER_ENABLED=true memray run --live-remote --live-port 8002 manage.py runserver 0.0.0.0:3000"
+            )
     except KeyboardInterrupt:
         pass
-    stop(c, "django")
+    finally:
+        stop(c)
 
 
 @task
@@ -138,31 +172,33 @@ def live(c):
 @task
 def flamegraph(c):
     """Take a memray log whilst running the server, then generate a flamegraph from it and show that flamegraph in the browser"""
-    start(c, "django")
-    background_exec("npm run dev", "assets")
-    collectstatic(c)
     try:
-        os.remove("memray.out")
-    except FileNotFoundError:
-        pass
+        start(c, "django")
+        with background_exec(["npm", "run", "dev"], "assets"):
+            collectstatic(c)
+            try:
+                os.remove("memray.out")
+            except FileNotFoundError:
+                pass
 
-    try:
-        django_exec("VITE_DEV_SERVER_ENABLED=true memray run -o memray.out manage.py runserver 0.0.0.0:3000")
-    except KeyboardInterrupt:
-        pass
+            try:
+                django_exec("VITE_DEV_SERVER_ENABLED=true memray run -o memray.out manage.py runserver 0.0.0.0:3000")
+            except KeyboardInterrupt:
+                pass
 
-    try:
-        os.remove("memray-flamegraph-memray.html")
-    except FileNotFoundError:
-        pass
+            try:
+                os.remove("memray-flamegraph-memray.html")
+            except FileNotFoundError:
+                pass
 
-    try:
-        django_exec("memray flamegraph memray.out")
-    except KeyboardInterrupt:
-        pass
+            try:
+                django_exec("memray flamegraph memray.out")
+            except KeyboardInterrupt:
+                pass
 
-    subprocess.run(["open", "memray-flamegraph-memray.html"], check=False)
-    stop(c, "django")
+            subprocess.run(["open", "memray-flamegraph-memray.html"], check=False)
+    finally:
+        stop(c)
 
 
 @task
@@ -170,10 +206,18 @@ def stop(c, container_name=None):
     """
     Stop the local development environment.
     """
-    cmd = "docker compose stop"
+    cmd = ["docker", "compose", "stop", "--timeout", "10"]
     if container_name:
-        cmd += f" {container_name}"
-    local(cmd)
+        cmd.append(container_name)
+    # Allow shutdown to finish even if the terminal sends another interrupt.
+    previous_handlers = {
+        sig: signal.signal(sig, signal.SIG_IGN) for sig in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP)
+    }
+    try:
+        subprocess.run(cmd, check=True, start_new_session=True)
+    finally:
+        for sig, handler in previous_handlers.items():
+            signal.signal(sig, handler)
 
 
 @task
