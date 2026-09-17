@@ -364,6 +364,8 @@ JavaScript source lives in `ds_judgements_public_ui/javascript/`, alongside `sas
 
 Built assets remain in `static/`. Run `npm test` for the JavaScript unit tests.
 
+Run `npm run typecheck` to check TypeScript source and test types.
+
 In a new terminal session run `npm run dev` to start the Vite dev server with live reload
 
 ### Working with Storybook for Django/Ninja Components
