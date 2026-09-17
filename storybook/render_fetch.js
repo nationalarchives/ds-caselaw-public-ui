@@ -1,17 +1,10 @@
 const STORYBOOK_SERVER =
     import.meta.env.STORYBOOK_SERVER || "http://localhost:3000";
 
-export default async function renderComponentHtml(template, macro, args = {}) {
+export default async function renderComponentHtml(template, macro) {
     const endpointUrl = `${STORYBOOK_SERVER}/storybook-render`;
 
     const payload = { template, macro };
-    if (macro === "button") {
-        if ("label" in args) payload.label = args.label;
-        if ("variant" in args) payload.variant = args.variant;
-        if ("size" in args) payload.size = args.size;
-    }
-
-    console.log("Render request:", payload);
 
     const res = await fetch(endpointUrl, {
         method: "POST",
