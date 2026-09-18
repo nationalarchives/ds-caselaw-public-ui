@@ -9,7 +9,7 @@ import {
     createCopyableAnchorElement,
     addDocumentParagraphAnchorLinkToSection,
     removeDocumentParagraphAnchorLinkFromSection,
-} from "../src/document_paragraph_tooltip_anchors";
+} from "./document_paragraph_tooltip_anchors";
 
 const setWindowInnerWidth = (width) => {
     Object.defineProperty(window, "innerWidth", {

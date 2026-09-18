@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 
-import { setupSearchResultsControls } from "../src/search_results_controls";
+import { setupSearchResultsControls } from "./search_results_controls";
 
 describe("setupSearchResultsControls", () => {
     beforeEach(() => {

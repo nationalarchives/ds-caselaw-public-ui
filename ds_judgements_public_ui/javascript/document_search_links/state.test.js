@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, jest } from "@jest/globals";
-import { createState } from "../../src/document_search_links/state";
+import { createState } from "./state";
 
 describe("createState", () => {
     let marks;

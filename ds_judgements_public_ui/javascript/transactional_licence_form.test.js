@@ -4,7 +4,7 @@ import {
     setupTogglableFields,
     setupPreviousButton,
     goToFirstErrorField,
-} from "../src/transactional_licence_form";
+} from "./transactional_licence_form";
 
 describe("setupTogglableFields", () => {
     beforeEach(() => {

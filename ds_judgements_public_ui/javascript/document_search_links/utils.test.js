@@ -1,8 +1,5 @@
 import { describe, expect, it, beforeEach } from "@jest/globals";
-import {
-    getQueryFromUrl,
-    getMarksInDocumentBody,
-} from "../../src/document_search_links/utils";
+import { getQueryFromUrl, getMarksInDocumentBody } from "./utils";
 
 describe("getQueryFromUrl", () => {
     beforeEach(() => {
