@@ -6,8 +6,10 @@ from caselawclient.client_helpers.search_helpers import (
     search_judgments_and_parse_response,
 )
 from caselawclient.models.identifiers import Identifier
+from caselawclient.responses.search_response import SearchResponse
 from caselawclient.responses.search_result import SearchResult
 from caselawclient.search_parameters import SearchParameters
+from django.conf import settings
 from django.contrib.syndication.views import Feed
 from django.core.exceptions import BadRequest
 from django.http.request import HttpRequest
@@ -23,6 +25,24 @@ from .forms.search_forms import TRIBUNAL_CHOICES
 from .utils import api_client, paginator
 from .utils.search_request_to_parameters import search_request_to_parameters
 from .utils.timezones import as_utc_datetime
+
+
+class EmptySearchResponse:
+    def __init__(self) -> None:
+        self.total = 0
+        self.results: list[SearchResult] = []
+
+
+def _exclude_dummy_dates_from_search(search_parameters: SearchParameters) -> bool:
+    """Set the feed's lower date bound after the dummy date."""
+    dummy_date = settings.DUMMY_DATE.isoformat()
+    if search_parameters.date_to is not None and search_parameters.date_to <= dummy_date:
+        return True
+
+    if search_parameters.date_from is None or search_parameters.date_from <= dummy_date:
+        search_parameters.date_from = (settings.DUMMY_DATE + datetime.timedelta(days=1)).isoformat()
+
+    return False
 
 
 def _add_page_to_url(url: str, page: int = 1) -> str:
@@ -311,6 +331,8 @@ class SearchJudgmentsFeed(JudgmentsFeed):
             search_parameters.order = "-date"
             search_parameters.page_size = per_page_integer
 
+        empty_date_range = _exclude_dummy_dates_from_search(search_parameters)
+
         minimum_availability = request.GET.get("minimum_availability", default="full-text")
         if minimum_availability not in self._minimum_availability_to_only_with_html:
             raise BadRequest("minimum_availability should be one of metadata, document or full-text")
@@ -319,7 +341,11 @@ class SearchJudgmentsFeed(JudgmentsFeed):
             minimum_availability
         ]
 
-        search_response = search_judgments_and_parse_response(api_client, search_parameters)
+        search_response: SearchResponse | EmptySearchResponse
+        if empty_date_range:
+            search_response = EmptySearchResponse()
+        else:
+            search_response = search_judgments_and_parse_response(api_client, search_parameters)
         return {
             "query_string": request.GET.get("query", default=""),
             "courts": request.GET.getlist("court") + request.GET.getlist("tribunal"),

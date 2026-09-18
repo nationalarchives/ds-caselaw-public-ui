@@ -57,7 +57,7 @@ class TestAtomFeed(TestCase):
                 court="",
                 judge=None,
                 party=None,
-                date_from="1085-01-01",
+                date_from="1000-01-02",
                 date_to=None,
                 order="-date",
                 page=1,
@@ -178,7 +178,7 @@ class TestAtomFeed(TestCase):
                 court="",
                 judge=None,
                 party=None,
-                date_from="1085-01-01",
+                date_from="1000-01-02",
                 date_to=None,
                 order="date",
                 page=5,
@@ -213,6 +213,50 @@ class TestAtomFeed(TestCase):
         decoded_response = response.content.decode("utf-8")
         self.assertEqual(response.status_code, 200)
         self.assertIn("<title>Judgment v Judgement</title>", decoded_response)
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_feed_excludes_dummy_date_from_lower_date_bound(self, mock_api_client, mock_search):
+        mock_search.return_value = FakeSearchResponse()
+
+        response = self.client.get("/atom.xml?from_date_0=1&from_date_1=1&from_date_2=1000")
+
+        assert response.status_code == 200
+        mock_search.assert_called_with(
+            mock_api_client,
+            SearchParameters(
+                query="",
+                court="",
+                judge=None,
+                party=None,
+                date_from="1000-01-02",
+                date_to=None,
+                order="-date",
+                page=1,
+                page_size=50,
+                only_with_html_representation=True,
+            ),
+        )
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_feed_returns_empty_for_dummy_date_upper_bound(self, mock_api_client, mock_search):
+        response = self.client.get("/atom.xml?to_date_0=1&to_date_1=1&to_date_2=1000")
+
+        assert response.status_code == 200
+        mock_search.assert_not_called()
+        assert "<entry>" not in response.content.decode("utf-8")
+
+    @patch("judgments.feeds.search_judgments_and_parse_response")
+    @patch("judgments.feeds.api_client")
+    def test_feed_returns_empty_for_dummy_date_range(self, mock_api_client, mock_search):
+        response = self.client.get(
+            "/atom.xml?from_date_0=1&from_date_1=1&from_date_2=1000&to_date_0=1&to_date_1=1&to_date_2=1000"
+        )
+
+        assert response.status_code == 200
+        mock_search.assert_not_called()
+        assert "<entry>" not in response.content.decode("utf-8")
 
     def test_redirect_full(self):
         response = self.client.get("/ewhc/ch/2024/atom.xml")
@@ -265,7 +309,7 @@ class TestAtomFeed(TestCase):
                 court="",
                 judge=None,
                 party=None,
-                date_from="1085-01-01",
+                date_from="1000-01-02",
                 date_to=None,
                 order="-date",
                 page=1,
@@ -298,7 +342,7 @@ class TestAtomFeed(TestCase):
                 court="",
                 judge=None,
                 party=None,
-                date_from="1085-01-01",
+                date_from="1000-01-02",
                 date_to=None,
                 order="-date",
                 page=1,
@@ -321,7 +365,7 @@ class TestAtomFeed(TestCase):
                 court="",
                 judge=None,
                 party=None,
-                date_from="1085-01-01",
+                date_from="1000-01-02",
                 date_to=None,
                 order="-date",
                 page=1,
@@ -344,7 +388,7 @@ class TestAtomFeed(TestCase):
                 court="",
                 judge=None,
                 party=None,
-                date_from="1085-01-01",
+                date_from="1000-01-02",
                 date_to=None,
                 order="-date",
                 page=1,
