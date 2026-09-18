@@ -14,7 +14,7 @@ class TestValidators(TestCase):
             validator(year)
 
     def test_validate_year_raises_error_out_of_range(self):
-        year = 1066
+        year = 999
 
         validator = ValidateYearRange("from")
 
