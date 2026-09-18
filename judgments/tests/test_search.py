@@ -1,7 +1,9 @@
+import datetime
 from unittest.mock import patch
 
 import lxml
 from caselawclient.Client import MarklogicResourceNotFoundError
+from caselawclient.factories import SearchResultFactory
 from caselawclient.search_parameters import SearchParameters
 from django.test import TestCase
 from ds_caselaw_utils import courts as all_courts
@@ -64,6 +66,26 @@ class TestNoNCN(TestCase):
 
 
 class TestSearchResults(TestCase):
+    @patch("judgments.views.search.results.api_client")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_search_results_display_dummy_date(
+        self,
+        mock_search_judgments_and_parse_response,
+        mock_api_client,
+    ):
+        search_response = FakeSearchResponse()
+        search_response.total = 1
+        search_response.results = [
+            SearchResultFactory.build(
+                date=datetime.datetime(1000, 1, 1),  # noqa: DTZ001
+            )
+        ]
+        mock_search_judgments_and_parse_response.return_value = search_response
+
+        response = self.client.get("/search")
+
+        self.assertContains(response, "01 Jan 1000")
+
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_invalid_search_parameters_return_bad_request(self, mock_search_judgments_and_parse_response):
         response = self.client.get("/search?from_date_2=2024&to_date_2=2023")
@@ -140,7 +162,7 @@ class TestSearchResults(TestCase):
                 party=None,
                 page=1,
                 order="relevance",
-                date_from="1085-01-01",
+                date_from="1000-01-01",
                 date_to=None,
                 page_size=10,
             ),
@@ -182,7 +204,7 @@ class TestSearchResults(TestCase):
                 party=None,
                 page=1,
                 order="relevance",
-                date_from="1085-01-01",
+                date_from="1000-01-01",
                 date_to=None,
                 page_size=10,
             ),
@@ -357,7 +379,7 @@ class TestSearchResults(TestCase):
                 order="-date",
                 judge=None,
                 party=None,
-                date_from="1085-01-01",
+                date_from="1000-01-01",
                 date_to=None,
                 page=1,
                 page_size=10,

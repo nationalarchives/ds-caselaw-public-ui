@@ -30,6 +30,7 @@ from judgments.templatetags import (
     template_utils,
     text_utils,
 )
+from judgments.utils.judgment_utils import get_judgement_date
 from transactional_licence_form.templatetags import transactional_licence_utils
 
 
@@ -78,6 +79,7 @@ def get_globals():
         "trackable_link": with_context(link_tags.trackable_link),
         "trackable_class_name": link_tags.trackable_class_name,
         "formatdate": date_utils.formatdate,
+        "get_judgement_date": get_judgement_date,
         "url": jinja_url,
         "formatted_document_uri": document_utils.formatted_document_uri,
         "crispy": as_crispy_form,

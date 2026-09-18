@@ -8,6 +8,7 @@ from caselawclient.client_helpers.search_helpers import (
 from caselawclient.models.identifiers import Identifier
 from caselawclient.responses.search_result import SearchResult
 from caselawclient.search_parameters import SearchParameters
+from django.conf import settings
 from django.contrib.syndication.views import Feed
 from django.core.exceptions import BadRequest
 from django.http.request import HttpRequest
@@ -23,6 +24,13 @@ from .forms.search_forms import TRIBUNAL_CHOICES
 from .utils import api_client, paginator
 from .utils.search_request_to_parameters import search_request_to_parameters
 from .utils.timezones import as_utc_datetime
+
+
+def _exclude_dummy_dates_from_search(search_parameters: SearchParameters) -> None:
+    """Set the feed's lower date bound after the dummy date."""
+    dummy_date = settings.DUMMY_DATE.isoformat()
+    if search_parameters.date_from is None or search_parameters.date_from <= dummy_date:
+        search_parameters.date_from = (settings.DUMMY_DATE + datetime.timedelta(days=1)).isoformat()
 
 
 def _add_page_to_url(url: str, page: int = 1) -> str:
@@ -310,6 +318,8 @@ class SearchJudgmentsFeed(JudgmentsFeed):
         if order is None:
             search_parameters.order = "-date"
             search_parameters.page_size = per_page_integer
+
+        _exclude_dummy_dates_from_search(search_parameters)
 
         minimum_availability = request.GET.get("minimum_availability", default="full-text")
         if minimum_availability not in self._minimum_availability_to_only_with_html:

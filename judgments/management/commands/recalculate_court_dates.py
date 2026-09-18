@@ -8,6 +8,7 @@ from ds_caselaw_utils.courts import Court, CourtParam, CourtWithJurisdiction
 
 from judgments.models.court_dates import CourtDates
 from judgments.utils import api_client
+from judgments.utils.judgment_utils import get_judgement_date
 from judgments.utils.timezones import london_today
 
 
@@ -94,12 +95,13 @@ falling back to config value of {fallback}"
             return fallback
 
         first_document = search_response.results[0]
+        first_document_date = get_judgement_date(first_document)
 
-        if first_document.date:
-            year: int | None = first_document.date.year
+        if first_document_date:
+            year: int | None = first_document_date.year
             self.stdout.write(
                 self.style.NOTICE(
-                    f"{document_reference.capitalize()} document: {first_document.uri} @ {first_document.date.year}"
+                    f"{document_reference.capitalize()} document: {first_document.uri} @ {first_document_date.year}"
                 )
             )
         else:

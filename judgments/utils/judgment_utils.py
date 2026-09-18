@@ -1,10 +1,24 @@
+from datetime import datetime
 from urllib.parse import quote
 
 from caselawclient.errors import DocumentNotFoundError, MarklogicNotPermittedError
 from caselawclient.models.documents import Document, DocumentURIString
+from caselawclient.responses.search_result import SearchResult
 from django.http import Http404
 
 from .utils import get_document_by_uri
+
+
+def get_judgement_date(result: SearchResult) -> datetime | None:
+    """Return a search result date without parsing an absent date value."""
+    date_values = result.node.xpath(
+        "search:extracted/akn:FRBRdate[(@name='judgment' or @name='decision')]/@date",
+        namespaces=SearchResult.NAMESPACES,
+    )
+    if isinstance(date_values, list) and not any(date_values):
+        return None
+
+    return result.date
 
 
 def get_published_document_by_uri(
