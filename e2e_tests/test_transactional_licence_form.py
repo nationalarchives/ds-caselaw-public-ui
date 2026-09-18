@@ -29,6 +29,9 @@ class TestTransactionalLienceForm:
     (which triggers an email to the licensing team): the final step will be tested
     in isolation with a mocked email service."""
 
+    def wait_for_step(self, page: Page, step: str):
+        page.wait_for_url(f"**/re-use-find-case-law-records/steps/{step}", wait_until="load")
+
     @pytest.fixture(autouse=True)
     def stop_after_failed_step(self, request, journey_state):
         if journey_state["failed_step"]:
@@ -56,6 +59,7 @@ class TestTransactionalLienceForm:
         page.get_by_text("Apply now").click()
 
     def test_contact_details(self, page: Page):
+        self.wait_for_step(page, "contact")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_contact_details_page")
         page.get_by_label("Contact Full Name").fill("Full Name")
@@ -66,6 +70,7 @@ class TestTransactionalLienceForm:
         page.get_by_text("Next", exact=True).click()
 
     def test_organisation_details(self, page: Page):
+        self.wait_for_step(page, "organization")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_organisation_details_page")
         page.get_by_label("What is the full legal name of your organisation?").fill("Organisation name")
@@ -90,6 +95,7 @@ class TestTransactionalLienceForm:
         page.get_by_text("Next", exact=True).click()
 
     def test_purpose_and_activities(self, page: Page):
+        self.wait_for_step(page, "project-purpose")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_purpose_details_page")
 
@@ -113,12 +119,14 @@ class TestTransactionalLienceForm:
         page.get_by_text("Next", exact=True).click()
 
     def test_public_statement(self, page: Page):
+        self.wait_for_step(page, "public-statement")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_public_statement_page")
         page.get_by_label("Please provide a public statement").fill("Public statement")
         page.get_by_text("Next", exact=True).click()
 
     def test_working_practices(self, page: Page):
+        self.wait_for_step(page, "working-practices-1")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_working_practices_1_page")
         page.get_by_role(
@@ -137,6 +145,7 @@ class TestTransactionalLienceForm:
         page.get_by_text("Next", exact=True).click()
 
     def test_working_practices_2(self, page: Page):
+        self.wait_for_step(page, "working-practices-2")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_working_practices_2_page")
         page.get_by_role("group", name="Will you make the entire record available online?").get_by_label("No").click()
@@ -156,12 +165,14 @@ class TestTransactionalLienceForm:
         page.get_by_text("Next", exact=True).click()
 
     def test_nine_principles_1(self, page: Page):
+        self.wait_for_step(page, "nine-principles-1")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_nine_principles_1_page")
         page.get_by_label("Yes").click()
         page.get_by_text("Next", exact=True).click()
 
     def test_nine_principles_2(self, page: Page):
+        self.wait_for_step(page, "nine-principles-2")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_nine_principles_2_page")
         page.get_by_label("Please describe how you will meet the nine principles as terms.").fill(
@@ -170,6 +181,7 @@ class TestTransactionalLienceForm:
         page.get_by_text("Next", exact=True).click()
 
     def test_additional_comments(self, page: Page):
+        self.wait_for_step(page, "additional-comments")
         assert_is_accessible(page)
         page.get_by_label(
             "Are there any additional comments you would like us to consider as part of your application?"
@@ -177,6 +189,7 @@ class TestTransactionalLienceForm:
         page.get_by_text("Next", exact=True).click()
 
     def test_review(self, page: Page):
+        self.wait_for_step(page, "review")
         assert_is_accessible(page)
         assert_matches_snapshot(page, "transactional_license_review_page")
 
@@ -280,8 +293,6 @@ class TestTransactionalLienceForm:
         ).to_have_text("Additional comments")
 
     def test_editing_responses(self, page: Page):
-        assert_is_accessible(page)
-        assert_matches_snapshot(page, "transactional_license_edit_responses_page")
         page.locator("dt", has_text="Contact Full Name").locator("..").get_by_text("Change").click()
         page.get_by_label("Contact Full Name").fill("New Full Name")
         page.get_by_text("Next", exact=True).click()
