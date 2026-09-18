@@ -9,19 +9,14 @@ export const renderLoadedHtml = (_args, context) => {
 };
 
 export const createComponentHtmlLoader =
-    (templatePath, componentName, context = {}) =>
-    async () => {
-        const html = await renderComponentHtml(
-            templatePath,
-            componentName,
-            context,
-        );
+    (templatePath, componentName) => async () => {
+        const html = await renderComponentHtml(templatePath, componentName);
 
         return { html };
     };
 
 export const createExampleStory = (templatePath, exampleName, docs = "") => ({
-    loaders: [createComponentHtmlLoader(templatePath, exampleName, {})],
+    loaders: [createComponentHtmlLoader(templatePath, exampleName)],
     ...{
         parameters: {
             docs: {

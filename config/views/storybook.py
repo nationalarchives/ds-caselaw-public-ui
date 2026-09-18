@@ -5,7 +5,7 @@ from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-# Import your Jinja macro renderer
+from storybook.render_jinja_core import render_macro
 
 logger = logging.getLogger(__name__)
 
@@ -34,18 +34,7 @@ def storybook_render_view(request):
         template_path = data.get("template")
         macro_name = data.get("macro")
 
-        from storybook.render_jinja_core import render_macro
-
-        # Only pass arguments that exist
-        html_kwargs = {}
-        if "label" in data:
-            html_kwargs["content"] = data["label"]
-        if "variant" in data:
-            html_kwargs["variant"] = data["variant"]
-        if "size" in data:
-            html_kwargs["size"] = data["size"]
-
-        html = render_macro(template_path, macro_name, **html_kwargs)
+        html = render_macro(template_path, macro_name, request=request)
         return _add_storybook_cors_headers(request, HttpResponse(html))
 
     except Exception:
