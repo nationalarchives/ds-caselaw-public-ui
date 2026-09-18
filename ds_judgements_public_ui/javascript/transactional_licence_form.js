@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 export const setupTogglableFields = function () {
     /*  CAUTION: This is quite a specific and brittle way of addressing these
         particular form fields, but Django-forms doesn't give us many
@@ -22,25 +20,31 @@ export const setupTogglableFields = function () {
     };
 
     let showFields = function () {
-        $(`#${licenceHolderNameId}`).show();
-        $(`#${licenceHolderEmailId}`).show();
+        [licenceHolderNameId, licenceHolderEmailId].forEach((id) => {
+            const field = document.getElementById(id);
+            if (field) field.style.display = "";
+        });
     };
 
     let hideFields = function () {
-        $(`#${licenceHolderNameId}`).hide();
-        $(`#${licenceHolderEmailId}`).hide();
+        [licenceHolderNameId, licenceHolderEmailId].forEach((id) => {
+            const field = document.getElementById(id);
+            if (field) field.style.display = "none";
+        });
     };
 
-    $(licenceHolderControlSelector).attr(
-        "aria-controls",
-        `${licenceHolderNameId} ${licenceHolderEmailId}`,
+    toggleFieldState(
+        document.querySelector(`${licenceHolderControlSelector}:checked`),
     );
-
-    toggleFieldState($(`${licenceHolderControlSelector}:checked`)[0]);
-
-    $(licenceHolderControlSelector).change(function (event) {
-        toggleFieldState(this);
-    });
+    document
+        .querySelectorAll(licenceHolderControlSelector)
+        .forEach((control) => {
+            control.setAttribute(
+                "aria-controls",
+                `${licenceHolderNameId} ${licenceHolderEmailId}`,
+            );
+            control.addEventListener("change", () => toggleFieldState(control));
+        });
 };
 
 export const setupPreviousButton = function () {
@@ -64,35 +68,32 @@ export const setupPreviousButton = function () {
     let form = document.getElementById("transactional-licence-form-form");
     if (button) {
         button.style.display = "inline";
-        $(button).click(function (e) {
+        button.addEventListener("click", function (e) {
             e.preventDefault();
-            $("<input type='hidden' />")
-                .attr("name", button.getAttribute("name"))
-                .attr("value", button.getAttribute("value"))
-                .prependTo(form);
-            $(form).trigger("submit");
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = button.getAttribute("name");
+            input.value = button.getAttribute("value");
+            form.prepend(input);
+            form.requestSubmit();
         });
     }
 };
 
 export const goToFirstErrorField = function () {
-    const firstError = $(".govuk-error-message").first();
-    if (!firstError.length) {
+    const firstError = document.querySelector(".govuk-error-message");
+    if (!firstError) {
         return;
     }
 
-    $("html, body").animate(
-        {
-            scrollTop: firstError.offset().top - 80,
-        },
-        1,
-        function () {
-            firstError.focus();
-        },
-    );
+    window.scrollTo({
+        top: firstError.getBoundingClientRect().top + window.scrollY - 80,
+        behavior: "instant",
+    });
+    firstError.focus({ preventScroll: true });
 };
 
-$(function () {
+document.addEventListener("DOMContentLoaded", function () {
     setupTogglableFields();
     setupPreviousButton();
     goToFirstErrorField();

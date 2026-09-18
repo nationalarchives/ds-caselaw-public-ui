@@ -1,9 +1,8 @@
-import $ from "jquery";
 import openregisterLocationPicker from "govuk-country-and-territory-autocomplete";
 
-$(".location-autocomplete").each(function (ix) {
+document.querySelectorAll(".location-autocomplete").forEach(function (select) {
     openregisterLocationPicker({
-        selectElement: this,
+        selectElement: select,
         url: "/static/js/location-autocomplete-canonical-list.json",
     });
 });

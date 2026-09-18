@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, jest } from "@jest/globals";
-import { attachMarkScrollSync } from "../../src/document_search_links/scrolling";
+import { attachMarkScrollSync } from "./scrolling";
 
 describe("attachMarkScrollSync", () => {
     let observeMock;

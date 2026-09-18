@@ -40,7 +40,7 @@ repos:
     rev: v3.9.7
     hooks:
       - id: prettier
-        types_or: [yaml, json, xml, markdown, scss, javascript]
+        types_or: [yaml, json, xml, markdown, scss, javascript, ts]
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
     rev: v17.15.0
