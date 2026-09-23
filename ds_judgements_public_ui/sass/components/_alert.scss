@@ -40,6 +40,11 @@
   }
 
   &--sm {
+    padding: $space-6;
+    border-width: 5px;
+  }
+
+  &--xs {
     padding: $space-2;
     border-width: 5px;
     font-size: $typography-sm-text-size;
@@ -57,10 +62,6 @@
     font-weight: $typography-bold-font-weight;
     line-height: $typography-sm-line-height;
     color: colour-var("font-base");
-  }
-
-  a {
-    font-weight: $typography-bold-font-weight;
   }
 
   @media (min-width: $grid-breakpoint-medium) {
