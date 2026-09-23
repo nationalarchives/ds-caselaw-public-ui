@@ -5,7 +5,8 @@
     "unbordered": "card card--unbordered",
     "ghost": "card card--ghost",
     "light": "card card--light",
-    "image": "card card--image"
+    "image": "card card--image",
+    "pale": "card card--pale"
   } -%}
   {%- set alignment_classes = {"default": "", "left": "card--left"} -%}
   {%- set variant_class = variant_classes.get(variant, variant_classes['default']) -%}
@@ -66,6 +67,11 @@
     <p>This is a ghost card with a link</p>
   {% endcall %}
 {% endmacro %}
+{% macro card_pale_examples() %}
+  {% call card(title="Pale", variant="pale") %}
+    <p>This is a pale card</p>
+  {% endcall %}
+{% endmacro %}
 {% macro card_examples() %}
   {{ card_default_examples() }}
   {{ card_with_link_examples() }}
@@ -73,4 +79,5 @@
   {{ card_image_examples() }}
   {{ card_ghost_examples() }}
   {{ card_ghost_with_link_examples() }}
+  {{ card_pale_examples() }}
 {% endmacro %}

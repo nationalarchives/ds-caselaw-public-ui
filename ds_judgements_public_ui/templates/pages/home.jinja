@@ -1,4 +1,5 @@
 {% extends "layouts/base.jinja" %}
+{% from "components/alert.jinja" import alert %}
 {% from "components/aside.jinja" import aside, aside_container %}
 {% from "components/button.jinja" import button %}
 {% from "components/details.jinja" import details %}
@@ -69,8 +70,15 @@
           {% endcall %}
         {% endfor %}
       {% endcall %}
+
       {% call aside() %}
-        {{ heading(tag="h3", content="Using judgments") }}
+        {% call alert() %}
+          {{ heading(tag="h3", content="Heading") }}
+          <p><strong>Subheading</strong></p>
+          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit ut reprehenderit proident non reprehenderit soluta dolor adipiscing anim atque assumenda ut ducimus omnis id.</p>
+          <p>{{ link(href="", content="Find out more")}}</p>
+        {% endcall %}
+        {% call card(variant="pale", title="Using judgments") %}
         {% call list(variant="bullets", padding="none", gap="md") %}
           {% call list_item() %}
             <strong>No licence is required</strong>
@@ -89,6 +97,7 @@
             {{ link(href=url("apply_for_a_licence") , content="Apply for a licence", class_name=trackable_class_name("Licence apply card homepage")) }}
           {% endcall %}
         {% endcall %}
+      {% endcall %}
       {% endcall %}
     {% endcall %}
     <div class="container--center">{{ button(href=url("search") , content="View all judgments") }}</div>
