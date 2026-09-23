@@ -1,6 +1,7 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
+{% from "components/alert.jinja" import alert %}
 {% macro historic_documents_content() %}
   <p>
     You can read more about how to find older records in {{ link(content="Civil court cases: Chancery Division since 1875", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/civil-court-cases-chancery-division-since-1875/", attrs={"target":"_blank"}) }}
@@ -50,6 +51,13 @@
   </p>
 {% endmacro %}
 {% macro description_content(start_year=None) %}
+  {% call alert() %}
+    <p><strong>From 1 October 2026 - changes to the Chancery Division</strong></p>
+
+    <p>The Chancery Division is becoming part of the new Business and Property Division. You can still find all existing Chancery judgments and decisions on this service. Material published from October 2026 onwards may appear under the Business and Property Division.</p>
+
+    <p>{{ link(href="", content="Find out more") }}</p>
+  {% endcall %}
   <p>
     The Chancery Division is one of three divisions of the High Court. It handles a wide range of civil cases including business disputes, intellectual property and probate issues. It has various lists that deal with specialist issues such as the Business List, Insolvency and Companies List, Intellectual Property List, or Property, Trusts and Probate List. It contains the Intellectual Property Enterprise and Patents Courts.
   </p>
