@@ -11,7 +11,7 @@ from django.template.loader import get_template
 from django.urls import reverse
 from django.utils.functional import cached_property
 from ds_caselaw_utils import courts
-from ds_caselaw_utils.courts import CourtNotFoundException
+from ds_caselaw_utils.courts import CourtNotFoundException, Court, CourtCode, InstitutionType
 from requests.exceptions import RequestException
 
 from judgments.models.court_dates import CourtDates
@@ -91,6 +91,24 @@ class CourtOrTribunalView(TemplateViewWithContext):
     @cached_property
     def court(self):
         try:
+            # TODO: Remove this when we have the court in utils
+            if self.kwargs["param"] == "ewhc/bpd":
+                return Court(
+                {
+                    "code": CourtCode("ewhc/bpd"),
+                    "param": "ewhc/bpd",
+                    "name": "Business and Property Division",
+                    "long_name": "Business and Property Division",
+                    "grouped_name": "Business and Property Division",
+                    "link": "https://example.com",
+                    "start_year": 2026,
+                    "court_of_record": True,
+                    "show_to_editors": False,
+                    "show_in_search_filters": True,
+                    "show_in_public_directory": True
+                },   InstitutionType.COURT)
+
+
             return courts.get_by_param(self.kwargs["param"])
         except CourtNotFoundException:
             raise Http404("Court not found")

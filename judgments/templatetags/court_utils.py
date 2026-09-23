@@ -29,6 +29,10 @@ def get_court_date_range(court_param: CourtParam) -> str:
     start_year: int | None
     end_year: int | None
 
+    # TODO: Remove this when we have the court in utils
+    if court_param == "ewhc/bpd":
+        court_param = "ewhc/ch"
+
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
         start_year = court_dates.start_year
@@ -44,6 +48,11 @@ def get_court_date_range(court_param: CourtParam) -> str:
 
 
 def get_court_start_year(court_param: CourtParam) -> int | None:
+
+    # TODO: Remove this when we have the court in utils
+    if court_param == "ewhc/bpd":
+        court_param = "ewhc/ch"
+
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
         return court_dates.start_year

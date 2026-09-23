@@ -4,6 +4,7 @@ from playwright.sync_api import Page
 from .utils.assertions import assert_is_accessible, assert_matches_snapshot
 
 courts_and_tribunals = [
+    "ewhc/bpd",
     "ewhc/pat",
     "ewhc/tcc",
     "ewhc/mercantile",
