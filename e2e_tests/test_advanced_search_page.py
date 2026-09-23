@@ -24,7 +24,7 @@ court_filters = [
     {"control_label": "Civil Division", "tag_label": "Civil Division"},
     {"control_label": "Criminal Division", "tag_label": "Criminal Division"},
     {"control_label": "Administrative Court", "tag_label": "Administrative Court"},
-    {"control_label": "Admiralty Court", "tag_label": "High Court (Admiralty Division)"},
+    {"control_label": "Admiralty Court", "tag_label": "High Court (Admiralty Court)"},
     {"control_label": "Chancery Division", "tag_label": "Chancery Division"},
     {"control_label": "Commercial Court", "tag_label": "Commercial Court"},
     {"control_label": "Family Division", "tag_label": "Family Division"},

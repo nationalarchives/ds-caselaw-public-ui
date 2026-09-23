@@ -44,6 +44,7 @@ def get_court_date_range(court_param: CourtParam) -> str:
 
 
 def get_court_start_year(court_param: CourtParam) -> int | None:
+
     try:
         court_dates = CourtDates.objects.get(pk=court_param)
         return court_dates.start_year
