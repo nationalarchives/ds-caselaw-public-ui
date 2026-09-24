@@ -1,4 +1,17 @@
 {% from "components/button.jinja" import button %}
+{%- macro search_result_hidden_input(name=None, value=None) %}
+  {%- if name in ["court", "tribunal"] -%}
+    {%- for item in value -%}
+      <input type="hidden" name="{{ name }}" value="{{ item }}" />
+    {%- endfor -%}
+  {%- elif name in ["from", "to"] -%}
+    <input type="hidden"
+           name="{{ name }}"
+           value="{{ formatdate(value, '%Y-%b-%d') }}" />
+  {%- else -%}
+    <input type="hidden" name="{{ name }}" value="{{ value }}" />
+  {%- endif -%}
+{%- endmacro -%}
 {%- macro search_results_controls(search_path=None, query_params=None, query=None, order=None, per_page=None, is_footer=False) -%}
   {%- if query_params and query_params.items -%}
     <div class="{{ component_class_names('result-controls', 'result-controls--footer' if is_footer) }}">
@@ -6,24 +19,9 @@
             data-search-results-controls
             action="{{ search_path }}"
             id="analytics-result-controls{{ "-footer" if is_footer else "" }}">
-        {%- for key, value in query_params.items() -%}
-          {%- if value -%}
-            {%- if key == "court" -%}
-              {%- for court in value -%}
-                <input type="hidden" name="court" value="{{ court }}" />
-              {%- endfor -%}
-            {%- elif key == "tribunal" -%}
-              {%- for tribunal in value -%}
-                <input type="hidden" name="tribunal" value="{{ tribunal }}" />
-              {%- endfor -%}
-            {%- elif key == "from" or key == "to" -%}
-              <input type="hidden"
-                     name="{{ key }}"
-                     value="{{ formatdate(value, '%Y-%b-%d') }}" />
-            {%- elif key != "order" and key != "per_page" -%}
-              <input type="hidden" name="{{ key }}" value="{{ value }}" />
-            {%- endif -%}
-          {%- endif -%}
+        {%- for name, value in query_params.items()
+          if value and name not in ["order", "per_page"] -%}
+          {{ search_result_hidden_input(name=name, value=value) }}
         {%- endfor -%}
         {%- if not is_footer -%}
           <div class="result-controls__item">
