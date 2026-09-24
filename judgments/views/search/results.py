@@ -225,8 +225,8 @@ class SearchResultsView(TemplateViewWithContext):
         if not iso_date:
             return False, None
         from_date = date.fromisoformat(iso_date)
-        # If the date is 1085, then that's the default, the user hasn't typed in
-        # a non-sensical answer, don't warn about it.
+        # If the date is the minimum allowed year, then that's the default, the
+        # user hasn't typed in a non-sensical answer, so don't warn about it.
         if from_date.year == settings.MINIMUM_ALLOWED_YEAR:
             return False, None
         if not from_date.year or total_results == 0 or from_date.year >= min_year:

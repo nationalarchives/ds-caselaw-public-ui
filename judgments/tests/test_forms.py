@@ -39,10 +39,10 @@ class TestAdvancedSearchForm(TestCase):
         data = {
             "from_date_0": "10",
             "from_date_1": "12",
-            "from_date_2": "1000",
+            "from_date_2": "979",
             "to_date_0": "9",
             "to_date_1": "10",
-            "to_date_2": "1020",
+            "to_date_2": "999",
         }
         expected_warning = f"Year must be after {settings.MINIMUM_ALLOWED_YEAR}"
 
@@ -53,6 +53,20 @@ class TestAdvancedSearchForm(TestCase):
             form.errors,
             {"from_date": [expected_warning], "to_date": [expected_warning]},
         )
+
+    def test_advanced_search_form_accepts_dummy_date(self):
+        data = {
+            "from_date_0": "1",
+            "from_date_1": "1",
+            "from_date_2": "1000",
+            "to_date_0": "1",
+            "to_date_1": "1",
+            "to_date_2": "1000",
+        }
+
+        form = AdvancedSearchForm(data=data)
+
+        self.assertTrue(form.is_valid())
 
     def test_order_valid_choice_accepted(self):
         form = AdvancedSearchForm(data={"order": "-date"})

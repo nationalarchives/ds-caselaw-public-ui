@@ -2,6 +2,7 @@
 Base settings to build other settings files upon.
 """
 
+import datetime
 from pathlib import Path
 
 import django
@@ -320,4 +321,8 @@ SES_SMTP_PORT = env("SES_SMTP_PORT", default=None)
 # This is the minimum year the site currently says it handles
 MINIMUM_WARNING_YEAR = 2003
 # Constant enforcing the minimum possible year a user can search for
-MINIMUM_ALLOWED_YEAR = 1085
+MINIMUM_ALLOWED_YEAR = 1000
+
+# The parser assigns this date when a judgment has no clear date or it cannot identify one.
+# Judgments with this date are excluded from the Atom feed.
+DUMMY_DATE = datetime.date(1000, 1, 1)
