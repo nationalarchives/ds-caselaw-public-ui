@@ -63,7 +63,7 @@
                 {{ judgment.neutral_citation | default("&mdash;", true) | safe }}
               {% endcall %}
               {% call document_table_cell(variant="text", label="Handed down") %}
-                {{ formatdate(judgment.date) }}
+                <time datetime="{{ judgment.date }}">{{ formatdate(judgment.date) }}</time>
               {% endcall %}
             {% endcall %}
           {% endcall %}
