@@ -206,7 +206,7 @@
   {% endcall %}
   <p>
     Check our
-    {%- call link(href=url("courts_and_coverage")) -%}
+    {% call link(href=url("courts_and_coverage")) -%}
       Courts and coverage
     {%- endcall %}
     to see what's available for specific courts.
@@ -231,7 +231,7 @@
     {% call list_item() %}
       Scotland –
       {% call link(href="https://www.scotcourts.gov.uk/judgments/#/") %}
-        The Scottish Courts and Tribunal Service
+        The Scottish Courts and Tribunals Service
       {% endcall %}
     {% endcall %}
   {% endcall %}
@@ -240,7 +240,7 @@
   {% endcall %}
   <p>
     Find Case Law is provided by
-    {%- call link(href="https://www.nationalarchives.gov.uk/") -%}
+    {% call link(href="https://www.nationalarchives.gov.uk/") -%}
       The National Archives
     {%- endcall %}
     in partnership with the Ministry of Justice, His Majesty's Courts and Tribunals Service, and the Judicial Office.
@@ -290,11 +290,11 @@
   {% call card(title="Get in touch with us", title_tag="h3") %}
     <p>
       If you have questions about what's included in Find Case Law or suggestions for improvements, visit our
-      {%- call link(href=url("help_and_support")) -%}
+      {% call link(href=url("help_and_support")) -%}
         Help and Support
       {%- endcall %}
       or
-      {%- call link(href=url("contact_us")) -%}
+      {% call link(href=url("contact_us")) -%}
         contact us
       {%- endcall %} directly.
     </p>
