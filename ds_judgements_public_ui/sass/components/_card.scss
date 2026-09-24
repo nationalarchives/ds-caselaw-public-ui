@@ -24,6 +24,27 @@
     padding: 0 $space-4 0 0;
   }
 
+  &--pale &__body {
+    padding: $space-6;
+    gap: 0;
+  }
+
+  &--pale {
+    border: 0;
+    background: color-mix(in srgb, colour-var("accent-brand") 20%, transparent);
+
+    font-size: $typography-sm-text-size;
+    line-height: $typography-lg-line-height;
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+    }
+
+  }
+
   &--image {
     display: flex;
     border-top: 4px solid colour-var("accent-brand");
