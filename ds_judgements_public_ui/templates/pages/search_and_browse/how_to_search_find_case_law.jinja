@@ -143,7 +143,7 @@
     ‘From date’ and ‘to date’
   {% endcall %}
   <p>
-    At the top each judgment or decision is the date on which it was handed down. You can set a date range to filter your results by this.
+    At the top of each judgment or decision is the date on which it was handed down. You can set a date range to filter your results by this.
     {% call list(variant="bullets") %}
       {% call list_item() %}
         ‘From date’ only shows results from after (and including) that date
@@ -152,17 +152,16 @@
         ‘To date’ only shows results up until (and including) that date
       {% endcall %}
     {% endcall %}
-    You can use a part of the name, the whole name, or the whole name and judicial titles.
     You can set one of these or both together. If no end date is selected, the current date will be used.
   </p>
   {% call heading(tag="h3") %}
     From specific courts or tribunals
   {% endcall %}
   <p>
-    Also at the top each judgment or decision is the court or chamber where the case was decided. You can filter your search to only show results from specific courts and chambers. See also Courts and tribunals in
+    Also at the top of each judgment or decision is the court or chamber where the case was decided. You can filter your search to only show results from specific courts and chambers. See also Courts and tribunals in
     {% call link(href=url('courts_and_tribunals_in_fcl')) %}
       Find Case Law
-    {% endcall %}
+    {% endcall -%}
     .
   </p>
   {% call heading(tag="h3") %}
