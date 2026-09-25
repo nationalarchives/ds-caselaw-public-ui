@@ -46,7 +46,7 @@
               {{ document.neutral_citation | default("&mdash;", true) | safe }}
             {% endcall %}
             {% call document_table_cell(variant="text", label="Handed down") %}
-              {{ formatdate(document.date) }}
+              <time datetime="{{ document.date }}">{{ formatdate(document.date) }}</time>
             {% endcall %}
           {% endcall %}
         {% endcall %}

@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <th>Handed down</th>
-    <td>{{ formatdate(document.body.document_date_as_date) }}</td>
+    <td><time datetime="{{ document.body.document_date_as_date }}">{{ formatdate(document.body.document_date_as_date) }}</time></td>
   </tr>
   {% if document.body.case_number %}
     <tr>
