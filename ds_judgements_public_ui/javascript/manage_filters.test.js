@@ -34,7 +34,7 @@ describe("manage_filters", () => {
         );
 
         expect(button).not.toBeNull();
-        expect(button.textContent).toBe("Add another filter");
+        expect(button.textContent).toBe("Apply filters");
         expect(button.getAttribute("aria-expanded")).toBe("false");
     });
 
@@ -78,6 +78,6 @@ describe("manage_filters", () => {
         filters.innerHTML = `<div class="filter-item">Filter 1</div>`;
         button.click();
 
-        expect(button.textContent).toBe("Hide filter options");
+        expect(button.textContent).toBe("Hide filters");
     });
 });

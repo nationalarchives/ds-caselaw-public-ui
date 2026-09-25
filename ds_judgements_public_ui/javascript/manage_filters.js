@@ -32,9 +32,9 @@ export function manageFilters(wrapper, options = {}) {
 }
 
 manageFilters.defaults = {
-    collapsed_text_with_filters: "Add another filter",
+    collapsed_text_with_filters: "Apply filters",
     collapsed_text_without_filters: "Filter by court, date or person",
-    expanded_text: "Hide filter options",
+    expanded_text: "Hide filters",
 };
 
 document
