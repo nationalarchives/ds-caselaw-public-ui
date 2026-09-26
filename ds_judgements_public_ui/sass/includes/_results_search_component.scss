@@ -207,8 +207,7 @@
     &__control-container {
       display: inline-block;
       flex-shrink: 0;
-      padding-top: $space-8;
-      padding-top: 0;
+      padding: $space-2 0;
 
       @media (min-width: $grid-breakpoint-medium) {
         text-align: left;
@@ -216,28 +215,20 @@
     }
 
     &__toggle-control {
+      all: unset;
+
+      @include link;
+
       position: relative;
-
-      flex-basis: content;
-
       margin: 0 auto;
-      padding: 0.75rem 0 $space-2 $space-6;
-      border: none;
-      border-bottom: 0.188rem solid colour-var("accent-brand");
-
-      font-size: $typography-md-text-size;
-      font-weight: $typography-bold-font-weight;
-      color: colour-var("accent-font-base");
-
-      appearance: none;
-      background-color: transparent;
+      padding-left: $space-5;
 
       &::after {
         content: "";
 
         position: absolute;
-        bottom: 0.7rem;
-        left: 0.3rem;
+        bottom: 0.2rem;
+        left: 0.2rem;
         transform: rotate(313deg);
 
         display: block;
@@ -246,15 +237,14 @@
         height: 0.438rem;
         margin: auto 0;
         border: solid;
-        border-color: colour-var("font-base");
+        border-color: colour-var("link");
         border-width: 0.125rem 0.125rem 0 0;
       }
 
       &:focus {
         @include focus-default;
 
-        text-decoration: underline;
-        outline-offset: 3px;
+        outline: none;
       }
 
       &:visited {
@@ -268,7 +258,7 @@
 
       &.collapsed {
         &::after {
-          bottom: 0.9rem;
+          bottom: 0.5rem;
           transform: rotate(135deg);
         }
       }
