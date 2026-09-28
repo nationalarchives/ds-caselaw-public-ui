@@ -44,6 +44,7 @@ export default defineConfig(({ command }) => ({
     origin: "http://localhost:5173",
   },
   css: {
+    devSourcemap: true,
     preprocessorOptions: {
       scss: {
         loadPaths: [resolve(projectRoot, "node_modules")],
