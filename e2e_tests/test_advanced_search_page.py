@@ -52,7 +52,7 @@ def test_advanced_search_court_filters(page: Page, filter):
 
     form = page.locator("#analytics-search-form")
 
-    expect(form.locator("a", has_text=f"{tag_label}")).to_be_visible()
+    expect(form.get_by_role("button", name=tag_label)).to_be_visible()
     expect(page.locator("p", has_text=re.compile(r"\d+\s*results"))).to_be_visible()
 
 
