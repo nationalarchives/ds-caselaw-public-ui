@@ -1,6 +1,7 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
+{% from "components/alert.jinja" import alert %}
 {% macro historic_documents_content() %}
   <p>
     You can read more about how to find older patent records in {{ link(content="Intellectual property: patents for invention research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/patents-of-invention/", attrs={"target": "_blank"}) }}; {{ link(content="Intellectual property: registered designs 1839-1991 research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/registered-designs-1839-1991/", attrs={"target": "_blank"}) }} or {{ link(content="Intellectual property: trademarks 1876-1938 research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/trade-marks/", attrs={"target": "_blank"}) }}.
@@ -38,9 +39,13 @@
 {% macro understanding_content() %}
 {% endmacro %}
 {% macro description_content(start_year=None) %}
-  <p>
-    This court is a specialist court within the Chancery Division of the High Court. It is also one of the Business and Property Courts. It handles intellectual property disputes including patents, trademarks, designs and copyright for cases seeking damages for under £500,000. Disputes over £500,000 are handled by the Patents court or the Chancery Division of the High Court.
-  </p>
+  {% call alert() %}
+    <p><strong>Changes to courts within King’s Bench Division</strong></p>
+    <p>On 1 October 2026, a number of specialist courts that were part of the King’s Bench Division were moved to the {{ link(href=url("court_or_tribunal", "ewhc/bp"), content="Business and Property Division") }} including Admiralty, Commercial and Technology and Construction.</p>
+    <p>{{ link(href="https://www.judiciary.uk/the-lady-chief-justice-and-lord-chancellor-modernise-the-high-court-through-establishment-of-the-business-and-property-division/", content="Read more about the change on the Judiciary website") }}</p>
+  {% endcall %}
+  <p>This a specialist court within the Business and Property Division of the High Court. It is also one of the Business and Property Courts. Prior to 1 October 2026, it was part of the Chancery Division of the High Court. You can read more about the {{ link(content="decision to move this court to a new division on the Judiciary’s website", href="https://www.judiciary.uk/the-lady-chief-justice-and-lord-chancellor-modernise-the-high-court-through-establishment-of-the-business-and-property-division/") }}.</p>
+  <p>It handles intellectual property disputes including patents, trademarks, designs and copyright for cases seeking damages for under £500,000. Disputes over £500,000 are handled by the Patents court or the Business and Property Division of the High Court.</p>
   <p>
     This court began to regularly transfer judgments to The National Archives in 2022.
     {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}

@@ -1,6 +1,7 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
+{% from "components/alert.jinja" import alert %}
 {% macro historic_documents_content() %}
   <p>
     You can read more about how to find older Admiralty Court records in the research guide {{ link(content="High court of Admiralty", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/high-court-admiralty-records/", attrs={"target":"_blank"}) }}.
@@ -38,9 +39,12 @@
 {% macro understanding_content() %}
 {% endmacro %}
 {% macro description_content(start_year=None) %}
-  <p>
-    The Admiralty Court is a specialist court within the King's Bench Division of the High Court. It specialises in shipping and maritime disputes and has the power to arrest and sell ships in England and Wales.
-  </p>
+  {% call alert() %}
+    <p><strong>Changes to courts within King’s Bench Division</strong></p>
+    <p>On 1 October 2026, a number of specialist courts that were part of the King’s Bench Division were moved to the {{ link(href=url("court_or_tribunal", "ewhc/bp"), content="Business and Property Division") }} including Admiralty, Commercial and Technology and Construction.</p>
+    <p>{{ link(href="https://www.judiciary.uk/the-lady-chief-justice-and-lord-chancellor-modernise-the-high-court-through-establishment-of-the-business-and-property-division/", content="Read more about the change on the Judiciary website") }}</p>
+  {% endcall %}
+  <p>The Admiralty Court is a specialist court within the {{ link(href=url("court_or_tribunal", "ewhc/bp"), content="Business and Property Division") }} of the High Court. Prior to 1 October 2026, it was part of the King’s Bench Division of the High Court. You can read more about the {{ link(content="decision to move this court to a new division on the Judiciary’s website", href="https://www.judiciary.uk/the-lady-chief-justice-and-lord-chancellor-modernise-the-high-court-through-establishment-of-the-business-and-property-division/") }}.</p>
   <p>
     This court began to regularly transfer judgments to The National Archives in 2022.
     {% if start_year %}The oldest judgment from this court included in Find Case Law is from {{ start_year }}.{% endif %}
