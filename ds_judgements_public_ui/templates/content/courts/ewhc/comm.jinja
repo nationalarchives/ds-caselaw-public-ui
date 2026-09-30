@@ -1,6 +1,7 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
+{% from "components/alert.jinja" import alert %}
 {% macro historic_documents_content() %}
   <p>
     You may be able to find older Commercial and Mercantile Court records in {{ link(content="The National Archives’ Catalogue", href="https://discovery.nationalarchives.gov.uk/", attrs={"target": "_blank"}) }} however the record may not be available online. You can read more about how to find older records in {{ link(content="the Civil Court cases: Kings/Queens bench division research guide", href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/court-of-kings-bench-plea-side-and-kings-queens-bench-division-cases-1702-1998/", attrs={"target": "_blank"}) }}.
@@ -38,9 +39,13 @@
 {% macro understanding_content() %}
 {% endmacro %}
 {% macro description_content(start_year=None) %}
-  <p>
-    The Commercial Court is a specialist court within the King’s Bench Division of the High Court. It is also one of the Business and Property Courts of the High Court of Justice. It handles large complex national and international business disputes that may involve issues such as commercial contracts, financial instruments, transportation of goods, and digital assets. It is based in the Rolls Building in London and cases are heard by specialist High Court judges.
-  </p>
+  {% call alert() %}
+    <p><strong>Changes to courts within King’s Bench Division</strong></p>
+    <p>On 1 October 2026, a number of specialist courts that were part of the King’s Bench Division were moved to the {{ link(href=url("court_or_tribunal", "ewhc/bp"), content="Business and Property Division") }} including Admiralty, Commercial and Technology and Construction.</p>
+    <p>{{ link(href="https://www.judiciary.uk/the-lady-chief-justice-and-lord-chancellor-modernise-the-high-court-through-establishment-of-the-business-and-property-division/", content="Read more about the change on the Judiciary website") }}</p>
+  {% endcall %}
+  <p>The Commercial Court is a specialist court within the {{ link(href=url("court_or_tribunal", "ewhc/bp"), content="Business and Property Division") }} of the High Court. Prior to 1 October 2026, it was part of the King’s Bench Division of the High Court. You can read more about the {{ link(content="decision to move this court to a new division on the Judiciary’s website", href="https://www.judiciary.uk/the-lady-chief-justice-and-lord-chancellor-modernise-the-high-court-through-establishment-of-the-business-and-property-division/") }}.</p>
+  <p>It is also one of the Business and Property Courts of the High Court of Justice. It handles large complex national and international business disputes that may involve issues such as commercial contracts, financial instruments, transportation of goods, and digital assets. It is based in the Rolls Building in London and cases are heard by specialist High Court judges.</p>
   <p>
     The Circuit Commercial Court (previously known as the Mercantile Court) is closely associated with the Commercial Court. It is also part of the broader business and property courts of the High Court of Justice but it deals with smaller, less complex business disputes. It operates in district registries across England and Wales where cases are heard by specialist senior circuit judges. {{ link(content="You can find cases decided by the Mercantile Court here", href="https://caselaw.nationalarchives.gov.uk/judgments/search?query=&from_day=&from_month=&from_year=&to_day=&to_month=&to_year=&court=ewhc%2Fmercantile&party=&judge=", attrs={"target": "_blank"}) }}.
   </p>
