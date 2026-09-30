@@ -1,7 +1,7 @@
 {%- macro alert(title=None, variant="default", size="md") -%}
   {%- set body_content = caller() | trim -%}
   {%- set variant_classes = {"default": "alert", "error": "alert alert--error", "success": "alert alert--success"} -%}
-  {%- set size_classes = {"sm": "alert--sm", "md": "alert--md"} -%}
+  {%- set size_classes = {"xs": "alert--xs", "sm": "alert--sm", "md": "alert--md"} -%}
   {%- set variant_class = variant_classes.get(variant, variant_classes['default']) -%}
   {%- set size_class = size_classes.get(size, size_classes['md']) -%}
   <div class="{{ component_class_names(variant_class, size_class) }}">{%- if title -%}<h2 class="alert__heading">{{ title }}</h2>{%- endif -%}{{ body_content }}</div>
@@ -12,6 +12,9 @@
   {% endcall %}
 {% endmacro %}
 {% macro alert_size_examples() %}
+  {% call alert(title="Extra small size title", size="xs") %}
+    <p>Extra small size content</p>
+  {% endcall %}
   {% call alert(title="Small size title", size="sm") %}
     <p>Small size content</p>
   {% endcall %}
