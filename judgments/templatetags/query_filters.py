@@ -69,6 +69,21 @@ def remove_court(query_params, court):
     return make_query_string(params)
 
 
+def add_court(query_params, court):
+    params = dict(query_params)
+    params["page"] = None
+    params["order"] = None
+
+    courts = list(params.get("court", []))
+
+    if court not in courts:
+        courts.append(court)
+
+    params["court"] = courts
+
+    return make_query_string(params)
+
+
 def replace_integer_with_day(day):
     if day < 10:
         return f"0{day}"

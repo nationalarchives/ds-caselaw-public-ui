@@ -66,6 +66,47 @@ class TestNoNCN(TestCase):
 
 
 class TestSearchResults(TestCase):
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_no_results_court_specific_guidance(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
+        bp_message = "select Chancery Division as well"
+        ch_message = "select Business and Property Division as well"
+
+        cases = [
+            (["ewhc/bp"], "ewhc/bp"),
+            (["ewhc/ch"], "ewhc/ch"),
+            (["ewhc/bp", "ewhc/ch"], None),
+            ([], None),
+            (["uksc"], None),
+            (["ewhc/bp", "uksc"], "ewhc/bp"),
+            (["ewhc/ch", "uksc"], "ewhc/ch"),
+        ]
+        for courts, expected_guidance in cases:
+            with self.subTest(courts=courts):
+                response = self.client.get("/search", {"court": courts})
+
+                self.assertContains(response, "No matching results have been found")
+                assert response.context_data is not None
+                self.assertEqual(response.context_data["no_results_court_specific_guidance"], expected_guidance)
+                for court, message in [("ewhc/bp", bp_message), ("ewhc/ch", ch_message)]:
+                    if court == expected_guidance:
+                        self.assertContains(response, message)
+                    else:
+                        self.assertNotContains(response, message)
+                if expected_guidance is None:
+                    self.assertNotContains(response, "About this search")
+
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_court_specific_guidance_is_not_shown_when_results_exist(self, mock_search_judgments_and_parse_response):
+        mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
+
+        for court in ["ewhc/bp", "ewhc/ch"]:
+            with self.subTest(court=court):
+                response = self.client.get("/search", {"court": court})
+
+                self.assertContains(response, "Judgment v Judgement")
+                self.assertNotContains(response, "About this search")
+
     @patch("judgments.views.search.results.api_client")
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_search_results_display_dummy_date(

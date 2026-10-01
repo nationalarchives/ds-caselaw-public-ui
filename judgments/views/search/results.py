@@ -77,6 +77,14 @@ class SearchResultsView(TemplateViewWithContext):
 
         query_params = self._build_query_params(form, search_parameters)
 
+        filtered_courts = set(form.cleaned_data.get("court", []))
+
+        no_results_court_specific_guidance = filtered_courts & {"ewhc/bp", "ewhc/ch"}
+
+        context["no_results_court_specific_guidance"] = (
+            next(iter(no_results_court_specific_guidance)) if len(no_results_court_specific_guidance) == 1 else None
+        )
+
         (
             court_facets,
             tribunal_facets,

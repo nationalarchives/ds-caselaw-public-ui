@@ -99,6 +99,7 @@ def get_filters():
         "show_matches": search_results_filters.show_matches,
         "remove_query": query_filters.remove_query,
         "remove_court": query_filters.remove_court,
+        "add_court": query_filters.add_court,
         "replace_integer_with_day": query_filters.replace_integer_with_day,
         "replace_integer_with_month": query_filters.replace_integer_with_month,
         "get_court_name": court_utils.get_court_name,
