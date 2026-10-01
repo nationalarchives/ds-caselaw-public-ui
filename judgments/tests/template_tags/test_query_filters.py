@@ -2,6 +2,7 @@ import unittest
 from typing import Any
 
 from judgments.templatetags.query_filters import (
+    add_court,
     make_query_string,
     removable_filter_param,
     remove_court,
@@ -69,6 +70,42 @@ class TestQueryFilters(unittest.TestCase):
         self.assertNotIn("ewhc/ipec", result)
         self.assertIn("court=ewhc/ch", result)
         self.assertIn("tribunal=ukiptrib", result)
+
+    def test_add_court(self):
+        query_params: dict[str, Any] = {
+            "query": "Imperial",
+            "court": ["ewhc/ch"],
+            "tribunal": ["ukiptrib"],
+            "page": "3",
+            "order": "-date",
+        }
+
+        result = add_court(query_params, "ewhc/bp")
+
+        self.assertIn("query=Imperial", result)
+        self.assertIn("court=ewhc/ch", result)
+        self.assertIn("court=ewhc/bp", result)
+        self.assertIn("tribunal=ukiptrib", result)
+        self.assertNotIn("page=", result)
+        self.assertNotIn("order=", result)
+        self.assertEqual(query_params["court"], ["ewhc/ch"])
+        self.assertEqual(query_params["page"], "3")
+        self.assertEqual(query_params["order"], "-date")
+
+    def test_add_court_does_not_duplicate_existing_court(self):
+        query_params: dict[str, Any] = {"court": ["ewhc/ch", "ewhc/bp"]}
+
+        result = add_court(query_params, "ewhc/bp")
+
+        self.assertEqual(result, "court=ewhc/ch&court=ewhc/bp")
+
+    def test_add_court_without_existing_court_filter(self):
+        query_params: dict[str, Any] = {"query": "Imperial"}
+
+        result = add_court(query_params, "ewhc/bp")
+
+        self.assertEqual(result, "query=Imperial&court=ewhc/bp")
+        self.assertNotIn("court", query_params)
 
     def test_make_query_string(self):
         query_params = {

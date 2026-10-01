@@ -126,6 +126,14 @@
     {% endif %}
   {% else %}
     {% call alert(title="No matching results have been found") %}
+      {% if no_results_court_specific_guidance == "ewhc/bp" %}
+        <p><strong>About this search</strong></p>
+        <p>The <strong>Business and Property Division</strong> replaced the <strong>Chancery Division</strong> on <strong>1 October 2026</strong>. If you are looking for judgments published before this date, {{ link(content="select Chancery Division as well", href=url("search") ~ "?" ~ query_params|add_court("ewhc/ch")) }}.</p>
+      {% endif %}
+      {% if no_results_court_specific_guidance == "ewhc/ch" %}
+        <p><strong>About this search</strong></p>
+        <p>The <strong>Chancery Division</strong> was replaced by the <strong>Business and Property Division</strong> on <strong>1 October 2026</strong>. If you are looking for judgments published from this date onwards, {{ link(content="select Business and Property Division as well", href=url("search") ~ "?" ~ query_params|add_court("ewhc/bp")) }}.</p>
+      {% endif %}
       {% include "includes/no_results_message.jinja" %}
     {% endcall %}
   {% endif %}
