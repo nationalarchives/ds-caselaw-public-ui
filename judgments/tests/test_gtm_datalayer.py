@@ -60,8 +60,7 @@ class TestBuildSearchDataLayer:
         form = FakeSearchDataForm(
             cleaned_data={
                 "query": "waltham forest",
-                "court": ["ewhc/ch", "ewhc/ipec"],
-                "tribunal": ["eat"],
+                "court": ["ewhc/ch", "ewhc/ipec", "eat"],
                 "party": "Smith",
                 "judge": "Jones",
                 "from_date": date(2024, 1, 1),
@@ -74,8 +73,7 @@ class TestBuildSearchDataLayer:
             "search_query": "waltham forest",
             "search_party": "Smith",
             "search_judge": "Jones",
-            "search_court": "ewhc/ch,ewhc/ipec",
-            "search_tribunal": "eat",
+            "search_court": "ewhc/ch,ewhc/ipec,eat",
             "search_from_date": "2024-01-01",
             "search_to_date": "2024-12-31",
         }

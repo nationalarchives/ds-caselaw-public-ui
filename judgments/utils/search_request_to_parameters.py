@@ -66,14 +66,12 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     query_params = query_params | {
         "query": query_text,
         "court": form.cleaned_data.get("court", []),
-        "tribunal": form.cleaned_data.get("tribunal", []),
         "judge": form.cleaned_data.get("judge", ""),
         "party": form.cleaned_data.get("party", ""),
         "order": order,
         "page": page,
     }
-    # Merge the courts and tribunals as they are treated as the same in MarkLogic.
-    courts_and_tribunals = form.cleaned_data.get("court", []) + form.cleaned_data.get("tribunal", [])
+    courts_and_tribunals = form.cleaned_data.get("court", [])
     # `SearchParameters` takes an optional string for dates
     if not to_date:
         to_date_as_search_param = None

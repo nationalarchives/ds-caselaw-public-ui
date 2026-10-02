@@ -1,0 +1,12 @@
+<div class="structured-search__court-options" id="court">
+  {% for title, groups, section_id in [("From specific courts", court_groups, "id_court"), ("From specific tribunals", tribunal_groups, "id_tribunal")] %}
+    <div class="structured-search__court-options-column">
+      <fieldset>
+        <legend class="structured-search__limit-to-label">{{ title }}</legend>
+        {% with widget = dict(widget, optgroups=groups, attrs=dict(widget.attrs, id=section_id)) %}
+          {% include "forms/widgets/court_multiple_input.jinja" %}
+        {% endwith %}
+      </fieldset>
+    </div>
+  {% endfor %}
+</div>

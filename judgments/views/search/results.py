@@ -168,7 +168,6 @@ class SearchResultsView(TemplateViewWithContext):
         query_params |= {
             "query": search_parameters.query,
             "court": form.cleaned_data.get("court", []),
-            "tribunal": form.cleaned_data.get("tribunal", []),
             "judge": form.cleaned_data.get("judge", ""),
             "party": form.cleaned_data.get("party", ""),
             "order": search_parameters.order,
@@ -177,7 +176,7 @@ class SearchResultsView(TemplateViewWithContext):
         return query_params
 
     def _process_facets_and_warnings(self, request, form, search_parameters, search_response):
-        courts_and_tribunals = form.cleaned_data.get("court", []) + form.cleaned_data.get("tribunal", [])
+        courts_and_tribunals = form.cleaned_data.get("court", [])
         if search_parameters.query:
             (
                 unprocessed_facets,
@@ -188,7 +187,7 @@ class SearchResultsView(TemplateViewWithContext):
         else:
             unprocessed_facets, court_facets, tribunal_facets, year_facets = ({}, {}, {}, {})
 
-        params = request.GET
+        params = form.data
         changed_queries = {}
         for key in params:
             values = params.getlist(key)

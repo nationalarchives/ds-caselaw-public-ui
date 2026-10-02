@@ -72,7 +72,6 @@ def build_search_data_layer(form: SearchDataForm, results_count: int) -> dict[st
 
     for field_name, data_layer_key in [
         ("court", "search_court"),
-        ("tribunal", "search_tribunal"),
     ]:
         values = form.cleaned_data.get(field_name, [])
         if values:
