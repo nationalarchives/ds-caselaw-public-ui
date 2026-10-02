@@ -60,14 +60,14 @@ class TestBrowse(TestCase):
             },
         )
 
-    def test_atom_feed_url_uses_tribunal_param_for_nested_tribunal_codes(self):
+    def test_atom_feed_url_uses_court_param_for_tribunal_codes(self):
         view = BrowseView()
 
         # Top-level tribunal code
-        assert view._build_atom_feed_url("eat", None) == "/atom.xml?tribunal=eat"
+        assert view._build_atom_feed_url("eat", None) == "/atom.xml?court=eat"
         # Nested under a group heading (must not be misclassified as court)
         assert view._build_atom_feed_url("ukut/iac", 2024) == (
-            "/atom.xml?tribunal=ukut%2Fiac&from_date_2=2024&to_date_2=2024"
+            "/atom.xml?court=ukut%2Fiac&from_date_2=2024&to_date_2=2024"
         )
         # Court code still uses court param
         assert view._build_atom_feed_url("ewhc/ch", None) == "/atom.xml?court=ewhc%2Fch"

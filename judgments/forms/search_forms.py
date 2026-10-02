@@ -114,18 +114,10 @@ class AdvancedSearchForm(forms.Form):
         required=False,
         date_type="to",
     )
-    # Courts and tribunals are split here because it's easier to render
-    # them and then recombine in the view for querying MarkLogic
     court = CourtOrTribunalField(
-        choices=COURT_CHOICES,
-        widget=CheckBoxSelectCourtWithYearRange(),
+        choices=COURT_CHOICES | TRIBUNAL_CHOICES,
+        widget=CheckBoxSelectCourtWithYearRange(court_group_count=len(COURT_CHOICES)),
         label="From specific courts or tribunals",
-        required=False,
-    )
-
-    tribunal = CourtOrTribunalField(
-        choices=TRIBUNAL_CHOICES,
-        widget=CheckBoxSelectCourtWithYearRange(),
         required=False,
     )
 
@@ -154,6 +146,18 @@ class AdvancedSearchForm(forms.Form):
         },
     )
 
+    def __init__(self, data=None, *args, **kwargs):
+        if data is not None and "tribunal" in data:
+            # Keep old search links working while binding only one field.
+            data = data.copy()
+            if hasattr(data, "getlist"):
+                values = data.getlist("court") + data.getlist("tribunal")
+                data.setlist("court", list(dict.fromkeys(values)))
+            else:
+                data["court"] = list(dict.fromkeys(data.get("court", []) + data.get("tribunal", [])))
+            del data["tribunal"]
+        super().__init__(data, *args, **kwargs)
+
     def clean(self):
         cleaned_data = super().clean()
         # Validate that from is before to now that we have access to both fields
@@ -170,7 +174,7 @@ class AdvancedSearchForm(forms.Form):
         # Ignore warnings related to MyPy not understanding what cleaned_data is
         if cleaned_data.get("query"):
             cleaned_data["query"] = preprocess_query(cleaned_data.get("query", ""))
-        for parameter in ["query", "from_date", "to_date", "court", "tribunal", "party", "judge", "order"]:
+        for parameter in ["query", "from_date", "to_date", "court", "party", "judge", "order"]:
             if cleaned_data.get(parameter, "Non-nilsy placeholder") in (None, "", []):
                 del cleaned_data[parameter]
         return cleaned_data
