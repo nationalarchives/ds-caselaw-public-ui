@@ -12,7 +12,7 @@ wsgi-basic-auth~=1.1.0
 ds-caselaw-marklogic-api-client==50.0.1
 ds-caselaw-utils==5.1.0
 rollbar
-django-weasyprint==2.5.0
+django-weasyprint==2.6.0
 django-waffle==5.0.0  # https://github.com/django-waffle/django-waffle
 django-vite==3.2.0  # https://github.com/MrBin99/django-vite
 django-formtools~=2.7.0
