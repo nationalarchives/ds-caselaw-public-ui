@@ -14,7 +14,6 @@ from ds_caselaw_utils.courts import courts as all_courts
 from ds_caselaw_utils.types import CourtParam
 
 from judgments.forms import AdvancedSearchForm
-from judgments.forms.search_forms import TRIBUNAL_CHOICES
 from judgments.utils import MAX_RESULTS_PER_PAGE, api_client, clamp, paginator
 from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
 from judgments.utils.utils import sanitise_input_to_integer
@@ -24,33 +23,17 @@ class BrowseView(TemplateView):
     template_engine = "jinja"
     template_name = "judgment/results.jinja"
 
-    @staticmethod
-    def _is_tribunal(court_query: str) -> bool:
-        """Return True if court_query is a tribunal code in TRIBUNAL_CHOICES."""
-        for key, value in TRIBUNAL_CHOICES.items():
-            if isinstance(value, dict):
-                if court_query in value:
-                    return True
-            elif key == court_query:
-                return True
-        return False
-
     def _build_atom_feed_url(self, court_query: str, year: int | None) -> str:
         """
         Build the Atom feed URL for browse results with court and year params.
         Browse pages can have court (which may include subdivision) and year.
-        These map to feed params: court → court/tribunal, year → from_date_2/to_date_2.
+        These map to feed params: court → court, year → from_date_2/to_date_2.
         Year-only multipart date params are used so AdvancedSearchForm can default
         day/month (1 Jan / 31 Dec) when the Atom feed parses the URL.
         """
         params = {}
         if court_query:
-            # TRIBUNAL_CHOICES nests some codes under group headings, so check nested
-            # values as well as top-level keys.
-            if self._is_tribunal(court_query):
-                params["tribunal"] = court_query
-            else:
-                params["court"] = court_query
+            params["court"] = court_query
         if year:
             params["from_date_2"] = str(year)
             params["to_date_2"] = str(year)
