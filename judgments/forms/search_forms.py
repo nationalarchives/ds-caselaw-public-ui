@@ -154,7 +154,15 @@ class AdvancedSearchForm(forms.Form):
                 values = data.getlist("court") + data.getlist("tribunal")
                 data.setlist("court", list(dict.fromkeys(values)))
             else:
-                data["court"] = list(dict.fromkeys(data.get("court", []) + data.get("tribunal", [])))
+                court_values = data.get("court", [])
+                tribunal_values = data.get("tribunal", [])
+
+                if isinstance(court_values, str):
+                    court_values = [court_values]
+                if isinstance(tribunal_values, str):
+                    tribunal_values = [tribunal_values]
+
+                data["court"] = list(dict.fromkeys(court_values + tribunal_values))
             del data["tribunal"]
         super().__init__(data, *args, **kwargs)
 
