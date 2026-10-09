@@ -1,5 +1,8 @@
-{%- macro hero() -%}
-  <div class="hero">
+{%- macro hero(variant="default") -%}
+  {%- set variant_classes = {"default": "hero", "light": "hero hero--light"} -%}
+
+  {%- set variant_class = variant_classes.get(variant, variant_classes['default']) -%}
+  <div class="{{component_class_names(variant_class)}}">
     <div class="container">{{ caller() | trim }}</div>
   </div>
 {%- endmacro -%}

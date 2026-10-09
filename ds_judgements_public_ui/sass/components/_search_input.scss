@@ -4,6 +4,42 @@
   gap: $space-4;
   width: 100%;
 
+  .govuk-label, .govuk-hint {
+    font-size: $typography-md-text-size;
+  }
+
+  .govuk-radios__input {
+    width: 22px;
+    height: 22px;
+  }
+
+  .govuk-radios__label {
+    padding: 7px 10px;
+    font-weight: $typography-bold-font-weight;
+  }
+
+  .govuk-radios__input:focus + .govuk-radios__label::before {
+    border-width: 2px;
+
+  }
+
+  .govuk-radios__hint {
+    padding-left: 32px;
+  }
+
+  .govuk-radios__label::before {
+    width: 20px;
+    height: 20px;
+    top: 9px;
+
+  }
+
+  .govuk-radios__label::after {
+    top: 13px;
+    left: 6px;
+    border: 6px solid currentColor;
+  }
+
   &--with-margins {
     margin-bottom: $space-8;
   }
@@ -81,11 +117,22 @@
   }
 
   &__footer {
+    background-color: colour-var("accent-background-light");
+    box-sizing: border-box;
+    padding: $space-4;
+    display: flex;
     width: 100%;
 
-    @media (min-width: $grid-breakpoint-medium) {
-      text-align: center;
+    input[type="submit"] {
+      flex: 0;
     }
+  }
+
+  &__footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    flex: 1;
   }
 
   &--fixed-width {

@@ -1,5 +1,5 @@
 {% if query_params and query_params.items %}
-  {% if filtered %}<h2 class="results-search-component__sub-header">Current filter(s)</h2>{% endif %}
+  {% if filtered %}<h2 class="results-search-component__sub-header">Your search:</h2>{% endif %}
   <ul class="results-search-component__removable-options js-results-facets-applied-filters">
     {% for key, value in query_params.items() %}
       {% if value %}
@@ -11,12 +11,27 @@
                class="results-search-component__removable-options-link"
                aria-label="Remove {{ key|capfirst }} filter"
                href="{{ url('search') }}?{{ query_params|remove_query(key) }}">
-              <span class="results-search-component__removable-options-key">{{ key|capfirst }}:</span>
               <span class="results-search-component__removable-options-value">
                 <span class="results-search-component__removable-options-value-text">{{ value }}</span>
               </span>
             </a>
           </li>
+        {% elif key == "scope" %}
+          {% set scope_label = value|get_scope_label %}
+          {% if scope_label %}
+            <li>
+              <a role="button"
+                tabindex="0"
+                draggable="false"
+                class="results-search-component__removable-options-link"
+                aria-label="Remove {{ key|capfirst }} filter"
+                href="{{ url('search') }}?{{ query_params|remove_query(key) }}">
+                <span class="results-search-component__removable-options-value">
+                  <span class="results-search-component__removable-options-value-text">{{ scope_label }}</span>
+                </span>
+              </a>
+            </li>
+          {% endif %}
         {% elif key == "court" or key == "tribunal" %}
           {% for court in value %}
             <li>

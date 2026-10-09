@@ -2,6 +2,16 @@
   padding: $space-8 0;
   background-color: colour-var("accent-background-light");
 
+  &--light {
+    background-color: colour-var("accent-background-light");
+
+    .container {
+    background-color: colour-var("background");
+      padding: $space-8;
+      box-sizing: border-box;
+    }
+  }
+
   .container {
     display: flex;
     flex-direction: column;

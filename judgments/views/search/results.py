@@ -47,8 +47,10 @@ class SearchResultsView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "judgment/results.jinja"
 
+
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
+
         if not form.is_valid():
             return TemplateResponse(
                 request,
@@ -173,6 +175,10 @@ class SearchResultsView(TemplateViewWithContext):
             "order": search_parameters.order,
             "page": search_parameters.page,
         }
+
+        if scope := form.cleaned_data.get("scope"):
+            query_params["scope"] = scope
+
         return query_params
 
     def _process_facets_and_warnings(self, request, form, search_parameters, search_response):

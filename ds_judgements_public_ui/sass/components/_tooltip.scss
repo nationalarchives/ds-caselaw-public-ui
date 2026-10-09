@@ -1,23 +1,17 @@
-.link-with-tooltip {
+.tooltip {
   position: relative;
   display: flex;
   gap: $space-2;
   align-items: center;
 
-  a {
-    display: flex;
-    gap: $space-1;
-    align-items: center;
-  }
-
   &__info {
     &:hover,
     &:focus {
-      .link-with-tooltip__info-text {
+      .tooltip__info-text {
         display: block;
       }
 
-      .link-with-tooltip__info-icon {
+      .tooltip__info-icon {
         background-image: url($fa_info_solid);
       }
     }
@@ -40,6 +34,12 @@
     left: 0;
     display: none;
     z-index: 1;
+
+    .alert {
+      display: flex;
+      flex-direction: column;
+      gap: $space-4;
+    }
 
     @media (min-width: $grid-breakpoint-extra-large) {
       top: 30px;

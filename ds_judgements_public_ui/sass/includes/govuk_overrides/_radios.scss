@@ -1,0 +1,20 @@
+.govuk-radios {
+
+  &--horizontal {
+    display: flex;
+    gap: $space-4;
+
+    border: 1px solid colour-var("accent-background-light");
+    padding: $space-4;
+
+    .govuk-radios__item {
+      border-right: 1px solid colour-var("accent-background-light");
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+
+  }
+
+}

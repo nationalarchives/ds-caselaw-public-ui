@@ -8,6 +8,7 @@ from django.http import (
 )
 
 from judgments.forms import AdvancedSearchForm
+from judgments.search_scopes import get_higher_court_params
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     clamp,
@@ -72,6 +73,8 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
         "page": page,
     }
     courts_and_tribunals = form.cleaned_data.get("court", [])
+    if form.cleaned_data.get("scope") == "higher_courts" and not courts_and_tribunals:
+        courts_and_tribunals = get_higher_court_params()
     # `SearchParameters` takes an optional string for dates
     if not to_date:
         to_date_as_search_param = None

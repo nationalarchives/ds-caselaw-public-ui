@@ -24,10 +24,13 @@
             {% include "includes/results_applied_filters.jinja" %}
             <div class="results-search-component__control-container js-results-control-container"></div>
           {% endcall %}
+        {% endcall %}
+
+        <div class="container">
           {% with hidden=True %}
             {% include "includes/results_filters_inputs.jinja" %}
           {% endwith %}
-        {% endcall %}
+        </div>
       </div>
     {% endcall %}
     {% call content_container() %}

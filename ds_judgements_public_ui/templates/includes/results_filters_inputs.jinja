@@ -5,7 +5,9 @@
     <p>The {{ link(content="Chancery Division", href=url("court_or_tribunal", "ewhc/ch")) }} was replaced by the {{ link(content="Business and Property Division", href=url("court_or_tribunal", "ewhc/bp")) }}  on 1 October 2026. To find judgments from before and after this change, select both options.</p>
     <p>A number of specialist courts no longer appear under the King’s Bench Division as they have also been moved to the {{ link(content="Business and Property Division", href=url("court_or_tribunal", "ewhc/bp")) }}.</p>
   {% endcall %}
+
   {% set non_field_errors = form.non_field_errors() %}
+
   <div class="structured-search__multi-fields-panel">
     <div class="structured-search__limit-to-container">
       <fieldset class="{% if non_field_errors or form.from_date.errors %}with-errors{% endif %}">
@@ -43,9 +45,7 @@
       </fieldset>
     </div>
   </div>
-  <div class="structured-search__single-field-panel">
-    <div class="structured-search__limit-to-container">{{ form.court }}</div>
-  </div>
+
   <div class="structured-search__multi-fields-panel">
     <div class="structured-search__specific-field-container">
       <label for="id_party"
@@ -65,10 +65,15 @@
       {{ form.judge }}
     </div>
   </div>
+
+  <div class="structured-search__single-field-panel">
+    <div class="structured-search__limit-to-container">{{ form.court }}</div>
+  </div>
+
   <div class="structured-search__submit-container">
     <input type="submit"
            class="button-primary structured-search__update-filters-button"
            formaction="{{ url('search') }}"
-           value="Update filters" />
+           value="Update my results" />
   </div>
 </div>

@@ -9,19 +9,54 @@
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
 {% from "components/grid.jinja" import grid %}
 {% from "components/hero.jinja" import hero %}
+{% from "components/radios.jinja" import radios %}
 {% from "components/search_input.jinja" import search_form,search_form_container, search_input, search_input_footer %}
+{% from "components/tooltip.jinja" import tooltip %}
 {% block content %}
-  {% call hero() %}
+
+  {% call hero(variant="light") %}
     {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
-      {% call search_form_container(fixed_width=True) %}
+      {% call search_form_container() %}
+        {{ heading(tag="h2", content="What would you like to search?") }}
+        <p>Choose which judgments and decisions to include in your search.</p>
+
+          {{ radios({
+            "idPrefix": "scope",
+            "name": "scope",
+            "formGroup": { "classes": "govuk-form-group--full-width" },
+            "classes": "govuk-radios--horizontal",
+            "items": [
+              {
+                "checked": true,
+                "value": "all_courts",
+                "text": "All courts and tribunals",
+                "hint": {
+                  "text": "Search all published judgments and decisions held within the Find Case Law service."
+                }
+              },
+              {
+                "value": "higher_courts",
+                "text": "Higher courts and tribunals",
+                "hint": {
+                  "text": "Search judgments and decisions from courts and tribunals that establish legal precedent."
+                }
+              },
+            ]
+          }) }}
+
         <p>Use any search term including neutral citation, names and keywords</p>
         {{ search_input(label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
         {% call search_input_footer() %}
-          {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+          <div class="search-input__footer-info">
+            {{ heading(tag="h3", content="Need to refine your search?") }}
+            <p>Refine your search by selecting specific courts, tribunals, date ranges, judges and party names.</p>
+          </div>
+            {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
         {% endcall %}
       {% endcall %}
     {% endcall %}
   {% endcall %}
+
   {% call content_container() %}
     {% call details(title="About this service", closed_title="We’ll hide this introduction next time you visit – you can choose to see it again at anytime.", variant="centered", open=true, stateful=True) %}
       <p>

@@ -1,8 +1,9 @@
 from django import forms
 from django.forms import ValidationError
 from ds_caselaw_utils import courts as all_courts
-from ds_caselaw_utils.courts import CourtGroup, CourtParam
+from ds_caselaw_utils.courts import Court, CourtGroup, CourtParam
 
+from judgments.search_scopes import get_higher_courts, get_other_courts
 from judgments.utils import preprocess_query
 
 from .fields import DateRangeInputField
@@ -45,10 +46,37 @@ COURT_CHOICES = _get_choices_by_group(all_courts.get_grouped_show_in_search_filt
 TRIBUNAL_CHOICES = _get_choices_by_group(all_courts.get_grouped_show_in_search_filters_tribunals())
 
 
+def _get_scope_choices(courts: list[Court]) -> court_choices_dict:
+    remaining = {court.canonical_param: court for court in courts if court.canonical_param}
+    choices: court_choices_dict = {}
+    for key, value in (COURT_CHOICES | TRIBUNAL_CHOICES).items():
+        if isinstance(value, dict):
+            group = {param: label for param, label in value.items() if param in remaining}
+            if group:
+                choices[key] = group
+                for param in group:
+                    remaining.pop(param)
+        elif key in remaining:
+            choices[key] = value
+            remaining.pop(key)
+
+    choices.update({param: court.name for param, court in remaining.items()})
+    return choices
+
+
+HIGHER_COURT_CHOICES = _get_scope_choices(get_higher_courts())
+OTHER_COURT_CHOICES = _get_scope_choices(get_other_courts())
+
+
 def all_valid_courts_and_tribunals() -> set[str]:
-    ALL_CHOICES = COURT_CHOICES | TRIBUNAL_CHOICES
+    ALL_CHOICES = [
+        *COURT_CHOICES.items(),
+        *TRIBUNAL_CHOICES.items(),
+        *HIGHER_COURT_CHOICES.items(),
+        *OTHER_COURT_CHOICES.items(),
+    ]
     ids: set[str] = set()
-    for key, value in ALL_CHOICES.items():
+    for key, value in ALL_CHOICES:
         # Items in the dictionary are either `"uksc": "Supreme Court"` or
         # `"Court of Appeal": {"ewca/civ": "Civil"}`. Extract the identifiers.
         # They may not be nested.
@@ -79,6 +107,10 @@ class CourtOrTribunalField(forms.MultipleChoiceField):
 
 
 class AdvancedSearchForm(forms.Form):
+    scope = forms.CharField(
+        required=False,
+        widget=forms.HiddenInput(),
+    )
     ORDER_CHOICES = [
         ("relevance", "Most relevant"),
         ("-date", "Newest"),
@@ -115,8 +147,8 @@ class AdvancedSearchForm(forms.Form):
         date_type="to",
     )
     court = CourtOrTribunalField(
-        choices=COURT_CHOICES | TRIBUNAL_CHOICES,
-        widget=CheckBoxSelectCourtWithYearRange(court_group_count=len(COURT_CHOICES)),
+        choices=[*HIGHER_COURT_CHOICES.items(), *OTHER_COURT_CHOICES.items()],
+        widget=CheckBoxSelectCourtWithYearRange(higher_court_group_count=len(HIGHER_COURT_CHOICES)),
         label="From specific courts or tribunals",
         required=False,
     )
@@ -172,6 +204,7 @@ class AdvancedSearchForm(forms.Form):
         if cleaned_data is None:  # make the type checker happier
             raise RuntimeError("Cleaned data can never be None, this should never occur")
         to_date = cleaned_data.get("to_date")
+
         from_date = cleaned_data.get("from_date")
         if from_date and to_date and from_date > to_date:
             raise ValidationError(
@@ -182,7 +215,7 @@ class AdvancedSearchForm(forms.Form):
         # Ignore warnings related to MyPy not understanding what cleaned_data is
         if cleaned_data.get("query"):
             cleaned_data["query"] = preprocess_query(cleaned_data.get("query", ""))
-        for parameter in ["query", "from_date", "to_date", "court", "party", "judge", "order"]:
+        for parameter in ["query", "from_date", "to_date", "court", "party", "judge", "order", "scope"]:
             if cleaned_data.get(parameter, "Non-nilsy placeholder") in (None, "", []):
                 del cleaned_data[parameter]
         return cleaned_data

@@ -1,3 +1,7 @@
 .govuk-form-group {
   margin-bottom: 0;
+
+  &--full-width {
+    width: 100%;
+  }
 }
