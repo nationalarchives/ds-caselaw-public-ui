@@ -8,6 +8,7 @@ SEARCH_SCOPE_LABELS = {
 }
 
 SEARCH_SCOPE_PREFERENCE_COOKIE = "search_scope_preference"
+SEARCH_SCOPE_PREFERENCE_COOKIE_MAX_AGE = 365 * 24 * 60 * 60
 HOMEPAGE_SCOPES = ("all_courts", "higher_courts")
 
 

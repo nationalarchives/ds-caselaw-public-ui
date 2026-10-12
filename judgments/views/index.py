@@ -17,7 +17,11 @@ from django.views.generic import TemplateView
 from requests.exceptions import RequestException
 
 from judgments.forms import AdvancedSearchForm
-from judgments.search_scopes import HOMEPAGE_SCOPES, SEARCH_SCOPE_PREFERENCE_COOKIE
+from judgments.search_scopes import (
+    HOMEPAGE_SCOPES,
+    SEARCH_SCOPE_PREFERENCE_COOKIE,
+    SEARCH_SCOPE_PREFERENCE_COOKIE_MAX_AGE,
+)
 from judgments.utils import api_client
 from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer
 
@@ -41,16 +45,17 @@ class IndexView(TemplateView):
         scopes = request.POST.getlist("scope")
         if len(scopes) != 1 or scopes[0] not in HOMEPAGE_SCOPES:
             return HttpResponseBadRequest("Choose a valid search scope")
+        selected_scope = next(scope for scope in HOMEPAGE_SCOPES if scope == scopes[0])
         params = QueryDict(mutable=True)
-        params["scope"] = scopes[0]
+        params["scope"] = selected_scope
         params["query"] = request.POST.get("query", "")
         destination = "advanced_search" if request.POST.get("action") == "advanced_search" else "search"
         response = HttpResponseRedirect(f"{reverse(destination)}?{params.urlencode()}")
         response.set_cookie(
             SEARCH_SCOPE_PREFERENCE_COOKIE,
-            scopes[0],
-            max_age=365 * 24 * 60 * 60,
-            secure=request.is_secure(),
+            selected_scope,
+            max_age=SEARCH_SCOPE_PREFERENCE_COOKIE_MAX_AGE,
+            secure=True,
         )
         patch_cache_control(response, private=True, no_store=True, max_age=0)
         return response
