@@ -4,8 +4,8 @@ from django.test import TestCase
 from django.urls import reverse
 from lxml import html
 
+from judgments.search_scopes import SEARCH_SCOPE_PREFERENCE_COOKIE
 from judgments.tests.fixture_data import FakeSearchResponse
-from judgments.views.search.scope_preference import SEARCH_SCOPE_PREFERENCE_COOKIE
 
 
 class TestSearchScopePreference(TestCase):
@@ -32,15 +32,13 @@ class TestSearchScopePreference(TestCase):
                     set(response.headers["Cache-Control"].split(", ")), {"private", "no-cache", "max-age=0"}
                 )
 
-    @patch("judgments.views.search.results.search_judgments_and_parse_response")
-    def test_valid_submission_saves_scope(self, mock_search):
-        mock_search.return_value = FakeSearchResponse()
+    def test_valid_submission_saves_scope(self):
         for scope in ["higher_courts", "all_courts"]:
             with self.subTest(scope=scope):
-                response = self.client.get(
-                    reverse("search"), {"scope": scope, "save_search_scope_preference": "1"}, secure=True
+                response = self.client.post(
+                    reverse("home"), {"scope": scope, "csrfmiddlewaretoken": "token"}, secure=True
                 )
-                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.status_code, 302)
                 cookie = response.cookies[SEARCH_SCOPE_PREFERENCE_COOKIE]
                 self.assertEqual(cookie.value, scope)
 
@@ -49,7 +47,5 @@ class TestSearchScopePreference(TestCase):
         mock_search.return_value = FakeSearchResponse()
         for scope in [[], ["invalid"], ["other_courts"], ["all_courts", "higher_courts"]]:
             with self.subTest(scope=scope):
-                response = self.client.get(
-                    reverse("search"), {"scope": scope, "save_search_scope_preference": "1"}, secure=True
-                )
+                response = self.client.post(reverse("home"), {"scope": scope}, secure=True)
                 self.assertNotIn(SEARCH_SCOPE_PREFERENCE_COOKIE, response.cookies)

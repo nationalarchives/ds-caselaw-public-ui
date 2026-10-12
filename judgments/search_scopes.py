@@ -7,6 +7,9 @@ SEARCH_SCOPE_LABELS = {
     "all_courts": "All courts and tribunals",
 }
 
+SEARCH_SCOPE_PREFERENCE_COOKIE = "search_scope_preference"
+HOMEPAGE_SCOPES = ("all_courts", "higher_courts")
+
 
 def _get_courts_by_param() -> list[Court]:
     # Historical court codes can share a search parameter; render it only once.

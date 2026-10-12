@@ -31,11 +31,10 @@ from judgments.utils import (
 )
 from judgments.utils.gtm_datalayer import GtmPageType, build_gtm_data_layer, build_search_data_layer
 from judgments.utils.search_request_to_parameters import search_request_to_parameters
-from judgments.views.search.scope_preference import SearchScopePreferenceMixin
 
 
 @method_decorator(csrf_exempt, name="dispatch")
-class SearchResultsView(SearchScopePreferenceMixin, TemplateViewWithContext):
+class SearchResultsView(TemplateViewWithContext):
     """
     Handles any searches made in the application
 

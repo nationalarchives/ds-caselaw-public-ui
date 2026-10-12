@@ -3,10 +3,9 @@ from ds_caselaw_utils import courts
 
 from config.views.template_view_with_context import TemplateViewWithContext
 from judgments.forms import AdvancedSearchForm
-from judgments.views.search.scope_preference import SearchScopePreferenceMixin
 
 
-class AdvancedSearchView(SearchScopePreferenceMixin, TemplateViewWithContext):
+class AdvancedSearchView(TemplateViewWithContext):
     template_engine = "jinja"
     template_name = "pages/search_and_browse/advanced_search.jinja"
 
