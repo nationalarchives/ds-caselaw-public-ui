@@ -26,6 +26,7 @@ from judgments.templatetags import (
     errors,
     link_tags,
     query_filters,
+    scope_utils,
     search_results_filters,
     template_utils,
     text_utils,
@@ -115,6 +116,7 @@ def get_filters():
         "hyphenate": text_utils.hyphenate,
         "is_court_ended": court_utils.is_court_ended,
         "json_script": json_script,
+        "get_scope_label": scope_utils.get_scope_label,
     }
 
 

@@ -8,6 +8,7 @@ from django.http import (
 )
 
 from judgments.forms import AdvancedSearchForm
+from judgments.search_scopes import get_higher_court_params, get_other_courts
 from judgments.utils import (
     MAX_RESULTS_PER_PAGE,
     clamp,
@@ -33,7 +34,6 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
     if not form.is_valid():
         raise BadRequest(form.errors.as_json())
 
-    query_params: dict = {}
     query_text: str = form.cleaned_data.get("query", "")
     page: int = clamp(sanitise_input_to_integer(params.get("page"), 1), minimum=1)
     order = form.cleaned_data.get("order")
@@ -51,27 +51,15 @@ def search_request_to_parameters(request: HttpRequest) -> SearchParameters:
         from_date_for_search = date(settings.MINIMUM_ALLOWED_YEAR, 1, 1)
     else:
         from_date_for_search = from_date
-        # Only provide the param back to the user if they set it
-        query_params = query_params | {
-            "from_date_0": from_date.day,
-            "from_date_1": from_date.month,
-            "from_date_2": from_date.year,
-        }
-    if to_date:
-        query_params = query_params | {
-            "to_date_0": to_date.day,
-            "to_date_1": to_date.month,
-            "to_date_2": to_date.year,
-        }
-    query_params = query_params | {
-        "query": query_text,
-        "court": form.cleaned_data.get("court", []),
-        "judge": form.cleaned_data.get("judge", ""),
-        "party": form.cleaned_data.get("party", ""),
-        "order": order,
-        "page": page,
-    }
     courts_and_tribunals = form.cleaned_data.get("court", [])
+    scopes = form.cleaned_data.get("scope", [])
+    if scopes:
+        courts_and_tribunals = []
+        if "all_courts" not in scopes:
+            if "higher_courts" in scopes:
+                courts_and_tribunals.extend(get_higher_court_params())
+            if "other_courts" in scopes:
+                courts_and_tribunals.extend(str(court.canonical_param) for court in get_other_courts())
     # `SearchParameters` takes an optional string for dates
     if not to_date:
         to_date_as_search_param = None

@@ -188,7 +188,7 @@ def has_filters(query_params, exclude=None):
     be they query string, court, date, or party.
     """
     if exclude is None:
-        exclude = ["order", "per_page"]
+        exclude = ["order", "per_page", "scope"]
     return len({k for (k, v) in query_params.items() if v} - set(exclude)) > 0
 
 

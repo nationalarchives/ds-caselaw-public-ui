@@ -2,6 +2,19 @@
   padding: $space-8 0;
   background-color: colour-var("accent-background-light");
 
+  &--light {
+    background-color: colour-var("accent-background-light");
+
+    .container {
+      box-sizing: border-box;
+      padding: $space-8;
+
+      @media (min-width: $grid-breakpoint-medium) {
+        background-color: colour-var("background");
+      }
+    }
+  }
+
   .container {
     display: flex;
     flex-direction: column;

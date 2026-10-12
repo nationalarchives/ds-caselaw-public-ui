@@ -1,9 +1,23 @@
 <div class="structured-search__court-options" id="court">
-  {% for title, groups, section_id in [("From specific courts", court_groups, "id_court"), ("From specific tribunals", tribunal_groups, "id_tribunal")] %}
+  {% for title, description, groups, section_id in [("Higher courts", "Includes decisions and judgments which establish legal precedent.", higher_court_groups, "id_higher_courts"), ("Other courts", "Includes decisions and judgments which provide transparency into everyday legal proceedings.", other_court_groups, "id_other_courts")] %}
     <div class="structured-search__court-options-column">
-      <fieldset>
+      {% set scope = "higher_courts" if section_id == "id_higher_courts" else "other_courts" %}
+      {% set scope_selected = scope in selected_scopes or "all_courts" in selected_scopes %}
+      <fieldset data-court-scope>
         <legend class="structured-search__limit-to-label">{{ title }}</legend>
-        {% with widget = dict(widget, optgroups=groups, attrs=dict(widget.attrs, id=section_id)) %}
+        <p>{{ description }}</p>
+        <div class="structured-search__court-option">
+          <label>
+            <input type="checkbox"
+                   name="scope"
+                   value="{{ scope }}"
+                   data-scope-toggle
+                   aria-controls="{{ section_id }}"
+                   {% if scope_selected %}checked{% endif %} />
+            <span data-scope-label class="structured-search__court-option-label">Select all</span>
+          </label>
+        </div>
+        {% with widget = dict(widget, optgroups=groups, attrs=dict(widget.attrs, id=section_id, class="structured-search__scope-children")) %}
           {% include "forms/widgets/court_multiple_input.jinja" %}
         {% endwith %}
       </fieldset>

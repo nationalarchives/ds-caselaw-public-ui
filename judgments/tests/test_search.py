@@ -66,6 +66,32 @@ class TestNoNCN(TestCase):
 
 
 class TestSearchResults(TestCase):
+    @patch("judgments.utils.search_request_to_parameters.get_higher_court_params", return_value=["uksc"])
+    @patch("judgments.utils.search_request_to_parameters.get_other_courts")
+    @patch("judgments.views.search.results.search_judgments_and_parse_response")
+    def test_scope_selection_takes_priority(self, mock_search, mock_other, mock_higher):
+        from types import SimpleNamespace
+
+        mock_search.return_value = FakeSearchResponse()
+        mock_other.return_value = [SimpleNamespace(canonical_param="ewcc")]
+        for scopes, expected in [
+            (["higher_courts"], "uksc"),
+            (["other_courts"], "ewcc"),
+            (["higher_courts", "other_courts"], ""),
+        ]:
+            with self.subTest(scopes=scopes):
+                response = self.client.get("/search", {"scope": scopes, "court": "ewhc/ch"})
+
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(mock_search.call_args.args[1].court, expected)
+                assert response.context_data is not None
+                self.assertEqual(response.context_data["query_params"]["court"], [])
+                self.assertNotIn("court=", response.context_data["query_string"])
+                if len(scopes) == 2:
+                    self.assertEqual(response.context_data["query_params"]["scope"], ["all_courts"])
+                    self.assertEqual(response.context_data["query_string"], "scope=all_courts")
+                    self.assertEqual(response.context_data["atom_feed_url"], "/atom.xml?scope=all_courts")
+
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_no_results_court_specific_guidance(self, mock_search_judgments_and_parse_response):
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponseNoResults()
@@ -369,9 +395,7 @@ class TestSearchResults(TestCase):
 
         The expected applied filters HTML:
         - Includes a list with class "results-search-component__removable-options"
-        - Contains two list items (li) with links (a) representing the applied filters:
-        - The first link represents the "Chancery Division of the High Court" filter
-        - The second link represents the "Intellectual Property Enterprise Court" filter
+        - Contains one link representing all selected courts.
         """
         CourtDateFactory()
 
@@ -382,28 +406,12 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 aria-label="Remove High Court (Chancery Division) filter"
-                 href="/search?court=ewhc/ipec"
-                 title="High Court (Chancery Division)">
+                 aria-label="Remove court and tribunal filters"
+                 href="/search?">
+                <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
-                    High Court (Chancery Division)
-                  </span>
-                </span>
-              </a>
-            </li>
-
-            <li>
-              <a role="button"
-                 tabindex="0"
-                 draggable="false"
-                 class="results-search-component__removable-options-link"
-                 aria-label="Remove High Court (Intellectual Property Enterprise Court) filter"
-                 href="/search?court=ewhc/ch"
-                 title="High Court (Intellectual Property Enterprise Court)">
-                <span class="results-search-component__removable-options-value">
-                  <span class="results-search-component__removable-options-value-text">
-                    High Court (Intellectual Property Enterprise Court)
+                    2 selected
                   </span>
                 </span>
               </a>
@@ -444,10 +452,9 @@ class TestSearchResults(TestCase):
 
         The expected applied filters HTML:
         - Includes a list with class "results-search-component__removable-options"
-        - Contains three list items (li) with links (a) representing the applied filters:
+        - Contains two list items (li) with links (a) representing the applied filters:
         - The first link represents the provided from date filter
-        - The second link represents the "Chancery Division of the High Court" filter
-        - The third link represents the "Intellectual Property Enterprise Court" filter
+        - The second link represents the courts filters
         """
         mock_search_judgments_and_parse_response.return_value = FakeSearchResponse()
 
@@ -473,27 +480,12 @@ class TestSearchResults(TestCase):
                  tabindex="0"
                  draggable="false"
                  class="results-search-component__removable-options-link"
-                 aria-label="Remove High Court (Chancery Division) filter"
-                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;court=ewhc/ipec"
-                 title="High Court (Chancery Division)">
+                 aria-label="Remove court and tribunal filters"
+                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011">
+                <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
-                    High Court (Chancery Division)
-                  </span>
-                </span>
-              </a>
-            </li>
-            <li>
-              <a role="button"
-                 tabindex="0"
-                 draggable="false"
-                 class="results-search-component__removable-options-link"
-                 aria-label="Remove High Court (Intellectual Property Enterprise Court) filter"
-                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;court=ewhc/ch"
-                 title="High Court (Intellectual Property Enterprise Court)">
-                <span class="results-search-component__removable-options-value">
-                  <span class="results-search-component__removable-options-value-text">
-                    High Court (Intellectual Property Enterprise Court)
+                    2 selected
                   </span>
                 </span>
               </a>

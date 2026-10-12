@@ -36,8 +36,10 @@
 
   &__info-text {
     position: absolute;
+    z-index: 1;
     top: 36px;
     left: 0;
+
     display: none;
 
     @media (min-width: $grid-breakpoint-extra-large) {

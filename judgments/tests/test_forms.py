@@ -2,12 +2,34 @@ from datetime import date
 
 from django.conf import settings
 from django.test import TestCase
+from lxml import html
 
 from judgments.forms import AdvancedSearchForm
 from judgments.forms.fields import DateRangeInputField
 
 
 class TestAdvancedSearchForm(TestCase):
+    def test_scopes_take_priority_over_individual_courts(self):
+        form = AdvancedSearchForm(data={"scope": ["higher_courts", "other_courts"], "court": ["uksc"]})
+
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data["scope"], ["all_courts"])
+        self.assertNotIn("court", form.cleaned_data)
+        root = html.fromstring(str(form["court"]))
+        self.assertEqual(root.xpath('//input[@name="scope"][@checked]/@value'), ["higher_courts", "other_courts"])
+
+    def test_scope_normalisation(self):
+        for scopes, expected in [
+            (["higher_courts", "higher_courts"], ["higher_courts"]),
+            (["other_courts"], ["other_courts"]),
+            (["other_courts", "higher_courts"], ["all_courts"]),
+            (["all_courts", "higher_courts"], ["all_courts"]),
+        ]:
+            with self.subTest(scopes=scopes):
+                form = AdvancedSearchForm(data={"scope": scopes})
+                self.assertTrue(form.is_valid())
+                self.assertEqual(form.cleaned_data["scope"], expected)
+
     def test_advanced_search_form_date_validation(self):
         """
         Given a from_date after the to_date, raise

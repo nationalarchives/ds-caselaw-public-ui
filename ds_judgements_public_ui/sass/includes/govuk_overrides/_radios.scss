@@ -1,0 +1,32 @@
+.govuk-radios {
+  &--horizontal {
+    display: flex;
+    flex-direction: column;
+
+    padding: $space-4;
+    border: 1px solid colour-var("accent-background-light");
+
+    background-color: colour-var("background");
+
+    .govuk-radios__item {
+      padding-bottom: $space-4;
+      border-bottom: 1px solid colour-var("accent-background-light");
+
+      &:last-child {
+        padding-bottom: 0;
+        border: 0;
+      }
+
+      @media (min-width: $grid-breakpoint-medium) {
+        padding-bottom: 0;
+        border-right: 1px solid colour-var("accent-background-light");
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: $grid-breakpoint-medium) {
+      flex-direction: row;
+      gap: $space-4;
+    }
+  }
+}

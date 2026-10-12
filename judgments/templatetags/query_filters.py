@@ -19,6 +19,7 @@ def removable_filter_param(key):
     # party, query, but excludes for instance pagination, feature flags, and
     # the individual components of a date, which are presented jointly in the UI.
     excluded = [
+        "scope",
         "order",
         "per_page",
         "page",
