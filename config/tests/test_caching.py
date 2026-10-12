@@ -15,4 +15,4 @@ class TestCacheHeaders(TestCase):
     def test_no_cache_transactional_steps(self):
         url = "/re-use-find-case-law-records/steps/organization"
         response = self.client.get(url)
-        assert response.headers["Cache-Control"] == "max-age=0, no-cache, no-store, must-revalidate, public"
+        assert response.headers["Cache-Control"] == "max-age=0, no-cache, no-store, must-revalidate, private"

@@ -52,7 +52,8 @@ class CacheHeaderMiddleware:
 
         response = self.get_response(request)
 
-        patch_cache_control(response, max_age=15 * 60, public=True)
+        if not response.has_header("Cache-Control"):
+            patch_cache_control(response, max_age=15 * 60, public=True)
 
         # Code to be executed for each request/response after
         # the view is called.
