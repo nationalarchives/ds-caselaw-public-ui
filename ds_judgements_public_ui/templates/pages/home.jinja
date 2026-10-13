@@ -53,7 +53,7 @@
             {{ heading(tag="h3", content="Need to refine your search?") }}
             <p>Refine your search by selecting specific courts, tribunals, date ranges, judges and party names.</p>
           </div>
-          {{ button(variant="link", content="Advanced search", element_type="button", attrs={"type": "submit", "formaction": url("home"), "value": "advanced_search"}) }}
+          {{ button(variant="link", content="Advanced search", element_type="button", attrs={"type": "submit", "formaction": url("home"), "value": "advanced_search", "name": "action"}) }}
         {% endcall %}
       {% endcall %}
     {% endcall %}
