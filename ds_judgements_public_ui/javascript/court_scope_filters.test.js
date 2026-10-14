@@ -49,20 +49,17 @@ describe("court scope filters", () => {
         expect(group.indeterminate).toBe(true);
     });
 
-    if (
-        ("combines both scopes into all courts on submission",
-        () => {
-            document.querySelector("[data-scope-toggle]").click();
-            const form = document.querySelector("form");
-            const data = new FormData(form);
-            data.append("scope", "other_courts");
-            const event = new Event("formdata");
-            event.formData = data;
-            form.dispatchEvent(event);
-            expect(data.getAll("scope").toEqual("all_courts"));
-            exepect(data.getAll("court").toEqual([]));
-        })
-    );
+    it("combines both scopes into all courts on submission", () => {
+        document.querySelector("[data-scope-toggle]").click();
+        const form = document.querySelector("form");
+        const data = new FormData(form);
+        data.append("scope", "other_courts");
+        const event = new Event("formdata");
+        event.formData = data;
+        form.dispatchEvent(event);
+        expect(data.getAll("scope")).toEqual(["all_courts"]);
+        expect(data.getAll("court")).toEqual([]);
+    });
 
     it("removes individual courts from scoped submissions", () => {
         document.querySelector("[data-scope-toggle]").click();
