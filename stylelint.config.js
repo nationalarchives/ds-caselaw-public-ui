@@ -3,6 +3,16 @@ module.exports = {
     // NOTE: these are vendor css files
     ignoreFiles: ["ds_judgements_public_ui/static/css/includes/**/*"],
     rules: {
+        "order/order": [
+            {
+                type: "at-rule",
+                name: "include",
+                hasBlock: false,
+            },
+            "declarations",
+            "rules",
+            "at-rules",
+        ],
         "selector-id-pattern": null,
         "no-duplicate-selectors": null,
         "selector-class-pattern": null,

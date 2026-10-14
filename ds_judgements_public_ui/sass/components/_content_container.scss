@@ -1,4 +1,6 @@
 .content-container {
+  @include container;
+
   display: flex;
   flex-direction: column;
   gap: $space-6;
@@ -7,8 +9,6 @@
   @media (min-width: $grid-breakpoint-medium) {
     padding: $space-6 0;
   }
-
-  @include container;
 }
 
 .container {
