@@ -1,0 +1,51 @@
+.tooltip {
+  position: relative;
+  display: flex;
+  gap: $space-2;
+  align-items: center;
+
+  &__info {
+    &:hover,
+    &:focus {
+      .tooltip__info-text {
+        display: block;
+      }
+
+      .tooltip__info-icon {
+        background-image: url($fa_info_solid);
+      }
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      position: relative;
+    }
+  }
+
+  &__info-icon {
+    width: 16px;
+    height: 16px;
+    background-image: url($fa_info);
+    background-repeat: no-repeat;
+  }
+
+  &__info-text {
+    position: absolute;
+    z-index: 1;
+    top: 36px;
+    left: 0;
+
+    display: none;
+
+    .alert {
+      display: flex;
+      flex-direction: column;
+      gap: $space-4;
+    }
+
+    @media (min-width: $grid-breakpoint-extra-large) {
+      top: 30px;
+      left: -142px;
+      width: 285px;
+    }
+  }
+}

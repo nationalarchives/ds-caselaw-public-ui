@@ -49,6 +49,7 @@ class SearchResultsView(TemplateViewWithContext):
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         form: AdvancedSearchForm = AdvancedSearchForm(request.GET)
+
         if not form.is_valid():
             return TemplateResponse(
                 request,
@@ -173,6 +174,10 @@ class SearchResultsView(TemplateViewWithContext):
             "order": search_parameters.order,
             "page": search_parameters.page,
         }
+
+        if scope := form.cleaned_data.get("scope"):
+            query_params["scope"] = scope
+
         return query_params
 
     def _process_facets_and_warnings(self, request, form, search_parameters, search_response):
@@ -190,6 +195,12 @@ class SearchResultsView(TemplateViewWithContext):
         params = form.data
         changed_queries = {}
         for key in params:
+            if key == "scope":
+                if scopes := form.cleaned_data.get("scope"):
+                    changed_queries[key] = scopes
+                continue
+            if key == "court" and form.cleaned_data.get("scope"):
+                continue
             values = params.getlist(key)
             if values and key != "page":
                 changed_queries[key] = values

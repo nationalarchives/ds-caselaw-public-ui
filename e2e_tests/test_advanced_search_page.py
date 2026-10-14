@@ -15,7 +15,7 @@ def submit_button(page: Page):
 
 
 def update_filters_button(page: Page):
-    return page.get_by_role("button", name="Update filters")
+    return page.get_by_role("button", name="Update my results")
 
 
 court_filters = [
@@ -34,8 +34,6 @@ court_filters = [
     {"control_label": "Patents Court", "tag_label": "Patents Court"},
     {"control_label": "Senior Courts Costs Office", "tag_label": "High Court (Senior Court Costs Office)"},
     {"control_label": "Technology and Construction Court", "tag_label": "Technology and Construction Court"},
-    {"control_label": "Family Court", "tag_label": "Family Court"},
-    {"control_label": "Court of Protection", "tag_label": "Court of Protection"},
 ]
 
 

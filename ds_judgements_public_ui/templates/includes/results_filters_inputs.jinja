@@ -43,9 +43,6 @@
       </fieldset>
     </div>
   </div>
-  <div class="structured-search__single-field-panel">
-    <div class="structured-search__limit-to-container">{{ form.court }}</div>
-  </div>
   <div class="structured-search__multi-fields-panel">
     <div class="structured-search__specific-field-container">
       <label for="id_party"
@@ -65,10 +62,13 @@
       {{ form.judge }}
     </div>
   </div>
+  <div class="structured-search__single-field-panel">
+    <div class="structured-search__limit-to-container">{{ form.court }}</div>
+  </div>
   <div class="structured-search__submit-container">
     <input type="submit"
            class="button-primary structured-search__update-filters-button"
            formaction="{{ url('search') }}"
-           value="Update filters" />
+           value="Update my results" />
   </div>
 </div>

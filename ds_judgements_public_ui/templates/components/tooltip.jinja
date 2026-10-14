@@ -1,0 +1,14 @@
+{% from "components/alert.jinja" import alert %}
+{% macro tooltip(tooltip=None) %}
+  <div class="tooltip">
+    {{ caller() }}
+    <div class="tooltip__info" tabindex="0">
+      <div class="tooltip__info-icon"></div>
+      <div class="tooltip__info-text">
+        {% call alert() %}
+          {{ tooltip }}
+        {% endcall %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}

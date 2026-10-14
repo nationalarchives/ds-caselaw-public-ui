@@ -9,28 +9,75 @@
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
 {% from "components/grid.jinja" import grid %}
 {% from "components/hero.jinja" import hero %}
+{% from "components/radios.jinja" import radios %}
 {% from "components/search_input.jinja" import search_form,search_form_container, search_input, search_input_footer %}
+{% from "components/tooltip.jinja" import tooltip %}
 {% block content %}
-  {% call hero() %}
-    {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form") %}
-      {% call search_form_container(fixed_width=True) %}
+  {% call hero(variant="light") %}
+    {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form", method="post") %}
+      {{ csrf_input }}
+      <input type="hidden" name="save_search_scope_preference" value="1" />
+      {% call search_form_container() %}
+        {{ heading(tag="h2", content="What would you like to search?") }}
+        <p>Choose which judgments and decisions to include in your search.</p>
+        {{ radios({
+          "idPrefix": "scope",
+          "name": "scope",
+          "formGroup": {
+            "classes": "govuk-form-group--full-width"
+          },
+          "classes": "govuk-radios--horizontal",
+          "items": [
+            {
+              "checked": search_scope_preference == "all_courts",
+              "value": "all_courts",
+              "text": "All courts and tribunals",
+              "hint": {
+                "text": "Search all published judgments and decisions held within the Find Case Law service."
+              }
+            },
+            {
+              "checked": search_scope_preference == "higher_courts",
+              "value": "higher_courts",
+              "text": "Higher courts and tribunals",
+              "hint": {
+                "text": "Search judgments and decisions from courts and tribunals that establish legal precedent."
+              }
+            }
+          ]
+        }) }}
         <p>Use any search term including neutral citation, names and keywords</p>
-        {{ search_input(label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
+        {{ search_input(label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("home") , button_label="Search") }}
         {% call search_input_footer() %}
-          {{ button(variant="link", element_type="input", attrs={"type": "submit", "formaction": url("advanced_search") , "value": "Advanced search"}) }}
+          <div class="search-input__footer-info">
+            {{ heading(tag="h3", content="Need to refine your search?") }}
+            <p>Refine your search by selecting specific courts, tribunals, date ranges, judges and party names.</p>
+          </div>
+          {{ button(variant="link", content="Advanced search", element_type="button", attrs={"type": "submit", "formaction": url("home"), "value": "advanced_search", "name": "action"}) }}
         {% endcall %}
       {% endcall %}
     {% endcall %}
   {% endcall %}
   {% call content_container() %}
-    {% call details(title="About this service", closed_title="We’ll hide this introduction next time you visit – you can choose to see it again at anytime.", variant="centered", open=true, stateful=True) %}
+    <div>
+      {{ heading(tag="h1", size="h2", content="About Find Case Law") }}
       <p>
-        We provide free access to court judgments and tribunal decisions from England and Wales, plus UK – wide cases from the Supreme Court and Privy Council. Our collection includes the vast majority of judgments that courts have made publicly available in digital form, with coverage for most courts starting from the early 2000s when digital records became standard (the Supreme Court was established in 2009).
+        We offer free access to published judgments and decisions from courts and tribunals in England and Wales, plus UK-wide cases from the Supreme Court and Privy Council. These documents provide transparency into legal proceedings – a key principle of open justice – as well as insight into how case law is established and applied.
       </p>
       <p>
-        We're continuously expanding our collection as courts send us new judgments. While we have most material that exists in publishable form, please note that not all court decisions are written down – many lower court hearings and some tribunal decisions are given verbally and never transcribed.
+        <strong>Please note, our collection does not include every court judgment or tribunal decision.</strong>
       </p>
-    {% endcall %}
+      {% call details(title="About our coverage and publication", variant="light") %}
+        {% call card(variant="pale") %}
+          <p><strong>Why are judgments and decisions published?</strong></p>
+          <p>Publishing court judgments and tribunal decisions supports open justice and transparency by making legal proceedings and their outcomes accessible to the public. Some judgments and decisions also establish, develop or clarify the law, helping legal professionals and the public understand how the law is applied.</p>
+          <p><strong>What does Find Case Law cover?</strong></p>
+          <p>We provide free access to court judgments and tribunal decisions from England and Wales, plus UK-wide cases from the Supreme Court and Privy Council.</p>
+          <p>Our collection includes the vast majority of judgments and decisions that courts have made publicly available in digital form. Coverage for most courts starts in the early 2000s, when digital records became standard. The Supreme Court was established in 2009.</p>
+          <p>We're continuously expanding our collection as courts send us new judgments and decisions. However, not every court judgment or tribunal decision is available on Find Case Law. Some are delivered verbally and are never transcribed, while others may not be published or made available on the service.</p>
+        {% endcall %}
+      {% endcall %}
+    </div>
     {% call grid() %}
       {% call card(title="New to case law?", url=url('understanding_case_law'), variant="image", image_url=static("images/HM-courts-and-tribunal-service-building-sign.jpg")) %}
         <p>Our Understanding case law section explains how courts work and how to read judgments.</p>

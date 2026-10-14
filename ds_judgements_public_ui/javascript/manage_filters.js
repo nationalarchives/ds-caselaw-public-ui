@@ -1,4 +1,5 @@
 import { setupSearchResultsControls } from "./search_results_controls";
+import { setupCourtScopeFilters } from "./court_scope_filters";
 
 export function manageFilters(wrapper, options = {}) {
     const settings = { ...manageFilters.defaults, ...options };
@@ -41,3 +42,4 @@ document
     .querySelectorAll(".js-results-facets-wrapper")
     .forEach((wrapper) => manageFilters(wrapper));
 setupSearchResultsControls();
+setupCourtScopeFilters();

@@ -19,14 +19,14 @@
           {{ search_input(value=query, label="Search by keyword or neutral citation", placeholder="Input your search term...", button_action=url("search") , button_label="Search") }}
         {% endcall %}
       {% endcall %}
-      {% call content_container() %}
+      <div class="container">
         {% if form.errors %}
           {% call alert(variant="error") %}
             {{ form.errors|error_messages }}
           {% endcall %}
         {% endif %}
         <div class="structured-search">{% include "includes/results_filters_inputs.jinja" %}</div>
-      {% endcall %}
+      </div>
     {% endcall %}
   </div>
 {% endblock content %}

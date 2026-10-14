@@ -11,8 +11,11 @@
     {{ button(element_type="input", attrs={"type": "submit", "value": button_label, "formaction": button_action}) }}
   </div>
 {%- endmacro -%}
-{%- macro search_form(label="", id="") -%}
-  <form role="search" aria-label="{{ label }}" id="{{ id }}">
+{%- macro search_form(label="", id="", method="get") -%}
+  <form role="search"
+        aria-label="{{ label }}"
+        id="{{ id }}"
+        method="{{ method }}">
     {{ caller() | trim }}
   </form>
 {%- endmacro -%}

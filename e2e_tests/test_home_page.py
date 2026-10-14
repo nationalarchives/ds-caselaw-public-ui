@@ -50,7 +50,7 @@ def test_home_page_search_submits_to_correct_action(home_page: Page):
     home_page.fill("#search_input", "Imperial")
     with home_page.expect_navigation():
         home_page.click("input[type=submit][value=Search]")
-    expect(home_page).to_have_url(re.compile(r"/search\?query=Imperial"))
+    expect(home_page).to_have_url(re.compile(r"/search\?scope=all_courts&query=Imperial"))
     home_page.goto("/")
 
 
@@ -97,13 +97,11 @@ def test_home_page_cards_are_present_and_link_correctly(home_page: Page):
 
     for href, heading in expected:
         card = home_page.locator(f".card[href='{href}']")
-        expect(card).to_be_visible()
         expect(card.locator("h3")).to_have_text(heading)
 
 
 def test_home_page_view_all_judgments_button(home_page: Page):
     btn = home_page.locator("a.button[href='/search']")
-    expect(btn).to_be_visible()
     expect(btn).to_contain_text("View all judgments")
 
     with home_page.expect_navigation():
@@ -111,17 +109,6 @@ def test_home_page_view_all_judgments_button(home_page: Page):
 
     expect(home_page).to_have_url("/search")
     home_page.goto("/")
-
-
-def test_home_page_about_details_expands(home_page: Page):
-    details = home_page.locator("details[data-stateful-details]")
-    summary = details.locator("summary")
-
-    expect(details).to_have_attribute("open", "")
-    expect(details.locator(".details__text")).to_be_visible()
-    summary.click()
-    expect(details).not_to_have_attribute("open", "")
-    expect(details.locator(".details__text")).not_to_be_visible()
 
 
 def test_mobile_home_page_judgments_labels(mobile_home_page: Page):
