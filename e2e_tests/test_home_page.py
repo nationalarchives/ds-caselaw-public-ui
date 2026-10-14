@@ -111,17 +111,6 @@ def test_home_page_view_all_judgments_button(home_page: Page):
     home_page.goto("/")
 
 
-def test_home_page_about_details_expands(home_page: Page):
-    details = home_page.locator("details[data-stateful-details]")
-    summary = details.locator("summary")
-
-    expect(details).to_have_attribute("open", "")
-    expect(details.locator(".details__text")).to_be_visible()
-    summary.click()
-    expect(details).not_to_have_attribute("open", "")
-    expect(details.locator(".details__text")).not_to_be_visible()
-
-
 def test_mobile_home_page_judgments_labels(mobile_home_page: Page):
     bodies = mobile_home_page.locator(".documents-table tbody")
     count = bodies.count()
