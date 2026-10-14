@@ -6,6 +6,10 @@
   gap: $space-6;
   padding: $space-6;
 
+  > div > h1:first-child {
+    margin-top: 0;
+  }
+
   @media (min-width: $grid-breakpoint-medium) {
     padding: $space-6 0;
   }
