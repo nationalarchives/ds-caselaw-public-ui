@@ -57,6 +57,19 @@ export function setupCourtScopeFilters(root = document) {
     forms.forEach((form) =>
         form?.addEventListener("formdata", (event) => {
             const scopes = event.formData.getAll("scope");
+            const hasCourtsOutsideScope = [
+                ...form.querySelectorAll("[data-court-scope]"),
+            ].some(
+                (section) =>
+                    !scopes.includes(
+                        section.querySelector("[data-scope-toggle]").value,
+                    ) && section.querySelector('input[name="court"]:checked'),
+            );
+
+            if (!scopes.includes("all_courts") && hasCourtsOutsideScope) {
+                event.formData.delete("scope");
+                return;
+            }
 
             if (
                 scopes.includes("all_courts") ||
