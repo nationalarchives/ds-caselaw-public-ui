@@ -12,6 +12,14 @@ describe("court scope filters", () => {
             <input type="checkbox" name="court" value="ewca/crim">
           </div>
           <input type="checkbox" name="court" value="uksc">
+        </fieldset><fieldset data-court-scope>
+          <input type="checkbox" name="scope" value="other_courts" data-scope-toggle>
+          <span data-scope-label>Select all</span>
+          <div data-court-group>
+            <input type="checkbox" data-group-toggle hidden>
+            <input type="checkbox" name="court" value="eat">
+          </div>
+          <input type="checkbox" name="court" value="ewcc">
         </fieldset></form>`;
         setupCourtScopeFilters();
     });
@@ -51,9 +59,9 @@ describe("court scope filters", () => {
 
     it("combines both scopes into all courts on submission", () => {
         document.querySelector("[data-scope-toggle]").click();
+        document.querySelector('input[value="other_courts"]').click();
         const form = document.querySelector("form");
         const data = new FormData(form);
-        data.append("scope", "other_courts");
         const event = new Event("formdata");
         event.formData = data;
         form.dispatchEvent(event);
@@ -63,6 +71,58 @@ describe("court scope filters", () => {
 
     it("removes individual courts from scoped submissions", () => {
         document.querySelector("[data-scope-toggle]").click();
+        const form = document.querySelector("form");
+        const data = new FormData(form);
+        const event = new Event("formdata");
+        event.formData = data;
+        form.dispatchEvent(event);
+        expect(data.getAll("scope")).toEqual(["higher_courts"]);
+        expect(data.getAll("court")).toEqual([]);
+    });
+
+    it.each([
+        ["higher_courts", "eat", ["ewca/civ", "ewca/crim", "uksc", "eat"]],
+        ["other_courts", "uksc", ["uksc", "eat", "ewcc"]],
+    ])(
+        "submits courts when %s is combined with %s",
+        (scope, court, expected) => {
+            document.querySelector(`input[value="${scope}"]`).click();
+            document.querySelector(`input[value="${court}"]`).click();
+            const form = document.querySelector("form");
+            const data = new FormData(form);
+            const event = new Event("formdata");
+            event.formData = data;
+            form.dispatchEvent(event);
+            expect(data.getAll("scope")).toEqual([]);
+            expect(data.getAll("court")).toEqual(expected);
+        },
+    );
+
+    it("submits courts when a group outside the selected scope is checked", () => {
+        document.querySelector('input[value="higher_courts"]').click();
+        document
+            .querySelectorAll("[data-court-scope]")[1]
+            .querySelector("[data-group-toggle]")
+            .click();
+        const form = document.querySelector("form");
+        const data = new FormData(form);
+        const event = new Event("formdata");
+        event.formData = data;
+        form.dispatchEvent(event);
+        expect(data.getAll("scope")).toEqual([]);
+        expect(data.getAll("court")).toEqual([
+            "ewca/civ",
+            "ewca/crim",
+            "uksc",
+            "eat",
+        ]);
+    });
+
+    it("uses the scope again after the additional court is deselected", () => {
+        document.querySelector('input[value="higher_courts"]').click();
+        const court = document.querySelector('input[value="eat"]');
+        court.click();
+        court.click();
         const form = document.querySelector("form");
         const data = new FormData(form);
         const event = new Event("formdata");

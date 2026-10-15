@@ -13,11 +13,11 @@ class TestSearchScopePreference(TestCase):
     def test_homepage_preselects_saved_scope(self, mock_recent):
         mock_recent.return_value = FakeSearchResponse()
         for saved, expected in [
-            (None, "all_courts"),
-            ("all_courts", "all_courts"),
+            (None, ""),
+            ("all_courts", ""),
             ("higher_courts", "higher_courts"),
-            ("other_courts", "all_courts"),
-            ("invalid", "all_courts"),
+            ("other_courts", ""),
+            ("invalid", ""),
         ]:
             with self.subTest(saved=saved):
                 self.client.cookies.clear()
@@ -33,19 +33,20 @@ class TestSearchScopePreference(TestCase):
                 )
 
     def test_valid_submission_saves_scope(self):
-        for scope in ["higher_courts", "all_courts"]:
+        for scope in ["", "higher_courts", "all_courts"]:
             with self.subTest(scope=scope):
+                self.client.cookies[SEARCH_SCOPE_PREFERENCE_COOKIE] = "higher_courts"
                 response = self.client.post(
                     reverse("home"), {"scope": scope, "csrfmiddlewaretoken": "token"}, secure=True
                 )
                 self.assertEqual(response.status_code, 302)
                 cookie = response.cookies[SEARCH_SCOPE_PREFERENCE_COOKIE]
-                self.assertEqual(cookie.value, scope)
+                self.assertEqual(cookie.value, scope or "all_courts")
 
     @patch("judgments.views.search.results.search_judgments_and_parse_response")
     def test_invalid_scope_save_submission_not_saved(self, mock_search):
         mock_search.return_value = FakeSearchResponse()
-        for scope in [[], ["invalid"], ["other_courts"], ["all_courts", "higher_courts"]]:
+        for scope in [[], ["invalid"], ["other_courts"], ["all_courts", "higher_courts"], ["", "higher_courts"]]:
             with self.subTest(scope=scope):
                 response = self.client.post(reverse("home"), {"scope": scope}, secure=True)
                 self.assertNotIn(SEARCH_SCOPE_PREFERENCE_COOKIE, response.cookies)

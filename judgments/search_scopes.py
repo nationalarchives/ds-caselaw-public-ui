@@ -2,8 +2,8 @@ from ds_caselaw_utils import courts as all_courts
 from ds_caselaw_utils.courts import Court
 
 SEARCH_SCOPE_LABELS = {
-    "higher_courts": "Higher courts",
-    "other_courts": "Other courts",
+    "higher_courts": "Higher courts and tribunals",
+    "other_courts": "Other courts and tribunals",
     "all_courts": "All courts and tribunals",
 }
 

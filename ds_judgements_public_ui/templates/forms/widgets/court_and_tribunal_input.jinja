@@ -11,6 +11,7 @@
             <input type="checkbox"
                    name="scope"
                    value="{{ scope }}"
+                   class="{{ trackable_class_name('filter-scope-' ~ scope|replace('_', '-')) }}"
                    data-scope-toggle
                    aria-controls="{{ section_id }}"
                    {% if scope_selected %}checked{% endif %} />

@@ -50,7 +50,7 @@ def test_home_page_search_submits_to_correct_action(home_page: Page):
     home_page.fill("#search_input", "Imperial")
     with home_page.expect_navigation():
         home_page.click("input[type=submit][value=Search]")
-    expect(home_page).to_have_url(re.compile(r"/search\?scope=all_courts&query=Imperial"))
+    expect(home_page).to_have_url(re.compile(r"/search\?query=Imperial"))
     home_page.goto("/")
 
 

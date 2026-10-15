@@ -1,6 +1,11 @@
 {% if query_params and query_params.items %}
-  {% if filtered %}<h2 class="results-search-component__sub-header">Your search:</h2>{% endif %}
+  <h2 class="results-search-component__sub-header">Your search:</h2>
   <ul class="results-search-component__removable-options js-results-facets-applied-filters">
+    {% if show_all_courts_label %}
+      <li>
+        <span class="results-search-component__option-tag">{{ ["all_courts"]|get_scope_label }}</span>
+      </li>
+    {% endif %}
     {% for key, value in query_params.items() %}
       {% if value %}
         {% if key|removable_filter_param %}
@@ -8,7 +13,7 @@
             <a role="button"
                tabindex="0"
                draggable="false"
-               class="results-search-component__removable-options-link"
+               class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-' ~ key) }}"
                aria-label="Remove {{ key|capfirst }} filter"
                href="{{ url('search') }}?{{ query_params|remove_query(key) }}">
               <span class="results-search-component__removable-options-key">{{ key|title }}:</span>
@@ -17,14 +22,14 @@
               </span>
             </a>
           </li>
-        {% elif key == "scope" %}
+        {% elif (key == "scope" and "all_courts" not in value) %}
           {% set scope_label = value|get_scope_label %}
           {% if scope_label %}
             <li>
               <a role="button"
                  tabindex="0"
                  draggable="false"
-                 class="results-search-component__removable-options-link"
+                 class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-scope-' ~ value|join('-')|replace('_', '-')) }}"
                  aria-label="Remove {{ key|capfirst }} filter"
                  href="{{ url('search') }}?{{ query_params|remove_query(key) }}">
                 <span class="results-search-component__removable-options-value">
@@ -39,7 +44,7 @@
               <a role="button"
                  tabindex="0"
                  draggable="false"
-                 class="results-search-component__removable-options-link"
+                 class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-courts') }}"
                  href="{{ url('search') }}?{{ query_params|remove_query(key) }}"
                  aria-label="Remove court and tribunal filters">
                 <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
@@ -54,7 +59,7 @@
                 <a role="button"
                    tabindex="0"
                    draggable="false"
-                   class="results-search-component__removable-options-link"
+                   class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-court-' ~ court|replace('/', '-')) }}"
                    href="{{ url('search') }}?{{ query_params|remove_court(court) }}"
                    aria-label="Remove {{ court|get_court_name }} filter"
                    title="{{ court|get_court_name }}">
@@ -70,7 +75,7 @@
             <a role="button"
                tabindex="0"
                draggable="false"
-               class="results-search-component__removable-options-link"
+               class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-from-date') }}"
                aria-label="Remove from date filter"
                href="{{ url('search') }}?{{ query_params|remove_query('from') }}">
               <span class="results-search-component__removable-options-key">From:</span>
@@ -88,7 +93,7 @@
             <a role="button"
                tabindex="0"
                draggable="false"
-               class="results-search-component__removable-options-link"
+               class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-to-date') }}"
                aria-label="Remove to date filter"
                href="{{ url('search') }}?{{ query_params|remove_query('to') }}">
               <span class="results-search-component__removable-options-key">To:</span>
