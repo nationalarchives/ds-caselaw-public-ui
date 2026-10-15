@@ -405,7 +405,7 @@ class TestSearchResults(TestCase):
               <a role="button"
                  tabindex="0"
                  draggable="false"
-                 class="results-search-component__removable-options-link"
+                 class="results-search-component__removable-options-link analytics-remove-filter-courts"
                  aria-label="Remove court and tribunal filters"
                  href="/search?">
                 <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
@@ -466,7 +466,7 @@ class TestSearchResults(TestCase):
               <a role="button"
                  tabindex="0"
                  draggable="false"
-                 class="results-search-component__removable-options-link"
+                 class="results-search-component__removable-options-link analytics-remove-filter-from-date"
                  aria-label="Remove from date filter"
                  href="/search?court=ewhc/ch&amp;court=ewhc/ipec">
                  <span class="results-search-component__removable-options-key">From:</span>
@@ -479,7 +479,7 @@ class TestSearchResults(TestCase):
               <a role="button"
                  tabindex="0"
                  draggable="false"
-                 class="results-search-component__removable-options-link"
+                 class="results-search-component__removable-options-link analytics-remove-filter-courts"
                  aria-label="Remove court and tribunal filters"
                  href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011">
                 <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
