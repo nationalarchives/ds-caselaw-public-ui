@@ -43,11 +43,12 @@ class IndexView(TemplateView):
 
     def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         scopes = request.POST.getlist("scope")
-        if len(scopes) != 1 or scopes[0] not in HOMEPAGE_SCOPES:
+        if len(scopes) != 1 or scopes[0] not in ("", *HOMEPAGE_SCOPES):
             return HttpResponseBadRequest("Choose a valid search scope")
-        selected_scope = next(scope for scope in HOMEPAGE_SCOPES if scope == scopes[0])
+        selected_scope = next(scope for scope in HOMEPAGE_SCOPES if scope == (scopes[0] or "all_courts"))
         params = QueryDict(mutable=True)
-        params["scope"] = selected_scope
+        if scopes[0]:
+            params["scope"] = selected_scope
         params["query"] = request.POST.get("query", "")
         destination = "advanced_search" if request.POST.get("action") == "advanced_search" else "search"
         response = HttpResponseRedirect(f"{reverse(destination)}?{params.urlencode()}")

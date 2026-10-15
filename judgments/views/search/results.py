@@ -102,8 +102,12 @@ class SearchResultsView(TemplateViewWithContext):
         atom_feed_query = urllib.parse.urlencode(changed_queries, doseq=True)
         atom_feed_url = self._build_atom_feed_url(atom_feed_query)
 
+        scope = query_params.get("scope", [])
+        show_all_courts_label = ("all_courts" in scope or not scope) and not query_params.get("court")
+
         context.update(
             {
+                "show_all_courts_label": show_all_courts_label,
                 "requires_from_warning": requires_warning,
                 "date_warning": warning,
                 "earliest_record": get_minimum_warning_year(),

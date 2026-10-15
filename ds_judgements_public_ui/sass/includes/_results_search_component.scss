@@ -178,6 +178,16 @@
     }
   }
 
+  &__option-tag {
+    display: inline-block;
+
+    padding: $space-2;
+    border: 0.188rem solid colour-var("accent-brand");
+
+    font-weight: $typography-bold-font-weight;
+    color: colour-var("accent-link");
+  }
+
   &__removable-options-link {
     display: inline-block;
 
@@ -215,10 +225,9 @@
     }
 
     &__toggle-control {
-      all: unset;
-
       @include link;
 
+      all: unset;
       position: relative;
       margin: 0 auto;
       padding-left: $space-5;

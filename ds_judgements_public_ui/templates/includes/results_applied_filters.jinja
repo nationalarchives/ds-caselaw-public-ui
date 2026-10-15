@@ -1,6 +1,11 @@
 {% if query_params and query_params.items %}
-  {% if filtered %}<h2 class="results-search-component__sub-header">Your search:</h2>{% endif %}
+  <h2 class="results-search-component__sub-header">Your search:</h2>
   <ul class="results-search-component__removable-options js-results-facets-applied-filters">
+    {% if show_all_courts_label %}
+      <li>
+        <span class="results-search-component__option-tag">{{ ["all_courts"]|get_scope_label }}</span>
+      </li>
+    {% endif %}
     {% for key, value in query_params.items() %}
       {% if value %}
         {% if key|removable_filter_param %}
@@ -17,7 +22,7 @@
               </span>
             </a>
           </li>
-        {% elif key == "scope" %}
+        {% elif (key == "scope" and "all_courts" not in value) %}
           {% set scope_label = value|get_scope_label %}
           {% if scope_label %}
             <li>

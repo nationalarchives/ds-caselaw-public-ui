@@ -16,7 +16,6 @@
   {% call hero(variant="light") %}
     {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form", method="post") %}
       {{ csrf_input }}
-      <input type="hidden" name="save_search_scope_preference" value="1" />
       {% call search_form_container() %}
         {{ heading(tag="h2", content="What would you like to search?") }}
         <p>Choose which judgments and decisions to include in your search.</p>
@@ -30,7 +29,7 @@
           "items": [
             {
               "checked": search_scope_preference == "all_courts",
-              "value": "all_courts",
+              "value": "",
               "text": "All courts and tribunals",
               "hint": {
                 "text": "Search all published judgments and decisions held within the Find Case Law service."
