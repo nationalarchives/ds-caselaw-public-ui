@@ -147,6 +147,10 @@
     padding-bottom: $space-4;
     border-bottom: 1px solid colour-var("accent-background-light");
 
+    h4 {
+      padding: 0;
+    }
+
     @media (min-width: $grid-breakpoint-medium) {
       padding-bottom: 0;
       border-bottom: 0;
