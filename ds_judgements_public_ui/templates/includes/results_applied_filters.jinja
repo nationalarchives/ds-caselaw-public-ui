@@ -13,7 +13,7 @@
             <a role="button"
                tabindex="0"
                draggable="false"
-               class="results-search-component__removable-options-link"
+               class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-' ~ key) }}"
                aria-label="Remove {{ key|capfirst }} filter"
                href="{{ url('search') }}?{{ query_params|remove_query(key) }}">
               <span class="results-search-component__removable-options-key">{{ key|title }}:</span>
@@ -29,7 +29,7 @@
               <a role="button"
                  tabindex="0"
                  draggable="false"
-                 class="results-search-component__removable-options-link"
+                 class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-scope-' ~ value|join('-')|replace('_', '-')) }}"
                  aria-label="Remove {{ key|capfirst }} filter"
                  href="{{ url('search') }}?{{ query_params|remove_query(key) }}">
                 <span class="results-search-component__removable-options-value">
@@ -44,7 +44,7 @@
               <a role="button"
                  tabindex="0"
                  draggable="false"
-                 class="results-search-component__removable-options-link"
+                 class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-courts') }}"
                  href="{{ url('search') }}?{{ query_params|remove_query(key) }}"
                  aria-label="Remove court and tribunal filters">
                 <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
@@ -59,7 +59,7 @@
                 <a role="button"
                    tabindex="0"
                    draggable="false"
-                   class="results-search-component__removable-options-link"
+                   class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-court-' ~ court|replace('/', '-')) }}"
                    href="{{ url('search') }}?{{ query_params|remove_court(court) }}"
                    aria-label="Remove {{ court|get_court_name }} filter"
                    title="{{ court|get_court_name }}">
@@ -75,7 +75,7 @@
             <a role="button"
                tabindex="0"
                draggable="false"
-               class="results-search-component__removable-options-link"
+               class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-from-date') }}"
                aria-label="Remove from date filter"
                href="{{ url('search') }}?{{ query_params|remove_query('from') }}">
               <span class="results-search-component__removable-options-key">From:</span>
@@ -93,7 +93,7 @@
             <a role="button"
                tabindex="0"
                draggable="false"
-               class="results-search-component__removable-options-link"
+               class="results-search-component__removable-options-link {{ trackable_class_name('remove-filter-to-date') }}"
                aria-label="Remove to date filter"
                href="{{ url('search') }}?{{ query_params|remove_query('to') }}">
               <span class="results-search-component__removable-options-key">To:</span>

@@ -3,9 +3,10 @@
     <label {% if widget.attrs.id %}for="{{ widget.attrs.id }}"{% endif %}>
 {% endif %}
 <input name="{{ widget.name }}"
+       class="{{ component_class_names(widget.attrs.get('class', ''), trackable_class_name('filter-court-' ~ widget.value|string|replace('/', '-'))) }}"
        type="{{ widget.type }}"
        value="{{ widget.value }}"
-       {% for k, v in widget.attrs.items() %}{{ k }}="{{ v }}"{% endfor %}>
+       {% for k, v in widget.attrs.items() if k != 'class' %}{{ k }}="{{ v }}"{% endfor %}>
 {% if widget.wrap_label %}
   <span class="structured-search__court-option-label">
     {{ widget.label }}
