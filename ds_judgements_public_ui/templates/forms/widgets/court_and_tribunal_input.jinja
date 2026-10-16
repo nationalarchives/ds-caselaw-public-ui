@@ -1,5 +1,5 @@
 <div class="structured-search__court-options" id="court">
-  {% for title, description, groups, section_id in [("Higher courts and tribunals", "Includes decisions and judgments which establish legal precedent.", higher_court_groups, "id_higher_courts"), ("Other courts and tribunals", "Includes decisions and judgments which provide transparency into everyday legal proceedings.", other_court_groups, "id_other_courts")] %}
+  {% for title, description, groups, section_id in [("Higher courts and tribunals", "Includes judgments and decisions which establish legal precedent.", higher_court_groups, "id_higher_courts"), ("Other courts and tribunals", "Includes judgments and decisions which provide transparency into everyday legal proceedings.", other_court_groups, "id_other_courts")] %}
     <div class="structured-search__court-options-column">
       {% set scope = "higher_courts" if section_id == "id_higher_courts" else "other_courts" %}
       {% set scope_selected = scope in selected_scopes or "all_courts" in selected_scopes %}
