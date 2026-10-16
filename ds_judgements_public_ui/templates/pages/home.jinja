@@ -17,7 +17,7 @@
     {% call search_form(label="Search by keyword or neutral citation", id="analytics-search-form", method="post") %}
       {{ csrf_input }}
       {% call search_form_container() %}
-        {{ heading(tag="h2", content="What would you like to search?") }}
+        {{ heading(tag="h2", content="Search case law") }}
         <p>Choose which judgments and decisions to include in your search.</p>
         {{ radios({
           "idPrefix": "scope",
