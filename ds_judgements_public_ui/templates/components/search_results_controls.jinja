@@ -1,6 +1,6 @@
 {% from "components/button.jinja" import button %}
 {%- macro search_result_hidden_input(name=None, value=None) %}
-  {%- if name in ["court", "tribunal"] -%}
+  {%- if name in ["court", "tribunal", "scope"] -%}
     {%- for item in value -%}
       <input type="hidden" name="{{ name }}" value="{{ item }}" />
     {%- endfor -%}
