@@ -177,6 +177,7 @@ class SearchResultsView(TemplateViewWithContext):
             "party": form.cleaned_data.get("party", ""),
             "order": search_parameters.order,
             "page": search_parameters.page,
+            "per_page": search_parameters.page_size,
         }
 
         if scope := form.cleaned_data.get("scope"):
