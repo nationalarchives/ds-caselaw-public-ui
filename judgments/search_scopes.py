@@ -22,8 +22,10 @@ def get_higher_court_params() -> list[str]:
 
 
 def get_other_courts() -> list[Court]:
-    return [court for court in _get_courts_by_param() if not court.is_court_of_record]
+    return [court for court in all_courts.get_show_in_search_filters() if not court.is_court_of_record]
 
 
 def get_higher_courts() -> list[Court]:
-    return [court for court in _get_courts_by_param() if court.is_court_of_record]
+    return [
+        court for court in all_courts.get_show_in_search_filters() if court.canonical_param and court.is_court_of_record
+    ]
