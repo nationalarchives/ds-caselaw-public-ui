@@ -1,14 +1,36 @@
 from datetime import date
+from unittest.mock import Mock, patch
 
 from django.conf import settings
 from django.test import TestCase
+from ds_caselaw_utils.courts import Court
 from lxml import html
 
 from judgments.forms import AdvancedSearchForm
 from judgments.forms.fields import DateRangeInputField
+from judgments.forms.search_forms import _get_scope_choices
 
 
 class TestAdvancedSearchForm(TestCase):
+    @patch("judgments.forms.search_forms.TRIBUNAL_CHOICES", {})
+    @patch(
+        "judgments.forms.search_forms.COURT_CHOICES",
+        {"uksc": "Supreme Court", "Court of Appeal": {"ewca/crim": "Criminal Division", "ewca/civ": "civil Division"}},
+    )
+    def test_scope_choices_are_alphabetical_at_each_level(self):
+        courts: list[Court] = [
+            Mock(canonical_param="uksc"),
+            Mock(canonical_param="ewca/crim"),
+            Mock(canonical_param="ewca/civ"),
+            Mock(canonical_param="ewcc"),
+        ]
+        courts[-1].name = "county Court"
+
+        choices = _get_scope_choices(courts)
+
+        self.assertEqual(list(choices), ["ewcc", "Court of Appeal", "uksc"])
+        self.assertEqual(list(choices["Court of Appeal"]), ["ewca/civ", "ewca/crim"])
+
     def test_scopes_take_priority_over_individual_courts(self):
         form = AdvancedSearchForm(data={"scope": ["higher_courts", "other_courts"], "court": ["uksc"]})
 
