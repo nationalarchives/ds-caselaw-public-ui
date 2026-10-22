@@ -51,7 +51,11 @@ def _get_scope_choices(courts: list[Court]) -> court_choices_dict:
     choices: court_choices_dict = {}
     for key, value in (COURT_CHOICES | TRIBUNAL_CHOICES).items():
         if isinstance(value, dict):
-            group = {param: label for param, label in value.items() if param in remaining}
+            group = {
+                param: label
+                for param, label in sorted(value.items(), key=lambda item: item[1].casefold())
+                if param in remaining
+            }
             if group:
                 choices[key] = group
                 for param in group:
@@ -61,7 +65,9 @@ def _get_scope_choices(courts: list[Court]) -> court_choices_dict:
             remaining.pop(key)
 
     choices.update({param: court.name for param, court in remaining.items()})
-    return choices
+    return dict(
+        sorted(choices.items(), key=lambda item: (str(item[0]) if isinstance(item[1], dict) else item[1]).casefold())
+    )
 
 
 HIGHER_COURT_CHOICES = _get_scope_choices(get_higher_courts())
