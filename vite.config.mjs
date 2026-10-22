@@ -71,7 +71,7 @@ export default defineConfig(({ command }) => ({
       input: [
         "javascript/app.js",
         "javascript/document_navigation.js",
-        "javascript/document_search_links.js",
+        "javascript/document_search_links.ts",
         "javascript/document_paragraph_tooltip_anchors.js",
         "javascript/feedback_link.js",
         "javascript/gtm_script.js",
