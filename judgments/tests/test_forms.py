@@ -17,7 +17,7 @@ class TestAdvancedSearchForm(TestCase):
         "judgments.forms.search_forms.COURT_CHOICES",
         {"uksc": "Supreme Court", "Court of Appeal": {"ewca/crim": "Criminal Division", "ewca/civ": "civil Division"}},
     )
-    def test_scope_choices_are_alphabetical_at_each_level(self):
+    def test_scope_choices_preserve_top_level_order_and_sort_nested_courts(self):
         courts: list[Court] = [
             Mock(canonical_param="uksc"),
             Mock(canonical_param="ewca/crim"),
@@ -28,7 +28,7 @@ class TestAdvancedSearchForm(TestCase):
 
         choices = _get_scope_choices(courts)
 
-        self.assertEqual(list(choices), ["ewcc", "Court of Appeal", "uksc"])
+        self.assertEqual(list(choices), ["uksc", "Court of Appeal", "ewcc"])
         self.assertEqual(list(choices["Court of Appeal"]), ["ewca/civ", "ewca/crim"])
 
     def test_scopes_take_priority_over_individual_courts(self):
