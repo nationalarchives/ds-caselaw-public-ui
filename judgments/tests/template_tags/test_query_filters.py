@@ -19,11 +19,12 @@ class TestQueryFilters(unittest.TestCase):
             "judge": "Someone",
             "page": "3",
             "order": "-date",
+            "per_page": 25,
         }
 
         result = remove_query(query_params, "judge")
 
-        self.assertEqual(result, "query=Imperial")
+        self.assertEqual(result, "query=Imperial&order=-date&per_page=25")
 
     def test_remove_query_removes_date_filter(
         self,
@@ -35,11 +36,12 @@ class TestQueryFilters(unittest.TestCase):
             "from_date_2": "2009",
             "page": "3",
             "order": "-date",
+            "per_page": 25,
         }
 
         result = remove_query(query_params, "from")
 
-        self.assertEqual(result, "query=Imperial")
+        self.assertEqual(result, "query=Imperial&order=-date&per_page=25")
 
     def test_remove_court(self):
         query_params: dict[str, Any] = {
@@ -48,6 +50,7 @@ class TestQueryFilters(unittest.TestCase):
             "tribunal": ["ukiptrib"],
             "page": "3",
             "order": "-date",
+            "per_page": 25,
         }
 
         result = remove_court(query_params, "ewhc/ipec")
@@ -56,8 +59,9 @@ class TestQueryFilters(unittest.TestCase):
         self.assertIn("court=ewhc/ch", result)
         self.assertNotIn("court=ewhc/ipec", result)
         self.assertIn("tribunal=ukiptrib", result)
-        self.assertNotIn("page=", result)
-        self.assertNotIn("order=", result)
+        self.assertNotIn("&page=", result)
+        self.assertIn("order=", result)
+        self.assertIn("per_page=", result)
 
     def test_remove_court_from_both_court_and_tribunal(self):
         query_params: dict[str, Any] = {
@@ -78,6 +82,7 @@ class TestQueryFilters(unittest.TestCase):
             "tribunal": ["ukiptrib"],
             "page": "3",
             "order": "-date",
+            "per_page": 25,
         }
 
         result = add_court(query_params, "ewhc/bp")
@@ -86,8 +91,8 @@ class TestQueryFilters(unittest.TestCase):
         self.assertIn("court=ewhc/ch", result)
         self.assertIn("court=ewhc/bp", result)
         self.assertIn("tribunal=ukiptrib", result)
-        self.assertNotIn("page=", result)
-        self.assertNotIn("order=", result)
+        self.assertNotIn("&page=", result)
+        self.assertIn("order=", result)
         self.assertEqual(query_params["court"], ["ewhc/ch"])
         self.assertEqual(query_params["page"], "3")
         self.assertEqual(query_params["order"], "-date")

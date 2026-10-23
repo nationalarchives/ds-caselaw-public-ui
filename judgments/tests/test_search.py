@@ -407,7 +407,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link analytics-remove-filter-courts"
                  aria-label="Remove court and tribunal filters"
-                 href="/search?">
+                 href="/search?order=-date&amp;per_page=10">
                 <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
@@ -468,7 +468,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link analytics-remove-filter-from-date"
                  aria-label="Remove from date filter"
-                 href="/search?court=ewhc/ch&amp;court=ewhc/ipec">
+                 href="/search?court=ewhc/ch&amp;court=ewhc/ipec&amp;order=-date&amp;per_page=10">
                  <span class="results-search-component__removable-options-key">From:</span>
                  <span class="results-search-component__removable-options-value">
                    <span class="results-search-component__removable-options-value-text"> 01 Jan 2011</span>
@@ -481,7 +481,7 @@ class TestSearchResults(TestCase):
                  draggable="false"
                  class="results-search-component__removable-options-link analytics-remove-filter-courts"
                  aria-label="Remove court and tribunal filters"
-                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011">
+                 href="/search?from_date_0=1&amp;from_date_1=1&amp;from_date_2=2011&amp;order=-date&amp;per_page=10">
                 <span class="results-search-component__removable-options-key">Courts and tribunals:</span>
                 <span class="results-search-component__removable-options-value">
                   <span class="results-search-component__removable-options-value-text">
