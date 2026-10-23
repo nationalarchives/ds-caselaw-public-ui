@@ -65,9 +65,7 @@ def _get_scope_choices(courts: list[Court]) -> court_choices_dict:
             remaining.pop(key)
 
     choices.update({param: court.name for param, court in remaining.items()})
-    return dict(
-        sorted(choices.items(), key=lambda item: (str(item[0]) if isinstance(item[1], dict) else item[1]).casefold())
-    )
+    return choices
 
 
 HIGHER_COURT_CHOICES = _get_scope_choices(get_higher_courts())
