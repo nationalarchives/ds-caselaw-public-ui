@@ -68,6 +68,25 @@ class TestCourtsTribunalsListView(TestCase):
 class TestCourtOrTribunalView(TestCase):
     """Test the CourtOrTribunalView handles court not found correctly."""
 
+    @patch("judgments.templatetags.court_utils.search_judgments_and_parse_response")
+    @patch("config.views.courts.CourtOrTribunalView._get_search_response")
+    def test_page_uses_court_noun(self, mock_search_response, mock_count_response):
+        mock_search_response.return_value = SimpleNamespace(results=[])
+        mock_count_response.return_value = SimpleNamespace(total=0)
+
+        for param, noun in (("uksc", "court"), ("eat", "tribunal")):
+            for template in (f"content/courts/{param}.jinja", "content/courts/default.jinja"):
+                with self.subTest(param=param, template=template):
+                    with patch.object(CourtOrTribunalView, "get_court_content_template", return_value=template):
+                        response = self.client.get(f"/courts-and-tribunals/{param}")
+
+                    self.assertContains(response, f"Search this {noun}")
+                    self.assertContains(response, f"Input your search term for this {noun}...")
+                    self.assertContains(response, f"Questions about judgments from this {noun}")
+                    self.assertContains(response, f"combine {noun} filters")
+                    self.assertContains(response, f"content of any {noun} judgments")
+                    self.assertContains(response, f"concerning a judgment from this {noun},")
+
     @patch("config.views.courts.courts.get_by_param")
     def test_returns_404_when_court_not_found(self, mock_get_by_param):
         """Test that accessing a non-existent court returns a 404 response."""

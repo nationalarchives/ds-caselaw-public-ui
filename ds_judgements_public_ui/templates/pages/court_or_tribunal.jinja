@@ -7,7 +7,7 @@
 {% from "components/list.jinja" import list %}
 {% from "components/search_input.jinja" import search_form, search_form_container, search_input, search_input_actions %}
 {% from "components/documents_table.jinja" import document_table_row, document_table_cell, documents_table, document_table_body %}
-{% from court_content_template import description_content, understanding_content, coverage_content, court_noun_content, about_content, contents_navigation with context %}
+{% from court_content_template import description_content, understanding_content, coverage_content, about_content, contents_navigation with context %}
 {% macro website_link(court=None, label=None) %}
   {% if court.link %}
     {{ link(content=label or (court.name ~ " website") , href=court.link, attrs={"target": "_blank"}) }}
@@ -53,25 +53,25 @@
       {% endfor %}
     {% endcall %}
   {% endif %}
-  {{ heading(content="Search this " ~ court_noun_content() , tag="h2") }}
+  {{ heading(content="Search this " ~ court.noun, tag="h2") }}
   <p>
-    Use the search box to find specific cases from the {{ court.name }}, or visit {{ link(href=url("advanced_search") , content="Advanced search") }} to combine {{ court_noun_content() }} filters with other search criteria.
+    Use the search box to find specific cases from the {{ court.name }}, or visit {{ link(href=url("advanced_search") , content="Advanced search") }} to combine {{ court.noun }} filters with other search criteria.
   </p>
   {% call search_form_container(margin=True) %}
     {% call search_form() %}
       <input type="hidden" name="court" value="{{ court.canonical_param }}" />
-      {{ search_input(value="", placeholder="Input your search term for this " ~ court_noun_content() |trim ~ "...", button_action=url("search") , button_label="Search") }}
+      {{ search_input(value="", placeholder="Input your search term for this " ~ court.noun ~ "...", button_action=url("search") , button_label="Search") }}
     {% endcall %}
   {% endcall %}
   {{ understanding_content() }}
   {{ about_content() }}
-  {% call card(title="Questions about judgments from this " ~ court_noun_content(), title_tag="h2") %}
+  {% call card(title="Questions about judgments from this " ~ court.noun, title_tag="h2") %}
     <p>
-      Please note that neither Find Case Law or The National Archives are responsible for the content of any {{ court_noun_content() }} judgments provided to us by the {{ court.name }}.
+      Please note that neither Find Case Law or The National Archives are responsible for the content of any {{ court.noun }} judgments provided to us by the {{ court.name }}.
     </p>
     {% if not court|is_court_ended %}
       <p>
-        If you have any queries concerning a judgment from this {{ court_noun_content() |trim }}, please {{ website_link(court=court, label="contact them directly") |trim }}.
+        If you have any queries concerning a judgment from this {{ court.noun }}, please {{ website_link(court=court, label="contact them directly") |trim }}.
       </p>
     {% endif %}
   {% endcall %}
