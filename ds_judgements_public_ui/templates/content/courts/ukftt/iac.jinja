@@ -1,9 +1,6 @@
 {% from "components/link.jinja" import link %}
 {% from "components/list.jinja" import list_item %}
 {% from "components/heading.jinja" import heading %}
-{% macro court_noun_content() %}
-  tribunal
-{% endmacro %}
 {% macro contents_navigation() %}
   {% call list_item() %}
     {{ link(href="#coverage-on-find-case-law", content="Coverage on Find Case Law") }}
