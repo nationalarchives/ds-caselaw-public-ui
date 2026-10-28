@@ -39,5 +39,5 @@ memray==1.20.0
 # django cors headers
 django-cors-headers
 
-vcrpy==8.5.0
+vcrpy==9.2.0
 pyyaml==6.0.3
