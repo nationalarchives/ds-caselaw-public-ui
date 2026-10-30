@@ -14,7 +14,7 @@ interactions:
         {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
         snippet-format=\"empty-snippet\" total=\"0\" start=\"1\" page-length=\"5\"
         selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:facet
-        name=\"court\" type=\"xs:string\"/>\n  <search:facet name=\"year\" type=\"xs:gYear\"/>\n  <search:metrics>\n    <search:query-resolution-time>PT0.008217S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.000126S</search:facet-resolution-time>\n    <search:extract-resolution-time/>\n    <search:total-time>PT0.008697S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"court\" type=\"xs:string\"/>\n  <search:facet name=\"year\" type=\"xs:gYear\"/>\n  <search:metrics>\n    <search:query-resolution-time>PT0.006817S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.00013S</search:facet-resolution-time>\n    <search:extract-resolution-time/>\n    <search:total-time>PT0.00726S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -22,9 +22,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Tue, 29 Sep 2026 09:52:28 GMT
+      - Fri, 30 Oct 2026 16:46:16 GMT
       Server:
-      - MarkLogic 11.3.6
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -43,7 +43,7 @@ interactions:
         {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
         snippet-format=\"empty-snippet\" total=\"0\" start=\"1\" page-length=\"10\"
         selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:facet
-        name=\"court\" type=\"xs:string\"/>\n  <search:facet name=\"year\" type=\"xs:gYear\"/>\n  <search:metrics>\n    <search:query-resolution-time>PT0.006639S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.000127S</search:facet-resolution-time>\n    <search:extract-resolution-time/>\n    <search:total-time>PT0.007092S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"court\" type=\"xs:string\"/>\n  <search:facet name=\"year\" type=\"xs:gYear\"/>\n  <search:metrics>\n    <search:query-resolution-time>PT0.005846S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.000125S</search:facet-resolution-time>\n    <search:extract-resolution-time/>\n    <search:total-time>PT0.006295S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -51,9 +51,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Tue, 29 Sep 2026 09:52:29 GMT
+      - Fri, 30 Oct 2026 16:46:16 GMT
       Server:
-      - MarkLogic 11.3.6
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
