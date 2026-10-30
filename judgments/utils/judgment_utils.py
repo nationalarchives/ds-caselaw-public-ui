@@ -29,9 +29,9 @@ def get_document_download_filename(document_uri: DocumentURIString, document: Do
         document = get_published_document_by_uri(document_uri)
 
     if document and document.body and document.best_human_identifier and document.best_human_identifier.value:
-        return quote(f"{document.body.name}-{document.best_human_identifier.value}")
+        return quote(f"{document.name}-{document.best_human_identifier.value}")
 
     if document and document.body:
-        return quote(document.body.name)
+        return quote(document.name)
 
     return quote(document_uri)

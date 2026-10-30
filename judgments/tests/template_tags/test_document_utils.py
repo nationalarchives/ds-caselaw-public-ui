@@ -10,7 +10,7 @@ class TestDocumentUtils(unittest.TestCase):
     def test_get_title_to_display_in_html(self):
         document = Mock()
         document.document_noun = "judgment"
-        document.body.name = "Example judgment"
+        document.name = "Example judgment"
 
         self.assertEqual(get_title_to_display_in_html(document), "Example judgment")
 
