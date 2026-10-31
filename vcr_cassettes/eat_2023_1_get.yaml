@@ -23,9 +23,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:45 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -50,9 +50,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:45 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -75,9 +75,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:45 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -100,9 +100,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:45 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -2339,9 +2339,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:45 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -2367,9 +2367,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:46 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -2388,12 +2388,12 @@ interactions:
     headers:
       Connection:
       - keep-alive
-      Content-Type:
-      - multipart/mixed; boundary=vcr_cassette_boundary
+      Content-Length:
+      - '0'
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:46 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -2417,9 +2417,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:36 GMT
+      - Fri, 30 Oct 2026 16:49:46 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -2436,27 +2436,26 @@ interactions:
     body:
       string: 'vcr-multipart-parts:[{"content_type": "application/json", "extra_headers":
         {"X-Primitive": "map"}, "body": "{\"documents.compiled_url_slugs.identifier_uuid\":
-        \"id-fd6eebe9-f9a2-4adc-a8d8-fe426652f7b7\", \"documents.compiled_url_slugs.document_uri\":
-        \"/eat/2023/1.xml\", \"documents.compiled_url_slugs.identifier_slug\": \"eat/2023/1\",
-        \"documents.compiled_url_slugs.document_published\": true, \"documents.compiled_url_slugs.identifier_value\":
-        \"[2023] EAT 1\", \"documents.compiled_url_slugs.identifier_namespace\": \"ukncn\"}",
-        "encoding": "utf-8"}, {"content_type": "application/json", "extra_headers":
-        {"X-Primitive": "map"}, "body": "{\"documents.compiled_url_slugs.identifier_uuid\":
         \"id-8e531524-a01a-4931-8864-0fc1230d04f6\", \"documents.compiled_url_slugs.document_uri\":
         \"/ewhc/ch/2023/1032.xml\", \"documents.compiled_url_slugs.identifier_slug\":
         \"ewhc/ch/2023/1032\", \"documents.compiled_url_slugs.document_published\":
         true, \"documents.compiled_url_slugs.identifier_value\": \"[2023] EAT 1\",
         \"documents.compiled_url_slugs.identifier_namespace\": \"ukncn\"}", "encoding":
-        "utf-8"}]'
+        "utf-8"}, {"content_type": "application/json", "extra_headers": {"X-Primitive":
+        "map"}, "body": "{\"documents.compiled_url_slugs.identifier_uuid\": \"id-fd6eebe9-f9a2-4adc-a8d8-fe426652f7b7\",
+        \"documents.compiled_url_slugs.document_uri\": \"/eat/2023/1.xml\", \"documents.compiled_url_slugs.identifier_slug\":
+        \"eat/2023/1\", \"documents.compiled_url_slugs.document_published\": true,
+        \"documents.compiled_url_slugs.identifier_value\": \"[2023] EAT 1\", \"documents.compiled_url_slugs.identifier_namespace\":
+        \"ukncn\"}", "encoding": "utf-8"}]'
     headers:
       Connection:
       - keep-alive
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:37 GMT
+      - Fri, 30 Oct 2026 16:49:47 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -2479,9 +2478,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:37 GMT
+      - Fri, 30 Oct 2026 16:49:47 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -2504,9 +2503,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:37 GMT
+      - Fri, 30 Oct 2026 16:49:47 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -4437,9 +4436,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:37 GMT
+      - Fri, 30 Oct 2026 16:49:47 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -4465,9 +4464,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 20 Mar 2026 14:53:37 GMT
+      - Fri, 30 Oct 2026 16:49:47 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -4486,12 +4485,12 @@ interactions:
     headers:
       Connection:
       - keep-alive
-      Content-Type:
-      - multipart/mixed; boundary=vcr_cassette_boundary
+      Content-Length:
+      - '0'
       Date:
-      - Fri, 20 Mar 2026 14:53:37 GMT
+      - Fri, 30 Oct 2026 16:49:47 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -4508,8 +4507,6 @@ interactions:
     headers:
       Accept-Ranges:
       - bytes
-      Age:
-      - '4586'
       Alt-Svc:
       - h3=":443"; ma=86400
       Connection:
@@ -4519,7 +4516,7 @@ interactions:
       Content-Type:
       - application/pdf
       Date:
-      - Fri, 20 Mar 2026 13:37:13 GMT
+      - Fri, 30 Oct 2026 16:49:49 GMT
       ETag:
       - '"b848c7a9b6ef25e497e5d9d1a06ae4b9"'
       Last-Modified:
@@ -4527,13 +4524,13 @@ interactions:
       Server:
       - AmazonS3
       Via:
-      - 1.1 17b1bd1db886b6ab8ef186cb654e3938.cloudfront.net (CloudFront)
+      - 1.1 fd1d7bb9e75d267e13b5531a5444e9c0.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - Dkw2alRxDRh1CzlTg_QriF-pYRnTB2AhH1lHHHkwhHGjkLXQ-bWt6Q==
+      - JYOryUO9hHhAsg7gyF929wMrlGtPcxLZmC3UiQNKymMK_JR0mMqU0A==
       X-Amz-Cf-Pop:
-      - JFK50-P16
+      - ORD58-P11
       X-Cache:
-      - Hit from cloudfront
+      - Miss from cloudfront
       x-amz-meta-pdfsource:
       - pdf-conversion-libreoffice
       x-amz-server-side-encryption:
