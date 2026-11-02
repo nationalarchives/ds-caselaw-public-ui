@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+null%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22Imperial%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%221085-01-01%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+null%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22Imperial%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%221000-01-01%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
     headers:
       Accept:
       - multipart/mixed
@@ -12,10 +12,10 @@ interactions:
     body:
       string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
         {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
-        snippet-format=\"custom\" total=\"613\" start=\"1\" page-length=\"10\" selected=\"include\"
+        snippet-format=\"custom\" total=\"615\" start=\"1\" page-length=\"10\" selected=\"include\"
         xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/ewca/civ/2023/1107.xml\" path=\"fn:doc(&quot;/ewca/civ/2023/1107.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2023/1107.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision[1]/*:paragraph[19]/*:content/*:p/*:span[2]\">Sadler
         v <search:highlight>Imperial</search:highlight> Life Assurance Co of Canada...</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-10-04\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -31,7 +31,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-0d8b96bd-87bb-49f0-9553-bc1034556c05</uuid>\n\t  <value>[2023]
         EWCA Civ 1107</value>\n\t  <url_slug>ewca/civ/2023/1107</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"2\" uri=\"/ewhc/pat/2023/2361.xml\" path=\"fn:doc(&quot;/ewhc/pat/2023/2361.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/pat/2023/2361.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[17]/*:content/*:p\">...and
         Electronic Engineering department at <search:highlight>Imperial</search:highlight>
         College, London. His principal...</search:match>\n    </search:snippet>\n    <search:extracted
@@ -47,7 +47,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-2fa3b509-0200-4857-884c-a0fb86f697fb</uuid>\n\t  <value>[2023]
         EWHC 2361 (Pat)</value>\n\t  <url_slug>ewhc/pat/2023/2361</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"3\" uri=\"/ewhc/admin/2023/2354.xml\" path=\"fn:doc(&quot;/ewhc/admin/2023/2354.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/admin/2023/2354.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[74]/*:subparagraph[1]/*:content/*:p/*:span[4]\">....
         Attorney-General, Ex parte <search:highlight>Imperial</search:highlight> Chemical
         Industries Pic. (1986...</search:match>\n    </search:snippet>\n    <search:extracted
@@ -65,7 +65,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-156fcc02-0a3a-4a64-b27b-d585c4d3c7b6</uuid>\n\t  <value>[2023]
         EWHC 2354 (Admin)</value>\n\t  <url_slug>ewhc/admin/2023/2354</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"4\" uri=\"/ukftt/grc/2023/685.xml\" path=\"fn:doc(&quot;/ukftt/grc/2023/685.xml&quot;)\"
-        score=\"512\" confidence=\"0.0328041\" fitness=\"0.05192325\">\n    <search:snippet>\n      <search:match
+        score=\"519\" confidence=\"0.03298454\" fitness=\"0.05252927\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ukftt/grc/2023/685.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[5]/*:paragraph[1]/*:content/*:p/*:span[2]\">...-Soh
         v Information Commissioner and <search:highlight>Imperial</search:highlight>
         College London</search:match>\n    </search:snippet>\n    <search:extracted
@@ -82,7 +82,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-e9d88975-a1bd-429c-a4ed-bd7e4c4846d0</uuid>\n\t  <value>[2023]
         UKFTT 685 (GRC)</value>\n\t  <url_slug>ukftt/grc/2023/685</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"5\" uri=\"/ewhc/kb/2023/2036.xml\" path=\"fn:doc(&quot;/ewhc/kb/2023/2036.xml&quot;)\"
-        score=\"590\" confidence=\"0.0352143\" fitness=\"0.0557382\">\n    <search:snippet>\n      <search:match
+        score=\"595\" confidence=\"0.03531712\" fitness=\"0.05624399\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/kb/2023/2036.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[9]/*:paragraph[10]/*:content/*:p/*:span\"><search:highlight>Imperial</search:highlight>
         Loan Co. Ltd. v...</search:match>\n      <search:match path=\"fn:doc(&quot;/ewhc/kb/2023/2036.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[27]/*:paragraph[1]/*:subparagraph[2]/*:intro/*:p/*:authorialNote/*:p/*:span[12]\">,
         <search:highlight>Imperial</search:highlight> Loan Co Ltd </search:match>\n      <search:match
@@ -99,7 +99,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-b4851639-db4a-4a4a-84ed-14cda2bf3d86</uuid>\n\t  <value>[2023]
         EWHC 2036 (KB)</value>\n\t  <url_slug>ewhc/kb/2023/2036</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"6\" uri=\"/ewhc/tcc/2023/1961.xml\" path=\"fn:doc(&quot;/ewhc/tcc/2023/1961.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/tcc/2023/1961.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[185]/*:content/*:p/*:span\">Sysmex
         (UK) Ltd v <search:highlight>Imperial</search:highlight> College Healthcare
         NHS Trust</search:match>\n    </search:snippet>\n    <search:extracted kind=\"element\">\n      <FRBRdate
@@ -115,7 +115,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-e0fe1a0a-7d59-47de-8b7d-a73b09b3a123</uuid>\n\t  <value>[2023]
         EWHC 1961 (TCC)</value>\n\t  <url_slug>ewhc/tcc/2023/1961</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"7\" uri=\"/ewhc/admin/2023/1972.xml\" path=\"fn:doc(&quot;/ewhc/admin/2023/1972.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/admin/2023/1972.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[3]/*:level[2]/*:paragraph[1]/*:subparagraph[1]/*:content/*:p\">...pollution
         modelling was produced by <search:highlight>Imperial</search:highlight> College
         London in collaboration with...</search:match>\n    </search:snippet>\n    <search:extracted
@@ -132,7 +132,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-f251e12a-be78-41b1-abe6-ef576a8b362c</uuid>\n\t  <value>[2023]
         EWHC 1972 (Admin)</value>\n\t  <url_slug>ewhc/admin/2023/1972</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"8\" uri=\"/ewhc/ch/2023/1965.xml\" path=\"fn:doc(&quot;/ewhc/ch/2023/1965.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/ch/2023/1965.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:paragraph[27]/*:subparagraph/*:content/*:p/*:span[5]\">Ryan
         v <search:highlight>Imperial</search:highlight> Brewing and Leisure Ltd</search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-28\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -145,7 +145,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-44f49246-6552-443d-a537-0518395906bd</uuid>\n\t  <value>[2023]
         EWHC 1965 (Ch)</value>\n\t  <url_slug>ewhc/ch/2023/1965</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"9\" uri=\"/ewhc/kb/2023/1921.xml\" path=\"fn:doc(&quot;/ewhc/kb/2023/1921.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewhc/kb/2023/1921.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[3]/*:paragraph[35]/*:intro/*:p\">...Emeritus
         Professor of Obstetrics at <search:highlight>Imperial</search:highlight> College
         and a member of...</search:match>\n    </search:snippet>\n    <search:extracted
@@ -162,7 +162,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-f298df83-8236-4634-9c38-78e5a0d135ba</uuid>\n\t  <value>[2023]
         EWHC 1921 (KB)</value>\n\t  <url_slug>ewhc/kb/2023/1921</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"10\" uri=\"/ewca/civ/2023/885.xml\" path=\"fn:doc(&quot;/ewca/civ/2023/885.xml&quot;)\"
-        score=\"434\" confidence=\"0.03020216\" fitness=\"0.04780483\">\n    <search:snippet>\n      <search:match
+        score=\"442\" confidence=\"0.03043953\" fitness=\"0.04847622\">\n    <search:snippet>\n      <search:match
         path=\"fn:doc(&quot;/ewca/civ/2023/885.xml&quot;)/*:akomaNtoso/*:judgment/*:judgmentBody/*:decision/*:level[4]/*:paragraph[9]/*:intro/*:p/*:span[1]\">
         <search:highlight>Imperial</search:highlight> Tobacco Ltd v AG </search:match>\n    </search:snippet>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-25\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
@@ -197,7 +197,7 @@ interactions:
         name=\"2009\" count=\"27\">2009</search:facet-value>\n    <search:facet-value
         name=\"2010\" count=\"28\">2010</search:facet-value>\n    <search:facet-value
         name=\"2011\" count=\"34\">2011</search:facet-value>\n    <search:facet-value
-        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.031515S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002532S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.063509S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.007188S</search:extract-resolution-time>\n    <search:total-time>PT0.106823S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2012\" count=\"37\">2012</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.02651S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.00237S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.051248S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.007571S</search:extract-resolution-time>\n    <search:total-time>PT0.089715S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -205,9 +205,55 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Fri, 11 Sep 2026 10:23:20 GMT
+      - Fri, 30 Oct 2026 16:50:36 GMT
       Server:
-      - MarkLogic 11.3.6
+      - MarkLogic 11.3.7
+    status:
+      code: 200
+      message: OK
+- request:
+    body: xquery=xquery+version+%221.0-ml%22%3B%0A%0Adeclare+variable+%24uris+as+json%3Aarray+external%3B%0Alet+%24properties+%3A%3D+%28%0A++++fn%3AQName%28%22%22%2C+%27editor-priority%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27assigned-to%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27editor-hold%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-name%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-email%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-consignment-reference%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27published%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27email-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27metadata_fields%27%29%0A%29%0A%0Areturn+%3Cproperty-results%3E%7B%0Afor+%24uri+in+json%3Aarray-values%28%24uris%29%0A++let+%24timestamp+%3A%3D+xdmp%3Adocument-timestamp%28%24uri%29%0A++return+%3Cproperty-result+uri%3D%27%7B%24uri%7D%27+last-modified%3D%27%7Bif+%28fn%3Aexists%28%24timestamp%29%29+then+xdmp%3Atimestamp-to-wallclock%28%24timestamp%29+else+%28%29%7D%27%3E+%7B%0A++++for+%24prop+in+%24properties%0A++++++return+xdmp%3Adocument-get-properties%28%24uri%2C+%24prop%29%0A++%7D+%3C%2Fproperty-result%3E%0A%7D%3C%2Fproperty-results%3E%0A&vars=%7B%22uris%22%3A+%5B%22%2Fewca%2Fciv%2F2023%2F1107.xml%22%2C+%22%2Fewhc%2Fpat%2F2023%2F2361.xml%22%2C+%22%2Fewhc%2Fadmin%2F2023%2F2354.xml%22%2C+%22%2Fukftt%2Fgrc%2F2023%2F685.xml%22%2C+%22%2Fewhc%2Fkb%2F2023%2F2036.xml%22%2C+%22%2Fewhc%2Ftcc%2F2023%2F1961.xml%22%2C+%22%2Fewhc%2Fadmin%2F2023%2F1972.xml%22%2C+%22%2Fewhc%2Fch%2F2023%2F1965.xml%22%2C+%22%2Fewhc%2Fkb%2F2023%2F1921.xml%22%2C+%22%2Fewca%2Fciv%2F2023%2F885.xml%22%5D%7D
+    headers:
+      Accept:
+      - application/xml
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/eval
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "element()", "X-Path": "/property-results"}, "body": "<property-results><property-result
+        uri=\"/ewca/civ/2023/1107.xml\" last-modified=\"2026-09-02T10:53:25.072525\"><source-name>Derek
+        Murray</source-name><source-email>derek.murray@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-VQG</transfer-consignment-reference><transfer-received-at>2023-10-04T09:55:36Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/pat/2023/2361.xml\" last-modified=\"2026-10-26T11:17:55.226336\"><source-name>Christopher
+        Palin</source-name><source-email>christopher.palin1@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-VHV</transfer-consignment-reference><transfer-received-at>2023-09-25T15:53:23Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/admin/2023/2354.xml\" last-modified=\"2026-10-26T11:16:43.812412\"><source-name>Samantha
+        Browne</source-name><source-email>samantha.browne1@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-VG4</transfer-consignment-reference><transfer-received-at>2023-09-22T15:18:45Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukftt/grc/2023/685.xml\" last-modified=\"2026-10-26T11:20:57.18804\"><assigned-to>terry</assigned-to><editor-hold>false</editor-hold><source-name>Samir
+        Govani</source-name><source-email>samir.govani@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-TMG</transfer-consignment-reference><transfer-received-at>2023-08-18T14:02:00Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/kb/2023/2036.xml\" last-modified=\"2026-09-02T10:42:32.165016\"><source-name>June
+        Morgan</source-name><source-email>june.morgan2@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-S5Q</transfer-consignment-reference><transfer-received-at>2023-08-04T10:30:11Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/tcc/2023/1961.xml\" last-modified=\"2026-10-26T11:16:17.816891\"><source-name>Neal
+        Reid</source-name><source-email>neal.reid@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-SVN</transfer-consignment-reference><transfer-received-at>2023-07-28T09:31:45Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/admin/2023/1972.xml\" last-modified=\"2026-10-26T11:12:00.338024\"><source-name>Maggie
+        Newton</source-name><source-email>margaret.newton@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-SVQ</transfer-consignment-reference><transfer-received-at>2023-07-28T09:37:30Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ch/2023/1965.xml\" last-modified=\"2026-09-02T10:28:23.407516\"><source-name>Casey
+        Ford</source-name><source-email>casey.ford@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-SVJ</transfer-consignment-reference><transfer-received-at>2023-07-28T09:27:32Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/kb/2023/1921.xml\" last-modified=\"2026-09-02T10:28:55.121159\"><source-name>Sian
+        McLeod</source-name><source-email>sian.mcleod1@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-SVV</transfer-consignment-reference><transfer-received-at>2023-07-28T10:05:43Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewca/civ/2023/885.xml\" last-modified=\"2026-10-26T11:22:48.355072\"><source-name>Sian
+        Jenkins</source-name><source-email>sian.jenkins@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-SQH</transfer-consignment-reference><transfer-received-at>2023-07-25T10:02:23Z</transfer-received-at><published>true</published></property-result></property-results>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Fri, 30 Oct 2026 16:50:36 GMT
+      Server:
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK

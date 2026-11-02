@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ewhc%2Fipec%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%221085-01-01%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ewhc%2Fipec%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%221000-01-01%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
     headers:
       Accept:
       - multipart/mixed
@@ -15,7 +15,7 @@ interactions:
         snippet-format=\"empty-snippet\" total=\"184\" start=\"1\" page-length=\"10\"
         selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/ewhc/ipec/2023/2176.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/2176.xml&quot;)\"
-        score=\"1544\" confidence=\"0.05723008\" fitness=\"0.386981\">\n    <search:snippet/>\n    <search:extracted
+        score=\"25472\" confidence=\"0.2310779\" fitness=\"0.3752043\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-09-07\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-09-07T10:56:19\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
         xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">[2023] EWHC 2176
@@ -26,7 +26,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-a16fde3d-8cfa-4e79-845e-a7122c837ece</uuid>\n\t  <value>[2023]
         EWHC 2176 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/2176</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"2\" uri=\"/ewhc/ipec/2023/2005.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/2005.xml&quot;)\"
-        score=\"1544\" confidence=\"0.05723008\" fitness=\"0.386981\">\n    <search:snippet/>\n    <search:extracted
+        score=\"25472\" confidence=\"0.2310779\" fitness=\"0.3752043\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-08-07\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"ACEDES HOLDINGS, LLC v CLIVE SUTTON LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-08-07T09:45:53\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -39,7 +39,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-6b01cf29-8419-40b6-8534-87f3bf89ff88</uuid>\n\t  <value>[2023]
         EWHC 2005 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/2005</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"3\" uri=\"/ewhc/ipec/2023/1914.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/1914.xml&quot;)\"
-        score=\"1720\" confidence=\"0.06040389\" fitness=\"0.4084418\">\n    <search:snippet/>\n    <search:extracted
+        score=\"28352\" confidence=\"0.2437916\" fitness=\"0.3958477\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-27\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"CRAFTS GROUP LLC v M/S INDEUTSCH INTERNATIONAL\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-07-26T09:49:40\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
@@ -51,7 +51,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-298971ea-43b5-47f5-a6ad-689688035570</uuid>\n\t  <value>[2023]
         EWHC 1914 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/1914</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"4\" uri=\"/ewhc/ipec/2023/1821.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/1821.xml&quot;)\"
-        score=\"1544\" confidence=\"0.05723008\" fitness=\"0.386981\">\n    <search:snippet/>\n    <search:extracted
+        score=\"25472\" confidence=\"0.2310779\" fitness=\"0.3752043\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-21\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"EQUISAFETY LIMITED v BATTLE, HAYWARD AND BOWER LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-07-25T11:46:45\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
@@ -63,7 +63,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-a4c8c8fc-0419-4972-8edc-870a4ff70775</uuid>\n\t  <value>[2023]
         EWHC 1821 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/1821</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"5\" uri=\"/ewhc/ipec/2023/1480.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/1480.xml&quot;)\"
-        score=\"1720\" confidence=\"0.06040389\" fitness=\"0.4084418\">\n    <search:snippet/>\n    <search:extracted
+        score=\"28352\" confidence=\"0.2437916\" fitness=\"0.3958477\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-06-23\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-06-23T10:08:34\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2024-01-30T12:40:01\" name=\"tna-enriched\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
@@ -74,7 +74,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-0f59c3d6-797f-400b-b4d1-5a44ad56332d</uuid>\n\t  <value>[2023]
         EWHC 1480 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/1480</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"6\" uri=\"/ewhc/ipec/2023/1455.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/1455.xml&quot;)\"
-        score=\"1544\" confidence=\"0.05723008\" fitness=\"0.386981\">\n    <search:snippet/>\n    <search:extracted
+        score=\"25472\" confidence=\"0.2310779\" fitness=\"0.3752043\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-06-16\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"CRAFTS GROUP LLC v M/S INDEUTSCH INTERNATIONAL\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-06-16T10:29:28\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
@@ -85,7 +85,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-d95810d1-63ca-4fa8-a4b4-4bd9de69b90f</uuid>\n\t  <value>[2023]
         EWHC 1455 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/1455</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"7\" uri=\"/ewhc/ipec/2023/1303.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/1303.xml&quot;)\"
-        score=\"2074\" confidence=\"0.06632926\" fitness=\"0.4485081\">\n    <search:snippet/>\n    <search:extracted
+        score=\"34112\" confidence=\"0.2674117\" fitness=\"0.4342001\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-06-02\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"KF GLOBAL BRANDS LIMITED v LEAD WEAR LIMITED\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-06-02T11:52:44\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -101,7 +101,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-3276f912-bd35-4a23-9634-98e1d08c80cd</uuid>\n\t  <value>[2023]
         EWHC 1303 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/1303</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"8\" uri=\"/ewhc/ipec/2023/1028.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/1028.xml&quot;)\"
-        score=\"1544\" confidence=\"0.05723008\" fitness=\"0.386981\">\n    <search:snippet/>\n    <search:extracted
+        score=\"25472\" confidence=\"0.2310779\" fitness=\"0.3752043\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-05-02\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"HAYMAN-JOYCE PROPERTY LIMITED v HAYMAN-JOYCE BROADWAY LLP\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-05-03T09:34:20\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:cite
@@ -113,7 +113,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-54fae360-71ef-4f99-8e88-b7c4b59cb285</uuid>\n\t  <value>[2023]
         EWHC 1028 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/1028</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"9\" uri=\"/ewhc/ipec/2023/755.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/755.xml&quot;)\"
-        score=\"1720\" confidence=\"0.06040389\" fitness=\"0.4084418\">\n    <search:snippet/>\n    <search:extracted
+        score=\"28352\" confidence=\"0.2437916\" fitness=\"0.3958477\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-04-25\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Photobooth Props Limited v NEPBH Ltd\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-04-27T17:13:37\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -125,7 +125,7 @@ interactions:
         xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-970e5e65-94dd-47cb-9c9b-56f8197c6a51</uuid>\n\t  <value>[2023]
         EWHC 755 (IPEC)</value>\n\t  <url_slug>ewhc/ipec/2023/755</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"10\" uri=\"/ewhc/ipec/2023/890.xml\" path=\"fn:doc(&quot;/ewhc/ipec/2023/890.xml&quot;)\"
-        score=\"1544\" confidence=\"0.05723008\" fitness=\"0.386981\">\n    <search:snippet/>\n    <search:extracted
+        score=\"25472\" confidence=\"0.2310779\" fitness=\"0.3752043\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-04-20\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Yours Naturally Naturally Yours Limited v Kate McIver Skin Limited\"
         xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -152,7 +152,7 @@ interactions:
         name=\"2019\" count=\"13\">2019</search:facet-value>\n    <search:facet-value
         name=\"2020\" count=\"16\">2020</search:facet-value>\n    <search:facet-value
         name=\"2021\" count=\"11\">2021</search:facet-value>\n    <search:facet-value
-        name=\"2022\" count=\"19\">2022</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.015305S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.004135S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000148S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004904S</search:extract-resolution-time>\n    <search:total-time>PT0.025581S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2022\" count=\"19\">2022</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.090617S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.005248S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000236S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.026696S</search:extract-resolution-time>\n    <search:total-time>PT0.124285S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -160,9 +160,55 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Thu, 11 Jun 2026 08:19:03 GMT
+      - Fri, 30 Oct 2026 16:43:02 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
+    status:
+      code: 200
+      message: OK
+- request:
+    body: xquery=xquery+version+%221.0-ml%22%3B%0A%0Adeclare+variable+%24uris+as+json%3Aarray+external%3B%0Alet+%24properties+%3A%3D+%28%0A++++fn%3AQName%28%22%22%2C+%27editor-priority%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27assigned-to%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27editor-hold%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-name%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-email%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-consignment-reference%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27published%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27email-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27metadata_fields%27%29%0A%29%0A%0Areturn+%3Cproperty-results%3E%7B%0Afor+%24uri+in+json%3Aarray-values%28%24uris%29%0A++let+%24timestamp+%3A%3D+xdmp%3Adocument-timestamp%28%24uri%29%0A++return+%3Cproperty-result+uri%3D%27%7B%24uri%7D%27+last-modified%3D%27%7Bif+%28fn%3Aexists%28%24timestamp%29%29+then+xdmp%3Atimestamp-to-wallclock%28%24timestamp%29+else+%28%29%7D%27%3E+%7B%0A++++for+%24prop+in+%24properties%0A++++++return+xdmp%3Adocument-get-properties%28%24uri%2C+%24prop%29%0A++%7D+%3C%2Fproperty-result%3E%0A%7D%3C%2Fproperty-results%3E%0A&vars=%7B%22uris%22%3A+%5B%22%2Fewhc%2Fipec%2F2023%2F2176.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F2005.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F1914.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F1821.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F1480.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F1455.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F1303.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F1028.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F755.xml%22%2C+%22%2Fewhc%2Fipec%2F2023%2F890.xml%22%5D%7D
+    headers:
+      Accept:
+      - application/xml
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/eval
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "element()", "X-Path": "/property-results"}, "body": "<property-results><property-result
+        uri=\"/ewhc/ipec/2023/2176.xml\" last-modified=\"2026-09-02T10:39:43.076414\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-T2M</transfer-consignment-reference><transfer-received-at>2023-09-07T10:54:44Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/2005.xml\" last-modified=\"2026-10-26T11:11:01.321709\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-S6W</transfer-consignment-reference><transfer-received-at>2023-08-07T09:44:45Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/1914.xml\" last-modified=\"2026-09-02T10:51:29.163906\"><editor-hold>true</editor-hold><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-SRR</transfer-consignment-reference><transfer-received-at>2023-07-26T09:48:37Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/1821.xml\" last-modified=\"2026-09-02T10:38:30.878524\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-SQP</transfer-consignment-reference><transfer-received-at>2023-07-25T11:45:17Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/1480.xml\" last-modified=\"2026-10-26T11:22:26.051643\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-RMC</transfer-consignment-reference><transfer-received-at>2023-06-23T10:06:59Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/1455.xml\" last-modified=\"2026-09-02T10:50:05.025413\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-RDT</transfer-consignment-reference><transfer-received-at>2023-06-16T10:27:48Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/1303.xml\" last-modified=\"2026-10-26T11:20:24.134253\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-QWV</transfer-consignment-reference><transfer-received-at>2023-06-02T11:51:08Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/1028.xml\" last-modified=\"2026-09-02T10:43:33.476147\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-PW7</transfer-consignment-reference><transfer-received-at>2023-05-03T09:32:44Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/755.xml\" last-modified=\"2026-10-26T11:24:07.282245\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-PT2</transfer-consignment-reference><transfer-received-at>2023-04-27T17:12:06Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ewhc/ipec/2023/890.xml\" last-modified=\"2026-10-26T11:24:04.120172\"><source-name>Charlotte
+        Brice</source-name><source-email>charlotte.brice@justice.gov.uk</source-email><transfer-consignment-reference>TDR-2023-PJG</transfer-consignment-reference><transfer-received-at>2023-04-20T11:00:54Z</transfer-received-at><published>true</published></property-result></property-results>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Fri, 30 Oct 2026 16:43:03 GMT
+      Server:
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK

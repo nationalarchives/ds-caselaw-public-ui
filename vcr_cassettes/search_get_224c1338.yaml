@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukpc%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%221085-01-01%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
+    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukpc%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%221000-01-01%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
     headers:
       Accept:
       - multipart/mixed
@@ -15,7 +15,7 @@ interactions:
         snippet-format=\"empty-snippet\" total=\"432\" start=\"1\" page-length=\"10\"
         selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/ukpc/2023/35.xml\" path=\"fn:doc(&quot;/ukpc/2023/35.xml&quot;)\"
-        score=\"2040\" confidence=\"0.06578332\" fitness=\"0.5374116\">\n    <search:snippet/>\n    <search:extracted
+        score=\"35840\" confidence=\"0.2741011\" fitness=\"0.5349101\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-10-10\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Stanford Asset Holdings Ltd and another v AfrAsia Bank Ltd (Mauritius)\"
         xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -30,7 +30,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-dd1519d7-494e-4779-bb23-83bebad97ab4</uuid>\n\t  <value>[2023]
         UKPC 35</value>\n\t  <url_slug>ukpc/2023/35</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"2\" uri=\"/ukpc/2023/34.xml\" path=\"fn:doc(&quot;/ukpc/2023/34.xml&quot;)\"
-        score=\"2040\" confidence=\"0.06578332\" fitness=\"0.5374116\">\n    <search:snippet/>\n    <search:extracted
+        score=\"35840\" confidence=\"0.2741011\" fitness=\"0.5349101\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-09-26\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Rollin Clifton Bertrand and others v Anthony Elias\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-09-26T10:50:56\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -44,7 +44,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-08bcefdf-dc85-4f70-8d06-094fdf573818</uuid>\n\t  <value>[2023]
         UKPC 34</value>\n\t  <url_slug>ukpc/2023/34</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"3\" uri=\"/ukpc/2023/33.xml\" path=\"fn:doc(&quot;/ukpc/2023/33.xml&quot;)\"
-        score=\"2040\" confidence=\"0.06578332\" fitness=\"0.5374116\">\n    <search:snippet/>\n    <search:extracted
+        score=\"35840\" confidence=\"0.2741011\" fitness=\"0.5349101\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-09-20\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"FamilyMart China Holding Co Ltd v Ting Chuan (Cayman Islands) Holding
         Corporation\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -59,7 +59,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-dbf64044-4c35-4291-a13e-daecd7198b64</uuid>\n\t  <value>[2023]
         UKPC 33</value>\n\t  <url_slug>ukpc/2023/33</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"4\" uri=\"/ukpc/2023/32.xml\" path=\"fn:doc(&quot;/ukpc/2023/32.xml&quot;)\"
-        score=\"2387\" confidence=\"0.07115853\" fitness=\"0.5813239\">\n    <search:snippet/>\n    <search:extracted
+        score=\"41984\" confidence=\"0.2966667\" fitness=\"0.5789468\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-09-05\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Roger Watson v The King\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-09-05T10:27:28\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -73,7 +73,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-c0b9137d-ea8a-4618-be29-cbadfeaad76c</uuid>\n\t  <value>[2023]
         UKPC 32</value>\n\t  <url_slug>ukpc/2023/32</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"5\" uri=\"/ukpc/2023/31.xml\" path=\"fn:doc(&quot;/ukpc/2023/31.xml&quot;)\"
-        score=\"2560\" confidence=\"0.07369206\" fitness=\"0.6020214\">\n    <search:snippet/>\n    <search:extracted
+        score=\"45056\" confidence=\"0.3073287\" fitness=\"0.5997539\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-08-01\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Sassy Garcia v Arima Door Centre Holding Company Ltd\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-08-01T10:17:21\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -86,7 +86,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-3d221cdf-0790-41a5-88bd-323724e7109f</uuid>\n\t  <value>[2023]
         UKPC 31</value>\n\t  <url_slug>ukpc/2023/31</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"6\" uri=\"/ukpc/2023/30.xml\" path=\"fn:doc(&quot;/ukpc/2023/30.xml&quot;)\"
-        score=\"2214\" confidence=\"0.06853139\" fitness=\"0.5598617\">\n    <search:snippet/>\n    <search:extracted
+        score=\"38912\" confidence=\"0.2856068\" fitness=\"0.5573636\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-27\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Matadai Roopnarine v Attorney General of Trinidad and Tobago\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-07-27T10:33:52\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
@@ -98,7 +98,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-a250007c-bc4b-452e-a119-e148f0d6a1a9</uuid>\n\t  <value>[2023]
         UKPC 30</value>\n\t  <url_slug>ukpc/2023/30</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"7\" uri=\"/ukpc/2023/29.xml\" path=\"fn:doc(&quot;/ukpc/2023/29.xml&quot;)\"
-        score=\"2040\" confidence=\"0.06578332\" fitness=\"0.5374116\">\n    <search:snippet/>\n    <search:extracted
+        score=\"35840\" confidence=\"0.2741011\" fitness=\"0.5349101\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-27\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Winston Finzi v Jamaican Redevelopment Foundation Inc and others\"
         xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -112,7 +112,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-32de1abb-7625-4d99-81f7-3cc3ee4c5bc3</uuid>\n\t  <value>[2023]
         UKPC 29</value>\n\t  <url_slug>ukpc/2023/29</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"8\" uri=\"/ukpc/2023/28.xml\" path=\"fn:doc(&quot;/ukpc/2023/28.xml&quot;)\"
-        score=\"2387\" confidence=\"0.07115853\" fitness=\"0.5813239\">\n    <search:snippet/>\n    <search:extracted
+        score=\"41984\" confidence=\"0.2966667\" fitness=\"0.5789468\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-25\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Caryn Moss v The King\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2023-07-25T11:16:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -127,7 +127,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-e470a6ae-1f2f-405b-99cc-0e9326eb49d2</uuid>\n\t  <value>[2023]
         UKPC 28</value>\n\t  <url_slug>ukpc/2023/28</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"9\" uri=\"/ukpc/2023/27.xml\" path=\"fn:doc(&quot;/ukpc/2023/27.xml&quot;)\"
-        score=\"2387\" confidence=\"0.07115853\" fitness=\"0.5813239\">\n    <search:snippet/>\n    <search:extracted
+        score=\"41984\" confidence=\"0.2966667\" fitness=\"0.5789468\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-18\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"The Chairman of the Board of Inland Revenue v Finbar Boland and 15
         others\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -140,7 +140,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>ukncn</namespace>\n\t  <uuid>id-fe71d0b3-325c-41a6-92bd-54913ae155d4</uuid>\n\t  <value>[2023]
         UKPC 27</value>\n\t  <url_slug>ukpc/2023/27</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:result
         index=\"10\" uri=\"/ukpc/2023/26.xml\" path=\"fn:doc(&quot;/ukpc/2023/26.xml&quot;)\"
-        score=\"2040\" confidence=\"0.06578332\" fitness=\"0.5374116\">\n    <search:snippet/>\n    <search:extracted
+        score=\"35840\" confidence=\"0.2741011\" fitness=\"0.5349101\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2023-07-18\" name=\"judgment\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Attorney General of Trinidad and Tobago v Trinsalvage Enterprises
         Ltd\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
@@ -163,7 +163,7 @@ interactions:
         name=\"2015\" count=\"41\">2015</search:facet-value>\n    <search:facet-value
         name=\"2016\" count=\"29\">2016</search:facet-value>\n    <search:facet-value
         name=\"2017\" count=\"40\">2017</search:facet-value>\n    <search:facet-value
-        name=\"2018\" count=\"28\">2018</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.014176S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002999S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000144S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004524S</search:extract-resolution-time>\n    <search:total-time>PT0.0229S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"2018\" count=\"28\">2018</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.025446S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002167S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000138S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.004608S</search:extract-resolution-time>\n    <search:total-time>PT0.033342S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -171,9 +171,55 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Thu, 11 Jun 2026 08:18:42 GMT
+      - Fri, 30 Oct 2026 16:42:38 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
+    status:
+      code: 200
+      message: OK
+- request:
+    body: xquery=xquery+version+%221.0-ml%22%3B%0A%0Adeclare+variable+%24uris+as+json%3Aarray+external%3B%0Alet+%24properties+%3A%3D+%28%0A++++fn%3AQName%28%22%22%2C+%27editor-priority%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27assigned-to%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27editor-hold%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-name%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-email%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-consignment-reference%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27published%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27email-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27metadata_fields%27%29%0A%29%0A%0Areturn+%3Cproperty-results%3E%7B%0Afor+%24uri+in+json%3Aarray-values%28%24uris%29%0A++let+%24timestamp+%3A%3D+xdmp%3Adocument-timestamp%28%24uri%29%0A++return+%3Cproperty-result+uri%3D%27%7B%24uri%7D%27+last-modified%3D%27%7Bif+%28fn%3Aexists%28%24timestamp%29%29+then+xdmp%3Atimestamp-to-wallclock%28%24timestamp%29+else+%28%29%7D%27%3E+%7B%0A++++for+%24prop+in+%24properties%0A++++++return+xdmp%3Adocument-get-properties%28%24uri%2C+%24prop%29%0A++%7D+%3C%2Fproperty-result%3E%0A%7D%3C%2Fproperty-results%3E%0A&vars=%7B%22uris%22%3A+%5B%22%2Fukpc%2F2023%2F35.xml%22%2C+%22%2Fukpc%2F2023%2F34.xml%22%2C+%22%2Fukpc%2F2023%2F33.xml%22%2C+%22%2Fukpc%2F2023%2F32.xml%22%2C+%22%2Fukpc%2F2023%2F31.xml%22%2C+%22%2Fukpc%2F2023%2F30.xml%22%2C+%22%2Fukpc%2F2023%2F29.xml%22%2C+%22%2Fukpc%2F2023%2F28.xml%22%2C+%22%2Fukpc%2F2023%2F27.xml%22%2C+%22%2Fukpc%2F2023%2F26.xml%22%5D%7D
+    headers:
+      Accept:
+      - application/xml
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/eval
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "element()", "X-Path": "/property-results"}, "body": "<property-results><property-result
+        uri=\"/ukpc/2023/35.xml\" last-modified=\"2026-10-26T11:22:20.147374\"><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-VWD</transfer-consignment-reference><transfer-received-at>2023-10-10T10:16:02Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/34.xml\" last-modified=\"2026-10-26T11:19:54.35106\"><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-VH2</transfer-consignment-reference><transfer-received-at>2023-09-26T10:49:20Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/33.xml\" last-modified=\"2026-10-26T11:21:50.031325\"><source-name>Paul
+        Sandles</source-name><source-email>paul.sandles@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-VDG</transfer-consignment-reference><transfer-received-at>2023-09-20T10:11:47Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/32.xml\" last-modified=\"2026-10-26T11:25:35.318316\"><editor-hold>false</editor-hold><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-TWK</transfer-consignment-reference><transfer-received-at>2023-09-05T10:25:52Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/31.xml\" last-modified=\"2026-10-26T11:18:43.741682\"><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-S26</transfer-consignment-reference><transfer-received-at>2023-08-01T10:15:45Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/30.xml\" last-modified=\"2026-09-02T10:45:20.14156\"><editor-hold>false</editor-hold><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-STQ</transfer-consignment-reference><transfer-received-at>2023-07-27T10:32:18Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/29.xml\" last-modified=\"2026-10-26T11:17:24.091898\"><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-STP</transfer-consignment-reference><transfer-received-at>2023-07-27T10:30:51Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/28.xml\" last-modified=\"2026-10-26T11:22:42.226429\"><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-SQL</transfer-consignment-reference><transfer-received-at>2023-07-25T11:15:09Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/27.xml\" last-modified=\"2026-09-02T10:53:03.20541\"><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-SJF</transfer-consignment-reference><transfer-received-at>2023-07-18T10:25:41Z</transfer-received-at><published>true</published></property-result><property-result
+        uri=\"/ukpc/2023/26.xml\" last-modified=\"2026-09-02T10:45:02.13267\"><source-name>Sophia
+        May</source-name><source-email>sophia.may@supremecourt.uk</source-email><transfer-consignment-reference>TDR-2023-SJD</transfer-consignment-reference><transfer-received-at>2023-07-18T10:24:40Z</transfer-received-at><published>true</published></property-result></property-results>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Fri, 30 Oct 2026 16:42:38 GMT
+      Server:
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK

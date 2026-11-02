@@ -15,7 +15,7 @@ interactions:
         snippet-format=\"empty-snippet\" total=\"1\" start=\"1\" page-length=\"5\"
         selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/d-3372416d-8277-4585-8b92-582a4387f995.xml\" path=\"fn:doc(&quot;/d-3372416d-8277-4585-8b92-582a4387f995.xml&quot;)\"
-        score=\"2771\" confidence=\"0.07673957\" fitness=\"0.6746935\">\n    <search:snippet/>\n    <search:extracted
+        score=\"48128\" confidence=\"0.3176331\" fitness=\"0.6758211\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2009-03-23\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Mohammad Afsar Khan t/a Khan Immigration Services v OISC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2025-04-22T15:17:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
@@ -24,7 +24,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>fclid</namespace>\n\t  <uuid>id-b1e69ce1-f32f-4e2e-ab43-47700b860bc7</uuid>\n\t  <value>v7p8nptb</value>\n\t  <url_slug>tna.v7p8nptb</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
         name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKIST\"
         count=\"1\">UKIST</search:facet-value>\n  </search:facet>\n  <search:facet
-        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2009\" count=\"1\">2009</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.007916S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002656S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000036S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.000731S</search:extract-resolution-time>\n    <search:total-time>PT0.01218S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2009\" count=\"1\">2009</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.01082S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002457S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000037S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.000838S</search:extract-resolution-time>\n    <search:total-time>PT0.014716S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -32,9 +32,36 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Wed, 13 May 2026 09:12:58 GMT
+      - Fri, 30 Oct 2026 16:48:42 GMT
       Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
+    status:
+      code: 200
+      message: OK
+- request:
+    body: xquery=xquery+version+%221.0-ml%22%3B%0A%0Adeclare+variable+%24uris+as+json%3Aarray+external%3B%0Alet+%24properties+%3A%3D+%28%0A++++fn%3AQName%28%22%22%2C+%27editor-priority%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27assigned-to%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27editor-hold%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-name%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27source-email%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-consignment-reference%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27transfer-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27published%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27email-received-at%27%29%2C%0A++++fn%3AQName%28%22%22%2C+%27metadata_fields%27%29%0A%29%0A%0Areturn+%3Cproperty-results%3E%7B%0Afor+%24uri+in+json%3Aarray-values%28%24uris%29%0A++let+%24timestamp+%3A%3D+xdmp%3Adocument-timestamp%28%24uri%29%0A++return+%3Cproperty-result+uri%3D%27%7B%24uri%7D%27+last-modified%3D%27%7Bif+%28fn%3Aexists%28%24timestamp%29%29+then+xdmp%3Atimestamp-to-wallclock%28%24timestamp%29+else+%28%29%7D%27%3E+%7B%0A++++for+%24prop+in+%24properties%0A++++++return+xdmp%3Adocument-get-properties%28%24uri%2C+%24prop%29%0A++%7D+%3C%2Fproperty-result%3E%0A%7D%3C%2Fproperty-results%3E%0A&vars=%7B%22uris%22%3A+%5B%22%2Fd-3372416d-8277-4585-8b92-582a4387f995.xml%22%5D%7D
+    headers:
+      Accept:
+      - application/xml
+      Content-type:
+      - application/x-www-form-urlencoded
+    method: POST
+    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/eval
+  response:
+    body:
+      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
+        {"X-Primitive": "element()", "X-Path": "/property-results"}, "body": "<property-results><property-result
+        uri=\"/d-3372416d-8277-4585-8b92-582a4387f995.xml\" last-modified=\"2026-10-09T14:07:17.527225\"><published>true</published></property-result></property-results>",
+        "encoding": "utf-8"}]'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - multipart/mixed; boundary=vcr_cassette_boundary
+      Date:
+      - Fri, 30 Oct 2026 16:48:42 GMT
+      Server:
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK
@@ -54,7 +81,7 @@ interactions:
         snippet-format=\"empty-snippet\" total=\"1\" start=\"1\" page-length=\"10\"
         selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
         index=\"1\" uri=\"/d-3372416d-8277-4585-8b92-582a4387f995.xml\" path=\"fn:doc(&quot;/d-3372416d-8277-4585-8b92-582a4387f995.xml&quot;)\"
-        score=\"2771\" confidence=\"0.07673957\" fitness=\"0.6746935\">\n    <search:snippet/>\n    <search:extracted
+        score=\"48128\" confidence=\"0.3176331\" fitness=\"0.6758211\">\n    <search:snippet/>\n    <search:extracted
         kind=\"element\">\n      <FRBRdate date=\"2009-03-23\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
         value=\"Mohammad Afsar Khan t/a Khan Immigration Services v OISC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
         date=\"2025-04-22T15:17:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
@@ -63,7 +90,7 @@ interactions:
         xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>fclid</namespace>\n\t  <uuid>id-b1e69ce1-f32f-4e2e-ab43-47700b860bc7</uuid>\n\t  <value>v7p8nptb</value>\n\t  <url_slug>tna.v7p8nptb</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
         name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKIST\"
         count=\"1\">UKIST</search:facet-value>\n  </search:facet>\n  <search:facet
-        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2009\" count=\"1\">2009</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.007436S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002416S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000035S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.0007S</search:extract-resolution-time>\n    <search:total-time>PT0.011159S</search:total-time>\n  </search:metrics>\n</search:response>",
+        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2009\" count=\"1\">2009</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.010625S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002354S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.00004S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.000791S</search:extract-resolution-time>\n    <search:total-time>PT0.01441S</search:total-time>\n  </search:metrics>\n</search:response>",
         "encoding": "utf-8"}]'
     headers:
       Connection:
@@ -71,87 +98,9 @@ interactions:
       Content-Type:
       - multipart/mixed; boundary=vcr_cassette_boundary
       Date:
-      - Wed, 13 May 2026 09:12:58 GMT
+      - Fri, 30 Oct 2026 16:48:42 GMT
       Server:
-      - MarkLogic 11.0.2
-    status:
-      code: 200
-      message: OK
-- request:
-    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukist%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+5%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22-date%22%2C+%22from%22%3A+%22%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
-    headers:
-      Accept:
-      - multipart/mixed
-      Content-type:
-      - application/x-www-form-urlencoded
-    method: POST
-    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/invoke
-  response:
-    body:
-      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
-        {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
-        snippet-format=\"empty-snippet\" total=\"1\" start=\"1\" page-length=\"5\"
-        selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
-        index=\"1\" uri=\"/d-3372416d-8277-4585-8b92-582a4387f995.xml\" path=\"fn:doc(&quot;/d-3372416d-8277-4585-8b92-582a4387f995.xml&quot;)\"
-        score=\"2771\" confidence=\"0.07673957\" fitness=\"0.6746935\">\n    <search:snippet/>\n    <search:extracted
-        kind=\"element\">\n      <FRBRdate date=\"2009-03-23\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
-        value=\"Mohammad Afsar Khan t/a Khan Immigration Services v OISC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
-        date=\"2025-04-22T15:17:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
-        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKIST</uk:court>\n    </search:extracted>\n    <search:extracted
-        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
-        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>fclid</namespace>\n\t  <uuid>id-b1e69ce1-f32f-4e2e-ab43-47700b860bc7</uuid>\n\t  <value>v7p8nptb</value>\n\t  <url_slug>tna.v7p8nptb</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
-        name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKIST\"
-        count=\"1\">UKIST</search:facet-value>\n  </search:facet>\n  <search:facet
-        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2009\" count=\"1\">2009</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.007874S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002162S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000033S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.000653S</search:extract-resolution-time>\n    <search:total-time>PT0.011324S</search:total-time>\n  </search:metrics>\n</search:response>",
-        "encoding": "utf-8"}]'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - multipart/mixed; boundary=vcr_cassette_boundary
-      Date:
-      - Wed, 13 May 2026 09:20:17 GMT
-      Server:
-      - MarkLogic 11.0.2
-    status:
-      code: 200
-      message: OK
-- request:
-    body: module=%2Fjudgments%2Fsearch%2Fsearch-v2.xqy&vars=%7B%22court%22%3A+%5B%22ukist%22%5D%2C+%22judge%22%3A+%22%22%2C+%22page%22%3A+1%2C+%22page-size%22%3A+10%2C+%22q%22%3A+%22%22%2C+%22party%22%3A+%22%22%2C+%22neutral_citation%22%3A+%22%22%2C+%22document_name%22%3A+%22%22%2C+%22consignment_number%22%3A+%22%22%2C+%22specific_keyword%22%3A+%22%22%2C+%22order%22%3A+%22%22%2C+%22from%22%3A+%22%22%2C+%22to%22%3A+%22%22%2C+%22show_unpublished%22%3A+%22false%22%2C+%22only_unpublished%22%3A+%22false%22%2C+%22only_with_html_representation%22%3A+%22false%22%2C+%22collections%22%3A+%22judgment%22%2C+%22quoted_phrases%22%3A+%5B%5D%7D
-    headers:
-      Accept:
-      - multipart/mixed
-      Content-type:
-      - application/x-www-form-urlencoded
-    method: POST
-    uri: http://ml.external.staging.caselaw.nationalarchives.gov.uk:8011/LATEST/invoke
-  response:
-    body:
-      string: 'vcr-multipart-parts:[{"content_type": "application/xml", "extra_headers":
-        {"X-Primitive": "document-node()"}, "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<search:response
-        snippet-format=\"empty-snippet\" total=\"1\" start=\"1\" page-length=\"10\"
-        selected=\"include\" xmlns:search=\"http://marklogic.com/appservices/search\">\n  <search:result
-        index=\"1\" uri=\"/d-3372416d-8277-4585-8b92-582a4387f995.xml\" path=\"fn:doc(&quot;/d-3372416d-8277-4585-8b92-582a4387f995.xml&quot;)\"
-        score=\"2771\" confidence=\"0.07673957\" fitness=\"0.6746935\">\n    <search:snippet/>\n    <search:extracted
-        kind=\"element\">\n      <FRBRdate date=\"2009-03-23\" name=\"decision\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRname
-        value=\"Mohammad Afsar Khan t/a Khan Immigration Services v OISC\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <FRBRdate
-        date=\"2025-04-22T15:17:46\" name=\"transform\" xmlns=\"http://docs.oasis-open.org/legaldocml/ns/akn/3.0\"/>\n      <uk:court
-        xmlns:uk=\"https://caselaw.nationalarchives.gov.uk/akn\">UKIST</uk:court>\n    </search:extracted>\n    <search:extracted
-        kind=\"identifiers\" xmlns:map=\"http://marklogic.com/xdmp/map\">\n      <identifiers
-        xmlns:prop=\"http://marklogic.com/xdmp/property\">\n\t<identifier>\n\t  <namespace>fclid</namespace>\n\t  <uuid>id-b1e69ce1-f32f-4e2e-ab43-47700b860bc7</uuid>\n\t  <value>v7p8nptb</value>\n\t  <url_slug>tna.v7p8nptb</url_slug>\n\t</identifier>\n      </identifiers>\n    </search:extracted>\n  </search:result>\n  <search:facet
-        name=\"court\" type=\"xs:string\">\n    <search:facet-value name=\"UKIST\"
-        count=\"1\">UKIST</search:facet-value>\n  </search:facet>\n  <search:facet
-        name=\"year\" type=\"xs:gYear\">\n    <search:facet-value name=\"2009\" count=\"1\">2009</search:facet-value>\n  </search:facet>\n  <search:metrics>\n    <search:query-resolution-time>PT0.007566S</search:query-resolution-time>\n    <search:facet-resolution-time>PT0.002209S</search:facet-resolution-time>\n    <search:snippet-resolution-time>PT0.000035S</search:snippet-resolution-time>\n    <search:extract-resolution-time>PT0.000914S</search:extract-resolution-time>\n    <search:total-time>PT0.011319S</search:total-time>\n  </search:metrics>\n</search:response>",
-        "encoding": "utf-8"}]'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - multipart/mixed; boundary=vcr_cassette_boundary
-      Date:
-      - Wed, 13 May 2026 09:20:17 GMT
-      Server:
-      - MarkLogic 11.0.2
+      - MarkLogic 11.3.7
     status:
       code: 200
       message: OK

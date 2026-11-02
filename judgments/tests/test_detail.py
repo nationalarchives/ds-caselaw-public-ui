@@ -155,7 +155,7 @@ class TestDocumentDownloadOptions(MockAPI):
         mock_pdf.return_value.size = 112
         mock_pdf.return_value.uri = "http://example.com/test.pdf"
         document = mock_get_document_by_uri()
-        document_title = document.body.name
+        document_title = document.name
         document_noun = document.document_noun
         assert document_noun in ["press summary", "judgment"]
         client = Client()

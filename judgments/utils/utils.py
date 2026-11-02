@@ -269,9 +269,9 @@ def linked_doc_url(document: Document) -> DocumentURIString:
 def linked_doc_title(document: Document):
     press_summary_title_prefix = "Press Summary of "
     if document.document_noun == "press summary":
-        return document.body.name.removeprefix(press_summary_title_prefix)
+        return document.name.removeprefix(press_summary_title_prefix)
     else:
-        return press_summary_title_prefix + document.body.name
+        return press_summary_title_prefix + document.name
 
 
 def press_summary_list_breadcrumbs(press_summary: Document):
