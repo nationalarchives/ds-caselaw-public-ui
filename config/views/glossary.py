@@ -67,7 +67,7 @@ TERMS: list[Term] = [
     ),
     Term(
         "Division",
-        "A specialist section within a court that handles particular types of cases. For example, the High Court has three divisions: King's Bench Division (general civil claims), Chancery Division (business and property), and Family Division (family matters). Each division has expertise in its area of law.",
+        "A specialist section within a court that handles particular types of cases. For example, the High Court has three divisions: King's Bench Division (general civil claims), Business and Property Division (business and property), and Family Division (family matters). Each division has expertise in its area of law.",
     ),
     Term(
         "Ex tempore",
