@@ -76,18 +76,68 @@ jobs:
   production-smoke-test:
     needs: linter
     runs-on: ubuntu-latest
-
+    timeout-minutes: 30
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
+      - name: Install Wiz CLI
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          curl -Lo wizcli https://downloads.wiz.io/v1/wizcli/latest/wizcli-linux-amd64
+          curl -Lo /tmp/wizcli-sha256 https://downloads.wiz.io/v1/wizcli/latest/wizcli-linux-amd64-sha256
+          curl -Lo /tmp/wizcli-sha256.sig https://downloads.wiz.io/v1/wizcli/latest/wizcli-linux-amd64-sha256.sig
+          chmod +x wizcli
+          curl -Lo public_key.asc https://downloads.wiz.io/wizcli/public_key.asc
+          gpg --import public_key.asc
+          gpg --verify /tmp/wizcli-sha256.sig /tmp/wizcli-sha256
+          echo "$(cat /tmp/wizcli-sha256) wizcli" | sha256sum --check
+
+      - name: Scan production build context with Wiz
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }} # zizmor: ignore[secrets-outside-env]
+          WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }} # zizmor: ignore[secrets-outside-env]
+        run: |
+          ./wizcli scan dir \
+            --client-id "$WIZ_CLIENT_ID" \
+            --client-secret "$WIZ_CLIENT_SECRET" \
+            --timeout 5m \
+            .
+
+      - name: Build production image
+        run: docker compose -f docker-compose.yml -f docker-compose.prod-test.yml build django
+
+      - name: Scan production image with Wiz
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }} # zizmor: ignore[secrets-outside-env]
+          WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }} # zizmor: ignore[secrets-outside-env]
+        run: |
+          PRODUCTION_IMAGE="$(docker compose -f docker-compose.yml -f docker-compose.prod-test.yml config --format json | jq -er '.services.django.image')"
+          ./wizcli scan container-image \
+            --client-id "$WIZ_CLIENT_ID" \
+            --client-secret "$WIZ_CLIENT_SECRET" \
+            --timeout 15m \
+            --json-output-file "${RUNNER_TEMP}/wiz-container-scan.json" \
+            "$PRODUCTION_IMAGE"
+
+      - name: Upload Wiz scan report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: wiz-container-scan
+          path: ${{ runner.temp }}/wiz-container-scan.json
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Create external network
         run: docker network create caselaw
 
-      - name: Build and run production smoke test
-        run: docker compose -f docker-compose.yml -f docker-compose.prod-test.yml up -d --build --wait --wait-timeout 600
+      - name: Run production smoke test
+        run: docker compose -f docker-compose.yml -f docker-compose.prod-test.yml up -d --no-build --wait --wait-timeout 600
 
       - name: Show logs on failure
         if: failure()
