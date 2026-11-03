@@ -7,6 +7,17 @@
       "/e2e_tests/requirements\\.txt"
     ]
   },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^Dockerfile$/"],
+      "matchStrings": ["ARG NODEJS_VERSION=\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "nodejs",
+      "datasourceTemplate": "deb",
+      "versioningTemplate": "deb",
+      "registryUrlTemplate": "https://deb.nodesource.com/node_22.x?suite=nodistro&components=main&binaryArch=amd64"
+    }
+  ],
   "packageRules": [
     {
       "matchDatasources": ["deb"],
