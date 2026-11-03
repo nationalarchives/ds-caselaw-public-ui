@@ -91,21 +91,14 @@ COPY . ${APP_HOME}
 CMD ["tail", "-f", "/dev/null"]
 
 
-# Production stage
-FROM python-runtime-stage AS python-production-stage
+FROM python AS assets-build-stage
 
 ARG APP_HOME=/app
 
-ARG BUILD_ENVIRONMENT=production
-ENV BUILD_ENV=${BUILD_ENVIRONMENT}
-
 ARG NODEJS_VERSION="22.23.4-1nodesource1"
 
-# Create non-root user for production
-RUN addgroup --system django \
-    && adduser --system --ingroup django --home /home/django django
+WORKDIR ${APP_HOME}
 
-# Install production-specific dependencies (curl for Node.js installation)
 RUN apt-get update && apt-get install --no-install-recommends -y \
   curl \
   && rm -rf /var/lib/apt/lists/*
@@ -116,12 +109,29 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js dependencies (as root)
 COPY package-lock.json package.json ./
 RUN npm ci --engine-strict=true
 
+COPY vite.config.mjs ./
+COPY ./ds_judgements_public_ui ./ds_judgements_public_ui
+RUN npm run build
+
+
+# Production stage
+FROM python-runtime-stage AS python-production-stage
+
+ARG APP_HOME=/app
+
+ARG BUILD_ENVIRONMENT=production
+ENV BUILD_ENV=${BUILD_ENVIRONMENT}
+
+# Create non-root user for production
+RUN addgroup --system django \
+  && adduser --system --ingroup django --home /home/django django
+
 # Copy application code (owned by root)
 COPY . ${APP_HOME}
+COPY --from=assets-build-stage /app/ds_judgements_public_ui/static ${APP_HOME}/ds_judgements_public_ui/static
 
 # Copy and prepare production scripts (owned by root)
 COPY ./compose/docker/entrypoint /entrypoint
@@ -134,12 +144,11 @@ RUN chmod +x /start
 
 # Grant django user write access to directories written at runtime:
 # - media/logs: application data
-# - static: build outputs from npm run build (Vite) and collectstatic
+# - staticfiles: collectstatic outputs
 RUN mkdir -p ${APP_HOME}/media ${APP_HOME}/logs ${APP_HOME}/staticfiles \
   && chown -R django:django \
     ${APP_HOME}/media \
     ${APP_HOME}/logs \
-    ${APP_HOME}/ds_judgements_public_ui/static \
     ${APP_HOME}/staticfiles
 
 # Run as non-root user in production
