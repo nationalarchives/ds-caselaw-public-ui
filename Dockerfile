@@ -99,6 +99,8 @@ ARG APP_HOME=/app
 ARG BUILD_ENVIRONMENT=production
 ENV BUILD_ENV=${BUILD_ENVIRONMENT}
 
+ARG NODEJS_VERSION="22.23.4-1nodesource1"
+
 # Create non-root user for production
 RUN addgroup --system django \
     && adduser --system --ingroup django --home /home/django django
@@ -110,7 +112,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 # Install Node.js and clean up in one layer
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
-  && apt-get install --no-install-recommends -y nodejs=22.22.2-1nodesource1 \
+  && apt-get install --no-install-recommends -y nodejs=${NODEJS_VERSION} \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
