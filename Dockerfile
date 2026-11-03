@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # WeasyPrint dependencies
   weasyprint=57.2-1 \
   python3-cffi=1.15.1-5 \
-  python3-brotli=1.0.9-2+b6 \
+  python3-brotli=1.0.9-2+deb12u1 \
   libpango-1.0-0=1.50.12+ds-1 \
   libpangoft2-1.0-0=1.50.12+ds-1 \
   && rm -rf /var/lib/apt/lists/*
@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # WeasyPrint dependencies
   weasyprint=57.2-1 \
   python3-cffi=1.15.1-5 \
-  python3-brotli=1.0.9-2+b6 \
+  python3-brotli=1.0.9-2+deb12u1 \
   libpango-1.0-0=1.50.12+ds-1 \
   libpangoft2-1.0-0=1.50.12+ds-1 \
   && rm -rf /var/lib/apt/lists/*
