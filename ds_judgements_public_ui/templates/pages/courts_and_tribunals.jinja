@@ -18,7 +18,7 @@
 {% endblock desktop_article_title %}
 {% block article_navigation %}
   {% call contents(title="On this page") %}
-    {% call heading(tag="h3") %}
+    {% call heading(tag="div", size="h3") %}
       {% call link(href="#courts") %}
         <strong>Courts</strong>
       {% endcall %}
@@ -42,7 +42,7 @@
         {% endif %}
       {% endfor %}
     {% endcall %}
-    {% call heading(tag="h3") %}
+    {% call heading(tag="div", size="h3") %}
       {% call link(href="#tribunals") %}
         <strong>Tribunals</strong>
       {% endcall %}
