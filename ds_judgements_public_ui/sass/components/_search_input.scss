@@ -25,6 +25,9 @@
 
   .govuk-radios__hint {
     padding-left: 32px;
+    font-size: $typography-sm-text-size;
+    line-height: $typography-lg-line-height;
+    text-wrap: balance;
   }
 
   .govuk-radios__label::before {
@@ -56,6 +59,15 @@
     align-items: flex-start;
 
     margin: 0;
+  }
+
+  fieldset {
+    all: unset;
+
+    legend {
+      all: unset;
+      margin-bottom: $space-4;
+    }
   }
 
   p {
