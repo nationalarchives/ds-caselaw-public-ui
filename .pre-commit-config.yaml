@@ -43,13 +43,13 @@ repos:
         types_or: [yaml, json, xml, markdown, scss, javascript, ts]
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: v17.16.0
+    rev: v18.0.0
     hooks:
       - id: stylelint
         args: [--fix]
         language: node
         additional_dependencies:
-          - stylelint@17.16.0
+          - stylelint@18.0.0
           - stylelint-config-standard-scss@17.0.0
           - stylelint-config-clean-order@10.0.0
 
